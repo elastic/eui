@@ -24,6 +24,7 @@ import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiDataGridSchema, getDetailsForSchema } from './data_grid_schema';
+import { palettes } from '../../services/color/eui_palettes';
 
 export const useColumnSorting = (
   columns: EuiDataGridColumn[],
@@ -32,6 +33,7 @@ export const useColumnSorting = (
 ): [ReactNode] => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
+  const defaultSchemaColor: string = palettes.euiPaletteColorBlind.colors[4];
 
   // prune any non-existant/hidden columns from sorting
   useEffect(() => {
@@ -182,7 +184,7 @@ export const useColumnSorting = (
                                 schema[id].columnType != null
                                   ? getDetailsForSchema(schema[id].columnType)
                                       .color
-                                  : 'text'
+                                  : defaultSchemaColor
                               }
                               type={
                                 schema.hasOwnProperty(id) &&
@@ -194,7 +196,7 @@ export const useColumnSorting = (
                             />
                           </EuiFlexItem>
                           <EuiFlexItem aria-hidden>
-                            <EuiText size="s">
+                            <EuiText size="xs">
                               <p>{id}</p>
                             </EuiText>
                           </EuiFlexItem>
@@ -335,7 +337,7 @@ export const useColumnSorting = (
                             schema.hasOwnProperty(id) &&
                             schema[id].columnType != null
                               ? getDetailsForSchema(schema[id].columnType).color
-                              : 'text'
+                              : defaultSchemaColor
                           }
                           type={
                             schema.hasOwnProperty(id) &&

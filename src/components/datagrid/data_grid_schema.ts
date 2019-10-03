@@ -4,6 +4,8 @@ import {
   EuiDataGridInMemoryValues,
 } from './data_grid_types';
 
+import { palettes } from '../../services/color/eui_palettes';
+
 export interface SchemaDetector {
   type: string;
   detector: (value: string) => number;
@@ -20,7 +22,7 @@ const schemaDetectors: SchemaDetector[] = [
       return value === 'true' || value === 'false' ? 1 : 0;
     },
     icon: 'invert',
-    color: 'secondary',
+    color: palettes.euiPaletteColorBlind.colors[5],
     sortTextAsc: 'False-True',
     sortTextDesc: 'True-False',
   },
@@ -40,7 +42,7 @@ const schemaDetectors: SchemaDetector[] = [
       return (matchLength / value.length) * confidenceAdjustment || 0;
     },
     icon: 'currency',
-    color: 'secondary',
+    color: palettes.euiPaletteColorBlind.colors[0],
     sortTextAsc: 'Low-High',
     sortTextDesc: 'High-Low',
   },
@@ -69,7 +71,7 @@ const schemaDetectors: SchemaDetector[] = [
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
     icon: 'calendar',
-    color: 'primary',
+    color: palettes.euiPaletteColorBlind.colors[7],
     sortTextAsc: 'Old-New',
     sortTextDesc: 'New-Old',
   },
@@ -81,7 +83,7 @@ const schemaDetectors: SchemaDetector[] = [
       return matchLength / value.length || 0;
     },
     icon: 'number',
-    color: 'subdued',
+    color: palettes.euiPaletteColorBlind.colors[0],
     sortTextAsc: 'Low-High',
     sortTextDesc: 'High-Low',
   },
