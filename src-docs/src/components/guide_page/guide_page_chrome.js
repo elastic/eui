@@ -266,7 +266,7 @@ export class GuidePageChrome extends Component {
           href,
           onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),
-          isSelected: name === this.props.currentRouteName,
+          isSelected: item === this.props.currentRoute,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
         };
       });
@@ -330,7 +330,7 @@ export class GuidePageChrome extends Component {
 }
 
 GuidePageChrome.propTypes = {
-  currentRouteName: PropTypes.string,
+  currentRoute: PropTypes.object.isRequired,
   onToggleTheme: PropTypes.func.isRequired,
   selectedTheme: PropTypes.string.isRequired,
   onToggleLocale: PropTypes.func.isRequired,

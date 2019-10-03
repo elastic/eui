@@ -9,6 +9,8 @@ import { EuiErrorBoundary } from '../../src/components';
 
 // Guidelines
 
+import AccessibilityGuidelines from './views/guidelines/accessibility';
+
 import ButtonGuidelines from './views/guidelines/button';
 
 import ColorGuidelines from './views/guidelines/colors';
@@ -248,6 +250,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
+      createExample(AccessibilityGuidelines),
       {
         name: 'Buttons',
         component: ButtonGuidelines,

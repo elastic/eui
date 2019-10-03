@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Adds guidelines on accessibility ([#2357](https://github.com/elastic/eui/pull/2357))
+
 **Bug fixes**
 
 - Fixed default z-index of `EuiPopover` ([#2341](https://github.com/elastic/eui/pull/2341))

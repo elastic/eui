@@ -92,12 +92,14 @@ export class GuideSection extends Component {
     this.componentNames = Object.keys(props.props);
     const hasSnippet = 'snippet' in props;
 
-    this.tabs = [
-      {
+    this.tabs = [];
+
+    if (props.demo) {
+      this.tabs.push({
         name: 'demo',
         displayName: 'Demo',
-      },
-    ];
+      });
+    }
 
     if (props.source) {
       this.tabs.push(
@@ -130,7 +132,7 @@ export class GuideSection extends Component {
     }
 
     this.state = {
-      selectedTab: this.tabs[0],
+      selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
     };
   }
 
@@ -354,9 +356,12 @@ export class GuideSection extends Component {
           {this.renderText()}
         </div>
 
-        <EuiSpacer size="m" />
-
-        <EuiTabs>{this.renderTabs()}</EuiTabs>
+        {this.tabs.length > 0 && (
+          <>
+            <EuiSpacer size="m" />
+            <EuiTabs>{this.renderTabs()}</EuiTabs>
+          </>
+        )}
       </div>
     );
   }
@@ -389,6 +394,10 @@ export class GuideSection extends Component {
   }
 
   renderContent() {
+    if (typeof this.state.selectedTab === 'undefined') {
+      return;
+    }
+
     if (this.state.selectedTab.name === 'snippet') {
       return <EuiErrorBoundary>{this.renderSnippet()}</EuiErrorBoundary>;
     }

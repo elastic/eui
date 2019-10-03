@@ -30,6 +30,7 @@ export const EuiCallOut = ({
   iconType,
   children,
   className,
+  level,
   ...rest
 }) => {
   const classes = classNames(
@@ -59,12 +60,14 @@ export const EuiCallOut = ({
     optionalChildren = <EuiText size="s">{children}</EuiText>;
   }
 
+  const H = level ? `h${level}` : 'span';
+
   return (
     <div className={classes} {...rest}>
       <div className="euiCallOutHeader">
         {headerIcon}
 
-        <span className="euiCallOutHeader__title">{title}</span>
+        <H className="euiCallOutHeader__title">{title}</H>
       </div>
 
       {optionalChildren}
@@ -79,6 +82,7 @@ EuiCallOut.propTypes = {
   iconType: IconPropType,
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
 };
 
 EuiCallOut.defaultProps = {
