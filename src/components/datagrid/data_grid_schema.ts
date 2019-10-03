@@ -21,8 +21,8 @@ const schemaDetectors: SchemaDetector[] = [
     },
     icon: 'invert',
     color: 'primary',
-    sortTextAsc: 'True-False',
-    sortTextDesc: 'False-True',
+    sortTextAsc: 'False-True',
+    sortTextDesc: 'True-False',
   },
   {
     type: 'currency',
