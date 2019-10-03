@@ -41,8 +41,8 @@ const schemaDetectors: SchemaDetector[] = [
     },
     icon: 'heart',
     color: 'primary',
-    sortTextAsc: 'High-Low',
-    sortTextDesc: 'Low-High',
+    sortTextAsc: 'Low-High',
+    sortTextDesc: 'High-Low',
   },
   {
     type: 'datetime',
@@ -82,8 +82,8 @@ const schemaDetectors: SchemaDetector[] = [
     },
     icon: 'number',
     color: 'primary',
-    sortTextAsc: 'High-Low',
-    sortTextDesc: 'Low-High',
+    sortTextAsc: 'Low-High',
+    sortTextDesc: 'High-Low',
   },
 ];
 
