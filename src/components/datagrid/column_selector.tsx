@@ -1,4 +1,10 @@
-import React, { Fragment, useState, ReactChild, ReactElement } from 'react';
+import React, {
+  Fragment,
+  useState,
+  ReactChild,
+  ReactElement,
+  ChangeEvent,
+} from 'react';
 import classNames from 'classnames';
 import { EuiDataGridColumn } from './data_grid_types';
 // @ts-ignore-next-line
@@ -50,9 +56,16 @@ export const useColumnSelector = (
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
 
+  const [columnSearchText, setColumnSearchText] = useState('');
+
   const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
     'euiDataGrid__controlBtn--active': numberOfHiddenFields > 0,
   });
+
+  const filteredColumns = sortedColumns.filter(
+    ({ id }) => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
+  );
+  const isDragEnabled = columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
 
   const columnSelector = (
     <EuiPopover
@@ -90,15 +103,24 @@ export const useColumnSelector = (
             compressed
             placeholder="Search"
             aria-label="Search columns"
+            value={columnSearchText}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setColumnSearchText(e.currentTarget.value)
+            }
           />
         </EuiPopoverTitle>
         <EuiDragDropContext onDragEnd={onDragEnd}>
           <EuiDroppable
             droppableId="columnOrder"
+            isDropDisabled={!isDragEnabled}
             className="euiDataGridColumnSelector">
             <Fragment>
-              {sortedColumns.map(({ id }, index) => (
-                <EuiDraggable key={id} draggableId={id} index={index}>
+              {filteredColumns.map(({ id }, index) => (
+                <EuiDraggable
+                  key={id}
+                  draggableId={id}
+                  index={index}
+                  isDragDisabled={!isDragEnabled}>
                   {(provided, state) => (
                     <div
                       className={`euiDataGridColumnSelector__item ${state.isDragging &&
@@ -126,11 +148,15 @@ export const useColumnSelector = (
                             }}
                           />
                         </EuiFlexItem>
-                        <EuiFlexItem grow={false} {...provided.dragHandleProps}>
-                          <div {...provided.dragHandleProps}>
-                            <EuiIcon type="grab" color="subdued" />
-                          </div>
-                        </EuiFlexItem>
+                        {isDragEnabled && (
+                          <EuiFlexItem
+                            grow={false}
+                            {...provided.dragHandleProps}>
+                            <div {...provided.dragHandleProps}>
+                              <EuiIcon type="grab" color="subdued" />
+                            </div>
+                          </EuiFlexItem>
+                        )}
                       </EuiFlexGroup>
                     </div>
                   )}
