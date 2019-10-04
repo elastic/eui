@@ -4,14 +4,14 @@ import classNames from 'classnames';
 import { ExclusiveUnion, PropsForAnchor, PropsForButton } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 
-export interface EuiPaginationButtonProps extends EuiButtonEmptyProps {
+export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
   isActive?: boolean;
   /**
    * For ellipsis or other non-clickable buttons.
    */
   isPlaceholder?: boolean;
   hideOnMobile?: boolean;
-}
+};
 
 type EuiPaginationButtonPropsForAnchor = PropsForAnchor<
   EuiPaginationButtonProps
@@ -27,7 +27,6 @@ type Props = ExclusiveUnion<
 >;
 
 export const EuiPaginationButton: FunctionComponent<Props> = ({
-  children,
   className,
   isActive,
   isPlaceholder,
@@ -40,14 +39,13 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
     'euiPaginationButton--hideOnMobile': hideOnMobile,
   });
 
-  return (
-    <EuiButtonEmpty
-      className={classes}
-      size="xs"
-      color="text"
-      isDisabled={isPlaceholder}
-      {...rest}>
-      {children}
-    </EuiButtonEmpty>
-  );
+  const props = {
+    className: classes,
+    size: 'xs',
+    color: 'text',
+    isDisabled: isPlaceholder,
+    ...rest,
+  };
+
+  return <EuiButtonEmpty {...props as EuiButtonEmptyProps} />;
 };

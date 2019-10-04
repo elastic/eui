@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import sinon from 'sinon';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiHeaderSectionItemButton } from './header_section_item_button';
@@ -24,15 +23,15 @@ describe('EuiHeaderSectionItemButton', () => {
 
   describe('onClick', () => {
     test("isn't called upon instantiation", () => {
-      const onClickHandler = sinon.stub();
+      const onClickHandler = jest.fn();
 
       shallow(<EuiHeaderSectionItemButton onClick={onClickHandler} />);
 
-      sinon.assert.notCalled(onClickHandler);
+      expect(onClickHandler).not.toHaveBeenCalled();
     });
 
     test('is called when the button is clicked', () => {
-      const onClickHandler = sinon.stub();
+      const onClickHandler = jest.fn();
 
       const $button = shallow(
         <EuiHeaderSectionItemButton onClick={onClickHandler} />
@@ -40,7 +39,7 @@ describe('EuiHeaderSectionItemButton', () => {
 
       $button.simulate('click');
 
-      sinon.assert.calledOnce(onClickHandler);
+      expect(onClickHandler).toHaveBeenCalledTimes(1);
     });
   });
 });

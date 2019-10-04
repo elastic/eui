@@ -8,9 +8,9 @@ describe('EuiBreadcrumbs', () => {
   test('is rendered', () => {
     const breadcrumbs = [
       {
-        text: <span>Animals</span>,
+        text: 'Animals',
         href: '#',
-        onClick: e => {
+        onClick: (e: React.MouseEvent) => {
           e.preventDefault();
           console.log('You clicked Animals');
         },
@@ -19,7 +19,7 @@ describe('EuiBreadcrumbs', () => {
       },
       {
         text: 'Reptiles',
-        onClick: e => {
+        onClick: (e: React.MouseEvent) => {
           e.preventDefault();
           console.log('You clicked Reptiles');
         },
