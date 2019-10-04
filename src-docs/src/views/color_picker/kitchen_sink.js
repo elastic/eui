@@ -1,26 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { EuiColorPicker } from '../../../../src/components';
+import {
+  EuiColorPicker,
+  EuiColorStops,
+  EuiSpacer,
+} from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-export class KitchenSink extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: '',
-    };
-  }
+import { useColorPicker, useColorStop } from './utils';
 
-  handleChange = value => {
-    this.setState({ color: value });
-  };
+export const KitchenSink = () => {
+  const [color, setColor] = useColorPicker('#DB1374');
+  const [colorStops, setColorStops, addStop] = useColorStop(true);
 
-  render() {
-    return (
-      /* DisplayToggles wrapper for Docs only */
+  return (
+    <React.Fragment>
+      {/* DisplayToggles wrapper for Docs only */}
       <DisplayToggles canLoading={false}>
-        <EuiColorPicker color={this.state.color} onChange={this.handleChange} />
+        <EuiColorPicker color={color} onChange={setColor} />
       </DisplayToggles>
-    );
-  }
-}
+      <EuiSpacer />
+      {/* DisplayToggles wrapper for Docs only */}
+      <DisplayToggles canLoading={false}>
+        <EuiColorStops
+          label="Kitchen sink"
+          colorStops={colorStops}
+          onChange={setColorStops}
+          min={0}
+          max={100}
+          addStop={addStop}
+        />
+      </DisplayToggles>
+    </React.Fragment>
+  );
+};

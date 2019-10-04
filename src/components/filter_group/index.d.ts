@@ -65,6 +65,6 @@ declare module '@elastic/eui' {
       ButtonHTMLAttributes<HTMLButtonElement> &
       EuiFilterSelectItemProps
   > {
-    render: () => JSX.Element;
+    render(): JSX.Element;
   }
 }

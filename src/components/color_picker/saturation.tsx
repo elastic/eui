@@ -1,8 +1,6 @@
 import React, {
   HTMLAttributes,
   KeyboardEvent,
-  MouseEvent as ReactMouseEvent,
-  TouchEvent,
   forwardRef,
   useEffect,
   useRef,
@@ -17,13 +15,7 @@ import { isNil } from '../../services/predicate';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-import { getEventPosition, throttle } from './utils';
-
-function isMouseEvent(
-  event: ReactMouseEvent | TouchEvent
-): event is ReactMouseEvent {
-  return typeof event === 'object' && 'pageX' in event && 'pageY' in event;
-}
+import { getEventPosition, useMouseMove } from './utils';
 
 export type SaturationClientRect = Pick<
   ClientRect,
@@ -82,11 +74,6 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       }
     }, [color]);
 
-    useEffect(() => {
-      // Mimic `componentWillUnmount`
-      return unbindEventListeners;
-    }, []);
-
     const calculateColor = ({
       top,
       height,
@@ -113,30 +100,10 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       const box = getEventPosition(location, boxRef.current);
       handleUpdate(box);
     };
-    const handleInteraction = (
-      e: ReactMouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>
-    ) => {
-      if (e && boxRef.current) {
-        const x = isMouseEvent(e) ? e.pageX : e.touches[0].pageX;
-        const y = isMouseEvent(e) ? e.pageY : e.touches[0].pageY;
-        handleChange({ x, y });
-      }
-    };
-    const handleMouseMove = throttle((e: MouseEvent) => {
-      handleChange({ x: e.pageX, y: e.pageY });
-    });
-    const handleMouseUp = () => {
-      unbindEventListeners();
-    };
-    const handleMouseDown = (e: ReactMouseEvent<HTMLDivElement>) => {
-      handleInteraction(e);
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-    };
-    const unbindEventListeners = () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
+    const [handleMouseDown, handleInteraction] = useMouseMove(
+      handleChange,
+      boxRef.current
+    );
     const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
       if (isNil(boxRef) || isNil(boxRef.current)) {
         return;
