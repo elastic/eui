@@ -25,6 +25,7 @@ import {
   EuiDataGridStyleFontSizes,
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
+  EuiDataGridExpansionFormatters,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -52,6 +53,7 @@ type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
     schemaDetectors?: SchemaDetector[];
+    expansionFormatters?: EuiDataGridExpansionFormatters;
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     gridStyle?: EuiDataGridStyle;
@@ -368,6 +370,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     pagination,
     sorting,
     inMemory,
+    expansionFormatters,
     ...rest
   } = props;
 
@@ -519,6 +522,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemory={inMemory}
                     columns={visibleColumns}
                     schema={mergedSchema}
+                    expansionFormatters={expansionFormatters}
                     focusedCell={focusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}

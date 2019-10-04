@@ -1,4 +1,5 @@
 import { EuiDataGridSchema } from './data_grid_schema';
+import { FunctionComponent } from 'react';
 
 export interface EuiDataGridColumn {
   id: string;
@@ -64,4 +65,9 @@ export interface EuiDataGridInMemory {
 
 export interface EuiDataGridInMemoryValues {
   [key: string]: { [key: string]: string };
+}
+
+export type EuiDataGridExpansionFormatter = FunctionComponent<{}>;
+export interface EuiDataGridExpansionFormatters {
+  [key: string]: EuiDataGridExpansionFormatter;
 }

@@ -9,15 +9,12 @@ import React, {
   KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
-// @ts-ignore
-import { EuiText } from '../text';
 import { EuiPopover } from '../popover';
-// @ts-ignore
-// import { EuiCodeBlock } from '../code';
 import { CommonProps, Omit } from '../common';
 // @ts-ignore
 import { EuiButtonIcon } from '../button';
 import { keyCodes } from '../../services';
+import { EuiDataGridExpansionFormatter } from './data_grid_types';
 
 export interface CellValueElementProps {
   rowIndex: number;
@@ -37,6 +34,7 @@ export interface EuiDataGridCellProps {
   onCellFocus: Function;
   interactiveCellId: string;
   isExpandable: boolean;
+  expansionFormatter: EuiDataGridExpansionFormatter;
   renderCellValue:
     | JSXElementConstructor<CellValueElementProps>
     | ((props: CellValueElementProps) => ReactNode);
@@ -49,7 +47,11 @@ interface EuiDataGridCellState {
 
 type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'width' | 'isFocused' | 'interactiveCellId' | 'onCellFocus'
+  | 'width'
+  | 'isFocused'
+  | 'interactiveCellId'
+  | 'onCellFocus'
+  | 'expansionFormatter'
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -108,6 +110,8 @@ export class EuiDataGridCell extends Component<
     if (nextProps.isFocused !== this.props.isFocused) return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
+    if (nextProps.expansionFormatter !== this.props.expansionFormatter)
+      return true;
 
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
@@ -124,6 +128,7 @@ export class EuiDataGridCell extends Component<
       width,
       isFocused,
       isExpandable,
+      expansionFormatter: ExpansionFormatter,
       interactiveCellId,
       columnType,
       onCellFocus,
@@ -223,30 +228,14 @@ export class EuiDataGridCell extends Component<
 
     let innerContent = anchorContent;
     if (isExpandable) {
-      // TODO: This is temporary. It's mostly just to show that different schema likely will require different
-      // markup. We also likely will want a way to pass a custom render to the popup and the default cell
-      // content as part of the data config.
       const CellElement = rest.renderCellValue as JSXElementConstructor<
         CellValueElementProps
       >;
-      let popoverContent: ReactNode;
-      if (columnType === 'json') {
-        popoverContent = (
-          /*<EuiCodeBlock
-            isCopyable
-            transparentBackground
-            paddingSize="none"
-            language="json">*/
+      const popoverContent = (
+        <ExpansionFormatter>
           <CellElement {...cellContentProps} />
-          // </EuiCodeBlock>
-        );
-      } else {
-        popoverContent = (
-          <EuiText>
-            <CellElement {...cellContentProps} />
-          </EuiText>
-        );
-      }
+        </ExpansionFormatter>
+      );
 
       innerContent = (
         <div className="euiDataGridRowCell__content">

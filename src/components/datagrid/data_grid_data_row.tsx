@@ -1,16 +1,23 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
-import { EuiDataGridColumn, EuiDataGridColumnWidths } from './data_grid_types';
+import {
+  EuiDataGridColumn,
+  EuiDataGridColumnWidths,
+  EuiDataGridExpansionFormatter,
+  EuiDataGridExpansionFormatters,
+} from './data_grid_types';
 import { CommonProps } from '../common';
 
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 import { EuiDataGridSchema } from './data_grid_schema';
+import { EuiText } from '../text';
 
 export type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
+    expansionFormatters: EuiDataGridExpansionFormatters;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
     focusedCell: [number, number];
@@ -20,12 +27,19 @@ export type EuiDataGridDataRowProps = CommonProps &
     visibleRowIndex: number;
   };
 
+const DefaultColumnFormatter: EuiDataGridExpansionFormatter = ({
+  children,
+}) => {
+  return <EuiText>{children}</EuiText>;
+};
+
 const EuiDataGridDataRow: FunctionComponent<
   EuiDataGridDataRowProps
 > = props => {
   const {
     columns,
     schema,
+    expansionFormatters,
     columnWidths,
     defaultColumnWidth,
     className,
@@ -46,8 +60,12 @@ const EuiDataGridDataRow: FunctionComponent<
     <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map((props, i) => {
         const { id } = props;
+        const columnType = schema[id] ? schema[id].columnType : null;
+
         const isExpandable =
           props.isExpandable !== undefined ? props.isExpandable : true;
+        const expansionFormatter =
+          expansionFormatters[columnType as string] || DefaultColumnFormatter;
 
         const width = columnWidths[id] || defaultColumnWidth;
 
@@ -60,7 +78,8 @@ const EuiDataGridDataRow: FunctionComponent<
             rowIndex={rowIndex}
             colIndex={i}
             columnId={id}
-            columnType={schema[id] ? schema[id].columnType : null}
+            columnType={columnType}
+            expansionFormatter={expansionFormatter}
             width={width || undefined}
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}

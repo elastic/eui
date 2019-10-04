@@ -57,32 +57,26 @@ for (let i = 1; i < 5; i++) {
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
     amount: fake('${{finance.amount}}'),
-    json: JSON.stringify(
-      [
-        {
-          name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-          email: fake('{{internet.email}}'),
-          date: fake('{{date.past}}'),
-          account: fake('{{finance.account}}'),
-          amount: fake('${{finance.amount}}'),
-          version: fake('{{system.semver}}'),
-          friends: [
-            {
-              name: fake(
-                '{{name.lastName}}, {{name.firstName}} {{name.suffix}}'
-              ),
-              email: fake('{{internet.email}}'),
-              date: fake('{{date.past}}'),
-              account: fake('{{finance.account}}'),
-              amount: fake('${{finance.amount}}'),
-              version: fake('{{system.semver}}'),
-            },
-          ],
-        },
-      ],
-      null,
-      2
-    ),
+    json: JSON.stringify([
+      {
+        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+        email: fake('{{internet.email}}'),
+        date: fake('{{date.past}}'),
+        account: fake('{{finance.account}}'),
+        amount: fake('${{finance.amount}}'),
+        version: fake('{{system.semver}}'),
+        friends: [
+          {
+            name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+            email: fake('{{internet.email}}'),
+            date: fake('{{date.past}}'),
+            account: fake('{{finance.account}}'),
+            amount: fake('${{finance.amount}}'),
+            version: fake('{{system.semver}}'),
+          },
+        ],
+      },
+    ]),
     version: fake('{{system.semver}}'),
   });
 }

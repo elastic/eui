@@ -2,11 +2,17 @@ import React, {
   Fragment,
   FunctionComponent,
   useCallback,
+  useEffect,
   useMemo,
+  useRef,
+  useState,
 } from 'react';
+// @ts-ignore-next-line
+import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
+  EuiDataGridExpansionFormatters,
   EuiDataGridInMemory,
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
@@ -18,12 +24,14 @@ import {
   EuiDataGridDataRowProps,
 } from './data_grid_data_row';
 import { EuiDataGridSchema } from './data_grid_schema';
+import { useInnerText } from '../inner_text';
 
 interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
   schema: EuiDataGridSchema;
+  expansionFormatters?: EuiDataGridExpansionFormatters;
   focusedCell: EuiDataGridDataRowProps['focusedCell'];
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
@@ -35,6 +43,57 @@ interface EuiDataGridBodyProps {
   sorting?: EuiDataGridSorting;
 }
 
+const providedExpansionFormatters: EuiDataGridExpansionFormatters = {
+  json: ({ children }) => {
+    const invisibleRef = useRef<HTMLDivElement>(null);
+    const [ref, text] = useInnerText();
+    const [isVisible, setIsVisible] = useState(false);
+    const formattedText = useMemo(() => {
+      if (text) {
+        try {
+          return JSON.stringify(JSON.parse(text), null, 2);
+        } catch (e) {
+          return text;
+        }
+      } else {
+        return '';
+      }
+    }, [text]);
+
+    useEffect(() => {
+      // because this content renders into a popover
+      // it is hidden until the popover positions into place
+      // but InnerText cannot inspect hidden elements, so wait
+      function checkVisibility() {
+        const style = window.getComputedStyle(invisibleRef.current!);
+        if (style.getPropertyValue('visibility') !== 'hidden') {
+          setIsVisible(true);
+        } else {
+          requestAnimationFrame(checkVisibility);
+        }
+      }
+      requestAnimationFrame(checkVisibility);
+    }, []);
+
+    return (
+      <Fragment>
+        {!formattedText && (
+          <div ref={isVisible ? ref : invisibleRef}>{children}</div>
+        )}
+        {formattedText && (
+          <EuiCodeBlock
+            isCopyable
+            transparentBackground
+            paddingSize="none"
+            language="json">
+            {formattedText}
+          </EuiCodeBlock>
+        )}
+      </Fragment>
+    );
+  },
+};
+
 export const EuiDataGridBody: FunctionComponent<
   EuiDataGridBodyProps
 > = props => {
@@ -43,6 +102,7 @@ export const EuiDataGridBody: FunctionComponent<
     defaultColumnWidth,
     columns,
     schema,
+    expansionFormatters,
     focusedCell,
     onCellFocus,
     rowCount,
@@ -140,11 +200,17 @@ export const EuiDataGridBody: FunctionComponent<
         rowIndex = rowMap[rowIndex];
       }
 
+      const mergedExpansionFormatters = {
+        ...providedExpansionFormatters,
+        ...expansionFormatters,
+      };
+
       rows.push(
         <EuiDataGridDataRow
           key={rowIndex}
           columns={columns}
           schema={schema}
+          expansionFormatters={mergedExpansionFormatters}
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
           focusedCell={focusedCell}
@@ -166,6 +232,8 @@ export const EuiDataGridBody: FunctionComponent<
     onCellFocus,
     renderCellValue,
     rowMap,
+    schema,
+    expansionFormatters,
     visibleRowIndices,
     startRow,
     interactiveCellId,
