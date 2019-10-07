@@ -308,7 +308,7 @@ export const useColumnSorting = (
                     setAvailableColumnsIsOpen(!avilableColumnsisOpen)
                   }>
                   <EuiI18n
-                    token="euiColumnSorting.clearAll"
+                    token="euiColumnSorting.pickFields"
                     default="Pick fields to sort by"
                   />
                 </EuiButtonEmpty>
