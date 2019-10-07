@@ -17,6 +17,8 @@
 }
 
 .euiDataGridColumnSorting__button {
+  // The button for sorting needs to be a bit more compact
+  // sass-lint:disable-block no-important
   height: $euiSize + $euiSizeXS !important;
   width: $euiSize + $euiSizeXS !important;
   padding: $euiSizeXS / 2 !important;
