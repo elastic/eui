@@ -246,6 +246,7 @@ export class EuiDataGridCell extends Component<
             ownFocus
             panelClassName="euiDataGridRowCell__popover"
             zIndex={2000}
+            display="block"
             closePopover={() => this.setState({ popoverIsOpen: false })}
             onTrapDeactivation={this.updateFocus}>
             {popoverContent}
