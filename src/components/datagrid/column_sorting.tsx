@@ -133,7 +133,6 @@ export const useColumnSorting = (
                   <EuiDraggable key={id} draggableId={id} index={index}>
                     {(provided, state) => (
                       <div
-                        data-test-subj={`dataGrid-sortColumn-${id}-${direction}`}
                         className={`euiDataGridColumnSorting__item ${state.isDragging &&
                           'euiDataGridColumnSorting__item-isDragging'}`}>
                         <EuiScreenReaderOnly>
@@ -152,7 +151,8 @@ export const useColumnSorting = (
                         <EuiFlexGroup
                           gutterSize="xs"
                           alignItems="center"
-                          responsive={false}>
+                          responsive={false}
+                          data-test-subj={`euiDataGridColumnSorting-sortColumn-${id}`}>
                           <EuiFlexItem grow={false}>
                             <EuiI18n
                               token="euiColumnSorting.removeSortLabel"
@@ -209,6 +209,7 @@ export const useColumnSorting = (
                                 grow={false}
                                 className="euiDataGridColumnSorting__orderButtons">
                                 <button
+                                  data-test-subj={`euiDataGridColumnSorting-sortColumn-${id}-asc`}
                                   className={`euiDataGridColumnSorting__order ${
                                     direction === 'asc'
                                       ? 'euiDataGridColumnSorting__order-isActive'
@@ -234,6 +235,7 @@ export const useColumnSorting = (
                               </EuiFlexItem>
                               <EuiFlexItem grow={false}>
                                 <button
+                                  data-test-subj={`euiDataGridColumnSorting-sortColumn-${id}-desc`}
                                   className={`euiDataGridColumnSorting__order ${
                                     direction === 'desc'
                                       ? 'euiDataGridColumnSorting__order-isActive'
@@ -292,13 +294,12 @@ export const useColumnSorting = (
           responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              data-test-subj="dataGridColumnSortingPopover"
+              data-test-subj="dataGridColumnSortingPopoverColumnSelection"
               isOpen={avilableColumnsisOpen}
               closePopover={() => setAvailableColumnsIsOpen(false)}
               anchorPosition="downLeft"
               ownFocus
               panelPaddingSize="s"
-              panelClassName="euiDataGridColumnSortingPopover"
               button={
                 <EuiButtonEmpty
                   size="xs"
@@ -322,6 +323,7 @@ export const useColumnSorting = (
                     aria-label={`Sort by ${id}`}
                     role="option"
                     aria-selected="false"
+                    data-test-subj={`dataGridColumnSortingPopoverColumnSelection-${id}`}
                     onClick={() => {
                       const nextColumns = [...sorting.columns];
                       nextColumns.push({ id, direction: 'asc' });

@@ -72,12 +72,74 @@ function getColumnSortDirection(
   datagrid: ReactWrapper,
   columnId: string
 ): [ReactWrapper, string] {
-  const columnSorter = datagrid.find(
-    `[data-test-subj^="dataGrid-sortColumn-${columnId}"]`
+  // get the button that sorts by this column
+  let columnSorter = datagrid.find(
+    `div[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}"]`
   );
-  expect(columnSorter.length).toBe(1);
+  if (columnSorter.length === 0) {
+    // need to enable this column
 
-  const sortDirection = (columnSorter.props() as {
+    // open the column selection popover
+    let columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).not.euiPopoverToBeOpen();
+    let popoverButton = columnSelectionPopover
+      .find('div[className="euiPopover__anchor"]')
+      .find('[onClick]')
+      .first();
+    // @ts-ignore-next-line
+    act(() => popoverButton.props().onClick());
+
+    datagrid.update();
+
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).euiPopoverToBeOpen();
+
+    // find button to enable this column and click it
+    const selectColumnButton = datagrid.find(
+      `[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
+    );
+    expect(selectColumnButton.length).toBe(1);
+    // @ts-ignore-next-line
+    act(() => selectColumnButton.props().onClick());
+
+    // close column selection popover
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).euiPopoverToBeOpen();
+
+    popoverButton = columnSelectionPopover
+      .find('div[className="euiPopover__anchor"]')
+      .find('[onClick]')
+      .first();
+    // @ts-ignore-next-line
+    act(() => popoverButton.props().onClick());
+
+    datagrid.update();
+
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).not.euiPopoverToBeOpen();
+
+    // find the column sorter
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+    );
+    columnSorter = columnSelectionPopover.find(
+      `div[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}"]`
+    );
+  }
+
+  expect(columnSorter.length).toBe(1);
+  const activeSort = columnSorter.find(
+    '[className*="euiDataGridColumnSorting__order-isActive"]'
+  );
+  const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
   })['data-test-subj'].match(/(?<direction>[^-]+)$/)!.groups!.direction;
 
@@ -133,20 +195,13 @@ function sortByColumn(
     );
   }
 
-  // enable this column for sorting
-  while (currentSortDirection !== direction) {
-    /* eslint-disable no-loop-func */
-    act(() => {
-      // @ts-ignore-next-line
-      columnSorter
-        .find('button[data-test-subj="euiColumnSortingToggle"]')
-        .props()
-        .onClick();
-    });
-    [columnSorter, currentSortDirection] = getColumnSortDirection(
-      datagrid,
-      columnId
+  if (currentSortDirection !== direction) {
+    const sortButton = columnSorter.find(
+      `[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
+    expect(sortButton.length).toBe(1);
+    // @ts-ignore-next-line
+    act(() => sortButton.props().onClick());
   }
 
   // close popover
