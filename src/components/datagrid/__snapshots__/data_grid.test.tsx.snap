@@ -323,7 +323,7 @@ Array [
                   class="euiDataGridRowCell__content"
                 >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter"
+                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
                   >
                     <div
                       class="euiPopover__anchor euiDataGridRowCell__expand"
@@ -371,7 +371,7 @@ Array [
                   class="euiDataGridRowCell__content"
                 >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter"
+                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
                   >
                     <div
                       class="euiPopover__anchor euiDataGridRowCell__expand"
@@ -425,7 +425,7 @@ Array [
                   class="euiDataGridRowCell__content"
                 >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter"
+                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
                   >
                     <div
                       class="euiPopover__anchor euiDataGridRowCell__expand"
@@ -473,7 +473,7 @@ Array [
                   class="euiDataGridRowCell__content"
                 >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter"
+                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
                   >
                     <div
                       class="euiPopover__anchor euiDataGridRowCell__expand"
@@ -527,7 +527,7 @@ Array [
                   class="euiDataGridRowCell__content"
                 >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter"
+                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
                   >
                     <div
                       class="euiPopover__anchor euiDataGridRowCell__expand"
@@ -575,7 +575,7 @@ Array [
                   class="euiDataGridRowCell__content"
                 >
                   <div
-                    class="euiPopover euiPopover--anchorDownCenter"
+                    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
                   >
                     <div
                       class="euiPopover__anchor euiDataGridRowCell__expand"
