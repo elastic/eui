@@ -248,7 +248,55 @@ export const getRouterLinkProps = to => {
 
 ## react-router 5.x
 
-In react-router 5, we can fully capitalize in the React Hooks utility, in this case, `useHistory`. Using this, we do not need other HOC wrapper files and global router variable. We just need to create the file below, and then use it anywhere by importing `EuiCustomLink`. There is an example repository for this: https://github.com/Imballinst/elastic-react-router-hooks.
+### react-router 5.0
+
+The React Context handling has changed in in 5.0 and we can't rely on it anymore. A solution is to create
+an `extractRouter` HOC that will intercept the router and send it to your custom handler.
+
+
+```js
+// extractRouter.hoc.js
+import { withRouter } from 'react-router-dom';
+
+export const extractRouter = onRouter => WrappedComponent =>
+  withRouter(
+    class extends Component {
+      componentDidMount() {
+        const { match, location, history } = this.props;
+        const router = { route: { match, location }, history };
+        onRouter(router);
+      }
+
+      render() {
+        return <WrappedComponent {...this.props} />;
+      }
+    }
+  );
+```
+
+```jsx
+import { extractRouter } from './hoc';
+import { registerRouter } from './routing';
+
+// App is your app's root component.
+class App extends Component {
+  ...
+}
+
+const AppMount = extractRouter(registerRouter)(App);
+
+// <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
+ReactDOM.render(
+  <Router>
+    <AppMount />,
+  </Router>,
+  appRoot
+)
+```
+
+### react-router 5.1
+
+In react-router 5.1, we can fully capitalize in the React Hooks utility, in this case, `useHistory`. Using this, we do not need other HOC wrapper files and global router variable. We just need to create the file below, and then use it anywhere by importing `EuiCustomLink`. There is an example repository for this: https://github.com/Imballinst/elastic-react-router-hooks.
 
 ```jsx
 // File name: "EuiCustomLink.js".
