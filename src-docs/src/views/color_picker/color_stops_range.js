@@ -52,6 +52,7 @@ export const ColorStopsRange = () => {
           label="Empty start"
           onChange={handleEmptyChange2}
           colorStops={emptyColorStops2}
+          stopType="fixed"
         />
       </EuiFormRow>
       <EuiFormRow label="Empty array with `min` defined">
@@ -60,6 +61,7 @@ export const ColorStopsRange = () => {
           onChange={handleEmptyChange}
           colorStops={emptyColorStops}
           min={0}
+          stopType="fixed"
         />
       </EuiFormRow>
       <EuiFormRow label="Empty array with `max` defined">
@@ -68,6 +70,7 @@ export const ColorStopsRange = () => {
           onChange={handleEmptyChange3}
           colorStops={emptyColorStops3}
           max={100}
+          stopType="fixed"
         />
       </EuiFormRow>
       <EuiFormRow label="Single stop without `min` or `max`">
@@ -75,6 +78,7 @@ export const ColorStopsRange = () => {
           label="Single start"
           onChange={handleSingleChange}
           colorStops={singleColorStops}
+          stopType="fixed"
         />
       </EuiFormRow>
       <EuiFormRow label="Single stop with `min` defined">
@@ -83,6 +87,7 @@ export const ColorStopsRange = () => {
           onChange={handleSingleChange2}
           colorStops={singleColorStops2}
           min={0}
+          stopType="fixed"
         />
       </EuiFormRow>
       <EuiFormRow label="Single stop with `max` defined">
@@ -91,6 +96,7 @@ export const ColorStopsRange = () => {
           onChange={handleSingleChange3}
           colorStops={singleColorStops3}
           max={100}
+          stopType="fixed"
         />
       </EuiFormRow>
     </React.Fragment>

@@ -335,11 +335,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     return `${colorStop.color} ${positions[index]}%`;
   };
   const fixedStop = (colorStop: ColorStop, index: number) => {
-    if (index === 0) {
-      return `currentColor, currentColor ${positions[index]}%, ${
-        colorStop.color
-      } ${positions[index]}%, ${colorStop.color} ${positions[index + 1]}%`;
-    } else if (index > 0 && index === sortedStops.length - 1) {
+    if (index === sortedStops.length - 1) {
       return gradientStop(colorStop, index);
     } else {
       return `${gradientStop(colorStop, index)}, ${gradientStop(
