@@ -73,7 +73,19 @@ type EuiDataGridProps = Omit<
   CommonGridProps,
   'aria-label' | 'aria-labelledby'
 > &
-  ({ 'aria-label': string } | { 'aria-labelledby': string });
+  (
+    | {
+        /**
+         * must provide either aria-label OR aria-labelledby
+         */
+        'aria-label': string;
+      }
+    | {
+        /**
+         * must provide either aria-label OR aria-labelledby
+         */
+        'aria-labelledby': string;
+      });
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
