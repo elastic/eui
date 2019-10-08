@@ -227,10 +227,15 @@ export const useColumnSorting = (
                                     sorting.onSort(nextColumns);
                                   }}>
                                   {schema.hasOwnProperty(id) &&
-                                  schema[id].columnType != null
-                                    ? getDetailsForSchema(schema[id].columnType)
-                                        .sortTextAsc
-                                    : 'A-Z'}
+                                  schema[id].columnType != null ? (
+                                    getDetailsForSchema(schema[id].columnType)
+                                      .sortTextAsc
+                                  ) : (
+                                    <EuiI18n
+                                      token="euiColumnSorting.defaultSortAsc"
+                                      default="A-Z"
+                                    />
+                                  )}
                                 </button>
                               </EuiFlexItem>
                               <EuiFlexItem grow={false}>
@@ -253,10 +258,15 @@ export const useColumnSorting = (
                                     sorting.onSort(nextColumns);
                                   }}>
                                   {schema.hasOwnProperty(id) &&
-                                  schema[id].columnType != null
-                                    ? getDetailsForSchema(schema[id].columnType)
-                                        .sortTextDesc
-                                    : 'Z-A'}
+                                  schema[id].columnType != null ? (
+                                    getDetailsForSchema(schema[id].columnType)
+                                      .sortTextDesc
+                                  ) : (
+                                    <EuiI18n
+                                      token="euiColumnSorting.defaultSortDesc"
+                                      default="Z-A"
+                                    />
+                                  )}
                                 </button>
                               </EuiFlexItem>
                             </EuiFlexGroup>

@@ -1,8 +1,10 @@
-import { useMemo } from 'react';
+import React, { useMemo, ReactNode } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridInMemoryValues,
 } from './data_grid_types';
+
+import { EuiI18n } from '../i18n';
 
 import { palettes } from '../../services/color/eui_palettes';
 
@@ -11,8 +13,8 @@ export interface SchemaDetector {
   detector: (value: string) => number;
   icon: string;
   color: string;
-  sortTextAsc: string;
-  sortTextDesc: string;
+  sortTextAsc: ReactNode;
+  sortTextDesc: ReactNode;
 }
 
 const schemaDetectors: SchemaDetector[] = [
@@ -23,8 +25,18 @@ const schemaDetectors: SchemaDetector[] = [
     },
     icon: 'invert',
     color: palettes.euiPaletteColorBlind.colors[5],
-    sortTextAsc: 'False-True',
-    sortTextDesc: 'True-False',
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.booleanSortTextAsc"
+        default="False-True"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.booleanSortTextDesc"
+        default="True-False"
+      />
+    ),
   },
   {
     type: 'currency',
@@ -43,8 +55,18 @@ const schemaDetectors: SchemaDetector[] = [
     },
     icon: 'currency',
     color: palettes.euiPaletteColorBlind.colors[0],
-    sortTextAsc: 'Low-High',
-    sortTextDesc: 'High-Low',
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.currencySortTextAsc"
+        default="Low-High"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.currencySortTextDesc"
+        default="High-Low"
+      />
+    ),
   },
   {
     type: 'datetime',
@@ -72,8 +94,12 @@ const schemaDetectors: SchemaDetector[] = [
     },
     icon: 'calendar',
     color: palettes.euiPaletteColorBlind.colors[7],
-    sortTextAsc: 'Old-New',
-    sortTextDesc: 'New-Old',
+    sortTextAsc: (
+      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
+    ),
+    sortTextDesc: (
+      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
+    ),
   },
   {
     type: 'numeric',
@@ -84,8 +110,15 @@ const schemaDetectors: SchemaDetector[] = [
     },
     icon: 'number',
     color: palettes.euiPaletteColorBlind.colors[0],
-    sortTextAsc: 'Low-High',
-    sortTextDesc: 'High-Low',
+    sortTextAsc: (
+      <EuiI18n token="euiDataGridSchema.numberSortTextAsc" default="Low-High" />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.numberSortTextDesc"
+        default="High-Low"
+      />
+    ),
   },
 ];
 
