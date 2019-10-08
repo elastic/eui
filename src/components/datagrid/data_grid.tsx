@@ -485,6 +485,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     defaultColumnWidth={defaultColumnWidth}
                     setColumnWidth={setColumnWidth}
                     schema={mergedSchema}
+                    sorting={sorting}
                   />
                   <EuiDataGridBody
                     columnWidths={columnWidths}
