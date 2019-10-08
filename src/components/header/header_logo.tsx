@@ -1,19 +1,22 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  AnchorHTMLAttributes,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
 import { EuiIcon, IconType } from '../icon';
 import { CommonProps } from '../common';
 
-export interface EuiHeaderLogoProps {
-  href?: string;
-  iconType?: IconType;
-  iconTitle?: string;
-  children?: ReactNode;
-}
+export type EuiHeaderLogoProps = CommonProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href?: string;
+    iconType?: IconType;
+    iconTitle?: string;
+    children?: ReactNode;
+  };
 
-export const EuiHeaderLogo: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLAnchorElement> & EuiHeaderLogoProps
-> = ({
+export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
   iconType = 'logoElastic',
   iconTitle = 'Elastic',
   href,
