@@ -62,26 +62,33 @@ function sortStops(colorStops: ColorStop[]) {
     .sort((a, b) => a.stop - b.stop);
 }
 
-// https://johnresig.com/blog/fast-javascript-maxmin/
-function getRangeMin(colorStops: ColorStop[], max?: number) {
-  if (!colorStops.length) {
-    return DEFAULT_MIN;
-  } else if (colorStops.length === 1 && max) {
-    colorStops[0].stop;
-  } else if (colorStops.length === 1 && colorStops[0].stop > 0) {
-    return DEFAULT_MIN;
-  }
+function getRangeMin(colorStops: ColorStop[], min?: number) {
+  const rangeMin = min || DEFAULT_MIN;
   const stops = colorStops.map(el => el.stop);
-  return Math.min.apply(Math, stops);
+  const first = Math.min.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+
+  if (first < rangeMin) {
+    if (stops.length === 1) {
+      return first - DEFAULT_MIN;
+    } else if (stops.length >= 2) {
+      return first;
+    }
+  }
+  return DEFAULT_MIN;
 }
-function getRangeMax(colorStops: ColorStop[]) {
-  if (!colorStops.length) {
-    return DEFAULT_MAX;
-  } else if (colorStops.length === 1 && colorStops[0].stop <= 0) {
-    return DEFAULT_MAX;
-  }
+function getRangeMax(colorStops: ColorStop[], max?: number) {
+  const rangeMax = max || DEFAULT_MAX;
   const stops = colorStops.map(el => el.stop);
-  return Math.max.apply(Math, stops);
+  const last = Math.max.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+
+  if (last > rangeMax) {
+    if (stops.length === 1) {
+      return last + DEFAULT_MAX;
+    } else if (stops.length >= 2) {
+      return last;
+    }
+  }
+  return DEFAULT_MAX;
 }
 
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
@@ -101,14 +108,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   swatches,
 }) => {
   const sortedStops = useMemo(() => sortStops(colorStops), [colorStops]);
-  const rangeMin: number = useMemo(() => {
-    const result = min != null ? min : getRangeMin(colorStops, max);
-    return !isNaN(result) ? result : DEFAULT_MIN;
-  }, [colorStops, min]);
   const rangeMax: number = useMemo(() => {
-    const result = max != null ? max : getRangeMax(colorStops);
-    return !isNaN(result) ? result : DEFAULT_MAX;
+    const result = max != null ? max : getRangeMax(colorStops, max);
+    const width = max != null ? 0 : Math.round(result * 0.05);
+    return !isNaN(result) ? result + width : DEFAULT_MAX;
   }, [colorStops, max]);
+  const rangeMin: number = useMemo(() => {
+    const result = min != null ? min : getRangeMin(colorStops, min);
+    const width = min != null ? 0 : Math.round(rangeMax * 0.05);
+    return !isNaN(result) ? result - width : DEFAULT_MIN;
+  }, [colorStops, min, rangeMax]);
   const [hasFocus, setHasFocus] = useState(false);
   const [focusedStopIndex, setFocusedStopIndex] = useState<number | null>(null);
   const [wrapperRef, setWrapperRef] = useState<HTMLDivElement | null>(null);
@@ -318,12 +327,19 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     ? sortedStops.map(({ stop }) => getPositionFromStopFn(stop))
     : [];
   const gradientStop = (colorStop: ColorStop, index: number) => {
+    if (index === 0) {
+      return `currentColor, currentColor ${positions[index]}%, ${
+        colorStop.color
+      } ${positions[index]}%`;
+    }
     return `${colorStop.color} ${positions[index]}%`;
   };
   const fixedStop = (colorStop: ColorStop, index: number) => {
     if (index === 0) {
-      return `${colorStop.color}, ${gradientStop(colorStop, index + 1)}`;
-    } else if (index === sortedStops.length - 1) {
+      return `currentColor, currentColor ${positions[index]}%, ${
+        colorStop.color
+      } ${positions[index]}%, ${colorStop.color} ${positions[index + 1]}%`;
+    } else if (index > 0 && index === sortedStops.length - 1) {
       return gradientStop(colorStop, index);
     } else {
       return `${gradientStop(colorStop, index)}, ${gradientStop(
@@ -335,11 +351,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const linearGradient = sortedStops.map(
     stopType === 'gradient' ? gradientStop : fixedStop
   );
-  const singleColor = sortedStops[0] ? sortedStops[0].color : undefined;
-  const background =
-    sortedStops.length > 1
-      ? `linear-gradient(to right,${linearGradient})`
-      : singleColor;
+  const background = `linear-gradient(to right,${linearGradient})`;
 
   return (
     <EuiRangeWrapper
@@ -375,8 +387,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         min={min || rangeMin}
         max={max || rangeMax}
         compressed={compressed}
-        disabled={disabled}>
+        disabled={disabled}
+        step={1}>
         <EuiRangeHighlight
+          className="euiColorStops__highlight"
           min={min || rangeMin}
           max={max || rangeMax}
           lowerValue={min || rangeMin}

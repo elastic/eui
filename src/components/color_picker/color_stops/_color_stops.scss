@@ -79,3 +79,7 @@
 .euiColorStops.euiColorStops-isDragging:not(.euiColorStops-isDisabled):not(.euiColorStops-isReadOnly) {
   cursor: grabbing;
 }
+
+.euiColorStops__highlight {
+  color: $euiRangeTrackColor;
+}

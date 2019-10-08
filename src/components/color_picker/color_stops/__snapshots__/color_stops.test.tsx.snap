@@ -16,11 +16,11 @@ exports[`renders EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -127,11 +127,11 @@ exports[`renders compressed EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiRangeHighlight--compressed"
+      class="euiRangeHighlight euiRangeHighlight--compressed euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -238,11 +238,11 @@ exports[`renders disabled EuiColorStops 1`] = `
     class="euiRangeTrack euiRangeTrack--disabled"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -352,11 +352,11 @@ exports[`renders empty EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -388,11 +388,11 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000, #FF0000 undefined%,#00FF00 undefined%, #00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%, #FF0000 undefined%,#00FF00 undefined%, #00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -499,11 +499,11 @@ exports[`renders free-range EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -535,11 +535,11 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -646,11 +646,11 @@ exports[`renders max-only EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -682,11 +682,11 @@ exports[`renders min-only EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -718,11 +718,11 @@ exports[`renders readOnly EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
