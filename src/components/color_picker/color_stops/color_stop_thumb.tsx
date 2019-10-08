@@ -143,10 +143,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     const willBeInvalid = value > globalMax || value < globalMin;
 
     if (willBeInvalid) {
-      if (value > globalMax && !!max) {
+      if (value > globalMax && max != null) {
         value = globalMax;
       }
-      if (value < globalMin && !!min) {
+      if (value < globalMin && min != null) {
         value = globalMin;
       }
     }
