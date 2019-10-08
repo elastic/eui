@@ -24,30 +24,6 @@
   padding: $euiSizeXS / 2 !important;
 }
 
-.euiDataGridColumnSorting__order {
-  @include euiFontSizeXS;
-  width: 80px;
-  display: inline-block;
-  border-radius: $euiSizeXS;
-  white-space: nowrap;
-
-  &:focus {
-    text-decoration: underline;
-    background: $euiFocusBackgroundColor;
-  }
-
-  &-isActive {
-    font-weight: $euiFontWeightBold;
-    background: $euiColorPrimary;
-    color: $euiColorEmptyShade;
-
-    &:focus {
-      background: darken($euiColorPrimary, 5%);
-    }
-  }
-
-}
-
 .euiDataGridColumnSorting__fieldList {
   @include euiYScrollWithShadows;
   max-height: 300px;
@@ -66,4 +42,13 @@
 
 .euiDataGridColumnSorting__orderButtons {
   margin-left: $euiSizeL;
+
+  .euiDataGridColumnSorting__order {
+    min-width: 200px;
+    border: none;
+
+    button {
+      font-size: $euiFontSizeXS !important;
+    }
+  }
 }

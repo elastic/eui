@@ -4,12 +4,14 @@ import React, {
   ChangeEventHandler,
   FunctionComponent,
   MouseEventHandler,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
 import { ExclusiveUnion, Omit } from '../../common';
 import { EuiToggle, ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
+import { useInnerText } from '../../inner_text';
 
 export interface EuiButtonToggleProps extends EuiButtonProps {
   /**
@@ -30,7 +32,7 @@ export interface EuiButtonToggleProps extends EuiButtonProps {
   /**
    * Button label, which is also passed to `EuiToggle` as the input's label
    */
-  label: string;
+  label: ReactNode;
 
   /**
    * Classnames to add to `EuiToggle` instead of the `EuiButton`
@@ -99,6 +101,10 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
 
   const buttonContent = isIconOnly ? '' : label;
 
+  const [ref, innerText] = useInnerText();
+  //@ts-ignore
+  const labelContent = <span ref={ref}>{label}</span>;
+
   return (
     <EuiToggle
       className={wrapperClasses}
@@ -109,7 +115,7 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
       name={name}
       onChange={onChange}
       type={type}
-      title={label}
+      title={typeof label === 'string' ? label : innerText}
       value={value}>
       <EuiButton
         tabIndex={-1} // prevents double focus from input to button

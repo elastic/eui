@@ -141,7 +141,7 @@ function getColumnSortDirection(
 
   expect(columnSorter.length).toBe(1);
   const activeSort = columnSorter.find(
-    '[className*="euiDataGridColumnSorting__order-isActive"]'
+    '[className*="euiButtonGroup__button--selected"]'
   );
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;

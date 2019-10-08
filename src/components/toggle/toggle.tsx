@@ -1,6 +1,7 @@
-import React, { ChangeEventHandler, HTMLAttributes } from 'react';
+import React, { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { useInnerText } from '../inner_text';
 
 const typeToInputTypeMap = {
   single: 'radio',
@@ -31,7 +32,7 @@ export type EuiToggleProps = HTMLAttributes<HTMLDivElement> &
     /**
      * What would typically be the input's label. Required for accessibility.
      */
-    label: string;
+    label: ReactNode;
     /**
      * Additional classNames for the input itself
      */
@@ -62,12 +63,16 @@ export const EuiToggle: React.SFC<EuiToggleProps> = ({
 
   const inputClasses = classNames('euiToggle__input', inputClassName);
 
+  const [ref, innerText] = useInnerText();
+  //@ts-ignore
+  const labelContent = <span ref={ref}>{label}</span>;
+
   return (
     <div className={classes} {...rest}>
       <input
         id={id}
         className={inputClasses}
-        aria-label={label}
+        aria-label={typeof label === 'string' ? label : innerText}
         checked={checked}
         disabled={isDisabled}
         name={name}
