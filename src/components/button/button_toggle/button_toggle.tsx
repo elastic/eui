@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { ExclusiveUnion, Omit } from '../../common';
 import { EuiToggle, ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
-import { useInnerText } from '../../inner_text';
+import { useRenderToText } from '../../inner_text/render_to_text';
 
 export interface EuiButtonToggleProps extends EuiButtonProps {
   /**
@@ -100,10 +100,10 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
   );
 
   const buttonContent = isIconOnly ? '' : label;
-
-  const [ref, innerText] = useInnerText();
-  //@ts-ignore
-  const labelContent = <span ref={ref}>{label}</span>;
+  const labelText = useRenderToText(
+    label,
+    typeof label === 'string' ? label : ''
+  );
 
   return (
     <EuiToggle
@@ -111,11 +111,11 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
       inputClassName="euiButtonToggle__input"
       checked={isSelected}
       isDisabled={isDisabled}
-      label={label}
+      label={labelText}
       name={name}
       onChange={onChange}
       type={type}
-      title={typeof label === 'string' ? label : innerText}
+      title={labelText}
       value={value}>
       <EuiButton
         tabIndex={-1} // prevents double focus from input to button

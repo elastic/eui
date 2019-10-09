@@ -49,11 +49,15 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   const toggleOptions = [
     {
       id: `${id}Asc`,
+      value: 'asc',
       label: textSortAsc,
+      'data-test-subj': `euiDataGridColumnSorting-sortColumn-${id}-asc`,
     },
     {
       id: `${id}Desc`,
+      value: 'desc',
       label: textSortDesc,
+      'data-test-subj': `euiDataGridColumnSorting-sortColumn-${id}-desc`,
     },
   ];
 
@@ -136,14 +140,14 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                     buttonSize="compressed"
                     className="euiDataGridColumnSorting__order"
                     idSelected={direction === 'asc' ? `${id}Asc` : `${id}Desc`}
-                    onChange={() => {
+                    onChange={(_, direction) => {
                       const nextColumns = [...sorting.columns];
                       const columnIndex = nextColumns
                         .map(({ id }) => id)
                         .indexOf(id);
                       nextColumns.splice(columnIndex, 1, {
                         id,
-                        direction: direction === 'asc' ? 'desc' : 'asc',
+                        direction,
                       });
                       sorting.onSort(nextColumns);
                     }}

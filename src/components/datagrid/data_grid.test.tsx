@@ -141,7 +141,7 @@ function getColumnSortDirection(
 
   expect(columnSorter.length).toBe(1);
   const activeSort = columnSorter.find(
-    '[className*="euiButtonGroup__button--selected"]'
+    'button[className*="euiButtonGroup__button--selected"]'
   );
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
@@ -201,11 +201,16 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `button[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    // @ts-ignore-next-line
-    act(() => sortButton.props().onClick());
+    act(() =>
+      // @ts-ignore-next-line
+      sortButton
+        .parents('EuiButtonGroup')
+        .props()
+        .onChange(undefined, direction)
+    );
   }
 
   // close popover
