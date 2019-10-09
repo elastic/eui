@@ -306,7 +306,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [columnWidths, setColumnWidth] = useColumnWidths();
 
   // enables/disables grid controls based on available width
-  const onResize = useOnResize(setShowGridControls, isFullScreen);
+  const onResize = useOnResize(nextShowGridControls => {
+    if (nextShowGridControls !== showGridControls) {
+      setShowGridControls(nextShowGridControls);
+    }
+  }, isFullScreen);
 
   const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
     boolean
@@ -443,8 +447,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             )}
           </EuiI18n>
         </div>
-        {/* Unsure why this element causes errors as focus follows spec */}
-        {/* eslint-disable jsx-a11y/interactive-supports-focus */}
         <EuiResizeObserver onResize={onResize}>
           {resizeRef => (
             <div
