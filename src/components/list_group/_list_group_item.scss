@@ -22,12 +22,6 @@
     text-decoration: underline;
   }
 
-
-  &.euiListGroupItem-isClickable:hover .euiListGroupItem__label,
-  &.euiListGroupItem-isClickable:focus .euiListGroupItem__label {
-    text-decoration: underline;
-  }
-
   // Style all disabled list items whether or not they are links or buttons
   &.euiListGroupItem-isDisabled,
   &.euiListGroupItem-isDisabled:hover,
