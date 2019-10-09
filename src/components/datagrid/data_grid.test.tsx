@@ -31,7 +31,9 @@ function extractGridData(datagrid: ReactWrapper) {
   gridRows.forEach((row: any) => {
     const rowContent: string[] = [];
     const cells = findTestSubject(row, 'dataGridRowCell');
-    cells.forEach((cell: any) => rowContent.push(cell.text()));
+    cells.forEach((cell: any) =>
+      rowContent.push(cell.find('[data-test-subj="cell-content"]').text())
+    );
     rows.push(rowContent);
   });
 
@@ -573,12 +575,12 @@ Array [
     "Column 2",
   ],
   Array [
-    "Row: 1, Column: 1:Hello, Row 0-Column 1!",
-    "Row: 1, Column: 2:Hello, Row 0-Column 2!",
+    "Hello, Row 0-Column 1!",
+    "Hello, Row 0-Column 2!",
   ],
   Array [
-    "Row: 2, Column: 1:Hello, Row 1-Column 1!",
-    "Row: 2, Column: 2:Hello, Row 1-Column 2!",
+    "Hello, Row 1-Column 1!",
+    "Hello, Row 1-Column 2!",
   ],
 ]
 `);
@@ -1062,37 +1064,51 @@ Array [
 
       let focusableCell = getFocusableCell(component);
       expect(focusableCell.length).toEqual(1);
-      expect(focusableCell.text()).toEqual('0, A');
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A');
 
       focusableCell
         .simulate('focus')
         .simulate('keydown', { keyCode: keyCodes.LEFT });
 
       focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A'); // focus should not move when up against an edge
 
       focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
-      expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A'); // focus should not move when up against an edge
 
       focusableCell.simulate('keydown', { keyCode: keyCodes.DOWN });
 
       focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('1, A');
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('1, A');
 
       focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
 
       focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('1, B');
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('1, B');
 
       focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
 
       focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('0, B');
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, B');
 
       focusableCell.simulate('keydown', { keyCode: keyCodes.LEFT });
 
       focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('0, A');
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A');
     });
     it('does not break arrow key focus control behavior when also using a mouse', () => {
       const component = mount(
@@ -1107,7 +1123,10 @@ Array [
       );
 
       let focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('0, A');
+      // console.log(focusableCell.debug());
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A');
 
       findTestSubject(component, 'dataGridRowCell')
         .at(3)
@@ -1115,7 +1134,9 @@ Array [
 
       focusableCell = getFocusableCell(component);
       expect(focusableCell.length).toEqual(1);
-      expect(focusableCell.text()).toEqual('1, B');
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('1, B');
     });
     it.skip('supports arrow navigation through grids with different interactive cells', () => {
       const component = mount(
