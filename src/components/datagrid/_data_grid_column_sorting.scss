@@ -47,6 +47,8 @@
     min-width: 200px;
     border: none;
 
+    // Hack to overwrite some nested, unreachable component code with button groups
+    // sass-lint:disable-block no-important
     button {
       font-size: $euiFontSizeXS !important;
     }
