@@ -19,6 +19,7 @@
 
   &.euiListGroupItem-isClickable .euiListGroupItem__button:focus {
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+    text-decoration: underline;
   }
 
 
