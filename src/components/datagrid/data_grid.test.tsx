@@ -573,12 +573,12 @@ Array [
     "Column 2",
   ],
   Array [
-    "Hello, Row 0-Column 1!",
-    "Hello, Row 0-Column 2!",
+    "Row: 1, Column: 1:Hello, Row 0-Column 1!",
+    "Row: 1, Column: 2:Hello, Row 0-Column 2!",
   ],
   Array [
-    "Hello, Row 1-Column 1!",
-    "Hello, Row 1-Column 2!",
+    "Row: 2, Column: 1:Hello, Row 1-Column 1!",
+    "Row: 2, Column: 2:Hello, Row 1-Column 2!",
   ],
 ]
 `);

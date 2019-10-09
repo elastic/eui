@@ -607,10 +607,10 @@ export class EuiPopover extends Component<Props, State> {
       if (ownFocus) {
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p role="alert">
+            <p id="dialog">
               <EuiI18n
                 token="euiPopover.screenReaderAnnouncement"
-                default="You are in a popup. To exit this popup, hit escape."
+                default="You are in a dialog. To close this dialog, hit escape."
               />
             </p>
           </EuiScreenReaderOnly>
@@ -630,15 +630,18 @@ export class EuiPopover extends Component<Props, State> {
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
             disabled={!ownFocus}>
-            {focusTrapScreenReaderText}
             <EuiPanel
               panelRef={this.panelRef}
               className={panelClasses}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}
+              role="dialog"
+              aira-modal="true"
+              aria-labelledby="dialog"
               style={this.state.popoverStyles}>
               <div className={arrowClassNames} style={this.state.arrowStyles} />
+              {focusTrapScreenReaderText}
               <EuiMutationObserver
                 observerOptions={{
                   attributes: true, // element attribute changes

@@ -334,6 +334,13 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandCode"
                         >
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            <span>
+                              Row: 1, Column: 1:
+                            </span>
+                          </p>
                           0, A
                         </div>
                         <div
@@ -342,7 +349,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                            title="Expand cell content"
+                            title="Click or hit enter to interact with cell content"
                             type="button"
                           >
                             <svg
@@ -382,6 +389,13 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandCode"
                         >
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            <span>
+                              Row: 1, Column: 2:
+                            </span>
+                          </p>
                           0, B
                         </div>
                         <div
@@ -390,7 +404,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                            title="Expand cell content"
+                            title="Click or hit enter to interact with cell content"
                             type="button"
                           >
                             <svg
@@ -436,6 +450,13 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandCode"
                         >
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            <span>
+                              Row: 2, Column: 1:
+                            </span>
+                          </p>
                           1, A
                         </div>
                         <div
@@ -444,7 +465,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                            title="Expand cell content"
+                            title="Click or hit enter to interact with cell content"
                             type="button"
                           >
                             <svg
@@ -484,6 +505,13 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandCode"
                         >
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            <span>
+                              Row: 2, Column: 2:
+                            </span>
+                          </p>
                           1, B
                         </div>
                         <div
@@ -492,7 +520,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                            title="Expand cell content"
+                            title="Click or hit enter to interact with cell content"
                             type="button"
                           >
                             <svg
@@ -538,6 +566,13 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandCode"
                         >
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            <span>
+                              Row: 3, Column: 1:
+                            </span>
+                          </p>
                           2, A
                         </div>
                         <div
@@ -546,7 +581,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                            title="Expand cell content"
+                            title="Click or hit enter to interact with cell content"
                             type="button"
                           >
                             <svg
@@ -586,6 +621,13 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandCode"
                         >
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            <span>
+                              Row: 3, Column: 2:
+                            </span>
+                          </p>
                           2, B
                         </div>
                         <div
@@ -594,7 +636,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                            title="Expand cell content"
+                            title="Click or hit enter to interact with cell content"
                             type="button"
                           >
                             <svg

@@ -7,10 +7,13 @@ import React, {
   createRef,
   HTMLAttributes,
   KeyboardEvent,
+  ReactChild,
 } from 'react';
 import classNames from 'classnames';
 import { EuiPopover } from '../popover';
 import { CommonProps, Omit } from '../common';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
 // @ts-ignore
 import { EuiButtonIcon } from '../button';
 import { keyCodes } from '../../services';
@@ -67,7 +70,7 @@ const EuiDataGridCellContent: FunctionComponent<
     CellValueElementProps
   >;
 
-  return <CellElement {...rest} />;
+  return <CellElement data-test-subj="cell-content" {...rest} />;
 });
 
 export class EuiDataGridCell extends Component<
@@ -192,24 +195,47 @@ export class EuiDataGridCell extends Component<
     });
 
     const expandButton = (
-      <EuiButtonIcon
-        className={buttonIconClasses}
-        color="text"
-        iconSize="s"
-        iconType="expandMini"
-        aria-hidden
-        onClick={() =>
-          this.setState(({ popoverIsOpen }) => ({
-            popoverIsOpen: !popoverIsOpen,
-          }))
-        }
-        title="Expand cell content"
-      />
+      <EuiI18n
+        token="euiDataGridCell.expandButtonTitle"
+        default="Click or hit enter to interact with cell content">
+        {(expandButtonTitle: string) => (
+          <EuiButtonIcon
+            className={buttonIconClasses}
+            color="text"
+            iconSize="s"
+            iconType="expandMini"
+            aria-hidden
+            onClick={() =>
+              this.setState(({ popoverIsOpen }) => ({
+                popoverIsOpen: !popoverIsOpen,
+              }))
+            }
+            title={expandButtonTitle}
+          />
+        )}
+      </EuiI18n>
+    );
+
+    const screenReaderPosition = (
+      <EuiScreenReaderOnly>
+        <p>
+          <EuiI18n
+            tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
+            defaults={['Row', 'Column']}>
+            {([row, column]: ReactChild[]) => (
+              <span>
+                {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
+              </span>
+            )}
+          </EuiI18n>
+        </p>
+      </EuiScreenReaderOnly>
     );
 
     let anchorContent = (
       <div className="euiDataGridRowCell__expandInner">
         <div className="euiDataGridRowCell__expandCode">
+          {screenReaderPosition}
           <EuiDataGridCellContent {...cellContentProps} />
         </div>
       </div>
@@ -219,6 +245,7 @@ export class EuiDataGridCell extends Component<
       anchorContent = (
         <div className="euiDataGridRowCell__expandInner">
           <div className="euiDataGridRowCell__expandCode">
+            {screenReaderPosition}
             <EuiDataGridCellContent {...cellContentProps} />
           </div>
           <div className={buttonClasses}>{expandButton}</div>
