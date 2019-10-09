@@ -55,6 +55,7 @@ export default class extends Component {
 
     const pinExtraActionFn = val => {
       pinExtraAction['aria-label'] = `Pin ${val} to top`;
+      return pinExtraAction;
     };
 
     this.topLinks = [
@@ -128,7 +129,7 @@ export default class extends Component {
         iconType: 'canvasApp',
         isActive: true,
         extraAction: {
-          ...pinExtraAction,
+          ...pinExtraActionFn('Canvas'),
           alwaysShow: true,
         },
       },
