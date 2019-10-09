@@ -33,8 +33,12 @@
     transition: width $euiAnimSpeedExtraFast;
     z-index: $euiZHeader + 1;
 
-    .euiListGroupItem__button {
+    .navDrawerExpandButton-isExpanded .euiListGroupItem__button {
       padding: $euiSizeM $euiSize;
+    }
+
+    .navDrawerExpandButton-isCollapsed .euiListGroupItem__button {
+      max-width: $euiSizeXL;
     }
   }
 
