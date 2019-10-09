@@ -137,35 +137,35 @@ export default class extends Component {
         label: 'Discover',
         href: '#/layout/nav-drawer',
         iconType: 'discoverApp',
-        extraAction: pinExtraActionFn('Discover'),
+        extraAction: { ...pinExtraActionFn('Discover') },
       },
       {
         label: 'Visualize',
         href: '#/layout/nav-drawer',
         iconType: 'visualizeApp',
-        extraAction: pinExtraActionFn('Visualize'),
+        extraAction: { ...pinExtraActionFn('Visualize') },
       },
       {
         label: 'Dashboard',
         href: '#/layout/nav-drawer',
         iconType: 'dashboardApp',
-        extraAction: pinExtraActionFn('Dashboard'),
+        extraAction: { ...pinExtraActionFn('Dashboard') },
       },
       {
         label: 'Machine learning',
         href: '#/layout/nav-drawer',
         iconType: 'machineLearningApp',
-        extraAction: pinExtraActionFn('Machine learning'),
+        extraAction: { ...pinExtraActionFn('Machine learning') },
       },
       {
         label: 'Custom Plugin (no icon)',
         href: '#/layout/nav-drawer',
-        extraAction: pinExtraActionFn('Custom Plugin'),
+        extraAction: { ...pinExtraActionFn('Custom Plugin') },
       },
       {
         label: 'Nature Plugin (image as icon)',
         href: '#/layout/nav-drawer',
-        extraAction: pinExtraActionFn('Nature Plugin'),
+        extraAction: { ...pinExtraActionFn('Nature Plugin') },
         icon: (
           <EuiImage
             size="s"
@@ -181,37 +181,37 @@ export default class extends Component {
         label: 'APM',
         href: '#/layout/nav-drawer',
         iconType: 'apmApp',
-        extraAction: pinExtraActionFn('APM'),
+        extraAction: { ...pinExtraActionFn('APM') },
       },
       {
         label: 'Infrastructure',
         href: '#/layout/nav-drawer',
         iconType: 'infraApp',
-        extraAction: pinExtraActionFn('Infrastructure'),
+        extraAction: { ...pinExtraActionFn('Infrastructure') },
       },
       {
         label: 'Log viewer',
         href: '#/layout/nav-drawer',
         iconType: 'loggingApp',
-        extraAction: pinExtraActionFn('Log viewer'),
+        extraAction: { ...pinExtraActionFn('Log viewer') },
       },
       {
         label: 'Uptime',
         href: '#/layout/nav-drawer',
         iconType: 'upgradeAssistantApp',
-        extraAction: pinExtraActionFn('Uptime'),
+        extraAction: { ...pinExtraActionFn('Uptime') },
       },
       {
         label: 'Maps',
         href: '#/layout/nav-drawer',
         iconType: 'gisApp',
-        extraAction: pinExtraActionFn('Maps'),
+        extraAction: { ...pinExtraActionFn('Maps') },
       },
       {
         label: 'SIEM',
         href: '#/layout/nav-drawer',
         iconType: 'securityAnalyticsApp',
-        extraAction: pinExtraActionFn('SIEM'),
+        extraAction: { ...pinExtraActionFn('SIEM') },
       },
     ];
 
