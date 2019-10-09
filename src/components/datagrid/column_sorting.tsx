@@ -151,7 +151,7 @@ export const useColumnSorting = (
       )}
       <EuiPopoverFooter>
         <EuiFlexGroup
-          gutterSize="s"
+          gutterSize="m"
           justifyContent="spaceBetween"
           responsive={false}>
           <EuiFlexItem grow={false}>
@@ -166,6 +166,8 @@ export const useColumnSorting = (
                 <EuiButtonEmpty
                   size="xs"
                   flush="left"
+                  iconType="arrowDown"
+                  iconSide="right"
                   onClick={() =>
                     setAvailableColumnsIsOpen(!avilableColumnsisOpen)
                   }>
@@ -230,14 +232,19 @@ export const useColumnSorting = (
               </EuiI18n>
             </EuiPopover>
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="xs"
-              flush="right"
-              onClick={() => sorting.onSort([])}>
-              <EuiI18n token="euiColumnSorting.clearAll" default="Clear all" />
-            </EuiButtonEmpty>
-          </EuiFlexItem>
+          {sorting.columns.length > 0 ? (
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty
+                size="xs"
+                flush="right"
+                onClick={() => sorting.onSort([])}>
+                <EuiI18n
+                  token="euiColumnSorting.clearAll"
+                  default="Clear sorting"
+                />
+              </EuiButtonEmpty>
+            </EuiFlexItem>
+          ) : null}
         </EuiFlexGroup>
       </EuiPopoverFooter>
     </EuiPopover>
