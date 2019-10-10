@@ -25,6 +25,8 @@ import InMemoryDataGrid from './in_memory';
 const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
 const inMemoryDataGridHtml = renderToHtml(InMemoryDataGrid);
 
+import { EuiDataGridPagination } from './props';
+
 export const DataGridExample = {
   title: 'Data grid',
   sections: [
@@ -43,7 +45,7 @@ export const DataGridExample = {
       text: <p>By default the data grid will grow into the container.</p>,
       components: { DataGrid },
       demo: <DataGrid />,
-      props: { EuiDataGrid },
+      props: { EuiDataGrid, EuiDataGridPagination },
     },
     {
       source: [

@@ -271,12 +271,7 @@ export class GuideSection extends Component {
       return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
     });
 
-    const title =
-      _euiObjectType === 'type' ? (
-        <EuiCode id={componentName}>{componentName}</EuiCode>
-      ) : (
-        <EuiText>{componentName}</EuiText>
-      );
+    const title = <EuiCode id={componentName}>{componentName}</EuiCode>;
 
     let descriptionElement;
 

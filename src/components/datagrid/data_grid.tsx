@@ -58,7 +58,7 @@ type CommonGridProps = CommonProps &
     gridStyle?: EuiDataGridStyle;
     inMemory?: EuiDataGridInMemory;
     /**
-     * Set to `null` to disable pagination
+     * Instance of #EuiDataGridPagination, set to `null` to disable pagination
      */
     pagination?: EuiDataGridPaginationProps;
     /**
