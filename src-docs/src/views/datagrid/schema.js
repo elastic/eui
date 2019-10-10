@@ -71,6 +71,8 @@ export default class InMemoryDataGrid extends Component {
         pageIndex: 0,
         pageSize: 10,
       },
+
+      visibleColumns: columns.map(({ id }) => id),
     };
   }
 
@@ -101,6 +103,8 @@ export default class InMemoryDataGrid extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+
   dummyIcon = () => (
     <EuiButtonIcon
       aria-label="dummy icon"
@@ -115,6 +119,10 @@ export default class InMemoryDataGrid extends Component {
       <EuiDataGrid
         aria-label="Top EUI contributors"
         columns={columns}
+        columnVisibility={{
+          visibleColumns: this.state.visibleColumns,
+          setVisibleColumns: this.setVisibleColumns,
+        }}
         rowCount={data.length}
         renderCellValue={({ rowIndex, columnId }) => {
           const value = data[rowIndex][columnId];

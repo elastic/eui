@@ -6,6 +6,11 @@ export interface EuiDataGridColumn {
   dataType?: EuiDataGridSchema['*']['columnType'];
 }
 
+export interface EuiDataGridColumnVisibility {
+  visibleColumns: string[];
+  setVisibleColumns: (visibleColumns: string[]) => void;
+}
+
 export interface EuiDataGridColumnWidths {
   [key: string]: number;
 }

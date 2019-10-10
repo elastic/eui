@@ -44,6 +44,7 @@ export default class DataGridContainer extends Component {
         pageIndex: 0,
         pageSize: 50,
       },
+      visibleColumns: columns.map(({ id }) => id),
     };
   }
 
@@ -57,6 +58,8 @@ export default class DataGridContainer extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+
   render() {
     const { pagination } = this.state;
 
@@ -66,6 +69,10 @@ export default class DataGridContainer extends Component {
           <EuiDataGrid
             aria-label="Top EUI contributors"
             columns={columns}
+            columnVisibility={{
+              visibleColumns: this.state.visibleColumns,
+              setVisibleColumns: this.setVisibleColumns,
+            }}
             rowCount={data.length}
             gridStyle={{
               border: 'horizontal',

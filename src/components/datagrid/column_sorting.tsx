@@ -12,7 +12,11 @@ import { EuiI18n } from '../i18n';
 import { EuiText } from '../text';
 import { EuiButtonEmpty } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiDragDropContext, EuiDroppable } from '../drag_and_drop';
+import {
+  EuiDragDropContext,
+  EuiDroppable,
+  euiDragDropReorder,
+} from '../drag_and_drop';
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../icon';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
@@ -23,7 +27,7 @@ export const useColumnSorting = (
   columns: EuiDataGridColumn[],
   sorting: EuiDataGridSorting | undefined,
   schema: EuiDataGridSchema
-): [ReactNode] => {
+): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
   const defaultSchemaColor: string = palettes.euiPaletteColorBlind.colors[4];
@@ -74,10 +78,11 @@ export const useColumnSorting = (
     destination,
   }: DropResult) {
     const destinationIndex = destination!.index;
-    const nextColumns = [...sorting!.columns];
-
-    nextColumns[sourceIndex] = sorting!.columns[destinationIndex];
-    nextColumns[destinationIndex] = sorting!.columns[sourceIndex];
+    const nextColumns = euiDragDropReorder(
+      sorting!.columns,
+      sourceIndex,
+      destinationIndex
+    );
 
     sorting!.onSort(nextColumns);
   }
@@ -250,5 +255,5 @@ export const useColumnSorting = (
     </EuiPopover>
   );
 
-  return [columnSorting];
+  return columnSorting;
 };
