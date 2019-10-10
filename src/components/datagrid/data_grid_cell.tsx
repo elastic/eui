@@ -273,10 +273,23 @@ export class EuiDataGridCell extends Component<
     if (isExpandable) {
       anchorContent = (
         <div className="euiDataGridRowCell__expandInner">
-          <div className="euiDataGridRowCell__expandCode">
-            {screenReaderPosition}
-            <EuiDataGridCellContent {...cellContentProps} />
-          </div>
+          <EuiMutationObserver
+            observerOptions={{ subtree: true, childList: true }}
+            onMutation={this.preventTabbing}>
+            {mutationRef => {
+              const onRef = (ref: HTMLDivElement | null) => {
+                mutationRef(ref);
+                this.onPreventTabbableRef(ref);
+              };
+
+              return (
+                <div ref={onRef} className="euiDataGridRowCell__expandCode">
+                  {screenReaderPosition}
+                  <EuiDataGridCellContent {...cellContentProps} />
+                </div>
+              );
+            }}
+          </EuiMutationObserver>
           <div className={buttonClasses}>{expandButton}</div>
         </div>
       );
