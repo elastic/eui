@@ -24,7 +24,11 @@ function extractGridData(datagrid: ReactWrapper) {
 
   const headerCells = findTestSubject(datagrid, 'dataGridHeaderCell', '|=');
   const headerRow: string[] = [];
-  headerCells.forEach((cell: any) => headerRow.push(cell.text()));
+  headerCells.forEach((cell: any) =>
+    headerRow.push(
+      cell.find('[className="euiDataGridHeaderCell__content"]').text()
+    )
+  );
   rows.push(headerRow);
 
   const gridRows = findTestSubject(datagrid, 'dataGridRow');
@@ -72,12 +76,74 @@ function getColumnSortDirection(
   datagrid: ReactWrapper,
   columnId: string
 ): [ReactWrapper, string] {
-  const columnSorter = datagrid.find(
-    `[data-test-subj^="dataGrid-sortColumn-${columnId}"]`
+  // get the button that sorts by this column
+  let columnSorter = datagrid.find(
+    `div[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}"]`
   );
-  expect(columnSorter.length).toBe(1);
+  if (columnSorter.length === 0) {
+    // need to enable this column
 
-  const sortDirection = (columnSorter.props() as {
+    // open the column selection popover
+    let columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).not.euiPopoverToBeOpen();
+    let popoverButton = columnSelectionPopover
+      .find('div[className="euiPopover__anchor"]')
+      .find('[onClick]')
+      .first();
+    // @ts-ignore-next-line
+    act(() => popoverButton.props().onClick());
+
+    datagrid.update();
+
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).euiPopoverToBeOpen();
+
+    // find button to enable this column and click it
+    const selectColumnButton = datagrid.find(
+      `[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
+    );
+    expect(selectColumnButton.length).toBe(1);
+    // @ts-ignore-next-line
+    act(() => selectColumnButton.props().onClick());
+
+    // close column selection popover
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).euiPopoverToBeOpen();
+
+    popoverButton = columnSelectionPopover
+      .find('div[className="euiPopover__anchor"]')
+      .find('[onClick]')
+      .first();
+    // @ts-ignore-next-line
+    act(() => popoverButton.props().onClick());
+
+    datagrid.update();
+
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+    );
+    expect(columnSelectionPopover).not.euiPopoverToBeOpen();
+
+    // find the column sorter
+    columnSelectionPopover = datagrid.find(
+      'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+    );
+    columnSorter = columnSelectionPopover.find(
+      `div[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}"]`
+    );
+  }
+
+  expect(columnSorter.length).toBe(1);
+  const activeSort = columnSorter.find(
+    'button[className*="euiButtonGroup__button--selected"]'
+  );
+  const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
   })['data-test-subj'].match(/(?<direction>[^-]+)$/)!.groups!.direction;
 
@@ -89,20 +155,83 @@ function sortByColumn(
   columnId: string,
   direction: 'asc' | 'desc' | 'off'
 ) {
+  // open datagrid sorting options
+  let popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+
+  let popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
   let [columnSorter, currentSortDirection] = getColumnSortDirection(
     datagrid,
     columnId
   );
-  while (currentSortDirection !== direction) {
-    /* eslint-disable no-loop-func */
+
+  // if this column isn't being sorted, enable it
+  if (currentSortDirection === 'off') {
     act(() => {
-      columnSorter.simulate('click');
+      // @ts-ignore-next-line
+      columnSorter
+        .find('EuiSwitch')
+        .props()
+        .onChange();
     });
+
+    datagrid.update();
+
+    // inspect the column's new sort details
     [columnSorter, currentSortDirection] = getColumnSortDirection(
       datagrid,
       columnId
     );
   }
+
+  if (currentSortDirection !== direction) {
+    const sortButton = columnSorter.find(
+      `button[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+    );
+    expect(sortButton.length).toBe(1);
+    act(() =>
+      // @ts-ignore-next-line
+      sortButton
+        .parents('EuiButtonGroup')
+        .props()
+        .onChange(undefined, direction)
+    );
+  }
+
+  // close popover
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
 }
 
 expect.extend({
@@ -384,6 +513,60 @@ Array [
 `);
     });
 
+    it('renders correct aria attributes on column headers', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          rowCount={1}
+          renderCellValue={() => 'value'}
+        />
+      );
+
+      // no columns are sorted, expect no aria-sort or aria-describedby attributes
+      expect(component.find('[role="columnheader"][aria-sort]').length).toBe(0);
+      expect(
+        component.find('[role="columnheader"][aria-describedby]').length
+      ).toBe(0);
+
+      // sort on one column
+      component.setProps({
+        sorting: { columns: [{ id: 'A', direction: 'asc' }], onSort: () => {} },
+      });
+
+      // expect A column to have aria-sort, expect no aria-describedby
+      expect(component.find('[role="columnheader"][aria-sort]').length).toBe(1);
+      expect(
+        component.find(
+          '[role="columnheader"][aria-sort="ascending"][data-test-subj="dataGridHeaderCell-A"]'
+        ).length
+      ).toBe(1);
+      expect(
+        component.find('[role="columnheader"][aria-describedby]').length
+      ).toBe(0);
+
+      // sort on both columns
+      component.setProps({
+        sorting: {
+          columns: [
+            { id: 'A', direction: 'asc' },
+            { id: 'B', direction: 'desc' },
+          ],
+          onSort: () => {},
+        },
+      });
+
+      // expect no aria-sort, both columns have aria-describedby
+      expect(component.find('[role="columnheader"][aria-sort]').length).toBe(0);
+      expect(
+        component.find('[role="columnheader"][aria-describedby]').length
+      ).toBe(2);
+      expect(
+        component.find('[role="columnheader"][aria-describedby="htmlId"]')
+          .length
+      ).toBe(2);
+    });
+
     describe('schema datatype classnames', () => {
       it('applies classnames from explicit datatypes', () => {
         const component = mount(
@@ -528,6 +711,10 @@ Array [
                     ? 1
                     : 0;
                 },
+                icon: 'alert',
+                color: 'primary',
+                sortTextAsc: 'a-z',
+                sortTextDesc: 'z-a',
               },
             ]}
             inMemory={{ level: 'pagination' }}

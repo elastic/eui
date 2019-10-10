@@ -10,11 +10,10 @@ import { fake } from 'faker';
 import {
   EuiButton,
   EuiDataGrid,
-  EuiButtonIcon,
   EuiLink,
   EuiPopover,
+  EuiSpacer,
 } from '../../../../src/components/';
-import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
 import { EuiRadioGroup } from '../../../../src/components/form/radio';
 
 const columns = [
@@ -42,9 +41,6 @@ const columns = [
   {
     id: 'version',
   },
-  {
-    id: 'actions',
-  },
 ];
 
 const raw_data = [];
@@ -66,18 +62,6 @@ for (let i = 1; i < 1000; i++) {
     amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
-    actions: (
-      <Fragment>
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-      </Fragment>
-    ),
   });
 }
 
@@ -176,7 +160,6 @@ export default () => {
   if (inMemoryLevel !== '') {
     inMemoryProps.inMemory = {
       level: inMemoryLevel,
-      skipColumns: ['actions'],
     };
   }
 
@@ -221,6 +204,7 @@ export default () => {
           }}
         />
       </EuiPopover>
+      <EuiSpacer />
 
       <EuiDataGrid
         aria-label="Data grid demo"

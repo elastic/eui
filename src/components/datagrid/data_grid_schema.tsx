@@ -1,12 +1,20 @@
-import { useMemo } from 'react';
+import React, { useMemo, ReactNode } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridInMemoryValues,
 } from './data_grid_types';
 
+import { EuiI18n } from '../i18n';
+
+import { palettes } from '../../services/color/eui_palettes';
+
 export interface SchemaDetector {
   type: string;
   detector: (value: string) => number;
+  icon: string;
+  color: string;
+  sortTextAsc: ReactNode;
+  sortTextDesc: ReactNode;
 }
 
 const schemaDetectors: SchemaDetector[] = [
@@ -15,6 +23,20 @@ const schemaDetectors: SchemaDetector[] = [
     detector(value: string) {
       return value === 'true' || value === 'false' ? 1 : 0;
     },
+    icon: 'invert',
+    color: palettes.euiPaletteColorBlind.colors[5],
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.booleanSortTextAsc"
+        default="False-True"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.booleanSortTextDesc"
+        default="True-False"
+      />
+    ),
   },
   {
     type: 'currency',
@@ -31,6 +53,20 @@ const schemaDetectors: SchemaDetector[] = [
 
       return (matchLength / value.length) * confidenceAdjustment || 0;
     },
+    icon: 'currency',
+    color: palettes.euiPaletteColorBlind.colors[0],
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.currencySortTextAsc"
+        default="Low-High"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.currencySortTextDesc"
+        default="High-Low"
+      />
+    ),
   },
   {
     type: 'datetime',
@@ -56,6 +92,14 @@ const schemaDetectors: SchemaDetector[] = [
 
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
+    icon: 'calendar',
+    color: palettes.euiPaletteColorBlind.colors[7],
+    sortTextAsc: (
+      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
+    ),
+    sortTextDesc: (
+      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
+    ),
   },
   {
     type: 'numeric',
@@ -64,6 +108,17 @@ const schemaDetectors: SchemaDetector[] = [
         .length;
       return matchLength / value.length || 0;
     },
+    icon: 'number',
+    color: palettes.euiPaletteColorBlind.colors[0],
+    sortTextAsc: (
+      <EuiI18n token="euiDataGridSchema.numberSortTextAsc" default="Low-High" />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.numberSortTextDesc"
+        default="High-Low"
+      />
+    ),
   },
 ];
 
@@ -223,4 +278,14 @@ export function getMergedSchema(
   }
 
   return mergedSchema;
+}
+
+// Given a provided schema, return the details for the schema
+// Useful for grabbing the color or icon
+export function getDetailsForSchema(providedSchema: string | null) {
+  const results = schemaDetectors.filter(matches => {
+    return matches.type === providedSchema;
+  });
+
+  return results[0];
 }
