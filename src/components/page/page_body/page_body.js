@@ -36,6 +36,9 @@ export const EuiPageBody = ({
 EuiPageBody.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Sets the HTML element for `EuiPageBody`.
+   */
   component: PropTypes.string,
   /**
    * Sets the max-width of the page,
