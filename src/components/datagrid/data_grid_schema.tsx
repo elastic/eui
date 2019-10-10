@@ -135,7 +135,7 @@ const schemaDetectors: SchemaDetector[] = [
         return 0;
       }
     },
-    icon: 'vizVega',
+    icon: 'visVega',
     color: palettes.euiPaletteColorBlind.colors[3],
     sortTextAsc: (
       <EuiI18n
