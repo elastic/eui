@@ -7,8 +7,7 @@ import { Option } from '../types';
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  // @ts-ignore
-  htmlIdGenerator: () => suffix => `htmlid_${suffix}`,
+  htmlIdGenerator: () => () => 'htmlId',
 }));
 
 const options: Option[] = [

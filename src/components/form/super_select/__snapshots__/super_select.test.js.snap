@@ -180,7 +180,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
     >
       <div
         aira-modal="true"
-        aria-labelledby="dialog"
+        aria-describedby="htmlId"
         aria-live="assertive"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
         role="dialog"
@@ -390,7 +390,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
     >
       <div
         aira-modal="true"
-        aria-labelledby="dialog"
+        aria-describedby="htmlId"
         aria-live="assertive"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
         role="dialog"
@@ -764,7 +764,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                           >
                             <div
                               aira-modal="true"
-                              aria-labelledby="dialog"
+                              aria-describedby="htmlId"
                               aria-live="assertive"
                               class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                               role="dialog"
@@ -856,7 +856,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                             >
                               <div
                                 aira-modal="true"
-                                aria-labelledby="dialog"
+                                aria-describedby="htmlId"
                                 aria-live="assertive"
                                 class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                                 role="dialog"
@@ -942,7 +942,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                       </SideEffect(FocusWatcher)>
                       <EuiPanel
                         aira-modal="true"
-                        aria-labelledby="dialog"
+                        aria-describedby="htmlId"
                         aria-live="assertive"
                         className="euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                         paddingSize="none"
@@ -958,7 +958,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                       >
                         <div
                           aira-modal="true"
-                          aria-labelledby="dialog"
+                          aria-describedby="htmlId"
                           aria-live="assertive"
                           className="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                           role="dialog"
@@ -1223,7 +1223,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
     >
       <div
         aira-modal="true"
-        aria-labelledby="dialog"
+        aria-describedby="htmlId"
         aria-live="assertive"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
         role="dialog"

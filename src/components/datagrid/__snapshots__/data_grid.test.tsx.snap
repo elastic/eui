@@ -49,7 +49,6 @@ exports[`EuiDataGrid pagination renders 1`] = `
   >
     <div
       class="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
-      id="customizablePagination"
     >
       <div
         class="euiPopover__anchor"
@@ -349,6 +348,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
@@ -404,6 +404,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
@@ -465,6 +466,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
@@ -520,6 +522,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
@@ -581,6 +584,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
@@ -636,6 +640,7 @@ Array [
                           <button
                             aria-hidden="true"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            tabindex="-1"
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >

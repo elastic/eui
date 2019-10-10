@@ -149,12 +149,8 @@ export const useColumnSelector = (
                           />
                         </EuiFlexItem>
                         {isDragEnabled && (
-                          <EuiFlexItem
-                            grow={false}
-                            {...provided.dragHandleProps}>
-                            <div {...provided.dragHandleProps}>
-                              <EuiIcon type="grab" color="subdued" />
-                            </div>
+                          <EuiFlexItem grow={false}>
+                            <EuiIcon type="grab" color="subdued" />
                           </EuiFlexItem>
                         )}
                       </EuiFlexGroup>

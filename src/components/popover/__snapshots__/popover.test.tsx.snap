@@ -133,7 +133,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
       >
         <div
           aira-modal="true"
-          aria-labelledby="dialog"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
@@ -183,7 +183,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
       >
         <div
           aira-modal="true"
-          aria-labelledby="dialog"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
@@ -233,7 +233,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
       >
         <div
           aira-modal="true"
-          aria-labelledby="dialog"
+          aria-describedby="htmlId"
           aria-live="off"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           data-autofocus="true"
@@ -247,7 +247,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
           />
           <p
             class="euiScreenReaderOnly"
-            id="dialog"
+            id="htmlId"
           >
             You are in a dialog. To close this dialog, hit escape.
           </p>
@@ -291,7 +291,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
       >
         <div
           aira-modal="true"
-          aria-labelledby="dialog"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
           role="dialog"
@@ -341,7 +341,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
       >
         <div
           aira-modal="true"
-          aria-labelledby="dialog"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
