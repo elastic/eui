@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import dateMath from '@elastic/datemath';
 import { toSentenceCase } from '../../../../services/string/to_case';
-
+import { htmlIdGenerator } from '../../../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import {
   EuiForm,
@@ -21,6 +21,7 @@ import {
   parseRelativeParts,
   toRelativeStringFromParts,
 } from '../relative_utils';
+import { EuiScreenReaderOnly } from '../../../accessibility';
 
 export class EuiRelativeTab extends Component {
   constructor(props) {
@@ -32,6 +33,8 @@ export class EuiRelativeTab extends Component {
       sentenceCasedPosition,
     };
   }
+
+  generateId = htmlIdGenerator();
 
   onCountChange = evt => {
     const sanitizedValue = parseInt(evt.target.value, 10);
@@ -69,6 +72,7 @@ export class EuiRelativeTab extends Component {
   };
 
   render() {
+    const relativeDateInputNumberDescriptionId = this.generateId();
     const isInvalid = this.state.count < 0;
     const parsedValue = dateMath.parse(this.props.value, {
       roundUp: this.props.roundUp,
@@ -86,7 +90,8 @@ export class EuiRelativeTab extends Component {
               error={isInvalid ? 'Must be >= 0' : null}>
               <EuiFieldNumber
                 compressed
-                aria-label="Count of"
+                aria-label="Time span amount"
+                aria-describedby={relativeDateInputNumberDescriptionId}
                 data-test-subj={'superDatePickerRelativeDateInputNumber'}
                 value={this.state.count}
                 onChange={this.onCountChange}
@@ -97,6 +102,7 @@ export class EuiRelativeTab extends Component {
           <EuiFlexItem>
             <EuiSelect
               compressed
+              aria-label="Relative time span"
               data-test-subj={'superDatePickerRelativeDateInputUnitSelector'}
               value={this.state.unit}
               options={relativeOptions}
@@ -120,6 +126,9 @@ export class EuiRelativeTab extends Component {
             <EuiFormLabel>{this.state.sentenceCasedPosition} date</EuiFormLabel>
           }
         />
+        <EuiScreenReaderOnly id={relativeDateInputNumberDescriptionId}>
+          <p>The unit is changeable. Currently set to {this.state.unit}.</p>
+        </EuiScreenReaderOnly>
       </EuiForm>
     );
   }

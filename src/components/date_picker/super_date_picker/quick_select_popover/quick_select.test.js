@@ -9,6 +9,12 @@ const defaultProps = {
   start: 'now-15m',
   end: 'now',
 };
+
+// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
+jest.mock('../../../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => () => 'htmlId',
+}));
+
 describe('EuiQuickSelect', () => {
   test('is rendered', () => {
     const component = shallow(<EuiQuickSelect {...defaultProps} />);

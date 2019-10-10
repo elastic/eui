@@ -1,21 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiQuickSelect is rendered 1`] = `
-<Fragment>
+<fieldset>
+  <EuiTitle
+    className="euiQuickSelect__legend"
+    size="xxxs"
+  >
+    <legend
+      aria-label="Quick select a time range"
+      id="htmlId"
+    >
+      <EuiI18n
+        default="Quick select"
+        token="euiQuickSelect.legend"
+      />
+    </legend>
+  </EuiTitle>
   <EuiFlexGroup
     alignItems="center"
     gutterSize="s"
+    justifyContent="flexEnd"
     responsive={false}
   >
-    <EuiFlexItem>
-      <EuiTitle
-        size="xxxs"
-      >
-        <span>
-          Quick select
-        </span>
-      </EuiTitle>
-    </EuiFlexItem>
     <EuiFlexItem
       grow={false}
     >
@@ -56,7 +62,8 @@ exports[`EuiQuickSelect is rendered 1`] = `
   >
     <EuiFlexItem>
       <EuiSelect
-        aria-label="Quick time tense"
+        aria-describedby="htmlId htmlId"
+        aria-label="Time tense"
         compressed={true}
         fullWidth={false}
         hasNoInitialSelection={false}
@@ -79,7 +86,8 @@ exports[`EuiQuickSelect is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiFieldNumber
-        aria-label="Quick time value"
+        aria-describedby="htmlId htmlId"
+        aria-label="Time value"
         compressed={true}
         fullWidth={false}
         isLoading={false}
@@ -89,7 +97,8 @@ exports[`EuiQuickSelect is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiSelect
-        aria-label="Quick time units"
+        aria-describedby="htmlId htmlId"
+        aria-label="Time unit"
         compressed={true}
         fullWidth={false}
         hasNoInitialSelection={false}
@@ -134,37 +143,60 @@ exports[`EuiQuickSelect is rendered 1`] = `
       grow={false}
     >
       <EuiButton
+        aria-describedby="htmlId htmlId"
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
         size="s"
       >
-        Apply
+        <EuiI18n
+          default="Apply"
+          token="euiQuickSelect.applyButton"
+        />
       </EuiButton>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiHorizontalRule
     margin="s"
   />
-</Fragment>
+  <EuiScreenReaderOnly
+    id="htmlId"
+  >
+    <p>
+      Currently set to 
+      last
+       
+      15
+       
+      minutes
+      .
+    </p>
+  </EuiScreenReaderOnly>
+</fieldset>
 `;
 
 exports[`EuiQuickSelect prevQuickSelect 1`] = `
-<Fragment>
+<fieldset>
+  <EuiTitle
+    className="euiQuickSelect__legend"
+    size="xxxs"
+  >
+    <legend
+      aria-label="Quick select a time range"
+      id="htmlId"
+    >
+      <EuiI18n
+        default="Quick select"
+        token="euiQuickSelect.legend"
+      />
+    </legend>
+  </EuiTitle>
   <EuiFlexGroup
     alignItems="center"
     gutterSize="s"
+    justifyContent="flexEnd"
     responsive={false}
   >
-    <EuiFlexItem>
-      <EuiTitle
-        size="xxxs"
-      >
-        <span>
-          Quick select
-        </span>
-      </EuiTitle>
-    </EuiFlexItem>
     <EuiFlexItem
       grow={false}
     >
@@ -205,7 +237,8 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
   >
     <EuiFlexItem>
       <EuiSelect
-        aria-label="Quick time tense"
+        aria-describedby="htmlId htmlId"
+        aria-label="Time tense"
         compressed={true}
         fullWidth={false}
         hasNoInitialSelection={false}
@@ -228,7 +261,8 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiFieldNumber
-        aria-label="Quick time value"
+        aria-describedby="htmlId htmlId"
+        aria-label="Time value"
         compressed={true}
         fullWidth={false}
         isLoading={false}
@@ -238,7 +272,8 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiSelect
-        aria-label="Quick time units"
+        aria-describedby="htmlId htmlId"
+        aria-label="Time unit"
         compressed={true}
         fullWidth={false}
         hasNoInitialSelection={false}
@@ -283,17 +318,34 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       grow={false}
     >
       <EuiButton
+        aria-describedby="htmlId htmlId"
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
         size="s"
       >
-        Apply
+        <EuiI18n
+          default="Apply"
+          token="euiQuickSelect.applyButton"
+        />
       </EuiButton>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiHorizontalRule
     margin="s"
   />
-</Fragment>
+  <EuiScreenReaderOnly
+    id="htmlId"
+  >
+    <p>
+      Currently set to 
+      Next
+       
+      32
+       
+      months
+      .
+    </p>
+  </EuiScreenReaderOnly>
+</fieldset>
 `;

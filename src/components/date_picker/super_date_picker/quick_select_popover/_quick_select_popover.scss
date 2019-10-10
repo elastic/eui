@@ -12,10 +12,16 @@
 
 // sass-lint:disable no-important
 .euiQuickSelectPopover__buttonText {
-  // Override specificity from universal and sibiling selectors
+  // Override specificity from universal and sibling selectors
   margin-right: $euiSizeXS !important;
 }
 
 .euiQuickSelectPopover__anchor {
   height: 100%;
+}
+
+// sass-lint:disable no-important
+.euiQuickSelectPopover__list {
+  // Override specificity from greater specificity selectors
+  margin: 0 !important;
 }

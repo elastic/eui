@@ -26,6 +26,11 @@ export interface EuiFlexGridProps {
    * Force each item to be display block on smaller screens
    */
   responsive?: boolean;
+
+  /**
+   * The tag to render
+   */
+  tagName?: keyof JSX.IntrinsicElements;
 }
 
 const directionToClassNameMap = {
@@ -68,6 +73,7 @@ export const EuiFlexGrid: FunctionComponent<
   direction = 'row',
   responsive = true,
   columns = 0,
+  tagName: TagName = 'div',
   ...rest
 }) => {
   const classes = classNames(
@@ -82,8 +88,9 @@ export const EuiFlexGrid: FunctionComponent<
   );
 
   return (
-    <div className={classes} {...rest}>
+    // @ts-ignore
+    <TagName className={classes} {...rest}>
       {children}
-    </div>
+    </TagName>
   );
 };
