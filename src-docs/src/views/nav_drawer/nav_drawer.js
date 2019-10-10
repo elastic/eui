@@ -50,7 +50,6 @@ export default class extends Component {
       color: 'subdued',
       iconType: 'pin',
       iconSize: 's',
-      // 'aria-label': 'Pin to top',
     };
 
     const pinExtraActionFn = val => {
