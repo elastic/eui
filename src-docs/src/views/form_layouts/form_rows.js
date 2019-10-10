@@ -117,7 +117,9 @@ export default class extends Component {
           <EuiRange min={0} max={100} name="range" id="range" />
         </EuiFormRow>
 
-        <EuiFormRow label="Use a switch instead of a single checkbox">
+        <EuiFormRow
+          label="Use a switch instead of a single checkbox"
+          useLabel={false}>
           <EuiSwitch
             name="switch"
             label="Should we do this?"
