@@ -1,7 +1,9 @@
 import { EuiDataGridSchema } from './data_grid_schema';
+import { ReactNode } from 'react';
 
 export interface EuiDataGridColumn {
   id: string;
+  display?: ReactNode;
   // allow devs to pass arbitrary dataType strings, but internally keep the code matching against the known types
   dataType?: EuiDataGridSchema['*']['columnType'];
 }

@@ -42,7 +42,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
   return (
     <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map(props => {
-        const { id } = props;
+        const { id, display } = props;
 
         const width = columnWidths[id] || defaultColumnWidth;
 
@@ -102,7 +102,9 @@ const EuiDataGridHeaderRow: FunctionComponent<
               />
             ) : null}
 
-            <div className="euiDataGridHeaderCell__content">{id}</div>
+            <div className="euiDataGridHeaderCell__content">
+              {display || id}
+            </div>
             {sorting && sorting.columns.length >= 2 && (
               <EuiScreenReaderOnly>
                 <div id={screenReaderId}>{sortString}</div>
