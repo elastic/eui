@@ -9,7 +9,6 @@ exports[`EuiTablePagination is rendered 1`] = `
   >
     <div
       class="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
-      id="customizablePagination"
     >
       <div
         class="euiPopover__anchor"

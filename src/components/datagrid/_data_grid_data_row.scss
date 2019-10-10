@@ -36,6 +36,16 @@
     border-radius: 1px;
     // Needed so it sits above potential striping in the next row
     z-index: 2;
+
+    .euiDataGridRowCell__expandButton {
+      margin-left: $euiDataGridCellPaddingM;
+    }
+
+    .euiDataGridRowCell__expandButtonIcon {
+      display: flex;
+      width: inherit;
+      visibility: visible;
+    }
   }
 
   &:focus:not(:first-of-type) {
@@ -50,12 +60,72 @@
   &.euiDataGridRowCell--currency {
     text-align: right;
   }
+
+
+  &.euiDataGridRowCell--boolean {
+    text-transform: capitalize;
+  }
 }
 
 .euiDataGridRowCell__content {
   @include euiTextTruncate;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.euiDataGridRowCell__popover {
+  @include euiScrollBar;
+  overflow: auto;
+  // sass-lint:disable-block no-important
+  max-width: 400px !important;
+  max-height: 400px !important;
+}
+
+.euiDataGridRowCell__expand {
+  width: 100%;
+  max-width: 100%;
+}
+
+.euiDataGridRowCell__expandInner {
+  display: flex;
+  align-items: center;
+}
+
+.euiDataGridRowCell__expandCode {
+  @include euiTextTruncate;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-grow: 1;
+}
+
+.euiDataGridRowCell__expandButton {
+  display: flex;
+  flex-grow: 0;
+
+  &-isActive,
+  &:focus {
+    margin-left: $euiDataGridCellPaddingM;
+  }
+}
+
+.euiDataGridRowCell__expandButtonIcon {
+  height: $euiSizeM;
+  min-height: $euiSizeM;
+  background: $euiColorPrimary;
+  color: $euiColorGhost;
+  border-radius: $euiBorderRadius / 2;
+  padding: 0;
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  visibility: hidden;
+
+  &-isActive,
+  &:focus {
+    width: inherit;
+    visibility: visible;
+    background: $euiColorPrimary;
+  }
 }
 
 // Row highlights

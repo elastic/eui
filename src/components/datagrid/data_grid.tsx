@@ -25,6 +25,7 @@ import {
   EuiDataGridStyleFontSizes,
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
+  EuiDataGridExpansionFormatters,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -38,7 +39,6 @@ import { EuiTablePagination } from '../table/table_pagination';
 // @ts-ignore-next-line
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { CELL_CONTENTS_ATTR } from './utils';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   getMergedSchema,
@@ -54,6 +54,7 @@ type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
     schemaDetectors?: SchemaDetector[];
+    expansionFormatters?: EuiDataGridExpansionFormatters;
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     gridStyle?: EuiDataGridStyle;
@@ -109,14 +110,6 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 const ORIGIN: [number, number] = [0, 0];
-
-// returns whether or not this element is a gridcell with CELL_CONTENTS_ATTR
-const isInteractiveCell = (element: HTMLElement) => {
-  if (element.getAttribute('role') !== 'gridcell') {
-    return false;
-  }
-  return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
-};
 
 function computeVisibleRows(props: EuiDataGridProps) {
   const { pagination, rowCount } = props;
@@ -240,58 +233,40 @@ function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
   focusedCell: [number, number],
-  setFocusedCell: (focusedCell: [number, number]) => void,
-  isGridNavigationEnabled: boolean,
-  setIsGridNavigationEnabled: (isGridNavigationEnabled: boolean) => void
+  setFocusedCell: (focusedCell: [number, number]) => void
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
     const colCount = visibleColumns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
-    const { keyCode, target } = event;
+    const { keyCode } = event;
 
-    if (
-      target instanceof HTMLElement &&
-      isInteractiveCell(target) &&
-      isGridNavigationEnabled &&
-      (keyCode === keyCodes.ENTER || keyCode === keyCodes.F2)
-    ) {
-      setIsGridNavigationEnabled(false);
-    } else if (
-      !isGridNavigationEnabled &&
-      (keyCode === keyCodes.ESCAPE || keyCode === keyCodes.F2)
-    ) {
-      setIsGridNavigationEnabled(true);
-    }
-
-    if (isGridNavigationEnabled) {
-      switch (keyCode) {
-        case keyCodes.DOWN:
-          event.preventDefault();
-          if (y < rowCount - 1) {
-            setFocusedCell([x, y + 1]);
-          }
-          break;
-        case keyCodes.LEFT:
-          event.preventDefault();
-          if (x > 0) {
-            setFocusedCell([x - 1, y]);
-          }
-          break;
-        case keyCodes.UP:
-          event.preventDefault();
-          // TODO sort out when a user can arrow up into the column headers
-          if (y > 0) {
-            setFocusedCell([x, y - 1]);
-          }
-          break;
-        case keyCodes.RIGHT:
-          event.preventDefault();
-          if (x < colCount) {
-            setFocusedCell([x + 1, y]);
-          }
-          break;
-      }
+    switch (keyCode) {
+      case keyCodes.DOWN:
+        event.preventDefault();
+        if (y < rowCount - 1) {
+          setFocusedCell([x, y + 1]);
+        }
+        break;
+      case keyCodes.LEFT:
+        event.preventDefault();
+        if (x > 0) {
+          setFocusedCell([x - 1, y]);
+        }
+        break;
+      case keyCodes.UP:
+        event.preventDefault();
+        // TODO sort out when a user can arrow up into the column headers
+        if (y > 0) {
+          setFocusedCell([x, y - 1]);
+        }
+        break;
+      case keyCodes.RIGHT:
+        event.preventDefault();
+        if (x < colCount) {
+          setFocusedCell([x + 1, y]);
+        }
+        break;
     }
   };
 }
@@ -311,10 +286,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       setShowGridControls(nextShowGridControls);
     }
   }, isFullScreen);
-
-  const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
-    boolean
-  >(true);
 
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
@@ -337,6 +308,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     pagination,
     sorting,
     inMemory,
+    expansionFormatters,
     ...rest
   } = props;
 
@@ -440,8 +412,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 iconType="fullScreen"
                 color="text"
                 className={controlBtnClasses}
-                onClick={() => setIsFullScreen(!isFullScreen)}
-                onKeyDown={() => handleGridKeyDown}>
+                onClick={() => setIsFullScreen(!isFullScreen)}>
                 {isFullScreen ? fullScreenButtonActive : fullScreenButton}
               </EuiButtonEmpty>
             )}
@@ -454,9 +425,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 props,
                 visibleColumns,
                 focusedCell,
-                setFocusedCell,
-                isGridNavigationEnabled,
-                setIsGridNavigationEnabled
+                setFocusedCell
               )}
               className="euiDataGrid__verticalScroll"
               ref={resizeRef}
@@ -496,13 +465,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemory={inMemory}
                     columns={visibleColumns}
                     schema={mergedSchema}
+                    expansionFormatters={expansionFormatters}
                     focusedCell={focusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}
                     sorting={sorting}
                     renderCellValue={renderCellValue}
                     rowCount={rowCount}
-                    isGridNavigationEnabled={isGridNavigationEnabled}
                     interactiveCellId={interactiveCellId}
                   />
                 </div>
