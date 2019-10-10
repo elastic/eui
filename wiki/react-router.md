@@ -248,6 +248,8 @@ export const getRouterLinkProps = to => {
 
 ## react-router 5.x
 
+### react-router 5.0
+
 The React Context handling has changed in in 5.0 and we can't rely on it anymore. A solution is to create
 an `extractRouter` HOC that will intercept the router and send it to your custom handler.
 
@@ -287,6 +289,66 @@ const AppMount = extractRouter(registerRouter)(App);
 ReactDOM.render(
   <Router>
     <AppMount />,
+  </Router>,
+  appRoot
+)
+```
+
+### react-router 5.1
+
+In react-router 5.1, we can fully capitalize in the React Hooks utility, in this case, `useHistory`. Using this, we do not need other HOC wrapper files and global router variable. We just need to create the file below, and then use it anywhere by importing `EuiCustomLink`. There is an example repository for this: https://github.com/Imballinst/elastic-react-router-hooks.
+
+```jsx
+// File name: "EuiCustomLink.js".
+import React from 'react';
+import { EuiLink } from '@elastic/eui';
+import { useHistory } from 'react-router';
+
+// Most of the content of this files are from https://github.com/elastic/eui/pull/1976.
+const isModifiedEvent = (event) =>
+  !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+
+const isLeftClickEvent = (event) => event.button === 0;
+
+export default function EuiCustomLink({ to, ...props }) {
+  // This is the key!
+  const history = useHistory();
+
+  function onClick(event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    // If target prop is set (e.g. to "_blank"), let browser handle link.
+    if (event.target.getAttribute('target')) {
+      return;
+    }
+
+    if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
+      return;
+    }
+
+    // Prevent regular link behavior, which causes a browser refresh.
+    event.preventDefault();
+
+    // Push the route to the history.
+    history.push(to);
+  }
+
+  return <EuiLink {...props} href={to} onClick={onClick} />;
+}
+```
+
+```jsx
+// App is your app's root component.
+class App extends Component {
+  ...
+}
+
+// <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
+ReactDOM.render(
+  <Router>
+    <App />,
   </Router>,
   appRoot
 )
