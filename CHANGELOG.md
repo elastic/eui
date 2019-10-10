@@ -5,6 +5,7 @@
 - Added `currency` glyph to 'EuiIcon' ([#2398](https://github.com/elastic/eui/pull/2398))
 - Migrate `EuiBreadcrumbs`, `EuiHeader` etc, and `EuiLink` to TypeScript ([#2391](https://github.com/elastic/eui/pull/2391))
 - Added focus state to `EuiListGroupItem` ([#2406](https://github.com/elastic/eui/pull/2406))
+- Added `keyboardShorcut` glyph to 'EuiIcon ([#2413](https://github.com/elastic/eui/pull/2413))
 
 **Bug fixes**
 
