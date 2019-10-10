@@ -99,15 +99,24 @@ export const useColumnSelector = (
       }>
       <div>
         <EuiPopoverTitle>
-          <EuiFieldText
-            compressed
-            placeholder="Search"
-            aria-label="Search columns"
-            value={columnSearchText}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setColumnSearchText(e.currentTarget.value)
-            }
-          />
+          <EuiI18n
+            tokens={[
+              'euiColumnSelector.search',
+              'euiColumnSelector.searchcolumns',
+            ]}
+            defaults={['Search', 'Search columns']}>
+            {([search, searchcolumns]: string[]) => (
+              <EuiFieldText
+                compressed
+                placeholder={search}
+                aria-label={searchcolumns}
+                value={columnSearchText}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setColumnSearchText(e.currentTarget.value)
+                }
+              />
+            )}
+          </EuiI18n>
         </EuiPopoverTitle>
         <EuiDragDropContext onDragEnd={onDragEnd}>
           <EuiDroppable
