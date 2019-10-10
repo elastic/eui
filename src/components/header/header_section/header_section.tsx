@@ -1,19 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-const sideToClassNameMap = {
+import { CommonProps } from '../../common';
+
+type HeaderSectionSide = 'left' | 'right';
+
+const sideToClassNameMap: { [side in HeaderSectionSide]: string } = {
   left: 'euiHeaderSection--left',
   right: 'euiHeaderSection--right',
 };
 
-const SIDES = Object.keys(sideToClassNameMap);
+type Props = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    side?: HeaderSectionSide;
+    grow?: boolean;
+  };
 
-export const EuiHeaderSection = ({
-  side,
+export const EuiHeaderSection: FunctionComponent<Props> = ({
+  side = 'left',
   children,
   className,
-  grow,
+  grow = false,
   ...rest
 }) => {
   const classes = classNames(
@@ -31,14 +38,4 @@ export const EuiHeaderSection = ({
       {children}
     </div>
   );
-};
-
-EuiHeaderSection.propTypes = {
-  side: PropTypes.oneOf(SIDES),
-  grow: PropTypes.bool,
-};
-
-EuiHeaderSection.defaultProps = {
-  side: 'left',
-  grow: false,
 };

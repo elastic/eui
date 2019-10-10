@@ -1,17 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-const borderToClassNameMap = {
+import { CommonProps } from '../../common';
+
+type Border = 'left' | 'right' | 'none';
+
+const borderToClassNameMap: { [border in Border]: string | undefined } = {
   left: 'euiHeaderSectionItem--borderLeft',
   right: 'euiHeaderSectionItem--borderRight',
   none: undefined,
 };
 
-const BORDERS = Object.keys(borderToClassNameMap);
+type Props = CommonProps & {
+  border?: Border;
+};
 
-export const EuiHeaderSectionItem = ({
-  border,
+export const EuiHeaderSectionItem: FunctionComponent<Props> = ({
+  border = 'left',
   children,
   className,
   ...rest
@@ -27,12 +32,4 @@ export const EuiHeaderSectionItem = ({
       {children}
     </div>
   );
-};
-
-EuiHeaderSectionItem.propTypes = {
-  border: PropTypes.oneOf(BORDERS),
-};
-
-EuiHeaderSectionItem.defaultProps = {
-  border: 'left',
 };

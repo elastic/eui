@@ -1,8 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-export const EuiHeaderSectionItemButton = ({
+import { CommonProps } from '../../common';
+
+type Props = CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
+
+export const EuiHeaderSectionItemButton: FunctionComponent<Props> = ({
   onClick,
   children,
   className,
@@ -15,8 +18,4 @@ export const EuiHeaderSectionItemButton = ({
       {children}
     </button>
   );
-};
-
-EuiHeaderSectionItemButton.propTypes = {
-  onClick: PropTypes.func,
 };

@@ -1,13 +1,66 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  Fragment,
+  FunctionComponent,
+  MouseEventHandler,
+  ReactNode,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
+import { CommonProps } from '../common';
 import { EuiBadge } from '../badge';
 import { EuiI18n } from '../i18n';
+import { useInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 
-const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
+export type Breadcrumb = CommonProps & {
+  text: ReactNode;
+  href?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+  truncate?: boolean;
+};
+
+export type EuiBreadcrumbsProps = CommonProps & {
+  /**
+   * Hides left most breadcrumbs as window gets smaller
+   */
+  responsive?: boolean;
+
+  /**
+   * Forces all breadcrumbs to single line and
+   * truncates each breadcrumb to a particular width,
+   * except for the last item
+   */
+  truncate?: boolean;
+
+  /**
+   * Condenses the inner items past the maximum set here
+   * into a single ellipses item
+   */
+  max?: number;
+
+  /**
+   * Allows the hidden breadcrumbs to be shown when
+   * a `max` is set and the ellipsis is clicked in responsive mode.
+   */
+  showMaxPopover?: boolean;
+
+  /**
+   * The array of individual breadcrumbs, takes the following props.
+   * `text` (node) (required): visible label of the breadcrumb,
+   * `href` or `onClick`: provide only one (last breadcrumb will not apply either),
+   * `truncate` (bool): Force a max-width on the breadcrumb text
+   */
+  breadcrumbs: Breadcrumb[];
+};
+
+const limitBreadcrumbs = (
+  breadcrumbs: ReactNode[],
+  max: number,
+  showMaxPopover: boolean,
+  allBreadcrumbs: Breadcrumb[]
+) => {
   const breadcrumbsAtStart = [];
   const breadcrumbsAtEnd = [];
   const limit = Math.min(max, breadcrumbs.length);
@@ -44,7 +97,7 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
       <EuiI18n
         token="euiBreadcrumbs.collapsedBadge.ariaLabel"
         default="Show all breadcrumbs">
-        {ariaLabel => (
+        {(ariaLabel: string) => (
           <EuiBadge
             aria-label={ariaLabel}
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
@@ -94,13 +147,13 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
 
 const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 
-export const EuiBreadcrumbs = ({
+export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   breadcrumbs,
   className,
-  responsive,
-  truncate,
-  max,
-  showMaxPopover,
+  responsive = true,
+  truncate = true,
+  max = 5,
+  showMaxPopover = false,
   ...rest
 }) => {
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
@@ -121,12 +174,14 @@ export const EuiBreadcrumbs = ({
     });
 
     let link;
+    const [setRef, innerText] = useInnerText();
 
     if (isLastBreadcrumb && !href) {
       link = (
         <span
+          ref={setRef}
           className={breadcrumbClasses}
-          title={text}
+          title={innerText}
           aria-current="page"
           {...breadcrumbRest}>
           {text}
@@ -135,11 +190,12 @@ export const EuiBreadcrumbs = ({
     } else {
       link = (
         <EuiLink
+          ref={setRef}
           color={isLastBreadcrumb ? 'text' : 'subdued'}
           onClick={onClick}
           href={href}
           className={breadcrumbClasses}
-          title={text}
+          title={innerText}
           {...breadcrumbRest}>
           {text}
         </EuiLink>
@@ -174,54 +230,4 @@ export const EuiBreadcrumbs = ({
       {limitedBreadcrumbs}
     </nav>
   );
-};
-
-EuiBreadcrumbs.propTypes = {
-  className: PropTypes.string,
-
-  /**
-   * Hides left most breadcrumbs as window gets smaller
-   */
-  responsive: PropTypes.bool,
-
-  /**
-   * Forces all breadcrumbs to single line and
-   * truncates each breadcrumb to a particular width,
-   * except for the last item
-   */
-  truncate: PropTypes.bool,
-
-  /**
-   * Condenses the inner items past the maximum set here
-   * into a single ellipses item
-   */
-  max: PropTypes.number,
-
-  /**
-   * Allows the hidden breadcrumbs to be shown when
-   * a `max` is set and the ellipsis is clicked in responsive mode.
-   */
-  showMaxPopover: PropTypes.bool,
-
-  /**
-   * The array of individual breadcrumbs, takes the following props.
-   * `text` (node) (required): visible label of the breadcrumb,
-   * `href` or `onClick`: provide only one (last breadcrumb will not apply either),
-   * `truncate` (bool): Force a max-width on the breadcrumb text
-   */
-  breadcrumbs: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.node.isRequired,
-      href: PropTypes.string,
-      onClick: PropTypes.func,
-      truncate: PropTypes.bool,
-    })
-  ).isRequired,
-};
-
-EuiBreadcrumbs.defaultProps = {
-  responsive: true,
-  truncate: true,
-  showMaxPopover: false,
-  max: 5,
 };

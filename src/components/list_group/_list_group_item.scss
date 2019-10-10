@@ -13,13 +13,12 @@
   }
 
   &.euiListGroupItem-isActive,
-  &.euiListGroupItem-isClickable:hover,
-  &.euiListGroupItem-isClickable:focus {
+  &.euiListGroupItem-isClickable:hover {
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
-  &.euiListGroupItem-isClickable:hover .euiListGroupItem__label,
-  &.euiListGroupItem-isClickable:focus .euiListGroupItem__label {
+  &.euiListGroupItem-isClickable .euiListGroupItem__button:focus {
+    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
     text-decoration: underline;
   }
 
