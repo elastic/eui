@@ -132,8 +132,11 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
+          aira-modal="true"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div
@@ -179,8 +182,11 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
+          aira-modal="true"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div
@@ -225,16 +231,13 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
       <div
         data-focus-lock-disabled="false"
       >
-        <p
-          class="euiScreenReaderOnly"
-          role="alert"
-        >
-          You are in a popup. To exit this popup, hit escape.
-        </p>
         <div
+          aira-modal="true"
+          aria-describedby="htmlId"
           aria-live="off"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           data-autofocus="true"
+          role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
           tabindex="0"
         >
@@ -242,6 +245,12 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
             class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
             style="left: 10px; top: 0px;"
           />
+          <p
+            class="euiScreenReaderOnly"
+            id="htmlId"
+          >
+            You are in a dialog. To close this dialog, hit escape.
+          </p>
           <div />
         </div>
       </div>
@@ -281,8 +290,11 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
+          aira-modal="true"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
+          role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div
@@ -328,8 +340,11 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
+          aira-modal="true"
+          aria-describedby="htmlId"
           aria-live="assertive"
           class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div

@@ -11,6 +11,7 @@ import { iconTypes } from '../icon/icons';
 const columns = [
   {
     id: 'name',
+    isExpandable: false,
   },
   {
     id: 'email',
@@ -21,6 +22,7 @@ const columns = [
   {
     id: 'account',
     dataType: 'numeric',
+    isExpandable: false,
   },
   {
     id: 'date',
@@ -28,9 +30,10 @@ const columns = [
   {
     id: 'amount',
     dataType: 'currency',
+    isExpandable: false,
   },
   {
-    id: 'phone',
+    id: 'json',
   },
   {
     id: 'version',
@@ -54,12 +57,31 @@ for (let i = 1; i < 5; i++) {
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
     amount: fake('${{finance.amount}}'),
-    phone: fake('{{phone.phoneNumber}}'),
+    json: JSON.stringify([
+      {
+        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+        email: fake('{{internet.email}}'),
+        date: fake('{{date.past}}'),
+        account: fake('{{finance.account}}'),
+        amount: fake('${{finance.amount}}'),
+        version: fake('{{system.semver}}'),
+        friends: [
+          {
+            name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+            email: fake('{{internet.email}}'),
+            date: fake('{{date.past}}'),
+            account: fake('{{finance.account}}'),
+            amount: fake('${{finance.amount}}'),
+            version: fake('{{system.semver}}'),
+          },
+        ],
+      },
+    ]),
     version: fake('{{system.semver}}'),
   });
 }
 
-export default class InMemoryDataGrid extends Component {
+export default class DataGridSchema extends Component {
   constructor(props) {
     super(props);
 
@@ -116,6 +138,7 @@ export default class InMemoryDataGrid extends Component {
         aria-label="Top EUI contributors"
         columns={columns}
         rowCount={data.length}
+        inMemory={{ level: 'sorting' }}
         renderCellValue={({ rowIndex, columnId }) => {
           const value = data[rowIndex][columnId];
           return value;
