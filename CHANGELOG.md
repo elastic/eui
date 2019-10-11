@@ -5,6 +5,8 @@
 - Added `currency` glyph to 'EuiIcon' ([#2398](https://github.com/elastic/eui/pull/2398))
 - Migrate `EuiBreadcrumbs`, `EuiHeader` etc, and `EuiLink` to TypeScript ([#2391](https://github.com/elastic/eui/pull/2391))
 - Added `hasChildLabel` prop to `EuiFormRow` to avoid duplicate labels ([#2390](https://github.com/elastic/eui/pull/2390))
+- Added `component` prop to `EuiPageBody`, switching the default from `div` to `main` ([#2410](https://github.com/elastic/eui/pull/2410))
+- Added focus state to `EuiListGroupItem` ([#2406](https://github.com/elastic/eui/pull/2406))
 
 **Bug fixes**
 
