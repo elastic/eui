@@ -107,6 +107,7 @@ const typeToPathMap = {
   emsApp: 'app_ems',
   exit: 'exit',
   expand: 'expand',
+  expandMini: 'expandMini',
   exportAction: 'export',
   eye: 'eye',
   eyeClosed: 'eye_closed',

@@ -6,16 +6,26 @@ import React, {
   ReactNode,
   createRef,
   HTMLAttributes,
+  KeyboardEvent,
+  ReactChild,
 } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
+import tabbable from 'tabbable';
+import { EuiPopover } from '../popover';
 import { CommonProps, Omit } from '../common';
-import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
+import { EuiButtonIcon } from '../button';
+import { keyCodes } from '../../services';
+import { EuiDataGridExpansionFormatter } from './data_grid_types';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 
 export interface CellValueElementProps {
   rowIndex: number;
   columnId: string;
   setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
+  isExpandable: boolean;
+  isExpanded: boolean;
 }
 
 export interface EuiDataGridCellProps {
@@ -24,10 +34,11 @@ export interface EuiDataGridCellProps {
   columnId: string;
   columnType?: string | null;
   width?: number;
-  isFocusable: boolean;
+  isFocused: boolean;
   onCellFocus: Function;
-  isGridNavigationEnabled: boolean;
   interactiveCellId: string;
+  isExpandable: boolean;
+  expansionFormatter: EuiDataGridExpansionFormatter;
   renderCellValue:
     | JSXElementConstructor<CellValueElementProps>
     | ((props: CellValueElementProps) => ReactNode);
@@ -35,137 +46,59 @@ export interface EuiDataGridCellProps {
 
 interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
+  popoverIsOpen: boolean;
 }
 
 type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
   | 'width'
-  | 'isFocusable'
-  | 'isGridNavigationEnabled'
+  | 'isFocused'
   | 'interactiveCellId'
   | 'onCellFocus'
+  | 'expansionFormatter'
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: CellValueElementProps['setCellProps'];
+    isExpanded: boolean;
   }
 > = memo(props => {
   const { renderCellValue, ...rest } = props;
 
-  // React is more permissable than the TS types indicate
+  // React is more permissible than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
     CellValueElementProps
   >;
 
-  return <CellElement {...rest} />;
+  return <CellElement data-test-subj="cell-content" {...rest} />;
 });
-
-const IS_TABBABLE_ATTR = 'data-is-tabbable';
 
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
 > {
   cellRef = createRef<HTMLDivElement>();
-  cellContentsRef = createRef<HTMLDivElement>();
+  tabbingRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
     cellProps: {},
+    popoverIsOpen: false,
   };
 
-  isInteractiveCell() {
-    const cellContents = this.cellContentsRef.current;
-
-    if (!cellContents) {
-      return false;
-    }
-
-    const tabbables = getTabbables(cellContents);
-
-    return (
-      tabbables.length > 1 ||
-      (tabbables.length === 1 && this.hasNotTabbables(cellContents))
-    );
-  }
-
-  updateFocus() {
+  updateFocus = () => {
     const cell = this.cellRef.current;
-    const cellContents = this.cellContentsRef.current;
-    const { isFocusable, isGridNavigationEnabled } = this.props;
+    const { isFocused } = this.props;
 
-    if (cell && isFocusable && cellContents) {
-      const tabbables = getTabbables(cellContents);
-      const isASimpleInteractiveCell =
-        tabbables.length === 1 && !this.hasNotTabbables(cellContents);
-
-      if (
-        !isGridNavigationEnabled ||
-        (isGridNavigationEnabled && isASimpleInteractiveCell)
-      ) {
-        (tabbables[0] as HTMLElement).focus();
-      } else {
-        cell.focus();
-      }
+    if (cell && isFocused) {
+      cell.focus();
     }
-  }
-
-  setTabbablesTabIndex() {
-    const cellContents = this.cellContentsRef.current;
-
-    if (cellContents) {
-      const { isFocusable, isGridNavigationEnabled } = this.props;
-      const areContentsFocusable = isFocusable && !isGridNavigationEnabled;
-
-      getTabbables(cellContents).forEach(element => {
-        element.setAttribute('tabIndex', areContentsFocusable ? '0' : '-1');
-        element.setAttribute(IS_TABBABLE_ATTR, 'true');
-      });
-    }
-  }
-
-  hasNotTabbables(cellContents: Element) {
-    const clone = cellContents.cloneNode(true) as HTMLElement;
-
-    // has to exist because we set the `IS_TABBABLE_ATTR` attribute on it
-    const tabbableElement = clone.querySelector(`[${IS_TABBABLE_ATTR}]`)!;
-
-    if (tabbableElement) {
-      // IE 11 doesn't support remove
-      if (tabbableElement.remove) {
-        tabbableElement.remove();
-      } else {
-        tabbableElement.parentNode!.removeChild(tabbableElement);
-      }
-    }
-
-    // textContent includes not human readable text
-    // but innerText causes a page reflow
-    // so, only force a reflow if we have a strong signal that we should
-    if (clone.textContent && clone.textContent.length > 0) {
-      // Fallback to innerText if textContent isn't available
-      // Only documented to fallback in tests; all officially supported browsers support innerText
-      if (typeof clone.innerText === 'undefined') {
-        return clone.textContent.length > 0;
-      }
-
-      return clone.innerText.length > 0;
-    }
-
-    return false;
-  }
-
-  componentDidMount() {
-    this.setTabbablesTabIndex();
-  }
+  };
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    const didFocusChange = prevProps.isFocusable !== this.props.isFocusable;
-    const didNavigationChange =
-      prevProps.isGridNavigationEnabled !== this.props.isGridNavigationEnabled;
+    const didFocusChange = prevProps.isFocused !== this.props.isFocused;
 
-    if (didFocusChange || didNavigationChange) {
+    if (didFocusChange) {
       this.updateFocus();
-      this.setTabbablesTabIndex();
     }
   }
 
@@ -179,15 +112,14 @@ export class EuiDataGridCell extends Component<
     if (nextProps.width !== this.props.width) return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
     if (nextProps.onCellFocus !== this.props.onCellFocus) return true;
-    if (nextProps.isFocusable !== this.props.isFocusable) return true;
-    if (
-      nextProps.isGridNavigationEnabled !== this.props.isGridNavigationEnabled
-    )
-      return true;
+    if (nextProps.isFocused !== this.props.isFocused) return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
+      return true;
+    if (nextProps.expansionFormatter !== this.props.expansionFormatter)
       return true;
 
     if (nextState.cellProps !== this.state.cellProps) return true;
+    if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
 
     return false;
   }
@@ -196,33 +128,44 @@ export class EuiDataGridCell extends Component<
     this.setState({ cellProps });
   };
 
+  onPreventTabbableRef = (ref: HTMLDivElement | null) => {
+    this.tabbingRef = ref;
+    this.preventTabbing();
+  };
+
+  preventTabbing = () => {
+    if (this.tabbingRef) {
+      const tabbables = tabbable(this.tabbingRef);
+      for (let i = 0; i < tabbables.length; i++) {
+        tabbables[i].setAttribute('tabIndex', '-1');
+      }
+    }
+  };
+
   render() {
     const {
       width,
-      isFocusable,
-      isGridNavigationEnabled,
+      isFocused,
+      isExpandable,
+      expansionFormatter: ExpansionFormatter,
       interactiveCellId,
       columnType,
       onCellFocus,
       ...rest
     } = this.props;
     const { colIndex, rowIndex } = rest;
-    const isInteractive = this.isInteractiveCell();
-    const isInteractiveCell = {
-      [CELL_CONTENTS_ATTR]: isInteractive,
-    };
 
-    const className = classnames('euiDataGridRowCell', {
+    const className = classNames('euiDataGridRowCell', {
       [`euiDataGridRowCell--${columnType}`]: columnType,
     });
 
     const cellProps = {
       ...this.state.cellProps,
-      'data-test-subj': classnames(
+      'data-test-subj': classNames(
         'dataGridRowCell',
         this.state.cellProps['data-test-subj']
       ),
-      className: classnames(className, this.state.cellProps.className),
+      className: classNames(className, this.state.cellProps.className),
     };
 
     const widthStyle = width != null ? { width: `${width}px` } : {};
@@ -232,39 +175,165 @@ export class EuiDataGridCell extends Component<
       cellProps.style = widthStyle;
     }
 
+    const handleCellKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+      if (isExpandable) {
+        switch (e.keyCode) {
+          case keyCodes.ENTER:
+            e.preventDefault();
+            this.setState({ popoverIsOpen: true });
+            break;
+          case keyCodes.F2:
+            e.preventDefault();
+            this.setState({ popoverIsOpen: true });
+            break;
+        }
+      }
+    };
+
+    const cellContentProps = {
+      ...rest,
+      setCellProps: this.setCellProps,
+      columnType: columnType,
+      isExpandable,
+      isExpanded: this.state.popoverIsOpen,
+    };
+
+    const buttonIconClasses = classNames(
+      'euiDataGridRowCell__expandButtonIcon',
+      {
+        'euiDataGridRowCell__expandButtonIcon-isActive': this.state
+          .popoverIsOpen,
+      }
+    );
+
+    const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
+      'euiDataGridRowCell__expandButton-isActive': this.state.popoverIsOpen,
+    });
+
+    const expandButton = (
+      <EuiI18n
+        token="euiDataGridCell.expandButtonTitle"
+        default="Click or hit enter to interact with cell content">
+        {(expandButtonTitle: string) => (
+          <EuiButtonIcon
+            className={buttonIconClasses}
+            color="text"
+            iconSize="s"
+            iconType="expandMini"
+            aria-hidden
+            onClick={() =>
+              this.setState(({ popoverIsOpen }) => ({
+                popoverIsOpen: !popoverIsOpen,
+              }))
+            }
+            title={expandButtonTitle}
+          />
+        )}
+      </EuiI18n>
+    );
+
+    const screenReaderPosition = (
+      <EuiScreenReaderOnly>
+        <p>
+          <EuiI18n
+            tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
+            defaults={['Row', 'Column']}>
+            {([row, column]: ReactChild[]) => (
+              <span>
+                {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
+              </span>
+            )}
+          </EuiI18n>
+        </p>
+      </EuiScreenReaderOnly>
+    );
+
+    let anchorContent = (
+      <div className="euiDataGridRowCell__expandInner">
+        <EuiMutationObserver
+          observerOptions={{ subtree: true, childList: true }}
+          onMutation={this.preventTabbing}>
+          {mutationRef => {
+            const onRef = (ref: HTMLDivElement | null) => {
+              mutationRef(ref);
+              this.onPreventTabbableRef(ref);
+            };
+
+            return (
+              <div ref={onRef} className="euiDataGridRowCell__expandCode">
+                {screenReaderPosition}
+                <EuiDataGridCellContent {...cellContentProps} />
+              </div>
+            );
+          }}
+        </EuiMutationObserver>
+      </div>
+    );
+
+    if (isExpandable) {
+      anchorContent = (
+        <div className="euiDataGridRowCell__expandInner">
+          <EuiMutationObserver
+            observerOptions={{ subtree: true, childList: true }}
+            onMutation={this.preventTabbing}>
+            {mutationRef => {
+              const onRef = (ref: HTMLDivElement | null) => {
+                mutationRef(ref);
+                this.onPreventTabbableRef(ref);
+              };
+
+              return (
+                <div ref={onRef} className="euiDataGridRowCell__expandCode">
+                  {screenReaderPosition}
+                  <EuiDataGridCellContent {...cellContentProps} />
+                </div>
+              );
+            }}
+          </EuiMutationObserver>
+          <div className={buttonClasses}>{expandButton}</div>
+        </div>
+      );
+    }
+
+    let innerContent = anchorContent;
+    if (isExpandable) {
+      const CellElement = rest.renderCellValue as JSXElementConstructor<
+        CellValueElementProps
+      >;
+      const popoverContent = (
+        <ExpansionFormatter>
+          <CellElement {...cellContentProps} />
+        </ExpansionFormatter>
+      );
+
+      innerContent = (
+        <div className="euiDataGridRowCell__content">
+          <EuiPopover
+            anchorClassName="euiDataGridRowCell__expand"
+            button={anchorContent}
+            isOpen={this.state.popoverIsOpen}
+            ownFocus
+            panelClassName="euiDataGridRowCell__popover"
+            zIndex={2000}
+            display="block"
+            closePopover={() => this.setState({ popoverIsOpen: false })}
+            onTrapDeactivation={this.updateFocus}>
+            {popoverContent}
+          </EuiPopover>
+        </div>
+      );
+    }
+
     return (
       <div
         role="gridcell"
-        {...isInteractive && { 'aria-describedby': interactiveCellId }}
-        tabIndex={isFocusable ? 0 : -1}
+        tabIndex={isFocused ? 0 : -1}
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
+        onKeyDown={handleCellKeyDown}
         onFocus={() => onCellFocus([colIndex, rowIndex])}>
-        <EuiMutationObserver
-          onMutation={() => {
-            this.updateFocus();
-            this.setTabbablesTabIndex();
-          }}
-          observerOptions={{
-            childList: true,
-            subtree: true,
-          }}>
-          {ref => (
-            <div ref={ref}>
-              <div
-                {...isInteractiveCell}
-                ref={this.cellContentsRef}
-                className="euiDataGridRowCell__content">
-                <EuiDataGridCellContent
-                  {...rest}
-                  columnType={columnType}
-                  setCellProps={this.setCellProps}
-                />
-              </div>
-            </div>
-          )}
-        </EuiMutationObserver>
+        {innerContent}
       </div>
     );
   }
