@@ -1,11 +1,12 @@
 import { EuiDataGridSchema } from './data_grid_schema';
-import { ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 
 export interface EuiDataGridColumn {
   id: string;
   display?: ReactNode;
   // allow devs to pass arbitrary dataType strings, but internally keep the code matching against the known types
   dataType?: EuiDataGridSchema['*']['columnType'];
+  isExpandable?: boolean;
 }
 
 export interface EuiDataGridColumnWidths {
@@ -65,4 +66,9 @@ export interface EuiDataGridInMemory {
 
 export interface EuiDataGridInMemoryValues {
   [key: string]: { [key: string]: string };
+}
+
+export type EuiDataGridExpansionFormatter = FunctionComponent<{}>;
+export interface EuiDataGridExpansionFormatters {
+  [key: string]: EuiDataGridExpansionFormatter;
 }

@@ -120,6 +120,36 @@ const schemaDetectors: SchemaDetector[] = [
       />
     ),
   },
+  {
+    type: 'json',
+    detector(value: string) {
+      // does this look like it might be a JSON object?
+      const maybeArray = value[0] === '[' && value[value.length - 1] === ']';
+      const maybeObject = value[0] === '{' && value[value.length - 1] === '}';
+      if (!maybeArray && !maybeObject) return 0;
+
+      try {
+        JSON.parse(value);
+        return 1;
+      } catch (e) {
+        return 0;
+      }
+    },
+    icon: 'visVega',
+    color: palettes.euiPaletteColorBlind.colors[3],
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.jsonSortTextAsc"
+        default="Small-Large"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.jsonSortTextDesc"
+        default="Large-Small"
+      />
+    ),
+  },
 ];
 
 export interface EuiDataGridSchema {
