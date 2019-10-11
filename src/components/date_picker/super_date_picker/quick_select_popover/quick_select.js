@@ -127,6 +127,8 @@ export class EuiQuickSelect extends Component {
           tokens={['euiQuickSelect.legendLabel', 'euiQuickSelect.legendText']}
           defaults={['Quick select a time range', 'Quick select']}>
           {([legendLabel, legendText]) => (
+            // Legend needs to be the first thing in a fieldset, but we want the visible title within the flex.
+            // So we hide it, but allow screen readers to see it
             <EuiScreenReaderOnly>
               <legend
                 id={legendId}
