@@ -17,6 +17,7 @@ import {
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
+  htmlIdGenerator,
 } from '../../services';
 
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -50,6 +51,8 @@ export type PopoverAnchorPosition =
   | 'rightCenter'
   | 'rightUp'
   | 'rightDown';
+
+const generateId = htmlIdGenerator();
 
 export interface EuiPopoverProps {
   anchorClassName?: string;
@@ -564,6 +567,8 @@ export class EuiPopover extends Component<Props, State> {
       ...rest
     } = this.props;
 
+    const descriptionId = generateId();
+
     const classes = classNames(
       'euiPopover',
       anchorPosition ? anchorPositionToClassNameMap[anchorPosition] : null,
@@ -607,10 +612,10 @@ export class EuiPopover extends Component<Props, State> {
       if (ownFocus) {
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p role="alert">
+            <p id={descriptionId}>
               <EuiI18n
                 token="euiPopover.screenReaderAnnouncement"
-                default="You are in a popup. To exit this popup, hit escape."
+                default="You are in a dialog. To close this dialog, hit escape."
               />
             </p>
           </EuiScreenReaderOnly>
@@ -630,15 +635,18 @@ export class EuiPopover extends Component<Props, State> {
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
             disabled={!ownFocus}>
-            {focusTrapScreenReaderText}
             <EuiPanel
               panelRef={this.panelRef}
               className={panelClasses}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}
+              role="dialog"
+              aira-modal="true"
+              aria-describedby={descriptionId}
               style={this.state.popoverStyles}>
               <div className={arrowClassNames} style={this.state.arrowStyles} />
+              {focusTrapScreenReaderText}
               <EuiMutationObserver
                 observerOptions={{
                   attributes: true, // element attribute changes

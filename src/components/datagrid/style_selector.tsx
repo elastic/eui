@@ -96,6 +96,7 @@ export const useStyleSelector = (
             legend={buttonLegend}
             name="density"
             className="eui-displayInlineBlock"
+            buttonSize="compressed"
             options={[
               {
                 id: densityOptions[0],

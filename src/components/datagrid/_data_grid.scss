@@ -47,19 +47,24 @@
   border-left: $euiBorderThin;
   padding: $euiSizeXS;
   flex-grow: 0;
+
+  > * {
+    margin-left: $euiSizeXS / 2;
+  }
 }
 
 .euiDataGrid__controlBtn {
   border-radius: $euiBorderRadius;
 
   &:focus {
-    @include euiFocusRing;
+    background: shadeOrTint($euiColorLightestShade, 10%, 10%);
   }
 }
 
 .euiDataGrid__controlBtn--active,
 .euiDataGrid__controlBtn--active:focus {
-  background: tintOrShade($euiColorSuccess, 80%, 50%);
+  font-weight: $euiFontWeightSemiBold;
+  color: $euiColorFullShade;
 }
 
 .euiDataGrid__pagination {

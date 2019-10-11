@@ -47,6 +47,7 @@ import {
   useDetectSchema,
   schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
+import { useColumnSorting } from './column_sorting';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -150,73 +151,6 @@ function renderPagination(props: EuiDataGridProps) {
         onChangePage={onChangePage}
         onChangeItemsPerPage={onChangeItemsPerPage}
       />
-    </div>
-  );
-}
-
-function renderSorting(props: EuiDataGridProps) {
-  const { columns, sorting } = props;
-
-  if (sorting == null) return null;
-
-  const sortedColumns = sorting.columns.reduce<{
-    [key: string]: 'asc' | 'desc';
-  }>((sortedColumns, { id, direction }) => {
-    sortedColumns[id] = direction;
-    return sortedColumns;
-  }, {});
-
-  return (
-    <div>
-      {columns.map(column => {
-        let sortIcon = '☐';
-        let nextSortDir: 'asc' | 'desc' | null = 'asc';
-        if (sortedColumns.hasOwnProperty(column.id)) {
-          sortIcon = sortedColumns[column.id] === 'asc' ? '⬆️' : '⬇️';
-          nextSortDir = sortedColumns[column.id] === 'asc' ? 'desc' : null;
-        }
-
-        return (
-          <div
-            key={column.id}
-            data-test-subj={`dataGrid-sortColumn-${column.id}-${
-              sortedColumns.hasOwnProperty(column.id)
-                ? sortedColumns[column.id]
-                : 'off'
-            }`}
-            onClick={() => {
-              const nextColumnOrder = [...sorting.columns];
-              let foundColumn = false;
-
-              for (let i = 0; i < nextColumnOrder.length; i++) {
-                if (nextColumnOrder[i].id === column.id) {
-                  foundColumn = true;
-
-                  if (nextSortDir === null) {
-                    nextColumnOrder.splice(i--, 1);
-                  } else {
-                    nextColumnOrder[i] = {
-                      id: column.id,
-                      direction: nextSortDir,
-                    };
-                  }
-                }
-              }
-
-              if (foundColumn === false) {
-                nextColumnOrder.push({
-                  id: column.id,
-                  direction: 'asc',
-                });
-              }
-
-              sorting.onSort(nextColumnOrder);
-            }}>
-            {sortIcon}
-            {column.id}
-          </div>
-        );
-      })}
     </div>
   );
 }
@@ -349,7 +283,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [columnWidths, setColumnWidth] = useColumnWidths();
 
   // enables/disables grid controls based on available width
-  const onResize = useOnResize(setShowGridControls, isFullScreen);
+  const onResize = useOnResize(nextShowGridControls => {
+    if (nextShowGridControls !== showGridControls) {
+      setShowGridControls(nextShowGridControls);
+    }
+  }, isFullScreen);
 
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
@@ -379,7 +317,25 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
 
+  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
+
+  const allSchemaDetetors = useMemo(
+    () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
+    [schemaDetectors]
+  );
+  const detectedSchema = useDetectSchema(
+    inMemoryValues,
+    allSchemaDetetors,
+    inMemory != null
+  );
+  const mergedSchema = getMergedSchema(detectedSchema, columns);
+
   const [columnSelector, visibleColumns] = useColumnSelector(columns);
+  const [columnSorting] = useColumnSorting(
+    visibleColumns,
+    sorting,
+    detectedSchema
+  );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
   // compute the default column width from the container's clientWidth and count of visible columns
@@ -412,24 +368,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
-  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
-
-  const allSchemaDetetors = useMemo(
-    () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
-    [schemaDetectors]
-  );
-  const detectedSchema = useDetectSchema(
-    inMemoryValues,
-    allSchemaDetetors,
-    inMemory != null
-  );
-  const mergedSchema = getMergedSchema(detectedSchema, columns);
-
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
       {columnSelector}
       {styleSelector}
+      {columnSorting}
     </Fragment>
   );
 
@@ -480,8 +424,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             )}
           </EuiI18n>
         </div>
-        {/* Unsure why this element causes errors as focus follows spec */}
-        {/* eslint-disable jsx-a11y/interactive-supports-focus */}
         <EuiResizeObserver onResize={onResize}>
           {resizeRef => (
             <div
@@ -520,6 +462,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     defaultColumnWidth={defaultColumnWidth}
                     setColumnWidth={setColumnWidth}
                     schema={mergedSchema}
+                    sorting={sorting}
                   />
                   <EuiDataGridBody
                     columnWidths={columnWidths}
@@ -545,7 +488,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         </EuiResizeObserver>
 
         {renderPagination(props)}
-        {renderSorting(props)}
         <p id={interactiveCellId} hidden>
           <EuiI18n
             token="euiDataGrid.screenReaderNotice"

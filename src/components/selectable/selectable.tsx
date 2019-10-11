@@ -148,6 +148,27 @@ export class EuiSelectable extends Component<
     };
   }
 
+  static getDerivedStateFromProps(
+    nextProps: EuiSelectableProps,
+    prevState: EuiSelectableState
+  ) {
+    const { options } = nextProps;
+    const { activeOptionIndex, searchValue } = prevState;
+
+    const matchingOptions = getMatchingOptions(options, searchValue);
+
+    const stateUpdate = { visibleOptions: matchingOptions, activeOptionIndex };
+
+    if (
+      activeOptionIndex != null &&
+      activeOptionIndex >= matchingOptions.length
+    ) {
+      stateUpdate.activeOptionIndex = -1;
+    }
+
+    return stateUpdate;
+  }
+
   hasActiveOption = () => {
     return this.state.activeOptionIndex != null;
   };

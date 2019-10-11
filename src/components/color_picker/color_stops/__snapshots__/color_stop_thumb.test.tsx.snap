@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EuiColorStopThumb 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover testClass1 testClass2"
+  style="left:0%"
+>
+  <div
+    class="euiPopover__anchor euiColorStopPopover__anchor"
+  >
+    <button
+      aria-disabled="false"
+      aria-label="Press the Enter key to modify this stop. Press Escape to focus the group"
+      aria-valuemax="24"
+      aria-valuemin="0"
+      aria-valuenow="0"
+      class="euiRangeThumb euiColorStopThumb"
+      data-test-subj="euiColorStopThumb"
+      role="slider"
+      style="background:#FF0000"
+      tabindex="-1"
+      title="Click to edit, drag to reposition"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders disabled EuiColorStopThumb 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover testClass1 testClass2"
+  style="left:0%"
+>
+  <div
+    class="euiPopover__anchor euiColorStopPopover__anchor"
+  >
+    <button
+      aria-disabled="true"
+      aria-label="Press the Enter key to modify this stop. Press Escape to focus the group"
+      aria-valuemax="24"
+      aria-valuemin="0"
+      aria-valuenow="0"
+      class="euiRangeThumb euiColorStopThumb"
+      data-test-subj="euiColorStopThumb"
+      disabled=""
+      role="slider"
+      style="background:#FF0000"
+      tabindex="-1"
+      title="Click to edit, drag to reposition"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders picker-only EuiColorStopThumb 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover testClass1 testClass2"
+  style="left:0%"
+>
+  <div
+    class="euiPopover__anchor euiColorStopPopover__anchor"
+  >
+    <button
+      aria-disabled="false"
+      aria-label="Press the Enter key to modify this stop. Press Escape to focus the group"
+      aria-valuemax="24"
+      aria-valuemin="0"
+      aria-valuenow="0"
+      class="euiRangeThumb euiColorStopThumb"
+      data-test-subj="euiColorStopThumb"
+      role="slider"
+      style="background:#FF0000"
+      tabindex="-1"
+      title="Click to edit, drag to reposition"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders readOnly EuiColorStopThumb 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover testClass1 testClass2"
+  style="left:0%"
+>
+  <div
+    class="euiPopover__anchor euiColorStopPopover__anchor"
+  >
+    <button
+      aria-disabled="false"
+      aria-label="Press the Enter key to modify this stop. Press Escape to focus the group"
+      aria-valuemax="24"
+      aria-valuemin="0"
+      aria-valuenow="0"
+      class="euiRangeThumb euiColorStopThumb"
+      data-test-subj="euiColorStopThumb"
+      role="slider"
+      style="background:#FF0000"
+      tabindex="-1"
+      title="Click to edit, drag to reposition"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders swatch-only EuiColorStopThumb 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover testClass1 testClass2"
+  style="left:0%"
+>
+  <div
+    class="euiPopover__anchor euiColorStopPopover__anchor"
+  >
+    <button
+      aria-disabled="false"
+      aria-label="Press the Enter key to modify this stop. Press Escape to focus the group"
+      aria-valuemax="24"
+      aria-valuemin="0"
+      aria-valuenow="0"
+      class="euiRangeThumb euiColorStopThumb"
+      data-test-subj="euiColorStopThumb"
+      role="slider"
+      style="background:#FF0000"
+      tabindex="-1"
+      title="Click to edit, drag to reposition"
+      type="button"
+    />
+  </div>
+</div>
+`;

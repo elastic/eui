@@ -1,47 +1,60 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
-import { isValidHex } from '../../../../src/services';
+import {
+  EuiColorPicker,
+  EuiColorStops,
+  EuiFormRow,
+  EuiSpacer,
+} from '../../../../src/components';
 
-export class Modes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: '#DB1374',
-    };
-  }
+import { useColorPicker, useColorStop } from './utils';
 
-  handleChange = value => {
-    this.setState({ color: value });
-  };
+export const Modes = () => {
+  const [color, setColor, errors] = useColorPicker('#DB1374');
+  const [colorStops, setColorStops] = useColorStop();
 
-  render() {
-    const hasErrors = !isValidHex(this.state.color) && this.state.color !== '';
+  return (
+    <React.Fragment>
+      <EuiFormRow label="Pick a swatch" isInvalid={!!errors} error={errors}>
+        <EuiColorPicker
+          mode="swatch"
+          onChange={setColor}
+          color={color}
+          isInvalid={!!errors}
+        />
+      </EuiFormRow>
+      <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>
+        <EuiColorPicker
+          mode="picker"
+          onChange={setColor}
+          color={color}
+          isInvalid={!!errors}
+        />
+      </EuiFormRow>
 
-    let errors;
-    if (hasErrors) {
-      errors = ['Provide a valid hex value'];
-    }
+      <EuiSpacer />
 
-    return (
-      <React.Fragment>
-        <EuiFormRow label="Pick a swatch" isInvalid={hasErrors} error={errors}>
-          <EuiColorPicker
-            mode="swatch"
-            onChange={this.handleChange}
-            color={this.state.color}
-            isInvalid={hasErrors}
-          />
-        </EuiFormRow>
-        <EuiFormRow label="Pick a color" isInvalid={hasErrors} error={errors}>
-          <EuiColorPicker
-            mode="picker"
-            onChange={this.handleChange}
-            color={this.state.color}
-            isInvalid={hasErrors}
-          />
-        </EuiFormRow>
-      </React.Fragment>
-    );
-  }
-}
+      <EuiFormRow label="Set stops with swatches">
+        <EuiColorStops
+          label="Set stops with swatches"
+          onChange={setColorStops}
+          colorStops={colorStops}
+          min={0}
+          max={100}
+          mode="swatch"
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Set stops with picker">
+        <EuiColorStops
+          label="Set stops with picker"
+          onChange={setColorStops}
+          colorStops={colorStops}
+          min={0}
+          max={100}
+          mode="picker"
+        />
+      </EuiFormRow>
+    </React.Fragment>
+  );
+};

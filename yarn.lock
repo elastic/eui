@@ -991,10 +991,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@elastic/charts@^11.2.0":
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-11.2.0.tgz#b967de667ae0c71313b407c8e6b06f7f9aa87fa0"
-  integrity sha512-8jPRsYsREABEXw1OpiN9sO62DV01G9+q6ieuvrQxa1I5AaFcaRo4K65NH8NwShU/nW62R5BpMq+vWN9Qax6igQ==
+"@elastic/charts@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-13.0.0.tgz#eefd1a003c18c558465fa5d1dce28c137d1f50b4"
+  integrity sha512-Eia4lE7HEXZCZIlxsyLA/QTtrViDiENIM8QQa6ktSPpqRNzbRT6dLZii0Hv/GZem1PSBIw6M8HoTlP6/7L0BUA==
   dependencies:
     "@types/d3-shape" "^1.3.1"
     "@types/luxon" "^1.11.1"

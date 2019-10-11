@@ -1,0 +1,56 @@
+.euiDataGridColumnSorting__item {
+
+  &-isDragging {
+    @include euiBottomShadow;
+    background: $euiColorEmptyShade;
+  }
+}
+
+.euiDataGridColumnSortingPopover {
+  // Hack because the fixed positions of drag and drop don't work inside of transformed elements
+  // sass-lint:disable-block no-important
+  transform: none !important;
+  transition: none !important;
+  margin-top: -$euiSizeS;
+  // IE11 needs a min-width
+  min-width: $euiSize * 12;
+}
+
+.euiDataGridColumnSorting__button {
+  // The button for sorting needs to be a bit more compact
+  // sass-lint:disable-block no-important
+  height: $euiSize + $euiSizeXS !important;
+  width: $euiSize + $euiSizeXS !important;
+  padding: $euiSizeXS / 2 !important;
+}
+
+.euiDataGridColumnSorting__fieldList {
+  @include euiYScrollWithShadows;
+  max-height: 300px;
+}
+
+.euiDataGridColumnSorting__field {
+  display: block;
+  padding: $euiSizeXS;
+  width: 100%;
+
+  &:focus {
+    background: $euiFocusBackgroundColor;
+    text-decoration: underline;
+  }
+}
+
+.euiDataGridColumnSorting__orderButtons {
+  padding-left: $euiSizeL;
+
+  .euiDataGridColumnSorting__order {
+    min-width: 200px;
+    border: none;
+
+    // Hack to overwrite some nested, unreachable component code with button groups
+    // sass-lint:disable-block no-important
+    button {
+      font-size: $euiFontSizeXS !important;
+    }
+  }
+}
