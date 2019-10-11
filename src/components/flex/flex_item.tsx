@@ -16,11 +16,10 @@ export type FlexItemGrowSize =
   | true
   | false
   | null;
-export type FlexItemComponentType = 'div' | 'span' | 'figure';
 
 export interface EuiFlexItemProps {
   grow?: FlexItemGrowSize;
-  component?: FlexItemComponentType;
+  component?: keyof JSX.IntrinsicElements;
 }
 
 export const GROW_SIZES: FlexItemGrowSize[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -49,6 +48,7 @@ export const EuiFlexItem: FunctionComponent<
   );
 
   return (
+    // @ts-ignore
     <Component className={classes} {...rest}>
       {children}
     </Component>

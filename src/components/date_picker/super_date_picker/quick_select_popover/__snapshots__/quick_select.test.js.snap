@@ -1,50 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiQuickSelect is rendered 1`] = `
-<Fragment>
+<fieldset>
+  <EuiI18n
+    defaults={
+      Array [
+        "Quick select a time range",
+        "Quick select",
+      ]
+    }
+    tokens={
+      Array [
+        "euiQuickSelect.legendLabel",
+        "euiQuickSelect.legendText",
+      ]
+    }
+  >
+    <Component />
+  </EuiI18n>
   <EuiFlexGroup
     alignItems="center"
     gutterSize="s"
+    justifyContent="spaceBetween"
     responsive={false}
   >
-    <EuiFlexItem>
-      <EuiTitle
-        size="xxxs"
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiI18n
+        default="Quick select"
+        token="euiQuickSelect.quickSelectTitle"
       >
-        <span>
-          Quick select
-        </span>
-      </EuiTitle>
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem
       grow={false}
     >
-      <EuiToolTip
-        content="Previous time window"
-        delay="regular"
-        position="top"
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="s"
+        responsive={false}
       >
-        <EuiButtonIcon
-          aria-label="Previous time window"
-          iconType="arrowLeft"
-          onClick={[Function]}
-        />
-      </EuiToolTip>
-    </EuiFlexItem>
-    <EuiFlexItem
-      grow={false}
-    >
-      <EuiToolTip
-        content="Next time window"
-        delay="regular"
-        position="top"
-      >
-        <EuiButtonIcon
-          aria-label="Next time window"
-          iconType="arrowRight"
-          onClick={[Function]}
-        />
-      </EuiToolTip>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Previous time window"
+            token="euiQuickSelect.previousLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Next time window"
+            token="euiQuickSelect.nextLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiSpacer
@@ -55,145 +73,132 @@ exports[`EuiQuickSelect is rendered 1`] = `
     responsive={false}
   >
     <EuiFlexItem>
-      <EuiSelect
-        aria-label="Quick time tense"
-        compressed={true}
-        fullWidth={false}
-        hasNoInitialSelection={false}
-        isLoading={false}
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "text": "Last",
-              "value": "last",
-            },
-            Object {
-              "text": "Next",
-              "value": "next",
-            },
-          ]
-        }
-        value="last"
-      />
+      <EuiI18n
+        default="Time tense"
+        token="euiQuickSelect.tenseLabel"
+      >
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiFieldNumber
-        aria-label="Quick time value"
-        compressed={true}
-        fullWidth={false}
-        isLoading={false}
-        onChange={[Function]}
-        value={15}
-      />
+      <EuiI18n
+        default="Time value"
+        token="euiQuickSelect.valueLabel"
+      >
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiSelect
-        aria-label="Quick time units"
-        compressed={true}
-        fullWidth={false}
-        hasNoInitialSelection={false}
-        isLoading={false}
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "text": "seconds",
-              "value": "s",
-            },
-            Object {
-              "text": "minutes",
-              "value": "m",
-            },
-            Object {
-              "text": "hours",
-              "value": "h",
-            },
-            Object {
-              "text": "days",
-              "value": "d",
-            },
-            Object {
-              "text": "weeks",
-              "value": "w",
-            },
-            Object {
-              "text": "months",
-              "value": "M",
-            },
-            Object {
-              "text": "years",
-              "value": "y",
-            },
-          ]
-        }
-        value="m"
-      />
+      <EuiI18n
+        default="Time unit"
+        token="euiQuickSelect.unitLabel"
+      >
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem
       grow={false}
     >
       <EuiButton
+        aria-describedby="htmlId htmlId"
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
         size="s"
       >
-        Apply
+        <EuiI18n
+          default="Apply"
+          token="euiQuickSelect.applyButton"
+        />
       </EuiButton>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiHorizontalRule
     margin="s"
   />
-</Fragment>
+  <EuiScreenReaderOnly
+    id="htmlId"
+  >
+    <p>
+      <EuiI18n
+        default="Currently set to {timeTense} {timeValue} {timeUnit}."
+        token="euiQuickSelect.fullDescription"
+        values={
+          Object {
+            "timeTense": "last",
+            "timeUnit": "minutes",
+            "timeValue": 15,
+          }
+        }
+      />
+    </p>
+  </EuiScreenReaderOnly>
+</fieldset>
 `;
 
 exports[`EuiQuickSelect prevQuickSelect 1`] = `
-<Fragment>
+<fieldset>
+  <EuiI18n
+    defaults={
+      Array [
+        "Quick select a time range",
+        "Quick select",
+      ]
+    }
+    tokens={
+      Array [
+        "euiQuickSelect.legendLabel",
+        "euiQuickSelect.legendText",
+      ]
+    }
+  >
+    <Component />
+  </EuiI18n>
   <EuiFlexGroup
     alignItems="center"
     gutterSize="s"
+    justifyContent="spaceBetween"
     responsive={false}
   >
-    <EuiFlexItem>
-      <EuiTitle
-        size="xxxs"
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiI18n
+        default="Quick select"
+        token="euiQuickSelect.quickSelectTitle"
       >
-        <span>
-          Quick select
-        </span>
-      </EuiTitle>
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem
       grow={false}
     >
-      <EuiToolTip
-        content="Previous time window"
-        delay="regular"
-        position="top"
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="s"
+        responsive={false}
       >
-        <EuiButtonIcon
-          aria-label="Previous time window"
-          iconType="arrowLeft"
-          onClick={[Function]}
-        />
-      </EuiToolTip>
-    </EuiFlexItem>
-    <EuiFlexItem
-      grow={false}
-    >
-      <EuiToolTip
-        content="Next time window"
-        delay="regular"
-        position="top"
-      >
-        <EuiButtonIcon
-          aria-label="Next time window"
-          iconType="arrowRight"
-          onClick={[Function]}
-        />
-      </EuiToolTip>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Previous time window"
+            token="euiQuickSelect.previousLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Next time window"
+            token="euiQuickSelect.nextLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiSpacer
@@ -204,96 +209,65 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     responsive={false}
   >
     <EuiFlexItem>
-      <EuiSelect
-        aria-label="Quick time tense"
-        compressed={true}
-        fullWidth={false}
-        hasNoInitialSelection={false}
-        isLoading={false}
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "text": "Last",
-              "value": "last",
-            },
-            Object {
-              "text": "Next",
-              "value": "next",
-            },
-          ]
-        }
-        value="Next"
-      />
+      <EuiI18n
+        default="Time tense"
+        token="euiQuickSelect.tenseLabel"
+      >
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiFieldNumber
-        aria-label="Quick time value"
-        compressed={true}
-        fullWidth={false}
-        isLoading={false}
-        onChange={[Function]}
-        value={32}
-      />
+      <EuiI18n
+        default="Time value"
+        token="euiQuickSelect.valueLabel"
+      >
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiSelect
-        aria-label="Quick time units"
-        compressed={true}
-        fullWidth={false}
-        hasNoInitialSelection={false}
-        isLoading={false}
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "text": "seconds",
-              "value": "s",
-            },
-            Object {
-              "text": "minutes",
-              "value": "m",
-            },
-            Object {
-              "text": "hours",
-              "value": "h",
-            },
-            Object {
-              "text": "days",
-              "value": "d",
-            },
-            Object {
-              "text": "weeks",
-              "value": "w",
-            },
-            Object {
-              "text": "months",
-              "value": "M",
-            },
-            Object {
-              "text": "years",
-              "value": "y",
-            },
-          ]
-        }
-        value="M"
-      />
+      <EuiI18n
+        default="Time unit"
+        token="euiQuickSelect.unitLabel"
+      >
+        <Component />
+      </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem
       grow={false}
     >
       <EuiButton
+        aria-describedby="htmlId htmlId"
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
         size="s"
       >
-        Apply
+        <EuiI18n
+          default="Apply"
+          token="euiQuickSelect.applyButton"
+        />
       </EuiButton>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiHorizontalRule
     margin="s"
   />
-</Fragment>
+  <EuiScreenReaderOnly
+    id="htmlId"
+  >
+    <p>
+      <EuiI18n
+        default="Currently set to {timeTense} {timeValue} {timeUnit}."
+        token="euiQuickSelect.fullDescription"
+        values={
+          Object {
+            "timeTense": "Next",
+            "timeUnit": "months",
+            "timeValue": 32,
+          }
+        }
+      />
+    </p>
+  </EuiScreenReaderOnly>
+</fieldset>
 `;

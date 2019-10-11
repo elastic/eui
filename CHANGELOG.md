@@ -4,13 +4,17 @@
 - Added new `EuiColorStops` component ([#2360](https://github.com/elastic/eui/pull/2360))
 - Added `currency` glyph to 'EuiIcon' ([#2398](https://github.com/elastic/eui/pull/2398))
 - Migrate `EuiBreadcrumbs`, `EuiHeader` etc, and `EuiLink` to TypeScript ([#2391](https://github.com/elastic/eui/pull/2391))
+- Added `hasChildLabel` prop to `EuiFormRow` to avoid duplicate labels ([#2390](https://github.com/elastic/eui/pull/2390))
 - Added `component` prop to `EuiPageBody`, switching the default from `div` to `main` ([#2410](https://github.com/elastic/eui/pull/2410))
 - Added focus state to `EuiListGroupItem` ([#2406](https://github.com/elastic/eui/pull/2406))
 - Added `keyboardShorcut` glyph to 'EuiIcon ([#2413](https://github.com/elastic/eui/pull/2413))
 
 **Bug fixes**
 
-- Fix `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
+- Fixed `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
+- Fixed poor labeling in `EuiSuperDatePicker` ([#2390](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiCodeEditor`'s ID to be dynamic between renders ([#2390](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiCodeEditor` to not render multiple labels for some inputs ([#2390](https://github.com/elastic/eui/pull/2411))
 
 ## [`14.4.0`](https://github.com/elastic/eui/tree/v14.4.0)
 

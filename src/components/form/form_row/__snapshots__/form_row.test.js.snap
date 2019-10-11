@@ -5,6 +5,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -15,7 +16,6 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 >
   <div
     className="euiFormRow"
-    id="generated-id-row"
   >
     <div
       className="euiFormRow__labelWrapper"
@@ -54,6 +54,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -64,7 +65,6 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 >
   <div
     className="euiFormRow"
-    id="generated-id-row"
   >
     <div
       className="euiFormRow__labelWrapper"
@@ -103,6 +103,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -113,7 +114,6 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 >
   <div
     className="euiFormRow"
-    id="generated-id-row"
   >
     <div
       className="euiFormRow__labelWrapper"
@@ -152,6 +152,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -162,7 +163,6 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
 >
   <div
     className="euiFormRow"
-    id="generated-id-row"
   >
     <div
       className="euiFormRow__labelWrapper"
@@ -201,7 +201,6 @@ exports[`EuiFormRow is rendered 1`] = `
   aria-label="aria-label"
   class="euiFormRow testClass1 testClass2"
   data-test-subj="test subject string"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -216,7 +215,6 @@ exports[`EuiFormRow is rendered 1`] = `
 exports[`EuiFormRow props compressed is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--compressed"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -231,7 +229,6 @@ exports[`EuiFormRow props compressed is rendered 1`] = `
 exports[`EuiFormRow props describedByIds is rendered 1`] = `
 <div
   className="euiFormRow"
-  id="generated-id-row"
 >
   <div
     className="euiFormRow__fieldWrapper"
@@ -249,7 +246,6 @@ exports[`EuiFormRow props describedByIds is rendered 1`] = `
 exports[`EuiFormRow props display type center is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
@@ -264,7 +260,6 @@ exports[`EuiFormRow props display type center is rendered 1`] = `
 exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--compressed"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
@@ -279,7 +274,6 @@ exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
 exports[`EuiFormRow props display type columnCompressed is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--compressed euiFormRow--horizontal"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -294,7 +288,6 @@ exports[`EuiFormRow props display type columnCompressed is rendered 1`] = `
 exports[`EuiFormRow props display type columnCompressedSwitch is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -309,7 +302,6 @@ exports[`EuiFormRow props display type columnCompressedSwitch is rendered 1`] = 
 exports[`EuiFormRow props display type row is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -324,7 +316,6 @@ exports[`EuiFormRow props display type row is rendered 1`] = `
 exports[`EuiFormRow props display type rowCompressed is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--compressed"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -339,7 +330,6 @@ exports[`EuiFormRow props display type rowCompressed is rendered 1`] = `
 exports[`EuiFormRow props displayOnly is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
@@ -356,7 +346,6 @@ exports[`EuiFormRow props displayOnly is rendered 1`] = `
 exports[`EuiFormRow props error as array is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -386,7 +375,6 @@ exports[`EuiFormRow props error as array is rendered 1`] = `
 exports[`EuiFormRow props error as string is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -409,7 +397,6 @@ exports[`EuiFormRow props error as string is rendered 1`] = `
 exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -424,7 +411,6 @@ exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
 exports[`EuiFormRow props fullWidth is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--fullWidth"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -439,7 +425,6 @@ exports[`EuiFormRow props fullWidth is rendered 1`] = `
 exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--hasEmptyLabelSpace"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -454,7 +439,6 @@ exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 exports[`EuiFormRow props helpText is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -478,7 +462,7 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
 exports[`EuiFormRow props id is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="id-row"
+  id="id"
 >
   <div
     class="euiFormRow__fieldWrapper"
@@ -493,7 +477,6 @@ exports[`EuiFormRow props id is rendered 1`] = `
 exports[`EuiFormRow props isInvalid is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="generated-id-row"
 >
   <div
     class="euiFormRow__labelWrapper"
@@ -519,7 +502,6 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
 exports[`EuiFormRow props label append is rendered 1`] = `
 <div
   className="euiFormRow"
-  id="generated-id-row"
 >
   <div
     className="euiFormRow__labelWrapper"
@@ -550,7 +532,6 @@ exports[`EuiFormRow props label append is rendered 1`] = `
 exports[`EuiFormRow props label is rendered 1`] = `
 <div
   className="euiFormRow"
-  id="generated-id-row"
 >
   <div
     className="euiFormRow__labelWrapper"
@@ -578,16 +559,13 @@ exports[`EuiFormRow props label is rendered 1`] = `
 
 exports[`EuiFormRow props label renders as a legend and subsquently a fieldset wrapper 1`] = `
 <fieldset
-  aria-labelledby="generated-id-legend"
   className="euiFormRow"
-  id="generated-id-row"
 >
   <div
     className="euiFormRow__labelWrapper"
   >
     <EuiFormLabel
       className="euiFormRow__label"
-      id="generated-id-legend"
       isFocused={false}
       type="legend"
     >

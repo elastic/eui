@@ -38,6 +38,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
       >
@@ -77,6 +78,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
       >
@@ -125,6 +127,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={true}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
       >
@@ -173,6 +176,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
       >
@@ -221,6 +225,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
       >
@@ -321,6 +326,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 ]
               }
               fullWidth={false}
+              hasChildLabel={true}
               hasEmptyLabelSpace={false}
               helpText="Help text"
               isInvalid={true}
@@ -329,7 +335,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             >
               <div
                 className="euiFormRow"
-                id="generated-id-row"
               >
                 <div
                   className="euiFormRow__labelWrapper"
