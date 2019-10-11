@@ -123,6 +123,20 @@ export class EuiQuickSelect extends Component {
 
     return (
       <fieldset>
+        <EuiI18n
+          tokens={['euiQuickSelect.legendLabel', 'euiQuickSelect.legendText']}
+          defaults={['Quick select a time range', 'Quick select']}>
+          {([legendLabel, legendText]) => (
+            <EuiScreenReaderOnly>
+              <legend
+                id={legendId}
+                aria-label={legendLabel}
+                className="euiFormLabel">
+                {legendText}
+              </legend>
+            </EuiScreenReaderOnly>
+          )}
+        </EuiI18n>
         <EuiFlexGroup
           responsive={false}
           alignItems="center"
@@ -130,18 +144,12 @@ export class EuiQuickSelect extends Component {
           gutterSize="s">
           <EuiFlexItem grow={false}>
             <EuiI18n
-              tokens={[
-                'euiQuickSelect.legendLabel',
-                'euiQuickSelect.legendText',
-              ]}
-              defaults={['Quick select a time range', 'Quick select']}>
-              {([legendLabel, legendText]) => (
-                <legend
-                  id={legendId}
-                  aria-label={legendLabel}
-                  className="euiFormLabel">
-                  {legendText}
-                </legend>
+              token="euiQuickSelect.quickSelectTitle"
+              default="Quick select">
+              {quickSelectTitle => (
+                <div id={legendId} aria-hidden className="euiFormLabel">
+                  {quickSelectTitle}
+                </div>
               )}
             </EuiI18n>
           </EuiFlexItem>
