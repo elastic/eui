@@ -11,7 +11,9 @@ interface Props {
   action: Action;
   enabled: boolean;
   item: any;
+  itemId?: any;
   className?: string;
+  index?: number;
 }
 
 export const DefaultItemAction: FunctionComponent<Props> = ({
