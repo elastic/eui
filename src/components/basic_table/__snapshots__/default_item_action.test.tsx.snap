@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DefaultItemAction render - default button 1`] = `
+<EuiToolTip
+  content="action 1"
+  delay="long"
+  position="top"
+>
+  <EuiButtonEmpty
+    color="primary"
+    flush="right"
+    isDisabled={false}
+    onClick={[Function]}
+    size="s"
+  >
+    action1
+  </EuiButtonEmpty>
+</EuiToolTip>
+`;
+
 exports[`DefaultItemAction render - button 1`] = `
 <EuiToolTip
   content="action 1"
