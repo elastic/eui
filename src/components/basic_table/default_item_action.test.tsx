@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { DefaultItemAction } from './default_item_action';
 import {
-  DefaultItemAction,
-  EmptyButtonAction,
-  IconButtonAction,
-} from './default_item_action';
+  DefaultItemEmptyButtonAction as EmptyButtonAction,
+  DefaultItemIconButtonAction as IconButtonAction,
+} from './action_types';
 
 describe('DefaultItemAction', () => {
   test('render - default button', () => {
