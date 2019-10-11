@@ -6,7 +6,7 @@ import { EuiNavDrawerFlyout } from './nav_drawer_flyout';
 import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
-import { EuiFlexItem } from '../flex';
+import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { throttle } from '../color_picker/utils';
 
 export class EuiNavDrawer extends Component {
@@ -324,12 +324,12 @@ export class EuiNavDrawer extends Component {
       <EuiOutsideClickDetector
         onOutsideClick={() => this.closeBoth()}
         isDisabled={this.state.outsideClickDisabled}>
-        <nav>
-          <div
-            className={classes}
+        <nav className={classes} {...rest}>
+          <EuiFlexGroup
+            gutterSize="none"
+            role="presentation"
             onBlur={this.focusOut}
-            onFocus={this.manageFocus}
-            {...rest}>
+            onFocus={this.manageFocus}>
             <EuiFlexItem grow={false}>
               <div
                 id="navDrawerMenu"
@@ -341,9 +341,8 @@ export class EuiNavDrawer extends Component {
                 {footerContent}
               </div>
             </EuiFlexItem>
-
             {flyoutContent}
-          </div>
+          </EuiFlexGroup>
         </nav>
       </EuiOutsideClickDetector>
     );
