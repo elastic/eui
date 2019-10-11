@@ -2,7 +2,7 @@
 
 exports[`CustomItemAction render 1`] = `
 <div
-  style={null}
+  className="test"
 >
   <Component
     onBlur={[Function]}

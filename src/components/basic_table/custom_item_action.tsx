@@ -1,7 +1,27 @@
 import React, { Component, cloneElement } from 'react';
 
-export class CustomItemAction extends Component {
-  constructor(props) {
+interface Props {
+  action: {
+    render: (item: any, enabled?: boolean) => any;
+    available?: (item: any) => boolean;
+    enabled?: (item: any) => boolean;
+    isPrimary?: boolean;
+  };
+  enabled: boolean;
+  item: any;
+  itemId?: any;
+  className: string;
+  index?: number;
+}
+
+interface State {
+  hasFocus: boolean;
+}
+
+export class CustomItemAction extends Component<Props, State> {
+  private mounted: boolean;
+
+  constructor(props: Props) {
     super(props);
     this.state = { hasFocus: false };
 
@@ -46,7 +66,7 @@ export class CustomItemAction extends Component {
       onFocus: this.onFocus,
       onBlur: this.onBlur,
     });
-    const style = this.hasFocus() ? { opacity: 1 } : null;
+    const style = this.hasFocus() ? { opacity: 1 } : undefined;
     return (
       <div style={style} className={className}>
         {clonedTool}
