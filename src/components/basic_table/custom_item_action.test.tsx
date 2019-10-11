@@ -6,12 +6,11 @@ describe('CustomItemAction', () => {
   test('render', () => {
     const props = {
       action: {
-        name: 'custom1',
-        description: 'custom 1',
         render: () => 'test',
       },
       enabled: true,
       item: { id: 'xyz' },
+      className: 'test',
     };
 
     const component = shallow(<CustomItemAction {...props} />);
