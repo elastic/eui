@@ -181,6 +181,11 @@ export const schemaDetectors: SchemaDetector[] = [
         return 0;
       }
     },
+    comparator: (a, b, direction) => {
+      if (a.length > b.length) return direction === 'asc' ? 1 : -1;
+      if (a.length < b.length) return direction === 'asc' ? 1 : -1;
+      return 0;
+    },
     icon: 'visVega',
     color: palettes.euiPaletteColorBlind.colors[3],
     sortTextAsc: (
