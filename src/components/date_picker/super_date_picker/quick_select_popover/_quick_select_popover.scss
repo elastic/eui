@@ -8,6 +8,7 @@
   max-height: $euiSizeM * 11;
   overflow: hidden;
   overflow-y: auto;
+  padding-top: $euiSizeXS 0; // Offset negative margin from flex items
 }
 
 // sass-lint:disable no-important
