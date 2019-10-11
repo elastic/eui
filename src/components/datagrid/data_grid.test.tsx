@@ -404,6 +404,10 @@ describe('EuiDataGrid', () => {
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={3}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}, ${columnId}`
@@ -419,6 +423,10 @@ describe('EuiDataGrid', () => {
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={3}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}, ${columnId}`
@@ -447,6 +455,10 @@ describe('EuiDataGrid', () => {
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={2}
           renderCellValue={({ rowIndex, columnId, setCellProps }) => {
             useEffect(() => {
@@ -527,6 +539,10 @@ Array [
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={1}
           renderCellValue={() => 'value'}
         />
@@ -585,6 +601,10 @@ Array [
               { id: 'A', dataType: 'numeric' },
               { id: 'B', dataType: 'customFormatName' },
             ]}
+            columnVisibility={{
+              visibleColumns: ['A', 'B'],
+              setVisibleColumns: () => {},
+            }}
             rowCount={3}
             renderCellValue={({ rowIndex, columnId }) =>
               `${rowIndex}, ${columnId}`
@@ -612,6 +632,10 @@ Array [
           <EuiDataGrid
             {...requiredProps}
             columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
+            columnVisibility={{
+              visibleColumns: ['A', 'B', 'C'],
+              setVisibleColumns: () => {},
+            }}
             inMemory={{ level: 'pagination' }}
             rowCount={2}
             renderCellValue={({ columnId }) => {
@@ -646,6 +670,10 @@ Array [
           <EuiDataGrid
             {...requiredProps}
             columns={[{ id: 'A' }, { id: 'B', dataType: 'alphanumeric' }]}
+            columnVisibility={{
+              visibleColumns: ['A', 'B'],
+              setVisibleColumns: () => {},
+            }}
             inMemory={{ level: 'pagination' }}
             rowCount={2}
             renderCellValue={({ columnId }) =>
@@ -681,6 +709,10 @@ Array [
           <EuiDataGrid
             {...requiredProps}
             columns={Object.keys(values).map(id => ({ id }))}
+            columnVisibility={{
+              visibleColumns: Object.keys(values),
+              setVisibleColumns: () => {},
+            }}
             inMemory={{ level: 'pagination' }}
             rowCount={1}
             renderCellValue={({ columnId }) => values[columnId]}
@@ -712,6 +744,10 @@ Array [
           <EuiDataGrid
             {...requiredProps}
             columns={Object.keys(values).map(id => ({ id }))}
+            columnVisibility={{
+              visibleColumns: Object.keys(values),
+              setVisibleColumns: () => {},
+            }}
             schemaDetectors={[
               {
                 type: 'ipaddress',
@@ -751,6 +787,10 @@ Array [
         <EuiDataGrid
           aria-label="test"
           columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
+          columnVisibility={{
+            visibleColumns: ['Column 1', 'Column 2'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={2}
           renderCellValue={({ rowIndex, columnId }) => {
             const [value] = useState(`Hello, Row ${rowIndex}-${columnId}!`);
@@ -783,6 +823,10 @@ Array [
         <EuiDataGrid
           aria-label="test grid"
           columns={[{ id: 'Column' }]}
+          columnVisibility={{
+            visibleColumns: ['Column'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={10}
           renderCellValue={({ rowIndex }) => rowIndex}
           pagination={{
@@ -806,6 +850,10 @@ Array [
           <EuiDataGrid
             aria-label="test grid"
             columns={[{ id: 'Column' }]}
+            columnVisibility={{
+              visibleColumns: ['Column'],
+              setVisibleColumns: () => {},
+            }}
             rowCount={8}
             renderCellValue={({ rowIndex }) => rowIndex}
             pagination={{
@@ -863,6 +911,10 @@ Array [
           <EuiDataGrid
             aria-label="test grid"
             columns={[{ id: 'Column' }]}
+            columnVisibility={{
+              visibleColumns: ['Column'],
+              setVisibleColumns: () => {},
+            }}
             rowCount={8}
             renderCellValue={({ rowIndex }) => rowIndex}
             pagination={{
@@ -923,6 +975,10 @@ Array [
         <EuiDataGrid
           aria-label="test grid"
           columns={[{ id: 'Column' }]}
+          columnVisibility={{
+            visibleColumns: ['Column'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={8}
           renderCellValue={({ rowIndex }) => rowIndex}
           pagination={{
@@ -986,6 +1042,10 @@ Array [
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
+          columnVisibility={{
+            visibleColumns: ['Column 1', 'Column 2'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={3}
           renderCellValue={() => 'value'}
         />
@@ -1013,6 +1073,10 @@ Array [
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }]}
+          columnVisibility={{
+            visibleColumns: ['ColumnA'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={3}
           renderCellValue={renderCellValue}
         />
@@ -1030,10 +1094,19 @@ Array [
 
   describe('column options', () => {
     it('column visibility can be toggled', () => {
+      const columnVisibility = {
+        visibleColumns: ['ColumnA', 'ColumnB'],
+        setVisibleColumns: (visibleColumns: string[]) => {
+          columnVisibility.visibleColumns = visibleColumns;
+          component.setProps({ columnVisibility });
+        },
+      };
+
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          columnVisibility={columnVisibility}
           rowCount={2}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}-${columnId}`
@@ -1063,10 +1136,19 @@ Array [
     });
 
     it('column order can be changed', () => {
+      const columnVisibility = {
+        visibleColumns: ['ColumnA', 'ColumnB'],
+        setVisibleColumns: (visibleColumns: string[]) => {
+          columnVisibility.visibleColumns = visibleColumns;
+          component.setProps({ columnVisibility });
+        },
+      };
+
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          columnVisibility={columnVisibility}
           rowCount={2}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}-${columnId}`
@@ -1101,6 +1183,10 @@ Array [
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }]}
+          columnVisibility={{
+            visibleColumns: ['ColumnA'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={1}
           sorting={{
             columns: [],
@@ -1130,6 +1216,10 @@ Array [
           <EuiDataGrid
             aria-label="test"
             columns={[{ id: 'A' }, { id: 'B' }]}
+            columnVisibility={{
+              visibleColumns: ['A', 'B'],
+              setVisibleColumns: () => {},
+            }}
             rowCount={5}
             renderCellValue={({ rowIndex, columnId }) =>
               // render A 0->4 and B 9->5
@@ -1158,6 +1248,10 @@ Array [
           <EuiDataGrid
             aria-label="test"
             columns={[{ id: 'A' }, { id: 'B' }]}
+            columnVisibility={{
+              visibleColumns: ['A', 'B'],
+              setVisibleColumns: () => {},
+            }}
             rowCount={5}
             renderCellValue={({ rowIndex, columnId }) =>
               // render A as 0, 1, 0, 1, 0 and B as 9->5
@@ -1194,6 +1288,10 @@ Array [
           <EuiDataGrid
             aria-labelledby="#test"
             columns={[{ id: 'A' }, { id: 'B' }]}
+            columnVisibility={{
+              visibleColumns: ['A', 'B'],
+              setVisibleColumns: () => {},
+            }}
             rowCount={5}
             renderCellValue={({ rowIndex, columnId }) =>
               // render A as 0, 1, 0, 1, 0 and B as 9->5
@@ -1273,6 +1371,10 @@ Array [
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={3}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}, ${columnId}`
@@ -1333,6 +1435,10 @@ Array [
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={3}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}, ${columnId}`
@@ -1361,6 +1467,10 @@ Array [
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }, { id: 'D' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B', 'C', 'D'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={2}
           renderCellValue={({ rowIndex, columnId }) => {
             if (columnId === 'A') {
@@ -1443,6 +1553,10 @@ Array [
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={3}
           renderCellValue={({ rowIndex, columnId }) => (
             <>

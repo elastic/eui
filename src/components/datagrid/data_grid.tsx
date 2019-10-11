@@ -27,6 +27,7 @@ import {
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
   EuiDataGridExpansionFormatters,
+  EuiDataGridColumnVisibility,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -55,6 +56,7 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
+    columnVisibility: EuiDataGridColumnVisibility;
     schemaDetectors?: SchemaDetector[];
     expansionFormatters?: EuiDataGridExpansionFormatters;
     rowCount: number;
@@ -302,6 +304,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const {
     columns,
+    columnVisibility,
     schemaDetectors,
     rowCount,
     renderCellValue,
@@ -330,9 +333,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
   const mergedSchema = getMergedSchema(detectedSchema, columns);
 
-  const [columnSelector, visibleColumns] = useColumnSelector(columns);
-  const [columnSorting] = useColumnSorting(
-    visibleColumns,
+  const [columnSelector, orderedVisibleColumns] = useColumnSelector(
+    columns,
+    columnVisibility
+  );
+  const columnSorting = useColumnSorting(
+    orderedVisibleColumns,
     sorting,
     detectedSchema
   );
@@ -341,7 +347,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
     containerRef,
-    visibleColumns
+    orderedVisibleColumns
   );
 
   const classes = classNames(
@@ -429,7 +435,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             <div
               onKeyDown={createKeyDownHandler(
                 props,
-                visibleColumns,
+                orderedVisibleColumns,
                 focusedCell,
                 setFocusedCell
               )}
@@ -457,7 +463,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   role="grid"
                   {...gridAriaProps}>
                   <EuiDataGridHeaderRow
-                    columns={visibleColumns}
+                    columns={orderedVisibleColumns}
                     columnWidths={columnWidths}
                     defaultColumnWidth={defaultColumnWidth}
                     setColumnWidth={setColumnWidth}
@@ -469,7 +475,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     defaultColumnWidth={defaultColumnWidth}
                     inMemoryValues={inMemoryValues}
                     inMemory={inMemory}
-                    columns={visibleColumns}
+                    columns={orderedVisibleColumns}
                     schema={mergedSchema}
                     schemaDetectors={allSchemaDetetors}
                     expansionFormatters={expansionFormatters}

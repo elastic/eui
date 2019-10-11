@@ -104,6 +104,8 @@ export default class DataGridSchema extends Component {
         pageIndex: 0,
         pageSize: 10,
       },
+
+      visibleColumns: columns.map(({ id }) => id),
     };
   }
 
@@ -134,6 +136,8 @@ export default class DataGridSchema extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+
   dummyIcon = () => (
     <EuiButtonIcon
       aria-label="dummy icon"
@@ -148,6 +152,10 @@ export default class DataGridSchema extends Component {
       <EuiDataGrid
         aria-label="Top EUI contributors"
         columns={columns}
+        columnVisibility={{
+          visibleColumns: this.state.visibleColumns,
+          setVisibleColumns: this.setVisibleColumns,
+        }}
         rowCount={data.length}
         inMemory={{ level: 'sorting' }}
         renderCellValue={({ rowIndex, columnId }) => {
