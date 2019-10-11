@@ -98,6 +98,7 @@ const iconTypes = [
   'inspect',
   'invert',
   'ip',
+  'keyboardShortcut',
   'kqlField',
   'kqlFunction',
   'kqlOperand',

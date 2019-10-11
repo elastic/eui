@@ -148,6 +148,7 @@ const typeToPathMap = {
   inspect: 'inspect',
   invert: 'invert',
   ip: 'ip',
+  keyboardShortcut: 'keyboard_shortcut',
   kqlField: 'kql_field',
   kqlFunction: 'kql_function',
   kqlOperand: 'kql_operand',
