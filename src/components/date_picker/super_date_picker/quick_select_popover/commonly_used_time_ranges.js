@@ -50,7 +50,7 @@ export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
           columns={2}
           direction="column"
           responsive={false}
-          tagName="ul"
+          component="ul"
           className="euiQuickSelectPopover__list">
           {links}
         </EuiFlexGrid>

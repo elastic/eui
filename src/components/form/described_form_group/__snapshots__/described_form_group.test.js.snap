@@ -38,9 +38,9 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
-        useLabel={true}
       >
         <input />
       </EuiFormRow>
@@ -78,9 +78,9 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
-        useLabel={true}
       >
         <input />
       </EuiFormRow>
@@ -127,9 +127,9 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={true}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
-        useLabel={true}
       >
         <input />
       </EuiFormRow>
@@ -176,9 +176,9 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
-        useLabel={true}
       >
         <input />
       </EuiFormRow>
@@ -225,9 +225,9 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
         describedByIds={Array []}
         display="row"
         fullWidth={false}
+        hasChildLabel={true}
         hasEmptyLabelSpace={false}
         labelType="label"
-        useLabel={true}
       >
         <input />
       </EuiFormRow>
@@ -326,12 +326,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 ]
               }
               fullWidth={false}
+              hasChildLabel={true}
               hasEmptyLabelSpace={false}
               helpText="Help text"
               isInvalid={true}
               label="Label"
               labelType="label"
-              useLabel={true}
             >
               <div
                 className="euiFormRow"

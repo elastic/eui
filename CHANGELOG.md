@@ -7,10 +7,10 @@
 
 **Bug fixes**
 
-- Fix `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
-- Fix poor labeling in SuperDatePicker ([#2390](https://github.com/elastic/eui/pull/2411))
-- Fix CodeEditor's ID to be dynamic between renders ([#2390](https://github.com/elastic/eui/pull/2411))
-- Fix FromRows to not render multiple labels for some inputs ([#2390](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
+- Fixed poor labeling in `EuiSuperDatePicker` ([#2390](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiCodeEditor`'s ID to be dynamic between renders ([#2390](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiCodeEditor` to not render multiple labels for some inputs ([#2390](https://github.com/elastic/eui/pull/2411))
 
 ## [`14.4.0`](https://github.com/elastic/eui/tree/v14.4.0)
 

@@ -125,9 +125,15 @@ export class EuiQuickSelect extends Component {
     return (
       <fieldset>
         <EuiTitle size="xxxs" className="euiQuickSelect__legend">
-          <legend id={legendId} aria-label="Quick select a time range">
-            <EuiI18n token="euiQuickSelect.legend" default="Quick select" />
-          </legend>
+          <EuiI18n
+            tokens={['euiQuickSelect.legendLabel', 'euiQuickSelect.legendText']}
+            defaults={['Quick select a time range', 'Quick select']}>
+            {([legendLabel, legendText]) => (
+              <legend id={legendId} aria-label={legendLabel}>
+                {legendText}
+              </legend>
+            )}
+          </EuiI18n>
         </EuiTitle>
         <EuiFlexGroup
           responsive={false}
@@ -135,54 +141,78 @@ export class EuiQuickSelect extends Component {
           justifyContent="flexEnd"
           gutterSize="s">
           <EuiFlexItem grow={false}>
-            <EuiToolTip content="Previous time window">
-              <EuiButtonIcon
-                aria-label="Previous time window"
-                iconType="arrowLeft"
-                onClick={this.stepBackward}
-              />
-            </EuiToolTip>
+            <EuiI18n
+              token="euiQuickSelect.previousLabel"
+              default="Previous time window">
+              {previousLabel => (
+                <EuiToolTip content={previousLabel}>
+                  <EuiButtonIcon
+                    aria-label={previousLabel}
+                    iconType="arrowLeft"
+                    onClick={this.stepBackward}
+                  />
+                </EuiToolTip>
+              )}
+            </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiToolTip content="Next time window">
-              <EuiButtonIcon
-                aria-label="Next time window"
-                iconType="arrowRight"
-                onClick={this.stepForward}
-              />
-            </EuiToolTip>
+            <EuiI18n
+              token="euiQuickSelect.nextLabel"
+              default="Next time window">
+              {nextLabel => (
+                <EuiToolTip content={nextLabel}>
+                  <EuiButtonIcon
+                    aria-label={nextLabel}
+                    iconType="arrowRight"
+                    onClick={this.stepForward}
+                  />
+                </EuiToolTip>
+              )}
+            </EuiI18n>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="s" />
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
-            <EuiSelect
-              compressed
-              aria-label="Time tense"
-              aria-describedby={`${timeSelectionId} ${legendId}`}
-              value={timeTense}
-              options={timeTenseOptions}
-              onChange={this.onTimeTenseChange}
-            />
+            <EuiI18n token="euiQuickSelect.tenseLabel" default="Time tense">
+              {tenseLabel => (
+                <EuiSelect
+                  compressed
+                  aria-label={tenseLabel}
+                  aria-describedby={`${timeSelectionId} ${legendId}`}
+                  value={timeTense}
+                  options={timeTenseOptions}
+                  onChange={this.onTimeTenseChange}
+                />
+              )}
+            </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFieldNumber
-              compressed
-              aria-describedby={`${timeSelectionId} ${legendId}`}
-              aria-label="Time value"
-              value={timeValue}
-              onChange={this.onTimeValueChange}
-            />
+            <EuiI18n token="euiQuickSelect.valueLabel" default="Time value">
+              {valueLabel => (
+                <EuiFieldNumber
+                  compressed
+                  aria-describedby={`${timeSelectionId} ${legendId}`}
+                  aria-label={valueLabel}
+                  value={timeValue}
+                  onChange={this.onTimeValueChange}
+                />
+              )}
+            </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiSelect
-              compressed
-              aria-describedby={`${timeSelectionId} ${legendId}`}
-              aria-label="Time unit"
-              value={timeUnits}
-              options={timeUnitsOptions}
-              onChange={this.onTimeUnitsChange}
-            />
+            <EuiI18n token="euiQuickSelect.unitLabel" default="Time unit">
+              {unitLabel => (
+                <EuiSelect
+                  compressed
+                  aria-label={unitLabel}
+                  aria-describedby={`${timeSelectionId} ${legendId}`}
+                  value={timeUnits}
+                  options={timeUnitsOptions}
+                  onChange={this.onTimeUnitsChange}
+                />
+              )}
+            </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton
@@ -198,8 +228,17 @@ export class EuiQuickSelect extends Component {
         <EuiHorizontalRule margin="s" />
         <EuiScreenReaderOnly id={timeSelectionId}>
           <p>
-            Currently set to {timeTense} {timeValue}{' '}
-            {timeUnitsOptions.find(option => option.value === timeUnits).text}.
+            <EuiI18n
+              token="euiQuickSelect.fullDescription"
+              default="Currently set to {timeTense} {timeValue} {timeUnit}."
+              values={{
+                timeTense,
+                timeValue,
+                timeUnit: timeUnitsOptions.find(
+                  option => option.value === timeUnits
+                ).text,
+              }}
+            />
           </p>
         </EuiScreenReaderOnly>
       </fieldset>

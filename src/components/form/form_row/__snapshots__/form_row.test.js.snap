@@ -5,6 +5,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -12,7 +13,6 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
     </span>
   }
   labelType="label"
-  useLabel={true}
 >
   <div
     className="euiFormRow"
@@ -54,6 +54,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -61,7 +62,6 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
     </span>
   }
   labelType="label"
-  useLabel={true}
 >
   <div
     className="euiFormRow"
@@ -103,6 +103,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -110,7 +111,6 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
     </span>
   }
   labelType="label"
-  useLabel={true}
 >
   <div
     className="euiFormRow"
@@ -152,6 +152,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
   describedByIds={Array []}
   display="row"
   fullWidth={false}
+  hasChildLabel={true}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -159,7 +160,6 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
     </span>
   }
   labelType="label"
-  useLabel={true}
 >
   <div
     className="euiFormRow"

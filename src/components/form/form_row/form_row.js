@@ -76,7 +76,7 @@ export class EuiFormRow extends Component {
       compressed,
       display,
       displayOnly,
-      useLabel,
+      hasChildLabel,
       ...rest
     } = this.props;
 
@@ -149,7 +149,7 @@ export class EuiFormRow extends Component {
             isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
             aria-invalid={isInvalid}
-            htmlFor={!isLegend && useLabel ? id : undefined}
+            htmlFor={!isLegend && hasChildLabel ? id : undefined}
             type={labelType}>
             {label}
           </EuiFormLabel>
@@ -207,7 +207,7 @@ EuiFormRow.propTypes = {
   /**
    * Escape hatch to not render duplicate labels if the child also renders a label
    */
-  useLabel: PropTypes.bool,
+  hasChildLabel: PropTypes.bool,
   label: PropTypes.node,
   /**
    * Sets the type of html element the label should be based
@@ -267,5 +267,5 @@ EuiFormRow.defaultProps = {
   fullWidth: false,
   describedByIds: [],
   labelType: 'label',
-  useLabel: true,
+  hasChildLabel: true,
 };
