@@ -39,3 +39,5 @@ export interface CustomItemAction {
   enabled?: (item: any) => boolean;
   isPrimary?: boolean;
 }
+
+export type Action = DefaultItemAction | CustomItemAction;
