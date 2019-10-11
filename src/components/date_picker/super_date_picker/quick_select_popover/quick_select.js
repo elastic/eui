@@ -5,7 +5,6 @@ import dateMath from '@elastic/datemath';
 import { htmlIdGenerator } from '../../../../services';
 import { EuiButton, EuiButtonIcon } from '../../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
-import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
 import { EuiSelect, EuiFieldNumber } from '../../../form';
 import { EuiToolTip } from '../../../tool_tip';
@@ -124,51 +123,61 @@ export class EuiQuickSelect extends Component {
 
     return (
       <fieldset>
-        <EuiTitle size="xxxs" className="euiQuickSelect__legend">
-          <EuiI18n
-            tokens={['euiQuickSelect.legendLabel', 'euiQuickSelect.legendText']}
-            defaults={['Quick select a time range', 'Quick select']}>
-            {([legendLabel, legendText]) => (
-              <legend id={legendId} aria-label={legendLabel}>
-                {legendText}
-              </legend>
-            )}
-          </EuiI18n>
-        </EuiTitle>
         <EuiFlexGroup
           responsive={false}
           alignItems="center"
-          justifyContent="flexEnd"
+          justifyContent="spaceBetween"
           gutterSize="s">
           <EuiFlexItem grow={false}>
             <EuiI18n
-              token="euiQuickSelect.previousLabel"
-              default="Previous time window">
-              {previousLabel => (
-                <EuiToolTip content={previousLabel}>
-                  <EuiButtonIcon
-                    aria-label={previousLabel}
-                    iconType="arrowLeft"
-                    onClick={this.stepBackward}
-                  />
-                </EuiToolTip>
+              tokens={[
+                'euiQuickSelect.legendLabel',
+                'euiQuickSelect.legendText',
+              ]}
+              defaults={['Quick select a time range', 'Quick select']}>
+              {([legendLabel, legendText]) => (
+                <legend
+                  id={legendId}
+                  aria-label={legendLabel}
+                  className="euiFormLabel">
+                  {legendText}
+                </legend>
               )}
             </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiI18n
-              token="euiQuickSelect.nextLabel"
-              default="Next time window">
-              {nextLabel => (
-                <EuiToolTip content={nextLabel}>
-                  <EuiButtonIcon
-                    aria-label={nextLabel}
-                    iconType="arrowRight"
-                    onClick={this.stepForward}
-                  />
-                </EuiToolTip>
-              )}
-            </EuiI18n>
+            <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+              <EuiFlexItem grow={false}>
+                <EuiI18n
+                  token="euiQuickSelect.previousLabel"
+                  default="Previous time window">
+                  {previousLabel => (
+                    <EuiToolTip content={previousLabel}>
+                      <EuiButtonIcon
+                        aria-label={previousLabel}
+                        iconType="arrowLeft"
+                        onClick={this.stepBackward}
+                      />
+                    </EuiToolTip>
+                  )}
+                </EuiI18n>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiI18n
+                  token="euiQuickSelect.nextLabel"
+                  default="Next time window">
+                  {nextLabel => (
+                    <EuiToolTip content={nextLabel}>
+                      <EuiButtonIcon
+                        aria-label={nextLabel}
+                        iconType="arrowRight"
+                        onClick={this.stepForward}
+                      />
+                    </EuiToolTip>
+                  )}
+                </EuiI18n>
+              </EuiFlexItem>
+            </EuiFlexGroup>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="s" />

@@ -19,9 +19,3 @@
 .euiQuickSelectPopover__anchor {
   height: 100%;
 }
-
-// sass-lint:disable no-important
-.euiQuickSelectPopover__list {
-  // Override specificity from greater specificity selectors
-  margin: 0 !important;
-}

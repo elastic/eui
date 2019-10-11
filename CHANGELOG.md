@@ -4,6 +4,7 @@
 - Added new `EuiColorStops` component ([#2360](https://github.com/elastic/eui/pull/2360))
 - Added `currency` glyph to 'EuiIcon' ([#2398](https://github.com/elastic/eui/pull/2398))
 - Migrate `EuiBreadcrumbs`, `EuiHeader` etc, and `EuiLink` to TypeScript ([#2391](https://github.com/elastic/eui/pull/2391))
+- Added `hasChildLabel` prop to `EuiFormRow` to avoid duplicate labels ([#2390](https://github.com/elastic/eui/pull/2390))
 
 **Bug fixes**
 

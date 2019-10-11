@@ -20,14 +20,16 @@ export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
     };
     return (
       <EuiFlexItem key={label} component="li">
-        <EuiLink
-          onClick={applyCommonlyUsed}
-          data-test-subj={`superDatePickerCommonlyUsed_${label.replace(
-            ' ',
-            '_'
-          )}`}>
-          {label}
-        </EuiLink>
+        <EuiText size="s">
+          <EuiLink
+            onClick={applyCommonlyUsed}
+            data-test-subj={`superDatePickerCommonlyUsed_${label.replace(
+              ' ',
+              '_'
+            )}`}>
+            {label}
+          </EuiLink>
+        </EuiText>
       </EuiFlexItem>
     );
   });
@@ -43,18 +45,17 @@ export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
         </legend>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiText size="s" className="euiQuickSelectPopover__section">
+      <div className="euiQuickSelectPopover__section">
         <EuiFlexGrid
           aria-labelledby={legendId}
           gutterSize="s"
           columns={2}
           direction="column"
           responsive={false}
-          component="ul"
-          className="euiQuickSelectPopover__list">
+          component="ul">
           {links}
         </EuiFlexGrid>
-      </EuiText>
+      </div>
       <EuiHorizontalRule margin="s" />
     </fieldset>
   );

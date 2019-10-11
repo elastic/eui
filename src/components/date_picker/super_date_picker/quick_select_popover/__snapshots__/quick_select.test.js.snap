@@ -2,39 +2,28 @@
 
 exports[`EuiQuickSelect is rendered 1`] = `
 <fieldset>
-  <EuiTitle
-    className="euiQuickSelect__legend"
-    size="xxxs"
-  >
-    <EuiI18n
-      defaults={
-        Array [
-          "Quick select a time range",
-          "Quick select",
-        ]
-      }
-      tokens={
-        Array [
-          "euiQuickSelect.legendLabel",
-          "euiQuickSelect.legendText",
-        ]
-      }
-    >
-      <Component />
-    </EuiI18n>
-  </EuiTitle>
   <EuiFlexGroup
     alignItems="center"
     gutterSize="s"
-    justifyContent="flexEnd"
+    justifyContent="spaceBetween"
     responsive={false}
   >
     <EuiFlexItem
       grow={false}
     >
       <EuiI18n
-        default="Previous time window"
-        token="euiQuickSelect.previousLabel"
+        defaults={
+          Array [
+            "Quick select a time range",
+            "Quick select",
+          ]
+        }
+        tokens={
+          Array [
+            "euiQuickSelect.legendLabel",
+            "euiQuickSelect.legendText",
+          ]
+        }
       >
         <Component />
       </EuiI18n>
@@ -42,12 +31,32 @@ exports[`EuiQuickSelect is rendered 1`] = `
     <EuiFlexItem
       grow={false}
     >
-      <EuiI18n
-        default="Next time window"
-        token="euiQuickSelect.nextLabel"
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="s"
+        responsive={false}
       >
-        <Component />
-      </EuiI18n>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Previous time window"
+            token="euiQuickSelect.previousLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Next time window"
+            token="euiQuickSelect.nextLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiSpacer
@@ -123,39 +132,28 @@ exports[`EuiQuickSelect is rendered 1`] = `
 
 exports[`EuiQuickSelect prevQuickSelect 1`] = `
 <fieldset>
-  <EuiTitle
-    className="euiQuickSelect__legend"
-    size="xxxs"
-  >
-    <EuiI18n
-      defaults={
-        Array [
-          "Quick select a time range",
-          "Quick select",
-        ]
-      }
-      tokens={
-        Array [
-          "euiQuickSelect.legendLabel",
-          "euiQuickSelect.legendText",
-        ]
-      }
-    >
-      <Component />
-    </EuiI18n>
-  </EuiTitle>
   <EuiFlexGroup
     alignItems="center"
     gutterSize="s"
-    justifyContent="flexEnd"
+    justifyContent="spaceBetween"
     responsive={false}
   >
     <EuiFlexItem
       grow={false}
     >
       <EuiI18n
-        default="Previous time window"
-        token="euiQuickSelect.previousLabel"
+        defaults={
+          Array [
+            "Quick select a time range",
+            "Quick select",
+          ]
+        }
+        tokens={
+          Array [
+            "euiQuickSelect.legendLabel",
+            "euiQuickSelect.legendText",
+          ]
+        }
       >
         <Component />
       </EuiI18n>
@@ -163,12 +161,32 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     <EuiFlexItem
       grow={false}
     >
-      <EuiI18n
-        default="Next time window"
-        token="euiQuickSelect.nextLabel"
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="s"
+        responsive={false}
       >
-        <Component />
-      </EuiI18n>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Previous time window"
+            token="euiQuickSelect.previousLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiI18n
+            default="Next time window"
+            token="euiQuickSelect.nextLabel"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiFlexItem>
   </EuiFlexGroup>
   <EuiSpacer
