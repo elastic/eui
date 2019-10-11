@@ -68,7 +68,7 @@ export const schemaDetectors: SchemaDetector[] = [
       const matchLength = (value.match(
         // currency prefers starting with 1-3 characters for the currency symbol
         // then it matches against numerical data + $
-        /(^[^-(]{1,3})?[$-(]*[\d,]+(\.\d*)?[$)]*/
+        /(^[^-(.]{1,3})?[$-(]*[\d,]+(\.\d*)?[$)]*/
       ) || [''])[0].length;
 
       // if there is no currency symbol then reduce the score

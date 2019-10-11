@@ -116,21 +116,24 @@ function getColumnSortDirection(
     columnSelectionPopover = datagrid.find(
       'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
     );
-    expect(columnSelectionPopover).euiPopoverToBeOpen();
+    // popover will go away if all of the columns are selected
+    if (columnSelectionPopover.length > 0) {
+      expect(columnSelectionPopover).euiPopoverToBeOpen();
 
-    popoverButton = columnSelectionPopover
-      .find('div[className="euiPopover__anchor"]')
-      .find('[onClick]')
-      .first();
-    // @ts-ignore-next-line
-    act(() => popoverButton.props().onClick());
+      popoverButton = columnSelectionPopover
+        .find('div[className="euiPopover__anchor"]')
+        .find('[onClick]')
+        .first();
+      // @ts-ignore-next-line
+      act(() => popoverButton.props().onClick());
 
-    datagrid.update();
+      datagrid.update();
 
-    columnSelectionPopover = datagrid.find(
-      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
-    );
-    expect(columnSelectionPopover).not.euiPopoverToBeOpen();
+      columnSelectionPopover = datagrid.find(
+        'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+      );
+      expect(columnSelectionPopover).not.euiPopoverToBeOpen();
+    }
 
     // find the column sorter
     columnSelectionPopover = datagrid.find(
