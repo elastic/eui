@@ -7,6 +7,7 @@ import React, {
   useEffect,
   Fragment,
   ReactChild,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
@@ -44,6 +45,7 @@ import {
   getMergedSchema,
   SchemaDetector,
   useDetectSchema,
+  schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
 import { useColumnSorting } from './column_sorting';
 
@@ -317,9 +319,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
+  const allSchemaDetetors = useMemo(
+    () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
+    [schemaDetectors]
+  );
   const detectedSchema = useDetectSchema(
     inMemoryValues,
-    schemaDetectors,
+    allSchemaDetetors,
     inMemory != null
   );
   const mergedSchema = getMergedSchema(detectedSchema, columns);
@@ -465,6 +471,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemory={inMemory}
                     columns={visibleColumns}
                     schema={mergedSchema}
+                    schemaDetectors={allSchemaDetetors}
                     expansionFormatters={expansionFormatters}
                     focusedCell={focusedCell}
                     onCellFocus={setFocusedCell}
