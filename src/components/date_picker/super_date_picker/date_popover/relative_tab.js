@@ -159,11 +159,13 @@ export class EuiRelativeTab extends Component {
           }
         />
         <EuiScreenReaderOnly id={relativeDateInputNumberDescriptionId}>
-          <EuiI18n
-            token="euiRelativeTab.fullDescription"
-            default="The unit is changeable. Currently set to {unit}."
-            values={{ unit: this.state.unit }}
-          />
+          <p>
+            <EuiI18n
+              token="euiRelativeTab.fullDescription"
+              default="The unit is changeable. Currently set to {unit}."
+              values={{ unit: this.state.unit }}
+            />
+          </p>
         </EuiScreenReaderOnly>
       </EuiForm>
     );

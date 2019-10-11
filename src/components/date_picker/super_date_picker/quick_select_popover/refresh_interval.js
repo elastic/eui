@@ -174,8 +174,16 @@ export class EuiRefreshInterval extends Component {
         </EuiFlexGroup>
         <EuiScreenReaderOnly id={refreshSelectionId}>
           <p>
-            Currently set to {value}{' '}
-            {refreshUnitsOptions.find(option => option.value === units).text}.
+            <EuiI18n
+              token="euiRefreshInterval.fullDescription"
+              default="Currently set to {optionValue} {optionText}."
+              values={{
+                optionValue: value,
+                optionText: refreshUnitsOptions.find(
+                  option => option.value === units
+                ).text,
+              }}
+            />
           </p>
         </EuiScreenReaderOnly>
       </fieldset>
