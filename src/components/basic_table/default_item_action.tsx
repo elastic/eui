@@ -2,39 +2,13 @@ import React, { FunctionComponent } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
-import { EuiIconType } from '../icon/icon';
-import { ButtonIconColor } from '../button/button_icon/button_icon';
-import { EuiButtonEmptyColor } from '../button/button_empty/button_empty';
-
-type IconFunction = (item: any) => EuiIconType;
-type ButtonColor = ButtonIconColor | EuiButtonEmptyColor;
-type ButtonIconColorFunction = (item: any) => ButtonColor;
-
-interface ActionBase {
-  name: string;
-  description: string;
-  onClick?: (item: any) => void;
-  href?: string;
-  target?: string;
-  available?: (item: any) => boolean;
-  enabled?: (item: any) => boolean;
-  isPrimary?: boolean;
-  'data-test-subj'?: string;
-}
-
-export interface EmptyButtonAction extends ActionBase {
-  type?: 'button';
-  color?: EuiButtonEmptyColor | ButtonIconColorFunction;
-}
-
-export interface IconButtonAction extends ActionBase {
-  type: 'icon';
-  icon: EuiIconType | IconFunction;
-  color?: ButtonIconColor | ButtonIconColorFunction;
-}
+import {
+  DefaultItemAction as Action,
+  DefaultItemIconButtonAction as IconButtonAction,
+} from './action_types';
 
 interface Props {
-  action: EmptyButtonAction | IconButtonAction;
+  action: Action;
   enabled: boolean;
   item: any;
   className?: string;
@@ -91,7 +65,7 @@ export const DefaultItemAction: FunctionComponent<Props> = ({
         className={className}
         size="s"
         isDisabled={!enabled}
-        color={color as EuiButtonEmptyColor}
+        color={color}
         iconType={icon}
         onClick={onClick}
         href={action.href}

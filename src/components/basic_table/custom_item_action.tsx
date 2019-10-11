@@ -1,12 +1,8 @@
 import React, { Component, cloneElement } from 'react';
+import { CustomItemAction as Action } from './action_types';
 
 interface Props {
-  action: {
-    render: (item: any, enabled?: boolean) => any;
-    available?: (item: any) => boolean;
-    enabled?: (item: any) => boolean;
-    isPrimary?: boolean;
-  };
+  action: Action;
   enabled: boolean;
   item: any;
   itemId?: any;
