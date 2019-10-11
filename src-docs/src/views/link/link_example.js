@@ -7,8 +7,14 @@ import { GuideSectionTypes } from '../../components';
 import { EuiCode, EuiLink } from '../../../../src/components';
 
 import Link from './link';
+import { LinkDisable } from './link_disable';
+
 const linkSource = require('!!raw-loader!./link');
 const linkHtml = renderToHtml(Link);
+
+const linkDisableSource = require('!!raw-loader!./link_disable');
+const linkDisableHtml = renderToHtml(LinkDisable);
+
 const linkSnippet = [
   `<EuiLink href="#"><!-- Link text --></EuiLink>
 `,
@@ -44,6 +50,26 @@ export const LinkExample = {
       props: { EuiLink },
       snippet: linkSnippet,
       demo: <Link />,
+    },
+    {
+      title: 'Disabled Links',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: linkDisableSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: linkDisableHtml,
+        },
+      ],
+      text: (
+        <p>
+          Holy moly
+        </p>
+      ),
+      props: { EuiLink },
+      demo: <LinkDisable />,
     },
   ],
 };
