@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiBadge } from '../badge';
 import { EuiI18n } from '../i18n';
-import { useInnerText } from '../inner_text';
+import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 
@@ -174,31 +174,38 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     });
 
     let link;
-    const [setRef, innerText] = useInnerText();
 
     if (isLastBreadcrumb && !href) {
       link = (
-        <span
-          ref={setRef}
-          className={breadcrumbClasses}
-          title={innerText}
-          aria-current="page"
-          {...breadcrumbRest}>
-          {text}
-        </span>
+        <EuiInnerText>
+          {(ref, innerText) => (
+            <span
+              ref={ref}
+              className={breadcrumbClasses}
+              title={innerText}
+              aria-current="page"
+              {...breadcrumbRest}>
+              {text}
+            </span>
+          )}
+        </EuiInnerText>
       );
     } else {
       link = (
-        <EuiLink
-          ref={setRef}
-          color={isLastBreadcrumb ? 'text' : 'subdued'}
-          onClick={onClick}
-          href={href}
-          className={breadcrumbClasses}
-          title={innerText}
-          {...breadcrumbRest}>
-          {text}
-        </EuiLink>
+        <EuiInnerText>
+          {(ref, innerText) => (
+            <EuiLink
+              ref={ref}
+              color={isLastBreadcrumb ? 'text' : 'subdued'}
+              onClick={onClick}
+              href={href}
+              className={breadcrumbClasses}
+              title={innerText}
+              {...breadcrumbRest}>
+              {text}
+            </EuiLink>
+          )}
+        </EuiInnerText>
       );
     }
 
