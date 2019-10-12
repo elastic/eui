@@ -1,33 +1,62 @@
-import React, { Component, Fragment } from 'react';
-import { EuiLink, EuiSwitch } from '../../../../src/components';
+import React, { Component } from 'react';
+import {
+  EuiLink,
+  EuiSwitch,
+  EuiSpacer,
+  EuiTextColor,
+} from '../../../../src/components';
 
 export class LinkDisable extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            disableLink: true
-        };
-    }
-
-    toggleLinkDisable = () => {
-        console.log(this.state.disableLink);
-        this.setState(prevState => ({ disableLink: !prevState.disableLink }));
+  constructor(props) {
+    super(props);
+    this.state = {
+      disableLink: true,
     };
+  }
 
-    render() {
-        return (
-            <Fragment>
-                <p>When links are disabled, they inherit the color of surrounding text.</p>
-                <EuiSwitch
-                    label="Toggle Disabled State"
-                    checked={this.state.disableLink}
-                    onChange={this.toggleLinkDisable}
-                />
-                <p>Lo and behold</p>
-                <EuiLink disabled={this.state.disableLink} onClick={() => window.alert('Button clicked')}>
-                    ghost
-                </EuiLink>
-            </Fragment>
-        );
-    }
-}   
+  toggleLinkDisable = () => {
+    console.log(this.state.disableLink);
+    this.setState(prevState => ({ disableLink: !prevState.disableLink }));
+  };
+
+  render() {
+    return (
+      <div>
+        <EuiSwitch
+          label="Disable Links"
+          checked={this.state.disableLink}
+          onChange={this.toggleLinkDisable}
+        />
+        <EuiSpacer size="m" />
+        <p>
+          This{' '}
+          <EuiLink
+            color="accent"
+            disabled={this.state.disableLink}
+            onClick={() => window.alert('Button clicked')}>
+            paragraph
+          </EuiLink>{' '}
+          has two{this.state.disableLink ? ' disabled ' : ' enabled '}
+          <EuiLink
+            color="warning"
+            disabled={this.state.disableLink}
+            onClick={() => window.alert('Button clicked')}>
+            links
+          </EuiLink>{' '}
+          in it.
+        </p>
+        <EuiSpacer size="m" />
+        <EuiTextColor color="accent">
+          When links are disabled, they inherit the{' '}
+          <EuiLink
+            color="secondary"
+            disabled={this.state.disableLink}
+            onClick={() => window.alert('Button clicked')}>
+            color
+          </EuiLink>{' '}
+          of surrounding text.
+        </EuiTextColor>
+      </div>
+    );
+  }
+}

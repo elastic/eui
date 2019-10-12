@@ -76,13 +76,14 @@ const EuiLink = React.forwardRef<
       rel,
       type = 'button',
       onClick,
+      disabled,
       ...rest
     },
     ref
   ) => {
     const classes = classNames(
       'euiLink',
-      colorsToClassNameMap[color],
+      disabled ? 'euilink-disabled' : colorsToClassNameMap[color],
       className
     );
 
@@ -106,6 +107,7 @@ const EuiLink = React.forwardRef<
         className: classes,
         type,
         onClick,
+        disabled,
         ...rest,
       };
 

@@ -4,6 +4,7 @@
   .euiLink__externalIcon {
     margin-left: $euiSizeXS;
   }
+
 }
 
 $textColors: (
@@ -32,3 +33,9 @@ $textColors: (
     }
   }
 }
+
+.euiLink.euilink-disabled {
+  text-decoration: none;
+  cursor: text;
+}
+
