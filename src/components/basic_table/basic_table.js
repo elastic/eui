@@ -31,7 +31,7 @@ import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 import { EuiTableRowCell } from '../table/table_row_cell';
 import { EuiTableRow } from '../table/table_row';
-import { PaginationBar, PaginationType } from './pagination_bar';
+import { PaginationBar } from './pagination_bar';
 import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
 import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
@@ -41,6 +41,13 @@ import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 import makeId from '../form/form_row/make_id';
+
+const PaginationType = PropTypes.shape({
+  pageIndex: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  totalItemCount: PropTypes.number.isRequired,
+  pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
+});
 
 const dataTypesProfiles = {
   auto: {
