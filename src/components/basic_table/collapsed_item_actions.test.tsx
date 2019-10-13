@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { FocusEvent } from 'react';
 import { render } from 'enzyme';
 import { CollapsedItemActions } from './collapsed_item_actions';
+import { Action } from './action_types';
 
 describe('CollapsedItemActions', () => {
   test('render', () => {
@@ -19,8 +20,9 @@ describe('CollapsedItemActions', () => {
       ],
       itemId: 'id',
       item: { id: 'xyz' },
-      actionEnabled: () => true,
-      onFocus: () => {},
+      actionEnabled: (_: Action) => true,
+      onFocus: (_: FocusEvent) => {},
+      onBlur: () => {},
     };
 
     const component = render(<CollapsedItemActions {...props} />);
