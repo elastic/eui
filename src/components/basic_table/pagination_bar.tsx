@@ -1,14 +1,24 @@
 import React from 'react';
 import { EuiSpacer } from '../spacer';
 import { EuiTablePagination } from '../table';
-import PropTypes from 'prop-types';
+import {
+  ItemsPerPageChangeHandler,
+  PageChangeHandler,
+} from '../table/table_pagination/table_pagination';
 
-export const PaginationType = PropTypes.shape({
-  pageIndex: PropTypes.number.isRequired,
-  pageSize: PropTypes.number.isRequired,
-  totalItemCount: PropTypes.number.isRequired,
-  pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-});
+export interface Pagination {
+  pageIndex: number;
+  pageSize: number;
+  totalItemCount: number;
+  pageSizeOptions?: number[];
+  hidePerPageOptions?: boolean;
+}
+
+interface Props {
+  pagination: Pagination;
+  onPageSizeChange: ItemsPerPageChangeHandler;
+  onPageChange: PageChangeHandler;
+}
 
 export const defaults = {
   pageSizeOptions: [10, 25, 50],
@@ -18,7 +28,7 @@ export const PaginationBar = ({
   pagination,
   onPageSizeChange,
   onPageChange,
-}) => {
+}: Props) => {
   const pageSizeOptions = pagination.pageSizeOptions
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
@@ -37,10 +47,4 @@ export const PaginationBar = ({
       />
     </div>
   );
-};
-
-PaginationBar.propTypes = {
-  pagination: PaginationType.isRequired,
-  onPageSizeChange: PropTypes.func.isRequired,
-  onPageChange: PropTypes.func.isRequired,
 };
