@@ -50,7 +50,11 @@ export default class extends Component {
       color: 'subdued',
       iconType: 'pin',
       iconSize: 's',
-      'aria-label': 'Pin to top',
+    };
+
+    const pinExtraActionFn = val => {
+      pinExtraAction['aria-label'] = `Pin ${val} to top`;
+      return pinExtraAction;
     };
 
     this.topLinks = [
@@ -124,7 +128,7 @@ export default class extends Component {
         iconType: 'canvasApp',
         isActive: true,
         extraAction: {
-          ...pinExtraAction,
+          ...pinExtraActionFn('Canvas'),
           alwaysShow: true,
         },
       },
@@ -132,35 +136,35 @@ export default class extends Component {
         label: 'Discover',
         href: '#/layout/nav-drawer',
         iconType: 'discoverApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Discover') },
       },
       {
         label: 'Visualize',
         href: '#/layout/nav-drawer',
         iconType: 'visualizeApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Visualize') },
       },
       {
         label: 'Dashboard',
         href: '#/layout/nav-drawer',
         iconType: 'dashboardApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Dashboard') },
       },
       {
         label: 'Machine learning',
         href: '#/layout/nav-drawer',
         iconType: 'machineLearningApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Machine learning') },
       },
       {
         label: 'Custom Plugin (no icon)',
         href: '#/layout/nav-drawer',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Custom Plugin') },
       },
       {
         label: 'Nature Plugin (image as icon)',
         href: '#/layout/nav-drawer',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Nature Plugin') },
         icon: (
           <EuiImage
             size="s"
@@ -176,37 +180,37 @@ export default class extends Component {
         label: 'APM',
         href: '#/layout/nav-drawer',
         iconType: 'apmApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('APM') },
       },
       {
         label: 'Infrastructure',
         href: '#/layout/nav-drawer',
         iconType: 'infraApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Infrastructure') },
       },
       {
         label: 'Log viewer',
         href: '#/layout/nav-drawer',
         iconType: 'loggingApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Log viewer') },
       },
       {
         label: 'Uptime',
         href: '#/layout/nav-drawer',
         iconType: 'upgradeAssistantApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Uptime') },
       },
       {
         label: 'Maps',
         href: '#/layout/nav-drawer',
         iconType: 'gisApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('Maps') },
       },
       {
         label: 'SIEM',
         href: '#/layout/nav-drawer',
         iconType: 'securityAnalyticsApp',
-        extraAction: pinExtraAction,
+        extraAction: { ...pinExtraActionFn('SIEM') },
       },
     ];
 

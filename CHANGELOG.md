@@ -8,6 +8,7 @@
 - Added `component` prop to `EuiPageBody`, switching the default from `div` to `main` ([#2410](https://github.com/elastic/eui/pull/2410))
 - Added focus state to `EuiListGroupItem` ([#2406](https://github.com/elastic/eui/pull/2406))
 - Added `keyboardShorcut` glyph to 'EuiIcon ([#2413](https://github.com/elastic/eui/pull/2413))
+- Improved a11y in `EuiNavDrawer` ([#2417](https://github.com/elastic/eui/pull/2417))
 
 **Bug fixes**
 
