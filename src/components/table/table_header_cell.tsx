@@ -56,6 +56,7 @@ type Props = CommonProps &
     };
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
+    width?: number | string;
   };
 
 export const EuiTableHeaderCell: FunctionComponent<Props> = ({
@@ -70,6 +71,7 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
   mobileOptions = {
     show: true,
   },
+  width,
   // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
@@ -114,6 +116,7 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
         role="columnheader"
         aria-sort={ariaSortValue}
         aria-live="polite"
+        style={{ width }}
         {...rest}>
         <button
           type="button"

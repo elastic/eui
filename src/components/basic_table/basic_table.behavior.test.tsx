@@ -1,14 +1,14 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { findTestSubject } from '../../test';
 
-import { EuiBasicTable } from './basic_table';
+import { EuiBasicTable, Props } from './basic_table';
 
 describe('EuiBasicTable', () => {
   describe('behavior', () => {
     describe('selected items', () => {
-      let props;
-      let component;
+      let props: Props;
+      let component: ReactWrapper;
 
       beforeEach(() => {
         props = {
@@ -22,7 +22,7 @@ describe('EuiBasicTable', () => {
             },
           ],
           selection: {
-            onSelectionChanged: () => {},
+            onSelectionChange: () => {},
           },
           onChange: () => {},
         };

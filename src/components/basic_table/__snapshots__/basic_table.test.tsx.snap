@@ -370,7 +370,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
             <p>
               no items, click 
               <a
-                href={true}
+                href=""
               >
                 here
               </a>

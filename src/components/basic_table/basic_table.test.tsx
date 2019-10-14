@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiBasicTable, getItemId } from './basic_table';
+import { SortDirection } from '../../services';
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
@@ -18,7 +19,9 @@ describe('getItemId', () => {
 
   it('returns the correct id when a function itemId is given', () => {
     expect(getItemId({ id: 5 }, () => 6)).toBe(6);
-    expect(getItemId({ x: 2, y: 4 }, ({ x, y }) => x * y)).toBe(8);
+    expect(
+      getItemId({ x: 2, y: 4 }, ({ x, y }: { x: number; y: number }) => x * y)
+    ).toBe(8);
   });
 });
 
@@ -70,7 +73,7 @@ describe('EuiBasicTable', () => {
         ],
         noItemsMessage: (
           <p>
-            no items, click <a href>here</a> to make some
+            no items, click <a href="">here</a> to make some
           </p>
         ),
       };
@@ -95,7 +98,7 @@ describe('EuiBasicTable', () => {
             description: 'description',
           },
         ],
-        rowProps: item => {
+        rowProps: (item: any) => {
           const { id } = item;
           return {
             'data-test-subj': `row-${id}`,
@@ -150,7 +153,7 @@ describe('EuiBasicTable', () => {
             description: 'description',
           },
         ],
-        cellProps: (item, column) => {
+        cellProps: (item: any, column: any) => {
           const { id } = item;
           const { field } = column;
           return {
@@ -334,7 +337,7 @@ describe('EuiBasicTable', () => {
         },
       ],
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -386,7 +389,7 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       onChange: () => {},
     };
@@ -417,10 +420,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -488,10 +491,10 @@ describe('EuiBasicTable', () => {
             field: 'age',
             name: 'Age',
             description: 'your age',
-            footer: ({ items, pagination }) => (
+            footer: ({ items, pagination }: any) => (
               <strong>
                 sum:
-                {items.reduce((acc, cur) => acc + cur.age, 0)}
+                {items.reduce((acc: number, cur: any) => acc + cur.age, 0)}
                 <br />
                 total items:
                 {pagination.totalItemCount}
@@ -505,10 +508,10 @@ describe('EuiBasicTable', () => {
           totalItemCount: 5,
         },
         selection: {
-          onSelectionChanged: () => undefined,
+          onSelectionChange: () => undefined,
         },
         sorting: {
-          sort: { field: 'name', direction: 'asc' },
+          sort: { field: 'name', direction: SortDirection.ASC },
         },
         onChange: () => {},
       };
@@ -532,7 +535,7 @@ describe('EuiBasicTable', () => {
           name: 'Name',
           description: 'description',
           sortable: true,
-          render: name => name.toUpperCase(),
+          render: (name: any) => name.toUpperCase(),
         },
       ],
       pagination: {
@@ -541,10 +544,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -576,10 +579,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'count', direction: 'asc' },
+        sort: { field: 'count', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -604,7 +607,7 @@ describe('EuiBasicTable', () => {
           description: 'description of count',
           sortable: true,
           dataType: 'number',
-          render: count => 'x'.repeat(count),
+          render: (count: any) => 'x'.repeat(count),
         },
       ],
       pagination: {
@@ -613,10 +616,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'count', direction: 'asc' },
+        sort: { field: 'count', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -658,10 +661,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -709,10 +712,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
