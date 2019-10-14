@@ -2,8 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBasicTable, getItemId } from './basic_table';
+import { EuiBasicTable, getItemId, FieldDataColumnType } from './basic_table';
 import { SortDirection } from '../../services';
+import { DefaultItemAction } from './action_types';
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
@@ -572,7 +573,7 @@ describe('EuiBasicTable', () => {
           sortable: true,
           dataType: 'number',
         },
-      ],
+      ] as FieldDataColumnType[],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
@@ -609,7 +610,7 @@ describe('EuiBasicTable', () => {
           dataType: 'number',
           render: (count: any) => 'x'.repeat(count),
         },
-      ],
+      ] as FieldDataColumnType[],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
@@ -652,7 +653,7 @@ describe('EuiBasicTable', () => {
               description: 'edit',
               onClick: () => undefined,
             },
-          ],
+          ] as DefaultItemAction[],
         },
       ],
       pagination: {
@@ -703,7 +704,7 @@ describe('EuiBasicTable', () => {
               description: 'delete',
               onClick: () => undefined,
             },
-          ],
+          ] as DefaultItemAction[],
         },
       ],
       pagination: {
