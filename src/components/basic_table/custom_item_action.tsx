@@ -1,11 +1,12 @@
 import React, { Component, cloneElement } from 'react';
 import { CustomItemAction as Action } from './action_types';
+import { Item, ItemId } from './table_types';
 
 interface Props {
   action: Action;
   enabled: boolean;
-  item: any;
-  itemId?: any;
+  item: Item;
+  itemId?: ItemId;
   className: string;
   index?: number;
 }
