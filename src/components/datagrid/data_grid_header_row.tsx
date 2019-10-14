@@ -4,6 +4,7 @@ import React, {
   FunctionComponent,
   useRef,
   useEffect,
+  useState,
 } from 'react';
 import classnames from 'classnames';
 import tabbable from 'tabbable';
@@ -97,20 +98,23 @@ const EuiDataGridHeaderCell: FunctionComponent<
     [`euiDataGridHeaderCell--${columnType}`]: columnType,
   });
 
-  const isFocused = focusedCell[0] === index && focusedCell[1] === -1;
   const headerRef = useRef<HTMLDivElement>(null);
+  const isFocused = focusedCell[0] === index && focusedCell[1] === -1;
+  const [isCellEntered, setIsCellEntered] = useState(false);
+
   useEffect(() => {
     if (headerRef.current) {
-      if (isFocused) {
-        headerRef.current.focus();
-        const disabledElements = headerRef.current.querySelectorAll(
+      function enableInteractives() {
+        const disabledElements = headerRef.current!.querySelectorAll(
           '[data-euigrid-tab-managed]'
         );
         for (let i = 0; i < disabledElements.length; i++) {
           disabledElements[i].setAttribute('tabIndex', '0');
         }
-      } else {
-        const tababbles = tabbable(headerRef.current);
+      }
+
+      function disableInteractives() {
+        const tababbles = tabbable(headerRef.current!);
         for (let i = 0; i < tababbles.length; i++) {
           const element = tababbles[i];
           element.setAttribute('data-euigrid-tab-managed', 'true');
@@ -118,7 +122,35 @@ const EuiDataGridHeaderCell: FunctionComponent<
         }
       }
 
-      function onFocus(e: FocusEvent) {
+      if (isCellEntered) {
+        enableInteractives();
+        const tabbables = tabbable(headerRef.current!);
+        if (tabbables.length > 0) {
+          tabbables[0].focus();
+        }
+      } else {
+        disableInteractives();
+      }
+    }
+  }, [isCellEntered]);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      if (isFocused) {
+        const interactives = headerRef.current.querySelectorAll(
+          '[data-euigrid-tab-managed]'
+        );
+        if (interactives.length === 1) {
+          setIsCellEntered(true);
+        } else {
+          headerRef.current.focus();
+        }
+      } else {
+        setIsCellEntered(false);
+      }
+      
+      // focusin bubbles while focus does not, and this needs to react to children gaining focus
+      function onFocusIn(e: FocusEvent) {
         if (headerIsInteractive === false) {
           // header is not interactive, avoid focusing
           requestAnimationFrame(() => headerRef.current!.blur());
@@ -130,24 +162,40 @@ const EuiDataGridHeaderCell: FunctionComponent<
         }
       }
 
+      // focusout bubbles while blur does not, and this needs to react to the children losing focus
+      function onFocusOut() {
+        // wait for the next element to receive focus, then update interactives' state
+        requestAnimationFrame(() => {
+          if (headerRef.current) {
+            if (headerRef.current.contains(document.activeElement) === false) {
+              setIsCellEntered(false);
+            }
+          }
+        });
+      }
+
       function onKeyUp(e: KeyboardEvent) {
         switch (e.keyCode) {
           case keyCodes.ENTER: {
-            const tabbables = tabbable(headerRef.current!);
-            if (tabbables.length > 0) {
-              tabbables[0].focus();
-            }
+            e.preventDefault();
+            setIsCellEntered(true);
+            break;
+          }
+          case keyCodes.ESCAPE: {
+            e.preventDefault();
+            // move focus to cell
+            setIsCellEntered(false);
+            headerRef.current!.focus();
             break;
           }
           case keyCodes.F2: {
+            e.preventDefault();
             if (document.activeElement === headerRef.current) {
               // move focus into cell's interactives
-              const tabbables = tabbable(headerRef.current!);
-              if (tabbables.length > 0) {
-                tabbables[0].focus();
-              }
+              setIsCellEntered(true);
             } else {
               // move focus to cell
+              setIsCellEntered(false);
               headerRef.current!.focus();
             }
             break;
@@ -155,14 +203,24 @@ const EuiDataGridHeaderCell: FunctionComponent<
         }
       }
 
-      headerRef.current.addEventListener('focus', onFocus);
+      // @ts-ignore-next line TS doesn't have focusin
+      headerRef.current.addEventListener('focusin', onFocusIn);
+      headerRef.current.addEventListener('focusout', onFocusOut);
       headerRef.current.addEventListener('keyup', onKeyUp);
       return () => {
-        headerRef.current!.removeEventListener('focus', onFocus);
+        // @ts-ignore-next line TS doesn't have focusin
+        headerRef.current!.removeEventListener('focusin', onFocusIn);
+        headerRef.current!.removeEventListener('focusout', onFocusOut);
         headerRef.current!.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [headerIsInteractive, isFocused, headerRef.current]);
+  }, [
+    headerIsInteractive,
+    isFocused,
+    headerRef.current,
+    setIsCellEntered,
+    setFocusedCell,
+  ]);
 
   return (
     <div
