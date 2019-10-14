@@ -19,10 +19,13 @@ describe('getItemId', () => {
   });
 
   it('returns the correct id when a function itemId is given', () => {
-    expect(getItemId({ id: 5 }, () => 6)).toBe(6);
+    expect(getItemId({ id: 5 }, () => '6')).toBe('6');
     expect(
-      getItemId({ x: 2, y: 4 }, ({ x, y }: { x: number; y: number }) => x * y)
-    ).toBe(8);
+      getItemId(
+        { x: 2, y: 4 },
+        ({ x, y }: { x: number; y: number }) => `${x * y}`
+      )
+    ).toBe('8');
   });
 });
 
