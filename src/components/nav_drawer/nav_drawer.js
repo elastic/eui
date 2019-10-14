@@ -327,7 +327,6 @@ export class EuiNavDrawer extends Component {
         <nav className={classes} {...rest}>
           <EuiFlexGroup
             gutterSize="none"
-            role="presentation"
             onBlur={this.focusOut}
             onFocus={this.manageFocus}>
             <EuiFlexItem grow={false}>
