@@ -3,18 +3,8 @@
 exports[`EuiQuickSelect is rendered 1`] = `
 <fieldset>
   <EuiI18n
-    defaults={
-      Array [
-        "Quick select a time range",
-        "Quick select",
-      ]
-    }
-    tokens={
-      Array [
-        "euiQuickSelect.legendLabel",
-        "euiQuickSelect.legendText",
-      ]
-    }
+    default="Quick select a time range"
+    token="euiQuickSelect.legendText"
   >
     <Component />
   </EuiI18n>
@@ -139,18 +129,8 @@ exports[`EuiQuickSelect is rendered 1`] = `
 exports[`EuiQuickSelect prevQuickSelect 1`] = `
 <fieldset>
   <EuiI18n
-    defaults={
-      Array [
-        "Quick select a time range",
-        "Quick select",
-      ]
-    }
-    tokens={
-      Array [
-        "euiQuickSelect.legendLabel",
-        "euiQuickSelect.legendText",
-      ]
-    }
+    default="Quick select a time range"
+    token="euiQuickSelect.legendText"
   >
     <Component />
   </EuiI18n>

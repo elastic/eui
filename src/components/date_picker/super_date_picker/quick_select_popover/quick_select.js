@@ -124,16 +124,13 @@ export class EuiQuickSelect extends Component {
     return (
       <fieldset>
         <EuiI18n
-          tokens={['euiQuickSelect.legendLabel', 'euiQuickSelect.legendText']}
-          defaults={['Quick select a time range', 'Quick select']}>
-          {([legendLabel, legendText]) => (
+          token="euiQuickSelect.legendText"
+          default="Quick select a time range">
+          {legendText => (
             // Legend needs to be the first thing in a fieldset, but we want the visible title within the flex.
             // So we hide it, but allow screen readers to see it
             <EuiScreenReaderOnly>
-              <legend
-                id={legendId}
-                aria-label={legendLabel}
-                className="euiFormLabel">
+              <legend id={legendId} className="euiFormLabel">
                 {legendText}
               </legend>
             </EuiScreenReaderOnly>
@@ -149,7 +146,7 @@ export class EuiQuickSelect extends Component {
               token="euiQuickSelect.quickSelectTitle"
               default="Quick select">
               {quickSelectTitle => (
-                <div id={legendId} aria-hidden className="euiFormLabel">
+                <div aria-hidden className="euiFormLabel">
                   {quickSelectTitle}
                 </div>
               )}

@@ -16,6 +16,7 @@
 - Fixed poor labeling in `EuiSuperDatePicker` ([#2390](https://github.com/elastic/eui/pull/2411))
 - Fixed `EuiCodeEditor`'s ID to be dynamic between renders ([#2390](https://github.com/elastic/eui/pull/2411))
 - Fixed `EuiCodeEditor` to not render multiple labels for some inputs ([#2390](https://github.com/elastic/eui/pull/2411))
+- Continues a11y fixes in `EuiSuperDatePicker` ([#2426](https://github.com/elastic/eui/pull/2426))
 
 ## [`14.4.0`](https://github.com/elastic/eui/tree/v14.4.0)
 
