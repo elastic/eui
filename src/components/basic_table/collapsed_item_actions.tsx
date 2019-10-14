@@ -18,8 +18,8 @@ interface Props {
   itemId?: any;
   actionEnabled: (action: Action) => boolean;
   className?: string;
-  onFocus: (event: FocusEvent) => void;
-  onBlur: () => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: () => void;
 }
 
 interface State {
@@ -49,7 +49,10 @@ export class CollapsedItemActions extends Component<Props, State> {
     // event cycle. Reference:
     // https://medium.com/@jessebeach/dealing-with-focus-and-blur-in-a-composite-widget-in-react-90d3c3b49a9b
     window.requestAnimationFrame(() => {
-      if (!this.popoverDiv!.contains(document.activeElement)) {
+      if (
+        !this.popoverDiv!.contains(document.activeElement) &&
+        this.props.onBlur
+      ) {
         this.props.onBlur();
       }
     });
