@@ -46,6 +46,7 @@ import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 import makeId from '../form/form_row/make_id';
 import { Action } from './action_types';
+import { Item, ItemId } from './table_types';
 
 type DataType = 'auto' | 'string' | 'number' | 'boolean' | 'date';
 type DataTypeProfiles = Record<
@@ -81,7 +82,6 @@ const dataTypesProfiles: DataTypeProfiles = {
 
 const DATA_TYPES = Object.keys(dataTypesProfiles);
 
-type Item = any;
 type ItemIdToExpandedRowMap = any;
 
 const DefaultItemActionType = PropTypes.shape({
@@ -168,8 +168,6 @@ export const SelectionType = PropTypes.shape({
   selectable: PropTypes.func, // (item) => boolean;
   selectableMessage: PropTypes.func, // (selectable, item) => string;
 });
-
-type ItemId = string | ((item: Item) => string);
 
 export function getItemId(item: Item, itemId?: ItemId) {
   if (itemId) {

@@ -7,11 +7,12 @@ import {
   CustomItemAction as CustomAction,
   DefaultItemAction as DefaultAction,
 } from './action_types';
+import { Item, ItemId } from './table_types';
 
 interface Props {
   actions: Action[];
-  itemId: any;
-  item: any;
+  itemId: ItemId;
+  item: Item;
   actionEnabled: any;
   className?: string;
 }

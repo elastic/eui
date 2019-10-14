@@ -11,11 +11,12 @@ import {
   DefaultItemIconButtonAction,
 } from './action_types';
 import { EuiIconType } from '../icon/icon';
+import { Item, ItemId } from './table_types';
 
 interface Props {
   actions: Action[];
-  item: any;
-  itemId?: any;
+  item: Item;
+  itemId?: ItemId;
   actionEnabled: (action: Action) => boolean;
   className?: string;
   onFocus?: (event: FocusEvent) => void;
