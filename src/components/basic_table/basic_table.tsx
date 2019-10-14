@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
@@ -9,9 +9,9 @@ import {
   formatNumber,
   formatText,
   LEFT_ALIGNMENT,
-  CENTER_ALIGNMENT,
   RIGHT_ALIGNMENT,
-  PropertySortType,
+  CENTER_ALIGNMENT,
+  HorizontalAlignment,
   SortDirection,
   Direction,
   PropertySort,
@@ -40,7 +40,6 @@ import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
 import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
-import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
@@ -80,6 +79,9 @@ const dataTypesProfiles: DataTypeProfiles = {
 };
 
 const DATA_TYPES = Object.keys(dataTypesProfiles);
+
+type Item = Record<string, any>;
+type ItemIdToExpandedRowMap = Record<string, any>;
 
 const DefaultItemActionType = PropTypes.shape({
   type: PropTypes.oneOf(['icon', 'button']), // default is 'button'
@@ -166,41 +168,6 @@ export const SelectionType = PropTypes.shape({
   selectableMessage: PropTypes.func, // (selectable, item) => string;
 });
 
-const SortingType = PropTypes.shape({
-  sort: PropertySortType,
-  allowNeutralSort: PropTypes.bool,
-});
-
-const BasicTablePropTypes = {
-  itemId: ItemIdType,
-  itemIdToExpandedRowMap: withRequiredProp(
-    PropTypes.object,
-    'itemId',
-    'row expansion uses the itemId prop to identify each row'
-  ),
-  items: PropTypes.array.isRequired,
-  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  className: PropTypes.string,
-  columns: PropTypes.arrayOf(ColumnType).isRequired,
-  compressed: PropTypes.bool,
-  error: PropTypes.string,
-  hasActions: PropTypes.bool,
-  isExpandable: PropTypes.bool,
-  isSelectable: PropTypes.bool,
-  loading: PropTypes.bool,
-  noItemsMessage: PropTypes.node,
-  onChange: PropTypes.func,
-  // pagination: PaginationType,
-  responsive: PropTypes.bool,
-  rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  selection: withRequiredProp(
-    SelectionType,
-    'itemId',
-    'row selection uses the itemId prop to identify each row'
-  ),
-  sorting: SortingType,
-};
-
 export function getItemId(item: any, itemId?: any) {
   if (itemId) {
     if (isFunction(itemId)) {
@@ -210,7 +177,7 @@ export function getItemId(item: any, itemId?: any) {
   }
 }
 
-function getRowProps(item: any, rowProps: any) {
+function getRowProps(item: Item, rowProps: any) {
   if (rowProps) {
     if (isFunction(rowProps)) {
       return rowProps(item);
@@ -221,7 +188,7 @@ function getRowProps(item: any, rowProps: any) {
   return {};
 }
 
-function getCellProps(item: any, column: any, cellProps: any) {
+function getCellProps(item: Item, column: any, cellProps: any) {
   if (cellProps) {
     if (isFunction(cellProps)) {
       return cellProps(item, column);
@@ -243,10 +210,49 @@ function getColumnFooter(column: any, { items, pagination }: any) {
   return undefined;
 }
 
+interface FooterProps {
+  items: Item[];
+  pagination: Pagination;
+}
+
+export interface FieldDataColumnType {
+  field: string;
+  name: ReactNode;
+  description?: string;
+  dataType?: DataType;
+  width?: string;
+  sortable?: boolean | ((...args: any) => any);
+  align?: HorizontalAlignment;
+  truncateText?: boolean;
+  render?: (value: any, record: any) => ReactNode;
+  footer?: string | React.ReactElement | ((props: FooterProps) => ReactNode);
+}
+
+export interface ComputedColumnType {
+  render: (record: any) => ReactNode;
+  name?: ReactNode;
+  description?: string;
+  sortable?: (...args: any) => any;
+  width?: string;
+  truncateText?: boolean;
+}
+
+export interface ActionsColumnType {
+  actions: Action[];
+  name?: ReactNode;
+  description?: string;
+  width?: string;
+}
+
+export type Column =
+  | FieldDataColumnType
+  | ComputedColumnType
+  | ActionsColumnType;
+
 interface SelectionType {
   onSelectionChange?: (selection: any) => void;
-  selectable?: (item: any) => boolean;
-  selectableMessage?: (selectable: any, item: any) => string;
+  selectable?: (item: Item) => boolean;
+  selectableMessage?: (selectable: any, item: Item) => string;
 }
 
 interface SortingType {
@@ -255,23 +261,23 @@ interface SortingType {
 }
 
 export interface Props {
-  itemId?: string | ((item: any) => string);
-  itemIdToExpandedRowMap?: any;
-  items: any;
-  cellProps?: any;
+  itemId?: string | ((item: Item) => string);
+  itemIdToExpandedRowMap?: ItemIdToExpandedRowMap;
+  items: Item[];
+  cellProps?: object | ((...args: any) => any);
   className?: string;
-  columns: any;
+  columns: Column[];
   compressed?: boolean;
   error?: string;
   hasActions?: boolean;
   isExpandable?: boolean;
   isSelectable?: boolean;
   loading?: boolean;
-  noItemsMessage?: any;
-  onChange?: any;
+  noItemsMessage?: ReactNode;
+  onChange?: (...args: any) => any;
   pagination?: Pagination;
   responsive?: boolean;
-  rowProps?: any;
+  rowProps?: object | ((...args: any) => any);
   selection?: SelectionType;
   sorting?: SortingType;
 }
@@ -296,7 +302,6 @@ interface SortOptions {
 }
 
 export class EuiBasicTable extends Component<Props, State> {
-  static propTypes = BasicTablePropTypes;
   static defaultProps = {
     responsive: true,
     noItemsMessage: 'No items found',
@@ -312,7 +317,7 @@ export class EuiBasicTable extends Component<Props, State> {
     const selection = prevState.selection.filter(
       (selectedItem: any) =>
         nextProps.items.findIndex(
-          (item: any) =>
+          (item: Item) =>
             getItemId(item, itemId) === getItemId(selectedItem, itemId)
         ) !== -1
     );
@@ -373,7 +378,9 @@ export class EuiBasicTable extends Component<Props, State> {
         size,
       },
     };
-    this.props.onChange(criteria);
+    if (this.props.onChange) {
+      this.props.onChange(criteria);
+    }
   }
 
   onPageChange(index: number) {
@@ -386,7 +393,9 @@ export class EuiBasicTable extends Component<Props, State> {
         index,
       },
     };
-    this.props.onChange(criteria);
+    if (this.props.onChange) {
+      this.props.onChange(criteria);
+    }
   }
 
   onColumnSortChange(column: any) {
@@ -415,7 +424,9 @@ export class EuiBasicTable extends Component<Props, State> {
         direction,
       },
     };
-    this.props.onChange(criteria);
+    if (this.props.onChange) {
+      this.props.onChange(criteria);
+    }
   }
 
   render() {
@@ -496,7 +507,7 @@ export class EuiBasicTable extends Component<Props, State> {
 
   renderTableMobileSort() {
     const { columns, sorting } = this.props;
-    const items: any = [];
+    const items: Item[] = [];
 
     if (!sorting) {
       return null;
@@ -553,7 +564,7 @@ export class EuiBasicTable extends Component<Props, State> {
     }
 
     const selectableItems = items.filter(
-      (item: any) => !selection.selectable || selection.selectable(item)
+      (item: Item) => !selection.selectable || selection.selectable(item)
     );
 
     const checked =
@@ -593,7 +604,7 @@ export class EuiBasicTable extends Component<Props, State> {
   renderTableHead() {
     const { columns, selection } = this.props;
 
-    const headers: React.ReactNode[] = [];
+    const headers: ReactNode[] = [];
 
     if (selection) {
       headers.push(
@@ -748,7 +759,7 @@ export class EuiBasicTable extends Component<Props, State> {
       return this.renderEmptyBody();
     }
 
-    const rows = items.map((item: any, index: number) => {
+    const rows = items.map((item: Item, index: number) => {
       // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
       const tableItemIndex = this.props.pagination
         ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
@@ -795,7 +806,7 @@ export class EuiBasicTable extends Component<Props, State> {
     );
   }
 
-  renderItemRow(item: any, rowIndex: number) {
+  renderItemRow(item: Item, rowIndex: number) {
     const {
       columns,
       selection,
@@ -900,7 +911,7 @@ export class EuiBasicTable extends Component<Props, State> {
     );
   }
 
-  renderItemSelectionCell(itemId: any, item: any, selected: any) {
+  renderItemSelectionCell(itemId: any, item: Item, selected: any) {
     const { selection } = this.props;
     const key = `_selection_column_${itemId}`;
     const checked = selected;
@@ -945,7 +956,7 @@ export class EuiBasicTable extends Component<Props, State> {
 
   renderItemActionsCell(
     itemId: any,
-    item: any,
+    item: Item,
     column: any,
     columnIndex: number
   ) {
@@ -967,7 +978,7 @@ export class EuiBasicTable extends Component<Props, State> {
 
       actualActions.push({
         name: 'All actions',
-        render: (item: any) => {
+        render: (item: Item) => {
           return (
             <CollapsedItemActions
               actions={column.actions}
@@ -1004,7 +1015,7 @@ export class EuiBasicTable extends Component<Props, State> {
 
   renderItemFieldDataCell(
     itemId: any,
-    item: any,
+    item: Item,
     column: any,
     columnIndex: number
   ) {
@@ -1020,7 +1031,7 @@ export class EuiBasicTable extends Component<Props, State> {
 
   renderItemComputedCell(
     itemId: any,
-    item: any,
+    item: Item,
     column: any,
     columnIndex: number
   ) {
@@ -1033,7 +1044,7 @@ export class EuiBasicTable extends Component<Props, State> {
     return this.renderItemCell(item, column, key, content);
   }
 
-  renderItemCell(item: any, column: any, key: string | number, content: any) {
+  renderItemCell(item: Item, column: any, key: string | number, content: any) {
     const {
       align,
       render,
