@@ -15,10 +15,21 @@ import {
   EuiSpacer,
 } from '../../../../src/components/';
 import { EuiRadioGroup } from '../../../../src/components/form/radio';
+import { EuiButtonIcon } from '../../../../src/components/button/button_icon';
 
 const columns = [
   {
     id: 'name',
+    display: (
+      <span>
+        name
+        <EuiButtonIcon
+          aria-label="menu"
+          iconType="menuRight"
+          style={{ position: 'absolute', right: 0 }}
+        />
+      </span>
+    ),
   },
   {
     id: 'email',

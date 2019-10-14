@@ -22,6 +22,15 @@
   &.euiDataGridHeaderCell--currency {
     text-align: right;
   }
+
+  &:focus {
+    border: 1px solid transparent;
+    margin-top: -1px;
+    box-shadow: 0 0 0 2px $euiFocusRingColor;
+    border-radius: 1px;
+    // Needed so it sits above the other rows
+    z-index: 2;
+  }
 }
 
 // Header alternates

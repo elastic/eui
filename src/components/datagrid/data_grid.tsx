@@ -9,6 +9,7 @@ import React, {
   ReactChild,
 } from 'react';
 import classNames from 'classnames';
+import tabbable from 'tabbable';
 import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { CommonProps, Omit } from '../common';
@@ -46,6 +47,7 @@ import {
   useDetectSchema,
 } from './data_grid_schema';
 import { useColumnSorting } from './column_sorting';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -233,6 +235,7 @@ function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
   focusedCell: [number, number],
+  headerIsInteractive: boolean,
   setFocusedCell: (focusedCell: [number, number]) => void
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
@@ -257,7 +260,8 @@ function createKeyDownHandler(
       case keyCodes.UP:
         event.preventDefault();
         // TODO sort out when a user can arrow up into the column headers
-        if (y > 0) {
+        const minimumIndex = headerIsInteractive ? -1 : 0;
+        if (y > minimumIndex) {
           setFocusedCell([x, y - 1]);
         }
         break;
@@ -277,6 +281,38 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
+
+  const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
+  const handleHeaderChange = useCallback<MutationCallback>(
+    records => {
+      const [{ target }] = records;
+
+      // find the wrapping header div
+      let headerRow = target.parentElement;
+      while (
+        headerRow &&
+        (headerRow.getAttribute('data-test-subj') || '').indexOf(
+          'dataGridHeader'
+        ) === -1
+      ) {
+        headerRow = headerRow.parentElement;
+      }
+
+      if (headerRow) {
+        const hasTabbables = tabbable(headerRow).length > 0;
+        if (hasTabbables !== headerIsInteractive) {
+          setHeaderIsInteractive(hasTabbables);
+
+          // if the focus is on the header, and the header is no longer interactive
+          // move the focus down to the first row
+          if (hasTabbables === false && focusedCell[1] === -1) {
+            setFocusedCell([focusedCell[0], 0]);
+          }
+        }
+      }
+    },
+    [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
+  );
 
   const [columnWidths, setColumnWidth] = useColumnWidths();
 
@@ -425,6 +461,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 props,
                 visibleColumns,
                 focusedCell,
+                headerIsInteractive,
                 setFocusedCell
               )}
               className="euiDataGrid__verticalScroll"
@@ -450,14 +487,27 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   className="euiDataGrid__content"
                   role="grid"
                   {...gridAriaProps}>
-                  <EuiDataGridHeaderRow
-                    columns={visibleColumns}
-                    columnWidths={columnWidths}
-                    defaultColumnWidth={defaultColumnWidth}
-                    setColumnWidth={setColumnWidth}
-                    schema={mergedSchema}
-                    sorting={sorting}
-                  />
+                  <EuiMutationObserver
+                    observerOptions={{
+                      subtree: true,
+                      childList: true,
+                    }}
+                    onMutation={handleHeaderChange}>
+                    {ref => (
+                      <EuiDataGridHeaderRow
+                        ref={ref}
+                        columns={visibleColumns}
+                        columnWidths={columnWidths}
+                        defaultColumnWidth={defaultColumnWidth}
+                        setColumnWidth={setColumnWidth}
+                        schema={mergedSchema}
+                        sorting={sorting}
+                        headerIsInteractive={headerIsInteractive}
+                        focusedCell={focusedCell}
+                        setFocusedCell={setFocusedCell}
+                      />
+                    )}
+                  </EuiMutationObserver>
                   <EuiDataGridBody
                     columnWidths={columnWidths}
                     defaultColumnWidth={defaultColumnWidth}
