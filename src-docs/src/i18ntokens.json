@@ -101,15 +101,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 44,
+        "line": 97,
         "column": 6
       },
       "end": {
-        "line": 46,
+        "line": 99,
         "column": 39
       }
     },
-    "filepath": "src/components/breadcrumbs/breadcrumbs.js"
+    "filepath": "src/components/breadcrumbs/breadcrumbs.tsx"
   },
   {
     "token": "euiCardSelect.selected",
@@ -245,11 +245,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 276,
+        "line": 272,
         "column": 14
       },
       "end": {
-        "line": 279,
+        "line": 275,
         "column": 55
       }
     },
@@ -261,15 +261,63 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 377,
+        "line": 373,
         "column": 14
       },
       "end": {
-        "line": 382,
+        "line": 378,
         "column": 16
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
+    "token": "euiColorStopThumb.screenReaderAnnouncement",
+    "defString": "A popup with a color stop edit form opened.\n            Tab forward to cycle through form controls or press\n            escape to close this popup.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 246,
+        "column": 12
+      },
+      "end": {
+        "line": 251,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
+  },
+  {
+    "token": "euiColorStopThumb.removeLabel",
+    "defString": "Remove this stop",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 290,
+        "column": 14
+      },
+      "end": {
+        "line": 292,
+        "column": 43
+      }
+    },
+    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
+  },
+  {
+    "token": "euiColorStops.screenReaderAnnouncement",
+    "defString": "{label}: {readOnly} {disabled} Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 308,
+        "column": 10
+      },
+      "end": {
+        "line": 316,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/color_picker/color_stops/color_stops.tsx"
   },
   {
     "token": "euiHue.label",
@@ -293,11 +341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 180,
+        "line": 147,
         "column": 6
       },
       "end": {
-        "line": 182,
+        "line": 149,
         "column": 64
       }
     },
@@ -309,11 +357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 205,
+        "line": 172,
         "column": 16
       },
       "end": {
-        "line": 208,
+        "line": 175,
         "column": 18
       }
     },
@@ -430,6 +478,294 @@
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiRelativeTab.unitInputLabel",
+    "defString": "Relative time span",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 113,
+        "column": 12
+      },
+      "end": {
+        "line": 115,
+        "column": 43
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+  },
+  {
+    "token": "euiRelativeTab.roundingLabel",
+    "defString": "Round to the {unit}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 132,
+        "column": 8
+      },
+      "end": {
+        "line": 135,
+        "column": 72
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+  },
+  {
+    "token": "euiRelativeTab.relativeDate",
+    "defString": "{position} date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 153,
+        "column": 14
+      },
+      "end": {
+        "line": 157,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+  },
+  {
+    "token": "euiRelativeTab.fullDescription",
+    "defString": "The unit is changeable. Currently set to {unit}.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 163,
+        "column": 12
+      },
+      "end": {
+        "line": 167,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+  },
+  {
+    "token": "euiCommonlyUsedTimeRanges.legend",
+    "defString": "Commonly used",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 40,
+        "column": 10
+      },
+      "end": {
+        "line": 43,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/commonly_used_time_ranges.js"
+  },
+  {
+    "token": "euiQuickSelect.legendText",
+    "defString": "Quick select a time range",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 126,
+        "column": 8
+      },
+      "end": {
+        "line": 128,
+        "column": 46
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.quickSelectTitle",
+    "defString": "Quick select",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 145,
+        "column": 12
+      },
+      "end": {
+        "line": 147,
+        "column": 37
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.previousLabel",
+    "defString": "Previous time window",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 158,
+        "column": 16
+      },
+      "end": {
+        "line": 160,
+        "column": 49
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.nextLabel",
+    "defString": "Next time window",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 173,
+        "column": 16
+      },
+      "end": {
+        "line": 175,
+        "column": 45
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.tenseLabel",
+    "defString": "Time tense",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 193,
+        "column": 12
+      },
+      "end": {
+        "line": 193,
+        "column": 76
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.valueLabel",
+    "defString": "Time value",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 207,
+        "column": 12
+      },
+      "end": {
+        "line": 207,
+        "column": 76
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.unitLabel",
+    "defString": "Time unit",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 220,
+        "column": 12
+      },
+      "end": {
+        "line": 220,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.applyButton",
+    "defString": "Apply",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 240,
+        "column": 14
+      },
+      "end": {
+        "line": 240,
+        "column": 76
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiQuickSelect.fullDescription",
+    "defString": "Currently set to {timeTense} {timeValue} {timeUnit}.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 247,
+        "column": 12
+      },
+      "end": {
+        "line": 257,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+  },
+  {
+    "token": "euiRefreshInterval.legend",
+    "defString": "Refresh every",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 129,
+        "column": 12
+      },
+      "end": {
+        "line": 132,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
+  },
+  {
+    "token": "euiRefreshInterval.start",
+    "defString": "Start",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 168,
+        "column": 16
+      },
+      "end": {
+        "line": 168,
+        "column": 76
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
+  },
+  {
+    "token": "euiRefreshInterval.stop",
+    "defString": "Stop",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 170,
+        "column": 16
+      },
+      "end": {
+        "line": 170,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
+  },
+  {
+    "token": "euiRefreshInterval.fullDescription",
+    "defString": "Currently set to {optionValue} {optionText}.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 177,
+        "column": 12
+      },
+      "end": {
+        "line": 186,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
   },
   {
     "token": "euiSuperDatePicker.showDatesButtonLabel",
@@ -613,15 +949,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 22,
+        "line": 30,
         "column": 4
       },
       "end": {
-        "line": 22,
+        "line": 30,
         "column": 62
       }
     },
-    "filepath": "src/components/header/header_alert/header_alert.js"
+    "filepath": "src/components/header/header_alert/header_alert.tsx"
   },
   {
     "token": "euiHeaderLinks.openNavigationMenu",
@@ -629,15 +965,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 42,
+        "line": 41,
         "column": 8
       },
       "end": {
-        "line": 44,
+        "line": 43,
         "column": 41
       }
     },
-    "filepath": "src/components/header/header_links/header_links.js"
+    "filepath": "src/components/header/header_links/header_links.tsx"
   },
   {
     "token": "euiHeaderLinks.appNavigation",
@@ -645,15 +981,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 57,
+        "line": 56,
         "column": 6
       },
       "end": {
-        "line": 57,
+        "line": 56,
         "column": 77
       }
     },
-    "filepath": "src/components/header/header_links/header_links.js"
+    "filepath": "src/components/header/header_links/header_links.tsx"
   },
   {
     "token": "euiModal.closeModal",
@@ -773,11 +1109,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 291,
+        "line": 312,
         "column": 12
       },
       "end": {
-        "line": 294,
+        "line": 315,
         "column": 14
       }
     },
@@ -789,11 +1125,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 301,
+        "line": 322,
         "column": 10
       },
       "end": {
-        "line": 305,
+        "line": 326,
         "column": 12
       }
     },
@@ -805,11 +1141,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 311,
+        "line": 332,
         "column": 10
       },
       "end": {
-        "line": 314,
+        "line": 335,
         "column": 12
       }
     },
