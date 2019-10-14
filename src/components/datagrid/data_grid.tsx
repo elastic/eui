@@ -299,13 +299,17 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       }
 
       if (headerRow) {
-        const hasTabbables = tabbable(headerRow).length > 0;
-        if (hasTabbables !== headerIsInteractive) {
-          setHeaderIsInteractive(hasTabbables);
+        const tabbables = tabbable(headerRow);
+        const managed = headerRow.querySelectorAll(
+          '[data-euigrid-tab-managed]'
+        );
+        const hasInteractives = tabbables.length > 0 || managed.length > 0;
+        if (hasInteractives !== headerIsInteractive) {
+          setHeaderIsInteractive(hasInteractives);
 
           // if the focus is on the header, and the header is no longer interactive
           // move the focus down to the first row
-          if (hasTabbables === false && focusedCell[1] === -1) {
+          if (hasInteractives === false && focusedCell[1] === -1) {
             setFocusedCell([focusedCell[0], 0]);
           }
         }

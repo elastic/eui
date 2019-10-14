@@ -26,6 +26,7 @@ const columns = [
         <EuiButtonIcon
           aria-label="menu"
           iconType="menuRight"
+          onClick={() => alert('Icon Clicked!')}
           style={{ position: 'absolute', right: 0 }}
         />
       </span>

@@ -15,7 +15,7 @@ export class EuiMutationObserver extends EuiObserver<Props> {
   // it out into a separate function means the current `onMutation` value is used
   onMutation: MutationCallback = (records, observer) => {
     this.props.onMutation(records, observer);
-  }
+  };
 
   beginObserve = () => {
     // IE11 and the MutationObserver polyfill used in Kibana (for Jest) implement

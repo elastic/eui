@@ -6,6 +6,7 @@ import React, {
   useEffect,
 } from 'react';
 import classnames from 'classnames';
+import tabbable from 'tabbable';
 import {
   EuiDataGridColumnWidths,
   EuiDataGridColumn,
@@ -17,6 +18,7 @@ import { htmlIdGenerator } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiDataGridSchema } from './data_grid_schema';
 import { EuiDataGridDataRowProps } from './data_grid_data_row';
+import { keyCodes } from '../../services';
 
 interface EuiDataGridHeaderRowPropsSpecificProps {
   columns: EuiDataGridColumn[];
@@ -101,6 +103,19 @@ const EuiDataGridHeaderCell: FunctionComponent<
     if (headerRef.current) {
       if (isFocused) {
         headerRef.current.focus();
+        const disabledElements = headerRef.current.querySelectorAll(
+          '[data-euigrid-tab-managed]'
+        );
+        for (let i = 0; i < disabledElements.length; i++) {
+          disabledElements[i].setAttribute('tabIndex', '0');
+        }
+      } else {
+        const tababbles = tabbable(headerRef.current);
+        for (let i = 0; i < tababbles.length; i++) {
+          const element = tababbles[i];
+          element.setAttribute('data-euigrid-tab-managed', 'true');
+          element.setAttribute('tabIndex', '-1');
+        }
       }
 
       function onFocus(e: FocusEvent) {
@@ -115,9 +130,36 @@ const EuiDataGridHeaderCell: FunctionComponent<
         }
       }
 
+      function onKeyUp(e: KeyboardEvent) {
+        switch (e.keyCode) {
+          case keyCodes.ENTER: {
+            const tabbables = tabbable(headerRef.current!);
+            if (tabbables.length > 0) {
+              tabbables[0].focus();
+            }
+            break;
+          }
+          case keyCodes.F2: {
+            if (document.activeElement === headerRef.current) {
+              // move focus into cell's interactives
+              const tabbables = tabbable(headerRef.current!);
+              if (tabbables.length > 0) {
+                tabbables[0].focus();
+              }
+            } else {
+              // move focus to cell
+              headerRef.current!.focus();
+            }
+            break;
+          }
+        }
+      }
+
       headerRef.current.addEventListener('focus', onFocus);
+      headerRef.current.addEventListener('keyup', onKeyUp);
       return () => {
         headerRef.current!.removeEventListener('focus', onFocus);
+        headerRef.current!.removeEventListener('keyup', onKeyUp);
       };
     }
   }, [headerIsInteractive, isFocused, headerRef.current]);

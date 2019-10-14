@@ -288,6 +288,7 @@ Array [
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-A"
                 role="columnheader"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridHeaderCell__content"
@@ -299,6 +300,7 @@ Array [
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-B"
                 role="columnheader"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridHeaderCell__content"
@@ -813,6 +815,7 @@ Array [
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-A"
                 role="columnheader"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridHeaderCell__content"
@@ -824,6 +827,7 @@ Array [
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-B"
                 role="columnheader"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridHeaderCell__content"
