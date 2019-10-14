@@ -34,6 +34,23 @@ const columns = [
   },
   {
     id: 'email',
+    display: (
+      <div>
+        name
+        <div style={{ position: 'absolute', right: 0, top: '5px' }}>
+          <EuiButtonIcon
+            aria-label="email"
+            iconType="email"
+            onClick={() => alert('Email Icon Clicked!')}
+          />
+          <EuiButtonIcon
+            aria-label="menu"
+            iconType="menuRight"
+            onClick={() => alert('Menu Icon Clicked!')}
+          />
+        </div>
+      </div>
+    ),
   },
   {
     id: 'location',
