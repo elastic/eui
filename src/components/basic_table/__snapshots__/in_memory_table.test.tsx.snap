@@ -1,0 +1,1464 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiInMemoryTable behavior pagination 1`] = `
+<EuiInMemoryTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+      Object {
+        "id": "4",
+        "name": "name4",
+      },
+    ]
+  }
+  pagination={
+    Object {
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+    }
+  }
+>
+  <EuiBasicTable
+    aria-label="aria-label"
+    className="testClass1 testClass2"
+    columns={
+      Array [
+        Object {
+          "description": "description",
+          "field": "name",
+          "name": "Name",
+        },
+      ]
+    }
+    data-test-subj="test subject string"
+    items={
+      Array [
+        Object {
+          "id": "3",
+          "name": "name3",
+        },
+        Object {
+          "id": "4",
+          "name": "name4",
+        },
+      ]
+    }
+    noItemsMessage="No items found"
+    onChange={[Function]}
+    pagination={
+      Object {
+        "hidePerPageOptions": undefined,
+        "pageIndex": 1,
+        "pageSize": 2,
+        "pageSizeOptions": Array [
+          2,
+          4,
+          6,
+        ],
+        "totalItemCount": 4,
+      }
+    }
+    responsive={true}
+  >
+    <div
+      aria-label="aria-label"
+      className="euiBasicTable testClass1 testClass2"
+      data-test-subj="test subject string"
+    >
+      <div>
+        <EuiTableHeaderMobile>
+          <div
+            className="euiTableHeaderMobile"
+          >
+            <EuiFlexGroup
+              alignItems="baseline"
+              justifyContent="spaceBetween"
+              responsive={false}
+            >
+              <div
+                className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+              >
+                <EuiFlexItem
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  />
+                </EuiFlexItem>
+                <EuiFlexItem
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  />
+                </EuiFlexItem>
+              </div>
+            </EuiFlexGroup>
+          </div>
+        </EuiTableHeaderMobile>
+        <EuiTable
+          responsive={true}
+        >
+          <table
+            className="euiTable euiTable--responsive"
+          >
+            <EuiScreenReaderOnly>
+              <caption
+                aria-live="polite"
+                aria-relevant="text"
+                className="euiScreenReaderOnly"
+                role="status"
+              >
+                <EuiDelayRender
+                  delay={500}
+                />
+              </caption>
+            </EuiScreenReaderOnly>
+            <EuiTableHeader>
+              <thead>
+                <tr>
+                  <EuiTableHeaderCell
+                    align="left"
+                    data-test-subj="tableHeaderCell_name_0"
+                    key="_data_h_name_0"
+                  >
+                    <th
+                      className="euiTableHeaderCell"
+                      data-test-subj="tableHeaderCell_name_0"
+                      role="columnheader"
+                      scope="col"
+                    >
+                      <div
+                        className="euiTableCellContent"
+                      >
+                        <span
+                          className="euiTableCellContent__text"
+                        >
+                          Name
+                        </span>
+                      </div>
+                    </th>
+                  </EuiTableHeaderCell>
+                </tr>
+              </thead>
+            </EuiTableHeader>
+            <EuiTableBody>
+              <tbody>
+                <EuiTableRow
+                  isSelected={false}
+                >
+                  <tr
+                    className="euiTableRow"
+                  >
+                    <EuiTableRowCell
+                      align="left"
+                      key="_data_column_name_2_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
+                      textOnly={true}
+                    >
+                      <td
+                        className="euiTableRowCell"
+                      >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <span
+                            className="euiTableCellContent__text"
+                          >
+                            name3
+                          </span>
+                        </div>
+                      </td>
+                    </EuiTableRowCell>
+                  </tr>
+                </EuiTableRow>
+                <EuiTableRow
+                  isSelected={false}
+                >
+                  <tr
+                    className="euiTableRow"
+                  >
+                    <EuiTableRowCell
+                      align="left"
+                      key="_data_column_name_3_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
+                      textOnly={true}
+                    >
+                      <td
+                        className="euiTableRowCell"
+                      >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <span
+                            className="euiTableCellContent__text"
+                          >
+                            name4
+                          </span>
+                        </div>
+                      </td>
+                    </EuiTableRowCell>
+                  </tr>
+                </EuiTableRow>
+              </tbody>
+            </EuiTableBody>
+          </table>
+        </EuiTable>
+      </div>
+      <PaginationBar
+        onPageChange={[Function]}
+        onPageSizeChange={[Function]}
+        pagination={
+          Object {
+            "hidePerPageOptions": undefined,
+            "pageIndex": 1,
+            "pageSize": 2,
+            "pageSizeOptions": Array [
+              2,
+              4,
+              6,
+            ],
+            "totalItemCount": 4,
+          }
+        }
+      >
+        <div>
+          <EuiSpacer
+            size="m"
+          >
+            <div
+              className="euiSpacer euiSpacer--m"
+            />
+          </EuiSpacer>
+          <EuiTablePagination
+            activePage={1}
+            itemsPerPage={2}
+            itemsPerPageOptions={
+              Array [
+                2,
+                4,
+                6,
+              ]
+            }
+            onChangeItemsPerPage={[Function]}
+            onChangePage={[Function]}
+            pageCount={2}
+          >
+            <EuiFlexGroup
+              alignItems="center"
+              justifyContent="spaceBetween"
+              responsive={false}
+            >
+              <div
+                className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+              >
+                <EuiFlexItem
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  >
+                    <EuiPopover
+                      anchorPosition="upRight"
+                      button={
+                        <EuiButtonEmpty
+                          color="text"
+                          iconSide="right"
+                          iconType="arrowDown"
+                          onClick={[Function]}
+                          size="xs"
+                        >
+                          <EuiI18n
+                            default="Rows per page"
+                            token="euiTablePagination.rowsPerPage"
+                          />
+                          : 
+                          2
+                        </EuiButtonEmpty>
+                      }
+                      closePopover={[Function]}
+                      display="inlineBlock"
+                      hasArrow={true}
+                      id="customizablePagination"
+                      isOpen={false}
+                      ownFocus={false}
+                      panelPaddingSize="none"
+                      withTitle={true}
+                    >
+                      <EuiOutsideClickDetector
+                        isDisabled={true}
+                        onOutsideClick={[Function]}
+                      >
+                        <div
+                          className="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
+                          id="customizablePagination"
+                          onKeyDown={[Function]}
+                          onMouseDown={[Function]}
+                          onMouseUp={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchStart={[Function]}
+                        >
+                          <div
+                            className="euiPopover__anchor"
+                          >
+                            <EuiButtonEmpty
+                              color="text"
+                              iconSide="right"
+                              iconType="arrowDown"
+                              onClick={[Function]}
+                              size="xs"
+                            >
+                              <button
+                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
+                                onClick={[Function]}
+                                type="button"
+                              >
+                                <span
+                                  className="euiButtonEmpty__content"
+                                >
+                                  <EuiIcon
+                                    aria-hidden="true"
+                                    className="euiButtonEmpty__icon"
+                                    size="m"
+                                    type="arrowDown"
+                                  >
+                                    <EuiIconEmpty
+                                      aria-hidden="true"
+                                      className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+                                      focusable="false"
+                                      style={null}
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+                                        focusable="false"
+                                        height={16}
+                                        style={null}
+                                        viewBox="0 0 16 16"
+                                        width={16}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      />
+                                    </EuiIconEmpty>
+                                  </EuiIcon>
+                                  <span
+                                    className="euiButtonEmpty__text"
+                                  >
+                                    <EuiI18n
+                                      default="Rows per page"
+                                      token="euiTablePagination.rowsPerPage"
+                                    >
+                                      Rows per page
+                                    </EuiI18n>
+                                    : 
+                                    2
+                                  </span>
+                                </span>
+                              </button>
+                            </EuiButtonEmpty>
+                          </div>
+                        </div>
+                      </EuiOutsideClickDetector>
+                    </EuiPopover>
+                  </div>
+                </EuiFlexItem>
+                <EuiFlexItem
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  >
+                    <EuiPagination
+                      activePage={1}
+                      onPageClick={[Function]}
+                      pageCount={2}
+                    >
+                      <div
+                        className="euiPagination"
+                        role="group"
+                      >
+                        <EuiI18n
+                          default="Previous page"
+                          token="euiPagination.previousPage"
+                        >
+                          <EuiButtonIcon
+                            aria-label="Previous page"
+                            color="text"
+                            data-test-subj="pagination-button-previous"
+                            disabled={false}
+                            iconType="arrowLeft"
+                            onClick={[Function]}
+                          >
+                            <button
+                              aria-label="Previous page"
+                              className="euiButtonIcon euiButtonIcon--text"
+                              data-test-subj="pagination-button-previous"
+                              disabled={false}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <EuiIcon
+                                aria-hidden="true"
+                                className="euiButtonIcon__icon"
+                                size="m"
+                                type="arrowLeft"
+                              >
+                                <EuiIconEmpty
+                                  aria-hidden="true"
+                                  className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+                                  focusable="false"
+                                  style={null}
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+                                    focusable="false"
+                                    height={16}
+                                    style={null}
+                                    viewBox="0 0 16 16"
+                                    width={16}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  />
+                                </EuiIconEmpty>
+                              </EuiIcon>
+                            </button>
+                          </EuiButtonIcon>
+                        </EuiI18n>
+                        <EuiI18n
+                          default="Page {page} of {total}"
+                          key="0"
+                          token="euiPagination.pageOfTotal"
+                          values={
+                            Object {
+                              "page": 1,
+                              "total": 2,
+                            }
+                          }
+                        >
+                          <EuiPaginationButton
+                            aria-label="Page 1 of 2"
+                            data-test-subj="pagination-button-0"
+                            hideOnMobile={true}
+                            isActive={false}
+                            onClick={[Function]}
+                          >
+                            <EuiButtonEmpty
+                              aria-label="Page 1 of 2"
+                              className="euiPaginationButton euiPaginationButton--hideOnMobile"
+                              color="text"
+                              data-test-subj="pagination-button-0"
+                              onClick={[Function]}
+                              size="xs"
+                            >
+                              <button
+                                aria-label="Page 1 of 2"
+                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
+                                data-test-subj="pagination-button-0"
+                                onClick={[Function]}
+                                type="button"
+                              >
+                                <span
+                                  className="euiButtonEmpty__content"
+                                >
+                                  <span
+                                    className="euiButtonEmpty__text"
+                                  >
+                                    1
+                                  </span>
+                                </span>
+                              </button>
+                            </EuiButtonEmpty>
+                          </EuiPaginationButton>
+                        </EuiI18n>
+                        <EuiI18n
+                          default="Page {page} of {total}"
+                          key="1"
+                          token="euiPagination.pageOfTotal"
+                          values={
+                            Object {
+                              "page": 2,
+                              "total": 2,
+                            }
+                          }
+                        >
+                          <EuiPaginationButton
+                            aria-label="Page 2 of 2"
+                            data-test-subj="pagination-button-1"
+                            hideOnMobile={true}
+                            isActive={true}
+                            onClick={[Function]}
+                          >
+                            <EuiButtonEmpty
+                              aria-label="Page 2 of 2"
+                              className="euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                              color="text"
+                              data-test-subj="pagination-button-1"
+                              onClick={[Function]}
+                              size="xs"
+                            >
+                              <button
+                                aria-label="Page 2 of 2"
+                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                data-test-subj="pagination-button-1"
+                                onClick={[Function]}
+                                type="button"
+                              >
+                                <span
+                                  className="euiButtonEmpty__content"
+                                >
+                                  <span
+                                    className="euiButtonEmpty__text"
+                                  >
+                                    2
+                                  </span>
+                                </span>
+                              </button>
+                            </EuiButtonEmpty>
+                          </EuiPaginationButton>
+                        </EuiI18n>
+                        <EuiI18n
+                          default="Next page"
+                          token="euiPagination.nextPage"
+                        >
+                          <EuiButtonIcon
+                            aria-label="Next page"
+                            color="text"
+                            data-test-subj="pagination-button-next"
+                            disabled={true}
+                            iconType="arrowRight"
+                            onClick={[Function]}
+                          >
+                            <button
+                              aria-label="Next page"
+                              className="euiButtonIcon euiButtonIcon--text"
+                              data-test-subj="pagination-button-next"
+                              disabled={true}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <EuiIcon
+                                aria-hidden="true"
+                                className="euiButtonIcon__icon"
+                                size="m"
+                                type="arrowRight"
+                              >
+                                <EuiIconEmpty
+                                  aria-hidden="true"
+                                  className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+                                  focusable="false"
+                                  style={null}
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+                                    focusable="false"
+                                    height={16}
+                                    style={null}
+                                    viewBox="0 0 16 16"
+                                    width={16}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  />
+                                </EuiIconEmpty>
+                              </EuiIcon>
+                            </button>
+                          </EuiButtonIcon>
+                        </EuiI18n>
+                      </div>
+                    </EuiPagination>
+                  </div>
+                </EuiFlexItem>
+              </div>
+            </EuiFlexGroup>
+          </EuiTablePagination>
+        </div>
+      </PaginationBar>
+    </div>
+  </EuiBasicTable>
+</EuiInMemoryTable>
+`;
+
+exports[`EuiInMemoryTable empty array 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={Array []}
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={Array []}
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with initial sorting 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": true,
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  responsive={true}
+  sorting={
+    Object {
+      "allowNeutralSort": true,
+      "sort": Object {
+        "direction": "desc",
+        "field": "Name",
+      },
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with items 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with items and expanded item 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  itemId="id"
+  itemIdToExpandedRowMap={
+    Object {
+      "1": <div>
+        expanded row content
+      </div>,
+    }
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with items and message - expecting to show the items 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="show me!"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with message 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={Array []}
+  noItemsMessage="where my items at?"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with message and loading 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={Array []}
+  loading={true}
+  noItemsMessage="Loading items...."
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": undefined,
+      "pageIndex": 0,
+      "pageSize": 2,
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination and default page size and index 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": undefined,
+      "pageIndex": 1,
+      "pageSize": 2,
+      "pageSizeOptions": Array [
+        1,
+        2,
+        3,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination and selection 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  itemId="id"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": undefined,
+      "pageIndex": 0,
+      "pageSize": 10,
+      "pageSizeOptions": Array [
+        10,
+        25,
+        50,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+  selection={
+    Object {
+      "onSelectionChange": [Function],
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  error="ouch!"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": undefined,
+      "pageIndex": 0,
+      "pageSize": 4,
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+      "totalItemCount": 1,
+    }
+  }
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": true,
+      "pageIndex": 0,
+      "pageSize": 10,
+      "pageSizeOptions": Array [
+        10,
+        25,
+        50,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": true,
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  itemId="id"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": undefined,
+      "pageIndex": 0,
+      "pageSize": 10,
+      "pageSizeOptions": Array [
+        10,
+        25,
+        50,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+  selection={
+    Object {
+      "onSelectionChange": [Function],
+    }
+  }
+  sorting={
+    Object {
+      "allowNeutralSort": true,
+      "sort": undefined,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search 1`] = `
+<div>
+  <EuiSearchBar
+    onChange={[Function]}
+  />
+  <EuiSpacer
+    size="l"
+  />
+  <EuiBasicTable
+    aria-label="aria-label"
+    className="testClass1 testClass2"
+    columns={
+      Array [
+        Object {
+          "description": "description",
+          "field": "name",
+          "name": "Name",
+          "sortable": true,
+        },
+        Object {
+          "actions": Array [
+            Object {
+              "description": "edit",
+              "name": "Edit",
+              "onClick": [Function],
+            },
+          ],
+          "name": "Actions",
+        },
+      ]
+    }
+    data-test-subj="test subject string"
+    itemId="id"
+    items={
+      Array [
+        Object {
+          "id": "1",
+          "name": "name1",
+        },
+        Object {
+          "id": "2",
+          "name": "name2",
+        },
+        Object {
+          "id": "3",
+          "name": "name3",
+        },
+      ]
+    }
+    noItemsMessage="No items found"
+    onChange={[Function]}
+    pagination={
+      Object {
+        "hidePerPageOptions": undefined,
+        "pageIndex": 0,
+        "pageSize": 10,
+        "pageSizeOptions": Array [
+          10,
+          25,
+          50,
+        ],
+        "totalItemCount": 3,
+      }
+    }
+    responsive={true}
+    selection={
+      Object {
+        "onSelectionChange": [Function],
+      }
+    }
+    sorting={
+      Object {
+        "allowNeutralSort": true,
+        "sort": undefined,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting and a single record action 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": true,
+      },
+      Object {
+        "actions": Array [
+          Object {
+            "description": "edit",
+            "name": "Edit",
+            "onClick": [Function],
+          },
+        ],
+        "name": "Actions",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  itemId="id"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": undefined,
+      "pageIndex": 0,
+      "pageSize": 10,
+      "pageSizeOptions": Array [
+        10,
+        25,
+        50,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+  selection={
+    Object {
+      "onSelectionChange": [Function],
+    }
+  }
+  sorting={
+    Object {
+      "allowNeutralSort": true,
+      "sort": undefined,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting and column renderer 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "render": [Function],
+        "sortable": true,
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  itemId="id"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "hidePerPageOptions": undefined,
+      "pageIndex": 0,
+      "pageSize": 2,
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+  selection={
+    Object {
+      "onSelectionChange": [Function],
+    }
+  }
+  sorting={
+    Object {
+      "allowNeutralSort": true,
+      "sort": undefined,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting and configured search 1`] = `
+<div>
+  <EuiSearchBar
+    box={
+      Object {
+        "incremental": true,
+      }
+    }
+    defaultQuery="name:name1"
+    filters={
+      Array [
+        Object {
+          "field": "name",
+          "name": "Name1",
+          "negatedName": "Not Name1",
+          "type": "field_value_toggle",
+          "value": "name1",
+        },
+      ]
+    }
+    onChange={[Function]}
+  />
+  <EuiSpacer
+    size="l"
+  />
+  <EuiBasicTable
+    aria-label="aria-label"
+    className="testClass1 testClass2"
+    columns={
+      Array [
+        Object {
+          "description": "description",
+          "field": "name",
+          "name": "Name",
+          "sortable": true,
+        },
+        Object {
+          "actions": Array [
+            Object {
+              "description": "edit",
+              "name": "Edit",
+              "onClick": [Function],
+            },
+          ],
+          "name": "Actions",
+        },
+      ]
+    }
+    data-test-subj="test subject string"
+    itemId="id"
+    items={
+      Array [
+        Object {
+          "id": "1",
+          "name": "name1",
+        },
+      ]
+    }
+    noItemsMessage="No items found"
+    onChange={[Function]}
+    pagination={
+      Object {
+        "hidePerPageOptions": undefined,
+        "pageIndex": 0,
+        "pageSize": 10,
+        "pageSizeOptions": Array [
+          10,
+          25,
+          50,
+        ],
+        "totalItemCount": 1,
+      }
+    }
+    responsive={true}
+    selection={
+      Object {
+        "onSelectionChange": [Function],
+      }
+    }
+    sorting={
+      Object {
+        "allowNeutralSort": true,
+        "sort": undefined,
+      }
+    }
+  />
+</div>
+`;

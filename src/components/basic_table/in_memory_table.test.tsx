@@ -457,7 +457,7 @@ describe('EuiInMemoryTable', () => {
       ],
       pagination: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -485,7 +485,7 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -516,7 +516,7 @@ describe('EuiInMemoryTable', () => {
       },
       sorting: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -554,7 +554,7 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -593,7 +593,7 @@ describe('EuiInMemoryTable', () => {
       sorting: true,
       search: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -646,7 +646,7 @@ describe('EuiInMemoryTable', () => {
         ] as FilterConfig[],
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);

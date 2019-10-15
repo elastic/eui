@@ -28,12 +28,6 @@ interface SchemaType {
   flags?: string[];
 }
 
-interface SearchBoxConfig {
-  placeholder?: string;
-  incremental?: boolean;
-  schema?: SchemaType;
-}
-
 interface IsFilterConfigType {
   type: 'is';
   field: string;
@@ -94,9 +88,25 @@ export type FilterConfig =
 
 type Column = FieldDataColumnType | ComputedColumnType | ActionsColumnType;
 
+interface SearchBox {
+  placeholder?: string;
+  incremental?: boolean;
+  schema?: boolean | SchemaType;
+}
+
+/*
+Use below when TypeScript > 3.5.1
+
+interface SearchBoxConfig {
+  placeholder?: string;
+  incremental?: boolean;
+  schema?: SchemaType;
+}
+
 type SearchBox = Omit<SearchBoxConfig, 'schema'> & {
   schema?: boolean | SchemaType;
 };
+//*/
 
 type CellPropsCallback = (item: Item, column: Column) => object;
 type RowPropsCallback = (item: Item) => object;
