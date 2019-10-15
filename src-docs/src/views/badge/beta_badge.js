@@ -15,6 +15,13 @@ export default () => (
       tooltipContent="This module is not GA. Please help us by reporting any bugs."
     />
     &emsp;
+    <EuiBetaBadge
+      label="Lab"
+      isDisabled
+      title="Laboratory"
+      tooltipContent="This module is not GA. Please help us by reporting any bugs."
+    />
+    &emsp;
     <EuiBetaBadge label="Lab" iconType="beaker" />
     <EuiSpacer />
     <EuiTitle>

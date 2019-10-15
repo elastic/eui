@@ -24,13 +24,24 @@ export interface EuiNotificationBadgeProps
   children: ReactNode;
   size?: BadgeNotificationSize;
   color?: BadgeNotificationColor;
+  isDisabled?: boolean;
 }
 
 export const EuiNotificationBadge: FunctionComponent<
   EuiNotificationBadgeProps
-> = ({ children, className, size = 's', color = 'accent', ...rest }) => {
+> = ({
+  children,
+  isDisabled,
+  className,
+  size = 's',
+  color = 'accent',
+  ...rest
+}) => {
   const classes = classNames(
     'euiNotificationBadge',
+    {
+      'euiNotificationBadge-isDisabled': isDisabled,
+    },
     sizeToClassNameMap[size],
     colorToClassMap[color],
     className

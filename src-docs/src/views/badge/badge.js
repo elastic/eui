@@ -14,15 +14,17 @@ const badges = [
   'accent',
   'warning',
   'danger',
-  '#fea27f',
   '#000',
+  '#fea27f',
 ];
 
 export default () => (
   <EuiFlexGroup wrap responsive={false} gutterSize="xs" style={{ width: 300 }}>
     {badges.map(badge => (
       <EuiFlexItem grow={false} key={badge}>
-        <EuiBadge color={badge}>{badge}</EuiBadge>
+        <EuiBadge isDisabled={badge === '#fea27f' ? true : false} color={badge}>
+          {badge === '#fea27f' ? 'disabled badge' : badge}
+        </EuiBadge>
       </EuiFlexItem>
     ))}
   </EuiFlexGroup>
