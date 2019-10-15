@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.5.0`.
+**Bug fixes**
+
+- Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 
