@@ -285,24 +285,30 @@ Array [
               role="row"
             >
               <div
+                aria-label="Column header 1:"
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-A"
+                id="A"
                 role="columnheader"
                 tabindex="-1"
               >
                 <div
+                  aria-describedby="A"
                   class="euiDataGridHeaderCell__content"
                 >
                   Column A
                 </div>
               </div>
               <div
+                aria-label="Column header 2:"
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-B"
+                id="B"
                 role="columnheader"
                 tabindex="-1"
               >
                 <div
+                  aria-describedby="B"
                   class="euiDataGridHeaderCell__content"
                 >
                   <div>
@@ -812,24 +818,30 @@ Array [
               role="row"
             >
               <div
+                aria-label="Column header 1:"
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-A"
+                id="A"
                 role="columnheader"
                 tabindex="-1"
               >
                 <div
+                  aria-describedby="A"
                   class="euiDataGridHeaderCell__content"
                 >
                   A
                 </div>
               </div>
               <div
+                aria-label="Column header 2:"
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-B"
+                id="B"
                 role="columnheader"
                 tabindex="-1"
               >
                 <div
+                  aria-describedby="B"
                   class="euiDataGridHeaderCell__content"
                 >
                   B

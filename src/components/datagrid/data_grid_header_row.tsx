@@ -234,6 +234,8 @@ const EuiDataGridHeaderCell: FunctionComponent<
       role="columnheader"
       {...ariaProps}
       key={id}
+      id={id}
+      aria-label={`Column header ${index + 1}:`}
       ref={headerRef}
       tabIndex={isFocused ? 0 : -1}
       className={classes}
@@ -247,7 +249,9 @@ const EuiDataGridHeaderCell: FunctionComponent<
         />
       ) : null}
 
-      <div className="euiDataGridHeaderCell__content">{display || id}</div>
+      <div className="euiDataGridHeaderCell__content" aria-describedby={id}>
+        {display || id}
+      </div>
       {sorting && sorting.columns.length >= 2 && (
         <EuiScreenReaderOnly>
           <div id={screenReaderId}>{sortString}</div>
