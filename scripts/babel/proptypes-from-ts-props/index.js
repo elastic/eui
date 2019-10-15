@@ -396,6 +396,25 @@ function convertLiteralToOneOf(types, literalNode) {
 }
 
 /**
+ * This function resolves discriminated union types (aka tagged union, algebraic data type).
+ */
+function resolveDiscriminatedUnionType(node, optional, state) {
+  const types = state.get('types');
+
+  if (node.type === 'TSLiteralType') {
+    return types.callExpression(
+      types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('oneOf')
+      ),
+      [types.arrayExpression([types.stringLiteral(node.literal.value)])]
+    );
+  } else {
+    return getPropTypesForNode(node, optional, state);
+  }
+}
+
+/**
  * Heavy lifter to generate the proptype AST for a node. Initially called by `processComponentDeclaration`,
  * its return value is set as the component's `propTypes` value. This function calls itself recursively to translate
  * the whole type/interface AST into prop types.
@@ -420,7 +439,11 @@ function getPropTypesForNode(node, optional, state) {
     // Array<Foo>
     //       ^^^ Foo
     case 'TSTypeAnnotation':
-      propType = getPropTypesForNode(node.typeAnnotation, true, state);
+      propType = resolveDiscriminatedUnionType(
+        node.typeAnnotation,
+        true,
+        state
+      );
       break;
 
     // Foo['bar']
