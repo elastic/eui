@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.5.0`.
+- Converted `EuiRadio` and `EuiRadioGroup` to TypeScript ([#2438](https://github.com/elastic/eui/pull/2438))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 
