@@ -20,8 +20,15 @@ import { Comparators, Direction } from '../../services/sort';
 // @ts-ignore
 import { EuiSearchBar } from '../search_bar';
 import { EuiSpacer } from '../spacer/spacer';
+import { Omit } from '../common';
 
 // Search bar types. Should be moved when it is typescriptified.
+interface SearchBoxConfig {
+  placeholder?: string;
+  incremental?: boolean;
+  schema?: SchemaType;
+}
+
 interface SchemaType {
   strict?: boolean;
   fields?: object;
@@ -88,25 +95,9 @@ export type FilterConfig =
 
 type Column = FieldDataColumnType | ComputedColumnType | ActionsColumnType;
 
-interface SearchBox {
-  placeholder?: string;
-  incremental?: boolean;
-  schema?: boolean | SchemaType;
-}
-
-/*
-Use below when TypeScript > 3.5.1
-
-interface SearchBoxConfig {
-  placeholder?: string;
-  incremental?: boolean;
-  schema?: SchemaType;
-}
-
 type SearchBox = Omit<SearchBoxConfig, 'schema'> & {
   schema?: boolean | SchemaType;
 };
-//*/
 
 type CellPropsCallback = (item: Item, column: Column) => object;
 type RowPropsCallback = (item: Item) => object;
