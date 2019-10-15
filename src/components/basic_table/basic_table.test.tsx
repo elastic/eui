@@ -2,7 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBasicTable, getItemId, FieldDataColumnType } from './basic_table';
+import { FieldDataColumnType } from './table_types';
+import { EuiBasicTable, getItemId } from './basic_table';
 import { SortDirection } from '../../services';
 import { DefaultItemAction } from './action_types';
 

@@ -1,101 +1,186 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, ReactNode } from 'react';
+import { EuiBasicTable } from './basic_table';
 import {
-  EuiBasicTable,
   SelectionType,
-  ItemIdType,
-  FieldDataColumnTypeShape,
+  Item,
+  ItemId,
+  FieldDataColumnType,
   ComputedColumnType,
   ActionsColumnType,
-} from './basic_table';
-import { defaults as paginationBarDefaults } from './pagination_bar';
-import { isBoolean, isString } from '../../services/predicate';
-import { Comparators, PropertySortType } from '../../services/sort';
+  DataType,
+  SortingType,
+} from './table_types';
+import { PropertySort } from '../../services';
 import {
-  QueryType,
-  SearchFiltersFiltersType,
-  SearchBoxConfigPropTypes,
-  EuiSearchBar,
-} from '../search_bar';
+  defaults as paginationBarDefaults,
+  Pagination as PaginationBarType,
+} from './pagination_bar';
+import { isBoolean, isString } from '../../services/predicate';
+import { Comparators, Direction } from '../../services/sort';
+// @ts-ignore
+import { EuiSearchBar } from '../search_bar';
 import { EuiSpacer } from '../spacer/spacer';
 
-// same as ColumnType from EuiBasicTable, but need to modify the `sortable` type
-const ColumnType = PropTypes.oneOfType([
-  PropTypes.shape({
-    ...FieldDataColumnTypeShape,
-    sortable: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-  }),
-  ComputedColumnType,
-  ActionsColumnType,
-]);
+// Search bar types. Should be moved when it is typescriptified.
+interface SchemaType {
+  strict?: boolean;
+  fields?: object;
+  flags?: string[];
+}
 
-const InMemoryTablePropTypes = {
-  columns: PropTypes.arrayOf(ColumnType).isRequired,
-  items: PropTypes.array,
-  loading: PropTypes.bool,
-  message: PropTypes.node,
-  error: PropTypes.string,
-  compressed: PropTypes.bool,
-  search: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.shape({
-      defaultQuery: QueryType,
-      box: PropTypes.shape({
-        ...SearchBoxConfigPropTypes,
-        schema: PropTypes.oneOfType([
-          // here we enable the user to just assign 'true' to the schema, in which case
-          // we will auto-generate it out of the columns configuration
-          PropTypes.bool,
-          SearchBoxConfigPropTypes.schema,
-        ]),
-      }),
-      filters: SearchFiltersFiltersType,
-      onChange: PropTypes.func,
-      executeQueryOptions: PropTypes.shape({
-        defaultFields: PropTypes.arrayOf(PropTypes.string),
-        isClauseMatcher: PropTypes.func,
-        explain: PropTypes.bool,
-      }),
-    }),
-  ]),
-  pagination: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.shape({
-      pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-    }),
-    PropTypes.shape({
-      initialPageIndex: PropTypes.number,
-      initialPageSize: PropTypes.number,
-      pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-    }),
-  ]),
-  sorting: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.shape({
-      sort: PropertySortType,
-    }),
-  ]),
+interface SearchBoxConfig {
+  placeholder?: string;
+  incremental?: boolean;
+  schema?: SchemaType;
+}
+
+interface IsFilterConfigType {
+  type: 'is';
+  field: string;
+  name: string;
+  negatedName?: string;
+  available?: () => boolean;
+}
+
+interface FieldValueSelectionFilterConfigType {
+  type: 'field_value_selection';
+  field?: string;
+  autoClose?: boolean;
+  name: string;
+  options: {
+    field?: string;
+    value: any;
+    name?: string;
+    view?: ReactNode;
+  };
+  filterWith?: ((...args: any) => any) | 'prefix' | 'includes';
+  cache?: number;
+  multiSelect?: boolean | 'and' | 'or';
+  loadingMessage?: string;
+  noOptionsMessage?: string;
+  searchThreshold?: number;
+  available?: () => boolean;
+}
+
+interface FieldValueToggleFilterConfigType {
+  type: 'field_value_toggle';
+  field: string;
+  value: string | number | boolean;
+  name: string;
+  negatedName?: string;
+  available?: () => boolean;
+  operator?: 'eq' | 'exact' | 'gt' | 'gte' | 'lt' | 'lte';
+}
+
+interface FieldValueToggleGroupFilterItem {
+  value: string | number | boolean;
+  name: string;
+  negatedName?: string;
+  operator?: 'eq' | 'exact' | 'gt' | 'gte' | 'lt' | 'lte';
+}
+
+interface FieldValueToggleGroupFilterConfigType {
+  type: 'field_value_toggle_group';
+  field: string;
+  items: FieldValueToggleGroupFilterItem[];
+  available?: () => boolean;
+}
+
+export type FilterConfig =
+  | IsFilterConfigType
+  | FieldValueSelectionFilterConfigType
+  | FieldValueToggleFilterConfigType
+  | FieldValueToggleGroupFilterConfigType;
+
+type Column = FieldDataColumnType | ComputedColumnType | ActionsColumnType;
+
+type SearchBox = Omit<SearchBoxConfig, 'schema'> & {
+  schema?: boolean | SchemaType;
+};
+
+type CellPropsCallback = (item: Item, column: Column) => object;
+type RowPropsCallback = (item: Item) => object;
+
+interface SearchOptions {
+  defaultQuery?: any /* Query */;
+  box?: SearchBox;
+  filters?: FilterConfig[];
+  onChange?: (...args: any) => any;
+  executeQueryOptions?: {
+    defaultFields?: string[];
+    isClauseMatcher?: (...args: any) => boolean;
+    explain?: boolean;
+  };
+}
+
+type Search = boolean | SearchOptions;
+
+interface PaginationOptions {
+  initialPageIndex?: number;
+  initialPageSize?: number;
+  pageSizeOptions?: number[];
+  hidePerPageOptions?: boolean;
+}
+
+type Pagination = boolean | PaginationOptions;
+
+interface SortingOptions {
+  sort: PropertySort;
+}
+
+type Sorting = boolean | SortingOptions;
+
+interface Props {
+  columns: Column[];
+  items: Item[];
+  loading?: boolean;
+  message?: ReactNode;
+  error?: string;
+  compressed?: boolean;
+  search?: Search;
+  pagination?: Pagination;
+  sorting?: Sorting;
   /**
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
    */
-  allowNeutralSort: PropTypes.bool,
-  selection: SelectionType,
-  itemId: ItemIdType,
-  rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  onTableChange: PropTypes.func,
-};
+  allowNeutralSort?: boolean;
+  selection?: SelectionType;
+  itemId?: ItemId;
+  rowProps?: object | RowPropsCallback;
+  cellProps?: object | CellPropsCallback;
+  onTableChange?: (...args: any) => void;
+  executeQueryOptions?: any;
+  isSelectable?: boolean;
+  hasActions?: boolean;
+  itemIdToExpandedRowMap?: any;
+}
 
-const getInitialQuery = search => {
+interface State {
+  prevProps: {
+    items: Item[];
+    sortName: ReactNode;
+    sortDirection?: Direction;
+  };
+  query: any /* Query */;
+  pageIndex: number;
+  pageSize?: number;
+  pageSizeOptions?: number[];
+  sortName: ReactNode;
+  sortDirection?: Direction;
+  allowNeutralSort: boolean;
+  hidePerPageOptions: any;
+}
+
+const getInitialQuery = (search: Search | undefined) => {
   if (!search) {
     return;
   }
 
-  const query = search.defaultQuery || '';
+  const query = (search as SearchOptions).defaultQuery || '';
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
 };
 
-const getInitialPagination = pagination => {
+const getInitialPagination = (pagination: Pagination | undefined) => {
   if (!pagination) {
     return {
       pageIndex: undefined,
@@ -108,7 +193,7 @@ const getInitialPagination = pagination => {
     initialPageSize,
     pageSizeOptions = paginationBarDefaults.pageSizeOptions,
     hidePerPageOptions,
-  } = pagination;
+  } = pagination as PaginationOptions;
 
   if (
     !hidePerPageOptions &&
@@ -132,24 +217,27 @@ const getInitialPagination = pagination => {
   };
 };
 
-function findColumnByProp(columns, prop, value) {
+function findColumnByProp(columns: Column[], prop: string, value: any) {
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
-    if (column[prop] === value) {
+    if ((column as any)[prop] === value) {
       return column;
     }
   }
 }
 
-const getInitialSorting = (columns, sorting) => {
-  if (!sorting || !sorting.sort) {
+const getInitialSorting = (columns: Column[], sorting: Sorting | undefined) => {
+  if (!sorting || !(sorting as SortingOptions).sort) {
     return {
       sortName: undefined,
       sortDirection: undefined,
     };
   }
 
-  const { field: sortable, direction: sortDirection } = sorting.sort;
+  const {
+    field: sortable,
+    direction: sortDirection,
+  } = (sorting as SortingOptions).sort;
 
   // sortable could be a column's `field` or its `name`
   // for backwards compatibility `field` must be checked first
@@ -173,17 +261,8 @@ const getInitialSorting = (columns, sorting) => {
   };
 };
 
-export class EuiInMemoryTable extends Component {
-  static propTypes = InMemoryTablePropTypes;
-  static defaultProps = {
-    items: [],
-    pagination: false,
-    sorting: false,
-    responsive: true,
-    executeQueryOptions: {},
-  };
-
-  static getDerivedStateFromProps(nextProps, prevState) {
+export class EuiInMemoryTable extends Component<Props, State> {
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     if (nextProps.items !== prevState.prevProps.items) {
       // We have new items because an external search has completed, so reset pagination state.
       return {
@@ -210,7 +289,7 @@ export class EuiInMemoryTable extends Component {
     return null;
   }
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     const { columns, search, pagination, sorting, allowNeutralSort } = props;
@@ -229,7 +308,7 @@ export class EuiInMemoryTable extends Component {
         sortDirection,
       },
       query: getInitialQuery(search),
-      pageIndex,
+      pageIndex: pageIndex || 0,
       pageSize,
       pageSizeOptions,
       sortName,
@@ -239,7 +318,7 @@ export class EuiInMemoryTable extends Component {
     };
   }
 
-  onTableChange = ({ page = {}, sort = {} }) => {
+  onTableChange = ({ page = {}, sort = {} }: any) => {
     const { index: pageIndex, size: pageSize } = page;
 
     let { field: sortName, direction: sortDirection } = sort;
@@ -252,7 +331,7 @@ export class EuiInMemoryTable extends Component {
     // map back to `name` if this is the case
     for (let i = 0; i < this.props.columns.length; i++) {
       const column = this.props.columns[i];
-      if (column.field === sortName) {
+      if ((column as FieldDataColumnType).field === sortName) {
         sortName = column.name;
         break;
       }
@@ -288,9 +367,10 @@ export class EuiInMemoryTable extends Component {
     });
   };
 
-  onQueryChange = ({ query, queryText, error }) => {
-    if (this.props.search.onChange) {
-      const shouldQueryInMemory = this.props.search.onChange({
+  onQueryChange = ({ query, queryText, error }: any) => {
+    if (this.props.search && (this.props.search as SearchOptions).onChange) {
+      const search = this.props.search as SearchOptions;
+      const shouldQueryInMemory = (search as any).onChange({
         query,
         queryText,
         error,
@@ -313,7 +393,7 @@ export class EuiInMemoryTable extends Component {
       const {
         onChange, // eslint-disable-line no-unused-vars
         ...searchBarProps
-      } = isBoolean(search) ? {} : search;
+      } = isBoolean(search) ? { onChange: undefined } : search;
 
       if (searchBarProps.box && searchBarProps.box.schema === true) {
         searchBarProps.box.schema = this.resolveSearchSchema();
@@ -325,11 +405,15 @@ export class EuiInMemoryTable extends Component {
 
   resolveSearchSchema() {
     const { columns } = this.props;
-    return columns.reduce(
+    return columns.reduce<{
+      strict: boolean;
+      fields: Record<string, { type: DataType }>;
+    }>(
       (schema, column) => {
-        if (column.field) {
-          const type = column.dataType || 'string';
-          schema.fields[column.field] = { type };
+        const { field, dataType } = column as FieldDataColumnType;
+        if (field) {
+          const type = dataType || 'string';
+          schema.fields[field] = { type };
         }
         return schema;
       },
@@ -342,7 +426,9 @@ export class EuiInMemoryTable extends Component {
 
     const { columns } = this.props;
 
-    const sortColumn = columns.find(({ name }) => name === sortName);
+    const sortColumn = columns.find(
+      ({ name }) => name === sortName
+    ) as FieldDataColumnType;
 
     if (sortColumn == null) {
       // can't return a non-function so return a function that says everything is the same
@@ -437,11 +523,11 @@ export class EuiInMemoryTable extends Component {
 
     const { items, totalItemCount } = this.getItems();
 
-    const pagination = !hasPagination
+    const pagination: PaginationBarType | undefined = !hasPagination
       ? undefined
       : {
           pageIndex,
-          pageSize,
+          pageSize: pageSize || 1,
           pageSizeOptions,
           totalItemCount,
           hidePerPageOptions,
@@ -450,15 +536,15 @@ export class EuiInMemoryTable extends Component {
     // Data loaded from a server can have a default sort order which is meaningful to the
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display
     // rows in the order in which they're initially loaded by providing an undefined sorting prop.
-    const sorting = !hasSorting
+    const sorting: SortingType | undefined = !hasSorting
       ? undefined
       : {
           sort:
             !sortName && !sortDirection
               ? undefined
               : {
-                  field: sortName,
-                  direction: sortDirection,
+                  field: sortName as string,
+                  direction: sortDirection as Direction,
                 },
           allowNeutralSort: this.state.allowNeutralSort,
         };
