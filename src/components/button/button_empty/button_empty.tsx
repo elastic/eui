@@ -11,6 +11,7 @@ import {
 import { EuiLoadingSpinner } from '../../loading';
 import { getSecureRelForTarget } from '../../../services';
 import { IconType, EuiIcon } from '../../icon';
+import { ButtonIconSide } from '../button';
 
 export type EuiButtonEmptyColor =
   | 'primary'
@@ -37,12 +38,12 @@ const sizeToClassNameMap = {
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-const iconSideToClassNameMap = {
+export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
+
+const iconSideToClassNameMap: { [side in ButtonIconSide]: string } = {
   left: '',
   right: 'euiButtonEmpty--iconRight',
 };
-
-export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
 
 export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
@@ -55,7 +56,7 @@ export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
 
 interface CommonEuiButtonEmptyProps extends CommonProps {
   iconType?: IconType;
-  iconSide?: keyof typeof iconSideToClassNameMap;
+  iconSide?: ButtonIconSide;
   color?: EuiButtonEmptyColor;
   size?: EuiButtonEmptySizes;
   flush?: keyof typeof flushTypeToClassNameMap;
