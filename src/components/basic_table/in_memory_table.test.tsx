@@ -2,8 +2,9 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiInMemoryTable } from './in_memory_table';
+import { EuiInMemoryTable, FilterConfig } from './in_memory_table';
 import { ENTER } from '../../services/key_codes';
+import { SortDirection } from '../../services';
 
 describe('EuiInMemoryTable', () => {
   test('empty array', () => {
@@ -291,7 +292,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'name',
-            direction: 'asc',
+            direction: SortDirection.ASC,
           },
         },
       };
@@ -323,7 +324,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'Name',
-            direction: 'desc',
+            direction: SortDirection.DESC,
           },
         },
       };
@@ -361,7 +362,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'name',
-            direction: 'desc',
+            direction: SortDirection.DESC,
           },
         },
       };
@@ -394,7 +395,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'something_nonexistant',
-            direction: 'asc',
+            direction: SortDirection.ASC,
           },
         },
       };
@@ -428,7 +429,7 @@ describe('EuiInMemoryTable', () => {
       sorting: {
         sort: {
           field: 'name',
-          direction: 'desc',
+          direction: SortDirection.DESC,
         },
       },
     };
@@ -507,7 +508,7 @@ describe('EuiInMemoryTable', () => {
           name: 'Name',
           description: 'description',
           sortable: true,
-          render: name => name.toUpperCase(),
+          render: (name: any) => name.toUpperCase(),
         },
       ],
       pagination: {
@@ -543,7 +544,6 @@ describe('EuiInMemoryTable', () => {
           name: 'Actions',
           actions: [
             {
-              type: 'button',
               name: 'Edit',
               description: 'edit',
               onClick: () => undefined,
@@ -582,7 +582,6 @@ describe('EuiInMemoryTable', () => {
           name: 'Actions',
           actions: [
             {
-              type: 'button',
               name: 'Edit',
               description: 'edit',
               onClick: () => undefined,
@@ -622,7 +621,6 @@ describe('EuiInMemoryTable', () => {
           name: 'Actions',
           actions: [
             {
-              type: 'button',
               name: 'Edit',
               description: 'edit',
               onClick: () => undefined,
@@ -636,7 +634,6 @@ describe('EuiInMemoryTable', () => {
         defaultQuery: 'name:name1',
         box: {
           incremental: true,
-          ...requiredProps,
         },
         filters: [
           {
@@ -646,7 +643,7 @@ describe('EuiInMemoryTable', () => {
             name: 'Name1',
             negatedName: 'Not Name1',
           },
-        ],
+        ] as FilterConfig[],
       },
       selection: {
         onSelectionChanged: () => undefined,
@@ -801,19 +798,19 @@ describe('EuiInMemoryTable', () => {
           {
             field: 'name',
             name: 'Name',
-            sortable: ({ id }) => id,
+            sortable: ({ id }: any) => id,
           },
         ],
         sorting: {
           sort: {
             field: 'name',
-            direction: 'asc',
+            direction: SortDirection.ASC,
           },
         },
       };
       const component = mount(<EuiInMemoryTable {...props} />);
 
-      expect(component.find('EuiBasicTable').props().items).toEqual([
+      expect((component.find('EuiBasicTable').props() as any).items).toEqual([
         { id: 3, name: 'Betty' },
         { id: 5, name: 'Charlie' },
         { id: 7, name: 'Alfred' },
@@ -851,7 +848,7 @@ describe('EuiInMemoryTable', () => {
 
       // forces EuiInMemoryTable's getDerivedStateFromProps to re-execute
       // this is specifically testing regression against https://github.com/elastic/eui/issues/1007
-      component.setProps();
+      component.setProps({});
 
       expect(component).toMatchSnapshot();
     });
@@ -904,7 +901,7 @@ describe('EuiInMemoryTable', () => {
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenCalledWith({
         sort: {
-          direction: 'asc',
+          direction: SortDirection.ASC,
           field: 'name',
         },
         page: {

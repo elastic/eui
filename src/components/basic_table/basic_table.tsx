@@ -1,5 +1,4 @@
 import React, { Component, Fragment, ReactNode, HTMLAttributes } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -10,8 +9,6 @@ import {
   formatText,
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
-  HorizontalAlignment,
   SortDirection,
   Direction,
   PropertySort,
@@ -30,8 +27,6 @@ import { EuiTableBody } from '../table/table_body';
 import { EuiTableFooterCell } from '../table/table_footer_cell';
 import { EuiTableFooter } from '../table/table_footer';
 import { EuiTableRowCellCheckbox } from '../table/table_row_cell_checkbox';
-import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
-import { ICON_TYPES } from '../icon';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 import { EuiTableRowCell } from '../table/table_row_cell';
@@ -46,9 +41,18 @@ import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 import makeId from '../form/form_row/make_id';
 import { Action } from './action_types';
-import { Item, ItemId } from './table_types';
+import {
+  Item,
+  ItemId,
+  DataType,
+  FooterProps,
+  ActionsColumnType,
+  ComputedColumnType,
+  FieldDataColumnType,
+  SelectionType,
+  SortingType,
+} from './table_types';
 
-type DataType = 'auto' | 'string' | 'number' | 'boolean' | 'date';
 type DataTypeProfiles = Record<
   DataType,
   {
@@ -83,91 +87,6 @@ const dataTypesProfiles: DataTypeProfiles = {
 const DATA_TYPES = Object.keys(dataTypesProfiles);
 
 type ItemIdToExpandedRowMap = any;
-
-const DefaultItemActionType = PropTypes.shape({
-  type: PropTypes.oneOf(['icon', 'button']), // default is 'button'
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  onClick: PropTypes.func, // (item) => void,
-  href: PropTypes.string,
-  target: PropTypes.string,
-  available: PropTypes.func, // (item) => boolean;
-  enabled: PropTypes.func, // (item) => boolean;
-  isPrimary: PropTypes.bool,
-  icon: PropTypes.oneOfType([
-    // required when type is 'icon'
-    PropTypes.oneOf(ICON_TYPES),
-    PropTypes.func, // (item) => oneOf(ICON_TYPES)
-  ]),
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf(BUTTON_ICON_COLORS),
-    PropTypes.func, // (item) => oneOf(ICON_BUTTON_COLORS)
-  ]),
-  'data-test-subj': PropTypes.string,
-});
-
-const CustomItemActionType = PropTypes.shape({
-  render: PropTypes.func.isRequired, // (item, enabled) => PropTypes.node;
-  available: PropTypes.func, // (item) => boolean;
-  enabled: PropTypes.func, // (item) => boolean;
-  isPrimary: PropTypes.bool,
-});
-
-const SupportedItemActionType = PropTypes.oneOfType([
-  DefaultItemActionType,
-  CustomItemActionType,
-]);
-
-export const ActionsColumnType = PropTypes.shape({
-  actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
-  name: PropTypes.node,
-  description: PropTypes.string,
-  width: PropTypes.string,
-});
-
-export const FieldDataColumnTypeShape = {
-  field: PropTypes.string.isRequired,
-  name: PropTypes.node.isRequired,
-  description: PropTypes.string,
-  dataType: PropTypes.oneOf(DATA_TYPES),
-  width: PropTypes.string,
-  sortable: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-  align: PropTypes.oneOf([LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT]),
-  truncateText: PropTypes.bool,
-  render: PropTypes.func, // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
-  footer: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-    PropTypes.func, // ({ items, pagination }) => PropTypes.node
-  ]),
-};
-export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
-
-export const ComputedColumnType = PropTypes.shape({
-  render: PropTypes.func.isRequired, // (record) => PropTypes.node
-  name: PropTypes.node,
-  description: PropTypes.string,
-  sortable: PropTypes.func,
-  width: PropTypes.string,
-  truncateText: PropTypes.bool,
-});
-
-export const ColumnType = PropTypes.oneOfType([
-  FieldDataColumnType,
-  ComputedColumnType,
-  ActionsColumnType,
-]);
-
-export const ItemIdType = PropTypes.oneOfType([
-  PropTypes.string, // the name of the item id property
-  PropTypes.func, // (item) => string
-]);
-
-export const SelectionType = PropTypes.shape({
-  onSelectionChange: PropTypes.func, // (selection: item[]) => void;,
-  selectable: PropTypes.func, // (item) => boolean;
-  selectableMessage: PropTypes.func, // (selectable, item) => string;
-});
 
 export function getItemId(item: Item, itemId?: ItemId) {
   if (itemId) {
@@ -216,65 +135,10 @@ function getColumnFooter(column: Column, { items, pagination }: FooterProps) {
   return undefined;
 }
 
-interface FooterProps {
-  items: Item[];
-  pagination?: Pagination;
-}
-
-export interface FieldDataColumnType {
-  field: string;
-  name: ReactNode;
-  description?: string;
-  dataType?: DataType;
-  width?: string;
-  sortable?: boolean | ((item: Item) => number | string);
-  isExpander?: boolean;
-  textOnly?: boolean;
-  align?: HorizontalAlignment;
-  truncateText?: boolean;
-  isMobileHeader?: boolean;
-  mobileOptions?: {
-    show?: boolean;
-    only?: boolean;
-    render?: (item: Item) => ReactNode;
-    header?: boolean;
-  };
-  hideForMobile?: boolean;
-  render?: (value: any, record: any) => ReactNode;
-  footer?: string | React.ReactElement | ((props: FooterProps) => ReactNode);
-}
-
-export interface ComputedColumnType {
-  render: (record: any) => ReactNode;
-  name?: ReactNode;
-  description?: string;
-  sortable?: (item: Item) => number | string;
-  width?: string;
-  truncateText?: boolean;
-}
-
-export interface ActionsColumnType {
-  actions: Action[];
-  name?: ReactNode;
-  description?: string;
-  width?: string;
-}
-
 export type Column =
   | FieldDataColumnType
   | ComputedColumnType
   | ActionsColumnType;
-
-interface SelectionType {
-  onSelectionChange?: (selection: Item) => void;
-  selectable?: (item: Item) => boolean;
-  selectableMessage?: (selectable: boolean, item: Item) => string;
-}
-
-interface SortingType {
-  sort?: PropertySort;
-  allowNeutralSort?: boolean;
-}
 
 interface Criteria {
   page?: {
