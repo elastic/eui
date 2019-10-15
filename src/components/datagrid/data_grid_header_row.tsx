@@ -105,16 +105,23 @@ const EuiDataGridHeaderCell: FunctionComponent<
   useEffect(() => {
     if (headerRef.current) {
       function enableInteractives() {
-        const disabledElements = headerRef.current!.querySelectorAll(
+        const interactiveElements = headerRef.current!.querySelectorAll(
           '[data-euigrid-tab-managed]'
         );
-        for (let i = 0; i < disabledElements.length; i++) {
-          disabledElements[i].setAttribute('tabIndex', '0');
+        for (let i = 0; i < interactiveElements.length; i++) {
+          interactiveElements[i].setAttribute('tabIndex', '0');
         }
       }
 
       function disableInteractives() {
         const tababbles = tabbable(headerRef.current!);
+        if (tababbles.length > 1) {
+          console.warn(
+            `EuiDataGridHeaderCell expects at most 1 tabbable element, ${
+              tababbles.length
+            } found instead`
+          );
+        }
         for (let i = 0; i < tababbles.length; i++) {
           const element = tababbles[i];
           element.setAttribute('data-euigrid-tab-managed', 'true');

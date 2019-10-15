@@ -26,7 +26,7 @@ const columns = [
         <EuiButtonIcon
           aria-label="menu"
           iconType="menuRight"
-          onClick={() => alert('Icon Clicked!')}
+          onClick={() => alert('Menu Icon Clicked!')}
           style={{ position: 'absolute', right: 0 }}
         />
       </span>
@@ -37,18 +37,12 @@ const columns = [
     display: (
       <div>
         email
-        <div style={{ position: 'absolute', right: 0, top: '5px' }}>
-          <EuiButtonIcon
-            aria-label="email"
-            iconType="email"
-            onClick={() => alert('Email Icon Clicked!')}
-          />
-          <EuiButtonIcon
-            aria-label="menu"
-            iconType="menuRight"
-            onClick={() => alert('Menu Icon Clicked!')}
-          />
-        </div>
+        <EuiButtonIcon
+          aria-label="email"
+          iconType="email"
+          onClick={() => alert('Email Icon Clicked!')}
+          style={{ position: 'absolute', right: 0 }}
+        />
       </div>
     ),
   },
