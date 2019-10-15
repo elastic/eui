@@ -42,6 +42,8 @@ const iconSideToClassNameMap = {
   right: 'euiButtonEmpty--iconRight',
 };
 
+export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
+
 export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
 const flushTypeToClassNameMap = {
@@ -55,7 +57,7 @@ interface CommonEuiButtonEmptyProps extends CommonProps {
   iconType?: IconType;
   iconSide?: keyof typeof iconSideToClassNameMap;
   color?: EuiButtonEmptyColor;
-  size?: keyof typeof sizeToClassNameMap;
+  size?: EuiButtonEmptySizes;
   flush?: keyof typeof flushTypeToClassNameMap;
   isDisabled?: boolean;
   href?: string;
