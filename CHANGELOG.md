@@ -14,6 +14,7 @@ No public interface changes since `14.5.0`.
 - Added `keyboardShorcut` glyph to 'EuiIcon ([#2413](https://github.com/elastic/eui/pull/2413))
 - Improved a11y in `EuiNavDrawer` ([#2417](https://github.com/elastic/eui/pull/2417))
 - Improved a11y in `EuiSuperDatePicker` ([#2426](https://github.com/elastic/eui/pull/2426))
+- Added disabled state to `EuiBadge` ([#2440](https://github.com/elastic/eui/pull/2440))
 
 **Bug fixes**
 
