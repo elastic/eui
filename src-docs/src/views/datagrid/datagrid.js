@@ -36,7 +36,7 @@ const columns = [
     id: 'email',
     display: (
       <div>
-        name
+        email
         <div style={{ position: 'absolute', right: 0, top: '5px' }}>
           <EuiButtonIcon
             aria-label="email"
