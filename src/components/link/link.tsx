@@ -9,8 +9,8 @@ import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 
-type EuiLinkType = 'button' | 'reset' | 'submit';
-type EuiLinkColor =
+export type EuiLinkType = 'button' | 'reset' | 'submit';
+export type EuiLinkColor =
   | 'primary'
   | 'subdued'
   | 'secondary'
