@@ -43,6 +43,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       ],
     }
   }
+  responsive={true}
 >
   <EuiBasicTable
     aria-label="aria-label"
