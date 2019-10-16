@@ -69,6 +69,7 @@ export const useStyleSelector = (
           iconType="tableDensityExpanded"
           className="euiDataGrid__controlBtn"
           color="text"
+          data-test-subj="dataGridStyleSelectorButton"
           onClick={() => setIsOpen(!isOpen)}>
           <EuiI18n token="euiStyleSelector.buttonText" default="Density" />
         </EuiButtonEmpty>

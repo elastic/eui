@@ -629,32 +629,47 @@ Array [
         />
       );
 
-      // no columns are sorted, expect no aria-sort or aria-describedby attributes
-      expect(
-        component.find('[data-test-subj="euiDataGrid__controls"]').length
-      ).toBe(0);
-    });
-
-    it('can hide the full screen button', () => {
-      const component = mount(
-        <EuiDataGrid
-          {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }]}
-          columnVisibility={{
-            visibleColumns: ['A', 'B'],
-            setVisibleColumns: () => {},
-          }}
-          toolbarDisplay={{ showFullscrenSelector: false }}
-          rowCount={1}
-          renderCellValue={() => 'value'}
-        />
+      // The toolbar should not show
+      expect(component.find('[data-test-subj="dataGridControls"]').length).toBe(
+        0
       );
 
-      // no columns are sorted, expect no aria-sort or aria-describedby attributes
+      // Check for false / true and unset values
+      component.setProps({
+        toolbarDisplay: {
+          showFullscrenSelector: false,
+          showSortSelector: false,
+          showStyleSelector: true,
+        },
+      });
+
+      // fullscreen selector
       expect(
-        component.find('[data-test-subj="euiDataGrid__showFullScrenButton"]')
-          .length
+        component.find(
+          'EuiButtonEmpty[data-test-subj="dataGridFullScrenButton"]'
+        ).length
       ).toBe(0);
+
+      // sort selector
+      expect(
+        component.find(
+          'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+        ).length
+      ).toBe(0);
+
+      // style selector
+      expect(
+        component.find(
+          'EuiButtonEmpty[data-test-subj="dataGridStyleSelectorButton"]'
+        ).length
+      ).toBe(1);
+
+      // column selector
+      expect(
+        component.find(
+          'EuiButtonEmpty[data-test-subj="dataGridColumnSelectorButton"]'
+        ).length
+      ).toBe(1);
     });
 
     describe('schema datatype classnames', () => {

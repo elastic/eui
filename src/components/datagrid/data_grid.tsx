@@ -495,7 +495,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
           iconType="fullScreen"
           color="text"
           className={controlBtnClasses}
-          data-test-subj="euiDataGrid__showFullScrenButton"
+          data-test-subj="dataGridFullScrenButton"
           onClick={() => setIsFullScreen(!isFullScreen)}>
           {isFullScreen ? fullScreenButtonActive : fullScreenButton}
         </EuiButtonEmpty>
@@ -512,7 +512,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         {showToolbar ? (
           <div
             className="euiDataGrid__controls"
-            data-test-sub="euiDataGrid__controls">
+            data-test-sub="dataGridControls">
             {hasRoomForGridControls ? gridControls : null}
             {checkOrDefaultToolBarDiplayOptions(
               toolbarDisplay,
