@@ -11,9 +11,7 @@ import {
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => {
-    return () => 42;
-  },
+  htmlIdGenerator: () => () => 'htmlId',
 }));
 
 describe('EuiCodeEditor', () => {

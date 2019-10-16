@@ -1,14 +1,36 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
+
+## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
+
+- Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
+
+**Bug fixes**
+
+- Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
+- Strip custom semantics from `EuiSideNav` ([#2429](https://github.com/elastic/eui/pull/2429))
+
+## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
+
 - Update Elastic-Charts to version 13.0.0 and updated the theme object accordingly ([#2381](https://github.com/elastic/eui/pull/2381))
 - Added new `EuiColorStops` component ([#2360](https://github.com/elastic/eui/pull/2360))
 - Added `currency` glyph to 'EuiIcon' ([#2398](https://github.com/elastic/eui/pull/2398))
 - Migrate `EuiBreadcrumbs`, `EuiHeader` etc, and `EuiLink` to TypeScript ([#2391](https://github.com/elastic/eui/pull/2391))
-- Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
+- Added `hasChildLabel` prop to `EuiFormRow` to avoid duplicate labels ([#2411](https://github.com/elastic/eui/pull/2411))
+- Added `component` prop to `EuiPageBody`, switching the default from `div` to `main` ([#2410](https://github.com/elastic/eui/pull/2410))
+- Added focus state to `EuiListGroupItem` ([#2406](https://github.com/elastic/eui/pull/2406))
+- Added `keyboardShorcut` glyph to 'EuiIcon ([#2413](https://github.com/elastic/eui/pull/2413))
+- Improved a11y in `EuiNavDrawer` ([#2417](https://github.com/elastic/eui/pull/2417))
+- Improved a11y in `EuiSuperDatePicker` ([#2426](https://github.com/elastic/eui/pull/2426))
 
 **Bug fixes**
 
-- Fix `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
+- Fixed `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
+- Fixed poor labeling in `EuiSuperDatePicker` ([#2411](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiCodeEditor`'s ID to be dynamic between renders ([#2411](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiCodeEditor` to not render multiple labels for some inputs ([#2411](https://github.com/elastic/eui/pull/2411))
+- Fixed `EuiBreadcrumbs` improper use of `useInnerText` hook ([#2425](https://github.com/elastic/eui/pull/2425))
 
 ## [`14.4.0`](https://github.com/elastic/eui/tree/v14.4.0)
 

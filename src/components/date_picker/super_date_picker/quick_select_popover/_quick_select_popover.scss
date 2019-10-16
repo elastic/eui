@@ -8,11 +8,12 @@
   max-height: $euiSizeM * 11;
   overflow: hidden;
   overflow-y: auto;
+  padding: $euiSizeXS 0; // Offset negative margin from flex items
 }
 
 // sass-lint:disable no-important
 .euiQuickSelectPopover__buttonText {
-  // Override specificity from universal and sibiling selectors
+  // Override specificity from universal and sibling selectors
   margin-right: $euiSizeXS !important;
 }
 

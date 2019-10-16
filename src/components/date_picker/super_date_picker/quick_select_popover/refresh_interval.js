@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { timeUnits, timeUnitsPlural } from '../time_units';
-
+import { EuiI18n } from '../../../i18n';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
 import { EuiSelect, EuiFieldNumber } from '../../../form';
 import { EuiButton } from '../../../button';
+import { htmlIdGenerator } from '../../../../services';
+import { EuiScreenReaderOnly } from '../../../accessibility';
 
 const refreshUnitsOptions = Object.keys(timeUnits)
   .filter(timeUnit => {
@@ -67,6 +69,8 @@ export class EuiRefreshInterval extends Component {
     };
   }
 
+  generateId = htmlIdGenerator();
+
   onValueChange = evt => {
     const sanitizedValue = parseFloat(evt.target.value);
     this.setState(
@@ -110,23 +114,33 @@ export class EuiRefreshInterval extends Component {
   };
 
   render() {
+    const legendId = this.generateId();
+    const refreshSelectionId = this.generateId();
+    const { value, units } = this.state;
+
     if (!this.props.applyRefreshInterval) {
       return null;
     }
 
     return (
-      <Fragment>
+      <fieldset>
         <EuiTitle size="xxxs">
-          <span>Refresh every</span>
+          <legend id={legendId}>
+            <EuiI18n
+              token="euiRefreshInterval.legend"
+              default="Refresh every"
+            />
+          </legend>
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
             <EuiFieldNumber
               compressed
-              value={this.state.value}
+              value={value}
               onChange={this.onValueChange}
               aria-label="Refresh interval value"
+              aria-describedby={`${refreshSelectionId} ${legendId}`}
               data-test-subj="superDatePickerRefreshIntervalInput"
             />
           </EuiFlexItem>
@@ -134,7 +148,8 @@ export class EuiRefreshInterval extends Component {
             <EuiSelect
               compressed
               aria-label="Refresh interval units"
-              value={this.state.units}
+              aria-describedby={`${refreshSelectionId} ${legendId}`}
+              value={units}
               options={refreshUnitsOptions}
               onChange={this.onUnitsChange}
               data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
@@ -146,13 +161,32 @@ export class EuiRefreshInterval extends Component {
               iconType={this.props.isPaused ? 'play' : 'stop'}
               size="s"
               onClick={this.toogleRefresh}
-              disabled={this.state.value === '' || this.state.value <= 0}
-              data-test-subj="superDatePickerToggleRefreshButton">
-              {this.props.isPaused ? 'Start' : 'Stop'}
+              disabled={value === '' || value <= 0}
+              data-test-subj="superDatePickerToggleRefreshButton"
+              aria-describedby={`${refreshSelectionId} ${legendId}`}>
+              {this.props.isPaused ? (
+                <EuiI18n token="euiRefreshInterval.start" default="Start" />
+              ) : (
+                <EuiI18n token="euiRefreshInterval.stop" default="Stop" />
+              )}
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
-      </Fragment>
+        <EuiScreenReaderOnly id={refreshSelectionId}>
+          <p>
+            <EuiI18n
+              token="euiRefreshInterval.fullDescription"
+              default="Currently set to {optionValue} {optionText}."
+              values={{
+                optionValue: value,
+                optionText: refreshUnitsOptions.find(
+                  option => option.value === units
+                ).text,
+              }}
+            />
+          </p>
+        </EuiScreenReaderOnly>
+      </fieldset>
     );
   }
 }

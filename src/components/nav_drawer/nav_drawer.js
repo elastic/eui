@@ -6,7 +6,7 @@ import { EuiNavDrawerFlyout } from './nav_drawer_flyout';
 import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
-import { EuiFlexItem } from '../flex';
+import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { throttle } from '../color_picker/utils';
 
 export class EuiNavDrawer extends Component {
@@ -229,7 +229,7 @@ export class EuiNavDrawer extends Component {
     let footerContent;
     if (showExpandButton) {
       footerContent = (
-        <EuiListGroup className="euiNavDrawer__expandButton" flush>
+        <EuiListGroup className="euiNavDrawer__expandButton">
           <EuiI18n
             tokens={[
               'euiNavDrawer.sideNavCollapse',
@@ -256,6 +256,11 @@ export class EuiNavDrawer extends Component {
                 label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
                 iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
                 size="s"
+                className={
+                  this.state.isCollapsed
+                    ? 'navDrawerExpandButton-isCollapsed'
+                    : 'navDrawerExpandButton-isExpanded'
+                }
                 showToolTip={this.state.isCollapsed}
                 extraAction={{
                   className: 'euiNavDrawer__expandButtonLockAction',
@@ -319,25 +324,25 @@ export class EuiNavDrawer extends Component {
       <EuiOutsideClickDetector
         onOutsideClick={() => this.closeBoth()}
         isDisabled={this.state.outsideClickDisabled}>
-        <div
-          className={classes}
-          onBlur={this.focusOut}
-          onFocus={this.manageFocus}
-          {...rest}>
-          <EuiFlexItem grow={false}>
-            <div
-              id="navDrawerMenu"
-              className={menuClasses}
-              onClick={this.handleDrawerMenuClick}>
-              {/* Put expand button first so it's first in tab order then on toggle starts the tabbing of the items from the top */}
-              {/* TODO: Add a "skip navigation" keyboard only button */}
-              {footerContent}
-              {modifiedChildren}
-            </div>
-          </EuiFlexItem>
-
-          {flyoutContent}
-        </div>
+        <nav className={classes} {...rest}>
+          <EuiFlexGroup
+            gutterSize="none"
+            onBlur={this.focusOut}
+            onFocus={this.manageFocus}>
+            <EuiFlexItem grow={false}>
+              <div
+                id="navDrawerMenu"
+                className={menuClasses}
+                onClick={this.handleDrawerMenuClick}>
+                {/* Put expand button first so it's first in tab order then on toggle starts the tabbing of the items from the top */}
+                {/* TODO: Add a "skip navigation" keyboard only button */}
+                {modifiedChildren}
+                {footerContent}
+              </div>
+            </EuiFlexItem>
+            {flyoutContent}
+          </EuiFlexGroup>
+        </nav>
       </EuiOutsideClickDetector>
     );
   }

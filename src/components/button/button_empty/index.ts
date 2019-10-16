@@ -2,6 +2,7 @@ export {
   COLORS,
   ICON_SIDES,
   EuiButtonEmpty,
-  EuiButtonEmptyProps,
   EuiButtonEmptyColor,
+  EuiButtonEmptyProps,
+  EuiButtonEmptySizes,
 } from './button_empty';

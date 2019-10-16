@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiPageBody is rendered 1`] = `
-<div
+<main
   aria-label="aria-label"
   class="euiPageBody testClass1 testClass2"
   data-test-subj="test subject string"
@@ -9,7 +9,7 @@ exports[`EuiPageBody is rendered 1`] = `
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
-<div
+<main
   aria-label="aria-label"
   class="euiPageBody euiPageBody--restrictWidth-custom testClass1 testClass2"
   data-test-subj="test subject string"
@@ -18,7 +18,7 @@ exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom value and measurement 1`] = `
-<div
+<main
   aria-label="aria-label"
   class="euiPageBody euiPageBody--restrictWidth-custom testClass1 testClass2"
   data-test-subj="test subject string"
@@ -27,7 +27,7 @@ exports[`EuiPageBody restrict width can be set to a custom value and measurement
 `;
 
 exports[`EuiPageBody restrict width can be set to a default 1`] = `
-<div
+<main
   aria-label="aria-label"
   class="euiPageBody euiPageBody--restrictWidth-default testClass1 testClass2"
   data-test-subj="test subject string"

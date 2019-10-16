@@ -1,5 +1,115 @@
 [
   {
+    "version": "14.5.0",
+    "changes": [
+      {
+        "token": "euiColorStopThumb.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "A popup with a color stop edit form opened.\n            Tab forward to cycle through form controls or press\n            escape to close this popup."
+      },
+      {
+        "token": "euiColorStopThumb.removeLabel",
+        "changeType": "added",
+        "value": "Remove this stop"
+      },
+      {
+        "token": "euiColorStops.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "{label}: {readOnly} {disabled} Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop."
+      },
+      {
+        "token": "euiRelativeTab.unitInputLabel",
+        "changeType": "added",
+        "value": "Relative time span"
+      },
+      {
+        "token": "euiRelativeTab.roundingLabel",
+        "changeType": "added",
+        "value": "Round to the {unit}"
+      },
+      {
+        "token": "euiRelativeTab.relativeDate",
+        "changeType": "added",
+        "value": "{position} date"
+      },
+      {
+        "token": "euiRelativeTab.fullDescription",
+        "changeType": "added",
+        "value": "The unit is changeable. Currently set to {unit}."
+      },
+      {
+        "token": "euiCommonlyUsedTimeRanges.legend",
+        "changeType": "added",
+        "value": "Commonly used"
+      },
+      {
+        "token": "euiQuickSelect.legendText",
+        "changeType": "added",
+        "value": "Quick select a time range"
+      },
+      {
+        "token": "euiQuickSelect.quickSelectTitle",
+        "changeType": "added",
+        "value": "Quick select"
+      },
+      {
+        "token": "euiQuickSelect.previousLabel",
+        "changeType": "added",
+        "value": "Previous time window"
+      },
+      {
+        "token": "euiQuickSelect.nextLabel",
+        "changeType": "added",
+        "value": "Next time window"
+      },
+      {
+        "token": "euiQuickSelect.tenseLabel",
+        "changeType": "added",
+        "value": "Time tense"
+      },
+      {
+        "token": "euiQuickSelect.valueLabel",
+        "changeType": "added",
+        "value": "Time value"
+      },
+      {
+        "token": "euiQuickSelect.unitLabel",
+        "changeType": "added",
+        "value": "Time unit"
+      },
+      {
+        "token": "euiQuickSelect.applyButton",
+        "changeType": "added",
+        "value": "Apply"
+      },
+      {
+        "token": "euiQuickSelect.fullDescription",
+        "changeType": "added",
+        "value": "Currently set to {timeTense} {timeValue} {timeUnit}."
+      },
+      {
+        "token": "euiRefreshInterval.legend",
+        "changeType": "added",
+        "value": "Refresh every"
+      },
+      {
+        "token": "euiRefreshInterval.start",
+        "changeType": "added",
+        "value": "Start"
+      },
+      {
+        "token": "euiRefreshInterval.stop",
+        "changeType": "added",
+        "value": "Stop"
+      },
+      {
+        "token": "euiRefreshInterval.fullDescription",
+        "changeType": "added",
+        "value": "Currently set to {optionValue} {optionText}."
+      }
+    ]
+  },
+  {
     "version": "14.3.0",
     "changes": [
       {
