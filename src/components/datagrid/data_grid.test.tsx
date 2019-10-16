@@ -630,9 +630,7 @@ Array [
       );
 
       // The toolbar should not show
-      expect(
-        component.find('div[data-test-subj="dataGridControls"]').length
-      ).toBe(0);
+      expect(findTestSubject(component, 'dataGridControls').length).toBe(0);
 
       // Check for false / true and unset values
       component.setProps({
@@ -644,31 +642,23 @@ Array [
       });
 
       // fullscreen selector
-      expect(
-        component.find(
-          'EuiButtonEmpty[data-test-subj="dataGridFullScrenButton"]'
-        ).length
-      ).toBe(0);
+      expect(findTestSubject(component, 'dataGridFullScrenButton').length).toBe(
+        0
+      );
 
       // sort selector
       expect(
-        component.find(
-          'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
-        ).length
+        findTestSubject(component, 'dataGridColumnSortingButton').length
       ).toBe(0);
 
       // style selector
       expect(
-        component.find(
-          'EuiButtonEmpty[data-test-subj="dataGridStyleSelectorButton"]'
-        ).length
+        findTestSubject(component, 'dataGridStyleSelectorButton').length
       ).toBe(1);
 
       // column selector
       expect(
-        component.find(
-          'EuiButtonEmpty[data-test-subj="dataGridColumnSelectorButton"]'
-        ).length
+        findTestSubject(component, 'dataGridColumnSelectorButton').length
       ).toBe(1);
     });
 
