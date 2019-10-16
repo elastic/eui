@@ -13,7 +13,7 @@ import {
 import { EuiIconType } from '../icon/icon';
 import { ItemId } from './table_types';
 
-interface Props<T> {
+export interface CollapsedItemActionsProps<T> {
   actions: Array<Action<T>>;
   item: T;
   itemId?: ItemId<T>;
@@ -27,7 +27,10 @@ interface State {
   popoverOpen: boolean;
 }
 
-export class CollapsedItemActions<T> extends Component<Props<T>, State> {
+export class CollapsedItemActions<T> extends Component<
+  CollapsedItemActionsProps<T>,
+  State
+> {
   private popoverDiv: HTMLDivElement | null = null;
 
   state = { popoverOpen: false };

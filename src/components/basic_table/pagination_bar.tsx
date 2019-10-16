@@ -14,7 +14,7 @@ export interface Pagination {
   hidePerPageOptions?: boolean;
 }
 
-interface Props {
+export interface PaginationBarProps {
   pagination: Pagination;
   onPageSizeChange: ItemsPerPageChangeHandler;
   onPageChange: PageChangeHandler;
@@ -28,7 +28,7 @@ export const PaginationBar = ({
   pagination,
   onPageSizeChange,
   onPageChange,
-}: Props) => {
+}: PaginationBarProps) => {
   const pageSizeOptions = pagination.pageSizeOptions
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;

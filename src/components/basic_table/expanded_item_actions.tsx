@@ -9,7 +9,7 @@ import {
 } from './action_types';
 import { ItemId } from './table_types';
 
-export interface Props<T> {
+export interface ExpandedItemActionsProps<T> {
   actions: Array<Action<T>>;
   itemId: ItemId<T>;
   item: T;
@@ -23,7 +23,7 @@ export const ExpandedItemActions = <T extends {}>({
   item,
   actionEnabled,
   className,
-}: Props<T>): ReactElement => {
+}: ExpandedItemActionsProps<T>): ReactElement => {
   const moreThanThree = actions.length > 2;
 
   return (

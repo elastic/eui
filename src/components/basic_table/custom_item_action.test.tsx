@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CustomItemAction, Props } from './custom_item_action';
+import { CustomItemAction, CustomItemActionProps } from './custom_item_action';
 
 describe('CustomItemAction', () => {
   test('render', () => {
-    const props: Props<{ id: string }> = {
+    const props: CustomItemActionProps<{ id: string }> = {
       action: {
         render: () => <span>test</span>,
       },
