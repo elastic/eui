@@ -142,6 +142,11 @@ export default () => {
     return data.slice(rowStart, rowEnd);
   }, [data, pagination, inMemoryLevel]);
 
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(() =>
+    columns.map(({ id }) => id)
+  ); // initialize to the full set of columns
+
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId, setCellProps }) => {
       let adjustedRowIndex = rowIndex;
@@ -228,6 +233,7 @@ export default () => {
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={raw_data.length}
         renderCellValue={renderCellValue}
         {...inMemoryProps}

@@ -23,7 +23,7 @@ import {
   EuiDataGridDataRow,
   EuiDataGridDataRowProps,
 } from './data_grid_data_row';
-import { EuiDataGridSchema } from './data_grid_schema';
+import { EuiDataGridSchema, SchemaDetector } from './data_grid_schema';
 import { useInnerText } from '../inner_text';
 
 interface EuiDataGridBodyProps {
@@ -31,6 +31,7 @@ interface EuiDataGridBodyProps {
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
   schema: EuiDataGridSchema;
+  schemaDetectors: SchemaDetector[];
   expansionFormatters?: EuiDataGridExpansionFormatters;
   focusedCell: EuiDataGridDataRowProps['focusedCell'];
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
@@ -42,6 +43,16 @@ interface EuiDataGridBodyProps {
   pagination?: EuiDataGridPaginationProps;
   sorting?: EuiDataGridSorting;
 }
+
+const defaultComparator: NonNullable<SchemaDetector['comparator']> = (
+  a,
+  b,
+  direction
+) => {
+  if (a < b) return direction === 'asc' ? -1 : 1;
+  if (a > b) return direction === 'asc' ? 1 : -1;
+  return 0;
+};
 
 const providedExpansionFormatters: EuiDataGridExpansionFormatters = {
   json: ({ children }) => {
@@ -102,6 +113,7 @@ export const EuiDataGridBody: FunctionComponent<
     defaultColumnWidth,
     columns,
     schema,
+    schemaDetectors,
     expansionFormatters,
     focusedCell,
     onCellFocus,
@@ -153,8 +165,24 @@ export const EuiDataGridBody: FunctionComponent<
           const aValue = a.values[column.id];
           const bValue = b.values[column.id];
 
-          if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
-          if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+          // get the comparator, based on schema
+          let comparator = defaultComparator;
+          if (schema.hasOwnProperty(column.id)) {
+            const columnType = schema[column.id].columnType;
+            for (let i = 0; i < schemaDetectors.length; i++) {
+              const detector = schemaDetectors[i];
+              if (
+                detector.type === columnType &&
+                detector.hasOwnProperty('comparator')
+              ) {
+                comparator = detector.comparator!;
+              }
+            }
+          }
+
+          const result = comparator(aValue, bValue, column.direction);
+          // only return if the columns are inequal, otherwise allow the next sort-by column to run
+          if (result !== 0) return result;
         }
 
         return 0;
@@ -166,7 +194,7 @@ export const EuiDataGridBody: FunctionComponent<
     }
 
     return rowMap;
-  }, [sorting, inMemory, inMemoryValues]);
+  }, [sorting, inMemory, inMemoryValues, schema, schemaDetectors]);
 
   const setCellFocus = useCallback(
     ([colIndex, rowIndex]) => {

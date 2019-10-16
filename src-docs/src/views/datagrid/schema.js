@@ -43,21 +43,9 @@ const columns = [
 const data = [];
 
 for (let i = 1; i < 5; i++) {
-  data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
-    location: (
-      <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
-      </Fragment>
-    ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{finance.amount}}'),
-    json: JSON.stringify([
+  let json;
+  if (i < 3) {
+    json = JSON.stringify([
       {
         name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
         email: fake('{{internet.email}}'),
@@ -76,7 +64,30 @@ for (let i = 1; i < 5; i++) {
           },
         ],
       },
-    ]),
+    ]);
+  } else {
+    json = JSON.stringify([
+      {
+        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+      },
+    ]);
+  }
+
+  data.push({
+    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
+    location: (
+      <Fragment>
+        {`${fake('{{address.city}}')}, `}
+        <EuiLink href="https://google.com">
+          {fake('{{address.country}}')}
+        </EuiLink>
+      </Fragment>
+    ),
+    date: fake('{{date.past}}'),
+    account: fake('{{finance.account}}'),
+    amount: fake('${{finance.amount}}'),
+    json: json,
     version: fake('{{system.semver}}'),
   });
 }
@@ -93,6 +104,8 @@ export default class DataGridSchema extends Component {
         pageIndex: 0,
         pageSize: 10,
       },
+
+      visibleColumns: columns.map(({ id }) => id),
     };
   }
 
@@ -123,6 +136,8 @@ export default class DataGridSchema extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+
   dummyIcon = () => (
     <EuiButtonIcon
       aria-label="dummy icon"
@@ -137,6 +152,10 @@ export default class DataGridSchema extends Component {
       <EuiDataGrid
         aria-label="Top EUI contributors"
         columns={columns}
+        columnVisibility={{
+          visibleColumns: this.state.visibleColumns,
+          setVisibleColumns: this.setVisibleColumns,
+        }}
         rowCount={data.length}
         inMemory={{ level: 'sorting' }}
         renderCellValue={({ rowIndex, columnId }) => {

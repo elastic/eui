@@ -9,6 +9,11 @@ export interface EuiDataGridColumn {
   isExpandable?: boolean;
 }
 
+export interface EuiDataGridColumnVisibility {
+  visibleColumns: string[];
+  setVisibleColumns: (visibleColumns: string[]) => void;
+}
+
 export interface EuiDataGridColumnWidths {
   [key: string]: number;
 }
