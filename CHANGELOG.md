@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Updated `infraApp` app icon to its solution logo. ([#2430](https://github.com/elastic/eui/pull/2430))
+- Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 
