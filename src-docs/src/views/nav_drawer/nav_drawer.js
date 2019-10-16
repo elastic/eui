@@ -79,7 +79,7 @@ export default class extends Component {
             {
               label: 'My logs',
               href: '#/layout/nav-drawer',
-              iconType: 'loggingApp',
+              iconType: 'logsApp',
               'aria-label': 'This is an alternate aria-label',
               extraAction: faveExtraAction,
             },
@@ -107,7 +107,7 @@ export default class extends Component {
             {
               label: 'My logs',
               href: '#/layout/nav-drawer',
-              iconType: 'loggingApp',
+              iconType: 'logsApp',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starFilled',
@@ -183,15 +183,15 @@ export default class extends Component {
         extraAction: { ...pinExtraActionFn('APM') },
       },
       {
-        label: 'Infrastructure',
+        label: 'Metrics',
         href: '#/layout/nav-drawer',
-        iconType: 'infraApp',
+        iconType: 'metricsApp',
         extraAction: { ...pinExtraActionFn('Infrastructure') },
       },
       {
-        label: 'Log viewer',
+        label: 'Logs',
         href: '#/layout/nav-drawer',
-        iconType: 'loggingApp',
+        iconType: 'logsApp',
         extraAction: { ...pinExtraActionFn('Log viewer') },
       },
       {
