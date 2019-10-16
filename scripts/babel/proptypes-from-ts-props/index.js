@@ -401,7 +401,7 @@ function convertLiteralToOneOf(types, literalNode) {
 function resolveDiscriminatedUnionType(node, optional, state) {
   const types = state.get('types');
 
-  if (node.type === 'TSLiteralType') {
+  if (node.type === 'TSLiteralType' && node.literal.type === 'StringLiteral') {
     return types.callExpression(
       types.memberExpression(
         types.identifier('PropTypes'),
