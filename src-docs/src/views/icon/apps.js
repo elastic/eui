@@ -43,7 +43,7 @@ const iconTypes = [
   'indexRollupApp',
   'infraApp',
   'lensApp',
-  'loggingApp',
+  'logsApp',
   'machineLearningApp',
   'managementApp',
   'metricbeatApp',

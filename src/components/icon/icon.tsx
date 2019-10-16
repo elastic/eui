@@ -160,7 +160,7 @@ const typeToPathMap = {
   listAdd: 'list_add',
   lock: 'lock',
   lockOpen: 'lockOpen',
-  loggingApp: 'app_logging',
+  logsApp: 'app_logs',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
   logoAPM: 'logo_apm',

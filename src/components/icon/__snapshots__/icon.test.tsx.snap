@@ -2720,25 +2720,6 @@ exports[`EuiIcon props type lockOpen is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type loggingApp is rendered 1`] = `
-<svg
-  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
-  focusable="false"
-  height="32"
-  viewBox="0 0 32 32"
-  width="32"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    class="euiIcon__fillSecondary"
-    d="M9 18h12v2H9zM9 13h12v2H9zM9 8h12v2H9z"
-  />
-  <path
-    d="M28 1H8a4 4 0 0 0-4 4v19H0v3a4 4 0 0 0 4 4h18a4 4 0 0 0 4-4V8h6V5a4 4 0 0 0-4-4zM4 29a2 2 0 0 1-2-2v-1h16v1a4 4 0 0 0 .54 2H4zm18 0a2 2 0 0 1-2-2v-3H6V5a2 2 0 0 1 2-2h16.56A4 4 0 0 0 24 5v22a2 2 0 0 1-2 2zm8-23h-4V5a2 2 0 1 1 4 0v1z"
-  />
-</svg>
-`;
-
 exports[`EuiIcon props type logoAPM is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4692,6 +4673,25 @@ exports[`EuiIcon props type logoWindows is rendered 1`] = `
   <path
     d="M0 4.51l12.977-1.768.006 12.518-12.971.074L0 4.51zm12.97 12.192l.011 12.529-12.97-1.784-.002-10.829 12.962.084zm1.574-14.19L31.751 0v15.1l-17.207.137V2.511zm17.21 14.308l-.003 15.033-17.207-2.429-.024-12.632 17.235.028z"
     fill="#00ADEF"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type logsApp is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1 8c3.983 0 7.732 1.013 11.001 2.797v2.312A20.887 20.887 0 0 0 2 10.023v11.025c4.85.462 9.27 4.183 9.955 8.691l.035.261H12v2h-1.938l-.018-1.236c-.116-4.015-4.336-7.631-8.793-7.76L0 22.986V8h1zm13-8h1c9.28 0 16.825 7.437 16.997 16.677L32 17v15h-2V17c0-7.84-6.014-14.274-13.68-14.943L16 2.033v7.681l-2-1.143V0h1-1z"
+  />
+  <path
+    class="euiIcon__fillSecondary"
+    d="M26.997 30.636L27.009 32H14V11.305l1.483.82c6.994 3.861 11.382 10.735 11.514 18.51zm-2.048-1.04C24.505 23.556 21.205 18.2 16 14.771V30h8.974l-.025-.404z"
   />
 </svg>
 `;
