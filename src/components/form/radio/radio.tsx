@@ -30,7 +30,7 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   className,
   id,
   name,
-  checked = false,
+  checked,
   label,
   value,
   onChange,
