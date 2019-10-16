@@ -1,16 +1,14 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps, Omit } from '../../common';
 
-import { EuiRadio } from './radio';
+import { EuiRadio, RadioProps } from './radio';
 
-export interface EuiRadioGroupOption {
+export interface EuiRadioGroupOption
+  extends Omit<RadioProps, 'checked' | 'onChange'> {
   id: string;
-  label?: ReactNode;
-  disabled?: boolean; // TODO: Added to fix TS error; disabled can be on group or item
-  value?: any; // TODO: Added to fix TS error; used in options map below
 }
 
-export type EuiRadioGroupChangeCallback = (id: string, value: string) => void;
+export type EuiRadioGroupChangeCallback = (id: string, value?: string) => void;
 
 export type EuiRadioGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
@@ -21,12 +19,10 @@ export type EuiRadioGroupProps = CommonProps &
      */
     compressed?: boolean;
     name?: string;
-    options?: EuiRadioGroupOption[];
+    options: EuiRadioGroupOption[];
     idSelected?: string;
     onChange: EuiRadioGroupChangeCallback;
   };
-
-export type x = EuiRadioGroupProps['onChange'];
 
 export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
   options = [],
@@ -56,7 +52,3 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
     })}
   </div>
 );
-
-EuiRadioGroup.defaultProps = {
-  options: [],
-};

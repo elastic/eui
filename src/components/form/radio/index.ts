@@ -1,3 +1,8 @@
-export { EuiRadio } from './radio';
+export { EuiRadio, EuiRadioProps } from './radio';
 
-export { EuiRadioGroup } from './radio_group';
+export {
+  EuiRadioGroup,
+  EuiRadioGroupProps,
+  EuiRadioGroupOption,
+  EuiRadioGroupChangeCallback,
+} from './radio_group';

@@ -2,6 +2,15 @@
 
 - Converted `EuiRadio` and `EuiRadioGroup` to TypeScript ([#2438](https://github.com/elastic/eui/pull/2438))
 
+## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
+
+- Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
+  
+**Bug fixes**
+
+- Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
+- Strip custom semantics from `EuiSideNav` ([#2429](https://github.com/elastic/eui/pull/2429))
+
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 
 - Update Elastic-Charts to version 13.0.0 and updated the theme object accordingly ([#2381](https://github.com/elastic/eui/pull/2381))
