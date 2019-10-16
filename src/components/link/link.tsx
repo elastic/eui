@@ -36,10 +36,6 @@ export interface LinkButtonProps {
   type?: EuiLinkType;
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  /**
-   * Set to true to show an icon indicating that it is an external link.
-   */
-  external?: boolean;
 }
 
 export type EuiLinkButtonProps = CommonProps &
@@ -49,6 +45,10 @@ export type EuiLinkButtonProps = CommonProps &
 export interface LinkAnchorProps {
   type?: EuiLinkType;
   color?: EuiLinkColor;
+  /**
+   * Set to true to show an icon indicating that it is an external link.
+   */
+  external?: boolean;
 }
 
 export type EuiLinkAnchorProps = CommonProps &
@@ -98,7 +98,6 @@ const EuiLink = React.forwardRef<
           ref={ref as React.Ref<HTMLButtonElement>}
           {...buttonProps as EuiLinkButtonProps}>
           {children}
-          {external ? <EuiIcon type="popout" /> : undefined}
         </button>
       );
     }
