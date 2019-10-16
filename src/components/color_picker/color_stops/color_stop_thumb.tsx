@@ -51,6 +51,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
   disabled?: boolean;
   readOnly?: boolean;
+  isPopoverOpen?: boolean;
   'data-index'?: string;
   'aria-valuetext'?: string;
 }
@@ -75,11 +76,12 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   colorPickerSwatches,
   disabled,
   readOnly,
+  isPopoverOpen: beginOpen = false,
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
 }) => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [hasFocus, setHasFocus] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(beginOpen);
+  const [hasFocus, setHasFocus] = useState(beginOpen);
   const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
   const [numberInputRef, setNumberInputRef] = useState();
@@ -203,6 +205,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       closePopover={closePopover}
       ownFocus={isPopoverOpen}
       initialFocus={numberInputRef}
+      panelClassName={
+        numberInputRef ? undefined : 'euiColorStopPopover-panelLoading'
+      }
       style={{
         left: `${getPositionFromStopFn(stop)}%`,
       }}

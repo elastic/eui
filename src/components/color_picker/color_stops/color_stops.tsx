@@ -197,10 +197,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const onAdd = () => {
-    const stops = sortedStops.map(el => {
+    const stops = sortedStops.map(({ color, stop }) => {
       return {
-        color: el.color,
-        stop: el.stop,
+        color,
+        stop,
       };
     });
     const newColorStops = addStop(stops, addColor, max || rangeMax);
@@ -320,6 +320,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       aria-valuetext={`Stop: ${colorStop.stop}, Color: ${
         colorStop.color
       } (${index + 1} of ${colorStops.length})`}
+      isPopoverOpen={colorStop.stop === focusStopOnUpdate}
     />
   ));
 

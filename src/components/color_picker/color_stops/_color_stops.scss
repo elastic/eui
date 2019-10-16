@@ -76,6 +76,11 @@
   }
 }
 
+.euiColorStopPopover-panelLoading {
+  // sass-lint:disable-block no-important
+  visibility: hidden !important; // Overrides a stateful class on EuiPopover -> EuiPanel
+}
+
 .euiColorStops.euiColorStops-isDragging:not(.euiColorStops-isDisabled):not(.euiColorStops-isReadOnly) {
   cursor: grabbing;
 }
