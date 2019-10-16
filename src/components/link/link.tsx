@@ -2,7 +2,6 @@ import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   MouseEventHandler,
-  forwardRef,
 } from 'react';
 import classNames from 'classnames';
 import { EuiIcon } from '../icon';
@@ -37,14 +36,13 @@ export interface LinkButtonProps {
   type?: EuiLinkType;
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-}
-
-export type EuiLinkButtonProps = {
   /**
    * Set this prop to true if you want to show an icon indicating that this is an external link.
    */
   external?: boolean;
-} & CommonProps &
+}
+
+export type EuiLinkButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> &
   LinkButtonProps;
 
@@ -62,7 +60,10 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
-const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
+const EuiLink = React.forwardRef<
+  HTMLAnchorElement | HTMLButtonElement,
+  EuiLinkProps
+>(
   (
     {
       children,
