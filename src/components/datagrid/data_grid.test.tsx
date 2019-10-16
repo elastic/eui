@@ -1341,6 +1341,10 @@ Array [
         <EuiDataGrid
           aria-label="test"
           columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
           rowCount={5}
           renderCellValue={({ rowIndex, columnId }) =>
             // render A 0->4 and B 12->8
