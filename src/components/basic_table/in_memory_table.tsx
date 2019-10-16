@@ -155,7 +155,9 @@ export type EuiInMemoryTableProps<T> = CommonProps & {
   executeQueryOptions?: any;
   isSelectable?: boolean;
   hasActions?: boolean;
-  itemIdToExpandedRowMap?: any;
+  itemIdToExpandedRowMap?: {
+    [id: string]: ReactNode;
+  };
 };
 
 interface State<T> {

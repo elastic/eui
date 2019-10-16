@@ -90,7 +90,9 @@ const dataTypesProfiles: DataTypeProfiles = {
 
 const DATA_TYPES = Object.keys(dataTypesProfiles);
 
-type ItemIdToExpandedRowMap = any;
+interface ItemIdToExpandedRowMap {
+  [id: string]: ReactNode;
+}
 
 export function getItemId<T>(item: T, itemId?: ItemId<T>) {
   if (itemId) {
@@ -475,7 +477,7 @@ export class EuiBasicTable<T = any> extends Component<
 
     const disabled = selectableItems.length === 0;
 
-    const onChange = (event: any) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
         this.changeSelection(selectableItems);
       } else {
@@ -844,7 +846,7 @@ export class EuiBasicTable<T = any> extends Component<
     const title =
       selection!.selectableMessage &&
       selection!.selectableMessage(!disabled, item);
-    const onChange = (event: any) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
         this.changeSelection([...this.state.selection, item]);
       } else {
