@@ -10,6 +10,7 @@ import React, {
   useMemo,
 } from 'react';
 import classNames from 'classnames';
+import tabbable from 'tabbable';
 import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { CommonProps, Omit } from '../common';
@@ -49,6 +50,7 @@ import {
   schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
 import { useColumnSorting } from './column_sorting';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -113,7 +115,6 @@ const cellPaddingsToClassMap: {
   m: '',
   l: 'euiDataGrid--paddingLarge',
 };
-const ORIGIN: [number, number] = [0, 0];
 
 function computeVisibleRows(props: EuiDataGridProps) {
   const { pagination, rowCount } = props;
@@ -237,6 +238,7 @@ function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
   focusedCell: [number, number],
+  headerIsInteractive: boolean,
   setFocusedCell: (focusedCell: [number, number]) => void
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
@@ -261,7 +263,8 @@ function createKeyDownHandler(
       case keyCodes.UP:
         event.preventDefault();
         // TODO sort out when a user can arrow up into the column headers
-        if (y > 0) {
+        const minimumIndex = headerIsInteractive ? -1 : 0;
+        if (y > minimumIndex) {
           setFocusedCell([x, y - 1]);
         }
         break;
@@ -278,9 +281,49 @@ function createKeyDownHandler(
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showGridControls, setShowGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
+  const [focusedCell, setFocusedCell] = useState<[number, number] | null>(null);
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
+
+  const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
+  const handleHeaderChange = useCallback<MutationCallback>(
+    records => {
+      const [{ target }] = records;
+
+      // find the wrapping header div
+      let headerRow = target.parentElement;
+      while (
+        headerRow &&
+        (headerRow.getAttribute('data-test-subj') || '').indexOf(
+          'dataGridHeader'
+        ) === -1
+      ) {
+        headerRow = headerRow.parentElement;
+      }
+
+      if (headerRow) {
+        const tabbables = tabbable(headerRow);
+        const managed = headerRow.querySelectorAll(
+          '[data-euigrid-tab-managed]'
+        );
+        const hasInteractives = tabbables.length > 0 || managed.length > 0;
+        if (hasInteractives !== headerIsInteractive) {
+          setHeaderIsInteractive(hasInteractives);
+
+          // if the focus is on the header, and the header is no longer interactive
+          // move the focus down to the first row
+          if (
+            hasInteractives === false &&
+            focusedCell &&
+            focusedCell[1] === -1
+          ) {
+            setFocusedCell([focusedCell[0], 0]);
+          }
+        }
+      }
+    },
+    [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
+  );
 
   const [columnWidths, setColumnWidth] = useColumnWidths();
 
@@ -404,6 +447,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     delete rest['aria-labelledby'];
   }
 
+  const realizedFocusedCell: [number, number] =
+    focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
+
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
       <div
@@ -436,7 +482,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
               onKeyDown={createKeyDownHandler(
                 props,
                 orderedVisibleColumns,
-                focusedCell,
+                realizedFocusedCell,
+                headerIsInteractive,
                 setFocusedCell
               )}
               className="euiDataGrid__verticalScroll"
@@ -462,14 +509,27 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   className="euiDataGrid__content"
                   role="grid"
                   {...gridAriaProps}>
-                  <EuiDataGridHeaderRow
-                    columns={orderedVisibleColumns}
-                    columnWidths={columnWidths}
-                    defaultColumnWidth={defaultColumnWidth}
-                    setColumnWidth={setColumnWidth}
-                    schema={mergedSchema}
-                    sorting={sorting}
-                  />
+                  <EuiMutationObserver
+                    observerOptions={{
+                      subtree: true,
+                      childList: true,
+                    }}
+                    onMutation={handleHeaderChange}>
+                    {ref => (
+                      <EuiDataGridHeaderRow
+                        ref={ref}
+                        columns={orderedVisibleColumns}
+                        columnWidths={columnWidths}
+                        defaultColumnWidth={defaultColumnWidth}
+                        setColumnWidth={setColumnWidth}
+                        schema={mergedSchema}
+                        sorting={sorting}
+                        headerIsInteractive={headerIsInteractive}
+                        focusedCell={realizedFocusedCell}
+                        setFocusedCell={setFocusedCell}
+                      />
+                    )}
+                  </EuiMutationObserver>
                   <EuiDataGridBody
                     columnWidths={columnWidths}
                     defaultColumnWidth={defaultColumnWidth}
@@ -479,7 +539,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     schema={mergedSchema}
                     schemaDetectors={allSchemaDetetors}
                     expansionFormatters={expansionFormatters}
-                    focusedCell={focusedCell}
+                    focusedCell={realizedFocusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}
                     sorting={sorting}

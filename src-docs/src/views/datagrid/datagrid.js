@@ -13,8 +13,11 @@ import {
   EuiLink,
   EuiPopover,
   EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components/';
 import { EuiRadioGroup } from '../../../../src/components/form/radio';
+import { EuiButtonIcon } from '../../../../src/components/button/button_icon';
 
 const columns = [
   {
@@ -22,6 +25,22 @@ const columns = [
   },
   {
     id: 'email',
+    display: (
+      // This is an example of an icon next to a title that still respects text truncate
+      <EuiFlexGroup gutterSize="xs">
+        <EuiFlexItem className="eui-textTruncate">
+          <div className="eui-textTruncate">email</div>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButtonIcon
+            aria-label="Column header email"
+            iconType="gear"
+            color="text"
+            onClick={() => alert('Email Icon Clicked!')}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    ),
   },
   {
     id: 'location',

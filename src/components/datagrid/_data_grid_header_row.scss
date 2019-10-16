@@ -8,11 +8,20 @@
 
   font-weight: $euiFontWeightBold;
   padding: $euiDataGridCellPaddingM;
-  position: relative;
   flex: 0 0 auto;
+  position: relative;
+  align-items: center;
+  display: flex;
+
+  > * {
+    max-width: 100%;
+    width: 100%;
+  }
 
   .euiDataGridHeaderCell__content {
     @include euiTextTruncate;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   &.euiDataGridHeaderCell--numeric {
@@ -22,6 +31,14 @@
   &.euiDataGridHeaderCell--currency {
     text-align: right;
   }
+
+  &:focus {
+    border: 1px solid transparent;
+    box-shadow: 0 0 0 2px $euiFocusRingColor;
+    border-radius: 1px;
+    // Needed so it sits above the other rows
+    z-index: 2;
+  }
 }
 
 // Header alternates
@@ -29,8 +46,11 @@
 
 @include euiDataGridStyles(headerUnderline) {
   @include euiDataGridHeaderCell {
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-bottom: $euiBorderThick;
-    border-color: $euiTextColor;
+    border-bottom-color: $euiTextColor;
   }
 }
 

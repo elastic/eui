@@ -418,6 +418,28 @@ describe('EuiDataGrid', () => {
       expect(component).toMatchSnapshot();
     });
 
+    it('renders custom column headers', () => {
+      const component = render(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[
+            { id: 'A', display: 'Column A' },
+            { id: 'B', display: <div>More Elements</div> },
+          ]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     it('renders with appropriate role structure', () => {
       const component = render(
         <EuiDataGrid
