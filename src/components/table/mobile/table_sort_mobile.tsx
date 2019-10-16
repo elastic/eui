@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { EuiButtonEmpty } from '../../button/button_empty';
@@ -7,17 +7,28 @@ import { EuiContextMenuPanel } from '../../context_menu';
 import { EuiI18n } from '../../i18n';
 import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 
-interface Props {
+interface ItemProps {
+  name: ReactNode;
+  key?: string;
+  onSort?: () => void;
+  isSorted?: boolean;
+  isSortAscending?: boolean;
+}
+
+export interface EuiTableSortMobileProps {
   className?: string;
   anchorPosition?: PopoverAnchorPosition;
-  items?: any[];
+  items?: ItemProps[];
 }
 
 interface State {
   isPopoverOpen: boolean;
 }
 
-export class EuiTableSortMobile extends Component<Props, State> {
+export class EuiTableSortMobile extends Component<
+  EuiTableSortMobileProps,
+  State
+> {
   state = {
     isPopoverOpen: false,
   };

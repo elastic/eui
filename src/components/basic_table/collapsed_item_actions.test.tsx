@@ -20,7 +20,7 @@ describe('CollapsedItemActions', () => {
       ],
       itemId: 'id',
       item: { id: 'xyz' },
-      actionEnabled: (_: Action) => true,
+      actionEnabled: (_: Action<{ id: string }>) => true,
       onFocus: (_: FocusEvent) => {},
       onBlur: () => {},
     };

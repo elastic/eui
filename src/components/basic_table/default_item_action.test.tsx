@@ -6,9 +6,13 @@ import {
   DefaultItemIconButtonAction as IconButtonAction,
 } from './action_types';
 
+interface Item {
+  id: string;
+}
+
 describe('DefaultItemAction', () => {
   test('render - default button', () => {
-    const action: EmptyButtonAction = {
+    const action: EmptyButtonAction<Item> = {
       name: 'action1',
       description: 'action 1',
       onClick: () => {},
@@ -25,7 +29,7 @@ describe('DefaultItemAction', () => {
   });
 
   test('render - button', () => {
-    const action: EmptyButtonAction = {
+    const action: EmptyButtonAction<Item> = {
       name: 'action1',
       description: 'action 1',
       type: 'button',
@@ -43,7 +47,7 @@ describe('DefaultItemAction', () => {
   });
 
   test('render - icon', () => {
-    const action: IconButtonAction = {
+    const action: IconButtonAction<Item> = {
       name: 'action1',
       description: 'action 1',
       type: 'icon',

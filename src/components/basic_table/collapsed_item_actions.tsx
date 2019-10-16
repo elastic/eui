@@ -11,13 +11,13 @@ import {
   DefaultItemIconButtonAction,
 } from './action_types';
 import { EuiIconType } from '../icon/icon';
-import { Item, ItemId } from './table_types';
+import { ItemId } from './table_types';
 
-interface Props {
-  actions: Action[];
-  item: Item;
-  itemId?: ItemId;
-  actionEnabled: (action: Action) => boolean;
+interface Props<T> {
+  actions: Array<Action<T>>;
+  item: T;
+  itemId?: ItemId<T>;
+  actionEnabled: (action: Action<T>) => boolean;
   className?: string;
   onFocus?: (event: FocusEvent) => void;
   onBlur?: () => void;
@@ -27,14 +27,10 @@ interface State {
   popoverOpen: boolean;
 }
 
-export class CollapsedItemActions extends Component<Props, State> {
-  private popoverDiv: HTMLDivElement | null;
+export class CollapsedItemActions<T> extends Component<Props<T>, State> {
+  private popoverDiv: HTMLDivElement | null = null;
 
-  constructor(props: Props) {
-    super(props);
-    this.state = { popoverOpen: false };
-    this.popoverDiv = null;
-  }
+  state = { popoverOpen: false };
 
   togglePopover = () => {
     this.setState(prevState => ({ popoverOpen: !prevState.popoverOpen }));
@@ -101,10 +97,11 @@ export class CollapsedItemActions extends Component<Props, State> {
         }
         const enabled = actionEnabled(action);
         allDisabled = allDisabled && !enabled;
-        if ((action as CustomItemAction).render) {
-          const customAction = action as CustomItemAction;
+        if ((action as CustomItemAction<T>).render) {
+          const customAction = action as CustomItemAction<T>;
           const actionControl = customAction.render(item, enabled);
           const actionControlOnClick =
+            // @ts-ignore
             actionControl && actionControl.props && actionControl.props.onClick;
           controls.push(
             <EuiContextMenuItem
@@ -122,12 +119,14 @@ export class CollapsedItemActions extends Component<Props, State> {
             onClick,
             name,
             'data-test-subj': dataTestSubj,
-          } = action as DefaultItemAction;
+          } = action as DefaultItemAction<T>;
           controls.push(
             <EuiContextMenuItem
               key={key}
               disabled={!enabled}
-              icon={(action as DefaultItemIconButtonAction).icon as EuiIconType}
+              icon={
+                (action as DefaultItemIconButtonAction<T>).icon as EuiIconType
+              }
               data-test-subj={dataTestSubj}
               onClick={this.onClickItem.bind(
                 null,

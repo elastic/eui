@@ -2,7 +2,6 @@ import React, { Component, ReactNode } from 'react';
 import { EuiBasicTable } from './basic_table';
 import {
   SelectionType,
-  Item,
   ItemId,
   FieldDataColumnType,
   ComputedColumnType,
@@ -19,8 +18,8 @@ import { isBoolean, isString } from '../../services/predicate';
 import { Comparators, Direction } from '../../services/sort';
 // @ts-ignore
 import { EuiSearchBar } from '../search_bar';
-import { EuiSpacer } from '../spacer/spacer';
-import { Omit } from '../common';
+import { EuiSpacer } from '../spacer';
+import { CommonProps, Omit } from '../common';
 
 // Search bar types. Should be moved when it is typescriptified.
 interface SearchBoxConfig {
@@ -93,14 +92,17 @@ export type FilterConfig =
   | FieldValueToggleFilterConfigType
   | FieldValueToggleGroupFilterConfigType;
 
-type Column = FieldDataColumnType | ComputedColumnType | ActionsColumnType;
+type Column<T> =
+  | FieldDataColumnType<T>
+  | ComputedColumnType<T>
+  | ActionsColumnType<T>;
 
 type SearchBox = Omit<SearchBoxConfig, 'schema'> & {
   schema?: boolean | SchemaType;
 };
 
-type CellPropsCallback = (item: Item, column: Column) => object;
-type RowPropsCallback = (item: Item) => object;
+type CellPropsCallback<T> = (item: T, column: Column<T>) => object;
+type RowPropsCallback<T> = (item: T) => object;
 
 interface SearchOptions {
   defaultQuery?: any /* Query */;
@@ -131,9 +133,9 @@ interface SortingOptions {
 
 type Sorting = boolean | SortingOptions;
 
-interface Props {
-  columns: Column[];
-  items: Item[];
+export type EuiInMemoryTableProps<T> = CommonProps & {
+  columns: Array<Column<T>>;
+  items: T[];
   loading?: boolean;
   message?: ReactNode;
   error?: string;
@@ -145,20 +147,20 @@ interface Props {
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
    */
   allowNeutralSort?: boolean;
-  selection?: SelectionType;
-  itemId?: ItemId;
-  rowProps?: object | RowPropsCallback;
-  cellProps?: object | CellPropsCallback;
+  selection?: SelectionType<T>;
+  itemId?: ItemId<T>;
+  rowProps?: object | RowPropsCallback<T>;
+  cellProps?: object | CellPropsCallback<T>;
   onTableChange?: (...args: any) => void;
   executeQueryOptions?: any;
   isSelectable?: boolean;
   hasActions?: boolean;
   itemIdToExpandedRowMap?: any;
-}
+};
 
-interface State {
+interface State<T> {
   prevProps: {
-    items: Item[];
+    items: T[];
     sortName: ReactNode;
     sortDirection?: Direction;
   };
@@ -218,7 +220,11 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
   };
 };
 
-function findColumnByProp(columns: Column[], prop: string, value: any) {
+function findColumnByProp<T>(
+  columns: Array<Column<T>>,
+  prop: 'field' | 'name',
+  value: any
+) {
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
     if ((column as any)[prop] === value) {
@@ -227,7 +233,10 @@ function findColumnByProp(columns: Column[], prop: string, value: any) {
   }
 }
 
-const getInitialSorting = (columns: Column[], sorting: Sorting | undefined) => {
+function getInitialSorting<T>(
+  columns: Array<Column<T>>,
+  sorting: Sorting | undefined
+) {
   if (!sorting || !(sorting as SortingOptions).sort) {
     return {
       sortName: undefined,
@@ -260,10 +269,16 @@ const getInitialSorting = (columns: Column[], sorting: Sorting | undefined) => {
     sortName,
     sortDirection,
   };
-};
+}
 
-export class EuiInMemoryTable extends Component<Props, State> {
-  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
+export class EuiInMemoryTable<T> extends Component<
+  EuiInMemoryTableProps<T>,
+  State<T>
+> {
+  static getDerivedStateFromProps<T>(
+    nextProps: EuiInMemoryTableProps<T>,
+    prevState: State<T>
+  ) {
     if (nextProps.items !== prevState.prevProps.items) {
       // We have new items because an external search has completed, so reset pagination state.
       return {
@@ -290,7 +305,7 @@ export class EuiInMemoryTable extends Component<Props, State> {
     return null;
   }
 
-  constructor(props: Props) {
+  constructor(props: EuiInMemoryTableProps<T>) {
     super(props);
 
     const { columns, search, pagination, sorting, allowNeutralSort } = props;
@@ -332,7 +347,7 @@ export class EuiInMemoryTable extends Component<Props, State> {
     // map back to `name` if this is the case
     for (let i = 0; i < this.props.columns.length; i++) {
       const column = this.props.columns[i];
-      if ((column as FieldDataColumnType).field === sortName) {
+      if ((column as FieldDataColumnType<T>).field === sortName) {
         sortName = column.name;
         break;
       }
@@ -411,10 +426,10 @@ export class EuiInMemoryTable extends Component<Props, State> {
       fields: Record<string, { type: DataType }>;
     }>(
       (schema, column) => {
-        const { field, dataType } = column as FieldDataColumnType;
+        const { field, dataType } = column as FieldDataColumnType<T>;
         if (field) {
           const type = dataType || 'string';
-          schema.fields[field] = { type };
+          schema.fields[field as string] = { type };
         }
         return schema;
       },
@@ -429,7 +444,7 @@ export class EuiInMemoryTable extends Component<Props, State> {
 
     const sortColumn = columns.find(
       ({ name }) => name === sortName
-    ) as FieldDataColumnType;
+    ) as FieldDataColumnType<T>;
 
     if (sortColumn == null) {
       // can't return a non-function so return a function that says everything is the same
@@ -443,7 +458,7 @@ export class EuiInMemoryTable extends Component<Props, State> {
     }
 
     return Comparators.property(
-      sortColumn.field,
+      sortColumn.field as string,
       Comparators.default(sortDirection)
     );
   }
@@ -537,14 +552,14 @@ export class EuiInMemoryTable extends Component<Props, State> {
     // Data loaded from a server can have a default sort order which is meaningful to the
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display
     // rows in the order in which they're initially loaded by providing an undefined sorting prop.
-    const sorting: SortingType | undefined = !hasSorting
+    const sorting: SortingType<T> | undefined = !hasSorting
       ? undefined
       : {
           sort:
             !sortName && !sortDirection
               ? undefined
               : {
-                  field: sortName as string,
+                  field: sortName as keyof T,
                   direction: sortDirection as Direction,
                 },
           allowNeutralSort: this.state.allowNeutralSort,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EuiTableBody } from '../table/table_body';
+import { EuiTableBody } from '../table';
 
 export class LoadingTableBody extends Component<{}> {
   private cleanups: Array<() => void>;
