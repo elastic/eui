@@ -12,7 +12,7 @@ export class LoadingTableBody extends Component<{}> {
   }
 
   componentDidMount() {
-    const listener = (event: any) => {
+    const listener = (event: Event) => {
       event.stopPropagation();
       event.preventDefault();
     };
