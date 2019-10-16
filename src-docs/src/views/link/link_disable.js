@@ -15,7 +15,6 @@ export class LinkDisable extends Component {
   }
 
   toggleLinkDisable = () => {
-    console.log(this.state.disableLink);
     this.setState(prevState => ({ disableLink: !prevState.disableLink }));
   };
 

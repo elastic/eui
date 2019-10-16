@@ -19,8 +19,7 @@
 
 - Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
 - Strip custom semantics from `EuiSideNav` ([#2429](https://github.com/elastic/eui/pull/2429))
-- Changed `EuiLink` to appear uninteractive when given the disabled prop and an onClick handler ([#2423](https://github.com/elastic/eui/pull/2423))
-
+- Changed `EuiLink` to appear non interactive when passed the `disabled` prop and an `onClick` handler ([#2423](https://github.com/elastic/eui/pull/2423))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 

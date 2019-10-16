@@ -81,11 +81,6 @@ const EuiLink = React.forwardRef<
     },
     ref
   ) => {
-    const classes = classNames(
-      'euiLink',
-      disabled ? 'euilink-disabled' : colorsToClassNameMap[color],
-      className
-    );
 
     const externalLinkIcon = external ? (
       <EuiI18n token="euiLink.external.ariaLabel" default="External link">
@@ -104,7 +99,11 @@ const EuiLink = React.forwardRef<
 
     if (href === undefined) {
       const buttonProps = {
-        className: classes,
+        className: classNames(
+          'euiLink',
+          disabled ? 'euiLink-disabled' : colorsToClassNameMap[color],
+          className
+        ),
         type,
         onClick,
         disabled,
@@ -121,9 +120,8 @@ const EuiLink = React.forwardRef<
     }
 
     const secureRel = getSecureRelForTarget({ href, target, rel });
-
     const anchorProps = {
-      className: classes,
+      className: classNames('euiLink', colorsToClassNameMap[color], className),
       href,
       target,
       rel: secureRel,

@@ -66,7 +66,7 @@ export const LinkExample = {
       text: (
         <p>
           When an <EuiCode>EuiLink</EuiCode> is passed an onClick method, and is
-          not passed an <EuiCode>href</EuiCode> it can optionally be set to
+          not passed an <EuiCode>href</EuiCode>, it can optionally be set to
           <EuiCode>disabled</EuiCode> which disables the click behavior, and
           hides the link.
         </p>
