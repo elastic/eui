@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 import { DefaultItemAction } from './default_item_action';
 import { CustomItemAction } from './custom_item_action';
@@ -7,28 +7,28 @@ import {
   CustomItemAction as CustomAction,
   DefaultItemAction as DefaultAction,
 } from './action_types';
-import { Item, ItemId } from './table_types';
+import { ItemId } from './table_types';
 
-interface Props {
-  actions: Action[];
-  itemId: ItemId;
-  item: Item;
-  actionEnabled: any;
+export interface Props<T> {
+  actions: Array<Action<T>>;
+  itemId: ItemId<T>;
+  item: T;
+  actionEnabled: (action: Action<T>) => boolean;
   className?: string;
 }
 
-export const ExpandedItemActions: FunctionComponent<Props> = ({
+export const ExpandedItemActions = <T extends {}>({
   actions,
   itemId,
   item,
   actionEnabled,
   className,
-}: Props) => {
+}: Props<T>): ReactElement => {
   const moreThanThree = actions.length > 2;
 
   return (
     <>
-      {actions.reduce<React.ReactNode[]>((tools, action, index) => {
+      {actions.reduce<ReactNode[]>((tools, action, index) => {
         const available = action.available ? action.available(item) : true;
         if (!available) {
           return tools;
@@ -42,14 +42,14 @@ export const ExpandedItemActions: FunctionComponent<Props> = ({
           expandedItemActions__completelyHide: moreThanThree && index < 2,
         });
 
-        if ((action as CustomAction).render) {
+        if ((action as CustomAction<T>).render) {
           // custom action has a render function
           tools.push(
             <CustomItemAction
               key={key}
               className={classes}
               index={index}
-              action={action as CustomAction}
+              action={action as CustomAction<T>}
               enabled={enabled}
               itemId={itemId}
               item={item}
@@ -61,7 +61,7 @@ export const ExpandedItemActions: FunctionComponent<Props> = ({
               key={key}
               className={classes}
               index={index}
-              action={action as DefaultAction}
+              action={action as DefaultAction<T>}
               enabled={enabled}
               itemId={itemId}
               item={item}

@@ -1,43 +1,46 @@
+import { ReactElement } from 'react';
 import { EuiIconType } from '../icon/icon';
 import { ButtonIconColor } from '../button/button_icon/button_icon';
-import { EuiButtonEmptyColor } from '../button/button_empty/button_empty';
+import { EuiButtonEmptyColor } from '../button/button_empty';
 
-type IconFunction = (item: any) => EuiIconType;
+type IconFunction<T> = (item: T) => EuiIconType;
 type ButtonColor = ButtonIconColor | EuiButtonEmptyColor;
-type ButtonIconColorFunction = (item: any) => ButtonColor;
+type ButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
-interface DefaultItemActionBase {
+interface DefaultItemActionBase<T> {
   name: string;
   description: string;
-  onClick?: (item: any) => void;
+  onClick?: (item: T) => void;
   href?: string;
   target?: string;
-  available?: (item: any) => boolean;
-  enabled?: (item: any) => boolean;
+  available?: (item: T) => boolean;
+  enabled?: (item: T) => boolean;
   isPrimary?: boolean;
   'data-test-subj'?: string;
 }
 
-export interface DefaultItemEmptyButtonAction extends DefaultItemActionBase {
+export interface DefaultItemEmptyButtonAction<T>
+  extends DefaultItemActionBase<T> {
   type?: 'button';
-  color?: EuiButtonEmptyColor | ButtonIconColorFunction;
+  color?: EuiButtonEmptyColor | ButtonIconColorFunction<T>;
 }
 
-export interface DefaultItemIconButtonAction extends DefaultItemActionBase {
+export interface DefaultItemIconButtonAction<T>
+  extends DefaultItemActionBase<T> {
   type: 'icon';
-  icon: EuiIconType | IconFunction;
-  color?: ButtonIconColor | ButtonIconColorFunction;
+  icon: EuiIconType | IconFunction<T>;
+  color?: ButtonIconColor | ButtonIconColorFunction<T>;
 }
 
-export type DefaultItemAction =
-  | DefaultItemEmptyButtonAction
-  | DefaultItemIconButtonAction;
+export type DefaultItemAction<T> =
+  | DefaultItemEmptyButtonAction<T>
+  | DefaultItemIconButtonAction<T>;
 
-export interface CustomItemAction {
-  render: (item: any, enabled?: boolean) => any;
-  available?: (item: any) => boolean;
-  enabled?: (item: any) => boolean;
+export interface CustomItemAction<T> {
+  render: (item: T, enabled?: boolean) => ReactElement;
+  available?: (item: T) => boolean;
+  enabled?: (item: T) => boolean;
   isPrimary?: boolean;
 }
 
-export type Action = DefaultItemAction | CustomItemAction;
+export type Action<T> = DefaultItemAction<T> | CustomItemAction<T>;
