@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
+- Strip custom semantics from `EuiSideNav` ([#2429](https://github.com/elastic/eui/pull/2429))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 
