@@ -158,8 +158,6 @@ EuiSideNav.propTypes = {
    * Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item.
    */
   renderItem: PropTypes.func,
-
-  label: PropTypes.string,
 };
 
 EuiSideNav.defaultProps = {
