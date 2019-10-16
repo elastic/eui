@@ -5,7 +5,7 @@ import React, {
   forwardRef,
 } from 'react';
 import classNames from 'classnames';
-
+import { EuiIcon } from '../icon';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 
@@ -39,7 +39,12 @@ export interface LinkButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export type EuiLinkButtonProps = CommonProps &
+export type EuiLinkButtonProps = {
+  /**
+   * Set this prop to true if you want to show an icon indicating that this is an external link.
+   */
+  external?: boolean;
+} & CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> &
   LinkButtonProps;
 
@@ -64,6 +69,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       color = 'primary',
       className,
       href,
+      external,
       target,
       rel,
       type = 'button',
@@ -91,6 +97,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
           ref={ref as React.Ref<HTMLButtonElement>}
           {...buttonProps as EuiLinkButtonProps}>
           {children}
+          {external ? <EuiIcon type="popout" /> : undefined}
         </button>
       );
     }
@@ -111,6 +118,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
         ref={ref as React.Ref<HTMLAnchorElement>}
         {...anchorProps as EuiLinkAnchorProps}>
         {children}
+        {external ? <EuiIcon type="popout" /> : undefined}
       </a>
     );
   }

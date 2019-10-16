@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiLink, EuiText } from '../../../../src/components';
+import { EuiCode, EuiLink, EuiText } from '../../../../src/components';
 
 export default () => (
   <EuiText>
@@ -12,6 +12,15 @@ export default () => (
         </EuiLink>
       }{' '}
       in a new tab.
+    </p>
+    <p>
+      This{' '}
+      {
+        <EuiLink href="http://www.elastic.co" external target="_blank">
+          link
+        </EuiLink>
+      }{' '}
+      has the <EuiCode>external</EuiCode> prop set to true.
     </p>
     <p>
       This link is actually a{' '}
