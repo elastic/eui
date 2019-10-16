@@ -47,8 +47,6 @@ type BadgeProps = {
    */
   tooltipPosition?: ToolTipPositions;
 
-  isDisabled?: boolean;
-
   /**
    * Optional title will be supplied as tooltip title or title attribute
    * otherwise the label will be used
@@ -63,7 +61,6 @@ type EuiBetaBadgeProps = CommonProps &
 export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   className,
   label,
-  isDisabled,
   tooltipContent,
   tooltipPosition = 'top',
   title,
@@ -74,9 +71,6 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     'euiBetaBadge',
     {
       'euiBetaBadge--iconOnly': iconType,
-    },
-    {
-      'euiBetaBadge-isDisabled': isDisabled,
     },
     className
   );

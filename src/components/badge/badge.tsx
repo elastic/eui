@@ -121,8 +121,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     'euiBadge',
     {
       'euiBadge-isClickable': onClick && !iconOnClick,
-    },
-    {
       'euiBadge-isDisabled': isDisabled,
     },
     iconSideToClassNameMap[iconSide],

@@ -23,7 +23,7 @@ export default () => (
     {badges.map(badge => (
       <EuiFlexItem grow={false} key={badge}>
         <EuiBadge isDisabled={badge === '#fea27f' ? true : false} color={badge}>
-          {badge === '#fea27f' ? 'disabled badge' : badge}
+          {badge === '#fea27f' ? 'disabled' : badge}
         </EuiBadge>
       </EuiFlexItem>
     ))}

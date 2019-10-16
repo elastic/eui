@@ -6,7 +6,7 @@ export default () => (
   <div>
     <EuiBadge iconType="check">Default</EuiBadge>
 
-    <EuiBadge isDisabled color="primary" iconType="cross" iconSide="right">
+    <EuiBadge color="primary" iconType="cross" iconSide="right">
       Primary
     </EuiBadge>
   </div>

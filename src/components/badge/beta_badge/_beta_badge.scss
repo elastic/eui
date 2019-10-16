@@ -15,11 +15,6 @@
 
   cursor: default;
 
-  &.euiBetaBadge-isDisabled {
-    background-color: $euiColorLightestShade;
-    color: $euiButtonColorDisabled;
-  }
-
 }
 
 // When it's just an icon, make it a circle

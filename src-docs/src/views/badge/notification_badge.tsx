@@ -5,7 +5,5 @@ import { EuiNotificationBadge } from '../../../../src/components/badge/notificat
 export default () => (
   <div>
     <EuiNotificationBadge>3</EuiNotificationBadge>
-    &emsp;
-    <EuiNotificationBadge isDisabled>3</EuiNotificationBadge>
   </div>
 );

@@ -16,10 +16,6 @@
   transition: all $euiAnimSpeedFast ease-in;
   cursor: default;
 
-  &.euiNotificationBadge-isDisabled {
-    background-color: $euiColorLightestShade;
-    color: $euiButtonColorDisabled;
-  }
 }
 
 .euiNotificationBadge--medium {

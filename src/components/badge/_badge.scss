@@ -21,8 +21,9 @@
 
   &.euiBadge-isDisabled {
     // sass-lint:disable-block no-important
-    background-color: $euiColorLightestShade !important;
-    color: $euiButtonColorDisabled !important;
+    // Using !important to override inline styles
+    background-color: $euiButtonColorDisabled !important;
+    color: $euiColorEmptyShade !important;
   }
 
   &:focus-within {
