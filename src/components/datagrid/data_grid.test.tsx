@@ -630,9 +630,9 @@ Array [
       );
 
       // The toolbar should not show
-      expect(component.find('[data-test-subj="dataGridControls"]').length).toBe(
-        0
-      );
+      expect(
+        component.find('div[data-test-subj="dataGridControls"]').length
+      ).toBe(0);
 
       // Check for false / true and unset values
       component.setProps({
