@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconAppInfra = props => (
+const EuiIconAppMetrics = props => (
   <svg
     width={32}
     height={32}
@@ -15,4 +15,4 @@ const EuiIconAppInfra = props => (
   </svg>
 );
 
-export const icon = EuiIconAppInfra;
+export const icon = EuiIconAppMetrics;

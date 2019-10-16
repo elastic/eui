@@ -143,7 +143,7 @@ const typeToPathMap = {
   indexPatternApp: 'app_index_pattern',
   indexRollupApp: 'app_index_rollup',
   indexSettings: 'index_settings',
-  infraApp: 'app_infra',
+  metricsApp: 'app_metrics',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
   invert: 'invert',

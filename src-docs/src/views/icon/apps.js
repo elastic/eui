@@ -41,7 +41,7 @@ const iconTypes = [
   'indexManagementApp',
   'indexPatternApp',
   'indexRollupApp',
-  'infraApp',
+  'metricsApp',
   'lensApp',
   'logsApp',
   'machineLearningApp',
