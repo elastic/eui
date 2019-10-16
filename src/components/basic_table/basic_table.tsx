@@ -774,21 +774,18 @@ export class EuiBasicTable<T = any> extends Component<
     // Occupy full width of table, taking checkbox & mobile only columns into account.
     let expandedRowColSpan = selection ? columns.length + 1 : columns.length;
 
-    const mobileOnlyCols = columns.reduce(
-      (num: number, column: EuiBasicTableColumn<T>) => {
-        if (
-          (column as FieldDataColumnType<T>).mobileOptions &&
-          (column as FieldDataColumnType<T>).mobileOptions!.only
-        ) {
-          return num + 1;
-        }
+    const mobileOnlyCols = columns.reduce<number>((num, column) => {
+      if (
+        (column as FieldDataColumnType<T>).mobileOptions &&
+        (column as FieldDataColumnType<T>).mobileOptions!.only
+      ) {
+        return num + 1;
+      }
 
-        return (column as FieldDataColumnType<T>).isMobileHeader
-          ? num + 1
-          : num + 0; // BWC only
-      },
-      0
-    );
+      return (column as FieldDataColumnType<T>).isMobileHeader
+        ? num + 1
+        : num + 0; // BWC only
+    }, 0);
 
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
 
