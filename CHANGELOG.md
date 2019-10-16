@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.6.0`.
+
+## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
+
 - Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
   
 **Bug fixes**
