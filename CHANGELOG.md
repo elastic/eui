@@ -16,6 +16,7 @@
 - Added `keyboardShorcut` glyph to 'EuiIcon ([#2413](https://github.com/elastic/eui/pull/2413))
 - Improved a11y in `EuiNavDrawer` ([#2417](https://github.com/elastic/eui/pull/2417))
 - Improved a11y in `EuiSuperDatePicker` ([#2426](https://github.com/elastic/eui/pull/2426))
+- Added `external` prop to `EuiLink` ([#2442](https://github.com/elastic/eui/pull/2410))
 
 **Bug fixes**
 
