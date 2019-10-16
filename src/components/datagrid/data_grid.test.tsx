@@ -614,6 +614,49 @@ Array [
       ).toBe(2);
     });
 
+    it('can hide the toolbar', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          toolbarDisplay={false}
+          rowCount={1}
+          renderCellValue={() => 'value'}
+        />
+      );
+
+      // no columns are sorted, expect no aria-sort or aria-describedby attributes
+      expect(
+        component.find('[data-test-subj="euiDataGrid__controls"]').length
+      ).toBe(0);
+    });
+
+    it('can hide the full screen button', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          toolbarDisplay={{ showFullscrenSelector: false }}
+          rowCount={1}
+          renderCellValue={() => 'value'}
+        />
+      );
+
+      // no columns are sorted, expect no aria-sort or aria-describedby attributes
+      expect(
+        component.find('[data-test-subj="euiDataGrid__showFullScrenButton"]')
+          .length
+      ).toBe(0);
+    });
+
     describe('schema datatype classnames', () => {
       it('applies classnames from explicit datatypes', () => {
         const component = mount(

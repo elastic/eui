@@ -178,6 +178,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
+        data-test-sub="euiDataGrid__controls"
       >
         <div
           class="euiPopover euiPopover--anchorDownLeft"
@@ -245,6 +246,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          data-test-subj="euiDataGrid__showFullScrenButton"
           type="button"
         >
           <span
@@ -705,6 +707,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
+        data-test-sub="euiDataGrid__controls"
       >
         <div
           class="euiPopover euiPopover--anchorDownLeft"
@@ -772,6 +775,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          data-test-subj="euiDataGrid__showFullScrenButton"
           type="button"
         >
           <span

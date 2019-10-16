@@ -29,6 +29,7 @@ import {
   EuiDataGridStyleRowHover,
   EuiDataGridExpansionFormatters,
   EuiDataGridColumnVisibility,
+  EuiDataGridTooBarDisplayOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -64,6 +65,7 @@ type CommonGridProps = CommonProps &
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     gridStyle?: EuiDataGridStyle;
+    toolbarDisplay?: boolean | EuiDataGridTooBarDisplayOptions;
     inMemory?: EuiDataGridInMemory;
     /**
      * Set to `null` to disable pagination
@@ -189,16 +191,16 @@ function useColumnWidths(): [
 }
 
 function useOnResize(
-  setShowGridControls: (showGridControls: boolean) => void,
+  setHasRoomForGridControls: (hasRoomForGridControls: boolean) => void,
   isFullScreen: boolean
 ) {
   return useCallback(
     ({ width }: { width: number }) => {
-      setShowGridControls(
+      setHasRoomForGridControls(
         width > MINIMUM_WIDTH_FOR_GRID_CONTROLS || isFullScreen
       );
     },
-    [setShowGridControls, isFullScreen]
+    [setHasRoomForGridControls, isFullScreen]
   );
 }
 
@@ -280,7 +282,7 @@ function createKeyDownHandler(
 
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [showGridControls, setShowGridControls] = useState(true);
+  const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
   const [focusedCell, setFocusedCell] = useState<[number, number] | null>(null);
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
@@ -328,9 +330,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [columnWidths, setColumnWidth] = useColumnWidths();
 
   // enables/disables grid controls based on available width
-  const onResize = useOnResize(nextShowGridControls => {
-    if (nextShowGridControls !== showGridControls) {
-      setShowGridControls(nextShowGridControls);
+  const onResize = useOnResize(nextHasRoomForGridControls => {
+    if (nextHasRoomForGridControls !== hasRoomForGridControls) {
+      setHasRoomForGridControls(nextHasRoomForGridControls);
     }
   }, isFullScreen);
 
@@ -353,6 +355,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     renderCellValue,
     className,
     gridStyle,
+    toolbarDisplay = true,
     pagination,
     sorting,
     inMemory,
@@ -417,12 +420,41 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
+  // By default the toolbar appears
+  const showToolbar = !!toolbarDisplay;
+
+  // Typegaurd to see if toolbarDisplay has a certain boolean property assigned
+  // If not, just set it to true and assume it's OK to show
+  function checkOrDefaultToolBarDiplayOptions(
+    arg: EuiDataGridProps['toolbarDisplay'],
+    option: keyof EuiDataGridTooBarDisplayOptions
+  ): boolean {
+    if (arg === undefined) {
+      return true;
+    } else if (typeof arg === 'boolean') {
+      return arg as boolean;
+    } else if (
+      (arg as EuiDataGridTooBarDisplayOptions).hasOwnProperty(option)
+    ) {
+      return arg[option]!;
+    } else {
+      return true;
+    }
+  }
+
   // These grid controls will only show when there is room. Check the resize observer callback
+  // They can also be optionally turned off individually by using toolbarDisplay
   const gridControls = (
     <Fragment>
-      {columnSelector}
-      {styleSelector}
-      {columnSorting}
+      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showColumnSelector')
+        ? columnSelector
+        : null}
+      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showStyleSelector')
+        ? styleSelector
+        : null}
+      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showSortSelector')
+        ? columnSorting
+        : null}
     </Fragment>
   );
 
@@ -450,32 +482,46 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const realizedFocusedCell: [number, number] =
     focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
 
+  const fullScreenSelector = (
+    <EuiI18n
+      tokens={[
+        'euiDataGrid.fullScreenButton',
+        'euiDataGrid.fullScreenButtonActive',
+      ]}
+      defaults={['Full screen', 'Exit full screen']}>
+      {([fullScreenButton, fullScreenButtonActive]: ReactChild[]) => (
+        <EuiButtonEmpty
+          size="xs"
+          iconType="fullScreen"
+          color="text"
+          className={controlBtnClasses}
+          data-test-subj="euiDataGrid__showFullScrenButton"
+          onClick={() => setIsFullScreen(!isFullScreen)}>
+          {isFullScreen ? fullScreenButtonActive : fullScreenButton}
+        </EuiButtonEmpty>
+      )}
+    </EuiI18n>
+  );
+
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
       <div
         className={classes}
         onKeyDown={handleGridKeyDown}
         ref={setContainerRef}>
-        <div className="euiDataGrid__controls">
-          {showGridControls ? gridControls : null}
-          <EuiI18n
-            tokens={[
-              'euiDataGrid.fullScreenButton',
-              'euiDataGrid.fullScreenButtonActive',
-            ]}
-            defaults={['Full screen', 'Exit full screen']}>
-            {([fullScreenButton, fullScreenButtonActive]: ReactChild[]) => (
-              <EuiButtonEmpty
-                size="xs"
-                iconType="fullScreen"
-                color="text"
-                className={controlBtnClasses}
-                onClick={() => setIsFullScreen(!isFullScreen)}>
-                {isFullScreen ? fullScreenButtonActive : fullScreenButton}
-              </EuiButtonEmpty>
-            )}
-          </EuiI18n>
-        </div>
+        {showToolbar ? (
+          <div
+            className="euiDataGrid__controls"
+            data-test-sub="euiDataGrid__controls">
+            {hasRoomForGridControls ? gridControls : null}
+            {checkOrDefaultToolBarDiplayOptions(
+              toolbarDisplay,
+              'showFullscrenSelector'
+            )
+              ? fullScreenSelector
+              : null}
+          </div>
+        ) : null}
         <EuiResizeObserver onResize={onResize}>
           {resizeRef => (
             <div

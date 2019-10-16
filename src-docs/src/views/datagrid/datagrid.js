@@ -238,6 +238,10 @@ export default () => {
         renderCellValue={renderCellValue}
         {...inMemoryProps}
         sorting={{ columns: sortingColumns, onSort }}
+        toolbarDisplay={{
+          showFullscrenSelector: false,
+          showSortSelector: true,
+        }}
         pagination={{
           ...pagination,
           pageSizeOptions: [10, 25, 50, 100],
