@@ -155,6 +155,7 @@ export type EuiInMemoryTableProps<T> = CommonProps & {
   executeQueryOptions?: any;
   isSelectable?: boolean;
   hasActions?: boolean;
+  responsive?: boolean;
   itemIdToExpandedRowMap?: {
     [id: string]: ReactNode;
   };
@@ -277,6 +278,10 @@ export class EuiInMemoryTable<T> extends Component<
   EuiInMemoryTableProps<T>,
   State<T>
 > {
+  static defaultProps = {
+    responsive: true,
+  };
+
   static getDerivedStateFromProps<T>(
     nextProps: EuiInMemoryTableProps<T>,
     prevState: State<T>
