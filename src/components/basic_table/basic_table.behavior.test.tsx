@@ -2,12 +2,12 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { findTestSubject } from '../../test';
 
-import { EuiBasicTable, Props } from './basic_table';
+import { EuiBasicTable, EuiBasicTableProps } from './basic_table';
 
 describe('EuiBasicTable', () => {
   describe('behavior', () => {
     describe('selected items', () => {
-      let props: Props;
+      let props: EuiBasicTableProps<{ id: string; name: string }>;
       let component: ReactWrapper;
 
       beforeEach(() => {

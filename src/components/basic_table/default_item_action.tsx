@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { ReactElement } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
@@ -6,23 +6,26 @@ import {
   DefaultItemAction as Action,
   DefaultItemIconButtonAction as IconButtonAction,
 } from './action_types';
-import { Item, ItemId } from './table_types';
+import { ItemId } from './table_types';
 
-interface Props {
-  action: Action;
+interface Props<T> {
+  action: Action<T>;
   enabled: boolean;
-  item: Item;
-  itemId?: ItemId;
+  item: T;
+  itemId?: ItemId<T>;
   className?: string;
   index?: number;
 }
 
-export const DefaultItemAction: FunctionComponent<Props> = ({
+// In order to use generics with an arrow function inside a .tsx file, it's necessary to use
+// this `extends` hack and declare the types as shown, instead of declaring the const as a
+// FunctionComponent
+export const DefaultItemAction = <T extends {}>({
   action,
   enabled,
   item,
   className,
-}: Props) => {
+}: Props<T>): ReactElement => {
   if (!action.onClick && !action.href) {
     throw new Error(`Cannot render item action [${
       action.name
@@ -36,7 +39,7 @@ export const DefaultItemAction: FunctionComponent<Props> = ({
     isString(action.color) ? action.color : action.color(item);
   const color = action.color ? resolveActionColor(action) : 'primary';
 
-  const { icon: buttonIcon } = action as IconButtonAction;
+  const { icon: buttonIcon } = action as IconButtonAction<T>;
   const resolveActionIcon = (action: any) =>
     isString(action.icon) ? action.icon : action.icon(item);
   const icon = buttonIcon ? resolveActionIcon(action) : undefined;

@@ -1,23 +1,22 @@
-import { ReactNode } from 'react';
-import { HorizontalAlignment, PropertySort } from '../../services';
+import { ReactElement, ReactNode } from 'react';
+import { Direction, HorizontalAlignment } from '../../services';
 import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 
-export type Item = any;
-export type ItemId = string | ((item: Item) => string);
+export type ItemId<T> = string | ((item: T) => string);
 export type DataType = 'auto' | 'string' | 'number' | 'boolean' | 'date';
 
-export interface FooterProps {
-  items: Item[];
+export interface FooterProps<T> {
+  items: T[];
   pagination?: Pagination;
 }
-export interface FieldDataColumnType {
-  field: string;
+export interface FieldDataColumnType<T> {
+  field: keyof T | string; // supports outer.inner key paths
   name: ReactNode;
   description?: string;
   dataType?: DataType;
   width?: string;
-  sortable?: boolean | ((item: Item) => number | string);
+  sortable?: boolean | ((item: T) => number | string);
   isExpander?: boolean;
   textOnly?: boolean;
   align?: HorizontalAlignment;
@@ -26,37 +25,40 @@ export interface FieldDataColumnType {
   mobileOptions?: {
     show?: boolean;
     only?: boolean;
-    render?: (item: Item) => ReactNode;
+    render?: (item: T) => ReactNode;
     header?: boolean;
   };
   hideForMobile?: boolean;
-  render?: (value: any, record: any) => ReactNode;
-  footer?: string | React.ReactElement | ((props: FooterProps) => ReactNode);
+  render?: (value: any, record: T) => ReactNode;
+  footer?: string | ReactElement | ((props: FooterProps<T>) => ReactNode);
 }
 
-export interface ComputedColumnType {
-  render: (record: any) => ReactNode;
+export interface ComputedColumnType<T> {
+  render: (record: T) => ReactNode;
   name?: ReactNode;
   description?: string;
-  sortable?: (item: Item) => number | string;
+  sortable?: (item: T) => number | string;
   width?: string;
   truncateText?: boolean;
 }
 
-export interface ActionsColumnType {
-  actions: Action[];
+export interface ActionsColumnType<T> {
+  actions: Array<Action<T>>;
   name?: ReactNode;
   description?: string;
   width?: string;
 }
 
-export interface SortingType {
-  sort?: PropertySort;
+export interface SortingType<T> {
+  sort?: {
+    field: keyof T;
+    direction: Direction;
+  };
   allowNeutralSort?: boolean;
 }
 
-export interface SelectionType {
-  onSelectionChange?: (selection: Item) => void;
-  selectable?: (item: Item) => boolean;
-  selectableMessage?: (selectable: boolean, item: Item) => string;
+export interface SelectionType<T> {
+  onSelectionChange?: (selection: T[]) => void;
+  selectable?: (item: T) => boolean;
+  selectableMessage?: (selectable: boolean, item: T) => string;
 }
