@@ -8,7 +8,7 @@ import {
 } from './action_types';
 import { ItemId } from './table_types';
 
-interface Props<T> {
+export interface DefaultItemActionProps<T> {
   action: Action<T>;
   enabled: boolean;
   item: T;
@@ -25,7 +25,7 @@ export const DefaultItemAction = <T extends {}>({
   enabled,
   item,
   className,
-}: Props<T>): ReactElement => {
+}: DefaultItemActionProps<T>): ReactElement => {
   if (!action.onClick && !action.href) {
     throw new Error(`Cannot render item action [${
       action.name

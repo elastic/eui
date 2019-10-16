@@ -2,7 +2,7 @@ import React, { Component, cloneElement } from 'react';
 import { CustomItemAction as Action } from './action_types';
 import { ItemId } from './table_types';
 
-export interface Props<T> {
+export interface CustomItemActionProps<T> {
   action: Action<T>;
   enabled: boolean;
   item: T;
@@ -15,10 +15,13 @@ interface State {
   hasFocus: boolean;
 }
 
-export class CustomItemAction<T> extends Component<Props<T>, State> {
+export class CustomItemAction<T> extends Component<
+  CustomItemActionProps<T>,
+  State
+> {
   private mounted: boolean;
 
-  constructor(props: Props<T>) {
+  constructor(props: CustomItemActionProps<T>) {
     super(props);
     this.state = { hasFocus: false };
 

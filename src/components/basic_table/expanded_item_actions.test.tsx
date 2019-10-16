@@ -1,10 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ExpandedItemActions, Props } from './expanded_item_actions';
+import {
+  ExpandedItemActions,
+  ExpandedItemActionsProps,
+} from './expanded_item_actions';
 
 describe('ExpandedItemActions', () => {
   test('render', () => {
-    const props: Props<{ id: string }> = {
+    const props: ExpandedItemActionsProps<{ id: string }> = {
       actions: [
         {
           name: 'default1',
@@ -14,7 +17,7 @@ describe('ExpandedItemActions', () => {
         {
           name: 'custom1',
           description: 'custom 1',
-          render: () => {},
+          render: _item => <></>,
         },
       ],
       itemId: 'xyz',
