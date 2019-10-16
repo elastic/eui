@@ -37,7 +37,7 @@ export interface LinkButtonProps {
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /**
-   * Set this prop to true if you want to show an icon indicating that this is an external link.
+   * Set to true to show an icon indicating that it is an external link.
    */
   external?: boolean;
 }
