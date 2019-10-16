@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { EuiIcon } from '../icon';
+import { EuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 
@@ -59,6 +60,19 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkButtonProps,
   EuiLinkAnchorProps
 >;
+
+const externalLinkIcon = (
+  <EuiI18n token="euiLink.external.ariaLabel" default="External Link">
+    {(ariaLabel: string) => (
+      <EuiIcon
+        aria-label={ariaLabel}
+        size="s"
+        className="euiLink__externalIcon"
+        type="popout"
+      />
+    )}
+  </EuiI18n>
+);
 
 const EuiLink = React.forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
@@ -118,7 +132,7 @@ const EuiLink = React.forwardRef<
         ref={ref as React.Ref<HTMLAnchorElement>}
         {...anchorProps as EuiLinkAnchorProps}>
         {children}
-        {external ? <EuiIcon type="popout" /> : undefined}
+        {external ? externalLinkIcon : undefined}
       </a>
     );
   }
