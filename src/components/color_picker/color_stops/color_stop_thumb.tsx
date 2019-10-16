@@ -206,7 +206,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       ownFocus={isPopoverOpen}
       initialFocus={numberInputRef}
       panelClassName={
-        numberInputRef ? undefined : 'euiColorStopPopover-panelLoading'
+        numberInputRef ? undefined : 'euiColorStopPopover-isLoadingPanel'
       }
       style={{
         left: `${getPositionFromStopFn(stop)}%`,

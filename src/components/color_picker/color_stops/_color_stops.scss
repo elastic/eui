@@ -76,7 +76,7 @@
   }
 }
 
-.euiColorStopPopover-panelLoading {
+.euiColorStopPopover-isLoadingPanel {
   // sass-lint:disable-block no-important
   visibility: hidden !important; // Overrides a stateful class on EuiPopover -> EuiPanel
 }
