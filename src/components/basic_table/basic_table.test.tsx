@@ -10,6 +10,7 @@ import {
 } from './basic_table';
 
 import { SortDirection } from '../../services';
+import { FieldDataColumnType } from './table_types';
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
@@ -123,7 +124,7 @@ describe('EuiBasicTable', () => {
             description: 'description',
           },
         ],
-        rowProps: (item: any) => {
+        rowProps: item => {
           const { id } = item;
           return {
             'data-test-subj': `row-${id}`,
@@ -178,9 +179,9 @@ describe('EuiBasicTable', () => {
             description: 'description',
           },
         ],
-        cellProps: (item: any, column: any) => {
+        cellProps: (item, column) => {
           const { id } = item;
-          const { field } = column;
+          const { field } = column as FieldDataColumnType<BasicItem>;
           return {
             'data-test-subj': `cell-${id}-${field}`,
             className: 'customRowClass',
