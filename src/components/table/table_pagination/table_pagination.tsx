@@ -86,7 +86,6 @@ export class EuiTablePagination extends Component<Props, State> {
 
     const itemsPerPagePopover = (
       <EuiPopover
-        id="customizablePagination"
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}

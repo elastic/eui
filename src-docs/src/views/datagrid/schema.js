@@ -11,6 +11,7 @@ import { iconTypes } from '../icon/icons';
 const columns = [
   {
     id: 'name',
+    isExpandable: false,
   },
   {
     id: 'email',
@@ -21,6 +22,7 @@ const columns = [
   {
     id: 'account',
     dataType: 'numeric',
+    isExpandable: false,
   },
   {
     id: 'date',
@@ -28,9 +30,10 @@ const columns = [
   {
     id: 'amount',
     dataType: 'currency',
+    isExpandable: false,
   },
   {
-    id: 'phone',
+    id: 'json',
   },
   {
     id: 'version',
@@ -40,6 +43,36 @@ const columns = [
 const data = [];
 
 for (let i = 1; i < 5; i++) {
+  let json;
+  if (i < 3) {
+    json = JSON.stringify([
+      {
+        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+        email: fake('{{internet.email}}'),
+        date: fake('{{date.past}}'),
+        account: fake('{{finance.account}}'),
+        amount: fake('${{finance.amount}}'),
+        version: fake('{{system.semver}}'),
+        friends: [
+          {
+            name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+            email: fake('{{internet.email}}'),
+            date: fake('{{date.past}}'),
+            account: fake('{{finance.account}}'),
+            amount: fake('${{finance.amount}}'),
+            version: fake('{{system.semver}}'),
+          },
+        ],
+      },
+    ]);
+  } else {
+    json = JSON.stringify([
+      {
+        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+      },
+    ]);
+  }
+
   data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
@@ -54,12 +87,12 @@ for (let i = 1; i < 5; i++) {
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
     amount: fake('${{finance.amount}}'),
-    phone: fake('{{phone.phoneNumber}}'),
+    json: json,
     version: fake('{{system.semver}}'),
   });
 }
 
-export default class InMemoryDataGrid extends Component {
+export default class DataGridSchema extends Component {
   constructor(props) {
     super(props);
 
@@ -71,6 +104,8 @@ export default class InMemoryDataGrid extends Component {
         pageIndex: 0,
         pageSize: 10,
       },
+
+      visibleColumns: columns.map(({ id }) => id),
     };
   }
 
@@ -101,6 +136,8 @@ export default class InMemoryDataGrid extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+
   dummyIcon = () => (
     <EuiButtonIcon
       aria-label="dummy icon"
@@ -115,7 +152,12 @@ export default class InMemoryDataGrid extends Component {
       <EuiDataGrid
         aria-label="Top EUI contributors"
         columns={columns}
+        columnVisibility={{
+          visibleColumns: this.state.visibleColumns,
+          setVisibleColumns: this.setVisibleColumns,
+        }}
         rowCount={data.length}
+        inMemory={{ level: 'sorting' }}
         renderCellValue={({ rowIndex, columnId }) => {
           const value = data[rowIndex][columnId];
           return value;

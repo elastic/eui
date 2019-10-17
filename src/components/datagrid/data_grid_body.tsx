@@ -2,11 +2,17 @@ import React, {
   Fragment,
   FunctionComponent,
   useCallback,
+  useEffect,
   useMemo,
+  useRef,
+  useState,
 } from 'react';
+// @ts-ignore-next-line
+import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
+  EuiDataGridExpansionFormatters,
   EuiDataGridInMemory,
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
@@ -17,24 +23,87 @@ import {
   EuiDataGridDataRow,
   EuiDataGridDataRowProps,
 } from './data_grid_data_row';
-import { EuiDataGridSchema } from './data_grid_schema';
+import { EuiDataGridSchema, SchemaDetector } from './data_grid_schema';
+import { useInnerText } from '../inner_text';
 
 interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
   schema: EuiDataGridSchema;
+  schemaDetectors: SchemaDetector[];
+  expansionFormatters?: EuiDataGridExpansionFormatters;
   focusedCell: EuiDataGridDataRowProps['focusedCell'];
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   inMemory?: EuiDataGridInMemory;
   inMemoryValues: EuiDataGridInMemoryValues;
-  isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
   sorting?: EuiDataGridSorting;
 }
+
+const defaultComparator: NonNullable<SchemaDetector['comparator']> = (
+  a,
+  b,
+  direction
+) => {
+  if (a < b) return direction === 'asc' ? -1 : 1;
+  if (a > b) return direction === 'asc' ? 1 : -1;
+  return 0;
+};
+
+const providedExpansionFormatters: EuiDataGridExpansionFormatters = {
+  json: ({ children }) => {
+    const invisibleRef = useRef<HTMLDivElement>(null);
+    const [ref, text] = useInnerText();
+    const [isVisible, setIsVisible] = useState(false);
+    const formattedText = useMemo(() => {
+      if (text) {
+        try {
+          return JSON.stringify(JSON.parse(text), null, 2);
+        } catch (e) {
+          return text;
+        }
+      } else {
+        return '';
+      }
+    }, [text]);
+
+    useEffect(() => {
+      // because this content renders into a popover
+      // it is hidden until the popover positions into place
+      // but InnerText cannot inspect hidden elements, so wait
+      function checkVisibility() {
+        const style = window.getComputedStyle(invisibleRef.current!);
+        if (style.getPropertyValue('visibility') !== 'hidden') {
+          setIsVisible(true);
+        } else {
+          requestAnimationFrame(checkVisibility);
+        }
+      }
+      requestAnimationFrame(checkVisibility);
+    }, []);
+
+    return (
+      <Fragment>
+        {!formattedText && (
+          <div ref={isVisible ? ref : invisibleRef}>{children}</div>
+        )}
+        {formattedText && (
+          <EuiCodeBlock
+            isCopyable
+            transparentBackground
+            paddingSize="none"
+            language="json">
+            {formattedText}
+          </EuiCodeBlock>
+        )}
+      </Fragment>
+    );
+  },
+};
 
 export const EuiDataGridBody: FunctionComponent<
   EuiDataGridBodyProps
@@ -44,13 +113,14 @@ export const EuiDataGridBody: FunctionComponent<
     defaultColumnWidth,
     columns,
     schema,
+    schemaDetectors,
+    expansionFormatters,
     focusedCell,
     onCellFocus,
     rowCount,
     renderCellValue,
     inMemory,
     inMemoryValues,
-    isGridNavigationEnabled,
     interactiveCellId,
     pagination,
     sorting,
@@ -95,8 +165,24 @@ export const EuiDataGridBody: FunctionComponent<
           const aValue = a.values[column.id];
           const bValue = b.values[column.id];
 
-          if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
-          if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+          // get the comparator, based on schema
+          let comparator = defaultComparator;
+          if (schema.hasOwnProperty(column.id)) {
+            const columnType = schema[column.id].columnType;
+            for (let i = 0; i < schemaDetectors.length; i++) {
+              const detector = schemaDetectors[i];
+              if (
+                detector.type === columnType &&
+                detector.hasOwnProperty('comparator')
+              ) {
+                comparator = detector.comparator!;
+              }
+            }
+          }
+
+          const result = comparator(aValue, bValue, column.direction);
+          // only return if the columns are inequal, otherwise allow the next sort-by column to run
+          if (result !== 0) return result;
         }
 
         return 0;
@@ -108,7 +194,7 @@ export const EuiDataGridBody: FunctionComponent<
     }
 
     return rowMap;
-  }, [sorting, inMemory, inMemoryValues]);
+  }, [sorting, inMemory, inMemoryValues, schema, schemaDetectors]);
 
   const setCellFocus = useCallback(
     ([colIndex, rowIndex]) => {
@@ -142,11 +228,17 @@ export const EuiDataGridBody: FunctionComponent<
         rowIndex = rowMap[rowIndex];
       }
 
+      const mergedExpansionFormatters = {
+        ...providedExpansionFormatters,
+        ...expansionFormatters,
+      };
+
       rows.push(
         <EuiDataGridDataRow
           key={rowIndex}
           columns={columns}
           schema={schema}
+          expansionFormatters={mergedExpansionFormatters}
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
           focusedCell={focusedCell}
@@ -154,7 +246,6 @@ export const EuiDataGridBody: FunctionComponent<
           renderCellValue={renderCellValue}
           rowIndex={rowIndex}
           visibleRowIndex={i}
-          isGridNavigationEnabled={isGridNavigationEnabled}
           interactiveCellId={interactiveCellId}
         />
       );
@@ -169,9 +260,10 @@ export const EuiDataGridBody: FunctionComponent<
     onCellFocus,
     renderCellValue,
     rowMap,
+    schema,
+    expansionFormatters,
     visibleRowIndices,
     startRow,
-    isGridNavigationEnabled,
     interactiveCellId,
   ]);
 

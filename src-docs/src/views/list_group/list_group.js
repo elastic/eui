@@ -30,6 +30,9 @@ export default class extends Component {
 
   render() {
     const { flushWidth, showBorder } = this.state;
+    const handleOnClick = () => {
+      alert('Item was clicked');
+    };
 
     return (
       <Fragment>
@@ -61,13 +64,21 @@ export default class extends Component {
         <EuiSpacer size="l" />
 
         <EuiListGroup flush={flushWidth} bordered={showBorder}>
-          <EuiListGroupItem label="First item" />
+          <EuiListGroupItem onClick={handleOnClick} label="First item" />
 
-          <EuiListGroupItem label="Second item" />
+          <EuiListGroupItem onClick={handleOnClick} label="Second item" />
 
-          <EuiListGroupItem label="Third item" isActive />
+          <EuiListGroupItem
+            onClick={handleOnClick}
+            label="Third item"
+            isActive
+          />
 
-          <EuiListGroupItem label="Fourth item" isDisabled />
+          <EuiListGroupItem
+            onClick={handleOnClick}
+            label="Fourth item"
+            isDisabled
+          />
         </EuiListGroup>
       </Fragment>
     );

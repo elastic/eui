@@ -58,7 +58,8 @@ const ObservedCell: FunctionComponent<{
   onCellRender: EuiDataGridInMemoryRendererProps['onCellRender'];
   i: number;
   column: EuiDataGridColumn;
-}> = ({ renderCellValue, i, column, onCellRender }) => {
+  isExpandable: boolean;
+}> = ({ renderCellValue, i, column, onCellRender, isExpandable }) => {
   const [ref, setRef] = useState<HTMLDivElement | null>();
 
   useEffect(() => {
@@ -88,7 +89,13 @@ const ObservedCell: FunctionComponent<{
 
   return (
     <div ref={setRef}>
-      <CellElement rowIndex={i} columnId={column.id} setCellProps={noop} />
+      <CellElement
+        rowIndex={i}
+        columnId={column.id}
+        setCellProps={noop}
+        isExpandable={isExpandable}
+        isExpanded={false}
+      />
     </div>
   );
 };
@@ -114,6 +121,9 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
                 return null;
               }
 
+              const isExpandable =
+                column.isExpandable !== undefined ? column.isExpandable : true;
+
               return (
                 <ObservedCell
                   key={column.id}
@@ -121,6 +131,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
                   renderCellValue={renderCellValue}
                   column={column}
                   onCellRender={onCellRender}
+                  isExpandable={isExpandable}
                 />
               );
             })

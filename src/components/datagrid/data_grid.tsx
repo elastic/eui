@@ -7,8 +7,10 @@ import React, {
   useEffect,
   Fragment,
   ReactChild,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
+import tabbable from 'tabbable';
 import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { CommonProps, Omit } from '../common';
@@ -25,6 +27,8 @@ import {
   EuiDataGridStyleFontSizes,
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
+  EuiDataGridExpansionFormatters,
+  EuiDataGridColumnVisibility,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -38,13 +42,15 @@ import { EuiTablePagination } from '../table/table_pagination';
 // @ts-ignore-next-line
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { CELL_CONTENTS_ATTR } from './utils';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   getMergedSchema,
   SchemaDetector,
   useDetectSchema,
+  schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
+import { useColumnSorting } from './column_sorting';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -52,7 +58,9 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
+    columnVisibility: EuiDataGridColumnVisibility;
     schemaDetectors?: SchemaDetector[];
+    expansionFormatters?: EuiDataGridExpansionFormatters;
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     gridStyle?: EuiDataGridStyle;
@@ -119,15 +127,6 @@ const cellPaddingsToClassMap: {
   m: '',
   l: 'euiDataGrid--paddingLarge',
 };
-const ORIGIN: [number, number] = [0, 0];
-
-// returns whether or not this element is a gridcell with CELL_CONTENTS_ATTR
-const isInteractiveCell = (element: HTMLElement) => {
-  if (element.getAttribute('role') !== 'gridcell') {
-    return false;
-  }
-  return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
-};
 
 function computeVisibleRows(props: EuiDataGridProps) {
   const { pagination, rowCount } = props;
@@ -167,73 +166,6 @@ function renderPagination(props: EuiDataGridProps) {
         onChangePage={onChangePage}
         onChangeItemsPerPage={onChangeItemsPerPage}
       />
-    </div>
-  );
-}
-
-function renderSorting(props: EuiDataGridProps) {
-  const { columns, sorting } = props;
-
-  if (sorting == null) return null;
-
-  const sortedColumns = sorting.columns.reduce<{
-    [key: string]: 'asc' | 'desc';
-  }>((sortedColumns, { id, direction }) => {
-    sortedColumns[id] = direction;
-    return sortedColumns;
-  }, {});
-
-  return (
-    <div>
-      {columns.map(column => {
-        let sortIcon = '☐';
-        let nextSortDir: 'asc' | 'desc' | null = 'asc';
-        if (sortedColumns.hasOwnProperty(column.id)) {
-          sortIcon = sortedColumns[column.id] === 'asc' ? '⬆️' : '⬇️';
-          nextSortDir = sortedColumns[column.id] === 'asc' ? 'desc' : null;
-        }
-
-        return (
-          <div
-            key={column.id}
-            data-test-subj={`dataGrid-sortColumn-${column.id}-${
-              sortedColumns.hasOwnProperty(column.id)
-                ? sortedColumns[column.id]
-                : 'off'
-            }`}
-            onClick={() => {
-              const nextColumnOrder = [...sorting.columns];
-              let foundColumn = false;
-
-              for (let i = 0; i < nextColumnOrder.length; i++) {
-                if (nextColumnOrder[i].id === column.id) {
-                  foundColumn = true;
-
-                  if (nextSortDir === null) {
-                    nextColumnOrder.splice(i--, 1);
-                  } else {
-                    nextColumnOrder[i] = {
-                      id: column.id,
-                      direction: nextSortDir,
-                    };
-                  }
-                }
-              }
-
-              if (foundColumn === false) {
-                nextColumnOrder.push({
-                  id: column.id,
-                  direction: 'asc',
-                });
-              }
-
-              sorting.onSort(nextColumnOrder);
-            }}>
-            {sortIcon}
-            {column.id}
-          </div>
-        );
-      })}
     </div>
   );
 }
@@ -318,58 +250,42 @@ function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
   focusedCell: [number, number],
-  setFocusedCell: (focusedCell: [number, number]) => void,
-  isGridNavigationEnabled: boolean,
-  setIsGridNavigationEnabled: (isGridNavigationEnabled: boolean) => void
+  headerIsInteractive: boolean,
+  setFocusedCell: (focusedCell: [number, number]) => void
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
     const colCount = visibleColumns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
-    const { keyCode, target } = event;
+    const { keyCode } = event;
 
-    if (
-      target instanceof HTMLElement &&
-      isInteractiveCell(target) &&
-      isGridNavigationEnabled &&
-      (keyCode === keyCodes.ENTER || keyCode === keyCodes.F2)
-    ) {
-      setIsGridNavigationEnabled(false);
-    } else if (
-      !isGridNavigationEnabled &&
-      (keyCode === keyCodes.ESCAPE || keyCode === keyCodes.F2)
-    ) {
-      setIsGridNavigationEnabled(true);
-    }
-
-    if (isGridNavigationEnabled) {
-      switch (keyCode) {
-        case keyCodes.DOWN:
-          event.preventDefault();
-          if (y < rowCount - 1) {
-            setFocusedCell([x, y + 1]);
-          }
-          break;
-        case keyCodes.LEFT:
-          event.preventDefault();
-          if (x > 0) {
-            setFocusedCell([x - 1, y]);
-          }
-          break;
-        case keyCodes.UP:
-          event.preventDefault();
-          // TODO sort out when a user can arrow up into the column headers
-          if (y > 0) {
-            setFocusedCell([x, y - 1]);
-          }
-          break;
-        case keyCodes.RIGHT:
-          event.preventDefault();
-          if (x < colCount) {
-            setFocusedCell([x + 1, y]);
-          }
-          break;
-      }
+    switch (keyCode) {
+      case keyCodes.DOWN:
+        event.preventDefault();
+        if (y < rowCount - 1) {
+          setFocusedCell([x, y + 1]);
+        }
+        break;
+      case keyCodes.LEFT:
+        event.preventDefault();
+        if (x > 0) {
+          setFocusedCell([x - 1, y]);
+        }
+        break;
+      case keyCodes.UP:
+        event.preventDefault();
+        // TODO sort out when a user can arrow up into the column headers
+        const minimumIndex = headerIsInteractive ? -1 : 0;
+        if (y > minimumIndex) {
+          setFocusedCell([x, y - 1]);
+        }
+        break;
+      case keyCodes.RIGHT:
+        event.preventDefault();
+        if (x < colCount) {
+          setFocusedCell([x + 1, y]);
+        }
+        break;
     }
   };
 }
@@ -377,18 +293,58 @@ function createKeyDownHandler(
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showGridControls, setShowGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
+  const [focusedCell, setFocusedCell] = useState<[number, number] | null>(null);
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
+
+  const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
+  const handleHeaderChange = useCallback<MutationCallback>(
+    records => {
+      const [{ target }] = records;
+
+      // find the wrapping header div
+      let headerRow = target.parentElement;
+      while (
+        headerRow &&
+        (headerRow.getAttribute('data-test-subj') || '').indexOf(
+          'dataGridHeader'
+        ) === -1
+      ) {
+        headerRow = headerRow.parentElement;
+      }
+
+      if (headerRow) {
+        const tabbables = tabbable(headerRow);
+        const managed = headerRow.querySelectorAll(
+          '[data-euigrid-tab-managed]'
+        );
+        const hasInteractives = tabbables.length > 0 || managed.length > 0;
+        if (hasInteractives !== headerIsInteractive) {
+          setHeaderIsInteractive(hasInteractives);
+
+          // if the focus is on the header, and the header is no longer interactive
+          // move the focus down to the first row
+          if (
+            hasInteractives === false &&
+            focusedCell &&
+            focusedCell[1] === -1
+          ) {
+            setFocusedCell([focusedCell[0], 0]);
+          }
+        }
+      }
+    },
+    [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
+  );
 
   const [columnWidths, setColumnWidth] = useColumnWidths();
 
   // enables/disables grid controls based on available width
-  const onResize = useOnResize(setShowGridControls, isFullScreen);
-
-  const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
-    boolean
-  >(true);
+  const onResize = useOnResize(nextShowGridControls => {
+    if (nextShowGridControls !== showGridControls) {
+      setShowGridControls(nextShowGridControls);
+    }
+  }, isFullScreen);
 
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
@@ -403,6 +359,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const {
     columns,
+    columnVisibility,
     schemaDetectors,
     rowCount,
     renderCellValue,
@@ -411,19 +368,41 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     pagination,
     sorting,
     inMemory,
+    expansionFormatters,
     ...rest
   } = props;
 
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
 
-  const [columnSelector, visibleColumns] = useColumnSelector(columns);
+  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
+
+  const allSchemaDetetors = useMemo(
+    () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
+    [schemaDetectors]
+  );
+  const detectedSchema = useDetectSchema(
+    inMemoryValues,
+    allSchemaDetetors,
+    inMemory != null
+  );
+  const mergedSchema = getMergedSchema(detectedSchema, columns);
+
+  const [columnSelector, orderedVisibleColumns] = useColumnSelector(
+    columns,
+    columnVisibility
+  );
+  const columnSorting = useColumnSorting(
+    orderedVisibleColumns,
+    sorting,
+    detectedSchema
+  );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
     containerRef,
-    visibleColumns
+    orderedVisibleColumns
   );
 
   const classes = classNames(
@@ -450,20 +429,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
-  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
-
-  const detectedSchema = useDetectSchema(
-    inMemoryValues,
-    schemaDetectors,
-    inMemory != null
-  );
-  const mergedSchema = getMergedSchema(detectedSchema, columns);
-
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
       {columnSelector}
       {styleSelector}
+      {columnSorting}
     </Fragment>
   );
 
@@ -488,6 +459,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     delete rest['aria-labelledby'];
   }
 
+  const realizedFocusedCell: [number, number] =
+    focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
+
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
       <div
@@ -508,25 +482,21 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 iconType="fullScreen"
                 color="text"
                 className={controlBtnClasses}
-                onClick={() => setIsFullScreen(!isFullScreen)}
-                onKeyDown={() => handleGridKeyDown}>
+                onClick={() => setIsFullScreen(!isFullScreen)}>
                 {isFullScreen ? fullScreenButtonActive : fullScreenButton}
               </EuiButtonEmpty>
             )}
           </EuiI18n>
         </div>
-        {/* Unsure why this element causes errors as focus follows spec */}
-        {/* eslint-disable jsx-a11y/interactive-supports-focus */}
         <EuiResizeObserver onResize={onResize}>
           {resizeRef => (
             <div
               onKeyDown={createKeyDownHandler(
                 props,
-                visibleColumns,
-                focusedCell,
-                setFocusedCell,
-                isGridNavigationEnabled,
-                setIsGridNavigationEnabled
+                orderedVisibleColumns,
+                realizedFocusedCell,
+                headerIsInteractive,
+                setFocusedCell
               )}
               className="euiDataGrid__verticalScroll"
               ref={resizeRef}
@@ -551,27 +521,42 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   className="euiDataGrid__content"
                   role="grid"
                   {...gridAriaProps}>
-                  <EuiDataGridHeaderRow
-                    columns={visibleColumns}
-                    columnWidths={columnWidths}
-                    defaultColumnWidth={defaultColumnWidth}
-                    setColumnWidth={setColumnWidth}
-                    schema={mergedSchema}
-                  />
+                  <EuiMutationObserver
+                    observerOptions={{
+                      subtree: true,
+                      childList: true,
+                    }}
+                    onMutation={handleHeaderChange}>
+                    {ref => (
+                      <EuiDataGridHeaderRow
+                        ref={ref}
+                        columns={orderedVisibleColumns}
+                        columnWidths={columnWidths}
+                        defaultColumnWidth={defaultColumnWidth}
+                        setColumnWidth={setColumnWidth}
+                        schema={mergedSchema}
+                        sorting={sorting}
+                        headerIsInteractive={headerIsInteractive}
+                        focusedCell={realizedFocusedCell}
+                        setFocusedCell={setFocusedCell}
+                      />
+                    )}
+                  </EuiMutationObserver>
                   <EuiDataGridBody
                     columnWidths={columnWidths}
                     defaultColumnWidth={defaultColumnWidth}
                     inMemoryValues={inMemoryValues}
                     inMemory={inMemory}
-                    columns={visibleColumns}
+                    columns={orderedVisibleColumns}
                     schema={mergedSchema}
-                    focusedCell={focusedCell}
+                    schemaDetectors={allSchemaDetetors}
+                    expansionFormatters={expansionFormatters}
+                    focusedCell={realizedFocusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}
                     sorting={sorting}
                     renderCellValue={renderCellValue}
                     rowCount={rowCount}
-                    isGridNavigationEnabled={isGridNavigationEnabled}
                     interactiveCellId={interactiveCellId}
                   />
                 </div>
@@ -581,7 +566,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         </EuiResizeObserver>
 
         {renderPagination(props)}
-        {renderSorting(props)}
         <p id={interactiveCellId} hidden>
           <EuiI18n
             token="euiDataGrid.screenReaderNotice"

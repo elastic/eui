@@ -23,7 +23,7 @@ const columns = [
     id: 'amount',
   },
   {
-    id: 'phone',
+    id: 'boolean',
   },
   {
     id: 'version',
@@ -46,8 +46,8 @@ for (let i = 1; i < 100; i++) {
     ),
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
-    amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
-    phone: fake('{{phone.phoneNumber}}'),
+    amount: fake('${{finance.amount}}'),
+    boolean: fake('{{random.boolean}}'),
     version: fake('{{system.semver}}'),
   });
 }
@@ -64,6 +64,8 @@ export default class InMemoryDataGrid extends Component {
         pageIndex: 0,
         pageSize: 10,
       },
+
+      visibleColumns: columns.map(({ id }) => id),
     };
   }
 
@@ -79,6 +81,8 @@ export default class InMemoryDataGrid extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
+
   render() {
     const { data, pagination, sortingColumns } = this.state;
 
@@ -86,6 +90,10 @@ export default class InMemoryDataGrid extends Component {
       <EuiDataGrid
         aria-label="Top EUI contributors"
         columns={columns}
+        columnVisibility={{
+          visibleColumns: this.state.visibleColumns,
+          setVisibleColumns: this.setVisibleColumns,
+        }}
         rowCount={data.length}
         renderCellValue={({ rowIndex, columnId }) => {
           const value = data[rowIndex][columnId];

@@ -10,12 +10,14 @@ import { fake } from 'faker';
 import {
   EuiButton,
   EuiDataGrid,
-  EuiButtonIcon,
   EuiLink,
   EuiPopover,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components/';
-import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
 import { EuiRadioGroup } from '../../../../src/components/form/radio';
+import { EuiButtonIcon } from '../../../../src/components/button/button_icon';
 
 const columns = [
   {
@@ -23,6 +25,22 @@ const columns = [
   },
   {
     id: 'email',
+    display: (
+      // This is an example of an icon next to a title that still respects text truncate
+      <EuiFlexGroup gutterSize="xs">
+        <EuiFlexItem className="eui-textTruncate">
+          <div className="eui-textTruncate">email</div>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButtonIcon
+            aria-label="Column header email"
+            iconType="gear"
+            color="text"
+            onClick={() => alert('Email Icon Clicked!')}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    ),
   },
   {
     id: 'location',
@@ -41,9 +59,6 @@ const columns = [
   },
   {
     id: 'version',
-  },
-  {
-    id: 'actions',
   },
 ];
 
@@ -66,18 +81,6 @@ for (let i = 1; i < 1000; i++) {
     amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
-    actions: (
-      <Fragment>
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-      </Fragment>
-    ),
   });
 }
 
@@ -139,6 +142,11 @@ export default () => {
     return data.slice(rowStart, rowEnd);
   }, [data, pagination, inMemoryLevel]);
 
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(() =>
+    columns.map(({ id }) => id)
+  ); // initialize to the full set of columns
+
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId, setCellProps }) => {
       let adjustedRowIndex = rowIndex;
@@ -176,7 +184,6 @@ export default () => {
   if (inMemoryLevel !== '') {
     inMemoryProps.inMemory = {
       level: inMemoryLevel,
-      skipColumns: ['actions'],
     };
   }
 
@@ -221,10 +228,12 @@ export default () => {
           }}
         />
       </EuiPopover>
+      <EuiSpacer />
 
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={raw_data.length}
         renderCellValue={renderCellValue}
         {...inMemoryProps}

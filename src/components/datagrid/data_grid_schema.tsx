@@ -1,28 +1,74 @@
-import { useMemo } from 'react';
+import React, { useMemo, ReactNode } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridInMemoryValues,
 } from './data_grid_types';
 
+import { EuiI18n } from '../i18n';
+
+import { palettes } from '../../services/color/eui_palettes';
+
 export interface SchemaDetector {
   type: string;
   detector: (value: string) => number;
+  comparator?: (a: string, b: string, direction: 'asc' | 'desc') => -1 | 0 | 1;
+  icon: string;
+  color: string;
+  sortTextAsc: ReactNode;
+  sortTextDesc: ReactNode;
 }
 
-const schemaDetectors: SchemaDetector[] = [
+const numericChars = new Set([
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '.',
+  '-',
+]);
+export const schemaDetectors: SchemaDetector[] = [
   {
     type: 'boolean',
-    detector(value: string) {
-      return value === 'true' || value === 'false' ? 1 : 0;
+    detector(value) {
+      return value.toLowerCase() === 'true' || value.toLowerCase() === 'false'
+        ? 1
+        : 0;
     },
+    comparator(a, b, direction) {
+      const aValue = a.toLowerCase() === 'true';
+      const bValue = b.toLowerCase() === 'true';
+      if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+      if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+      return 0;
+    },
+    icon: 'invert',
+    color: palettes.euiPaletteColorBlind.colors[5],
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.booleanSortTextAsc"
+        default="True-False"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.booleanSortTextDesc"
+        default="False-True"
+      />
+    ),
   },
   {
     type: 'currency',
-    detector(value: string) {
+    detector(value) {
       const matchLength = (value.match(
         // currency prefers starting with 1-3 characters for the currency symbol
         // then it matches against numerical data + $
-        /(^[^-(]{1,3})?[$-(]*[\d,]+(\.\d*)?[$)]*/
+        /(^[^-(.]{1,3})?[$-(]*[\d,]+(\.\d*)?[$)]*/
       ) || [''])[0].length;
 
       // if there is no currency symbol then reduce the score
@@ -31,10 +77,35 @@ const schemaDetectors: SchemaDetector[] = [
 
       return (matchLength / value.length) * confidenceAdjustment || 0;
     },
+    comparator: (a, b, direction) => {
+      const aChars = a.split('').filter(char => numericChars.has(char));
+      const aValue = parseFloat(aChars.join(''));
+
+      const bChars = b.split('').filter(char => numericChars.has(char));
+      const bValue = parseFloat(bChars.join(''));
+
+      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+      return 0;
+    },
+    icon: 'currency',
+    color: palettes.euiPaletteColorBlind.colors[0],
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.currencySortTextAsc"
+        default="Low-High"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.currencySortTextDesc"
+        default="High-Low"
+      />
+    ),
   },
   {
     type: 'datetime',
-    detector(value: string) {
+    detector(value) {
       // matches the most common forms of ISO-8601
       const isoTimestampMatch = value.match(
         // 2019 - 09    - 17     T 12     : 18    : 32      .853     Z or -0600
@@ -56,14 +127,79 @@ const schemaDetectors: SchemaDetector[] = [
 
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
+    icon: 'calendar',
+    color: palettes.euiPaletteColorBlind.colors[7],
+    sortTextAsc: (
+      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
+    ),
+    sortTextDesc: (
+      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
+    ),
   },
   {
     type: 'numeric',
-    detector(value: string) {
+    detector(value) {
       const matchLength = (value.match(/[%-(]*[\d,]+(\.\d*)?[%)]*/) || [''])[0]
         .length;
       return matchLength / value.length || 0;
     },
+    comparator: (a, b, direction) => {
+      const aChars = a.split('').filter(char => numericChars.has(char));
+      const aValue = parseFloat(aChars.join(''));
+
+      const bChars = b.split('').filter(char => numericChars.has(char));
+      const bValue = parseFloat(bChars.join(''));
+
+      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+      return 0;
+    },
+    icon: 'number',
+    color: palettes.euiPaletteColorBlind.colors[0],
+    sortTextAsc: (
+      <EuiI18n token="euiDataGridSchema.numberSortTextAsc" default="Low-High" />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.numberSortTextDesc"
+        default="High-Low"
+      />
+    ),
+  },
+  {
+    type: 'json',
+    detector(value: string) {
+      // does this look like it might be a JSON object?
+      const maybeArray = value[0] === '[' && value[value.length - 1] === ']';
+      const maybeObject = value[0] === '{' && value[value.length - 1] === '}';
+      if (!maybeArray && !maybeObject) return 0;
+
+      try {
+        JSON.parse(value);
+        return 1;
+      } catch (e) {
+        return 0;
+      }
+    },
+    comparator: (a, b, direction) => {
+      if (a.length > b.length) return direction === 'asc' ? 1 : -1;
+      if (a.length < b.length) return direction === 'asc' ? 1 : -1;
+      return 0;
+    },
+    icon: 'visVega',
+    color: palettes.euiPaletteColorBlind.colors[3],
+    sortTextAsc: (
+      <EuiI18n
+        token="euiDataGridSchema.jsonSortTextAsc"
+        default="Small-Large"
+      />
+    ),
+    sortTextDesc: (
+      <EuiI18n
+        token="euiDataGridSchema.jsonSortTextDesc"
+        default="Large-Small"
+      />
+    ),
   },
 ];
 
@@ -78,13 +214,12 @@ interface SchemaTypeScore {
 
 function scoreValueBySchemaType(
   value: string,
-  extraSchemaDetectors: SchemaDetector[] = []
+  schemaDetectors: SchemaDetector[] = []
 ) {
   const scores: SchemaTypeScore[] = [];
-  const detectors = [...schemaDetectors, ...extraSchemaDetectors];
 
-  for (let i = 0; i < detectors.length; i++) {
-    const { type, detector } = detectors[i];
+  for (let i = 0; i < schemaDetectors.length; i++) {
+    const { type, detector } = schemaDetectors[i];
     const score = detector(value);
     scores.push({ type, score });
   }
@@ -201,7 +336,7 @@ export function useDetectSchema(
       },
       {}
     );
-  }, [inMemoryValues]);
+  }, [inMemoryValues, schemaDetectors]);
   return schema;
 }
 
@@ -209,18 +344,30 @@ export function getMergedSchema(
   detectedSchema: EuiDataGridSchema,
   columns: EuiDataGridColumn[]
 ) {
-  const mergedSchema = { ...detectedSchema };
+  return useMemo(() => {
+    const mergedSchema = { ...detectedSchema };
 
-  for (let i = 0; i < columns.length; i++) {
-    const { id, dataType } = columns[i];
-    if (dataType != null) {
-      if (detectedSchema.hasOwnProperty(id)) {
-        mergedSchema[id] = { ...detectedSchema[id], columnType: dataType };
-      } else {
-        mergedSchema[id] = { columnType: dataType };
+    for (let i = 0; i < columns.length; i++) {
+      const { id, dataType } = columns[i];
+      if (dataType != null) {
+        if (detectedSchema.hasOwnProperty(id)) {
+          mergedSchema[id] = { ...detectedSchema[id], columnType: dataType };
+        } else {
+          mergedSchema[id] = { columnType: dataType };
+        }
       }
     }
-  }
 
-  return mergedSchema;
+    return mergedSchema;
+  }, [detectedSchema, columns]);
+}
+
+// Given a provided schema, return the details for the schema
+// Useful for grabbing the color or icon
+export function getDetailsForSchema(providedSchema: string | null) {
+  const results = schemaDetectors.filter(matches => {
+    return matches.type === providedSchema;
+  });
+
+  return results[0];
 }
