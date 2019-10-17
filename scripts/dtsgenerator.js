@@ -116,7 +116,23 @@ generator.then(() => {
             // replace relative imports by attaching them to the module's namespace
             /import\("([.]{1,2}\/.*?)"\)/g,
             (importStatement, importPath) => {
-              const target = path.join(path.dirname(moduleName), importPath);
+              let target = path.join(path.dirname(moduleName), importPath);
+
+              // if the target resolves to an orphaned index.ts file, remap to '@elastic/eui'
+              const filePath = target.replace('@elastic/eui', baseDir);
+              const filePathTs = `${filePath}.ts`;
+              const filePathTsx = `${filePath}.tsx`;
+              const filePathResolvedToIndex = path.join(filePath, 'index.ts');
+              if (
+                // fs.existsSync(filePath) === false && // target file doesn't exist
+                fs.existsSync(filePathTs) === false && // target file (.ts) doesn't exist
+                fs.existsSync(filePathTsx) === false && // target file (.tsx) doesn't exist
+                fs.existsSync(filePathResolvedToIndex) && // and it resolves to an index.ts
+                hasParentIndex(filePathResolvedToIndex) === false // does not get exported at a higher level
+              ) {
+                target = '@elastic/eui';
+              }
+
               return `import ("${target}")`;
             }
           );
