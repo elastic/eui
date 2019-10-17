@@ -1,6 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Improved a11y in `EuiImage` ([#2447](https://github.com/elastic/eui/pull/2447))
+- Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
+
+## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
+
+- Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
+
+**Bug fixes**
+
+- Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
+- Strip custom semantics from `EuiSideNav` ([#2429](https://github.com/elastic/eui/pull/2429))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 

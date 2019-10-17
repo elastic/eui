@@ -158,7 +158,7 @@ export const propsInfo = {
     __docgenInfo: {
       _euiObjectType: 'type',
       props: {
-        onSelectionChanged: {
+        onSelectionChange: {
           description:
             'A callback that will be called whenever the item selection changes',
           required: false,
