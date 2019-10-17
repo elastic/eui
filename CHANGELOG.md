@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
-- Added `external` prop to `EuiLink` ([#2442](https://github.com/elastic/eui/pull/2410))
+- Added `external` prop to `EuiLink` ([#2442](https://github.com/elastic/eui/pull/2442))
 
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
