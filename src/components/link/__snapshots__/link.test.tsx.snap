@@ -35,6 +35,24 @@ exports[`EuiLink if href is not specified, it renders a button of type=button 1`
 />
 `;
 
+exports[`EuiLink it is an external link 1`] = `
+<a
+  class="euiLink euiLink--primary"
+  href="/baz/bing"
+  rel="noreferrer"
+>
+  <svg
+    aria-label="External link"
+    class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</a>
+`;
+
 exports[`EuiLink it passes the default props through 1`] = `
 <button
   aria-label="aria-label"
