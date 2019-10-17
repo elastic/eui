@@ -61,21 +61,6 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
-const externalLinkIcon = external ? ( // eslint-disable-line no-restricted-globals
-  <EuiI18n token="euiLink.external.ariaLabel" default="External link">
-    {(ariaLabel: string) => (
-      <EuiIcon
-        aria-label={ariaLabel}
-        size="s"
-        className="euiLink__externalIcon"
-        type="popout"
-      />
-    )}
-  </EuiI18n>
-) : (
-  undefined
-);
-
 const EuiLink = React.forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   EuiLinkProps
@@ -99,6 +84,21 @@ const EuiLink = React.forwardRef<
       'euiLink',
       colorsToClassNameMap[color],
       className
+    );
+
+    const externalLinkIcon = external ? (
+      <EuiI18n token="euiLink.external.ariaLabel" default="External link">
+        {(ariaLabel: string) => (
+          <EuiIcon
+            aria-label={ariaLabel}
+            size="s"
+            className="euiLink__externalIcon"
+            type="popout"
+          />
+        )}
+      </EuiI18n>
+    ) : (
+      undefined
     );
 
     if (href === undefined) {

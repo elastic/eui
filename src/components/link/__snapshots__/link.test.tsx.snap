@@ -67,17 +67,7 @@ exports[`EuiLink it supports both href and onClick 1`] = `
   class="euiLink euiLink--primary"
   href="/imalink"
   rel="noreferrer"
->
-  <svg
-    aria-label="External link"
-    class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
-    focusable="false"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
-  />
-</a>
+/>
 `;
 
 exports[`EuiLink primary is rendered 1`] = `
@@ -110,15 +100,6 @@ exports[`EuiLink supports children 1`] = `
   <span>
     Hiya!!!
   </span>
-  <svg
-    aria-label="External link"
-    class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
-    focusable="false"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
-  />
 </a>
 `;
 
@@ -127,17 +108,7 @@ exports[`EuiLink supports href 1`] = `
   class="euiLink euiLink--primary"
   href="/baz/bing"
   rel="noreferrer"
->
-  <svg
-    aria-label="External link"
-    class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
-    focusable="false"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
-  />
-</a>
+/>
 `;
 
 exports[`EuiLink supports rel 1`] = `
@@ -145,17 +116,7 @@ exports[`EuiLink supports rel 1`] = `
   class="euiLink euiLink--primary"
   href="hoi"
   rel="noreferrer stylesheet"
->
-  <svg
-    aria-label="External link"
-    class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
-    focusable="false"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
-  />
-</a>
+/>
 `;
 
 exports[`EuiLink supports target 1`] = `
@@ -164,17 +125,7 @@ exports[`EuiLink supports target 1`] = `
   href="#"
   rel="noreferrer"
   target="_parent"
->
-  <svg
-    aria-label="External link"
-    class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
-    focusable="false"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
-  />
-</a>
+/>
 `;
 
 exports[`EuiLink text is rendered 1`] = `
