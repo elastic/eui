@@ -55,7 +55,9 @@ export type EuiBadgeProps = {
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   color?: IconColor;
-
+  /**
+   * Will override any color passed through the `color` prop.
+   */
   isDisabled?: boolean;
 
   /**
