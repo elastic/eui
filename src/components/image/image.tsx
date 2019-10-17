@@ -112,40 +112,59 @@ export class EuiImage extends Component<EuiImageProps, State> {
     const fullScreenDisplay = (
       <EuiOverlayMask onClick={this.closeFullScreen}>
         <EuiFocusTrap clickOutsideDisables={true}>
-          <button
-            type="button"
-            className="euiImage-isFullScreen"
-            onClick={this.closeFullScreen}
-            onKeyDown={this.onKeyDown}>
-            <figure>
-              <img src={url} className="euiImage-isFullScreen__img" alt={alt} />
-              {optionalCaption}
-
+          <figure
+            className="euiImage euiImage--isFullScreen"
+            role="figure"
+            aria-label={caption}>
+            <button
+              type="button"
+              aria-label={`Close ${alt} image full screen`}
+              className="euiImage__button"
+              onClick={this.closeFullScreen}
+              onKeyDown={this.onKeyDown}>
+              <img
+                src={url}
+                alt={alt}
+                className="euiImage--isFullScreen__img"
+              />
               <EuiIcon
                 type="cross"
                 color={fullScreenIconColorMap[fullScreenIconColor]}
-                className="euiImage-isFullScreen__icon"
+                className="euiImage--isFullScreen__icon"
               />
-            </figure>
-          </button>
+            </button>
+            {optionalCaption}
+          </figure>
         </EuiFocusTrap>
       </EuiOverlayMask>
     );
 
     if (allowFullScreen) {
       return (
-        <button type="button" onClick={this.openFullScreen} className={classes}>
-          <figure {...rest}>
-            <img src={url} className="euiImage__img" alt={alt} />
-            {optionalCaption}
+        <figure
+          className={classes}
+          role="figure"
+          aria-label={caption}
+          {...rest}>
+          <button
+            type="button"
+            aria-label={`Show ${alt} image full screen`}
+            className="euiImage__button"
+            onClick={this.openFullScreen}>
+            <img src={url} alt={alt} className="euiImage__img" />
             {allowFullScreenIcon}
             {isFullScreenActive && fullScreenDisplay}
-          </figure>
-        </button>
+          </button>
+          {optionalCaption}
+        </figure>
       );
     } else {
       return (
-        <figure className={classes} {...rest}>
+        <figure
+          className={classes}
+          role="figure"
+          aria-label={caption}
+          {...rest}>
           <img src={url} className="euiImage__img" alt={alt} />
           {optionalCaption}
         </figure>
