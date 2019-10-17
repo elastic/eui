@@ -1,9 +1,8 @@
 import React, {
-  Component,
+  PureComponent,
   HTMLAttributes,
   ReactElement,
   SVGAttributes,
-  memo,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -445,7 +444,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-class RawEuiIcon extends Component<EuiIconProps, State> {
+export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
   constructor(props: EuiIconProps) {
     super(props);
@@ -581,19 +580,3 @@ class RawEuiIcon extends Component<EuiIconProps, State> {
     }
   }
 }
-
-const MemoizedEuiIcon = memo(RawEuiIcon);
-
-// Exporting a function which wraps the memoized component,
-// rather than simply exporting the memoized component, due
-// to a number of tests that break if a memoized component
-// is exported directly.
-export function EuiIcon(props: EuiIconProps) {
-  return <MemoizedEuiIcon {...props} />;
-}
-
-// The type needs to be exported separately, since
-// we have a number of places that were relying on
-// the previous (class component) type to extract
-// type information like Props<EuiIcon>.
-export type EuiIcon = RawEuiIcon;
