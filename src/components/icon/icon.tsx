@@ -3,7 +3,7 @@ import React, {
   HTMLAttributes,
   ReactElement,
   SVGAttributes,
-  memo,
+  // memo,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -445,7 +445,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-class RawEuiIcon extends Component<EuiIconProps, State> {
+export class EuiIcon extends Component<EuiIconProps, State> {
   isMounted = true;
   constructor(props: EuiIconProps) {
     super(props);
@@ -582,6 +582,6 @@ class RawEuiIcon extends Component<EuiIconProps, State> {
   }
 }
 
-export const EuiIcon = memo(RawEuiIcon);
+// export const EuiIcon = memo(RawEuiIcon);
 
-export type EuiIcon = RawEuiIcon;
+// export type EuiIcon = RawEuiIcon;
