@@ -45,7 +45,7 @@ import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   getMergedSchema,
-  SchemaDetector,
+  EuiDataGridSchemaDetector,
   useDetectSchema,
   schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
@@ -57,20 +57,46 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
+    /**
+     * #DataGridColumn lists the available columns and optionally schema for the dataset
+     */
     columns: EuiDataGridColumn[];
+    /**
+     * #DataGridColumnVisibility controls column display order and visibility
+     */
     columnVisibility: EuiDataGridColumnVisibility;
-    schemaDetectors?: SchemaDetector[];
+    /**
+     * array of custom #DataGridSchemaDetector
+     */
+    schemaDetectors?: EuiDataGridSchemaDetector[];
+    /**
+     * object mapping #DataGridColumn `dataType`s to a custom expansion formatting component
+     */
     expansionFormatters?: EuiDataGridExpansionFormatters;
+    /**
+     * total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
+     */
     rowCount: number;
+    /**
+     * Function called to render a cell's value. Behind the scenes it is treated as a React component
+     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
+     * as its only argument.
+     */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    /**
+     * #DataGridStyle omit to use default settings; provided values can be further overridden by users
+     */
     gridStyle?: EuiDataGridStyle;
+    /**
+     * #DataGridInMemory omit to disable all in-memory features
+     */
     inMemory?: EuiDataGridInMemory;
     /**
-     * Instance of #EuiDataGridPagination, set to `null` to disable pagination
+     * #DataGridPagination omit to disable pagination
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * Set to `null` to disable sorting
+     * #DataGridSorting omit to disable sorting
      */
     sorting?: EuiDataGridSorting;
   };

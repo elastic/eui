@@ -7,14 +7,36 @@ import {
 import { EuiI18n } from '../i18n';
 
 import { palettes } from '../../services/color/eui_palettes';
+import { IconType } from '../icon';
 
-export interface SchemaDetector {
+export interface EuiDataGridSchemaDetector {
+  /**
+   * name of this data type, matches #DataGridColumn / schema `dataType`
+   */
   type: string;
+  /**
+   * function given the text value of a cell and returns a score of [0...1] of how well the value matches this data type
+   */
   detector: (value: string) => number;
+  /**
+   * custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc) => -1 | 0 | 1`
+   */
   comparator?: (a: string, b: string, direction: 'asc' | 'desc') => -1 | 0 | 1;
-  icon: string;
+  /**
+   * icon used to visually represent this data type
+   */
+  icon: IconType;
+  /**
+   * color associated with this data type; it's used to color the icon
+   */
   color: string;
+  /**
+   * how to represent an ascending sort of this data type, e.g. 'A -> Z'
+   */
   sortTextAsc: ReactNode;
+  /**
+   * how to represent a descending sort of this data type, e.g. 'Z -> A'
+   */
   sortTextDesc: ReactNode;
 }
 
@@ -32,7 +54,7 @@ const numericChars = new Set([
   '.',
   '-',
 ]);
-export const schemaDetectors: SchemaDetector[] = [
+export const schemaDetectors: EuiDataGridSchemaDetector[] = [
   {
     type: 'boolean',
     detector(value) {
@@ -214,7 +236,7 @@ interface SchemaTypeScore {
 
 function scoreValueBySchemaType(
   value: string,
-  schemaDetectors: SchemaDetector[] = []
+  schemaDetectors: EuiDataGridSchemaDetector[] = []
 ) {
   const scores: SchemaTypeScore[] = [];
 
@@ -233,7 +255,7 @@ const MINIMUM_SCORE_MATCH = 0.5;
 
 export function useDetectSchema(
   inMemoryValues: EuiDataGridInMemoryValues,
-  schemaDetectors: SchemaDetector[] | undefined,
+  schemaDetectors: EuiDataGridSchemaDetector[] | undefined,
   autoDetectSchema: boolean
 ) {
   const schema = useMemo(() => {

@@ -21,10 +21,28 @@ import { EuiDataGridExpansionFormatter } from './data_grid_types';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 
 export interface CellValueElementProps {
+  /**
+   * index of the row being rendered, 0 represents the first row. This index always includes
+   * pagination offset, meaning the first rowIndex in a grid is `pagination.pageIndex * pagination.pageSize`
+   * so take care if you need to adjust the rowIndex to fit your data
+   */
   rowIndex: number;
+  /**
+   * id of the column being rendered, the value comes from the #DataGridColumn `id`
+   */
   columnId: string;
+  /**
+   * callback function to set custom props & attributes on the cell's wrapping `div` element;
+   * it's best to wrap calls to `setCellProps` in a `useEffect` hook
+   */
   setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
+  /**
+   * whether or not the cell is expandable, comes from the #DataGridColumn `isExpandable` which defaults to `true`
+   */
   isExpandable: boolean;
+  /**
+   * whether or not the cell is expanded
+   */
   isExpanded: boolean;
 }
 

@@ -200,7 +200,7 @@ export class GuideSection extends Component {
     const docgenInfo = Array.isArray(component.__docgenInfo)
       ? component.__docgenInfo[0]
       : component.__docgenInfo;
-    const { _euiObjectType, description, props } = docgenInfo;
+    const { description, props } = docgenInfo;
 
     if (!props && !description) {
       return;

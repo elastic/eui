@@ -23,7 +23,10 @@ import {
   EuiDataGridDataRow,
   EuiDataGridDataRowProps,
 } from './data_grid_data_row';
-import { EuiDataGridSchema, SchemaDetector } from './data_grid_schema';
+import {
+  EuiDataGridSchema,
+  EuiDataGridSchemaDetector,
+} from './data_grid_schema';
 import { useInnerText } from '../inner_text';
 
 interface EuiDataGridBodyProps {
@@ -31,7 +34,7 @@ interface EuiDataGridBodyProps {
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
   schema: EuiDataGridSchema;
-  schemaDetectors: SchemaDetector[];
+  schemaDetectors: EuiDataGridSchemaDetector[];
   expansionFormatters?: EuiDataGridExpansionFormatters;
   focusedCell: EuiDataGridDataRowProps['focusedCell'];
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
@@ -44,11 +47,9 @@ interface EuiDataGridBodyProps {
   sorting?: EuiDataGridSorting;
 }
 
-const defaultComparator: NonNullable<SchemaDetector['comparator']> = (
-  a,
-  b,
-  direction
-) => {
+const defaultComparator: NonNullable<
+  EuiDataGridSchemaDetector['comparator']
+> = (a, b, direction) => {
   if (a < b) return direction === 'asc' ? -1 : 1;
   if (a > b) return direction === 'asc' ? 1 : -1;
   return 0;

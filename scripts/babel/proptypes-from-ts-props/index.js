@@ -220,6 +220,12 @@ function resolveIdentifierToPropTypes(node, state) {
         types.identifier('PropTypes'),
         types.identifier('node')
       );
+
+    case 'JSXElementConstructor':
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('func') // this is more accurately `elementType` but our peerDependency version of prop-types doesn't have it
+      );
   }
 
   if (identifier.name === 'Array') return resolveArrayToPropTypes(node, state);
@@ -415,6 +421,36 @@ function getPropTypesForNode(node, optional, state) {
     //       ^^^ Foo
     case 'TSTypeAnnotation':
       propType = getPropTypesForNode(node.typeAnnotation, true, state);
+      break;
+
+    // Foo['bar']
+    case 'TSIndexedAccessType':
+      // verify the type of index access
+      if (types.isTSLiteralType(node.indexType) === false) break;
+
+      const indexedName = node.indexType.literal.value;
+      if (indexedName === 'renderCellValue') debugger;
+      const objectPropType = getPropTypesForNode(node.objectType, true, state);
+
+      // verify this came out as a PropTypes.shape(), which we can pick the indexed property off of
+      if (
+        types.isCallExpression(objectPropType) &&
+        types.isMemberExpression(objectPropType.callee) &&
+        types.isIdentifier(objectPropType.callee.object) &&
+        objectPropType.callee.object.name === 'PropTypes' &&
+        types.isIdentifier(objectPropType.callee.property) &&
+        objectPropType.callee.property.name === 'shape'
+      ) {
+        const shapeProps = objectPropType.arguments[0].properties;
+        for (let i = 0; i < shapeProps.length; i++) {
+          const prop = shapeProps[i];
+          if (prop.key.name === indexedName) {
+            propType = makePropTypeOptional(types, prop.value);
+            break;
+          }
+        }
+      }
+
       break;
 
     // translates intersections (Foo & Bar & Baz) to a shape with the types' members (Foo, Bar, Baz) merged together
