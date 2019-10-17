@@ -23,7 +23,7 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
   role="figure"
 >
   <button
-    aria-label="Show alt image full screen"
+    aria-label="Open image full screen"
     class="euiImage__button"
     type="button"
   >

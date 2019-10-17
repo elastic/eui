@@ -6,6 +6,8 @@ import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiIcon } from '../icon';
 
+import { EuiI18n } from '../i18n';
+
 import { EuiFocusTrap } from '../focus_trap';
 
 import { keyCodes } from '../../services';
@@ -113,26 +115,32 @@ export class EuiImage extends Component<EuiImageProps, State> {
       <EuiOverlayMask onClick={this.closeFullScreen}>
         <EuiFocusTrap clickOutsideDisables={true}>
           <figure
-            className="euiImage euiImage--isFullScreen"
+            className="euiImage euiImage-isFullScreen"
             role="figure"
             aria-label={caption}>
-            <button
-              type="button"
-              aria-label={`Close ${alt} image full screen`}
-              className="euiImage__button"
-              onClick={this.closeFullScreen}
-              onKeyDown={this.onKeyDown}>
-              <img
-                src={url}
-                alt={alt}
-                className="euiImage--isFullScreen__img"
-              />
-              <EuiIcon
-                type="cross"
-                color={fullScreenIconColorMap[fullScreenIconColor]}
-                className="euiImage--isFullScreen__icon"
-              />
-            </button>
+            <EuiI18n
+              token="euiImage.closeImage"
+              default="Close image full screen">
+              {(closeImage: string) => (
+                <button
+                  type="button"
+                  aria-label={closeImage}
+                  className="euiImage__button"
+                  onClick={this.closeFullScreen}
+                  onKeyDown={this.onKeyDown}>
+                  <img
+                    src={url}
+                    alt={alt}
+                    className="euiImage-isFullScreen__img"
+                  />
+                  <EuiIcon
+                    type="cross"
+                    color={fullScreenIconColorMap[fullScreenIconColor]}
+                    className="euiImage-isFullScreen__icon"
+                  />
+                </button>
+              )}
+            </EuiI18n>
             {optionalCaption}
           </figure>
         </EuiFocusTrap>
@@ -146,15 +154,19 @@ export class EuiImage extends Component<EuiImageProps, State> {
           role="figure"
           aria-label={caption}
           {...rest}>
-          <button
-            type="button"
-            aria-label={`Show ${alt} image full screen`}
-            className="euiImage__button"
-            onClick={this.openFullScreen}>
-            <img src={url} alt={alt} className="euiImage__img" />
-            {allowFullScreenIcon}
-            {isFullScreenActive && fullScreenDisplay}
-          </button>
+          <EuiI18n token="euiImage.openImage" default="Open image full screen">
+            {(openImage: string) => (
+              <button
+                type="button"
+                aria-label={openImage}
+                className="euiImage__button"
+                onClick={this.openFullScreen}>
+                <img src={url} alt={alt} className="euiImage__img" />
+                {allowFullScreenIcon}
+                {isFullScreenActive && fullScreenDisplay}
+              </button>
+            )}
+          </EuiI18n>
           {optionalCaption}
         </figure>
       );

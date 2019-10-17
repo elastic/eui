@@ -17,11 +17,6 @@
     }
   }
 
-  &:hover .euiImage__caption,
-  &:focus .euiImage__caption {
-    text-decoration: underline;
-  }
-
   .euiImage__button {
     cursor: pointer;
 
@@ -39,6 +34,10 @@
   }
 
   &.euiImage--allowFullScreen {
+    &:hover .euiImage__caption {
+      text-decoration: underline;
+    }
+
     &:not(.euiImage--hasShadow) .euiImage__button:hover,
     &:not(.euiImage--hasShadow) .euiImage__button:focus {
       @include euiBottomShadowMedium;
@@ -94,14 +93,20 @@
 }
 
 // The FullScreen image that optionally pops up on click.
-.euiImage--isFullScreen {
+.euiImage-isFullScreen {
   position: relative;
   max-height: 80vh;
   max-width: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
-  &:hover .euiImage__button {
-    @include euiBottomShadow;
+  &:hover {
+    .euiImage__button {
+      @include euiBottomShadow;
+    }
+
+    .euiImage__caption {
+      text-decoration: underline;
+    }
   }
 
   &__icon {
