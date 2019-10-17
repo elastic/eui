@@ -1,7 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
-- Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
 - Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
 
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
