@@ -248,11 +248,11 @@ export class EuiRecursiveTree extends Component<
                       />
                     ) : null}
                     {node.icon && !node.useEmptyIcon ? (
-                      <div className="euiRecursiveTree__iconWrapper">
+                      <span className="euiRecursiveTree__iconWrapper">
                         {this.isNodeOpen(node) && node.iconWhenExpanded
                           ? node.iconWhenExpanded
                           : node.icon}
-                      </div>
+                      </span>
                     ) : null}
                     {node.useEmptyIcon && !node.icon ? (
                       <span className="euiRecursiveTree__iconPlaceholder" />

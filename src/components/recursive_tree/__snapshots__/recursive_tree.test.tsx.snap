@@ -17,7 +17,7 @@ exports[`EuiRecursiveTree is rendered 1`] = `
         class="euiRecursiveTree__nodeInner"
         data-test-subj="euiRecursiveTreeButton-htmlId"
       >
-        <div
+        <span
           class="euiRecursiveTree__iconWrapper"
         >
           <svg
@@ -28,7 +28,7 @@ exports[`EuiRecursiveTree is rendered 1`] = `
             width="16"
             xmlns="http://www.w3.org/2000/svg"
           />
-        </div>
+        </span>
         <span
           class="euiRecurisveTree__nodeLabel"
         >
