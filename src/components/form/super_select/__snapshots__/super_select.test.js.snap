@@ -649,23 +649,29 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                             className="euiFormControlLayoutCustomIcon__icon"
                             type="arrowDown"
                           >
-                            <EuiIconEmpty
+                            <RawEuiIcon
                               aria-hidden="true"
-                              className="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                              focusable="false"
-                              style={null}
+                              className="euiFormControlLayoutCustomIcon__icon"
+                              type="arrowDown"
                             >
-                              <svg
+                              <EuiIconEmpty
                                 aria-hidden="true"
                                 className="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                                 focusable="false"
-                                height={16}
                                 style={null}
-                                viewBox="0 0 16 16"
-                                width={16}
-                                xmlns="http://www.w3.org/2000/svg"
-                              />
-                            </EuiIconEmpty>
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                                  focusable="false"
+                                  height={16}
+                                  style={null}
+                                  viewBox="0 0 16 16"
+                                  width={16}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                />
+                              </EuiIconEmpty>
+                            </RawEuiIcon>
                           </EuiIcon>
                         </span>
                       </EuiFormControlLayoutCustomIcon>
@@ -1022,21 +1028,27 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         size="m"
                                         type="check"
                                       >
-                                        <EuiIconEmpty
-                                          className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
-                                          focusable="false"
-                                          style={null}
+                                        <RawEuiIcon
+                                          className="euiContextMenu__icon"
+                                          size="m"
+                                          type="check"
                                         >
-                                          <svg
+                                          <EuiIconEmpty
                                             className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                             focusable="false"
-                                            height={16}
                                             style={null}
-                                            viewBox="0 0 16 16"
-                                            width={16}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          />
-                                        </EuiIconEmpty>
+                                          >
+                                            <svg
+                                              className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
+                                              focusable="false"
+                                              height={16}
+                                              style={null}
+                                              viewBox="0 0 16 16"
+                                              width={16}
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            />
+                                          </EuiIconEmpty>
+                                        </RawEuiIcon>
                                       </EuiIcon>
                                       <span
                                         className="euiContextMenuItem__text"
@@ -1076,21 +1088,27 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         size="m"
                                         type="empty"
                                       >
-                                        <EuiIconEmpty
-                                          className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
-                                          focusable="false"
-                                          style={null}
+                                        <RawEuiIcon
+                                          className="euiContextMenu__icon"
+                                          size="m"
+                                          type="empty"
                                         >
-                                          <svg
+                                          <EuiIconEmpty
                                             className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                             focusable="false"
-                                            height={16}
                                             style={null}
-                                            viewBox="0 0 16 16"
-                                            width={16}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          />
-                                        </EuiIconEmpty>
+                                          >
+                                            <svg
+                                              className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
+                                              focusable="false"
+                                              height={16}
+                                              style={null}
+                                              viewBox="0 0 16 16"
+                                              width={16}
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            />
+                                          </EuiIconEmpty>
+                                        </RawEuiIcon>
                                       </EuiIcon>
                                       <span
                                         className="euiContextMenuItem__text"
