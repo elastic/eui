@@ -16,11 +16,11 @@ exports[`renders EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -127,11 +127,11 @@ exports[`renders compressed EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiRangeHighlight--compressed"
+      class="euiRangeHighlight euiRangeHighlight--compressed euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -238,11 +238,11 @@ exports[`renders disabled EuiColorStops 1`] = `
     class="euiRangeTrack euiRangeTrack--disabled"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -352,11 +352,11 @@ exports[`renders empty EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -388,11 +388,11 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000, #FF0000 undefined%,#00FF00 undefined%, #00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%, #FF0000 undefined%,#00FF00 undefined%, #00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -478,6 +478,42 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           type="button"
         />
       </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders free-range EuiColorStops 1`] = `
+<div
+  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
+  tabindex="0"
+>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  >
+    Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
+  </p>
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight euiColorStops__highlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
+      />
+    </div>
+    <div
+      class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
+    >
+      <div
+        class="euiColorStops__addTarget"
+        style="left:0%"
+      />
     </div>
   </div>
 </div>
@@ -499,11 +535,11 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -594,6 +630,78 @@ exports[`renders fullWidth EuiColorStops 1`] = `
 </div>
 `;
 
+exports[`renders max-only EuiColorStops 1`] = `
+<div
+  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
+  tabindex="0"
+>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  >
+    Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
+  </p>
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight euiColorStops__highlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
+      />
+    </div>
+    <div
+      class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
+    >
+      <div
+        class="euiColorStops__addTarget"
+        style="left:0%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders min-only EuiColorStops 1`] = `
+<div
+  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
+  tabindex="0"
+>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  >
+    Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
+  </p>
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight euiColorStops__highlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
+      />
+    </div>
+    <div
+      class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
+    >
+      <div
+        class="euiColorStops__addTarget"
+        style="left:0%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders readOnly EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiColorStops euiColorStops-isReadOnly testClass1 testClass2"
@@ -610,11 +718,11 @@ exports[`renders readOnly EuiColorStops 1`] = `
     class="euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,#FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div

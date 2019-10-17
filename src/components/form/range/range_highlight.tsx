@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 export interface EuiRangeHighlightProps {
+  className?: string;
   background?: string;
   compressed?: boolean;
   hasFocus?: boolean;
@@ -14,6 +15,7 @@ export interface EuiRangeHighlightProps {
 }
 
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
+  className,
   hasFocus,
   showTicks,
   lowerValue,
@@ -34,10 +36,14 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     width: `${rangeWidth * 100}%`,
   };
 
-  const classes = classNames('euiRangeHighlight', {
-    'euiRangeHighlight--hasTicks': showTicks,
-    'euiRangeHighlight--compressed': compressed,
-  });
+  const classes = classNames(
+    'euiRangeHighlight',
+    {
+      'euiRangeHighlight--hasTicks': showTicks,
+      'euiRangeHighlight--compressed': compressed,
+    },
+    className
+  );
 
   const progressClasses = classNames('euiRangeHighlight__progress', {
     'euiRangeHighlight__progress--hasFocus': hasFocus,
