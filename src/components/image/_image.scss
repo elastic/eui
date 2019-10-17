@@ -96,9 +96,9 @@
 // The FullScreen image that optionally pops up on click.
 .euiImage--isFullScreen {
   position: relative;
-  animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
   max-height: 80vh;
   max-width: 80vw;
+  animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
   &:hover .euiImage__button {
     @include euiBottomShadow;

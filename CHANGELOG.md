@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.5.0`.
+- Improved a11y in `EuiImage` ([#2447](https://github.com/elastic/eui/pull/2447))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 
