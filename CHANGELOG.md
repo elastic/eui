@@ -34,7 +34,6 @@
 - Improved a11y in `EuiNavDrawer` ([#2417](https://github.com/elastic/eui/pull/2417))
 - Improved a11y in `EuiSuperDatePicker` ([#2426](https://github.com/elastic/eui/pull/2426))
 
-
 **Bug fixes**
 
 - Fixed `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
