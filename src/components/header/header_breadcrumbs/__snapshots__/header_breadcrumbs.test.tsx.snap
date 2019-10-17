@@ -13,6 +13,15 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     rel="noreferrer"
   >
     Animals
+    <svg
+      aria-label="External link"
+      class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
   </a>
   <div
     class="euiBreadcrumbSeparator"
@@ -32,6 +41,15 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     rel="noreferrer"
   >
     Boa constrictor
+    <svg
+      aria-label="External link"
+      class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
   </a>
   <div
     class="euiBreadcrumbSeparator"

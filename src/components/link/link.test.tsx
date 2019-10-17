@@ -35,6 +35,11 @@ describe('EuiLink', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('it is an external link', () => {
+    const component = render(<EuiLink external href="/baz/bing" />);
+    expect(component).toMatchSnapshot();
+  });
+
   test('supports href', () => {
     const component = render(<EuiLink href="/baz/bing" />);
     expect(component).toMatchSnapshot();

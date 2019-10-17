@@ -61,8 +61,8 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
-const externalLinkIcon = (
-  <EuiI18n token="euiLink.external.ariaLabel" default="External Link">
+const externalLinkIcon = external ? ( // eslint-disable-line no-restricted-globals
+  <EuiI18n token="euiLink.external.ariaLabel" default="External link">
     {(ariaLabel: string) => (
       <EuiIcon
         aria-label={ariaLabel}
@@ -72,6 +72,8 @@ const externalLinkIcon = (
       />
     )}
   </EuiI18n>
+) : (
+  undefined
 );
 
 const EuiLink = React.forwardRef<
@@ -132,7 +134,7 @@ const EuiLink = React.forwardRef<
         ref={ref as React.Ref<HTMLAnchorElement>}
         {...anchorProps as EuiLinkAnchorProps}>
         {children}
-        {external ? externalLinkIcon : undefined}
+        {externalLinkIcon}
       </a>
     );
   }
