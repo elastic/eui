@@ -220,6 +220,8 @@ export { EuiPortal } from './portal';
 
 export { EuiProgress } from './progress';
 
+export { EuiRecursiveTree } from './recursive_tree';
+
 export { EuiResizeObserver } from './observer/resize_observer';
 
 export { EuiSearchBar, Query, Ast } from './search_bar';

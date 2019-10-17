@@ -1,0 +1,114 @@
+.euiRecursiveTree__wrapper .euiRecursiveTree {
+  margin: 0;
+  list-style-type: none;
+}
+
+.euiRecursiveTree .euiRecursiveTree {
+  padding-left: $euiSizeL;
+}
+
+.euiRecursiveTree__node {
+  max-height: $euiSizeXL;
+  overflow: hidden;
+  cursor: pointer;
+  line-height: $euiSizeXL;
+}
+
+.euiRecursiveTree__node--expanded {
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.euiRecursiveTree__nodeInner {
+  padding-left: $euiSizeS;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: $euiSizeXL;
+  border-radius: $euiBorderRadius;
+  width: 100%;
+  text-align-last: left;
+
+  &:focus {
+    box-shadow: inset 0 0 0 $euiSizeXS / 4 $euiColorPrimary;
+  }
+
+  &:hover,
+  &:active {
+    background-color: tintOrShade($euiColorLightShade, 50%, 10%);
+  }
+
+  .euiRecursiveTree__iconPlaceholder {
+    width: $euiSizeXL;
+  }
+
+}
+
+.euiRecursiveTree__iconWrapper {
+  margin-top: -($euiSizeXS / 2);
+  margin-right: $euiSizeS;
+
+  // This helps tokens appear vertically centered
+  .euiToken {
+    margin-top: $euiSizeXS / 2;
+  }
+}
+
+.euiRecursiveTree--condensed {
+  .euiRecursiveTree__node {
+    max-height: $euiSizeL;
+    line-height: $euiSizeL;
+
+    .euiRecursiveTree__nodeInner {
+      height: $euiSizeL;
+
+    }
+
+    .euiRecursiveTree__iconWrapper {
+      margin: -1px ($euiSizeS * .75) 0 0;
+    }
+
+    .euiRecurisveTree__nodeLabel {
+      margin-top: -1px;
+    }
+
+    .euiRecursiveTree__iconPlaceholder {
+      width: $euiSizeL;
+    }
+  }
+
+  .euiRecursiveTree__node--expanded {
+    max-height: 100vh;
+    overflow: auto;
+  }
+}
+
+.euiRecursiveTree--withArrows {
+  .euiRecursiveTree__expansionArrow {
+    margin-right: $euiSizeXS;
+  }
+
+  &.euiRecursiveTree {
+    .euiRecursiveTree__nodeInner--withArrows {
+      .euiRecursiveTree__iconWrapper {
+        margin-left: 0;
+      }
+    }
+
+    .euiRecursiveTree__iconWrapper {
+      margin-left: $euiSize + $euiSizeXS;
+    }
+  }
+
+  &.euiRecursiveTree--condensed {
+    .euiRecursiveTree__nodeInner--withArrows {
+      .euiRecursiveTree__iconWrapper {
+        margin-left: 0;
+      }
+    }
+
+    .euiRecursiveTree__iconWrapper {
+      margin-left: $euiSize;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiRecursiveTree is rendered 1`] = `
+<div
+  class="euiText euiText--medium euiRecursiveTree__wrapper"
+>
+  <ul
+    aria-label="aria-label"
+    class="euiRecursiveTree testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <li
+      class="euiRecursiveTree__node"
+    >
+      <button
+        class="euiRecursiveTree__nodeInner"
+        data-test-subj="euiRecursiveTreeButton-htmlId"
+      >
+        <div
+          class="euiRecursiveTree__iconWrapper"
+        >
+          <svg
+            class="euiIcon euiIcon--medium euiIcon-isLoading"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </div>
+        <span
+          class="euiRecurisveTree__nodeLabel"
+        >
+          Item One
+        </span>
+      </button>
+      <div />
+    </li>
+    <li
+      class="euiRecursiveTree__node"
+    >
+      <button
+        class="euiRecursiveTree__nodeInner"
+        data-test-subj="euiRecursiveTreeButton-htmlId"
+      >
+        <span
+          class="euiRecurisveTree__nodeLabel"
+        >
+          Item Two
+        </span>
+      </button>
+      <div />
+    </li>
+  </ul>
+</div>
+`;
