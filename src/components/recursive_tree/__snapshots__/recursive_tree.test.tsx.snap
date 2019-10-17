@@ -10,6 +10,7 @@ exports[`EuiRecursiveTree is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <li
+      aria-expanded="false"
       class="euiRecursiveTree__node"
     >
       <button
@@ -37,6 +38,7 @@ exports[`EuiRecursiveTree is rendered 1`] = `
       <div />
     </li>
     <li
+      aria-expanded="false"
       class="euiRecursiveTree__node"
     >
       <button

@@ -83,7 +83,12 @@ export class RecursiveTreeCondensed extends React.Component {
 
     return (
       <div style={{ width: '20rem' }}>
-        <EuiRecursiveTree items={items} isCondensed showExpansionArrows />
+        <EuiRecursiveTree
+          items={items}
+          isCondensed
+          expandByDefault
+          showExpansionArrows
+        />
       </div>
     );
   }

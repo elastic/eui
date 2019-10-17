@@ -42,6 +42,7 @@ interface EuiRecursiveTreeState {
   openItems: string[];
   activeItem: string;
   treeID: string;
+  expandChildNodes: boolean;
 }
 
 export type EuiRecursiveTreeProps = HTMLAttributes<HTMLUListElement> &
@@ -54,7 +55,7 @@ export type EuiRecursiveTreeProps = HTMLAttributes<HTMLUListElement> &
     isCondensed?: boolean;
     /** Set all items to open on initial load
      */
-    forceAllOpen?: boolean;
+    expandByDefault?: boolean;
     /** Display expansion arrows next to all itmes
      * that contain children
      */
@@ -67,9 +68,16 @@ export class EuiRecursiveTree extends Component<
 > {
   static contextType = EuiRecursiveTreeContext;
   state: EuiRecursiveTreeState = {
-    openItems: [],
+    openItems: this.props.expandByDefault
+      ? this.props.items
+          .map<string>(({ id, children }) =>
+            children ? id : ((null as unknown) as string)
+          )
+          .filter(x => x != null)
+      : [],
     activeItem: '',
     treeID: this.context || treeIdGenerator(),
+    expandChildNodes: this.props.expandByDefault || false,
   };
 
   buttonRef: Array<HTMLButtonElement | undefined> = [];
@@ -83,6 +91,10 @@ export class EuiRecursiveTree extends Component<
 
   handleNodeClick = (node: Node, ignoreCallback: boolean = false) => {
     const index = this.state.openItems.indexOf(node.id);
+
+    this.setState({
+      expandChildNodes: false,
+    });
 
     if (!ignoreCallback && node.callback !== undefined) {
       node.callback();
@@ -178,7 +190,7 @@ export class EuiRecursiveTree extends Component<
       className,
       items,
       isCondensed,
-      forceAllOpen,
+      expandByDefault,
       showExpansionArrows,
       ...rest
     } = this.props;
@@ -201,6 +213,7 @@ export class EuiRecursiveTree extends Component<
               return (
                 <li
                   key={node.label + index}
+                  aria-expanded={this.isNodeOpen(node)}
                   className={classNames(
                     'euiRecursiveTree__node',
                     this.isNodeOpen(node)
@@ -257,7 +270,7 @@ export class EuiRecursiveTree extends Component<
                         items={node.children}
                         isCondensed={isCondensed}
                         showExpansionArrows={showExpansionArrows}
-                        forceAllOpen={forceAllOpen}
+                        expandByDefault={this.state.expandChildNodes}
                       />
                     ) : null}
                   </div>

@@ -81,6 +81,12 @@ export const RecursiveTreeExample = {
             icons that don&apos;t immediately let a user know that there are
             nested nodes that may not be visible.
           </p>
+          <p>
+            In some cases, you may want to automatically expand all the items
+            with children. In those instances, you can use the{' '}
+            <EuiCode>expandByDefault</EuiCode> prop, as seen in the example
+            below.
+          </p>
         </div>
       ),
       components: { EuiRecursiveTree },
