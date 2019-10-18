@@ -6,6 +6,8 @@ import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiIcon } from '../icon';
 
+import { EuiI18n } from '../i18n';
+
 import { EuiFocusTrap } from '../focus_trap';
 
 import { keyCodes } from '../../services';
@@ -112,41 +114,67 @@ export class EuiImage extends Component<EuiImageProps, State> {
     const fullScreenDisplay = (
       <EuiOverlayMask onClick={this.closeFullScreen}>
         <EuiFocusTrap clickOutsideDisables={true}>
-          <button
-            type="button"
-            className="euiImage-isFullScreen"
-            onClick={this.closeFullScreen}
-            onKeyDown={this.onKeyDown}>
-            <figure>
-              <img src={url} className="euiImage-isFullScreen__img" alt={alt} />
-              {optionalCaption}
-
-              <EuiIcon
-                type="cross"
-                color={fullScreenIconColorMap[fullScreenIconColor]}
-                className="euiImage-isFullScreen__icon"
-              />
-            </figure>
-          </button>
+          <figure
+            className="euiImage euiImage-isFullScreen"
+            role="figure"
+            aria-label={caption}>
+            <EuiI18n
+              token="euiImage.closeImage"
+              values={{ alt }}
+              default="Close full screen {alt} image">
+              {(closeImage: string) => (
+                <button
+                  type="button"
+                  aria-label={closeImage}
+                  className="euiImage__button"
+                  onClick={this.closeFullScreen}
+                  onKeyDown={this.onKeyDown}>
+                  <img
+                    src={url}
+                    alt={alt}
+                    className="euiImage-isFullScreen__img"
+                    {...rest}
+                  />
+                  <EuiIcon
+                    type="cross"
+                    color={fullScreenIconColorMap[fullScreenIconColor]}
+                    className="euiImage-isFullScreen__icon"
+                  />
+                </button>
+              )}
+            </EuiI18n>
+            {optionalCaption}
+          </figure>
         </EuiFocusTrap>
       </EuiOverlayMask>
     );
 
     if (allowFullScreen) {
       return (
-        <button type="button" onClick={this.openFullScreen} className={classes}>
-          <figure {...rest}>
-            <img src={url} className="euiImage__img" alt={alt} />
-            {optionalCaption}
-            {allowFullScreenIcon}
-            {isFullScreenActive && fullScreenDisplay}
-          </figure>
-        </button>
+        <figure className={classes} role="figure" aria-label={caption}>
+          <EuiI18n
+            token="euiImage.openImage"
+            values={{ alt }}
+            default="Open full screen {alt} image">
+            {(openImage: string) => (
+              <button
+                type="button"
+                aria-label={openImage}
+                className="euiImage__button"
+                onClick={this.openFullScreen}>
+                <img src={url} alt={alt} className="euiImage__img" {...rest} />
+                {allowFullScreenIcon}
+                {isFullScreenActive && fullScreenDisplay}
+              </button>
+            )}
+          </EuiI18n>
+          {optionalCaption}
+        </figure>
       );
     } else {
       return (
-        <figure className={classes} {...rest}>
-          <img src={url} className="euiImage__img" alt={alt} />
+        <figure className={classes} role="figure" aria-label={caption}>
+          <img src={url} className="euiImage__img" alt={alt} {...rest} />
           {optionalCaption}
         </figure>
       );
