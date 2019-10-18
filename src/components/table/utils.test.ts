@@ -19,19 +19,22 @@ describe('resolveWidthAsStyle', () => {
       const expected = { width: width };
       expect(resolveWidthAsStyle(undefined, width)).toEqual(expected);
       expect(resolveWidthAsStyle({}, width)).toEqual(expected);
+      expect(resolveWidthAsStyle(undefined, 100)).toEqual({ width: '100px' });
+      expect(resolveWidthAsStyle(undefined, '100')).toEqual({ width: '100px' });
     });
   });
   describe('with style and width', () => {
-    it('returns style overriding width', () => {
+    const result = {
+      width: '10%',
+      color: 'red',
+    };
+    it('returns width overriding style', () => {
       const style = { width: '20%', color: 'red' };
-      expect(resolveWidthAsStyle(style, '10%')).toEqual(style);
+      expect(resolveWidthAsStyle(style, '10%')).toEqual(result);
     });
     it('returns style merged with width', () => {
       const style = { color: 'red' };
-      expect(resolveWidthAsStyle(style, '10%')).toEqual({
-        width: '10%',
-        color: 'red',
-      });
+      expect(resolveWidthAsStyle(style, '10%')).toEqual(result);
     });
   });
 });

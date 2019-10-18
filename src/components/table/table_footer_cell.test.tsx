@@ -52,6 +52,14 @@ describe('EuiTableFooterCell', () => {
       expect(render(component)).toMatchSnapshot();
     });
 
+    test('accepts width attribute as number', () => {
+      const component = (
+        <EuiTableFooterCell width={100}>Test</EuiTableFooterCell>
+      );
+
+      expect(render(component)).toMatchSnapshot();
+    });
+
     test('resolves style and width attribute', () => {
       const component = (
         <EuiTableFooterCell width="10%" style={{ width: '20%' }}>

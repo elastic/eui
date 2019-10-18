@@ -11,7 +11,7 @@ export type EuiTableHeaderCellCheckboxScope =
   | 'rowgroup';
 
 export interface EuiTableHeaderCellCheckboxProps {
-  width?: string;
+  width?: string | number;
   scope?: EuiTableHeaderCellCheckboxScope;
 }
 

@@ -57,7 +57,7 @@ type Props = CommonProps &
     };
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
-    width?: string;
+    width?: string | number;
   };
 
 export const EuiTableHeaderCell: FunctionComponent<Props> = ({

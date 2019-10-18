@@ -89,6 +89,12 @@ describe('width and style', () => {
     expect(render(component)).toMatchSnapshot();
   });
 
+  test('accepts width attribute as number', () => {
+    const component = <EuiTableRowCell width={100}>Test</EuiTableRowCell>;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
   test('resolves style and width attribute', () => {
     const component = (
       <EuiTableRowCell width="10%" style={{ width: '20%' }}>

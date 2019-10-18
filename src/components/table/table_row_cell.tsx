@@ -36,7 +36,7 @@ interface EuiTableRowCellSharedPropsShape {
    * _Should only be used for action cells_
    */
   truncateText?: boolean;
-  width?: string;
+  width?: string | number;
 }
 
 interface EuiTableRowCellMobileOptionsShape {

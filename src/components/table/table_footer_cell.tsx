@@ -14,7 +14,7 @@ import { resolveWidthAsStyle } from './utils';
 type Props = CommonProps &
   TdHTMLAttributes<HTMLTableCellElement> & {
     align?: HorizontalAlignment;
-    width?: string;
+    width?: string | number;
   };
 
 export const EuiTableFooterCell: FunctionComponent<Props> = ({

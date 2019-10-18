@@ -32,6 +32,16 @@ describe('EuiTableHeaderCellCheckbox', () => {
       expect(render(component)).toMatchSnapshot();
     });
 
+    test('accepts width attribute as number', () => {
+      const component = (
+        <EuiTableHeaderCellCheckbox width={100}>
+          Test
+        </EuiTableHeaderCellCheckbox>
+      );
+
+      expect(render(component)).toMatchSnapshot();
+    });
+
     test('resolves style and width attribute', () => {
       const component = (
         <EuiTableHeaderCellCheckbox width="10%" style={{ width: '20%' }}>
