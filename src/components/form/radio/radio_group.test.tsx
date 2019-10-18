@@ -9,7 +9,7 @@ jest.mock('../radio', () => ({ EuiRadio: 'eui_radio' }));
 describe('EuiRadioGroup', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiRadioGroup {...requiredProps} onChange={() => {}} />
+      <EuiRadioGroup {...requiredProps} options={[]} onChange={() => {}} />
     );
 
     expect(component).toMatchSnapshot();
