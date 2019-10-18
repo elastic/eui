@@ -1,7 +1,8 @@
 import React, { Component, HTMLAttributes, createContext } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { EuiIcon } from '../icon';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiText } from '../text';
 import { keyCodes, htmlIdGenerator } from '../../services';
 
@@ -45,8 +46,8 @@ interface EuiRecursiveTreeState {
   expandChildNodes: boolean;
 }
 
-export type EuiRecursiveTreeProps = HTMLAttributes<HTMLUListElement> &
-  CommonProps & {
+export type CommonTreeProps = CommonProps &
+  HTMLAttributes<HTMLUListElement> & {
     /** An array of EuiRecursiveTreeNodes
      */
     items: Node[];
@@ -62,9 +63,16 @@ export type EuiRecursiveTreeProps = HTMLAttributes<HTMLUListElement> &
     showExpansionArrows?: boolean;
   };
 
+export type EuiRecursiveTreeProps = Omit<
+  CommonTreeProps,
+  'aria-label' | 'aria-labelledby'
+> &
+  ({ 'aria-label': string } | { 'aria-labelledby': string });
+
 export class EuiRecursiveTree extends Component<
   EuiRecursiveTreeProps,
-  EuiRecursiveTreeState
+  EuiRecursiveTreeState,
+  CommonTreeProps
 > {
   static contextType = EuiRecursiveTreeContext;
   state: EuiRecursiveTreeState = {
@@ -208,73 +216,91 @@ export class EuiRecursiveTree extends Component<
         <EuiText
           size={isCondensed ? 's' : 'm'}
           className="euiRecursiveTree__wrapper">
-          <ul className={classes} {...rest}>
+          <ul
+            className={classes}
+            id={this.state.treeID}
+            aria-describedby={this.state.treeID}
+            {...rest}>
             {items.map((node, index) => {
               return (
-                <li
-                  key={node.label + index}
-                  aria-expanded={this.isNodeOpen(node)}
-                  className={classNames(
-                    'euiRecursiveTree__node',
-                    this.isNodeOpen(node)
-                      ? 'euiRecursiveTree__node--expanded'
-                      : null
-                  )}>
-                  <button
-                    ref={ref => this.setButtonRef(ref, index)}
-                    data-test-subj={`euiRecursiveTreeButton-${
-                      this.state.treeID
-                    }`}
-                    onKeyDown={(event: React.KeyboardEvent) =>
-                      this.onKeyDown(event, node)
-                    }
-                    onClick={() => this.handleNodeClick(node)}
+                <React.Fragment key={node.label + index}>
+                  <EuiScreenReaderOnly>
+                    <p
+                      id={`euiRecursiveTree--screenReader--${
+                        this.state.treeID
+                      }`}>
+                      You can quickly navigate this list using arrow keys.
+                    </p>
+                  </EuiScreenReaderOnly>
+                  <li
                     className={classNames(
-                      'euiRecursiveTree__nodeInner',
-                      showExpansionArrows && node.children
-                        ? 'euiRecursiveTree__nodeInner--withArrows'
-                        : null,
-                      this.state.activeItem === node.id
-                        ? 'euiRecursiveTree__node--active'
+                      'euiRecursiveTree__node',
+                      this.isNodeOpen(node)
+                        ? 'euiRecursiveTree__node--expanded'
                         : null
                     )}>
-                    {showExpansionArrows && node.children ? (
-                      <EuiIcon
-                        className="euiRecursiveTree__expansionArrow"
-                        size={isCondensed ? 's' : 'm'}
-                        type={
-                          this.isNodeOpen(node) ? 'arrowDown' : 'arrowRight'
-                        }
-                      />
-                    ) : null}
-                    {node.icon && !node.useEmptyIcon ? (
-                      <span className="euiRecursiveTree__iconWrapper">
-                        {this.isNodeOpen(node) && node.iconWhenExpanded
-                          ? node.iconWhenExpanded
-                          : node.icon}
+                    <button
+                      aria-controls={`euiRecursiveNestedTree-${
+                        this.state.treeID
+                      }`}
+                      aria-expanded={this.isNodeOpen(node)}
+                      ref={ref => this.setButtonRef(ref, index)}
+                      data-test-subj={`euiRecursiveTreeButton-${
+                        this.state.treeID
+                      }`}
+                      onKeyDown={(event: React.KeyboardEvent) =>
+                        this.onKeyDown(event, node)
+                      }
+                      onClick={() => this.handleNodeClick(node)}
+                      className={classNames(
+                        'euiRecursiveTree__nodeInner',
+                        showExpansionArrows && node.children
+                          ? 'euiRecursiveTree__nodeInner--withArrows'
+                          : null,
+                        this.state.activeItem === node.id
+                          ? 'euiRecursiveTree__node--active'
+                          : null
+                      )}>
+                      {showExpansionArrows && node.children ? (
+                        <EuiIcon
+                          className="euiRecursiveTree__expansionArrow"
+                          size={isCondensed ? 's' : 'm'}
+                          type={
+                            this.isNodeOpen(node) ? 'arrowDown' : 'arrowRight'
+                          }
+                        />
+                      ) : null}
+                      {node.icon && !node.useEmptyIcon ? (
+                        <span className="euiRecursiveTree__iconWrapper">
+                          {this.isNodeOpen(node) && node.iconWhenExpanded
+                            ? node.iconWhenExpanded
+                            : node.icon}
+                        </span>
+                      ) : null}
+                      {node.useEmptyIcon && !node.icon ? (
+                        <span className="euiRecursiveTree__iconPlaceholder" />
+                      ) : null}
+                      <span className="euiRecurisveTree__nodeLabel">
+                        {node.label}
                       </span>
-                    ) : null}
-                    {node.useEmptyIcon && !node.icon ? (
-                      <span className="euiRecursiveTree__iconPlaceholder" />
-                    ) : null}
-                    <span className="euiRecurisveTree__nodeLabel">
-                      {node.label}
-                    </span>
-                  </button>
-                  <div
-                    onKeyDown={(event: React.KeyboardEvent) =>
-                      this.onChildrenKeydown(event, index)
-                    }>
-                    {node.children && this.isNodeOpen(node) ? (
-                      <EuiRecursiveTree
-                        items={node.children}
-                        isCondensed={isCondensed}
-                        showExpansionArrows={showExpansionArrows}
-                        expandByDefault={this.state.expandChildNodes}
-                      />
-                    ) : null}
-                  </div>
-                </li>
+                    </button>
+                    <div
+                      id={`euiRecursiveNestedTree-${this.state.treeID}`}
+                      onKeyDown={(event: React.KeyboardEvent) =>
+                        this.onChildrenKeydown(event, index)
+                      }>
+                      {node.children && this.isNodeOpen(node) ? (
+                        <EuiRecursiveTree
+                          items={node.children}
+                          isCondensed={isCondensed}
+                          showExpansionArrows={showExpansionArrows}
+                          expandByDefault={this.state.expandChildNodes}
+                          aria-labelledby={this.state.treeID}
+                        />
+                      ) : null}
+                    </div>
+                  </li>
+                </React.Fragment>
               );
             })}
           </ul>

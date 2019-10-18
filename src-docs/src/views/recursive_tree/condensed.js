@@ -88,6 +88,7 @@ export class RecursiveTreeCondensed extends React.Component {
           isCondensed
           expandByDefault
           showExpansionArrows
+          aria-label="Document Outline"
         />
       </div>
     );

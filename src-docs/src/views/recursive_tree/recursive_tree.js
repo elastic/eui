@@ -73,7 +73,7 @@ export class RecursiveTree extends React.Component {
 
     return (
       <div style={{ width: '20rem' }}>
-        <EuiRecursiveTree items={items} />
+        <EuiRecursiveTree items={items} aria-label="Sample Folder Tree" />
       </div>
     );
   }

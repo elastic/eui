@@ -5,15 +5,24 @@ exports[`EuiRecursiveTree is rendered 1`] = `
   class="euiText euiText--medium euiRecursiveTree__wrapper"
 >
   <ul
+    aria-describedby="htmlId"
     aria-label="aria-label"
     class="euiRecursiveTree testClass1 testClass2"
     data-test-subj="test subject string"
+    id="htmlId"
   >
+    <p
+      class="euiScreenReaderOnly"
+      id="euiRecursiveTree--screenReader--htmlId"
+    >
+      You can quickly navigate this list using arrow keys.
+    </p>
     <li
-      aria-expanded="false"
       class="euiRecursiveTree__node"
     >
       <button
+        aria-controls="euiRecursiveNestedTree-htmlId"
+        aria-expanded="false"
         class="euiRecursiveTree__nodeInner"
         data-test-subj="euiRecursiveTreeButton-htmlId"
       >
@@ -35,13 +44,22 @@ exports[`EuiRecursiveTree is rendered 1`] = `
           Item One
         </span>
       </button>
-      <div />
+      <div
+        id="euiRecursiveNestedTree-htmlId"
+      />
     </li>
+    <p
+      class="euiScreenReaderOnly"
+      id="euiRecursiveTree--screenReader--htmlId"
+    >
+      You can quickly navigate this list using arrow keys.
+    </p>
     <li
-      aria-expanded="false"
       class="euiRecursiveTree__node"
     >
       <button
+        aria-controls="euiRecursiveNestedTree-htmlId"
+        aria-expanded="false"
         class="euiRecursiveTree__nodeInner"
         data-test-subj="euiRecursiveTreeButton-htmlId"
       >
@@ -51,7 +69,9 @@ exports[`EuiRecursiveTree is rendered 1`] = `
           Item Two
         </span>
       </button>
-      <div />
+      <div
+        id="euiRecursiveNestedTree-htmlId"
+      />
     </li>
   </ul>
 </div>
