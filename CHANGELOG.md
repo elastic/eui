@@ -6,6 +6,10 @@
 - Added `external` prop to `EuiLink` ([#2442](https://github.com/elastic/eui/pull/2442))
 - Added disabled state to `EuiBadge` ([#2440](https://github.com/elastic/eui/pull/2440))
 
+**Bug fixes**
+
+- Reenabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
+
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
 - Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))

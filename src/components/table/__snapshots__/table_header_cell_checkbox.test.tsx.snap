@@ -12,3 +12,59 @@ exports[`EuiTableHeaderCellCheckbox is rendered 1`] = `
   />
 </th>
 `;
+
+exports[`EuiTableHeaderCellCheckbox width and style accepts style attribute 1`] = `
+<th
+  class="euiTableHeaderCellCheckbox"
+  scope="col"
+  style="width:20%"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    Test
+  </div>
+</th>
+`;
+
+exports[`EuiTableHeaderCellCheckbox width and style accepts width attribute 1`] = `
+<th
+  class="euiTableHeaderCellCheckbox"
+  scope="col"
+  style="width:10%"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    Test
+  </div>
+</th>
+`;
+
+exports[`EuiTableHeaderCellCheckbox width and style accepts width attribute as number 1`] = `
+<th
+  class="euiTableHeaderCellCheckbox"
+  scope="col"
+  style="width:100px"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    Test
+  </div>
+</th>
+`;
+
+exports[`EuiTableHeaderCellCheckbox width and style resolves style and width attribute 1`] = `
+<th
+  class="euiTableHeaderCellCheckbox"
+  scope="col"
+  style="width:10%"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    Test
+  </div>
+</th>
+`;
