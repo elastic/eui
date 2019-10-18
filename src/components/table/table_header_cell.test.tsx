@@ -33,3 +33,29 @@ describe('align', () => {
     expect(render(component)).toMatchSnapshot();
   });
 });
+
+describe('width and style', () => {
+  test('accepts style attribute', () => {
+    const component = (
+      <EuiTableHeaderCell style={{ width: '20%' }}>Test</EuiTableHeaderCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('accepts width attribute', () => {
+    const component = <EuiTableHeaderCell width="10%">Test</EuiTableHeaderCell>;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('resolves style and width attribute', () => {
+    const component = (
+      <EuiTableHeaderCell width="10%" style={{ width: '20%' }}>
+        Test
+      </EuiTableHeaderCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+});
