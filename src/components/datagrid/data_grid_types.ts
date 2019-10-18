@@ -67,6 +67,25 @@ export interface EuiDataGridStyle {
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
+export interface EuiDataGridTooBarDisplayOptions {
+  /**
+   * Allows the ability for the user to hide fields and sort columns
+   */
+  showColumnSelector?: boolean;
+  /**
+   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
+   */
+  showStyleSelector?: boolean;
+  /**
+   * Allows the ability for the user to sort rows based upon column values
+   */
+  showSortSelector?: boolean;
+  /**
+   * Allows user to be able to full screen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   */
+  showFullscrenSelector?: boolean;
+}
+
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,
 // but TypeScript's default understanding of an array is number[] unless `as const` is used
 // which defeats the generic's purpose & functionality as it would check for `number` in `number[]`

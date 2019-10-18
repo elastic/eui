@@ -614,6 +614,54 @@ Array [
       ).toBe(2);
     });
 
+    it('can hide the toolbar', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          toolbarDisplay={false}
+          rowCount={1}
+          renderCellValue={() => 'value'}
+        />
+      );
+
+      // The toolbar should not show
+      expect(findTestSubject(component, 'dataGridControls').length).toBe(0);
+
+      // Check for false / true and unset values
+      component.setProps({
+        toolbarDisplay: {
+          showFullscrenSelector: false,
+          showSortSelector: false,
+          showStyleSelector: true,
+        },
+      });
+
+      // fullscreen selector
+      expect(findTestSubject(component, 'dataGridFullScrenButton').length).toBe(
+        0
+      );
+
+      // sort selector
+      expect(
+        findTestSubject(component, 'dataGridColumnSortingButton').length
+      ).toBe(0);
+
+      // style selector
+      expect(
+        findTestSubject(component, 'dataGridStyleSelectorButton').length
+      ).toBe(1);
+
+      // column selector
+      expect(
+        findTestSubject(component, 'dataGridColumnSelectorButton').length
+      ).toBe(1);
+    });
+
     describe('schema datatype classnames', () => {
       it('applies classnames from explicit datatypes', () => {
         const component = mount(

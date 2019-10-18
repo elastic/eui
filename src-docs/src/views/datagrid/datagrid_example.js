@@ -33,6 +33,7 @@ import {
   DataGridStyle,
   CellValueElement,
   DataGridSchemaDetector,
+  DataGridToolbarDisplayOptions,
 } from './props';
 
 export const DataGridExample = {
@@ -62,6 +63,7 @@ export const DataGridExample = {
         DataGridStyle,
         CellValueElement,
         DataGridSchemaDetector,
+        DataGridToolbarDisplayOptions,
       },
     },
     {

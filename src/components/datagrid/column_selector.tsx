@@ -93,6 +93,7 @@ export const useColumnSelector = (
               iconType="eyeClosed"
               color="text"
               className={controlBtnClasses}
+              data-test-subj="dataGridColumnSelectorButton"
               onClick={() => setIsOpen(!isOpen)}>
               {numberOfHiddenFields > 0
                 ? `${numberOfHiddenFields} ${buttonActive}`

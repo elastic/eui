@@ -112,6 +112,7 @@ export const useColumnSorting = (
               iconType="sortable"
               color="text"
               className={controlBtnClasses}
+              data-test-subj="dataGridColumnSortingButton"
               onClick={() => setIsOpen(!isOpen)}>
               {numberOfSortedFields > 0
                 ? `${numberOfSortedFields} ${buttonActive}`
