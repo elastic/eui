@@ -8,15 +8,11 @@ import React, {
 import { fake } from 'faker';
 
 import {
-  EuiButton,
   EuiDataGrid,
   EuiLink,
-  EuiPopover,
-  EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components/';
-import { EuiRadioGroup } from '../../../../src/components/form/radio';
 import { EuiButtonIcon } from '../../../../src/components/button/button_icon';
 
 const columns = [
@@ -64,7 +60,7 @@ const columns = [
 
 const raw_data = [];
 
-for (let i = 1; i < 1000; i++) {
+for (let i = 1; i < 100; i++) {
   raw_data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
@@ -85,10 +81,8 @@ for (let i = 1; i < 1000; i++) {
 }
 
 export default () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
   // ** Pagination config
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 25 });
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
     pageSize => setPagination(pagination => ({ ...pagination, pageSize })),
     [setPagination]
@@ -107,14 +101,10 @@ export default () => {
     [setSortingColumns]
   );
 
-  const [inMemoryLevel, setInMemoryLevel] = useState('');
-
   // Sort data
   let data = useMemo(() => {
     // the grid itself is responsible for sorting if inMemory is `sorting`
-    if (inMemoryLevel === 'sorting') {
-      return raw_data;
-    }
+    return raw_data;
 
     return [...raw_data].sort((a, b) => {
       for (let i = 0; i < sortingColumns.length; i++) {
@@ -128,19 +118,12 @@ export default () => {
 
       return 0;
     });
-  }, [raw_data, sortingColumns, inMemoryLevel]);
+  }, [raw_data, sortingColumns]);
 
   // Pagination
   data = useMemo(() => {
-    // the grid itself is responsible for sorting if inMemory is sorting or pagination
-    if (inMemoryLevel === 'sorting' || inMemoryLevel === 'pagination') {
-      return data;
-    }
-
-    const rowStart = pagination.pageIndex * pagination.pageSize;
-    const rowEnd = Math.min(rowStart + pagination.pageSize, data.length);
-    return data.slice(rowStart, rowEnd);
-  }, [data, pagination, inMemoryLevel]);
+    return data;
+  }, [data, pagination]);
 
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
@@ -151,12 +134,7 @@ export default () => {
     return ({ rowIndex, columnId, setCellProps }) => {
       let adjustedRowIndex = rowIndex;
 
-      // If we are doing the pagination (instead of leaving that to the grid)
-      // then the row index must be adjusted as `data` has already been pruned to the page size
-      if (inMemoryLevel !== 'sorting' && inMemoryLevel !== 'pagination') {
-        adjustedRowIndex =
-          rowIndex - pagination.pageIndex * pagination.pageSize;
-      }
+      adjustedRowIndex = rowIndex - pagination.pageIndex * pagination.pageSize;
 
       useEffect(() => {
         if (columnId === 'amount') {
@@ -165,9 +143,10 @@ export default () => {
               data[adjustedRowIndex][columnId].match(/\d+\.\d+/)[0],
               10
             );
+            console.log(numeric);
             setCellProps({
               style: {
-                backgroundColor: `rgba(0, ${(numeric / 1000) * 255}, 0, 0.2)`,
+                backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
               },
             });
           }
@@ -178,73 +157,21 @@ export default () => {
         ? data[adjustedRowIndex][columnId]
         : null;
     };
-  }, [data, inMemoryLevel]);
-
-  const inMemoryProps = {};
-  if (inMemoryLevel !== '') {
-    inMemoryProps.inMemory = {
-      level: inMemoryLevel,
-    };
-  }
+  }, [data]);
 
   return (
     <div>
-      <EuiPopover
-        isOpen={isPopoverOpen}
-        button={
-          <EuiButton onClick={() => setIsPopoverOpen(state => !state)}>
-            inMemory options
-          </EuiButton>
-        }
-        closePopover={() => setIsPopoverOpen(false)}>
-        <EuiRadioGroup
-          compressed={true}
-          options={[
-            {
-              id: '',
-              label: 'off',
-              value: '',
-            },
-            {
-              id: 'enhancements',
-              label: 'only enhancements',
-              value: 'enhancements',
-            },
-            {
-              id: 'pagination',
-              label: 'only pagination',
-              value: 'pagination',
-            },
-            {
-              id: 'sorting',
-              label: 'sorting and pagination',
-              value: 'sorting',
-            },
-          ]}
-          idSelected={inMemoryLevel}
-          onChange={(id, value) => {
-            setInMemoryLevel(value === '' ? undefined : value);
-            setIsPopoverOpen(false);
-          }}
-        />
-      </EuiPopover>
-      <EuiSpacer />
-
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={raw_data.length}
         renderCellValue={renderCellValue}
-        {...inMemoryProps}
+        inMemory="sorting"
         sorting={{ columns: sortingColumns, onSort }}
-        toolbarDisplay={{
-          showFullscrenSelector: false,
-          showSortSelector: true,
-        }}
         pagination={{
           ...pagination,
-          pageSizeOptions: [10, 25, 50, 100],
+          pageSizeOptions: [10, 50, 100],
           onChangeItemsPerPage: onChangeItemsPerPage,
           onChangePage: onChangePage,
         }}
