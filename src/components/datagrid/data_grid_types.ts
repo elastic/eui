@@ -25,7 +25,7 @@ export interface EuiDataGridColumnVisibility {
    */
   visibleColumns: string[];
   /**
-   * callback when a column's visibility or order is modified by tjhe user
+   * callback when a column's visibility or order is modified by the user
    */
   setVisibleColumns: (visibleColumns: string[]) => void;
 }
