@@ -154,7 +154,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
           role="figure"
           aria-label={caption}
           {...rest}>
-          <EuiI18n token="euiImage.openImage" default="Open image full screen">
+          <EuiI18n token="euiImage.openImage" default="Open full screen image">
             {(openImage: string) => (
               <button
                 type="button"
