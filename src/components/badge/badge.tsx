@@ -7,9 +7,10 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 
+import chroma from 'chroma-js';
 import { isColorDark, hexToRgb } from '../../services/color';
+import { palettes } from '../../services/color/eui_palettes';
 import { EuiInnerText } from '../inner_text';
-
 import { EuiIcon, IconColor, IconType } from '../icon';
 
 type IconSide = 'left' | 'right';
@@ -68,17 +69,16 @@ export type EuiBadgeProps = {
   ExclusiveUnion<WithIconOnClick, {}> &
   ExclusiveUnion<WithSpanProps, WithButtonProps>;
 
-const colorToClassNameMap: { [color in IconColor]: string } = {
-  default: 'euiBadge--default',
-  primary: 'euiBadge--primary',
-  secondary: 'euiBadge--secondary',
-  accent: 'euiBadge--accent',
-  warning: 'euiBadge--warning',
-  danger: 'euiBadge--danger',
-  hollow: 'euiBadge--hollow',
+const colorToHexMap: { [color in IconColor]: string } = {
+  default: palettes.euiPaletteMonotones.colors[2],
+  primary: palettes.euiPaletteForLightBackground.colors[0],
+  secondary: palettes.euiPaletteForLightBackground.colors[1],
+  accent: palettes.euiPaletteForLightBackground.colors[4],
+  warning: palettes.euiPaletteForLightBackground.colors[2],
+  danger: palettes.euiPaletteForLightBackground.colors[3],
 };
 
-export const COLORS = keysOf(colorToClassNameMap);
+export const COLORS = keysOf(colorToHexMap);
 
 const iconSideToClassNameMap: { [side in IconSide]: string } = {
   left: 'euiBadge--iconLeft',
@@ -103,17 +103,77 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 }) => {
   checkValidColor(color);
 
-  let optionalColorClass = null;
   let optionalCustomStyles: object | undefined = undefined;
+  let customBackgroundColor = null;
   let textColor = null;
+  let textColorDarkened = null;
+  const wcagContrastBase = 4.5; // WCAG AA contrast level
+  let wcagContrast = null;
+  const maxLightness = 50; // Subjective cutoff, high lightness loses vibrancy
+  let currentLightness = null;
+  let colorHex = null;
+  const colorInk = palettes.euiPaletteMonotones.colors[6];
+  const colorGhost = palettes.euiPaletteMonotones.colors[0];
 
   if (COLORS.indexOf(color) > -1) {
-    optionalColorClass = colorToClassNameMap[color];
-  } else {
-    if (isColorDark(...hexToRgb(color))) {
-      textColor = '#FFFFFF';
+    // Map the EUI color name to its hex value from palettes
+    colorHex = colorToHexMap[color];
+
+    textColor = chroma(colorHex)
+      .darken(2)
+      .hex(); // darken text vs background
+
+    currentLightness = chroma(colorHex).lab()[0]; // get LAB Lightness value
+
+    // Use variations of the provided color for both background and text
+    // If it's too light, then leave it as-is and use dark text for contrast
+    if (currentLightness < maxLightness) {
+      // Increase the lightness of the provided color to use as background
+      customBackgroundColor = chroma(colorHex)
+        .set('lab.l', '*1.5')
+        .hex();
     } else {
-      textColor = '#000000';
+      // The color is already light, so just leave it as is and use dark text
+      customBackgroundColor = colorHex;
+      textColor = colorInk;
+    }
+
+    optionalCustomStyles = {
+      backgroundColor: customBackgroundColor,
+      color: textColor,
+    };
+  } else if (color !== 'hollow') {
+    if (isColorDark(...hexToRgb(color))) {
+      // If the provided hex color is dark, then use white text for max contrast
+      textColor = colorGhost;
+    } else {
+      // Try to darken the provided color before using all black text
+      textColorDarkened = chroma(color)
+        .darken(3)
+        .hex();
+
+      // Check the contrast
+      wcagContrast = getColorContrast(textColorDarkened, color);
+
+      if (wcagContrast < wcagContrastBase) {
+        // It's low contrast, so lets go full black and check again
+        textColor = colorInk;
+        wcagContrast = getColorContrast(textColor, color);
+        if (wcagContrast < wcagContrastBase) {
+          // Warn that the custom color results in low contrast
+          console.warn(
+            'Warning: ',
+            color,
+            'badge has low contrast of ',
+            wcagContrast,
+            '. Should be above ',
+            wcagContrastBase
+          );
+        }
+      } else {
+        // Darkening the custom hex provided sufficient contrast, lets use it
+        textColor = textColorDarkened;
+      }
     }
 
     optionalCustomStyles = { backgroundColor: color, color: textColor };
@@ -124,9 +184,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     {
       'euiBadge-isClickable': onClick && !iconOnClick,
       'euiBadge-isDisabled': isDisabled,
+      'euiBadge--hollow': color === 'hollow',
     },
     iconSideToClassNameMap[iconSide],
-    optionalColorClass,
     className
   );
 
@@ -235,13 +295,23 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   }
 };
 
+function getColorContrast(textColor: string, color: string) {
+  const contrastValue = chroma.contrast(textColor, color);
+  return contrastValue;
+}
+
 function checkValidColor(color: null | IconColor | string) {
   const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
 
-  if (color != null && !validHex.test(color) && !COLORS.includes(color)) {
+  if (
+    color != null &&
+    !validHex.test(color) &&
+    !COLORS.includes(color) &&
+    color !== 'hollow'
+  ) {
     console.warn(
-      'EuiBadge expects a valid color. This can either be a three ' +
-        `or six character hex value or one of the following: ${COLORS}`
+      'EuiBadge expects a valid color. This can either be a three or six ' +
+        `character hex value, hollow, or one of the following: ${COLORS}`
     );
   }
 }
