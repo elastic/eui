@@ -24,6 +24,16 @@ describe('resolveWidthAsStyle', () => {
     });
   });
   describe('with style and width', () => {
+    const oldConsoleError = console.warn;
+    let consoleStub: jest.Mock;
+
+    beforeEach(() => {
+      console.warn = consoleStub = jest.fn();
+    });
+
+    afterEach(() => {
+      console.warn = oldConsoleError;
+    });
     const result = {
       width: '10%',
       color: 'red',
@@ -31,6 +41,7 @@ describe('resolveWidthAsStyle', () => {
     it('returns width overriding style', () => {
       const style = { width: '20%', color: 'red' };
       expect(resolveWidthAsStyle(style, '10%')).toEqual(result);
+      expect(consoleStub).toBeCalled();
     });
     it('returns style merged with width', () => {
       const style = { color: 'red' };
