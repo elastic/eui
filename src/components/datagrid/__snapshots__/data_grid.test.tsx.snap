@@ -178,6 +178,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
+        data-test-sub="dataGridControls"
       >
         <div
           class="euiPopover euiPopover--anchorDownLeft"
@@ -188,6 +189,7 @@ Array [
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
               <span
@@ -220,6 +222,7 @@ Array [
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridStyleSelectorButton"
               type="button"
             >
               <span
@@ -245,6 +248,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          data-test-subj="dataGridFullScrenButton"
           type="button"
         >
           <span
@@ -705,6 +709,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
+        data-test-sub="dataGridControls"
       >
         <div
           class="euiPopover euiPopover--anchorDownLeft"
@@ -715,6 +720,7 @@ Array [
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
               <span
@@ -747,6 +753,7 @@ Array [
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridStyleSelectorButton"
               type="button"
             >
               <span
@@ -772,6 +779,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          data-test-subj="dataGridFullScrenButton"
           type="button"
         >
           <span
