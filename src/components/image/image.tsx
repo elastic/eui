@@ -120,7 +120,8 @@ export class EuiImage extends Component<EuiImageProps, State> {
             aria-label={caption}>
             <EuiI18n
               token="euiImage.closeImage"
-              default="Close image full screen">
+              values={{ alt }}
+              default="Close full screen {alt} image">
               {(closeImage: string) => (
                 <button
                   type="button"
@@ -154,7 +155,10 @@ export class EuiImage extends Component<EuiImageProps, State> {
           role="figure"
           aria-label={caption}
           {...rest}>
-          <EuiI18n token="euiImage.openImage" default="Open full screen image">
+          <EuiI18n
+            token="euiImage.openImage"
+            values={{ alt }}
+            default="Open full screen {alt} image">
             {(openImage: string) => (
               <button
                 type="button"
