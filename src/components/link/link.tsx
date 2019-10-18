@@ -81,7 +81,6 @@ const EuiLink = React.forwardRef<
     },
     ref
   ) => {
-
     const externalLinkIcon = external ? (
       <EuiI18n token="euiLink.external.ariaLabel" default="External link">
         {(ariaLabel: string) => (
