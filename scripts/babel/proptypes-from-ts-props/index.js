@@ -429,7 +429,6 @@ function getPropTypesForNode(node, optional, state) {
       if (types.isTSLiteralType(node.indexType) === false) break;
 
       const indexedName = node.indexType.literal.value;
-      if (indexedName === 'renderCellValue') debugger;
       const objectPropType = getPropTypesForNode(node.objectType, true, state);
 
       // verify this came out as a PropTypes.shape(), which we can pick the indexed property off of
