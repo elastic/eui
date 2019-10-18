@@ -1,5 +1,9 @@
 .euiLink {
   @include euiLink;
+
+  .euiLink__externalIcon {
+    margin-left: $euiSizeXS;
+  }
 }
 
 $textColors: (

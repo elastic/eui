@@ -1,5 +1,5 @@
 import React, {
-  Component,
+  PureComponent,
   HTMLAttributes,
   ReactElement,
   SVGAttributes,
@@ -444,7 +444,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-export class EuiIcon extends Component<EuiIconProps, State> {
+export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
   constructor(props: EuiIconProps) {
     super(props);
