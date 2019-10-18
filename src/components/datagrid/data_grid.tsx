@@ -58,45 +58,45 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * #DataGridColumn lists the available columns and optionally schema for the dataset
+     * An array of #DataGridColumn objects. Lists the columns available and the schema and settings tied to it.
      */
     columns: EuiDataGridColumn[];
     /**
-     * #DataGridColumnVisibility controls column display order and visibility
+     * An array of #DataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
      */
     columnVisibility: EuiDataGridColumnVisibility;
     /**
-     * array of custom #DataGridSchemaDetector
+     * An array of custom #DataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * object mapping #DataGridColumn `dataType`s to a custom expansion formatting component
+     * An object mapping #DataGridColumn `dataType`s to a custom expansion formatting component. `{number: () => {<div>{children}</div>}}`
      */
     expansionFormatters?: EuiDataGridExpansionFormatters;
     /**
-     * total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
+     * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
      */
     rowCount: number;
     /**
-     * Function called to render a cell's value. Behind the scenes it is treated as a React component
+     * A function called to render a cell's value. Behind the scenes it is treated as a React component
      * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
      * as its only argument.
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     /**
-     * #DataGridStyle omit to use default settings; provided values can be further overridden by users
+     * Defines the look and feel for the grid. Accepts a partial #DataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarDisplay density controls are available.
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * #DataGridInMemory omit to disable all in-memory features
+     * A #DataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
     inMemory?: EuiDataGridInMemory;
     /**
-     * #DataGridPagination omit to disable pagination
+     * A #DataGridPagination object. Omit to disable pagination completely.
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * #DataGridSorting omit to disable sorting
+     * A #DataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarDisplay` prop.
      */
     sorting?: EuiDataGridSorting;
   };

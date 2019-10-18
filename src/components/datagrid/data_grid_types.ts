@@ -2,30 +2,30 @@ import { FunctionComponent, ReactNode } from 'react';
 
 export interface EuiDataGridColumn {
   /**
-   * unique identifier for this column
+   * The unique identifier for this column
    */
   id: string;
   /**
-   * ReactNode used when rendering the column header
+   * A `ReactNode` used when rendering the column header. When providing complicated content, please make sure to utilize CSS to respect truncation as space allows. Check the docs example.
    */
   display?: ReactNode;
   /**
-   * schema data type for this column, built-in values are ['boolean', 'currency', 'datetime', 'numeric', 'json'] but can be expanded by #EuiDataGrid `schemaDetectors` (for in-memory detection), or pass whatever string you want
+   * A Schema to use for the column. Built-in values are ['boolean', 'currency', 'datetime', 'numeric', 'json'] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection). In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
    */
   dataType?: string;
   /**
-   * whether or not the column's cells can be expanded, defaults to expandable
+   * Defauls to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
 }
 
 export interface EuiDataGridColumnVisibility {
   /**
-   * array of #DataGridColumn `id` dictating which columns are visible and their order
+   * An array of #DataGridColumn `id`s dictating the order and visibility of columns.
    */
   visibleColumns: string[];
   /**
-   * callback when a column's visibility or order is modified by the user
+   * A callback for when a column's visibility or order is modified by the user.
    */
   setVisibleColumns: (visibleColumns: string[]) => void;
 }
@@ -41,11 +41,29 @@ export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 
 export interface EuiDataGridStyle {
+  /**
+   * Size of fonts used within the row and column cells
+   */
   fontSize?: EuiDataGridStyleFontSizes;
+  /**
+   * Border uses for the row and column cells
+   */
   border?: EuiDataGridStyleBorders;
+  /**
+   * If set to true, rows will alternate zebra striping for clarity
+   */
   stripes?: boolean;
+  /**
+   * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarDisplay` is set to `false`.
+   */
   header?: EuiDataGridStyleHeader;
+  /**
+   * Will define what visual style to show on row hover
+   */
   rowHover?: EuiDataGridStyleRowHover;
+  /**
+   * Defines the padding with the row and column cells
+   */
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
@@ -54,34 +72,34 @@ export interface EuiDataGridStyle {
 // which defeats the generic's purpose & functionality as it would check for `number` in `number[]`
 export interface EuiDataGridPaginationProps {
   /**
-   * index of the current page, starts at 0 for the first page
+   * The index of the current page, starts at 0 for the first page
    */
   pageIndex: number;
   /**
-   * how many rows to show per page
+   * How many rows should initially be shown per page
    */
   pageSize: number;
   /**
-   * array of page sizes users can select from
+   * An array of page sizes the user can select from
    */
   pageSizeOptions: number[];
   /**
-   * callback when a user changes the page size selection
+   * A callback for when the user changes the page size selection
    */
   onChangeItemsPerPage: (itemsPerPage: number) => void;
   /**
-   * callback when the current page index changes
+   * A callback for when the current page index changes
    */
   onChangePage: (pageIndex: number) => void;
 }
 
 export interface EuiDataGridSorting {
   /**
-   * receives updated column sort details in response to user interactions
+   * A function that receives updated column sort details in response to user interactions in the toolbar controls
    */
   onSort: (columns: EuiDataGridSorting['columns']) => void;
   /**
-   * column ids being sorted by and their sort direction; array order determines sort order
+   * An array of the column ids currently being sorted and their sort direction. The array order determines the sort order. `{ id: 'A'; direction: 'asc' }`
    */
   columns: Array<{ id: string; direction: 'asc' | 'desc' }>;
 }
@@ -100,7 +118,7 @@ export interface EuiDataGridInMemory {
  */
   level: 'enhancements' | 'pagination' | 'sorting';
   /**
-   * array of column ids for in-memory processing to skip
+   * An array of column ids for the in-memory processing to skip
    */
   skipColumns?: string[];
 }
