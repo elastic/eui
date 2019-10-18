@@ -2,6 +2,10 @@
 
 - Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
 
+**Bug fixes**
+
+- Reenabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
+
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
 - Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
