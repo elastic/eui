@@ -133,6 +133,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
                     src={url}
                     alt={alt}
                     className="euiImage-isFullScreen__img"
+                    {...rest}
                   />
                   <EuiIcon
                     type="cross"
@@ -150,11 +151,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
 
     if (allowFullScreen) {
       return (
-        <figure
-          className={classes}
-          role="figure"
-          aria-label={caption}
-          {...rest}>
+        <figure className={classes} role="figure" aria-label={caption}>
           <EuiI18n
             token="euiImage.openImage"
             values={{ alt }}
@@ -165,7 +162,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
                 aria-label={openImage}
                 className="euiImage__button"
                 onClick={this.openFullScreen}>
-                <img src={url} alt={alt} className="euiImage__img" />
+                <img src={url} alt={alt} className="euiImage__img" {...rest} />
                 {allowFullScreenIcon}
                 {isFullScreenActive && fullScreenDisplay}
               </button>
@@ -176,12 +173,8 @@ export class EuiImage extends Component<EuiImageProps, State> {
       );
     } else {
       return (
-        <figure
-          className={classes}
-          role="figure"
-          aria-label={caption}
-          {...rest}>
-          <img src={url} className="euiImage__img" alt={alt} />
+        <figure className={classes} role="figure" aria-label={caption}>
+          <img src={url} className="euiImage__img" alt={alt} {...rest} />
           {optionalCaption}
         </figure>
       );
