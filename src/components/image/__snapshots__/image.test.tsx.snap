@@ -2,14 +2,14 @@
 
 exports[`EuiImage is rendered 1`] = `
 <figure
-  aria-label="aria-label"
   class="euiImage euiImage--large testClass1 testClass2"
-  data-test-subj="test subject string"
   role="figure"
 >
   <img
     alt="alt"
+    aria-label="aria-label"
     class="euiImage__img"
+    data-test-subj="test subject string"
     src="/cat.jpg"
   />
 </figure>
@@ -17,9 +17,7 @@ exports[`EuiImage is rendered 1`] = `
 
 exports[`EuiImage is rendered and allows full screen 1`] = `
 <figure
-  aria-label="aria-label"
   class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
-  data-test-subj="test subject string"
   role="figure"
 >
   <button
@@ -29,7 +27,9 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
   >
     <img
       alt="alt"
+      aria-label="aria-label"
       class="euiImage__img"
+      data-test-subj="test subject string"
       src="/cat.jpg"
     />
     <svg
