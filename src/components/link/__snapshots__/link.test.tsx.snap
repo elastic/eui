@@ -103,6 +103,14 @@ exports[`EuiLink supports children 1`] = `
 </a>
 `;
 
+exports[`EuiLink supports disabled 1`] = `
+<button
+  class="euiLink euiLink-disabled"
+  disabled=""
+  type="button"
+/>
+`;
+
 exports[`EuiLink supports href 1`] = `
 <a
   class="euiLink euiLink--primary"
