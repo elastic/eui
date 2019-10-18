@@ -1,11 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiRadio` and `EuiRadioGroup` to TypeScript ([#2438](https://github.com/elastic/eui/pull/2438))
+- Improved a11y in `EuiImage` ([#2447](https://github.com/elastic/eui/pull/2447))
+- Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
+- Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
+- Added `external` prop to `EuiLink` ([#2442](https://github.com/elastic/eui/pull/2442))
+- Added disabled state to `EuiBadge` ([#2440](https://github.com/elastic/eui/pull/2440))
+
+**Bug fixes**
+
+- Reenabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
 
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
 - Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
-  
+
 **Bug fixes**
 
 - Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
