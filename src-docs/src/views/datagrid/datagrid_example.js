@@ -46,16 +46,22 @@ import {
 
 const gridSnippet = `
   <EuiDataGrid
+    // Optional. Will try to autodectect schemas and do sorting and pagination in memory
     inMemory={{ level: 'sorting' }}
-    columns={[{ id: 'A' }, { id: 'B' }]}
+    // Required. There are 200 total records
+    rowCount={200}
+    // Required. Sets up three columns, the last of which has a custom schema
+    columns={[{ id: 'A' }, { id: 'B' }, {id: 'C', schema: 'franchise'}]}
+    // Optional. Hide the second column B
     columnVisibility={{
-      visibleColumns: ['A', 'B'],
+      visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
-    rowCount={200}
+    // Optional. Customize the conten inside the cell. Let's output the row and column position
     renderCellValue={({ rowIndex, columnId }) =>
      \`\${rowIndex}, \${columnId}\`
     }
+    // Optional. Add pagination
     pagination={{
       pageIndex: 1,
       pageSize: 100,
@@ -63,10 +69,14 @@ const gridSnippet = `
       onChangePage: () => {},
       onChangeItemsPerPage: () => {},
     }}
+    // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid
     sorting={{
-      columns: [{ id: 'B', direction: 'asc' }],
+      columns: [{ id: 'C', direction: 'asc' }],
       onSort: () => {},
     }}
+    // Optional. Allows you to configure what features the toolbar allows
+    toolbarDisplay={{ showColumnSelector: false }}
+    // Optional. Change the initial style of the grid.
     gridStyle={{
       border: 'all',
       fontSize: 'm',
@@ -75,7 +85,46 @@ const gridSnippet = `
       rowHover: 'highlight',
       header: 'shade',
     }}
-    toolbarDisplay={{ showColumnSelector: false }}
+    // Optional. Provide an additional schema called Franchise, that will look for data of this type and sort appropriately
+    schemaDetectors={[
+      {
+        type: 'franchise',
+        // Try to detect if column data is this schema
+        detector(value) {
+          return value.toLowerCase() === 'star wars' ||
+            value.toLowerCase() === 'star trek'
+            ? 1
+            : 0;
+        },
+        // How we should sort data matching this schema
+        comparator(a, b, direction) {
+          const aValue = a.toLowerCase() === 'star wars';
+          const bValue = b.toLowerCase() === 'star wars';
+          if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+          if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+          return 0;
+        },
+        // Text for what the ASC sort does
+        sortTextAsc: 'Star wars-Star trek',
+        // Text for what the DESC sort does
+        sortTextDesc: 'Star trek-Star wars',
+        // EuiIcon to signify this schema
+        icon: 'star',
+        // Color for the above icon
+        color: '#000000',
+      },
+    ]}
+    // Optional. Mapped against the schema, provide custom content for the popover
+    expansionFormatters={{
+      franchise: children => {
+        const value =
+          data[children.children.props.rowIndex][
+            children.children.props.columnId
+          ];
+        console.log(children.children);
+        return <Franchise name={value} />;
+      },
+    }}
   />
 `;
 
@@ -268,10 +317,10 @@ export const DataGridExample = {
           <DataGrid />
           <EuiSpacer size="xxl" />
           <EuiText>
-            <h2>A simplistic glance under the hood</h2>
+            <h2>Snippet with everything on</h2>
             <p>
               Here is a very simple data grid example meant to give you an idea
-              of the basic structure and callbacks.
+              of the data structure and callbacks you&apos;ll need to provide.
             </p>
           </EuiText>
           <EuiSpacer />

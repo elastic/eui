@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { fake } from 'faker';
 
-import { EuiDataGrid, EuiButtonIcon } from '../../../../src/components/';
+import {
+  EuiDataGrid,
+  EuiButtonIcon,
+  EuiImage,
+  EuiTitle,
+  EuiSpacer,
+} from '../../../../src/components/';
 import { iconTypes } from '../icon/icons';
 
 const columns = [
@@ -66,6 +72,36 @@ for (let i = 1; i < 5; i++) {
     custom: franchise,
   });
 }
+
+const Franchise = props => {
+  return (
+    <div>
+      <EuiTitle size="s">
+        <h3>{props.name} is the best!</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      {props.name === 'Star Wars' ? (
+        <EuiImage
+          allowFullScreen
+          size="m"
+          hasShadow
+          caption="Random star wars image"
+          alt="Random star wars image"
+          url="https://source.unsplash.com/600x600/?starwars"
+        />
+      ) : (
+        <EuiImage
+          allowFullScreen
+          size="m"
+          hasShadow
+          caption="Random star trek image"
+          alt="Random trek image"
+          url="https://source.unsplash.com/600x600/?startrek"
+        />
+      )}
+    </div>
+  );
+};
 
 export default class DataGridSchema extends Component {
   constructor(props) {
@@ -166,6 +202,16 @@ export default class DataGridSchema extends Component {
             color: 'primary',
           },
         ]}
+        expansionFormatters={{
+          favoriteFranchise: children => {
+            const value =
+              data[children.children.props.rowIndex][
+                children.children.props.columnId
+              ];
+            console.log(children.children);
+            return <Franchise name={value} />;
+          },
+        }}
       />
     );
   }
