@@ -105,9 +105,9 @@ const gridSnippet = `
           return 0;
         },
         // Text for what the ASC sort does
-        sortTextAsc: 'Star wars-Star trek',
+        sortTextAsc: 'Star Wars-Star Trek',
         // Text for what the DESC sort does
-        sortTextDesc: 'Star trek-Star wars',
+        sortTextDesc: 'Star Trek-Star Wars',
         // EuiIcon to signify this schema
         icon: 'star',
         // Color for the above icon
@@ -415,7 +415,7 @@ export const DataGridExample = {
           code: dataGridSchemaHtml,
         },
       ],
-      title: 'Schema detection and abilities',
+      title: 'Schema detection and expansion formatters',
       text: (
         <Fragment>
           <p>
