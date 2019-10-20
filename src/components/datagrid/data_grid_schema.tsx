@@ -11,31 +11,31 @@ import { IconType } from '../icon';
 
 export interface EuiDataGridSchemaDetector {
   /**
-   * name of this data type, matches #DataGridColumn / schema `schema`
+   * The name of this data type, matches #DataGridColumn / schema `schema`
    */
   type: string;
   /**
-   * function given the text value of a cell and returns a score of [0...1] of how well the value matches this data type
+   * The function given the text value of a cell and returns a score of [0...1] of how well the value matches this data type
    */
   detector: (value: string) => number;
   /**
-   * custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc) => -1 | 0 | 1`
+   * A custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc) => -1 | 0 | 1`
    */
   comparator?: (a: string, b: string, direction: 'asc' | 'desc') => -1 | 0 | 1;
   /**
-   * icon used to visually represent this data type
+   * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
    */
   icon: IconType;
   /**
-   * color associated with this data type; it's used to color the icon
+   * The color associated with this data type; it's used to color the icon
    */
   color: string;
   /**
-   * how to represent an ascending sort of this data type, e.g. 'A -> Z'
+   * Text for how to represent an ascending sort of this data type, e.g. 'A -> Z'
    */
   sortTextAsc: ReactNode;
   /**
-   * how to represent a descending sort of this data type, e.g. 'Z -> A'
+   * Text for how to represent a descending sort of this data type, e.g. 'Z -> A'
    */
   sortTextDesc: ReactNode;
 }

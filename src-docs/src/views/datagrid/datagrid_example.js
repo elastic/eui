@@ -346,9 +346,7 @@ export const DataGridExample = {
               pagination and sorting are both performed in memory.
             </li>
           </ul>
-          <EuiCallOut
-            compressed
-            title="Check how the schemas change in the demo">
+          <EuiCallOut size="s" title="Check how the schemas change in the demo">
             When inMemory is not set, schemas are not autodetected. Because no
             schemas are defined, the sorting doesn&apos;t really work.
           </EuiCallOut>

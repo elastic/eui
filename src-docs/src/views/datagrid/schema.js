@@ -26,6 +26,7 @@ const columns = [
   },
   {
     id: 'custom',
+    schema: 'favoriteFranchise',
   },
 ];
 
@@ -33,7 +34,9 @@ const data = [];
 
 for (let i = 1; i < 5; i++) {
   let json;
+  let franchise;
   if (i < 3) {
+    franchise = 'Star Wars';
     json = JSON.stringify([
       {
         default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
@@ -45,6 +48,7 @@ for (let i = 1; i < 5; i++) {
       },
     ]);
   } else {
+    franchise = 'Star Trek';
     json = JSON.stringify([
       {
         name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
@@ -59,7 +63,7 @@ for (let i = 1; i < 5; i++) {
     currency: fake('${{finance.amount}}'),
     datetime: fake('{{date.past}}'),
     json: json,
-    custom: fake('{{date.past}}'),
+    custom: franchise,
   });
 }
 
@@ -140,6 +144,28 @@ export default class DataGridSchema extends Component {
           onChangeItemsPerPage: this.setPageSize,
           onChangePage: this.setPageIndex,
         }}
+        schemaDetectors={[
+          {
+            type: 'favoriteFranchise',
+            detector(value) {
+              return value.toLowerCase() === 'star wars' ||
+                value.toLowerCase() === 'star trek'
+                ? 1
+                : 0;
+            },
+            comparator(a, b, direction) {
+              const aValue = a.toLowerCase() === 'star wars';
+              const bValue = b.toLowerCase() === 'star wars';
+              if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+              if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+              return 0;
+            },
+            sortTextAsc: 'Star wars-Star trek',
+            sortTextDesc: 'Star trek-Star wars',
+            icon: 'star',
+            color: 'primary',
+          },
+        ]}
       />
     );
   }
