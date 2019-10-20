@@ -10,6 +10,7 @@ import {
   EuiCodeBlock,
   EuiText,
   EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import DataGrid from './datagrid';
@@ -225,12 +226,7 @@ export const DataGridExample = {
             for displaying large amounts of tabular data with liberal usage of
             React hooks. From a product standpoint it is similar to an excel, or
             sheets like experience, except that its stengths are in rendering,
-            rather that creating content. The individual cells can contain
-            whatever node content you wish, but will always truncate to keep
-            data summarization clean. Likewise the expanded cell content within
-            popoups can contain any node content you need by utilizing{' '}
-            <EuiCode>expansionFormatters</EuiCode> that are mapped against your
-            custom schemas.
+            rather that creating content.
           </p>
           <h3>Core concepts</h3>
           <ul>
@@ -319,8 +315,45 @@ export const DataGridExample = {
           code: inMemoryDataGridHtml,
         },
       ],
-      title: 'In Memory',
-      text: <p>In memory description</p>,
+      title: 'In memory settings',
+      text: (
+        <Fragment>
+          <p>
+            The grid has levels of <strong>in memory</strong> settings that can
+            be set. The higher levels open up more features, but require you to
+            utilize callbacks for sorting and pagination as those features are
+            enabled. The following settings are available. When possible, it is
+            advisable to utilize in memory as deeply as possible to provide a
+            better core experience for the user.
+          </p>
+          <ul>
+            <li>
+              <strong>undefined</strong>: when not in use the grid will not
+              autodetect schemas. Unless you manually provide schemas, sorting
+              will also be heavily limited and likely inaccurate.
+            </li>
+            <li>
+              <strong>enchancements</strong>: provides no in memory operations.
+              If set the grid will try to autodetect schemas only based on the
+              content currently available (usually a single page of pagination)
+            </li>
+            <li>
+              <strong>pagination</strong>: Enhancements are provided as above,
+              but only pagination is performed in memory.
+            </li>
+            <li>
+              <strong>sorting</strong>: Enhancements are provided as above, and
+              pagination and sorting are both performed in memory.
+            </li>
+          </ul>
+          <EuiCallOut
+            compressed
+            title="Check how the schemas change in the demo">
+            When inMemory is not set, schemas are not autodetected. Because no
+            schemas are defined, the sorting doesn&apos;t really work.
+          </EuiCallOut>
+        </Fragment>
+      ),
       components: { InMemoryDataGrid },
       demo: <InMemoryDataGrid />,
     },

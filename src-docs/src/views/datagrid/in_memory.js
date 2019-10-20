@@ -1,17 +1,9 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { fake } from 'faker';
 
 import {
-  EuiButton,
   EuiDataGrid,
   EuiLink,
-  EuiPopover,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
@@ -85,8 +77,6 @@ for (let i = 1; i < 100; i++) {
 }
 
 export default () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
@@ -148,7 +138,7 @@ export default () => {
   ); // initialize to the full set of columns
 
   const renderCellValue = useMemo(() => {
-    return ({ rowIndex, columnId, setCellProps }) => {
+    return ({ rowIndex, columnId }) => {
       let adjustedRowIndex = rowIndex;
 
       // If we are doing the pagination (instead of leaving that to the grid)
@@ -157,22 +147,6 @@ export default () => {
         adjustedRowIndex =
           rowIndex - pagination.pageIndex * pagination.pageSize;
       }
-
-      useEffect(() => {
-        if (columnId === 'amount') {
-          if (data.hasOwnProperty(adjustedRowIndex)) {
-            const numeric = parseFloat(
-              data[adjustedRowIndex][columnId].match(/\d+\.\d+/)[0],
-              10
-            );
-            setCellProps({
-              style: {
-                backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
-              },
-            });
-          }
-        }
-      }, [adjustedRowIndex, columnId, setCellProps]);
 
       return data.hasOwnProperty(adjustedRowIndex)
         ? data[adjustedRowIndex][columnId]
@@ -189,45 +163,35 @@ export default () => {
 
   return (
     <div>
-      <EuiPopover
-        isOpen={isPopoverOpen}
-        button={
-          <EuiButton onClick={() => setIsPopoverOpen(state => !state)}>
-            inMemory options
-          </EuiButton>
-        }
-        closePopover={() => setIsPopoverOpen(false)}>
-        <EuiRadioGroup
-          compressed={true}
-          options={[
-            {
-              id: '',
-              label: 'off',
-              value: '',
-            },
-            {
-              id: 'enhancements',
-              label: 'only enhancements',
-              value: 'enhancements',
-            },
-            {
-              id: 'pagination',
-              label: 'only pagination',
-              value: 'pagination',
-            },
-            {
-              id: 'sorting',
-              label: 'sorting and pagination',
-              value: 'sorting',
-            },
-          ]}
-          idSelected={inMemoryLevel}
-          onChange={(id, value) => {
-            setInMemoryLevel(value === '' ? undefined : value);
-            setIsPopoverOpen(false);
-          }}
-        />
-      </EuiPopover>
+      <EuiRadioGroup
+        compressed={true}
+        options={[
+          {
+            id: '',
+            label: 'undefined (off)',
+            value: '',
+          },
+          {
+            id: 'enhancements',
+            label: 'only enhancements',
+            value: 'enhancements',
+          },
+          {
+            id: 'pagination',
+            label: 'only pagination',
+            value: 'pagination',
+          },
+          {
+            id: 'sorting',
+            label: 'sorting and pagination',
+            value: 'sorting',
+          },
+        ]}
+        idSelected={inMemoryLevel}
+        onChange={(id, value) => {
+          setInMemoryLevel(value === '' ? undefined : value);
+        }}
+      />
       <EuiSpacer />
 
       <EuiDataGrid
@@ -238,10 +202,6 @@ export default () => {
         renderCellValue={renderCellValue}
         {...inMemoryProps}
         sorting={{ columns: sortingColumns, onSort }}
-        toolbarDisplay={{
-          showFullScreenSelector: false,
-          showSortSelector: true,
-        }}
         pagination={{
           ...pagination,
           pageSizeOptions: [10, 50, 100],
