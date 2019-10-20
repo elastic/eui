@@ -635,7 +635,7 @@ Array [
       // Check for false / true and unset values
       component.setProps({
         toolbarDisplay: {
-          showFullscrenSelector: false,
+          showFullScreenSelector: false,
           showSortSelector: false,
           showStyleSelector: true,
         },

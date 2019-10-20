@@ -83,7 +83,7 @@ export interface EuiDataGridTooBarDisplayOptions {
   /**
    * Allows user to be able to full screen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
    */
-  showFullscrenSelector?: boolean;
+  showFullScreenSelector?: boolean;
 }
 
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,

@@ -284,7 +284,98 @@ export const DataGridExample = {
           />
         </Fragment>
       ),
-      props: { EuiDataGrid },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inMemoryDataGridSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: inMemoryDataGridHtml,
+        },
+      ],
+      title: 'In Memory',
+      text: <p>In memory description</p>,
+      components: { InMemoryDataGrid },
+      demo: <InMemoryDataGrid />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridSchemaSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridSchemaHtml,
+        },
+      ],
+      title: 'Schema detection and abilities',
+      text: (
+        <Fragment>
+          <p>
+            Schemas are data types you pass to grid columns to effect how the
+            columns and expansion popovers render. Schemas also allow you to
+            define individual sorting comparators so that sorts can do more than
+            just A-Z comparisons. By default, <EuiCode>EuiDataGrid</EuiCode>{' '}
+            ships with a few built-in schemas for{' '}
+            <EuiCode>numeric, currency, datetime, boolean and json</EuiCode>{' '}
+            data. When the <EuiCode>inMemory</EuiCode> prop is in use it will
+            automatically try to figure out the best schema based on the{' '}
+            <EuiCode>{'inMemory: {{ level: value }}'}</EuiCode> you set, but
+            this will come with the caveat you will need to provide and manage
+            sorting callbacks outside the component. In general we recommend
+            passing schema information to your columns instead of using
+            auto-detection when you have that knowledge of your data available
+            during ingestion.
+          </p>
+          <h4>Defining custom schemas</h4>
+          <p>
+            Beyond the provided set, you have the ability to define custom
+            schemas. Custom schemas are passed as an array to{' '}
+            <EuiCode>schemaDetectors</EuiCode> and are constructed against the{' '}
+            <EuiCode>EuiDataGridSchemaDetector</EuiCode> interface. You can see
+            an example of a simple custom schema used on the last column below.
+          </p>
+        </Fragment>
+      ),
+      components: { DataGridSchema },
+      demo: <DataGridSchema />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridStylingSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridStylingHtml,
+        },
+      ],
+      title: 'Styling and toolbar options',
+      text: (
+        <Fragment>
+          <p>
+            Styling can be passed down to the grid through the{' '}
+            <EuiCode>gridStyle</EuiCode> prop. It accepts an object shape that
+            allows for customization. When the density controls are also
+            present, both font size and padding will merge against the initial
+            defaults provided by the prop.
+          </p>
+          <p>
+            Likewise the <EuiCode>toolbarDisplay</EuiCode> prop controls whether
+            or not to show buttons on the boolbar to display above the grid. It
+            accepts a boolean or shape object. The boolean allows turning off
+            the toolbar entirely, while the shape allows you to turn off
+            individual buttons as you need.
+          </p>
+        </Fragment>
+      ),
+      components: { DataGridStyling },
+      demo: <DataGridStyling />,
     },
     {
       source: [
@@ -306,66 +397,6 @@ export const DataGridExample = {
       ),
       components: { DataGridContainer },
       demo: <DataGridContainer />,
-      props: { EuiDataGrid },
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: dataGridStylingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridStylingHtml,
-        },
-      ],
-      title: 'Customize data grid styling',
-      text: (
-        <p>
-          Styling can be passed down to the grid through the{' '}
-          <EuiCode>gridStyle</EuiCode> prop. It accepts an object shape that
-          allows for customization. When the density controls are also present,
-          both font size and padding will merge against the initial defaults
-          provided by the prop.
-        </p>
-      ),
-      components: { DataGridStyling },
-      demo: <DataGridStyling />,
-      props: { EuiDataGrid },
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: dataGridSchemaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridSchemaHtml,
-        },
-      ],
-      title: 'Schema',
-      text: (
-        <p>Column type information can be included on the column definition.</p>
-      ),
-      components: { DataGridSchema },
-      demo: <DataGridSchema />,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: inMemoryDataGridSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inMemoryDataGridHtml,
-        },
-      ],
-      title: 'In Memory',
-      text: <p>In memory description</p>,
-      components: { InMemoryDataGrid },
-      demo: <InMemoryDataGrid />,
     },
   ],
 };

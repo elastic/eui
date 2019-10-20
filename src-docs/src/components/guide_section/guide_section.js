@@ -271,7 +271,7 @@ export class GuideSection extends Component {
       return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
     });
 
-    const title = <EuiCode id={componentName}>{componentName}</EuiCode>;
+    const title = <span id={componentName}>{componentName}</span>;
 
     let descriptionElement;
 
@@ -290,18 +290,23 @@ export class GuideSection extends Component {
 
     if (rows.length) {
       table = (
-        <EuiTable
-          className="guideSectionPropsTable"
-          compressed
-          key={`propsTable-${componentName}`}>
+        <EuiTable compressed key={`propsTable-${componentName}`}>
           <EuiTableHeader>
-            <EuiTableHeaderCell>Prop</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ Width: '20%' }}>
+              Prop
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Type</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ width: '15%' }}>
+              Type
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Default</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ width: '15%' }}>
+              Default
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Note</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ width: '50%' }}>
+              Note
+            </EuiTableHeaderCell>
           </EuiTableHeader>
 
           <EuiTableBody>{rows}</EuiTableBody>

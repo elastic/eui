@@ -239,7 +239,7 @@ export default () => {
         {...inMemoryProps}
         sorting={{ columns: sortingColumns, onSort }}
         toolbarDisplay={{
-          showFullscrenSelector: false,
+          showFullScreenSelector: false,
           showSortSelector: true,
         }}
         pagination={{

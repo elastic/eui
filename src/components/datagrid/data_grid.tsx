@@ -557,7 +557,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             {hasRoomForGridControls ? gridControls : null}
             {checkOrDefaultToolBarDiplayOptions(
               toolbarDisplay,
-              'showFullscrenSelector'
+              'showFullScreenSelector'
             )
               ? fullScreenSelector
               : null}

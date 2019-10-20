@@ -134,7 +134,6 @@ export default class DataGridSchema extends Component {
           return value;
         }}
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
-        toolbarDisplay={false}
         pagination={{
           ...pagination,
           pageSizeOptions: [5, 10, 25],
