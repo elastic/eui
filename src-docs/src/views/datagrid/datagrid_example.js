@@ -45,15 +45,23 @@ import {
 
 const gridSnippet = `
   <EuiDataGrid
+    inMemory={{ level: 'sorting' }}
     columns={[{ id: 'A' }, { id: 'B' }]}
     columnVisibility={{
       visibleColumns: ['A', 'B'],
       setVisibleColumns: () => {},
     }}
-    rowCount={3}
+    rowCount={200}
     renderCellValue={({ rowIndex, columnId }) =>
      \`\${rowIndex}, \${columnId}\`
     }
+    pagination={{
+      pageIndex: 1,
+      pageSize: 100,
+      pageSizeOptions: [50, 100, 200],
+      onChangePage: () => {},
+      onChangeItemsPerPage: () => {},
+    }}
     sorting={{
       columns: [{ id: 'B', direction: 'asc' }],
       onSort: () => {},
@@ -75,7 +83,7 @@ const gridConcepts = [
     title: 'columns',
     description: (
       <span>
-        An array of <strong>DataGridColumn</strong> objects. Lists the columns
+        An array of <EuiCode>DataGridColumn</EuiCode> objects. Lists the columns
         available and the schema and settings tied to it.
       </span>
     ),
@@ -84,16 +92,46 @@ const gridConcepts = [
     title: 'inMemory',
     description: (
       <span>
-        An optional (<strong>but very important</strong>) prop that provides
-        levels of sorting, schema and pagination enhancements if you render more
-        and more of your grid in memory.
+        A <EuiCode>DataGridInMemory</EuiCode> object to define the level of high
+        order schema-detection and sorting logic to use on your data.{' '}
+        <strong>Try to set it when possible</strong>. If ommited, disables all
+        enhancements and assumes content is flat strings.
       </span>
     ),
   },
   {
     title: 'columnVisibility',
+    description: (
+      <span>
+        An array of <EuiCode>DataGridColumnVisibility</EuiCode> objects. Defines
+        which columns are visible in the grid and the order they are displayed.
+      </span>
+    ),
+  },
+  {
+    title: 'schemaDetectors',
+    description: (
+      <span>
+        An array of custom <EuiCode>DataGridSchemaDetector</EuiCode> objects.
+        You can inject custom schemas to the grid to define the classnames
+        applied
+      </span>
+    ),
+  },
+  {
+    title: 'expansionFormatters',
+    description: (
+      <span>
+        An object mapping <EuiCode>DataGridColumn</EuiCode> schemas to a custom
+        expansion formatting component. This dictates the content of the
+        popovers when you click into each cell.
+      </span>
+    ),
+  },
+  {
+    title: 'rowCount',
     description:
-      'Defines the initial visibile columns. You provide the intial state and update method.',
+      'The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)',
   },
   {
     title: 'Sorting',
@@ -102,30 +140,67 @@ const gridConcepts = [
   },
   {
     title: 'gridStyle',
-    description: 'Provides options to tailor the look and feel of the grid.',
-  },
-  {
-    title: 'rowCount',
-    description: 'The number of rows in your data set',
+    description: (
+      <span>
+        Defines the look and feel for the grid. Accepts a partial{' '}
+        <EuiCode>DataGridStyle</EuiCode> object. Settings provided may be
+        overwritten or merged with user defined preferences if toolbarDisplay
+        density controls are available.
+      </span>
+    ),
   },
   {
     title: 'toolbarDisplay',
-    description:
-      'Provides options to hide the above header toolbar or any of the individual controls within.',
+    description: (
+      <span>
+        Accepts either a boolean or{' '}
+        <EuiCode>EuiDataGridTooBarDisplayOptions</EuiCode> object. When used as
+        a boolean, defines the display of the toolbar entire. WHen passed an
+        object allows you to turn off individual controls within the toolbar.
+      </span>
+    ),
   },
   {
     title: 'renderCellValue',
-    description:
-      'Provides a method to change the render of the individual cells.  This is useful when you need to effect the cell itself, rather than its content, for example when changing styling of the background color based upon the content values.',
+    description: (
+      <span>
+        A function called to render a cell&apos;s value. Behind the scenes it is
+        treated as a React component allowing hooks, context, and other React
+        concepts to be used. The function receives a{' '}
+        <EuiCode>CellValueElement</EuiCode> as its only argument.
+      </span>
+    ),
   },
   {
     title: 'pagination',
-    description: 'Provides configuration for pagination options.',
+    description: (
+      <span>
+        A <EuiCode>DataGridPagination</EuiCode> object. Omit to disable
+        pagination completely.
+      </span>
+    ),
   },
   {
     title: 'toolbarDisplay',
-    description:
-      'Provides options to hide the above header toolbar or any of the individual controls within.',
+    description: (
+      <span>
+        Accepts either a boolean or{' '}
+        <EuiCode>EuiDataGridTooBarDisplayOptions</EuiCode> object. When used as
+        a boolean, defines the display of the toolbar entire. WHen passed an
+        object allows you to turn off individual controls within the toolbar.
+      </span>
+    ),
+  },
+  {
+    title: 'sorting',
+    description: (
+      <span>
+        A <EuiCode>DataGridSorting</EuiCode> oject that provides the sorted
+        columns along with their direction. Omit to disable, but you&apos;ll
+        likely want to also turn off the user sorting controls through the
+        toolbarDisplay prop.
+      </span>
+    ),
   },
 ];
 
@@ -149,14 +224,12 @@ export const DataGridExample = {
           for displaying large amounts of tabular data with liberal usage of
           React hooks. From a product standpoint it is similar to an excel, or
           sheets like experience, except that its stengths are in rendering,
-          rather that creating content. Because of its ability to expand and
-          render expanded content from any cell, this means it is particularly
-          good at custom rendering of cells and providing additional
-          functionality based upon their content. The individual cells can
-          contain whatever node content you wish, but will always truncate to
-          keep data summarization clean. Likewise the expanded cell content
-          within popoups can content any node content you wish as long as it
-          fits witin its height and width restrictions.
+          rather that creating content. The individual cells can contain
+          whatever node content you wish, but will always truncate to keep data
+          summarization clean. Likewise the expanded cell content within popoups
+          can contain any node content you need by utilizing{' '}
+          <EuiCode>expansionFormatters</EuiCode> that are mapped against your
+          custom schemas.
         </span>
       ),
       components: { DataGrid },
@@ -178,16 +251,12 @@ export const DataGridExample = {
           <EuiText>
             <h2>A simplistic glance under the hood</h2>
             <p>
-              Here is a very simple data grid example that does not take
-              advantage of inMemory enhancements.
+              Here is a very simple data grid example meant to give you an idea
+              of the basic structure and callbacks.
             </p>
           </EuiText>
           <EuiSpacer />
-          <EuiCodeBlock
-            language="javascript"
-            paddingSize="s"
-            isCopyable
-            overflowHeight={300}>
+          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {gridSnippet}
           </EuiCodeBlock>
           <EuiSpacer size="xl" />
@@ -195,11 +264,17 @@ export const DataGridExample = {
             <h3>General props explanation</h3>
             <p>
               Please check the props tab in the example above for more
-              explanation. This section only describes the purpose of each prop,
-              not the specifics of their implementation.
+              explanation on the lower level object types. The majority of the
+              types are defined in the{' '}
+              <a
+                href="https://github.com/elastic/eui/tree/master/src/components/data_grid/data_grid_types.ts"
+                target="_blank">
+                /data_grid/data_grid_types.ts
+              </a>{' '}
+              file.
             </p>
           </EuiText>
-          <EuiSpacer size="s" />
+          <EuiSpacer />
           <EuiDescriptionList
             compressed
             listItems={gridConcepts}

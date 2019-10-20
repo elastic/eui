@@ -71,7 +71,7 @@ type CommonGridProps = CommonProps &
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * An object mapping #DataGridColumn `dataType`s to a custom expansion formatting component. `{number: () => {<div>{children}</div>}}`
+     * An object mapping #DataGridColumn `schema`s to a custom expansion formatting component. `{number: () => {<div>{children}</div>}}`
      */
     expansionFormatters?: EuiDataGridExpansionFormatters;
     /**

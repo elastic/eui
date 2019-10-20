@@ -133,7 +133,7 @@ export class Table extends Component {
             </span>
           </EuiToolTip>
         ),
-        dataType: 'date',
+        schema: 'date',
         render: date => formatDate(date, 'dobLong'),
         sortable: true,
       },
@@ -173,7 +173,7 @@ export class Table extends Component {
             </span>
           </EuiToolTip>
         ),
-        dataType: 'boolean',
+        schema: 'boolean',
         sortable: true,
         render: online => {
           const color = online ? 'success' : 'danger';

@@ -139,6 +139,11 @@ export default class DataGrid extends Component {
       rowHoverSelected: 'highlight',
       isPopoverOpen: false,
       headerSelected: 'shade',
+      showSortSelector: true,
+      showStyleSelector: true,
+      showColumnSelector: true,
+      showFullscrenSelector: true,
+      showToobar: true,
 
       pagination: {
         pageIndex: 0,
@@ -212,12 +217,21 @@ export default class DataGrid extends Component {
   render() {
     const { pagination } = this.state;
 
-    const button = (
+    const styleButton = (
       <EuiButton
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onPopoverButtonClick.bind(this)}>
-        Table styling
+        gridStyle settings
+      </EuiButton>
+    );
+
+    const toolbarButton = (
+      <EuiButton
+        iconType="arrowDown"
+        iconSide="right"
+        onClick={this.onPopoverButtonClick.bind(this)}>
+        gridStyle settings
       </EuiButton>
     );
 
@@ -225,14 +239,16 @@ export default class DataGrid extends Component {
       <div>
         <EuiPopover
           id="popover"
-          button={button}
+          button={styleButton}
           isOpen={this.state.isPopoverOpen}
           anchorPosition="rightUp"
           zIndex={2}
           closePopover={this.closePopover.bind(this)}>
-          <div>
-            <EuiFormRow label="Border">
+          <div style={{ width: 300 }}>
+            <EuiFormRow label="Border" display="columnCompressed">
               <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
                 legend="Border"
                 options={this.borderOptions}
                 idSelected={this.state.borderSelected}
@@ -240,8 +256,10 @@ export default class DataGrid extends Component {
               />
             </EuiFormRow>
 
-            <EuiFormRow label="Cell padding">
+            <EuiFormRow label="Cell padding" display="columnCompressed">
               <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
                 legend="Cell padding"
                 options={this.cellPaddingOptions}
                 idSelected={this.state.cellPaddingSelected}
@@ -249,8 +267,10 @@ export default class DataGrid extends Component {
               />
             </EuiFormRow>
 
-            <EuiFormRow label="Font size">
+            <EuiFormRow label="Font size" display="columnCompressed">
               <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
                 legend="Fornt size"
                 options={this.fontSizeOptions}
                 idSelected={this.state.fontSizeSelected}
@@ -258,8 +278,10 @@ export default class DataGrid extends Component {
               />
             </EuiFormRow>
 
-            <EuiFormRow label="Stripes">
+            <EuiFormRow label="Stripes" display="columnCompressed">
               <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
                 legend="Stripes"
                 options={this.stripeOptions}
                 idSelected={this.state.stripesSelected.toString()}
@@ -267,8 +289,10 @@ export default class DataGrid extends Component {
               />
             </EuiFormRow>
 
-            <EuiFormRow label="Hover row">
+            <EuiFormRow label="Hover row" display="columnCompressed">
               <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
                 legend="Hover row"
                 options={this.rowHoverOptions}
                 idSelected={this.state.rowHoverSelected}
@@ -276,8 +300,86 @@ export default class DataGrid extends Component {
               />
             </EuiFormRow>
 
-            <EuiFormRow label="Header">
+            <EuiFormRow label="Header" display="columnCompressed">
               <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
+                legend="Header"
+                options={this.headerOptions}
+                idSelected={this.state.headerSelected}
+                onChange={this.onHeaderChange}
+              />
+            </EuiFormRow>
+          </div>
+        </EuiPopover>
+
+        <EuiPopover
+          id="popover"
+          button={toolbarButton}
+          isOpen={this.state.isPopoverOpen}
+          anchorPosition="rightUp"
+          zIndex={2}
+          closePopover={this.closePopover.bind(this)}>
+          <div style={{ width: 300 }}>
+            <EuiFormRow label="Border" display="columnCompressed">
+              <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
+                legend="Border"
+                options={this.borderOptions}
+                idSelected={this.state.borderSelected}
+                onChange={this.onBorderChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Cell padding" display="columnCompressed">
+              <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
+                legend="Cell padding"
+                options={this.cellPaddingOptions}
+                idSelected={this.state.cellPaddingSelected}
+                onChange={this.onCellPaddingChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Font size" display="columnCompressed">
+              <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
+                legend="Fornt size"
+                options={this.fontSizeOptions}
+                idSelected={this.state.fontSizeSelected}
+                onChange={this.onFontSizeChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Stripes" display="columnCompressed">
+              <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
+                legend="Stripes"
+                options={this.stripeOptions}
+                idSelected={this.state.stripesSelected.toString()}
+                onChange={this.onStripesChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Hover row" display="columnCompressed">
+              <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
+                legend="Hover row"
+                options={this.rowHoverOptions}
+                idSelected={this.state.rowHoverSelected}
+                onChange={this.onRowHoverChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Header" display="columnCompressed">
+              <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
                 legend="Header"
                 options={this.headerOptions}
                 idSelected={this.state.headerSelected}

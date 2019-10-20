@@ -12,7 +12,7 @@ export interface EuiDataGridColumn {
   /**
    * A Schema to use for the column. Built-in values are ['boolean', 'currency', 'datetime', 'numeric', 'json'] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection). In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
    */
-  dataType?: string;
+  schema?: string;
   /**
    * Defauls to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
    */

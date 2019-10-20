@@ -165,7 +165,6 @@ export default () => {
               data[adjustedRowIndex][columnId].match(/\d+\.\d+/)[0],
               10
             );
-            console.log(numeric);
             setCellProps({
               style: {
                 backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,

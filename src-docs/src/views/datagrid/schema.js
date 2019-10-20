@@ -1,42 +1,31 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { fake } from 'faker';
 
-import {
-  EuiDataGrid,
-  EuiButtonIcon,
-  EuiLink,
-} from '../../../../src/components/';
+import { EuiDataGrid, EuiButtonIcon } from '../../../../src/components/';
 import { iconTypes } from '../icon/icons';
 
 const columns = [
   {
-    id: 'name',
-    isExpandable: false,
+    id: 'default',
   },
   {
-    id: 'email',
+    id: 'boolean',
   },
   {
-    id: 'location',
+    id: 'numeric',
   },
   {
-    id: 'account',
-    dataType: 'numeric',
-    isExpandable: false,
+    id: 'currency',
   },
   {
-    id: 'date',
-  },
-  {
-    id: 'amount',
-    dataType: 'currency',
-    isExpandable: false,
+    id: 'datetime',
+    schema: 'datetime',
   },
   {
     id: 'json',
   },
   {
-    id: 'version',
+    id: 'custom',
   },
 ];
 
@@ -47,22 +36,12 @@ for (let i = 1; i < 5; i++) {
   if (i < 3) {
     json = JSON.stringify([
       {
-        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-        email: fake('{{internet.email}}'),
+        default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+        boolean: fake('{{random.boolean}}'),
+        numeric: fake('{{finance.account}}'),
+        currency: fake('${{finance.amount}}'),
         date: fake('{{date.past}}'),
-        account: fake('{{finance.account}}'),
-        amount: fake('${{finance.amount}}'),
-        version: fake('{{system.semver}}'),
-        friends: [
-          {
-            name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-            email: fake('{{internet.email}}'),
-            date: fake('{{date.past}}'),
-            account: fake('{{finance.account}}'),
-            amount: fake('${{finance.amount}}'),
-            version: fake('{{system.semver}}'),
-          },
-        ],
+        custom: fake('{{date.past}}'),
       },
     ]);
   } else {
@@ -74,21 +53,13 @@ for (let i = 1; i < 5; i++) {
   }
 
   data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
-    location: (
-      <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
-      </Fragment>
-    ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{finance.amount}}'),
+    default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+    boolean: fake('{{random.boolean}}'),
+    numeric: fake('{{finance.account}}'),
+    currency: fake('${{finance.amount}}'),
+    datetime: fake('{{date.past}}'),
     json: json,
-    version: fake('{{system.semver}}'),
+    custom: fake('{{date.past}}'),
   });
 }
 
@@ -163,6 +134,7 @@ export default class DataGridSchema extends Component {
           return value;
         }}
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
+        toolbarDisplay={false}
         pagination={{
           ...pagination,
           pageSizeOptions: [5, 10, 25],

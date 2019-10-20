@@ -143,7 +143,6 @@ export default () => {
               data[adjustedRowIndex][columnId].match(/\d+\.\d+/)[0],
               10
             );
-            console.log(numeric);
             setCellProps({
               style: {
                 backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
@@ -167,7 +166,7 @@ export default () => {
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={raw_data.length}
         renderCellValue={renderCellValue}
-        inMemory="sorting"
+        inMemory={{ level: 'sorting' }}
         sorting={{ columns: sortingColumns, onSort }}
         pagination={{
           ...pagination,

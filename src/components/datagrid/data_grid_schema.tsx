@@ -11,7 +11,7 @@ import { IconType } from '../icon';
 
 export interface EuiDataGridSchemaDetector {
   /**
-   * name of this data type, matches #DataGridColumn / schema `dataType`
+   * name of this data type, matches #DataGridColumn / schema `schema`
    */
   type: string;
   /**
@@ -370,12 +370,12 @@ export function getMergedSchema(
     const mergedSchema = { ...detectedSchema };
 
     for (let i = 0; i < columns.length; i++) {
-      const { id, dataType } = columns[i];
-      if (dataType != null) {
+      const { id, schema } = columns[i];
+      if (schema != null) {
         if (detectedSchema.hasOwnProperty(id)) {
-          mergedSchema[id] = { ...detectedSchema[id], columnType: dataType };
+          mergedSchema[id] = { ...detectedSchema[id], columnType: schema };
         } else {
-          mergedSchema[id] = { columnType: dataType };
+          mergedSchema[id] = { columnType: schema };
         }
       }
     }
