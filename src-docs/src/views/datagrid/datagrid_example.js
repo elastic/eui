@@ -219,18 +219,41 @@ export const DataGridExample = {
         },
       ],
       text: (
-        <span>
-          <EuiCode>EuiDataGrid</EuiCode> is a performant, high-order component
-          for displaying large amounts of tabular data with liberal usage of
-          React hooks. From a product standpoint it is similar to an excel, or
-          sheets like experience, except that its stengths are in rendering,
-          rather that creating content. The individual cells can contain
-          whatever node content you wish, but will always truncate to keep data
-          summarization clean. Likewise the expanded cell content within popoups
-          can contain any node content you need by utilizing{' '}
-          <EuiCode>expansionFormatters</EuiCode> that are mapped against your
-          custom schemas.
-        </span>
+        <Fragment>
+          <p>
+            <EuiCode>EuiDataGrid</EuiCode> is a performant, high-order component
+            for displaying large amounts of tabular data with liberal usage of
+            React hooks. From a product standpoint it is similar to an excel, or
+            sheets like experience, except that its stengths are in rendering,
+            rather that creating content. The individual cells can contain
+            whatever node content you wish, but will always truncate to keep
+            data summarization clean. Likewise the expanded cell content within
+            popoups can contain any node content you need by utilizing{' '}
+            <EuiCode>expansionFormatters</EuiCode> that are mapped against your
+            custom schemas.
+          </p>
+          <h3>Core concepts</h3>
+          <ul>
+            <li>
+              The grid has levels of <strong>in memory</strong> settings. The
+              higher levels open up more features, but require you to utilize
+              callbacks for sorting and pagination as those features are
+              enabled.
+            </li>
+            <li>
+              <strong>Schemas</strong> allow you to tailor the render and sort
+              methods for each column. The component ships with some automatic
+              schema detection and types, but you can also pass in custom ones
+              for more power.
+            </li>
+            <li>
+              Unlike tables, the data grid <strong>forces truncation</strong>.
+              To display more content your can customize{' '}
+              <strong>expansion formatters</strong> to display more content and
+              actions into popovers.
+            </li>
+          </ul>
+        </Fragment>
       ),
       components: { DataGrid },
       props: {
