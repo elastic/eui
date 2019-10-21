@@ -130,7 +130,7 @@ export class EuiCodeBlockImpl extends Component {
     const optionalStyles = {};
 
     if (overflowHeight) {
-      optionalStyles.maxHeight = overflowHeight;
+      optionalStyles.height = overflowHeight;
     }
 
     const codeSnippet = (
