@@ -123,12 +123,14 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                 }
               />
             </EuiFlexItem>
-            <EuiFlexItem aria-hidden>
+            <EuiFlexItem grow={false} aria-hidden>
               <EuiText size="xs">
                 <p>{id}</p>
               </EuiText>
             </EuiFlexItem>
-            <EuiFlexItem className="euiDataGridColumnSorting__orderButtons">
+            <EuiFlexItem
+              className="euiDataGridColumnSorting__orderButtons"
+              grow={false}>
               <EuiI18n
                 token="euiColumnSortingDraggable.toggleLegend"
                 default="Select sorting method for field: ">
