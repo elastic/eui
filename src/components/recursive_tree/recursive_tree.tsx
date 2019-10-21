@@ -9,6 +9,12 @@ import { keyCodes, htmlIdGenerator } from '../../services';
 const EuiRecursiveTreeContext = createContext<string>('');
 const treeIdGenerator = htmlIdGenerator('euiRecursiveTree');
 
+function hasAriaLabel(
+  x: HTMLAttributes<HTMLUListElement>
+): x is { 'aria-label': string } {
+  return x.hasOwnProperty('aria-label');
+}
+
 export interface Node {
   /** An array of EuiRecursiveTreeNodes to render as children
    */
@@ -237,19 +243,15 @@ export class EuiRecursiveTree extends Component<
             {...rest}>
             {items.map((node, index) => {
               const buttonId = `${this.state.treeID}--${index}--node`;
-              const label = {};
-              // @ts-ignore
-              const ariaLabel = this.props['aria-label'];
-              // @ts-ignore
-              const ariaLablledBy = this.props['aria-labelledby'];
-
-              if (typeof ariaLabel !== 'undefined') {
-                // @ts-ignore
-                label['aria-label'] = `${node.label} child of ${ariaLabel}`; // TODO: THIS NEEDS I18N
-              } else if (typeof ariaLablledBy !== 'undefined') {
-                // @ts-ignore
-                label['aria-labelledby'] = `${buttonId} ${ariaLablledBy}`;
-              }
+              const label = hasAriaLabel(rest)
+                ? {
+                    'aria-label': `${node.label} child of ${
+                      rest['aria-label']
+                    }`,
+                  }
+                : {
+                    'aria-labelledby': `${buttonId} ${rest['aria-labelledby']}`,
+                  };
 
               return (
                 <React.Fragment key={node.label + index}>
@@ -312,7 +314,6 @@ export class EuiRecursiveTree extends Component<
                         this.onChildrenKeydown(event, index)
                       }>
                       {node.children && this.isNodeOpen(node) ? (
-                        // @ts-ignore
                         <EuiRecursiveTree
                           items={node.children}
                           isCondensed={isCondensed}
