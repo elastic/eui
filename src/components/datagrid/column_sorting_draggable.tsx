@@ -6,7 +6,11 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiButtonIcon, EuiButtonGroup } from '../button';
 import { EuiIcon } from '../icon';
 import { EuiText } from '../text';
-import { getDetailsForSchema, EuiDataGridSchema } from './data_grid_schema';
+import {
+  getDetailsForSchema,
+  EuiDataGridSchema,
+  EuiDataGridSchemaDetector,
+} from './data_grid_schema';
 import { EuiDataGridSorting } from './data_grid_types';
 
 export interface EuiDataGridColumnSortingDraggableProps {
@@ -15,6 +19,7 @@ export interface EuiDataGridColumnSortingDraggableProps {
   index: number;
   sorting: EuiDataGridSorting;
   schema: EuiDataGridSchema;
+  schemaDetectors: EuiDataGridSchemaDetector[];
   defaultSchemaColor: string;
 }
 
@@ -26,19 +31,20 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   index,
   sorting,
   schema,
+  schemaDetectors,
   defaultSchemaColor,
   ...rest
 }) => {
   const textSortAsc =
     schema.hasOwnProperty(id) && schema[id].columnType != null ? (
-      getDetailsForSchema(schema[id].columnType).sortTextAsc
+      getDetailsForSchema(schemaDetectors, schema[id].columnType).sortTextAsc
     ) : (
       <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
     );
 
   const textSortDesc =
     schema.hasOwnProperty(id) && schema[id].columnType != null ? (
-      getDetailsForSchema(schema[id].columnType).sortTextDesc
+      getDetailsForSchema(schemaDetectors, schema[id].columnType).sortTextDesc
     ) : (
       <EuiI18n
         token="euiColumnSortingDraggable.defaultSortDesc"
@@ -113,12 +119,18 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
               <EuiIcon
                 color={
                   schema.hasOwnProperty(id) && schema[id].columnType != null
-                    ? getDetailsForSchema(schema[id].columnType).color
+                    ? getDetailsForSchema(
+                        schemaDetectors,
+                        schema[id].columnType
+                      ).color
                     : defaultSchemaColor
                 }
                 type={
                   schema.hasOwnProperty(id) && schema[id].columnType != null
-                    ? getDetailsForSchema(schema[id].columnType).icon
+                    ? getDetailsForSchema(
+                        schemaDetectors,
+                        schema[id].columnType
+                      ).icon
                     : 'string'
                 }
               />

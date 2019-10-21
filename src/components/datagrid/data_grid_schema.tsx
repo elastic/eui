@@ -386,8 +386,11 @@ export function getMergedSchema(
 
 // Given a provided schema, return the details for the schema
 // Useful for grabbing the color or icon
-export function getDetailsForSchema(providedSchema: string | null) {
-  const results = schemaDetectors.filter(matches => {
+export function getDetailsForSchema(
+  detectors: EuiDataGridSchemaDetector[],
+  providedSchema: string | null
+) {
+  const results = detectors.filter(matches => {
     return matches.type === providedSchema;
   });
 

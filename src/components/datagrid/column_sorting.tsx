@@ -20,13 +20,18 @@ import {
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../icon';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
-import { EuiDataGridSchema, getDetailsForSchema } from './data_grid_schema';
+import {
+  EuiDataGridSchema,
+  EuiDataGridSchemaDetector,
+  getDetailsForSchema,
+} from './data_grid_schema';
 import { palettes } from '../../services/color/eui_palettes';
 
 export const useColumnSorting = (
   columns: EuiDataGridColumn[],
   sorting: EuiDataGridSorting | undefined,
-  schema: EuiDataGridSchema
+  schema: EuiDataGridSchema,
+  schemaDetectors: EuiDataGridSchemaDetector[]
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
@@ -137,6 +142,7 @@ export const useColumnSorting = (
                       index={index}
                       sorting={sorting}
                       schema={schema}
+                      schemaDetectors={schemaDetectors}
                       defaultSchemaColor={defaultSchemaColor}
                     />
                   );
@@ -215,6 +221,7 @@ export const useColumnSorting = (
                                     schema.hasOwnProperty(id) &&
                                     schema[id].columnType != null
                                       ? getDetailsForSchema(
+                                          schemaDetectors,
                                           schema[id].columnType
                                         ).color
                                       : defaultSchemaColor
@@ -223,6 +230,7 @@ export const useColumnSorting = (
                                     schema.hasOwnProperty(id) &&
                                     schema[id].columnType != null
                                       ? getDetailsForSchema(
+                                          schemaDetectors,
                                           schema[id].columnType
                                         ).icon
                                       : 'string'
