@@ -26,7 +26,7 @@ import {
 } from './props';
 
 export const DataGridStylingExample = {
-  title: 'Data grid styling and toolbar',
+  title: 'Data grid styling',
   sections: [
     {
       source: [

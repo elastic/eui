@@ -12,6 +12,8 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import { Link } from 'react-router';
+
 import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
 const dataGridHtml = renderToHtml(DataGrid);
@@ -227,7 +229,7 @@ const gridConcepts = [
 ];
 
 export const DataGridExample = {
-  title: 'Data grid core concepts',
+  title: 'Data grid',
   sections: [
     {
       source: [
@@ -244,31 +246,45 @@ export const DataGridExample = {
         <Fragment>
           <p>
             <EuiCode>EuiDataGrid</EuiCode> is for displaying large amounts of
-            tabular data. Though similar to tables, EuiDataGrid should be used
-            for data that has associated actions or light editing requirements,
-            instead of non-interactive data. It is similar to MS Excel or Google
-            Sheets, though EuiDataGrid&apos;s strengths lie in rendering rather
-            than creating content.
+            tabular data. It is a better choice over{' '}
+            <Link to="/tabular-content/tables/">EUI tables</Link> when your
+            dataset is unknown or summary in nature. It is similar to MS Excel
+            or Google Sheets, though EuiDataGrid&apos;s strengths lie in
+            rendering rather than creating content. Interaction should be added
+            to its built in expanders, rather than to the cell content
+            themselves.
           </p>
           <h3>Core concepts</h3>
           <ul>
             <li>
-              The grid has levels of <strong>in memory</strong> settings. The
-              higher levels open up more features, but require you to utilize
-              callbacks for sorting and pagination as those features are
-              enabled.
+              The grid has levels of{' '}
+              <Link to="/tabular-content/data-grid-in-memory-settings/">
+                in memory
+              </Link>{' '}
+              settings. The higher levels open up more features, but require you
+              to utilize callbacks for sorting and pagination as those features
+              are enabled.
             </li>
             <li>
-              <strong>Schemas</strong> allow you to tailor the render and sort
-              methods for each column. The component ships with some automatic
-              schema detection and types, but you can also pass in custom ones
-              for more power.
+              <Link to="/tabular-content/data-grid-schemas-and-formatters/">
+                Schemas
+              </Link>{' '}
+              allow you to tailor the render and sort methods for each column.
+              The component ships with some automatic schema detection and
+              types, but you can also pass in custom ones for more power.
             </li>
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <strong>expansion formatters</strong> to display more content and
-              actions into popovers.
+              <Link to="/tabular-content/data-grid-schemas-and-formatters/">
+                expansion formatters
+              </Link>{' '}
+              to display more content and actions into popovers.
+            </li>
+            <li>
+              <Link to="/tabular-content/data-grid-styling/">Grid styling</Link>{' '}
+              can be controlled by the engineer, but augmented by user
+              preference depending upon the features you enable.
             </li>
           </ul>
         </Fragment>
