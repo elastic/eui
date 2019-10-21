@@ -434,7 +434,7 @@ export const DataGridExample = {
             <EuiCode>schemaDetectors</EuiCode> and are constructed against the{' '}
             <EuiCode>EuiDataGridSchemaDetector</EuiCode> interface. You can see
             an example of a simple custom schema used on the last column below.
-            In addition to schemas beind useful to map against for cell and
+            In addition to schemas being useful to map against for cell and
             expansion rendering, any schema will also add a
             <EuiCode>
               className=&quot;euiDataGridRowCell--schemaName&quot;
