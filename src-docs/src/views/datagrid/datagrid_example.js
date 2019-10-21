@@ -51,7 +51,8 @@ const gridSnippet = `
     // Required. There are 200 total records
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below
-    columns={[{ id: 'A' }, { id: 'B' }, {id: 'C', schema: 'franchise'}]}
+		// The second column B won't allow clicking in to see the content in a popup
+    columns={[{ id: 'A' }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
     // Optional. Hide the second column B
     columnVisibility={{
       visibleColumns: ['A', 'C'],
@@ -447,6 +448,12 @@ export const DataGridExample = {
             function to populate a matching schema&apos;s popover using a new
             component. You can see an example of this by clicking into one of
             the cells in the last column below.
+          </p>
+          <h4>Disabling expansion popovers</h4>
+          <p>
+            Often the popups are uncessary for short form content. In the
+            example below we&apos;ve turned them off by setting{' '}
+            <EuiCode>isExpandable=false</EuiCode> on boolean column.
           </p>
         </Fragment>
       ),

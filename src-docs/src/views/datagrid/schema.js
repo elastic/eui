@@ -16,6 +16,7 @@ const columns = [
   },
   {
     id: 'boolean',
+    isExpandable: false,
   },
   {
     id: 'numeric',
