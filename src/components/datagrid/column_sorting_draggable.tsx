@@ -123,7 +123,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                 }
               />
             </EuiFlexItem>
-            <EuiFlexItem grow={false} aria-hidden>
+            <EuiFlexItem aria-hidden>
               <EuiText size="xs">
                 <p>{id}</p>
               </EuiText>
