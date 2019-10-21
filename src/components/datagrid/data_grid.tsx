@@ -187,6 +187,10 @@ function renderPagination(props: EuiDataGridProps) {
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
 
+  if (pageCount === 1) {
+    return null;
+  }
+
   return (
     <div className="euiDataGrid__pagination">
       <EuiTablePagination
