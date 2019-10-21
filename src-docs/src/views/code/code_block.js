@@ -8,7 +8,7 @@ const htmlCode = `<!--I'm an example of HTML-->
 </div>
 `;
 
-const jsCode = require('!!raw-loader!./code_block');
+// const jsCode = require('!!raw-loader!./code_block');
 
 export default () => (
   <div>
@@ -16,14 +16,28 @@ export default () => (
 
     <EuiSpacer />
 
+    <EuiCodeBlock language="js" fontSize="m" paddingSize="none" isCopyable>
+      {htmlCode}
+    </EuiCodeBlock>
+    <EuiSpacer />
+
+    <EuiCodeBlock language="js" fontSize="m" paddingSize="s" isCopyable>
+      {htmlCode}
+    </EuiCodeBlock>
+    <EuiSpacer />
+
+    <EuiCodeBlock language="js" fontSize="m" paddingSize="m" isCopyable>
+      {htmlCode}
+    </EuiCodeBlock>
+    <EuiSpacer />
+
     <EuiCodeBlock
-      language="js"
+      language="html"
       fontSize="m"
-      paddingSize="m"
-      color="dark"
+      paddingSize="l"
       overflowHeight={300}
       isCopyable>
-      {jsCode}
+      {htmlCode}
     </EuiCodeBlock>
 
     <EuiSpacer />
