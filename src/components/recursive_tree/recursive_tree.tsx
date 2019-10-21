@@ -61,6 +61,10 @@ export type CommonTreeProps = CommonProps &
      * that contain children
      */
     showExpansionArrows?: boolean;
+    /**
+     * Used internally to differentiate child trees from the outermost tree
+     */
+    isNested?: boolean;
   };
 
 export type EuiRecursiveTreeProps = Omit<
@@ -71,8 +75,7 @@ export type EuiRecursiveTreeProps = Omit<
 
 export class EuiRecursiveTree extends Component<
   EuiRecursiveTreeProps,
-  EuiRecursiveTreeState,
-  CommonTreeProps
+  EuiRecursiveTreeState
 > {
   static contextType = EuiRecursiveTreeContext;
   state: EuiRecursiveTreeState = {
@@ -200,6 +203,7 @@ export class EuiRecursiveTree extends Component<
       isCondensed,
       expandByDefault,
       showExpansionArrows,
+      isNested,
       ...rest
     } = this.props;
 
@@ -211,27 +215,44 @@ export class EuiRecursiveTree extends Component<
       className
     );
 
+    const instructionsId = `${this.state.treeID}--instruction`;
+
     return (
       <EuiRecursiveTreeContext.Provider value={this.state.treeID}>
         <EuiText
           size={isCondensed ? 's' : 'm'}
           className="euiRecursiveTree__wrapper">
+          {!isNested && (
+            <EuiScreenReaderOnly>
+              <p id={instructionsId}>
+                {/* TODO: THIS NEEDS I18N */}
+                You can quickly navigate this list using arrow keys.
+              </p>
+            </EuiScreenReaderOnly>
+          )}
           <ul
             className={classes}
             id={this.state.treeID}
-            aria-describedby={this.state.treeID}
+            aria-describedby={!isNested ? instructionsId : undefined}
             {...rest}>
             {items.map((node, index) => {
+              const buttonId = `${this.state.treeID}--${index}--node`;
+              const label = {};
+              // @ts-ignore
+              const ariaLabel = this.props['aria-label'];
+              // @ts-ignore
+              const ariaLablledBy = this.props['aria-labelledby'];
+
+              if (typeof ariaLabel !== 'undefined') {
+                // @ts-ignore
+                label['aria-label'] = `${node.label} child of ${ariaLabel}`; // TODO: THIS NEEDS I18N
+              } else if (typeof ariaLablledBy !== 'undefined') {
+                // @ts-ignore
+                label['aria-labelledby'] = `${buttonId} ${ariaLablledBy}`;
+              }
+
               return (
                 <React.Fragment key={node.label + index}>
-                  <EuiScreenReaderOnly>
-                    <p
-                      id={`euiRecursiveTree--screenReader--${
-                        this.state.treeID
-                      }`}>
-                      You can quickly navigate this list using arrow keys.
-                    </p>
-                  </EuiScreenReaderOnly>
                   <li
                     className={classNames(
                       'euiRecursiveTree__node',
@@ -240,6 +261,7 @@ export class EuiRecursiveTree extends Component<
                         : null
                     )}>
                     <button
+                      id={buttonId}
                       aria-controls={`euiRecursiveNestedTree-${
                         this.state.treeID
                       }`}
@@ -290,12 +312,14 @@ export class EuiRecursiveTree extends Component<
                         this.onChildrenKeydown(event, index)
                       }>
                       {node.children && this.isNodeOpen(node) ? (
+                        // @ts-ignore
                         <EuiRecursiveTree
                           items={node.children}
                           isCondensed={isCondensed}
                           showExpansionArrows={showExpansionArrows}
                           expandByDefault={this.state.expandChildNodes}
-                          aria-labelledby={this.state.treeID}
+                          isNested={true}
+                          {...label}
                         />
                       ) : null}
                     </div>
