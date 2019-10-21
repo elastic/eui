@@ -63,7 +63,7 @@
 
 @include euiDataGridStyles(headerShade) {
   @include euiDataGridHeaderCell {
-    background: $euiColorLightestShade;
+    background: tintOrShade($euiColorLightestShade, 0%, 10%);
   }
 }
 

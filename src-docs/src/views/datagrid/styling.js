@@ -40,6 +40,7 @@ for (let i = 1; i < 5; i++) {
   data.push({
     avatar: (
       <EuiAvatar
+        size="s"
         imageUrl={fake('{{internet.avatar}}')}
         name={fake('{{name.lastName}}, {{name.firstName}}')}
       />
@@ -204,10 +205,10 @@ export default class DataGrid extends Component {
       fontSizeSelected: 's',
       cellPaddingSelected: 's',
       stripesSelected: true,
-      rowHoverSelected: 'highlight',
+      rowHoverSelected: 'none',
       isPopoverOpen: false,
       isToolbarPopoverOpen: false,
-      headerSelected: 'shade',
+      headerSelected: 'underline',
       showSortSelector: true,
       showStyleSelector: true,
       showColumnSelector: true,

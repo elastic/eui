@@ -451,7 +451,7 @@ export const DataGridExample = {
           </p>
           <h4>Disabling expansion popovers</h4>
           <p>
-            Often the popups are uncessary for short form content. In the
+            Often the popovers are uncessary for short form content. In the
             example below we&apos;ve turned them off by setting{' '}
             <EuiCode>isExpandable=false</EuiCode> on boolean column.
           </p>
