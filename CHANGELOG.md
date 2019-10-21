@@ -11,6 +11,7 @@
 **Bug fixes**
 
 - Reenabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
+- Fixed position of `EuiCodeBlock` controls and added more tests ([#2459](https://github.com/elastic/eui/pull/2459))
 
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
