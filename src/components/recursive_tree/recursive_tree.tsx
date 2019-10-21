@@ -67,10 +67,6 @@ export type CommonTreeProps = CommonProps &
      * that contain children
      */
     showExpansionArrows?: boolean;
-    /**
-     * Used internally to differentiate child trees from the outermost tree
-     */
-    isNested?: boolean;
   };
 
 export type EuiRecursiveTreeProps = Omit<
@@ -84,6 +80,7 @@ export class EuiRecursiveTree extends Component<
   EuiRecursiveTreeState
 > {
   static contextType = EuiRecursiveTreeContext;
+  isNested: boolean = !!this.context;
   state: EuiRecursiveTreeState = {
     openItems: this.props.expandByDefault
       ? this.props.items
@@ -209,7 +206,6 @@ export class EuiRecursiveTree extends Component<
       isCondensed,
       expandByDefault,
       showExpansionArrows,
-      isNested,
       ...rest
     } = this.props;
 
@@ -228,7 +224,7 @@ export class EuiRecursiveTree extends Component<
         <EuiText
           size={isCondensed ? 's' : 'm'}
           className="euiRecursiveTree__wrapper">
-          {!isNested && (
+          {!this.isNested && (
             <EuiScreenReaderOnly>
               <p id={instructionsId}>
                 {/* TODO: THIS NEEDS I18N */}
@@ -239,7 +235,7 @@ export class EuiRecursiveTree extends Component<
           <ul
             className={classes}
             id={this.state.treeID}
-            aria-describedby={!isNested ? instructionsId : undefined}
+            aria-describedby={!this.isNested ? instructionsId : undefined}
             {...rest}>
             {items.map((node, index) => {
               const buttonId = `${this.state.treeID}--${index}--node`;
@@ -319,7 +315,6 @@ export class EuiRecursiveTree extends Component<
                           isCondensed={isCondensed}
                           showExpansionArrows={showExpansionArrows}
                           expandByDefault={this.state.expandChildNodes}
-                          isNested={true}
                           {...label}
                         />
                       ) : null}
