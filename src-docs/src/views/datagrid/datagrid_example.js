@@ -442,6 +442,14 @@ export const DataGridExample = {
             <EuiCode>EuiDataGridSchemaDetector</EuiCode> interface. You can see
             an example of a simple custom schema used on the last column below.
           </p>
+          <h4>Defining expansion formatters</h4>
+          <p>
+            Likewise, you can inject custom content into any of the popovers a
+            cell expands into. Simply add a <EuiCode>customFormatters</EuiCode>{' '}
+            function to populate a matching schema&apos;s popover using a new
+            component. You can see an example of this by clicking into one of
+            the cells in the last column below.
+          </p>
         </Fragment>
       ),
       components: { DataGridSchema },

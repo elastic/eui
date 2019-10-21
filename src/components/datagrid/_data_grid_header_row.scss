@@ -69,7 +69,8 @@
 
 @include euiDataGridStyles(headerShade, bordersAll) {
   @include euiDataGridHeaderCell {
-    border: $euiBorderThin;
+    border-right: $euiBorderThin;
+    border-bottom: $euiBorderThin;
     border-left: none;
 
     &:first-of-type {
@@ -80,6 +81,7 @@
 
 @include euiDataGridStyles(headerShade, bordersHorizontal) {
   @include euiDataGridHeaderCell {
+    border-top: none;
     border-bottom: $euiBorderThin;
   }
 }
@@ -93,6 +95,7 @@
 
 @include euiDataGridStyles(borderhorizontal) {
   @include euiDataGridHeaderCell {
+    border-top: none;
     border-right: none;
     border-left: none;
   }
