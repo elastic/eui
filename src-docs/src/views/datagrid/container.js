@@ -64,7 +64,7 @@ export default class DataGridContainer extends Component {
     const { pagination } = this.state;
 
     return (
-      <EuiPanel style={{ width: 400 }}>
+      <EuiPanel style={{ width: 400, paddingBottom: 4 }} paddingSize="none">
         <div style={{ height: 300 }}>
           <EuiDataGrid
             aria-label="Top EUI contributors"

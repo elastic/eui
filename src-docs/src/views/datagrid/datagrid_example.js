@@ -50,7 +50,7 @@ const gridSnippet = `
     inMemory={{ level: 'sorting' }}
     // Required. There are 200 total records
     rowCount={200}
-    // Required. Sets up three columns, the last of which has a custom schema
+    // Required. Sets up three columns, the last of which has a custom schema we later define down below
     columns={[{ id: 'A' }, { id: 'B' }, {id: 'C', schema: 'franchise'}]}
     // Optional. Hide the second column B
     columnVisibility={{
@@ -87,18 +87,19 @@ const gridSnippet = `
       rowHover: 'highlight',
       header: 'shade',
     }}
-    // Optional. Provide an additional schema called Franchise, that will look for data of this type and sort appropriately
+    // Optional. Provide an additional schema called Franchise
+    // This schema essentially acts like a boolean, looking for Star Wars and Star Trek references
     schemaDetectors={[
       {
         type: 'franchise',
-        // Try to detect if column data is this schema
+        // Try to detect if column data is this schema. A value of 1 is the highest possible. An average of .5 in average will be good enough for the autodector to assign
         detector(value) {
           return value.toLowerCase() === 'star wars' ||
             value.toLowerCase() === 'star trek'
             ? 1
             : 0;
         },
-        // How we should sort data matching this schema
+        // How we should sort data matching this schema. Again, a value of 1 is the highest value.
         comparator(a, b, direction) {
           const aValue = a.toLowerCase() === 'star wars';
           const bValue = b.toLowerCase() === 'star wars';
@@ -229,17 +230,6 @@ const gridConcepts = [
       <span>
         A <EuiCode>DataGridPagination</EuiCode> object. Omit to disable
         pagination completely.
-      </span>
-    ),
-  },
-  {
-    title: 'toolbarDisplay',
-    description: (
-      <span>
-        Accepts either a boolean or{' '}
-        <EuiCode>EuiDataGridTooBarDisplayOptions</EuiCode> object. When used as
-        a boolean, defines the display of the toolbar entire. WHen passed an
-        object allows you to turn off individual controls within the toolbar.
       </span>
     ),
   },
@@ -443,6 +433,12 @@ export const DataGridExample = {
             <EuiCode>schemaDetectors</EuiCode> and are constructed against the{' '}
             <EuiCode>EuiDataGridSchemaDetector</EuiCode> interface. You can see
             an example of a simple custom schema used on the last column below.
+            In addition to schemas beind useful to map against for cell and
+            expansion rendering, any schema will also add a
+            <EuiCode>
+              className=&quot;euiDataGridRowCell--schemaName&quot;
+            </EuiCode>{' '}
+            to each matching cell.
           </p>
           <h4>Defining expansion formatters</h4>
           <p>
