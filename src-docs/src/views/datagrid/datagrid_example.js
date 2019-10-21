@@ -57,7 +57,9 @@ const gridSnippet = `
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
-    // Optional. Customize the conten inside the cell. Let's output the row and column position
+    // Optional. Customize the content inside the cell. Let's output the row and column position.
+    // This same method is used to change the background color for cells on the demo above.
+    // Often used in combo with useEffect() to need to dynamically change the render
     renderCellValue={({ rowIndex, columnId }) =>
      \`\${rowIndex}, \${columnId}\`
     }

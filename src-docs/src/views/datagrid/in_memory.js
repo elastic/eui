@@ -70,7 +70,7 @@ for (let i = 1; i < 100; i++) {
     ),
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
-    amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
+    amount: fake('${{commerce.price}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
   });

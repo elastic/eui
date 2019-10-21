@@ -74,7 +74,7 @@ for (let i = 1; i < 100; i++) {
     ),
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
-    amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
+    amount: fake('${{commerce.price}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
   });
@@ -105,19 +105,6 @@ export default () => {
   let data = useMemo(() => {
     // the grid itself is responsible for sorting if inMemory is `sorting`
     return raw_data;
-
-    return [...raw_data].sort((a, b) => {
-      for (let i = 0; i < sortingColumns.length; i++) {
-        const column = sortingColumns[i];
-        const aValue = a[column.id];
-        const bValue = b[column.id];
-
-        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
-        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
-      }
-
-      return 0;
-    });
   }, [raw_data, sortingColumns]);
 
   // Pagination
