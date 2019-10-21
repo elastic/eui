@@ -55,6 +55,13 @@ describe('EuiLink', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('supports disabled', () => {
+    const component = render(
+      <EuiLink disabled onClick={() => 'hello, world!'} />
+    );
+    expect(component).toMatchSnapshot();
+  });
+
   test('if href is not specified, it renders a button of type=button', () => {
     const component = render(<EuiLink />);
     expect(component).toMatchSnapshot();

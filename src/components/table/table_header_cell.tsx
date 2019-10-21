@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
+import { resolveWidthAsStyle } from './utils';
 
 import {
   HorizontalAlignment,
@@ -56,6 +57,7 @@ type Props = CommonProps &
     };
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
+    width?: string | number;
   };
 
 export const EuiTableHeaderCell: FunctionComponent<Props> = ({
@@ -73,6 +75,8 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
   // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
+  style,
+  width,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
@@ -84,6 +88,8 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
   });
+
+  const styleObj = resolveWidthAsStyle(style, width);
 
   if (onSort) {
     const buttonClasses = classNames('euiTableHeaderButton', {
@@ -114,6 +120,7 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
         role="columnheader"
         aria-sort={ariaSortValue}
         aria-live="polite"
+        style={styleObj}
         {...rest}>
         <button
           type="button"
@@ -140,7 +147,12 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
   }
 
   return (
-    <th className={classes} scope={scope} role="columnheader" {...rest}>
+    <th
+      className={classes}
+      scope={scope}
+      role="columnheader"
+      style={styleObj}
+      {...rest}>
       <div className={contentClasses}>
         <span className="euiTableCellContent__text">{children}</span>
       </div>
