@@ -483,7 +483,7 @@ export const DataGridExample = {
           </p>
           <p>
             Likewise the <EuiCode>toolbarDisplay</EuiCode> prop controls whether
-            or not to show buttons on the boolbar to display above the grid. It
+            or not to show buttons on the toolbar to display above the grid. It
             accepts a boolean or shape object. The boolean allows turning off
             the toolbar entirely, while the shape allows you to turn off
             individual buttons as you need.
