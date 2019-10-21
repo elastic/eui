@@ -444,7 +444,7 @@ export const DataGridExample = {
           <h4>Defining expansion formatters</h4>
           <p>
             Likewise, you can inject custom content into any of the popovers a
-            cell expands into. Simply add a <EuiCode>customFormatters</EuiCode>{' '}
+            cell expands into. Add a <EuiCode>customFormatters</EuiCode>{' '}
             function to populate a matching schema&apos;s popover using a new
             component. You can see an example of this by clicking into one of
             the cells in the last column below.
