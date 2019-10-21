@@ -148,7 +148,7 @@ const gridConcepts = [
       <span>
         A <EuiCode>DataGridInMemory</EuiCode> object to define the level of high
         order schema-detection and sorting logic to use on your data.{' '}
-        <strong>Try to set it when possible</strong>. If ommited, disables all
+        <strong>Try to set it when possible</strong>. If omitted, disables all
         enhancements and assumes content is flat strings.
       </span>
     ),
