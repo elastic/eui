@@ -6,6 +6,7 @@
 - Added ability for `EuiColorStops` to accept user-defined range bounds ([#2396](https://github.com/elastic/eui/pull/2396))
 - Added `external` prop to `EuiLink` ([#2442](https://github.com/elastic/eui/pull/2442))
 - Added disabled state to `EuiBadge` ([#2440](https://github.com/elastic/eui/pull/2440))
+- Changed `EuiLink` to appear non interactive when passed the `disabled` prop and an `onClick` handler ([#2423](https://github.com/elastic/eui/pull/2423))
 
 **Bug fixes**
 

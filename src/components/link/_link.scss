@@ -1,11 +1,3 @@
-.euiLink {
-  @include euiLink;
-
-  .euiLink__externalIcon {
-    margin-left: $euiSizeXS;
-  }
-}
-
 $textColors: (
   subdued: $euiColorDarkShade,
   primary: $euiColorPrimary,
@@ -17,18 +9,33 @@ $textColors: (
   ghost: $euiColorGhost,
 );
 
-// Create color modifiers based on the map
-@each $name, $color in $textColors {
-  .euiLink.euiLink--#{$name} {
-    color: $color;
+.euiLink {
+  @include euiLink;
 
-    &:hover {
-      color: darken($color, 10%);
-    }
+  .euiLink__externalIcon {
+    margin-left: $euiSizeXS;
+  }
 
-    &:focus {
-      outline: solid 3px transparentize($color, .9);
-      background-color: transparentize($color, .9);
+  &.euiLink-disabled {
+    text-decoration: none;
+    cursor: default;
+  }
+
+  // Create color modifiers based on the map
+  @each $name, $color in $textColors {
+    &.euiLink--#{$name} {
+      color: $color;
+
+      &:hover {
+        color: darken($color, 10%);
+      }
+
+      &:focus {
+        outline: solid 3px transparentize($color, .9);
+        background-color: transparentize($color, .9);
+      }
     }
   }
 }
+
+
