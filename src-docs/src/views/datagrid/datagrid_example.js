@@ -10,28 +10,11 @@ import {
   EuiCodeBlock,
   EuiText,
   EuiSpacer,
-  EuiCallOut,
 } from '../../../../src/components';
 
 import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
 const dataGridHtml = renderToHtml(DataGrid);
-
-import DataGridContainer from './container';
-const dataGridContainerSource = require('!!raw-loader!./container');
-const dataGridContainerHtml = renderToHtml(DataGridContainer);
-
-import DataGridStyling from './styling';
-const dataGridStylingSource = require('!!raw-loader!./styling');
-const dataGridStylingHtml = renderToHtml(DataGridStyling);
-
-import DataGridSchema from './schema';
-const dataGridSchemaSource = require('!!raw-loader!./schema');
-const dataGridSchemaHtml = renderToHtml(DataGridSchema);
-
-import InMemoryDataGrid from './in_memory';
-const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
-const inMemoryDataGridHtml = renderToHtml(InMemoryDataGrid);
 
 import {
   DataGridColumn,
@@ -244,7 +227,7 @@ const gridConcepts = [
 ];
 
 export const DataGridExample = {
-  title: 'Data grid',
+  title: 'Data grid core concepts',
   sections: [
     {
       source: [
@@ -343,174 +326,6 @@ export const DataGridExample = {
           />
         </Fragment>
       ),
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: inMemoryDataGridSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inMemoryDataGridHtml,
-        },
-      ],
-      title: 'In memory settings',
-      text: (
-        <Fragment>
-          <p>
-            The grid has levels of <strong>in memory</strong> settings that can
-            be set. The higher levels open up more features, but require you to
-            utilize callbacks for sorting and pagination as those features are
-            enabled. The following settings are available. When possible, it is
-            advisable to utilize in memory as deeply as possible to provide a
-            better core experience for the user.
-          </p>
-          <ul>
-            <li>
-              <strong>undefined</strong>: when not in use the grid will not
-              autodetect schemas. Unless you manually provide schemas, sorting
-              will also be heavily limited and likely inaccurate.
-            </li>
-            <li>
-              <strong>enhancements</strong>: provides no in memory operations.
-              If set the grid will try to autodetect schemas only based on the
-              content currently available (usually a single page of pagination)
-            </li>
-            <li>
-              <strong>pagination</strong>: Enhancements are provided as above,
-              but only pagination is performed in memory.
-            </li>
-            <li>
-              <strong>sorting</strong>: Enhancements are provided as above, and
-              pagination and sorting are both performed in memory.
-            </li>
-          </ul>
-          <EuiCallOut size="s" title="Check how the schemas change in the demo">
-            When inMemory is not set, schemas are not autodetected. Because no
-            schemas are defined, the sorting doesn&apos;t really work.
-          </EuiCallOut>
-        </Fragment>
-      ),
-      components: { InMemoryDataGrid },
-      demo: <InMemoryDataGrid />,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: dataGridSchemaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridSchemaHtml,
-        },
-      ],
-      title: 'Schema detection and expansion formatters',
-      text: (
-        <Fragment>
-          <p>
-            Schemas are data types you pass to grid columns to effect how the
-            columns and expansion popovers render. Schemas also allow you to
-            define individual sorting comparators so that sorts can do more than
-            just A-Z comparisons. By default, <EuiCode>EuiDataGrid</EuiCode>{' '}
-            ships with a few built-in schemas for{' '}
-            <EuiCode>numeric, currency, datetime, boolean and json</EuiCode>{' '}
-            data. When the <EuiCode>inMemory</EuiCode> prop is in use it will
-            automatically try to figure out the best schema based on the{' '}
-            <EuiCode>{'inMemory: {{ level: value }}'}</EuiCode> you set, but
-            this will come with the caveat you will need to provide and manage
-            sorting callbacks outside the component. In general we recommend
-            passing schema information to your columns instead of using
-            auto-detection when you have that knowledge of your data available
-            during ingestion.
-          </p>
-          <h4>Defining custom schemas</h4>
-          <p>
-            Beyond the provided set, you have the ability to define custom
-            schemas. Custom schemas are passed as an array to{' '}
-            <EuiCode>schemaDetectors</EuiCode> and are constructed against the{' '}
-            <EuiCode>EuiDataGridSchemaDetector</EuiCode> interface. You can see
-            an example of a simple custom schema used on the last column below.
-            In addition to schemas being useful to map against for cell and
-            expansion rendering, any schema will also add a
-            <EuiCode>
-              className=&quot;euiDataGridRowCell--schemaName&quot;
-            </EuiCode>{' '}
-            to each matching cell.
-          </p>
-          <h4>Defining expansion formatters</h4>
-          <p>
-            Likewise, you can inject custom content into any of the popovers a
-            cell expands into. Add a <EuiCode>customFormatters</EuiCode>{' '}
-            function to populate a matching schema&apos;s popover using a new
-            component. You can see an example of this by clicking into one of
-            the cells in the last column below.
-          </p>
-          <h4>Disabling expansion popovers</h4>
-          <p>
-            Often the popovers are unnecessary for short form content. In the
-            example below we&apos;ve turned them off by setting{' '}
-            <EuiCode>isExpandable=false</EuiCode> on boolean column.
-          </p>
-        </Fragment>
-      ),
-      components: { DataGridSchema },
-      demo: <DataGridSchema />,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: dataGridStylingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridStylingHtml,
-        },
-      ],
-      title: 'Styling and toolbar options',
-      text: (
-        <Fragment>
-          <p>
-            Styling can be passed down to the grid through the{' '}
-            <EuiCode>gridStyle</EuiCode> prop. It accepts an object shape that
-            allows for customization. When the density controls are also
-            present, both font size and padding will merge against the initial
-            defaults provided by the prop.
-          </p>
-          <p>
-            Likewise the <EuiCode>toolbarDisplay</EuiCode> prop controls whether
-            or not to show buttons on the toolbar to display above the grid. It
-            accepts a boolean or shape object. The boolean allows turning off
-            the toolbar entirely, while the shape allows you to turn off
-            individual buttons as you need.
-          </p>
-        </Fragment>
-      ),
-      components: { DataGridStyling },
-      demo: <DataGridStyling />,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: dataGridContainerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridContainerHtml,
-        },
-      ],
-      title: 'Data grid adapts to its container',
-      text: (
-        <p>
-          When wrapped inside a container, like a dashboard panel, the grid will
-          start hiding controls and adopt a more strict flex layout
-        </p>
-      ),
-      components: { DataGridContainer },
-      demo: <DataGridContainer />,
     },
   ],
 };

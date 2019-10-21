@@ -68,6 +68,9 @@ import { ContextMenuExample } from './views/context_menu/context_menu_example';
 import { CopyExample } from './views/copy/copy_example';
 
 import { DataGridExample } from './views/datagrid/datagrid_example';
+import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
+import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
+import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -313,6 +316,16 @@ const navigation = [
     ].map(example => createExample(example)),
   },
   {
+    name: 'Tabular content',
+    items: [
+      DataGridExample,
+      DataGridMemoryExample,
+      DataGridSchemaExample,
+      DataGridStylingExample,
+      TableExample,
+    ].map(example => createExample(example)),
+  },
+  {
     name: 'Display',
     items: [
       AvatarExample,
@@ -320,7 +333,6 @@ const navigation = [
       CallOutExample,
       CardExample,
       CodeExample,
-      DataGridExample,
       DescriptionListExample,
       DragAndDropExample,
       EmptyPromptExample,
