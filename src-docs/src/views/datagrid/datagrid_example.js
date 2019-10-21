@@ -267,7 +267,7 @@ export const DataGridExample = {
             <EuiCode>EuiDataGrid</EuiCode> is a performant, high-order component
             for displaying large amounts of tabular data with liberal usage of
             React hooks. From a product standpoint it is similar to an excel, or
-            sheets like experience, except that its stengths are in rendering,
+            sheets like experience, except that its strengths are in rendering,
             rather that creating content.
           </p>
           <h3>Core concepts</h3>
