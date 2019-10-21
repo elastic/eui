@@ -199,8 +199,8 @@ export default class DataGridSchema extends Component {
             },
             sortTextAsc: 'Star wars-Star trek',
             sortTextDesc: 'Star trek-Star wars',
-            icon: 'star',
-            color: 'primary',
+            icon: 'starFilled',
+            color: '#800080',
           },
         ]}
         expansionFormatters={{
