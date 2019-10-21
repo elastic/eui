@@ -238,7 +238,7 @@ const gridConcepts = [
     title: 'sorting',
     description: (
       <span>
-        A <EuiCode>DataGridSorting</EuiCode> oject that provides the sorted
+        A <EuiCode>DataGridSorting</EuiCode> object that provides the sorted
         columns along with their direction. Omit to disable, but you&apos;ll
         likely want to also turn off the user sorting controls through the
         toolbarDisplay prop.
