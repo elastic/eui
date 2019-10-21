@@ -73,7 +73,7 @@ export interface EuiDataGridTooBarDisplayOptions {
    */
   showColumnSelector?: boolean;
   /**
-   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
+   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #DataGridStyle
    */
   showStyleSelector?: boolean;
   /**

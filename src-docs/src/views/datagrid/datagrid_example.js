@@ -42,6 +42,7 @@ import {
   CellValueElement,
   DataGridSchemaDetector,
   DataGridToolbarDisplayOptions,
+  DataGridColumnVisibility,
 } from './props';
 
 const gridSnippet = `
@@ -93,7 +94,7 @@ const gridSnippet = `
     schemaDetectors={[
       {
         type: 'franchise',
-        // Try to detect if column data is this schema. A value of 1 is the highest possible. An average of .5 in average will be good enough for the autodector to assign
+        // Try to detect if column data is this schema. A value of 1 is the highest possible. A (mean_average - standard_deviation) of .5 will be good enough for the autodetector to assign
         detector(value) {
           return value.toLowerCase() === 'star wars' ||
             value.toLowerCase() === 'star trek'
@@ -188,11 +189,6 @@ const gridConcepts = [
       'The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)',
   },
   {
-    title: 'Sorting',
-    description:
-      'Defines the initial sort parameters as well as a callback function for when sorting takes place in the grid.',
-  },
-  {
     title: 'gridStyle',
     description: (
       <span>
@@ -264,11 +260,12 @@ export const DataGridExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>EuiDataGrid</EuiCode> is a performant, high-order component
-            for displaying large amounts of tabular data with liberal usage of
-            React hooks. From a product standpoint it is similar to an excel, or
-            sheets like experience, except that its strengths are in rendering,
-            rather that creating content.
+            <EuiCode>EuiDataGrid</EuiCode> is for displaying large amounts of
+            tabular data. Though similar to tables, EuiDataGrid should be used
+            for data that has associated actions or light editing requirements,
+            instead of non-interactive data. It is similar to MS Excel or Google
+            Sheets, though EuiDataGrid&apos;s strengths lie in rendering rather
+            than creating content.
           </p>
           <h3>Core concepts</h3>
           <ul>
@@ -304,6 +301,7 @@ export const DataGridExample = {
         CellValueElement,
         DataGridSchemaDetector,
         DataGridToolbarDisplayOptions,
+        DataGridColumnVisibility,
       },
       demo: (
         <Fragment>

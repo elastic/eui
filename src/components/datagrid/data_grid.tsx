@@ -89,7 +89,7 @@ type CommonGridProps = CommonProps &
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * Accepts either a boolean or #EuiDataGridTooBarDisplayOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     * Accepts either a boolean or #DataGridToolbarDisplayOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
      */
     toolbarDisplay?: boolean | EuiDataGridTooBarDisplayOptions;
     /**
@@ -115,13 +115,13 @@ type EuiDataGridProps = Omit<
   (
     | {
         /**
-         * must provide either aria-label OR aria-labelledby
+         * must provide either aria-label OR aria-labelledby as a title for the grid
          */
         'aria-label': string;
       }
     | {
         /**
-         * must provide either aria-label OR aria-labelledby
+         * must provide either aria-label OR aria-labelledby as a title for the grid
          */
         'aria-labelledby': string;
       });
