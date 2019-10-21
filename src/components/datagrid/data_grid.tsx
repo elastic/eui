@@ -413,13 +413,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
-  const allSchemaDetetors = useMemo(
+  const allSchemaDetectors = useMemo(
     () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
     [schemaDetectors]
   );
   const detectedSchema = useDetectSchema(
     inMemoryValues,
-    allSchemaDetetors,
+    allSchemaDetectors,
     inMemory != null
   );
   const mergedSchema = getMergedSchema(detectedSchema, columns);
@@ -432,7 +432,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     orderedVisibleColumns,
     sorting,
     detectedSchema,
-    allSchemaDetetors
+    allSchemaDetectors
   );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
@@ -629,7 +629,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemory={inMemory}
                     columns={orderedVisibleColumns}
                     schema={mergedSchema}
-                    schemaDetectors={allSchemaDetetors}
+                    schemaDetectors={allSchemaDetectors}
                     expansionFormatters={expansionFormatters}
                     focusedCell={realizedFocusedCell}
                     onCellFocus={setFocusedCell}
