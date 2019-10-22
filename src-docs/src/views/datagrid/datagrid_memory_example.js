@@ -42,7 +42,7 @@ export const DataGridMemoryExample = {
             be set. The higher levels open up more features, but require you to
             utilize callbacks for sorting and pagination as those features are
             enabled. The following settings are available. When possible, it is
-            advisable to utilize in memory as deeply as possible to provide a
+            advisable to utilize in-memory as deeply as possible to provide a
             better core experience for the user.
           </p>
           <ul>
