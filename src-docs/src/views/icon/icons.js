@@ -122,6 +122,7 @@ const iconTypes = [
   'merge',
   'menuLeft',
   'menuRight',
+  'minimize',
   'minusInCircle',
   'minusInCircleFilled',
   'moon',
