@@ -34,4 +34,40 @@ describe('EuiTableFooterCell', () => {
       expect(render(component)).toMatchSnapshot();
     });
   });
+
+  describe('width and style', () => {
+    test('accepts style attribute', () => {
+      const component = (
+        <EuiTableFooterCell style={{ width: '20%' }}>Test</EuiTableFooterCell>
+      );
+
+      expect(render(component)).toMatchSnapshot();
+    });
+
+    test('accepts width attribute', () => {
+      const component = (
+        <EuiTableFooterCell width="10%">Test</EuiTableFooterCell>
+      );
+
+      expect(render(component)).toMatchSnapshot();
+    });
+
+    test('accepts width attribute as number', () => {
+      const component = (
+        <EuiTableFooterCell width={100}>Test</EuiTableFooterCell>
+      );
+
+      expect(render(component)).toMatchSnapshot();
+    });
+
+    test('resolves style and width attribute', () => {
+      const component = (
+        <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
+          Test
+        </EuiTableFooterCell>
+      );
+
+      expect(render(component)).toMatchSnapshot();
+    });
+  });
 });

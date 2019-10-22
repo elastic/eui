@@ -32,9 +32,9 @@ export default class HashtagPopover extends Component {
   };
 
   onButtonClick = () => {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
+    this.setState(prevState => ({
+      isPopoverOpen: !prevState.isPopoverOpen,
+    }));
   };
 
   render() {
