@@ -52,7 +52,7 @@ export const DataGridMemoryExample = {
               will also be heavily limited and likely inaccurate.
             </li>
             <li>
-              <strong>enhancements</strong>: provides no in memory operations.
+              <strong>enhancements</strong>: provides no in-memory operations.
               If set the grid will try to autodetect schemas only based on the
               content currently available (usually a single page of pagination)
             </li>
