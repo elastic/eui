@@ -38,7 +38,7 @@ export const DataGridSchemaExample = {
       text: (
         <Fragment>
           <p>
-            Schemas are data types you pass to grid columns to effect how the
+            Schemas are data types you pass to grid columns to affect how the
             columns and expansion popovers render. Schemas also allow you to
             define individual sorting comparators so that sorts can do more than
             just A-Z comparisons. By default, <EuiCode>EuiDataGrid</EuiCode>{' '}
