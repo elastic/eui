@@ -256,18 +256,18 @@ export const DataGridExample = {
             tabular data. It is a better choice over{' '}
             <Link to="/tabular-content/tables/">EUI tables</Link> when there are
             many columns, the data in those columns is fairly uniform, and when
-            schemas and sorting are important for comparison. It is similar to
-            MS Excel or Google Sheets, though EuiDataGrid&apos;s strengths lie
-            in rendering rather than creating content.{' '}
+            schemas and sorting are important for comparison. Although it is
+            similar to traditional spreedsheet software, EuiDataGrid&apos;s
+            current strengths are in rendering rather than creating content.{' '}
           </p>
           <h3>Core concepts</h3>
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
               <Link to="/tabular-content/data-grid-in-memory-settings/">
-                in memory
+                in memory level
               </Link>{' '}
-              level to have the grid automatically handle updating your columns.
+              to have the grid automatically handle updating your columns.
               Depending upon the level choosen you may need to manage the
               content order separate from the grid.
             </li>
