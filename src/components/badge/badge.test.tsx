@@ -11,6 +11,16 @@ describe('EuiBadge', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is disabled', () => {
+    const component = render(
+      <EuiBadge isDisabled {...requiredProps}>
+        Content
+      </EuiBadge>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('is rendered with onClick provided', () => {
     const component = render(
       <EuiBadge

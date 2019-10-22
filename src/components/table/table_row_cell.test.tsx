@@ -73,3 +73,35 @@ describe("children's className", () => {
     expect(render(component)).toMatchSnapshot();
   });
 });
+
+describe('width and style', () => {
+  test('accepts style attribute', () => {
+    const component = (
+      <EuiTableRowCell style={{ width: '20%' }}>Test</EuiTableRowCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('accepts width attribute', () => {
+    const component = <EuiTableRowCell width="10%">Test</EuiTableRowCell>;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('accepts width attribute as number', () => {
+    const component = <EuiTableRowCell width={100}>Test</EuiTableRowCell>;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('resolves style and width attribute', () => {
+    const component = (
+      <EuiTableRowCell width="10%" style={{ width: '20%' }}>
+        Test
+      </EuiTableRowCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+});
