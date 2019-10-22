@@ -5,7 +5,6 @@ import { CommonProps } from '../common';
 /// <reference path="./field_search/index.d.ts" />
 /// <reference path="./field_text/index.d.ts" />
 /// <reference path="./form_row/index.d.ts" />
-/// <reference path="./radio/index.d.ts" />
 /// <reference path="./range/index.d.ts" />
 /// <reference path="./select/index.d.ts" />
 /// <reference path="./super_select/index.d.ts" />
