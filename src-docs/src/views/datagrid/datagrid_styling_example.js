@@ -13,17 +13,7 @@ import DataGridStyling from './styling';
 const dataGridStylingSource = require('!!raw-loader!./styling');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
-import {
-  DataGridColumn,
-  DataGridPagination,
-  DataGridSorting,
-  DataGridInMemory,
-  DataGridStyle,
-  CellValueElement,
-  DataGridSchemaDetector,
-  DataGridToolbarDisplayOptions,
-  DataGridColumnVisibility,
-} from './props';
+import { DataGridStyle, DataGridToolbarDisplayOptions } from './props';
 
 export const DataGridStylingExample = {
   title: 'Data grid styling',
@@ -61,15 +51,8 @@ export const DataGridStylingExample = {
 
       props: {
         EuiDataGrid,
-        DataGridColumn,
-        DataGridPagination,
-        DataGridSorting,
-        DataGridInMemory,
-        DataGridStyle,
-        CellValueElement,
-        DataGridSchemaDetector,
-        DataGridToolbarDisplayOptions,
-        DataGridColumnVisibility,
+        EuiDataGridStyle: DataGridStyle,
+        EuiDataGridToolbarDisplayOptions: DataGridToolbarDisplayOptions,
       },
       demo: <DataGridStyling />,
     },
@@ -93,18 +76,6 @@ export const DataGridStylingExample = {
       ),
       components: { DataGridContainer },
 
-      props: {
-        EuiDataGrid,
-        DataGridColumn,
-        DataGridPagination,
-        DataGridSorting,
-        DataGridInMemory,
-        DataGridStyle,
-        CellValueElement,
-        DataGridSchemaDetector,
-        DataGridToolbarDisplayOptions,
-        DataGridColumnVisibility,
-      },
       demo: <DataGridContainer />,
     },
   ],

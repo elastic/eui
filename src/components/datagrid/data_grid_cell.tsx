@@ -20,7 +20,7 @@ import { keyCodes } from '../../services';
 import { EuiDataGridExpansionFormatter } from './data_grid_types';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 
-export interface CellValueElementProps {
+export interface EuiDataGridCellValueElementProps {
   /**
    * index of the row being rendered, 0 represents the first row. This index always includes
    * pagination offset, meaning the first rowIndex in a grid is `pagination.pageIndex * pagination.pageSize`
@@ -28,7 +28,7 @@ export interface CellValueElementProps {
    */
   rowIndex: number;
   /**
-   * id of the column being rendered, the value comes from the #DataGridColumn `id`
+   * id of the column being rendered, the value comes from the #EuiDataGridColumn `id`
    */
   columnId: string;
   /**
@@ -37,7 +37,7 @@ export interface CellValueElementProps {
    */
   setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
   /**
-   * whether or not the cell is expandable, comes from the #DataGridColumn `isExpandable` which defaults to `true`
+   * whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
    */
   isExpandable: boolean;
   /**
@@ -58,8 +58,8 @@ export interface EuiDataGridCellProps {
   isExpandable: boolean;
   expansionFormatter: EuiDataGridExpansionFormatter;
   renderCellValue:
-    | JSXElementConstructor<CellValueElementProps>
-    | ((props: CellValueElementProps) => ReactNode);
+    | JSXElementConstructor<EuiDataGridCellValueElementProps>
+    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
 }
 
 interface EuiDataGridCellState {
@@ -78,7 +78,7 @@ type EuiDataGridCellValueProps = Omit<
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
-    setCellProps: CellValueElementProps['setCellProps'];
+    setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     isExpanded: boolean;
   }
 > = memo(props => {
@@ -86,7 +86,7 @@ const EuiDataGridCellContent: FunctionComponent<
 
   // React is more permissible than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
-    CellValueElementProps
+    EuiDataGridCellValueElementProps
   >;
 
   return <CellElement data-test-subj="cell-content" {...rest} />;
@@ -316,7 +316,7 @@ export class EuiDataGridCell extends Component<
     let innerContent = anchorContent;
     if (isExpandable) {
       const CellElement = rest.renderCellValue as JSXElementConstructor<
-        CellValueElementProps
+        EuiDataGridCellValueElementProps
       >;
       const popoverContent = (
         <ExpansionFormatter>

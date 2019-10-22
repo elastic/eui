@@ -8,7 +8,7 @@ import {
   EuiDataGridTooBarDisplayOptions,
   EuiDataGridColumnVisibility,
 } from '../../../../src/components/datagrid/data_grid_types';
-import { CellValueElementProps } from '../../../../src/components/datagrid/data_grid_cell';
+import { EuiDataGridCellValueElementProps } from '../../../../src/components/datagrid/data_grid_cell';
 import { EuiDataGridSchemaDetector } from '../../../../src/components/datagrid/data_grid_schema';
 
 export const DataGridColumn: FunctionComponent<EuiDataGridColumn> = () => (
@@ -33,8 +33,8 @@ export const DataGridToolbarDisplayOptions: FunctionComponent<
   EuiDataGridTooBarDisplayOptions
 > = () => <div />;
 
-export const CellValueElement: FunctionComponent<
-  CellValueElementProps
+export const DataGridCellValueElement: FunctionComponent<
+  EuiDataGridCellValueElementProps
 > = () => <div />;
 
 export const DataGridSchemaDetector: FunctionComponent<

@@ -59,19 +59,19 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * An array of #DataGridColumn objects. Lists the columns available and the schema and settings tied to it.
+     * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
      */
     columns: EuiDataGridColumn[];
     /**
-     * An array of #DataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
+     * An array of #EuiDataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
      */
     columnVisibility: EuiDataGridColumnVisibility;
     /**
-     * An array of custom #DataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
+     * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * An object mapping #DataGridColumn `schema`s to a custom expansion formatting component. `{mySchema: (children) => {<div>{data[children.chidren.props.rowIndex][children.children.props.columnId]}</div>}}`
+     * An object mapping #EuiDataGridColumn `schema`s to a custom expansion formatting component. `{mySchema: (children) => {<div>{data[children.chidren.props.rowIndex][children.children.props.columnId]}</div>}}`
      */
     expansionFormatters?: EuiDataGridExpansionFormatters;
     /**
@@ -85,23 +85,23 @@ type CommonGridProps = CommonProps &
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     /**
-     * Defines the look and feel for the grid. Accepts a partial #DataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarDisplay density controls are available.
+     * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarDisplay density controls are available.
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * Accepts either a boolean or #DataGridToolbarDisplayOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     * Accepts either a boolean or #EuiDataGridToolbarDisplayOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
      */
     toolbarDisplay?: boolean | EuiDataGridTooBarDisplayOptions;
     /**
-     * A #DataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
+     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
     inMemory?: EuiDataGridInMemory;
     /**
-     * A #DataGridPagination object. Omit to disable pagination completely.
+     * A #EuiDataGridPagination object. Omit to disable pagination completely.
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #DataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarDisplay` prop.
+     * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarDisplay` prop.
      */
     sorting?: EuiDataGridSorting;
   };

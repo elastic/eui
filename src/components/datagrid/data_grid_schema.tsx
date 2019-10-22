@@ -11,7 +11,7 @@ import { IconType } from '../icon';
 
 export interface EuiDataGridSchemaDetector {
   /**
-   * The name of this data type, matches #DataGridColumn / schema `schema`
+   * The name of this data type, matches #EuiDataGridColumn / schema `schema`
    */
   type: string;
   /**

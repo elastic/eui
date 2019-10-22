@@ -7,7 +7,10 @@ import React, {
   useState,
 } from 'react';
 import { createPortal, unstable_batchedUpdates } from 'react-dom';
-import { CellValueElementProps, EuiDataGridCellProps } from './data_grid_cell';
+import {
+  EuiDataGridCellValueElementProps,
+  EuiDataGridCellProps,
+} from './data_grid_cell';
 import { EuiDataGridColumn, EuiDataGridInMemory } from './data_grid_types';
 
 interface EuiDataGridInMemoryRendererProps {
@@ -84,7 +87,7 @@ const ObservedCell: FunctionComponent<{
   }, [ref]);
 
   const CellElement = renderCellValue as JSXElementConstructor<
-    CellValueElementProps
+    EuiDataGridCellValueElementProps
   >;
 
   return (

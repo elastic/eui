@@ -21,7 +21,7 @@ export interface EuiDataGridColumn {
 
 export interface EuiDataGridColumnVisibility {
   /**
-   * An array of #DataGridColumn `id`s dictating the order and visibility of columns.
+   * An array of #EuiDataGridColumn `id`s dictating the order and visibility of columns.
    */
   visibleColumns: string[];
   /**
@@ -73,7 +73,7 @@ export interface EuiDataGridTooBarDisplayOptions {
    */
   showColumnSelector?: boolean;
   /**
-   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #DataGridStyle
+   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
    */
   showStyleSelector?: boolean;
   /**

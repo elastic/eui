@@ -24,7 +24,7 @@ import {
   DataGridSorting,
   DataGridInMemory,
   DataGridStyle,
-  CellValueElement,
+  DataGridCellValueElement,
   DataGridSchemaDetector,
   DataGridToolbarDisplayOptions,
   DataGridColumnVisibility,
@@ -128,8 +128,8 @@ const gridConcepts = [
     title: 'columns',
     description: (
       <span>
-        An array of <EuiCode>DataGridColumn</EuiCode> objects. Lists the columns
-        available and the schema and settings tied to it.
+        An array of <EuiCode>EuiDataGridColumn</EuiCode> objects. Lists the
+        columns available and the schema and settings tied to it.
       </span>
     ),
   },
@@ -137,8 +137,8 @@ const gridConcepts = [
     title: 'inMemory',
     description: (
       <span>
-        A <EuiCode>DataGridInMemory</EuiCode> object to define the level of high
-        order schema-detection and sorting logic to use on your data.{' '}
+        A <EuiCode>EuiDataGridInMemory</EuiCode> object to define the level of
+        high order schema-detection and sorting logic to use on your data.{' '}
         <strong>Try to set it when possible</strong>. If omitted, disables all
         enhancements and assumes content is flat strings.
       </span>
@@ -148,8 +148,9 @@ const gridConcepts = [
     title: 'columnVisibility',
     description: (
       <span>
-        An array of <EuiCode>DataGridColumnVisibility</EuiCode> objects. Defines
-        which columns are visible in the grid and the order they are displayed.
+        An array of <EuiCode>EuiDataGridColumnVisibility</EuiCode> objects.
+        Defines which columns are visible in the grid and the order they are
+        displayed.
       </span>
     ),
   },
@@ -157,7 +158,7 @@ const gridConcepts = [
     title: 'schemaDetectors',
     description: (
       <span>
-        An array of custom <EuiCode>DataGridSchemaDetector</EuiCode> objects.
+        An array of custom <EuiCode>EuiDataGridSchemaDetector</EuiCode> objects.
         You can inject custom schemas to the grid to define the classnames
         applied.
       </span>
@@ -167,8 +168,8 @@ const gridConcepts = [
     title: 'expansionFormatters',
     description: (
       <span>
-        An object mapping <EuiCode>DataGridColumn</EuiCode> schemas to a custom
-        expansion formatting component. This dictates the content of the
+        An object mapping <EuiCode>EuiDataGridColumn</EuiCode> schemas to a
+        custom expansion formatting component. This dictates the content of the
         popovers when you click into each cell.
       </span>
     ),
@@ -183,7 +184,7 @@ const gridConcepts = [
     description: (
       <span>
         Defines the look of the grid. Accepts a partial{' '}
-        <EuiCode>DataGridStyle</EuiCode> object. Settings provided may be
+        <EuiCode>EuiDataGridStyle</EuiCode> object. Settings provided may be
         overwritten or merged with user defined preferences if{' '}
         <EuiCode>toolbarDisplay.showStyleSelector</EuiCode>
         is set to true (which is the default).
@@ -208,7 +209,7 @@ const gridConcepts = [
         A function called to render a cell&apos;s value. Behind the scenes it is
         treated as a React component allowing hooks, context, and other React
         concepts to be used. The function receives a{' '}
-        <EuiCode>CellValueElement</EuiCode> as its only argument.
+        <EuiCode>EuiDataGridCellValueElement</EuiCode> as its only argument.
       </span>
     ),
   },
@@ -216,7 +217,7 @@ const gridConcepts = [
     title: 'pagination',
     description: (
       <span>
-        A <EuiCode>DataGridPagination</EuiCode> object. Omit to disable
+        A <EuiCode>EuiDataGridPagination</EuiCode> object. Omit to disable
         pagination completely.
       </span>
     ),
@@ -225,7 +226,7 @@ const gridConcepts = [
     title: 'sorting',
     description: (
       <span>
-        A <EuiCode>DataGridSorting</EuiCode> object that provides the sorted
+        A <EuiCode>EuiDataGridSorting</EuiCode> object that provides the sorted
         columns along with their direction. Omit to disable, but you&apos;ll
         likely want to also turn off the user sorting controls through the
         toolbarDisplay prop.
@@ -301,7 +302,7 @@ export const DataGridExample = {
         EuiDataGridInMemory: DataGridInMemory,
         EuiDataGridPagination: DataGridPagination,
         EuiDataGridSorting: DataGridSorting,
-        EuiCellValueElement: CellValueElement,
+        EuiDataGridCellValueElement: DataGridCellValueElement,
         EuiDataGridSchemaDetector: DataGridSchemaDetector,
         EuiDataGridStyle: DataGridStyle,
         EuiDataGridToolbarDisplayOptions: DataGridToolbarDisplayOptions,
