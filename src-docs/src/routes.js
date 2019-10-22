@@ -343,7 +343,6 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
-      TableExample,
       TextExample,
       TitleExample,
       ToastExample,

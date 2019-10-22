@@ -422,6 +422,7 @@ export class GuideSection extends Component {
       <div className="guideSection" id={this.props.id}>
         {chrome}
         {this.renderContent()}
+        {this.props.extraContent}
       </div>
     );
   }

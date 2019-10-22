@@ -37,16 +37,15 @@ const gridSnippet = `
     // Required. There are 200 total records
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below
-		// The second column B won't allow clicking in to see the content in a popup
+    // The second column B won't allow clicking in to see the content in a popup
     columns={[{ id: 'A' }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
-    // Optional. Hide the second column B
+    // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
-    // Optional. Customize the content inside the cell. Let's output the row and column position.
-    // This same method is used to change the background color for cells on the demo above.
-    // Often used in combo with useEffect() to need to dynamically change the render
+    // Optional. Customize the content inside the cell. The current example outputs the row and column position.
+    // Often used in combination with useEffect() to need to dynamically change the render
     renderCellValue={({ rowIndex, columnId }) =>
      \`\${rowIndex}, \${columnId}\`
     }
@@ -63,8 +62,14 @@ const gridSnippet = `
       columns: [{ id: 'C', direction: 'asc' }],
       onSort: () => {},
     }}
-    // Optional. Allows you to configure what features the toolbar allows
-    toolbarDisplay={{ showColumnSelector: false }}
+    // Optional. Allows you to configure what features the toolbar shows.
+    // The prop also accepts a boolean if you want to toggle the entire toolbar on/off
+    toolbarDisplay={{
+      showColumnSelector: false
+      showStyleSelector: false
+      showSortSelector: false
+      showFullScreenSelector: false
+    }}
     // Optional. Change the initial style of the grid.
     gridStyle={{
       border: 'all',
@@ -74,8 +79,8 @@ const gridSnippet = `
       rowHover: 'highlight',
       header: 'shade',
     }}
-    // Optional. Provide an additional schema called Franchise
-    // This schema essentially acts like a boolean, looking for Star Wars and Star Trek references
+    // Optional. Provide an additional schemas to use in the grid
+    // This schema 'francise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column
     schemaDetectors={[
       {
         type: 'franchise',
@@ -100,7 +105,7 @@ const gridSnippet = `
         sortTextDesc: 'Star Trek-Star Wars',
         // EuiIcon to signify this schema
         icon: 'star',
-        // Color for the above icon
+        // The color to use for the icon
         color: '#000000',
       },
     ]}
@@ -154,7 +159,7 @@ const gridConcepts = [
       <span>
         An array of custom <EuiCode>DataGridSchemaDetector</EuiCode> objects.
         You can inject custom schemas to the grid to define the classnames
-        applied
+        applied.
       </span>
     ),
   },
@@ -177,10 +182,11 @@ const gridConcepts = [
     title: 'gridStyle',
     description: (
       <span>
-        Defines the look and feel for the grid. Accepts a partial{' '}
+        Defines the look of the grid. Accepts a partial{' '}
         <EuiCode>DataGridStyle</EuiCode> object. Settings provided may be
-        overwritten or merged with user defined preferences if toolbarDisplay
-        density controls are available.
+        overwritten or merged with user defined preferences if{' '}
+        <EuiCode>toolbarDisplay.showStyleSelector</EuiCode>
+        is set to true (which is the default).
       </span>
     ),
   },
@@ -190,7 +196,7 @@ const gridConcepts = [
       <span>
         Accepts either a boolean or{' '}
         <EuiCode>EuiDataGridTooBarDisplayOptions</EuiCode> object. When used as
-        a boolean, defines the display of the toolbar entire. WHen passed an
+        a boolean, defines the visibility of entire toolbar. WHen passed an
         object allows you to turn off individual controls within the toolbar.
       </span>
     ),
@@ -250,28 +256,26 @@ export const DataGridExample = {
             <Link to="/tabular-content/tables/">EUI tables</Link> when your
             dataset is unknown or summary in nature. It is similar to MS Excel
             or Google Sheets, though EuiDataGrid&apos;s strengths lie in
-            rendering rather than creating content. Interaction should be added
-            to its built in expanders, rather than to the cell content
-            themselves.
+            rendering rather than creating content.{' '}
           </p>
           <h3>Core concepts</h3>
           <ul>
             <li>
-              The grid has levels of{' '}
+              The grid allows you to optionally define an{' '}
               <Link to="/tabular-content/data-grid-in-memory-settings/">
                 in memory
               </Link>{' '}
-              settings. The higher levels open up more features, but require you
-              to utilize callbacks for sorting and pagination as those features
-              are enabled.
+              level to have the grid automatically handle updating your columns.
+              Depending upon the level choosen you may need to manage the
+              content order separate from the grid.
             </li>
             <li>
               <Link to="/tabular-content/data-grid-schemas-and-formatters/">
                 Schemas
               </Link>{' '}
               allow you to tailor the render and sort methods for each column.
-              The component ships with some automatic schema detection and
-              types, but you can also pass in custom ones for more power.
+              The component ships with a few automatic schema detection and
+              types, but you can also pass in custom ones.
             </li>
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
@@ -292,19 +296,23 @@ export const DataGridExample = {
       components: { DataGrid },
       props: {
         EuiDataGrid,
-        DataGridColumn,
-        DataGridPagination,
-        DataGridSorting,
-        DataGridInMemory,
-        DataGridStyle,
-        CellValueElement,
-        DataGridSchemaDetector,
-        DataGridToolbarDisplayOptions,
-        DataGridColumnVisibility,
+        EuiDataGridColumn: DataGridColumn,
+        EuiDataGridColumnVisibility: DataGridColumnVisibility,
+        EuiDataGridInMemory: DataGridInMemory,
+        EuiDataGridPagination: DataGridPagination,
+        EuiDataGridSorting: DataGridSorting,
+        EuiCellValueElement: CellValueElement,
+        EuiDataGridSchemaDetector: DataGridSchemaDetector,
+        EuiDataGridStyle: DataGridStyle,
+        EuiDataGridToolbarDisplayOptions: DataGridToolbarDisplayOptions,
       },
       demo: (
         <Fragment>
           <DataGrid />
+        </Fragment>
+      ),
+      extraContent: (
+        <Fragment>
           <EuiSpacer size="xxl" />
           <EuiText>
             <h2>Snippet with everything on</h2>
