@@ -87,8 +87,6 @@
     align-items: flex-end;
   }
 
-
-  &.euiCard--hasBottomGraphic,
   &.euiCard--isSelectable {
     position: relative;
     padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;

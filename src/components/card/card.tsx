@@ -96,12 +96,6 @@ type EuiCardProps = CommonProps & {
    */
   selectable?: EuiCardSelectProps;
 
-  /**
-   * Add a decorative bottom graphic to the card.
-   * This should be used sparingly, consult the Kibana Design team before use.
-   */
-  bottomGraphic?: ReactNode;
-
   isClickable?: boolean;
 
   isDisabled?: boolean;
@@ -127,7 +121,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   betaBadgeTooltipContent,
   betaBadgeTitle,
   layout = 'vertical',
-  bottomGraphic,
   selectable,
   ...rest
 }) => {
@@ -155,7 +148,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasChildren': children,
-      'euiCard--hasBottomGraphic': bottomGraphic,
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
     },
@@ -222,21 +214,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     );
   }
 
-  let optionalBottomGraphic;
-  if (bottomGraphic) {
-    optionalBottomGraphic = (
-      <span className="euiCard__graphic">{bottomGraphic}</span>
-    );
-  }
-
   let optionalSelectButton;
   if (selectable) {
-    if (bottomGraphic) {
-      console.warn(
-        'EuiCard cannot support both `bottomGraphic` and `selectable`. It will ignore the bottomGraphic.'
-      );
-    }
-
     optionalSelectButton = (
       <EuiCardSelect
         aria-describedby={`${ariaId}Title ${ariaId}Description`}
@@ -278,7 +257,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         <span className="euiCard__footer">{footer}</span>
       )}
 
-      {optionalSelectButton || optionalBottomGraphic}
+      {optionalSelectButton}
     </OuterElement>
   );
 };
