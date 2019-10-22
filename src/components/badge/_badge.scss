@@ -1,3 +1,5 @@
+@import '../button/variables';
+
 /**
  * 1. Accounts for the border
  */
@@ -18,6 +20,13 @@
   // The badge will only ever be as wide as its content
   // So, make the text left aligned to ensure all badges line up the same
   text-align: left;
+
+  &.euiBadge-isDisabled {
+    // sass-lint:disable-block no-important
+    // Using !important to override inline styles
+    background-color: $euiButtonColorDisabled !important;
+    color: $euiColorEmptyShade !important;
+  }
 
   &:focus-within {
     @include euiFocusRing('small');
@@ -40,9 +49,15 @@
     font-weight: inherit;
     line-height: inherit;
 
-    &:hover,
-    &:focus {
-      text-decoration: underline;
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -55,6 +70,10 @@
       background-color: transparentize($euiColorGhost, .2);
       color: $euiColorInk;
       border-radius: 2px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
     }
 
     .euiBadge__icon {
@@ -86,9 +105,15 @@
 }
 
 .euiBadge-isClickable {
-  &:hover,
-  &:focus {
-    text-decoration: underline;
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &.euiBadge-isDisabled {
+    cursor: not-allowed;
   }
 
   &:focus {

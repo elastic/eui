@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiBadge is disabled 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiBadge euiBadge-isDisabled euiBadge--iconLeft euiBadge--default testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
 exports[`EuiBadge is rendered 1`] = `
 <span
   aria-label="aria-label"

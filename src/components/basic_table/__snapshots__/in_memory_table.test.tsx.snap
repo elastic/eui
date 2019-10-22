@@ -154,6 +154,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       data-test-subj="tableHeaderCell_name_0"
                       role="columnheader"
                       scope="col"
+                      style={
+                        Object {
+                          "width": undefined,
+                        }
+                      }
                     >
                       <div
                         className="euiTableCellContent"
@@ -190,6 +195,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     >
                       <td
                         className="euiTableRowCell"
+                        style={
+                          Object {
+                            "width": undefined,
+                          }
+                        }
                       >
                         <div
                           className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
@@ -228,6 +238,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     >
                       <td
                         className="euiTableRowCell"
+                        style={
+                          Object {
+                            "width": undefined,
+                          }
+                        }
                       >
                         <div
                           className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"

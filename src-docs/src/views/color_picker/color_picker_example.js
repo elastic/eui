@@ -53,6 +53,16 @@ const colorStopsSnippetFixed = `<EuiColorStops
 />
 `;
 
+import { ColorStopsRange } from './color_stops_range';
+const colorStopsRangeSource = require('!!raw-loader!./color_stops');
+const colorStopsRangeHtml = renderToHtml(ColorStopsRange);
+const colorPickerRangeSnippet = `<EuiColorStops
+  label="Free-range color stops"
+  onChange={handleChange}
+  colorStops={colorStops}
+/>
+`;
+
 import { CustomSwatches } from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
@@ -289,6 +299,35 @@ export const ColorPickerExample = {
         colorStopsSnippetFixed,
       ],
       demo: <ColorStops />,
+    },
+    {
+      title: 'Free-range color stops',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Typical use of <EuiCode>EuiColorStops</EuiCode> (as above) will
+              have defined `min` and `max` range values. It is also possible to
+              leave the range open-ended for cases where the target data set is
+              unknown or maleable. In this case, a user{"'"}s added values will
+              define `min` and `max` and users will have more freedom over
+              resetting the values on the fly.
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorStopsRangeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorStopsRangeHtml,
+        },
+      ],
+      snippet: colorPickerRangeSnippet,
+      demo: <ColorStopsRange />,
     },
     {
       title: 'Custom color swatches',

@@ -106,9 +106,7 @@ export class EuiSideNav extends Component {
         </button>
 
         {/* Hidden from view in mobile, but toggled from the button above */}
-        <div className="euiSideNav__content" role="menubar">
-          {nav}
-        </div>
+        <div className="euiSideNav__content">{nav}</div>
       </nav>
     );
   }

@@ -17,8 +17,13 @@
     }
   }
 
-  &.euiImage--allowFullScreen {
-    &:focus .euiImage__img {
+  .euiImage__button {
+    cursor: pointer;
+
+    // transition the shadow
+    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+
+    &:focus  {
       outline: 2px solid $euiFocusRingColor;
     }
 
@@ -26,31 +31,21 @@
       visibility: visible;
       fill-opacity: 1;
     }
+  }
 
-    &:hover .euiImage__caption,
-    &:focus .euiImage__caption {
+  &.euiImage--allowFullScreen {
+    &:hover .euiImage__caption {
       text-decoration: underline;
     }
 
-    &:not(.euiImage--hasShadow):hover,
-    &:not(.euiImage--hasShadow):focus {
-      .euiImage__img {
-        @include euiBottomShadowMedium;
-      }
+    &:not(.euiImage--hasShadow) .euiImage__button:hover,
+    &:not(.euiImage--hasShadow) .euiImage__button:focus {
+      @include euiBottomShadowMedium;
     }
 
-    &.euiImage--hasShadow:hover,
-    &.euiImage--hasShadow:focus {
-      .euiImage__img {
-        @include euiBottomShadow;
-      }
-    }
-
-    .euiImage__img {
-      cursor: pointer;
-
-      // transition the shadow
-      transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+    &.euiImage--hasShadow .euiImage__button:hover,
+    &.euiImage--hasShadow .euiImage__button:focus {
+      @include euiBottomShadow;
     }
   }
 
@@ -79,6 +74,7 @@
 // The image itself is full width within the container.
 .euiImage__img {
   width: 100%;
+  vertical-align: middle;
 }
 
 .euiImage__caption {
@@ -103,31 +99,28 @@
   max-width: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
-  .euiImage-isFullScreen__icon {
+  &:hover {
+    .euiImage__button {
+      @include euiBottomShadow;
+    }
+
+    .euiImage__caption {
+      text-decoration: underline;
+    }
+  }
+
+  &__icon {
     position: absolute;
     right: $euiSize;
     top: $euiSize;
   }
 
-  .euiImage-isFullScreen__img {
+  &__img {
     max-height: 80vh;
     max-width: 80vw;
+    vertical-align: middle;
     cursor: pointer;
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
-  }
-
-  &:hover .euiImage-isFullScreen__img {
-    @include euiBottomShadow;
-    cursor: pointer;
-  }
-
-  &:focus .euiImage-isFullScreen__img {
-    outline: 2px solid $euiFocusRingColor;
-  }
-
-  &:hover .euiImage__caption,
-  &:focus-within .euiImage__caption {
-    text-decoration: underline;
   }
 }
 

@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 import { EuiIconType } from '../icon/icon';
-import { ButtonIconColor } from '../button/button_icon/button_icon';
+import { EuiButtonIconColor } from '../button/button_icon/button_icon';
 import { EuiButtonEmptyColor } from '../button/button_empty';
 
 type IconFunction<T> = (item: T) => EuiIconType;
-type ButtonColor = ButtonIconColor | EuiButtonEmptyColor;
+type ButtonColor = EuiButtonIconColor | EuiButtonEmptyColor;
 type ButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
 interface DefaultItemActionBase<T> {
@@ -29,7 +29,7 @@ export interface DefaultItemIconButtonAction<T>
   extends DefaultItemActionBase<T> {
   type: 'icon';
   icon: EuiIconType | IconFunction<T>;
-  color?: ButtonIconColor | ButtonIconColorFunction<T>;
+  color?: EuiButtonIconColor | ButtonIconColorFunction<T>;
 }
 
 export type DefaultItemAction<T> =
