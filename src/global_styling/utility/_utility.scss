@@ -87,10 +87,15 @@
 /**
   * Overflow scrolling
   */
-.euiYScrollWithShadows {
+.eui-yScrollWithShadows {
   @include euiYScrollWithShadows;
 }
 
-.euiXScrollWithShadows {
+.eui-xScrollWithShadows {
   @include euiXScrollWithShadows;
+}
+
+// TODO: 10/22 DEPRECATE in favor of the correctly formatted class .eui-yScrollWithShadows
+.euiYScrollWithShadows {
+  @include euiYScrollWithShadows;
 }

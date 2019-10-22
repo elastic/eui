@@ -113,20 +113,20 @@ export default () => (
         background: wrappingExampleStyle.background,
       }}>
       <EuiText
-        className="euiYScrollWithShadows"
+        className="eui-yScrollWithShadows"
         size="s"
         style={{ padding: wrappingExampleStyle.padding }}>
         <p>
           The vertical utility requires a wrapping element to control the height
           with <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the
-          CSS utility class <EuiCode>.euiYScrollWithShadows</EuiCode>.
+          CSS utility class <EuiCode>.eui-yScrollWithShadows</EuiCode>.
         </p>
         <p>
           <b>Example:</b>
         </p>
         <EuiCodeBlock language="html" isCopyable paddingSize="s">
           {`<BodyContent style={{ height: 200, overflowY: 'hidden' }}>
-  <BodyScroll className="euiYScrollWithShadows" />
+  <BodyScroll className="eui-yScrollWithShadows" />
 </BodyContent>`}
         </EuiCodeBlock>
       </EuiText>
@@ -140,12 +140,12 @@ export default () => (
         padding: 0,
       }}>
       <div
-        className="euiXScrollWithShadows"
+        className="eui-xScrollWithShadows"
         style={{ padding: wrappingExampleStyle.padding }}>
         <EuiText size="s" style={{ width: '150%' }}>
           <p>
             When using the horizontal utility{' '}
-            <EuiCode>.euiXScrollWithShadows</EuiCode>, you may want to add
+            <EuiCode>.eui-xScrollWithShadows</EuiCode>, you may want to add
             padding to the sides of your content so the mask doesn&apos;t
             overlay it.
           </p>
