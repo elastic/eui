@@ -97,7 +97,7 @@ export default () => {
     [setSortingColumns]
   );
 
-  const [inMemoryLevel, setInMemoryLevel] = useState('');
+  const [inMemoryLevel, setInMemoryLevel] = useState('off');
 
   // Sort data
   let data = useMemo(() => {
@@ -155,7 +155,7 @@ export default () => {
   }, [data, inMemoryLevel]);
 
   const inMemoryProps = {};
-  if (inMemoryLevel !== '') {
+  if (inMemoryLevel !== 'off') {
     inMemoryProps.inMemory = {
       level: inMemoryLevel,
     };
@@ -167,9 +167,9 @@ export default () => {
         compressed={true}
         options={[
           {
-            id: '',
+            id: 'off',
             label: 'undefined (off)',
-            value: '',
+            value: 'off',
           },
           {
             id: 'enhancements',
@@ -189,7 +189,7 @@ export default () => {
         ]}
         idSelected={inMemoryLevel}
         onChange={(id, value) => {
-          setInMemoryLevel(value === '' ? undefined : value);
+          setInMemoryLevel(value);
         }}
       />
       <EuiSpacer />

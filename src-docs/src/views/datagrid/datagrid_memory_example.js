@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiDataGrid, EuiCallOut } from '../../../../src/components';
+import { EuiDataGrid, EuiCallOut, EuiCode } from '../../../../src/components';
 
 import InMemoryDataGrid from './in_memory';
 const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
@@ -41,33 +41,48 @@ export const DataGridMemoryExample = {
             The grid has levels of <strong>in-memory</strong> settings that can
             be set. The higher levels open up more features, but require you to
             utilize callbacks for sorting and pagination as those features are
-            enabled. The following settings are available. When possible, it is
+            enabled. The following values are available. When possible, it is
             advisable to utilize in-memory as deeply as possible to provide a
-            better core experience for the user.
+            better and more consistent core experience for the user.
           </p>
           <ul>
             <li>
               <strong>undefined</strong>: when not in use the grid will not
-              autodetect schemas. Unless you manually provide schemas, sorting
-              will also be heavily limited and likely inaccurate.
+              autodetect schemas. Sorting and pagination are the responsibility
+              of the consuming application.
             </li>
             <li>
               <strong>enhancements</strong>: provides no in-memory operations.
               If set, the grid will try to autodetect schemas only based on the
-              content currently available (usually a single page of pagination)
+              content currently available (the current page of data).
             </li>
             <li>
-              <strong>pagination</strong>: Enhancements are provided as above,
-              but only pagination is performed in memory.
+              <strong>pagination</strong>: schema detection works as above and
+              pagination is performed in-memory. The pagination callbacks are
+              still triggered on user interactions, but the row updates are
+              performed by the grid.
             </li>
             <li>
-              <strong>sorting</strong>: Enhancements are provided as above, and
-              pagination and sorting are both performed in memory.
+              <strong>sorting</strong>: schema detection and pagination are
+              performed as above, and sorting is applied in-memory too. The
+              onSort callback is still called and the application must own the
+              column sort state, but data sorting is done by the grid based on
+              the defined and/or detected schemas.
             </li>
           </ul>
+          <p>
+            When enabled, <strong>in-memory</strong> renders cell data
+            off-screen and uses those values to detect schemas and perform
+            sorting. This detaches the user experience from the raw data; the
+            data grid never has access to the backing data, only what is
+            returned by <EuiCode>renderCellValue</EuiCode>.
+          </p>
           <EuiCallOut size="s" title="Check how the schemas change in the demo">
-            When <EuiCode>inMemory</EuiCode> is not set, schemas are not autodetected. Because no
-            schemas are defined, the sorting doesn&apos;t really work.
+            When <EuiCode>inMemory</EuiCode> is not set, many of the
+            examples&apos; sorting does not work because they don&apos;t have a
+            backend service to call, instead naively applying JavaScript&apos;s
+            default array sort which doesn&apos;t work well with numeric data
+            and doesn&apos;t sort React elements such as the links.
           </EuiCallOut>
         </Fragment>
       ),
