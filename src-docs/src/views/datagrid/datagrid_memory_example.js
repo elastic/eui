@@ -38,7 +38,7 @@ export const DataGridMemoryExample = {
       text: (
         <Fragment>
           <p>
-            The grid has levels of <strong>in memory</strong> settings that can
+            The grid has levels of <strong>in-memory</strong> settings that can
             be set. The higher levels open up more features, but require you to
             utilize callbacks for sorting and pagination as those features are
             enabled. The following settings are available. When possible, it is
