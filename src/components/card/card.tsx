@@ -53,6 +53,11 @@ type EuiCardProps = CommonProps & {
   image?: string;
 
   /**
+   * Content to be rendered between the description and the footer.
+   */
+  children?: ReactNode;
+
+  /**
    * Accepts any combination of elements
    */
   footer?: ReactNode;
@@ -110,6 +115,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   titleElement = 'span',
   icon,
   image,
+  children,
   footer,
   onClick,
   href,
@@ -148,6 +154,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       'euiCard--isClickable': onClick || href || isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
+      'euiCard--hasChildren': children,
       'euiCard--hasBottomGraphic': bottomGraphic,
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
@@ -263,6 +270,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           className="euiCard__description">
           <p>{description}</p>
         </EuiText>
+
+        {children}
       </span>
 
       {layout === 'vertical' && (

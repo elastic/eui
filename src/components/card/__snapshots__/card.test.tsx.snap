@@ -30,6 +30,35 @@ exports[`EuiCard is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiCard props children 1`] = `
+<div
+  class="euiCard euiCard--centerAligned euiCard--hasChildren"
+>
+  <span
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+    Child
+  </span>
+  <span
+    class="euiCard__footer"
+  />
+</div>
+`;
+
 exports[`EuiCard props footer 1`] = `
 <div
   class="euiCard euiCard--centerAligned"

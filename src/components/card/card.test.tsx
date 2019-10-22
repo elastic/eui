@@ -90,6 +90,16 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('children', () => {
+      const component = render(
+        <EuiCard title="Card title" description="Card description">
+          Child
+        </EuiCard>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('textAlign', () => {
       const component = render(
         <EuiCard

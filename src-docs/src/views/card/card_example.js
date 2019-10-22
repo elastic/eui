@@ -32,6 +32,10 @@ import CardSelectable from './card_selectable';
 const cardSelectableSource = require('!!raw-loader!./card_selectable');
 const cardSelectableHtml = renderToHtml(CardSelectable);
 
+import CardChildren from './card_children';
+const cardChildrenSource = require('!!raw-loader!./card_children');
+const cardChildrenHtml = renderToHtml(CardChildren);
+
 export const CardExample = {
   title: 'Card',
   sections: [
@@ -229,6 +233,42 @@ export const CardExample = {
     isDisabled: this.state.cardIsDisabled,
   }}
 />`,
+    },
+    {
+      title: 'Custom children',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardChildrenSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: cardChildrenHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            In the event that you need more than just paragraph text for the
+            description, you can pass anything you need as the{' '}
+            <EuiCode>children</EuiCode> of the component.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiCard },
+      demo: <CardChildren />,
+      snippet: `<EuiCard
+  textAlign="left"
+  title="Lists"
+  description="Lists are cool">
+  <EuiText size="s">
+    <ul>
+      <li>Bullet 1</li>
+      <li>Bullet 2</li>
+      <li>Bullet 3</li>
+    </ul>
+  </EuiText>
+</EuiCard>`,
     },
   ],
 };
