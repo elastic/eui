@@ -22,7 +22,7 @@ import {
 } from './props';
 
 export const DataGridMemoryExample = {
-  title: 'Data grid in memory settings',
+  title: 'Data grid in-memory settings',
   sections: [
     {
       source: [
