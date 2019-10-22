@@ -45,7 +45,6 @@ export default class extends Component {
           size: 8,
         },
         label: 'Iapetus',
-        color: 'primary',
         color: 'warning',
       },
       {
