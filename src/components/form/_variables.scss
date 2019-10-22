@@ -31,3 +31,4 @@ $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8) !default;
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 65%, 40%) !default;
 $euiFormInputGroupBorder: 1px solid shadeOrTint($euiFormInputGroupLabelBackground, 6%, 8%) !default;
+$euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3)) !default;

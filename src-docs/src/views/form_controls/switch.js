@@ -11,9 +11,9 @@ export default class extends Component {
     };
   }
 
-  onChange = e => {
+  onChange = () => {
     this.setState({
-      checked: e.target.checked,
+      checked: !this.state.checked,
     });
   };
 
