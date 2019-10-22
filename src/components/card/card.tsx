@@ -34,12 +34,20 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
 type EuiCardProps = CommonProps & {
+  /**
+   * Card's are required to have at least a title and description
+   */
   title: NonNullable<ReactNode>;
+
   /**
    * Determines the title's heading element. Will force to 'span' if
    * the card is a button.
    */
   titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+
+  /**
+   * Card's are required to have at least a title and description
+   */
   description: NonNullable<ReactNode>;
 
   /**
@@ -69,6 +77,10 @@ type EuiCardProps = CommonProps & {
   href?: string;
   target?: string;
   rel?: string;
+
+  /**
+   * Changes alignment of the title and description
+   */
   textAlign?: CardAlignment;
 
   /**
@@ -96,8 +108,6 @@ type EuiCardProps = CommonProps & {
    */
   selectable?: EuiCardSelectProps;
 
-  isClickable?: boolean;
-
   isDisabled?: boolean;
 };
 
@@ -116,7 +126,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   rel,
   target,
   textAlign = 'center',
-  isClickable,
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
@@ -144,7 +153,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
     {
-      'euiCard--isClickable': onClick || href || isClickable,
+      'euiCard--isClickable': onClick || href,
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasChildren': children,
