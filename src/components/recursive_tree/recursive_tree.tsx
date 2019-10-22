@@ -1,6 +1,7 @@
 import React, { Component, HTMLAttributes, createContext } from 'react';
 import classNames from 'classnames';
 import { CommonProps, Omit } from '../common';
+import { EuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiText } from '../text';
@@ -226,10 +227,13 @@ export class EuiRecursiveTree extends Component<
           className="euiRecursiveTree__wrapper">
           {!this.isNested && (
             <EuiScreenReaderOnly>
-              <p id={instructionsId}>
-                {/* TODO: THIS NEEDS I18N */}
-                You can quickly navigate this list using arrow keys.
-              </p>
+              <EuiI18n
+                token="euiRecursiveTree.listNavigationInstructions"
+                default="You can quickly navigate this list using arrow keys.">
+                {(listNavigationInstructions: string) => (
+                  <p id={instructionsId}>{listNavigationInstructions}</p>
+                )}
+              </EuiI18n>
             </EuiScreenReaderOnly>
           )}
           <ul

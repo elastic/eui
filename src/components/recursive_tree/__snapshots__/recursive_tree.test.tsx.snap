@@ -5,7 +5,6 @@ exports[`EuiRecursiveTree is rendered 1`] = `
   class="euiText euiText--medium euiRecursiveTree__wrapper"
 >
   <p
-    class="euiScreenReaderOnly"
     id="htmlId--instruction"
   >
     You can quickly navigate this list using arrow keys.
