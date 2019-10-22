@@ -37,8 +37,8 @@
       padding: $euiSizeM $euiSize;
     }
 
-    &:focus-within .navDrawerExpandButton-isCollapsed {
-      background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+    .navDrawerExpandButton-isCollapsed .euiListGroupItem__button {
+      max-width: 100%;
     }
   }
 
