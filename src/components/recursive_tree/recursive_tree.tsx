@@ -9,6 +9,12 @@ import { keyCodes, htmlIdGenerator } from '../../services';
 const EuiRecursiveTreeContext = createContext<string>('');
 const treeIdGenerator = htmlIdGenerator('euiRecursiveTree');
 
+function hasAriaLabel(
+  x: HTMLAttributes<HTMLUListElement>
+): x is { 'aria-label': string } {
+  return x.hasOwnProperty('aria-label');
+}
+
 export interface Node {
   /** An array of EuiRecursiveTreeNodes to render as children
    */
@@ -61,10 +67,6 @@ export type CommonTreeProps = CommonProps &
      * that contain children
      */
     showExpansionArrows?: boolean;
-    /**
-     * Used internally to differentiate child trees from the outermost tree
-     */
-    isNested?: boolean;
   };
 
 export type EuiRecursiveTreeProps = Omit<
@@ -78,6 +80,7 @@ export class EuiRecursiveTree extends Component<
   EuiRecursiveTreeState
 > {
   static contextType = EuiRecursiveTreeContext;
+  isNested: boolean = !!this.context;
   state: EuiRecursiveTreeState = {
     openItems: this.props.expandByDefault
       ? this.props.items
@@ -203,7 +206,6 @@ export class EuiRecursiveTree extends Component<
       isCondensed,
       expandByDefault,
       showExpansionArrows,
-      isNested,
       ...rest
     } = this.props;
 
@@ -222,7 +224,7 @@ export class EuiRecursiveTree extends Component<
         <EuiText
           size={isCondensed ? 's' : 'm'}
           className="euiRecursiveTree__wrapper">
-          {!isNested && (
+          {!this.isNested && (
             <EuiScreenReaderOnly>
               <p id={instructionsId}>
                 {/* TODO: THIS NEEDS I18N */}
@@ -233,23 +235,19 @@ export class EuiRecursiveTree extends Component<
           <ul
             className={classes}
             id={this.state.treeID}
-            aria-describedby={!isNested ? instructionsId : undefined}
+            aria-describedby={!this.isNested ? instructionsId : undefined}
             {...rest}>
             {items.map((node, index) => {
               const buttonId = `${this.state.treeID}--${index}--node`;
-              const label = {};
-              // @ts-ignore
-              const ariaLabel = this.props['aria-label'];
-              // @ts-ignore
-              const ariaLablledBy = this.props['aria-labelledby'];
-
-              if (typeof ariaLabel !== 'undefined') {
-                // @ts-ignore
-                label['aria-label'] = `${node.label} child of ${ariaLabel}`; // TODO: THIS NEEDS I18N
-              } else if (typeof ariaLablledBy !== 'undefined') {
-                // @ts-ignore
-                label['aria-labelledby'] = `${buttonId} ${ariaLablledBy}`;
-              }
+              const label = hasAriaLabel(rest)
+                ? {
+                    'aria-label': `${node.label} child of ${
+                      rest['aria-label']
+                    }`,
+                  }
+                : {
+                    'aria-labelledby': `${buttonId} ${rest['aria-labelledby']}`,
+                  };
 
               return (
                 <React.Fragment key={node.label + index}>
@@ -312,13 +310,11 @@ export class EuiRecursiveTree extends Component<
                         this.onChildrenKeydown(event, index)
                       }>
                       {node.children && this.isNodeOpen(node) ? (
-                        // @ts-ignore
                         <EuiRecursiveTree
                           items={node.children}
                           isCondensed={isCondensed}
                           showExpansionArrows={showExpansionArrows}
                           expandByDefault={this.state.expandChildNodes}
-                          isNested={true}
                           {...label}
                         />
                       ) : null}
