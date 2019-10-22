@@ -66,7 +66,7 @@ export const DataGridMemoryExample = {
             </li>
           </ul>
           <EuiCallOut size="s" title="Check how the schemas change in the demo">
-            When inMemory is not set, schemas are not autodetected. Because no
+            When <EuiCode>inMemory</EuiCode> is not set, schemas are not autodetected. Because no
             schemas are defined, the sorting doesn&apos;t really work.
           </EuiCallOut>
         </Fragment>
