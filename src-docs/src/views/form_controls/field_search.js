@@ -21,6 +21,7 @@ export default class extends Component {
   render() {
     return (
       /* DisplayToggles wrapper for Docs only */
+      <div>
       <DisplayToggles>
         <EuiFieldSearch
           placeholder="Search this"
@@ -29,6 +30,14 @@ export default class extends Component {
           aria-label="Use aria labels when no actual label is in use"
         />
       </DisplayToggles>
+
+      <EuiFieldSearch
+       placeholder="Clearable"
+       value={this.state.filterText}
+       onChange={this.onChange}
+       clearable={true}
+     />
+      </div>
     );
   }
 }
