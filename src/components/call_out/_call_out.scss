@@ -47,20 +47,6 @@
     margin-left: $euiSizeS; /* 3 */
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    // sass-lint:disable-block no-important
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    line-height: 1.5rem !important;
-    font-weight: normal !important;
-    letter-spacing: 0 !important;
-  }
-
   // smaller font size for headers in small callout
   .euiCallOut--small & {
     @include euiCallOutTitle('s');

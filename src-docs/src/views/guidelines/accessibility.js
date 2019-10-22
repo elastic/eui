@@ -11,6 +11,7 @@ import {
   EuiCodeBlock,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiTitle,
 } from '../../../../src/components';
 
 export default {
@@ -37,40 +38,25 @@ export default {
           address more complicated scenarios, and empathy to fill in the gaps.
         </p>
       </EuiText>
+
+      <EuiSpacer size="xl" />
+      <EuiTitle size="xs">
+        <p>For a technical intro to accessibility and how EUI tackles it</p>
+      </EuiTitle>
+
       <EuiSpacer size="l" />
-      <EuiText className="guideSection__text">
-        <EuiFlexGroup>
-          <EuiFlexItem>
-            <p style={{ margin: '0' }}>
-              For an intro to thinking about accessibility, and how to plan for
-              it:
-            </p>
-            <iframe
-              title="Intro to Accessibility"
-              width="560"
-              height="315"
-              src="https://www.youtube-nocookie.com/embed/mKusLGyTXHs"
-              frameBorder="0"
-              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <p style={{ margin: '0' }}>
-              For a technical intro to accessibility and how EUI tackles it:
-            </p>
-            <iframe
-              title="Building and Testing for Accessibility with EUI"
-              width="560"
-              height="315"
-              src="https://www.youtube-nocookie.com/embed/iDXoEe8NkrE"
-              frameBorder="0"
-              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiText>
+
+      <div className="guideSection__video">
+        <iframe
+          title="Building and Testing for Accessibility with EUI"
+          width="560"
+          height="315"
+          src="https://www.youtube-nocookie.com/embed/iDXoEe8NkrE"
+          frameBorder="0"
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
       <EuiSpacer size="xl" />
     </>
   ),
@@ -93,59 +79,68 @@ export default {
             </p>
             <ul aria-label="Attributes of a good heading hierarchy">
               <li>
-                One <EuiCode language="html">{'<h1>'}</EuiCode> on a page
+                Do use only one <EuiCode language="html">{'<h1>'}</EuiCode> on
+                each page
               </li>
-              <li>No skipped levels in headings</li>
-              <li>No duplicate headings</li>
+              <li>Don&apos;t skip levels in headings</li>
+              <li>Don&apos;t duplicate content in headings</li>
             </ul>
           </EuiText>
           <EuiSpacer size="l" />
           <EuiText className="guideSection__text">
             <h4>Headings example</h4>
-            <GuideRule style={{ margin: '0' }}>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="do"
-                text="Do. This is the ideal.">
-                <EuiCodeBlock language="html">
-                  {`<h1>Discover your data</h1>
-<h2>Drill into site metrics</h2>
+          </EuiText>
+          <GuideRule>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="do"
+              text="Do. Descend through headings as you work your way through the document.">
+              <EuiCodeBlock language="html">
+                {`<h1>Discover your data</h1>
+<h2>Some content</h2>
 <h3>An important site metric</h3>
 <h3>Another important site metric</h3>`}
-                </EuiCodeBlock>
-              </GuideRuleExample>
+              </EuiCodeBlock>
+            </GuideRuleExample>
 
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="dont"
-                text="Don’t. This heading hierarchy is confusing.">
-                <EuiCodeBlock language="html">
-                  {`<EuiScreenReaderOnly><h1>Discover your data</h1></EuiScreenReaderOnly>
-<h2>Discover your data</h2>
-<!-- Missing h3 header -->
-<h4>An important site metric</h4>`}
-                </EuiCodeBlock>
-              </GuideRuleExample>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="dont"
+              text="Don’t. This heading hierarchy is confusing. Don't wrap EuiText around anything more that plain HTML text.">
+              <EuiCodeBlock language="html">
+                {`<EuiText>
+  <EuiScreenReaderOnly>
+    <h1>Discover your data</h1>
+  </EuiScreenReaderOnly>
+  <p>Some content</p>
+  <h2>Discover your data</h2>
+  <!-- Missing h3 header -->
+  <h4 className="myLargeTitle">
+    An important site metric
+  </h4>
+</EuiText>`}
+              </EuiCodeBlock>
+            </GuideRuleExample>
 
-              <GuideRuleExample
-                style={{ minWidth: 500 }}
-                panel={false}
-                frame="frame"
-                type="do"
-                text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can be used. And this serves as a reminder that visual design and semantic meaning are not always identical.">
-                <EuiCodeBlock language="html">
-                  {`<h1 class="h2-styles">Discover your data</h1>
+            <GuideRuleExample
+              style={{ minWidth: 500 }}
+              panel={false}
+              frame="frame"
+              type="do"
+              text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context. Remember that EuiTitle gives you a way to separate your presentation from your semantic markup.">
+              <EuiCodeBlock language="html">
+                {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
 <EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
-<h3 class="h4-styles">An important site metric</h3>
-<h3 class="h4-styles">Another important site metric</h3>`}
-                </EuiCodeBlock>
-              </GuideRuleExample>
-            </GuideRule>
-            {/* This spacer is hacks because code blocks can't have multi-line captions */}
-            <EuiSpacer size="xl" />
-          </EuiText>
+<EuiTitle size="l"><h3>An important site metric</h3></EuiTitle>
+<EuiTitle size="m"><h3>Another important site metric</h3></EuiTitle>`}
+              </EuiCodeBlock>
+            </GuideRuleExample>
+          </GuideRule>
+
+          <EuiSpacer size="xl" />
+
           <EuiText className="guideSection__text" grow={false}>
             <p>
               Landmarks are another way for screen readers to navigate pages. A
@@ -170,40 +165,45 @@ export default {
           <EuiSpacer size="xl" />
           <EuiText className="guideSection__text">
             <h4>Landmarks example</h4>
-            <GuideRule style={{ margin: '0' }}>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="do"
-                text="Do. Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements.">
-                <EuiCodeBlock language="html">{`<body>
-  <header><!-- content --></header>
+          </EuiText>
+          <GuideRule>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="do"
+              text="Do. Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements.">
+              <EuiCodeBlock language="html">{`<body>
+  <header className="appHeader">
+    <!-- content -->
+  </header>
   <main><!-- content --></main>
-  <footer><!-- content --></footer>
+  <footer className="appFooter">
+    <!-- content -->
+  </footer>
 </body>`}</EuiCodeBlock>
-              </GuideRuleExample>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="dont"
-                text="Don’t. Classes provide no semantic meaning and not all elements provide semantic meaning either.">
-                <EuiCodeBlock language="html">{`<body>
-  <div class="header"></div>
+            </GuideRuleExample>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="dont"
+              text="Don’t. Classes provide no semantic meaning and not all elements provide semantic meaning either.">
+              <EuiCodeBlock language="html">{`<body>
+  <div className="appHeader"></div>
   <discover-app></discover-app>
-  <ul class="footer-links"></ul>
+  <ul className="appFooter"></ul>
 </body>`}</EuiCodeBlock>
-              </GuideRuleExample>
-            </GuideRule>
-            {/* This spacer is hacks because code blocks can't have multi-line captions */}
-            <EuiSpacer size="xl" />
-            <h4>Headings and named landmarks example</h4>
-            <GuideRule style={{ margin: '0' }}>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="do"
-                text="Do. Use landmarks and headings together to build complex pages.">
-                <EuiCodeBlock language="html">{`<header aria-labelledby="page-heading">
+            </GuideRuleExample>
+          </GuideRule>
+          {/* This spacer is hacks because code blocks can't have multi-line captions */}
+          <EuiSpacer size="xl" />
+          <h4>Headings and named landmarks example</h4>
+          <GuideRule>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="do"
+              text="Do. Use landmarks and headings together to build complex pages.">
+              <EuiCodeBlock language="html">{`<header aria-labelledby="page-heading">
   <h1 id="page-heading">Discover your data</h1>
   <form role="search" aria-label="Site search"> <!-- input + label go in here --> </form>
 <header>
@@ -213,9 +213,8 @@ export default {
     <!-- input + label go in here -->
   </form>
 </main>`}</EuiCodeBlock>
-              </GuideRuleExample>
-            </GuideRule>
-          </EuiText>
+            </GuideRuleExample>
+          </GuideRule>
           <EuiSpacer size="l" />
           <EuiText className="guideSection__text" grow={false}>
             <h4 id="further-reading">Further reading</h4>
@@ -253,68 +252,70 @@ export default {
               the page does. The best page titles put the unique content first
               (effectively, they’re reverse-order breadcrumbs).
             </p>
-            <EuiCallOut title="Use this format" iconType="check" level={4}>
-              <p>{'<Unique page title> - <Site title>'}</p>
-            </EuiCallOut>
-            <GuideRule>
-              <EuiFlexGroup direction="column">
-                <EuiFlexItem>
-                  <GuideRuleExample
-                    panel={false}
-                    frame="frame"
-                    type="do"
-                    text="Do. These are good example of page titles.">
-                    <EuiFlexGroup direction="column">
-                      <EuiFlexItem>
-                        <p style={{ margin: '0', textAlign: 'center' }}>
-                          Discover - Kibana
-                        </p>
-                      </EuiFlexItem>
-                      <EuiFlexItem>
-                        <p style={{ margin: '0', textAlign: 'center' }}>
-                          Rollup Jobs - Management - Kibana
-                        </p>
-                      </EuiFlexItem>
-                    </EuiFlexGroup>
-                  </GuideRuleExample>
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <GuideRuleExample
-                    panel={false}
-                    frame="frame"
-                    type="dont"
-                    text="Don’t. Though unique, this does not provide enough context; use: Watchers - Management - Kibana.">
-                    <p style={{ margin: '0' }}>Watchers</p>
-                  </GuideRuleExample>
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <GuideRuleExample
-                    panel={false}
-                    frame="frame"
-                    type="dont"
-                    text="Don’t. Although it provides all the context, putting the most important bit at the end is hard to find; use: Spaces - Management - Kibana.">
-                    <p style={{ margin: '0' }}>Elastic Kibana - Spaces</p>
-                  </GuideRuleExample>
-                  {/* This spacer is hacks because code blocks can't have multi-line captions */}
-                  <EuiSpacer size="xl" />
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <GuideRuleExample
-                    panel={false}
-                    frame="frame"
-                    type="dont"
-                    text="Don’t. Although this provides all the context and in a good order, a title is not the place for any extra words; use: Reporting - Management - Kibana.">
-                    <p style={{ margin: '0' }}>
-                      This is the Reporting page of the Management section of
-                      Kibana.
-                    </p>
-                  </GuideRuleExample>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </GuideRule>
-            {/* This spacer is hacks because code blocks can't have multi-line captions */}
-            <EuiSpacer size="xl" />
+          </EuiText>
+          <EuiCallOut title="Use this format" iconType="check" level={4}>
+            <p>{'<Unique page title> - <Site title>'}</p>
+          </EuiCallOut>
+          <GuideRule>
+            <EuiFlexGroup direction="column">
+              <EuiFlexItem>
+                <GuideRuleExample
+                  panel={false}
+                  frame="frame"
+                  type="do"
+                  text="Do. These are good example of page titles.">
+                  <EuiFlexGroup direction="column">
+                    <EuiFlexItem>
+                      <p style={{ margin: '0', textAlign: 'center' }}>
+                        Discover - Kibana
+                      </p>
+                    </EuiFlexItem>
+                    <EuiFlexItem>
+                      <p style={{ margin: '0', textAlign: 'center' }}>
+                        Rollup Jobs - Management - Kibana
+                      </p>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+                </GuideRuleExample>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <GuideRuleExample
+                  panel={false}
+                  frame="frame"
+                  type="dont"
+                  text="Don’t. Though unique, this does not provide enough context; use: Watchers - Management - Kibana.">
+                  <p style={{ margin: '0' }}>Watchers</p>
+                </GuideRuleExample>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <GuideRuleExample
+                  panel={false}
+                  frame="frame"
+                  type="dont"
+                  text="Don’t. Although it provides all the context, putting the most important bit at the end is hard to find; use: Spaces - Management - Kibana.">
+                  <p style={{ margin: '0' }}>Elastic Kibana - Spaces</p>
+                </GuideRuleExample>
+                {/* This spacer is hacks because code blocks can't have multi-line captions */}
+                <EuiSpacer size="xl" />
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <GuideRuleExample
+                  panel={false}
+                  frame="frame"
+                  type="dont"
+                  text="Don’t. Although this provides all the context and in a good order, a title is not the place for any extra words; use: Reporting - Management - Kibana.">
+                  <p style={{ margin: '0' }}>
+                    This is the Reporting page of the Management section of
+                    Kibana.
+                  </p>
+                </GuideRuleExample>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </GuideRule>
+          {/* This spacer is hacks because code blocks can't have multi-line captions */}
+          <EuiSpacer size="xl" />
 
+          <EuiText className="guideSection__text" grow={false}>
             <h4>Further reading</h4>
             <ul aria-labelledby="titles further-reading">
               <li>
