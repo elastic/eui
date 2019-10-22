@@ -254,10 +254,11 @@ export const DataGridExample = {
           <p>
             <EuiCode>EuiDataGrid</EuiCode> is for displaying large amounts of
             tabular data. It is a better choice over{' '}
-            <Link to="/tabular-content/tables/">EUI tables</Link> when your
-            dataset is unknown or summary in nature. It is similar to MS Excel
-            or Google Sheets, though EuiDataGrid&apos;s strengths lie in
-            rendering rather than creating content.{' '}
+            <Link to="/tabular-content/tables/">EUI tables</Link> when there are
+            many columns, the data in those columns is fairly uniform, and when
+            schemas and sorting are important for comparison. It is similar to
+            MS Excel or Google Sheets, though EuiDataGrid&apos;s strengths lie
+            in rendering rather than creating content.{' '}
           </p>
           <h3>Core concepts</h3>
           <ul>
