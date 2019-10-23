@@ -324,10 +324,11 @@ export const DataGridExample = {
         <Fragment>
           <EuiSpacer size="xxl" />
           <EuiText>
-            <h2>Snippet with everything on</h2>
+            <h2>Snippet with every feature in use</h2>
             <p>
-              Here is a very simple data grid example meant to give you an idea
-              of the data structure and callbacks you&apos;ll need to provide.
+              Here is a complicated data grid example meant to give you an idea
+              of the data structure and callbacks you&apos;ll need to provide if
+              you were utilizing all the features.
             </p>
           </EuiText>
           <EuiSpacer />
