@@ -331,21 +331,21 @@ function convertLiteralToOneOf(types, literalNode) {
 /**
  * This function resolves discriminated union types (aka tagged union, algebraic data type).
  */
-function resolveDiscriminatedUnionType(node, optional, state) {
-  const types = state.get('types');
-
-  if (node.type === 'TSLiteralType' && node.literal.type === 'StringLiteral') {
-    return types.callExpression(
-      types.memberExpression(
-        types.identifier('PropTypes'),
-        types.identifier('oneOf')
-      ),
-      [types.arrayExpression([types.stringLiteral(node.literal.value)])]
-    );
-  } else {
-    return getPropTypesForNode(node, optional, state);
-  }
-}
+// function resolveDiscriminatedUnionType(node, optional, state) {
+//   const types = state.get('types');
+//
+//   if (node.type === 'TSLiteralType' && node.literal.type === 'StringLiteral') {
+//     return types.callExpression(
+//       types.memberExpression(
+//         types.identifier('PropTypes'),
+//         types.identifier('oneOf')
+//       ),
+//       [types.arrayExpression([types.stringLiteral(node.literal.value)])]
+//     );
+//   } else {
+//     return getPropTypesForNode(node, optional, state);
+//   }
+// }
 
 /**
  * Heavy lifter to generate the proptype AST for a node. Initially called by `processComponentDeclaration`,
@@ -372,11 +372,12 @@ function getPropTypesForNode(node, optional, state) {
     // Array<Foo>
     //       ^^^ Foo
     case 'TSTypeAnnotation':
-      propType = resolveDiscriminatedUnionType(
-        node.typeAnnotation,
-        true,
-        state
-      );
+      // propType = resolveDiscriminatedUnionType(
+      //   node.typeAnnotation,
+      //   true,
+      //   state
+      // );
+      propType = getPropTypesForNode(node.typeAnnotation, true, state);
       break;
 
     // translates intersections (Foo & Bar & Baz) to a shape with the types' members (Foo, Bar, Baz) merged together

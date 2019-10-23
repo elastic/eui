@@ -51,7 +51,6 @@ export const ExpandedItemActions = <T extends {}>({
               index={index}
               action={action as CustomAction<T>}
               enabled={enabled}
-              itemId={itemId}
               item={item}
             />
           );
@@ -60,10 +59,8 @@ export const ExpandedItemActions = <T extends {}>({
             <DefaultItemAction
               key={key}
               className={classes}
-              index={index}
               action={action as DefaultAction<T>}
               enabled={enabled}
-              itemId={itemId}
               item={item}
             />
           );

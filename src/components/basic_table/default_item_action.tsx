@@ -6,15 +6,12 @@ import {
   DefaultItemAction as Action,
   DefaultItemIconButtonAction as IconButtonAction,
 } from './action_types';
-import { ItemId } from './table_types';
 
 export interface DefaultItemActionProps<T> {
   action: Action<T>;
   enabled: boolean;
   item: T;
-  itemId?: ItemId<T>;
   className?: string;
-  index?: number;
 }
 
 // In order to use generics with an arrow function inside a .tsx file, it's necessary to use
