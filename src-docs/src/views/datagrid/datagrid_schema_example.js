@@ -17,7 +17,7 @@ import {
   DataGridStyle,
   DataGridCellValueElement,
   DataGridSchemaDetector,
-  DataGridToolbarDisplayOptions,
+  DataGridToolbarVisibilityOptions,
   DataGridColumnVisibility,
 } from './props';
 
@@ -93,7 +93,7 @@ export const DataGridSchemaExample = {
         EuiDataGridCellValueElement: DataGridCellValueElement,
         EuiDataGridSchemaDetector: DataGridSchemaDetector,
         EuiDataGridStyle: DataGridStyle,
-        EuiDataGridToolbarDisplayOptions: DataGridToolbarDisplayOptions,
+        EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
       },
       demo: <DataGridSchema />,
     },

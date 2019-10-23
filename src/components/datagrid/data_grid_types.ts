@@ -67,7 +67,7 @@ export interface EuiDataGridStyle {
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
-export interface EuiDataGridTooBarDisplayOptions {
+export interface EuiDataGridTooBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns
    */

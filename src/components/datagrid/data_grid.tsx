@@ -29,7 +29,7 @@ import {
   EuiDataGridStyleRowHover,
   EuiDataGridExpansionFormatters,
   EuiDataGridColumnVisibility,
-  EuiDataGridTooBarDisplayOptions,
+  EuiDataGridTooBarVisibilityOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -91,7 +91,7 @@ type CommonGridProps = CommonProps &
     /**
      * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
      */
-    toolbarVisibility?: boolean | EuiDataGridTooBarDisplayOptions;
+    toolbarVisibility?: boolean | EuiDataGridTooBarVisibilityOptions;
     /**
      * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
@@ -473,14 +473,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // If not, just set it to true and assume it's OK to show
   function checkOrDefaultToolBarDiplayOptions(
     arg: EuiDataGridProps['toolbarVisibility'],
-    option: keyof EuiDataGridTooBarDisplayOptions
+    option: keyof EuiDataGridTooBarVisibilityOptions
   ): boolean {
     if (arg === undefined) {
       return true;
     } else if (typeof arg === 'boolean') {
       return arg as boolean;
     } else if (
-      (arg as EuiDataGridTooBarDisplayOptions).hasOwnProperty(option)
+      (arg as EuiDataGridTooBarVisibilityOptions).hasOwnProperty(option)
     ) {
       return arg[option]!;
     } else {
