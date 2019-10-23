@@ -13,7 +13,7 @@ import DataGridStyling from './styling';
 const dataGridStylingSource = require('!!raw-loader!./styling');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
-import { DataGridStyle, DataGridToolbarDisplayOptions } from './props';
+import { DataGridStyle, DataGridToolbarVisibilityOptions } from './props';
 
 export const DataGridStylingExample = {
   title: 'Data grid styling',
@@ -39,11 +39,11 @@ export const DataGridStylingExample = {
             defaults provided by the prop.
           </p>
           <p>
-            Likewise the <EuiCode>toolbarDisplay</EuiCode> prop controls whether
-            or not to show buttons on the toolbar to display above the grid. It
-            accepts a boolean or shape object. The boolean allows turning off
-            the toolbar entirely, while the shape allows you to turn off
-            individual buttons as you need.
+            Likewise the <EuiCode>toolbarVisibility</EuiCode> prop controls
+            whether or not to show buttons on the toolbar to display above the
+            grid. It accepts a boolean or shape object. The boolean allows
+            turning off the toolbar entirely, while the shape allows you to turn
+            off individual buttons as you need.
           </p>
         </Fragment>
       ),
@@ -52,7 +52,7 @@ export const DataGridStylingExample = {
       props: {
         EuiDataGrid,
         EuiDataGridStyle: DataGridStyle,
-        EuiDataGridToolbarDisplayOptions: DataGridToolbarDisplayOptions,
+        EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
       },
       demo: <DataGridStyling />,
     },

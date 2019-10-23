@@ -47,23 +47,23 @@ export const DataGridMemoryExample = {
           </p>
           <ul>
             <li>
-              <strong>undefined</strong>: when not in use the grid will not
+              <strong>undefined</strong>: When not in use the grid will not
               autodetect schemas. Sorting and pagination are the responsibility
               of the consuming application.
             </li>
             <li>
-              <strong>enhancements</strong>: provides no in-memory operations.
+              <strong>enhancements</strong>: Provides no in-memory operations.
               If set, the grid will try to autodetect schemas only based on the
               content currently available (the current page of data).
             </li>
             <li>
-              <strong>pagination</strong>: schema detection works as above and
+              <strong>pagination</strong>: Schema detection works as above and
               pagination is performed in-memory. The pagination callbacks are
               still triggered on user interactions, but the row updates are
               performed by the grid.
             </li>
             <li>
-              <strong>sorting</strong>: schema detection and pagination are
+              <strong>sorting</strong>: Schema detection and pagination are
               performed as above, and sorting is applied in-memory too. The
               onSort callback is still called and the application must own the
               column sort state, but data sorting is done by the grid based on
@@ -77,7 +77,7 @@ export const DataGridMemoryExample = {
             data grid never has access to the backing data, only what is
             returned by <EuiCode>renderCellValue</EuiCode>.
           </p>
-          <EuiCallOut size="s" title="Check how the schemas change in the demo">
+          <EuiCallOut title="Check how the schemas change in the demo">
             When <EuiCode>inMemory</EuiCode> is not set, many of the
             examples&apos; sorting does not work because they don&apos;t have a
             backend service to call, instead naively applying JavaScript&apos;s

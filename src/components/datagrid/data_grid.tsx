@@ -85,13 +85,13 @@ type CommonGridProps = CommonProps &
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     /**
-     * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarDisplay density controls are available.
+     * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarVisibility density controls are available.
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * Accepts either a boolean or #EuiDataGridToolbarDisplayOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
      */
-    toolbarDisplay?: boolean | EuiDataGridTooBarDisplayOptions;
+    toolbarVisibility?: boolean | EuiDataGridTooBarDisplayOptions;
     /**
      * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
@@ -101,7 +101,7 @@ type CommonGridProps = CommonProps &
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarDisplay` prop.
+     * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
   };
@@ -400,7 +400,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     renderCellValue,
     className,
     gridStyle,
-    toolbarDisplay = true,
+    toolbarVisibility = true,
     pagination,
     sorting,
     inMemory,
@@ -467,12 +467,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
 
   // By default the toolbar appears
-  const showToolbar = !!toolbarDisplay;
+  const showToolbar = !!toolbarVisibility;
 
-  // Typegaurd to see if toolbarDisplay has a certain boolean property assigned
+  // Typegaurd to see if toolbarVisibility has a certain boolean property assigned
   // If not, just set it to true and assume it's OK to show
   function checkOrDefaultToolBarDiplayOptions(
-    arg: EuiDataGridProps['toolbarDisplay'],
+    arg: EuiDataGridProps['toolbarVisibility'],
     option: keyof EuiDataGridTooBarDisplayOptions
   ): boolean {
     if (arg === undefined) {
@@ -489,16 +489,22 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   }
 
   // These grid controls will only show when there is room. Check the resize observer callback
-  // They can also be optionally turned off individually by using toolbarDisplay
+  // They can also be optionally turned off individually by using toolbarVisibility
   const gridControls = (
     <Fragment>
-      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showColumnSelector')
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
+        'showColumnSelector'
+      )
         ? columnSelector
         : null}
-      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showStyleSelector')
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
+        'showStyleSelector'
+      )
         ? styleSelector
         : null}
-      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showSortSelector')
+      {checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showSortSelector')
         ? columnSorting
         : null}
     </Fragment>
@@ -561,7 +567,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             data-test-sub="dataGridControls">
             {hasRoomForGridControls ? gridControls : null}
             {checkOrDefaultToolBarDiplayOptions(
-              toolbarDisplay,
+              toolbarVisibility,
               'showFullScreenSelector'
             )
               ? fullScreenSelector

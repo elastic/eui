@@ -352,11 +352,11 @@ export default class DataGrid extends Component {
         iconSide="right"
         size="s"
         onClick={this.onToolbarPopoverButtonClick.bind(this)}>
-        toolbarDisplay options
+        toolbarVisibility options
       </EuiButton>
     );
 
-    const toolbarDisplayOptions = {
+    const toolbarVisibilityOptions = {
       showColumnSelector: this.state.showColumnSelector,
       showStyleSelector: this.state.showStyleSelector,
       showSortSelector: this.state.showSortSelector,
@@ -368,7 +368,7 @@ export default class DataGrid extends Component {
     if (this.state.toolbarPropTypeIsBoolean) {
       toolbarConfig = this.state.showToolbar;
     } else {
-      toolbarConfig = toolbarDisplayOptions;
+      toolbarConfig = toolbarVisibilityOptions;
     }
 
     return (
@@ -462,7 +462,7 @@ export default class DataGrid extends Component {
               <div style={{ width: 300 }}>
                 <EuiFormRow
                   display="columnCompressed"
-                  label="toolbarDisplay prop">
+                  label="toolbarVisibility prop">
                   <EuiButtonGroup
                     isFullWidth
                     buttonSize="compressed"
@@ -561,7 +561,7 @@ export default class DataGrid extends Component {
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
           }}
-          toolbarDisplay={toolbarConfig}
+          toolbarVisibility={toolbarConfig}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
           pagination={{
             ...pagination,

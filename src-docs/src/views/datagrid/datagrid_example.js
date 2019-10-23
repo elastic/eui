@@ -26,7 +26,7 @@ import {
   DataGridStyle,
   DataGridCellValueElement,
   DataGridSchemaDetector,
-  DataGridToolbarDisplayOptions,
+  DataGridToolbarVisibilityOptions,
   DataGridColumnVisibility,
 } from './props';
 
@@ -64,7 +64,7 @@ const gridSnippet = `
     }}
     // Optional. Allows you to configure what features the toolbar shows.
     // The prop also accepts a boolean if you want to toggle the entire toolbar on/off
-    toolbarDisplay={{
+    toolbarVisibility={{
       showColumnSelector: false
       showStyleSelector: false
       showSortSelector: false
@@ -186,13 +186,13 @@ const gridConcepts = [
         Defines the look of the grid. Accepts a partial{' '}
         <EuiCode>EuiDataGridStyle</EuiCode> object. Settings provided may be
         overwritten or merged with user defined preferences if{' '}
-        <EuiCode>toolbarDisplay.showStyleSelector</EuiCode>
+        <EuiCode>toolbarVisibility.showStyleSelector</EuiCode>
         is set to true (which is the default).
       </span>
     ),
   },
   {
-    title: 'toolbarDisplay',
+    title: 'toolbarVisibility',
     description: (
       <span>
         Accepts either a boolean or{' '}
@@ -229,7 +229,7 @@ const gridConcepts = [
         A <EuiCode>EuiDataGridSorting</EuiCode> object that provides the sorted
         columns along with their direction. Omit to disable, but you&apos;ll
         likely want to also turn off the user sorting controls through the
-        toolbarDisplay prop.
+        toolbarVisibility prop.
       </span>
     ),
   },
@@ -306,7 +306,7 @@ export const DataGridExample = {
         EuiDataGridCellValueElement: DataGridCellValueElement,
         EuiDataGridSchemaDetector: DataGridSchemaDetector,
         EuiDataGridStyle: DataGridStyle,
-        EuiDataGridToolbarDisplayOptions: DataGridToolbarDisplayOptions,
+        EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
       },
       demo: (
         <Fragment>

@@ -54,7 +54,7 @@ export interface EuiDataGridStyle {
    */
   stripes?: boolean;
   /**
-   * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarDisplay` is set to `false`.
+   * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarVisibility` is set to `false`.
    */
   header?: EuiDataGridStyleHeader;
   /**

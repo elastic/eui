@@ -623,7 +623,7 @@ Array [
             visibleColumns: ['A', 'B'],
             setVisibleColumns: () => {},
           }}
-          toolbarDisplay={false}
+          toolbarVisibility={false}
           rowCount={1}
           renderCellValue={() => 'value'}
         />
@@ -634,7 +634,7 @@ Array [
 
       // Check for false / true and unset values
       component.setProps({
-        toolbarDisplay: {
+        toolbarVisibility: {
           showFullScreenSelector: false,
           showSortSelector: false,
           showStyleSelector: true,
