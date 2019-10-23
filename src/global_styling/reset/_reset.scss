@@ -77,6 +77,10 @@ body {
   &::-moz-focus-inner {
     border: none;
   }
+
+  &:-moz-focusring {
+    outline: none;
+  }
 }
 
 a {
