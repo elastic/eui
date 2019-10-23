@@ -7,6 +7,7 @@ import {
   EuiDataGridStyle,
   EuiDataGridTooBarVisibilityOptions,
   EuiDataGridColumnVisibility,
+  EuiDataGridPopoverContentProps,
 } from '../../../../src/components/datagrid/data_grid_types';
 import { EuiDataGridCellValueElementProps } from '../../../../src/components/datagrid/data_grid_cell';
 import { EuiDataGridSchemaDetector } from '../../../../src/components/datagrid/data_grid_schema';
@@ -43,4 +44,8 @@ export const DataGridSchemaDetector: FunctionComponent<
 
 export const DataGridColumnVisibility: FunctionComponent<
   EuiDataGridColumnVisibility
+> = () => <div />;
+
+export const DataGridPopoverContent: FunctionComponent<
+  EuiDataGridPopoverContentProps
 > = () => <div />;

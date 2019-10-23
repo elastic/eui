@@ -146,7 +146,19 @@ export interface EuiDataGridInMemoryValues {
   [key: string]: { [key: string]: string };
 }
 
-export type EuiDataGridExpansionFormatter = FunctionComponent<{}>;
-export interface EuiDataGridExpansionFormatters {
-  [key: string]: EuiDataGridExpansionFormatter;
+export interface EuiDataGridPopoverContentProps {
+  /**
+   * your `cellValueRenderer` as a ReactElement; allows wrapping the rendered content: `({children}) => <div>{children}</div>`
+   */
+  children: ReactNode;
+  /**
+   * div element the cell contents have been rendered into; useful for processing the rendered text
+   */
+  cellContentsElement: HTMLDivElement;
+}
+export type EuiDataGridPopoverContent = FunctionComponent<
+  EuiDataGridPopoverContentProps
+>;
+export interface EuiDataGridPopoverContents {
+  [key: string]: EuiDataGridPopoverContent;
 }

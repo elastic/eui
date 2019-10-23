@@ -17,7 +17,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
 import { keyCodes } from '../../services';
-import { EuiDataGridExpansionFormatter } from './data_grid_types';
+import { EuiDataGridPopoverContent } from './data_grid_types';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 
 export interface EuiDataGridCellValueElementProps {
@@ -44,6 +44,10 @@ export interface EuiDataGridCellValueElementProps {
    * whether or not the cell is expanded
    */
   isExpanded: boolean;
+  /**
+   * when rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
+   */
+  isDetails: boolean;
 }
 
 export interface EuiDataGridCellProps {
@@ -56,7 +60,7 @@ export interface EuiDataGridCellProps {
   onCellFocus: Function;
   interactiveCellId: string;
   isExpandable: boolean;
-  expansionFormatter: EuiDataGridExpansionFormatter;
+  popoverContent: EuiDataGridPopoverContent;
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
@@ -69,11 +73,7 @@ interface EuiDataGridCellState {
 
 type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  | 'width'
-  | 'isFocused'
-  | 'interactiveCellId'
-  | 'onCellFocus'
-  | 'expansionFormatter'
+  'width' | 'isFocused' | 'interactiveCellId' | 'onCellFocus' | 'popoverContent'
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -89,7 +89,9 @@ const EuiDataGridCellContent: FunctionComponent<
     EuiDataGridCellValueElementProps
   >;
 
-  return <CellElement data-test-subj="cell-content" {...rest} />;
+  return (
+    <CellElement isDetails={false} data-test-subj="cell-content" {...rest} />
+  );
 });
 
 export class EuiDataGridCell extends Component<
@@ -97,6 +99,7 @@ export class EuiDataGridCell extends Component<
   EuiDataGridCellState
 > {
   cellRef = createRef<HTMLDivElement>();
+  cellContentsRef = createRef<HTMLDivElement>();
   tabbingRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
     cellProps: {},
@@ -133,8 +136,7 @@ export class EuiDataGridCell extends Component<
     if (nextProps.isFocused !== this.props.isFocused) return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
-    if (nextProps.expansionFormatter !== this.props.expansionFormatter)
-      return true;
+    if (nextProps.popoverContent !== this.props.popoverContent) return true;
 
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
@@ -146,7 +148,7 @@ export class EuiDataGridCell extends Component<
     this.setState({ cellProps });
   };
 
-  onPreventTabbableRef = (ref: HTMLDivElement | null) => {
+  setTabbingRef = (ref: HTMLDivElement | null) => {
     this.tabbingRef = ref;
     this.preventTabbing();
   };
@@ -165,7 +167,7 @@ export class EuiDataGridCell extends Component<
       width,
       isFocused,
       isExpandable,
-      expansionFormatter: ExpansionFormatter,
+      popoverContent: PopoverContent,
       interactiveCellId,
       columnType,
       onCellFocus,
@@ -214,6 +216,7 @@ export class EuiDataGridCell extends Component<
       columnType: columnType,
       isExpandable,
       isExpanded: this.state.popoverIsOpen,
+      isDetails: false,
     };
 
     const buttonIconClasses = classNames(
@@ -274,13 +277,15 @@ export class EuiDataGridCell extends Component<
           {mutationRef => {
             const onRef = (ref: HTMLDivElement | null) => {
               mutationRef(ref);
-              this.onPreventTabbableRef(ref);
+              this.setTabbingRef(ref);
             };
 
             return (
               <div ref={onRef} className="euiDataGridRowCell__expandCode">
                 {screenReaderPosition}
-                <EuiDataGridCellContent {...cellContentProps} />
+                <div ref={this.cellContentsRef}>
+                  <EuiDataGridCellContent {...cellContentProps} />
+                </div>
               </div>
             );
           }}
@@ -297,13 +302,15 @@ export class EuiDataGridCell extends Component<
             {mutationRef => {
               const onRef = (ref: HTMLDivElement | null) => {
                 mutationRef(ref);
-                this.onPreventTabbableRef(ref);
+                this.setTabbingRef(ref);
               };
 
               return (
                 <div ref={onRef} className="euiDataGridRowCell__expandCode">
                   {screenReaderPosition}
-                  <EuiDataGridCellContent {...cellContentProps} />
+                  <div ref={this.cellContentsRef}>
+                    <EuiDataGridCellContent {...cellContentProps} />
+                  </div>
                 </div>
               );
             }}
@@ -319,9 +326,9 @@ export class EuiDataGridCell extends Component<
         EuiDataGridCellValueElementProps
       >;
       const popoverContent = (
-        <ExpansionFormatter>
-          <CellElement {...cellContentProps} />
-        </ExpansionFormatter>
+        <PopoverContent cellContentsElement={this.cellContentsRef.current!}>
+          <CellElement {...cellContentProps} isDetails={true} />
+        </PopoverContent>
       );
 
       innerContent = (

@@ -3,8 +3,8 @@ import classnames from 'classnames';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
-  EuiDataGridExpansionFormatter,
-  EuiDataGridExpansionFormatters,
+  EuiDataGridPopoverContent,
+  EuiDataGridPopoverContents,
 } from './data_grid_types';
 import { CommonProps } from '../common';
 
@@ -17,7 +17,7 @@ export type EuiDataGridDataRowProps = CommonProps &
     rowIndex: number;
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
-    expansionFormatters: EuiDataGridExpansionFormatters;
+    popoverContents: EuiDataGridPopoverContents;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
     focusedCell: [number, number];
@@ -27,9 +27,7 @@ export type EuiDataGridDataRowProps = CommonProps &
     visibleRowIndex: number;
   };
 
-const DefaultColumnFormatter: EuiDataGridExpansionFormatter = ({
-  children,
-}) => {
+const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
   return <EuiText>{children}</EuiText>;
 };
 
@@ -39,7 +37,7 @@ const EuiDataGridDataRow: FunctionComponent<
   const {
     columns,
     schema,
-    expansionFormatters,
+    popoverContents,
     columnWidths,
     defaultColumnWidth,
     className,
@@ -64,8 +62,8 @@ const EuiDataGridDataRow: FunctionComponent<
 
         const isExpandable =
           props.isExpandable !== undefined ? props.isExpandable : true;
-        const expansionFormatter =
-          expansionFormatters[columnType as string] || DefaultColumnFormatter;
+        const popoverContent =
+          popoverContents[columnType as string] || DefaultColumnFormatter;
 
         const width = columnWidths[id] || defaultColumnWidth;
 
@@ -79,7 +77,7 @@ const EuiDataGridDataRow: FunctionComponent<
             colIndex={i}
             columnId={id}
             columnType={columnType}
-            expansionFormatter={expansionFormatter}
+            popoverContent={popoverContent}
             width={width || undefined}
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}
