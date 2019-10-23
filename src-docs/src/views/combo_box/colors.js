@@ -26,7 +26,6 @@ export default class extends Component {
       },
       {
         label: 'Iapetus',
-        color: 'primary',
         color: 'warning',
       },
       {
