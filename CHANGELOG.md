@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.5.0`.
+- Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
+- Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
+
+**Bug fixes**
+
+- Fixed `EuiNavDrawer` collapse/expand button height issue
+ ([#2463](https://github.com/elastic/eui/pull/2463))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 
