@@ -120,6 +120,8 @@
   }
 }
 
+// CONTROL TYPES
+
 .euiControlBar__buttonIcon {
   min-width: $euiControlBarInitialHeight;
   min-height: $euiControlBarInitialHeight;
@@ -154,6 +156,8 @@
 }
 
 .euiControlBar__euiText {
+  @include euiTextTruncate;
+  @include euiFontSizeS;
   padding: 0 $euiSizeS;
   color: $euiControlBarText;
 }

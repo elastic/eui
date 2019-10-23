@@ -40,13 +40,11 @@ type BreadcrumbControl = HTMLAttributes<HTMLDivElement> & {
   breadcrumbs: Breadcrumb[];
 };
 
-type TextControl = HTMLAttributes<HTMLDivElement> & {
+interface TextControl extends CommonProps, HTMLAttributes<HTMLDivElement> {
   controlType: 'text';
   id: string;
-  label: string;
-  color?: PropsOf<typeof EuiText>['color'];
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-};
+  label: React.ReactNode;
+}
 
 interface SpacerControl {
   controlType: 'spacer';
@@ -226,16 +224,14 @@ export class EuiControlBar extends Component<
             />
           );
         case 'text': {
-          const { controlType, id, label, color, onClick, ...rest } = control;
+          const { controlType, id, label, className, ...rest } = control;
           return (
-            <EuiText
-              color={color ? color : 'ghost'}
-              className="euiControlBar__euiText eui-textTruncate"
-              key={id + index}
-              size="s"
+            <div
+              key={id}
+              className={classNames('euiControlBar__euiText', className)}
               {...rest}>
               {label}
-            </EuiText>
+            </div>
           );
         }
         case 'tab': {
