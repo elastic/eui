@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.5.1`.
+
+## [`14.5.1`](https://github.com/elastic/eui/tree/v14.5.1)
+
 - Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
 - Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
 
