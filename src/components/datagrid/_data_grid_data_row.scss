@@ -86,17 +86,18 @@
   max-width: 100%;
 }
 
-.euiDataGridRowCell__expandInner {
+.euiDataGridRowCell__expandFlex {
   display: flex;
   align-items: center;
 }
 
-.euiDataGridRowCell__expandCode {
+.euiDataGridRowCell__expandContent {
   @include euiTextTruncate;
   overflow: hidden;
   white-space: nowrap;
   flex-grow: 1;
 }
+
 
 .euiDataGridRowCell__expandButton {
   display: flex;
@@ -126,6 +127,12 @@
     visibility: visible;
     background: $euiColorPrimary;
   }
+}
+
+.euiDataGridRowCell__truncate {
+  @include euiTextTruncate;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 // Row highlights

@@ -270,7 +270,7 @@ export class EuiDataGridCell extends Component<
     );
 
     let anchorContent = (
-      <div className="euiDataGridRowCell__expandInner">
+      <div className="euiDataGridRowCell__expandFlex">
         <EuiMutationObserver
           observerOptions={{ subtree: true, childList: true }}
           onMutation={this.preventTabbing}>
@@ -281,9 +281,11 @@ export class EuiDataGridCell extends Component<
             };
 
             return (
-              <div ref={onRef} className="euiDataGridRowCell__expandCode">
+              <div ref={onRef} className="euiDataGridRowCell__expandContent">
                 {screenReaderPosition}
-                <div ref={this.cellContentsRef}>
+                <div
+                  ref={this.cellContentsRef}
+                  className="euiDataGridRowCell__truncate">
                   <EuiDataGridCellContent {...cellContentProps} />
                 </div>
               </div>
@@ -295,7 +297,7 @@ export class EuiDataGridCell extends Component<
 
     if (isExpandable) {
       anchorContent = (
-        <div className="euiDataGridRowCell__expandInner">
+        <div className="euiDataGridRowCell__expandFlex">
           <EuiMutationObserver
             observerOptions={{ subtree: true, childList: true }}
             onMutation={this.preventTabbing}>
@@ -306,9 +308,11 @@ export class EuiDataGridCell extends Component<
               };
 
               return (
-                <div ref={onRef} className="euiDataGridRowCell__expandCode">
+                <div ref={onRef} className="euiDataGridRowCell__expandContent">
                   {screenReaderPosition}
-                  <div ref={this.cellContentsRef}>
+                  <div
+                    ref={this.cellContentsRef}
+                    className="euiDataGridRowCell__truncate">
                     <EuiDataGridCellContent {...cellContentProps} />
                   </div>
                 </div>

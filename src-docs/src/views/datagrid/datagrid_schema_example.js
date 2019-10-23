@@ -22,7 +22,7 @@ import {
 } from './props';
 
 export const DataGridSchemaExample = {
-  title: 'Data grid schemas and formatters',
+  title: 'Data grid schemas and popovers',
   sections: [
     {
       source: [
@@ -66,13 +66,13 @@ export const DataGridSchemaExample = {
             </EuiCode>{' '}
             to each matching cell.
           </p>
-          <h4>Defining expansion formatters</h4>
+          <h4>Defining expansio</h4>
           <p>
             Likewise, you can inject custom content into any of the popovers a
-            cell expands into. Add a <EuiCode>customFormatters</EuiCode>{' '}
-            function to populate a matching schema&apos;s popover using a new
-            component. You can see an example of this by clicking into one of
-            the cells in the last column below.
+            cell expands into. Add <EuiCode>popoverContents</EuiCode> functions
+            to populate a matching schema&apos;s popover using a new component.
+            You can see an example of this by clicking into one of the cells in
+            the last column below.
           </p>
           <h4>Disabling expansion popovers</h4>
           <p>

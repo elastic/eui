@@ -336,10 +336,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -348,7 +348,9 @@ Array [
                               Row: 1, Column: 1:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             0, A
                           </div>
                         </div>
@@ -394,10 +396,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -406,7 +408,9 @@ Array [
                               Row: 1, Column: 2:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             0, B
                           </div>
                         </div>
@@ -458,10 +462,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -470,7 +474,9 @@ Array [
                               Row: 2, Column: 1:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             1, A
                           </div>
                         </div>
@@ -516,10 +522,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -528,7 +534,9 @@ Array [
                               Row: 2, Column: 2:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             1, B
                           </div>
                         </div>
@@ -580,10 +588,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -592,7 +600,9 @@ Array [
                               Row: 3, Column: 1:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             2, A
                           </div>
                         </div>
@@ -638,10 +648,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -650,7 +660,9 @@ Array [
                               Row: 3, Column: 2:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             2, B
                           </div>
                         </div>
@@ -877,10 +889,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -889,7 +901,9 @@ Array [
                               Row: 1, Column: 1:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             0, A
                           </div>
                         </div>
@@ -935,10 +949,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -947,7 +961,9 @@ Array [
                               Row: 1, Column: 2:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             0, B
                           </div>
                         </div>
@@ -999,10 +1015,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -1011,7 +1027,9 @@ Array [
                               Row: 2, Column: 1:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             1, A
                           </div>
                         </div>
@@ -1057,10 +1075,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -1069,7 +1087,9 @@ Array [
                               Row: 2, Column: 2:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             1, B
                           </div>
                         </div>
@@ -1121,10 +1141,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -1133,7 +1153,9 @@ Array [
                               Row: 3, Column: 1:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             2, A
                           </div>
                         </div>
@@ -1179,10 +1201,10 @@ Array [
                       class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandInner"
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
-                          class="euiDataGridRowCell__expandCode"
+                          class="euiDataGridRowCell__expandContent"
                         >
                           <p
                             class="euiScreenReaderOnly"
@@ -1191,7 +1213,9 @@ Array [
                               Row: 3, Column: 2:
                             </span>
                           </p>
-                          <div>
+                          <div
+                            class="euiDataGridRowCell__truncate"
+                          >
                             2, B
                           </div>
                         </div>

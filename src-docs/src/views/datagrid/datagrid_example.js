@@ -115,7 +115,7 @@ const gridSnippet = `
       numeric: ({ children, cellContentsElement }) => {
         // \`children\` is the datagrid's \`renderCellValue\` as a ReactElement and should be used when you are only wrapping the contents
         // \`cellContentsElement\` is the cell's existing DOM element and can be used to extract the text value for processing, as below
-        
+
         // want to process the already-rendered cell value
         const stringContents = cellContentsElement.textContent;
 
@@ -175,8 +175,8 @@ const gridConcepts = [
     description: (
       <span>
         An object mapping <EuiCode>EuiDataGridColumn</EuiCode> schemas to a
-        custom expansion formatting component. This dictates the content of the
-        popovers when you click into each cell.
+        custom popover render. This dictates the content of the popovers when
+        you click into each cell.
       </span>
     ),
   },
@@ -278,7 +278,7 @@ export const DataGridExample = {
               content order separate from the grid.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-schemas-and-formatters/">
+              <Link to="/tabular-content/data-grid-schemas-and-popovers/">
                 Schemas
               </Link>{' '}
               allow you to tailor the render and sort methods for each column.
@@ -288,8 +288,8 @@ export const DataGridExample = {
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <Link to="/tabular-content/data-grid-schemas-and-formatters/">
-                expansion formatters
+              <Link to="/tabular-content/data-grid-schemas-and-popvers/">
+                popovers
               </Link>{' '}
               to display more content and actions into popovers.
             </li>
