@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiDataGrid, EuiCode } from '../../../../src/components';
+import { EuiDataGrid, EuiCode, EuiCodeBlock } from '../../../../src/components';
 
 import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
@@ -14,6 +14,31 @@ const dataGridStylingSource = require('!!raw-loader!./styling');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 import { DataGridStyle, DataGridToolbarVisibilityOptions } from './props';
+
+const gridSnippet = `
+<EuiDataGrid
+  {...usualProps}
+  // This can work as a shape
+  toolbarVisibility={{
+    showColumnSelector: false
+    showStyleSelector: false
+    showSortSelector: false
+    showFullScreenSelector: false
+  }}
+  // Or as a boolean to turn everything off
+  toolbarVisibility={false}
+  // Change the initial style of the grid.
+  gridStyle={{
+    border: 'all',
+    stripes: true,
+    rowHover: 'highlight',
+    header: 'shade',
+    // If showStyleSelector={true} from toolbarVisibility, these last two will be superceded by what the user decides
+    fontSize: 'm',
+    cellPadding: 'm',
+  }}
+/>
+`;
 
 export const DataGridStylingExample = {
   title: 'Data grid styling',
@@ -33,18 +58,24 @@ export const DataGridStylingExample = {
         <Fragment>
           <p>
             Styling can be passed down to the grid through the{' '}
-            <EuiCode>gridStyle</EuiCode> prop. It accepts an object shape that
-            allows for customization. When the density controls are also
-            present, both font size and padding will merge against the initial
-            defaults provided by the prop.
+            <EuiCode>gridStyle</EuiCode> prop. It accepts an object that allows
+            for customization.
           </p>
           <p>
-            Likewise the <EuiCode>toolbarVisibility</EuiCode> prop controls
-            whether or not to show buttons on the toolbar to display above the
-            grid. It accepts a boolean or shape object. The boolean allows
-            turning off the toolbar entirely, while the shape allows you to turn
-            off individual buttons as you need.
+            The <EuiCode>toolbarVisibility</EuiCode> prop when used as a boolean
+            controls the visibility of the toolbar displayed above the grid.
+            Using the prop instead as a shape, allows setting the visibility of
+            the individual buttons within.
           </p>
+          <p>
+            With the default settings, the <EuiCode>showStyleSelector</EuiCode>{' '}
+            setting in <EuiCode>toolbarVisibility</EuiCode> means the user has
+            the ability to overwite the padding and font size passed into{' '}
+            <EuiCode>gridStyle</EuiCode> by the engineer.
+          </p>
+          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
+            {gridSnippet}
+          </EuiCodeBlock>
         </Fragment>
       ),
       components: { DataGridStyling },

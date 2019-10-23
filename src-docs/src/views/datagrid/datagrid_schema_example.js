@@ -47,16 +47,15 @@ export const DataGridSchemaExample = {
             data. When the <EuiCode>inMemory</EuiCode> prop is in use it will
             automatically try to figure out the best schema based on the{' '}
             <EuiCode>{'inMemory: {{ level: value }}'}</EuiCode> you set, but
-            this will come with the caveat you will need to provide and manage
-            sorting callbacks outside the component. In general we recommend
+            this will come with the caveat that you will need to provide and
+            manage sorting outside the component. In general we recommend
             passing schema information to your columns instead of using
             auto-detection when you have that knowledge of your data available
             during ingestion.
           </p>
           <h4>Defining custom schemas</h4>
           <p>
-            Beyond the provided set, you have the ability to define custom
-            schemas. Custom schemas are passed as an array to{' '}
+            Custom schemas are passed as an array to{' '}
             <EuiCode>schemaDetectors</EuiCode> and are constructed against the{' '}
             <EuiCode>EuiDataGridSchemaDetector</EuiCode> interface. You can see
             an example of a simple custom schema used on the last column below.
