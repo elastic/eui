@@ -102,15 +102,10 @@ export default () => {
   );
 
   // Sort data
-  let data = useMemo(() => {
+  const data = useMemo(() => {
     // the grid itself is responsible for sorting if inMemory is `sorting`
     return raw_data;
   }, [raw_data, sortingColumns]);
-
-  // Pagination
-  data = useMemo(() => {
-    return data;
-  }, [data, pagination]);
 
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
@@ -146,22 +141,20 @@ export default () => {
   }, [data]);
 
   return (
-    <div>
-      <EuiDataGrid
-        aria-label="Data grid demo"
-        columns={columns}
-        columnVisibility={{ visibleColumns, setVisibleColumns }}
-        rowCount={raw_data.length}
-        renderCellValue={renderCellValue}
-        inMemory={{ level: 'sorting' }}
-        sorting={{ columns: sortingColumns, onSort }}
-        pagination={{
-          ...pagination,
-          pageSizeOptions: [10, 50, 100],
-          onChangeItemsPerPage: onChangeItemsPerPage,
-          onChangePage: onChangePage,
-        }}
-      />
-    </div>
+    <EuiDataGrid
+      aria-label="Data grid demo"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={raw_data.length}
+      renderCellValue={renderCellValue}
+      inMemory={{ level: 'sorting' }}
+      sorting={{ columns: sortingColumns, onSort }}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [10, 50, 100],
+        onChangeItemsPerPage: onChangeItemsPerPage,
+        onChangePage: onChangePage,
+      }}
+    />
   );
 };
