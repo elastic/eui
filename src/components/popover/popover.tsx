@@ -66,7 +66,7 @@ export interface EuiPopoverProps {
 
   button: NonNullable<ReactNode>;
 
-  buttonRef?: RefCallback<HTMLElement | null>;
+  buttonRef?: RefCallback<HTMLDivElement | null>;
 
   closePopover: NoArgCallback<void>;
 
@@ -535,7 +535,7 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
-  buttonRef = (node: HTMLElement | null) => {
+  buttonRef = (node: HTMLDivElement | null) => {
     this.button = node;
     this.props.buttonRef && this.props.buttonRef(node);
   };

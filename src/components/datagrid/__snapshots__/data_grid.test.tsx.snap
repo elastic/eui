@@ -348,7 +348,9 @@ Array [
                               Row: 1, Column: 1:
                             </span>
                           </p>
-                          0, A
+                          <div>
+                            0, A
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -404,7 +406,9 @@ Array [
                               Row: 1, Column: 2:
                             </span>
                           </p>
-                          0, B
+                          <div>
+                            0, B
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -466,7 +470,9 @@ Array [
                               Row: 2, Column: 1:
                             </span>
                           </p>
-                          1, A
+                          <div>
+                            1, A
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -522,7 +528,9 @@ Array [
                               Row: 2, Column: 2:
                             </span>
                           </p>
-                          1, B
+                          <div>
+                            1, B
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -584,7 +592,9 @@ Array [
                               Row: 3, Column: 1:
                             </span>
                           </p>
-                          2, A
+                          <div>
+                            2, A
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -640,7 +650,9 @@ Array [
                               Row: 3, Column: 2:
                             </span>
                           </p>
-                          2, B
+                          <div>
+                            2, B
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -877,7 +889,9 @@ Array [
                               Row: 1, Column: 1:
                             </span>
                           </p>
-                          0, A
+                          <div>
+                            0, A
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -933,7 +947,9 @@ Array [
                               Row: 1, Column: 2:
                             </span>
                           </p>
-                          0, B
+                          <div>
+                            0, B
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -995,7 +1011,9 @@ Array [
                               Row: 2, Column: 1:
                             </span>
                           </p>
-                          1, A
+                          <div>
+                            1, A
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -1051,7 +1069,9 @@ Array [
                               Row: 2, Column: 2:
                             </span>
                           </p>
-                          1, B
+                          <div>
+                            1, B
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -1113,7 +1133,9 @@ Array [
                               Row: 3, Column: 1:
                             </span>
                           </p>
-                          2, A
+                          <div>
+                            2, A
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"
@@ -1169,7 +1191,9 @@ Array [
                               Row: 3, Column: 2:
                             </span>
                           </p>
-                          2, B
+                          <div>
+                            2, B
+                          </div>
                         </div>
                         <div
                           class="euiDataGridRowCell__expandButton"

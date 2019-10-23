@@ -27,7 +27,7 @@ import {
   EuiDataGridStyleFontSizes,
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
-  EuiDataGridExpansionFormatters,
+  EuiDataGridPopoverContents,
   EuiDataGridColumnVisibility,
   EuiDataGridTooBarVisibilityOptions,
 } from './data_grid_types';
@@ -71,9 +71,9 @@ type CommonGridProps = CommonProps &
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * An object mapping #EuiDataGridColumn `schema`s to a custom expansion formatting component. `{mySchema: (children) => {<div>{data[children.chidren.props.rowIndex][children.children.props.columnId]}</div>}}`
+     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContent props
      */
-    expansionFormatters?: EuiDataGridExpansionFormatters;
+    popoverContents?: EuiDataGridPopoverContents;
     /**
      * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
      */
@@ -404,7 +404,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     pagination,
     sorting,
     inMemory,
-    expansionFormatters,
+    popoverContents,
     ...rest
   } = props;
 
@@ -636,7 +636,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     columns={orderedVisibleColumns}
                     schema={mergedSchema}
                     schemaDetectors={allSchemaDetectors}
-                    expansionFormatters={expansionFormatters}
+                    popoverContents={popoverContents}
                     focusedCell={realizedFocusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}

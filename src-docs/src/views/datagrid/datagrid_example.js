@@ -28,6 +28,7 @@ import {
   DataGridSchemaDetector,
   DataGridToolbarVisibilityOptions,
   DataGridColumnVisibility,
+  DataGridPopoverContent,
 } from './props';
 
 const gridSnippet = `
@@ -109,15 +110,20 @@ const gridSnippet = `
         color: '#000000',
       },
     ]}
-    // Optional. Mapped against the schema, provide custom content for the popover
-    expansionFormatters={{
-      franchise: children => {
-        const value =
-          data[children.children.props.rowIndex][
-            children.children.props.columnId
-          ];
-        console.log(children.children);
-        return <Franchise name={value} />;
+    // Optional. Mapped against the schema, provide custom layout and/or content for the popover
+    popoverContents={{
+      numeric: ({ children, cellContentsElement }) => {
+        // \`children\` is the datagrid's \`renderCellValue\` as a ReactElement and should be used when you are only wrapping the contents
+        // \`cellContentsElement\` is the cell's existing DOM element and can be used to extract the text value for processing, as below
+        
+        // want to process the already-rendered cell value
+        const stringContents = cellContentsElement.textContent;
+
+        // extract the groups-of-three digits that are right-aligned
+        return stringContents.replace(/((\\d{3})+)$/, match =>
+          // then replace each group of xyz digits with ,xyz
+          match.replace(/(\\d{3})/g, ',$1')
+        );
       },
     }}
   />
@@ -165,7 +171,7 @@ const gridConcepts = [
     ),
   },
   {
-    title: 'expansionFormatters',
+    title: 'popoverContents',
     description: (
       <span>
         An object mapping <EuiCode>EuiDataGridColumn</EuiCode> schemas to a
@@ -307,6 +313,7 @@ export const DataGridExample = {
         EuiDataGridSchemaDetector: DataGridSchemaDetector,
         EuiDataGridStyle: DataGridStyle,
         EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
+        EuiDataGridPopoverContent: DataGridPopoverContent,
       },
       demo: (
         <Fragment>

@@ -98,6 +98,7 @@ const ObservedCell: FunctionComponent<{
         setCellProps={noop}
         isExpandable={isExpandable}
         isExpanded={false}
+        isDetails={false}
       />
     </div>
   );

@@ -170,8 +170,13 @@ export default class DataGridSchema extends Component {
         }}
         rowCount={data.length}
         inMemory={{ level: 'sorting' }}
-        renderCellValue={({ rowIndex, columnId }) => {
+        renderCellValue={({ rowIndex, columnId, isDetails }) => {
           const value = data[rowIndex][columnId];
+
+          if (columnId === 'custom' && isDetails) {
+            return <Franchise name={value} />;
+          }
+
           return value;
         }}
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
@@ -203,14 +208,16 @@ export default class DataGridSchema extends Component {
             color: '#800080',
           },
         ]}
-        expansionFormatters={{
-          favoriteFranchise: children => {
-            const value =
-              data[children.children.props.rowIndex][
-                children.children.props.columnId
-              ];
-            console.log(children.children);
-            return <Franchise name={value} />;
+        popoverContents={{
+          numeric: ({ cellContentsElement }) => {
+            // want to process the already-rendered cell value
+            const stringContents = cellContentsElement.textContent;
+
+            // extract the groups-of-three digits that are right-aligned
+            return stringContents.replace(/((\d{3})+)$/, match =>
+              // then replace each group of xyz digits with ,xyz
+              match.replace(/(\d{3})/g, ',$1')
+            );
           },
         }}
       />
