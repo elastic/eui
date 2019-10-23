@@ -23,7 +23,7 @@ const columns = [
 
 const data = [];
 
-for (let i = 1; i < 100; i++) {
+for (let i = 1; i < 20; i++) {
   data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: fake('{{internet.email}}'),
@@ -42,7 +42,7 @@ export default class DataGridContainer extends Component {
     this.state = {
       pagination: {
         pageIndex: 0,
-        pageSize: 50,
+        pageSize: 10,
       },
       visibleColumns: columns.map(({ id }) => id),
     };
@@ -64,7 +64,7 @@ export default class DataGridContainer extends Component {
     const { pagination } = this.state;
 
     return (
-      <EuiPanel style={{ width: 300 }}>
+      <EuiPanel style={{ width: 400, paddingBottom: 4 }} paddingSize="none">
         <div style={{ height: 300 }}>
           <EuiDataGrid
             aria-label="Top EUI contributors"

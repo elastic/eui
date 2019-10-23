@@ -7,14 +7,36 @@ import {
 import { EuiI18n } from '../i18n';
 
 import { palettes } from '../../services/color/eui_palettes';
+import { IconType } from '../icon';
 
-export interface SchemaDetector {
+export interface EuiDataGridSchemaDetector {
+  /**
+   * The name of this data type, matches #EuiDataGridColumn / schema `schema`
+   */
   type: string;
+  /**
+   * The function given the text value of a cell and returns a score of [0...1] of how well the value matches this data type
+   */
   detector: (value: string) => number;
+  /**
+   * A custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc) => -1 | 0 | 1`
+   */
   comparator?: (a: string, b: string, direction: 'asc' | 'desc') => -1 | 0 | 1;
-  icon: string;
+  /**
+   * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
+   */
+  icon: IconType;
+  /**
+   * The color associated with this data type; it's used to color the icon
+   */
   color: string;
+  /**
+   * Text for how to represent an ascending sort of this data type, e.g. 'A -> Z'
+   */
   sortTextAsc: ReactNode;
+  /**
+   * Text for how to represent a descending sort of this data type, e.g. 'Z -> A'
+   */
   sortTextDesc: ReactNode;
 }
 
@@ -32,7 +54,7 @@ const numericChars = new Set([
   '.',
   '-',
 ]);
-export const schemaDetectors: SchemaDetector[] = [
+export const schemaDetectors: EuiDataGridSchemaDetector[] = [
   {
     type: 'boolean',
     detector(value) {
@@ -214,7 +236,7 @@ interface SchemaTypeScore {
 
 function scoreValueBySchemaType(
   value: string,
-  schemaDetectors: SchemaDetector[] = []
+  schemaDetectors: EuiDataGridSchemaDetector[] = []
 ) {
   const scores: SchemaTypeScore[] = [];
 
@@ -233,7 +255,7 @@ const MINIMUM_SCORE_MATCH = 0.5;
 
 export function useDetectSchema(
   inMemoryValues: EuiDataGridInMemoryValues,
-  schemaDetectors: SchemaDetector[] | undefined,
+  schemaDetectors: EuiDataGridSchemaDetector[] | undefined,
   autoDetectSchema: boolean
 ) {
   const schema = useMemo(() => {
@@ -348,12 +370,12 @@ export function getMergedSchema(
     const mergedSchema = { ...detectedSchema };
 
     for (let i = 0; i < columns.length; i++) {
-      const { id, dataType } = columns[i];
-      if (dataType != null) {
+      const { id, schema } = columns[i];
+      if (schema != null) {
         if (detectedSchema.hasOwnProperty(id)) {
-          mergedSchema[id] = { ...detectedSchema[id], columnType: dataType };
+          mergedSchema[id] = { ...detectedSchema[id], columnType: schema };
         } else {
-          mergedSchema[id] = { columnType: dataType };
+          mergedSchema[id] = { columnType: schema };
         }
       }
     }
@@ -364,8 +386,11 @@ export function getMergedSchema(
 
 // Given a provided schema, return the details for the schema
 // Useful for grabbing the color or icon
-export function getDetailsForSchema(providedSchema: string | null) {
-  const results = schemaDetectors.filter(matches => {
+export function getDetailsForSchema(
+  detectors: EuiDataGridSchemaDetector[],
+  providedSchema: string | null
+) {
+  const results = detectors.filter(matches => {
     return matches.type === providedSchema;
   });
 

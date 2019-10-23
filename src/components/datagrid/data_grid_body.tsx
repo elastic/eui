@@ -2,17 +2,14 @@ import React, {
   Fragment,
   FunctionComponent,
   useCallback,
-  useEffect,
   useMemo,
-  useRef,
-  useState,
 } from 'react';
 // @ts-ignore-next-line
 import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
-  EuiDataGridExpansionFormatters,
+  EuiDataGridPopoverContents,
   EuiDataGridInMemory,
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
@@ -23,16 +20,18 @@ import {
   EuiDataGridDataRow,
   EuiDataGridDataRowProps,
 } from './data_grid_data_row';
-import { EuiDataGridSchema, SchemaDetector } from './data_grid_schema';
-import { useInnerText } from '../inner_text';
+import {
+  EuiDataGridSchema,
+  EuiDataGridSchemaDetector,
+} from './data_grid_schema';
 
 interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
   schema: EuiDataGridSchema;
-  schemaDetectors: SchemaDetector[];
-  expansionFormatters?: EuiDataGridExpansionFormatters;
+  schemaDetectors: EuiDataGridSchemaDetector[];
+  popoverContents?: EuiDataGridPopoverContents;
   focusedCell: EuiDataGridDataRowProps['focusedCell'];
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
@@ -44,63 +43,31 @@ interface EuiDataGridBodyProps {
   sorting?: EuiDataGridSorting;
 }
 
-const defaultComparator: NonNullable<SchemaDetector['comparator']> = (
-  a,
-  b,
-  direction
-) => {
+const defaultComparator: NonNullable<
+  EuiDataGridSchemaDetector['comparator']
+> = (a, b, direction) => {
   if (a < b) return direction === 'asc' ? -1 : 1;
   if (a > b) return direction === 'asc' ? 1 : -1;
   return 0;
 };
 
-const providedExpansionFormatters: EuiDataGridExpansionFormatters = {
-  json: ({ children }) => {
-    const invisibleRef = useRef<HTMLDivElement>(null);
-    const [ref, text] = useInnerText();
-    const [isVisible, setIsVisible] = useState(false);
-    const formattedText = useMemo(() => {
-      if (text) {
-        try {
-          return JSON.stringify(JSON.parse(text), null, 2);
-        } catch (e) {
-          return text;
-        }
-      } else {
-        return '';
-      }
-    }, [text]);
+const providedPopoverContents: EuiDataGridPopoverContents = {
+  json: ({ cellContentsElement }) => {
+    let formattedText = cellContentsElement.innerText;
 
-    useEffect(() => {
-      // because this content renders into a popover
-      // it is hidden until the popover positions into place
-      // but InnerText cannot inspect hidden elements, so wait
-      function checkVisibility() {
-        const style = window.getComputedStyle(invisibleRef.current!);
-        if (style.getPropertyValue('visibility') !== 'hidden') {
-          setIsVisible(true);
-        } else {
-          requestAnimationFrame(checkVisibility);
-        }
-      }
-      requestAnimationFrame(checkVisibility);
-    }, []);
+    // attempt to pretty-print the json
+    try {
+      formattedText = JSON.stringify(JSON.parse(formattedText), null, 2);
+    } catch (e) {} // eslint-disable-line no-empty
 
     return (
-      <Fragment>
-        {!formattedText && (
-          <div ref={isVisible ? ref : invisibleRef}>{children}</div>
-        )}
-        {formattedText && (
-          <EuiCodeBlock
-            isCopyable
-            transparentBackground
-            paddingSize="none"
-            language="json">
-            {formattedText}
-          </EuiCodeBlock>
-        )}
-      </Fragment>
+      <EuiCodeBlock
+        isCopyable
+        transparentBackground
+        paddingSize="none"
+        language="json">
+        {formattedText}
+      </EuiCodeBlock>
     );
   },
 };
@@ -114,7 +81,7 @@ export const EuiDataGridBody: FunctionComponent<
     columns,
     schema,
     schemaDetectors,
-    expansionFormatters,
+    popoverContents,
     focusedCell,
     onCellFocus,
     rowCount,
@@ -228,9 +195,9 @@ export const EuiDataGridBody: FunctionComponent<
         rowIndex = rowMap[rowIndex];
       }
 
-      const mergedExpansionFormatters = {
-        ...providedExpansionFormatters,
-        ...expansionFormatters,
+      const mergedPopoverContents = {
+        ...providedPopoverContents,
+        ...popoverContents,
       };
 
       rows.push(
@@ -238,7 +205,7 @@ export const EuiDataGridBody: FunctionComponent<
           key={rowIndex}
           columns={columns}
           schema={schema}
-          expansionFormatters={mergedExpansionFormatters}
+          popoverContents={mergedPopoverContents}
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
           focusedCell={focusedCell}
@@ -261,7 +228,7 @@ export const EuiDataGridBody: FunctionComponent<
     renderCellValue,
     rowMap,
     schema,
-    expansionFormatters,
+    popoverContents,
     visibleRowIndices,
     startRow,
     interactiveCellId,

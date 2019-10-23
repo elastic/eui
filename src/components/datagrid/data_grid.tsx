@@ -27,9 +27,9 @@ import {
   EuiDataGridStyleFontSizes,
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
-  EuiDataGridExpansionFormatters,
+  EuiDataGridPopoverContents,
   EuiDataGridColumnVisibility,
-  EuiDataGridTooBarDisplayOptions,
+  EuiDataGridTooBarVisibilityOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -46,7 +46,7 @@ import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   getMergedSchema,
-  SchemaDetector,
+  EuiDataGridSchemaDetector,
   useDetectSchema,
   schemaDetectors as providedSchemaDetectors,
 } from './data_grid_schema';
@@ -58,21 +58,50 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
+    /**
+     * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
+     */
     columns: EuiDataGridColumn[];
+    /**
+     * An array of #EuiDataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
+     */
     columnVisibility: EuiDataGridColumnVisibility;
-    schemaDetectors?: SchemaDetector[];
-    expansionFormatters?: EuiDataGridExpansionFormatters;
+    /**
+     * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
+     */
+    schemaDetectors?: EuiDataGridSchemaDetector[];
+    /**
+     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContent props
+     */
+    popoverContents?: EuiDataGridPopoverContents;
+    /**
+     * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
+     */
     rowCount: number;
+    /**
+     * A function called to render a cell's value. Behind the scenes it is treated as a React component
+     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
+     * as its only argument.
+     */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    /**
+     * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarVisibility density controls are available.
+     */
     gridStyle?: EuiDataGridStyle;
-    toolbarDisplay?: boolean | EuiDataGridTooBarDisplayOptions;
+    /**
+     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     */
+    toolbarVisibility?: boolean | EuiDataGridTooBarVisibilityOptions;
+    /**
+     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
+     */
     inMemory?: EuiDataGridInMemory;
     /**
-     * Set to `null` to disable pagination
+     * A #EuiDataGridPagination object. Omit to disable pagination completely.
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * Set to `null` to disable sorting
+     * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
   };
@@ -83,7 +112,19 @@ type EuiDataGridProps = Omit<
   CommonGridProps,
   'aria-label' | 'aria-labelledby'
 > &
-  ({ 'aria-label': string } | { 'aria-labelledby': string });
+  (
+    | {
+        /**
+         * must provide either aria-label OR aria-labelledby as a title for the grid
+         */
+        'aria-label': string;
+      }
+    | {
+        /**
+         * must provide either aria-label OR aria-labelledby as a title for the grid
+         */
+        'aria-labelledby': string;
+      });
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -145,6 +186,10 @@ function renderPagination(props: EuiDataGridProps) {
     onChangeItemsPerPage,
   } = pagination;
   const pageCount = Math.ceil(props.rowCount / pageSize);
+
+  if (pageCount === 1) {
+    return null;
+  }
 
   return (
     <div className="euiDataGrid__pagination">
@@ -355,11 +400,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     renderCellValue,
     className,
     gridStyle,
-    toolbarDisplay = true,
+    toolbarVisibility = true,
     pagination,
     sorting,
     inMemory,
-    expansionFormatters,
+    popoverContents,
     ...rest
   } = props;
 
@@ -368,13 +413,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
-  const allSchemaDetetors = useMemo(
+  const allSchemaDetectors = useMemo(
     () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
     [schemaDetectors]
   );
   const detectedSchema = useDetectSchema(
     inMemoryValues,
-    allSchemaDetetors,
+    allSchemaDetectors,
     inMemory != null
   );
   const mergedSchema = getMergedSchema(detectedSchema, columns);
@@ -386,7 +431,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const columnSorting = useColumnSorting(
     orderedVisibleColumns,
     sorting,
-    detectedSchema
+    detectedSchema,
+    allSchemaDetectors
   );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
@@ -421,20 +467,20 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
 
   // By default the toolbar appears
-  const showToolbar = !!toolbarDisplay;
+  const showToolbar = !!toolbarVisibility;
 
-  // Typegaurd to see if toolbarDisplay has a certain boolean property assigned
+  // Typegaurd to see if toolbarVisibility has a certain boolean property assigned
   // If not, just set it to true and assume it's OK to show
   function checkOrDefaultToolBarDiplayOptions(
-    arg: EuiDataGridProps['toolbarDisplay'],
-    option: keyof EuiDataGridTooBarDisplayOptions
+    arg: EuiDataGridProps['toolbarVisibility'],
+    option: keyof EuiDataGridTooBarVisibilityOptions
   ): boolean {
     if (arg === undefined) {
       return true;
     } else if (typeof arg === 'boolean') {
       return arg as boolean;
     } else if (
-      (arg as EuiDataGridTooBarDisplayOptions).hasOwnProperty(option)
+      (arg as EuiDataGridTooBarVisibilityOptions).hasOwnProperty(option)
     ) {
       return arg[option]!;
     } else {
@@ -443,16 +489,22 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   }
 
   // These grid controls will only show when there is room. Check the resize observer callback
-  // They can also be optionally turned off individually by using toolbarDisplay
+  // They can also be optionally turned off individually by using toolbarVisibility
   const gridControls = (
     <Fragment>
-      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showColumnSelector')
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
+        'showColumnSelector'
+      )
         ? columnSelector
         : null}
-      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showStyleSelector')
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
+        'showStyleSelector'
+      )
         ? styleSelector
         : null}
-      {checkOrDefaultToolBarDiplayOptions(toolbarDisplay, 'showSortSelector')
+      {checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showSortSelector')
         ? columnSorting
         : null}
     </Fragment>
@@ -515,8 +567,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             data-test-sub="dataGridControls">
             {hasRoomForGridControls ? gridControls : null}
             {checkOrDefaultToolBarDiplayOptions(
-              toolbarDisplay,
-              'showFullscrenSelector'
+              toolbarVisibility,
+              'showFullScreenSelector'
             )
               ? fullScreenSelector
               : null}
@@ -583,8 +635,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemory={inMemory}
                     columns={orderedVisibleColumns}
                     schema={mergedSchema}
-                    schemaDetectors={allSchemaDetetors}
-                    expansionFormatters={expansionFormatters}
+                    schemaDetectors={allSchemaDetectors}
+                    popoverContents={popoverContents}
                     focusedCell={realizedFocusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}

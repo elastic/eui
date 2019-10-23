@@ -1,42 +1,39 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { fake } from 'faker';
 
 import {
   EuiDataGrid,
   EuiButtonIcon,
-  EuiLink,
+  EuiImage,
+  EuiTitle,
+  EuiSpacer,
 } from '../../../../src/components/';
 import { iconTypes } from '../icon/icons';
 
 const columns = [
   {
-    id: 'name',
+    id: 'default',
+  },
+  {
+    id: 'boolean',
     isExpandable: false,
   },
   {
-    id: 'email',
+    id: 'numeric',
   },
   {
-    id: 'location',
+    id: 'currency',
   },
   {
-    id: 'account',
-    dataType: 'numeric',
-    isExpandable: false,
-  },
-  {
-    id: 'date',
-  },
-  {
-    id: 'amount',
-    dataType: 'currency',
-    isExpandable: false,
+    id: 'datetime',
+    schema: 'datetime',
   },
   {
     id: 'json',
   },
   {
-    id: 'version',
+    id: 'custom',
+    schema: 'favoriteFranchise',
   },
 ];
 
@@ -44,28 +41,21 @@ const data = [];
 
 for (let i = 1; i < 5; i++) {
   let json;
+  let franchise;
   if (i < 3) {
+    franchise = 'Star Wars';
     json = JSON.stringify([
       {
-        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-        email: fake('{{internet.email}}'),
+        default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+        boolean: fake('{{random.boolean}}'),
+        numeric: fake('{{finance.account}}'),
+        currency: fake('${{finance.amount}}'),
         date: fake('{{date.past}}'),
-        account: fake('{{finance.account}}'),
-        amount: fake('${{finance.amount}}'),
-        version: fake('{{system.semver}}'),
-        friends: [
-          {
-            name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-            email: fake('{{internet.email}}'),
-            date: fake('{{date.past}}'),
-            account: fake('{{finance.account}}'),
-            amount: fake('${{finance.amount}}'),
-            version: fake('{{system.semver}}'),
-          },
-        ],
+        custom: fake('{{date.past}}'),
       },
     ]);
   } else {
+    franchise = 'Star Trek';
     json = JSON.stringify([
       {
         name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
@@ -74,23 +64,45 @@ for (let i = 1; i < 5; i++) {
   }
 
   data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
-    location: (
-      <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
-      </Fragment>
-    ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{finance.amount}}'),
+    default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+    boolean: fake('{{random.boolean}}'),
+    numeric: fake('{{finance.account}}'),
+    currency: fake('${{finance.amount}}'),
+    datetime: fake('{{date.past}}'),
     json: json,
-    version: fake('{{system.semver}}'),
+    custom: franchise,
   });
 }
+
+const Franchise = props => {
+  return (
+    <div>
+      <EuiTitle size="s">
+        <h3>{props.name} is the best!</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      {props.name === 'Star Wars' ? (
+        <EuiImage
+          allowFullScreen
+          size="m"
+          hasShadow
+          caption="Random star wars image"
+          alt="Random star wars image"
+          url="https://source.unsplash.com/600x600/?starwars"
+        />
+      ) : (
+        <EuiImage
+          allowFullScreen
+          size="m"
+          hasShadow
+          caption="Random star trek image"
+          alt="Random trek image"
+          url="https://source.unsplash.com/600x600/?startrek"
+        />
+      )}
+    </div>
+  );
+};
 
 export default class DataGridSchema extends Component {
   constructor(props) {
@@ -158,8 +170,13 @@ export default class DataGridSchema extends Component {
         }}
         rowCount={data.length}
         inMemory={{ level: 'sorting' }}
-        renderCellValue={({ rowIndex, columnId }) => {
+        renderCellValue={({ rowIndex, columnId, isDetails }) => {
           const value = data[rowIndex][columnId];
+
+          if (columnId === 'custom' && isDetails) {
+            return <Franchise name={value} />;
+          }
+
           return value;
         }}
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
@@ -168,6 +185,40 @@ export default class DataGridSchema extends Component {
           pageSizeOptions: [5, 10, 25],
           onChangeItemsPerPage: this.setPageSize,
           onChangePage: this.setPageIndex,
+        }}
+        schemaDetectors={[
+          {
+            type: 'favoriteFranchise',
+            detector(value) {
+              return value.toLowerCase() === 'star wars' ||
+                value.toLowerCase() === 'star trek'
+                ? 1
+                : 0;
+            },
+            comparator(a, b, direction) {
+              const aValue = a.toLowerCase() === 'star wars';
+              const bValue = b.toLowerCase() === 'star wars';
+              if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+              if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+              return 0;
+            },
+            sortTextAsc: 'Star wars-Star trek',
+            sortTextDesc: 'Star trek-Star wars',
+            icon: 'starFilled',
+            color: '#800080',
+          },
+        ]}
+        popoverContents={{
+          numeric: ({ cellContentsElement }) => {
+            // want to process the already-rendered cell value
+            const stringContents = cellContentsElement.textContent;
+
+            // extract the groups-of-three digits that are right-aligned
+            return stringContents.replace(/((\d{3})+)$/, match =>
+              // then replace each group of xyz digits with ,xyz
+              match.replace(/(\d{3})/g, ',$1')
+            );
+          },
         }}
       />
     );

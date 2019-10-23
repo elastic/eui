@@ -623,7 +623,7 @@ Array [
             visibleColumns: ['A', 'B'],
             setVisibleColumns: () => {},
           }}
-          toolbarDisplay={false}
+          toolbarVisibility={false}
           rowCount={1}
           renderCellValue={() => 'value'}
         />
@@ -634,8 +634,8 @@ Array [
 
       // Check for false / true and unset values
       component.setProps({
-        toolbarDisplay: {
-          showFullscrenSelector: false,
+        toolbarVisibility: {
+          showFullScreenSelector: false,
           showSortSelector: false,
           showStyleSelector: true,
         },
@@ -662,14 +662,14 @@ Array [
       ).toBe(1);
     });
 
-    describe('schema datatype classnames', () => {
-      it('applies classnames from explicit datatypes', () => {
+    describe('schema schema classnames', () => {
+      it('applies classnames from explicit schemas', () => {
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
             columns={[
-              { id: 'A', dataType: 'numeric' },
-              { id: 'B', dataType: 'customFormatName' },
+              { id: 'A', schema: 'numeric' },
+              { id: 'B', schema: 'customFormatName' },
             ]}
             columnVisibility={{
               visibleColumns: ['A', 'B'],
@@ -739,7 +739,7 @@ Array [
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
-            columns={[{ id: 'A' }, { id: 'B', dataType: 'alphanumeric' }]}
+            columns={[{ id: 'A' }, { id: 'B', schema: 'alphanumeric' }]}
             columnVisibility={{
               visibleColumns: ['A', 'B'],
               setVisibleColumns: () => {},

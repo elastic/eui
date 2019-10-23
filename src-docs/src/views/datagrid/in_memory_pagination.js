@@ -1,19 +1,7 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { fake } from 'faker';
 
-import {
-  EuiDataGrid,
-  EuiLink,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../../src/components/';
-import { EuiButtonIcon } from '../../../../src/components/button/button_icon';
+import { EuiDataGrid, EuiLink } from '../../../../src/components/';
 
 const columns = [
   {
@@ -21,22 +9,6 @@ const columns = [
   },
   {
     id: 'email',
-    display: (
-      // This is an example of an icon next to a title that still respects text truncate
-      <EuiFlexGroup gutterSize="xs">
-        <EuiFlexItem className="eui-textTruncate">
-          <div className="eui-textTruncate">email</div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            aria-label="Column header email"
-            iconType="gear"
-            color="text"
-            onClick={() => alert('Email Icon Clicked!')}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    ),
   },
   {
     id: 'location',
@@ -101,10 +73,20 @@ export default () => {
     [setSortingColumns]
   );
 
-  // Sort data
+  // Because inMemory's level is set to `pagination` we still need to sort the data, but no longer need to chunk it for pagination
   const data = useMemo(() => {
-    // the grid itself is responsible for sorting if inMemory is `sorting`
-    return raw_data;
+    return [...raw_data].sort((a, b) => {
+      for (let i = 0; i < sortingColumns.length; i++) {
+        const column = sortingColumns[i];
+        const aValue = a[column.id];
+        const bValue = b[column.id];
+
+        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+      }
+
+      return 0;
+    });
   }, [raw_data, sortingColumns]);
 
   // Column visibility
@@ -113,30 +95,8 @@ export default () => {
   ); // initialize to the full set of columns
 
   const renderCellValue = useMemo(() => {
-    return ({ rowIndex, columnId, setCellProps }) => {
-      let adjustedRowIndex = rowIndex;
-
-      adjustedRowIndex = rowIndex - pagination.pageIndex * pagination.pageSize;
-
-      useEffect(() => {
-        if (columnId === 'amount') {
-          if (data.hasOwnProperty(adjustedRowIndex)) {
-            const numeric = parseFloat(
-              data[adjustedRowIndex][columnId].match(/\d+\.\d+/)[0],
-              10
-            );
-            setCellProps({
-              style: {
-                backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
-              },
-            });
-          }
-        }
-      }, [adjustedRowIndex, columnId, setCellProps]);
-
-      return data.hasOwnProperty(adjustedRowIndex)
-        ? data[adjustedRowIndex][columnId]
-        : null;
+    return ({ rowIndex, columnId }) => {
+      return data.hasOwnProperty(rowIndex) ? data[rowIndex][columnId] : null;
     };
   }, [data]);
 
@@ -147,7 +107,7 @@ export default () => {
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={raw_data.length}
       renderCellValue={renderCellValue}
-      inMemory={{ level: 'sorting' }}
+      inMemory={{ level: 'pagination' }}
       sorting={{ columns: sortingColumns, onSort }}
       pagination={{
         ...pagination,
