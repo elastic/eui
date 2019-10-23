@@ -32,12 +32,12 @@ import {
 
 const gridSnippet = `
   <EuiDataGrid
-    // Optional. Will try to autodectect schemas and do sorting and pagination in memory
+    // Optional. Will try to autodectect schemas and do sorting and pagination in memory.
     inMemory={{ level: 'sorting' }}
-    // Required. There are 200 total records
+    // Required. There are 200 total records.
     rowCount={200}
-    // Required. Sets up three columns, the last of which has a custom schema we later define down below
-    // The second column B won't allow clicking in to see the content in a popup
+    // Required. Sets up three columns, the last of which has a custom schema we later define down below.
+    // The second column B won't allow clicking in to see the content in a popup.
     columns={[{ id: 'A' }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
@@ -45,11 +45,11 @@ const gridSnippet = `
       setVisibleColumns: () => {},
     }}
     // Optional. Customize the content inside the cell. The current example outputs the row and column position.
-    // Often used in combination with useEffect() to need to dynamically change the render
+    // Often used in combination with useEffect() to dynamically change the render.
     renderCellValue={({ rowIndex, columnId }) =>
      \`\${rowIndex}, \${columnId}\`
     }
-    // Optional. Add pagination
+    // Optional. Add pagination.
     pagination={{
       pageIndex: 1,
       pageSize: 100,
@@ -57,13 +57,13 @@ const gridSnippet = `
       onChangePage: () => {},
       onChangeItemsPerPage: () => {},
     }}
-    // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid
+    // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid.
     sorting={{
       columns: [{ id: 'C', direction: 'asc' }],
       onSort: () => {},
     }}
     // Optional. Allows you to configure what features the toolbar shows.
-    // The prop also accepts a boolean if you want to toggle the entire toolbar on/off
+    // The prop also accepts a boolean if you want to toggle the entire toolbar on/off.
     toolbarVisibility={{
       showColumnSelector: false
       showStyleSelector: false
@@ -79,12 +79,12 @@ const gridSnippet = `
       rowHover: 'highlight',
       header: 'shade',
     }}
-    // Optional. Provide an additional schemas to use in the grid
-    // This schema 'francise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column
+    // Optional. Provide additional schemas to use in the grid.
+    // This schema 'franchise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column.
     schemaDetectors={[
       {
         type: 'franchise',
-        // Try to detect if column data is this schema. A value of 1 is the highest possible. A (mean_average - standard_deviation) of .5 will be good enough for the autodetector to assign
+        // Try to detect if column data is this schema. A value of 1 is the highest possible. A (mean_average - standard_deviation) of .5 will be good enough for the autodetector to assign.
         detector(value) {
           return value.toLowerCase() === 'star wars' ||
             value.toLowerCase() === 'star trek'
@@ -99,17 +99,17 @@ const gridSnippet = `
           if (aValue > bValue) return direction === 'asc' ? -1 : 1;
           return 0;
         },
-        // Text for what the ASC sort does
+        // Text for what the ASC sort does.
         sortTextAsc: 'Star Wars-Star Trek',
-        // Text for what the DESC sort does
+        // Text for what the DESC sort does.
         sortTextDesc: 'Star Trek-Star Wars',
-        // EuiIcon to signify this schema
+        // EuiIcon to signify this schema.
         icon: 'star',
-        // The color to use for the icon
+        // The color to use for the icon.
         color: '#000000',
       },
     ]}
-    // Optional. Mapped against the schema, provide custom content for the popover
+    // Optional. Mapped against the schema, provide custom content for the popover.
     expansionFormatters={{
       franchise: children => {
         const value =
@@ -177,7 +177,7 @@ const gridConcepts = [
   {
     title: 'rowCount',
     description:
-      'The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)',
+      'The total number of rows in the dataset (used by e.g. pagination to know how many pages to list).',
   },
   {
     title: 'gridStyle',
@@ -186,8 +186,8 @@ const gridConcepts = [
         Defines the look of the grid. Accepts a partial{' '}
         <EuiCode>EuiDataGridStyle</EuiCode> object. Settings provided may be
         overwritten or merged with user defined preferences if{' '}
-        <EuiCode>toolbarVisibility.showStyleSelector</EuiCode>
-        is set to true (which is the default).
+        <EuiCode>toolbarVisibility.showStyleSelector</EuiCode> is set to true
+        (which is the default).
       </span>
     ),
   },
@@ -197,7 +197,7 @@ const gridConcepts = [
       <span>
         Accepts either a boolean or{' '}
         <EuiCode>EuiDataGridTooBarVisibilityOptions</EuiCode> object. When used
-        as a boolean, defines the visibility of entire toolbar. WHen passed an
+        as a boolean, defines the visibility of entire toolbar. When passed an
         object allows you to turn off individual controls within the toolbar.
       </span>
     ),
@@ -228,8 +228,8 @@ const gridConcepts = [
       <span>
         A <EuiCode>EuiDataGridSorting</EuiCode> object that provides the sorted
         columns along with their direction. Omit to disable, but you&apos;ll
-        likely want to also turn off the user sorting controls through the
-        toolbarVisibility prop.
+        likely want to also turn off the user sorting controls through the{' '}
+        <EuiCode>toolbarVisibility</EuiCode> prop.
       </span>
     ),
   },

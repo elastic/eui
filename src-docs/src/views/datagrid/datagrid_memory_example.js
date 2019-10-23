@@ -57,10 +57,10 @@ export const DataGridMemoryExample = {
       <EuiText>
         <p>
           The grid has levels of <strong>in-memory</strong> settings that can be
-          set. The following values are available. It is in the consuming
-          application&apos;s best interest to put as much of the data grid in
-          memory as performance allows. Try to use the highest level{' '}
-          <EuiCode>inMemory=&quot;sorting&quot;</EuiCode> whenever possible.
+          set. It is in the consuming application&apos;s best interest to put as
+          much of the data grid in memory as performance allows. Try to use the
+          highest level <EuiCode>inMemory=&quot;sorting&quot;</EuiCode> whenever
+          possible. The following values are available.
         </p>
         <ul>
           <li>
@@ -122,7 +122,8 @@ export const DataGridMemoryExample = {
           instead defaults to naively applying JavaScript&apos;s default array
           sort which doesn&apos;t work well with numeric data and doesn&apos;t
           sort React elements such as the links. This is a good example of what
-          happens when you don&apos;t utilize schemas for complex data.
+          happens when you <strong>don&apos;t</strong> utilize schemas for
+          complex data.
         </p>
       ),
       props: {
@@ -156,7 +157,8 @@ export const DataGridMemoryExample = {
         <p>
           With <EuiCode>{'inMemory="{{ level: \'enhancements\' }}"'}</EuiCode>{' '}
           the grid will now autodetect schemas based on the content it has
-          available on the currently viewed page.
+          available on the currently viewed page. Notice that the field list
+          under Sort fields has detected the type of data each column contains.
         </p>
       ),
       props: {

@@ -78,7 +78,7 @@ export const DataGridSchemaExample = {
           <p>
             Often the popovers are unnecessary for short form content. In the
             example below we&apos;ve turned them off by setting{' '}
-            <EuiCode>isExpandable=false</EuiCode> on boolean column.
+            <EuiCode>isExpandable=false</EuiCode> on the boolean column.
           </p>
         </Fragment>
       ),

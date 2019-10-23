@@ -15,17 +15,16 @@ const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 import { DataGridStyle, DataGridToolbarVisibilityOptions } from './props';
 
-const gridSnippet = `
-<EuiDataGrid
+const gridSnippet = `<EuiDataGrid
   {...usualProps}
-  // This can work as a shape
+  // This can work as a shape.
   toolbarVisibility={{
     showColumnSelector: false
     showStyleSelector: false
     showSortSelector: false
     showFullScreenSelector: false
   }}
-  // Or as a boolean to turn everything off
+  // Or as a boolean to turn everything off.
   toolbarVisibility={false}
   // Change the initial style of the grid.
   gridStyle={{
@@ -33,7 +32,7 @@ const gridSnippet = `
     stripes: true,
     rowHover: 'highlight',
     header: 'shade',
-    // If showStyleSelector={true} from toolbarVisibility, these last two will be superceded by what the user decides
+    // If showStyleSelector={true} from toolbarVisibility, these last two will be superceded by what the user decides.
     fontSize: 'm',
     cellPadding: 'm',
   }}
@@ -64,13 +63,13 @@ export const DataGridStylingExample = {
           <p>
             The <EuiCode>toolbarVisibility</EuiCode> prop when used as a boolean
             controls the visibility of the toolbar displayed above the grid.
-            Using the prop instead as a shape, allows setting the visibility of
-            the individual buttons within.
+            Using the prop as a shape, allows setting the visibility of the
+            individual buttons within.
           </p>
           <p>
             With the default settings, the <EuiCode>showStyleSelector</EuiCode>{' '}
             setting in <EuiCode>toolbarVisibility</EuiCode> means the user has
-            the ability to overwite the padding and font size passed into{' '}
+            the ability to override the padding and font size passed into{' '}
             <EuiCode>gridStyle</EuiCode> by the engineer.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
