@@ -1,5 +1,25 @@
 [
   {
+    "version": "14.7.0",
+    "changes": [
+      {
+        "token": "euiImage.closeImage",
+        "changeType": "added",
+        "value": "Close full screen {alt} image"
+      },
+      {
+        "token": "euiImage.openImage",
+        "changeType": "added",
+        "value": "Open full screen {alt} image"
+      },
+      {
+        "token": "euiLink.external.ariaLabel",
+        "changeType": "added",
+        "value": "External link"
+      }
+    ]
+  },
+  {
     "version": "14.5.0",
     "changes": [
       {

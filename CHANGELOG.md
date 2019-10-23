@@ -1,5 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed position of `EuiCodeBlock` controls and added more tests ([#2459](https://github.com/elastic/eui/pull/2459))
+
+## [`14.7.0`](https://github.com/elastic/eui/tree/v14.7.0)
+
 - Converted `EuiRadio` and `EuiRadioGroup` to TypeScript ([#2438](https://github.com/elastic/eui/pull/2438))
 - Improved a11y in `EuiImage` ([#2447](https://github.com/elastic/eui/pull/2447))
 - Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
@@ -7,11 +13,13 @@
 - Added `external` prop to `EuiLink` ([#2442](https://github.com/elastic/eui/pull/2442))
 - Added disabled state to `EuiBadge` ([#2440](https://github.com/elastic/eui/pull/2440))
 - Changed `EuiLink` to appear non interactive when passed the `disabled` prop and an `onClick` handler ([#2423](https://github.com/elastic/eui/pull/2423))
+- Added `minimize` glyph to `EuiIcon` ([#2457](https://github.com/elastic/eui/pull/2457))
 
 **Bug fixes**
 
 - Reenabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
-- Fixed position of `EuiCodeBlock` controls and added more tests ([#2459](https://github.com/elastic/eui/pull/2459))
+- Fixed `EuiNavDrawer` collapse/expand button height issue
+ ([#2463](https://github.com/elastic/eui/pull/2463))
 
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
@@ -21,6 +29,17 @@
 
 - Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
 - Strip custom semantics from `EuiSideNav` ([#2429](https://github.com/elastic/eui/pull/2429))
+
+## [`14.5.1`](https://github.com/elastic/eui/tree/v14.5.1)
+
+**Note: this release is a backport containing changes originally made in `14.6.0` and `14.7.0`**
+
+- Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
+- Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
+
+**Bug fixes**
+
+- Fixed `EuiNavDrawer` collapse/expand button height issue ([#2463](https://github.com/elastic/eui/pull/2463))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 

@@ -204,7 +204,6 @@ DisplayToggles.propTypes = {
   canLoading: PropTypes.bool,
   canCompressed: PropTypes.bool,
   canFullWidth: PropTypes.bool,
-  canFullWidth: PropTypes.bool,
   canPrepend: PropTypes.bool,
   canAppend: PropTypes.bool,
   canInvalid: PropTypes.bool,

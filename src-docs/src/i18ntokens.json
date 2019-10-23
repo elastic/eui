@@ -277,11 +277,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 246,
+        "line": 260,
         "column": 12
       },
       "end": {
-        "line": 251,
+        "line": 265,
         "column": 14
       }
     },
@@ -293,11 +293,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 290,
+        "line": 304,
         "column": 14
       },
       "end": {
-        "line": 292,
+        "line": 306,
         "column": 43
       }
     },
@@ -309,11 +309,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 308,
+        "line": 372,
         "column": 10
       },
       "end": {
-        "line": 316,
+        "line": 380,
         "column": 12
       }
     },
@@ -990,6 +990,54 @@
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
+  },
+  {
+    "token": "euiImage.closeImage",
+    "defString": "Close full screen {alt} image",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 121,
+        "column": 12
+      },
+      "end": {
+        "line": 124,
+        "column": 54
+      }
+    },
+    "filepath": "src/components/image/image.tsx"
+  },
+  {
+    "token": "euiImage.openImage",
+    "defString": "Open full screen {alt} image",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 155,
+        "column": 10
+      },
+      "end": {
+        "line": 158,
+        "column": 51
+      }
+    },
+    "filepath": "src/components/image/image.tsx"
+  },
+  {
+    "token": "euiLink.external.ariaLabel",
+    "defString": "External link",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 85,
+        "column": 6
+      },
+      "end": {
+        "line": 85,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/link/link.tsx"
   },
   {
     "token": "euiModal.closeModal",
