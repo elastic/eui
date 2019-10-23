@@ -58,14 +58,6 @@ describe('EuiCodeBlock', () => {
       });
     });
 
-    describe('inline', () => {
-      it('is rendered', () => {
-        const component = render(<EuiCodeBlock inline>{code}</EuiCodeBlock>);
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('fontSize', () => {
       FONT_SIZES.forEach(fontSize => {
         test(`${fontSize} is rendered`, () => {

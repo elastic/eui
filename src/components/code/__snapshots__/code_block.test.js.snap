@@ -51,23 +51,6 @@ console.log(some);
 </div>
 `;
 
-exports[`EuiCodeBlock props inline is rendered 1`] = `
-<div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
->
-  <pre
-    class="euiCodeBlock__pre"
-  >
-    <code
-      class="euiCodeBlock__code"
-    >
-      var some = 'code';
-console.log(some);
-    </code>
-  </pre>
-</div>
-`;
-
 exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls"
