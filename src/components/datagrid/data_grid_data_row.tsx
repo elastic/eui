@@ -59,6 +59,7 @@ const EuiDataGridDataRow: FunctionComponent<
       {columns.map((props, i) => {
         const { id } = props;
         const columnType = schema[id] ? schema[id].columnType : null;
+        const cellClassName = schema[id] ? schema[id].className : '';
 
         const isExpandable =
           props.isExpandable !== undefined ? props.isExpandable : true;
@@ -77,6 +78,7 @@ const EuiDataGridDataRow: FunctionComponent<
             colIndex={i}
             columnId={id}
             columnType={columnType}
+            className={cellClassName}
             popoverContent={popoverContent}
             width={width || undefined}
             renderCellValue={renderCellValue}

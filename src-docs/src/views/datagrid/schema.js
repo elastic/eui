@@ -206,6 +206,7 @@ export default class DataGridSchema extends Component {
             sortTextDesc: 'Star trek-Star wars',
             icon: 'starFilled',
             color: '#800080',
+            className: 'euiDataGridCell--favoriteFranchise',
           },
         ]}
         popoverContents={{

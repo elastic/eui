@@ -38,6 +38,10 @@ export interface EuiDataGridSchemaDetector {
    * Text for how to represent a descending sort of this data type, e.g. 'Z -> A'
    */
   sortTextDesc: ReactNode;
+  /**
+   * CSS class to apply to the cells that match this schema.
+   */
+  className: string;
 }
 
 const numericChars = new Set([
@@ -83,6 +87,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="False-True"
       />
     ),
+    className: 'euiDataGridRowCell--boolean',
   },
   {
     type: 'currency',
@@ -124,6 +129,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="High-Low"
       />
     ),
+    className: 'euiDataGridRowCell--currency',
   },
   {
     type: 'datetime',
@@ -157,6 +163,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     sortTextDesc: (
       <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
     ),
+    className: 'euiDataGridRowCell--dateTime',
   },
   {
     type: 'numeric',
@@ -187,6 +194,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="High-Low"
       />
     ),
+    className: 'euiDataGridRowCell--numeric',
   },
   {
     type: 'json',
@@ -222,11 +230,12 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="Large-Small"
       />
     ),
+    className: 'euiDataGridRowCell--json',
   },
 ];
 
 export interface EuiDataGridSchema {
-  [columnId: string]: { columnType: string | null };
+  [columnId: string]: { columnType: string | null; className: string };
 }
 
 interface SchemaTypeScore {
@@ -375,7 +384,7 @@ export function getMergedSchema(
         if (detectedSchema.hasOwnProperty(id)) {
           mergedSchema[id] = { ...detectedSchema[id], columnType: schema };
         } else {
-          mergedSchema[id] = { columnType: schema };
+          mergedSchema[id] = { columnType: schema, className: '' };
         }
       }
     }

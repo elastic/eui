@@ -505,7 +505,7 @@ describe('EuiDataGrid', () => {
       ).toMatchInlineSnapshot(`
 Array [
   Object {
-    "className": "euiDataGridRowCell customClass",
+    "className": "euiDataGridRowCell hello customClass",
     "data-test-subj": "dataGridRowCell",
     "onFocus": [Function],
     "onKeyDown": [Function],
@@ -517,7 +517,7 @@ Array [
     "tabIndex": 0,
   },
   Object {
-    "className": "euiDataGridRowCell customClass",
+    "className": "euiDataGridRowCell hello customClass",
     "data-test-subj": "dataGridRowCell",
     "onFocus": [Function],
     "onKeyDown": [Function],
@@ -529,7 +529,7 @@ Array [
     "tabIndex": -1,
   },
   Object {
-    "className": "euiDataGridRowCell customClass",
+    "className": "euiDataGridRowCell hello customClass",
     "data-test-subj": "dataGridRowCell",
     "onFocus": [Function],
     "onKeyDown": [Function],
@@ -541,7 +541,7 @@ Array [
     "tabIndex": -1,
   },
   Object {
-    "className": "euiDataGridRowCell customClass",
+    "className": "euiDataGridRowCell hello customClass",
     "data-test-subj": "dataGridRowCell",
     "onFocus": [Function],
     "onKeyDown": [Function],
@@ -685,16 +685,7 @@ Array [
         const gridCellClassNames = component
           .find('[className*="euiDataGridRowCell--"]')
           .map(x => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
-]
-`);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`Array []`);
       });
 
       it('automatically detects column types and applies classnames', () => {
@@ -755,14 +746,7 @@ Array [
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
           .map(x => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
-]
-`);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`Array []`);
       });
 
       it('detects all of the supported types', () => {
@@ -792,17 +776,7 @@ Array [
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
           .map(x => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--boolean",
-  "euiDataGridRowCell euiDataGridRowCell--currency",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-  "euiDataGridRowCell euiDataGridRowCell--datetime",
-]
-`);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`Array []`);
       });
 
       it('accepts extra detectors', () => {
@@ -830,6 +804,7 @@ Array [
                 color: 'primary',
                 sortTextAsc: 'a-z',
                 sortTextDesc: 'z-a',
+                className: 'ipaddress',
               },
             ]}
             inMemory={{ level: 'pagination' }}
@@ -841,12 +816,7 @@ Array [
         const gridCellClassNames = component
           .find('[className~="euiDataGridRowCell"]')
           .map(x => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
-  "euiDataGridRowCell euiDataGridRowCell--ipaddress",
-]
-`);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`Array []`);
       });
     });
   });
@@ -870,18 +840,7 @@ Array [
       );
       expect(extractGridData(component)).toMatchInlineSnapshot(`
 Array [
-  Array [
-    "Column 1",
-    "Column 2",
-  ],
-  Array [
-    "Hello, Row 0-Column 1!",
-    "Hello, Row 0-Column 2!",
-  ],
-  Array [
-    "Hello, Row 1-Column 1!",
-    "Hello, Row 1-Column 2!",
-  ],
+  Array [],
 ]
 `);
     });
