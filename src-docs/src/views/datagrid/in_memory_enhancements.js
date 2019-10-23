@@ -21,7 +21,6 @@ const columns = [
   },
   {
     id: 'amount',
-    schema: 'currency',
   },
   {
     id: 'phone',
@@ -76,6 +75,8 @@ export default () => {
 
   // Sort data
   let data = useMemo(() => {
+    // the grid itself is responsible for sorting if inMemory is `sorting`
+
     return [...raw_data].sort((a, b) => {
       for (let i = 0; i < sortingColumns.length; i++) {
         const column = sortingColumns[i];
@@ -104,32 +105,34 @@ export default () => {
 
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId }) => {
-      let adjustedRowIndex = rowIndex;
-
-      // If we are doing the pagination (instead of leaving that to the grid)
-      // then the row index must be adjusted as `data` has already been pruned to the page size
-      adjustedRowIndex = rowIndex - pagination.pageIndex * pagination.pageSize;
+      // Because inMemory is not set for pagination, we need to manage it
+      // The row index must be adjusted as `data` has already been pruned to the page size
+      const adjustedRowIndex =
+        rowIndex - pagination.pageIndex * pagination.pageSize;
 
       return data.hasOwnProperty(adjustedRowIndex)
         ? data[adjustedRowIndex][columnId]
         : null;
     };
-  }, data);
+  }, [data]);
 
   return (
-    <EuiDataGrid
-      aria-label="Data grid demo"
-      columns={columns}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      rowCount={raw_data.length}
-      renderCellValue={renderCellValue}
-      sorting={{ columns: sortingColumns, onSort }}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [10, 50, 100],
-        onChangeItemsPerPage: onChangeItemsPerPage,
-        onChangePage: onChangePage,
-      }}
-    />
+    <div>
+      <EuiDataGrid
+        aria-label="Data grid demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={raw_data.length}
+        renderCellValue={renderCellValue}
+        inMemory={{ level: 'enhancements' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [10, 50, 100],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+      />
+    </div>
   );
 };

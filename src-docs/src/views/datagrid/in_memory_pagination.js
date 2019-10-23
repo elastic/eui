@@ -21,7 +21,6 @@ const columns = [
   },
   {
     id: 'amount',
-    schema: 'currency',
   },
   {
     id: 'phone',
@@ -74,8 +73,8 @@ export default () => {
     [setSortingColumns]
   );
 
-  // Sort data
-  let data = useMemo(() => {
+  // Because inMemory's level is set to `pagination` we still need to sort the data, but no longer need to chunk it for pagination
+  const data = useMemo(() => {
     return [...raw_data].sort((a, b) => {
       for (let i = 0; i < sortingColumns.length; i++) {
         const column = sortingColumns[i];
@@ -90,13 +89,6 @@ export default () => {
     });
   }, [raw_data, sortingColumns]);
 
-  // Pagination
-  data = useMemo(() => {
-    const rowStart = pagination.pageIndex * pagination.pageSize;
-    const rowEnd = Math.min(rowStart + pagination.pageSize, data.length);
-    return data.slice(rowStart, rowEnd);
-  }, [data, pagination]);
-
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
     columns.map(({ id }) => id)
@@ -104,17 +96,9 @@ export default () => {
 
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId }) => {
-      let adjustedRowIndex = rowIndex;
-
-      // If we are doing the pagination (instead of leaving that to the grid)
-      // then the row index must be adjusted as `data` has already been pruned to the page size
-      adjustedRowIndex = rowIndex - pagination.pageIndex * pagination.pageSize;
-
-      return data.hasOwnProperty(adjustedRowIndex)
-        ? data[adjustedRowIndex][columnId]
-        : null;
+      return data.hasOwnProperty(rowIndex) ? data[rowIndex][columnId] : null;
     };
-  }, data);
+  }, [data]);
 
   return (
     <EuiDataGrid
@@ -123,6 +107,7 @@ export default () => {
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={raw_data.length}
       renderCellValue={renderCellValue}
+      inMemory={{ level: 'pagination' }}
       sorting={{ columns: sortingColumns, onSort }}
       pagination={{
         ...pagination,
