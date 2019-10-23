@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { EuiIconType } from '../icon/icon';
 import { ButtonIconColor } from '../button/button_icon/button_icon';
 import { EuiButtonEmptyColor } from '../button/button_empty';
+import { ExclusiveUnion } from '../common';
 
 type IconFunction<T> = (item: T) => EuiIconType;
 type ButtonColor = ButtonIconColor | EuiButtonEmptyColor;
@@ -32,12 +33,13 @@ export interface DefaultItemIconButtonAction<T>
   color?: ButtonIconColor | ButtonIconColorFunction<T>;
 }
 
-export type DefaultItemAction<T> =
-  | DefaultItemEmptyButtonAction<T>
-  | DefaultItemIconButtonAction<T>;
+export type DefaultItemAction<T> = ExclusiveUnion<
+  DefaultItemEmptyButtonAction<T>,
+  DefaultItemIconButtonAction<T>
+>;
 
 export interface CustomItemAction<T> {
-  render: (item: T, enabled?: boolean) => ReactElement;
+  render: (item: T, enabled: boolean) => ReactElement;
   available?: (item: T) => boolean;
   enabled?: (item: T) => boolean;
   isPrimary?: boolean;
