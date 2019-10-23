@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.7.0`.
+
+## [`14.7.0`](https://github.com/elastic/eui/tree/v14.7.0)
+
 - Converted `EuiRadio` and `EuiRadioGroup` to TypeScript ([#2438](https://github.com/elastic/eui/pull/2438))
 - Improved a11y in `EuiImage` ([#2447](https://github.com/elastic/eui/pull/2447))
 - Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
