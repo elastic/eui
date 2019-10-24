@@ -46,6 +46,8 @@ export {
 
 export { EuiCopy } from './copy';
 
+export { EuiDataGrid } from './datagrid';
+
 export {
   EuiDatePicker,
   EuiDatePickerRange,
@@ -148,7 +150,7 @@ export { ICON_TYPES, EuiIcon } from './icon';
 
 export { EuiImage } from './image';
 
-export { useInnerText, EuiInnerText } from './inner_text';
+export { useInnerText, EuiInnerText, useRenderToText } from './inner_text';
 
 export { EuiI18n, EuiI18nNumber } from './i18n';
 

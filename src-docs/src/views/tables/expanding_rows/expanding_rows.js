@@ -163,7 +163,7 @@ export class Table extends Component {
       {
         field: 'dateOfBirth',
         name: 'Date of Birth',
-        dataType: 'date',
+        schema: 'date',
         render: date => formatDate(date, 'dobLong'),
         sortable: true,
       },

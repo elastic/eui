@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -18,7 +18,7 @@ export type GroupButtonSize = 's' | 'm' | 'compressed';
 
 export interface EuiButtonGroupOption extends CommonProps {
   id: string;
-  label: string;
+  label: ReactNode;
   name?: string;
   isDisabled?: boolean;
   value?: any;
