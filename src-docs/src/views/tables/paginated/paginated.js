@@ -154,6 +154,7 @@ export class Table extends Component {
     return (
       <div>
         <EuiSwitch
+          checked={this.state.showPerPageOptions}
           label={
             <span>
               Hide per page options with{' '}
