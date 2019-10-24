@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
-const highlight = (searchSubject, searchValue, isStrict = false) => {
+const highlight = (
+  searchSubject: string,
+  searchValue: string,
+  isStrict = false
+) => {
   if (!searchValue) {
     return searchSubject;
   }
@@ -31,23 +34,21 @@ const highlight = (searchSubject, searchValue, isStrict = false) => {
   );
 };
 
-export const EuiHighlight = ({
-  children,
-  className,
-  search,
-  strict,
-  ...rest
-}) => {
+export type EuiHighlightProps = Pick<
+  React.HTMLAttributes<HTMLSpanElement>,
+  Exclude<keyof React.HTMLAttributes<HTMLSpanElement>, 'children'>
+> & {
+  children: string;
+  search: string;
+  strict?: boolean;
+};
+
+export const EuiHighlight = (props: EuiHighlightProps) => {
+  const { children, className, search, strict, ...rest } = props;
+
   return (
     <span className={className} {...rest}>
       {highlight(children, search, strict)}
     </span>
   );
-};
-
-EuiHighlight.propTypes = {
-  children: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  search: PropTypes.string.isRequired,
-  strict: PropTypes.bool,
 };

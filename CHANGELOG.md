@@ -8,6 +8,7 @@
 - Added disabled state to `EuiBadge` ([#2440](https://github.com/elastic/eui/pull/2440))
 - Changed `EuiLink` to appear non interactive when passed the `disabled` prop and an `onClick` handler ([#2423](https://github.com/elastic/eui/pull/2423))
 - Added `minimize` glyph to `EuiIcon` ([#2457](https://github.com/elastic/eui/pull/2457))
+- Migrated `EuiHighlight` to TypeScript ([PR here]())
 
 **Bug fixes**
 
