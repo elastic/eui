@@ -53,6 +53,15 @@ export default class extends Component {
           compressed
           disabled
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiSwitch
+          showLabel={false}
+          label="I am a switch without a visible label"
+          checked={this.state.checked}
+          onChange={this.onChange}
+        />
       </Fragment>
     );
   }
