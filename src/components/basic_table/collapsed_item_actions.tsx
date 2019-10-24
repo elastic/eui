@@ -22,7 +22,7 @@ export interface CollapsedItemActionsProps<T> {
   onBlur?: () => void;
 }
 
-interface State {
+interface CollapsedItemActionsState {
   popoverOpen: boolean;
 }
 
