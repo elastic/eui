@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { NODE_ENV, CI } = process.env;
 
@@ -88,10 +88,10 @@ const webpackConfig = {
     }),
 
     // run TypeScript during webpack build
-    new ForkTsCheckerWebpackPlugin({
-      tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
-      async: false, // makes errors more visible, but potentially less performant
-    }),
+    // new ForkTsCheckerWebpackPlugin({
+    //   tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    //   async: false, // makes errors more visible, but potentially less performant
+    // }),
   ],
 
   devServer: {
