@@ -224,6 +224,33 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('understands literal values as a type', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {
+  foo: 'bar';
+  bazz?: 5;
+}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf(["bar"]).isRequired,
+  bazz: PropTypes.oneOf([5])
+};`);
+      });
+
     });
 
     describe('function propTypes', () => {
