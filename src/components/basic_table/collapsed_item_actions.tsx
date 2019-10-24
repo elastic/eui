@@ -29,7 +29,7 @@ interface CollapsedItemActionsState {
 
 export class CollapsedItemActions<T> extends Component<
   CollapsedItemActionsProps<T>,
-  State
+  CollapsedItemActionsState
 > {
   private popoverDiv: HTMLDivElement | null = null;
 
