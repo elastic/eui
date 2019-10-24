@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
+
 **Bug fixes**
 
 - Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
