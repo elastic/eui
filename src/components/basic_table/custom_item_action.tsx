@@ -15,7 +15,7 @@ interface CustomItemActionState {
 
 export class CustomItemAction<T> extends Component<
   CustomItemActionProps<T>,
-  State
+  CustomItemActionState
 > {
   private mounted: boolean;
 
