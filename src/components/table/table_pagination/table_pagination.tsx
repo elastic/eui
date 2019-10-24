@@ -58,6 +58,7 @@ export class EuiTablePagination extends Component<Props, State> {
         color="text"
         iconType="arrowDown"
         iconSide="right"
+        data-test-subj="tablePaginationPopoverButton"
         onClick={this.onButtonClick}>
         <EuiI18n
           token="euiTablePagination.rowsPerPage"
@@ -85,7 +86,6 @@ export class EuiTablePagination extends Component<Props, State> {
 
     const itemsPerPagePopover = (
       <EuiPopover
-        id="customizablePagination"
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}

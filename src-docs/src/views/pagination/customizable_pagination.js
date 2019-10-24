@@ -95,7 +95,6 @@ export default class extends Component {
       <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="customizablePagination"
             button={button}
             isOpen={this.state.isPopoverOpen}
             closePopover={this.closePopover.bind(this)}

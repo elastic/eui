@@ -1,0 +1,53 @@
+$euiDataGridPrefix: '.euiDataGrid--';
+
+// Things can get nesty so it's nice to have an approved list that match our typings
+$euiDataGridStyles: (
+  'bordersAll'
+  'bordersNone'
+  'bordersHorizontal'
+  'paddingSmall'
+  'paddingMedium'
+  'paddingLarge'
+  'stripes'
+  'rowHoverNone'
+  'rowHoverHighlight'
+  'headerShade'
+  'headerUnderline'
+  'fontSizeSmall'
+  'fontSizeLarge'
+);
+
+// All this does is take some of the above and make a sibling selector
+// selector(headerShade, fontSizeLarge)
+// will produce `.euiDataGrid--headerShade.euiDataGrid--fontSizeLarge
+@function euiDataGridSelector($selectorKeys...) {
+  $selectorList: '';
+  @each $selector in $selectorKeys {
+    // Spit out warnings when you make typos!
+    @if (index($euiDataGridStyles, $selector != true)) {
+      @error '#{$selector} is not an allowed value in the euiDataGridStyles() mixin';
+    }
+    $selctorValue: #{$euiDataGridPrefix}#{$selector};
+    $selectorList: str-insert($selectorList, $selctorValue, 1000);
+  }
+
+  @return $selectorList;
+}
+
+@mixin euiDataGridStyles($selectorKeys...) {
+  #{euiDataGridSelector($selectorKeys...)} {
+    @content;
+  }
+}
+
+@mixin euiDataGridHeaderCell {
+  .euiDataGridHeaderCell {
+    @content;
+  }
+}
+
+@mixin euiDataGridRowCell {
+  .euiDataGridRowCell {
+    @content;
+  }
+}

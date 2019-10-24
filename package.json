@@ -61,7 +61,7 @@
     "react-is": "~16.3.0",
     "react-virtualized": "^9.18.5",
     "resize-observer-polyfill": "^1.5.0",
-    "tabbable": "^1.1.0",
+    "tabbable": "^3.0.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -130,6 +130,8 @@
     "eslint-plugin-prefer-object-spread": "^1.2.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "faker": "^4.1.0",
     "file-loader": "^1.1.11",
     "findup": "^0.1.5",
     "fork-ts-checker-webpack-plugin": "^0.4.4",
