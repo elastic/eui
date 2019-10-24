@@ -132,9 +132,9 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
-          aira-modal="true"
           aria-describedby="htmlId"
           aria-live="assertive"
+          aria-modal="true"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
@@ -182,9 +182,9 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
-          aira-modal="true"
           aria-describedby="htmlId"
           aria-live="assertive"
+          aria-modal="true"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
@@ -232,9 +232,9 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
         data-focus-lock-disabled="false"
       >
         <div
-          aira-modal="true"
           aria-describedby="htmlId"
           aria-live="off"
+          aria-modal="true"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           data-autofocus="true"
           role="dialog"
@@ -290,9 +290,9 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
-          aira-modal="true"
           aria-describedby="htmlId"
           aria-live="assertive"
+          aria-modal="true"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"
@@ -340,9 +340,9 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         data-focus-lock-disabled="disabled"
       >
         <div
-          aira-modal="true"
           aria-describedby="htmlId"
           aria-live="assertive"
+          aria-modal="true"
           class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           role="dialog"
           style="top: 16px; left: -22px; z-index: 2000;"

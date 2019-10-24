@@ -73,8 +73,13 @@ body {
   outline: none;
 
   // sass-lint:disable no-vendor-prefixes
+  // Disables border that shows up when tabbing in Firefox.
   &::-moz-focus-inner {
     border: none;
+  }
+
+  &:-moz-focusring {
+    outline: none;
   }
 }
 
