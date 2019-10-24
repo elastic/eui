@@ -30,7 +30,8 @@ module.exports = {
   plugins: [
     "jsx-a11y",
     "prettier",
-    "local"
+    "local",
+    "react-hooks"
   ],
   rules: {
     "prefer-template": "error",
@@ -63,6 +64,9 @@ module.exports = {
     "jsx-a11y/scope": "error",
     "jsx-a11y/tabindex-no-positive": "error",
     "jsx-a11y/label-has-associated-control": "error",
+
+    // "react-hooks/rules-of-hooks": "error",
+    // "react-hooks/exhaustive-deps": "warn",
 
     "@typescript-eslint/array-type": ["error", "array-simple"],
     "@typescript-eslint/camelcase": "off",

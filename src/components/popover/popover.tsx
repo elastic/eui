@@ -10,12 +10,14 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback, RefCallback } from '../common';
 import { FocusTarget, EuiFocusTrap } from '../focus_trap';
+import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 
 import {
   cascadingMenuKeyCodes,
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
+  htmlIdGenerator,
 } from '../../services';
 
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -50,6 +52,8 @@ export type PopoverAnchorPosition =
   | 'rightUp'
   | 'rightDown';
 
+const generateId = htmlIdGenerator();
+
 export interface EuiPopoverProps {
   anchorClassName?: string;
 
@@ -62,7 +66,7 @@ export interface EuiPopoverProps {
 
   button: NonNullable<ReactNode>;
 
-  buttonRef?: RefCallback<HTMLElement | null>;
+  buttonRef?: RefCallback<HTMLDivElement | null>;
 
   closePopover: NoArgCallback<void>;
 
@@ -107,6 +111,11 @@ export interface EuiPopoverProps {
   /** By default, popover content inherits the z-index of the anchor
    * component; pass zIndex to override */
   zIndex?: number;
+
+  /**
+   * Function callback for when the focus trap is deactivated
+   */
+  onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -310,19 +319,34 @@ export class EuiPopover extends Component<Props, State> {
 
       if (this.props.initialFocus != null) {
         focusTarget = getElementFromInitialFocus(this.props.initialFocus);
-        if (focusTarget) {
-          // there's a race condition between the popover content becoming visible and this function call
-          // if the element isn't visible yet (due to css styling) then it can't accept focus
-          // so wait for another render and try again
-          const visibility = window.getComputedStyle(focusTarget).visibility;
-          if (visibility === 'hidden') {
-            this.updateFocus();
-          }
-        }
       } else {
         const tabbableItems = tabbable(this.panel);
         if (tabbableItems.length) {
           focusTarget = tabbableItems[0];
+        }
+      }
+
+      // there's a race condition between the popover content becoming visible and this function call
+      // if the element isn't visible yet (due to css styling) then it can't accept focus
+      // so wait for another render and try again
+      if (focusTarget == null) {
+        // there isn't a focus target, one of two reasons:
+        // #1 is the whole panel hidden? If so, schedule another check
+        // #2 panel is visible but no tabbables exist, move focus to the panel
+        const panelVisibility = window.getComputedStyle(this.panel).visibility;
+        if (panelVisibility === 'hidden') {
+          // #1
+          this.updateFocus();
+        } else {
+          // #2
+          focusTarget = this.panel;
+        }
+      } else {
+        // found an element to focus, but is it visible?
+        const visibility = window.getComputedStyle(focusTarget).visibility;
+        if (visibility === 'hidden') {
+          // not visible, check again next render frame
+          this.updateFocus();
         }
       }
 
@@ -511,7 +535,7 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
-  buttonRef = (node: HTMLElement | null) => {
+  buttonRef = (node: HTMLDivElement | null) => {
     this.button = node;
     this.props.buttonRef && this.props.buttonRef(node);
   };
@@ -539,8 +563,11 @@ export class EuiPopover extends Component<Props, State> {
       initialFocus,
       attachToAnchor,
       display,
+      onTrapDeactivation,
       ...rest
     } = this.props;
+
+    const descriptionId = generateId();
 
     const classes = classNames(
       'euiPopover',
@@ -585,10 +612,10 @@ export class EuiPopover extends Component<Props, State> {
       if (ownFocus) {
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p role="alert">
+            <p id={descriptionId}>
               <EuiI18n
                 token="euiPopover.screenReaderAnnouncement"
-                default="You are in a popup. To exit this popup, hit escape."
+                default="You are in a dialog. To close this dialog, hit escape."
               />
             </p>
           </EuiScreenReaderOnly>
@@ -606,16 +633,20 @@ export class EuiPopover extends Component<Props, State> {
             returnFocus={!this.state.isOpening} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
+            onDeactivation={onTrapDeactivation}
             disabled={!ownFocus}>
-            {focusTrapScreenReaderText}
             <EuiPanel
               panelRef={this.panelRef}
               className={panelClasses}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}
+              role="dialog"
+              aira-modal="true"
+              aria-describedby={descriptionId}
               style={this.state.popoverStyles}>
               <div className={arrowClassNames} style={this.state.arrowStyles} />
+              {focusTrapScreenReaderText}
               <EuiMutationObserver
                 observerOptions={{
                   attributes: true, // element attribute changes
