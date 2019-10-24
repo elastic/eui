@@ -64,7 +64,7 @@
 
 // Hiding elements offscreen to only be read by screen reader
 @mixin euiScreenReaderOnly {
-  position: absolute;
+  position: inherit;
   left: -10000px;
   top: auto;
   width: 1px;
