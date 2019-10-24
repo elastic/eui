@@ -9,7 +9,7 @@ export interface CustomItemActionProps<T> {
   index?: number;
 }
 
-interface State {
+interface CustomItemActionState {
   hasFocus: boolean;
 }
 
