@@ -1,5 +1,5 @@
 import React, {
-  Component,
+  PureComponent,
   HTMLAttributes,
   ReactElement,
   SVGAttributes,
@@ -144,11 +144,12 @@ const typeToPathMap = {
   indexPatternApp: 'app_index_pattern',
   indexRollupApp: 'app_index_rollup',
   indexSettings: 'index_settings',
-  infraApp: 'app_infra',
+  metricsApp: 'app_metrics',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
   invert: 'invert',
   ip: 'ip',
+  keyboardShortcut: 'keyboard_shortcut',
   kqlField: 'kql_field',
   kqlFunction: 'kql_function',
   kqlOperand: 'kql_operand',
@@ -160,7 +161,7 @@ const typeToPathMap = {
   listAdd: 'list_add',
   lock: 'lock',
   lockOpen: 'lockOpen',
-  loggingApp: 'app_logging',
+  logsApp: 'app_logs',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
   logoAPM: 'logo_apm',
@@ -232,6 +233,7 @@ const typeToPathMap = {
   menuRight: 'menuRight',
   merge: 'merge',
   metricbeatApp: 'app_metricbeat',
+  minimize: 'minimize',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
   monitoringApp: 'app_monitoring',
@@ -447,7 +449,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-export class EuiIcon extends Component<EuiIconProps, State> {
+export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
   constructor(props: EuiIconProps) {
     super(props);

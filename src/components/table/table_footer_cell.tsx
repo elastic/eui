@@ -9,16 +9,20 @@ import {
   CENTER_ALIGNMENT,
 } from '../../services';
 
+import { resolveWidthAsStyle } from './utils';
+
 type Props = CommonProps &
   TdHTMLAttributes<HTMLTableCellElement> & {
     align?: HorizontalAlignment;
+    width?: string | number;
   };
 
 export const EuiTableFooterCell: FunctionComponent<Props> = ({
   children,
   align = LEFT_ALIGNMENT,
-  colSpan,
   className,
+  width,
+  style,
   ...rest
 }) => {
   const classes = classNames('euiTableFooterCell', className);
@@ -26,9 +30,10 @@ export const EuiTableFooterCell: FunctionComponent<Props> = ({
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
   });
+  const styleObj = resolveWidthAsStyle(style, width);
 
   return (
-    <td className={classes} colSpan={colSpan} {...rest}>
+    <td className={classes} style={styleObj} {...rest}>
       <div className={contentClasses}>
         <span className="euiTableCellContent__text">{children}</span>
       </div>

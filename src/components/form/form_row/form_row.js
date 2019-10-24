@@ -76,6 +76,7 @@ export class EuiFormRow extends Component {
       compressed,
       display,
       displayOnly,
+      hasChildLabel,
       ...rest
     } = this.props;
 
@@ -139,7 +140,6 @@ export class EuiFormRow extends Component {
 
     let optionalLabel;
     const isLegend = label && labelType === 'legend' ? true : false;
-    const labelID = isLegend ? `${id}-${labelType}` : undefined;
 
     if (label || labelAppend) {
       optionalLabel = (
@@ -149,9 +149,8 @@ export class EuiFormRow extends Component {
             isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
             aria-invalid={isInvalid}
-            htmlFor={!isLegend ? id : undefined}
-            type={labelType}
-            id={labelID}>
+            htmlFor={!isLegend && hasChildLabel ? id : undefined}
+            type={labelType}>
             {label}
           </EuiFormLabel>
           {labelAppend && ' '}
@@ -190,12 +189,7 @@ export class EuiFormRow extends Component {
     const Element = labelType === 'legend' ? 'fieldset' : 'div';
 
     return (
-      <Element
-        className={classes}
-        {...rest}
-        id={`${id}-row`}
-        aria-labelledby={labelID} // Only renders a string if label type is 'legend'
-      >
+      <Element className={classes} {...rest}>
         {optionalLabel}
         <div className={fieldWrapperClasses}>
           {field}
@@ -210,6 +204,10 @@ export class EuiFormRow extends Component {
 EuiFormRow.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
+  /**
+   * Escape hatch to not render duplicate labels if the child also renders a label
+   */
+  hasChildLabel: PropTypes.bool,
   label: PropTypes.node,
   /**
    * Sets the type of html element the label should be based
@@ -269,4 +267,5 @@ EuiFormRow.defaultProps = {
   fullWidth: false,
   describedByIds: [],
   labelType: 'label',
+  hasChildLabel: true,
 };

@@ -4,7 +4,7 @@ exports[`EuiCodeEditor behavior hint element should be disabled when the ui ace 
 <div
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
-  id="42"
+  id="htmlId"
   role="button"
   tabindex="0"
 >
@@ -25,7 +25,7 @@ exports[`EuiCodeEditor behavior hint element should be enabled when the ui ace b
 <div
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
-  id="42"
+  id="htmlId"
   role="button"
   tabindex="0"
 >
@@ -46,7 +46,7 @@ exports[`EuiCodeEditor behavior hint element should be tabable 1`] = `
 <div
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
-  id="42"
+  id="htmlId"
   role="button"
   tabindex="0"
 >
@@ -71,7 +71,7 @@ exports[`EuiCodeEditor is rendered 1`] = `
   <div
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
-    id="42"
+    id="htmlId"
     role="button"
     tabindex="0"
   >
@@ -88,7 +88,7 @@ exports[`EuiCodeEditor is rendered 1`] = `
   </div>
   <div
     class=" ace_editor ace-tm testClass1 testClass2"
-    id="brace-editor"
+    id="htmlId"
     style="width: 500px; height: 500px;"
   >
     <textarea
@@ -187,7 +187,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
   <div
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
-    id="42"
+    id="htmlId"
     role="button"
     tabindex="0"
   >
@@ -204,7 +204,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
   </div>
   <div
     class=" ace_editor ace-tm"
-    id="brace-editor"
+    id="htmlId"
     style="width: 500px; height: 500px;"
   >
     <textarea
@@ -303,7 +303,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
   <div
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
-    id="42"
+    id="htmlId"
     role="button"
     tabindex="0"
   >
@@ -320,7 +320,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
   </div>
   <div
     class=" ace_editor ace-tm"
-    id="brace-editor"
+    id="htmlId"
     style="width: 500px; height: 500px;"
   >
     <textarea
@@ -419,7 +419,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
   <div
     class="euiCodeEditorKeyboardHint"
     data-test-subj="codeEditorHint"
-    id="42"
+    id="htmlId"
     role="button"
     tabindex="0"
   >
@@ -436,7 +436,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
   </div>
   <div
     class=" ace_editor ace-tm"
-    id="brace-editor"
+    id="htmlId"
     style="width: 500px; height: 500px;"
   >
     <textarea

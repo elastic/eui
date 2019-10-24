@@ -15,6 +15,8 @@ import {
   CENTER_ALIGNMENT,
 } from '../../services';
 
+import { resolveWidthAsStyle } from './utils';
+
 interface EuiTableRowCellSharedPropsShape {
   /**
    * Horizontal alignment of the text in the cell
@@ -34,6 +36,7 @@ interface EuiTableRowCellSharedPropsShape {
    * _Should only be used for action cells_
    */
   truncateText?: boolean;
+  width?: string | number;
 }
 
 interface EuiTableRowCellMobileOptionsShape {
@@ -120,7 +123,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   truncateText,
   showOnHover,
   textOnly = true,
-  colSpan,
   hasActions,
   isExpander,
   mobileOptions = {
@@ -131,6 +133,8 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   hideForMobile,
   isMobileHeader,
   isMobileFullWidth,
+  style,
+  width,
   ...rest
 }) => {
   const cellClasses = classNames('euiTableRowCell', {
@@ -173,6 +177,8 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     euiTableCellContent__hoverItem: showOnHover,
   });
 
+  const styleObj = resolveWidthAsStyle(style, width);
+
   function modifyChildren(children: ReactNode) {
     let modifiedChildren = children;
 
@@ -202,14 +208,14 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     cellRender = (
       <td
         className={`${cellClasses} ${hideForMobileClasses}`}
-        colSpan={colSpan}
+        style={styleObj}
         {...rest}>
         <div className={contentClasses}>{childrenNode}</div>
       </td>
     );
   } else {
     cellRender = (
-      <td className={cellClasses} colSpan={colSpan} {...rest}>
+      <td className={cellClasses} style={styleObj} {...rest}>
         {/* Mobile-only header */}
         {(mobileOptions.header || header) && !isMobileHeader && (
           <div

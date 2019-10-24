@@ -68,7 +68,7 @@ describe('YourComponent', () => {
       });
 
       test('is called when the button is clicked', () => {
-        const onCloseHandler = sinon.stub();
+        const onClickHandler = sinon.stub();
 
         const component = mount(
           <YourComponent onClick={onClickHandler} />
@@ -77,7 +77,7 @@ describe('YourComponent', () => {
         // NOTE: This is the only way to find this button.
         component.find('button').simulate('click');
 
-        sinon.assert.calledOnce(onCloseHandler);
+        sinon.assert.calledOnce(onClickHandler);
       });
     });
   });

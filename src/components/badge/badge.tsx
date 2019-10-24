@@ -55,6 +55,10 @@ export type EuiBadgeProps = {
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   color?: IconColor;
+  /**
+   * Will override any color passed through the `color` prop.
+   */
+  isDisabled?: boolean;
 
   /**
    * Props passed to the close button.
@@ -89,6 +93,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   iconType,
   iconSide = 'left',
   className,
+  isDisabled,
   onClick,
   iconOnClick,
   onClickAriaLabel,
@@ -118,6 +123,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     'euiBadge',
     {
       'euiBadge-isClickable': onClick && !iconOnClick,
+      'euiBadge-isDisabled': isDisabled,
     },
     iconSideToClassNameMap[iconSide],
     optionalColorClass,
@@ -141,6 +147,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         <button
           className="euiBadge__iconButton"
           aria-label={iconOnClickAriaLabel}
+          disabled={isDisabled}
           title={iconOnClickAriaLabel}
           onClick={iconOnClick}>
           <EuiIcon
@@ -172,6 +179,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             {(ref, innerText) => (
               <button
                 className="euiBadge__childButton"
+                disabled={isDisabled}
                 aria-label={onClickAriaLabel}
                 onClick={onClick}
                 ref={ref}
@@ -190,6 +198,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       <EuiInnerText>
         {(ref, innerText) => (
           <button
+            disabled={isDisabled}
             aria-label={onClickAriaLabel}
             className={classes}
             onClick={onClick}

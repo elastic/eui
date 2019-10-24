@@ -7,12 +7,7 @@ import { EuiIcon } from '../icon';
 const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
   if (href) {
     return (
-      <a
-        className={className}
-        href={href}
-        onClick={onClick}
-        role="menuitem"
-        {...rest}>
+      <a className={className} href={href} onClick={onClick} {...rest}>
         {children}
       </a>
     );
@@ -20,19 +15,14 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
 
   if (onClick) {
     return (
-      <button
-        type="button"
-        className={className}
-        onClick={onClick}
-        role="menuitem"
-        {...rest}>
+      <button type="button" className={className} onClick={onClick} {...rest}>
         {children}
       </button>
     );
   }
 
   return (
-    <div className={className} aria-label={children} {...rest}>
+    <div className={className} {...rest}>
       {children}
     </div>
   );

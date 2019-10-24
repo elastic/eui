@@ -29,9 +29,9 @@ export const addStop = (
   color: ColorStop['color'] = DEFAULT_VISUALIZATION_COLOR,
   max: number
 ) => {
-  const index = colorStops.length - 1;
+  const index = colorStops.length ? colorStops.length - 1 : 0;
   const stops = colorStops.map(el => el.stop);
-  const currentStop = stops[index];
+  const currentStop = stops[index] != null ? stops[index] : max;
   let delta = 1;
   if (index !== 0) {
     const prevStop = stops[index - 1];

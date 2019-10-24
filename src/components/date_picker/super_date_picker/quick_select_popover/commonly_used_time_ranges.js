@@ -1,21 +1,26 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { commonlyUsedRangeShape } from '../types';
-
+import { EuiI18n } from '../../../i18n';
 import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';
-import { EuiSpacer } from '../../../spacer';
 import { EuiLink } from '../../../link';
-import { EuiText } from '../../../text';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
+import { htmlIdGenerator } from '../../../../services';
+
+const generateId = htmlIdGenerator();
 
 export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
+  const legendId = generateId();
   const links = commonlyUsedRanges.map(({ start, end, label }) => {
     const applyCommonlyUsed = () => {
       applyTime({ start, end });
     };
     return (
-      <EuiFlexItem key={label}>
+      <EuiFlexItem
+        key={label}
+        component="li"
+        className="euiCommonlyUsedTimeRanges__item">
         <EuiLink
           onClick={applyCommonlyUsed}
           data-test-subj={`superDatePickerCommonlyUsed_${label.replace(
@@ -29,22 +34,28 @@ export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
   });
 
   return (
-    <Fragment>
+    <fieldset>
       <EuiTitle size="xxxs">
-        <span>Commonly used</span>
+        <legend id={legendId} aria-label="Commonly used time ranges">
+          <EuiI18n
+            token="euiCommonlyUsedTimeRanges.legend"
+            default="Commonly used"
+          />
+        </legend>
       </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiText size="s" className="euiQuickSelectPopover__section">
+      <div className="euiQuickSelectPopover__section">
         <EuiFlexGrid
+          aria-labelledby={legendId}
           gutterSize="s"
           columns={2}
           direction="column"
-          responsive={false}>
+          responsive={false}
+          component="ul">
           {links}
         </EuiFlexGrid>
-      </EuiText>
+      </div>
       <EuiHorizontalRule margin="s" />
-    </Fragment>
+    </fieldset>
   );
 }
 
