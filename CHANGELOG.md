@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.8.0`.
+**Bug fixes**
+
+* Fixed console warning in `EuiBadge`'s docs ([#2486](https://github.com/elastic/eui/pull/2486))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
 
