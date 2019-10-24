@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
+- Fixed typo to correct `aria-modal` attribute in`EuiPopover` ([#2488](https://github.com/elastic/eui/pull/2488))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
 

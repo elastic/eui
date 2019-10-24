@@ -179,9 +179,9 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aira-modal="true"
         aria-describedby="htmlId"
         aria-live="assertive"
+        aria-modal="true"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
         role="dialog"
         style="top: 8px; left: -22px; z-index: 2000;"
@@ -389,9 +389,9 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aira-modal="true"
         aria-describedby="htmlId"
         aria-live="assertive"
+        aria-modal="true"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
         role="dialog"
         style="top: 8px; left: -22px; z-index: 2000;"
@@ -763,9 +763,9 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                             data-focus-lock-disabled="disabled"
                           >
                             <div
-                              aira-modal="true"
                               aria-describedby="htmlId"
                               aria-live="assertive"
+                              aria-modal="true"
                               class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                               role="dialog"
                               style="top: 8px; left: -22px; z-index: 2000;"
@@ -855,9 +855,9 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                               data-focus-lock-disabled="disabled"
                             >
                               <div
-                                aira-modal="true"
                                 aria-describedby="htmlId"
                                 aria-live="assertive"
+                                aria-modal="true"
                                 class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                                 role="dialog"
                                 style="top: 8px; left: -22px; z-index: 2000;"
@@ -941,9 +941,9 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                         />
                       </SideEffect(FocusWatcher)>
                       <EuiPanel
-                        aira-modal="true"
                         aria-describedby="htmlId"
                         aria-live="assertive"
+                        aria-modal="true"
                         className="euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                         paddingSize="none"
                         panelRef={[Function]}
@@ -957,9 +957,9 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                         }
                       >
                         <div
-                          aira-modal="true"
                           aria-describedby="htmlId"
                           aria-live="assertive"
+                          aria-modal="true"
                           className="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                           role="dialog"
                           style={
@@ -1222,9 +1222,9 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aira-modal="true"
         aria-describedby="htmlId"
         aria-live="assertive"
+        aria-modal="true"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
         role="dialog"
         style="top: 8px; left: -22px; z-index: 2000;"
