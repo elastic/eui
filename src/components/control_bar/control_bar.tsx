@@ -1,12 +1,18 @@
 import React, { Component, HTMLAttributes, ButtonHTMLAttributes } from 'react';
-import classnames from 'classnames';
-import { CommonProps, PropsOf, ExclusiveUnion } from '../common';
+import classNames from 'classnames';
+import { CommonProps, ExclusiveUnion, Omit } from '../common';
 // @ts-ignore-next-line
 import { EuiBreadcrumbs } from '../breadcrumbs';
-// @ts-ignore-next-line
-import { EuiButton, EuiButtonIcon } from '../button';
+import {
+  EuiButton,
+  EuiButtonIcon,
+  EuiButtonProps,
+  EuiButtonIconProps,
+} from '../button';
 import { EuiPortal } from '../portal';
 import { EuiText } from '../text';
+import { EuiIcon } from '../icon';
+import { EuiIconProps } from '../icon/icon';
 
 type ButtonControl = ButtonHTMLAttributes<HTMLButtonElement> & {
   controlType: 'button';
@@ -50,19 +56,28 @@ interface SpacerControl {
   controlType: 'spacer';
 }
 
-interface DivideControl {
+interface DividerControl {
   controlType: 'divider';
 }
 
-type IconControl = ButtonHTMLAttributes<HTMLButtonElement> & {
+interface IconControlProps {
   controlType: 'icon';
   id: string;
   iconType: string;
-  label: string;
-  classNames?: string;
-  color?: PropsOf<typeof EuiButtonIcon>['color'];
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
+}
+interface IconControlType
+  extends Omit<EuiIconProps, 'type'>,
+    IconControlProps {}
+interface IconButtonControlType
+  extends Omit<EuiButtonIconProps, 'iconType'>,
+    IconControlProps {
+  href?: string;
+}
+
+export type IconControl = ExclusiveUnion<
+  IconControlType,
+  IconButtonControlType
+>;
 
 export type Control = ExclusiveUnion<
   ExclusiveUnion<
@@ -76,7 +91,7 @@ export type Control = ExclusiveUnion<
       >,
       IconControl
     >,
-    DivideControl
+    DividerControl
   >,
   SpacerControl
 >;
@@ -132,7 +147,7 @@ export class EuiControlBar extends Component<
       ...rest
     } = this.props;
 
-    const classes = classnames('euiControlBar', className, {
+    const classes = classNames('euiControlBar', className, {
       'euiControlBar--open': showContent,
       'euiControlBar--large': size === 'l' || !size,
       'euiControlBar--medium': size === 'm',
@@ -142,7 +157,7 @@ export class EuiControlBar extends Component<
       'euiControlBar--showOnMobile': showOnMobile,
     });
 
-    const tabClasses = classnames('euiControlBar__tab', {
+    const tabClasses = classNames('euiControlBar__tab', {
       'euiControlBar__tab--active': showContent,
     });
 
@@ -189,22 +204,29 @@ export class EuiControlBar extends Component<
             controlType,
             id,
             iconType,
-            label,
-            classNames,
-            color,
+            className,
+            color = 'ghost',
             onClick,
+            href,
             ...rest
           } = control;
-          return (
+          return onClick || href ? (
             <EuiButtonIcon
               key={id + index}
+              className={classNames('euiControlBar__buttonIcon', className)}
               iconType={iconType}
-              data-test-subj={label}
-              aria-label={label}
               onClick={onClick}
-              className={classnames('euiControlBar__buttonIcon', classNames)}
-              color={color ? color : 'ghost'}
+              href={href}
+              color={color as EuiButtonIconProps['color']}
+              {...rest as IconButtonControlType}
               size="s"
+            />
+          ) : (
+            <EuiIcon
+              key={id + index}
+              className={classNames('euiControlBar__icon', className)}
+              type={iconType}
+              color={color}
               {...rest}
             />
           );

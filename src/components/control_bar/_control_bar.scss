@@ -59,6 +59,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  overflow-y: hidden; // Ensures the movement of buttons in :focus don't cause scrollbars
   overflow-x: auto;
 
   .euiBreadcrumbSeparator {
@@ -121,6 +122,11 @@
 }
 
 // CONTROL TYPES
+
+.euiControlBar__icon {
+  margin-left: $euiSizeS;
+  margin-right: $euiSizeS;
+}
 
 .euiControlBar__buttonIcon {
   min-width: $euiControlBarInitialHeight;
