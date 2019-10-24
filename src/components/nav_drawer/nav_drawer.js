@@ -229,7 +229,7 @@ export class EuiNavDrawer extends Component {
     let footerContent;
     if (showExpandButton) {
       footerContent = (
-        <EuiListGroup className="euiNavDrawer__expandButton">
+        <EuiListGroup className="euiNavDrawer__expandButton" flush>
           <EuiI18n
             tokens={[
               'euiNavDrawer.sideNavCollapse',
@@ -336,8 +336,8 @@ export class EuiNavDrawer extends Component {
                 onClick={this.handleDrawerMenuClick}>
                 {/* Put expand button first so it's first in tab order then on toggle starts the tabbing of the items from the top */}
                 {/* TODO: Add a "skip navigation" keyboard only button */}
-                {modifiedChildren}
                 {footerContent}
+                {modifiedChildren}
               </div>
             </EuiFlexItem>
             {flyoutContent}

@@ -200,7 +200,7 @@ export class GuideSection extends Component {
     const docgenInfo = Array.isArray(component.__docgenInfo)
       ? component.__docgenInfo[0]
       : component.__docgenInfo;
-    const { _euiObjectType, description, props } = docgenInfo;
+    const { description, props } = docgenInfo;
 
     if (!props && !description) {
       return;
@@ -271,12 +271,7 @@ export class GuideSection extends Component {
       return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
     });
 
-    const title =
-      _euiObjectType === 'type' ? (
-        <EuiCode id={componentName}>{componentName}</EuiCode>
-      ) : (
-        <EuiText>{componentName}</EuiText>
-      );
+    const title = <span id={componentName}>{componentName}</span>;
 
     let descriptionElement;
 
@@ -295,18 +290,23 @@ export class GuideSection extends Component {
 
     if (rows.length) {
       table = (
-        <EuiTable
-          className="guideSectionPropsTable"
-          compressed
-          key={`propsTable-${componentName}`}>
+        <EuiTable compressed key={`propsTable-${componentName}`}>
           <EuiTableHeader>
-            <EuiTableHeaderCell>Prop</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ Width: '20%' }}>
+              Prop
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Type</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ width: '15%' }}>
+              Type
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Default</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ width: '15%' }}>
+              Default
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Note</EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ width: '50%' }}>
+              Note
+            </EuiTableHeaderCell>
           </EuiTableHeader>
 
           <EuiTableBody>{rows}</EuiTableBody>
@@ -422,6 +422,7 @@ export class GuideSection extends Component {
       <div className="guideSection" id={this.props.id}>
         {chrome}
         {this.renderContent()}
+        {this.props.extraContent}
       </div>
     );
   }

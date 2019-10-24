@@ -3,6 +3,7 @@ export const SPACE = 32;
 export const ESCAPE = 27;
 export const TAB = 9;
 export const BACKSPACE = 8;
+export const F2 = 113;
 
 // Arrow keys
 export const DOWN = 40;
@@ -16,6 +17,7 @@ export enum keyCodes {
   ESCAPE = 27,
   TAB = 9,
   BACKSPACE = 8,
+  F2 = 113,
 
   DOWN = 40,
   UP = 38,
