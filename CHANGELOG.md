@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
+- Fixed `overflowHeight` in `EuiCodeBlock` ([#2487](https://github.com/elastic/eui/pull/2487))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
 
