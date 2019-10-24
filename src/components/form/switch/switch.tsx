@@ -44,6 +44,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   onChange,
   className,
   showLabel = true,
+  type = 'button',
   ...rest
 }) => {
   const [switchId] = useState(id || makeId());
@@ -75,6 +76,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         aria-checked={checked}
         className="euiSwitch__button"
         role="switch"
+        type={type}
         disabled={disabled}
         onClick={onClick}
         aria-label={showLabel === false ? (label as string) : undefined}

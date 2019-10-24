@@ -9,6 +9,7 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
     class="euiSwitch__button"
     id="generated-id"
     role="switch"
+    type="button"
   >
     <span
       class="euiSwitch__body"
@@ -58,6 +59,7 @@ exports[`EuiSwitch is rendered 1`] = `
     data-test-subj="test subject string"
     id="test"
     role="switch"
+    type="button"
   >
     <span
       class="euiSwitch__body"
