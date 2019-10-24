@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.8.0`.
+
+## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
+
 * `EuiButtonGroup` and `EuiButtonToggle` now accept `ReactNode` for their label prop instead of string ([#2392](https://github.com/elastic/eui/pull/2392))
 * Added `useRenderToText` to `inner_text` service suite to render `ReactNode`s into label text ([#2392](https://github.com/elastic/eui/pull/2392))
 * Added icons `tableDensityExpanded`, `tableDensityCompact`, `tableDensityNormal` to `EuiIcon` ([#2230](https://github.com/elastic/eui/pull/2230))
