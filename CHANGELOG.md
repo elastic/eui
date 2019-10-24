@@ -2,7 +2,7 @@
 
 **Bug fixes**
 
-* Fixed console warning in `EuiBadge`'s docs ([#2486](https://github.com/elastic/eui/pull/2486))
+- Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
 
