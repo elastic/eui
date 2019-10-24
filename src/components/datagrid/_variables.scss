@@ -1,0 +1,6 @@
+$euiDataGridColumnResizerWidth: 3px; // Odd number because it straddles a border
+
+$euiDataGridCellPaddingS: $euiSizeXS;
+$euiDataGridCellPaddingM: $euiSizeM / 2;
+$euiDataGridCellPaddingL: $euiSizeS;
+$euiDataGridVerticalBorder: solid 1px tintOrShade($euiBorderColor, 60%, 30%);

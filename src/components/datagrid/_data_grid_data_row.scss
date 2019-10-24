@@ -1,0 +1,207 @@
+.euiDataGridRow {
+  display: inline-flex;
+  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+}
+
+@include euiDataGridRowCell {
+  @include euiFontSizeS;
+
+  padding: $euiDataGridCellPaddingM;
+  border-right: $euiDataGridVerticalBorder;
+  border-bottom: $euiBorderThin;
+  flex: 0 0 auto;
+  background: $euiColorEmptyShade;
+  position: relative;
+  align-items: center;
+  display: flex;
+
+  // Hack to allow for all the focus guard stuff
+  > * {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  &:first-of-type {
+    border-left: $euiBorderThin;
+  }
+
+  &:last-of-type {
+    border-right-color: $euiBorderColor;
+  }
+
+  &:focus {
+    border: 1px solid transparent;
+    margin-top: -1px;
+    box-shadow: 0 0 0 2px $euiFocusRingColor;
+    border-radius: 1px;
+    // Needed so it sits above potential striping in the next row
+    z-index: 2;
+
+    .euiDataGridRowCell__expandButton {
+      margin-left: $euiDataGridCellPaddingM;
+    }
+
+    .euiDataGridRowCell__expandButtonIcon {
+      display: flex;
+      width: inherit;
+      visibility: visible;
+    }
+  }
+
+  &:focus:not(:first-of-type) {
+    // Needed because the focus state adds a border, which needs to be subtracted from padding
+    padding-left: $euiDataGridCellPaddingM - 1px;
+  }
+
+  &.euiDataGridRowCell--numeric {
+    text-align: right;
+  }
+
+  &.euiDataGridRowCell--currency {
+    text-align: right;
+  }
+
+
+  &.euiDataGridRowCell--boolean {
+    text-transform: capitalize;
+  }
+}
+
+.euiDataGridRowCell__content {
+  @include euiTextTruncate;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.euiDataGridRowCell__popover {
+  @include euiScrollBar;
+  overflow: auto;
+  // sass-lint:disable-block no-important
+  max-width: 400px !important;
+  max-height: 400px !important;
+}
+
+.euiDataGridRowCell__expand {
+  width: 100%;
+  max-width: 100%;
+}
+
+.euiDataGridRowCell__expandFlex {
+  display: flex;
+  align-items: center;
+}
+
+.euiDataGridRowCell__expandContent {
+  @include euiTextTruncate;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-grow: 1;
+}
+
+
+.euiDataGridRowCell__expandButton {
+  display: flex;
+  flex-grow: 0;
+
+  &-isActive,
+  &:focus {
+    margin-left: $euiDataGridCellPaddingM;
+  }
+}
+
+.euiDataGridRowCell__expandButtonIcon {
+  height: $euiSizeM;
+  min-height: $euiSizeM;
+  background: $euiColorPrimary;
+  color: $euiColorGhost;
+  border-radius: $euiBorderRadius / 2;
+  padding: 0;
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  visibility: hidden;
+
+  &-isActive,
+  &:focus {
+    width: inherit;
+    visibility: visible;
+    background: $euiColorPrimary;
+  }
+}
+
+.euiDataGridRowCell__truncate {
+  @include euiTextTruncate;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// Row highlights
+@include euiDataGridStyles(rowHoverHighlight) {
+  .euiDataGridRow:hover {
+    @include euiDataGridRowCell {
+      // sass-lint:disable-block no-important
+      // Needed to overtake striping
+      background-color: $euiColorHighlight !important;
+    }
+  }
+}
+
+// Stripes
+@include euiDataGridStyles(stripes) {
+  .euiDataGridRow:nth-child(odd) {
+    @include euiDataGridRowCell {
+      background: $euiColorLightestShade;
+    }
+  }
+}
+
+// Border alternates
+@include euiDataGridStyles(bordersNone) {
+  @include euiDataGridRowCell {
+    // sass-lint:disable-block no-important
+    border-color: transparent !important;
+  }
+}
+
+@include euiDataGridStyles(bordersHorizontal) {
+  @include euiDataGridRowCell {
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+}
+
+// Font alternates
+@include euiDataGridStyles(fontSizeSmall) {
+  @include euiDataGridRowCell {
+    @include euiFontSizeXS;
+  }
+}
+
+@include euiDataGridStyles(fontSizeLarge) {
+  @include euiDataGridRowCell {
+    @include euiFontSize;
+  }
+}
+
+// Padding alternates
+@include euiDataGridStyles(paddingSmall) {
+  @include euiDataGridRowCell {
+    padding: $euiDataGridCellPaddingS;
+
+    &:focus:not(:first-of-type) {
+      // Needed because the focus state adds a border, which needs to be subtracted from padding
+      padding-left: $euiDataGridCellPaddingS - 1px;
+    }
+  }
+}
+
+@include euiDataGridStyles(paddingLarge) {
+  @include euiDataGridRowCell {
+    padding: $euiDataGridCellPaddingL;
+
+    &:focus:not(:first-of-type) {
+      // Needed because the focus state adds a border, which needs to be subtracted from padding
+      padding-left: $euiDataGridCellPaddingL - 1px;
+    }
+  }
+}

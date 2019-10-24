@@ -849,6 +849,28 @@ FooComponent.propTypes = {
 };`);
         });
 
+        it('understands JSXElementConstructor', () => {
+          const result = transform(
+            `
+import React from 'react';
+const FooComponent: React.SFC<{foo: JSXElementConstructor<any>}> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.func.isRequired
+};`);
+        });
+
       });
 
       describe('node propType', () => {
@@ -2049,6 +2071,33 @@ FooComponent.propTypes = {
 
       });
 
+    });
+
+    describe('indexed property access', () => {
+      it('follows indexed properties', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface Foo {
+  foo: () => {};
+}
+const FooComponent: React.SFC<{bar: Foo['foo']}> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.func.isRequired
+};`);
+      });
     });
 
     describe('supported component declarations', () => {

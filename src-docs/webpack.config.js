@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { NODE_ENV, CI } = process.env;
 
@@ -40,12 +40,12 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: useCache(['babel-loader']),
+        loaders: useCache(['babel-loader']), // eslint-disable-line react-hooks/rules-of-hooks
         exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
-        loaders: useCache([
+        loaders: useCache([ // eslint-disable-line react-hooks/rules-of-hooks, prettier/prettier
           'style-loader/useable',
           'css-loader',
           'postcss-loader',
@@ -55,7 +55,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: useCache(['style-loader/useable', 'css-loader']),
+        loaders: useCache(['style-loader/useable', 'css-loader']), // eslint-disable-line react-hooks/rules-of-hooks
         exclude: /node_modules/,
       },
       {
@@ -88,10 +88,10 @@ const webpackConfig = {
     }),
 
     // run TypeScript during webpack build
-    new ForkTsCheckerWebpackPlugin({
-      tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
-      async: false, // makes errors more visible, but potentially less performant
-    }),
+    // new ForkTsCheckerWebpackPlugin({
+    //   tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    //   async: false, // makes errors more visible, but potentially less performant
+    // }),
   ],
 
   devServer: {

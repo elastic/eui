@@ -11,6 +11,12 @@ interface Props {
 export class EuiMutationObserver extends EuiObserver<Props> {
   name = 'EuiMutationObserver';
 
+  // the `onMutation` prop may change while the observer is bound, abstracting
+  // it out into a separate function means the current `onMutation` value is used
+  onMutation: MutationCallback = (records, observer) => {
+    this.props.onMutation(records, observer);
+  };
+
   beginObserve = () => {
     // IE11 and the MutationObserver polyfill used in Kibana (for Jest) implement
     // an older spec in which specifying `attributeOldValue` or `attributeFilter`
@@ -27,7 +33,7 @@ export class EuiMutationObserver extends EuiObserver<Props> {
       observerOptions.attributes = true;
     }
 
-    this.observer = new MutationObserver(this.props.onMutation);
+    this.observer = new MutationObserver(this.onMutation);
     this.observer.observe(this.childNode!, observerOptions);
   };
 }

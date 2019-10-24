@@ -20,7 +20,7 @@ import {
   EuiCopy,
 } from '../../../../src/components';
 
-const iconTypes = [
+export const iconTypes = [
   'alert',
   'apmTrace',
   'apps',
@@ -66,6 +66,7 @@ const iconTypes = [
   'empty',
   'exit',
   'expand',
+  'expandMini',
   'exportAction',
   'eye',
   'eyeClosed',
@@ -169,6 +170,9 @@ const iconTypes = [
   'submodule',
   'symlink',
   'tableOfContents',
+  'tableDensityExpanded',
+  'tableDensityCompact',
+  'tableDensityNormal',
   'tag',
   'tear',
   'temperature',
