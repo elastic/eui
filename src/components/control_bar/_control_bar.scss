@@ -124,19 +124,21 @@
 // CONTROL TYPES
 
 .euiControlBar__icon {
+  flex-shrink: 0;
   margin-left: $euiSizeS;
   margin-right: $euiSizeS;
 }
 
 .euiControlBar__buttonIcon {
+  flex-shrink: 0;
   min-width: $euiControlBarInitialHeight;
   min-height: $euiControlBarInitialHeight;
 }
 
 .euiControlBar__button {
+  flex-shrink: 0;
   border-radius: $euiBorderRadius / 2;
   margin-left: $euiSizeXS;
-  flex-shrink: 0;
   font-size: $euiFontSizeS;
 
   &:enabled:hover {
@@ -156,12 +158,13 @@
 }
 
 .euiControlBar__divider {
+  flex-shrink: 0;
   height: 100%;
   width: 1px;
   background-color: $euiControlBarBorderColor;
 }
 
-.euiControlBar__euiText {
+.euiControlBar__text {
   @include euiTextTruncate;
   @include euiFontSizeS;
   padding: 0 $euiSizeS;

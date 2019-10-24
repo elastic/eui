@@ -14,14 +14,11 @@ import { EuiText } from '../text';
 import { EuiIcon } from '../icon';
 import { EuiIconProps } from '../icon/icon';
 
-type ButtonControl = ButtonHTMLAttributes<HTMLButtonElement> & {
+interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
   controlType: 'button';
   id: string;
-  color?: PropsOf<typeof EuiButton>['color'];
-  label: string;
-  classNames?: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-};
+  label: React.ReactNode;
+}
 
 type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
   controlType: 'tab';
@@ -181,20 +178,18 @@ export class EuiControlBar extends Component<
           const {
             controlType,
             id,
-            color,
+            color = 'ghost',
             label,
-            classNames,
-            onClick,
+            className,
             ...rest
           } = control;
           return (
             <EuiButton
               key={id + index}
-              onClick={onClick}
-              className={classnames('euiControlBar__button', classNames)}
-              color={color ? color : 'ghost'}
-              size="s"
-              {...rest}>
+              className={classNames('euiControlBar__button', className)}
+              color={color}
+              {...rest}
+              size="s">
               {label}
             </EuiButton>
           );
@@ -250,7 +245,7 @@ export class EuiControlBar extends Component<
           return (
             <div
               key={id}
-              className={classNames('euiControlBar__euiText', className)}
+              className={classNames('euiControlBar__text', className)}
               {...rest}>
               {label}
             </div>
