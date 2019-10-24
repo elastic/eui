@@ -2,7 +2,7 @@ import React, { Component, HTMLAttributes, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, Omit } from '../common';
 // @ts-ignore-next-line
-import { EuiBreadcrumbs } from '../breadcrumbs';
+import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
 import {
   EuiButton,
   EuiButtonIcon,
@@ -10,7 +10,6 @@ import {
   EuiButtonIconProps,
 } from '../button';
 import { EuiPortal } from '../portal';
-import { EuiText } from '../text';
 import { EuiIcon } from '../icon';
 import { EuiIconProps } from '../icon/icon';
 
@@ -23,25 +22,14 @@ interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
 type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
   controlType: 'tab';
   id: string;
-  label: string;
+  label: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-interface Breadcrumb {
-  text: string;
-  href?: string;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  truncate?: boolean;
-}
-
-type BreadcrumbControl = HTMLAttributes<HTMLDivElement> & {
+interface BreadcrumbControl extends EuiBreadcrumbsProps {
   controlType: 'breadcrumbs';
   id: string;
-  responsive?: boolean;
-  truncate?: boolean;
-  max?: number;
-  breadcrumbs: Breadcrumb[];
-};
+}
 
 interface TextControl extends CommonProps, HTMLAttributes<HTMLDivElement> {
   controlType: 'text';
@@ -63,10 +51,10 @@ interface IconControlProps {
   iconType: string;
 }
 interface IconControlType
-  extends Omit<EuiIconProps, 'type'>,
+  extends Omit<EuiIconProps, 'type' | 'id' | 'onClick'>,
     IconControlProps {}
 interface IconButtonControlType
-  extends Omit<EuiButtonIconProps, 'iconType'>,
+  extends Omit<EuiButtonIconProps, 'iconType' | 'id'>,
     IconControlProps {
   href?: string;
 }
@@ -152,10 +140,6 @@ export class EuiControlBar extends Component<
       'euiControlBar--navExpanded': navDrawerOffset === 'expanded',
       'euiControlBar--navCollapsed': navDrawerOffset === 'collapsed',
       'euiControlBar--showOnMobile': showOnMobile,
-    });
-
-    const tabClasses = classNames('euiControlBar__tab', {
-      'euiControlBar__tab--active': showContent,
     });
 
     const handleTabClick = (
@@ -252,43 +236,37 @@ export class EuiControlBar extends Component<
           );
         }
         case 'tab': {
-          const { controlType, id, label, onClick, ...rest } = control;
+          const {
+            controlType,
+            id,
+            label,
+            onClick,
+            className,
+            ...rest
+          } = control;
+
+          const tabClasses = classNames(
+            'euiControlBar__tab',
+            {
+              'euiControlBar__tab--active':
+                showContent && id === this.state.selectedTab,
+            },
+            className
+          );
+
           return (
             <button
               key={id + index}
-              className={`euiControlBar__tab ${
-                id === this.state.selectedTab ? tabClasses : ''
-              }`}
-              data-test-subj={label}
-              aria-label={`Control Bar - ${label}`}
+              className={tabClasses}
               onClick={event => handleTabClick(control, event)}
               {...rest}>
-              <EuiText size="s" className="eui-textTruncate">
-                {label}
-              </EuiText>
+              {label}
             </button>
           );
         }
         case 'breadcrumbs': {
-          const {
-            controlType,
-            id,
-            responsive,
-            truncate,
-            max,
-            breadcrumbs,
-            ...rest
-          } = control;
-          return (
-            <EuiBreadcrumbs
-              key={control.id}
-              breadcrumbs={control.breadcrumbs}
-              responsive={control.responsive}
-              truncate={control.truncate}
-              max={control.max}
-              {...rest}
-            />
-          );
+          const { controlType, id, ...rest } = control;
+          return <EuiBreadcrumbs key={control.id} {...rest} />;
         }
       }
     };

@@ -196,6 +196,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   left: 0;
   height: 100%;
   width: 100%;
+  padding: 2rem;
+  z-index: $euiZMask - 1;
 }
 
 
