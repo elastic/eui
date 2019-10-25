@@ -128,11 +128,9 @@ export class EuiCodeBlockImpl extends Component {
     const codeClasses = classNames('euiCodeBlock__code', language);
 
     const optionalStyles = {};
-    const preOptionalStyles = {};
 
     if (overflowHeight) {
       optionalStyles.maxHeight = overflowHeight;
-      preOptionalStyles.maxHeight = overflowHeight;
     }
 
     const codeSnippet = (
@@ -257,7 +255,7 @@ export class EuiCodeBlockImpl extends Component {
 
     return (
       <div {...wrapperProps}>
-        <pre style={preOptionalStyles} className="euiCodeBlock__pre">
+        <pre style={optionalStyles} className="euiCodeBlock__pre">
           {codeSnippet}
         </pre>
 
