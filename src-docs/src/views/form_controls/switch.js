@@ -38,6 +38,15 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSwitch
+          showLabel={false}
+          label="I am a switch without a visible label"
+          checked={this.state.checked}
+          onChange={this.onChange}
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiSwitch
           label="I am a compressed switch"
           checked={this.state.checked}
           onChange={this.onChange}
@@ -58,9 +67,10 @@ export default class extends Component {
 
         <EuiSwitch
           showLabel={false}
-          label="I am a switch without a visible label"
+          label="I am a compressed switch without a visible label"
           checked={this.state.checked}
           onChange={this.onChange}
+          compressed
         />
       </Fragment>
     );
