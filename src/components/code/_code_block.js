@@ -120,7 +120,7 @@ export class EuiCodeBlockImpl extends Component {
       {
         'euiCodeBlock--transparentBackground': transparentBackground,
         'euiCodeBlock--inline': inline,
-        'euiCodeBlock-isCopyable': isCopyable,
+        'euiCodeBlock--hasControls': isCopyable || overflowHeight,
       },
       className
     );
