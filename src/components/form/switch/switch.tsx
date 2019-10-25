@@ -84,13 +84,17 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
-            <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
+            {!compressed && (
+              <React.Fragment>
+                <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
 
-            <EuiIcon
-              type="check"
-              size="m"
-              className="euiSwitch__icon euiSwitch__icon--checked"
-            />
+                <EuiIcon
+                  type="check"
+                  size="m"
+                  className="euiSwitch__icon euiSwitch__icon--checked"
+                />
+              </React.Fragment>
+            )}
           </span>
         </span>
       </button>

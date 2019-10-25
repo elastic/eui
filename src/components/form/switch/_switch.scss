@@ -119,4 +119,85 @@
       transform: scale(.95);
     }
   }
+
+  // Compressed switches operate very similar to the normal versions, but are smaller, contain no icon signifiers
+  &.euiSwitch--compressed {
+    min-height: $euiSwitchHeightCompressed;
+
+    .euiSwitch__label {
+      line-height: $euiSwitchHeightCompressed;
+    }
+
+    .euiSwitch__body {
+      width: $euiSwitchWidthCompressed;
+      height: $euiSwitchHeightCompressed;
+      border-radius: $euiSwitchHeightCompressed;
+    }
+
+    .euiSwitch__thumb {
+      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeCompressed) - 2px);
+
+      left: ($euiSwitchWidthCompressed) - (($euiSwitchThumbSizeCompressed) - 2px) - 1px;
+      top: 1px;
+      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
+
+    .euiSwitch__track {
+      border-radius: $euiSwitchHeightCompressed;
+    }
+  }
+
+  // Mini styling is similar to compressed, but even smaller. It's undocumented because it has very specific uses.
+  &.euiSwitch--mini {
+    min-height: $euiSwitchHeightMini;
+
+    .euiSwitch__label {
+      line-height: $euiSwitchHeightMini;
+      font-size: $euiFontSizeXS;
+    }
+
+    .euiSwitch__body {
+      width: $euiSwitchWidthMini;
+      height: $euiSwitchHeightMini;
+      border-radius: $euiSwitchHeightMini;
+    }
+
+    .euiSwitch__thumb {
+      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeMini) - 2px);
+
+      left: ($euiSwitchWidthMini) - (($euiSwitchThumbSizeMini) - 2px) - 1px;
+      top: 1px;
+      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
+
+    .euiSwitch__track {
+      border-radius: $euiSwitchHeightMini;
+    }
+  }
+
+  // Compressed and mini switches have some style overlap
+  &.euiSwitch--compressed,
+  &.euiSwitch--mini {
+
+    .euiSwitch__button[aria-checked='false'] {
+      .euiSwitch__thumb {
+        left: 1px;
+      }
+    }
+
+    // Compressed and mini switches need slightly darker borders since they don't have icons
+    .euiSwitch__button[aria-checked='false'],
+    .euiSwitch__button[aria-checked='true']:disabled {
+      .euiSwitch__thumb {
+        border-color: $euiFormCustomControlBorderColor;
+      }
+    }
+
+    // Similar additional treatment needed while checked
+    .euiSwitch__button[aria-checked='true'] {
+      .euiSwitch__thumb {
+        border-color: $euiColorPrimary;
+      }
+    }
+  }
 }
