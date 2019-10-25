@@ -130,7 +130,7 @@ export class EuiCodeBlockImpl extends Component {
     const optionalStyles = {};
 
     if (overflowHeight) {
-      optionalStyles.height = overflowHeight;
+      optionalStyles.maxHeight = overflowHeight;
     }
 
     const codeSnippet = (
@@ -255,7 +255,9 @@ export class EuiCodeBlockImpl extends Component {
 
     return (
       <div {...wrapperProps}>
-        <pre className="euiCodeBlock__pre">{codeSnippet}</pre>
+        <pre style={optionalStyles} className="euiCodeBlock__pre">
+          {codeSnippet}
+        </pre>
 
         {/*
           If the below fullScreen code renders, it actually attaches to the body because of
