@@ -7,13 +7,3 @@
 .guideSection__space {
   height: $euiSizeL;
 }
-
-.guideSectionPropsTable {
-  width: auto;
-  min-width: 50%;
-
-  th,
-  td {
-    max-width: none;
-  }
-}

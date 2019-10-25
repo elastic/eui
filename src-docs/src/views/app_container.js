@@ -8,7 +8,6 @@ import { toggleTheme, toggleLocale } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
-    routes: ownProps.routes,
     currentRoute: ownProps.routes[1],
     theme: getTheme(state),
     locale: getLocale(state),

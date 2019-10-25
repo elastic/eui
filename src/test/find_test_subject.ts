@@ -2,7 +2,8 @@ import { ReactWrapper, ShallowWrapper } from 'enzyme';
 
 type FindTestSubject<T extends ShallowWrapper | ReactWrapper> = (
   mountedComponent: T,
-  testSubjectSelector: string
+  testSubjectSelector: string,
+  matcher?: '=' | '~=' | '|=' | '^=' | '$=' | '*='
 ) => ReturnType<T['find']>;
 
 /**

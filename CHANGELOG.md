@@ -1,5 +1,37 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
+
+**Bug fixes**
+
+- Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
+- Fixed typo to correct `aria-modal` attribute in`EuiPopover` ([#2488](https://github.com/elastic/eui/pull/2488))
+- Fixed position of `EuiCodeBlock` controls and added more tests ([#2459](https://github.com/elastic/eui/pull/2459))
+- Changed `EuiCodeBlock` so that `overflowHeight` now applies a `maxHeight` instead of a `height` on the block ([#2487](https://github.com/elastic/eui/pull/2487))
+
+## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
+
+* `EuiButtonGroup` and `EuiButtonToggle` now accept `ReactNode` for their label prop instead of string ([#2392](https://github.com/elastic/eui/pull/2392))
+* Added `useRenderToText` to `inner_text` service suite to render `ReactNode`s into label text ([#2392](https://github.com/elastic/eui/pull/2392))
+* Added icons `tableDensityExpanded`, `tableDensityCompact`, `tableDensityNormal` to `EuiIcon` ([#2230](https://github.com/elastic/eui/pull/2230))
+* Added `!important` to the animation of `EuiFocusRing` animation to make sure it is always used ([#2230](https://github.com/elastic/eui/pull/2230))
+* Added `expandMini` icon to `EuiIcon` ([#2207](https://github.com/elastic/eui/pull/2366))
+* Changed `EuiPopover` to use `role="dialog"` for better screen-reader announcements ([#2207](https://github.com/elastic/eui/pull/2366))
+* Added function callback `onTrapDeactivation` to `EuiPopover` for when a focus trap is deactivated ([#2366](https://github.com/elastic/eui/pull/2366))
+* Added logic for rendering of focus around `EuiPopover` to counteract a race condition ([#2366](https://github.com/elastic/eui/pull/2366))
+* Added `EuiDataGrid` ([#2165](https://github.com/elastic/eui/pull/2165))
+
+**Bug fixes**
+
+* Corrected `lockProps` passdown in `EuiFocusTrap`, specifically to allows `style` to be passed down. ([#2230](https://github.com/elastic/eui/pull/2230))
+* Changed `children` property on `I18nTokensShape` type from a single `ReactChild` to now accept an `array` ([#2230](https://github.com/elastic/eui/pull/2230))
+* Adjusted the color of `$euiColorHighlight` in dark mode ([#2176](https://github.com/elastic/eui/pull/2176))
+* Changed `EuiPopoverFooter` padding to uniformly adjust with the size of the popover ([#2207](https://github.com/elastic/eui/pull/2207))
+* Fixed `isDragDisabled` prop usage in `EuiDraggable` ([#2207](https://github.com/elastic/eui/pull/2366))
+* Fixed `EuiMutationObserver`'s handling of`onMutation` when that prop's value changes ([#2421](https://github.com/elastic/eui/pull/2421))
+
+## [`14.7.0`](https://github.com/elastic/eui/tree/v14.7.0)
+
 - Converted `EuiRadio` and `EuiRadioGroup` to TypeScript ([#2438](https://github.com/elastic/eui/pull/2438))
 - Improved a11y in `EuiImage` ([#2447](https://github.com/elastic/eui/pull/2447))
 - Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
@@ -12,6 +44,8 @@
 **Bug fixes**
 
 - Reenabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
+- Fixed `EuiNavDrawer` collapse/expand button height issue
+ ([#2463](https://github.com/elastic/eui/pull/2463))
 
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
@@ -21,6 +55,17 @@
 
 - Fixed missing misc. button and link type definition exports ([#2434](https://github.com/elastic/eui/pull/2434))
 - Strip custom semantics from `EuiSideNav` ([#2429](https://github.com/elastic/eui/pull/2429))
+
+## [`14.5.1`](https://github.com/elastic/eui/tree/v14.5.1)
+
+**Note: this release is a backport containing changes originally made in `14.6.0` and `14.7.0`**
+
+- Added new updated `infraApp` and `logsApp` icons. ([#2430](https://github.com/elastic/eui/pull/2430))
+- Made EuiIcon a PureComponent, to speed up React re-render performance ([#2448](https://github.com/elastic/eui/pull/2448))
+
+**Bug fixes**
+
+- Fixed `EuiNavDrawer` collapse/expand button height issue ([#2463](https://github.com/elastic/eui/pull/2463))
 
 ## [`14.5.0`](https://github.com/elastic/eui/tree/v14.5.0)
 

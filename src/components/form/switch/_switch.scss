@@ -193,4 +193,53 @@
     }
 
   }
+
+  // Mini styling is similar to compressed, but even smaller. It's undocumented because it has very specific uses.
+  &.euiSwitch--mini {
+    min-height: $euiSwitchHeightMini;
+
+    .euiSwitch__label {
+      line-height: $euiSwitchHeightMini;
+      font-size: $euiFontSizeXS;
+    }
+
+    .euiSwitch__body {
+      width: $euiSwitchWidthMini;
+      height: $euiSwitchHeightMini;
+      border-radius: $euiSwitchHeightMini;
+    }
+
+    .euiSwitch__thumb {
+      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeMini) - 2px);
+
+      left: ($euiSwitchWidthMini) - (($euiSwitchThumbSizeMini) - 2px) - 1px;
+      top: 1px;
+      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
+
+    .euiSwitch__track {
+      border-radius: $euiSwitchHeightMini;
+    }
+
+    .euiSwitch__input:not(:checked) ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        left: 1px;
+      }
+    }
+
+    // Compressed switches need slightly darker borders since they don't have icons
+    .euiSwitch__input:not(:checked) ~ .euiSwitch__body,
+    .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        border-color: $euiFormCustomControlBorderColor;
+      }
+    }
+
+    // Similar additional treatment needed while checked
+    .euiSwitch__input:checked ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        border-color: $euiColorPrimary;
+      }
+    }
+  }
 }
