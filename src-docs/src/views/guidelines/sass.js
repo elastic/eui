@@ -22,6 +22,7 @@ import {
   EuiCode,
   EuiCodeBlock,
   EuiCallOut,
+  EuiPanel,
 } from '../../../../src/components';
 
 const euiColors = [
@@ -737,62 +738,6 @@ export const SassGuidelines = ({ selectedTheme }) => {
           {euiShadows.map(function(shadow, index) {
             return renderShadow(shadow, index);
           })}
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiTitle size="s">
-            <h4>Shadows to create graceful overflows</h4>
-          </EuiTitle>
-
-          <EuiText>
-            <p>
-              Primarily used in modals and flyouts, the overflow shadow masks
-              the top and bottom edges to indicate there is more content
-              below/above.
-            </p>
-          </EuiText>
-
-          <EuiSpacer />
-
-          <div className="guideSass__overflowShadows">
-            <EuiText className="guideSass__overflowShadowText" size="s">
-              <p>
-                It requires a wrapping element to control the height with{' '}
-                <EuiCode>overflow-y: hidden;</EuiCode> and the content to
-                <EuiCode>@include euiYScrollWithShadows;</EuiCode> or use the{' '}
-                <Link to="/utilities/css-utility-classes">
-                  CSS utility class
-                </Link>{' '}
-                <EuiCode>.eui-yScrollWithShadows</EuiCode>.
-              </p>
-              <p>
-                <b>Example:</b>
-              </p>
-              <EuiCodeBlock language="sass" isCopyable paddingSize="s">
-                {`.bodyContent {
-  height: 200px;
-  overflow-y: hidden;
-
-  .bodyContent__overflow {
-    @include euiYScrollWithShadows;
-  }
-}`}
-              </EuiCodeBlock>
-              <p>
-                Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
-                aspernatur qui aut sit. Aliquam doloribus iure sint id. Possimus
-                dolor qui soluta cum id tempore ea illum. Facilis voluptatem aut
-                aut ut similique ut. Sed repellendus commodi iure officiis
-                exercitationem praesentium dolor. Ratione non ut nulla accusamus
-                et. Optio laboriosam id incidunt. Ipsam voluptate ab quia
-                necessitatibus sequi earum voluptate. Porro tempore et veritatis
-                quo omnis. Eaque ut libero tempore sit placeat maxime
-                laudantium. Mollitia tempore minus qui autem modi adipisci ad.
-                Iste reprehenderit accusamus voluptatem velit. Quidem delectus
-                eos veritatis et vitae et nisi. Doloribus ut corrupti voluptates
-                qui exercitationem dolores.
-              </p>
-            </EuiText>
-          </div>
 
           <EuiSpacer />
 
@@ -814,6 +759,103 @@ export const SassGuidelines = ({ selectedTheme }) => {
               @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
             </EuiCodeBlock>
           </div>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiTitle size="s">
+            <h4>Shadows to create graceful overflows</h4>
+          </EuiTitle>
+
+          <EuiText>
+            <p>
+              Primarily used in modals and flyouts, the overflow shadow masks
+              the edges to indicate there is more content.
+            </p>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <EuiTitle size="xs">
+            <h5>
+              Vertical scrolling with <EuiCode>euiYScrollWithShadows</EuiCode>
+            </h5>
+          </EuiTitle>
+
+          <EuiSpacer size="s" />
+
+          <EuiPanel paddingSize="none" grow={false}>
+            <div className="guideSass__overflowShadows">
+              <EuiText className="guideSass__overflowShadowText" size="s">
+                <p>
+                  It requires a wrapping element to control the height with{' '}
+                  <EuiCode>overflow-y: hidden;</EuiCode> and the content to
+                  <EuiCode>@include euiYScrollWithShadows;</EuiCode> or use the{' '}
+                  <Link to="/utilities/css-utility-classes">
+                    CSS utility class
+                  </Link>{' '}
+                  <EuiCode>.eui-yScrollWithShadows</EuiCode>.
+                </p>
+                <p>
+                  <b>Example:</b>
+                </p>
+                <EuiCodeBlock language="sass" isCopyable paddingSize="s">
+                  {`.overflowY {
+  height: 200px;
+  overflow-y: hidden;
+
+  .overflowY__content {
+    @include euiYScrollWithShadows;
+  }
+}`}
+                </EuiCodeBlock>
+                <p>
+                  Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
+                  aspernatur qui aut sit. Aliquam doloribus iure sint id.
+                  Possimus dolor qui soluta cum id tempore ea illum. Facilis
+                  voluptatem aut aut ut similique ut. Sed repellendus commodi
+                  iure officiis exercitationem praesentium dolor. Ratione non ut
+                  nulla accusamus et. Optio laboriosam id incidunt. Ipsam
+                  voluptate ab quia necessitatibus sequi earum voluptate. Porro
+                  tempore et veritatis quo omnis. Eaque ut libero tempore sit
+                  placeat maxime laudantium. Mollitia tempore minus qui autem
+                  modi adipisci ad. Iste reprehenderit accusamus voluptatem
+                  velit. Quidem delectus eos veritatis et vitae et nisi.
+                  Doloribus ut corrupti voluptates qui exercitationem dolores.
+                </p>
+              </EuiText>
+            </div>
+          </EuiPanel>
+
+          <EuiSpacer />
+
+          <EuiTitle size="xs">
+            <h5>
+              Horizontal scrolling with <EuiCode>euiXScrollWithShadows</EuiCode>
+            </h5>
+          </EuiTitle>
+
+          <EuiSpacer size="s" />
+
+          <EuiPanel paddingSize="none" grow={false}>
+            <div className="guideSass__overflowShadowsX">
+              <EuiText className="guideSass__overflowShadowTextX" size="s">
+                <p>
+                  You may want to add at least <EuiCode>$euiSizeS</EuiCode>
+                  &apos;s worth of padding to the sides of your content so the
+                  mask doesn&apos;t overlay it.
+                </p>
+                <p>
+                  <b>Example:</b>
+                </p>
+                <EuiCodeBlock language="sass" isCopyable paddingSize="s">
+                  {`.overflowXContent {
+  @include euiXScrollWithShadows;
+  padding-left: $euiSizeS;
+  padding-right: $euiSizeS;
+}`}
+                </EuiCodeBlock>
+              </EuiText>
+            </div>
+          </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGrid>
 

@@ -2,30 +2,34 @@
 
 exports[`EuiImage is rendered 1`] = `
 <figure
-  aria-label="aria-label"
   class="euiImage euiImage--large testClass1 testClass2"
-  data-test-subj="test subject string"
+  role="figure"
 >
   <img
     alt="alt"
+    aria-label="aria-label"
     class="euiImage__img"
+    data-test-subj="test subject string"
     src="/cat.jpg"
   />
 </figure>
 `;
 
 exports[`EuiImage is rendered and allows full screen 1`] = `
-<button
+<figure
   class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
-  type="button"
+  role="figure"
 >
-  <figure
-    aria-label="aria-label"
-    data-test-subj="test subject string"
+  <button
+    aria-label="Open full screen alt image"
+    class="euiImage__button"
+    type="button"
   >
     <img
       alt="alt"
+      aria-label="aria-label"
       class="euiImage__img"
+      data-test-subj="test subject string"
       src="/cat.jpg"
     />
     <svg
@@ -36,6 +40,6 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     />
-  </figure>
-</button>
+  </button>
+</figure>
 `;

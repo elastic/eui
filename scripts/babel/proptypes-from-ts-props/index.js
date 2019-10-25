@@ -74,6 +74,66 @@ function resolveArrayToPropTypes(node, state) {
   }
 }
 
+function stripDoubleQuotes(value) {
+  return value.replace(/^"?(.*?)"?$/, '$1');
+}
+
+/**
+ * Converts an Omit<X, Y> type to resolveIdentifierToPropTypes(X) with Y removed
+ * @param node
+ * @param state
+ * @returns AST node representing matching proptypes
+ */
+function resolveOmitToPropTypes(node, state) {
+  const types = state.get('types');
+
+  const { typeParameters } = node;
+
+  if (typeParameters == null) return null;
+
+  const {
+    params: [sourceType, toRemove],
+  } = typeParameters;
+
+  const sourcePropTypes = getPropTypesForNode(sourceType, true, state);
+  // validate that this resulted in a shape, otherwise we don't know how to extract/merge the values
+  if (
+    !types.isCallExpression(sourcePropTypes) ||
+    !types.isMemberExpression(sourcePropTypes.callee) ||
+    sourcePropTypes.callee.object.name !== 'PropTypes' ||
+    sourcePropTypes.callee.property.name !== 'shape'
+  ) {
+    return null;
+  }
+
+  const toRemovePropTypes = getPropTypesForNode(toRemove, true, state);
+  // validate that this resulted in a oneOf, otherwise we don't know how to use the values
+  if (
+    !types.isCallExpression(toRemovePropTypes) ||
+    !types.isMemberExpression(toRemovePropTypes.callee) ||
+    toRemovePropTypes.callee.object.name !== 'PropTypes' ||
+    toRemovePropTypes.callee.property.name !== 'oneOf'
+  ) {
+    return null;
+  }
+
+  // extract the string values of keys to remove
+  const keysToRemove = new Set(
+    toRemovePropTypes.arguments[0].elements
+      .map(keyToRemove =>
+        types.isStringLiteral(keyToRemove) ? keyToRemove.value : null
+      )
+      .filter(x => x !== null)
+  );
+
+  // filter out omitted properties
+  sourcePropTypes.arguments[0].properties = sourcePropTypes.arguments[0].properties.filter(
+    ({ key: { name } }) => keysToRemove.has(stripDoubleQuotes(name)) === false
+  );
+
+  return sourcePropTypes;
+}
+
 /**
  * Converts an X[] type to PropTypes.arrayOf(X)
  * @param node
@@ -160,9 +220,16 @@ function resolveIdentifierToPropTypes(node, state) {
         types.identifier('PropTypes'),
         types.identifier('node')
       );
+
+    case 'JSXElementConstructor':
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('func') // this is more accurately `elementType` but our peerDependency version of prop-types doesn't have it
+      );
   }
 
   if (identifier.name === 'Array') return resolveArrayToPropTypes(node, state);
+  if (identifier.name === 'Omit') return resolveOmitToPropTypes(node, state);
   if (identifier.name === 'MouseEventHandler')
     return buildPropTypePrimitiveExpression(types, 'func');
   if (identifier.name === 'Function')
@@ -356,10 +423,39 @@ function getPropTypesForNode(node, optional, state) {
       propType = getPropTypesForNode(node.typeAnnotation, true, state);
       break;
 
+    // Foo['bar']
+    case 'TSIndexedAccessType':
+      // verify the type of index access
+      if (types.isTSLiteralType(node.indexType) === false) break;
+
+      const indexedName = node.indexType.literal.value;
+      const objectPropType = getPropTypesForNode(node.objectType, true, state);
+
+      // verify this came out as a PropTypes.shape(), which we can pick the indexed property off of
+      if (
+        types.isCallExpression(objectPropType) &&
+        types.isMemberExpression(objectPropType.callee) &&
+        types.isIdentifier(objectPropType.callee.object) &&
+        objectPropType.callee.object.name === 'PropTypes' &&
+        types.isIdentifier(objectPropType.callee.property) &&
+        objectPropType.callee.property.name === 'shape'
+      ) {
+        const shapeProps = objectPropType.arguments[0].properties;
+        for (let i = 0; i < shapeProps.length; i++) {
+          const prop = shapeProps[i];
+          if (prop.key.name === indexedName) {
+            propType = makePropTypeOptional(types, prop.value);
+            break;
+          }
+        }
+      }
+
+      break;
+
     // translates intersections (Foo & Bar & Baz) to a shape with the types' members (Foo, Bar, Baz) merged together
     case 'TSIntersectionType':
-      const usableNodes = node.types.filter(node => {
-        const nodePropTypes = getPropTypesForNode(node, true, state);
+      const usableNodes = [...node.types].filter(node => {
+        let nodePropTypes = getPropTypesForNode(node, true, state);
 
         if (
           types.isMemberExpression(nodePropTypes) &&
@@ -369,12 +465,12 @@ function getPropTypesForNode(node, optional, state) {
           return false;
         }
 
-        // validate that this resulted in a shape, otherwise we don't know how to extract/merge the values
+        // validate that this resulted in a shape or oneOfType, otherwise we don't know how to extract/merge the values
         if (
           !types.isCallExpression(nodePropTypes) ||
           !types.isMemberExpression(nodePropTypes.callee) ||
           nodePropTypes.callee.object.name !== 'PropTypes' ||
-          nodePropTypes.callee.property.name !== 'shape'
+          (nodePropTypes.callee.property.name !== 'shape' && nodePropTypes.callee.property.name !== 'oneOfType')
         ) {
           return false;
         }
@@ -384,7 +480,49 @@ function getPropTypesForNode(node, optional, state) {
 
       // merge the resolved proptypes for each intersection member into one object, mergedProperties
       const mergedProperties = usableNodes.reduce((mergedProperties, node) => {
-        const nodePropTypes = getPropTypesForNode(node, true, state);
+        let nodePropTypes = getPropTypesForNode(node, true, state);
+
+        // if this is a `oneOfType` extract those properties into a `shape`
+        if (
+          types.isCallExpression(nodePropTypes) &&
+          types.isMemberExpression(nodePropTypes.callee) &&
+          nodePropTypes.callee.object.name === 'PropTypes' &&
+          nodePropTypes.callee.property.name === 'oneOfType'
+        ) {
+          const properties = nodePropTypes.arguments[0].elements
+            .map(propType => {
+              // This exists on a oneOfType which must be expressed as an optional proptype
+              propType = makePropTypeOptional(types, propType);
+
+              // validate we're working with a shape, otherwise we can't merge properties
+              if (
+                !types.isCallExpression(propType) ||
+                !types.isMemberExpression(propType.callee) ||
+                propType.callee.object.name !== 'PropTypes' ||
+                propType.callee.property.name !== 'shape'
+              ) {
+                return null;
+              }
+
+              // extract all of the properties from this group and make them optional
+              return propType.arguments[0].properties.map(property => {
+                property.value = makePropTypeOptional(types, property.value);
+                return property;
+              });
+            })
+            .filter(x => x !== null)
+            .reduce((allProperties, properties) => {
+              return [...allProperties, ...properties];
+            }, []);
+
+          nodePropTypes = types.callExpression(
+            types.memberExpression(
+              types.identifier('PropTypes'),
+              types.identifier('shape')
+            ),
+            [types.objectExpression(properties)]
+          );
+        }
 
         // iterate over this type's members, adding them (and their comments) to `mergedProperties`
         const typeProperties = nodePropTypes.arguments[0].properties; // properties on the ObjectExpression passed to PropTypes.shape()
@@ -1062,7 +1200,7 @@ function getPropTypesNodeFromAST(node, types) {
 const buildPropTypes = babelTemplate('COMPONENT_NAME.propTypes = PROP_TYPES');
 
 /**
- * Called with a type definition and a React component node path, `processComponentDeclaration` translates that definiton
+ * Called with a type definition and a React component node path, `processComponentDeclaration` translates that definition
  * to an AST of PropType.* calls and attaches those prop types to the component.
  * @param typeDefinition
  * @param path
