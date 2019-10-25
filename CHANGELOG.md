@@ -1,11 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
+- Improved `EuiSwitch` a11y by aligning to aria roles ([#2491](https://github.com/elastic/eui/pull/2491))
+- Converted `EuiSwitch` to Typescript ([#2491](https://github.com/elastic/eui/pull/2491))
+- Added an accessible label-less `EuiSwitch` variation ([#2491](https://github.com/elastic/eui/pull/2491))
 
 **Bug fixes**
 
 - Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
 - Fixed typo to correct `aria-modal` attribute in`EuiPopover` ([#2488](https://github.com/elastic/eui/pull/2488))
+- Fixed `EuiSwitch` form behavior by adding a default button `type` of 'button' ([#2491](https://github.com/elastic/eui/pull/2491))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
 
