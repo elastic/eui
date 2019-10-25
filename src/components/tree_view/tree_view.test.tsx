@@ -1,20 +1,20 @@
 import React from 'react';
-import { EuiIcon } from '../../../src/components/icon';
-import { EuiToken } from '../../../src/components/token';
+import { EuiIcon } from '../icon';
+import { EuiToken } from '../token';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiRecursiveTree } from './recursive_tree';
+import { EuiTreeView } from './tree_view';
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../services/accessibility/html_id_generator', () => ({
   htmlIdGenerator: () => () => 'htmlId',
 }));
 
-describe('EuiRecursiveTree', () => {
+describe('EuiTreeView', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiRecursiveTree
+      <EuiTreeView
         items={[
           {
             label: 'Item One',

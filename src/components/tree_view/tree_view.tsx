@@ -7,8 +7,8 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiText } from '../text';
 import { keyCodes, htmlIdGenerator } from '../../services';
 
-const EuiRecursiveTreeContext = createContext<string>('');
-const treeIdGenerator = htmlIdGenerator('euiRecursiveTree');
+const EuiTreeViewContext = createContext<string>('');
+const treeIdGenerator = htmlIdGenerator('euiTreeView');
 
 function hasAriaLabel(
   x: HTMLAttributes<HTMLUListElement>
@@ -17,7 +17,7 @@ function hasAriaLabel(
 }
 
 export interface Node {
-  /** An array of EuiRecursiveTreeNodes to render as children
+  /** An array of EuiTreeViewNodes to render as children
    */
   children?: Node[];
   /** The readable label for the item
@@ -46,7 +46,7 @@ export interface Node {
   callback?(): string;
 }
 
-interface EuiRecursiveTreeState {
+interface EuiTreeViewState {
   openItems: string[];
   activeItem: string;
   treeID: string;
@@ -55,7 +55,7 @@ interface EuiRecursiveTreeState {
 
 export type CommonTreeProps = CommonProps &
   HTMLAttributes<HTMLUListElement> & {
-    /** An array of EuiRecursiveTreeNodes
+    /** An array of EuiTreeViewNodes
      */
     items: Node[];
     /** Optionally use a variation with smaller text and icon sizes
@@ -70,19 +70,16 @@ export type CommonTreeProps = CommonProps &
     showExpansionArrows?: boolean;
   };
 
-export type EuiRecursiveTreeProps = Omit<
+export type EuiTreeViewProps = Omit<
   CommonTreeProps,
   'aria-label' | 'aria-labelledby'
 > &
   ({ 'aria-label': string } | { 'aria-labelledby': string });
 
-export class EuiRecursiveTree extends Component<
-  EuiRecursiveTreeProps,
-  EuiRecursiveTreeState
-> {
-  static contextType = EuiRecursiveTreeContext;
+export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
+  static contextType = EuiTreeViewContext;
   isNested: boolean = !!this.context;
-  state: EuiRecursiveTreeState = {
+  state: EuiTreeViewState = {
     openItems: this.props.expandByDefault
       ? this.props.items
           .map<string>(({ id, children }) =>
@@ -140,7 +137,7 @@ export class EuiRecursiveTree extends Component<
       case keyCodes.DOWN: {
         const nodeButtons = Array.from(
           document.querySelectorAll(
-            `[data-test-subj="euiRecursiveTreeButton-${this.state.treeID}"]`
+            `[data-test-subj="euiTreeViewButton-${this.state.treeID}"]`
           )
         );
         const currentIndex = nodeButtons.indexOf(e.currentTarget);
@@ -157,7 +154,7 @@ export class EuiRecursiveTree extends Component<
       case keyCodes.UP: {
         const nodeButtons = Array.from(
           document.querySelectorAll(
-            `[data-test-subj="euiRecursiveTreeButton-${this.state.treeID}"]`
+            `[data-test-subj="euiTreeViewButton-${this.state.treeID}"]`
           )
         );
         const currentIndex = nodeButtons.indexOf(e.currentTarget);
@@ -212,23 +209,23 @@ export class EuiRecursiveTree extends Component<
 
     // Computed classNames
     const classes = classNames(
-      'euiRecursiveTree',
-      { 'euiRecursiveTree--condensed': isCondensed },
-      { 'euiRecursiveTree--withArrows': showExpansionArrows },
+      'euiTreeView',
+      { 'euiTreeView--condensed': isCondensed },
+      { 'euiTreeView--withArrows': showExpansionArrows },
       className
     );
 
     const instructionsId = `${this.state.treeID}--instruction`;
 
     return (
-      <EuiRecursiveTreeContext.Provider value={this.state.treeID}>
+      <EuiTreeViewContext.Provider value={this.state.treeID}>
         <EuiText
           size={isCondensed ? 's' : 'm'}
-          className="euiRecursiveTree__wrapper">
+          className="euiTreeView__wrapper">
           {!this.isNested && (
             <EuiScreenReaderOnly>
               <EuiI18n
-                token="euiRecursiveTree.listNavigationInstructions"
+                token="euiTreeView.listNavigationInstructions"
                 default="You can quickly navigate this list using arrow keys.">
                 {(listNavigationInstructions: string) => (
                   <p id={instructionsId}>{listNavigationInstructions}</p>
@@ -257,37 +254,33 @@ export class EuiRecursiveTree extends Component<
                 <React.Fragment key={node.label + index}>
                   <li
                     className={classNames(
-                      'euiRecursiveTree__node',
+                      'euiTreeView__node',
                       this.isNodeOpen(node)
-                        ? 'euiRecursiveTree__node--expanded'
+                        ? 'euiTreeView__node--expanded'
                         : null
                     )}>
                     <button
                       id={buttonId}
-                      aria-controls={`euiRecursiveNestedTree-${
-                        this.state.treeID
-                      }`}
+                      aria-controls={`euiNestedTreeView-${this.state.treeID}`}
                       aria-expanded={this.isNodeOpen(node)}
                       ref={ref => this.setButtonRef(ref, index)}
-                      data-test-subj={`euiRecursiveTreeButton-${
-                        this.state.treeID
-                      }`}
+                      data-test-subj={`euiTreeViewButton-${this.state.treeID}`}
                       onKeyDown={(event: React.KeyboardEvent) =>
                         this.onKeyDown(event, node)
                       }
                       onClick={() => this.handleNodeClick(node)}
                       className={classNames(
-                        'euiRecursiveTree__nodeInner',
+                        'euiTreeView__nodeInner',
                         showExpansionArrows && node.children
-                          ? 'euiRecursiveTree__nodeInner--withArrows'
+                          ? 'euiTreeView__nodeInner--withArrows'
                           : null,
                         this.state.activeItem === node.id
-                          ? 'euiRecursiveTree__node--active'
+                          ? 'euiTreeView__node--active'
                           : null
                       )}>
                       {showExpansionArrows && node.children ? (
                         <EuiIcon
-                          className="euiRecursiveTree__expansionArrow"
+                          className="euiTreeView__expansionArrow"
                           size={isCondensed ? 's' : 'm'}
                           type={
                             this.isNodeOpen(node) ? 'arrowDown' : 'arrowRight'
@@ -295,26 +288,26 @@ export class EuiRecursiveTree extends Component<
                         />
                       ) : null}
                       {node.icon && !node.useEmptyIcon ? (
-                        <span className="euiRecursiveTree__iconWrapper">
+                        <span className="euiTreeView__iconWrapper">
                           {this.isNodeOpen(node) && node.iconWhenExpanded
                             ? node.iconWhenExpanded
                             : node.icon}
                         </span>
                       ) : null}
                       {node.useEmptyIcon && !node.icon ? (
-                        <span className="euiRecursiveTree__iconPlaceholder" />
+                        <span className="euiTreeView__iconPlaceholder" />
                       ) : null}
-                      <span className="euiRecurisveTree__nodeLabel">
+                      <span className="euiTreeView__nodeLabel">
                         {node.label}
                       </span>
                     </button>
                     <div
-                      id={`euiRecursiveNestedTree-${this.state.treeID}`}
+                      id={`euiNestedTreeView-${this.state.treeID}`}
                       onKeyDown={(event: React.KeyboardEvent) =>
                         this.onChildrenKeydown(event, index)
                       }>
                       {node.children && this.isNodeOpen(node) ? (
-                        <EuiRecursiveTree
+                        <EuiTreeView
                           items={node.children}
                           isCondensed={isCondensed}
                           showExpansionArrows={showExpansionArrows}
@@ -329,7 +322,7 @@ export class EuiRecursiveTree extends Component<
             })}
           </ul>
         </EuiText>
-      </EuiRecursiveTreeContext.Provider>
+      </EuiTreeViewContext.Provider>
     );
   }
 }

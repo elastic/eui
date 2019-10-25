@@ -1,25 +1,25 @@
-.euiRecursiveTree__wrapper .euiRecursiveTree {
+.euiTreeView__wrapper .euiTreeView {
   margin: 0;
   list-style-type: none;
 }
 
-.euiRecursiveTree .euiRecursiveTree {
+.euiTreeView .euiTreeView {
   padding-left: $euiSizeL;
 }
 
-.euiRecursiveTree__node {
+.euiTreeView__node {
   max-height: $euiSizeXL;
   overflow: hidden;
   cursor: pointer;
   line-height: $euiSizeXL;
 }
 
-.euiRecursiveTree__node--expanded {
+.euiTreeView__node--expanded {
   max-height: 100vh;
   overflow: auto;
 }
 
-.euiRecursiveTree__nodeInner {
+.euiTreeView__nodeInner {
   padding-left: $euiSizeS;
   display: flex;
   flex-direction: row;
@@ -38,13 +38,13 @@
     background-color: tintOrShade($euiColorLightShade, 50%, 10%);
   }
 
-  .euiRecursiveTree__iconPlaceholder {
+  .euiTreeView__iconPlaceholder {
     width: $euiSizeXL;
   }
 
 }
 
-.euiRecursiveTree__iconWrapper {
+.euiTreeView__iconWrapper {
   margin-top: -($euiSizeXS / 2);
   margin-right: $euiSizeS;
 
@@ -54,60 +54,60 @@
   }
 }
 
-.euiRecursiveTree--condensed {
-  .euiRecursiveTree__node {
+.euiTreeView--condensed {
+  .euiTreeView__node {
     max-height: $euiSizeL;
     line-height: $euiSizeL;
 
-    .euiRecursiveTree__nodeInner {
+    .euiTreeView__nodeInner {
       height: $euiSizeL;
 
     }
 
-    .euiRecursiveTree__iconWrapper {
+    .euiTreeView__iconWrapper {
       margin: -1px ($euiSizeS * .75) 0 0;
     }
 
-    .euiRecurisveTree__nodeLabel {
+    .euiTreeView__nodeLabel {
       margin-top: -1px;
     }
 
-    .euiRecursiveTree__iconPlaceholder {
+    .euiTreeView__iconPlaceholder {
       width: $euiSizeL;
     }
   }
 
-  .euiRecursiveTree__node--expanded {
+  .euiTreeView__node--expanded {
     max-height: 100vh;
     overflow: auto;
   }
 }
 
-.euiRecursiveTree--withArrows {
-  .euiRecursiveTree__expansionArrow {
+.euiTreeView--withArrows {
+  .euiTreeView__expansionArrow {
     margin-right: $euiSizeXS;
   }
 
-  &.euiRecursiveTree {
-    .euiRecursiveTree__nodeInner--withArrows {
-      .euiRecursiveTree__iconWrapper {
+  &.euiTreeView {
+    .euiTreeView__nodeInner--withArrows {
+      .euiTreeView__iconWrapper {
         margin-left: 0;
       }
     }
 
-    .euiRecursiveTree__iconWrapper {
+    .euiTreeView__iconWrapper {
       margin-left: $euiSize + $euiSizeXS;
     }
   }
 
-  &.euiRecursiveTree--condensed {
-    .euiRecursiveTree__nodeInner--withArrows {
-      .euiRecursiveTree__iconWrapper {
+  &.euiTreeView--condensed {
+    .euiTreeView__nodeInner--withArrows {
+      .euiTreeView__iconWrapper {
         margin-left: 0;
       }
     }
 
-    .euiRecursiveTree__iconWrapper {
+    .euiTreeView__iconWrapper {
       margin-left: $euiSize;
     }
   }

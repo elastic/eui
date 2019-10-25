@@ -4,35 +4,35 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiRecursiveTree } from '../../../../src/components';
-import { EuiRecursiveTreeNode } from './recursive_tree_props';
-import { RecursiveTree } from './recursive_tree';
-import { RecursiveTreeCondensed } from './condensed';
+import { EuiCode, EuiTreeView } from '../../../../src/components';
+import { EuiTreeViewNode } from './tree_view_props';
+import { TreeView } from './tree_view';
+import { TreeViewCondensed } from './condensed';
 
-const recursiveTreeSource = require('!!raw-loader!./recursive_tree');
-const recursiveTreeHtml = renderToHtml(RecursiveTree);
+const treeViewSource = require('!!raw-loader!./tree_view');
+const treeViewHtml = renderToHtml(TreeView);
 
-const recursiveTreeCondensedSource = require('!!raw-loader!./condensed');
-const recursiveTreeCondensedHtml = renderToHtml(RecursiveTreeCondensed);
+const treeViewCondensedSource = require('!!raw-loader!./condensed');
+const treeViewCondensedHtml = renderToHtml(TreeViewCondensed);
 
-export const RecursiveTreeExample = {
-  title: 'Recursive Tree',
+export const TreeViewExample = {
+  title: 'Tree View',
   sections: [
     {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: recursiveTreeSource,
+          code: treeViewSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: recursiveTreeHtml,
+          code: treeViewHtml,
         },
       ],
       text: (
         <div>
           <p>
-            <EuiCode>EuiRecursiveTree</EuiCode> allows you to render recursive
+            <EuiCode>EuiTreeView</EuiCode> allows you to render recursive
             objects, such as a file directory. The <EuiCode>chilldren</EuiCode>{' '}
             prop takes an array of <EuiCode>nodes</EuiCode>.
           </p>
@@ -48,27 +48,27 @@ export const RecursiveTreeExample = {
           </p>
         </div>
       ),
-      components: { EuiRecursiveTree },
-      demo: <RecursiveTree />,
-      props: { EuiRecursiveTree, EuiRecursiveTreeNode },
+      components: { EuiTreeView },
+      demo: <TreeView />,
+      props: { EuiTreeView, EuiTreeViewNode },
     },
     {
       title: 'Condensed version',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: recursiveTreeCondensedSource,
+          code: treeViewCondensedSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: recursiveTreeCondensedHtml,
+          code: treeViewCondensedHtml,
         },
       ],
       text: (
         <div>
           <p>
-            <EuiCode>EuiRecursiveTree</EuiCode> supports a condensed mode with
-            the <EuiCode>isCondensed</EuiCode> prop. When using the condensed
+            <EuiCode>EuiTreeView</EuiCode> supports a condensed mode with the{' '}
+            <EuiCode>isCondensed</EuiCode> prop. When using the condensed
             version it&apos;s highly recommended to use the small size of{' '}
             <EuiCode>EuiIcon</EuiCode> and the extra small size of{' '}
             <EuiCode>EuiToken</EuiCode>. This will help prevent awkard alignment
@@ -89,9 +89,9 @@ export const RecursiveTreeExample = {
           </p>
         </div>
       ),
-      components: { EuiRecursiveTree },
-      demo: <RecursiveTreeCondensed />,
-      props: { EuiRecursiveTree, EuiRecursiveTreeNode },
+      components: { EuiTreeView },
+      demo: <TreeViewCondensed />,
+      props: { EuiTreeView, EuiTreeViewNode },
     },
   ],
 };

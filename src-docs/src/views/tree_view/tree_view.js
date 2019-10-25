@@ -1,12 +1,8 @@
 import React from 'react';
 
-import {
-  EuiIcon,
-  EuiRecursiveTree,
-  EuiToken,
-} from '../../../../src/components';
+import { EuiIcon, EuiTreeView, EuiToken } from '../../../../src/components';
 
-export class RecursiveTree extends React.Component {
+export class TreeView extends React.Component {
   showAlert = () => {
     alert('You squashed a bug!');
   };
@@ -73,7 +69,7 @@ export class RecursiveTree extends React.Component {
 
     return (
       <div style={{ width: '20rem' }}>
-        <EuiRecursiveTree items={items} aria-label="Sample Folder Tree" />
+        <EuiTreeView items={items} aria-label="Sample Folder Tree" />
       </div>
     );
   }

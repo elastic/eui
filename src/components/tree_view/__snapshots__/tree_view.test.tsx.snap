@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiRecursiveTree is rendered 1`] = `
+exports[`EuiTreeView is rendered 1`] = `
 <div
-  class="euiText euiText--medium euiRecursiveTree__wrapper"
+  class="euiText euiText--medium euiTreeView__wrapper"
 >
   <p
     id="htmlId--instruction"
@@ -12,22 +12,22 @@ exports[`EuiRecursiveTree is rendered 1`] = `
   <ul
     aria-describedby="htmlId--instruction"
     aria-label="aria-label"
-    class="euiRecursiveTree testClass1 testClass2"
+    class="euiTreeView testClass1 testClass2"
     data-test-subj="test subject string"
     id="htmlId"
   >
     <li
-      class="euiRecursiveTree__node"
+      class="euiTreeView__node"
     >
       <button
-        aria-controls="euiRecursiveNestedTree-htmlId"
+        aria-controls="euiNestedTreeView-htmlId"
         aria-expanded="false"
-        class="euiRecursiveTree__nodeInner"
-        data-test-subj="euiRecursiveTreeButton-htmlId"
+        class="euiTreeView__nodeInner"
+        data-test-subj="euiTreeViewButton-htmlId"
         id="htmlId--0--node"
       >
         <span
-          class="euiRecursiveTree__iconWrapper"
+          class="euiTreeView__iconWrapper"
         >
           <svg
             class="euiIcon euiIcon--medium euiIcon-isLoading"
@@ -39,33 +39,33 @@ exports[`EuiRecursiveTree is rendered 1`] = `
           />
         </span>
         <span
-          class="euiRecurisveTree__nodeLabel"
+          class="euiTreeView__nodeLabel"
         >
           Item One
         </span>
       </button>
       <div
-        id="euiRecursiveNestedTree-htmlId"
+        id="euiNestedTreeView-htmlId"
       />
     </li>
     <li
-      class="euiRecursiveTree__node"
+      class="euiTreeView__node"
     >
       <button
-        aria-controls="euiRecursiveNestedTree-htmlId"
+        aria-controls="euiNestedTreeView-htmlId"
         aria-expanded="false"
-        class="euiRecursiveTree__nodeInner"
-        data-test-subj="euiRecursiveTreeButton-htmlId"
+        class="euiTreeView__nodeInner"
+        data-test-subj="euiTreeViewButton-htmlId"
         id="htmlId--1--node"
       >
         <span
-          class="euiRecurisveTree__nodeLabel"
+          class="euiTreeView__nodeLabel"
         >
           Item Two
         </span>
       </button>
       <div
-        id="euiRecursiveNestedTree-htmlId"
+        id="euiNestedTreeView-htmlId"
       />
     </li>
   </ul>

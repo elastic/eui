@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { EuiRecursiveTree, EuiToken } from '../../../../src/components';
+import { EuiTreeView, EuiToken } from '../../../../src/components';
 
-export class RecursiveTreeCondensed extends React.Component {
+export class TreeViewCondensed extends React.Component {
   showAlert = () => {
     alert('You squashed a bug!');
   };
@@ -83,7 +83,7 @@ export class RecursiveTreeCondensed extends React.Component {
 
     return (
       <div style={{ width: '20rem' }}>
-        <EuiRecursiveTree
+        <EuiTreeView
           items={items}
           isCondensed
           expandByDefault
