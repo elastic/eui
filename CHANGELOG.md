@@ -2,7 +2,7 @@
 
 - Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
 - Improved `EuiSwitch` a11y by aligning to aria roles ([#2491](https://github.com/elastic/eui/pull/2491))
-- Converted `EuiSwitch` to Typescript ([#2491](https://github.com/elastic/eui/pull/2491))
+- Converted `EuiSwitch` to TypeScript ([#2491](https://github.com/elastic/eui/pull/2491))
 - Added an accessible label-less `EuiSwitch` variation ([#2491](https://github.com/elastic/eui/pull/2491))
 
 **Bug fixes**
