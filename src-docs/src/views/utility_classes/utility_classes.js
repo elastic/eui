@@ -106,12 +106,20 @@ export default () => (
 
     <h4>Overflows</h4>
 
-    <div className="guideSass__overflowShadows">
-      <EuiText className="guideSass__overflowShadowText" size="s">
+    <div
+      style={{
+        height: 180,
+        overflowY: 'hidden',
+        background: wrappingExampleStyle.background,
+      }}>
+      <EuiText
+        className="eui-yScrollWithShadows"
+        size="s"
+        style={{ padding: wrappingExampleStyle.padding }}>
         <p>
-          It requires a wrapping element to control the height with{' '}
-          <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the CSS
-          utility class <EuiCode>.eui-yScrollWithShadows</EuiCode>.
+          The vertical utility requires a wrapping element to control the height
+          with <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the
+          CSS utility class <EuiCode>.eui-yScrollWithShadows</EuiCode>.
         </p>
         <p>
           <b>Example:</b>
@@ -121,20 +129,28 @@ export default () => (
   <BodyScroll className="eui-yScrollWithShadows" />
 </BodyContent>`}
         </EuiCodeBlock>
-        <p>
-          Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
-          aspernatur qui aut sit. Aliquam doloribus iure sint id. Possimus dolor
-          qui soluta cum id tempore ea illum. Facilis voluptatem aut aut ut
-          similique ut. Sed repellendus commodi iure officiis exercitationem
-          praesentium dolor. Ratione non ut nulla accusamus et. Optio laboriosam
-          id incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
-          voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
-          tempore sit placeat maxime laudantium. Mollitia tempore minus qui
-          autem modi adipisci ad. Iste reprehenderit accusamus voluptatem velit.
-          Quidem delectus eos veritatis et vitae et nisi. Doloribus ut corrupti
-          voluptates qui exercitationem dolores.
-        </p>
       </EuiText>
+    </div>
+
+    <EuiSpacer />
+
+    <div
+      style={{
+        ...wrappingExampleStyle,
+        padding: 0,
+      }}>
+      <div
+        className="eui-xScrollWithShadows"
+        style={{ padding: wrappingExampleStyle.padding }}>
+        <EuiText size="s" style={{ width: '150%' }}>
+          <p>
+            When using the horizontal utility{' '}
+            <EuiCode>.eui-xScrollWithShadows</EuiCode>, you may want to add
+            padding to the sides of your content so the mask doesn&apos;t
+            overlay it.
+          </p>
+        </EuiText>
+      </div>
     </div>
 
     <EuiSpacer />
