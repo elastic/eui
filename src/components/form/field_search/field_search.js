@@ -31,6 +31,10 @@ const propTypes = {
    * when `true` creates a shorter height input
    */
   compressed: PropTypes.bool,
+  /**
+   * What to do when the input is cleared by the x icon
+   */
+  onClear: PropTypes.func,
 };
 
 const defaultProps = {
@@ -100,6 +104,7 @@ export class EuiFieldSearch extends Component {
       incremental,
       compressed,
       onSearch,
+      onClear,
       ...rest
     } = this.props;
 
@@ -117,6 +122,7 @@ export class EuiFieldSearch extends Component {
       <EuiFormControlLayout
         icon="search"
         fullWidth={fullWidth}
+        clear={selected && onClear ? { onClick: onClear } : null}
         isLoading={isLoading}
         compressed={compressed}>
         <EuiValidatableControl isInvalid={isInvalid}>

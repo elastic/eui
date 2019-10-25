@@ -35,7 +35,9 @@ export default class extends Component {
        placeholder="Clearable"
        value={this.state.filterText}
        onChange={this.onChange}
-       clearable={true}
+       onClear={()=>this.onChange(null)}
+       //clearable={true}
+       aria-label="Use aria labels when no actual label is in use"
      />
       </div>
     );
