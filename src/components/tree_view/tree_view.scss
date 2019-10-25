@@ -30,7 +30,7 @@
   text-align-last: left;
 
   &:focus {
-    box-shadow: inset 0 0 0 $euiSizeXS / 4 $euiColorPrimary;
+    box-shadow: inset 0 0 0 $euiSizeXS / 4 $euiFocusRingColor;
   }
 
   &:hover,
@@ -54,7 +54,7 @@
   }
 }
 
-.euiTreeView--condensed {
+.euiTreeView--compressed {
   .euiTreeView__node {
     max-height: $euiSizeL;
     line-height: $euiSizeL;
@@ -100,7 +100,7 @@
     }
   }
 
-  &.euiTreeView--condensed {
+  &.euiTreeView--compressed {
     .euiTreeView__nodeInner--withArrows {
       .euiTreeView__iconWrapper {
         margin-left: 0;

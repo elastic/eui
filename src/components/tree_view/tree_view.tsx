@@ -46,6 +46,15 @@ export interface Node {
   callback?(): string;
 }
 
+export type EuiTreeViewDisplayOptions = 'default' | 'compressed';
+
+const displayToClassNameMap: {
+  [option in EuiTreeViewDisplayOptions]: string | null
+} = {
+  default: null,
+  compressed: 'euiTreeView--compressed',
+};
+
 interface EuiTreeViewState {
   openItems: string[];
   activeItem: string;
@@ -60,7 +69,7 @@ export type CommonTreeProps = CommonProps &
     items: Node[];
     /** Optionally use a variation with smaller text and icon sizes
      */
-    isCondensed?: boolean;
+    display?: EuiTreeViewDisplayOptions;
     /** Set all items to open on initial load
      */
     expandByDefault?: boolean;
@@ -201,7 +210,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
       children,
       className,
       items,
-      isCondensed,
+      display = 'default',
       expandByDefault,
       showExpansionArrows,
       ...rest
@@ -210,7 +219,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     // Computed classNames
     const classes = classNames(
       'euiTreeView',
-      { 'euiTreeView--condensed': isCondensed },
+      display ? displayToClassNameMap[display] : null,
       { 'euiTreeView--withArrows': showExpansionArrows },
       className
     );
@@ -220,7 +229,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     return (
       <EuiTreeViewContext.Provider value={this.state.treeID}>
         <EuiText
-          size={isCondensed ? 's' : 'm'}
+          size={display === 'compressed' ? 's' : 'm'}
           className="euiTreeView__wrapper">
           {!this.isNested && (
             <EuiScreenReaderOnly>
@@ -296,7 +305,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                             {showExpansionArrows && node.children ? (
                               <EuiIcon
                                 className="euiTreeView__expansionArrow"
-                                size={isCondensed ? 's' : 'm'}
+                                size={display === 'compressed' ? 's' : 'm'}
                                 type={
                                   this.isNodeOpen(node)
                                     ? 'arrowDown'
@@ -326,7 +335,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                             {node.children && this.isNodeOpen(node) ? (
                               <EuiTreeView
                                 items={node.children}
-                                isCondensed={isCondensed}
+                                display={display}
                                 showExpansionArrows={showExpansionArrows}
                                 expandByDefault={this.state.expandChildNodes}
                                 {...label}

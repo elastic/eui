@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiTreeView, EuiToken } from '../../../../src/components';
 
-export class TreeViewCondensed extends React.Component {
+export class TreeViewCompressed extends React.Component {
   showAlert = () => {
     alert('You squashed a bug!');
   };
@@ -85,7 +85,7 @@ export class TreeViewCondensed extends React.Component {
       <div style={{ width: '20rem' }}>
         <EuiTreeView
           items={items}
-          isCondensed
+          display="compressed"
           expandByDefault
           showExpansionArrows
           aria-label="Document Outline"

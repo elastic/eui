@@ -7,13 +7,13 @@ import { GuideSectionTypes } from '../../components';
 import { EuiCode, EuiTreeView } from '../../../../src/components';
 import { EuiTreeViewNode } from './tree_view_props';
 import { TreeView } from './tree_view';
-import { TreeViewCondensed } from './condensed';
+import { TreeViewCompressed } from './compressed';
 
 const treeViewSource = require('!!raw-loader!./tree_view');
 const treeViewHtml = renderToHtml(TreeView);
 
-const treeViewCondensedSource = require('!!raw-loader!./condensed');
-const treeViewCondensedHtml = renderToHtml(TreeViewCondensed);
+const treeViewCompressedSource = require('!!raw-loader!./compressed');
+const treeViewCompressedHtml = renderToHtml(TreeViewCompressed);
 
 export const TreeViewExample = {
   title: 'Tree View',
@@ -53,24 +53,24 @@ export const TreeViewExample = {
       props: { EuiTreeView, EuiTreeViewNode },
     },
     {
-      title: 'Condensed version',
+      title: 'Optional styling',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: treeViewCondensedSource,
+          code: treeViewCompressedSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: treeViewCondensedHtml,
+          code: treeViewCompressedHtml,
         },
       ],
       text: (
         <div>
           <p>
-            <EuiCode>EuiTreeView</EuiCode> supports a condensed mode with the{' '}
-            <EuiCode>isCondensed</EuiCode> prop. When using the condensed
-            version it&apos;s highly recommended to use the small size of{' '}
-            <EuiCode>EuiIcon</EuiCode> and the extra small size of{' '}
+            <EuiCode>EuiTreeView</EuiCode> supports a compressed mode with the{' '}
+            <EuiCode>display=&quot;compressed&quot;</EuiCode> setting. When
+            using the compressed version it&apos;s highly recommended to use the
+            small size of <EuiCode>EuiIcon</EuiCode> and the extra small size of{' '}
             <EuiCode>EuiToken</EuiCode>. This will help prevent awkard alignment
             issues when used alongside the{' '}
             <EuiCode>showExpansionArrows</EuiCode> prop.
@@ -90,7 +90,7 @@ export const TreeViewExample = {
         </div>
       ),
       components: { EuiTreeView },
-      demo: <TreeViewCondensed />,
+      demo: <TreeViewCompressed />,
       props: { EuiTreeView, EuiTreeViewNode },
     },
   ],
