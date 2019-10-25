@@ -13,51 +13,78 @@ import { EuiPortal } from '../portal';
 import { EuiIcon } from '../icon';
 import { EuiIconProps } from '../icon/icon';
 
-interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
+/**
+ * Extends EuiButton excluding `size`. Requires `label` as the `children`.
+ */
+export interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
   controlType: 'button';
   id: string;
   label: React.ReactNode;
 }
 
-type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
+/**
+ * Creates a `button` visually styles as a tab.
+ * Requires `label` as the `children`.
+ * `onClick` must be provided to handle the content swapping.
+ */
+export type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
   controlType: 'tab';
   id: string;
   label: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-interface BreadcrumbControl extends EuiBreadcrumbsProps {
+/**
+ * Extends EuiBreadcrumbs
+ */
+export interface BreadcrumbControl extends EuiBreadcrumbsProps {
   controlType: 'breadcrumbs';
   id: string;
 }
 
-interface TextControl extends CommonProps, HTMLAttributes<HTMLDivElement> {
+/**
+ * Simple div controlling color and size text output.
+ * Requires `label` as the `children`.
+ */
+export interface TextControl
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   controlType: 'text';
   id: string;
   label: React.ReactNode;
 }
 
-interface SpacerControl {
+export interface SpacerControl {
   controlType: 'spacer';
 }
 
-interface DividerControl {
+export interface DividerControl {
   controlType: 'divider';
 }
 
-interface IconControlProps {
+/**
+ * Custom props specific to the icon control type
+ */
+export interface IconControlProps {
   controlType: 'icon';
   id: string;
   iconType: string;
 }
-interface IconControlType
+/**
+ * Icon can extend EuiIcon
+ * Had to omit `onClick` as it's a valid prop of SVGElement
+ * Also omits `type` and `id` as these are also specific to icon control
+ */
+export interface IconControlType
   extends Omit<EuiIconProps, 'type' | 'id' | 'onClick'>,
     IconControlProps {}
-interface IconButtonControlType
+/**
+ * Icon can extend EuiButtonIcon
+ * Also omits `iconType` and `id` as these are also specific to icon control
+ */
+export interface IconButtonControlType
   extends Omit<EuiButtonIconProps, 'iconType' | 'id'>,
-    IconControlProps {
-  href?: string;
-}
+    IconControlProps {}
 
 export type IconControl = ExclusiveUnion<
   IconControlType,
@@ -98,9 +125,13 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
      */
     size?: 's' | 'm' | 'l';
     /**
-     * Set the offset from the left side of the screen to account for EuiNavDrawer.
+     * Set the offset from the left side of the screen.
      */
-    navDrawerOffset?: 'collapsed' | 'expanded' | undefined;
+    leftOffset?: number | string;
+    /**
+     * Set the offset from the left side of the screen.
+     */
+    rightOffset?: number | string;
     /**
      * The control bar is hidden on mobile by default. Use the `showOnMobile` prop to force it's display on mobile screens.
      * You'll need to ensure that the content you place into the bar renders as expected on mobile.
@@ -127,18 +158,20 @@ export class EuiControlBar extends Component<
       showContent,
       controls,
       size,
-      navDrawerOffset,
+      leftOffset = 0,
+      rightOffset = 0,
       showOnMobile,
+      style,
       ...rest
     } = this.props;
 
+    const styles = { ...style, left: leftOffset, right: rightOffset };
+
     const classes = classNames('euiControlBar', className, {
-      'euiControlBar--open': showContent,
+      'euiControlBar-isOpen': showContent,
       'euiControlBar--large': size === 'l' || !size,
       'euiControlBar--medium': size === 'm',
       'euiControlBar--small': size === 's',
-      'euiControlBar--navExpanded': navDrawerOffset === 'expanded',
-      'euiControlBar--navCollapsed': navDrawerOffset === 'collapsed',
       'euiControlBar--showOnMobile': showOnMobile,
     });
 
@@ -273,7 +306,7 @@ export class EuiControlBar extends Component<
 
     return (
       <EuiPortal>
-        <div className={classes} {...rest}>
+        <div className={classes} {...rest} style={styles}>
           <div className="euiControlBar__controls">
             {controls.map((control, index) => {
               return controlItem(control, index);

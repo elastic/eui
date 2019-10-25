@@ -1,6 +1,5 @@
 .euiControlBar {
   background: $euiControlBarBackground;
-  width: 100%;
   color: $euiControlBarText;
   display: flex;
   flex-direction: column;
@@ -9,40 +8,29 @@
   // background when the content is shown and hidden
   box-shadow: inset 0 $euiControlBarInitialHeight 0 $euiControlBarBackground, inset 0 600rem 0 $euiPageBackgroundColor;
   z-index: $euiZMask;
-  left: 0;
   bottom: 0;
   transform: translateY(0);
 
-  &.euiControlBar--navCollapsed {
-    left: $euiNavDrawerWidthCollapsed;
-    width: calc(100% - #{$euiNavDrawerWidthCollapsed});
-  }
-
-  &.euiControlBar--navExpanded {
-    left: $euiNavDrawerWidthExpanded;
-    width: calc(100% - #{$euiNavDrawerWidthExpanded});
-  }
-
-  &.euiControlBar--open {
+  &.euiControlBar-isOpen {
     animation-duration: $euiAnimSpeedNormal;
     animation-timing-function: $euiAnimSlightResistance;
     animation-fill-mode: forwards;
   }
 
-  &.euiControlBar--open.euiControlBar--large {
-    animation-name: openPanelLarge;
+  &.euiControlBar-isOpen.euiControlBar--large {
+    animation-name: euiControlBarOpenPanelLarge;
     height: calc(100vh - 5rem);
     bottom: -100vh;
   }
 
-  &.euiControlBar--open.euiControlBar--medium {
-    animation-name: openPanelMedium;
+  &.euiControlBar-isOpen.euiControlBar--medium {
+    animation-name: euiControlBarOpenPanelMedium;
     height: 50vh;
     bottom: -50vh;
   }
 
-  &.euiControlBar--open.euiControlBar--small {
-    animation-name: openPanelMedium;
+  &.euiControlBar-isOpen.euiControlBar--small {
+    animation-name: euiControlBarOpenPanelMedium;
     height: 25vh;
     bottom: -25vh;
   }
@@ -61,9 +49,14 @@
   align-items: center;
   overflow-y: hidden; // Ensures the movement of buttons in :focus don't cause scrollbars
   overflow-x: auto;
+  padding: 0 $euiSizeM;
 
   .euiBreadcrumbSeparator {
     background: $euiControlBarBorderColor;
+  }
+
+  .euiBreadcrumb.euiLink--subdued {
+    color: makeHighContrastColor($euiColorDarkShade, $euiControlBarBackground);
   }
 }
 
@@ -73,52 +66,11 @@
   width: 100%;
   height: calc(100% - #{$euiControlBarInitialHeight});
   background-color: $euiPageBackgroundColor;
-  animation-name: showContent;
+  animation-name: euiControlBarShowContent;
   animation-duration: $euiAnimSpeedSlow;
   animation-iteration-count: 1;
   animation-timing-function: $euiAnimSlightResistance;
   color: $euiColorDarkestShade;
-}
-
-@keyframes openPanelLarge {
-  0% {
-    // Accounts for the initial height offset from the top
-    transform: translateY(calc((#{$euiControlBarInitialHeight} * 3) * -1));
-  }
-
-  100% {
-    transform: translateY(-100vh);
-  }
-}
-
-@keyframes openPanelMedium {
-  0% {
-    transform: translateY(-$euiControlBarInitialHeight);
-  }
-
-  100% {
-    transform: translateY(-50vh);
-  }
-}
-
-@keyframes openPanelSmall {
-  0% {
-    transform: translateY(-$euiControlBarInitialHeight);
-  }
-
-  100% {
-    transform: translateY(-25vh);
-  }
-}
-
-@keyframes showContent {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 // CONTROL TYPES
@@ -169,6 +121,10 @@
   @include euiFontSizeS;
   padding: 0 $euiSizeS;
   color: $euiControlBarText;
+
+  &:last-child {
+    padding-right: 0;
+  }
 }
 
 .euiControlBar__tab {
@@ -208,7 +164,7 @@
       box-shadow: none;
     }
 
-    .euiControlBar__buttonIcon .euiIcon--#{$colorName} {
+    .euiButtonIcon--#{$colorName} {
       color: makeHighContrastColor($colorValue, $euiControlBarBackground);
     }
   }
@@ -217,5 +173,46 @@
 @include euiBreakpoint('xs', 's') {
   .euiControlBar:not(.euiControlBar--showOnMobile) {
     display: none;
+  }
+}
+
+@keyframes euiControlBarOpenPanelLarge {
+  0% {
+    // Accounts for the initial height offset from the top
+    transform: translateY(calc((#{$euiControlBarInitialHeight} * 3) * -1));
+  }
+
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+@keyframes euiControlBarOpenPanelMedium {
+  0% {
+    transform: translateY(-$euiControlBarInitialHeight);
+  }
+
+  100% {
+    transform: translateY(-50.09vh);
+  }
+}
+
+@keyframes euiControlBarOpenPanelSmall {
+  0% {
+    transform: translateY(-$euiControlBarInitialHeight);
+  }
+
+  100% {
+    transform: translateY(-25.09vh);
+  }
+}
+
+@keyframes euiControlBarShowContent {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
