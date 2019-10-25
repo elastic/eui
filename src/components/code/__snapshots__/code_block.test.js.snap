@@ -1,5 +1,240 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontMedium euiCodeBlock--paddingLarge"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+  <div
+    class="euiCodeBlock__controls"
+  >
+    <div
+      class="euiCodeBlock__copyButton"
+    >
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Copy"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCodeBlock props language is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code html"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls"
+  style="max-height:200px"
+>
+  <pre
+    class="euiCodeBlock__pre"
+    style="max-height:200px"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+  <div
+    class="euiCodeBlock__controls"
+  >
+    <button
+      aria-label="Expand"
+      class="euiButtonIcon euiButtonIcon--text euiCodeBlock__fullScreenButton"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+        focusable="false"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingMedium"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingSmall"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
 exports[`EuiCodeBlock renders a code block 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"

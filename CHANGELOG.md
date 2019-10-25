@@ -9,6 +9,8 @@
 
 - Normalized button `moz-focus-inner` ([#2445](https://github.com/elastic/eui/pull/2445))
 - Fixed typo to correct `aria-modal` attribute in`EuiPopover` ([#2488](https://github.com/elastic/eui/pull/2488))
+- Fixed position of `EuiCodeBlock` controls and added more tests ([#2459](https://github.com/elastic/eui/pull/2459))
+- Changed `EuiCodeBlock` so that `overflowHeight` now applies a `maxHeight` instead of a `height` on the block ([#2487](https://github.com/elastic/eui/pull/2487))
 - Fixed `EuiSwitch` form behavior by adding a default button `type` of 'button' ([#2491](https://github.com/elastic/eui/pull/2491))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)

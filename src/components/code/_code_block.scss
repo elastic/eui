@@ -10,8 +10,6 @@
     overflow: auto;
     display: block;
     white-space: pre-wrap;
-    // sass-lint:disable-block no-important
-    padding-right: $euiSizeXXL !important; // Space for controls
   }
 
   .euiCodeBlock__code {
@@ -22,14 +20,18 @@
     font-size: inherit;
   }
 
-  .euiCodeBlock__fullScreenButton + .euiCodeBlock__copyButton {
-    margin-top: $euiSizeXS;
+  &.euiCodeBlock--hasControls {
+    padding-right: $euiSizeL + $euiSizeXS;
   }
 
   .euiCodeBlock__controls {
     position: absolute;
-    top: $euiSizeM;
-    right: $euiSize;
+    top: 0;
+    right: 0;
+  }
+
+  .euiCodeBlock__fullScreenButton + .euiCodeBlock__copyButton {
+    margin-top: $euiSizeXS;
   }
 
   &.euiCodeBlock-isFullScreen {
@@ -42,6 +44,11 @@
     .euiCodeBlock__pre {
       // sass-lint:disable-block no-important
       padding: $euiSizeXL !important;
+    }
+
+    .euiCodeBlock__controls {
+      top: $euiSizeXS;
+      right: $euiSizeXS;
     }
   }
 
@@ -57,21 +64,39 @@
     font-size: $euiFontSize;
   }
 
+  // Small padding
   &.euiCodeBlock--paddingSmall {
     .euiCodeBlock__pre {
       padding: $euiSizeS;
     }
+
+    .euiCodeBlock__controls {
+      top: $euiSizeS;
+      right: $euiSizeS;
+    }
   }
 
+  // Medium padding
   &.euiCodeBlock--paddingMedium {
     .euiCodeBlock__pre {
       padding: $euiSize;
     }
+
+    .euiCodeBlock__controls {
+      top: $euiSize;
+      right: $euiSize;
+    }
   }
 
+  // Large padding
   &.euiCodeBlock--paddingLarge {
     .euiCodeBlock__pre {
       padding: $euiSizeL;
+    }
+
+    .euiCodeBlock__controls {
+      top: $euiSizeL;
+      right: $euiSizeL;
     }
   }
 
