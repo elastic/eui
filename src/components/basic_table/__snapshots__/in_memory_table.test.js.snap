@@ -327,6 +327,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       button={
                         <EuiButtonEmpty
                           color="text"
+                          data-test-subj="tablePaginationPopoverButton"
                           iconSide="right"
                           iconType="arrowDown"
                           onClick={[Function]}
@@ -343,7 +344,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       closePopover={[Function]}
                       display="inlineBlock"
                       hasArrow={true}
-                      id="customizablePagination"
                       isOpen={false}
                       ownFocus={false}
                       panelPaddingSize="none"
@@ -355,7 +355,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       >
                         <div
                           className="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
-                          id="customizablePagination"
                           onKeyDown={[Function]}
                           onMouseDown={[Function]}
                           onMouseUp={[Function]}
@@ -367,6 +366,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           >
                             <EuiButtonEmpty
                               color="text"
+                              data-test-subj="tablePaginationPopoverButton"
                               iconSide="right"
                               iconType="arrowDown"
                               onClick={[Function]}
@@ -374,6 +374,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             >
                               <button
                                 className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
+                                data-test-subj="tablePaginationPopoverButton"
                                 onClick={[Function]}
                                 type="button"
                               >

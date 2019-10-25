@@ -1,5 +1,135 @@
 [
   {
+    "version": "14.8.0",
+    "changes": [
+      {
+        "token": "euiPopover.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "You are in a dialog. To close this dialog, hit escape."
+      },
+      {
+        "token": "euiColumnSelector.selectAll",
+        "changeType": "added",
+        "value": "Show all"
+      },
+      {
+        "token": "euiColumnSelector.hideAll",
+        "changeType": "added",
+        "value": "Hide all"
+      },
+      {
+        "token": "euiColumnSortingDraggable.defaultSortAsc",
+        "changeType": "added",
+        "value": "A-Z"
+      },
+      {
+        "token": "euiColumnSortingDraggable.defaultSortDesc",
+        "changeType": "added",
+        "value": "Z-A"
+      },
+      {
+        "token": "euiColumnSortingDraggable.activeSortLabel",
+        "changeType": "added",
+        "value": "is sorting this data grid"
+      },
+      {
+        "token": "euiColumnSortingDraggable.removeSortLabel",
+        "changeType": "added",
+        "value": "Remove from data grid sort:"
+      },
+      {
+        "token": "euiColumnSortingDraggable.toggleLegend",
+        "changeType": "added",
+        "value": "Select sorting method for field: "
+      },
+      {
+        "token": "euiColumnSorting.emptySorting",
+        "changeType": "added",
+        "value": "Currently no fields are sorted"
+      },
+      {
+        "token": "euiColumnSorting.pickFields",
+        "changeType": "added",
+        "value": "Pick fields to sort by"
+      },
+      {
+        "token": "euiColumnSorting.sortFieldAriaLabel",
+        "changeType": "added",
+        "value": "Sort by: "
+      },
+      {
+        "token": "euiColumnSorting.clearAll",
+        "changeType": "added",
+        "value": "Clear sorting"
+      },
+      {
+        "token": "euiDataGridCell.expandButtonTitle",
+        "changeType": "added",
+        "value": "Click or hit enter to interact with cell content"
+      },
+      {
+        "token": "euiDataGridSchema.booleanSortTextAsc",
+        "changeType": "added",
+        "value": "True-False"
+      },
+      {
+        "token": "euiDataGridSchema.booleanSortTextDesc",
+        "changeType": "added",
+        "value": "False-True"
+      },
+      {
+        "token": "euiDataGridSchema.currencySortTextAsc",
+        "changeType": "added",
+        "value": "Low-High"
+      },
+      {
+        "token": "euiDataGridSchema.currencySortTextDesc",
+        "changeType": "added",
+        "value": "High-Low"
+      },
+      {
+        "token": "euiDataGridSchema.dateSortTextAsc",
+        "changeType": "added",
+        "value": "New-Old"
+      },
+      {
+        "token": "euiDataGridSchema.dateSortTextDesc",
+        "changeType": "added",
+        "value": "Old-New"
+      },
+      {
+        "token": "euiDataGridSchema.numberSortTextAsc",
+        "changeType": "added",
+        "value": "Low-High"
+      },
+      {
+        "token": "euiDataGridSchema.numberSortTextDesc",
+        "changeType": "added",
+        "value": "High-Low"
+      },
+      {
+        "token": "euiDataGridSchema.jsonSortTextAsc",
+        "changeType": "added",
+        "value": "Small-Large"
+      },
+      {
+        "token": "euiDataGridSchema.jsonSortTextDesc",
+        "changeType": "added",
+        "value": "Large-Small"
+      },
+      {
+        "token": "euiDataGrid.screenReaderNotice",
+        "changeType": "added",
+        "value": "Cell contains interactive content."
+      },
+      {
+        "token": "euiStyleSelector.buttonText",
+        "changeType": "added",
+        "value": "Density"
+      }
+    ]
+  },
+  {
     "version": "14.7.0",
     "changes": [
       {

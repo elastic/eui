@@ -4,12 +4,12 @@ interface DropResult {
   [droppableId: string]: any[];
 }
 
-export const euiDragDropReorder = (
-  list: [],
+export const euiDragDropReorder = <T extends any[]>(
+  list: T,
   startIndex: number,
   endIndex: number
-): Array<{}> => {
-  const result = Array.from(list);
+): T => {
+  const result = [...list] as T;
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
 
