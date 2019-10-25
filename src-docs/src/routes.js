@@ -151,6 +151,8 @@ import { ProgressExample } from './views/progress/progress_example';
 
 import { RangeControlExample } from './views/range/range_example';
 
+import { TreeViewExample } from './views/tree_view/tree_view_example';
+
 import { ResizeObserverExample } from './views/resize_observer/resize_observer_example';
 
 import { ResponsiveExample } from './views/responsive/responsive_example';
@@ -310,6 +312,7 @@ const navigation = [
       KeyPadMenuExample,
       LinkExample,
       PaginationExample,
+      TreeViewExample,
       SideNavExample,
       StepsExample,
       TabsExample,
