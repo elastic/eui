@@ -35,6 +35,7 @@ export class Controls extends React.Component {
         iconType: 'bell',
         onClick: this.soundTheAlarms,
         color: 'primary',
+        'aria-label': 'Bell',
       },
       {
         controlType: 'divider',

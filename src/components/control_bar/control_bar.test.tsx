@@ -4,14 +4,14 @@ import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiControlBar, Control } from './control_bar';
 
-// const handleClick = () => {
-//   console.log('You clicked');
-// };
+const handleClick = () => {
+  console.log('You clicked');
+};
 
 const controls: Control[] = [
   {
-    id: 'current_file_path',
     controlType: 'breadcrumbs',
+    id: 'current_file_path',
     responsive: true,
     breadcrumbs: [
       {
@@ -23,39 +23,36 @@ const controls: Control[] = [
     ],
   },
   // {
+  //   controlType: 'button',
   //   id: 'sound_the_alarm',
   //   label: 'Sound the Alarm',
-  //   controlType: 'button',
   //   onClick: handleClick,
-  // },
-  // {
-  //   id: 'close_the_hatch',
-  //   label: 'Close the Hatch',
-  //   controlType: 'button',
-  //   onClick: handleClick,
+  //   'data-test-subj': 'dts',
   // },
   {
     controlType: 'text',
     id: 'close_the_hatch',
     text: 'Close the Hatch',
-    'data-test-subj': 'dts',
   },
-  // {
-  //   controlType: 'icon',
-  //   id: 'sample_icon',
-  //   iconType: 'alert',
-  //   `aria-label`: 'Sample Icon',
-  // },
+  {
+    controlType: 'divider',
+  },
+  {
+    controlType: 'icon',
+    id: 'sample_icon',
+    iconType: 'alert',
+    color: 'danger',
+    'aria-label': 'Sample Icon',
+  },
   {
     controlType: 'spacer',
   },
-  // {
-  //   id: 'status_icon',
-  //   label: 'Repo Status',
-  //   controlType: 'icon',
-  //   iconType: 'alert',
-  //   color: 'warning',
-  // },
+  {
+    controlType: 'tab',
+    id: 'flight_815',
+    label: 'Flight 815',
+    onClick: handleClick,
+  },
 ];
 
 describe('EuiControlBar', () => {
@@ -66,16 +63,74 @@ describe('EuiControlBar', () => {
 
     expect(component).toMatchSnapshot();
   });
-});
 
-describe('mobile control bar', () => {
-  test('is rendered', () => {
-    const component = takeMountedSnapshot(
-      mount(
-        <EuiControlBar controls={controls} showOnMobile {...requiredProps} />
-      )
-    );
+  describe('props', () => {
+    test('mobile is rendered', () => {
+      const component = mount(
+        <EuiControlBar controls={controls} showOnMobile />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('showContent is rendered', () => {
+      const component = mount(
+        <EuiControlBar controls={controls} showContent>
+          Content
+        </EuiControlBar>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('size is rendered', () => {
+      const component = mount(
+        <EuiControlBar controls={controls} size="s">
+          Content
+        </EuiControlBar>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('maxHeight is rendered', () => {
+      const component = mount(
+        <EuiControlBar controls={controls} maxHeight="20rem">
+          Content
+        </EuiControlBar>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('leftOffset is rendered', () => {
+      const component = mount(
+        <EuiControlBar controls={controls} leftOffset={200}>
+          Content
+        </EuiControlBar>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('rightOffset is rendered', () => {
+      const component = mount(
+        <EuiControlBar controls={controls} rightOffset={200}>
+          Content
+        </EuiControlBar>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('position is rendered', () => {
+      const component = mount(
+        <EuiControlBar controls={controls} position="absolute">
+          Content
+        </EuiControlBar>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

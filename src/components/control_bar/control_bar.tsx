@@ -70,6 +70,7 @@ export interface IconControlProps {
   id: string;
   iconType: string;
 }
+
 /**
  * Icon can extend EuiIcon
  * Had to omit `onClick` as it's a valid prop of SVGElement
@@ -78,6 +79,7 @@ export interface IconControlProps {
 export interface IconControlType
   extends Omit<EuiIconProps, 'type' | 'id' | 'onClick'>,
     IconControlProps {}
+
 /**
  * Icon can extend EuiButtonIcon
  * Also omits `iconType` and `id` as these are also specific to icon control
@@ -168,6 +170,14 @@ export class EuiControlBar extends Component<
   EuiControlBarProps,
   EuiControlBarState
 > {
+  static defaultProps = {
+    leftOffset: 0,
+    rightOffset: 0,
+    position: 'fixed',
+    size: 'l',
+    showContent: false,
+    showOnMobile: false,
+  };
   private bar: HTMLDivElement | null = null;
 
   componentDidMount() {
@@ -198,12 +208,12 @@ export class EuiControlBar extends Component<
       showContent,
       controls,
       size,
-      leftOffset = 0,
-      rightOffset = 0,
+      leftOffset,
+      rightOffset,
       maxHeight,
       showOnMobile,
       style,
-      position = 'fixed',
+      position,
       bodyClassName,
       ...rest
     } = this.props;
@@ -217,7 +227,7 @@ export class EuiControlBar extends Component<
 
     const classes = classNames('euiControlBar', className, {
       'euiControlBar-isOpen': showContent,
-      'euiControlBar--large': size === 'l' || !size,
+      'euiControlBar--large': size === 'l',
       'euiControlBar--medium': size === 'm',
       'euiControlBar--small': size === 's',
       'euiControlBar--fixed': position === 'fixed',
