@@ -137,6 +137,17 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
      * You'll need to ensure that the content you place into the bar renders as expected on mobile.
      */
     showOnMobile?: boolean;
+
+    /**
+     * By default EuiControlBar will live in a portal, fixed position to the browser window.
+     * Change the position of the bar to live inside a container and be positioned against its parent.
+     */
+    position?: 'fixed' | 'relative' | 'absolute';
+
+    /**
+     * Optional class applied to the body used when `position = fixed`
+     */
+    bodyClassName?: string;
   };
 
 interface EuiControlBarState {
@@ -147,6 +158,25 @@ export class EuiControlBar extends Component<
   EuiControlBarProps,
   EuiControlBarState
 > {
+  private bar: HTMLDivElement | null = null;
+
+  componentDidMount() {
+    if (this.props.position === 'fixed') {
+      const height = this.bar ? this.bar.clientHeight : -1;
+      document.body.style.paddingBottom = `${height}px`;
+      if (this.props.bodyClassName) {
+        document.body.classList.add(this.props.bodyClassName);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.style.paddingBottom = null;
+    if (this.props.bodyClassName) {
+      document.body.classList.remove(this.props.bodyClassName);
+    }
+  }
+
   state = {
     selectedTab: '',
   };
@@ -162,6 +192,8 @@ export class EuiControlBar extends Component<
       rightOffset = 0,
       showOnMobile,
       style,
+      position = 'fixed',
+      bodyClassName,
       ...rest
     } = this.props;
 
@@ -172,6 +204,9 @@ export class EuiControlBar extends Component<
       'euiControlBar--large': size === 'l' || !size,
       'euiControlBar--medium': size === 'm',
       'euiControlBar--small': size === 's',
+      'euiControlBar--fixed': position === 'fixed',
+      'euiControlBar--absolute': position === 'absolute',
+      'euiControlBar--relative': position === 'relative',
       'euiControlBar--showOnMobile': showOnMobile,
     });
 
@@ -304,19 +339,27 @@ export class EuiControlBar extends Component<
       }
     };
 
-    return (
-      <EuiPortal>
-        <div className={classes} {...rest} style={styles}>
-          <div className="euiControlBar__controls">
-            {controls.map((control, index) => {
-              return controlItem(control, index);
-            })}
-          </div>
-          {this.props.showContent ? (
-            <div className="euiControlBar__content">{children}</div>
-          ) : null}
+    const controlBar = (
+      <div className={classes} {...rest} style={styles}>
+        <div
+          className="euiControlBar__controls"
+          ref={node => {
+            this.bar = node;
+          }}>
+          {controls.map((control, index) => {
+            return controlItem(control, index);
+          })}
         </div>
-      </EuiPortal>
+        {this.props.showContent ? (
+          <div className="euiControlBar__content">{children}</div>
+        ) : null}
+      </div>
+    );
+
+    return position === 'fixed' ? (
+      <EuiPortal>{controlBar}</EuiPortal>
+    ) : (
+      controlBar
     );
   }
 }

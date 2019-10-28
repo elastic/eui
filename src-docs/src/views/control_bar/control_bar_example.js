@@ -132,8 +132,8 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            <EuiCode>ControlBar</EuiCode> is a bottom positioned container and
-            content well intended to provide additional view controls and
+            <EuiCode>EuiControlBar</EuiCode> is a bottom positioned container
+            and content well intended to provide additional view controls and
             actions.
           </p>
           <p>
@@ -167,8 +167,14 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            This example deomnstrates the use of tabs and uses the size
-            <EuiCode>size=&quot;m&quot;</EuiCode>.
+            This example demonstrates the use of tabs and reduces the size of
+            the content with <EuiCode>size=&quot;m&quot;</EuiCode>.
+          </p>
+          <p>
+            Optional children of the <EuiCode>EuiControlBar</EuiCode> are
+            rendered in the control bar drawer. You can toggle the visibility of
+            the content with the <EuiCode>showContent</EuiCode> prop. When you
+            want to display tab content, this is where you&apos;ll do it.
           </p>
         </div>
       ),
@@ -191,10 +197,11 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>ControlBar</EuiCode> is responsive in the sense that it
-            utilizes flexbox. However, it makes no attempts to reorganize the
-            controls you provide. By default the <EuiCode>ControlBar</EuiCode>{' '}
-            is hidden on mobile devices, but this can be overridden with the
+            The <EuiCode>EuiControlBar</EuiCode> is responsive in the sense that
+            it utilizes flexbox and overflow scrolls. However, it makes no
+            attempts to reorganize the controls you provide. By default the{' '}
+            <EuiCode>EuiControlBar</EuiCode> is hidden on mobile devices, but
+            this can be overridden with the
             <EuiCode>showOnMobile</EuiCode> prop. You&apos;ll need to take the
             layout of your <EuiCode>controlTypes</EuiCode> into consideration
             when choosing to display on smaller screens.
@@ -212,7 +219,7 @@ export const ControlBarExample = {
       demo: <ControlBarMobile />,
     },
     {
-      title: 'Control Types',
+      title: 'Control types and position',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -227,7 +234,7 @@ export const ControlBarExample = {
         <div>
           <p>
             The <EuiCode>EuiControlBar</EuiCode> accepts an array of
-            <EuiCode>controlType</EuiCode>s that will be arranged in the order
+            <EuiCode>controlTypes</EuiCode> that will be arranged in the order
             in which they are provided. All controls <strong>must</strong> be
             provide a unique <EuiCode>id</EuiCode> to be used as the key.
           </p>
@@ -266,10 +273,17 @@ export const ControlBarExample = {
             </li>
           </ul>
           <p>
-            Optional children of the <EuiCode>EuiControlBar</EuiCode> are
-            rendered in the control bar drawer. You can toggle the visibility of
-            the content with the <EuiCode>showContent</EuiCode> prop. When you
-            want to display tab content, this is where you&apos;ll do it.
+            Typically, a control bar is fixed positioned against the browser
+            window and therefore rendered within a portal. To change the parent
+            element of the control bar, change the <EuiCode>position</EuiCode>{' '}
+            prop to <EuiCode>&apos;absolute&apos;</EuiCode> or{' '}
+            <EuiCode>&apos;relative&apos;</EuiCode>.
+          </p>
+          <p>
+            To offest the left and right position of the control bar, for
+            example, to adjust for side navigation, use the{' '}
+            <EuiCode>leftOffset</EuiCode> or <EuiCode>rightOffset</EuiCode>{' '}
+            props.
           </p>
         </div>
       ),

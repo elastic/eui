@@ -3,42 +3,49 @@
   color: $euiControlBarText;
   display: flex;
   flex-direction: column;
-  position: fixed;
   // This large box shadow helps prevent a flicker of dark
   // background when the content is shown and hidden
   box-shadow: inset 0 $euiControlBarInitialHeight 0 $euiControlBarBackground, inset 0 600rem 0 $euiPageBackgroundColor;
-  z-index: $euiZMask;
   bottom: 0;
   transform: translateY(0);
+  height: $euiControlBarInitialHeight;
 
-  &.euiControlBar-isOpen {
+  &--fixed {
+    position: fixed;
+    z-index: $euiZMask;
+  }
+
+  &--absolute {
+    position: absolute;
+    z-index: $euiZLevel1;
+  }
+
+  &--relative {
+    position: relative;
+  }
+
+  &-isOpen {
     animation-duration: $euiAnimSpeedNormal;
     animation-timing-function: $euiAnimSlightResistance;
     animation-fill-mode: forwards;
   }
 
-  &.euiControlBar-isOpen.euiControlBar--large {
+  &-isOpen.euiControlBar--large {
     animation-name: euiControlBarOpenPanelLarge;
     height: calc(100vh - 5rem);
     bottom: -100vh;
   }
 
-  &.euiControlBar-isOpen.euiControlBar--medium {
+  &-isOpen.euiControlBar--medium {
     animation-name: euiControlBarOpenPanelMedium;
     height: 50vh;
     bottom: -50vh;
   }
 
-  &.euiControlBar-isOpen.euiControlBar--small {
+  &-isOpen.euiControlBar--small {
     animation-name: euiControlBarOpenPanelMedium;
     height: 25vh;
     bottom: -25vh;
-  }
-
-  &.euiControlBar--large,
-  &.euiControlBar--medium,
-  &.euiControlBar--small {
-    height: $euiControlBarInitialHeight;
   }
 }
 
