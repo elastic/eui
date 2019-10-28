@@ -63,7 +63,7 @@ function sortStops(colorStops: ColorStop[]) {
 }
 
 function getValidStops(colorStops: ColorStop[]) {
-  return colorStops.map(el => el.stop).filter(stop => !isNaN(stop));
+  return colorStops.map(el => el.stop).filter(stop => stop !== '');
 }
 
 function getRangeMin(colorStops: ColorStop[], min?: number) {
