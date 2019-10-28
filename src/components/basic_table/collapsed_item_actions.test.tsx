@@ -15,7 +15,7 @@ describe('CollapsedItemActions', () => {
         {
           name: 'custom1',
           description: 'custom 1',
-          render: () => {},
+          render: () => <div />,
         },
       ],
       itemId: 'id',

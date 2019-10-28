@@ -7,7 +7,6 @@ import { EuiI18n } from '../i18n';
 import {
   Action,
   CustomItemAction,
-  DefaultItemAction,
   DefaultItemIconButtonAction,
 } from './action_types';
 import { EuiIconType } from '../icon/icon';
@@ -16,7 +15,7 @@ import { ItemId } from './table_types';
 export interface CollapsedItemActionsProps<T> {
   actions: Array<Action<T>>;
   item: T;
-  itemId?: ItemId<T>;
+  itemId: ItemId<T>;
   actionEnabled: (action: Action<T>) => boolean;
   className?: string;
   onFocus?: (event: FocusEvent) => void;
@@ -25,6 +24,12 @@ export interface CollapsedItemActionsProps<T> {
 
 interface CollapsedItemActionsState {
   popoverOpen: boolean;
+}
+
+function actionIsCustomItemAction<T extends {}>(
+  action: Action<T>
+): action is CustomItemAction<T> {
+  return action.hasOwnProperty('render');
 }
 
 export class CollapsedItemActions<T> extends Component<
@@ -100,11 +105,10 @@ export class CollapsedItemActions<T> extends Component<
         }
         const enabled = actionEnabled(action);
         allDisabled = allDisabled && !enabled;
-        if ((action as CustomItemAction<T>).render) {
+        if (actionIsCustomItemAction(action)) {
           const customAction = action as CustomItemAction<T>;
           const actionControl = customAction.render(item, enabled);
           const actionControlOnClick =
-            // @ts-ignore
             actionControl && actionControl.props && actionControl.props.onClick;
           controls.push(
             <EuiContextMenuItem
@@ -118,11 +122,7 @@ export class CollapsedItemActions<T> extends Component<
             </EuiContextMenuItem>
           );
         } else {
-          const {
-            onClick,
-            name,
-            'data-test-subj': dataTestSubj,
-          } = action as DefaultItemAction<T>;
+          const { onClick, name, 'data-test-subj': dataTestSubj } = action;
           controls.push(
             <EuiContextMenuItem
               key={key}

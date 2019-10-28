@@ -14,7 +14,7 @@ import {
   defaults as paginationBarDefaults,
   Pagination as PaginationBarType,
 } from './pagination_bar';
-import { isBoolean, isString } from '../../services/predicate';
+import { isString } from '../../services/predicate';
 import { Comparators, Direction } from '../../services/sort';
 // @ts-ignore
 import { EuiSearchBar } from '../search_bar';
@@ -42,18 +42,25 @@ interface IsFilterConfigType {
   available?: () => boolean;
 }
 
+interface FieldValueOptionType {
+  field?: string;
+  value: any;
+  name?: string;
+  view?: ReactNode;
+}
+
 interface FieldValueSelectionFilterConfigType {
   type: 'field_value_selection';
   field?: string;
   autoClose?: boolean;
   name: string;
-  options: {
-    field?: string;
-    value: any;
-    name?: string;
-    view?: ReactNode;
-  };
-  filterWith?: ((...args: any) => any) | 'prefix' | 'includes';
+  options:
+    | FieldValueOptionType[]
+    | ((query: Query) => Promise<FieldValueOptionType[]>);
+  filterWith?:
+    | ((name: string, query: string, options: object) => boolean)
+    | 'prefix'
+    | 'includes';
   cache?: number;
   multiSelect?: boolean | 'and' | 'or';
   loadingMessage?: string;
@@ -104,19 +111,56 @@ type SearchBox = Omit<SearchBoxConfig, 'schema'> & {
 type CellPropsCallback<T> = (item: T, column: Column<T>) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
-interface SearchOptions {
-  defaultQuery?: any /* Query */;
-  box?: SearchBox;
-  filters?: FilterConfig[];
-  onChange?: (...args: any) => any;
-  executeQueryOptions?: {
-    defaultFields?: string[];
-    isClauseMatcher?: (...args: any) => boolean;
-    explain?: boolean;
-  };
+/* Should point at search_bar/query type when it is converted to typescript */
+type Query = any;
+
+interface onChangeArgument {
+  query: Query;
+  queryText: string;
+  error: string;
 }
 
-type Search = boolean | SearchOptions;
+interface EuiSearchBarProps {
+  /**
+   The initial query the bar will hold when first mounted
+   */
+  defaultQuery?: Query;
+  /**
+   If you wish to use the search bar as a controlled component, continuously pass the query
+   via this prop
+   */
+  query?: Query;
+  /**
+   Configures the search box. Set `placeholder` to change the placeholder text in the box and
+   `incremental` to support incremental (as you type) search.
+   */
+  box?: SearchBox;
+  /**
+   An array of search filters.
+   */
+  filters?: FilterConfig[];
+  /**
+   * Tools which go to the left of the search bar.
+   */
+  toolsLeft?: React.ReactNode;
+  /**
+   * Tools which go to the right of the search bar.
+   */
+  toolsRight?: React.ReactNode;
+  /**
+   * Date formatter to use when parsing date values
+   */
+  dateFormat?: object;
+  onChange?: (values: onChangeArgument) => boolean | void;
+}
+
+function isEuiSearchBarProps<T>(
+  x: EuiInMemoryTableProps<T>['search']
+): x is EuiSearchBarProps {
+  return typeof x !== 'boolean';
+}
+
+type Search = boolean | EuiSearchBarProps;
 
 interface PaginationOptions {
   initialPageIndex?: number;
@@ -151,8 +195,15 @@ export type EuiInMemoryTableProps<T> = CommonProps & {
   itemId?: ItemId<T>;
   rowProps?: object | RowPropsCallback<T>;
   cellProps?: object | CellPropsCallback<T>;
-  onTableChange?: (...args: any) => void;
-  executeQueryOptions?: any;
+  onTableChange?: (nextValues: {
+    page: { index?: number; size?: number };
+    sort: { field: string; direction: string };
+  }) => void;
+  executeQueryOptions?: {
+    defaultFields?: string[];
+    isClauseMatcher?: (...args: any) => boolean;
+    explain?: boolean;
+  };
   isSelectable?: boolean;
   hasActions?: boolean;
   responsive?: boolean;
@@ -167,14 +218,14 @@ interface State<T> {
     sortName: ReactNode;
     sortDirection?: Direction;
   };
-  query: any /* Query */;
+  query: Query;
   pageIndex: number;
   pageSize?: number;
   pageSizeOptions?: number[];
   sortName: ReactNode;
   sortDirection?: Direction;
   allowNeutralSort: boolean;
-  hidePerPageOptions: any;
+  hidePerPageOptions: boolean | undefined;
 }
 
 const getInitialQuery = (search: Search | undefined) => {
@@ -182,7 +233,7 @@ const getInitialQuery = (search: Search | undefined) => {
     return;
   }
 
-  const query = (search as SearchOptions).defaultQuery || '';
+  const query = (search as EuiSearchBarProps).defaultQuery || '';
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
 };
 
@@ -390,16 +441,18 @@ export class EuiInMemoryTable<T> extends Component<
     });
   };
 
-  onQueryChange = ({ query, queryText, error }: any) => {
-    if (this.props.search && (this.props.search as SearchOptions).onChange) {
-      const search = this.props.search as SearchOptions;
-      const shouldQueryInMemory = (search as any).onChange({
-        query,
-        queryText,
-        error,
-      });
-      if (!shouldQueryInMemory) {
-        return;
+  onQueryChange = ({ query, queryText, error }: onChangeArgument) => {
+    if (isEuiSearchBarProps(this.props.search)) {
+      const search = this.props.search;
+      if (search.onChange) {
+        const shouldQueryInMemory = search.onChange({
+          query,
+          queryText,
+          error,
+        });
+        if (!shouldQueryInMemory) {
+          return;
+        }
       }
     }
 
@@ -413,13 +466,15 @@ export class EuiInMemoryTable<T> extends Component<
   renderSearchBar() {
     const { search } = this.props;
     if (search) {
-      const {
-        onChange, // eslint-disable-line no-unused-vars
-        ...searchBarProps
-      } = isBoolean(search) ? { onChange: undefined } : search;
+      let searchBarProps: EuiSearchBarProps = {};
 
-      if (searchBarProps.box && searchBarProps.box.schema === true) {
-        searchBarProps.box.schema = this.resolveSearchSchema();
+      if (isEuiSearchBarProps(search)) {
+        const { onChange, ..._searchBarProps } = search;
+        searchBarProps = _searchBarProps;
+
+        if (searchBarProps.box && searchBarProps.box.schema === true) {
+          searchBarProps.box.schema = this.resolveSearchSchema();
+        }
       }
 
       return <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />;
