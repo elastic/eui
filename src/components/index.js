@@ -222,6 +222,8 @@ export { EuiPortal } from './portal';
 
 export { EuiProgress } from './progress';
 
+export { EuiTreeView } from './tree_view';
+
 export { EuiResizeObserver } from './observer/resize_observer';
 
 export { EuiSearchBar, Query, Ast } from './search_bar';

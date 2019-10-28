@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added new `euiTreeView` component for rendering recursive objects such as folder structures. ([#2409](https://github.com/elastic/eui/pull/2409))
 - Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
+- Fixed `EuiColorStops` where empty string values would cause range min or max to be NaN ([#2496](https://github.com/elastic/eui/pull/2496))
 - Improved `EuiSwitch` a11y by aligning to aria roles ([#2491](https://github.com/elastic/eui/pull/2491))
 - Converted `EuiSwitch` to TypeScript ([#2491](https://github.com/elastic/eui/pull/2491))
 - Added an accessible label-less `EuiSwitch` variation ([#2491](https://github.com/elastic/eui/pull/2491))

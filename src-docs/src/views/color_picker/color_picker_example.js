@@ -54,7 +54,7 @@ const colorStopsSnippetFixed = `<EuiColorStops
 `;
 
 import { ColorStopsRange } from './color_stops_range';
-const colorStopsRangeSource = require('!!raw-loader!./color_stops');
+const colorStopsRangeSource = require('!!raw-loader!./color_stops_range');
 const colorStopsRangeHtml = renderToHtml(ColorStopsRange);
 const colorPickerRangeSnippet = `<EuiColorStops
   label="Free-range color stops"
