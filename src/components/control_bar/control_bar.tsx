@@ -51,7 +51,7 @@ export interface TextControl
     HTMLAttributes<HTMLDivElement> {
   controlType: 'text';
   id: string;
-  label: React.ReactNode;
+  text: React.ReactNode;
 }
 
 export interface SpacerControl {
@@ -309,13 +309,13 @@ export class EuiControlBar extends Component<
             />
           );
         case 'text': {
-          const { controlType, id, label, className, ...rest } = control;
+          const { controlType, id, text, className, ...rest } = control;
           return (
             <div
               key={id}
               className={classNames('euiControlBar__text', className)}
               {...rest}>
-              {label}
+              {text}
             </div>
           );
         }
