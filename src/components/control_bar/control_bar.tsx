@@ -120,18 +120,28 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
      * Accepts `'button' | 'tab' | 'breadcrumbs' | 'text' | 'icon' | 'spacer' | 'divider'`
      */
     controls: Control[];
+
     /**
-     * The maximum height of the overlay. Default is 100% of the window height - 10rem, Medium is 50% of the window height, Small is 25% of the window height;
+     * The default height of the content area.
      */
     size?: 's' | 'm' | 'l';
+
+    /**
+     * Customize the max height.
+     * Best when used with `size=l` as this will ensure the actual height equals the max height set.
+     */
+    maxHeight?: number | string;
+
     /**
      * Set the offset from the left side of the screen.
      */
     leftOffset?: number | string;
+
     /**
      * Set the offset from the left side of the screen.
      */
     rightOffset?: number | string;
+
     /**
      * The control bar is hidden on mobile by default. Use the `showOnMobile` prop to force it's display on mobile screens.
      * You'll need to ensure that the content you place into the bar renders as expected on mobile.
@@ -190,6 +200,7 @@ export class EuiControlBar extends Component<
       size,
       leftOffset = 0,
       rightOffset = 0,
+      maxHeight,
       showOnMobile,
       style,
       position = 'fixed',
@@ -197,7 +208,12 @@ export class EuiControlBar extends Component<
       ...rest
     } = this.props;
 
-    const styles = { ...style, left: leftOffset, right: rightOffset };
+    const styles = {
+      ...style,
+      left: leftOffset,
+      right: rightOffset,
+      maxHeight: maxHeight,
+    };
 
     const classes = classNames('euiControlBar', className, {
       'euiControlBar-isOpen': showContent,
