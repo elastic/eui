@@ -1,6 +1,17 @@
-import React, { Component, HTMLAttributes, ButtonHTMLAttributes } from 'react';
+import React, {
+  Component,
+  HTMLAttributes,
+  ButtonHTMLAttributes,
+  Ref,
+} from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion, Omit } from '../common';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  Omit,
+  PropsForAnchor,
+  PropsForButton,
+} from '../common';
 // @ts-ignore-next-line
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
 import {
@@ -21,6 +32,25 @@ export interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
   id: string;
   label: React.ReactNode;
 }
+
+type ButtonPropsForAnchor = PropsForAnchor<
+  ButtonControl,
+  {
+    buttonRef?: Ref<HTMLAnchorElement>;
+  }
+>;
+
+type ButtonPropsForButton = PropsForButton<
+  ButtonControl,
+  {
+    buttonRef?: Ref<HTMLButtonElement>;
+  }
+>;
+
+type ButtonControlProps = ExclusiveUnion<
+  ButtonPropsForAnchor,
+  ButtonPropsForButton
+>;
 
 /**
  * Creates a `button` visually styles as a tab.
@@ -98,7 +128,7 @@ export type Control = ExclusiveUnion<
     ExclusiveUnion<
       ExclusiveUnion<
         ExclusiveUnion<
-          ButtonControl,
+          ButtonControlProps,
           ExclusiveUnion<BreadcrumbControl, TabControl>
         >,
         TextControl
