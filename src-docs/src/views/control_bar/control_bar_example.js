@@ -29,20 +29,17 @@ const controlsHtml = renderToHtml(Controls);
 const controlBarSource = require('!!raw-loader!./control_bar');
 const controlBarHtml = renderToHtml(ControlBar);
 const controlBarSnippet = `<EuiControlBar
-  size="l"
   showContent={false}
-  navDrawerOffset="s"
   controls={
     [{
-      id: 'root_icon',
-      label: 'Project Root',
-      controlType: 'icon',
       iconType: 'submodule',
+      id: 'root_icon',
+      controlType: 'icon',
+      'aria-label': 'Project Root',
     },
     {
-      id: 'current_file_path',
-      label: 'breadcrumbs',
       controlType: 'breadcrumbs',
+      id: 'current_file_path',
       responsive: true,
       breadcrumbs: [
         {
@@ -57,14 +54,21 @@ const controlBarSnippet = `<EuiControlBar
       controlType: 'spacer',
     },
     {
-      id: 'status_icon',
-      label: 'Repo Status',
       controlType: 'icon',
+      id: 'status_icon',
       iconType: 'alert',
       color: 'warning',
+      'aria-label': 'Repo Status',
     },
     {
       controlType: 'divider',
+    },
+    {
+      controlType: 'button',
+      id: 'open_history_view',
+      label: 'Show history',
+      color: 'primary',
+      onClick: this.toggleContent,
     }]
   }
 />`;
@@ -79,18 +83,17 @@ const mobileBarSnippet = `<EuiControlBar
   showOnMobile
   controls={[
     {
-      id: 'icon',
       controlType: 'icon',
-      label: 'folder',
+      id: 'icon',
       iconType: 'folderClosed',
+      'aria-label': 'folder',
       className: 'eui-hideFor--m eui-hideFor--l eui-hideFor--xl',
     },
     {
-      id: 'current_file_path',
-      label: 'breadcrumbs',
       controlType: 'breadcrumbs',
-      responsive: true,
+      id: 'current_file_path',
       className: 'eui-hideFor--s eui-hideFor--xs',
+      responsive: true,
       breadcrumbs: [
         {
           text: 'src',
@@ -104,14 +107,14 @@ const mobileBarSnippet = `<EuiControlBar
       controlType: 'spacer',
     },
     {
-      id: 'github_icon',
       controlType: 'icon',
+      id: 'github_icon',
       iconType: 'logoGithub',
     },
     {
-      id: 'github_text',
       controlType: 'text',
-      label: 'Open in Github',
+      id: 'github_text',
+      text: 'Open in Github',
     },
   ]}/>`;
 

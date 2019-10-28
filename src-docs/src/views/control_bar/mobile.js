@@ -1,60 +1,34 @@
 import React from 'react';
 
-import {
-  EuiButton,
-  EuiControlBar,
-  EuiFlexGroup,
-} from '../../../../src/components';
-import { keyCodes } from '../../../../src/services';
-import { EuiFocusTrap } from '../../../../src/components/focus_trap';
+import { EuiButton, EuiControlBar } from '../../../../src/components';
 
 export class ControlBarMobile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      contentIsVisible: false,
-      isFullScreen: false,
+      isDisplaying: false,
       tabContent: '',
     };
   }
 
-  toggle() {
-    this.setState({
-      contentIsVisible: !this.state.contentIsVisible,
-    });
-  }
-
-  toggleFullScreen() {
+  toggleDisplay = () => {
     this.setState(prevState => ({
-      isFullScreen: !prevState.isFullScreen,
-      contentIsVisible: false,
+      isDisplaying: !prevState.isDisplaying,
     }));
-  }
-
-  onKeyDown = event => {
-    if (event.keyCode === keyCodes.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.setState({
-        isFullScreen: false,
-        contentIsVisible: false,
-      });
-    }
   };
 
   render() {
     const controls = [
       {
-        id: 'icon',
         controlType: 'icon',
-        label: 'folder',
+        id: 'icon',
         iconType: 'folderClosed',
+        'aria-label': 'folder',
         className: 'eui-hideFor--m eui-hideFor--l eui-hideFor--xl',
       },
       {
-        id: 'current_file_path',
-        label: 'breadcrumbs',
         controlType: 'breadcrumbs',
+        id: 'current_file_path',
         responsive: true,
         className: 'eui-hideFor--s eui-hideFor--xs',
         breadcrumbs: [
@@ -70,44 +44,30 @@ export class ControlBarMobile extends React.Component {
         controlType: 'spacer',
       },
       {
-        id: 'github_icon',
         controlType: 'icon',
+        id: 'github_icon',
         iconType: 'logoGithub',
+        'aria-label': 'Github',
       },
       {
-        id: 'github_text',
         controlType: 'text',
-        label: 'Open in Github',
+        id: 'github_text',
+        text: 'Open in Github',
       },
     ];
 
-    let fullScreenDisplay;
+    let display;
 
-    if (this.state.isFullScreen) {
-      fullScreenDisplay = (
-        <EuiFocusTrap>
-          <div className="guideDemo__pageOverlay" onKeyDown={this.onKeyDown}>
-            <EuiFlexGroup>
-              <EuiButton onClick={this.toggleFullScreen.bind(this)}>
-                Close
-              </EuiButton>
-            </EuiFlexGroup>
-            <EuiControlBar
-              controls={controls}
-              showContent={this.state.contentIsVisible}
-              showOnMobile
-            />
-          </div>
-        </EuiFocusTrap>
-      );
+    if (this.state.isDisplaying) {
+      display = <EuiControlBar controls={controls} showOnMobile />;
     }
 
     return (
       <div>
-        <EuiButton onClick={this.toggleFullScreen.bind(this)}>
-          View mobile example
+        <EuiButton onClick={this.toggleDisplay}>
+          Toggle mobile example
         </EuiButton>
-        {fullScreenDisplay}
+        {display}
       </div>
     );
   }
