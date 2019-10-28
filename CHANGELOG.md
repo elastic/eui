@@ -2,6 +2,7 @@
 
 - Added new `euiTreeView` component for rendering recursive objects such as folder structures. ([#2409](https://github.com/elastic/eui/pull/2409))
 - Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
+- Fixed `EuiColorStops` where empty string values would cause range min or max to be NaN ()
 
 **Bug fixes**
 

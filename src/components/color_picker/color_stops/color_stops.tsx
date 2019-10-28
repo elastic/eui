@@ -62,9 +62,13 @@ function sortStops(colorStops: ColorStop[]) {
     .sort((a, b) => a.stop - b.stop);
 }
 
+function getValidStops(colorStops: ColorStop[]) {
+  return colorStops.map(el => el.stop).filter(stop => !isNaN(stop));
+}
+
 function getRangeMin(colorStops: ColorStop[], min?: number) {
   const rangeMin = min || DEFAULT_MIN;
-  const stops = colorStops.map(el => el.stop);
+  const stops = getValidStops(colorStops);
   const first = Math.min.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (first < rangeMin) {
@@ -78,7 +82,7 @@ function getRangeMin(colorStops: ColorStop[], min?: number) {
 }
 function getRangeMax(colorStops: ColorStop[], max?: number) {
   const rangeMax = max || DEFAULT_MAX;
-  const stops = colorStops.map(el => el.stop);
+  const stops = getValidStops(colorStops);
   const last = Math.max.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (last > rangeMax) {
