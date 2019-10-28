@@ -48,6 +48,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   ...rest
 }) => {
   const [switchId] = useState(id || makeId());
+  const [labelId] = useState(makeId());
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const event = (e as unknown) as EuiSwitchEvent;
@@ -79,7 +80,8 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         type={type}
         disabled={disabled}
         onClick={onClick}
-        aria-label={showLabel === false ? (label as string) : undefined}
+        aria-label={showLabel ? undefined : (label as string)}
+        aria-describedby={showLabel ? labelId : undefined}
         {...rest}>
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
@@ -100,9 +102,9 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
       </button>
 
       {showLabel && (
-        <label className="euiSwitch__label" htmlFor={switchId}>
+        <p className="euiSwitch__label" id={labelId}>
           {label}
-        </label>
+        </p>
       )}
     </div>
   );

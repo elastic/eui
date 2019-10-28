@@ -6,6 +6,7 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
 >
   <button
     aria-checked="false"
+    aria-describedby="generated-id"
     class="euiSwitch__button"
     id="generated-id"
     role="switch"
@@ -39,12 +40,12 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
       </span>
     </span>
   </button>
-  <label
+  <p
     class="euiSwitch__label"
-    for="generated-id"
+    id="generated-id"
   >
     Label
-  </label>
+  </p>
 </div>
 `;
 
@@ -54,6 +55,7 @@ exports[`EuiSwitch is rendered 1`] = `
 >
   <button
     aria-checked="false"
+    aria-describedby="generated-id"
     aria-label="aria-label"
     class="euiSwitch__button"
     data-test-subj="test subject string"
@@ -89,11 +91,11 @@ exports[`EuiSwitch is rendered 1`] = `
       </span>
     </span>
   </button>
-  <label
+  <p
     class="euiSwitch__label"
-    for="test"
+    id="generated-id"
   >
     Label
-  </label>
+  </p>
 </div>
 `;
