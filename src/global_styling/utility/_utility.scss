@@ -71,6 +71,18 @@
   .eui-showFor--#{$size} {
     @include  euiBreakpoint($size) { display: inline !important; }
   }
+
+  .eui-showFor--#{$size}--block {
+    @include  euiBreakpoint($size) { display: block !important; }
+  }
+
+  .eui-showFor--#{$size}--inlineBlock {
+    @include  euiBreakpoint($size) { display: inline-block !important; }
+  }
+
+  .eui-showFor--#{$size}--flex {
+    @include  euiBreakpoint($size) { display: flex !important; }
+  }
 }
 
 /**
