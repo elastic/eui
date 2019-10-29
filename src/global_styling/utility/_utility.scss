@@ -53,14 +53,11 @@
 /**
  *  Responsive
  *
- *  3. Be sure to hide/show the element initially
+ *  1. Be sure to hide the element initially
  */
-[class*='eui-hideFor'] {
-  display: inherit !important; /* 3 */
-}
 
 [class*='eui-showFor'] {
-  display: none !important; /* 3 */
+  display: none !important; /* 1 */
 }
 
 @each $size in $euiBreakpointKeys {

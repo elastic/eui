@@ -3,8 +3,9 @@
 exports[`EuiControlBar is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiControlBar testClass1 testClass2 euiControlBar--large"
+  class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--fixed"
   data-test-subj="test subject string"
+  style="left: 0px; right: 0px;"
 >
   <div
     class="euiControlBar__controls"
@@ -33,6 +34,7 @@ exports[`EuiControlBar is rendered 1`] = `
     </nav>
     <button
       class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+      data-test-subj="dts"
       type="button"
     >
       <span
@@ -45,153 +47,1887 @@ exports[`EuiControlBar is rendered 1`] = `
         </span>
       </span>
     </button>
-    <button
-      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-      type="button"
+    <div
+      class="euiControlBar__text"
     >
-      <span
-        class="euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Close the Hatch
-        </span>
-      </span>
-    </button>
-    <button
+      Close the Hatch
+    </div>
+    <div
+      class="euiControlBar__divider"
+    />
+    <svg
       aria-label="Sample Icon"
-      class="euiButtonIcon euiButtonIcon--ghost euiControlBar__buttonIcon"
-      data-test-subj="Sample Icon"
-      type="button"
-    >
-      <svg
-        aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-        focusable="false"
-        height="16"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      />
-    </button>
+      class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
     <div
       class="euiControlBar__spacer"
     />
     <button
-      aria-label="Repo Status"
-      class="euiButtonIcon euiButtonIcon--warning euiControlBar__buttonIcon"
-      data-test-subj="Repo Status"
-      type="button"
+      class="euiControlBar__tab"
     >
-      <svg
-        aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-        focusable="false"
-        height="16"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      />
+      Flight 815
     </button>
   </div>
 </div>
 `;
 
-exports[`mobile control bar is rendered 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--showOnMobile"
-  data-test-subj="test subject string"
+exports[`EuiControlBar props leftOffset is rendered 1`] = `
+<EuiControlBar
+  controls={
+    Array [
+      Object {
+        "breadcrumbs": Array [
+          Object {
+            "text": "src",
+          },
+          Object {
+            "text": "components",
+          },
+        ],
+        "controlType": "breadcrumbs",
+        "id": "current_file_path",
+        "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
+      },
+      Object {
+        "controlType": "text",
+        "id": "close_the_hatch",
+        "text": "Close the Hatch",
+      },
+      Object {
+        "controlType": "divider",
+      },
+      Object {
+        "aria-label": "Sample Icon",
+        "color": "danger",
+        "controlType": "icon",
+        "iconType": "alert",
+        "id": "sample_icon",
+      },
+      Object {
+        "controlType": "spacer",
+      },
+      Object {
+        "controlType": "tab",
+        "id": "flight_815",
+        "label": "Flight 815",
+        "onClick": [Function],
+      },
+    ]
+  }
+  leftOffset={200}
+  position="fixed"
+  rightOffset={0}
+  showContent={false}
+  showOnMobile={false}
+  size="l"
+>
+  <EuiPortal>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="euiControlBar euiControlBar--large euiControlBar--fixed"
+            style="left: 200px; right: 0px;"
+          >
+            <div
+              class="euiControlBar__controls"
+            >
+              <nav
+                aria-label="breadcrumb"
+                class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+              >
+                <button
+                  class="euiLink euiLink--subdued euiBreadcrumb"
+                  title="src"
+                  type="button"
+                >
+                  src
+                </button>
+                <div
+                  class="euiBreadcrumbSeparator"
+                />
+                <span
+                  aria-current="page"
+                  class="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
+              <div
+                class="euiControlBar__text"
+              >
+                Close the Hatch
+              </div>
+              <div
+                class="euiControlBar__divider"
+              />
+              <svg
+                aria-label="Sample Icon"
+                class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <div
+                class="euiControlBar__spacer"
+              />
+              <button
+                class="euiControlBar__tab"
+              >
+                Flight 815
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="euiControlBar euiControlBar--large euiControlBar--fixed"
+        style={
+          Object {
+            "left": 200,
+            "maxHeight": undefined,
+            "right": 0,
+          }
+        }
+      >
+        <div
+          className="euiControlBar__controls"
+        >
+          <EuiBreadcrumbs
+            breadcrumbs={
+              Array [
+                Object {
+                  "text": "src",
+                },
+                Object {
+                  "text": "components",
+                },
+              ]
+            }
+            key="current_file_path"
+            responsive={true}
+          >
+            <nav
+              aria-label="breadcrumb"
+              className="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+            >
+              <EuiInnerText>
+                <EuiLink
+                  className="euiBreadcrumb"
+                  color="subdued"
+                  title="src"
+                >
+                  <button
+                    className="euiLink euiLink--subdued euiBreadcrumb"
+                    title="src"
+                    type="button"
+                  >
+                    src
+                  </button>
+                </EuiLink>
+              </EuiInnerText>
+              <EuiBreadcrumbSeparator>
+                <div
+                  className="euiBreadcrumbSeparator"
+                />
+              </EuiBreadcrumbSeparator>
+              <EuiInnerText>
+                <span
+                  aria-current="page"
+                  className="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </EuiInnerText>
+            </nav>
+          </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
+          <div
+            className="euiControlBar__text"
+            key="close_the_hatch"
+          >
+            Close the Hatch
+          </div>
+          <div
+            className="euiControlBar__divider"
+            key="divider3"
+          />
+          <EuiIcon
+            aria-label="Sample Icon"
+            className="euiControlBar__icon"
+            color="danger"
+            key="sample_icon4"
+            type="alert"
+          >
+            <EuiIconEmpty
+              aria-label="Sample Icon"
+              className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                aria-label="Sample Icon"
+                className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+          <div
+            className="euiControlBar__spacer"
+            key="spacer5"
+          />
+          <button
+            className="euiControlBar__tab"
+            key="flight_8156"
+            onClick={[Function]}
+          >
+            Flight 815
+          </button>
+        </div>
+      </div>
+    </Portal>
+  </EuiPortal>
+</EuiControlBar>
+`;
+
+exports[`EuiControlBar props maxHeight is rendered 1`] = `
+<EuiControlBar
+  controls={
+    Array [
+      Object {
+        "breadcrumbs": Array [
+          Object {
+            "text": "src",
+          },
+          Object {
+            "text": "components",
+          },
+        ],
+        "controlType": "breadcrumbs",
+        "id": "current_file_path",
+        "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
+      },
+      Object {
+        "controlType": "text",
+        "id": "close_the_hatch",
+        "text": "Close the Hatch",
+      },
+      Object {
+        "controlType": "divider",
+      },
+      Object {
+        "aria-label": "Sample Icon",
+        "color": "danger",
+        "controlType": "icon",
+        "iconType": "alert",
+        "id": "sample_icon",
+      },
+      Object {
+        "controlType": "spacer",
+      },
+      Object {
+        "controlType": "tab",
+        "id": "flight_815",
+        "label": "Flight 815",
+        "onClick": [Function],
+      },
+    ]
+  }
+  leftOffset={0}
+  maxHeight="20rem"
+  position="fixed"
+  rightOffset={0}
+  showContent={false}
+  showOnMobile={false}
+  size="l"
+>
+  <EuiPortal>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="euiControlBar euiControlBar--large euiControlBar--fixed"
+            style="left: 0px; right: 0px; max-height: 20rem;"
+          >
+            <div
+              class="euiControlBar__controls"
+            >
+              <nav
+                aria-label="breadcrumb"
+                class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+              >
+                <button
+                  class="euiLink euiLink--subdued euiBreadcrumb"
+                  title="src"
+                  type="button"
+                >
+                  src
+                </button>
+                <div
+                  class="euiBreadcrumbSeparator"
+                />
+                <span
+                  aria-current="page"
+                  class="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
+              <div
+                class="euiControlBar__text"
+              >
+                Close the Hatch
+              </div>
+              <div
+                class="euiControlBar__divider"
+              />
+              <svg
+                aria-label="Sample Icon"
+                class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <div
+                class="euiControlBar__spacer"
+              />
+              <button
+                class="euiControlBar__tab"
+              >
+                Flight 815
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="euiControlBar euiControlBar--large euiControlBar--fixed"
+        style={
+          Object {
+            "left": 0,
+            "maxHeight": "20rem",
+            "right": 0,
+          }
+        }
+      >
+        <div
+          className="euiControlBar__controls"
+        >
+          <EuiBreadcrumbs
+            breadcrumbs={
+              Array [
+                Object {
+                  "text": "src",
+                },
+                Object {
+                  "text": "components",
+                },
+              ]
+            }
+            key="current_file_path"
+            responsive={true}
+          >
+            <nav
+              aria-label="breadcrumb"
+              className="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+            >
+              <EuiInnerText>
+                <EuiLink
+                  className="euiBreadcrumb"
+                  color="subdued"
+                  title="src"
+                >
+                  <button
+                    className="euiLink euiLink--subdued euiBreadcrumb"
+                    title="src"
+                    type="button"
+                  >
+                    src
+                  </button>
+                </EuiLink>
+              </EuiInnerText>
+              <EuiBreadcrumbSeparator>
+                <div
+                  className="euiBreadcrumbSeparator"
+                />
+              </EuiBreadcrumbSeparator>
+              <EuiInnerText>
+                <span
+                  aria-current="page"
+                  className="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </EuiInnerText>
+            </nav>
+          </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
+          <div
+            className="euiControlBar__text"
+            key="close_the_hatch"
+          >
+            Close the Hatch
+          </div>
+          <div
+            className="euiControlBar__divider"
+            key="divider3"
+          />
+          <EuiIcon
+            aria-label="Sample Icon"
+            className="euiControlBar__icon"
+            color="danger"
+            key="sample_icon4"
+            type="alert"
+          >
+            <EuiIconEmpty
+              aria-label="Sample Icon"
+              className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                aria-label="Sample Icon"
+                className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+          <div
+            className="euiControlBar__spacer"
+            key="spacer5"
+          />
+          <button
+            className="euiControlBar__tab"
+            key="flight_8156"
+            onClick={[Function]}
+          >
+            Flight 815
+          </button>
+        </div>
+      </div>
+    </Portal>
+  </EuiPortal>
+</EuiControlBar>
+`;
+
+exports[`EuiControlBar props mobile is rendered 1`] = `
+<EuiControlBar
+  controls={
+    Array [
+      Object {
+        "breadcrumbs": Array [
+          Object {
+            "text": "src",
+          },
+          Object {
+            "text": "components",
+          },
+        ],
+        "controlType": "breadcrumbs",
+        "id": "current_file_path",
+        "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
+      },
+      Object {
+        "controlType": "text",
+        "id": "close_the_hatch",
+        "text": "Close the Hatch",
+      },
+      Object {
+        "controlType": "divider",
+      },
+      Object {
+        "aria-label": "Sample Icon",
+        "color": "danger",
+        "controlType": "icon",
+        "iconType": "alert",
+        "id": "sample_icon",
+      },
+      Object {
+        "controlType": "spacer",
+      },
+      Object {
+        "controlType": "tab",
+        "id": "flight_815",
+        "label": "Flight 815",
+        "onClick": [Function],
+      },
+    ]
+  }
+  leftOffset={0}
+  position="fixed"
+  rightOffset={0}
+  showContent={false}
+  showOnMobile={true}
+  size="l"
+>
+  <EuiPortal>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="euiControlBar euiControlBar--large euiControlBar--fixed euiControlBar--showOnMobile"
+            style="left: 0px; right: 0px;"
+          >
+            <div
+              class="euiControlBar__controls"
+            >
+              <nav
+                aria-label="breadcrumb"
+                class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+              >
+                <button
+                  class="euiLink euiLink--subdued euiBreadcrumb"
+                  title="src"
+                  type="button"
+                >
+                  src
+                </button>
+                <div
+                  class="euiBreadcrumbSeparator"
+                />
+                <span
+                  aria-current="page"
+                  class="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
+              <div
+                class="euiControlBar__text"
+              >
+                Close the Hatch
+              </div>
+              <div
+                class="euiControlBar__divider"
+              />
+              <svg
+                aria-label="Sample Icon"
+                class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <div
+                class="euiControlBar__spacer"
+              />
+              <button
+                class="euiControlBar__tab"
+              >
+                Flight 815
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="euiControlBar euiControlBar--large euiControlBar--fixed euiControlBar--showOnMobile"
+        style={
+          Object {
+            "left": 0,
+            "maxHeight": undefined,
+            "right": 0,
+          }
+        }
+      >
+        <div
+          className="euiControlBar__controls"
+        >
+          <EuiBreadcrumbs
+            breadcrumbs={
+              Array [
+                Object {
+                  "text": "src",
+                },
+                Object {
+                  "text": "components",
+                },
+              ]
+            }
+            key="current_file_path"
+            responsive={true}
+          >
+            <nav
+              aria-label="breadcrumb"
+              className="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+            >
+              <EuiInnerText>
+                <EuiLink
+                  className="euiBreadcrumb"
+                  color="subdued"
+                  title="src"
+                >
+                  <button
+                    className="euiLink euiLink--subdued euiBreadcrumb"
+                    title="src"
+                    type="button"
+                  >
+                    src
+                  </button>
+                </EuiLink>
+              </EuiInnerText>
+              <EuiBreadcrumbSeparator>
+                <div
+                  className="euiBreadcrumbSeparator"
+                />
+              </EuiBreadcrumbSeparator>
+              <EuiInnerText>
+                <span
+                  aria-current="page"
+                  className="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </EuiInnerText>
+            </nav>
+          </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
+          <div
+            className="euiControlBar__text"
+            key="close_the_hatch"
+          >
+            Close the Hatch
+          </div>
+          <div
+            className="euiControlBar__divider"
+            key="divider3"
+          />
+          <EuiIcon
+            aria-label="Sample Icon"
+            className="euiControlBar__icon"
+            color="danger"
+            key="sample_icon4"
+            type="alert"
+          >
+            <EuiIconEmpty
+              aria-label="Sample Icon"
+              className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                aria-label="Sample Icon"
+                className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+          <div
+            className="euiControlBar__spacer"
+            key="spacer5"
+          />
+          <button
+            className="euiControlBar__tab"
+            key="flight_8156"
+            onClick={[Function]}
+          >
+            Flight 815
+          </button>
+        </div>
+      </div>
+    </Portal>
+  </EuiPortal>
+</EuiControlBar>
+`;
+
+exports[`EuiControlBar props position is rendered 1`] = `
+<EuiControlBar
+  controls={
+    Array [
+      Object {
+        "breadcrumbs": Array [
+          Object {
+            "text": "src",
+          },
+          Object {
+            "text": "components",
+          },
+        ],
+        "controlType": "breadcrumbs",
+        "id": "current_file_path",
+        "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
+      },
+      Object {
+        "controlType": "text",
+        "id": "close_the_hatch",
+        "text": "Close the Hatch",
+      },
+      Object {
+        "controlType": "divider",
+      },
+      Object {
+        "aria-label": "Sample Icon",
+        "color": "danger",
+        "controlType": "icon",
+        "iconType": "alert",
+        "id": "sample_icon",
+      },
+      Object {
+        "controlType": "spacer",
+      },
+      Object {
+        "controlType": "tab",
+        "id": "flight_815",
+        "label": "Flight 815",
+        "onClick": [Function],
+      },
+    ]
+  }
+  leftOffset={0}
+  position="absolute"
+  rightOffset={0}
+  showContent={false}
+  showOnMobile={false}
+  size="l"
 >
   <div
-    class="euiControlBar__controls"
+    className="euiControlBar euiControlBar--large euiControlBar--absolute"
+    style={
+      Object {
+        "left": 0,
+        "maxHeight": undefined,
+        "right": 0,
+      }
+    }
   >
-    <nav
-      aria-label="breadcrumb"
-      class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
-    >
-      <button
-        class="euiLink euiLink--subdued euiBreadcrumb"
-        title="src"
-        type="button"
-      >
-        src
-      </button>
-      <div
-        class="euiBreadcrumbSeparator"
-      />
-      <span
-        aria-current="page"
-        class="euiBreadcrumb euiBreadcrumb--last"
-        title="components"
-      >
-        components
-      </span>
-    </nav>
-    <button
-      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-      type="button"
-    >
-      <span
-        class="euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Sound the Alarm
-        </span>
-      </span>
-    </button>
-    <button
-      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-      type="button"
-    >
-      <span
-        class="euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Close the Hatch
-        </span>
-      </span>
-    </button>
-    <button
-      aria-label="Sample Icon"
-      class="euiButtonIcon euiButtonIcon--ghost euiControlBar__buttonIcon"
-      data-test-subj="Sample Icon"
-      type="button"
-    >
-      <svg
-        aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-        focusable="false"
-        height="16"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      />
-    </button>
     <div
-      class="euiControlBar__spacer"
-    />
-    <button
-      aria-label="Repo Status"
-      class="euiButtonIcon euiButtonIcon--warning euiControlBar__buttonIcon"
-      data-test-subj="Repo Status"
-      type="button"
+      className="euiControlBar__controls"
     >
-      <svg
-        aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-        focusable="false"
-        height="16"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+      <EuiBreadcrumbs
+        breadcrumbs={
+          Array [
+            Object {
+              "text": "src",
+            },
+            Object {
+              "text": "components",
+            },
+          ]
+        }
+        key="current_file_path"
+        responsive={true}
+      >
+        <nav
+          aria-label="breadcrumb"
+          className="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+        >
+          <EuiInnerText>
+            <EuiLink
+              className="euiBreadcrumb"
+              color="subdued"
+              title="src"
+            >
+              <button
+                className="euiLink euiLink--subdued euiBreadcrumb"
+                title="src"
+                type="button"
+              >
+                src
+              </button>
+            </EuiLink>
+          </EuiInnerText>
+          <EuiBreadcrumbSeparator>
+            <div
+              className="euiBreadcrumbSeparator"
+            />
+          </EuiBreadcrumbSeparator>
+          <EuiInnerText>
+            <span
+              aria-current="page"
+              className="euiBreadcrumb euiBreadcrumb--last"
+              title="components"
+            >
+              components
+            </span>
+          </EuiInnerText>
+        </nav>
+      </EuiBreadcrumbs>
+      <EuiButton
+        className="euiControlBar__button"
+        color="ghost"
+        data-test-subj="dts"
+        key="sound_the_alarm1"
+        onClick={[Function]}
+        size="s"
+      >
+        <button
+          className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+          data-test-subj="dts"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="euiButton__content"
+          >
+            <span
+              className="euiButton__text"
+            >
+              Sound the Alarm
+            </span>
+          </span>
+        </button>
+      </EuiButton>
+      <div
+        className="euiControlBar__text"
+        key="close_the_hatch"
+      >
+        Close the Hatch
+      </div>
+      <div
+        className="euiControlBar__divider"
+        key="divider3"
       />
-    </button>
+      <EuiIcon
+        aria-label="Sample Icon"
+        className="euiControlBar__icon"
+        color="danger"
+        key="sample_icon4"
+        type="alert"
+      >
+        <EuiIconEmpty
+          aria-label="Sample Icon"
+          className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+          focusable="false"
+          style={null}
+        >
+          <svg
+            aria-label="Sample Icon"
+            className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+            focusable="false"
+            height={16}
+            style={null}
+            viewBox="0 0 16 16"
+            width={16}
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </EuiIconEmpty>
+      </EuiIcon>
+      <div
+        className="euiControlBar__spacer"
+        key="spacer5"
+      />
+      <button
+        className="euiControlBar__tab"
+        key="flight_8156"
+        onClick={[Function]}
+      >
+        Flight 815
+      </button>
+    </div>
   </div>
-</div>
+</EuiControlBar>
+`;
+
+exports[`EuiControlBar props rightOffset is rendered 1`] = `
+<EuiControlBar
+  controls={
+    Array [
+      Object {
+        "breadcrumbs": Array [
+          Object {
+            "text": "src",
+          },
+          Object {
+            "text": "components",
+          },
+        ],
+        "controlType": "breadcrumbs",
+        "id": "current_file_path",
+        "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
+      },
+      Object {
+        "controlType": "text",
+        "id": "close_the_hatch",
+        "text": "Close the Hatch",
+      },
+      Object {
+        "controlType": "divider",
+      },
+      Object {
+        "aria-label": "Sample Icon",
+        "color": "danger",
+        "controlType": "icon",
+        "iconType": "alert",
+        "id": "sample_icon",
+      },
+      Object {
+        "controlType": "spacer",
+      },
+      Object {
+        "controlType": "tab",
+        "id": "flight_815",
+        "label": "Flight 815",
+        "onClick": [Function],
+      },
+    ]
+  }
+  leftOffset={0}
+  position="fixed"
+  rightOffset={200}
+  showContent={false}
+  showOnMobile={false}
+  size="l"
+>
+  <EuiPortal>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="euiControlBar euiControlBar--large euiControlBar--fixed"
+            style="left: 0px; right: 200px;"
+          >
+            <div
+              class="euiControlBar__controls"
+            >
+              <nav
+                aria-label="breadcrumb"
+                class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+              >
+                <button
+                  class="euiLink euiLink--subdued euiBreadcrumb"
+                  title="src"
+                  type="button"
+                >
+                  src
+                </button>
+                <div
+                  class="euiBreadcrumbSeparator"
+                />
+                <span
+                  aria-current="page"
+                  class="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
+              <div
+                class="euiControlBar__text"
+              >
+                Close the Hatch
+              </div>
+              <div
+                class="euiControlBar__divider"
+              />
+              <svg
+                aria-label="Sample Icon"
+                class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <div
+                class="euiControlBar__spacer"
+              />
+              <button
+                class="euiControlBar__tab"
+              >
+                Flight 815
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="euiControlBar euiControlBar--large euiControlBar--fixed"
+        style={
+          Object {
+            "left": 0,
+            "maxHeight": undefined,
+            "right": 200,
+          }
+        }
+      >
+        <div
+          className="euiControlBar__controls"
+        >
+          <EuiBreadcrumbs
+            breadcrumbs={
+              Array [
+                Object {
+                  "text": "src",
+                },
+                Object {
+                  "text": "components",
+                },
+              ]
+            }
+            key="current_file_path"
+            responsive={true}
+          >
+            <nav
+              aria-label="breadcrumb"
+              className="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+            >
+              <EuiInnerText>
+                <EuiLink
+                  className="euiBreadcrumb"
+                  color="subdued"
+                  title="src"
+                >
+                  <button
+                    className="euiLink euiLink--subdued euiBreadcrumb"
+                    title="src"
+                    type="button"
+                  >
+                    src
+                  </button>
+                </EuiLink>
+              </EuiInnerText>
+              <EuiBreadcrumbSeparator>
+                <div
+                  className="euiBreadcrumbSeparator"
+                />
+              </EuiBreadcrumbSeparator>
+              <EuiInnerText>
+                <span
+                  aria-current="page"
+                  className="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </EuiInnerText>
+            </nav>
+          </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
+          <div
+            className="euiControlBar__text"
+            key="close_the_hatch"
+          >
+            Close the Hatch
+          </div>
+          <div
+            className="euiControlBar__divider"
+            key="divider3"
+          />
+          <EuiIcon
+            aria-label="Sample Icon"
+            className="euiControlBar__icon"
+            color="danger"
+            key="sample_icon4"
+            type="alert"
+          >
+            <EuiIconEmpty
+              aria-label="Sample Icon"
+              className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                aria-label="Sample Icon"
+                className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+          <div
+            className="euiControlBar__spacer"
+            key="spacer5"
+          />
+          <button
+            className="euiControlBar__tab"
+            key="flight_8156"
+            onClick={[Function]}
+          >
+            Flight 815
+          </button>
+        </div>
+      </div>
+    </Portal>
+  </EuiPortal>
+</EuiControlBar>
+`;
+
+exports[`EuiControlBar props showContent is rendered 1`] = `
+<EuiControlBar
+  controls={
+    Array [
+      Object {
+        "breadcrumbs": Array [
+          Object {
+            "text": "src",
+          },
+          Object {
+            "text": "components",
+          },
+        ],
+        "controlType": "breadcrumbs",
+        "id": "current_file_path",
+        "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
+      },
+      Object {
+        "controlType": "text",
+        "id": "close_the_hatch",
+        "text": "Close the Hatch",
+      },
+      Object {
+        "controlType": "divider",
+      },
+      Object {
+        "aria-label": "Sample Icon",
+        "color": "danger",
+        "controlType": "icon",
+        "iconType": "alert",
+        "id": "sample_icon",
+      },
+      Object {
+        "controlType": "spacer",
+      },
+      Object {
+        "controlType": "tab",
+        "id": "flight_815",
+        "label": "Flight 815",
+        "onClick": [Function],
+      },
+    ]
+  }
+  leftOffset={0}
+  position="fixed"
+  rightOffset={0}
+  showContent={true}
+  showOnMobile={false}
+  size="l"
+>
+  <EuiPortal>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="euiControlBar euiControlBar-isOpen euiControlBar--large euiControlBar--fixed"
+            style="left: 0px; right: 0px;"
+          >
+            <div
+              class="euiControlBar__controls"
+            >
+              <nav
+                aria-label="breadcrumb"
+                class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+              >
+                <button
+                  class="euiLink euiLink--subdued euiBreadcrumb"
+                  title="src"
+                  type="button"
+                >
+                  src
+                </button>
+                <div
+                  class="euiBreadcrumbSeparator"
+                />
+                <span
+                  aria-current="page"
+                  class="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
+              <div
+                class="euiControlBar__text"
+              >
+                Close the Hatch
+              </div>
+              <div
+                class="euiControlBar__divider"
+              />
+              <svg
+                aria-label="Sample Icon"
+                class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <div
+                class="euiControlBar__spacer"
+              />
+              <button
+                class="euiControlBar__tab"
+              >
+                Flight 815
+              </button>
+            </div>
+            <div
+              class="euiControlBar__content"
+            >
+              Content
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="euiControlBar euiControlBar-isOpen euiControlBar--large euiControlBar--fixed"
+        style={
+          Object {
+            "left": 0,
+            "maxHeight": undefined,
+            "right": 0,
+          }
+        }
+      >
+        <div
+          className="euiControlBar__controls"
+        >
+          <EuiBreadcrumbs
+            breadcrumbs={
+              Array [
+                Object {
+                  "text": "src",
+                },
+                Object {
+                  "text": "components",
+                },
+              ]
+            }
+            key="current_file_path"
+            responsive={true}
+          >
+            <nav
+              aria-label="breadcrumb"
+              className="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+            >
+              <EuiInnerText>
+                <EuiLink
+                  className="euiBreadcrumb"
+                  color="subdued"
+                  title="src"
+                >
+                  <button
+                    className="euiLink euiLink--subdued euiBreadcrumb"
+                    title="src"
+                    type="button"
+                  >
+                    src
+                  </button>
+                </EuiLink>
+              </EuiInnerText>
+              <EuiBreadcrumbSeparator>
+                <div
+                  className="euiBreadcrumbSeparator"
+                />
+              </EuiBreadcrumbSeparator>
+              <EuiInnerText>
+                <span
+                  aria-current="page"
+                  className="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </EuiInnerText>
+            </nav>
+          </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
+          <div
+            className="euiControlBar__text"
+            key="close_the_hatch"
+          >
+            Close the Hatch
+          </div>
+          <div
+            className="euiControlBar__divider"
+            key="divider3"
+          />
+          <EuiIcon
+            aria-label="Sample Icon"
+            className="euiControlBar__icon"
+            color="danger"
+            key="sample_icon4"
+            type="alert"
+          >
+            <EuiIconEmpty
+              aria-label="Sample Icon"
+              className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                aria-label="Sample Icon"
+                className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+          <div
+            className="euiControlBar__spacer"
+            key="spacer5"
+          />
+          <button
+            className="euiControlBar__tab"
+            key="flight_8156"
+            onClick={[Function]}
+          >
+            Flight 815
+          </button>
+        </div>
+        <div
+          className="euiControlBar__content"
+        >
+          Content
+        </div>
+      </div>
+    </Portal>
+  </EuiPortal>
+</EuiControlBar>
+`;
+
+exports[`EuiControlBar props size is rendered 1`] = `
+<EuiControlBar
+  controls={
+    Array [
+      Object {
+        "breadcrumbs": Array [
+          Object {
+            "text": "src",
+          },
+          Object {
+            "text": "components",
+          },
+        ],
+        "controlType": "breadcrumbs",
+        "id": "current_file_path",
+        "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
+      },
+      Object {
+        "controlType": "text",
+        "id": "close_the_hatch",
+        "text": "Close the Hatch",
+      },
+      Object {
+        "controlType": "divider",
+      },
+      Object {
+        "aria-label": "Sample Icon",
+        "color": "danger",
+        "controlType": "icon",
+        "iconType": "alert",
+        "id": "sample_icon",
+      },
+      Object {
+        "controlType": "spacer",
+      },
+      Object {
+        "controlType": "tab",
+        "id": "flight_815",
+        "label": "Flight 815",
+        "onClick": [Function],
+      },
+    ]
+  }
+  leftOffset={0}
+  position="fixed"
+  rightOffset={0}
+  showContent={false}
+  showOnMobile={false}
+  size="s"
+>
+  <EuiPortal>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="euiControlBar euiControlBar--small euiControlBar--fixed"
+            style="left: 0px; right: 0px;"
+          >
+            <div
+              class="euiControlBar__controls"
+            >
+              <nav
+                aria-label="breadcrumb"
+                class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+              >
+                <button
+                  class="euiLink euiLink--subdued euiBreadcrumb"
+                  title="src"
+                  type="button"
+                >
+                  src
+                </button>
+                <div
+                  class="euiBreadcrumbSeparator"
+                />
+                <span
+                  aria-current="page"
+                  class="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
+              <div
+                class="euiControlBar__text"
+              >
+                Close the Hatch
+              </div>
+              <div
+                class="euiControlBar__divider"
+              />
+              <svg
+                aria-label="Sample Icon"
+                class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <div
+                class="euiControlBar__spacer"
+              />
+              <button
+                class="euiControlBar__tab"
+              >
+                Flight 815
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="euiControlBar euiControlBar--small euiControlBar--fixed"
+        style={
+          Object {
+            "left": 0,
+            "maxHeight": undefined,
+            "right": 0,
+          }
+        }
+      >
+        <div
+          className="euiControlBar__controls"
+        >
+          <EuiBreadcrumbs
+            breadcrumbs={
+              Array [
+                Object {
+                  "text": "src",
+                },
+                Object {
+                  "text": "components",
+                },
+              ]
+            }
+            key="current_file_path"
+            responsive={true}
+          >
+            <nav
+              aria-label="breadcrumb"
+              className="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+            >
+              <EuiInnerText>
+                <EuiLink
+                  className="euiBreadcrumb"
+                  color="subdued"
+                  title="src"
+                >
+                  <button
+                    className="euiLink euiLink--subdued euiBreadcrumb"
+                    title="src"
+                    type="button"
+                  >
+                    src
+                  </button>
+                </EuiLink>
+              </EuiInnerText>
+              <EuiBreadcrumbSeparator>
+                <div
+                  className="euiBreadcrumbSeparator"
+                />
+              </EuiBreadcrumbSeparator>
+              <EuiInnerText>
+                <span
+                  aria-current="page"
+                  className="euiBreadcrumb euiBreadcrumb--last"
+                  title="components"
+                >
+                  components
+                </span>
+              </EuiInnerText>
+            </nav>
+          </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
+          <div
+            className="euiControlBar__text"
+            key="close_the_hatch"
+          >
+            Close the Hatch
+          </div>
+          <div
+            className="euiControlBar__divider"
+            key="divider3"
+          />
+          <EuiIcon
+            aria-label="Sample Icon"
+            className="euiControlBar__icon"
+            color="danger"
+            key="sample_icon4"
+            type="alert"
+          >
+            <EuiIconEmpty
+              aria-label="Sample Icon"
+              className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                aria-label="Sample Icon"
+                className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+          <div
+            className="euiControlBar__spacer"
+            key="spacer5"
+          />
+          <button
+            className="euiControlBar__tab"
+            key="flight_8156"
+            onClick={[Function]}
+          >
+            Flight 815
+          </button>
+        </div>
+      </div>
+    </Portal>
+  </EuiPortal>
+</EuiControlBar>
 `;

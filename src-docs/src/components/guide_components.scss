@@ -160,17 +160,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   width: $euiSize * 16;
 }
 
-.guideDemo__pageOverlay {
-  background-color: $euiColorLightestShade;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  padding: 2rem;
-  z-index: 5999;
-}
-
 .guideCharts__customLegend {
   font-size: $euiFontSizeXS;
   position: absolute;

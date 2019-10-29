@@ -1,36 +1,45 @@
 import React from 'react';
+import { Link } from 'react-router';
+
+import { EuiCode, EuiControlBar } from '../../../../src/components';
 
 import {
-  EuiBasicTable,
-  EuiCode,
-  EuiControlBar,
-} from '../../../../src/components';
+  BreadcrumbControlProps,
+  ButtonControlProps,
+  DividerControlProps,
+  IconControlTypeProps,
+  IconButtonControlTypeProps,
+  SpacerControlProps,
+  TabControlProps,
+  TextControlProps,
+} from './props';
 
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
 import ControlBar from './control_bar';
+import { Controls } from './controls';
 import { ControlBarWithTabs } from './tabs';
 import { ControlBarMobile } from './mobile';
+
+const controlsSource = require('!!raw-loader!./controls');
+const controlsHtml = renderToHtml(Controls);
 
 const controlBarSource = require('!!raw-loader!./control_bar');
 const controlBarHtml = renderToHtml(ControlBar);
 const controlBarSnippet = `<EuiControlBar
-  size="l"
   showContent={false}
-  navDrawerOffset="s"
   controls={
     [{
-      id: 'root_icon',
-      label: 'Project Root',
-      controlType: 'icon',
       iconType: 'submodule',
+      id: 'root_icon',
+      controlType: 'icon',
+      'aria-label': 'Project Root',
     },
     {
-      id: 'current_file_path',
-      label: 'breadcrumbs',
       controlType: 'breadcrumbs',
+      id: 'current_file_path',
       responsive: true,
       breadcrumbs: [
         {
@@ -45,14 +54,21 @@ const controlBarSnippet = `<EuiControlBar
       controlType: 'spacer',
     },
     {
-      id: 'status_icon',
-      label: 'Repo Status',
       controlType: 'icon',
+      id: 'status_icon',
       iconType: 'alert',
       color: 'warning',
+      'aria-label': 'Repo Status',
     },
     {
       controlType: 'divider',
+    },
+    {
+      controlType: 'button',
+      id: 'open_history_view',
+      label: 'Show history',
+      color: 'primary',
+      onClick: this.toggleContent,
     }]
   }
 />`;
@@ -67,18 +83,17 @@ const mobileBarSnippet = `<EuiControlBar
   showOnMobile
   controls={[
     {
-      id: 'icon',
       controlType: 'icon',
-      label: 'folder',
+      id: 'icon',
       iconType: 'folderClosed',
+      'aria-label': 'folder',
       className: 'eui-hideFor--m eui-hideFor--l eui-hideFor--xl',
     },
     {
-      id: 'current_file_path',
-      label: 'breadcrumbs',
       controlType: 'breadcrumbs',
-      responsive: true,
+      id: 'current_file_path',
       className: 'eui-hideFor--s eui-hideFor--xs',
+      responsive: true,
       breadcrumbs: [
         {
           text: 'src',
@@ -92,172 +107,16 @@ const mobileBarSnippet = `<EuiControlBar
       controlType: 'spacer',
     },
     {
-      id: 'github_icon',
       controlType: 'icon',
+      id: 'github_icon',
       iconType: 'logoGithub',
     },
     {
-      id: 'github_text',
       controlType: 'text',
-      label: 'Open in Github',
+      id: 'github_text',
+      text: 'Open in Github',
     },
   ]}/>`;
-
-const buttonPropsTable = [
-  {
-    prop: 'id',
-    type: 'string',
-    description: 'Provide a unique id for the element',
-  },
-  {
-    prop: 'color (optional)',
-    type: 'props of EuiButton["color"]',
-    description: 'Set the button color. Defaults to "ghost."',
-  },
-  {
-    prop: 'label',
-    type: 'string',
-    description: 'Displays the button label',
-  },
-  {
-    prop: 'classNames (optional)',
-    type: 'string',
-    description: 'Optionally pass additional classes.',
-  },
-  {
-    prop: 'onClick',
-    type: 'function',
-    description: 'Handle the click event',
-  },
-];
-
-const tabPropsTable = [
-  {
-    prop: 'id',
-    type: 'string',
-    description: 'Provide a unique id for the element',
-  },
-  {
-    prop: 'label',
-    type: 'string',
-    description: 'Displays the Tab label',
-  },
-  {
-    prop: 'onClick',
-    type: 'function',
-    description:
-      'Handle the tab click. Most likely this will be used to set ' +
-      'something like the active tab on your state.',
-  },
-];
-
-const breadcrumbsPropsTable = [
-  {
-    prop: 'id',
-    type: 'string',
-    description: 'Provide a unique id for the element',
-  },
-  {
-    prop: 'responsive (optional)',
-    type: 'boolean',
-    description: 'Hides left most breadcrumbs as window gets smaller',
-  },
-  {
-    prop: 'truncate (optional)',
-    type: 'boolean',
-    description:
-      'Forces all breadcrumbs to single line and' +
-      'truncates each breadcrumb to a particular width, except for the last item',
-  },
-  {
-    prop: 'max (optional)',
-    type: 'number',
-    description:
-      'Condenses the inner items past the maximum set into a single ellipses item',
-  },
-  {
-    prop: 'breadcrumbs',
-    type: 'array',
-    description: 'An array of items for the breadcrumbs',
-  },
-];
-
-const textPropsTable = [
-  {
-    prop: 'id',
-    type: 'string',
-    description: 'Provide a unique id for the element',
-  },
-  {
-    prop: 'label',
-    type: 'string',
-    description: 'Displays the Text label',
-  },
-  {
-    prop: 'color (optional)',
-    type: 'props of EuiText["color"]',
-    description: 'Sets the color of the text. Defaults to "ghost."',
-  },
-  {
-    prop: 'onClick (optional)',
-    type: 'function',
-    description: 'Handle the click event',
-  },
-];
-
-const iconPropsTable = [
-  {
-    prop: 'id',
-    type: 'string',
-    description: 'Provide a unique id for the element.',
-  },
-  {
-    prop: 'iconType',
-    type: 'string',
-    description: 'Which icon to render',
-  },
-  {
-    prop: 'label',
-    type: 'string',
-    description: 'For accessibility',
-  },
-  {
-    prop: 'classNames (optional)',
-    type: 'string',
-    description: 'Optionally pass additional classes.',
-  },
-  {
-    prop: 'color (optional)',
-    type: 'props of EuiButtonIcon["color"]',
-    description: 'Sets the color of the icon. Defaults to "ghost."',
-  },
-  {
-    prop: 'onClick (optional)',
-    type: 'function',
-    description: 'Handle the click event',
-  },
-];
-
-const tableColumns = [
-  {
-    field: 'prop',
-    name: 'Prop',
-    sortable: false,
-    'data-test-subj': 'propCell',
-  },
-  {
-    field: 'type',
-    name: 'Type',
-    sortable: false,
-    'data-test-subj': 'typeCell',
-  },
-  {
-    field: 'description',
-    name: 'Description',
-    sortable: false,
-    'data-test-subj': 'descriptionCell',
-  },
-];
 
 export const ControlBarExample = {
   title: 'Control Bar',
@@ -276,8 +135,8 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            <EuiCode>ControlBar</EuiCode> is a bottom positioned container and
-            content well intended to provide additional view controls and
+            <EuiCode>EuiControlBar</EuiCode> is a bottom positioned container
+            and content well intended to provide additional view controls and
             actions.
           </p>
           <p>
@@ -311,8 +170,14 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            This example deomnstrates the use of tabs and uses the size
-            <EuiCode>size=&quot;m&quot;</EuiCode>.
+            This example demonstrates the use of tabs and reduces the size of
+            the content with <EuiCode>size=&quot;m&quot;</EuiCode>.
+          </p>
+          <p>
+            Optional children of the <EuiCode>EuiControlBar</EuiCode> are
+            rendered in the control bar drawer. You can toggle the visibility of
+            the content with the <EuiCode>showContent</EuiCode> prop. When you
+            want to display tab content, this is where you&apos;ll do it.
           </p>
         </div>
       ),
@@ -335,13 +200,14 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>ControlBar</EuiCode> is responsive in the sense that it
-            utilizes flexbox. However, it makes no attempts to reorganize the
-            controls you provide. By default the <EuiCode>ControlBar</EuiCode>{' '}
-            is hidden on mobile devices, but this can be overridden with the
-            <EuiCode>showOnMobile</EuiCode> prop. You&apos;ll need to take the
-            layout of your <EuiCode>controlTypes</EuiCode> into consideration
-            when choosing to display on smaller screens.
+            The <EuiCode>EuiControlBar</EuiCode> is responsive in the sense that
+            it utilizes flexbox and overflow scrolls. However, it makes no
+            attempts to reorganize the controls you provide. By default the{' '}
+            <EuiCode>EuiControlBar</EuiCode> is hidden on mobile devices, but
+            this can be overridden with the <EuiCode>showOnMobile</EuiCode>{' '}
+            prop. You&apos;ll need to take the layout of your{' '}
+            <EuiCode>controlTypes</EuiCode> into consideration when choosing to
+            display on smaller screens.
           </p>
           <p>
             A simple way of doing this is to pass in EUI responsive utility
@@ -356,52 +222,86 @@ export const ControlBarExample = {
       demo: <ControlBarMobile />,
     },
     {
-      title: 'ControlTypes',
+      title: 'Control types and position',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: controlsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: controlsHtml,
+        },
+      ],
       text: (
         <div>
           <p>
-            The <EuiCode>ControlBar</EuiCode> accepts an array of
-            <EuiCode>controlTypes</EuiCode> that can be arranged virtually any
-            way you&apos;d like by using any of following
-            <EuiCode>controlTypes</EuiCode>. The controlTypes will be ordered
-            the same way they are in the array you provide.
+            The <EuiCode>EuiControlBar</EuiCode> accepts an array of{' '}
+            <EuiCode>controlTypes</EuiCode> that will be arranged in the order
+            in which they are provided. All controls <strong>must</strong> be
+            provide a unique <EuiCode>id</EuiCode> to be used as the key.
           </p>
-          <h3>Button Control</h3>
-          <EuiBasicTable items={buttonPropsTable} columns={tableColumns} />
-          <h3>Tab Control</h3>
-          <EuiBasicTable items={tabPropsTable} columns={tableColumns} />
-          <h3>Breadcrumbs Control</h3>
+          <ul>
+            <li>
+              <EuiCode>button</EuiCode>: Extends{' '}
+              <Link to="/navigation/button">EuiButton</Link> but always forces
+              to size small. Requires <EuiCode>label</EuiCode> as the children.
+            </li>
+            <li>
+              <EuiCode>icon</EuiCode>: Extends{' '}
+              <Link to="/display/icons">EuiIcon</Link> unless provided an{' '}
+              <EuiCode>onClick</EuiCode> or <EuiCode>href</EuiCode>, then it
+              will render an <Link to="/navigation/button">EuiButtonIcon</Link>.
+            </li>
+            <li>
+              <EuiCode>text</EuiCode>: Simple ghost colored text.
+            </li>
+            <li>
+              <EuiCode>tab</EuiCode>: Renders a button visually as a tab. You
+              must provide your own callback to swap the control bar contents
+              with <EuiCode>onClick</EuiCode>.
+            </li>
+            <li>
+              <EuiCode>breadcrumbs</EuiCode>: Extends{' '}
+              <Link to="/navigation/breadcrumbs">EuiBreadcrumbs</Link>.
+            </li>
+            <li>
+              <EuiCode>spacer</EuiCode>: Provides a horizontal space between
+              controls. <strong>Id is optional.</strong>
+            </li>
+            <li>
+              <EuiCode>divider</EuiCode>: Provides a <EuiCode>1px</EuiCode>{' '}
+              border between controls. Useful when additional visual separation
+              is needed. <strong>Id is optional.</strong>
+            </li>
+          </ul>
           <p>
-            View the documentation on <EuiCode>EuiBreadcrumbs</EuiCode> for
-            additional information on their usage.
+            Typically, a control bar is fixed positioned against the browser
+            window and therefore rendered within a portal. To change the parent
+            element of the control bar, change the <EuiCode>position</EuiCode>{' '}
+            prop to <EuiCode>&apos;absolute&apos;</EuiCode> or{' '}
+            <EuiCode>&apos;relative&apos;</EuiCode>.
           </p>
-          <EuiBasicTable items={breadcrumbsPropsTable} columns={tableColumns} />
-          <h3>Text Control</h3>
-          <EuiBasicTable items={textPropsTable} columns={tableColumns} />
-          <h3>Icon Control</h3>
-          <EuiBasicTable items={iconPropsTable} columns={tableColumns} />
-          <h3>Spacer & Divider Control</h3>
-          <h4>Spacers</h4>
           <p>
-            Spacers can be used to provide horizontal spaces between your
-            <EuiCode>controlTypes</EuiCode>. Spacers do not need{' '}
-            <EuiCode>ids</EuiCode>.
-          </p>
-          <h4>Dividers</h4>
-          <p>
-            Dividers provide <EuiCode>1px</EuiCode> wide colored breaks between
-            your <EuiCode>controlTypes</EuiCode>. Useful when additional visual
-            separation is needed. Dividers do not need <EuiCode>ids</EuiCode>.
-          </p>
-          <h3>Rendering content to the control bar drawer</h3>
-          <p>
-            Optional children of the <EuiCode>EuiControlBar</EuiCode> are
-            rendered in the control bar drawer. You can toggle the visibility of
-            the content with the <EuiCode>showContent</EuiCode> prop. When you
-            want to display tab content, this is where you&apos;ll do it.
+            To offest the left and right position of the control bar, for
+            example, to adjust for side navigation, use the{' '}
+            <EuiCode>leftOffset</EuiCode> or <EuiCode>rightOffset</EuiCode>{' '}
+            props.
           </p>
         </div>
       ),
+      props: {
+        EuiControlBar,
+        BreadcrumbControlProps,
+        ButtonControlProps,
+        DividerControlProps,
+        IconControlTypeProps,
+        IconButtonControlTypeProps,
+        SpacerControlProps,
+        TabControlProps,
+        TextControlProps,
+      },
+      demo: <Controls />,
     },
   ],
 };

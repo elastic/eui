@@ -1,22 +1,13 @@
 import React from 'react';
 
-import {
-  EuiButton,
-  EuiControlBar,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiLink,
-  EuiText,
-} from '../../../../src/components';
-import { keyCodes } from '../../../../src/services';
-import { EuiFocusTrap } from '../../../../src/components/focus_trap';
+import { EuiButton, EuiControlBar, EuiText } from '../../../../src/components';
 
 export class ControlBarWithTabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       contentIsVisible: false,
-      isFullScreen: false,
+      isDisplaying: false,
       tabContent: '',
     };
   }
@@ -47,120 +38,78 @@ export class ControlBarWithTabs extends React.Component {
     });
   };
 
-  toggle() {
-    this.setState({
-      contentIsVisible: !this.state.contentIsVisible,
-    });
-  }
-
-  toggleFullScreen() {
+  toggleDisplay = () => {
     this.setState(prevState => ({
-      isFullScreen: !prevState.isFullScreen,
+      isDisplaying: !prevState.isDisplaying,
       contentIsVisible: false,
     }));
-  }
-
-  onKeyDown = event => {
-    if (event.keyCode === keyCodes.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.setState({
-        isFullScreen: false,
-        contentIsVisible: false,
-      });
-    }
   };
 
   render() {
-    const textLink = <EuiLink href="#">A sample link</EuiLink>;
-
     const controls = [
       {
+        controlType: 'tab',
         id: 'flight_815',
         label: 'Flight 815',
-        controlType: 'tab',
         onClick: this.tabOne,
       },
       {
+        controlType: 'tab',
         id: 'the_others',
         label: 'The Others',
-        controlType: 'tab',
         onClick: this.tabTwo,
       },
       {
+        controlType: 'button',
         id: 'sound_the_alarm',
         label: 'Sound the Alarm',
-        controlType: 'button',
         onClick: this.soundTheAlarms,
         color: 'danger',
-        'data-test-sub': 'look',
-        'aria-label': 'this is an aria label',
+        iconType: 'bell',
+        'data-test-subj': 'look',
       },
       {
+        controlType: 'button',
         id: 'close_the_hatch',
         label: 'Close the Hatch',
-        controlType: 'button',
         onClick: this.closeTheHatch,
-        classNames: 'customClassName',
+        className: 'customClassName',
         color: 'primary',
       },
       {
         controlType: 'spacer',
       },
       {
-        id: 'set_the_timer',
-        label: 'Set the Timer',
         controlType: 'icon',
+        id: 'set_the_timer',
         iconType: 'clock',
         onClick: this.closeTheHatch,
-      },
-      {
-        id: 'some_text',
-        label: textLink,
-        controlType: 'text',
-        onClick: null,
+        'aria-label': 'Set the Timer',
       },
     ];
 
-    let fullScreenDisplay;
+    let display;
 
-    if (this.state.isFullScreen) {
-      fullScreenDisplay = (
-        <EuiFocusTrap>
-          <div className="guideDemo__pageOverlay" onKeyDown={this.onKeyDown}>
-            <EuiFlexGroup>
-              <EuiButton onClick={this.toggle.bind(this)}>
-                Toggle Content Drawer
-              </EuiButton>
-              <EuiFlexItem grow />
-              <EuiButton onClick={this.toggleFullScreen.bind(this)}>
-                Close
-              </EuiButton>
-            </EuiFlexGroup>
-            <EuiControlBar
-              controls={controls}
-              size="m"
-              showContent={this.state.contentIsVisible}
-              showOnMobile>
-              <div style={{ padding: '1rem' }}>
-                {this.state.tabContent !== '' ? (
-                  <EuiText>{this.state.tabContent}</EuiText>
-                ) : (
-                  <p>Look at me</p>
-                )}
-              </div>
-            </EuiControlBar>
-          </div>
-        </EuiFocusTrap>
+    if (this.state.isDisplaying) {
+      display = (
+        <EuiControlBar
+          controls={controls}
+          size="m"
+          showContent={this.state.contentIsVisible}
+          showOnMobile>
+          {this.state.tabContent !== '' && (
+            <div style={{ padding: '1rem' }}>
+              <EuiText>{this.state.tabContent}</EuiText>
+            </div>
+          )}
+        </EuiControlBar>
       );
     }
 
     return (
       <div>
-        <EuiButton onClick={this.toggleFullScreen.bind(this)}>
-          View in Full Screen
-        </EuiButton>
-        {fullScreenDisplay}
+        <EuiButton onClick={this.toggleDisplay}>Toggle tabs example</EuiButton>
+        {display}
       </div>
     );
   }

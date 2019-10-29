@@ -1,84 +1,142 @@
-import React, { Component, HTMLAttributes, ButtonHTMLAttributes } from 'react';
-import classnames from 'classnames';
-import { CommonProps, PropsOf, ExclusiveUnion } from '../common';
+import React, {
+  Component,
+  HTMLAttributes,
+  ButtonHTMLAttributes,
+  Ref,
+} from 'react';
+import classNames from 'classnames';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  Omit,
+  PropsForAnchor,
+  PropsForButton,
+} from '../common';
 // @ts-ignore-next-line
-import { EuiBreadcrumbs } from '../breadcrumbs';
-// @ts-ignore-next-line
-import { EuiButton, EuiButtonIcon } from '../button';
+import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
+import {
+  EuiButton,
+  EuiButtonIcon,
+  EuiButtonProps,
+  EuiButtonIconProps,
+} from '../button';
 import { EuiPortal } from '../portal';
-import { EuiText } from '../text';
+import { EuiIcon } from '../icon';
+import { EuiIconProps } from '../icon/icon';
 
-type ButtonControl = ButtonHTMLAttributes<HTMLButtonElement> & {
-  controlType: 'button';
+/**
+ * Extends EuiButton excluding `size`. Requires `label` as the `children`.
+ */
+export interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
   id: string;
-  color?: PropsOf<typeof EuiButton>['color'];
-  label: string;
-  classNames?: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-};
-
-type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
-  controlType: 'tab';
-  id: string;
-  label: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-};
-
-interface Breadcrumb {
-  text: string;
-  href?: string;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  truncate?: boolean;
+  label: React.ReactNode;
 }
 
-type BreadcrumbControl = HTMLAttributes<HTMLDivElement> & {
+type ButtonPropsForAnchor = PropsForAnchor<
+  ButtonControl,
+  {
+    buttonRef?: Ref<HTMLAnchorElement>;
+  }
+>;
+
+type ButtonPropsForButton = PropsForButton<
+  ButtonControl,
+  {
+    buttonRef?: Ref<HTMLButtonElement>;
+  }
+>;
+
+type ButtonControlProps = ExclusiveUnion<
+  ButtonPropsForAnchor,
+  ButtonPropsForButton
+> & {
+  controlType: 'button';
+};
+
+/**
+ * Creates a `button` visually styles as a tab.
+ * Requires `label` as the `children`.
+ * `onClick` must be provided to handle the content swapping.
+ */
+export type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
+  controlType: 'tab';
+  id: string;
+  label: React.ReactNode;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+/**
+ * Extends EuiBreadcrumbs
+ */
+export interface BreadcrumbControl extends EuiBreadcrumbsProps {
   controlType: 'breadcrumbs';
   id: string;
-  responsive?: boolean;
-  truncate?: boolean;
-  max?: number;
-  breadcrumbs: Breadcrumb[];
-};
+}
 
-type TextControl = HTMLAttributes<HTMLDivElement> & {
+/**
+ * Simple div controlling color and size text output.
+ * Requires `label` as the `children`.
+ */
+export interface TextControl
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   controlType: 'text';
   id: string;
-  label: string;
-  color?: PropsOf<typeof EuiText>['color'];
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-};
+  text: React.ReactNode;
+}
 
-interface SpacerControl {
+export interface SpacerControl {
   controlType: 'spacer';
 }
 
-interface DivideControl {
+export interface DividerControl {
   controlType: 'divider';
 }
 
-type IconControl = ButtonHTMLAttributes<HTMLButtonElement> & {
+/**
+ * Custom props specific to the icon control type
+ */
+export interface IconControlProps {
   controlType: 'icon';
   id: string;
   iconType: string;
-  label: string;
-  classNames?: string;
-  color?: PropsOf<typeof EuiButtonIcon>['color'];
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
+}
+
+/**
+ * Icon can extend EuiIcon
+ * Had to omit `onClick` as it's a valid prop of SVGElement
+ * Also omits `type` and `id` as these are also specific to icon control
+ */
+export interface IconControlType
+  extends Omit<EuiIconProps, 'type' | 'id' | 'onClick'>,
+    IconControlProps {}
+
+/**
+ * Icon can extend EuiButtonIcon
+ * Also omits `iconType` and `id` as these are also specific to icon control
+ */
+export interface IconButtonControlType
+  extends Omit<EuiButtonIconProps, 'iconType' | 'id'>,
+    IconControlProps {}
+
+export type IconControl = ExclusiveUnion<
+  IconControlType,
+  IconButtonControlType
+>;
 
 export type Control = ExclusiveUnion<
   ExclusiveUnion<
     ExclusiveUnion<
       ExclusiveUnion<
         ExclusiveUnion<
-          ButtonControl,
+          ButtonControlProps,
           ExclusiveUnion<BreadcrumbControl, TabControl>
         >,
         TextControl
       >,
       IconControl
     >,
-    DivideControl
+    DividerControl
   >,
   SpacerControl
 >;
@@ -95,19 +153,44 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
      * Accepts `'button' | 'tab' | 'breadcrumbs' | 'text' | 'icon' | 'spacer' | 'divider'`
      */
     controls: Control[];
+
     /**
-     * The maximum height of the overlay. Default is 100% of the window height - 10rem, Medium is 50% of the window height, Small is 25% of the window height;
+     * The default height of the content area.
      */
     size?: 's' | 'm' | 'l';
+
     /**
-     * Set the offset from the left side of the screen to account for EuiNavDrawer.
+     * Customize the max height.
+     * Best when used with `size=l` as this will ensure the actual height equals the max height set.
      */
-    navDrawerOffset?: 'collapsed' | 'expanded' | undefined;
+    maxHeight?: number | string;
+
+    /**
+     * Set the offset from the left side of the screen.
+     */
+    leftOffset?: number | string;
+
+    /**
+     * Set the offset from the left side of the screen.
+     */
+    rightOffset?: number | string;
+
     /**
      * The control bar is hidden on mobile by default. Use the `showOnMobile` prop to force it's display on mobile screens.
      * You'll need to ensure that the content you place into the bar renders as expected on mobile.
      */
     showOnMobile?: boolean;
+
+    /**
+     * By default EuiControlBar will live in a portal, fixed position to the browser window.
+     * Change the position of the bar to live inside a container and be positioned against its parent.
+     */
+    position?: 'fixed' | 'relative' | 'absolute';
+
+    /**
+     * Optional class applied to the body used when `position = fixed`
+     */
+    bodyClassName?: string;
   };
 
 interface EuiControlBarState {
@@ -118,6 +201,33 @@ export class EuiControlBar extends Component<
   EuiControlBarProps,
   EuiControlBarState
 > {
+  static defaultProps = {
+    leftOffset: 0,
+    rightOffset: 0,
+    position: 'fixed',
+    size: 'l',
+    showContent: false,
+    showOnMobile: false,
+  };
+  private bar: HTMLDivElement | null = null;
+
+  componentDidMount() {
+    if (this.props.position === 'fixed') {
+      const height = this.bar ? this.bar.clientHeight : -1;
+      document.body.style.paddingBottom = `${height}px`;
+      if (this.props.bodyClassName) {
+        document.body.classList.add(this.props.bodyClassName);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.style.paddingBottom = null;
+    if (this.props.bodyClassName) {
+      document.body.classList.remove(this.props.bodyClassName);
+    }
+  }
+
   state = {
     selectedTab: '',
   };
@@ -129,23 +239,32 @@ export class EuiControlBar extends Component<
       showContent,
       controls,
       size,
-      navDrawerOffset,
+      leftOffset,
+      rightOffset,
+      maxHeight,
       showOnMobile,
+      style,
+      position,
+      bodyClassName,
       ...rest
     } = this.props;
 
-    const classes = classnames('euiControlBar', className, {
-      'euiControlBar--open': showContent,
-      'euiControlBar--large': size === 'l' || !size,
+    const styles = {
+      ...style,
+      left: leftOffset,
+      right: rightOffset,
+      maxHeight: maxHeight,
+    };
+
+    const classes = classNames('euiControlBar', className, {
+      'euiControlBar-isOpen': showContent,
+      'euiControlBar--large': size === 'l',
       'euiControlBar--medium': size === 'm',
       'euiControlBar--small': size === 's',
-      'euiControlBar--navExpanded': navDrawerOffset === 'expanded',
-      'euiControlBar--navCollapsed': navDrawerOffset === 'collapsed',
+      'euiControlBar--fixed': position === 'fixed',
+      'euiControlBar--absolute': position === 'absolute',
+      'euiControlBar--relative': position === 'relative',
       'euiControlBar--showOnMobile': showOnMobile,
-    });
-
-    const tabClasses = classnames('euiControlBar__tab', {
-      'euiControlBar__tab--active': showContent,
     });
 
     const handleTabClick = (
@@ -168,20 +287,18 @@ export class EuiControlBar extends Component<
           const {
             controlType,
             id,
-            color,
+            color = 'ghost',
             label,
-            classNames,
-            onClick,
+            className,
             ...rest
           } = control;
           return (
             <EuiButton
               key={id + index}
-              onClick={onClick}
-              className={classnames('euiControlBar__button', classNames)}
-              color={color ? color : 'ghost'}
-              size="s"
-              {...rest}>
+              className={classNames('euiControlBar__button', className)}
+              color={color}
+              {...rest}
+              size="s">
               {label}
             </EuiButton>
           );
@@ -191,22 +308,29 @@ export class EuiControlBar extends Component<
             controlType,
             id,
             iconType,
-            label,
-            classNames,
-            color,
+            className,
+            color = 'ghost',
             onClick,
+            href,
             ...rest
           } = control;
-          return (
+          return onClick || href ? (
             <EuiButtonIcon
               key={id + index}
+              className={classNames('euiControlBar__buttonIcon', className)}
               iconType={iconType}
-              data-test-subj={label}
-              aria-label={label}
               onClick={onClick}
-              className={classnames('euiControlBar__buttonIcon', classNames)}
-              color={color ? color : 'ghost'}
+              href={href}
+              color={color as EuiButtonIconProps['color']}
+              {...rest as IconButtonControlType}
               size="s"
+            />
+          ) : (
+            <EuiIcon
+              key={id + index}
+              className={classNames('euiControlBar__icon', className)}
+              type={iconType}
+              color={color}
               {...rest}
             />
           );
@@ -226,73 +350,73 @@ export class EuiControlBar extends Component<
             />
           );
         case 'text': {
-          const { controlType, id, label, color, onClick, ...rest } = control;
+          const { controlType, id, text, className, ...rest } = control;
           return (
-            <EuiText
-              color={color ? color : 'ghost'}
-              className="euiControlBar__euiText eui-textTruncate"
-              key={id + index}
-              size="s"
+            <div
+              key={id}
+              className={classNames('euiControlBar__text', className)}
               {...rest}>
-              {label}
-            </EuiText>
+              {text}
+            </div>
           );
         }
         case 'tab': {
-          const { controlType, id, label, onClick, ...rest } = control;
+          const {
+            controlType,
+            id,
+            label,
+            onClick,
+            className,
+            ...rest
+          } = control;
+
+          const tabClasses = classNames(
+            'euiControlBar__tab',
+            {
+              'euiControlBar__tab--active':
+                showContent && id === this.state.selectedTab,
+            },
+            className
+          );
+
           return (
             <button
               key={id + index}
-              className={`euiControlBar__tab ${
-                id === this.state.selectedTab ? tabClasses : ''
-              }`}
-              data-test-subj={label}
-              aria-label={`Control Bar - ${label}`}
+              className={tabClasses}
               onClick={event => handleTabClick(control, event)}
               {...rest}>
-              <EuiText size="s" className="eui-textTruncate">
-                {label}
-              </EuiText>
+              {label}
             </button>
           );
         }
         case 'breadcrumbs': {
-          const {
-            controlType,
-            id,
-            responsive,
-            truncate,
-            max,
-            breadcrumbs,
-            ...rest
-          } = control;
-          return (
-            <EuiBreadcrumbs
-              key={control.id}
-              breadcrumbs={control.breadcrumbs}
-              responsive={control.responsive}
-              truncate={control.truncate}
-              max={control.max}
-              {...rest}
-            />
-          );
+          const { controlType, id, ...rest } = control;
+          return <EuiBreadcrumbs key={control.id} {...rest} />;
         }
       }
     };
 
-    return (
-      <EuiPortal>
-        <div className={classes} {...rest}>
-          <div className="euiControlBar__controls">
-            {controls.map((control, index) => {
-              return controlItem(control, index);
-            })}
-          </div>
-          {this.props.showContent ? (
-            <div className="euiControlBar__content">{children}</div>
-          ) : null}
+    const controlBar = (
+      <div className={classes} {...rest} style={styles}>
+        <div
+          className="euiControlBar__controls"
+          ref={node => {
+            this.bar = node;
+          }}>
+          {controls.map((control, index) => {
+            return controlItem(control, index);
+          })}
         </div>
-      </EuiPortal>
+        {this.props.showContent ? (
+          <div className="euiControlBar__content">{children}</div>
+        ) : null}
+      </div>
+    );
+
+    return position === 'fixed' ? (
+      <EuiPortal>{controlBar}</EuiPortal>
+    ) : (
+      controlBar
     );
   }
 }
