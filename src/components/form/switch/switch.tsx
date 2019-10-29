@@ -50,7 +50,9 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   const [switchId] = useState(id || makeId());
   const [labelId] = useState(makeId());
 
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClick = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>
+  ) => {
     const event = (e as unknown) as EuiSwitchEvent;
     event.target.checked = !checked;
     onChange(event);
@@ -102,7 +104,10 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
       </button>
 
       {showLabel && (
-        <p className="euiSwitch__label" id={labelId}>
+        // <button> + <label> has poor screen reader support.
+        // Click handler added to simulate natural, secondary <label> interactivity.
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+        <p className="euiSwitch__label" id={labelId} onClick={onClick}>
           {label}
         </p>
       )}
