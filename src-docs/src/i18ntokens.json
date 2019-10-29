@@ -5,15 +5,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 469,
+        "line": 451,
         "column": 12
       },
       "end": {
-        "line": 473,
+        "line": 455,
         "column": 14
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiBasicTable.selectAllRows",
@@ -21,15 +21,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 507,
+        "line": 489,
         "column": 6
       },
       "end": {
-        "line": 507,
+        "line": 489,
         "column": 77
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiBasicTable.selectThisRow",
@@ -37,15 +37,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 865,
+        "line": 863,
         "column": 8
       },
       "end": {
-        "line": 865,
+        "line": 863,
         "column": 79
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiCollapsedItemActions.allActions",
@@ -53,15 +53,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 107,
+        "line": 148,
         "column": 6
       },
       "end": {
-        "line": 107,
+        "line": 148,
         "column": 80
       }
     },
-    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
     "token": "euiCollapsedItemActions.allActions",
@@ -69,15 +69,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 124,
+        "line": 165,
         "column": 6
       },
       "end": {
-        "line": 124,
+        "line": 165,
         "column": 80
       }
     },
-    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
     "token": "euiBottomBar.screenReaderAnnouncement",
@@ -1701,11 +1701,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 49,
+        "line": 60,
         "column": 8
       },
       "end": {
-        "line": 49,
+        "line": 60,
         "column": 72
       }
     },
