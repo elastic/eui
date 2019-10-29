@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { EuiBasicTable } from './basic_table';
+import { EuiBasicTable, Criteria } from './basic_table';
 import {
   SelectionType,
   ItemId,
@@ -195,10 +195,7 @@ export type EuiInMemoryTableProps<T> = CommonProps & {
   itemId?: ItemId<T>;
   rowProps?: object | RowPropsCallback<T>;
   cellProps?: object | CellPropsCallback<T>;
-  onTableChange?: (nextValues: {
-    page: { index?: number; size?: number };
-    sort: { field: string; direction: string };
-  }) => void;
+  onTableChange?: (nextValues: Criteria<T>) => void;
   executeQueryOptions?: {
     defaultFields?: string[];
     isClauseMatcher?: (...args: any) => boolean;
@@ -277,11 +274,15 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
 function findColumnByProp<T>(
   columns: Array<Column<T>>,
   prop: 'field' | 'name',
-  value: any
+  value: string
 ) {
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
-    if ((column as any)[prop] === value) {
+    if (
+      (column as Record<'field' | 'name', keyof T | string | ReactNode>)[
+        prop
+      ] === value
+    ) {
       return column;
     }
   }
@@ -392,10 +393,16 @@ export class EuiInMemoryTable<T> extends Component<
     };
   }
 
-  onTableChange = ({ page = {}, sort = {} }: any) => {
-    const { index: pageIndex, size: pageSize } = page;
+  onTableChange = ({ page, sort }: Criteria<T>) => {
+    const { index: pageIndex, size: pageSize } = (page || {}) as {
+      index: number;
+      size: number;
+    };
 
-    let { field: sortName, direction: sortDirection } = sort;
+    let { field: sortName, direction: sortDirection } = (sort || {}) as {
+      field: keyof T;
+      direction: Direction;
+    };
 
     // To keep backwards compatibility reportedSortName needs to be tracked separately
     // from sortName; sortName gets stored internally while reportedSortName is sent to the callback
@@ -406,7 +413,7 @@ export class EuiInMemoryTable<T> extends Component<
     for (let i = 0; i < this.props.columns.length; i++) {
       const column = this.props.columns[i];
       if ((column as FieldDataColumnType<T>).field === sortName) {
-        sortName = column.name;
+        sortName = column.name as keyof T;
         break;
       }
     }
@@ -418,9 +425,9 @@ export class EuiInMemoryTable<T> extends Component<
       this.state.sortDirection === 'desc' &&
       sortDirection === 'asc'
     ) {
-      sortName = '';
-      reportedSortName = '';
-      sortDirection = '';
+      sortName = '' as keyof T;
+      reportedSortName = '' as keyof T;
+      sortDirection = 'asc'; // Default sort direction.
     }
 
     if (this.props.onTableChange) {
