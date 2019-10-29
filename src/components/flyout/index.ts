@@ -1,4 +1,4 @@
-export { EuiFlyout, EuiFlyoutProps, SIZES } from './flyout';
+export { EuiFlyout, EuiFlyoutProps } from './flyout';
 
 export { EuiFlyoutBody, EuiFlyoutBodyProps } from './flyout_body';
 

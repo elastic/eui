@@ -3,20 +3,18 @@ import classnames from 'classnames';
 
 import { keyCodes, EuiWindowEvent } from '../../services';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
 
-type EuiFlyoutSize = 's' | 'm' | 'l';
+export type EuiFlyoutSize = 's' | 'm' | 'l';
 
 const sizeToClassNameMap: { [size in EuiFlyoutSize]: string } = {
   s: 'euiFlyout--small',
   m: 'euiFlyout--medium',
   l: 'euiFlyout--large',
 };
-
-export const SIZES = keysOf(sizeToClassNameMap);
 
 export interface EuiFlyoutProps extends CommonProps {
   onClose: () => void;
