@@ -1,11 +1,11 @@
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 export type EuiShowForBreakpoints = 'xs' | 's' | 'm' | 'l' | 'xl';
 export type EuiShowForDisplay = 'block' | 'inlineBlock' | 'flex';
 
-export interface EuiShowForProps extends CommonProps {
+export interface EuiShowForProps {
   children?: React.ReactNode;
   /**
    * List of all the responsive sizes to show the children for.
@@ -13,8 +13,7 @@ export interface EuiShowForProps extends CommonProps {
    */
   sizes: EuiShowForBreakpoints[];
   /**
-   * Optional display as property. `undefined` renders as `inline`.
-   * Options are `undefined | 'block' | 'inlineBlock' | 'flex'`
+   * Optional display as property. Leaving as `undefined` renders as `inline`.
    */
   display?: EuiShowForDisplay;
 }
@@ -27,25 +26,27 @@ const responsiveSizesToClassNameMap = {
   xl: 'eui-showFor--xl',
 };
 
-type Props = HTMLAttributes<HTMLSpanElement> & EuiShowForProps;
-
-export const EuiShowFor: FunctionComponent<Props> = ({
+export const EuiShowFor: FunctionComponent<EuiShowForProps> = ({
   children,
-  className,
   sizes,
   display,
-  ...rest
 }) => {
-  const sizingClasses = sizes.map(function(item) {
+  const utilityClasses = sizes.map(function(item) {
     const append = display ? `--${display}` : '';
     return `${responsiveSizesToClassNameMap[item]}${append}`;
   });
 
-  const classes = classNames('euiShowFor', sizingClasses, className);
-
-  return (
-    <span className={classes} {...rest}>
-      {children}
-    </span>
-  );
+  if (React.isValidElement(children)) {
+    return (
+      <React.Fragment>
+        {React.Children.map(children, (child: ReactElement<CommonProps>) =>
+          React.cloneElement(child, {
+            className: classNames(child.props.className, utilityClasses),
+          })
+        )}
+      </React.Fragment>
+    );
+  } else {
+    return <span className={classNames(utilityClasses)}>{children}</span>;
+  }
 };

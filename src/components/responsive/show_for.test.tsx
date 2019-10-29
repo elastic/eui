@@ -12,11 +12,29 @@ const BREAKPOINTS: EuiShowForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
 const DISPLAYS: EuiShowForDisplay[] = ['block', 'inlineBlock', 'flex'];
 
 describe('EuiShowFor', () => {
+  test('renders wraps chilren in a span', () => {
+    const component = render(
+      <EuiShowFor sizes={['xs']} {...requiredProps}>
+        Child
+      </EuiShowFor>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('renders and copies classes', () => {
+    const component = render(
+      <EuiShowFor sizes={['xs']}>
+        <div>Child</div>
+      </EuiShowFor>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   BREAKPOINTS.forEach(size => {
     test(`${size} is rendered`, () => {
-      const component = render(
-        <EuiShowFor sizes={[size]} {...requiredProps} />
-      );
+      const component = render(<EuiShowFor sizes={[size]} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -24,9 +42,7 @@ describe('EuiShowFor', () => {
 
   DISPLAYS.forEach(display => {
     test(`${display} is rendered`, () => {
-      const component = render(
-        <EuiShowFor sizes={['xs']} display={display} {...requiredProps} />
-      );
+      const component = render(<EuiShowFor sizes={['xs']} display={display} />);
 
       expect(component).toMatchSnapshot();
     });

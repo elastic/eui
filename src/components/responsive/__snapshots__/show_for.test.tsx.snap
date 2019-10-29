@@ -2,64 +2,64 @@
 
 exports[`EuiShowFor block is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--xs--block testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--xs--block"
 />
 `;
 
 exports[`EuiShowFor flex is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--xs--flex testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--xs--flex"
 />
 `;
 
 exports[`EuiShowFor inlineBlock is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--xs--inlineBlock testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--xs--inlineBlock"
 />
 `;
 
 exports[`EuiShowFor l is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--l testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--l"
 />
 `;
 
 exports[`EuiShowFor m is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--m testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--m"
 />
+`;
+
+exports[`EuiShowFor renders and copies classes 1`] = `
+<div
+  class="eui-showFor--xs"
+>
+  Child
+</div>
+`;
+
+exports[`EuiShowFor renders wraps chilren in a span 1`] = `
+<span
+  class="eui-showFor--xs"
+>
+  Child
+</span>
 `;
 
 exports[`EuiShowFor s is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--s testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--s"
 />
 `;
 
 exports[`EuiShowFor xl is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--xl testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--xl"
 />
 `;
 
 exports[`EuiShowFor xs is rendered 1`] = `
 <span
-  aria-label="aria-label"
-  class="euiShowFor eui-showFor--xs testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="eui-showFor--xs"
 />
 `;

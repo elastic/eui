@@ -1,10 +1,10 @@
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 export type EuiHideForBreakpoints = 'xs' | 's' | 'm' | 'l' | 'xl';
 
-export interface EuiHideForProps extends CommonProps {
+export interface EuiHideForProps {
   children?: React.ReactNode;
   /**
    * List of all the responsive sizes to show the children for.
@@ -21,23 +21,25 @@ const responsiveSizesToClassNameMap = {
   xl: 'eui-hideFor--xl',
 };
 
-type Props = HTMLAttributes<HTMLSpanElement> & EuiHideForProps;
-
-export const EuiHideFor: FunctionComponent<Props> = ({
+export const EuiHideFor: FunctionComponent<EuiHideForProps> = ({
   children,
-  className,
   sizes,
-  ...rest
 }) => {
-  const sizingClasses = sizes.map(function(item) {
+  const utilityClasses = sizes.map(function(item) {
     return responsiveSizesToClassNameMap[item];
   });
 
-  const classes = classNames('euiHideFor', sizingClasses, className);
-
-  return (
-    <span className={classes} {...rest}>
-      {children}
-    </span>
-  );
+  if (React.isValidElement(children)) {
+    return (
+      <React.Fragment>
+        {React.Children.map(children, (child: ReactElement<CommonProps>) =>
+          React.cloneElement(child, {
+            className: classNames(child.props.className, utilityClasses),
+          })
+        )}
+      </React.Fragment>
+    );
+  } else {
+    return <span className={classNames(utilityClasses)}>{children}</span>;
+  }
 };
