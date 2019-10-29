@@ -32,6 +32,21 @@ exports[`EuiControlBar is rendered 1`] = `
         components
       </span>
     </nav>
+    <button
+      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+      data-test-subj="dts"
+      type="button"
+    >
+      <span
+        class="euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          Sound the Alarm
+        </span>
+      </span>
+    </button>
     <div
       class="euiControlBar__text"
     >
@@ -77,6 +92,13 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
         "controlType": "breadcrumbs",
         "id": "current_file_path",
         "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
       },
       Object {
         "controlType": "text",
@@ -144,6 +166,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                   components
                 </span>
               </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
               <div
                 class="euiControlBar__text"
               >
@@ -236,6 +273,31 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               </EuiInnerText>
             </nav>
           </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
           <div
             className="euiControlBar__text"
             key="close_the_hatch"
@@ -244,13 +306,13 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
           </div>
           <div
             className="euiControlBar__divider"
-            key="divider2"
+            key="divider3"
           />
           <EuiIcon
             aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
-            key="sample_icon3"
+            key="sample_icon4"
             type="alert"
           >
             <EuiIconEmpty
@@ -273,11 +335,11 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
           </EuiIcon>
           <div
             className="euiControlBar__spacer"
-            key="spacer4"
+            key="spacer5"
           />
           <button
             className="euiControlBar__tab"
-            key="flight_8155"
+            key="flight_8156"
             onClick={[Function]}
           >
             Flight 815
@@ -305,6 +367,13 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
         "controlType": "breadcrumbs",
         "id": "current_file_path",
         "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
       },
       Object {
         "controlType": "text",
@@ -373,6 +442,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                   components
                 </span>
               </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
               <div
                 class="euiControlBar__text"
               >
@@ -465,6 +549,31 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               </EuiInnerText>
             </nav>
           </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
           <div
             className="euiControlBar__text"
             key="close_the_hatch"
@@ -473,13 +582,13 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
           </div>
           <div
             className="euiControlBar__divider"
-            key="divider2"
+            key="divider3"
           />
           <EuiIcon
             aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
-            key="sample_icon3"
+            key="sample_icon4"
             type="alert"
           >
             <EuiIconEmpty
@@ -502,11 +611,11 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
           </EuiIcon>
           <div
             className="euiControlBar__spacer"
-            key="spacer4"
+            key="spacer5"
           />
           <button
             className="euiControlBar__tab"
-            key="flight_8155"
+            key="flight_8156"
             onClick={[Function]}
           >
             Flight 815
@@ -534,6 +643,13 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
         "controlType": "breadcrumbs",
         "id": "current_file_path",
         "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
       },
       Object {
         "controlType": "text",
@@ -601,6 +717,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                   components
                 </span>
               </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
               <div
                 class="euiControlBar__text"
               >
@@ -693,6 +824,31 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               </EuiInnerText>
             </nav>
           </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
           <div
             className="euiControlBar__text"
             key="close_the_hatch"
@@ -701,13 +857,13 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
           </div>
           <div
             className="euiControlBar__divider"
-            key="divider2"
+            key="divider3"
           />
           <EuiIcon
             aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
-            key="sample_icon3"
+            key="sample_icon4"
             type="alert"
           >
             <EuiIconEmpty
@@ -730,11 +886,11 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
           </EuiIcon>
           <div
             className="euiControlBar__spacer"
-            key="spacer4"
+            key="spacer5"
           />
           <button
             className="euiControlBar__tab"
-            key="flight_8155"
+            key="flight_8156"
             onClick={[Function]}
           >
             Flight 815
@@ -762,6 +918,13 @@ exports[`EuiControlBar props position is rendered 1`] = `
         "controlType": "breadcrumbs",
         "id": "current_file_path",
         "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
       },
       Object {
         "controlType": "text",
@@ -858,6 +1021,31 @@ exports[`EuiControlBar props position is rendered 1`] = `
           </EuiInnerText>
         </nav>
       </EuiBreadcrumbs>
+      <EuiButton
+        className="euiControlBar__button"
+        color="ghost"
+        data-test-subj="dts"
+        key="sound_the_alarm1"
+        onClick={[Function]}
+        size="s"
+      >
+        <button
+          className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+          data-test-subj="dts"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="euiButton__content"
+          >
+            <span
+              className="euiButton__text"
+            >
+              Sound the Alarm
+            </span>
+          </span>
+        </button>
+      </EuiButton>
       <div
         className="euiControlBar__text"
         key="close_the_hatch"
@@ -866,13 +1054,13 @@ exports[`EuiControlBar props position is rendered 1`] = `
       </div>
       <div
         className="euiControlBar__divider"
-        key="divider2"
+        key="divider3"
       />
       <EuiIcon
         aria-label="Sample Icon"
         className="euiControlBar__icon"
         color="danger"
-        key="sample_icon3"
+        key="sample_icon4"
         type="alert"
       >
         <EuiIconEmpty
@@ -895,11 +1083,11 @@ exports[`EuiControlBar props position is rendered 1`] = `
       </EuiIcon>
       <div
         className="euiControlBar__spacer"
-        key="spacer4"
+        key="spacer5"
       />
       <button
         className="euiControlBar__tab"
-        key="flight_8155"
+        key="flight_8156"
         onClick={[Function]}
       >
         Flight 815
@@ -925,6 +1113,13 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
         "controlType": "breadcrumbs",
         "id": "current_file_path",
         "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
       },
       Object {
         "controlType": "text",
@@ -992,6 +1187,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                   components
                 </span>
               </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
               <div
                 class="euiControlBar__text"
               >
@@ -1084,6 +1294,31 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               </EuiInnerText>
             </nav>
           </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
           <div
             className="euiControlBar__text"
             key="close_the_hatch"
@@ -1092,13 +1327,13 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
           </div>
           <div
             className="euiControlBar__divider"
-            key="divider2"
+            key="divider3"
           />
           <EuiIcon
             aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
-            key="sample_icon3"
+            key="sample_icon4"
             type="alert"
           >
             <EuiIconEmpty
@@ -1121,11 +1356,11 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
           </EuiIcon>
           <div
             className="euiControlBar__spacer"
-            key="spacer4"
+            key="spacer5"
           />
           <button
             className="euiControlBar__tab"
-            key="flight_8155"
+            key="flight_8156"
             onClick={[Function]}
           >
             Flight 815
@@ -1153,6 +1388,13 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
         "controlType": "breadcrumbs",
         "id": "current_file_path",
         "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
       },
       Object {
         "controlType": "text",
@@ -1220,6 +1462,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                   components
                 </span>
               </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
               <div
                 class="euiControlBar__text"
               >
@@ -1317,6 +1574,31 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               </EuiInnerText>
             </nav>
           </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
           <div
             className="euiControlBar__text"
             key="close_the_hatch"
@@ -1325,13 +1607,13 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
           </div>
           <div
             className="euiControlBar__divider"
-            key="divider2"
+            key="divider3"
           />
           <EuiIcon
             aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
-            key="sample_icon3"
+            key="sample_icon4"
             type="alert"
           >
             <EuiIconEmpty
@@ -1354,11 +1636,11 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
           </EuiIcon>
           <div
             className="euiControlBar__spacer"
-            key="spacer4"
+            key="spacer5"
           />
           <button
             className="euiControlBar__tab"
-            key="flight_8155"
+            key="flight_8156"
             onClick={[Function]}
           >
             Flight 815
@@ -1391,6 +1673,13 @@ exports[`EuiControlBar props size is rendered 1`] = `
         "controlType": "breadcrumbs",
         "id": "current_file_path",
         "responsive": true,
+      },
+      Object {
+        "controlType": "button",
+        "data-test-subj": "dts",
+        "id": "sound_the_alarm",
+        "label": "Sound the Alarm",
+        "onClick": [Function],
       },
       Object {
         "controlType": "text",
@@ -1458,6 +1747,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
                   components
                 </span>
               </nav>
+              <button
+                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                data-test-subj="dts"
+                type="button"
+              >
+                <span
+                  class="euiButton__content"
+                >
+                  <span
+                    class="euiButton__text"
+                  >
+                    Sound the Alarm
+                  </span>
+                </span>
+              </button>
               <div
                 class="euiControlBar__text"
               >
@@ -1550,6 +1854,31 @@ exports[`EuiControlBar props size is rendered 1`] = `
               </EuiInnerText>
             </nav>
           </EuiBreadcrumbs>
+          <EuiButton
+            className="euiControlBar__button"
+            color="ghost"
+            data-test-subj="dts"
+            key="sound_the_alarm1"
+            onClick={[Function]}
+            size="s"
+          >
+            <button
+              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+              data-test-subj="dts"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="euiButton__content"
+              >
+                <span
+                  className="euiButton__text"
+                >
+                  Sound the Alarm
+                </span>
+              </span>
+            </button>
+          </EuiButton>
           <div
             className="euiControlBar__text"
             key="close_the_hatch"
@@ -1558,13 +1887,13 @@ exports[`EuiControlBar props size is rendered 1`] = `
           </div>
           <div
             className="euiControlBar__divider"
-            key="divider2"
+            key="divider3"
           />
           <EuiIcon
             aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
-            key="sample_icon3"
+            key="sample_icon4"
             type="alert"
           >
             <EuiIconEmpty
@@ -1587,11 +1916,11 @@ exports[`EuiControlBar props size is rendered 1`] = `
           </EuiIcon>
           <div
             className="euiControlBar__spacer"
-            key="spacer4"
+            key="spacer5"
           />
           <button
             className="euiControlBar__tab"
-            key="flight_8155"
+            key="flight_8156"
             onClick={[Function]}
           >
             Flight 815

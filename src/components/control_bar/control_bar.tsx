@@ -28,7 +28,6 @@ import { EuiIconProps } from '../icon/icon';
  * Extends EuiButton excluding `size`. Requires `label` as the `children`.
  */
 export interface ButtonControl extends Omit<EuiButtonProps, 'size'> {
-  controlType: 'button';
   id: string;
   label: React.ReactNode;
 }
@@ -50,7 +49,9 @@ type ButtonPropsForButton = PropsForButton<
 type ButtonControlProps = ExclusiveUnion<
   ButtonPropsForAnchor,
   ButtonPropsForButton
->;
+> & {
+  controlType: 'button';
+};
 
 /**
  * Creates a `button` visually styles as a tab.

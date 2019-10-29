@@ -22,13 +22,13 @@ const controls: Control[] = [
       },
     ],
   },
-  // {
-  //   controlType: 'button',
-  //   id: 'sound_the_alarm',
-  //   label: 'Sound the Alarm',
-  //   onClick: handleClick,
-  //   'data-test-subj': 'dts',
-  // },
+  {
+    controlType: 'button',
+    id: 'sound_the_alarm',
+    label: 'Sound the Alarm',
+    onClick: handleClick,
+    'data-test-subj': 'dts',
+  },
   {
     controlType: 'text',
     id: 'close_the_hatch',
