@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiShowFor block is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiShowFor eui-showFor--xs--block testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiShowFor flex is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiShowFor eui-showFor--xs--flex testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiShowFor inlineBlock is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiShowFor eui-showFor--xs--inlineBlock testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
 exports[`EuiShowFor l is rendered 1`] = `
 <span
   aria-label="aria-label"

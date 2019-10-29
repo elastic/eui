@@ -2,10 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { RESPONSIVE_SIZES, EuiHideFor } from './hide_from';
+import { EuiHideForBreakpoints, EuiHideFor } from './hide_for';
+
+const BREAKPOINTS: EuiHideForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
 
 describe('EuiHideFor', () => {
-  RESPONSIVE_SIZES.forEach(size => {
+  BREAKPOINTS.forEach(size => {
     test(`${size} is rendered`, () => {
       const component = render(
         <EuiHideFor sizes={[size]} {...requiredProps} />

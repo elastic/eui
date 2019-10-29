@@ -38,5 +38,10 @@ export default () => (
     <EuiShowFor sizes={['xl']}>
       Showing for <EuiCode>xl</EuiCode> screen only
     </EuiShowFor>
+    <br />
+    <EuiShowFor sizes={['m', 'l', 'xl']} display="block">
+      Showing for <EuiCode>m, l, xl</EuiCode> screen only as{' '}
+      <EuiCode>block</EuiCode>
+    </EuiShowFor>
   </div>
 );
