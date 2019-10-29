@@ -79,6 +79,8 @@ export default class extends Component {
                           name="switch"
                           id="asdf"
                           label="Snapshot data"
+                          checked={true}
+                          onChange={() => {}}
                         />
                       </EuiFormRow>
                       <EuiFormRow label="Include the following in the embed">
@@ -86,6 +88,8 @@ export default class extends Component {
                           name="switch"
                           id="asdf2"
                           label="Current time range"
+                          checked={true}
+                          onChange={() => {}}
                         />
                       </EuiFormRow>
                       <EuiSpacer />
