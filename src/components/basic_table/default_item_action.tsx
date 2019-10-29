@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { isString } from '../../services/predicate';
-import { EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { EuiButtonEmpty, EuiButtonIcon, EuiButtonEmptyColor } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import {
   DefaultItemAction as Action,
@@ -32,13 +32,13 @@ export const DefaultItemAction = <T extends {}>({
 
   const onClick = action.onClick ? () => action.onClick!(item) : undefined;
 
-  const resolveActionColor = (action: any) =>
-    isString(action.color) ? action.color : action.color(item);
+  const resolveActionColor = (action: Action<T>) =>
+    isString(action.color) ? action.color : action.color!(item);
   const color = action.color ? resolveActionColor(action) : 'primary';
 
   const { icon: buttonIcon } = action as IconButtonAction<T>;
-  const resolveActionIcon = (action: any) =>
-    isString(action.icon) ? action.icon : action.icon(item);
+  const resolveActionIcon = (action: Action<T>) =>
+    isString(action.icon) ? action.icon : action.icon!(item);
   const icon = buttonIcon ? resolveActionIcon(action) : undefined;
 
   let button;
@@ -68,7 +68,7 @@ export const DefaultItemAction = <T extends {}>({
         className={className}
         size="s"
         isDisabled={!enabled}
-        color={color}
+        color={color as EuiButtonEmptyColor}
         iconType={icon}
         onClick={onClick}
         href={action.href}

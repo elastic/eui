@@ -12,7 +12,7 @@ import {
   RIGHT_ALIGNMENT,
   SortDirection,
 } from '../../services';
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -150,7 +150,7 @@ export type EuiBasicTableColumn<T> =
   | ComputedColumnType<T>
   | ActionsColumnType<T>;
 
-interface Criteria<T> {
+export interface Criteria<T> {
   page?: {
     index: number;
     size: number;
@@ -186,7 +186,7 @@ interface BasicTableProps<T> {
 }
 
 export type EuiBasicTableProps<T> = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   BasicTableProps<T>;
 
 interface State<T> {
