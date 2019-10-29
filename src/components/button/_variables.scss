@@ -5,7 +5,7 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 70%);
 $euiButtonToggleBorderColor: $euiColorLightShade;
 
 // Modifier naming and colors.
-$buttonTypes: (
+$euiButtonTypes: (
   primary: $euiColorPrimary,
   secondary: $euiColorSecondary,
   warning: $euiColorWarning,

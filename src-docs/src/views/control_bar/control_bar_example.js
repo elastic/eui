@@ -204,10 +204,10 @@ export const ControlBarExample = {
             it utilizes flexbox and overflow scrolls. However, it makes no
             attempts to reorganize the controls you provide. By default the{' '}
             <EuiCode>EuiControlBar</EuiCode> is hidden on mobile devices, but
-            this can be overridden with the
-            <EuiCode>showOnMobile</EuiCode> prop. You&apos;ll need to take the
-            layout of your <EuiCode>controlTypes</EuiCode> into consideration
-            when choosing to display on smaller screens.
+            this can be overridden with the <EuiCode>showOnMobile</EuiCode>{' '}
+            prop. You&apos;ll need to take the layout of your{' '}
+            <EuiCode>controlTypes</EuiCode> into consideration when choosing to
+            display on smaller screens.
           </p>
           <p>
             A simple way of doing this is to pass in EUI responsive utility
@@ -236,7 +236,7 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>EuiControlBar</EuiCode> accepts an array of
+            The <EuiCode>EuiControlBar</EuiCode> accepts an array of{' '}
             <EuiCode>controlTypes</EuiCode> that will be arranged in the order
             in which they are provided. All controls <strong>must</strong> be
             provide a unique <EuiCode>id</EuiCode> to be used as the key.
