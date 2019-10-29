@@ -311,9 +311,9 @@ function setColumnVisibility(
   const portal = popover.find('EuiPortal');
 
   const columnSwitch = portal.find(`EuiSwitch[name="${columnId}"]`);
-  const switchInput = columnSwitch.find('input');
-  (switchInput.getDOMNode() as HTMLInputElement).checked = isVisible;
-  switchInput.simulate('change');
+  const switchInput = columnSwitch.find('button');
+  switchInput.getDOMNode().setAttribute('aria-checked', `${isVisible}`);
+  switchInput.simulate('click');
 
   // close popover
   popover = datagrid.find(
