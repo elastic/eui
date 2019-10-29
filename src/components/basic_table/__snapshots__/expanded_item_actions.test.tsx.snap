@@ -12,13 +12,11 @@ exports[`ExpandedItemActions render 1`] = `
     }
     className=""
     enabled={true}
-    index={0}
     item={
       Object {
         "id": "xyz",
       }
     }
-    itemId="xyz"
     key="item_action_xyz_0"
   />
   <CustomItemAction
@@ -37,7 +35,6 @@ exports[`ExpandedItemActions render 1`] = `
         "id": "xyz",
       }
     }
-    itemId="xyz"
     key="item_action_xyz_1"
   />
 </Fragment>
