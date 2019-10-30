@@ -1,8 +1,10 @@
 .euiHeaderAlert {
   min-width: 300px;
   position: relative;
-  padding: $euiSize;
-  border-top: $euiBorderThin;
+  margin-bottom: $euiSizeL;
+  padding: 0 $euiSizeS $euiSizeL;
+  border-bottom: $euiBorderThin;
+  border-top: none;
 
   .euiHeaderAlert__dismiss {
     opacity: 0;
@@ -19,6 +21,7 @@
 
   .euiHeaderAlert__title {
     @include euiTitle('xs');
+    margin-bottom: $euiSizeS;
     padding-right: $euiSizeL; // Accounts for the dismiss button.
   }
 
