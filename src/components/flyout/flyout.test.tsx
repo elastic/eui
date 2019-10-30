@@ -2,7 +2,9 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiFlyout, SIZES } from './flyout';
+import { EuiFlyout, EuiFlyoutSize } from './flyout';
+
+const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {

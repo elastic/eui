@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.9.0`.
+- Convert `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
 
 ## [`14.9.0`](https://github.com/elastic/eui/tree/v14.9.0)
 
