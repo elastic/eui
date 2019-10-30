@@ -5,7 +5,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiHeaderSectionItemButton,
-  EuiNotificationBadge,
   EuiLink,
   EuiText,
   EuiSpacer,

@@ -6,21 +6,22 @@ exports[`EuiHeaderAlert is rendered 1`] = `
   class="euiHeaderAlert testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiHeaderAlert__date"
+      >
+        date
+      </div>
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
     />
-  </button>
+  </div>
   <div
     class="euiHeaderAlert__title"
   >
@@ -30,25 +31,8 @@ exports[`EuiHeaderAlert is rendered 1`] = `
     class="euiHeaderAlert__text"
   />
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
-  >
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__date"
-      >
-        date
-      </div>
-    </div>
-  </div>
+    class="euiHeaderAlert__action euiLink"
+  />
 </div>
 `;
 
@@ -58,21 +42,22 @@ exports[`EuiHeaderAlert renders action 1`] = `
   class="euiHeaderAlert testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiHeaderAlert__date"
+      >
+        date
+      </div>
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
     />
-  </button>
+  </div>
   <div
     class="euiHeaderAlert__title"
   >
@@ -82,28 +67,11 @@ exports[`EuiHeaderAlert renders action 1`] = `
     class="euiHeaderAlert__text"
   />
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
+    class="euiHeaderAlert__action euiLink"
   >
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      >
-        <button>
-          Quietly take to the ship
-        </button>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__date"
-      >
-        date
-      </div>
-    </div>
+    <button>
+      Quietly take to the ship
+    </button>
   </div>
 </div>
 `;
@@ -114,41 +82,11 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
   class="euiHeaderAlert testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    />
-  </button>
-  <div
-    class="euiHeaderAlert__title"
-  >
-    shazm
-  </div>
-  <div
-    class="euiHeaderAlert__text"
-  />
   <div
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem"
     >
       <div
         class="euiHeaderAlert__date"
@@ -158,7 +96,21 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
         </h2>
       </div>
     </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
   </div>
+  <div
+    class="euiHeaderAlert__title"
+  >
+    shazm
+  </div>
+  <div
+    class="euiHeaderAlert__text"
+  />
+  <div
+    class="euiHeaderAlert__action euiLink"
+  />
 </div>
 `;
 
@@ -168,21 +120,22 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
   class="euiHeaderAlert testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiHeaderAlert__date"
+      >
+        date
+      </div>
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
     />
-  </button>
+  </div>
   <div
     class="euiHeaderAlert__title"
   >
@@ -194,24 +147,7 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
     class="euiHeaderAlert__text"
   />
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
-  >
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__date"
-      >
-        date
-      </div>
-    </div>
-  </div>
+    class="euiHeaderAlert__action euiLink"
+  />
 </div>
 `;

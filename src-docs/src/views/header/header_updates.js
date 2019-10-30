@@ -67,7 +67,7 @@ export default class extends Component {
           style={{ top: '49px' }}>
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="s">
-              <h2 id="flyoutSmallTitle">What's new</h2>
+              <h2 id="flyoutSmallTitle">What&apos;s new</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
