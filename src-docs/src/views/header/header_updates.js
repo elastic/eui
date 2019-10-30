@@ -63,6 +63,7 @@ export default class extends Component {
         <EuiFlyout
           onClose={this.closeFlyout}
           size="s"
+          className="alertsFlyout"
           aria-labelledby="flyoutSmallTitle"
           style={{ top: '49px' }}>
           <EuiFlyoutHeader hasBorder>
