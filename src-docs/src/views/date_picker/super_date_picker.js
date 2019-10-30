@@ -22,7 +22,7 @@ function MyCustomQuickSelectPanel({ applyTime }) {
 export default class extends Component {
   state = {
     recentlyUsedRanges: [],
-    isDiasabled: false,
+    isDisabled: false,
     isLoading: false,
     showUpdateButton: true,
     isAutoRefreshOnly: false,

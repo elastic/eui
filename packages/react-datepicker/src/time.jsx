@@ -122,9 +122,9 @@ export default class Time extends React.Component {
       }
 
       // update preSelection to the selection
-      this.setState({
-        preSelection: this.props.selected,
-      });
+      this.setState(prevState => ({
+        preSelection: prevState.selected,
+      }));
     }
 
     if (this.state.needsScrollToPreSelection) {

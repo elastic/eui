@@ -1,1 +1,0 @@
-export { EuiSwitch } from './switch';

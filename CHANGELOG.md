@@ -1,9 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Convert `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
+
+## [`14.9.0`](https://github.com/elastic/eui/tree/v14.9.0)
+
 - Added new `euiTreeView` component for rendering recursive objects such as folder structures. ([#2409](https://github.com/elastic/eui/pull/2409))
 - Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
 - Fixed `EuiColorStops` where empty string values would cause range min or max to be NaN ([#2496](https://github.com/elastic/eui/pull/2496))
-- Convert `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
+- Improved `EuiSwitch` a11y by aligning to aria roles ([#2491](https://github.com/elastic/eui/pull/2491))
+- Converted `EuiSwitch` to TypeScript ([#2491](https://github.com/elastic/eui/pull/2491))
+- Added an accessible label-less `EuiSwitch` variation ([#2491](https://github.com/elastic/eui/pull/2491))
 
 **Bug fixes**
 
@@ -11,6 +17,8 @@
 - Fixed typo to correct `aria-modal` attribute in`EuiPopover` ([#2488](https://github.com/elastic/eui/pull/2488))
 - Fixed position of `EuiCodeBlock` controls and added more tests ([#2459](https://github.com/elastic/eui/pull/2459))
 - Changed `EuiCodeBlock` so that `overflowHeight` now applies a `maxHeight` instead of a `height` on the block ([#2487](https://github.com/elastic/eui/pull/2487))
+- Fixed potentially inconsistent state update ([#2481](https://github.com/elastic/eui/pull/2481))
+- Fixed `EuiSwitch` form behavior by adding a default button `type` of 'button' ([#2491](https://github.com/elastic/eui/pull/2491))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
 

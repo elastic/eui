@@ -309,11 +309,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 372,
+        "line": 376,
         "column": 10
       },
       "end": {
-        "line": 380,
+        "line": 384,
         "column": 12
       }
     },
@@ -1790,5 +1790,37 @@
       }
     },
     "filepath": "src/components/toast/toast.tsx"
+  },
+  {
+    "token": "euiTreeView.listNavigationInstructions",
+    "defString": "You can quickly navigate this list using arrow keys.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 236,
+        "column": 14
+      },
+      "end": {
+        "line": 238,
+        "column": 79
+      }
+    },
+    "filepath": "src/components/tree_view/tree_view.tsx"
+  },
+  {
+    "token": "euiTreeView.ariaLabel",
+    "defString": "{nodeLabel} child of {ariaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 254,
+        "column": 16
+      },
+      "end": {
+        "line": 261,
+        "column": 21
+      }
+    },
+    "filepath": "src/components/tree_view/tree_view.tsx"
   }
 ]
