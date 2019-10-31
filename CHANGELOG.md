@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
 - Convert `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
 
 **Bug fixes**
