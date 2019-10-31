@@ -3,7 +3,6 @@
 /// <reference path="./date_picker/index.d.ts" />
 /// <reference path="./error_boundary/index.d.ts" />
 /// <reference path="./filter_group/index.d.ts" />
-/// <reference path="./flyout/index.d.ts" />
 /// <reference path="./form/index.d.ts" />
 /// <reference path="./modal/index.d.ts" />
 /// <reference path="./page/index.d.ts" />

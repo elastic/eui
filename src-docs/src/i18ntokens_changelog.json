@@ -1,5 +1,20 @@
 [
   {
+    "version": "14.9.0",
+    "changes": [
+      {
+        "token": "euiTreeView.listNavigationInstructions",
+        "changeType": "added",
+        "value": "You can quickly navigate this list using arrow keys."
+      },
+      {
+        "token": "euiTreeView.ariaLabel",
+        "changeType": "added",
+        "value": "{nodeLabel} child of {ariaLabel}"
+      }
+    ]
+  },
+  {
     "version": "14.8.0",
     "changes": [
       {
