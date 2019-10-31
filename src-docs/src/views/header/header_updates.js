@@ -26,6 +26,78 @@ export default class extends Component {
       isFlyoutVisible: false,
       showBadge: true,
     };
+
+    this.alerts = [
+      {
+        title: 'Control access to features',
+        text: 'Show or hide applications and features per space in Kibana.',
+        action: <EuiLink href="#">Learn about feature controls</EuiLink>,
+        date: '1 May 2019',
+        badge: <EuiBadge>7.1</EuiBadge>,
+      },
+      {
+        title: 'Kibana 7.0 is turning heads',
+        text:
+          'Simplified navigation, responsive dashboards, dark mode… pick your favorite.',
+        action: (
+          <EuiLink
+            target="_blank"
+            href="https://www.elastic.co/blog/kibana-7-0-0-released">
+            Read the blog <EuiIcon type="popout" size="s" />
+          </EuiLink>
+        ),
+        date: '10 April 2019',
+        badge: <EuiBadge color="hollow">7.0</EuiBadge>,
+      },
+      {
+        title: 'Enter dark mode',
+        text:
+          'Kibana now supports the easy-on-the-eyes theme across the entire UI.',
+        action: <EuiLink href="#">Go to Advanced Settings</EuiLink>,
+        date: '10 April 2019',
+        badge: <EuiBadge color="hollow">7.0</EuiBadge>,
+      },
+      {
+        title: 'Pixel-perfect Canvas is production ready',
+        text: 'Your creative space for visualizing data awaits.',
+        action: (
+          <EuiLink
+            target="_blank"
+            href="https://www.elastic.co/webinars/intro-to-canvas-a-new-way-to-tell-visual-stories-in-kibana">
+            Watch the webinar <EuiIcon type="popout" size="s" />
+          </EuiLink>
+        ),
+        date: '26 March 2019',
+        badge: <EuiBadge color="hollow">6.7</EuiBadge>,
+      },
+      {
+        title: '6.7 release notes',
+        text: 'Stay up-to-date on the latest and greatest features.',
+        action: (
+          <EuiLink
+            target="_blank"
+            href="https://www.elastic.co/guide/en/kibana/6.7/release-notes-6.7.0.html">
+            Check out the docs <EuiIcon type="popout" size="s" />
+          </EuiLink>
+        ),
+        date: '26 March 2019',
+        badge: <EuiBadge color="hollow">6.7</EuiBadge>,
+      },
+      {
+        title: 'Rollups made simple in Kibana',
+        text:
+          'Save space and preserve the integrity of your data directly in the UI.',
+        action: (
+          <EuiLink
+            target="_blank"
+            href="https://www.elastic.co/blog/how-to-create-manage-and-visualize-elasticsearch-rollup-data-in-kibana">
+            Read the blog <EuiIcon type="popout" size="s" />
+          </EuiLink>
+        ),
+        date: '10 January 2019',
+        badge: <EuiBadge color="hollow">6.5</EuiBadge>,
+      },
+    ];
   }
 
   closeFlyout = () => {
@@ -42,10 +114,10 @@ export default class extends Component {
   render() {
     const button = (
       <EuiHeaderSectionItemButton
-        aria-controls="keyPadMenu"
+        aria-controls="News feed"
         aria-expanded={this.state.isFlyoutVisible}
         aria-haspopup="true"
-        aria-label="Apps menu"
+        aria-label="News feed"
         onClick={this.showFlyout}>
         <EuiIcon type="email" size="m" />
 
@@ -58,90 +130,31 @@ export default class extends Component {
     );
 
     let flyout;
+    const flyoutStyle = {
+      top: '49px',
+      height: 'calc(100vh - 49px)',
+    };
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
           size="s"
-          className="guideDemo__alertsFlyout"
           aria-labelledby="flyoutSmallTitle"
-          style={{ top: '49px' }}>
+          style={flyoutStyle}>
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="s">
               <h2 id="flyoutSmallTitle">What&apos;s new</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
-            <EuiHeaderAlert
-              title="Control access to features"
-              text="Show or hide applications and features per space in Kibana."
-              action={
-                <EuiLink href="/guides/feature-controls">
-                  Learn about feature controls
-                </EuiLink>
-              }
-              date="1 May 2019"
-              badge={<EuiBadge>7.1</EuiBadge>}
-            />
-            <EuiHeaderAlert
-              title="Kibana 7.0 is turning heads"
-              text="Simplified navigation, responsive dashboards, dark mode… pick your favorite."
-              action={
-                <EuiLink
-                  target="_blank"
-                  href="https://www.elastic.co/blog/kibana-7-0-0-released">
-                  Read the blog <EuiIcon type="popout" size="s" />
-                </EuiLink>
-              }
-              date="10 April 2019"
-              badge={<EuiBadge color="hollow">7.0</EuiBadge>}
-            />
-            <EuiHeaderAlert
-              title="Enter dark mode"
-              text="Kibana now supports the easy-on-the-eyes theme across the entire UI."
-              action={<EuiLink href="#">Go to Advanced Settings</EuiLink>}
-              date="10 April 2019"
-              badge={<EuiBadge color="hollow">7.0</EuiBadge>}
-            />
-            <EuiHeaderAlert
-              title="Pixel-perfect Canvas is production ready"
-              text="Your creative space for visualizing data awaits."
-              action={
-                <EuiLink
-                  target="_blank"
-                  href="https://www.elastic.co/webinars/intro-to-canvas-a-new-way-to-tell-visual-stories-in-kibana">
-                  Watch the webinar <EuiIcon type="popout" size="s" />
-                </EuiLink>
-              }
-              date="26 March 2019"
-              badge={<EuiBadge color="hollow">6.7</EuiBadge>}
-            />
-            <EuiHeaderAlert
-              title="6.7 release notes"
-              text="Stay up-to-date on the latest and greatest features."
-              action={
-                <EuiLink
-                  target="_blank"
-                  href="https://www.elastic.co/guide/en/kibana/6.7/release-notes-6.7.0.html">
-                  Check out the docs <EuiIcon type="popout" size="s" />
-                </EuiLink>
-              }
-              date="26 March 2019"
-              badge={<EuiBadge color="hollow">6.7</EuiBadge>}
-            />
-            <EuiHeaderAlert
-              title="Rollups made simple in Kibana"
-              text="Save space and preserve the integrity of your data directly in the UI."
-              action={
-                <EuiLink
-                  target="_blank"
-                  href="https://www.elastic.co/blog/how-to-create-manage-and-visualize-elasticsearch-rollup-data-in-kibana">
-                  Read the blog <EuiIcon type="popout" size="s" />
-                </EuiLink>
-              }
-              date="10 January 2019"
-              badge={<EuiBadge color="hollow">6.5</EuiBadge>}
-            />
+            {this.alerts.map(alert => (
+              <EuiHeaderAlert
+                title={alert.title}
+                action={alert.action}
+                date={alert.date}
+                badge={alert.badge}
+              />
+            ))}
           </EuiFlyoutBody>
           <EuiFlyoutFooter>
             <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">

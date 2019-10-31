@@ -18,9 +18,6 @@ exports[`EuiHeaderAlert is rendered 1`] = `
         date
       </div>
     </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    />
   </div>
   <div
     class="euiHeaderAlert__title"
@@ -54,9 +51,6 @@ exports[`EuiHeaderAlert renders action 1`] = `
         date
       </div>
     </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    />
   </div>
   <div
     class="euiHeaderAlert__title"
@@ -96,9 +90,6 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
         </h2>
       </div>
     </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    />
   </div>
   <div
     class="euiHeaderAlert__title"
@@ -132,9 +123,6 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
         date
       </div>
     </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    />
   </div>
   <div
     class="euiHeaderAlert__title"

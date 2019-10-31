@@ -31,7 +31,7 @@ export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
         <EuiFlexItem>
           <div className="euiHeaderAlert__date">{date}</div>
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>{badge}</EuiFlexItem>
+        {badge ? <EuiFlexItem grow={false}>{badge}</EuiFlexItem> : undefined}
       </EuiFlexGroup>
 
       <div className="euiHeaderAlert__title">{title}</div>

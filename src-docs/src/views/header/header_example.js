@@ -117,7 +117,7 @@ export const HeaderExample = {
       demo: <HeaderLinks />,
     },
     {
-      title: 'Alerts',
+      title: 'Display header alerts',
       source: [
         {
           type: GuideSectionTypes.JS,
