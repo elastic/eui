@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
 - Added new `euiTreeView` component for rendering recursive objects such as folder structures. ([#2409](https://github.com/elastic/eui/pull/2409))
 - Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
 - Fixed `EuiColorStops` where empty string values would cause range min or max to be NaN ([#2496](https://github.com/elastic/eui/pull/2496))
