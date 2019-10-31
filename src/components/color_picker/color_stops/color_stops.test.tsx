@@ -182,7 +182,7 @@ test('popover color selector is shown when the thumb is clicked', () => {
 
   findTestSubject(colorStops, 'euiColorStopThumb')
     .first()
-    .simulate('click');
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
   const colorSelector = findTestSubject(colorStops, 'euiColorStopPopover');
   expect(colorSelector.length).toBe(1);
 });
@@ -201,7 +201,7 @@ test('stop input updates stops', () => {
 
   findTestSubject(colorStops, 'euiColorStopThumb')
     .first()
-    .simulate('click');
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
   const event = { target: { value: '10' } };
   const inputs = colorStops.find('input[type="number"]');
   expect(inputs.length).toBe(1);
@@ -231,7 +231,7 @@ test('stop input updates stops with error prevention (reset to bounds)', () => {
 
   findTestSubject(colorStops, 'euiColorStopThumb')
     .first()
-    .simulate('click');
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
   const event = { target: { value: '1000' } };
   const inputs = colorStops.find('input[type="number"]');
   inputs.simulate('change', event);
@@ -260,7 +260,7 @@ test('hex input updates stops', () => {
 
   findTestSubject(colorStops, 'euiColorStopThumb')
     .first()
-    .simulate('click');
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
   const event = { target: { value: '#FFFFFF' } };
   const inputs = colorStops.find('input[type="text"]');
   expect(inputs.length).toBe(1);
@@ -290,7 +290,7 @@ test('hex input updates stops with error', () => {
 
   findTestSubject(colorStops, 'euiColorStopThumb')
     .first()
-    .simulate('click');
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
   const event = { target: { value: '#FFFFF' } };
   const inputs = colorStops.find('input[type="text"]');
   inputs.simulate('change', event);
@@ -319,7 +319,7 @@ test('picker updates stops', () => {
 
   findTestSubject(colorStops, 'euiColorStopThumb')
     .first()
-    .simulate('click');
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
   const swatches = colorStops.find('button.euiColorPicker__swatchSelect');
   expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
   swatches.first().simulate('click');

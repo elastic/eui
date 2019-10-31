@@ -2,6 +2,10 @@
 
 - Convert `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
 
+**Bug fixes**
+
+- Simplified `EuiColorStops` popover toggling ([#2505](https://github.com/elastic/eui/pull/2505))
+
 ## [`14.9.0`](https://github.com/elastic/eui/tree/v14.9.0)
 
 - Added new `euiTreeView` component for rendering recursive objects such as folder structures. ([#2409](https://github.com/elastic/eui/pull/2409))
