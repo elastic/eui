@@ -27,9 +27,6 @@ exports[`EuiHeaderAlert is rendered 1`] = `
   <div
     class="euiHeaderAlert__text"
   />
-  <div
-    class="euiHeaderAlert__action euiLink"
-  />
 </div>
 `;
 
@@ -99,9 +96,6 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
   <div
     class="euiHeaderAlert__text"
   />
-  <div
-    class="euiHeaderAlert__action euiLink"
-  />
 </div>
 `;
 
@@ -133,9 +127,6 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
   </div>
   <div
     class="euiHeaderAlert__text"
-  />
-  <div
-    class="euiHeaderAlert__action euiLink"
   />
 </div>
 `;

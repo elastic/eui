@@ -26,12 +26,12 @@
   }
 
   .euiHeaderAlert__text {
-    @include euiFontSizeXS;
-    margin-bottom: $euiSizeS;
+    @include euiFontSizeS;
+    margin-bottom: $euiSize;
   }
 
   .euiHeaderAlert__action {
-    @include euiFontSizeXS;
+    @include euiFontSizeS;
   }
 
   .euiHeaderAlert__date {
