@@ -4,6 +4,7 @@ import {
   Criteria,
   EuiBasicTableProps,
   EuiBasicTableColumn,
+  CriteriaWithPagination,
 } from './basic_table';
 import {
   EuiTableFieldDataColumnType,
@@ -170,23 +171,36 @@ interface SortingOptions {
 
 type Sorting = boolean | SortingOptions;
 
-export type EuiInMemoryTableProps<T> = CommonProps &
-  Omit<EuiBasicTableProps<T>, 'pagination' | 'sorting' | 'noItemsMessage'> & {
-    message?: ReactNode;
-    search?: Search;
-    pagination?: Pagination;
-    sorting?: Sorting;
-    /**
-     * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
-     */
-    allowNeutralSort?: boolean;
-    onTableChange?: (nextValues: Criteria<T>) => void;
-    executeQueryOptions?: {
-      defaultFields?: string[];
-      isClauseMatcher?: (...args: any) => boolean;
-      explain?: boolean;
-    };
+type InMemoryTableProps<T> = Omit<
+  EuiBasicTableProps<T>,
+  'pagination' | 'sorting' | 'noItemsMessage'
+> & {
+  message?: ReactNode;
+  search?: Search;
+  pagination?: undefined;
+  sorting?: Sorting;
+  /**
+   * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
+   */
+  allowNeutralSort?: boolean;
+  onTableChange?: (nextValues: Criteria<T>) => void;
+  executeQueryOptions?: {
+    defaultFields?: string[];
+    isClauseMatcher?: (...args: any) => boolean;
+    explain?: boolean;
   };
+};
+
+type InMemoryTablePropsWithPagination<T> = Omit<
+  InMemoryTableProps<T>,
+  'pagination' | 'onTableChange'
+> & {
+  pagination: Pagination;
+  onTableChange?: (nextValues: CriteriaWithPagination<T>) => void;
+};
+
+export type EuiInMemoryTableProps<T> = CommonProps &
+  (InMemoryTableProps<T> | InMemoryTablePropsWithPagination<T>);
 
 interface State<T> {
   prevProps: {
@@ -411,6 +425,7 @@ export class EuiInMemoryTable<T> extends Component<
 
     if (this.props.onTableChange) {
       this.props.onTableChange({
+        // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
         page,
         sort: {
           field: reportedSortName,
@@ -616,6 +631,7 @@ export class EuiInMemoryTable<T> extends Component<
     const searchBar = this.renderSearchBar();
 
     const table = (
+      // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
       <EuiBasicTable
         items={items}
         itemId={itemId}

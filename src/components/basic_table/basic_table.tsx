@@ -161,6 +161,13 @@ export interface Criteria<T> {
   };
 }
 
+export interface CriteriaWithPagination<T> extends Criteria<T> {
+  page: {
+    index: number;
+    size: number;
+  };
+}
+
 type CellPropsCallback<T> = (item: T, column: EuiBasicTableColumn<T>) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
@@ -178,16 +185,24 @@ interface BasicTableProps<T> {
   loading?: boolean;
   noItemsMessage?: ReactNode;
   onChange?: (criteria: Criteria<T>) => void;
-  pagination?: Pagination;
+  pagination?: undefined;
   responsive?: boolean;
   rowProps?: object | RowPropsCallback<T>;
   selection?: EuiTableSelectionType<T>;
   sorting?: EuiTableSortingType<T>;
 }
 
+type BasicTableWithPaginationProps<T> = Omit<
+  BasicTableProps<T>,
+  'pagination' | 'onChange'
+> & {
+  pagination: Pagination;
+  onChange?: (criteria: CriteriaWithPagination<T>) => void;
+};
+
 export type EuiBasicTableProps<T> = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
-  BasicTableProps<T>;
+  (BasicTableProps<T> | BasicTableWithPaginationProps<T>);
 
 interface State<T> {
   selection: T[];
@@ -198,6 +213,12 @@ interface SortOptions {
   isSortAscending?: boolean;
   onSort?: () => void;
   allowNeutralSort?: boolean;
+}
+
+function hasPagination<T>(
+  x: EuiBasicTableProps<T>
+): x is BasicTableWithPaginationProps<T> {
+  return x.hasOwnProperty('pagination') && !!x.pagination;
 }
 
 export class EuiBasicTable<T = any> extends Component<
@@ -244,7 +265,7 @@ export class EuiBasicTable<T = any> extends Component<
 
   buildCriteria(props: EuiBasicTableProps<T>): Criteria<T> {
     const criteria: Criteria<T> = {};
-    if (props.pagination) {
+    if (hasPagination(props)) {
       criteria.page = {
         index: props.pagination.pageIndex,
         size: props.pagination.pageSize,
@@ -273,7 +294,7 @@ export class EuiBasicTable<T = any> extends Component<
   onPageSizeChange(size: number) {
     this.clearSelection();
     const currentCriteria = this.buildCriteria(this.props);
-    const criteria: Criteria<T> = {
+    const criteria: CriteriaWithPagination<T> = {
       ...currentCriteria,
       page: {
         index: 0, // when page size changes, we take the user back to the first page
@@ -288,7 +309,7 @@ export class EuiBasicTable<T = any> extends Component<
   onPageChange(index: number) {
     this.clearSelection();
     const currentCriteria = this.buildCriteria(this.props);
-    const criteria: Criteria<T> = {
+    const criteria: CriteriaWithPagination<T> = {
       ...currentCriteria,
       page: {
         ...currentCriteria.page!,
@@ -329,6 +350,7 @@ export class EuiBasicTable<T = any> extends Component<
       },
     };
     if (this.props.onChange) {
+      // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
       this.props.onChange(criteria);
     }
   }
@@ -671,7 +693,7 @@ export class EuiBasicTable<T = any> extends Component<
 
     const rows = items.map((item: T, index: number) => {
       // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
-      const tableItemIndex = this.props.pagination
+      const tableItemIndex = hasPagination(this.props)
         ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
           index
         : index;
