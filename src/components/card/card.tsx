@@ -40,8 +40,7 @@ type EuiCardProps = CommonProps & {
   title: NonNullable<ReactNode>;
 
   /**
-   * Determines the title's heading element. Will force to 'span' if
-   * the card is a button.
+   * Determines the title's heading element.
    */
   titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
 
@@ -73,7 +72,10 @@ type EuiCardProps = CommonProps & {
   /**
    * Use only if you want to forego a button in the footer and make the whole card clickable
    */
-  onClick?: Function;
+  onClick?:
+    | React.MouseEventHandler<HTMLButtonElement>
+    | React.MouseEventHandler<HTMLAnchorElement>;
+  isDisabled?: boolean;
   href?: string;
   target?: string;
   rel?: string;
@@ -107,8 +109,6 @@ type EuiCardProps = CommonProps & {
    * Adds a button to the bottom of the card to allow for in-place selection.
    */
   selectable?: EuiCardSelectProps;
-
-  isDisabled?: boolean;
 };
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
@@ -133,6 +133,18 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   selectable,
   ...rest
 }) => {
+  /**
+   * For a11y, we simulate the same click that's provided on the title when clicking the whole card
+   * without having to make the whole card a button or anchor tag.
+   * *Card Accessibility: The redundant click event https://inclusive-components.design/cards/*
+   */
+  let link: HTMLAnchorElement | HTMLButtonElement | null = null;
+  const outerOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (link && link !== e.target) {
+      link.click();
+    }
+  };
+
   if (layout === 'horizontal') {
     if (image || footer) {
       throw new Error(
@@ -157,6 +169,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasChildren': children,
+      'euiCard--isDisabled': isDisabled,
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
     },
@@ -166,10 +179,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const ariaId = makeId();
 
-  let secureRel;
-  if (href) {
-    secureRel = getSecureRelForTarget({ href, target, rel });
-  }
+  /**
+   * Top area containing image, icon or both
+   */
 
   let imageNode;
   if (image && layout === 'vertical') {
@@ -183,31 +195,19 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     });
   }
 
-  if (selectable && isDisabled && selectable.isDisabled === undefined) {
-    selectable.isDisabled = isDisabled;
-  }
-
-  let OuterElement = 'div';
-  if (!isDisabled && href) {
-    OuterElement = 'a';
-  } else if (isDisabled || onClick) {
-    OuterElement = 'button';
-  }
-
-  let TitleElement = titleElement;
-  if (OuterElement === 'button') {
-    TitleElement = 'span';
-  }
-
   let optionalCardTop;
   if (imageNode || iconNode) {
     optionalCardTop = (
-      <span className="euiCard__top">
+      <div className="euiCard__top">
         {imageNode}
         {iconNode}
-      </span>
+      </div>
     );
   }
+
+  /**
+   * Optional EuiBetaBadge
+   */
 
   let optionalBetaBadge;
   if (betaBadgeLabel) {
@@ -223,6 +223,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     );
   }
 
+  /**
+   * Optional selectable button
+   */
+
+  if (selectable && isDisabled && selectable.isDisabled === undefined) {
+    selectable.isDisabled = isDisabled;
+  }
+
   let optionalSelectButton;
   if (selectable) {
     optionalSelectButton = (
@@ -233,23 +241,58 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     );
   }
 
-  return (
-    // @ts-ignore
-    <OuterElement
-      onClick={onClick}
-      className={classes}
-      href={href}
-      disabled={!selectable ? isDisabled : undefined}
-      target={target}
-      rel={secureRel}
-      {...rest}>
-      {optionalBetaBadge}
+  /**
+   * Wraps the title with the link (<a>) or button.
+   * This makes the title element a11y friendly and gets described by its content if its interactable.
+   */
 
+  let theTitle;
+  if (!isDisabled && href) {
+    theTitle = (
+      <a
+        className="euiCard__titleAnchor"
+        onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
+        href={href}
+        target={target}
+        aria-describedby={`${ariaId}Description`}
+        rel={getSecureRelForTarget({ href, target, rel })}
+        ref={node => {
+          link = node;
+        }}>
+        {title}
+      </a>
+    );
+  } else if (isDisabled || onClick) {
+    theTitle = (
+      <button
+        className="euiCard__titleButton"
+        onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+        disabled={isDisabled}
+        aria-describedby={`${ariaId}Description`}
+        ref={node => {
+          link = node;
+        }}>
+        {title}
+      </button>
+    );
+  } else {
+    theTitle = title;
+  }
+
+  /**
+   * Convert titleElement to a capital TitleElement
+   */
+
+  const TitleElement = titleElement;
+
+  return (
+    <div className={classes} onClick={outerOnClick} {...rest}>
+      {optionalBetaBadge}
       {optionalCardTop}
 
-      <span className="euiCard__content">
-        <EuiTitle id={`${ariaId}Title`} className="euiCard__title">
-          <TitleElement>{title}</TitleElement>
+      <div className="euiCard__content">
+        <EuiTitle id={`${ariaId}Title`} className="euiCard__title" size="s">
+          <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 
         <EuiText
@@ -260,19 +303,10 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         </EuiText>
 
         {children}
-      </span>
+      </div>
 
-      {layout === 'vertical' && (
-        <span className="euiCard__footer">{footer}</span>
-      )}
-
+      {layout === 'vertical' && <div className="euiCard__footer">{footer}</div>}
       {optionalSelectButton}
-    </OuterElement>
+    </div>
   );
-};
-
-EuiCard.defaultProps = {
-  textAlign: 'center',
-  layout: 'vertical',
-  titleElement: 'span',
 };

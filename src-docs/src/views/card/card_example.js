@@ -94,7 +94,7 @@ export const CardExample = {
             However, in some cases, you may want the icon to be to the left of
             the content. In this case, add the prop{' '}
             <EuiCode>layout=&quot;horizontal&quot;</EuiCode>. Works best when
-            the icon is size large.
+            the icon is size <EuiCode>xl</EuiCode>.
           </p>
           <EuiCallOut
             color="danger"

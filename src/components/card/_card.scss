@@ -21,9 +21,10 @@
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
-  &:disabled {
+  &.euiCard--isDisabled {
     background-color: $euiColorLightestShade;
     cursor: not-allowed; // duplicate property due to Chrome bug
+    box-shadow: none;
 
     .euiCard__title,
     .euiCard__description,
@@ -36,6 +37,11 @@
       filter: grayscale(100%);
     }
 
+    .euiCard__titleAnchor,
+    .euiCard__titleButton {
+      cursor: inherit;
+    }
+
     &:hover,
     &:focus {
       cursor: not-allowed; // duplicate property due to Chrome bug
@@ -46,43 +52,36 @@
   }
 
   &.euiCard--isClickable {
-    display: flex;
+    display: flex; // Override panel mixin
 
-    &:disabled {
-      box-shadow: none;
-    }
+    &:not(.euiCard--isDisabled) {
+      // Progressive Enhancement Only
+      // The title will still underline to simulate focus in IE
+      &:focus-within {
+        @include euiSlightShadowHover;
+      }
 
-    &:not(:disabled) {
       &:focus,
       &:hover {
-        .euiCard__title {
+        .euiCard__titleAnchor,
+        .euiCard__titleButton {
           text-decoration: underline;
         }
       }
     }
   }
 
-  .euiCard__top,
-  .euiCard__content,
-  .euiCard__footer {
-    display: block;
-    width: 100%;
-  }
-
-  &.euiCard--leftAligned,
-  &.euiCard--isClickable.euiCard--leftAligned {
+  &.euiCard--leftAligned {
     text-align: left;
     align-items: flex-start;
   }
 
-  &.euiCard--centerAligned,
-  &.euiCard--isClickable.euiCard--centerAligned {
+  &.euiCard--centerAligned {
     text-align: center;
     align-items: center;
   }
 
-  &.euiCard--rightAligned,
-  &.euiCard--isClickable.euiCard--rightAligned {
+  &.euiCard--rightAligned {
     text-align: right;
     align-items: flex-end;
   }
@@ -143,15 +142,18 @@
 .euiCard__content {
   flex-grow: 1; /* 1 */
 
-  .euiCard__title {
-    @include euiTitle($euiCardTitleSize);
+  .euiCard__titleAnchor,
+  .euiCard__titleButton {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
 
-    display: block;
-    font-weight: $euiFontWeightMedium;
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   .euiCard__description {
-    color: $euiTextColor; // Ensures regular text color if wrapped in an anchor tag
     margin-top: $euiCardSpacing / 2;
   }
 }

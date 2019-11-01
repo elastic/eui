@@ -6,11 +6,11 @@ exports[`EuiCard is rendered 1`] = `
   class="euiCard euiCard--centerAligned testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span
+  <div
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -23,8 +23,8 @@ exports[`EuiCard is rendered 1`] = `
         Card description
       </p>
     </div>
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__footer"
   />
 </div>
@@ -34,11 +34,11 @@ exports[`EuiCard props children 1`] = `
 <div
   class="euiCard euiCard--centerAligned euiCard--hasChildren"
 >
-  <span
+  <div
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -52,8 +52,8 @@ exports[`EuiCard props children 1`] = `
       </p>
     </div>
     Child
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__footer"
   />
 </div>
@@ -63,11 +63,11 @@ exports[`EuiCard props footer 1`] = `
 <div
   class="euiCard euiCard--centerAligned"
 >
-  <span
+  <div
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -80,14 +80,14 @@ exports[`EuiCard props footer 1`] = `
         Card description
       </p>
     </div>
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__footer"
   >
     <span>
       Footer
     </span>
-  </span>
+  </div>
 </div>
 `;
 
@@ -95,11 +95,11 @@ exports[`EuiCard props horizontal 1`] = `
 <div
   class="euiCard euiCard--centerAligned euiCard--horizontal"
 >
-  <span
+  <div
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -112,15 +112,69 @@ exports[`EuiCard props horizontal 1`] = `
         Card description
       </p>
     </div>
-  </span>
+  </div>
 </div>
+`;
+
+exports[`EuiCard props href supports href as a link 1`] = `
+<EuiCard
+  description="There"
+  href="#"
+  title="Hoi"
+>
+  <div
+    className="euiCard euiCard--centerAligned euiCard--isClickable"
+    onClick={[Function]}
+  >
+    <div
+      className="euiCard__content"
+    >
+      <EuiTitle
+        className="euiCard__title"
+        id="generated-idTitle"
+        size="s"
+      >
+        <span
+          className="euiTitle euiTitle--small euiCard__title"
+          id="generated-idTitle"
+        >
+          <a
+            aria-describedby="generated-idDescription"
+            className="euiCard__titleAnchor"
+            href="#"
+            rel="noreferrer"
+          >
+            Hoi
+          </a>
+        </span>
+      </EuiTitle>
+      <EuiText
+        className="euiCard__description"
+        id="generated-idDescription"
+        size="s"
+      >
+        <div
+          className="euiText euiText--small euiCard__description"
+          id="generated-idDescription"
+        >
+          <p>
+            There
+          </p>
+        </div>
+      </EuiText>
+    </div>
+    <div
+      className="euiCard__footer"
+    />
+  </div>
+</EuiCard>
 `;
 
 exports[`EuiCard props icon 1`] = `
 <div
   class="euiCard euiCard--centerAligned euiCard--hasIcon"
 >
-  <span
+  <div
     class="euiCard__top"
   >
     <svg
@@ -131,12 +185,12 @@ exports[`EuiCard props icon 1`] = `
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     />
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -149,8 +203,8 @@ exports[`EuiCard props icon 1`] = `
         Card description
       </p>
     </div>
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__footer"
   />
 </div>
@@ -160,11 +214,11 @@ exports[`EuiCard props selectable 1`] = `
 <div
   class="euiCard euiCard--centerAligned euiCard--isSelectable euiCard--isSelectable--text"
 >
-  <span
+  <div
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -177,8 +231,8 @@ exports[`EuiCard props selectable 1`] = `
         Card description
       </p>
     </div>
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__footer"
   />
   <button
@@ -203,11 +257,11 @@ exports[`EuiCard props textAlign 1`] = `
 <div
   class="euiCard euiCard--rightAligned"
 >
-  <span
+  <div
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -220,8 +274,8 @@ exports[`EuiCard props textAlign 1`] = `
         Card description
       </p>
     </div>
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__footer"
   />
 </div>
@@ -231,11 +285,11 @@ exports[`EuiCard props titleElement 1`] = `
 <div
   class="euiCard euiCard--centerAligned"
 >
-  <span
+  <div
     class="euiCard__content"
   >
     <h4
-      class="euiTitle euiTitle--medium euiCard__title"
+      class="euiTitle euiTitle--small euiCard__title"
       id="generated-idTitle"
     >
       Card title
@@ -248,8 +302,8 @@ exports[`EuiCard props titleElement 1`] = `
         Card description
       </p>
     </div>
-  </span>
-  <span
+  </div>
+  <div
     class="euiCard__footer"
   />
 </div>
