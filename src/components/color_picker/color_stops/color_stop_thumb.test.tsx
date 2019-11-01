@@ -25,6 +25,9 @@ test('renders EuiColorStopThumb', () => {
       globalMin={0}
       globalMax={100}
       colorPickerMode="default"
+      isPopoverOpen={false}
+      openPopover={() => {}}
+      closePopover={() => {}}
       {...requiredProps}
     />
   );
@@ -42,6 +45,9 @@ test('renders swatch-only EuiColorStopThumb', () => {
       globalMin={0}
       globalMax={100}
       colorPickerMode="swatch"
+      isPopoverOpen={false}
+      openPopover={() => {}}
+      closePopover={() => {}}
       {...requiredProps}
     />
   );
@@ -59,6 +65,9 @@ test('renders picker-only EuiColorStopThumb', () => {
       globalMin={0}
       globalMax={100}
       colorPickerMode="picker"
+      isPopoverOpen={false}
+      openPopover={() => {}}
+      closePopover={() => {}}
       {...requiredProps}
     />
   );
@@ -77,6 +86,9 @@ test('renders disabled EuiColorStopThumb', () => {
       globalMax={100}
       colorPickerMode="default"
       disabled={true}
+      isPopoverOpen={false}
+      openPopover={() => {}}
+      closePopover={() => {}}
       {...requiredProps}
     />
   );
@@ -95,6 +107,9 @@ test('renders readOnly EuiColorStopThumb', () => {
       globalMax={100}
       colorPickerMode="default"
       readOnly={true}
+      isPopoverOpen={false}
+      openPopover={() => {}}
+      closePopover={() => {}}
       {...requiredProps}
     />
   );

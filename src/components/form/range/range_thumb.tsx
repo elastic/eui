@@ -15,7 +15,7 @@ interface BaseProps extends CommonProps {
 interface ButtonLike extends BaseProps, HTMLAttributes<HTMLButtonElement> {}
 interface DivLike
   extends BaseProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {}
+    Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'onMouseDown'> {}
 
 export type EuiRangeThumbProps = ExclusiveUnion<ButtonLike, DivLike>;
 
@@ -28,6 +28,7 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
   showInput,
   showTicks,
   onClick,
+  onMouseDown,
   tabIndex,
   ...rest
 }) => {
@@ -47,10 +48,11 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
     'aria-disabled': !!disabled,
     tabIndex: showInput || !!disabled ? -1 : tabIndex || 0,
   };
-  return onClick ? (
+  return onClick || onMouseDown ? (
     <button
       type="button"
       onClick={onClick}
+      onMouseDown={onMouseDown}
       disabled={disabled}
       {...commonAttrs}
       {...rest as HTMLAttributes<HTMLButtonElement>}
