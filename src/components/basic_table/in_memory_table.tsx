@@ -1,13 +1,14 @@
 import React, { Component, ReactNode } from 'react';
-import { EuiBasicTable, Criteria } from './basic_table';
 import {
-  SelectionType,
-  ItemId,
-  FieldDataColumnType,
-  ComputedColumnType,
-  ActionsColumnType,
-  DataType,
-  SortingType,
+  EuiBasicTable,
+  Criteria,
+  EuiBasicTableProps,
+  EuiBasicTableColumn,
+} from './basic_table';
+import {
+  EuiTableFieldDataColumnType,
+  EuiTableDataType,
+  EuiTableSortingType,
 } from './table_types';
 import { PropertySort } from '../../services';
 import {
@@ -99,17 +100,9 @@ export type FilterConfig =
   | FieldValueToggleFilterConfigType
   | FieldValueToggleGroupFilterConfigType;
 
-type Column<T> =
-  | FieldDataColumnType<T>
-  | ComputedColumnType<T>
-  | ActionsColumnType<T>;
-
 type SearchBox = Omit<SearchBoxConfig, 'schema'> & {
   schema?: boolean | SchemaType;
 };
-
-type CellPropsCallback<T> = (item: T, column: Column<T>) => object;
-type RowPropsCallback<T> = (item: T) => object;
 
 /* Should point at search_bar/query type when it is converted to typescript */
 type Query = any;
@@ -177,37 +170,23 @@ interface SortingOptions {
 
 type Sorting = boolean | SortingOptions;
 
-export type EuiInMemoryTableProps<T> = CommonProps & {
-  columns: Array<Column<T>>;
-  items: T[];
-  loading?: boolean;
-  message?: ReactNode;
-  error?: string;
-  compressed?: boolean;
-  search?: Search;
-  pagination?: Pagination;
-  sorting?: Sorting;
-  /**
-   * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
-   */
-  allowNeutralSort?: boolean;
-  selection?: SelectionType<T>;
-  itemId?: ItemId<T>;
-  rowProps?: object | RowPropsCallback<T>;
-  cellProps?: object | CellPropsCallback<T>;
-  onTableChange?: (nextValues: Criteria<T>) => void;
-  executeQueryOptions?: {
-    defaultFields?: string[];
-    isClauseMatcher?: (...args: any) => boolean;
-    explain?: boolean;
+export type EuiInMemoryTableProps<T> = CommonProps &
+  Omit<EuiBasicTableProps<T>, 'pagination' | 'sorting' | 'noItemsMessage'> & {
+    message?: ReactNode;
+    search?: Search;
+    pagination?: Pagination;
+    sorting?: Sorting;
+    /**
+     * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
+     */
+    allowNeutralSort?: boolean;
+    onTableChange?: (nextValues: Criteria<T>) => void;
+    executeQueryOptions?: {
+      defaultFields?: string[];
+      isClauseMatcher?: (...args: any) => boolean;
+      explain?: boolean;
+    };
   };
-  isSelectable?: boolean;
-  hasActions?: boolean;
-  responsive?: boolean;
-  itemIdToExpandedRowMap?: {
-    [id: string]: ReactNode;
-  };
-};
 
 interface State<T> {
   prevProps: {
@@ -272,7 +251,7 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
 };
 
 function findColumnByProp<T>(
-  columns: Array<Column<T>>,
+  columns: Array<EuiBasicTableColumn<T>>,
   prop: 'field' | 'name',
   value: string
 ) {
@@ -289,7 +268,7 @@ function findColumnByProp<T>(
 }
 
 function getInitialSorting<T>(
-  columns: Array<Column<T>>,
+  columns: Array<EuiBasicTableColumn<T>>,
   sorting: Sorting | undefined
 ) {
   if (!sorting || !(sorting as SortingOptions).sort) {
@@ -412,7 +391,7 @@ export class EuiInMemoryTable<T> extends Component<
     // map back to `name` if this is the case
     for (let i = 0; i < this.props.columns.length; i++) {
       const column = this.props.columns[i];
-      if ((column as FieldDataColumnType<T>).field === sortName) {
+      if ((column as EuiTableFieldDataColumnType<T>).field === sortName) {
         sortName = column.name as keyof T;
         break;
       }
@@ -492,10 +471,10 @@ export class EuiInMemoryTable<T> extends Component<
     const { columns } = this.props;
     return columns.reduce<{
       strict: boolean;
-      fields: Record<string, { type: DataType }>;
+      fields: Record<string, { type: EuiTableDataType }>;
     }>(
       (schema, column) => {
-        const { field, dataType } = column as FieldDataColumnType<T>;
+        const { field, dataType } = column as EuiTableFieldDataColumnType<T>;
         if (field) {
           const type = dataType || 'string';
           schema.fields[field as string] = { type };
@@ -513,7 +492,7 @@ export class EuiInMemoryTable<T> extends Component<
 
     const sortColumn = columns.find(
       ({ name }) => name === sortName
-    ) as FieldDataColumnType<T>;
+    ) as EuiTableFieldDataColumnType<T>;
 
     if (sortColumn == null) {
       // can't return a non-function so return a function that says everything is the same
@@ -621,7 +600,7 @@ export class EuiInMemoryTable<T> extends Component<
     // Data loaded from a server can have a default sort order which is meaningful to the
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display
     // rows in the order in which they're initially loaded by providing an undefined sorting prop.
-    const sorting: SortingType<T> | undefined = !hasSorting
+    const sorting: EuiTableSortingType<T> | undefined = !hasSorting
       ? undefined
       : {
           sort:

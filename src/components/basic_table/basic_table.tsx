@@ -46,19 +46,19 @@ import { EuiDelayRender } from '../delay_render';
 import makeId from '../form/form_row/make_id';
 import { Action } from './action_types';
 import {
-  ActionsColumnType,
-  ComputedColumnType,
-  DataType,
-  FieldDataColumnType,
-  FooterProps,
+  EuiTableActionsColumnType,
+  EuiTableComputedColumnType,
+  EuiTableDataType,
+  EuiTableFieldDataColumnType,
+  EuiTableFooterProps,
   ItemId,
-  SelectionType,
-  SortingType,
+  EuiTableSelectionType,
+  EuiTableSortingType,
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
 type DataTypeProfiles = Record<
-  DataType,
+  EuiTableDataType,
   {
     align: typeof LEFT_ALIGNMENT | typeof RIGHT_ALIGNMENT;
     render: (value: any) => string;
@@ -132,9 +132,9 @@ function getCellProps<T>(
 
 function getColumnFooter<T>(
   column: EuiBasicTableColumn<T>,
-  { items, pagination }: FooterProps<T>
+  { items, pagination }: EuiTableFooterProps<T>
 ) {
-  const { footer } = column as FieldDataColumnType<T>;
+  const { footer } = column as EuiTableFieldDataColumnType<T>;
   if (footer) {
     if (isFunction(footer)) {
       return footer({ items, pagination });
@@ -146,9 +146,9 @@ function getColumnFooter<T>(
 }
 
 export type EuiBasicTableColumn<T> =
-  | FieldDataColumnType<T>
-  | ComputedColumnType<T>
-  | ActionsColumnType<T>;
+  | EuiTableFieldDataColumnType<T>
+  | EuiTableComputedColumnType<T>
+  | EuiTableActionsColumnType<T>;
 
 export interface Criteria<T> {
   page?: {
@@ -181,8 +181,8 @@ interface BasicTableProps<T> {
   pagination?: Pagination;
   responsive?: boolean;
   rowProps?: object | RowPropsCallback<T>;
-  selection?: SelectionType<T>;
-  sorting?: SortingType<T>;
+  selection?: EuiTableSelectionType<T>;
+  sorting?: EuiTableSortingType<T>;
 }
 
 export type EuiBasicTableProps<T> = CommonProps &
@@ -308,7 +308,7 @@ export class EuiBasicTable<T = any> extends Component<
       currentCriteria &&
       currentCriteria.sort &&
       (currentCriteria.sort.field ===
-        (column as FieldDataColumnType<T>).field ||
+        (column as EuiTableFieldDataColumnType<T>).field ||
         currentCriteria.sort.field === column.name)
     ) {
       direction = SortDirection.reverse(currentCriteria.sort.direction);
@@ -323,7 +323,7 @@ export class EuiBasicTable<T = any> extends Component<
             size: currentCriteria.page.size,
           },
       sort: {
-        field: ((column as FieldDataColumnType<T>).field ||
+        field: ((column as EuiTableFieldDataColumnType<T>).field ||
           column.name) as keyof T,
         direction,
       },
@@ -419,8 +419,8 @@ export class EuiBasicTable<T = any> extends Component<
 
     columns.forEach((column: EuiBasicTableColumn<T>, index: number) => {
       if (
-        !(column as FieldDataColumnType<T>).sortable ||
-        (column as FieldDataColumnType<T>).hideForMobile
+        !(column as EuiTableFieldDataColumnType<T>).sortable ||
+        (column as EuiTableFieldDataColumnType<T>).hideForMobile
       ) {
         return;
       }
@@ -429,7 +429,9 @@ export class EuiBasicTable<T = any> extends Component<
 
       items.push({
         name: column.name,
-        key: `_data_s_${(column as FieldDataColumnType<T>).field}_${index}`,
+        key: `_data_s_${
+          (column as EuiTableFieldDataColumnType<T>).field
+        }_${index}`,
         onSort: this.resolveColumnOnSort(column),
         isSorted: !!sortDirection,
         isSortAscending: sortDirection
@@ -532,12 +534,12 @@ export class EuiBasicTable<T = any> extends Component<
         mobileOptions,
         isMobileHeader,
         hideForMobile,
-      } = column as FieldDataColumnType<T>;
+      } = column as EuiTableFieldDataColumnType<T>;
 
       const columnAlign = align || this.getAlignForDataType(dataType);
 
       // actions column
-      if ((column as ActionsColumnType<T>).actions) {
+      if ((column as EuiTableActionsColumnType<T>).actions) {
         headers.push(
           <EuiTableHeaderCell
             key={`_actions_h_${index}`}
@@ -551,7 +553,7 @@ export class EuiBasicTable<T = any> extends Component<
       }
 
       // computed column
-      if (!(column as FieldDataColumnType<T>).field) {
+      if (!(column as EuiTableFieldDataColumnType<T>).field) {
         const sorting: SortOptions = {};
         // computed columns are only sortable if their `sortable` is a function
         if (this.props.sorting && typeof sortable === 'function') {
@@ -628,7 +630,7 @@ export class EuiBasicTable<T = any> extends Component<
         isMobileHeader,
         field,
         align,
-      } = column as FieldDataColumnType<T>;
+      } = column as EuiTableFieldDataColumnType<T>;
 
       if ((mobileOptions && mobileOptions!.only) || isMobileHeader) {
         return; // exclude columns that only exist for mobile headers
@@ -744,22 +746,22 @@ export class EuiBasicTable<T = any> extends Component<
 
     let calculatedHasActions;
     columns.forEach((column: EuiBasicTableColumn<T>, columnIndex: number) => {
-      if ((column as ActionsColumnType<T>).actions) {
+      if ((column as EuiTableActionsColumnType<T>).actions) {
         cells.push(
           this.renderItemActionsCell(
             itemId,
             item,
-            column as ActionsColumnType<T>,
+            column as EuiTableActionsColumnType<T>,
             columnIndex
           )
         );
         calculatedHasActions = true;
-      } else if ((column as FieldDataColumnType<T>).field) {
+      } else if ((column as EuiTableFieldDataColumnType<T>).field) {
         cells.push(
           this.renderItemFieldDataCell(
             itemId,
             item,
-            column as FieldDataColumnType<T>,
+            column as EuiTableFieldDataColumnType<T>,
             columnIndex
           )
         );
@@ -768,7 +770,7 @@ export class EuiBasicTable<T = any> extends Component<
           this.renderItemComputedCell(
             itemId,
             item,
-            column as ComputedColumnType<T>,
+            column as EuiTableComputedColumnType<T>,
             columnIndex
           )
         );
@@ -780,13 +782,13 @@ export class EuiBasicTable<T = any> extends Component<
 
     const mobileOnlyCols = columns.reduce<number>((num, column) => {
       if (
-        (column as FieldDataColumnType<T>).mobileOptions &&
-        (column as FieldDataColumnType<T>).mobileOptions!.only
+        (column as EuiTableFieldDataColumnType<T>).mobileOptions &&
+        (column as EuiTableFieldDataColumnType<T>).mobileOptions!.only
       ) {
         return num + 1;
       }
 
-      return (column as FieldDataColumnType<T>).isMobileHeader
+      return (column as EuiTableFieldDataColumnType<T>).isMobileHeader
         ? num + 1
         : num + 0; // BWC only
     }, 0);
@@ -885,7 +887,7 @@ export class EuiBasicTable<T = any> extends Component<
   renderItemActionsCell(
     itemId: ItemId<T>,
     item: T,
-    column: ActionsColumnType<T>,
+    column: EuiTableActionsColumnType<T>,
     columnIndex: number
   ) {
     const actionEnabled = (action: Action<T>) =>
@@ -944,7 +946,7 @@ export class EuiBasicTable<T = any> extends Component<
   renderItemFieldDataCell(
     itemId: ItemId<T>,
     item: T,
-    column: FieldDataColumnType<T>,
+    column: EuiTableFieldDataColumnType<T>,
     columnIndex: number
   ) {
     const { field, render, dataType } = column;
@@ -960,7 +962,7 @@ export class EuiBasicTable<T = any> extends Component<
   renderItemComputedCell(
     itemId: ItemId<T>,
     item: T,
-    column: ComputedColumnType<T>,
+    column: EuiTableComputedColumnType<T>,
     columnIndex: number
   ) {
     const { render } = column;
@@ -991,7 +993,7 @@ export class EuiBasicTable<T = any> extends Component<
       footer,
       mobileOptions,
       ...rest
-    } = column as FieldDataColumnType<T>;
+    } = column as EuiTableFieldDataColumnType<T>;
     const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(
@@ -1022,7 +1024,7 @@ export class EuiBasicTable<T = any> extends Component<
 
   resolveColumnSortDirection = (column: EuiBasicTableColumn<T>) => {
     const { sorting } = this.props;
-    const { sortable, field, name } = column as FieldDataColumnType<T>;
+    const { sortable, field, name } = column as EuiTableFieldDataColumnType<T>;
     if (!sorting || !sorting.sort || !sortable) {
       return;
     }
@@ -1033,7 +1035,7 @@ export class EuiBasicTable<T = any> extends Component<
 
   resolveColumnOnSort = (column: EuiBasicTableColumn<T>) => {
     const { sorting } = this.props;
-    const { sortable, name } = column as FieldDataColumnType<T>;
+    const { sortable, name } = column as EuiTableFieldDataColumnType<T>;
     if (!sorting || !sortable) {
       return;
     }
@@ -1044,7 +1046,7 @@ export class EuiBasicTable<T = any> extends Component<
     return () => this.onColumnSortChange(column);
   };
 
-  getRendererForDataType(dataType: DataType = 'auto') {
+  getRendererForDataType(dataType: EuiTableDataType = 'auto') {
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
       throw new Error(
@@ -1056,7 +1058,7 @@ export class EuiBasicTable<T = any> extends Component<
     return profile.render;
   }
 
-  getAlignForDataType(dataType: DataType = 'auto') {
+  getAlignForDataType(dataType: EuiTableDataType = 'auto') {
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
       throw new Error(
