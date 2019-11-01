@@ -2,6 +2,7 @@
  * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
  * from the tab order with tabindex="-1" so that we can control the keyboard navigation interface.
  */
+/* eslint-disable jsx-a11y/role-has-required-aria-props */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -745,7 +746,7 @@ export class EuiComboBox extends Component {
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
         data-test-subj={dataTestSubj}
-        role="combobox" // eslint-disable-line jsx-a11y/role-has-required-aria-props
+        role="combobox"
         aria-haspopup="listbox"
         aria-expanded={isListOpen}>
         <EuiComboBoxInput

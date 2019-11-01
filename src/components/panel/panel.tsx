@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion, Omit } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiBetaBadge } from '../badge/beta_badge';
 
 export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';

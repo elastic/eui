@@ -150,7 +150,7 @@ describe('EuiInnerText', () => {
     const fallback = 'Fallback';
     const component = mount(
       <EuiInnerText {...requiredProps} fallback={fallback}>
-        {({}, innerText) => (
+        {(_, innerText) => (
           <span title={innerText} data-test-subj="span">
             {text}
           </span>

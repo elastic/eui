@@ -1,6 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 
 import { EuiIcon, IconColor } from '../icon';
 

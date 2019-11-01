@@ -5,7 +5,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion, keysOf, PropsOf, Omit } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 
 import { isColorDark, hexToRgb } from '../../services/color';
 import { EuiInnerText } from '../inner_text';

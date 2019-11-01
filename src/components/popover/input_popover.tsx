@@ -7,7 +7,7 @@ import React, {
 import classnames from 'classnames';
 import tabbable from 'tabbable';
 
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
