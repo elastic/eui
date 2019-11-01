@@ -20,7 +20,15 @@ exports[`EuiHideFor renders and copies classes 1`] = `
 </div>
 `;
 
-exports[`EuiHideFor renders wraps chilren in a span 1`] = `
+exports[`EuiHideFor renders for multiple breakpoints 1`] = `
+<span
+  class="eui-hideFor--xs eui-hideFor--l"
+>
+  Child
+</span>
+`;
+
+exports[`EuiHideFor renders wraps children in a span 1`] = `
 <span
   class="eui-hideFor--xs"
 >

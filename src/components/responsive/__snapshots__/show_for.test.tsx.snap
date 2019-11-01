@@ -38,7 +38,15 @@ exports[`EuiShowFor renders and copies classes 1`] = `
 </div>
 `;
 
-exports[`EuiShowFor renders wraps chilren in a span 1`] = `
+exports[`EuiShowFor renders for multiple breakpoints 1`] = `
+<span
+  class="eui-showFor--xs eui-showFor--l"
+>
+  Child
+</span>
+`;
+
+exports[`EuiShowFor renders wraps children in a span 1`] = `
 <span
   class="eui-showFor--xs"
 >

@@ -7,7 +7,7 @@ import { EuiHideForBreakpoints, EuiHideFor } from './hide_for';
 const BREAKPOINTS: EuiHideForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
 
 describe('EuiHideFor', () => {
-  test('renders wraps chilren in a span', () => {
+  test('renders wraps children in a span', () => {
     const component = render(
       <EuiHideFor sizes={['xs']} {...requiredProps}>
         Child
@@ -35,5 +35,13 @@ describe('EuiHideFor', () => {
 
       expect(component).toMatchSnapshot();
     });
+  });
+
+  test('renders for multiple breakpoints', () => {
+    const component = render(
+      <EuiHideFor sizes={['xs', 'l']}>Child</EuiHideFor>
+    );
+
+    expect(component).toMatchSnapshot();
   });
 });

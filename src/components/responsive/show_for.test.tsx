@@ -12,7 +12,7 @@ const BREAKPOINTS: EuiShowForBreakpoints[] = ['xs', 's', 'm', 'l', 'xl'];
 const DISPLAYS: EuiShowForDisplay[] = ['block', 'inlineBlock', 'flex'];
 
 describe('EuiShowFor', () => {
-  test('renders wraps chilren in a span', () => {
+  test('renders wraps children in a span', () => {
     const component = render(
       <EuiShowFor sizes={['xs']} {...requiredProps}>
         Child
@@ -38,6 +38,14 @@ describe('EuiShowFor', () => {
 
       expect(component).toMatchSnapshot();
     });
+  });
+
+  test('renders for multiple breakpoints', () => {
+    const component = render(
+      <EuiShowFor sizes={['xs', 'l']}>Child</EuiShowFor>
+    );
+
+    expect(component).toMatchSnapshot();
   });
 
   DISPLAYS.forEach(display => {

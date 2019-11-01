@@ -33,6 +33,7 @@ export default () => (
         title={'No icon example'}
         description="Example of a card's description. Stick to one or two sentences."
         onClick={() => window.alert('Card clicked')}
+        href="#"
       />
     </EuiFlexItem>
   </EuiFlexGroup>
