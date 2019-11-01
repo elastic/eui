@@ -144,15 +144,7 @@ export class EuiAccordion extends Component<
     const buttonClasses = classNames('euiAccordion__button', buttonClassName);
 
     const icon = (
-      <EuiIcon
-        className="euiAccordion__icon"
-        style={{
-          transition: "transform 0.1s",
-          transform: `rotate(${this.state.isOpen ? 90 : 0}deg)`
-        }}
-        type="arrowRight"
-        size="m"
-      />
+      <EuiIcon className="euiAccordion__icon" type="arrowRight" size="m" />
     );
 
     let optionalAction = null;
