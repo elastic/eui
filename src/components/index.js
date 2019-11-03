@@ -44,6 +44,8 @@ export {
   EuiContextMenuItem,
 } from './context_menu';
 
+export { EuiControlBar } from './control_bar';
+
 export { EuiCopy } from './copy';
 
 export { EuiDataGrid } from './datagrid';
@@ -221,6 +223,8 @@ export {
 export { EuiPortal } from './portal';
 
 export { EuiProgress } from './progress';
+
+export { EuiTreeView } from './tree_view';
 
 export { EuiResizeObserver } from './observer/resize_observer';
 

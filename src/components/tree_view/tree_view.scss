@@ -1,0 +1,114 @@
+.euiTreeView__wrapper .euiTreeView {
+  margin: 0;
+  list-style-type: none;
+}
+
+.euiTreeView .euiTreeView {
+  padding-left: $euiSizeL;
+}
+
+.euiTreeView__node {
+  max-height: $euiSizeXL;
+  overflow: hidden;
+  cursor: pointer;
+  line-height: $euiSizeXL;
+}
+
+.euiTreeView__node--expanded {
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.euiTreeView__nodeInner {
+  padding-left: $euiSizeS;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: $euiSizeXL;
+  border-radius: $euiBorderRadius;
+  width: 100%;
+  text-align-last: left;
+
+  &:focus {
+    box-shadow: inset 0 0 0 $euiSizeXS / 4 $euiFocusRingColor;
+  }
+
+  &:hover,
+  &:active {
+    background-color: tintOrShade($euiColorLightShade, 50%, 10%);
+  }
+
+  .euiTreeView__iconPlaceholder {
+    width: $euiSizeXL;
+  }
+
+}
+
+.euiTreeView__iconWrapper {
+  margin-top: -($euiSizeXS / 2);
+  margin-right: $euiSizeS;
+
+  // This helps tokens appear vertically centered
+  .euiToken {
+    margin-top: $euiSizeXS / 2;
+  }
+}
+
+.euiTreeView--compressed {
+  .euiTreeView__node {
+    max-height: $euiSizeL;
+    line-height: $euiSizeL;
+
+    .euiTreeView__nodeInner {
+      height: $euiSizeL;
+
+    }
+
+    .euiTreeView__iconWrapper {
+      margin: -1px ($euiSizeS * .75) 0 0;
+    }
+
+    .euiTreeView__nodeLabel {
+      margin-top: -1px;
+    }
+
+    .euiTreeView__iconPlaceholder {
+      width: $euiSizeL;
+    }
+  }
+
+  .euiTreeView__node--expanded {
+    max-height: 100vh;
+    overflow: auto;
+  }
+}
+
+.euiTreeView--withArrows {
+  .euiTreeView__expansionArrow {
+    margin-right: $euiSizeXS;
+  }
+
+  &.euiTreeView {
+    .euiTreeView__nodeInner--withArrows {
+      .euiTreeView__iconWrapper {
+        margin-left: 0;
+      }
+    }
+
+    .euiTreeView__iconWrapper {
+      margin-left: $euiSize + $euiSizeXS;
+    }
+  }
+
+  &.euiTreeView--compressed {
+    .euiTreeView__nodeInner--withArrows {
+      .euiTreeView__iconWrapper {
+        margin-left: 0;
+      }
+    }
+
+    .euiTreeView__iconWrapper {
+      margin-left: $euiSize;
+    }
+  }
+}

@@ -254,3 +254,18 @@ exports[`EuiToken props size s is rendered 1`] = `
   />
 </div>
 `;
+
+exports[`EuiToken props size xs is rendered 1`] = `
+<div
+  class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--xsmall"
+>
+  <svg
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</div>
+`;

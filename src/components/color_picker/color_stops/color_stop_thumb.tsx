@@ -51,7 +51,9 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
   disabled?: boolean;
   readOnly?: boolean;
-  isPopoverOpen?: boolean;
+  isPopoverOpen: boolean;
+  openPopover: () => void;
+  closePopover: () => void;
   'data-index'?: string;
   'aria-valuetext'?: string;
 }
@@ -76,12 +78,13 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   colorPickerSwatches,
   disabled,
   readOnly,
-  isPopoverOpen: beginOpen = false,
+  isPopoverOpen,
+  openPopover,
+  closePopover,
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
 }) => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(beginOpen);
-  const [hasFocus, setHasFocus] = useState(beginOpen);
+  const [hasFocus, setHasFocus] = useState(isPopoverOpen);
   const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
   const [numberInputRef, setNumberInputRef] = useState();
@@ -102,10 +105,6 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     // Guard against `null` ref in usage
     return getPositionFromStop(stop, parentRef!, globalMin, globalMax);
   };
-
-  const openPopover = () => setIsPopoverOpen(true);
-
-  const closePopover = () => setIsPopoverOpen(false);
 
   const handleOnRemove = () => {
     if (onRemove) {
@@ -171,13 +170,20 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     switch (e.keyCode) {
+      case keyCodes.ENTER:
+        e.preventDefault();
+        openPopover();
+        break;
+
       case keyCodes.LEFT:
         e.preventDefault();
+        if (readOnly) return;
         handleStopChange(stop - 1);
         break;
 
       case keyCodes.RIGHT:
         e.preventDefault();
+        if (readOnly) return;
         handleStopChange(stop + 1);
         break;
     }
@@ -186,6 +192,20 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   const [handleMouseDown, handleInteraction] = useMouseMove<HTMLButtonElement>(
     handlePointerChange
   );
+
+  const handleOnMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!readOnly) {
+      handleMouseDown(e);
+    }
+    openPopover();
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    if (!readOnly) {
+      handleInteraction(e);
+    }
+    openPopover();
+  };
 
   const classes = classNames(
     'euiColorStopPopover',
@@ -231,14 +251,13 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 min={localMin}
                 max={localMax}
                 value={stop}
-                onClick={openPopover}
                 onFocus={handleFocus}
                 onBlur={() => setHasFocus(false)}
                 onMouseOver={() => setHasFocus(true)}
                 onMouseOut={() => setHasFocus(false)}
-                onKeyDown={readOnly ? undefined : handleKeyDown}
-                onMouseDown={readOnly ? undefined : handleMouseDown}
-                onTouchStart={readOnly ? undefined : handleInteraction}
+                onKeyDown={handleKeyDown}
+                onMouseDown={handleOnMouseDown}
+                onTouchStart={handleTouchStart}
                 onTouchMove={readOnly ? undefined : handleInteraction}
                 aria-valuetext={ariaValueText}
                 aria-label={ariaLabel}

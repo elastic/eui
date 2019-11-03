@@ -71,7 +71,7 @@ interface CommonEuiButtonEmptyProps extends CommonProps {
   isLoading?: boolean;
 
   type?: 'button' | 'submit';
-  buttonRef?: () => void;
+  buttonRef?: (ref: HTMLButtonElement | HTMLAnchorElement | null) => void;
   /**
    * Passes props to `euiButtonEmpty__content` span
    */
