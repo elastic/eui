@@ -33,6 +33,7 @@
   // Nested to override EuiIcon
   .euiAccordion__icon {
     vertical-align: top;
+    transition: transform $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 }
 
@@ -72,5 +73,9 @@ $paddingSizes: (
     visibility: visible;
     opacity: 1;
     height: auto;
+  }
+
+  .euiAccordion__icon {
+    transform: rotate(90deg);
   }
 }
