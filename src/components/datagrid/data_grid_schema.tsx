@@ -1,6 +1,7 @@
 import React, { useMemo, ReactNode } from 'react';
 import {
   EuiDataGridColumn,
+  EuiDataGridInMemory,
   EuiDataGridInMemoryValues,
 } from './data_grid_types';
 
@@ -254,8 +255,10 @@ function scoreValueBySchemaType(
 const MINIMUM_SCORE_MATCH = 0.5;
 
 export function useDetectSchema(
+  inMemory: EuiDataGridInMemory | undefined,
   inMemoryValues: EuiDataGridInMemoryValues,
   schemaDetectors: EuiDataGridSchemaDetector[] | undefined,
+  definedColumnSchemas: { [key: string]: string },
   autoDetectSchema: boolean
 ) {
   const schema = useMemo(() => {
@@ -271,6 +274,11 @@ export function useDetectSchema(
     // for each row, score each value by each detector and put the results on `columnSchemas`
     const rowIndices = Object.keys(inMemoryValues);
 
+    const columnIdsWithDefinedSchemas = new Set<string>([
+      ...((inMemory && inMemory.skipColumns) || []),
+      ...Object.keys(definedColumnSchemas),
+    ]);
+
     for (let i = 0; i < rowIndices.length; i++) {
       const rowIndex = rowIndices[i];
       const rowData = inMemoryValues[rowIndex];
@@ -278,6 +286,7 @@ export function useDetectSchema(
 
       for (let j = 0; j < columnIds.length; j++) {
         const columnId = columnIds[j];
+        if (columnIdsWithDefinedSchemas.has(columnId)) continue;
 
         const schemaColumn = (columnSchemas[columnId] =
           columnSchemas[columnId] || {});
