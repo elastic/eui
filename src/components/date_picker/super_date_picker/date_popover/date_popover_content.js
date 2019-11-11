@@ -62,6 +62,7 @@ export function EuiDatePopoverContent({
         content: (
           <EuiRelativeTab
             dateFormat={dateFormat}
+            locale={locale}
             value={value}
             onChange={onChange}
             roundUp={roundUp}

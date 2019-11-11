@@ -20,7 +20,9 @@ export class EuiAbsoluteTab extends Component {
 
     this.state = {
       valueAsMoment,
-      textInputValue: valueAsMoment.format(this.props.dateFormat),
+      textInputValue: valueAsMoment
+        .locale(this.props.locale || 'en')
+        .format(this.props.dateFormat),
       isTextInvalid: false,
       sentenceCasedPosition,
     };

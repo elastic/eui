@@ -41,7 +41,7 @@ export function formatTimeString(
 ) {
   const timeAsMoment = moment(timeString, ISO_FORMAT, true);
   if (timeAsMoment.isValid()) {
-    return timeAsMoment.format(dateFormat);
+    return timeAsMoment.locale(locale).format(dateFormat);
   }
 
   if (timeString === 'now') {
