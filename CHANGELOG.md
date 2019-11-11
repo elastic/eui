@@ -2,6 +2,10 @@
 
 No public interface changes since `14.10.0`.
 
+**Bug fixes**
+
+- Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
+
 ## [`14.10.0`](https://github.com/elastic/eui/tree/v14.10.0)
 
 - Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
