@@ -2,6 +2,10 @@
 
 No public interface changes since `14.10.0`.
 
+**Bug fixes**
+
+- Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
+
 ## [`14.10.0`](https://github.com/elastic/eui/tree/v14.10.0)
 
 - Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
@@ -30,7 +34,6 @@ No public interface changes since `14.10.0`.
 - Changed `EuiCodeBlock` so that `overflowHeight` now applies a `maxHeight` instead of a `height` on the block ([#2487](https://github.com/elastic/eui/pull/2487))
 - Fixed potentially inconsistent state update ([#2481](https://github.com/elastic/eui/pull/2481))
 - Fixed `EuiSwitch` form behavior by adding a default button `type` of 'button' ([#2491](https://github.com/elastic/eui/pull/2491))
-- Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
 
 ## [`14.8.0`](https://github.com/elastic/eui/tree/v14.8.0)
 
