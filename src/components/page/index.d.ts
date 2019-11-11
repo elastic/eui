@@ -58,7 +58,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiPageContent: FunctionComponent<
-    CommonProps & EuiPanelProps & EuiPageContentProps
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiPanelProps & EuiPageContentProps
   >;
 
   /**
