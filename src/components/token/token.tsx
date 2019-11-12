@@ -10,9 +10,10 @@ import {
 } from './token_map';
 import { CommonProps, keysOf } from '../common';
 
-type TokenSize = 's' | 'm' | 'l';
+type TokenSize = 'xs' | 's' | 'm' | 'l';
 
 const sizeToClassMap: { [size in TokenSize]: string } = {
+  xs: 'euiToken--xsmall',
   s: 'euiToken--small',
   m: 'euiToken--medium',
   l: 'euiToken--large',
@@ -45,7 +46,7 @@ const colorToClassMap: { [color in TokenColor]: string } = {
 
 export const COLORS = keysOf(colorToClassMap);
 
-interface EuiTokenProps {
+interface TokenProps {
   /**
    * An EUI icon type
    */
@@ -64,9 +65,11 @@ interface EuiTokenProps {
   displayOptions?: EuiTokenMapDisplayOptions;
 }
 
-type Props = CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>;
+export type EuiTokenProps = CommonProps &
+  TokenProps &
+  HTMLAttributes<HTMLDivElement>;
 
-export const EuiToken: FunctionComponent<Props> = ({
+export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   iconType,
   displayOptions = {},
   size = 's',

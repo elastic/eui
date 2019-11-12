@@ -446,7 +446,11 @@ export class EuiBasicTable<T = any> extends Component<
 
     return (
       <EuiScreenReaderOnly>
-        <caption role="status" aria-relevant="text" aria-live="polite">
+        <caption
+          className="euiTableCaption"
+          role="status"
+          aria-relevant="text"
+          aria-live="polite">
           <EuiDelayRender>
             <EuiI18n
               token="euiBasicTable.tableDescription"

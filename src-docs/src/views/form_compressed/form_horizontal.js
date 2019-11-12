@@ -91,6 +91,8 @@ export default class extends Component {
 
         <EuiFormRow display="columnCompressedSwitch" label="Swtich">
           <EuiSwitch
+            showLabel={false}
+            label="Switch"
             name="switch"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}

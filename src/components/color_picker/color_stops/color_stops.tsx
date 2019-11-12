@@ -62,9 +62,13 @@ function sortStops(colorStops: ColorStop[]) {
     .sort((a, b) => a.stop - b.stop);
 }
 
+function getValidStops(colorStops: ColorStop[]) {
+  return colorStops.map(el => el.stop).filter(stop => !isNaN(stop));
+}
+
 function getRangeMin(colorStops: ColorStop[], min?: number) {
   const rangeMin = min || DEFAULT_MIN;
-  const stops = colorStops.map(el => el.stop);
+  const stops = getValidStops(colorStops);
   const first = Math.min.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (first < rangeMin) {
@@ -78,7 +82,7 @@ function getRangeMin(colorStops: ColorStop[], min?: number) {
 }
 function getRangeMax(colorStops: ColorStop[], max?: number) {
   const rangeMax = max || DEFAULT_MAX;
-  const stops = colorStops.map(el => el.stop);
+  const stops = getValidStops(colorStops);
   const last = Math.max.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (last > rangeMax) {
@@ -120,6 +124,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   }, [colorStops, min, rangeMax]);
   const [hasFocus, setHasFocus] = useState(false);
   const [focusedStopIndex, setFocusedStopIndex] = useState<number | null>(null);
+  const [openedStopId, setOpenedStopId] = useState<number | null>(null);
   const [wrapperRef, setWrapperRef] = useState<HTMLDivElement | null>(null);
   const [addTargetPosition, setAddTargetPosition] = useState<number>(0);
   const [isHoverDisabled, setIsHoverDisabled] = useState<boolean>(false);
@@ -129,8 +134,12 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   useEffect(() => {
     if (focusStopOnUpdate !== null) {
-      const toFocus = sortedStops.map(el => el.stop).indexOf(focusStopOnUpdate);
-      onFocusStop(toFocus);
+      const toFocusIndex = sortedStops
+        .map(el => el.stop)
+        .indexOf(focusStopOnUpdate);
+      const toFocusId = toFocusIndex > -1 ? sortedStops[toFocusIndex].id : null;
+      onFocusStop(toFocusIndex);
+      setOpenedStopId(toFocusId);
       setFocusStopOnUpdate(null);
     }
   }, [sortedStops]);
@@ -320,7 +329,13 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       aria-valuetext={`Stop: ${colorStop.stop}, Color: ${
         colorStop.color
       } (${index + 1} of ${colorStops.length})`}
-      isPopoverOpen={colorStop.stop === focusStopOnUpdate}
+      isPopoverOpen={colorStop.id === openedStopId}
+      openPopover={() => {
+        setOpenedStopId(colorStop.id);
+      }}
+      closePopover={() => {
+        setOpenedStopId(null);
+      }}
     />
   ));
 

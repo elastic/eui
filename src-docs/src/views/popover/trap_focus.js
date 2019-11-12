@@ -48,11 +48,21 @@ export default class extends Component {
         closePopover={this.closePopover.bind(this)}
         initialFocus="[id=asdf2]">
         <EuiFormRow label="Generate a public snapshot?" id="asdf">
-          <EuiSwitch name="switch" label="Snapshot data" />
+          <EuiSwitch
+            name="switch"
+            label="Snapshot data"
+            checked={true}
+            onChange={() => {}}
+          />
         </EuiFormRow>
 
         <EuiFormRow label="Include the following in the embed" id="asdf2">
-          <EuiSwitch name="switch" label="Current time range" />
+          <EuiSwitch
+            name="switch"
+            label="Current time range"
+            checked={true}
+            onChange={() => {}}
+          />
         </EuiFormRow>
 
         <EuiSpacer />

@@ -75,18 +75,8 @@
   }
 }
 
-// Modifier naming and colors.
-$buttonTypes: (
-  primary: $euiColorPrimary,
-  secondary: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
-  text: $euiColorDarkShade, // Reserved for special use cases
-);
-
 // Create button modifiers based upon the map.
-@each $name, $color in $buttonTypes {
+@each $name, $color in $euiButtonTypes {
   .euiButton--#{$name} {
 
     @if ($name == 'ghost') {

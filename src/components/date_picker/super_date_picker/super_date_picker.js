@@ -221,13 +221,13 @@ export class EuiSuperDatePicker extends Component {
   };
 
   applyQuickTime = ({ start, end }) => {
-    this.setState({
+    this.setState(prevState => ({
       showPrettyDuration: showPrettyDuration(
         start,
         end,
-        this.props.commonlyUsedRanges
+        prevState.commonlyUsedRanges
       ),
-    });
+    }));
     this.props.onTimeChange({
       start,
       end,
