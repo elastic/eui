@@ -323,11 +323,26 @@ function createKeyDownHandler(
         break;
       case keyCodes.PAGE_UP:
         event.preventDefault();
-        // TODO: Scrolls the grid/page so that the currently visible upper most row becomes the bottom most (#2482)
+        if (props.pagination) {
+          const totalRowCount = props.rowCount;
+          const pageIndex = props.pagination.pageIndex;
+          const pageSize = props.pagination.pageSize;
+          const pageCount = Math.ceil(totalRowCount / pageSize);
+          if (pageIndex < pageCount) {
+            props.pagination!.pageIndex += 1;
+            setFocusedCell([0, 0]);
+          }
+        }
         break;
       case keyCodes.PAGE_DOWN:
         event.preventDefault();
-        // TODO: Scrolls the grid/page so that the currently visible bottom most row becomes the top most (#2482)
+        if (props.pagination) {
+          const pageIndex = props.pagination.pageIndex;
+          if (pageIndex > 0) {
+            props.pagination!.pageIndex -= 1;
+            setFocusedCell([0, 0]);
+          }
+        }
         break;
       case keyCodes.CTRL && keyCodes.END:
         event.preventDefault();
