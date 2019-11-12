@@ -42,8 +42,9 @@ export default class extends Component {
         action: (
           <EuiLink
             target="_blank"
+            external
             href="https://www.elastic.co/blog/kibana-7-0-0-released">
-            Read the blog <EuiIcon type="popout" size="s" />
+            Read the blog
           </EuiLink>
         ),
         date: '10 April 2019',
@@ -63,8 +64,9 @@ export default class extends Component {
         action: (
           <EuiLink
             target="_blank"
+            external
             href="https://www.elastic.co/webinars/intro-to-canvas-a-new-way-to-tell-visual-stories-in-kibana">
-            Watch the webinar <EuiIcon type="popout" size="s" />
+            Watch the webinar
           </EuiLink>
         ),
         date: '26 March 2019',
@@ -76,8 +78,9 @@ export default class extends Component {
         action: (
           <EuiLink
             target="_blank"
+            external
             href="https://www.elastic.co/guide/en/kibana/6.7/release-notes-6.7.0.html">
-            Check out the docs <EuiIcon type="popout" size="s" />
+            Check out the docs
           </EuiLink>
         ),
         date: '26 March 2019',
@@ -90,8 +93,9 @@ export default class extends Component {
         action: (
           <EuiLink
             target="_blank"
+            external
             href="https://www.elastic.co/blog/how-to-create-manage-and-visualize-elasticsearch-rollup-data-in-kibana">
-            Read the blog <EuiIcon type="popout" size="s" />
+            Read the blog
           </EuiLink>
         ),
         date: '10 January 2019',
@@ -114,7 +118,7 @@ export default class extends Component {
   render() {
     const button = (
       <EuiHeaderSectionItemButton
-        aria-controls="News feed"
+        aria-controls="headerNewsFeed"
         aria-expanded={this.state.isFlyoutVisible}
         aria-haspopup="true"
         aria-label="News feed"
@@ -139,6 +143,7 @@ export default class extends Component {
         <EuiFlyout
           onClose={this.closeFlyout}
           size="s"
+          id="headerNewsFeed"
           aria-labelledby="flyoutSmallTitle"
           style={flyoutStyle}>
           <EuiFlyoutHeader hasBorder>
@@ -151,6 +156,7 @@ export default class extends Component {
               <EuiHeaderAlert
                 title={alert.title}
                 action={alert.action}
+                text={alert.text}
                 date={alert.date}
                 badge={alert.badge}
               />

@@ -15,7 +15,7 @@ export type EuiHeaderAlertProps = CommonProps &
     text?: ReactNode;
     title: ReactNode;
     /**
-     * Adds an icon next to the alert's date. Usually used to show the Kibana version related to the alert using `EuiBadge`.
+     * Accepts an `EuiBadge` that displays on the alert
      */
     badge?: ReactNode;
   };
