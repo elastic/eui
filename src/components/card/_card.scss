@@ -92,8 +92,8 @@
   }
 
   &.euiCard-isSelected {
-    @include euiBottomShadowMedium;
-    transition: box-shadow $euiAnimSpeedFast $euiAnimSlightResistance, border-color $euiAnimSpeedFast $euiAnimSlightResistance;
+    // @include euiBottomShadowMedium;
+    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 }
 

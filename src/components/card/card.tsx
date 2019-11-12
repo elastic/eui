@@ -165,7 +165,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
     {
-      'euiCard--isClickable': onClick || href,
+      'euiCard--isClickable':
+        onClick || href || (selectable && !selectable.isDisabled),
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasChildren': children,
@@ -240,6 +241,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <EuiCardSelect
         aria-describedby={`${ariaId}Title ${ariaId}Description`}
         {...selectable}
+        buttonRef={node => {
+          link = node;
+        }}
       />
     );
   }

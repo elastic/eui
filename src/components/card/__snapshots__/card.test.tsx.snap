@@ -212,7 +212,7 @@ exports[`EuiCard props icon 1`] = `
 
 exports[`EuiCard props selectable 1`] = `
 <div
-  class="euiCard euiCard--centerAligned euiCard--isSelectable euiCard--isSelectable--text"
+  class="euiCard euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
 >
   <div
     class="euiCard__content"
@@ -238,6 +238,7 @@ exports[`EuiCard props selectable 1`] = `
   <button
     aria-describedby="generated-idTitle generated-idDescription"
     class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    role="switch"
     type="button"
   >
     <span

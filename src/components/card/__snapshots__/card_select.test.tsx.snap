@@ -5,6 +5,7 @@ exports[`EuiCardSelect is rendered 1`] = `
   aria-label="aria-label"
   class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text testClass1 testClass2"
   data-test-subj="test subject string"
+  role="switch"
   type="button"
 >
   <span
@@ -22,6 +23,7 @@ exports[`EuiCardSelect is rendered 1`] = `
 exports[`EuiCardSelect props can override color 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--danger euiButtonEmpty--xSmall euiCardSelect euiCardSelect--danger"
+  role="switch"
   type="button"
 >
   <span
@@ -39,6 +41,7 @@ exports[`EuiCardSelect props can override color 1`] = `
 exports[`EuiCardSelect props can override text 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+  role="switch"
   type="button"
 >
   <span
@@ -57,6 +60,7 @@ exports[`EuiCardSelect props isDisabled 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
   disabled=""
+  role="switch"
   type="button"
 >
   <span
@@ -73,7 +77,9 @@ exports[`EuiCardSelect props isDisabled 1`] = `
 
 exports[`EuiCardSelect props isSelected 1`] = `
 <button
+  aria-checked="true"
   class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--success"
+  role="switch"
   type="button"
 >
   <span

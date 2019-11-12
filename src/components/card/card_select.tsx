@@ -1,16 +1,15 @@
-import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
-import { EuiButtonEmpty, EuiButtonEmptyColor } from '../button/button_empty';
+import {
+  EuiButtonEmpty,
+  EuiButtonEmptyColor,
+  EuiButtonEmptyProps,
+} from '../button/button_empty';
 
 import { EuiI18n } from '../i18n';
 
-export type EuiCardSelectProps = CommonProps & {
-  /**
-   * You must handle the click event in order to have a select button
-   */
-  onClick: MouseEventHandler<HTMLButtonElement>;
+export type EuiCardSelectProps = EuiButtonEmptyProps & {
   /**
    * Is in the selected state
    */
@@ -24,7 +23,6 @@ export type EuiCardSelectProps = CommonProps & {
 
 export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
   className,
-  onClick,
   isSelected,
   isDisabled,
   color,
@@ -44,9 +42,10 @@ export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
       className={selectClasses}
       color={color || 'text'}
       size="xs"
-      onClick={onClick}
       isDisabled={isDisabled}
       iconType={isSelected ? 'check' : undefined}
+      role="switch"
+      aria-checked={isSelected}
       {...rest}>
       {child}
     </EuiButtonEmpty>

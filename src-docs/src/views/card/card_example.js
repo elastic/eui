@@ -74,6 +74,12 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <Card />,
+      snippet: `<EuiCard
+  icon={<EuiIcon size="xxl" type={} />}
+  title=""
+  description=""
+  onClick={}
+/>`,
     },
     {
       title: 'Layout',
@@ -234,16 +240,19 @@ export const CardExample = {
             When you have a list of cards that can be selected but{' '}
             <strong>do not navigate anywhere</strong>, you can add the{' '}
             <EuiCode>selectable</EuiCode> prop. The prop is an object that
-            requires an <EuiCode>onClick</EuiCode>. It will apply the button as
-            seen below, and passing{' '}
+            extends <EuiCode>EuiButtonEmpty</EuiCode>. It will apply the button
+            as seen below, and passing{' '}
             <EuiCode>selectable.isSelected = true</EuiCode> will alter the
             styles of the card and button to look selected.
           </p>
-          <p>
-            The select button is essentially an EuiButtonEmpty and so the{' '}
-            <EuiCode>selectable</EuiCode> object can also accept any props that
-            EuiButtonEmpty can.
-          </p>
+          <EuiCallOut
+            color="warning"
+            title="Stop propagation of click event on internal buttons/links">
+            <p>
+              When providing an extra link to more details or such, be sure to
+              stop event propagation from also selecting the card.
+            </p>
+          </EuiCallOut>
         </Fragment>
       ),
       props: { EuiCardSelect },
@@ -252,12 +261,20 @@ export const CardExample = {
   icon={<EuiIcon />}
   title="Title"
   description="Example of a short card description."
-  footer={cardFooterContent}
   selectable={{
     onClick: this.cardClicked,
     isSelected: this.state.cardIsSelected,
     isDisabled: this.state.cardIsDisabled,
   }}
+  footer={<EuiButtonEmpty
+    iconType="iInCircle"
+    size="xs"
+    onClick={e => {
+      e.stopPropagation();
+    }}
+    aria-label="See more details about Title">
+    More details
+  </EuiButtonEmpty>}
 />`,
     },
     {
