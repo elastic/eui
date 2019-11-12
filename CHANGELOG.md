@@ -9,6 +9,8 @@
 **Breaking changes**
 
 - Added `display` modifier to `EuiShowFor` ([#2503](https://github.com/elastic/eui/pull/2503))
+- Updated minimum TypeScript version to 3.5.3 ([#2510](https://github.com/elastic/eui/pull/2510))
+- Removed `Omit` type in favor of TypeScript's built-in ([#2510](https://github.com/elastic/eui/pull/2510))
 
 ## [`14.10.0`](https://github.com/elastic/eui/tree/v14.10.0)
 
@@ -20,11 +22,6 @@
 **Bug fixes**
 
 - Simplified `EuiColorStops` popover toggling ([#2505](https://github.com/elastic/eui/pull/2505))
-
-**Breaking changes**
-
-- Updated minimum TypeScript version to 3.5.3 ([#2510](https://github.com/elastic/eui/pull/2510))
-- Removed `Omit` type in favor of TypeScript's built-in ([#2510](https://github.com/elastic/eui/pull/2510))
 
 ## [`14.9.0`](https://github.com/elastic/eui/tree/v14.9.0)
 
