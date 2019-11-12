@@ -210,10 +210,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
 
   let optionalBetaBadge;
+  let optionalBetaBadgeID;
   if (betaBadgeLabel) {
+    optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
       <span className="euiCard__betaBadgeWrapper">
         <EuiBetaBadge
+          id={optionalBetaBadgeID}
           label={betaBadgeLabel}
           title={betaBadgeTitle}
           tooltipContent={betaBadgeTooltipContent}
@@ -268,7 +271,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         className="euiCard__titleButton"
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
-        aria-describedby={`${ariaId}Description`}
+        aria-describedby={`${optionalBetaBadgeID} ${ariaId}Description`}
         ref={node => {
           link = node;
         }}>
