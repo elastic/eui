@@ -356,6 +356,7 @@ export class EuiSuperDatePicker extends Component {
             isCustom
             startDateControl={
               <EuiDatePopoverButton
+                className="euiSuperDatePicker__startPopoverButton"
                 position="start"
                 needsUpdating={hasChanged}
                 isInvalid={isInvalid}
