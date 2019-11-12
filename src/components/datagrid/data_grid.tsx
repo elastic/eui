@@ -322,17 +322,17 @@ function createKeyDownHandler(
         }
         break;
       case keyCodes.PAGE_UP:
-          event.preventDefault();
-          // TODO: Scrolls the grid/page so that the currently visible upper most row becomes the bottom most (#2482)
-          break;        
+        event.preventDefault();
+        // TODO: Scrolls the grid/page so that the currently visible upper most row becomes the bottom most (#2482)
+        break;
       case keyCodes.PAGE_DOWN:
         event.preventDefault();
         // TODO: Scrolls the grid/page so that the currently visible bottom most row becomes the top most (#2482)
         break;
       case keyCodes.CTRL && keyCodes.END:
-          event.preventDefault();
-          setFocusedCell([colCount, rowCount-1]);
-          break;
+        event.preventDefault();
+        setFocusedCell([colCount, rowCount - 1]);
+        break;
       case keyCodes.CTRL && keyCodes.HOME:
         event.preventDefault();
         setFocusedCell([0, 0]);
@@ -340,16 +340,19 @@ function createKeyDownHandler(
       case keyCodes.END:
         event.preventDefault();
         setFocusedCell([colCount, y]);
-        break;        
+        break;
       case keyCodes.HOME:
         event.preventDefault();
         setFocusedCell([0, y]);
         break;
       default:
-        if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90)) {
+        if (
+          (keyCode >= 48 && keyCode <= 57) ||
+          (keyCode >= 65 && keyCode <= 90)
+        ) {
           event.preventDefault();
           // Alphanumeric
-          // TODO: If a cell contains an input widget, places focus on the first one, and inserts key (#2482) 
+          // TODO: If a cell contains an input widget, places focus on the first one, and inserts key (#2482)
         }
         break;
     }
