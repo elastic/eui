@@ -204,13 +204,35 @@ export default () => (
     <EuiSpacer />
 
     <EuiCode className="eui-showFor--xs">.eui-showFor--xs</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--s">.eui-showFor--s</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--m">.eui-showFor--m</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--l">.eui-showFor--l</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--xl">.eui-showFor--xl</EuiCode>
+
+    <EuiSpacer />
+
+    <h5>Modifiers</h5>
+    <p>
+      The <EuiCode>.eui-showFor--[size]</EuiCode> classes will force display of{' '}
+      <EuiCode>inline</EuiCode> when showing the element. You can modify this
+      display property by appending <EuiCode>block</EuiCode>,{' '}
+      <EuiCode>inlineBlock</EuiCode>, or <EuiCode>flex</EuiCode> to the class.
+    </p>
+
+    <EuiCode className="eui-showFor--xs">.eui-showFor--xs (inline)</EuiCode>
+    <EuiCode className="eui-showFor--s">.eui-showFor--s (inline)</EuiCode>
+    <EuiCode className="eui-showFor--m">.eui-showFor--m--block</EuiCode>
+    <EuiCode className="eui-showFor--l">.eui-showFor--l--inlineBlock</EuiCode>
+    <EuiCode className="eui-showFor--xl">.eui-showFor--xl--flex</EuiCode>
+
+    <EuiSpacer />
+
+    <div
+      style={{ background: wrappingExampleStyle.background }}
+      className="eui-showFor--xs eui-showFor--s eui-showFor--m--block eui-showFor--l--inlineBlock eui-showFor--xl--flex">
+      <span style={wrappingExampleStyle}>span</span>
+      <span style={wrappingExampleStyle}>span</span>
+      <span style={wrappingExampleStyle}>span</span>
+    </div>
   </EuiText>
 );
