@@ -158,9 +158,14 @@
   }
 }
 
-.euiCard__footer:not(:empty) {
-  flex-grow: 0; /* 1 */
-  margin-top: $euiCardSpacing;
+.euiCard__footer {
+  // Ensure it always stretches no matter the flex layout
+  width: 100%;
+
+  &:not(:empty) {
+    flex-grow: 0; /* 1 */
+    margin-top: $euiCardSpacing;
+  }
 }
 
 .euiCard.euiCard--horizontal {

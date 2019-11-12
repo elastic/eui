@@ -62,8 +62,7 @@ export const CardExample = {
           <p>
             By default a card&apos;s title element is a <EuiCode>span</EuiCode>.
             This can be changed via the <EuiCode>titleElement</EuiCode> prop.
-            However, if an <EuiCode>onClick</EuiCode> function is also passed,
-            the title element will be forced back to a span.
+            However, it will always remain the same visual size.
           </p>
           <p>
             By default a card&apos;s content is center aligned. To change the
@@ -116,6 +115,13 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardLayout />,
+      snippet: `<EuiCard
+  layout="horizontal"
+  icon={<EuiIcon size="xl" type={} />}
+  title=""
+  description=""
+  onClick={}
+/>`,
     },
     {
       title: 'Images',
@@ -148,6 +154,13 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardImage />,
+      snippet: `<EuiCard
+  textAlign="left"
+  image="https://source.unsplash.com/400x200/?Nature"
+  title=""
+  description=""
+  onClick={}
+/>`,
     },
     {
       title: 'Footer',
@@ -181,16 +194,16 @@ export const CardExample = {
       components: { EuiCard },
       demo: <CardFooter />,
       snippet: `<EuiCard
-  icon={<EuiIcon size="xxl" type="devToolsApp" />}
-  title="Developers Tools"
-  description="Example of a short card description."
+  icon={<EuiIcon size="xxl" type="" />}
+  title=""
+  description=""
   footer={
     <div>
-      <EuiButton aria-label="Go to Developers Tools">Go for it</EuiButton>
+      <EuiButton aria-label=""></EuiButton>
       <EuiSpacer size="xs" />
       <EuiText size="s">
         <p>
-          Or try <EuiLink href="http://google.com">this</EuiLink>
+          Or try <EuiLink href="">this</EuiLink>
         </p>
       </EuiText>
     </div>
@@ -221,6 +234,14 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardBeta />,
+      snippet: `<EuiCard
+  icon={<EuiIcon size="xxl" type={} />}
+  title=""
+  description=""
+  onClick={}
+  betaBadgeLabel=""
+  betaBadgeTooltipContent=""
+/>`,
     },
     {
       title: 'Selectable',
@@ -247,34 +268,28 @@ export const CardExample = {
           </p>
           <EuiCallOut
             color="warning"
-            title="Stop propagation of click event on internal buttons/links">
-            <p>
-              When providing an extra link to more details or such, be sure to
-              stop event propagation from also selecting the card.
-            </p>
-          </EuiCallOut>
+            title="When providing an extra link to more details or such, be sure to
+            stop event propagation from also selecting the card."
+          />
         </Fragment>
       ),
       props: { EuiCardSelect },
       demo: <CardSelectable />,
       snippet: `<EuiCard
   icon={<EuiIcon />}
-  title="Title"
-  description="Example of a short card description."
+  title=""
+  description=""
   selectable={{
     onClick: this.cardClicked,
     isSelected: this.state.cardIsSelected,
     isDisabled: this.state.cardIsDisabled,
   }}
   footer={<EuiButtonEmpty
-    iconType="iInCircle"
-    size="xs"
     onClick={e => {
       e.stopPropagation();
     }}
-    aria-label="See more details about Title">
-    More details
-  </EuiButtonEmpty>}
+    aria-label=""
+  />}
 />`,
     },
     {
@@ -302,8 +317,8 @@ export const CardExample = {
       demo: <CardChildren />,
       snippet: `<EuiCard
   textAlign="left"
-  title="Lists"
-  description="Lists are cool">
+  title=""
+  description="">
   <EuiText size="s">
     <ul>
       <li>Bullet 1</li>
