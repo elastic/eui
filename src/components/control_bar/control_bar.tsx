@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import {
   CommonProps,
   ExclusiveUnion,
-  Omit,
   PropsForAnchor,
   PropsForButton,
 } from '../common';

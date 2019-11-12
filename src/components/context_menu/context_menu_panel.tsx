@@ -8,7 +8,7 @@ import React, {
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { CommonProps, NoArgCallback, Omit } from '../common';
+import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiPopoverTitle } from '../popover';
 import { EuiResizeObserver } from '../observer/resize_observer';

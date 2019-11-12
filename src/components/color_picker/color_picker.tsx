@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiColorPickerSwatch } from './color_picker_swatch';

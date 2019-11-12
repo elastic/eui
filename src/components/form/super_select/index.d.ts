@@ -1,4 +1,4 @@
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 
 import { FunctionComponent, ReactNode, ButtonHTMLAttributes } from 'react';
 

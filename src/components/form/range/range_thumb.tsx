@@ -1,7 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion, Omit } from '../../common';
+import { CommonProps, ExclusiveUnion } from '../../common';
 
 interface BaseProps extends CommonProps {
   min: number;

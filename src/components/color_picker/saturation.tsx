@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { keyCodes } from '../../services';
 import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
