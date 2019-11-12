@@ -156,15 +156,40 @@ export const CardExample = {
         },
       ],
       text: (
-        <p>
-          Footers can contain any number of elements and will always align to
-          the bottom of the card. However, if you supply a footer containing a{' '}
-          <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
-          it an <EuiCode>onClick</EuiCode>.
-        </p>
+        <>
+          <p>
+            Footers can contain any number of elements and will always align to
+            the bottom of the card. However, if you supply a footer containing a{' '}
+            <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
+            it an <EuiCode>onClick</EuiCode>.
+          </p>
+          <EuiCallOut title="Accessibility" color="warning">
+            <p>
+              When using footers to display generic &quot;Go&quot; buttons. You
+              must provide an <EuiCode>aria-label</EuiCode> to the button itself
+              that refers back to the title of the card.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       components: { EuiCard },
       demo: <CardFooter />,
+      snippet: `<EuiCard
+  icon={<EuiIcon size="xxl" type="devToolsApp" />}
+  title="Developers Tools"
+  description="Example of a short card description."
+  footer={
+    <div>
+      <EuiButton aria-label="Go to Developers Tools">Go for it</EuiButton>
+      <EuiSpacer size="xs" />
+      <EuiText size="s">
+        <p>
+          Or try <EuiLink href="http://google.com">this</EuiLink>
+        </p>
+      </EuiText>
+    </div>
+  }
+/>`,
     },
     {
       title: 'Beta badge',
