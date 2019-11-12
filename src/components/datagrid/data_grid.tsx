@@ -292,84 +292,70 @@ function createKeyDownHandler(
     const colCount = visibleColumns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
-    const { keyCode } = event;
+    const { keyCode, ctrlKey } = event;
 
-    switch (keyCode) {
-      case keyCodes.DOWN:
-        event.preventDefault();
-        if (y < rowCount - 1) {
-          setFocusedCell([x, y + 1]);
+    if (keyCode === keyCodes.DOWN) {
+      event.preventDefault();
+      if (y < rowCount - 1) {
+        setFocusedCell([x, y + 1]);
+      }
+    } else if (keyCode === keyCodes.LEFT) {
+      event.preventDefault();
+      if (x > 0) {
+        setFocusedCell([x - 1, y]);
+      }
+    } else if (keyCode === keyCodes.UP) {
+      event.preventDefault();
+      // TODO sort out when a user can arrow up into the column headers
+      const minimumIndex = headerIsInteractive ? -1 : 0;
+      if (y > minimumIndex) {
+        setFocusedCell([x, y - 1]);
+      }
+    } else if (keyCode === keyCodes.RIGHT) {
+      event.preventDefault();
+      if (x < colCount) {
+        setFocusedCell([x + 1, y]);
+      }
+    } else if (keyCode === keyCodes.PAGE_UP) {
+      event.preventDefault();
+      if (props.pagination) {
+        const totalRowCount = props.rowCount;
+        const pageIndex = props.pagination.pageIndex;
+        const pageSize = props.pagination.pageSize;
+        const pageCount = Math.ceil(totalRowCount / pageSize);
+        if (pageIndex < pageCount) {
+          props.pagination!.pageIndex += 1;
+          setFocusedCell([0, 0]);
         }
-        break;
-      case keyCodes.LEFT:
-        event.preventDefault();
-        if (x > 0) {
-          setFocusedCell([x - 1, y]);
+      }
+    } else if (keyCode === keyCodes.PAGE_DOWN) {
+      event.preventDefault();
+      if (props.pagination) {
+        const pageIndex = props.pagination.pageIndex;
+        if (pageIndex > 0) {
+          props.pagination!.pageIndex -= 1;
+          setFocusedCell([0, 0]);
         }
-        break;
-      case keyCodes.UP:
-        event.preventDefault();
-        // TODO sort out when a user can arrow up into the column headers
-        const minimumIndex = headerIsInteractive ? -1 : 0;
-        if (y > minimumIndex) {
-          setFocusedCell([x, y - 1]);
-        }
-        break;
-      case keyCodes.RIGHT:
-        event.preventDefault();
-        if (x < colCount) {
-          setFocusedCell([x + 1, y]);
-        }
-        break;
-      case keyCodes.PAGE_UP:
-        event.preventDefault();
-        if (props.pagination) {
-          const totalRowCount = props.rowCount;
-          const pageIndex = props.pagination.pageIndex;
-          const pageSize = props.pagination.pageSize;
-          const pageCount = Math.ceil(totalRowCount / pageSize);
-          if (pageIndex < pageCount) {
-            props.pagination!.pageIndex += 1;
-            setFocusedCell([0, 0]);
-          }
-        }
-        break;
-      case keyCodes.PAGE_DOWN:
-        event.preventDefault();
-        if (props.pagination) {
-          const pageIndex = props.pagination.pageIndex;
-          if (pageIndex > 0) {
-            props.pagination!.pageIndex -= 1;
-            setFocusedCell([0, 0]);
-          }
-        }
-        break;
-      case keyCodes.CTRL && keyCodes.END:
-        event.preventDefault();
-        setFocusedCell([colCount, rowCount - 1]);
-        break;
-      case keyCodes.CTRL && keyCodes.HOME:
-        event.preventDefault();
-        setFocusedCell([0, 0]);
-        break;
-      case keyCodes.END:
-        event.preventDefault();
-        setFocusedCell([colCount, y]);
-        break;
-      case keyCodes.HOME:
-        event.preventDefault();
-        setFocusedCell([0, y]);
-        break;
-      default:
-        if (
-          (keyCode >= 48 && keyCode <= 57) ||
-          (keyCode >= 65 && keyCode <= 90)
-        ) {
-          event.preventDefault();
-          // Alphanumeric
-          // TODO: If a cell contains an input widget, places focus on the first one, and inserts key (#2482)
-        }
-        break;
+      }
+    } else if (keyCode === (ctrlKey && keyCodes.END)) {
+      event.preventDefault();
+      setFocusedCell([colCount, rowCount - 1]);
+    } else if (keyCode === (ctrlKey && keyCodes.HOME)) {
+      event.preventDefault();
+      setFocusedCell([0, 0]);
+    } else if (keyCode === keyCodes.END) {
+      event.preventDefault();
+      setFocusedCell([colCount, y]);
+    } else if (keyCode === keyCodes.HOME) {
+      event.preventDefault();
+      setFocusedCell([0, y]);
+    } else if (
+      (keyCode >= 48 && keyCode <= 57) ||
+      (keyCode >= 65 && keyCode <= 90)
+    ) {
+      event.preventDefault();
+      // Alphanumeric
+      // TODO: If a cell contains an input widget, places focus on the first one, and inserts key (#2482)
     }
   };
 }

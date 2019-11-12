@@ -1444,15 +1444,22 @@ Array [
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }]}
+          columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
           columnVisibility={{
-            visibleColumns: ['A', 'B'],
+            visibleColumns: ['A', 'B', 'C'],
             setVisibleColumns: () => {},
           }}
-          rowCount={3}
+          rowCount={9}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}, ${columnId}`
           }
+          pagination={{
+            pageIndex: 0,
+            pageSize: 3,
+            pageSizeOptions: [3, 6, 10],
+            onChangePage: () => {},
+            onChangeItemsPerPage: () => {},
+          }}
         />
       );
 
@@ -1503,6 +1510,93 @@ Array [
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('0, A');
+
+      focusableCell
+        .simulate('keydown', { keyCode: keyCodes.DOWN })
+        .simulate('keydown', { keyCode: keyCodes.END });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('1, C');
+
+      focusableCell
+        .simulate('keydown', { keyCode: keyCodes.UP })
+        .simulate('keydown', { keyCode: keyCodes.HOME });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A');
+
+      focusableCell.simulate('keydown', {
+        ctrlKey: true,
+        keyCode: keyCodes.END,
+      });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('2, C');
+
+      focusableCell.simulate('keydown', {
+        ctrlKey: true,
+        keyCode: keyCodes.HOME,
+      });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A');
+
+      focusableCell.simulate('keydown', {
+        keyCode: keyCodes.PAGE_DOWN,
+      });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A'); // focus should not move when up against an edge
+
+      focusableCell.simulate('keydown', {
+        keyCode: keyCodes.PAGE_UP,
+      });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('3, A');
+
+      focusableCell
+        .simulate('keydown', { keyCode: keyCodes.RIGHT }) // 3, B
+        .simulate('keydown', {
+          keyCode: keyCodes.PAGE_UP,
+        });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('6, A'); // should move page up and focus on the cell at the first column/row, even if in the previous page wasn't focused there
+
+      focusableCell.simulate('keydown', {
+        keyCode: keyCodes.PAGE_DOWN,
+      });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('3, A'); // back one page
+
+      focusableCell
+        .simulate('keydown', { keyCode: keyCodes.RIGHT }) // 3, B
+        .simulate('keydown', {
+          keyCode: keyCodes.PAGE_DOWN,
+        });
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('0, A'); // should be back in the first page
     });
     it('does not break arrow key focus control behavior when also using a mouse', () => {
       const component = mount(
