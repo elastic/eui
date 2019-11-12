@@ -1,11 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
-- Convert `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
+- Converted `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
+- Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
 
 **Bug fixes**
 
 - Simplified `EuiColorStops` popover toggling ([#2505](https://github.com/elastic/eui/pull/2505))
+
+**Breaking changes**
+
+- Added `display` modifier to `EuiShowFor` ([#2503](https://github.com/elastic/eui/pull/2503))
 
 ## [`14.9.0`](https://github.com/elastic/eui/tree/v14.9.0)
 
@@ -15,8 +20,6 @@
 - Improved `EuiSwitch` a11y by aligning to aria roles ([#2491](https://github.com/elastic/eui/pull/2491))
 - Converted `EuiSwitch` to TypeScript ([#2491](https://github.com/elastic/eui/pull/2491))
 - Added an accessible label-less `EuiSwitch` variation ([#2491](https://github.com/elastic/eui/pull/2491))
-- Added `display` modifier to `EuiShowFor` ([#2503](https://github.com/elastic/eui/pull/2503))
-- Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
 
 **Bug fixes**
 
