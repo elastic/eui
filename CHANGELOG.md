@@ -6,6 +6,8 @@
 
 - Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
 - Fixed `EuiSwitch` to use `aria-labelledby` ([#2522](https://github.com/elastic/eui/pull/2522))
+- Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
+- Added support for `locale` in `EuiSuperDatePicker` and `EuiDatePicker` both as a prop and from `EuiContext` ([#2518](https://github.com/elastic/eui/pull/2518))
 
 **Breaking changes**
 
