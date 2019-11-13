@@ -17,12 +17,12 @@ export class GuideThemeSelector extends Component {
         value: 'dark',
       },
       {
-        text: 'New Light',
-        value: 'new light',
+        text: 'Amsterdam Light',
+        value: 'amsterdam light',
       },
       {
-        text: 'New Dark',
-        value: 'new dark',
+        text: 'Amsterdam Dark',
+        value: 'amsterdam dark',
       },
     ];
 

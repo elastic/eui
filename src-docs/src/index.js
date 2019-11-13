@@ -15,13 +15,13 @@ import { registerTheme } from './services';
 import Routes from './routes';
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
-import themeNewLight from './theme_new_light.scss';
-import themeNewDark from './theme_new_dark.scss';
+import themeAmsterdamLight from './theme_amsterdam_light.scss';
+import themeAmsterdamDark from './theme_amsterdam_dark.scss';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
-registerTheme('new light', [themeNewLight]);
-registerTheme('new dark', [themeNewDark]);
+registerTheme('amsterdam light', [themeAmsterdamLight]);
+registerTheme('amsterdam dark', [themeAmsterdamDark]);
 
 // Set up app
 
