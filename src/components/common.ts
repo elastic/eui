@@ -21,8 +21,6 @@ export type RefCallback<Element extends HTMLElement | null> = (
 
 // utility types:
 
-export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-
 /**
  * Wraps Object.keys with proper typescript definition of the resulting array
  */

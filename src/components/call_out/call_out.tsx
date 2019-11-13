@@ -2,7 +2,7 @@ import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
-import { CommonProps, Omit, keysOf } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';

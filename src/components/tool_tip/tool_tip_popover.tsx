@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, Component, ReactNode } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 
 type Props = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {

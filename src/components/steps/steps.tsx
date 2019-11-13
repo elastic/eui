@@ -1,5 +1,5 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import classNames from 'classnames';
 
 import { StandaloneEuiStepProps, EuiStep } from './step';

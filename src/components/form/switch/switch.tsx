@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 import makeId from '../../form/form_row/make_id';
 import { EuiIcon } from '../../icon';
 

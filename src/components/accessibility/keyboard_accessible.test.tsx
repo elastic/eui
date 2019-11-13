@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/tabindex-no-positive */
 import React from 'react';
 import { render, shallow } from 'enzyme';
 
@@ -145,10 +146,7 @@ describe('EuiKeyboardAccessible', () => {
     test('tabindex', () => {
       const $button = render(
         <EuiKeyboardAccessible>
-          <div
-            onClick={noop}
-            tabIndex={1} // eslint-disable-line jsx-a11y/tabindex-no-positive
-          />
+          <div onClick={noop} tabIndex={1} />
         </EuiKeyboardAccessible>
       );
 
