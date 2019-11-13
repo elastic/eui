@@ -48,9 +48,7 @@ interface Divlike
   extends Props,
     Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {}
 
-interface Buttonlike
-  extends Props,
-    ButtonHTMLAttributes<HTMLButtonElement> {}
+interface Buttonlike extends Props, ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
 
