@@ -133,7 +133,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
               <caption
                 aria-live="polite"
                 aria-relevant="text"
-                className="euiScreenReaderOnly"
+                className="euiScreenReaderOnly euiTableCaption"
                 role="status"
               >
                 <EuiDelayRender
@@ -154,6 +154,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       data-test-subj="tableHeaderCell_name_0"
                       role="columnheader"
                       scope="col"
+                      style={
+                        Object {
+                          "width": undefined,
+                        }
+                      }
                     >
                       <div
                         className="euiTableCellContent"
@@ -190,6 +195,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     >
                       <td
                         className="euiTableRowCell"
+                        style={
+                          Object {
+                            "width": undefined,
+                          }
+                        }
                       >
                         <div
                           className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
@@ -228,6 +238,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     >
                       <td
                         className="euiTableRowCell"
+                        style={
+                          Object {
+                            "width": undefined,
+                          }
+                        }
                       >
                         <div
                           className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
@@ -310,6 +325,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       button={
                         <EuiButtonEmpty
                           color="text"
+                          data-test-subj="tablePaginationPopoverButton"
                           iconSide="right"
                           iconType="arrowDown"
                           onClick={[Function]}
@@ -326,7 +342,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       closePopover={[Function]}
                       display="inlineBlock"
                       hasArrow={true}
-                      id="customizablePagination"
                       isOpen={false}
                       ownFocus={false}
                       panelPaddingSize="none"
@@ -338,7 +353,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       >
                         <div
                           className="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
-                          id="customizablePagination"
                           onKeyDown={[Function]}
                           onMouseDown={[Function]}
                           onMouseUp={[Function]}
@@ -350,6 +364,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           >
                             <EuiButtonEmpty
                               color="text"
+                              data-test-subj="tablePaginationPopoverButton"
                               iconSide="right"
                               iconType="arrowDown"
                               onClick={[Function]}
@@ -357,6 +372,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             >
                               <button
                                 className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
+                                data-test-subj="tablePaginationPopoverButton"
                                 onClick={[Function]}
                                 type="button"
                               >

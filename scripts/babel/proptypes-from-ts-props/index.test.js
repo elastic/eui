@@ -143,6 +143,35 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('understands undefined & null props', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {
+  foo: undefined;
+  bar: null;
+  bazz: undefined | null;
+}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf([undefined]).isRequired,
+  bar: PropTypes.oneOf([null]).isRequired,
+  bazz: PropTypes.oneOf([undefined, null]).isRequired
+};`);
+      });
+
       it('understands function props', () => {
         const result = transform(
           `

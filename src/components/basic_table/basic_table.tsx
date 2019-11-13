@@ -12,7 +12,7 @@ import {
   RIGHT_ALIGNMENT,
   SortDirection,
 } from '../../services';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';

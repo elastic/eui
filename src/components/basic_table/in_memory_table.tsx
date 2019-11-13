@@ -21,7 +21,7 @@ import { Comparators, Direction } from '../../services/sort';
 // @ts-ignore
 import { EuiSearchBar } from '../search_bar';
 import { EuiSpacer } from '../spacer';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 
 // Search bar types. Should be moved when it is typescriptified.
 interface SearchBoxConfig {

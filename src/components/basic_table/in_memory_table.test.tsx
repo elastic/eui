@@ -811,9 +811,6 @@ describe('EuiInMemoryTable', () => {
         ],
         search: {
           defaultQuery: 'No',
-          executeQueryOptions: {
-            defaultFields: ['complex.name'],
-          },
         },
         className: 'testTable',
         message: <span className="customMessage">No items found!</span>,
