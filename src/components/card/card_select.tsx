@@ -19,7 +19,7 @@ export type EuiCardSelectProps = EuiButtonEmptyProps & {
 
 export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
   className,
-  isSelected,
+  isSelected = false,
   isDisabled,
   color,
   children,
