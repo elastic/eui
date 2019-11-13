@@ -83,7 +83,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         disabled={disabled}
         onClick={onClick}
         aria-label={showLabel ? undefined : (label as string)}
-        aria-describedby={showLabel ? labelId : undefined}
+        aria-labelledby={showLabel ? labelId : undefined}
         {...rest}>
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
