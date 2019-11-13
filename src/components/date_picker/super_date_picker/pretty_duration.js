@@ -33,10 +33,15 @@ function isRelativeToNow(timeFrom, timeTo) {
   return isLast || isNext;
 }
 
-export function formatTimeString(timeString, dateFormat, roundUp = false) {
+export function formatTimeString(
+  timeString,
+  dateFormat,
+  roundUp = false,
+  locale = 'en'
+) {
   const timeAsMoment = moment(timeString, ISO_FORMAT, true);
   if (timeAsMoment.isValid()) {
-    return timeAsMoment.format(dateFormat);
+    return timeAsMoment.locale(locale).format(dateFormat);
   }
 
   if (timeString === 'now') {
@@ -45,7 +50,7 @@ export function formatTimeString(timeString, dateFormat, roundUp = false) {
 
   const tryParse = dateMath.parse(timeString, { roundUp: roundUp });
   if (moment.isMoment(tryParse)) {
-    return `~ ${tryParse.fromNow()}`;
+    return `~ ${tryParse.locale(locale).fromNow()}`;
   }
 
   return timeString;
