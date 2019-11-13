@@ -12,7 +12,7 @@ import { EuiBetaBadge } from '../badge/beta_badge';
 
 export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
 
-export interface EuiPanelProps extends CommonProps {
+interface Props extends CommonProps {
   /**
    * If active, adds a deeper shadow to the panel
    */
@@ -45,14 +45,12 @@ export interface EuiPanelProps extends CommonProps {
 }
 
 interface Divlike
-  extends EuiPanelProps,
+  extends Props,
     Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {}
 
-interface Buttonlike
-  extends EuiPanelProps,
-    ButtonHTMLAttributes<HTMLButtonElement> {}
+interface Buttonlike extends Props, ButtonHTMLAttributes<HTMLButtonElement> {}
 
-type Props = ExclusiveUnion<Divlike, Buttonlike>;
+export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -63,7 +61,7 @@ const paddingSizeToClassNameMap = {
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);
 
-export const EuiPanel: FunctionComponent<Props> = ({
+export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   children,
   className,
   paddingSize = 'm',
