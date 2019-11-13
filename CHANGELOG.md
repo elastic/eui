@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `15.0.0`.
+**Bug fixes**
+
+- Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
+- Added support for `locale` in `EuiSuperDatePicker` and `EuiDatePicker` both as a prop and from `EuiContext` ([#2518](https://github.com/elastic/eui/pull/2518))
 
 ## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
 
@@ -12,8 +15,6 @@ No public interface changes since `15.0.0`.
 - Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
 - Fixed `EuiSwitch` to use `aria-labelledby` ([#2522](https://github.com/elastic/eui/pull/2522))
 - Fixed `EuiPanelProps` type definition ([#2516](https://github.com/elastic/eui/pull/2516))
-- Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
-- Added support for `locale` in `EuiSuperDatePicker` and `EuiDatePicker` both as a prop and from `EuiContext` ([#2518](https://github.com/elastic/eui/pull/2518))
 
 **Breaking changes**
 
