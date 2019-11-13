@@ -92,8 +92,17 @@ export class EuiSuperDatePicker extends Component {
      * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
+    /**
+     * Used to localize e.g. month names, passed to `moment`
+     */
     locale: PropTypes.string,
+    /**
+     * Specifies the formatted used when displaying dates and/or datetimes
+     */
     dateFormat: PropTypes.string,
+    /**
+     * Specifies the formatted used when displaying times
+     */
     timeFormat: PropTypes.string,
     /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
