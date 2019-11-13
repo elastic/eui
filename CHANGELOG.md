@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `15.0.0`.
+
+## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
+
 - Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
 - Upgraded `react-ace` to `7.0.5`
 
