@@ -33,7 +33,7 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
-type EuiCardProps = CommonProps & {
+type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Card's are required to have at least a title and description
    */

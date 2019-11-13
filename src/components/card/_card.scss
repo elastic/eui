@@ -59,6 +59,7 @@
       // The title will still underline to simulate focus in IE
       &:focus-within {
         @include euiSlightShadowHover;
+        @include euiFocusRing('large');
       }
 
       &:focus,
