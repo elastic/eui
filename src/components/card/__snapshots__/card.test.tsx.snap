@@ -24,9 +24,6 @@ exports[`EuiCard is rendered 1`] = `
       </p>
     </div>
   </div>
-  <div
-    class="euiCard__footer"
-  />
 </div>
 `;
 
@@ -53,9 +50,6 @@ exports[`EuiCard props children 1`] = `
     </div>
     Child
   </div>
-  <div
-    class="euiCard__footer"
-  />
 </div>
 `;
 
@@ -163,9 +157,6 @@ exports[`EuiCard props href supports href as a link 1`] = `
         </div>
       </EuiText>
     </div>
-    <div
-      className="euiCard__footer"
-    />
   </div>
 </EuiCard>
 `;
@@ -204,9 +195,6 @@ exports[`EuiCard props icon 1`] = `
       </p>
     </div>
   </div>
-  <div
-    class="euiCard__footer"
-  />
 </div>
 `;
 
@@ -232,9 +220,6 @@ exports[`EuiCard props selectable 1`] = `
       </p>
     </div>
   </div>
-  <div
-    class="euiCard__footer"
-  />
   <button
     aria-describedby="generated-idTitle generated-idDescription"
     class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
@@ -276,9 +261,6 @@ exports[`EuiCard props textAlign 1`] = `
       </p>
     </div>
   </div>
-  <div
-    class="euiCard__footer"
-  />
 </div>
 `;
 
@@ -304,8 +286,5 @@ exports[`EuiCard props titleElement 1`] = `
       </p>
     </div>
   </div>
-  <div
-    class="euiCard__footer"
-  />
 </div>
 `;

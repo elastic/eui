@@ -15,10 +15,6 @@ export type EuiCardSelectProps = EuiButtonEmptyProps & {
    */
   isSelected?: boolean;
   isDisabled?: boolean;
-  /**
-   * Override the default color with one of the available colors from `EuiButtonEmpty`
-   */
-  color?: EuiButtonEmptyColor;
 };
 
 export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({

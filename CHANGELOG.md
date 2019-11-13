@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
+- Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
+- Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
 
 **Bug fixes**
 
@@ -9,6 +11,7 @@
 **Breaking changes**
 
 - Added `display` modifier to `EuiShowFor` ([#2503](https://github.com/elastic/eui/pull/2503))
+- Removed `EuiCardGraphic` ([#2521](https://github.com/elastic/eui/pull/2521))
 
 ## [`14.10.0`](https://github.com/elastic/eui/tree/v14.10.0)
 

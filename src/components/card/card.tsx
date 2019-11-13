@@ -170,9 +170,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasChildren': children,
-      'euiCard--isDisabled': isDisabled,
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
+      'euiCard-isDisabled': isDisabled,
     },
     selectableColorClass,
     className
@@ -211,7 +211,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
 
   let optionalBetaBadge;
-  let optionalBetaBadgeID;
+  let optionalBetaBadgeID = '';
   if (betaBadgeLabel) {
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
@@ -312,7 +312,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         {children}
       </div>
 
-      {layout === 'vertical' && <div className="euiCard__footer">{footer}</div>}
+      {layout === 'vertical' && footer && (
+        <div className="euiCard__footer">{footer}</div>
+      )}
       {optionalSelectButton}
     </div>
   );

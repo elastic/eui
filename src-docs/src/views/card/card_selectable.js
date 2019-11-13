@@ -47,9 +47,7 @@ export default class extends Component {
               <EuiButtonEmpty
                 iconType="iInCircle"
                 size="xs"
-                onClick={e => {
-                  e.stopPropagation();
-                }}
+                onClick={this.detailsClicked}
                 aria-label="See more details about Sketch">
                 More details
               </EuiButtonEmpty>

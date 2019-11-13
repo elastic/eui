@@ -21,7 +21,7 @@
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
-  &.euiCard--isDisabled {
+  &.euiCard-isDisabled {
     background-color: $euiColorLightestShade;
     cursor: not-allowed; // duplicate property due to Chrome bug
     box-shadow: none;
@@ -54,7 +54,7 @@
   &.euiCard--isClickable {
     display: flex; // Override panel mixin
 
-    &:not(.euiCard--isDisabled) {
+    &:not(.euiCard-isDisabled) {
       // Progressive Enhancement Only
       // The title will still underline to simulate focus in IE
       &:focus-within {
@@ -69,6 +69,12 @@
         }
       }
     }
+  }
+
+  .euiCard__top,
+  .euiCard__content,
+  .euiCard__footer {
+    width: 100%; // Fixes IE and ensures they always stretch no matter the flex layout
   }
 
   &.euiCard--leftAligned {
@@ -92,7 +98,6 @@
   }
 
   &.euiCard-isSelected {
-    // @include euiBottomShadowMedium;
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 }
@@ -158,14 +163,9 @@
   }
 }
 
-.euiCard__footer {
-  // Ensure it always stretches no matter the flex layout
-  width: 100%;
-
-  &:not(:empty) {
-    flex-grow: 0; /* 1 */
-    margin-top: $euiCardSpacing;
-  }
+.euiCard__footer:not(:empty) {
+  flex-grow: 0; /* 1 */
+  margin-top: $euiCardSpacing;
 }
 
 .euiCard.euiCard--horizontal {
