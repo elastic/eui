@@ -306,7 +306,6 @@ function createKeyDownHandler(
       }
     } else if (keyCode === keyCodes.UP) {
       event.preventDefault();
-      // TODO sort out when a user can arrow up into the column headers
       const minimumIndex = headerIsInteractive ? -1 : 0;
       if (y > minimumIndex) {
         setFocusedCell([x, y - 1]);
@@ -349,13 +348,6 @@ function createKeyDownHandler(
     } else if (keyCode === keyCodes.HOME) {
       event.preventDefault();
       setFocusedCell([0, y]);
-    } else if (
-      (keyCode >= 48 && keyCode <= 57) ||
-      (keyCode >= 65 && keyCode <= 90)
-    ) {
-      event.preventDefault();
-      // Alphanumeric
-      // TODO: If a cell contains an input widget, places focus on the first one, and inserts key (#2482)
     }
   };
 }
