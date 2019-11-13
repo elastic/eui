@@ -1,0 +1,11 @@
+// sass-lint:disable no-url-domains, no-url-protocols
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
+@import url('https://rsms.me/inter/inter-ui.css');
+
+@import '../../src/theme_new_light';
+@import './components/guide_components';
+@import './views/suggest/global_filter_group';
+
+// Elastic charts
+@import '~@elastic/charts/dist/theme';
+@import '../../src/themes/charts/theme';

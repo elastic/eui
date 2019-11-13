@@ -16,6 +16,14 @@ export class GuideThemeSelector extends Component {
         text: 'Dark',
         value: 'dark',
       },
+      {
+        text: 'New Light',
+        value: 'new light',
+      },
+      {
+        text: 'New Dark',
+        value: 'new dark',
+      },
     ];
 
     this.state = {
