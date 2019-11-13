@@ -5,7 +5,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 
 export interface RadioProps {
   autoFocus?: boolean;

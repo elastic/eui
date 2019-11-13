@@ -6,7 +6,7 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiIcon, IconType } from '../../icon';
-import { CommonProps, ExclusiveUnion, Omit } from '../../common';
+import { CommonProps, ExclusiveUnion } from '../../common';
 
 export type EuiFormControlLayoutCustomIconProps = CommonProps &
   ExclusiveUnion<

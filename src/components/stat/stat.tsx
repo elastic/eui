@@ -4,7 +4,7 @@ import React, {
   FunctionComponent,
   ReactNode,
 } from 'react';
-import { CommonProps, keysOf, Omit } from '../common';
+import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';

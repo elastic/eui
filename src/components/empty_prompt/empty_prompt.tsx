@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';

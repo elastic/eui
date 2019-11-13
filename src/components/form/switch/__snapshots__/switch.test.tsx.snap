@@ -6,7 +6,7 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
 >
   <button
     aria-checked="false"
-    aria-describedby="generated-id"
+    aria-labelledby="generated-id"
     class="euiSwitch__button"
     id="generated-id"
     role="switch"
@@ -55,8 +55,8 @@ exports[`EuiSwitch is rendered 1`] = `
 >
   <button
     aria-checked="false"
-    aria-describedby="generated-id"
     aria-label="aria-label"
+    aria-labelledby="generated-id"
     class="euiSwitch__button"
     data-test-subj="test subject string"
     id="test"

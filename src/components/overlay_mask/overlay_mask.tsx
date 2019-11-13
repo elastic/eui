@@ -6,7 +6,7 @@
 import { Component, HTMLAttributes, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
-import { CommonProps, keysOf, Omit } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 export interface EuiOverlayMaskProps {
   onClick?: () => void;

@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 

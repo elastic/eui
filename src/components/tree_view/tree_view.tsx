@@ -1,6 +1,6 @@
 import React, { Component, HTMLAttributes, createContext } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -260,7 +260,9 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                     ariaLabel: hasAriaLabel(rest) ? rest['aria-label'] : '',
                   }}>
                   {(ariaLabel: string) => {
-                    const label = hasAriaLabel(rest)
+                    const label:
+                      | { 'aria-label': string }
+                      | { 'aria-labelledby': string } = hasAriaLabel(rest)
                       ? {
                           'aria-label': ariaLabel,
                         }

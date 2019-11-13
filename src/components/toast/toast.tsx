@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf, Omit } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
