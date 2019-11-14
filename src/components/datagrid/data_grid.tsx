@@ -325,7 +325,7 @@ function createKeyDownHandler(
         if (pageIndex < pageCount) {
           props.pagination!.pageIndex = pageIndex + 1;
           props.pagination.onChangePage(props.pagination.pageIndex);
-          setFocusedCell([focusedCell[0], 0]);
+          setFocusedCell([focusedCell[0], focusedCell[1]]);
         }
       }
     } else if (keyCode === keyCodes.PAGE_UP) {
@@ -335,7 +335,7 @@ function createKeyDownHandler(
         if (pageIndex > 0) {
           props.pagination!.pageIndex = pageIndex - 1;
           props.pagination.onChangePage(props.pagination.pageIndex);
-          setFocusedCell([focusedCell[0], 0]);
+          setFocusedCell([focusedCell[0], focusedCell[1]]);
         }
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
