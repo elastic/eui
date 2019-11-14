@@ -152,8 +152,9 @@ export default class extends Component {
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
-            {this.alerts.map(alert => (
+            {this.alerts.map((alert, i) => (
               <EuiHeaderAlert
+                key={`alert-${i}`}
                 title={alert.title}
                 action={alert.action}
                 text={alert.text}
