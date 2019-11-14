@@ -1550,8 +1550,8 @@ Array [
       ).toEqual('0, A');
 
       focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_DOWN,
-      });
+        keyCode: keyCodes.PAGE_UP,
+      }); // 0, A
 
       focusableCell = getFocusableCell(component);
       expect(
@@ -1559,8 +1559,8 @@ Array [
       ).toEqual('0, A'); // focus should not move when up against an edge
 
       focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_UP,
-      });
+        keyCode: keyCodes.PAGE_DOWN,
+      }); // 3, A
 
       focusableCell = getFocusableCell(component);
       expect(
@@ -1570,28 +1570,28 @@ Array [
       focusableCell
         .simulate('keydown', { keyCode: keyCodes.RIGHT }) // 3, B
         .simulate('keydown', {
-          keyCode: keyCodes.PAGE_UP,
-        });
+          keyCode: keyCodes.PAGE_DOWN,
+        }); // 6, B
 
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('6, A'); // should move page up and focus on the cell at the first column/row, even if in the previous page wasn't focused there
-
-      focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_DOWN,
-      });
-
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('3, A'); // back one page
+      ).toEqual('6, B'); // should move page up and keep focus on the same cell
 
       focusableCell
-        .simulate('keydown', { keyCode: keyCodes.RIGHT }) // 3, B
+        .simulate('keydown', { keyCode: keyCodes.LEFT }) // 6, A
         .simulate('keydown', {
-          keyCode: keyCodes.PAGE_DOWN,
-        });
+          keyCode: keyCodes.PAGE_UP,
+        }); // 3, A
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('3, A'); // back one page, at the first cell
+
+      focusableCell.simulate('keydown', {
+        keyCode: keyCodes.PAGE_UP,
+      }); // 0, A
 
       focusableCell = getFocusableCell(component);
       expect(

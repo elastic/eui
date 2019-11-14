@@ -315,25 +315,27 @@ function createKeyDownHandler(
       if (x < colCount) {
         setFocusedCell([x + 1, y]);
       }
-    } else if (keyCode === keyCodes.PAGE_UP) {
-      event.preventDefault();
+    } else if (keyCode === keyCodes.PAGE_DOWN) {
       if (props.pagination) {
+        event.preventDefault();
         const totalRowCount = props.rowCount;
         const pageIndex = props.pagination.pageIndex;
         const pageSize = props.pagination.pageSize;
         const pageCount = Math.ceil(totalRowCount / pageSize);
         if (pageIndex < pageCount) {
-          props.pagination!.pageIndex += 1;
-          setFocusedCell([0, 0]);
+          props.pagination!.pageIndex = pageIndex + 1;
+          props.pagination.onChangePage(props.pagination.pageIndex);
+          setFocusedCell([focusedCell[0], 0]);
         }
       }
-    } else if (keyCode === keyCodes.PAGE_DOWN) {
-      event.preventDefault();
+    } else if (keyCode === keyCodes.PAGE_UP) {
       if (props.pagination) {
+        event.preventDefault();
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
-          props.pagination!.pageIndex -= 1;
-          setFocusedCell([0, 0]);
+          props.pagination!.pageIndex = pageIndex - 1;
+          props.pagination.onChangePage(props.pagination.pageIndex);
+          setFocusedCell([focusedCell[0], 0]);
         }
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
