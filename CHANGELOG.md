@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Replaced root element in `EuiFlyout`, switching from `span` to `Fragment` ([#2527](https://github.com/elastic/eui/pull/2527))
+
 **Bug fixes**
 
 - Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
