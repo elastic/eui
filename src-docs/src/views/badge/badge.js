@@ -21,12 +21,17 @@ const badges = [
 
 export default () => (
   <EuiFlexGroup wrap responsive={false} gutterSize="xs" style={{ width: 300 }}>
-    {badges.map(badge => (
-      <EuiFlexItem grow={false} key={badge}>
-        <EuiBadge isDisabled={badge === '0000FF' ? true : false} color={badge}>
-          {badge === '0000FF' ? 'disabled' : badge}
-        </EuiBadge>
-      </EuiFlexItem>
-    ))}
+    {badges.map(badge => {
+      const isDisabled = badge === '0000FF';
+      return (
+        <EuiFlexItem grow={false} key={badge}>
+          <EuiBadge
+            isDisabled={isDisabled ? true : false}
+            color={isDisabled ? undefined : badge}>
+            {isDisabled ? 'disabled' : badge}
+          </EuiBadge>
+        </EuiFlexItem>
+      );
+    })}
   </EuiFlexGroup>
 );
