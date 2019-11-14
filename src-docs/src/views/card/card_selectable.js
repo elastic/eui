@@ -30,13 +30,12 @@ export default class extends Component {
     });
   };
 
-  render() {
-    const cardFooterContent = (
-      <EuiButtonEmpty iconType="iInCircle" size="xs">
-        More details
-      </EuiButtonEmpty>
-    );
+  detailsClicked = e => {
+    e.stopPropagation();
+    console.log('Details clicked');
+  };
 
+  render() {
     return (
       <EuiFlexGroup gutterSize="l">
         <EuiFlexItem>
@@ -44,7 +43,15 @@ export default class extends Component {
             icon={<EuiIcon size="xxl" type="logoSketch" />}
             title="Sketch"
             description="Example of a short card description."
-            footer={cardFooterContent}
+            footer={
+              <EuiButtonEmpty
+                iconType="iInCircle"
+                size="xs"
+                onClick={this.detailsClicked}
+                aria-label="See more details about Sketch">
+                More details
+              </EuiButtonEmpty>
+            }
             selectable={{
               onClick: this.card1Clicked,
               isSelected: this.state.card1Selected,
@@ -56,7 +63,15 @@ export default class extends Component {
             icon={<EuiIcon size="xxl" type="logoGCP" />}
             title="Google"
             description="Example of a longer card description. See how the footers stay lined up."
-            footer={cardFooterContent}
+            footer={
+              <EuiButtonEmpty
+                iconType="iInCircle"
+                size="xs"
+                onClick={this.detailsClicked}
+                aria-label="See more details about Google">
+                More details
+              </EuiButtonEmpty>
+            }
             selectable={{
               onClick: this.card2Clicked,
               isSelected: this.state.card2Selected,
@@ -68,7 +83,15 @@ export default class extends Component {
             icon={<EuiIcon size="xxl" type="logoAerospike" />}
             title="Not Adobe"
             description="Example of a short card description."
-            footer={cardFooterContent}
+            footer={
+              <EuiButtonEmpty
+                iconType="iInCircle"
+                size="xs"
+                onClick={this.detailsClicked}
+                aria-label="See more details about Not Adobe">
+                More details
+              </EuiButtonEmpty>
+            }
             selectable={{
               onClick: () => {},
               isDisabled: true,
