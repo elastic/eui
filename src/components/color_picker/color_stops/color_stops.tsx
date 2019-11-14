@@ -205,6 +205,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
   };
 
+  const setWrapperHasFocus = (e: React.FocusEvent) => {
+    if (e.target === wrapperRef) {
+      setHasFocus(true);
+    }
+  };
+
+  const removeWrapperFocus = () => {
+    setHasFocus(false);
+  };
+
   const onAdd = () => {
     const stops = sortedStops.map(({ color, stop }) => {
       return {
@@ -223,6 +233,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
     onFocusWrapper();
     handleOnChange(newColorStops);
+  };
+
+  const disableHover = () => {
+    if (disabled) return;
+    setIsHoverDisabled(true);
+  };
+
+  const enableHover = () => {
+    if (disabled) return;
+    setIsHoverDisabled(false);
   };
 
   const handleAddHover = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -298,46 +318,52 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
   };
 
-  const thumbs = sortedStops.map((colorStop, index) => (
-    <EuiColorStopThumb
-      isRangeMin={min == null && colorStop.stop === rangeMin}
-      isRangeMax={max == null && colorStop.stop === rangeMax}
-      data-index={`${STOP_ATTR}${index}`}
-      key={colorStop.id}
-      globalMin={min || rangeMin}
-      globalMax={max || rangeMax}
-      min={min}
-      max={max}
-      localMin={index === 0 ? min || rangeMin : sortedStops[index - 1].stop + 1}
-      localMax={
-        index === sortedStops.length - 1
-          ? max || rangeMax
-          : sortedStops[index + 1].stop - 1
-      }
-      stop={colorStop.stop}
-      color={colorStop.color}
-      onRemove={
-        sortedStops.length > 1 ? () => onRemove(colorStop.id) : undefined
-      }
-      onChange={stop => handleStopChange(stop, colorStop.id)}
-      onFocus={() => setFocusedStopIndex(index)}
-      parentRef={wrapperRef}
-      colorPickerMode={mode}
-      colorPickerSwatches={swatches}
-      disabled={disabled}
-      readOnly={readOnly}
-      aria-valuetext={`Stop: ${colorStop.stop}, Color: ${
-        colorStop.color
-      } (${index + 1} of ${colorStops.length})`}
-      isPopoverOpen={colorStop.id === openedStopId}
-      openPopover={() => {
-        setOpenedStopId(colorStop.id);
-      }}
-      closePopover={() => {
-        setOpenedStopId(null);
-      }}
-    />
-  ));
+  const thumbs = useMemo(
+    () =>
+      sortedStops.map((colorStop, index) => (
+        <EuiColorStopThumb
+          isRangeMin={min == null && colorStop.stop === rangeMin}
+          isRangeMax={max == null && colorStop.stop === rangeMax}
+          data-index={`${STOP_ATTR}${index}`}
+          key={colorStop.id}
+          globalMin={min || rangeMin}
+          globalMax={max || rangeMax}
+          min={min}
+          max={max}
+          localMin={
+            index === 0 ? min || rangeMin : sortedStops[index - 1].stop + 1
+          }
+          localMax={
+            index === sortedStops.length - 1
+              ? max || rangeMax
+              : sortedStops[index + 1].stop - 1
+          }
+          stop={colorStop.stop}
+          color={colorStop.color}
+          onRemove={
+            sortedStops.length > 1 ? () => onRemove(colorStop.id) : undefined
+          }
+          onChange={stop => handleStopChange(stop, colorStop.id)}
+          onFocus={() => setFocusedStopIndex(index)}
+          parentRef={wrapperRef}
+          colorPickerMode={mode}
+          colorPickerSwatches={swatches}
+          disabled={disabled}
+          readOnly={readOnly}
+          aria-valuetext={`Stop: ${colorStop.stop}, Color: ${
+            colorStop.color
+          } (${index + 1} of ${colorStops.length})`}
+          isPopoverOpen={colorStop.id === openedStopId}
+          openPopover={() => {
+            setOpenedStopId(colorStop.id);
+          }}
+          closePopover={() => {
+            setOpenedStopId(null);
+          }}
+        />
+      )),
+    [sortedStops, rangeMin, rangeMax, wrapperRef, openedStopId]
+  );
 
   const positions = wrapperRef
     ? sortedStops.map(({ stop }) => getPositionFromStopFn(stop))
@@ -372,16 +398,12 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       className={classes}
       fullWidth={fullWidth}
       tabIndex={disabled ? -1 : 0}
-      onMouseDown={() => !disabled && setIsHoverDisabled(true)}
-      onMouseUp={() => !disabled && setIsHoverDisabled(false)}
-      onMouseLeave={() => !disabled && setIsHoverDisabled(false)}
+      onMouseDown={disableHover}
+      onMouseUp={enableHover}
+      onMouseLeave={enableHover}
       onKeyDown={handleKeyDown}
-      onFocus={e => {
-        if (e.target === wrapperRef) {
-          setHasFocus(true);
-        }
-      }}
-      onBlur={() => setHasFocus(false)}>
+      onFocus={setWrapperHasFocus}
+      onBlur={removeWrapperFocus}>
       <EuiScreenReaderOnly>
         <p aria-live="polite">
           <EuiI18n

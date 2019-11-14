@@ -120,10 +120,16 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     }
   };
 
+  const setHasFocusTrue = () => setHasFocus(true);
+  const setHasFocusFalse = () => setHasFocus(false);
+
   const handleColorChange = (value: ColorStop['color']) => {
     setColorIsInvalid(isColorInvalid(value));
     onChange({ stop, color: value });
   };
+
+  const handleColorInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    handleColorChange(e.target.value);
 
   const handleStopChange = (value: ColorStop['stop']) => {
     const willBeInvalid = value > localMax || value < localMin;
@@ -140,7 +146,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     onChange({ stop: value, color });
   };
 
-  const handleStopInputChange = (value: ColorStop['stop']) => {
+  const handleStopInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = parseFloat(e.target.value);
+
     const willBeInvalid = value > globalMax || value < globalMin;
 
     if (willBeInvalid) {
@@ -200,10 +208,14 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     openPopover();
   };
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+  const handleTouchInteraction = (e: React.TouchEvent<HTMLButtonElement>) => {
     if (!readOnly) {
       handleInteraction(e);
     }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    handleTouchInteraction(e);
     openPopover();
   };
 
@@ -214,6 +226,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     },
     className
   );
+
+  // console.log('render', stop);
 
   return (
     <EuiPopover
@@ -252,13 +266,13 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 max={localMax}
                 value={stop}
                 onFocus={handleFocus}
-                onBlur={() => setHasFocus(false)}
-                onMouseOver={() => setHasFocus(true)}
-                onMouseOut={() => setHasFocus(false)}
+                onBlur={setHasFocusFalse}
+                onMouseOver={setHasFocusTrue}
+                onMouseOut={setHasFocusFalse}
                 onKeyDown={handleKeyDown}
                 onMouseDown={handleOnMouseDown}
                 onTouchStart={handleTouchStart}
-                onTouchMove={readOnly ? undefined : handleInteraction}
+                onTouchMove={handleTouchInteraction}
                 aria-valuetext={ariaValueText}
                 aria-label={ariaLabel}
                 title={title}
@@ -307,9 +321,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     max={isRangeMax || max == null ? null : localMax}
                     value={isStopInvalid(stop) ? '' : stop}
                     isInvalid={stopIsInvalid}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleStopInputChange(parseFloat(e.target.value))
-                    }
+                    onChange={handleStopInputChange}
                   />
                 </EuiFormRow>
               )}
@@ -370,9 +382,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     readOnly={readOnly}
                     value={color}
                     isInvalid={colorIsInvalid}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleColorChange(e.target.value)
-                    }
+                    onChange={handleColorInputChange}
                   />
                 </EuiFormRow>
               )}
