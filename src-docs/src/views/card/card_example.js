@@ -32,6 +32,10 @@ import CardSelectable from './card_selectable';
 const cardSelectableSource = require('!!raw-loader!./card_selectable');
 const cardSelectableHtml = renderToHtml(CardSelectable);
 
+import CardChildren from './card_children';
+const cardChildrenSource = require('!!raw-loader!./card_children');
+const cardChildrenHtml = renderToHtml(CardChildren);
+
 export const CardExample = {
   title: 'Card',
   sections: [
@@ -58,8 +62,7 @@ export const CardExample = {
           <p>
             By default a card&apos;s title element is a <EuiCode>span</EuiCode>.
             This can be changed via the <EuiCode>titleElement</EuiCode> prop.
-            However, if an <EuiCode>onClick</EuiCode> function is also passed,
-            the title element will be forced back to a span.
+            However, it will always remain the same visual size.
           </p>
           <p>
             By default a card&apos;s content is center aligned. To change the
@@ -70,6 +73,12 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <Card />,
+      snippet: `<EuiCard
+  icon={<EuiIcon size="xxl" type={} />}
+  title=""
+  description=""
+  onClick={}
+/>`,
     },
     {
       title: 'Layout',
@@ -89,7 +98,8 @@ export const CardExample = {
             Most of the time, cards should read from top to bottom (vertical).
             However, in some cases, you may want the icon to be to the left of
             the content. In this case, add the prop{' '}
-            <EuiCode>layout=&quot;horizontal&quot;</EuiCode>.
+            <EuiCode>layout=&quot;horizontal&quot;</EuiCode>. Works best when
+            the icon is size <EuiCode>xl</EuiCode>.
           </p>
           <EuiCallOut
             color="danger"
@@ -105,6 +115,13 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardLayout />,
+      snippet: `<EuiCard
+  layout="horizontal"
+  icon={<EuiIcon size="xl" type={} />}
+  title=""
+  description=""
+  onClick={}
+/>`,
     },
     {
       title: 'Images',
@@ -137,6 +154,13 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardImage />,
+      snippet: `<EuiCard
+  textAlign="left"
+  image="https://source.unsplash.com/400x200/?Nature"
+  title=""
+  description=""
+  onClick={}
+/>`,
     },
     {
       title: 'Footer',
@@ -151,15 +175,40 @@ export const CardExample = {
         },
       ],
       text: (
-        <p>
-          Footers can contain any number of elements and will always align to
-          the bottom of the card. However, if you supply a footer containing a{' '}
-          <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
-          it an <EuiCode>onClick</EuiCode>.
-        </p>
+        <>
+          <p>
+            Footers can contain any number of elements and will always align to
+            the bottom of the card. However, if you supply a footer containing a{' '}
+            <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
+            it an <EuiCode>onClick</EuiCode>.
+          </p>
+          <EuiCallOut title="Accessibility" color="warning">
+            <p>
+              When using footers to display generic &quot;Go&quot; buttons. You
+              must provide an <EuiCode>aria-label</EuiCode> to the button itself
+              that refers back to the title of the card.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       components: { EuiCard },
       demo: <CardFooter />,
+      snippet: `<EuiCard
+  icon={<EuiIcon size="xxl" type="" />}
+  title=""
+  description=""
+  footer={
+    <div>
+      <EuiButton aria-label=""></EuiButton>
+      <EuiSpacer size="xs" />
+      <EuiText size="s">
+        <p>
+          Or try <EuiLink href="">this</EuiLink>
+        </p>
+      </EuiText>
+    </div>
+  }
+/>`,
     },
     {
       title: 'Beta badge',
@@ -185,6 +234,14 @@ export const CardExample = {
       ),
       props: { EuiCard },
       demo: <CardBeta />,
+      snippet: `<EuiCard
+  icon={<EuiIcon size="xxl" type={} />}
+  title=""
+  description=""
+  onClick={}
+  betaBadgeLabel=""
+  betaBadgeTooltipContent=""
+/>`,
     },
     {
       title: 'Selectable',
@@ -204,31 +261,72 @@ export const CardExample = {
             When you have a list of cards that can be selected but{' '}
             <strong>do not navigate anywhere</strong>, you can add the{' '}
             <EuiCode>selectable</EuiCode> prop. The prop is an object that
-            requires an <EuiCode>onClick</EuiCode>. It will apply the button as
-            seen below, and passing{' '}
+            extends <EuiCode>EuiButtonEmpty</EuiCode>. It will apply the button
+            as seen below, and passing{' '}
             <EuiCode>selectable.isSelected = true</EuiCode> will alter the
             styles of the card and button to look selected.
           </p>
-          <p>
-            The select button is essentially an EuiButtonEmpty and so the{' '}
-            <EuiCode>selectable</EuiCode> object can also accept any props that
-            EuiButtonEmpty can.
-          </p>
+          <EuiCallOut
+            color="warning"
+            title="When providing an extra link to more details or such, be sure to
+            stop event propagation from also selecting the card."
+          />
         </Fragment>
       ),
       props: { EuiCardSelect },
       demo: <CardSelectable />,
       snippet: `<EuiCard
   icon={<EuiIcon />}
-  title="Title"
-  description="Example of a short card description."
-  footer={cardFooterContent}
+  title=""
+  description=""
   selectable={{
     onClick: this.cardClicked,
     isSelected: this.state.cardIsSelected,
     isDisabled: this.state.cardIsDisabled,
   }}
+  footer={<EuiButtonEmpty
+    onClick={e => {
+      e.stopPropagation();
+    }}
+    aria-label=""
+  />}
 />`,
+    },
+    {
+      title: 'Custom children',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardChildrenSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: cardChildrenHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            In the event that you need more than just paragraph text for the
+            description, you can pass anything you need as the{' '}
+            <EuiCode>children</EuiCode> of the component.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiCard },
+      demo: <CardChildren />,
+      snippet: `<EuiCard
+  textAlign="left"
+  title=""
+  description="">
+  <EuiText size="s">
+    <ul>
+      <li>Bullet 1</li>
+      <li>Bullet 2</li>
+      <li>Bullet 3</li>
+    </ul>
+  </EuiText>
+</EuiCard>`,
     },
   ],
 };

@@ -46,6 +46,16 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    describe('href', () => {
+      it('supports href as a link', () => {
+        const component = mount(
+          <EuiCard title="Hoi" description="There" href="#" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('onClick', () => {
       it('supports onClick as a link', () => {
         const handler = jest.fn();
@@ -85,6 +95,16 @@ describe('EuiCard', () => {
           description="Card description"
           footer={<span>Footer</span>}
         />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('children', () => {
+      const component = render(
+        <EuiCard title="Card title" description="Card description">
+          Child
+        </EuiCard>
       );
 
       expect(component).toMatchSnapshot();

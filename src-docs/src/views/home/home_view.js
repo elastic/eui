@@ -108,7 +108,6 @@ export const HomeView = () => (
           href="#/display/icons"
           textAlign="left"
           image={imageIcons}
-          isClickable
           title="Icons"
           description="Our SVG icon library gives you full control over size and color"
         />
@@ -119,7 +118,6 @@ export const HomeView = () => (
           textAlign="left"
           image={imageButtons}
           title="Buttons"
-          isClickable
           description="Buttons for every usage you might need"
         />
       </EuiFlexItem>
@@ -130,7 +128,6 @@ export const HomeView = () => (
           image={imageFlexgrid}
           title="Flexible layouts"
           description="Create layouts by using flex groups, grids, and items"
-          isClickable
         />
       </EuiFlexItem>
       <EuiFlexItem>
@@ -139,7 +136,6 @@ export const HomeView = () => (
           textAlign="left"
           image={imageTables}
           title="Tables"
-          isClickable
           description="Build tables from individual components or high level wrappers"
         />
       </EuiFlexItem>
@@ -150,7 +146,6 @@ export const HomeView = () => (
           image={imageCards}
           title="Cards"
           description="Cards like these help you make repeatable content more presentable"
-          isClickable
         />
       </EuiFlexItem>
       <EuiFlexItem>
@@ -159,7 +154,6 @@ export const HomeView = () => (
           textAlign="left"
           image={imageForms}
           title="Forms"
-          isClickable
           description="Input tags, layouts, and validation for your forms"
         />
       </EuiFlexItem>

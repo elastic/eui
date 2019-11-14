@@ -1,11 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
+- Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
 - Replaced root element in `EuiFlyout`, switching from `span` to `Fragment` ([#2527](https://github.com/elastic/eui/pull/2527))
 
 **Bug fixes**
 
 - Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
 - Added support for `locale` in `EuiSuperDatePicker` and `EuiDatePicker` both as a prop and from `EuiContext` ([#2518](https://github.com/elastic/eui/pull/2518))
+
+**Breaking changes**
+
+- Removed `EuiCardGraphic` ([#2521](https://github.com/elastic/eui/pull/2521))
 
 ## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
 

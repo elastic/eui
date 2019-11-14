@@ -20,7 +20,7 @@ export {
 
 export { EuiCallOut } from './call_out';
 
-export { EuiCard, EuiCardGraphic } from './card';
+export { EuiCard } from './card';
 
 export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
