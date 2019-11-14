@@ -1,11 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
+- Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
+
+**Bug fixes**
+
+- Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
+- Added support for `locale` in `EuiSuperDatePicker` and `EuiDatePicker` both as a prop and from `EuiContext` ([#2518](https://github.com/elastic/eui/pull/2518))
+
+**Breaking changes**
+
+- Removed `EuiCardGraphic` ([#2521](https://github.com/elastic/eui/pull/2521))
+
+## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
+
 - Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
 - Added new keyboard shortcuts for the data grid component: `Home` (same row, first column), `End` (same row, last column), `Ctrl+Home` (first row, first column), `Ctrl+End` (last row, last column), `Page Up` (next page) and `Page Down` (previous page)
+- Upgraded `react-ace` to `7.0.5`
 
 **Bug fixes**
 
 - Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
+- Fixed `EuiSwitch` to use `aria-labelledby` ([#2522](https://github.com/elastic/eui/pull/2522))
+- Fixed `EuiPanelProps` type definition ([#2516](https://github.com/elastic/eui/pull/2516))
 
 **Breaking changes**
 

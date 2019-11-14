@@ -81,7 +81,9 @@ export class EuiRelativeTab extends Component {
     const formatedValue =
       isInvalid || !parsedValue || !parsedValue.isValid()
         ? ''
-        : parsedValue.format(this.props.dateFormat);
+        : parsedValue
+            .locale(this.props.locale || 'en')
+            .format(this.props.dateFormat);
     return (
       <EuiForm className="euiDatePopoverContent__padded">
         <EuiFlexGroup gutterSize="s" responsive={false}>
@@ -174,6 +176,7 @@ export class EuiRelativeTab extends Component {
 
 EuiRelativeTab.propTypes = {
   dateFormat: PropTypes.string.isRequired,
+  locale: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,

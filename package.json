@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "14.10.0",
+  "version": "15.0.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -54,7 +54,7 @@
     "lodash": "^4.17.11",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
-    "react-ace": "^5.5.0",
+    "react-ace": "^7.0.5",
     "react-beautiful-dnd": "^10.1.0",
     "react-focus-lock": "^1.17.7",
     "react-input-autosize": "^2.2.2",
