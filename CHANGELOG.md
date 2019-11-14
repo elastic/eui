@@ -3,6 +3,7 @@
 - Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
 - Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
 - Replaced root element in `EuiFlyout`, switching from `span` to `Fragment` ([#2527](https://github.com/elastic/eui/pull/2527))
+- Upgraded `react-virtualized` to `9.21.2`
 
 **Bug fixes**
 
