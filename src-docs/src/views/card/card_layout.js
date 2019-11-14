@@ -12,7 +12,7 @@ export default () => (
     <EuiFlexItem>
       <EuiCard
         layout="horizontal"
-        icon={<EuiIcon size="xxl" type={'logoBeats'} />}
+        icon={<EuiIcon size="xl" type={'logoBeats'} />}
         title={'Elastic Beats'}
         description="Example of a card's description. Stick to one or two sentences."
         onClick={() => window.alert('Card clicked')}
@@ -21,7 +21,7 @@ export default () => (
     <EuiFlexItem>
       <EuiCard
         layout="horizontal"
-        icon={<EuiIcon size="xxl" type={'logoCloud'} />}
+        icon={<EuiIcon size="xl" type={'logoCloud'} />}
         title={'Elastic Cloud'}
         description="Example of a card's description. Stick to one or two sentences."
         onClick={() => window.alert('Card clicked')}
@@ -33,6 +33,7 @@ export default () => (
         title={'No icon example'}
         description="Example of a card's description. Stick to one or two sentences."
         onClick={() => window.alert('Card clicked')}
+        href="#"
       />
     </EuiFlexItem>
   </EuiFlexGroup>

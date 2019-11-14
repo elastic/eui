@@ -13,7 +13,7 @@ import classNames from 'classnames';
 import tabbable from 'tabbable';
 import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,

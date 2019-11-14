@@ -1,7 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 

@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf, Omit } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiToolTip, ToolTipPositions } from '../tool_tip';
 

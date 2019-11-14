@@ -9,8 +9,6 @@ import { EuiDatePicker } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { toSentenceCase } from '../../../../services/string/to_case';
 
-const INPUT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
-
 export class EuiAbsoluteTab extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +20,9 @@ export class EuiAbsoluteTab extends Component {
 
     this.state = {
       valueAsMoment,
-      textInputValue: valueAsMoment.format(INPUT_DATE_FORMAT),
+      textInputValue: valueAsMoment
+        .locale(this.props.locale || 'en')
+        .format(this.props.dateFormat),
       isTextInvalid: false,
       sentenceCasedPosition,
     };
@@ -32,13 +32,13 @@ export class EuiAbsoluteTab extends Component {
     this.props.onChange(date.toISOString());
     this.setState({
       valueAsMoment: date,
-      textInputValue: date.format(INPUT_DATE_FORMAT),
+      textInputValue: date.format(this.props.dateFormat),
       isTextInvalid: false,
     });
   };
 
   handleTextChange = evt => {
-    const date = moment(evt.target.value, INPUT_DATE_FORMAT, true);
+    const date = moment(evt.target.value, this.props.dateFormat, true);
     const updatedState = {
       textInputValue: evt.target.value,
       isTextInvalid: !date.isValid(),
@@ -60,13 +60,16 @@ export class EuiAbsoluteTab extends Component {
           shadow={false}
           selected={this.state.valueAsMoment}
           onChange={this.handleChange}
+          dateFormat={this.props.dateFormat}
+          timeFormat={this.props.timeFormat}
+          locale={this.props.locale}
         />
         <EuiFormRow
           className="euiSuperDatePicker__absoluteDateFormRow"
           isInvalid={this.state.isTextInvalid}
           error={
             this.state.isTextInvalid
-              ? `Expected format ${INPUT_DATE_FORMAT}`
+              ? `Expected format ${this.props.dateFormat}`
               : undefined
           }>
           <EuiFieldText
@@ -89,6 +92,8 @@ export class EuiAbsoluteTab extends Component {
 
 EuiAbsoluteTab.propTypes = {
   dateFormat: PropTypes.string.isRequired,
+  timeFormat: PropTypes.string.isRequired,
+  locale: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool.isRequired,

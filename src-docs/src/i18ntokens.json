@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 469,
+        "line": 473,
         "column": 12
       },
       "end": {
-        "line": 473,
+        "line": 477,
         "column": 14
       }
     },
@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 507,
+        "line": 511,
         "column": 6
       },
       "end": {
-        "line": 507,
+        "line": 511,
         "column": 77
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 865,
+        "line": 869,
         "column": 8
       },
       "end": {
-        "line": 865,
+        "line": 869,
         "column": 79
       }
     },
@@ -277,11 +277,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 260,
+        "line": 279,
         "column": 12
       },
       "end": {
-        "line": 265,
+        "line": 284,
         "column": 14
       }
     },
@@ -293,11 +293,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 304,
+        "line": 323,
         "column": 14
       },
       "end": {
-        "line": 306,
+        "line": 325,
         "column": 43
       }
     },
@@ -309,11 +309,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 372,
+        "line": 387,
         "column": 10
       },
       "end": {
-        "line": 380,
+        "line": 395,
         "column": 12
       }
     },
@@ -1790,5 +1790,37 @@
       }
     },
     "filepath": "src/components/toast/toast.tsx"
+  },
+  {
+    "token": "euiTreeView.listNavigationInstructions",
+    "defString": "You can quickly navigate this list using arrow keys.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 236,
+        "column": 14
+      },
+      "end": {
+        "line": 238,
+        "column": 79
+      }
+    },
+    "filepath": "src/components/tree_view/tree_view.tsx"
+  },
+  {
+    "token": "euiTreeView.ariaLabel",
+    "defString": "{nodeLabel} child of {ariaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 254,
+        "column": 16
+      },
+      "end": {
+        "line": 261,
+        "column": 21
+      }
+    },
+    "filepath": "src/components/tree_view/tree_view.tsx"
   }
 ]

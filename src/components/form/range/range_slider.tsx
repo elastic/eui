@@ -1,8 +1,6 @@
 import React, {
   ChangeEventHandler,
-  FunctionComponent,
   InputHTMLAttributes,
-  Ref,
   forwardRef,
 } from 'react';
 import classNames from 'classnames';
@@ -25,9 +23,7 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     onChange?: ChangeEventHandler<HTMLInputElement>;
   };
 
-export const EuiRangeSlider: FunctionComponent<
-  EuiRangeSliderProps
-> = forwardRef(
+export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
   (
     {
       className,
@@ -47,7 +43,7 @@ export const EuiRangeSlider: FunctionComponent<
       compressed,
       ...rest
     },
-    ref: Ref<HTMLInputElement>
+    ref
   ) => {
     const classes = classNames(
       'euiRangeSlider',

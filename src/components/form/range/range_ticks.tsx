@@ -7,7 +7,6 @@ import React, {
 import classNames from 'classnames';
 import find from 'lodash/find';
 
-import { Omit } from '../../common';
 import { useInnerText } from '../../inner_text';
 
 export interface EuiRangeTick {

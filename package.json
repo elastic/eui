@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "14.8.0",
+  "version": "15.0.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -54,10 +54,10 @@
     "lodash": "^4.17.11",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
-    "react-ace": "^5.5.0",
+    "react-ace": "^7.0.5",
     "react-beautiful-dnd": "^10.1.0",
     "react-focus-lock": "^1.17.7",
-    "react-input-autosize": "^2.2.1",
+    "react-input-autosize": "^2.2.2",
     "react-is": "~16.3.0",
     "react-virtualized": "^9.18.5",
     "resize-observer-polyfill": "^1.5.0",
@@ -88,8 +88,8 @@
     "@types/resize-observer-browser": "^0.1.1",
     "@types/tabbable": "^3.1.0",
     "@types/uuid": "^3.4.4",
-    "@typescript-eslint/eslint-plugin": "^1.9.0",
-    "@typescript-eslint/parser": "^1.9.0",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
     "autoprefixer": "^7.1.5",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
@@ -175,7 +175,7 @@
     "sinon": "^4.4.8",
     "start-server-and-test": "^1.1.4",
     "style-loader": "^0.19.0",
-    "typescript": "^3.3.3",
+    "typescript": "3.5.3",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.0.1",
     "wdio-chromedriver-service": "^0.1.2",
@@ -199,6 +199,6 @@
     "prop-types": "^15.5.0",
     "react": "^16.8",
     "react-dom": "^16.8",
-    "typescript": "^3.3.3"
+    "typescript": "^3.5.3"
   }
 }

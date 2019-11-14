@@ -20,7 +20,7 @@ export {
 
 export { EuiCallOut } from './call_out';
 
-export { EuiCard, EuiCardGraphic } from './card';
+export { EuiCard } from './card';
 
 export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
@@ -43,6 +43,8 @@ export {
   EuiContextMenuPanel,
   EuiContextMenuItem,
 } from './context_menu';
+
+export { EuiControlBar } from './control_bar';
 
 export { EuiCopy } from './copy';
 

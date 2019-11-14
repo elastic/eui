@@ -65,6 +65,8 @@ import { ContextExample } from './views/context/context_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
+import { ControlBarExample } from './views/control_bar/control_bar_example';
+
 import { CopyExample } from './views/copy/copy_example';
 
 import { DataGridExample } from './views/datagrid/datagrid_example';
@@ -308,6 +310,7 @@ const navigation = [
       BreadcrumbsExample,
       ButtonExample,
       ContextMenuExample,
+      ControlBarExample,
       FacetExample,
       KeyPadMenuExample,
       LinkExample,

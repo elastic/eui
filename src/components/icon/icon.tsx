@@ -7,7 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { CommonProps, Omit, keysOf } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components

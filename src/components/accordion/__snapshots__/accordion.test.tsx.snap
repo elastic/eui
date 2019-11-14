@@ -99,7 +99,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
           <EuiIcon
             className="euiAccordion__icon"
             size="m"
-            type="arrowDown"
+            type="arrowRight"
           >
             <EuiIconEmpty
               className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"

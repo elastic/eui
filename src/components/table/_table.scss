@@ -13,6 +13,10 @@
   background-color: $euiColorEmptyShade;
 }
 
+.euiTableCaption {
+  position: relative;
+}
+
 // Compressed styles not for mobile
 @include euiBreakpoint('m', 'l', 'xl') {
   .euiTable--compressed {

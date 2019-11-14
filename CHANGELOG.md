@@ -1,5 +1,48 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
+- Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
+- Replaced root element in `EuiFlyout`, switching from `span` to `Fragment` ([#2527](https://github.com/elastic/eui/pull/2527))
+
+**Bug fixes**
+
+- Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
+- Added support for `locale` in `EuiSuperDatePicker` and `EuiDatePicker` both as a prop and from `EuiContext` ([#2518](https://github.com/elastic/eui/pull/2518))
+
+**Breaking changes**
+
+- Removed `EuiCardGraphic` ([#2521](https://github.com/elastic/eui/pull/2521))
+
+## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
+
+- Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
+- Upgraded `react-ace` to `7.0.5`
+
+**Bug fixes**
+
+- Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
+- Fixed `EuiSwitch` to use `aria-labelledby` ([#2522](https://github.com/elastic/eui/pull/2522))
+- Fixed `EuiPanelProps` type definition ([#2516](https://github.com/elastic/eui/pull/2516))
+
+**Breaking changes**
+
+- Added `display` modifier to `EuiShowFor` ([#2503](https://github.com/elastic/eui/pull/2503))
+- Updated minimum TypeScript version to 3.5.3 ([#2510](https://github.com/elastic/eui/pull/2510))
+- Removed `Omit` type in favor of TypeScript's built-in ([#2510](https://github.com/elastic/eui/pull/2510))
+
+## [`14.10.0`](https://github.com/elastic/eui/tree/v14.10.0)
+
+- Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
+- Converted `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
+- Added an animation to the arrow on `EuiAccordion` as it opens / closes ([#2507](https://github.com/elastic/eui/pull/2507))
+- Upgraded `react-input-autosize` to `2.2.2`
+
+**Bug fixes**
+
+- Simplified `EuiColorStops` popover toggling ([#2505](https://github.com/elastic/eui/pull/2505))
+
+## [`14.9.0`](https://github.com/elastic/eui/tree/v14.9.0)
+
 - Added new `euiTreeView` component for rendering recursive objects such as folder structures. ([#2409](https://github.com/elastic/eui/pull/2409))
 - Added `euiXScrollWithShadows()` mixin and `.eui-xScrollWithShadows` utility class ([#2458](https://github.com/elastic/eui/pull/2458))
 - Fixed `EuiColorStops` where empty string values would cause range min or max to be NaN ([#2496](https://github.com/elastic/eui/pull/2496))

@@ -53,14 +53,11 @@
 /**
  *  Responsive
  *
- *  3. Be sure to hide/show the element initially
+ *  1. Be sure to hide the element initially
  */
-[class*='eui-hideFor'] {
-  display: inline !important; /* 3 */
-}
 
 [class*='eui-showFor'] {
-  display: none !important; /* 3 */
+  display: none !important; /* 1 */
 }
 
 @each $size in $euiBreakpointKeys {
@@ -70,6 +67,18 @@
 
   .eui-showFor--#{$size} {
     @include  euiBreakpoint($size) { display: inline !important; }
+  }
+
+  .eui-showFor--#{$size}--block {
+    @include  euiBreakpoint($size) { display: block !important; }
+  }
+
+  .eui-showFor--#{$size}--inlineBlock {
+    @include  euiBreakpoint($size) { display: inline-block !important; }
+  }
+
+  .eui-showFor--#{$size}--flex {
+    @include  euiBreakpoint($size) { display: flex !important; }
   }
 }
 
