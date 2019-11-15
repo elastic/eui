@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `16.0.1`.
+
+## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
+
 **Bug fixes**
 
 - `EuiSwitch` now passes `name` attribute into underlying `button` ([#2533](https://github.com/elastic/eui/pull/2533))
