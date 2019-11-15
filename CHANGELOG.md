@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `16.0.1`.
+- Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
 
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 
@@ -60,7 +60,6 @@ No public interface changes since `16.0.1`.
 - Improved `EuiSwitch` a11y by aligning to aria roles ([#2491](https://github.com/elastic/eui/pull/2491))
 - Converted `EuiSwitch` to TypeScript ([#2491](https://github.com/elastic/eui/pull/2491))
 - Added an accessible label-less `EuiSwitch` variation ([#2491](https://github.com/elastic/eui/pull/2491))
-- Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
 
 **Bug fixes**
 
