@@ -1,4 +1,4 @@
-import React, { Component, CSSProperties } from 'react';
+import React, { Component, CSSProperties, Fragment } from 'react';
 import classnames from 'classnames';
 
 import { keyCodes, EuiWindowEvent } from '../../services';
@@ -123,13 +123,13 @@ export class EuiFlyout extends Component<EuiFlyoutProps> {
     }
 
     return (
-      <span>
+      <Fragment>
         <EuiWindowEvent event="keydown" handler={this.onKeyDown} />
         {optionalOverlay}
         {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
         to the originating button */}
         <EuiFocusTrap clickOutsideDisables={true}>{flyoutContent}</EuiFocusTrap>
-      </span>
+      </Fragment>
     );
   }
 }

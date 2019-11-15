@@ -1,7 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added new keyboard shortcuts for the data grid component: `Home` (same row, first column), `End` (same row, last column), `Ctrl+Home` (first row, first column), `Ctrl+End` (last row, last column), `Page Up` (next page) and `Page Down` (previous page)
+
+## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
+
+**Bug fixes**
+
+- `EuiSwitch` now passes `name` attribute into underlying `button` ([#2533](https://github.com/elastic/eui/pull/2533))
+
+## [`16.0.0`](https://github.com/elastic/eui/tree/v16.0.0)
+
 - Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
 - Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
+- Replaced root element in `EuiFlyout`, switching from `span` to `Fragment` ([#2527](https://github.com/elastic/eui/pull/2527))
+- Upgraded `react-virtualized` to `9.21.2` ([#2531](https://github.com/elastic/eui/pull/2531))
 
 **Bug fixes**
 
@@ -15,8 +27,7 @@
 ## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
 
 - Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
-- Added new keyboard shortcuts for the data grid component: `Home` (same row, first column), `End` (same row, last column), `Ctrl+Home` (first row, first column), `Ctrl+End` (last row, last column), `Page Up` (next page) and `Page Down` (previous page)
-- Upgraded `react-ace` to `7.0.5`
+- Upgraded `react-ace` to `7.0.5` ([#2526](https://github.com/elastic/eui/pull/2526))
 
 **Bug fixes**
 
@@ -35,7 +46,7 @@
 - Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
 - Converted `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
 - Added an animation to the arrow on `EuiAccordion` as it opens / closes ([#2507](https://github.com/elastic/eui/pull/2507))
-- Upgraded `react-input-autosize` to `2.2.2`
+- Upgraded `react-input-autosize` to `2.2.2` ([#2514](https://github.com/elastic/eui/pull/2514))
 
 **Bug fixes**
 
