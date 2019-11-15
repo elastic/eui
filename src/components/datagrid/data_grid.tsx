@@ -327,8 +327,13 @@ function createKeyDownHandler(
         if (pageIndex < pageCount) {
           props.pagination!.pageIndex = pageIndex + 1;
           props.pagination.onChangePage(props.pagination.pageIndex);
-          setFocusedCell([focusedCell[0], focusedCell[1]]);
-          updateFocus([focusedCell[0], focusedCell[1]]);
+          const newPageRowCount = computeVisibleRows(props);
+          const rowIndex =
+            focusedCell[1] < newPageRowCount
+              ? focusedCell[1]
+              : newPageRowCount - 1;
+          setFocusedCell([focusedCell[0], rowIndex]);
+          updateFocus([focusedCell[0], rowIndex]);
         }
       }
     } else if (keyCode === keyCodes.PAGE_UP) {

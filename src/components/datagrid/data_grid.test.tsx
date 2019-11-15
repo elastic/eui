@@ -1449,7 +1449,7 @@ Array [
             visibleColumns: ['A', 'B', 'C'],
             setVisibleColumns: () => {},
           }}
-          rowCount={9}
+          rowCount={8}
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}, ${columnId}`
           }
@@ -1576,7 +1576,7 @@ Array [
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('6, B'); // should move page up and keep focus on the same cell
+      ).toEqual('6, B'); // should move page forward and keep focus on the same cell
 
       focusableCell
         .simulate('keydown', { keyCode: keyCodes.LEFT }) // 6, A
@@ -1597,6 +1597,32 @@ Array [
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('0, A'); // should be back in the first page
+
+      focusableCell
+        .simulate('keydown', {
+          ctrlKey: true,
+          keyCode: keyCodes.END,
+        }) // 2, C (last cell of the first page)
+        .simulate('keydown', {
+          keyCode: keyCodes.PAGE_DOWN,
+        }); // 5, C (last cell of the second page, same cell position as previous page)
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('5, C');
+
+      focusableCell.simulate('keydown', {
+        keyCode: keyCodes.PAGE_DOWN,
+      }); // 7, C (should recalculate row since there is not as many rows as previous page)
+
+      focusableCell = getFocusableCell(component);
+      expect(
+        focusableCell.find('[data-test-subj="cell-content"]').text()
+      ).toEqual('7, C');
+      // (equivalent cell position does not exist in last page (would be 8, C),
+      // so keeps the same column position. but moves to the last available row,
+      // which should be (7, C))
     });
     it('does not break arrow key focus control behavior when also using a mouse', () => {
       const component = mount(
