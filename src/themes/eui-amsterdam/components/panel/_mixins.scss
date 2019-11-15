@@ -1,0 +1,55 @@
+/**
+ *  Mixin for use in:
+ *  - EuiCard
+ *  - EuiPageContent
+*/
+@mixin euiPanel($selector) {
+  @if variable-exists(selector) == false {
+    @error 'A $selector must be provided to @mixin euiPanel().';
+  } @else {
+    .#{$selector} {
+
+      @include euiBottomShadowSmall;
+      background-color: $euiColorEmptyShade;
+      border-radius: $euiBorderRadius;
+      flex-grow: 1;
+
+      &.#{$selector}--flexGrowZero {
+        flex-grow: 0;
+      }
+
+      &.#{$selector}--isClickable {
+        // in case of button wrapper which inherently is inline-block and no width
+        display: block;
+        width: 100%;
+        text-align: left;
+
+        // transition the shadow
+        transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+
+        &:hover,
+        &:focus {
+          @include euiSlightShadowHover;
+          transform: translateY(-2px);
+          cursor: pointer;
+        }
+      }
+
+      &.#{$selector}--shadow {
+        @include euiBottomShadowMedium;
+
+        @if (lightness($euiTextColor) < 50) {
+          border-bottom-color: transparentize($euiShadowColor, .5);
+        } @else {
+          // Applied again here in case dark theme overrides light
+          border-bottom-color: $euiBorderColor;
+        }
+
+        &.#{$selector}--isClickable:hover,
+        &.#{$selector}--isClickable:focus {
+          @include euiBottomShadow($color: $euiShadowColor, $opacity: .2);
+        }
+      }
+    }
+  }
+}

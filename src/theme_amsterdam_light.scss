@@ -1,14 +1,33 @@
-// This is the default theme.
+// *************************************
+//
+//   EUI Amsterdam Theme
+//   -> Manifest
+//
+// *************************************
+
+// -------------------------------------
+//   Variables
+// -------------------------------------
+
 @import 'themes/eui-amsterdam/eui_amsterdam_borders';
 @import 'themes/eui-amsterdam/eui_amsterdam_colors_light';
 @import 'themes/eui-amsterdam/eui_amsterdam_size';
 @import 'themes/eui-amsterdam/eui_amsterdam_typography';
 
-// Global styling
+// -------------------------------------
+//   Global
+// -------------------------------------
+
 @import 'global_styling/index';
 
-// Components
-@import 'components/index';
+// -------------------------------------
+//   Components
+// -------------------------------------
 
-// Packages
+@import 'themes/eui-amsterdam/components/index';
+
+// -------------------------------------
+//   Vendor
+// -------------------------------------
+
 @import '../packages/index';
