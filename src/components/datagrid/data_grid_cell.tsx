@@ -19,6 +19,7 @@ import { EuiButtonIcon } from '../button';
 import { keyCodes } from '../../services';
 import { EuiDataGridPopoverContent } from './data_grid_types';
 import { EuiMutationObserver } from '../observer/mutation_observer';
+import { DataGridContext } from './data_grid_context';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -105,6 +106,9 @@ export class EuiDataGridCell extends Component<
     cellProps: {},
     popoverIsOpen: false,
   };
+  unsubscribeCell = Function;
+
+  static contextType = DataGridContext;
 
   updateFocus = () => {
     const cell = this.cellRef.current;
@@ -114,6 +118,20 @@ export class EuiDataGridCell extends Component<
       cell.focus();
     }
   };
+
+  componentDidMount() {
+    // TODO: call onFocusUpdate as provide its callback (e.g. its existing updateFocus method)
+    // TODO: Store the unsubscribe method returned by onFocusUpdate on the EuiDataGridCell instance
+    this.unsubscribeCell = this.context.onFocusUpdate(
+      [this.props.rowIndex, this.props.colIndex],
+      this.updateFocus
+    );
+  }
+
+  componentWillUnmount() {
+    // TODO: call the stored unsubscribe method
+    this.unsubscribeCell();
+  }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
     const didFocusChange = prevProps.isFocused !== this.props.isFocused;
