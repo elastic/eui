@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `16.0.1`.
+- Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
 
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 

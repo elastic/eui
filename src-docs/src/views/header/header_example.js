@@ -6,6 +6,7 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiHeader,
+  EuiHeaderAlert,
   EuiHeaderBreadcrumbs,
   EuiHeaderSection,
   EuiHeaderSectionItem,
@@ -19,6 +20,10 @@ import {
 import Header from './header';
 const headerSource = require('!!raw-loader!./header');
 const headerHtml = renderToHtml(Header);
+
+import HeaderAlert from './header_alert';
+const headerAlertSource = require('!!raw-loader!./header_alert');
+const headerAlertHtml = renderToHtml(HeaderAlert);
 
 import HeaderLinks from './header_links';
 const headerLinksSource = require('!!raw-loader!./header_links');
@@ -110,6 +115,34 @@ export const HeaderExample = {
       },
       snippet: headerLinksSnippet,
       demo: <HeaderLinks />,
+    },
+    {
+      title: 'Display header alerts',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerAlertSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerAlertHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use an <EuiCode>EuiHeaderSectionItemButton</EuiCode> to display
+          additional information in an <EuiCode>EuiPopover</EuiCode> or{' '}
+          <EuiCode>EuiFlyout</EuiCode>, such as a user profile or news feed. In
+          the latter example, this additional content can be presented in a list
+          style format using <EuiCode>EuiHeaderAlert</EuiCode> components, as
+          shown below.
+        </p>
+      ),
+      props: {
+        EuiHeaderAlert,
+      },
+      snippet: headerLinksSnippet,
+      demo: <HeaderAlert />,
     },
   ],
 };
