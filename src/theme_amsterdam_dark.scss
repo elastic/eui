@@ -1,14 +1,33 @@
-// These are variable overwrites used only for this theme.
-@import 'themes/eui-amsterdam/eui_amsterdam_borders';
-@import 'themes/eui-amsterdam/eui_amsterdam_colors_dark';
-@import 'themes/eui-amsterdam/eui_amsterdam_size';
-@import 'themes/eui-amsterdam/eui_amsterdam_typography';
+// *************************************
+//
+//   EUI Amsterdam Theme
+//   -> Manifest
+//
+// *************************************
 
-// Global styling
+// -------------------------------------
+//   Variables
+// -------------------------------------
+
+@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_borders';
+@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_colors_dark';
+@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_size';
+@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_typography';
+
+// -------------------------------------
+//   Global
+// -------------------------------------
+
 @import 'global_styling/index';
 
-// Components
-@import 'components/index';
+// -------------------------------------
+//   Components
+// -------------------------------------
 
-// Packages
+@import 'themes/eui-amsterdam/components/index';
+
+// -------------------------------------
+//   Vendor
+// -------------------------------------
+
 @import '../packages/index';
