@@ -56,6 +56,7 @@
     }
 
     &.euiButton--fill {
+      color: $euiColorGhost;
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
 
