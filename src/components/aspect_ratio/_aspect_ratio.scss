@@ -1,0 +1,21 @@
+.euiAspectRatio {
+  position: relative;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  // The majority of the magic for "cropping" for this happens in the JS. These are just the initial values needed
+  &.euiAspectRatio--cropContent {
+    overflow: hidden;
+
+    > * {
+      display: block; // An inline element won't work, because the JS needs to read the height.
+      height: auto;
+    }
+  }
+}
