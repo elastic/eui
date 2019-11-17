@@ -333,6 +333,7 @@ function createKeyDownHandler(
               ? focusedCell[1]
               : newPageRowCount - 1;
           setFocusedCell([focusedCell[0], rowIndex]);
+          // TODO: Probably not the right point to call this
           updateFocus([focusedCell[0], rowIndex]);
         }
       }
@@ -344,6 +345,7 @@ function createKeyDownHandler(
           props.pagination!.pageIndex = pageIndex - 1;
           props.pagination.onChangePage(props.pagination.pageIndex);
           setFocusedCell([focusedCell[0], focusedCell[1]]);
+          // TODO: Probably not the right point to call this
           updateFocus([focusedCell[0], focusedCell[1]]);
         }
       }
@@ -593,35 +595,39 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     </EuiI18n>
   );
 
-  const cellsUpdateFocus: Array<Function[] | null[]> = [];
+  const [cellsUpdateFocus, setCellsUpdateFocus] = useState<
+    Array<Function[] | null[]>
+  >([]);
 
   const updateFocus = (focusedCell: [number, number]) => {
-    console.log(focusedCell, cellsUpdateFocus);
-    /* Commented in order to pass the tests
     const updateFocus = cellsUpdateFocus[focusedCell[0]][focusedCell[1]];
 
     if (updateFocus) {
       updateFocus();
     }
-    */
   };
 
   const datagridContext = {
     onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
-      // TODO: stores the listeners it receives and calls them in response to setCellFocus,
-      // passing the new focusedCell array to the callbacks
-      if (!cellsUpdateFocus[cell[0]]) {
-        cellsUpdateFocus[cell[0]] = [];
-      }
+      if (pagination) {
+        // Receives the row index as for the whole set
+        // and normalizes it for the visible rows in the grid
+        const pageIndex = pagination.pageIndex;
+        const pageSize = pagination.pageSize;
+        const rowIndex = Math.ceil(cell[1] - pageIndex * pageSize);
 
-      cellsUpdateFocus[cell[0]][cell[1]] = updateFocus;
-
-      return () => {
-        delete cellsUpdateFocus[cell[0]][cell[1]];
-        if (cellsUpdateFocus[cell[0]].length === 0) {
-          delete cellsUpdateFocus[cell[0]];
+        if (!cellsUpdateFocus[cell[0]]) {
+          cellsUpdateFocus[cell[0]] = [];
         }
-      };
+
+        cellsUpdateFocus[cell[0]][rowIndex] = updateFocus;
+
+        setCellsUpdateFocus(cellsUpdateFocus);
+
+        return () => {
+          cellsUpdateFocus[cell[0]][rowIndex] = null;
+        };
+      }
     },
   };
 

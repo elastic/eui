@@ -106,7 +106,7 @@ export class EuiDataGridCell extends Component<
     cellProps: {},
     popoverIsOpen: false,
   };
-  unsubscribeCell = Function;
+  unsubscribeCell: Function = () => {};
 
   static contextType = DataGridContext;
 
@@ -120,17 +120,16 @@ export class EuiDataGridCell extends Component<
   };
 
   componentDidMount() {
-    // TODO: call onFocusUpdate as provide its callback (e.g. its existing updateFocus method)
-    // TODO: Store the unsubscribe method returned by onFocusUpdate on the EuiDataGridCell instance
     this.unsubscribeCell = this.context.onFocusUpdate(
-      [this.props.rowIndex, this.props.colIndex],
+      [this.props.colIndex, this.props.rowIndex],
       this.updateFocus
     );
   }
 
   componentWillUnmount() {
-    // TODO: call the stored unsubscribe method
-    this.unsubscribeCell();
+    if (this.unsubscribeCell !== undefined) {
+      this.unsubscribeCell();
+    }
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
