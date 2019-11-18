@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component, ReactNode, Key } from 'react';
 import classNames from 'classnames';
 
 import { EuiButtonEmpty } from '../../button/button_empty';
@@ -9,7 +9,7 @@ import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 
 interface ItemProps {
   name: ReactNode;
-  key?: string;
+  key?: Key;
   onSort?: () => void;
   isSorted?: boolean;
   isSortAscending?: boolean;
