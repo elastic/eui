@@ -1,4 +1,8 @@
-export { EuiBasicTable, EuiBasicTableProps } from './basic_table';
+export {
+  EuiBasicTable,
+  EuiBasicTableProps,
+  EuiBasicTableColumn,
+} from './basic_table';
 export { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 export {
   EuiTableDataType,
