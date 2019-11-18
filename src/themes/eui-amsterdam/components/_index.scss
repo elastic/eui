@@ -51,6 +51,7 @@
 @import '../../../components/overlay_mask/index';
 @import '../../../components/page/index';
 @import '../../../components/pagination/index';
+@import '../../../components/panel/index';
 @import '../../../components/popover/index';
 @import '../../../components/portal/index';
 @import '../../../components/progress/index';
@@ -74,7 +75,3 @@
 // -------------------------------------
 //   Overrides
 // -------------------------------------
-
-@import '../../../components/panel/variables';
-@import 'panel/mixins';
-@import '../../../components/panel/panel';

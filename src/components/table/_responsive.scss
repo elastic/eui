@@ -1,5 +1,3 @@
-@import '../panel/mixins';
-
 .euiTableRowCell__mobileHeader {
   // Don't display by default unless table is responsive
   display: none;
@@ -33,7 +31,7 @@
     }
 
     // Make each row a Panel
-    @include euiPanel($selector: 'euiTableRow');
+    @include euiBox($selector: '.euiTableRow');
 
     .euiTableRowCell__mobileHeader {
       // Always truncate

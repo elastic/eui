@@ -1,5 +1,3 @@
-@import '../panel/mixins';
-
 .euiDroppable {
   $euiDroppableColor: $euiColorSecondary;
   transition: background-color $euiAnimSpeedExtraSlow ease;
@@ -20,7 +18,7 @@
   }
 }
 
-@include euiPanel('euiDroppable--withPanel');
+@include euiBox('.euiDroppable--withPanel');
 
 .euiDroppable--noGrow {
   flex-grow: 0;
