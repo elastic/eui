@@ -9,16 +9,13 @@
 //   Variables
 // -------------------------------------
 
-@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_borders';
-@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_colors_dark';
-@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_size';
-@import 'themes/eui-amsterdam/global_styling/variables/eui_amsterdam_typography';
+@import 'themes/eui-amsterdam/eui_amsterdam_colors_dark';
 
 // -------------------------------------
 //   Global
 // -------------------------------------
 
-@import 'global_styling/index';
+@import 'themes/eui-amsterdam/global_styling/index';
 
 // -------------------------------------
 //   Components

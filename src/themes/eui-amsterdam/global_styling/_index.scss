@@ -4,7 +4,7 @@
 @import '../../../global_styling/functions/index';
 
 // Variables come next, and are used in some mixins
-@import '../../../global_styling/variables/index';
+@import 'variables/index';
 
 // Mixins provide generic code expansion through helpers
 @import 'mixins/index';
