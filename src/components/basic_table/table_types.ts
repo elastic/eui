@@ -1,8 +1,9 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, TdHTMLAttributes } from 'react';
 import { Direction, HorizontalAlignment } from '../../services';
 import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 import { Primitive } from '../../services/sort/comparators';
+import { CommonProps } from '../common';
 
 export type ItemId<T> = string | ((item: T) => string);
 export type EuiTableDataType =
@@ -16,7 +17,9 @@ export interface EuiTableFooterProps<T> {
   items: T[];
   pagination?: Pagination;
 }
-export interface EuiTableFieldDataColumnType<T> {
+export interface EuiTableFieldDataColumnType<T>
+  extends CommonProps,
+    TdHTMLAttributes<HTMLTableDataCellElement> {
   field: keyof T | string; // supports outer.inner key paths
   name: ReactNode;
   description?: string;
@@ -42,7 +45,9 @@ export interface EuiTableFieldDataColumnType<T> {
     | ((props: EuiTableFooterProps<T>) => ReactNode);
 }
 
-export interface EuiTableComputedColumnType<T> {
+export interface EuiTableComputedColumnType<T>
+  extends CommonProps,
+    TdHTMLAttributes<HTMLTableDataCellElement> {
   render: (record: T) => ReactNode;
   name?: ReactNode;
   description?: string;
