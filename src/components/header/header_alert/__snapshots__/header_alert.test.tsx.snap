@@ -1,46 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiHeaderAlert is rendered 1`] = `
-<div
+<article
   aria-label="aria-label"
+  aria-labelledby="generated-id-title"
   class="euiHeaderAlert testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    />
-  </button>
-  <div
-    class="euiHeaderAlert__title"
-  >
-    title
-  </div>
-  <div
-    class="euiHeaderAlert__text"
-  />
   <div
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem"
     >
       <div
         class="euiHeaderAlert__date"
@@ -49,54 +20,30 @@ exports[`EuiHeaderAlert is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+  <h3
+    class="euiHeaderAlert__title"
+    id="generated-id-title"
+  >
+    title
+  </h3>
+  <div
+    class="euiHeaderAlert__text"
+  />
+</article>
 `;
 
 exports[`EuiHeaderAlert renders action 1`] = `
-<div
+<article
   aria-label="aria-label"
+  aria-labelledby="generated-id-title"
   class="euiHeaderAlert testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    />
-  </button>
-  <div
-    class="euiHeaderAlert__title"
-  >
-    title
-  </div>
-  <div
-    class="euiHeaderAlert__text"
-  />
   <div
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      >
-        <button>
-          Quietly take to the ship
-        </button>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem"
     >
       <div
         class="euiHeaderAlert__date"
@@ -105,50 +52,37 @@ exports[`EuiHeaderAlert renders action 1`] = `
       </div>
     </div>
   </div>
-</div>
-`;
-
-exports[`EuiHeaderAlert renders date as an element 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiHeaderAlert testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    />
-  </button>
-  <div
+  <h3
     class="euiHeaderAlert__title"
+    id="generated-id-title"
   >
-    shazm
-  </div>
+    title
+  </h3>
   <div
     class="euiHeaderAlert__text"
   />
   <div
+    class="euiHeaderAlert__action euiLink"
+  >
+    <button>
+      Quietly take to the ship
+    </button>
+  </div>
+</article>
+`;
+
+exports[`EuiHeaderAlert renders date as an element 1`] = `
+<article
+  aria-label="aria-label"
+  aria-labelledby="generated-id-title"
+  class="euiHeaderAlert testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem"
     >
       <div
         class="euiHeaderAlert__date"
@@ -159,52 +93,30 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
       </div>
     </div>
   </div>
-</div>
-`;
-
-exports[`EuiHeaderAlert renders title as an element 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiHeaderAlert testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <button
-    aria-label="Dismiss"
-    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    />
-  </button>
-  <div
+  <h3
     class="euiHeaderAlert__title"
+    id="generated-id-title"
   >
-    <h2>
-      Circumambulate the city
-    </h2>
-  </div>
+    shazm
+  </h3>
   <div
     class="euiHeaderAlert__text"
   />
+</article>
+`;
+
+exports[`EuiHeaderAlert renders title as an element 1`] = `
+<article
+  aria-label="aria-label"
+  aria-labelledby="generated-id-title"
+  class="euiHeaderAlert testClass1 testClass2"
+  data-test-subj="test subject string"
+>
   <div
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem"
     >
       <div
         class="euiHeaderAlert__date"
@@ -213,5 +125,15 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
       </div>
     </div>
   </div>
-</div>
+  <h3
+    class="euiHeaderAlert__title"
+    id="generated-id-title"
+  />
+  <h2>
+    Circumambulate the city
+  </h2>
+  <div
+    class="euiHeaderAlert__text"
+  />
+</article>
 `;

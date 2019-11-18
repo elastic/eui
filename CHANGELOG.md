@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added new keyboard shortcuts for the data grid component: `Home` (same row, first column), `End` (same row, last column), `Ctrl+Home` (first row, first column), `Ctrl+End` (last row, last column), `Page Up` (next page) and `Page Down` (previous page)
+- Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
 
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 
@@ -30,7 +31,7 @@
 - Upgraded `react-ace` to `7.0.5` ([#2526](https://github.com/elastic/eui/pull/2526))
 
 **Bug fixes**
-
+- Fixed `EuiButton` disabled text color ([#2534](lhttps://github.com/elastic/eui/pull/2534))
 - Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
 - Fixed `EuiSwitch` to use `aria-labelledby` ([#2522](https://github.com/elastic/eui/pull/2522))
 - Fixed `EuiPanelProps` type definition ([#2516](https://github.com/elastic/eui/pull/2516))
