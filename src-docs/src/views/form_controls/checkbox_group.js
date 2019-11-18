@@ -29,6 +29,10 @@ export default class extends Component {
       },
     ];
 
+    this.checkboxesDisabled = this.checkboxes.map(checkbox => {
+      return { ...checkbox, id: `${checkbox}_disabled` };
+    });
+
     this.state = {
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
@@ -67,7 +71,7 @@ export default class extends Component {
         <EuiSpacer size="s" />
 
         <EuiCheckboxGroup
-          options={this.checkboxes}
+          options={this.checkboxesDisabled}
           idToSelectedMap={this.state.checkboxIdToSelectedMap}
           onChange={this.onChange}
           disabled
