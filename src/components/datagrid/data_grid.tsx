@@ -333,8 +333,7 @@ function createKeyDownHandler(
               ? focusedCell[1]
               : newPageRowCount - 1;
           setFocusedCell([focusedCell[0], rowIndex]);
-          // TODO: Probably not the right point to call this
-          updateFocus([focusedCell[0], rowIndex]);
+          requestAnimationFrame(() => updateFocus([focusedCell[0], rowIndex]));
         }
       }
     } else if (keyCode === keyCodes.PAGE_UP) {
@@ -344,9 +343,13 @@ function createKeyDownHandler(
         if (pageIndex > 0) {
           props.pagination!.pageIndex = pageIndex - 1;
           props.pagination.onChangePage(props.pagination.pageIndex);
+          const newPageRowCount = computeVisibleRows(props);
+          const rowIndex =
+            focusedCell[1] < newPageRowCount
+              ? focusedCell[1]
+              : newPageRowCount - 1;
           setFocusedCell([focusedCell[0], focusedCell[1]]);
-          // TODO: Probably not the right point to call this
-          updateFocus([focusedCell[0], focusedCell[1]]);
+          requestAnimationFrame(() => updateFocus([focusedCell[0], rowIndex]));
         }
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
