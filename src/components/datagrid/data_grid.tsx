@@ -160,7 +160,9 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 
-function computeVisibleRows(props: EuiDataGridProps) {
+function computeVisibleRows(
+  props: Pick<EuiDataGridProps, 'pagination' | 'rowCount'>
+) {
   const { pagination, rowCount } = props;
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
@@ -320,14 +322,19 @@ function createKeyDownHandler(
     } else if (keyCode === keyCodes.PAGE_DOWN) {
       if (props.pagination) {
         event.preventDefault();
-        const totalRowCount = props.rowCount;
+        const rowCount = props.rowCount;
         const pageIndex = props.pagination.pageIndex;
         const pageSize = props.pagination.pageSize;
-        const pageCount = Math.ceil(totalRowCount / pageSize);
-        if (pageIndex < pageCount) {
-          props.pagination!.pageIndex = pageIndex + 1;
-          props.pagination.onChangePage(props.pagination.pageIndex);
-          const newPageRowCount = computeVisibleRows(props);
+        const pageCount = Math.ceil(rowCount / pageSize);
+        if (pageIndex < pageCount - 1) {
+          props.pagination.onChangePage(pageIndex + 1);
+          const newPageRowCount = computeVisibleRows({
+            rowCount,
+            pagination: {
+              ...props.pagination,
+              pageIndex: pageIndex + 1,
+            },
+          });
           const rowIndex =
             focusedCell[1] < newPageRowCount
               ? focusedCell[1]
@@ -341,9 +348,14 @@ function createKeyDownHandler(
         event.preventDefault();
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
-          props.pagination!.pageIndex = pageIndex - 1;
-          props.pagination.onChangePage(props.pagination.pageIndex);
-          const newPageRowCount = computeVisibleRows(props);
+          props.pagination.onChangePage(pageIndex - 1);
+          const newPageRowCount = computeVisibleRows({
+            rowCount,
+            pagination: {
+              ...props.pagination,
+              pageIndex: pageIndex - 1,
+            },
+          });
           const rowIndex =
             focusedCell[1] < newPageRowCount
               ? focusedCell[1]
@@ -613,22 +625,16 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const datagridContext = {
     onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
       if (pagination) {
-        // Receives the row index as for the whole set
-        // and normalizes it for the visible rows in the grid
-        const pageIndex = pagination.pageIndex;
-        const pageSize = pagination.pageSize;
-        const rowIndex = Math.ceil(cell[1] - pageIndex * pageSize);
-
         if (!cellsUpdateFocus[cell[0]]) {
           cellsUpdateFocus[cell[0]] = [];
         }
 
-        cellsUpdateFocus[cell[0]][rowIndex] = updateFocus;
+        cellsUpdateFocus[cell[0]][cell[1]] = updateFocus;
 
         setCellsUpdateFocus(cellsUpdateFocus);
 
         return () => {
-          cellsUpdateFocus[cell[0]][rowIndex] = null;
+          cellsUpdateFocus[cell[0]][cell[1]] = null;
         };
       }
     },

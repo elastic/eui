@@ -53,6 +53,7 @@ export interface EuiDataGridCellValueElementProps {
 
 export interface EuiDataGridCellProps {
   rowIndex: number;
+  visibleRowIndex: number;
   colIndex: number;
   columnId: string;
   columnType?: string | null;
@@ -121,7 +122,7 @@ export class EuiDataGridCell extends Component<
 
   componentDidMount() {
     this.unsubscribeCell = this.context.onFocusUpdate(
-      [this.props.colIndex, this.props.rowIndex],
+      [this.props.colIndex, this.props.visibleRowIndex],
       this.updateFocus
     );
   }
@@ -145,6 +146,7 @@ export class EuiDataGridCell extends Component<
     nextState: EuiDataGridCellState
   ) {
     if (nextProps.rowIndex !== this.props.rowIndex) return true;
+    if (nextProps.visibleRowIndex !== this.props.visibleRowIndex) return true;
     if (nextProps.colIndex !== this.props.colIndex) return true;
     if (nextProps.columnId !== this.props.columnId) return true;
     if (nextProps.width !== this.props.width) return true;
@@ -190,7 +192,7 @@ export class EuiDataGridCell extends Component<
       onCellFocus,
       ...rest
     } = this.props;
-    const { colIndex, rowIndex } = rest;
+    const { colIndex, rowIndex, visibleRowIndex } = rest;
 
     const className = classNames('euiDataGridRowCell', {
       [`euiDataGridRowCell--${columnType}`]: columnType,
@@ -378,7 +380,7 @@ export class EuiDataGridCell extends Component<
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
-        onFocus={() => onCellFocus([colIndex, rowIndex])}>
+        onFocus={() => onCellFocus([colIndex, visibleRowIndex])}>
         {innerContent}
       </div>
     );

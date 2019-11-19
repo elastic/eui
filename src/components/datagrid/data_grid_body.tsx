@@ -1,9 +1,4 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { Fragment, FunctionComponent, useMemo } from 'react';
 // @ts-ignore-next-line
 import { EuiCodeBlock } from '../code';
 import {
@@ -163,30 +158,6 @@ export const EuiDataGridBody: FunctionComponent<
     return rowMap;
   }, [sorting, inMemory, inMemoryValues, schema, schemaDetectors]);
 
-  const setCellFocus = useCallback(
-    ([colIndex, rowIndex]) => {
-      // If the rows in the grid have been mapped in some way (e.g. sorting)
-      // then this callback must unmap the reported rowIndex
-      const mappedRowIndicies = Object.keys(rowMap);
-      let reverseMappedIndex = rowIndex;
-      for (let i = 0; i < mappedRowIndicies.length; i++) {
-        const mappedRowIndex = mappedRowIndicies[i];
-        const rowMappedToIndex = rowMap[(mappedRowIndex as any) as number];
-        if (`${rowMappedToIndex}` === `${rowIndex}`) {
-          reverseMappedIndex = parseInt(mappedRowIndex);
-          break;
-        }
-      }
-
-      // map the row into the visible rows
-      if (pagination) {
-        reverseMappedIndex -= pagination.pageIndex * pagination.pageSize;
-      }
-      onCellFocus([colIndex, reverseMappedIndex]);
-    },
-    [onCellFocus, rowMap, pagination]
-  );
-
   const rows = useMemo(() => {
     const rows = [];
     for (let i = 0; i < visibleRowIndices.length; i++) {
@@ -209,7 +180,7 @@ export const EuiDataGridBody: FunctionComponent<
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
           focusedCell={focusedCell}
-          onCellFocus={setCellFocus}
+          onCellFocus={onCellFocus}
           renderCellValue={renderCellValue}
           rowIndex={rowIndex}
           visibleRowIndex={i}
