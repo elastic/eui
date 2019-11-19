@@ -107,7 +107,7 @@ export class EuiDataGridCell extends Component<
     cellProps: {},
     popoverIsOpen: false,
   };
-  unsubscribeCell: Function = () => {};
+  unsubscribeCell?: Function = () => {};
 
   static contextType = DataGridContext;
 
@@ -128,7 +128,7 @@ export class EuiDataGridCell extends Component<
   }
 
   componentWillUnmount() {
-    if (this.unsubscribeCell !== undefined) {
+    if (this.unsubscribeCell) {
       this.unsubscribeCell();
     }
   }

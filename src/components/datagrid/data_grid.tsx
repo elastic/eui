@@ -340,7 +340,7 @@ function createKeyDownHandler(
               ? focusedCell[1]
               : newPageRowCount - 1;
           setFocusedCell([focusedCell[0], rowIndex]);
-          requestAnimationFrame(() => updateFocus([focusedCell[0], rowIndex]));
+          updateFocus([focusedCell[0], rowIndex]);
         }
       }
     } else if (keyCode === keyCodes.PAGE_UP) {
@@ -349,19 +349,7 @@ function createKeyDownHandler(
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
           props.pagination.onChangePage(pageIndex - 1);
-          const newPageRowCount = computeVisibleRows({
-            rowCount,
-            pagination: {
-              ...props.pagination,
-              pageIndex: pageIndex - 1,
-            },
-          });
-          const rowIndex =
-            focusedCell[1] < newPageRowCount
-              ? focusedCell[1]
-              : newPageRowCount - 1;
-          setFocusedCell([focusedCell[0], focusedCell[1]]);
-          requestAnimationFrame(() => updateFocus([focusedCell[0], rowIndex]));
+          updateFocus(focusedCell);
         }
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
@@ -611,30 +599,33 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
 
   const [cellsUpdateFocus, setCellsUpdateFocus] = useState<
-    Array<Function[] | null[]>
-  >([]);
+    Map<string, Function>
+  >(new Map());
 
   const updateFocus = (focusedCell: [number, number]) => {
-    const updateFocus = cellsUpdateFocus[focusedCell[0]][focusedCell[1]];
-
-    if (updateFocus) {
-      updateFocus();
+    const key = `${focusedCell[0]}-${focusedCell[1]}`;
+    if (cellsUpdateFocus.has(key)) {
+      requestAnimationFrame(() => {
+        cellsUpdateFocus.get(key)!();
+      });
     }
   };
 
   const datagridContext = {
     onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
       if (pagination) {
-        if (!cellsUpdateFocus[cell[0]]) {
-          cellsUpdateFocus[cell[0]] = [];
-        }
+        const key = `${cell[0]}-${cell[1]}`;
 
-        cellsUpdateFocus[cell[0]][cell[1]] = updateFocus;
-
-        setCellsUpdateFocus(cellsUpdateFocus);
+        setCellsUpdateFocus(cellsUpdateFocus => {
+          cellsUpdateFocus.set(key, updateFocus);
+          return cellsUpdateFocus;
+        });
 
         return () => {
-          cellsUpdateFocus[cell[0]][cell[1]] = null;
+          setCellsUpdateFocus(cellsUpdateFocus => {
+            cellsUpdateFocus.delete(key);
+            return cellsUpdateFocus;
+          });
         };
       }
     },
