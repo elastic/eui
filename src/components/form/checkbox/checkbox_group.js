@@ -21,7 +21,7 @@ export const EuiCheckboxGroup = ({
           id={option.id}
           checked={idToSelectedMap[option.id]}
           label={option.label}
-          disabled={disabled}
+          disabled={disabled || option.disabled}
           onChange={onChange.bind(null, option.id)}
           compressed={compressed}
         />
