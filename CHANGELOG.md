@@ -1,10 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
-
-**Bug fixes**
-
-- Fixed bug in the `EuiCheckboxGroup` demo page in which both enabled and disabled groups were using the same ids for their checkbox input components, which caused the disabled ones to be checkable
+- Added `disabled` prop to the `EuiCheckboxGroup` definition ([#2545](https://github.com/elastic/eui/pull/2545))
 
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 

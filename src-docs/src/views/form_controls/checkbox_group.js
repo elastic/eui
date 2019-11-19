@@ -30,7 +30,7 @@ export default class extends Component {
     ];
 
     this.checkboxesDisabled = this.checkboxes.map(checkbox => {
-      return { ...checkbox, id: `${checkbox}_disabled` };
+      return { ...checkbox, id: `${checkbox.id}_disabled` };
     });
 
     this.state = {
