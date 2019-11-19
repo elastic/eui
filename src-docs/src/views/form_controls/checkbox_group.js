@@ -37,6 +37,9 @@ export default class extends Component {
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
       },
+      checkboxIdToSelectedMapDisabled: {
+        [`${idPrefix}1_disabled`]: true,
+      },
     };
   }
 
@@ -72,7 +75,7 @@ export default class extends Component {
 
         <EuiCheckboxGroup
           options={this.checkboxesDisabled}
-          idToSelectedMap={this.state.checkboxIdToSelectedMap}
+          idToSelectedMap={this.state.checkboxIdToSelectedMapDisabled}
           onChange={this.onChange}
           disabled
         />
