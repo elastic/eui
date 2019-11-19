@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiAspectRatio is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAspectRatio testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="padding-bottom:200%;max-width:auto"
+>
+  <img
+    alt="blade runner"
+    src="https://images-na.ssl-images-amazon.com/images/I/71PhjEaTZ6L._SY606_.jpg"
+  />
+</div>
+`;

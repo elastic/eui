@@ -17,16 +17,16 @@ export class EuiAspectRatio extends Component<EuiAspectRatioProps> {
   setChildContentDemensions = () => {
     requestAnimationFrame(() => {
       const contentHeight = this.childContent
-        ? this.childContent.scrollHeight
+        ? this.childContent.getBoundingClientRect().height
         : 0;
       const contentWidth = this.childContent
-        ? this.childContent.scrollWidth
+        ? this.childContent.getBoundingClientRect().width
         : 0;
       const wrapperHeight = this.childWrapper
-        ? this.childWrapper.scrollHeight
+        ? this.childWrapper.getBoundingClientRect().height
         : 0;
       const wrapperWidth = this.childWrapper
-        ? this.childWrapper.scrollWidth
+        ? this.childWrapper.getBoundingClientRect().width
         : 0;
       console.log(contentWidth, contentHeight, wrapperWidth, wrapperHeight);
 
@@ -100,6 +100,7 @@ export class EuiAspectRatio extends Component<EuiAspectRatioProps> {
         {cloneElement(children as React.ReactElement<any>, {
           ref: (ref: any) => {
             this.setChildContentRef(ref);
+            this.setChildContentDemensions();
           },
         })}
       </div>
