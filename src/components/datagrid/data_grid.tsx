@@ -445,7 +445,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const columnSorting = useColumnSorting(
     orderedVisibleColumns,
     sorting,
-    detectedSchema,
+    mergedSchema,
     allSchemaDetectors
   );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
