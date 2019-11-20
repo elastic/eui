@@ -8,6 +8,8 @@
 **Bug fixes**
 
 - `EuiSwitch` now passes `name` attribute into underlying `button` ([#2533](https://github.com/elastic/eui/pull/2533))
+- Added `euiTextBreakWord()` to `EuiToast` header ([#2549](https://github.com/elastic/eui/pull/2549))
+- Fixed `.eui-textBreakAll` on Firefox ([#2549](https://github.com/elastic/eui/pull/2549))
 
 ## [`16.0.0`](https://github.com/elastic/eui/tree/v16.0.0)
 
