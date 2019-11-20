@@ -1,5 +1,3 @@
-@import '../panel/mixins';
-
 .euiDroppable {
   $euiDroppableColor: $euiColorSecondary;
   transition: background-color $euiAnimSpeedExtraSlow ease;
