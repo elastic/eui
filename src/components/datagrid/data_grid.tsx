@@ -598,9 +598,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     </EuiI18n>
   );
 
-  const [cellsUpdateFocus, setCellsUpdateFocus] = useState<
-    Map<string, Function>
-  >(new Map());
+  const [cellsUpdateFocus] = useState<Map<string, Function>>(new Map());
 
   const updateFocus = (focusedCell: [number, number]) => {
     const key = `${focusedCell[0]}-${focusedCell[1]}`;
@@ -616,16 +614,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       if (pagination) {
         const key = `${cell[0]}-${cell[1]}`;
 
-        setCellsUpdateFocus(cellsUpdateFocus => {
-          cellsUpdateFocus.set(key, updateFocus);
-          return cellsUpdateFocus;
-        });
+        // this intentionally and purposefully mutates the existing `cellsUpdateFocus` object as the
+        // value/state of `cellsUpdateFocus` must be up-to-date when `updateFocus`'s requestAnimationFrame fires
+        // there is likely a better pattern to use, but this is fine for now as the scope is known & limited
+        cellsUpdateFocus.set(key, updateFocus);
 
         return () => {
-          setCellsUpdateFocus(cellsUpdateFocus => {
-            cellsUpdateFocus.delete(key);
-            return cellsUpdateFocus;
-          });
+          cellsUpdateFocus.delete(key);
         };
       }
     },
