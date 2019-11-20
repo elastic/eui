@@ -3,6 +3,7 @@ import React, {
   HTMLAttributes,
   useState,
   useEffect,
+  useCallback,
 } from 'react';
 import classnames from 'classnames';
 import tabbable from 'tabbable';
@@ -42,28 +43,31 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
   const inputRef = (node: HTMLElement | null) => setInputEl(node);
   const panelRef = (node: HTMLElement | null) => setPanelEl(node);
 
-  const setPanelWidth = (width?: number) => {
-    if (panelEl && (!!inputElWidth || !!width)) {
-      const newWidth = !!width ? width : inputElWidth;
-      panelEl.style.width = `${newWidth}px`;
-      if (onPanelResize) {
-        onPanelResize(newWidth);
+  const setPanelWidth = useCallback(
+    (width?: number) => {
+      if (panelEl && (!!inputElWidth || !!width)) {
+        const newWidth = !!width ? width : inputElWidth;
+        panelEl.style.width = `${newWidth}px`;
+        if (onPanelResize) {
+          onPanelResize(newWidth);
+        }
       }
-    }
-  };
-  const onResize = () => {
+    },
+    [panelEl, inputElWidth, onPanelResize]
+  );
+  const onResize = useCallback(() => {
     if (inputEl) {
       const width = inputEl.getBoundingClientRect().width;
       setInputElWidth(width);
       setPanelWidth(width);
     }
-  };
+  }, [inputEl, setPanelWidth]);
   useEffect(() => {
     onResize();
-  }, [inputEl]);
+  }, [onResize]);
   useEffect(() => {
     setPanelWidth();
-  }, [panelEl]);
+  }, [setPanelWidth]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === cascadingMenuKeyCodes.TAB) {

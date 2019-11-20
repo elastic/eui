@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -132,18 +138,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     null
   );
 
-  useEffect(() => {
-    if (focusStopOnUpdate !== null) {
-      const toFocusIndex = sortedStops
-        .map(el => el.stop)
-        .indexOf(focusStopOnUpdate);
-      const toFocusId = toFocusIndex > -1 ? sortedStops[toFocusIndex].id : null;
-      onFocusStop(toFocusIndex);
-      setOpenedStopId(toFocusId);
-      setFocusStopOnUpdate(null);
-    }
-  }, [sortedStops]);
-
   const isNotInteractive = disabled || readOnly;
 
   const classes = classNames(
@@ -186,17 +180,32 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     handleOnChange(newColorStops);
   };
 
-  const onFocusStop = (index: number) => {
-    if (disabled || !wrapperRef) return;
-    const toFocus = wrapperRef.querySelector<HTMLElement>(
-      `[data-index=${STOP_ATTR}${index}]`
-    );
-    if (toFocus) {
-      setHasFocus(false);
-      setFocusedStopIndex(index);
-      toFocus.focus();
+  const onFocusStop = useCallback(
+    (index: number) => {
+      if (disabled || !wrapperRef) return;
+      const toFocus = wrapperRef.querySelector<HTMLElement>(
+        `[data-index=${STOP_ATTR}${index}]`
+      );
+      if (toFocus) {
+        setHasFocus(false);
+        setFocusedStopIndex(index);
+        toFocus.focus();
+      }
+    },
+    [disabled, wrapperRef]
+  );
+
+  useEffect(() => {
+    if (focusStopOnUpdate !== null) {
+      const toFocusIndex = sortedStops
+        .map(el => el.stop)
+        .indexOf(focusStopOnUpdate);
+      const toFocusId = toFocusIndex > -1 ? sortedStops[toFocusIndex].id : null;
+      onFocusStop(toFocusIndex);
+      setOpenedStopId(toFocusId);
+      setFocusStopOnUpdate(null);
     }
-  };
+  }, [sortedStops, onFocusStop, setFocusStopOnUpdate, focusStopOnUpdate]);
 
   const onFocusWrapper = () => {
     setFocusedStopIndex(null);

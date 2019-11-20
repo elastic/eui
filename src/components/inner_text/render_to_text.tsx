@@ -15,7 +15,7 @@ export function useRenderToText(node: ReactNode, placeholder = ''): string {
         unmountComponentAtNode(hostNode);
       });
     };
-  }, [node]);
+  }, [node, ref]);
 
   return text || placeholder;
 }
