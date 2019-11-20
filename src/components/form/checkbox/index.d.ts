@@ -52,6 +52,7 @@ declare module '@elastic/eui' {
     idToSelectedMap: EuiCheckboxGroupIdToSelectedMap;
     onChange: ChangeEventHandler<HTMLInputElement>;
     compressed?: boolean;
+    disabled?: boolean;
   }
 
   export const EuiCheckboxGroup: FunctionComponent<
