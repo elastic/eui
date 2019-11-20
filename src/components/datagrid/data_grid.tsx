@@ -160,7 +160,9 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 
-function computeVisibleRows(props: EuiDataGridProps) {
+function computeVisibleRows(
+  props: Pick<EuiDataGridProps, 'pagination' | 'rowCount'>
+) {
   const { pagination, rowCount } = props;
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
@@ -320,20 +322,25 @@ function createKeyDownHandler(
     } else if (keyCode === keyCodes.PAGE_DOWN) {
       if (props.pagination) {
         event.preventDefault();
-        const totalRowCount = props.rowCount;
+        const rowCount = props.rowCount;
         const pageIndex = props.pagination.pageIndex;
         const pageSize = props.pagination.pageSize;
-        const pageCount = Math.ceil(totalRowCount / pageSize);
-        if (pageIndex < pageCount) {
-          props.pagination!.pageIndex = pageIndex + 1;
-          props.pagination.onChangePage(props.pagination.pageIndex);
-          const newPageRowCount = computeVisibleRows(props);
+        const pageCount = Math.ceil(rowCount / pageSize);
+        if (pageIndex < pageCount - 1) {
+          props.pagination.onChangePage(pageIndex + 1);
+          const newPageRowCount = computeVisibleRows({
+            rowCount,
+            pagination: {
+              ...props.pagination,
+              pageIndex: pageIndex + 1,
+            },
+          });
           const rowIndex =
             focusedCell[1] < newPageRowCount
               ? focusedCell[1]
               : newPageRowCount - 1;
           setFocusedCell([focusedCell[0], rowIndex]);
-          requestAnimationFrame(() => updateFocus([focusedCell[0], rowIndex]));
+          updateFocus([focusedCell[0], rowIndex]);
         }
       }
     } else if (keyCode === keyCodes.PAGE_UP) {
@@ -341,15 +348,8 @@ function createKeyDownHandler(
         event.preventDefault();
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
-          props.pagination!.pageIndex = pageIndex - 1;
-          props.pagination.onChangePage(props.pagination.pageIndex);
-          const newPageRowCount = computeVisibleRows(props);
-          const rowIndex =
-            focusedCell[1] < newPageRowCount
-              ? focusedCell[1]
-              : newPageRowCount - 1;
-          setFocusedCell([focusedCell[0], focusedCell[1]]);
-          requestAnimationFrame(() => updateFocus([focusedCell[0], rowIndex]));
+          props.pagination.onChangePage(pageIndex - 1);
+          updateFocus(focusedCell);
         }
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
@@ -598,37 +598,29 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     </EuiI18n>
   );
 
-  const [cellsUpdateFocus, setCellsUpdateFocus] = useState<
-    Array<Function[] | null[]>
-  >([]);
+  const [cellsUpdateFocus] = useState<Map<string, Function>>(new Map());
 
   const updateFocus = (focusedCell: [number, number]) => {
-    const updateFocus = cellsUpdateFocus[focusedCell[0]][focusedCell[1]];
-
-    if (updateFocus) {
-      updateFocus();
+    const key = `${focusedCell[0]}-${focusedCell[1]}`;
+    if (cellsUpdateFocus.has(key)) {
+      requestAnimationFrame(() => {
+        cellsUpdateFocus.get(key)!();
+      });
     }
   };
 
   const datagridContext = {
     onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
       if (pagination) {
-        // Receives the row index as for the whole set
-        // and normalizes it for the visible rows in the grid
-        const pageIndex = pagination.pageIndex;
-        const pageSize = pagination.pageSize;
-        const rowIndex = Math.ceil(cell[1] - pageIndex * pageSize);
+        const key = `${cell[0]}-${cell[1]}`;
 
-        if (!cellsUpdateFocus[cell[0]]) {
-          cellsUpdateFocus[cell[0]] = [];
-        }
-
-        cellsUpdateFocus[cell[0]][rowIndex] = updateFocus;
-
-        setCellsUpdateFocus(cellsUpdateFocus);
+        // this intentionally and purposefully mutates the existing `cellsUpdateFocus` object as the
+        // value/state of `cellsUpdateFocus` must be up-to-date when `updateFocus`'s requestAnimationFrame fires
+        // there is likely a better pattern to use, but this is fine for now as the scope is known & limited
+        cellsUpdateFocus.set(key, updateFocus);
 
         return () => {
-          cellsUpdateFocus[cell[0]][rowIndex] = null;
+          cellsUpdateFocus.delete(key);
         };
       }
     },
