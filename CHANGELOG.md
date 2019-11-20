@@ -3,6 +3,10 @@
 - Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
 - Added `disabled` prop to the `EuiCheckboxGroup` definition ([#2545](https://github.com/elastic/eui/pull/2545))
 
+**Bug fixes**
+
+- Fixed `EuiDataGrid` schema detection on already defined column schemas ([#2550](https://github.com/elastic/eui/pull/2550))
+
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 
 **Bug fixes**
