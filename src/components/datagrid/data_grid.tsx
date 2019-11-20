@@ -45,7 +45,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
-  getMergedSchema,
+  useMergedSchema,
   EuiDataGridSchemaDetector,
   useDetectSchema,
   schemaDetectors as providedSchemaDetectors,
@@ -465,7 +465,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     allSchemaDetectors,
     inMemory != null
   );
-  const mergedSchema = getMergedSchema(detectedSchema, columns);
+  const mergedSchema = useMergedSchema(detectedSchema, columns);
 
   const [columnSelector, orderedVisibleColumns] = useColumnSelector(
     columns,

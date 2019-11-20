@@ -105,7 +105,7 @@ export default () => {
   const data = useMemo(() => {
     // the grid itself is responsible for sorting if inMemory is `sorting`
     return raw_data;
-  }, [raw_data, sortingColumns]);
+  }, []);
 
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
@@ -138,7 +138,7 @@ export default () => {
         ? data[adjustedRowIndex][columnId]
         : null;
     };
-  }, [data]);
+  }, [data, pagination.pageIndex, pagination.pageSize]);
 
   return (
     <EuiDataGrid

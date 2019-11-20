@@ -358,11 +358,11 @@ export function useDetectSchema(
       },
       {}
     );
-  }, [inMemoryValues, schemaDetectors]);
+  }, [autoDetectSchema, inMemoryValues, schemaDetectors]);
   return schema;
 }
 
-export function getMergedSchema(
+export function useMergedSchema(
   detectedSchema: EuiDataGridSchema,
   columns: EuiDataGridColumn[]
 ) {
