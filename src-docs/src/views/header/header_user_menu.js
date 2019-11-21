@@ -4,9 +4,7 @@ import {
   EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiHeaderAlert,
   EuiHeaderSectionItemButton,
-  EuiNotificationBadge,
   EuiLink,
   EuiText,
   EuiSpacer,
@@ -43,10 +41,6 @@ export default class extends Component {
         aria-label="Account menu"
         onClick={this.onMenuButtonClick}>
         <EuiAvatar name="John Username" size="s" />
-
-        <EuiNotificationBadge className="euiHeaderNotification">
-          3
-        </EuiNotificationBadge>
       </EuiHeaderSectionItemButton>
     );
 
@@ -90,26 +84,6 @@ export default class extends Component {
               </EuiFlexGroup>
             </EuiFlexItem>
           </EuiFlexGroup>
-
-          <EuiHeaderAlert
-            title="Here&rsquo;s a notification title"
-            text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-            date="Nov. 14, 02:14PM."
-          />
-
-          <EuiHeaderAlert
-            title="Here&rsquo;s a notification title that is extremely long and will wrap"
-            text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-            action={<EuiLink href="#">Download your thing here</EuiLink>}
-            date="Nov. 14, 02:14PM."
-          />
-
-          <EuiHeaderAlert
-            title="Here&rsquo;s a notification title"
-            text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-            action={<EuiLink href="#">Download your thing here</EuiLink>}
-            date="Nov. 14, 02:14PM."
-          />
         </div>
       </EuiPopover>
     );

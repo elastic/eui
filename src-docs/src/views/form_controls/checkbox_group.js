@@ -29,9 +29,28 @@ export default class extends Component {
       },
     ];
 
+    this.checkboxesDisabled = this.checkboxes.map(checkbox => {
+      return { ...checkbox, id: `${checkbox.id}_disabled` };
+    });
+
+    this.checkboxesIndividuallyDisabled = this.checkboxes.map(checkbox => {
+      const isIndividuallyDisabled =
+        checkbox.id.charAt(checkbox.id.length - 1) === '1';
+      return {
+        ...checkbox,
+        id: `${checkbox.id}_individually_disabled`,
+        label: isIndividuallyDisabled
+          ? 'Option two is individually disabled'
+          : checkbox.label,
+        disabled: isIndividuallyDisabled,
+      };
+    });
+
     this.state = {
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
+        [`${idPrefix}1_disabled`]: true,
+        [`${idPrefix}1_individually_disabled`]: true,
       },
     };
   }
@@ -67,10 +86,24 @@ export default class extends Component {
         <EuiSpacer size="s" />
 
         <EuiCheckboxGroup
-          options={this.checkboxes}
+          options={this.checkboxesDisabled}
           idToSelectedMap={this.state.checkboxIdToSelectedMap}
           onChange={this.onChange}
           disabled
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiTitle size="xxs">
+          <h3>Individually disabled checkbox</h3>
+        </EuiTitle>
+
+        <EuiSpacer size="s" />
+
+        <EuiCheckboxGroup
+          options={this.checkboxesIndividuallyDisabled}
+          idToSelectedMap={this.state.checkboxIdToSelectedMap}
+          onChange={this.onChange}
         />
       </Fragment>
     );

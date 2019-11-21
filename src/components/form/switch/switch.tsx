@@ -37,7 +37,6 @@ export type EuiSwitchProps = CommonProps &
 export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   label,
   id,
-  name,
   checked,
   disabled,
   compressed,
