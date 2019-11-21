@@ -12,6 +12,9 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiTitle,
+  EuiAspectRatio,
+  EuiFlexGrid,
+  EuiIcon,
 } from '../../../../src/components';
 
 export default {
@@ -46,7 +49,7 @@ export default {
 
       <EuiSpacer size="l" />
 
-      <div className="guideSection__video">
+      <EuiAspectRatio width={16} height={9}>
         <iframe
           title="Building and Testing for Accessibility with EUI"
           width="560"
@@ -56,7 +59,7 @@ export default {
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-      </div>
+      </EuiAspectRatio>
       <EuiSpacer size="xl" />
     </>
   ),
@@ -97,10 +100,13 @@ export default {
               type="do"
               text="Do. Descend through headings as you work your way through the document.">
               <EuiCodeBlock language="html">
-                {`<h1>Discover your data</h1>
-<h2>Some content</h2>
-<h3>An important site metric</h3>
-<h3>Another important site metric</h3>`}
+                {`<EuiText>
+  <h1>Discover your data</h1>
+  <p>Some content</p>
+  <h2>Drill into site metrics</h2>
+  <h3>An important site metric</h3>
+  <h3>Another important site metric</h3>
+</EuiText>`}
               </EuiCodeBlock>
             </GuideRuleExample>
 
@@ -139,7 +145,7 @@ export default {
             </GuideRuleExample>
           </GuideRule>
 
-          <EuiSpacer size="xl" />
+          <EuiSpacer size="xxl" />
 
           <EuiText className="guideSection__text" grow={false}>
             <p>
@@ -203,12 +209,12 @@ export default {
               frame="frame"
               type="do"
               text="Do. Use landmarks and headings together to build complex pages.">
-              <EuiCodeBlock language="html">{`<header aria-labelledby="page-heading">
-  <h1 id="page-heading">Discover your data</h1>
+              <EuiCodeBlock language="html">{`<header aria-labelledby="pageHeading">
+  <h1 id="pageHeading">Discover your data</h1>
   <form role="search" aria-label="Site search"> <!-- input + label go in here --> </form>
 <header>
-<main aria-labelledby="content-heading">
-  <h2 id-"content-heading">Drill into site metrics</h2>
+<main aria-labelledby="contentHeading">
+  <h2 id="contentHeading">Drill into site metrics</h2>
   <form role="search" aria-label="Search your data">
     <!-- input + label go in here -->
   </form>
@@ -252,66 +258,78 @@ export default {
               the page does. The best page titles put the unique content first
               (effectively, they’re reverse-order breadcrumbs).
             </p>
+            <h4>Use this format</h4>
           </EuiText>
-          <EuiCallOut title="Use this format" iconType="check" level={4}>
-            <p>{'<Unique page title> - <Site title>'}</p>
-          </EuiCallOut>
-          <GuideRule>
-            <EuiFlexGroup direction="column">
-              <EuiFlexItem>
-                <GuideRuleExample
-                  panel={false}
-                  frame="frame"
-                  type="do"
-                  text="Do. These are good example of page titles.">
-                  <EuiFlexGroup direction="column">
-                    <EuiFlexItem>
-                      <p style={{ margin: '0', textAlign: 'center' }}>
-                        Discover - Kibana
-                      </p>
-                    </EuiFlexItem>
-                    <EuiFlexItem>
-                      <p style={{ margin: '0', textAlign: 'center' }}>
-                        Rollup Jobs - Management - Kibana
-                      </p>
-                    </EuiFlexItem>
-                  </EuiFlexGroup>
-                </GuideRuleExample>
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <GuideRuleExample
-                  panel={false}
-                  frame="frame"
-                  type="dont"
-                  text="Don’t. Though unique, this does not provide enough context; use: Watchers - Management - Kibana.">
-                  <p style={{ margin: '0' }}>Watchers</p>
-                </GuideRuleExample>
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <GuideRuleExample
-                  panel={false}
-                  frame="frame"
-                  type="dont"
-                  text="Don’t. Although it provides all the context, putting the most important bit at the end is hard to find; use: Spaces - Management - Kibana.">
-                  <p style={{ margin: '0' }}>Elastic Kibana - Spaces</p>
-                </GuideRuleExample>
-                {/* This spacer is hacks because code blocks can't have multi-line captions */}
-                <EuiSpacer size="xl" />
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <GuideRuleExample
-                  panel={false}
-                  frame="frame"
-                  type="dont"
-                  text="Don’t. Although this provides all the context and in a good order, a title is not the place for any extra words; use: Reporting - Management - Kibana.">
-                  <p style={{ margin: '0' }}>
-                    This is the Reporting page of the Management section of
-                    Kibana.
-                  </p>
-                </GuideRuleExample>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </GuideRule>
+          <EuiSpacer />
+          <EuiFlexGroup gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <EuiIcon type="checkInCircleFilled" size="l" color="secondary" />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiTitle size="xxs">
+                <p>{'{Unique page title} - {Site title}'}</p>
+              </EuiTitle>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          <EuiSpacer size="xl" />
+          <EuiFlexGrid columns={2}>
+            <EuiFlexItem>
+              <GuideRuleExample
+                panel={false}
+                frame="frame"
+                type="do"
+                text="Do. These are good example of page titles.">
+                <EuiFlexGroup direction="column">
+                  <EuiFlexItem>
+                    <strong className="eui-textCenter eui-displayBlock">
+                      Discover - Kibana
+                    </strong>
+                  </EuiFlexItem>
+                  <EuiFlexItem>
+                    <strong className="eui-textCenter eui-displayBlock">
+                      Rollup Jobs - Management - Kibana
+                    </strong>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </GuideRuleExample>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <GuideRuleExample
+                panel={false}
+                frame="frame"
+                type="dont"
+                text="Don’t. Though unique, this does not provide enough context; use: Watchers - Management - Kibana.">
+                <strong className="eui-textCenter eui-displayBlock">
+                  Watchers
+                </strong>
+              </GuideRuleExample>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <GuideRuleExample
+                panel={false}
+                frame="frame"
+                type="dont"
+                text="Don’t. Although it provides all the context, putting the most important bit at the end is hard to find; use: Spaces - Management - Kibana.">
+                <strong className="eui-textCenter eui-displayBlock">
+                  Elastic Kibana - Spaces
+                </strong>
+              </GuideRuleExample>
+              {/* This spacer is hacks because code blocks can't have multi-line captions */}
+              <EuiSpacer size="xl" />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <GuideRuleExample
+                panel={false}
+                frame="frame"
+                type="dont"
+                text="Don’t. Although this provides all the context and in a good order, a title is not the place for any extra words; use: Reporting - Management - Kibana.">
+                <strong className="eui-textCenter eui-displayBlock">
+                  This is the Reporting page of the Management section of
+                  Kibana.
+                </strong>
+              </GuideRuleExample>
+            </EuiFlexItem>
+          </EuiFlexGrid>
           {/* This spacer is hacks because code blocks can't have multi-line captions */}
           <EuiSpacer size="xl" />
 
@@ -335,8 +353,8 @@ export default {
           <EuiText className="guideSection__text" grow={false}>
             <p>
               Accessible components always start with semantic markup, but in
-              complex web apps, that often isn’t enough. To fill the gap between
-              HTML elements and complex widgets, you can use ARIA and related
+              complex web apps that often isn’t enough. To fill the gap between
+              HTML elements and complex components you can use ARIA and related
               attributes to be inclusive.
             </p>
 
@@ -365,11 +383,7 @@ export default {
               focusable programmatically, you can use{' '}
               <EuiCode>tabIndex=-1</EuiCode>.
             </p>
-            <EuiCallOut
-              title="Warning"
-              color="danger"
-              iconType="alert"
-              level={5}>
+            <EuiCallOut title="Warning" color="danger" heading="h5">
               <p>
                 Using <EuiCode>tabIndex</EuiCode> values greater than 0 is
                 problematic and should be avoided.
@@ -428,6 +442,8 @@ export default {
               to assistive technology. An accessible name can then be read by a
               screen reader or can be targeted for an action.
             </p>
+
+            <h4>Most elements</h4>
             <p>
               For most content, the accessible name comes from the element’s
               inner text, such as:{' '}
@@ -438,7 +454,8 @@ export default {
               &ldquo;Elastic.co, link&rdquo; or using voice commands, it can be
               controlled with &ldquo;Click Elastic.co link&rdquo;.
             </p>
-            <p style={{ margin: '0' }}>
+            <h4>Images and other elements</h4>
+            <p>
               Some content might require special attributes to give an element
               an accessible name. For images, you can use <EuiCode>alt</EuiCode>{' '}
               attributes, such as:
@@ -446,14 +463,16 @@ export default {
             <EuiCodeBlock language="html" paddingSize="s">
               {'<img src="image1.jpg" alt="An apple lays on a table">'}
             </EuiCodeBlock>
-            <p style={{ margin: '0' }}>
+            <h4>Buttons without inner text</h4>
+            <p>
               For buttons without descriptive text content, you can rely on ARIA
               to bring meaning back:
             </p>
             <EuiCodeBlock language="html" paddingSize="s">
               {'<button aria-label="Close modal">Ｘ</button>'}
             </EuiCodeBlock>
-            <p style={{ margin: '0' }}>
+            <h4>Forms and more complex patterns</h4>
+            <p>
               Some HTML elements have associated elements that provide
               accessible names. Form elements are the most ubiquitous example: a
               checkbox doesn’t have a name by itself, but when it is associated
@@ -464,7 +483,7 @@ export default {
 <label for="subscribe">Subscribe to Elastic news</label>`}
             </EuiCodeBlock>
             <h4>Of note: Repeated calls to action</h4>
-            <p style={{ margin: '0' }}>
+            <p>
               Having only an accessible name, however, doesn’t always lead to
               the best UX. Take a list of available fields that someone might
               want to add to their filter (say, on the discovery page of a
@@ -487,7 +506,7 @@ export default {
   </li>
 </ul>`}
             </EuiCodeBlock>
-            <p style={{ margin: '0' }}>
+            <p>
               Here, the 3 buttons have the same accessible name. There are a few
               different patterns you can use to differentiate between repeated
               items. For example, each button below shows a possible pattern you
@@ -523,19 +542,21 @@ export default {
 </ul>
 `}
             </EuiCodeBlock>
-            <EuiCallOut title="Developer tip" iconType="search" level={4}>
+            <EuiCallOut title="Developer tip" level={4}>
               <p>
                 Give lists an accessible name to improve their discoverability!
               </p>
-              <EuiCodeBlock language="html" paddingSize="s">
-                {`<!-- Can be any heading level or even a paragraph -->
+            </EuiCallOut>
+            <EuiSpacer />
+
+            <EuiCodeBlock language="html" paddingSize="s">
+              {`<!-- Can be any heading level or even a paragraph -->
 <h1 id="a1b2c3">My favorite fruit</h1>
 <ul aria-labelledby="a1b2c3"><!-- ... --></ul>
 
 <!-- You can still provide an accessible title even if there's no visual label -->
 <ul aria-label="My favorite vegetables">...</ul>`}
-              </EuiCodeBlock>
-            </EuiCallOut>
+            </EuiCodeBlock>
 
             <h4>Further reading</h4>
             <ul aria-labelledby="names further-reading">
@@ -718,7 +739,7 @@ export default {
             <h3 id="tooling">Tooling</h3>
             <ul aria-labelledby="tooling">
               <li>
-                axe plugin for{' '}
+                Axe plugin for{' '}
                 <EuiLink href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd">
                   Chrome
                 </EuiLink>{' '}
