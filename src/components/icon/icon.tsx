@@ -9,6 +9,10 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
+import _startCase from 'lodash/startCase';
+
+import { EuiI18n } from '../i18n';
+
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
@@ -414,7 +418,10 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 export type IconSize = keyof typeof sizeToClassNameMap;
 
 export type EuiIconProps = CommonProps &
-  Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
+  Omit<
+    SVGAttributes<SVGElement>,
+    'type' | 'color' | 'size' | 'title' | 'aria-labelledby'
+  > & {
     /**
      * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
      */
@@ -428,10 +435,17 @@ export type EuiIconProps = CommonProps &
      * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
      */
     size?: IconSize;
+    /**
+     * Overrides the default icon title.
+     */
+    title?: string;
+
+    'aria-labelledby'?: string;
   };
 
 interface State {
   icon: undefined | ReactElement | string;
+  iconTitle: undefined | string;
   isLoading: boolean;
 }
 
@@ -465,6 +479,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     this.state = {
       icon: initialIcon,
+      iconTitle: '',
       isLoading,
     };
   }
@@ -503,6 +518,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       if (this.isMounted) {
         this.setState({
           icon,
+          iconTitle: iconType,
           isLoading: false,
         });
       }
@@ -516,13 +532,14 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       color,
       className,
       tabIndex,
+      title,
       ...rest
     } = this.props;
 
     const { isLoading } = this.state;
 
     let optionalColorClass = null;
-    let optionalCustomStyles = null;
+    let optionalCustomStyles: any = null;
 
     if (color) {
       if (isNamedColor(color)) {
@@ -551,6 +568,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     );
 
     const icon = this.state.icon || empty;
+    const iconTitle = _startCase(this.state.iconTitle) || 'empty';
+    const titleDisplayed = title ? title : iconTitle;
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
@@ -560,27 +579,59 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     //   - For all other values, the consumer wants the icon to be focusable.
     const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
+    /*
+    If no aria-label or aria-labelledby provided the svg sets the aria-labelledby to the svg title
+    */
+    let ariaAttribute: any;
+
+    if (this.props['aria-label']) {
+      ariaAttribute = { ...{ 'aria-label': this.props['aria-label'] } };
+    } else if (this.props['aria-labelledby']) {
+      ariaAttribute = {
+        ...{ 'aria-labelledby': this.props['aria-labelledby'] },
+      };
+    } else {
+      ariaAttribute = { ...{ 'aria-labelledby': 'title' } };
+    }
+
     if (typeof icon === 'string') {
       return (
-        <img
-          // TODO: Allow alt prop
-          alt=""
-          src={icon}
-          className={classes}
-          tabIndex={tabIndex}
-          {...rest as HTMLAttributes<HTMLImageElement>}
-        />
+        <EuiI18n
+          token="euiIcon.title"
+          values={{ titleDisplayed }}
+          default="{titleDisplayed} icon">
+          {(title: string) => (
+            <img
+              alt={title}
+              src={icon}
+              className={classes}
+              tabIndex={tabIndex}
+              {...rest as HTMLAttributes<HTMLImageElement>}
+            />
+          )}
+        </EuiI18n>
       );
     } else {
       const Svg = icon;
+
       return (
-        <Svg
-          className={classes}
-          style={optionalCustomStyles}
-          tabIndex={tabIndex}
-          focusable={focusable}
-          {...rest}
-        />
+        <EuiI18n
+          token="euiIcon.title"
+          values={{ titleDisplayed }}
+          default="{titleDisplayed} icon">
+          {(title: string) => (
+            <Svg
+              className={classes}
+              style={optionalCustomStyles}
+              tabIndex={tabIndex}
+              focusable={focusable}
+              title={title}
+              role="img"
+              {...ariaAttribute}
+              {...rest}
+            />
+          )}
+        </EuiI18n>
       );
     }
   }

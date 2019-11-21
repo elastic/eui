@@ -1,5 +1,5 @@
 /*
- Dynamic import, with which TypeScript accepts static and dynamic paths:
+ Dynamic import, with which TypeScript accepts static and dynamic paths
 */
 const glob = await import('glob');
 const svgr = await import('@svgr/core').default;
@@ -17,17 +17,6 @@ function pascalCase(x) {
 }
 
 const iconFiles = glob.sync('**/*.svg', { cwd: iconsDir, realpath: true });
-
-// function defaultTemplate(
-//   { template },
-//   opts,
-//   { imports, componentName, props, jsx, exports }
-// ) {
-//   return template.ast`${imports}
-// const ${componentName} = (${props}) => ${jsx}
-// ${exports}
-// `;
-// }
 
 iconFiles.forEach(async filePath => {
   const svgSource = fs.readFileSync(filePath);

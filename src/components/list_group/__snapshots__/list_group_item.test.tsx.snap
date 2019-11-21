@@ -38,9 +38,11 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
+      aria-labelledby="title"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
@@ -111,9 +113,11 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
     class="euiListGroupItem__text"
   >
     <svg
+      aria-labelledby="title"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
@@ -310,9 +314,11 @@ exports[`EuiListGroupItem throws an warning if both iconType and icon are provid
     class="euiListGroupItem__text"
   >
     <svg
+      aria-labelledby="title"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"

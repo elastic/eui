@@ -5,9 +5,11 @@ exports[`EuiToken is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -20,9 +22,11 @@ exports[`EuiToken props color tokenTint01 is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -35,9 +39,11 @@ exports[`EuiToken props color tokenTint02 is rendered 1`] = `
   class="euiToken euiToken--tokenTint02 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +56,11 @@ exports[`EuiToken props color tokenTint03 is rendered 1`] = `
   class="euiToken euiToken--tokenTint03 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -65,9 +73,11 @@ exports[`EuiToken props color tokenTint04 is rendered 1`] = `
   class="euiToken euiToken--tokenTint04 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -80,9 +90,11 @@ exports[`EuiToken props color tokenTint05 is rendered 1`] = `
   class="euiToken euiToken--tokenTint05 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -95,9 +107,11 @@ exports[`EuiToken props color tokenTint06 is rendered 1`] = `
   class="euiToken euiToken--tokenTint06 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -110,9 +124,11 @@ exports[`EuiToken props color tokenTint07 is rendered 1`] = `
   class="euiToken euiToken--tokenTint07 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -125,9 +141,11 @@ exports[`EuiToken props color tokenTint08 is rendered 1`] = `
   class="euiToken euiToken--tokenTint08 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -140,9 +158,11 @@ exports[`EuiToken props color tokenTint09 is rendered 1`] = `
   class="euiToken euiToken--tokenTint09 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -155,9 +175,11 @@ exports[`EuiToken props color tokenTint10 is rendered 1`] = `
   class="euiToken euiToken--tokenTint10 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -170,9 +192,11 @@ exports[`EuiToken props shape circle is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -185,9 +209,11 @@ exports[`EuiToken props shape rectangle is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--rectangle euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -200,9 +226,11 @@ exports[`EuiToken props shape square is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--square euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -215,9 +243,11 @@ exports[`EuiToken props size l is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--large"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -230,9 +260,11 @@ exports[`EuiToken props size m is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--medium"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -245,9 +277,11 @@ exports[`EuiToken props size s is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--small"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -260,9 +294,11 @@ exports[`EuiToken props size xs is rendered 1`] = `
   class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--xsmall"
 >
   <svg
+    aria-labelledby="title"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
+    role="img"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"

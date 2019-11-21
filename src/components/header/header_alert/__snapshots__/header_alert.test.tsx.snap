@@ -13,9 +13,11 @@ exports[`EuiHeaderAlert is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
+      aria-labelledby="title"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
@@ -65,9 +67,11 @@ exports[`EuiHeaderAlert renders action 1`] = `
   >
     <svg
       aria-hidden="true"
+      aria-labelledby="title"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
@@ -121,9 +125,11 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
   >
     <svg
       aria-hidden="true"
+      aria-labelledby="title"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
@@ -175,9 +181,11 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
   >
     <svg
       aria-hidden="true"
+      aria-labelledby="title"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"

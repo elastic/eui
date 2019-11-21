@@ -39,9 +39,11 @@ exports[`renders EuiColorPicker 1`] = `
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,9 +61,11 @@ exports[`renders EuiColorPicker 1`] = `
           >
             <svg
               aria-hidden="true"
+              aria-labelledby="title"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -113,9 +117,11 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -133,9 +139,11 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
           >
             <svg
               aria-hidden="true"
+              aria-labelledby="title"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -186,9 +194,11 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -206,9 +216,11 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
           >
             <svg
               aria-hidden="true"
+              aria-labelledby="title"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -259,9 +271,11 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -279,9 +293,11 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
           >
             <svg
               aria-hidden="true"
+              aria-labelledby="title"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -333,9 +349,11 @@ exports[`renders compressed EuiColorPicker 1`] = `
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -353,9 +371,11 @@ exports[`renders compressed EuiColorPicker 1`] = `
           >
             <svg
               aria-hidden="true"
+              aria-labelledby="title"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -408,9 +428,11 @@ exports[`renders disabled EuiColorPicker 1`] = `
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -428,9 +450,11 @@ exports[`renders disabled EuiColorPicker 1`] = `
           >
             <svg
               aria-hidden="true"
+              aria-labelledby="title"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -482,9 +506,11 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -502,9 +528,11 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
           >
             <svg
               aria-hidden="true"
+              aria-labelledby="title"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -740,9 +768,11 @@ exports[`renders readOnly EuiColorPicker 1`] = `
                 >
                   <svg
                     aria-hidden="true"
+                    aria-labelledby="title"
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
