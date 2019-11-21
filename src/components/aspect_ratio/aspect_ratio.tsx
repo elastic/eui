@@ -1,118 +1,53 @@
-import React, { HTMLAttributes, Component, cloneElement } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
 export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
+    /**
+     * Aspect ratio width. For example 9 would be widescreen video.
+     */
     height: number;
+    /**
+     * Aspect ratio width. For example 16 would be widescreen video.
+     */
     width: number;
+    /**
+     * The maximum width you want the child to stretch to.
+     */
     maxWidth?: number;
-    cropContent?: boolean;
   };
 
-export class EuiAspectRatio extends Component<EuiAspectRatioProps> {
-  childContent: HTMLDivElement | null = null;
-  childWrapper: HTMLDivElement | null = null;
+export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
+  children,
+  className,
+  height,
+  width,
+  maxWidth,
+  ...rest
+}) => {
+  const classes = classNames('euiAspectRatio', className);
 
-  setChildContentDemensions = () => {
-    requestAnimationFrame(() => {
-      const contentHeight = this.childContent
-        ? this.childContent.getBoundingClientRect().height
-        : 0;
-      const contentWidth = this.childContent
-        ? this.childContent.getBoundingClientRect().width
-        : 0;
-      const wrapperHeight = this.childWrapper
-        ? this.childWrapper.getBoundingClientRect().height
-        : 0;
-      const wrapperWidth = this.childWrapper
-        ? this.childWrapper.getBoundingClientRect().width
-        : 0;
-      console.log(contentWidth, contentHeight, wrapperWidth, wrapperHeight);
+  const paddingBottom = `${(height / width) * 100}%`;
 
-      let wrapperShape = 'horizontal';
-      if (wrapperHeight / wrapperWidth > 1) {
-        wrapperShape = 'vertical';
-      }
+  const content = (
+    <div
+      className={classes}
+      {...rest}
+      style={{
+        paddingBottom: paddingBottom,
+        maxWidth: maxWidth ? maxWidth : 'auto',
+      }}>
+      {children}
+    </div>
+  );
 
-      if (wrapperShape === 'vertical') {
-        if (wrapperHeight > contentHeight) {
-          this.childContent &&
-            this.childContent.setAttribute(
-              'style',
-              'width: auto; height: 100%; top: -100%; bottom: -100%; left: -100%; right: -100%; margin: auto;'
-            );
-        } else {
-          this.childContent &&
-            this.childContent.setAttribute(
-              'style',
-              'width: 100%; height: auto; top: -100%; bottom: -100%; left: -100%; right: -100%; margin: auto;'
-            );
-        }
-      }
-    });
-  };
-
-  componentDidMount() {
-    this.setChildContentDemensions();
-  }
-
-  componentDidUpdate() {
-    this.setChildContentDemensions();
-  }
-
-  setChildContentRef = (node: HTMLDivElement | null) => {
-    this.childContent = node;
-  };
-
-  render() {
-    const {
-      children,
-      className,
-      height,
-      width,
-      cropContent,
-      maxWidth,
-      ...rest
-    } = this.props;
-
-    const classes = classNames(
-      'euiAspectRatio',
-      {
-        'euiAspectRatio--cropContent': cropContent,
-      },
-      className
+  let contentwithoptionalwrap = content;
+  if (maxWidth) {
+    contentwithoptionalwrap = (
+      <div style={{ maxWidth: maxWidth }}>{content}</div>
     );
-
-    const paddingBottom = `${(height / width) * 100}%`;
-
-    const content = (
-      <div
-        className={classes}
-        {...rest}
-        style={{
-          paddingBottom: paddingBottom,
-          maxWidth: maxWidth ? maxWidth : 'auto',
-        }}
-        ref={node => {
-          this.childWrapper = node;
-        }}>
-        {cloneElement(children as React.ReactElement<any>, {
-          ref: (ref: any) => {
-            this.setChildContentRef(ref);
-            this.setChildContentDemensions();
-          },
-        })}
-      </div>
-    );
-
-    let contentwithoptionalwrap = content;
-    if (maxWidth) {
-      contentwithoptionalwrap = (
-        <div style={{ maxWidth: maxWidth }}>{content}</div>
-      );
-    }
-
-    return contentwithoptionalwrap;
   }
-}
+
+  return contentwithoptionalwrap;
+};
