@@ -38,7 +38,7 @@ export const AspectRatioExample = {
           <EuiCallOut
             size="s"
             color="warning"
-            title="The responsiveness of the embed is due more to the source than this component. Your mileage may vary."
+            title="In some cases, aspect ratio sizing may not be supported by the embed. This component will only work with ones that do, like YouTube."
           />
           <EuiSpacer />
           <p>
