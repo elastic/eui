@@ -20,6 +20,7 @@ export const GuideRuleExample = ({
   text,
   panel,
   frame,
+  minHeight,
   ...rest
 }) => {
   const classes = classNames(
@@ -34,7 +35,11 @@ export const GuideRuleExample = ({
   const ChildrenComponent = panel ? EuiPanel : 'div';
 
   return (
-    <EuiFlexItem component="figure" className={classes} {...rest}>
+    <EuiFlexItem
+      component="figure"
+      className={classes}
+      {...rest}
+      style={{ minHeight: minHeight ? minHeight : '' }}>
       <ChildrenComponent className="guideRule__example__panel">
         {children}
       </ChildrenComponent>
@@ -51,6 +56,7 @@ GuideRuleExample.propTypes = {
   type: PropTypes.string.isRequired,
   text: PropTypes.string,
   panel: PropTypes.bool,
+  minHeight: PropTypes.number,
 };
 
 GuideRuleExample.defaultProps = {

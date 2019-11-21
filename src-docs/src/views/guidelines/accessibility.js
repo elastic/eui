@@ -129,18 +129,18 @@ export default {
 </EuiText>`}
               </EuiCodeBlock>
             </GuideRuleExample>
-
+          </GuideRule>
+          <GuideRule>
             <GuideRuleExample
-              style={{ minWidth: 500 }}
               panel={false}
               frame="frame"
               type="do"
               text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context. Remember that EuiTitle gives you a way to separate your presentation from your semantic markup.">
               <EuiCodeBlock language="html">
                 {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
-<EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
-<EuiTitle size="l"><h3>An important site metric</h3></EuiTitle>
-<EuiTitle size="m"><h3>Another important site metric</h3></EuiTitle>`}
+  <EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
+  <EuiTitle size="l"><h3>An important site metric</h3></EuiTitle>
+  <EuiTitle size="m"><h3>Another important site metric</h3></EuiTitle>`}
               </EuiCodeBlock>
             </GuideRuleExample>
           </GuideRule>
@@ -271,66 +271,59 @@ export default {
               </EuiTitle>
             </EuiFlexItem>
           </EuiFlexGroup>
+          <GuideRule>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="do"
+              minHeight={200}
+              text="Do. These are good example of page titles.">
+              <div>
+                <strong className="eui-textCenter eui-displayBlock">
+                  Discover - Kibana
+                </strong>
+                <EuiSpacer />
+                <strong className="eui-textCenter eui-displayBlock">
+                  Rollup Jobs - Management - Kibana
+                </strong>
+              </div>
+            </GuideRuleExample>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="dont"
+              minHeight={200}
+              text="Don’t. Though unique, this does not provide enough context; use: Watchers - Management - Kibana.">
+              <strong className="eui-textCenter eui-displayBlock">
+                Watchers
+              </strong>
+            </GuideRuleExample>
+          </GuideRule>
+          <GuideRule>
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="dont"
+              minHeight={200}
+              text="Don’t. Although it provides all the context, putting the most important bit at the end is hard to find; use: Spaces - Management - Kibana.">
+              <strong className="eui-textCenter eui-displayBlock">
+                Elastic Kibana - Spaces
+              </strong>
+            </GuideRuleExample>
+            {/* This spacer is hacks because code blocks can't have multi-line captions */}
+            <EuiSpacer size="xl" />
+            <GuideRuleExample
+              panel={false}
+              frame="frame"
+              type="dont"
+              minHeight={200}
+              text="Don’t. Although this provides all the context and in a good order, a title is not the place for any extra words; use: Reporting - Management - Kibana.">
+              <strong className="eui-textCenter eui-displayBlock">
+                This is the Reporting page of the Management section of Kibana.
+              </strong>
+            </GuideRuleExample>
+          </GuideRule>
           <EuiSpacer size="xl" />
-          <EuiFlexGrid columns={2}>
-            <EuiFlexItem>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="do"
-                text="Do. These are good example of page titles.">
-                <EuiFlexGroup direction="column">
-                  <EuiFlexItem>
-                    <strong className="eui-textCenter eui-displayBlock">
-                      Discover - Kibana
-                    </strong>
-                  </EuiFlexItem>
-                  <EuiFlexItem>
-                    <strong className="eui-textCenter eui-displayBlock">
-                      Rollup Jobs - Management - Kibana
-                    </strong>
-                  </EuiFlexItem>
-                </EuiFlexGroup>
-              </GuideRuleExample>
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="dont"
-                text="Don’t. Though unique, this does not provide enough context; use: Watchers - Management - Kibana.">
-                <strong className="eui-textCenter eui-displayBlock">
-                  Watchers
-                </strong>
-              </GuideRuleExample>
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="dont"
-                text="Don’t. Although it provides all the context, putting the most important bit at the end is hard to find; use: Spaces - Management - Kibana.">
-                <strong className="eui-textCenter eui-displayBlock">
-                  Elastic Kibana - Spaces
-                </strong>
-              </GuideRuleExample>
-              {/* This spacer is hacks because code blocks can't have multi-line captions */}
-              <EuiSpacer size="xl" />
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <GuideRuleExample
-                panel={false}
-                frame="frame"
-                type="dont"
-                text="Don’t. Although this provides all the context and in a good order, a title is not the place for any extra words; use: Reporting - Management - Kibana.">
-                <strong className="eui-textCenter eui-displayBlock">
-                  This is the Reporting page of the Management section of
-                  Kibana.
-                </strong>
-              </GuideRuleExample>
-            </EuiFlexItem>
-          </EuiFlexGrid>
-          {/* This spacer is hacks because code blocks can't have multi-line captions */}
           <EuiSpacer size="xl" />
 
           <EuiText className="guideSection__text" grow={false}>
