@@ -489,7 +489,7 @@ describe('EuiDataGrid', () => {
                 'data-test-subj': `cell-${rowIndex}-${columnId}`,
                 style: { color: columnId === 'A' ? 'red' : 'blue' },
               });
-            }, []);
+            }, [columnId, rowIndex, setCellProps]);
 
             return `${rowIndex}, ${columnId}`;
           }}
