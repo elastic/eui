@@ -8,6 +8,6 @@ export default () => (
     hasShadow
     caption="Random nature image"
     alt="Random nature image"
-    url="https://source.unsplash.com/300x300/?Nature"
+    url="https://picsum.photos/300/300"
   />
 );
