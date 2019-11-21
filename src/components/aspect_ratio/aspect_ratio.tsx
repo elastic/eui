@@ -5,7 +5,7 @@ import classNames from 'classnames';
 export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
-     * Aspect ratio width. For example 9 would be widescreen video.
+     * Aspect ratio height. For example 9 would be widescreen video.
      */
     height: number;
     /**
