@@ -1,26 +1,14 @@
 import React from 'react';
 
-const EuiIconLogoMemcached = props => (
+const EuiIconLogoMemcached = ({ title, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
+    <title>{title}</title>
     <defs>
-      <linearGradient id="logo_memcached-a" x1="50%" x2="50%" y1="100%" y2="0%">
-        <stop offset="0%" stopColor="#574C4A" />
-        <stop offset="100%" stopColor="#80716D" />
-      </linearGradient>
-      <linearGradient
-        id="logo_memcached-b"
-        x1="88.778%"
-        x2="30.149%"
-        y1="98.342%"
-        y2="-8.68%">
-        <stop offset="0%" stopColor="#268D83" />
-        <stop offset="100%" stopColor="#2EA19E" />
-      </linearGradient>
       <radialGradient
         id="logo_memcached-c"
         cx="41.406%"
@@ -41,6 +29,19 @@ const EuiIconLogoMemcached = props => (
         <stop offset="0%" stopColor="#DB7C7C" />
         <stop offset="100%" stopColor="#C83737" />
       </radialGradient>
+      <linearGradient id="logo_memcached-a" x1="50%" x2="50%" y1="100%" y2="0%">
+        <stop offset="0%" stopColor="#574C4A" />
+        <stop offset="100%" stopColor="#80716D" />
+      </linearGradient>
+      <linearGradient
+        id="logo_memcached-b"
+        x1="88.778%"
+        x2="30.149%"
+        y1="98.342%"
+        y2="-8.68%">
+        <stop offset="0%" stopColor="#268D83" />
+        <stop offset="100%" stopColor="#2EA19E" />
+      </linearGradient>
     </defs>
     <g fill="none">
       <path
@@ -53,11 +54,11 @@ const EuiIconLogoMemcached = props => (
       />
       <path
         fill="url(#logo_memcached-c)"
-        d="M14.993 24.109a1.16 1.16 0 1 1-2.322 0 1.16 1.16 0 0 1 2.322 0z"
+        d="M14.993 24.109a1.16 1.16 0 11-2.322 0 1.16 1.16 0 012.322 0z"
       />
       <path
         fill="url(#logo_memcached-d)"
-        d="M19.249 24.109a1.16 1.16 0 1 1-2.322 0 1.16 1.16 0 0 1 2.322 0z"
+        d="M19.249 24.109a1.16 1.16 0 11-2.322 0 1.16 1.16 0 012.322 0z"
       />
       <path
         fill="#000"

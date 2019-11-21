@@ -1,12 +1,13 @@
 import React from 'react';
 
-const EuiIconLogoAerospike = props => (
+const EuiIconLogoAerospike = ({ title, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
+    <title>{title}</title>
     <g fill="none">
       <path fill="#C4373A" d="M0 31.806h32V.776H0z" />
       <path
