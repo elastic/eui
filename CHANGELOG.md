@@ -6,11 +6,17 @@
 - Added `disabled` option to the `option` attribute of the `options` object that is passed to the `EuiCheckboxGroup` so that checkboxes in a group can be individually disabled ([#2548](https://github.com/elastic/eui/pull/2548))
 - Added `EuiAspectRatio` component that allows for responsively resizing embeds ([#2535](https://github.com/elastic/eui/pull/2535))
 
+**Bug fixes**
+
+- Fixed `EuiDataGrid` schema detection on already defined column schemas ([#2550](https://github.com/elastic/eui/pull/2550))
+
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 
 **Bug fixes**
 
 - `EuiSwitch` now passes `name` attribute into underlying `button` ([#2533](https://github.com/elastic/eui/pull/2533))
+- Added `euiTextBreakWord()` to `EuiToast` header ([#2549](https://github.com/elastic/eui/pull/2549))
+- Fixed `.eui-textBreakAll` on Firefox ([#2549](https://github.com/elastic/eui/pull/2549))
 
 ## [`16.0.0`](https://github.com/elastic/eui/tree/v16.0.0)
 
