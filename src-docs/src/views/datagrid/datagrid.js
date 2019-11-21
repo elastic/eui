@@ -101,12 +101,6 @@ export default () => {
     [setSortingColumns]
   );
 
-  // Sort data
-  const data = useMemo(() => {
-    // the grid itself is responsible for sorting if inMemory is `sorting`
-    return raw_data;
-  }, []);
-
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
     columns.map(({ id }) => id)
@@ -114,15 +108,11 @@ export default () => {
 
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId, setCellProps }) => {
-      let adjustedRowIndex = rowIndex;
-
-      adjustedRowIndex = rowIndex - pagination.pageIndex * pagination.pageSize;
-
       useEffect(() => {
         if (columnId === 'amount') {
-          if (data.hasOwnProperty(adjustedRowIndex)) {
+          if (raw_data.hasOwnProperty(rowIndex)) {
             const numeric = parseFloat(
-              data[adjustedRowIndex][columnId].match(/\d+\.\d+/)[0],
+              raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0],
               10
             );
             setCellProps({
@@ -132,13 +122,13 @@ export default () => {
             });
           }
         }
-      }, [adjustedRowIndex, columnId, setCellProps]);
+      }, [rowIndex, columnId, setCellProps]);
 
-      return data.hasOwnProperty(adjustedRowIndex)
-        ? data[adjustedRowIndex][columnId]
+      return raw_data.hasOwnProperty(rowIndex)
+        ? raw_data[rowIndex][columnId]
         : null;
     };
-  }, [data, pagination.pageIndex, pagination.pageSize]);
+  }, []);
 
   return (
     <EuiDataGrid
