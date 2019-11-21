@@ -1,1 +1,1 @@
-export { EuiAspectRatio } from './aspect_ratio';
+export { EuiAspectRatio, EuiAspectRatioProps } from './aspect_ratio';
