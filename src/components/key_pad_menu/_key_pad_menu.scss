@@ -1,8 +1,4 @@
 /**
- * Dial menu is a phone like dial comprised of an svg icon and a title.
- */
-
-/**
  * 1. Default to grid of 3
  */
 .euiKeyPadMenu {
@@ -32,14 +28,31 @@
     border-color $euiAnimSpeedFast ease-in,
     box-shadow $euiAnimSpeedFast ease-in;
 
-  &:hover,
-  &:focus {
-    @include euiSlightShadow;
-    border-color: $euiBorderColor;
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include euiSlightShadow;
+      border-color: $euiBorderColor;
 
-    .euiKeyPadMenuItem__icon {
-      transform: translateY(0);
+      .euiKeyPadMenuItem__icon { // sass-lint:disable-line nesting-depth
+        transform: translateY(0);
+      }
     }
+
+  }
+
+  &:disabled {
+    color: $euiButtonColorDisabled;
+    cursor: not-allowed;
+
+    .euiKeyPadMenuItem__icon  {
+      filter: grayscale(100%);
+
+      svg * { // sass-lint:disable-line nesting-depth
+        fill: $euiButtonColorDisabled;
+      }
+    }
+
   }
 }
 
@@ -56,18 +69,29 @@
 
     .euiKeyPadMenuItem__betaBadgeWrapper {
       position: absolute;
-      top: $euiSizeS;
+      top: $euiSizeXS;
       right: $euiSizeS;
       z-index: 3;
 
       // sass-lint:disable-block nesting-depth
       .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
-        width: $euiSizeL;
-        padding: 0 (($euiSizeL - $euiFontSizeXS) / 1.5);  /* 2 */
+        padding: 0 ($euiSizeM / 2);  /* 2 */
         overflow: hidden;  /* 2 */
         letter-spacing: 3rem;  /* 2 */
       }
     }
+  }
+}
+
+.euiKeyPadMenuItem__betaBadge {
+  @include size($euiKeyPadMenuItemBetaBadgeSize);
+  line-height: $euiKeyPadMenuItemBetaBadgeSize;
+  color: $euiColorFullShade;
+  background-color: tintOrShade($euiColorLightShade, 50%, 0%);
+  box-shadow: none;
+
+  .euiBetaBadge__icon {
+    @include size($euiSizeM);
   }
 }
 

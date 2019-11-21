@@ -14,8 +14,8 @@ const badges = [
   'accent',
   'warning',
   'danger',
-  '#fea27f',
   '#000',
+  '#fea27f',
 ];
 
 export default () => (
@@ -25,5 +25,8 @@ export default () => (
         <EuiBadge color={badge}>{badge}</EuiBadge>
       </EuiFlexItem>
     ))}
+    <EuiFlexItem grow={false}>
+      <EuiBadge isDisabled={true}>disabled</EuiBadge>
+    </EuiFlexItem>
   </EuiFlexGroup>
 );

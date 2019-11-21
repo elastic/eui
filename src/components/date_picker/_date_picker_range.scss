@@ -48,6 +48,7 @@
   }
 
   > .euiDatePickerRange__delimeter {
+    background-color: transparent !important; // override .euiFormControlLayout--group .euiText
     line-height: 1 !important;
     flex: 0 0 auto;
     padding-left: $euiFormControlPadding / 2;

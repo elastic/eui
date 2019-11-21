@@ -60,7 +60,7 @@ export const EuiStepHorizontal: FunctionComponent<
     status = 'complete';
   } else if (isSelected) {
     status = status;
-  } else if (!isComplete && !status) {
+  } else if (!status) {
     status = 'incomplete';
   }
 

@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 
 export type EuiColorPickerSwatchProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> & {

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
+<nav
+  aria-label="aria-label"
+  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+  data-test-subj="test subject string"
+>
+  <a
+    class="euiLink euiLink--subdued euiBreadcrumb customClass"
+    data-test-subj="breadcrumbsAnimals"
+    href="#"
+    rel="noreferrer"
+  >
+    Animals
+  </a>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
+  >
+    Reptiles
+  </button>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <a
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    href="#"
+    rel="noreferrer"
+  >
+    Boa constrictor
+  </a>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <span
+    aria-current="page"
+    class="euiBreadcrumb euiBreadcrumb--last"
+  >
+    Edit
+  </span>
+</nav>
+`;

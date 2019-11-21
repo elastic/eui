@@ -67,12 +67,6 @@ class _TimeChart extends Component {
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
-    const gridHorizontalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridHorizontalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridHorizontalSettings;
-    const gridVerticalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
 
     let ChartType = CHART_COMPONENTS[this.state.chartType];
     let ChartType2 = CHART_COMPONENTS[this.state.chartType];
@@ -127,15 +121,9 @@ class _TimeChart extends Component {
             position="bottom"
             tickFormat={timeFormatter(niceTimeFormatByDay(1))}
             showGridLines={this.state.chartType !== 'BarSeries'}
-            gridLineStyle={gridVerticalSettings}
             tickPadding={0}
           />
-          <Axis
-            id="left-axis"
-            position="left"
-            showGridLines
-            gridLineStyle={gridHorizontalSettings}
-          />
+          <Axis id="left-axis" position="left" showGridLines />
         </Chart>
 
         <EuiSpacer />

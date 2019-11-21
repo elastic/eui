@@ -13,6 +13,7 @@ export interface I18nShape {
   mappingFunc?: (value: string) => string;
   formatNumber?: (x: number) => string;
   formatDateTime?: (x: Date) => string;
+  locale?: string;
 }
 
 const I18nContext: React.Context<I18nShape> = createContext({});

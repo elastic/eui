@@ -204,6 +204,7 @@ export class EuiCodeEditor extends Component {
         {prompt}
 
         <AceEditor
+          name={this.idGenerator()}
           ref={this.aceEditorRef}
           width={width}
           height={height}

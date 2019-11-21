@@ -21,51 +21,85 @@
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
-  .euiCard__top,
-  .euiCard__content,
-  .euiCard__footer {
-    display: block;
-    width: 100%;
-  }
+  &.euiCard-isDisabled {
+    background-color: $euiColorLightestShade;
+    cursor: not-allowed; // duplicate property due to Chrome bug
+    box-shadow: none;
 
-  &.euiCard--leftAligned,
-  &.euiCard--isClickable.euiCard--leftAligned {
-    text-align: left;
-    align-items: flex-start;
-  }
+    .euiCard__title,
+    .euiCard__description,
+    .euiCard__top {
+      color: $euiColorDarkShade;
+    }
 
-  &.euiCard--centerAligned,
-  &.euiCard--isClickable.euiCard--centerAligned {
-    text-align: center;
-    align-items: center;
-  }
+    .euiCard__top svg,
+    .euiCard__top img {
+      filter: grayscale(100%);
+    }
 
-  &.euiCard--rightAligned,
-  &.euiCard--isClickable.euiCard--rightAligned {
-    text-align: right;
-    align-items: flex-end;
+    .euiCard__titleAnchor,
+    .euiCard__titleButton {
+      cursor: inherit;
+    }
+
+    &:hover,
+    &:focus {
+      cursor: not-allowed; // duplicate property due to Chrome bug
+      transform: none;
+      box-shadow: none;
+      text-decoration: none;
+    }
   }
 
   &.euiCard--isClickable {
-    display: flex;
+    display: flex; // Override panel mixin
 
-    &:focus,
-    &:hover {
-      .euiCard__title {
-        text-decoration: underline;
+    &:not(.euiCard-isDisabled) {
+      // Progressive Enhancement Only
+      // The title will still underline to simulate focus in IE
+      &:focus-within {
+        @include euiSlightShadowHover;
+        @include euiFocusRing('large');
+      }
+
+      &:focus,
+      &:hover {
+        .euiCard__titleAnchor,
+        .euiCard__titleButton {
+          text-decoration: underline;
+        }
       }
     }
   }
 
-  &.euiCard--hasBottomGraphic,
+  .euiCard__top,
+  .euiCard__content,
+  .euiCard__footer {
+    width: 100%; // Fixes IE and ensures they always stretch no matter the flex layout
+  }
+
+  &.euiCard--leftAligned {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  &.euiCard--centerAligned {
+    text-align: center;
+    align-items: center;
+  }
+
+  &.euiCard--rightAligned {
+    text-align: right;
+    align-items: flex-end;
+  }
+
   &.euiCard--isSelectable {
     position: relative;
     padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;
   }
 
   &.euiCard-isSelected {
-    @include euiBottomShadowMedium;
-    transition: box-shadow $euiAnimSpeedFast $euiAnimSlightResistance, border-color $euiAnimSpeedFast $euiAnimSlightResistance;
+    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 }
 
@@ -114,15 +148,18 @@
 .euiCard__content {
   flex-grow: 1; /* 1 */
 
-  .euiCard__title {
-    @include euiTitle($euiCardTitleSize);
+  .euiCard__titleAnchor,
+  .euiCard__titleButton {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
 
-    display: block;
-    font-weight: $euiFontWeightMedium;
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   .euiCard__description {
-    color: $euiTextColor; // Ensures regular text color if wrapped in an anchor tag
     margin-top: $euiCardSpacing / 2;
   }
 }
@@ -134,7 +171,6 @@
 
 .euiCard.euiCard--horizontal {
   .euiCard__content {
-    padding-top: $euiSizeS; // Aligns title and text a bit better and adds spacing in case of beta badge
     text-align: left; /* 3 */
   }
 }
@@ -158,4 +194,7 @@
   }
 }
 
+.euiCard--hasChildren .euiCard__description {
+  margin-bottom: $euiCardSpacing;
+}
 

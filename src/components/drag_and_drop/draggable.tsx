@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { Draggable, DraggableProps } from 'react-beautiful-dnd';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { EuiDroppableContext } from './droppable';
 
 const spacingToClassNameMap = {
@@ -56,7 +56,11 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   const { cloneItems } = useContext(EuiDroppableContext);
 
   return (
-    <Draggable draggableId={draggableId} index={index} {...rest}>
+    <Draggable
+      draggableId={draggableId}
+      index={index}
+      isDragDisabled={isDragDisabled}
+      {...rest}>
       {(provided, snapshot) => {
         const classes = classNames(
           'euiDraggable',

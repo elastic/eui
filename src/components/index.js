@@ -1,5 +1,7 @@
 export { EuiAccordion } from './accordion';
 
+export { EuiAspectRatio } from './aspect_ratio';
+
 export { EuiAvatar } from './avatar';
 
 export { EuiKeyboardAccessible, EuiScreenReaderOnly } from './accessibility';
@@ -20,7 +22,7 @@ export {
 
 export { EuiCallOut } from './call_out';
 
-export { EuiCard, EuiCardGraphic } from './card';
+export { EuiCard } from './card';
 
 export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
@@ -29,6 +31,7 @@ export { EuiCodeEditor } from './code_editor';
 export {
   EuiColorPicker,
   EuiColorPickerSwatch,
+  EuiColorStops,
   EuiHue,
   EuiSaturation,
 } from './color_picker';
@@ -43,7 +46,11 @@ export {
   EuiContextMenuItem,
 } from './context_menu';
 
+export { EuiControlBar } from './control_bar';
+
 export { EuiCopy } from './copy';
+
+export { EuiDataGrid } from './datagrid';
 
 export {
   EuiDatePicker,
@@ -67,6 +74,9 @@ export {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
+  euiDragDropCopy,
+  euiDragDropMove,
+  euiDragDropReorder,
 } from './drag_and_drop';
 
 export { EuiEmptyPrompt } from './empty_prompt';
@@ -144,7 +154,7 @@ export { ICON_TYPES, EuiIcon } from './icon';
 
 export { EuiImage } from './image';
 
-export { useInnerText, EuiInnerText } from './inner_text';
+export { useInnerText, EuiInnerText, useRenderToText } from './inner_text';
 
 export { EuiI18n, EuiI18nNumber } from './i18n';
 
@@ -215,6 +225,8 @@ export {
 export { EuiPortal } from './portal';
 
 export { EuiProgress } from './progress';
+
+export { EuiTreeView } from './tree_view';
 
 export { EuiResizeObserver } from './observer/resize_observer';
 

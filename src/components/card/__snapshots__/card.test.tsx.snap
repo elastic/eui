@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCard is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiCard euiCard--centerAligned testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props children 1`] = `
+<div
+  class="euiCard euiCard--centerAligned euiCard--hasChildren"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+    Child
+  </div>
+</div>
+`;
+
+exports[`EuiCard props footer 1`] = `
+<div
+  class="euiCard euiCard--centerAligned"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiCard__footer"
+  >
+    <span>
+      Footer
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props horizontal 1`] = `
+<div
+  class="euiCard euiCard--centerAligned euiCard--horizontal"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props href supports href as a link 1`] = `
+<EuiCard
+  description="There"
+  href="#"
+  title="Hoi"
+>
+  <div
+    className="euiCard euiCard--centerAligned euiCard--isClickable"
+    onClick={[Function]}
+  >
+    <div
+      className="euiCard__content"
+    >
+      <EuiTitle
+        className="euiCard__title"
+        id="generated-idTitle"
+        size="s"
+      >
+        <span
+          className="euiTitle euiTitle--small euiCard__title"
+          id="generated-idTitle"
+        >
+          <a
+            aria-describedby="generated-idDescription"
+            className="euiCard__titleAnchor"
+            href="#"
+            rel="noreferrer"
+          >
+            Hoi
+          </a>
+        </span>
+      </EuiTitle>
+      <EuiText
+        className="euiCard__description"
+        id="generated-idDescription"
+        size="s"
+      >
+        <div
+          className="euiText euiText--small euiCard__description"
+          id="generated-idDescription"
+        >
+          <p>
+            There
+          </p>
+        </div>
+      </EuiText>
+    </div>
+  </div>
+</EuiCard>
+`;
+
+exports[`EuiCard props icon 1`] = `
+<div
+  class="euiCard euiCard--centerAligned euiCard--hasIcon"
+>
+  <div
+    class="euiCard__top"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading myIconClass euiCard__icon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </div>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props selectable 1`] = `
+<div
+  class="euiCard euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+  <button
+    aria-checked="false"
+    aria-describedby="generated-idTitle generated-idDescription"
+    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    role="switch"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonEmpty__text"
+      >
+        Select
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`EuiCard props textAlign 1`] = `
+<div
+  class="euiCard euiCard--rightAligned"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props titleElement 1`] = `
+<div
+  class="euiCard euiCard--centerAligned"
+>
+  <div
+    class="euiCard__content"
+  >
+    <h4
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </h4>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;

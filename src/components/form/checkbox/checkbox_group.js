@@ -21,7 +21,7 @@ export const EuiCheckboxGroup = ({
           id={option.id}
           checked={idToSelectedMap[option.id]}
           label={option.label}
-          disabled={disabled}
+          disabled={disabled || option.disabled}
           onChange={onChange.bind(null, option.id)}
           compressed={compressed}
         />
@@ -35,6 +35,7 @@ EuiCheckboxGroup.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       label: PropTypes.node,
+      disabled: PropTypes.bool,
     })
   ).isRequired,
   idToSelectedMap: PropTypes.objectOf(PropTypes.bool).isRequired,

@@ -11,6 +11,8 @@ import { EuiValidatableControl } from '../form/validatable_control';
 
 import { EuiErrorBoundary } from '../error_boundary';
 
+import { EuiI18nConsumer } from '../context';
+
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
 export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 
@@ -131,40 +133,46 @@ export class EuiDatePicker extends Component {
             clear={selected && onClear ? { onClick: onClear } : null}
             isLoading={isLoading}>
             <EuiValidatableControl isInvalid={isInvalid}>
-              <DatePicker
-                adjustDateOnChange={adjustDateOnChange}
-                calendarClassName={calendarClassName}
-                className={datePickerClasses}
-                customInput={customInput}
-                dateFormat={fullDateFormat}
-                dayClassName={dayClassName}
-                disabled={disabled}
-                excludeDates={excludeDates}
-                filterDates={filterDates}
-                injectTimes={injectTimes}
-                inline={inline}
-                locale={locale}
-                maxDate={maxDate}
-                maxTime={maxTime}
-                minDate={minDate}
-                minTime={minTime}
-                onChange={onChange}
-                openToDate={openToDate}
-                placeholderText={placeholder}
-                popperClassName={popperClassName}
-                ref={inputRef}
-                selected={selected}
-                shouldCloseOnSelect={shouldCloseOnSelect}
-                showMonthDropdown
-                showTimeSelect={showTimeSelect}
-                showTimeSelectOnly={showTimeSelectOnly}
-                showYearDropdown
-                timeFormat={timeFormat}
-                utcOffset={utcOffset}
-                yearDropdownItemNumber={7}
-                accessibleMode={true}
-                {...rest}
-              />
+              <EuiI18nConsumer>
+                {({ locale: contextLocale }) => {
+                  return (
+                    <DatePicker
+                      adjustDateOnChange={adjustDateOnChange}
+                      calendarClassName={calendarClassName}
+                      className={datePickerClasses}
+                      customInput={customInput}
+                      dateFormat={fullDateFormat}
+                      dayClassName={dayClassName}
+                      disabled={disabled}
+                      excludeDates={excludeDates}
+                      filterDates={filterDates}
+                      injectTimes={injectTimes}
+                      inline={inline}
+                      locale={locale || contextLocale}
+                      maxDate={maxDate}
+                      maxTime={maxTime}
+                      minDate={minDate}
+                      minTime={minTime}
+                      onChange={onChange}
+                      openToDate={openToDate}
+                      placeholderText={placeholder}
+                      popperClassName={popperClassName}
+                      ref={inputRef}
+                      selected={selected}
+                      shouldCloseOnSelect={shouldCloseOnSelect}
+                      showMonthDropdown
+                      showTimeSelect={showTimeSelect}
+                      showTimeSelectOnly={showTimeSelectOnly}
+                      showYearDropdown
+                      timeFormat={timeFormat}
+                      utcOffset={utcOffset}
+                      yearDropdownItemNumber={7}
+                      accessibleMode={true}
+                      {...rest}
+                    />
+                  );
+                }}
+              </EuiI18nConsumer>
             </EuiValidatableControl>
           </EuiFormControlLayout>
         </span>

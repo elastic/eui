@@ -117,7 +117,10 @@ export default class extends Component {
           <EuiRange min={0} max={100} name="range" id="range" />
         </EuiFormRow>
 
-        <EuiFormRow label="Use a switch instead of a single checkbox">
+        <EuiFormRow
+          label="Use a switch instead of a single checkbox"
+          labelAppend="Some inputs also render their own labels, such as the switch, so they need the row label turned off because multiple labels break screen readers. "
+          hasChildLabel={false}>
           <EuiSwitch
             name="switch"
             label="Should we do this?"

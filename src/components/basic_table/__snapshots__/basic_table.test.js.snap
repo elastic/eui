@@ -26,6 +26,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -145,6 +146,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -266,6 +268,7 @@ exports[`EuiBasicTable empty is rendered 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -334,6 +337,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -410,6 +414,7 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -478,6 +483,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -701,6 +707,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -989,6 +996,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1040,6 +1048,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         >
           <EuiTableRowCell
             colSpan={1}
+            textOnly={false}
           >
             <div>
               Expanded row
@@ -1112,6 +1121,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1237,6 +1247,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1362,6 +1373,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1466,6 +1478,7 @@ exports[`EuiBasicTable with pagination 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1587,6 +1600,7 @@ exports[`EuiBasicTable with pagination and error 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1667,6 +1681,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1832,6 +1847,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -1975,6 +1991,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -2164,6 +2181,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -2446,6 +2464,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -2635,6 +2654,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -2824,6 +2844,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -3124,6 +3145,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -3292,6 +3314,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender
@@ -3416,6 +3439,7 @@ exports[`EuiBasicTable with sorting 1`] = `
         <caption
           aria-live="polite"
           aria-relevant="text"
+          className="euiTableCaption"
           role="status"
         >
           <EuiDelayRender

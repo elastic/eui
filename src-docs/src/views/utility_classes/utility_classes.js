@@ -90,7 +90,8 @@ export default () => (
 
     <div style={wrappingExampleStyle} className="eui-textBreakAll">
       <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful
-      for long urls like {longLink}.
+      for long urls like {longLink}{' '}
+      --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------.
     </div>
 
     <EuiSpacer />
@@ -106,12 +107,20 @@ export default () => (
 
     <h4>Overflows</h4>
 
-    <div className="guideSass__overflowShadows">
-      <EuiText className="guideSass__overflowShadowText" size="s">
+    <div
+      style={{
+        height: 180,
+        overflowY: 'hidden',
+        background: wrappingExampleStyle.background,
+      }}>
+      <EuiText
+        className="eui-yScrollWithShadows"
+        size="s"
+        style={{ padding: wrappingExampleStyle.padding }}>
         <p>
-          It requires a wrapping element to control the height with{' '}
-          <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the CSS
-          utility class <EuiCode>.eui-yScrollWithShadows</EuiCode>.
+          The vertical utility requires a wrapping element to control the height
+          with <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the
+          CSS utility class <EuiCode>.eui-yScrollWithShadows</EuiCode>.
         </p>
         <p>
           <b>Example:</b>
@@ -121,20 +130,28 @@ export default () => (
   <BodyScroll className="eui-yScrollWithShadows" />
 </BodyContent>`}
         </EuiCodeBlock>
-        <p>
-          Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
-          aspernatur qui aut sit. Aliquam doloribus iure sint id. Possimus dolor
-          qui soluta cum id tempore ea illum. Facilis voluptatem aut aut ut
-          similique ut. Sed repellendus commodi iure officiis exercitationem
-          praesentium dolor. Ratione non ut nulla accusamus et. Optio laboriosam
-          id incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
-          voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
-          tempore sit placeat maxime laudantium. Mollitia tempore minus qui
-          autem modi adipisci ad. Iste reprehenderit accusamus voluptatem velit.
-          Quidem delectus eos veritatis et vitae et nisi. Doloribus ut corrupti
-          voluptates qui exercitationem dolores.
-        </p>
       </EuiText>
+    </div>
+
+    <EuiSpacer />
+
+    <div
+      style={{
+        ...wrappingExampleStyle,
+        padding: 0,
+      }}>
+      <div
+        className="eui-xScrollWithShadows"
+        style={{ padding: wrappingExampleStyle.padding }}>
+        <EuiText size="s" style={{ width: '150%' }}>
+          <p>
+            When using the horizontal utility{' '}
+            <EuiCode>.eui-xScrollWithShadows</EuiCode>, you may want to add
+            padding to the sides of your content so the mask doesn&apos;t
+            overlay it.
+          </p>
+        </EuiText>
+      </div>
     </div>
 
     <EuiSpacer />
@@ -188,13 +205,35 @@ export default () => (
     <EuiSpacer />
 
     <EuiCode className="eui-showFor--xs">.eui-showFor--xs</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--s">.eui-showFor--s</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--m">.eui-showFor--m</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--l">.eui-showFor--l</EuiCode>
-    <EuiSpacer />
     <EuiCode className="eui-showFor--xl">.eui-showFor--xl</EuiCode>
+
+    <EuiSpacer />
+
+    <h5>Modifiers</h5>
+    <p>
+      The <EuiCode>.eui-showFor--[size]</EuiCode> classes will force display of{' '}
+      <EuiCode>inline</EuiCode> when showing the element. You can modify this
+      display property by appending <EuiCode>block</EuiCode>,{' '}
+      <EuiCode>inlineBlock</EuiCode>, or <EuiCode>flex</EuiCode> to the class.
+    </p>
+
+    <EuiCode className="eui-showFor--xs">.eui-showFor--xs (inline)</EuiCode>
+    <EuiCode className="eui-showFor--s">.eui-showFor--s (inline)</EuiCode>
+    <EuiCode className="eui-showFor--m">.eui-showFor--m--block</EuiCode>
+    <EuiCode className="eui-showFor--l">.eui-showFor--l--inlineBlock</EuiCode>
+    <EuiCode className="eui-showFor--xl">.eui-showFor--xl--flex</EuiCode>
+
+    <EuiSpacer />
+
+    <div
+      style={{ background: wrappingExampleStyle.background }}
+      className="eui-showFor--xs eui-showFor--s eui-showFor--m--block eui-showFor--l--inlineBlock eui-showFor--xl--flex">
+      <span style={wrappingExampleStyle}>span</span>
+      <span style={wrappingExampleStyle}>span</span>
+      <span style={wrappingExampleStyle}>span</span>
+    </div>
   </EuiText>
 );

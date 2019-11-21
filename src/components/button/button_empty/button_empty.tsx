@@ -11,8 +11,16 @@ import {
 import { EuiLoadingSpinner } from '../../loading';
 import { getSecureRelForTarget } from '../../../services';
 import { IconType, EuiIcon } from '../../icon';
+import { ButtonIconSide } from '../button';
 
-const colorToClassNameMap = {
+export type EuiButtonEmptyColor =
+  | 'primary'
+  | 'danger'
+  | 'disabled'
+  | 'text'
+  | 'ghost';
+
+const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   primary: 'euiButtonEmpty--primary',
   danger: 'euiButtonEmpty--danger',
   disabled: 'euiButtonEmpty--disabled',
@@ -30,7 +38,9 @@ const sizeToClassNameMap = {
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-const iconSideToClassNameMap = {
+export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
+
+const iconSideToClassNameMap: { [side in ButtonIconSide]: string } = {
   left: '',
   right: 'euiButtonEmpty--iconRight',
 };
@@ -44,11 +54,11 @@ const flushTypeToClassNameMap = {
 
 export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
 
-export interface EuiButtonEmptyProps extends CommonProps {
+interface CommonEuiButtonEmptyProps extends CommonProps {
   iconType?: IconType;
-  iconSide?: keyof typeof iconSideToClassNameMap;
-  color?: keyof typeof colorToClassNameMap;
-  size?: keyof typeof sizeToClassNameMap;
+  iconSide?: ButtonIconSide;
+  color?: EuiButtonEmptyColor;
+  size?: EuiButtonEmptySizes;
   flush?: keyof typeof flushTypeToClassNameMap;
   isDisabled?: boolean;
   href?: string;
@@ -61,7 +71,7 @@ export interface EuiButtonEmptyProps extends CommonProps {
   isLoading?: boolean;
 
   type?: 'button' | 'submit';
-  buttonRef?: () => void;
+  buttonRef?: (ref: HTMLButtonElement | HTMLAnchorElement | null) => void;
   /**
    * Passes props to `euiButtonEmpty__content` span
    */
@@ -73,16 +83,16 @@ export interface EuiButtonEmptyProps extends CommonProps {
   textProps?: Partial<HTMLAttributes<HTMLSpanElement>>;
 }
 
-type EuiButtonEmptyPropsForAnchor = PropsForAnchor<EuiButtonEmptyProps>;
+type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;
 
-type EuiButtonEmptyPropsForButton = PropsForButton<EuiButtonEmptyProps>;
+type EuiButtonEmptyPropsForButton = PropsForButton<CommonEuiButtonEmptyProps>;
 
-type Props = ExclusiveUnion<
+export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForAnchor,
   EuiButtonEmptyPropsForButton
 >;
 
-export const EuiButtonEmpty: FunctionComponent<Props> = ({
+export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   children,
   className,
   iconType,

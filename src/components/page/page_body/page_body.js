@@ -7,6 +7,7 @@ export const EuiPageBody = ({
   restrictWidth,
   style,
   className,
+  component,
   ...rest
 }) => {
   let widthClassname;
@@ -23,17 +24,22 @@ export const EuiPageBody = ({
 
   const classes = classNames('euiPageBody', widthClassname, className);
 
+  const OuterElement = component;
+
   return (
-    <div className={classes} style={newStyle || style} {...rest}>
+    <OuterElement className={classes} style={newStyle || style} {...rest}>
       {children}
-    </div>
+    </OuterElement>
   );
 };
 
 EuiPageBody.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-
+  /**
+   * Sets the HTML element for `EuiPageBody`.
+   */
+  component: PropTypes.string,
   /**
    * Sets the max-width of the page,
    * set to `true` to use the default size,
@@ -50,4 +56,5 @@ EuiPageBody.propTypes = {
 
 EuiPageBody.defaultProps = {
   restrictWidth: false,
+  component: 'main',
 };

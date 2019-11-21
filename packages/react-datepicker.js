@@ -516,13 +516,6 @@ function delay(fn) {
 
 var focusTrap_1 = focusTrap;
 
-var focusTrap$1 = /*#__PURE__*/Object.freeze({
-  default: focusTrap_1,
-  __moduleExports: focusTrap_1
-});
-
-var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -633,7 +626,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: createFocusTrap
+  _createFocusTrap: focusTrap_1
 };
 
 var focusTrapReact = FocusTrap;
@@ -2222,12 +2215,24 @@ var MonthDropdown = function (_React$Component) {
   }
 
   MonthDropdown.prototype.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
+    var _this2 = this;
+
     if (this.props.accessibleMode && // in accessibleMode
     prevState.dropdownVisible !== this.state.dropdownVisible && // dropdown visibility changed
     this.state.dropdownVisible === false // dropdown is no longer visible
     ) {
         this.readViewref.focus();
       }
+
+    if (prevProps.locale !== this.props.locale) {
+      this.localeData = getLocaleDataForLocale(this.props.locale);
+      this.monthNames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(this.props.useShortMonthInDropdown ? function (M) {
+        return getMonthShortInLocale(_this2.localeData, newDate({ M: M }));
+      } : function (M) {
+        return getMonthInLocale(_this2.localeData, newDate({ M: M }), _this2.props.dateFormat);
+      });
+      this.forceUpdate();
+    }
   };
 
   MonthDropdown.prototype.render = function render() {
@@ -4820,17 +4825,10 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var _iterDefine$1 = /*#__PURE__*/Object.freeze({
-  default: _iterDefine,
-  __moduleExports: _iterDefine
-});
-
-var require$$0 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
-
 var $at = _stringAt(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-require$$0(String, 'String', function (iterated) {
+_iterDefine(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4852,7 +4850,7 @@ var _iterStep = function (done, value) {
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = require$$0(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -5279,11 +5277,18 @@ _wksDefine('observable');
 
 var symbol = _core.Symbol;
 
-var symbol$1 = createCommonjsModule(function (module) {
-module.exports = { "default": symbol, __esModule: true };
+var symbol$1 = /*#__PURE__*/Object.freeze({
+  default: symbol,
+  __moduleExports: symbol
 });
 
-unwrapExports(symbol$1);
+var require$$0 = ( symbol$1 && symbol ) || symbol$1;
+
+var symbol$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0, __esModule: true };
+});
+
+unwrapExports(symbol$2);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5295,7 +5300,7 @@ var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$1);
+var _symbol2 = _interopRequireDefault(symbol$2);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5357,31 +5362,17 @@ var _setProto = {
   check: check
 };
 
-var _setProto$1 = /*#__PURE__*/Object.freeze({
-  default: _setProto,
-  __moduleExports: _setProto
-});
-
-var require$$0$1 = ( _setProto$1 && _setProto ) || _setProto$1;
-
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: require$$0$1.set });
+_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf,
-  __moduleExports: setPrototypeOf
+var setPrototypeOf$1 = createCommonjsModule(function (module) {
+module.exports = { "default": setPrototypeOf, __esModule: true };
 });
 
-var require$$0$2 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
-
-var setPrototypeOf$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$2, __esModule: true };
-});
-
-unwrapExports(setPrototypeOf$2);
+unwrapExports(setPrototypeOf$1);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5403,7 +5394,7 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
@@ -7949,11 +7940,6 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
-var gud$1 = /*#__PURE__*/Object.freeze({
-  default: gud,
-  __moduleExports: gud
-});
-
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8040,8 +8026,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var _gud = ( gud$1 && gud ) || gud$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8056,7 +8040,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(_gud);
+var _gud2 = _interopRequireDefault(gud);
 
 
 

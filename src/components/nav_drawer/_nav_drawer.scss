@@ -36,6 +36,10 @@
     .euiListGroupItem__button {
       padding: $euiSizeM $euiSize;
     }
+
+    .navDrawerExpandButton-isCollapsed .euiListGroupItem__button {
+      max-width: 100%;
+    }
   }
 
   &.euiNavDrawer-isCollapsed  {

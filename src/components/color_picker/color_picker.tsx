@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
@@ -65,10 +65,6 @@ export interface EuiColorPickerProps
    *  Custom validation flag
    */
   isInvalid?: boolean;
-  /**
-   *  Renders inline, without an input element or popover
-   */
-  inline?: boolean;
   /**
    * Choose between swatches with gradient picker (default), swatches only, or gradient picker only.
    */
@@ -126,7 +122,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       const newColorAsHsv = color ? hexToHsv(color) : hexToHsv('');
       setColorAsHsv(newColorAsHsv);
     }
-  }, [color]);
+  }, [color, lastHex]);
 
   const classes = classNames('euiColorPicker', className);
   const panelClasses = classNames('euiColorPicker__popoverPanel', {

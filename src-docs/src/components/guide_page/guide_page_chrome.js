@@ -319,6 +319,7 @@ export class GuidePageChrome extends Component {
               placeholder="Search"
               value={this.state.search}
               onChange={this.onSearchChange}
+              aria-label="Search for a docs section"
             />
           </div>
         </div>

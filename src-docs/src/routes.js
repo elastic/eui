@@ -41,6 +41,8 @@ import { AccessibilityExample } from './views/accessibility/accessibility_exampl
 
 import { AccordionExample } from './views/accordion/accordion_example';
 
+import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
+
 import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
@@ -67,7 +69,14 @@ import { ContextExample } from './views/context/context_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
+import { ControlBarExample } from './views/control_bar/control_bar_example';
+
 import { CopyExample } from './views/copy/copy_example';
+
+import { DataGridExample } from './views/datagrid/datagrid_example';
+import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
+import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
+import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -147,6 +156,8 @@ import { PortalExample } from './views/portal/portal_example';
 import { ProgressExample } from './views/progress/progress_example';
 
 import { RangeControlExample } from './views/range/range_example';
+
+import { TreeViewExample } from './views/tree_view/tree_view_example';
 
 import { ResizeObserverExample } from './views/resize_observer/resize_observer_example';
 
@@ -304,18 +315,31 @@ const navigation = [
       BreadcrumbsExample,
       ButtonExample,
       ContextMenuExample,
+      ControlBarExample,
       FacetExample,
       KeyPadMenuExample,
       LinkExample,
       PaginationExample,
+      TreeViewExample,
       SideNavExample,
       StepsExample,
       TabsExample,
     ].map(example => createExample(example)),
   },
   {
+    name: 'Tabular content',
+    items: [
+      DataGridExample,
+      DataGridMemoryExample,
+      DataGridSchemaExample,
+      DataGridStylingExample,
+      TableExample,
+    ].map(example => createExample(example)),
+  },
+  {
     name: 'Display',
     items: [
+      AspectRatioExample,
       AvatarExample,
       BadgeExample,
       CallOutExample,
@@ -331,7 +355,6 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
-      TableExample,
       TextExample,
       TitleExample,
       ToastExample,
@@ -414,7 +437,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: useRouterHistory(createHashHistory)(),
+  history: useRouterHistory(createHashHistory)(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: path => {

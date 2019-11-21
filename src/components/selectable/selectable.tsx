@@ -7,7 +7,7 @@ import React, {
   ReactElement,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
@@ -146,6 +146,27 @@ export class EuiSelectable extends Component<
       searchValue: initialSearchValue,
       visibleOptions,
     };
+  }
+
+  static getDerivedStateFromProps(
+    nextProps: EuiSelectableProps,
+    prevState: EuiSelectableState
+  ) {
+    const { options } = nextProps;
+    const { activeOptionIndex, searchValue } = prevState;
+
+    const matchingOptions = getMatchingOptions(options, searchValue);
+
+    const stateUpdate = { visibleOptions: matchingOptions, activeOptionIndex };
+
+    if (
+      activeOptionIndex != null &&
+      activeOptionIndex >= matchingOptions.length
+    ) {
+      stateUpdate.activeOptionIndex = -1;
+    }
+
+    return stateUpdate;
   }
 
   hasActiveOption = () => {

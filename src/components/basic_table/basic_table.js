@@ -86,6 +86,7 @@ const DefaultItemActionType = PropTypes.shape({
     PropTypes.oneOf(BUTTON_ICON_COLORS),
     PropTypes.func, // (item) => oneOf(ICON_BUTTON_COLORS)
   ]),
+  'data-test-subj': PropTypes.string,
 });
 
 const CustomItemActionType = PropTypes.shape({
@@ -463,7 +464,11 @@ export class EuiBasicTable extends Component {
 
     return (
       <EuiScreenReaderOnly>
-        <caption role="status" aria-relevant="text" aria-live="polite">
+        <caption
+          className="euiTableCaption"
+          role="status"
+          aria-relevant="text"
+          aria-live="polite">
           <EuiDelayRender>
             <EuiI18n
               token="euiBasicTable.tableDescription"
@@ -800,7 +805,7 @@ export class EuiBasicTable extends Component {
         id={expandedRowId}
         isExpandedRow={true}
         isSelectable={isSelectable}>
-        <EuiTableRowCell colSpan={expandedRowColSpan}>
+        <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
       </EuiTableRow>

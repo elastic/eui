@@ -2,13 +2,8 @@
   font-size: $euiFontSizeS;
   color: $euiColorPrimary;
 
-  .euiLoadingSpinner {
-    margin-right: $euiSizeS;
-  }
-
   .euiSuggestInput__statusIcon {
-    padding-left: $euiSizeS;
-    padding-right: $euiSizeS;
+    // sass-lint:disable-block no-important
+    background-color: transparent !important; // Override typical append coloring
   }
-
 }

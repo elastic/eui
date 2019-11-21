@@ -158,7 +158,7 @@ export const propsInfo = {
     __docgenInfo: {
       _euiObjectType: 'type',
       props: {
-        onSelectionChanged: {
+        onSelectionChange: {
           description:
             'A callback that will be called whenever the item selection changes',
           required: false,
@@ -403,6 +403,12 @@ export const propsInfo = {
           description: 'Defines the color of the button',
           required: false,
           type: { name: 'string (must be one of the supported button colors)' },
+        },
+        'data-test-subj': {
+          description:
+            "Applies a data-test-subj attribute to the action's DOM node",
+          required: false,
+          type: { name: 'string' },
         },
       },
     },

@@ -1,23 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiFlexItem component div is rendered 1`] = `
-<div
-  class="euiFlexItem"
-/>
-`;
-
-exports[`EuiFlexItem component figure is rendered 1`] = `
-<figure
-  class="euiFlexItem"
-/>
-`;
-
-exports[`EuiFlexItem component span is rendered 1`] = `
-<span
-  class="euiFlexItem"
-/>
-`;
-
 exports[`EuiFlexItem grow 1 is rendered 1`] = `
 <div
   class="euiFlexItem euiFlexItem--flexGrow1"

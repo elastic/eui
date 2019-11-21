@@ -24,6 +24,7 @@ import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { AsyncInterval } from './async_interval';
 import { EuiI18n } from '../../i18n';
+import { EuiI18nConsumer } from '../../context';
 
 export { prettyDuration, commonDurationRanges };
 
@@ -91,7 +92,18 @@ export class EuiSuperDatePicker extends Component {
      * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
+    /**
+     * Used to localize e.g. month names, passed to `moment`
+     */
+    locale: PropTypes.string,
+    /**
+     * Specifies the formatted used when displaying dates and/or datetimes
+     */
     dateFormat: PropTypes.string,
+    /**
+     * Specifies the formatted used when displaying times
+     */
+    timeFormat: PropTypes.string,
     /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
      * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
@@ -116,6 +128,7 @@ export class EuiSuperDatePicker extends Component {
     refreshInterval: 0,
     commonlyUsedRanges: commonDurationRanges,
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
+    timeFormat: 'HH:mm',
     recentlyUsedRanges: [],
     showUpdateButton: true,
     isAutoRefreshOnly: false,
@@ -221,13 +234,13 @@ export class EuiSuperDatePicker extends Component {
   };
 
   applyQuickTime = ({ start, end }) => {
-    this.setState({
+    this.setState(prevState => ({
       showPrettyDuration: showPrettyDuration(
         start,
         end,
-        this.props.commonlyUsedRanges
+        prevState.commonlyUsedRanges
       ),
-    });
+    }));
     this.props.onTimeChange({
       start,
       end,
@@ -344,40 +357,49 @@ export class EuiSuperDatePicker extends Component {
     }
 
     return (
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        iconType={false}
-        isCustom
-        startDateControl={
-          <EuiDatePopoverButton
-            position="start"
-            needsUpdating={hasChanged}
-            isInvalid={isInvalid}
-            isDisabled={isDisabled}
-            onChange={this.setStart}
-            value={start}
-            dateFormat={this.props.dateFormat}
-            isOpen={this.state.isStartDatePopoverOpen}
-            onPopoverToggle={this.onStartDatePopoverToggle}
-            onPopoverClose={this.onStartDatePopoverClose}
+      <EuiI18nConsumer>
+        {({ locale: contextLocale }) => (
+          <EuiDatePickerRange
+            className="euiDatePickerRange--inGroup"
+            iconType={false}
+            isCustom
+            startDateControl={
+              <EuiDatePopoverButton
+                className="euiSuperDatePicker__startPopoverButton"
+                position="start"
+                needsUpdating={hasChanged}
+                isInvalid={isInvalid}
+                isDisabled={isDisabled}
+                onChange={this.setStart}
+                value={start}
+                dateFormat={this.props.dateFormat}
+                timeFormat={this.props.timeFormat}
+                locale={this.props.locale || contextLocale}
+                isOpen={this.state.isStartDatePopoverOpen}
+                onPopoverToggle={this.onStartDatePopoverToggle}
+                onPopoverClose={this.onStartDatePopoverClose}
+              />
+            }
+            endDateControl={
+              <EuiDatePopoverButton
+                position="end"
+                needsUpdating={hasChanged}
+                isInvalid={isInvalid}
+                isDisabled={isDisabled}
+                onChange={this.setEnd}
+                value={end}
+                dateFormat={this.props.dateFormat}
+                timeFormat={this.props.timeFormat}
+                locale={this.props.locale || contextLocale}
+                roundUp
+                isOpen={this.state.isEndDatePopoverOpen}
+                onPopoverToggle={this.onEndDatePopoverToggle}
+                onPopoverClose={this.onEndDatePopoverClose}
+              />
+            }
           />
-        }
-        endDateControl={
-          <EuiDatePopoverButton
-            position="end"
-            needsUpdating={hasChanged}
-            isInvalid={isInvalid}
-            isDisabled={isDisabled}
-            onChange={this.setEnd}
-            value={end}
-            dateFormat={this.props.dateFormat}
-            roundUp
-            isOpen={this.state.isEndDatePopoverOpen}
-            onPopoverToggle={this.onEndDatePopoverToggle}
-            onPopoverClose={this.onEndDatePopoverClose}
-          />
-        }
-      />
+        )}
+      </EuiI18nConsumer>
     );
   };
 

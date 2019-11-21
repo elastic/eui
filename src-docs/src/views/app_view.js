@@ -57,6 +57,7 @@ export class AppView extends Component {
     const i18n = {
       mappingFunc: mappingFuncs[locale],
       formatNumber: value => new Intl.NumberFormat(locale).format(value),
+      locale,
     };
 
     return (

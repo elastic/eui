@@ -492,7 +492,6 @@ export default class extends Component {
         );
       }
     });
-
     return headers.length ? headers : null;
   }
 
@@ -644,7 +643,7 @@ export default class extends Component {
 
     this.columns.forEach(column => {
       const footer = this.getColumnFooter(column, { items, pagination });
-      if (column.isMobileHeader) {
+      if (column.mobileOptions && column.mobileOptions.only) {
         return; // exclude columns that only exist for mobile headers
       }
 
@@ -666,7 +665,6 @@ export default class extends Component {
         );
       }
     });
-
     return footers;
   }
 

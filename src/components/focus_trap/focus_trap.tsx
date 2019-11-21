@@ -3,6 +3,7 @@ import React, {
   FunctionComponent,
   MouseEvent as ReactMouseEvent,
   EventHandler,
+  CSSProperties,
 } from 'react';
 import FocusLock, { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 
@@ -35,6 +36,7 @@ export type FocusTarget = HTMLElement | string | (() => HTMLElement);
 interface EuiFocusTrapProps {
   clickOutsideDisables?: boolean;
   initialFocus?: FocusTarget;
+  style?: CSSProperties;
 }
 
 type Props = CommonProps & ReactFocusLockProps & EuiFocusTrapProps;
@@ -52,11 +54,11 @@ export class EuiFocusTrap extends Component<Props, State> {
   preventFocusExit = false;
 
   componentDidMount() {
-    this.setInitalFocus(this.props.initialFocus);
+    this.setInitialFocus(this.props.initialFocus);
   }
 
   // Programmatically sets focus on a nested DOM node; optional
-  setInitalFocus = (initialFocus?: FocusTarget) => {
+  setInitialFocus = (initialFocus?: FocusTarget) => {
     let node = initialFocus instanceof HTMLElement ? initialFocus : null;
     if (typeof initialFocus === 'string') {
       node = document.querySelector(initialFocus as string);
@@ -109,6 +111,7 @@ export class EuiFocusTrap extends Component<Props, State> {
       clickOutsideDisables = false,
       disabled = false,
       returnFocus = true,
+      style,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
@@ -122,11 +125,15 @@ export class EuiFocusTrap extends Component<Props, State> {
         isDisabled={isDisabled}
         onOutsideClick={this.handleOutsideClick}>
         <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-          <FocusLock {...lockProps}>{children}</FocusLock>
+          <FocusLock lockProps={{ style }} {...lockProps}>
+            {children}
+          </FocusLock>
         </OutsideEventDetector>
       </EuiOutsideClickDetector>
     ) : (
-      <FocusLock {...lockProps}>{children}</FocusLock>
+      <FocusLock lockProps={{ style }} {...lockProps}>
+        {children}
+      </FocusLock>
     );
   }
 }

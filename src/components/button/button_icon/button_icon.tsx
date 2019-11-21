@@ -19,7 +19,7 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { ButtonSize } from '../button';
 
-export type ButtonIconColor =
+export type EuiButtonIconColor =
   | 'danger'
   | 'disabled'
   | 'ghost'
@@ -31,7 +31,7 @@ export type ButtonIconColor =
 
 export interface EuiButtonIconProps extends CommonProps {
   iconType?: IconType;
-  color?: ButtonIconColor;
+  color?: EuiButtonIconColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;
@@ -58,7 +58,7 @@ type Props = ExclusiveUnion<
   EuiButtonIconPropsForButton
 >;
 
-const colorToClassNameMap: { [color in ButtonIconColor]: string } = {
+const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
   danger: 'euiButtonIcon--danger',
   disabled: 'euiButtonIcon--disabled',
   ghost: 'euiButtonIcon--ghost',
@@ -84,7 +84,10 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   buttonRef,
   ...rest
 }) => {
-  if (!rest['aria-label'] && !rest['aria-labelledby']) {
+  const ariaHidden = rest['aria-hidden'];
+  const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
+
+  if (!rest['aria-label'] && !rest['aria-labelledby'] && !isAriaHidden) {
     console.warn(
       `EuiButtonIcon requires aria-label or aria-labelledby to be specified because icon-only
       buttons are screen-reader-inaccessible without them.`
@@ -117,6 +120,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
     return (
       <a
+        tabIndex={isAriaHidden ? -1 : undefined}
         className={classes}
         href={href}
         target={target}
@@ -130,6 +134,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
   return (
     <button
+      tabIndex={isAriaHidden ? -1 : undefined}
       disabled={isDisabled}
       className={classes}
       type={type}

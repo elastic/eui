@@ -1,6 +1,6 @@
 import React, { Component, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 // @ts-ignore
 import { EuiFieldSearch } from '../../form/field_search';
 import { getMatchingOptions } from '../matching_options';

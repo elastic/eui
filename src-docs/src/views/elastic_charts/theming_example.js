@@ -17,6 +17,7 @@ import {
   EuiText,
   EuiCodeBlock,
   EuiLink,
+  EuiCallOut,
 } from '../../../../src/components';
 
 export const ElasticChartsThemingExample = {
@@ -60,11 +61,27 @@ export const ElasticChartsThemingExample = {
             Elastic Charts. Simply import these objects from the themes folder
             and pass the correct one to the Settings.theme property.
           </p>
-          <EuiCodeBlock language="javascript" isCopyable>
+          <EuiCodeBlock language="javascript" isCopyable fontSize="s">
             {`import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
+
 const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme;
+
 <Settings theme={euiTheme} />`}
           </EuiCodeBlock>
+          <EuiCallOut title="Kibana engineers" iconType="logoKibana">
+            <p>
+              EUI provides a plugin utility for ease of pulling in the correct
+              theme object depending on the current Kibana theme. Learn more
+              from this{' '}
+              <EuiLink
+                href="https://github.com/elastic/kibana/blob/master/src/plugins/eui_utils/README.md#eui-plus-elastic-charts"
+                target="_blank">
+                readme
+              </EuiLink>
+              .
+            </p>
+          </EuiCallOut>
+          <EuiSpacer />
           <p>
             EUI also provides some basic{' '}
             <Link to="/utilities/color-palettes">
@@ -76,7 +93,7 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
             prepend it to the list of themes supplied to Settings.
           </p>
 
-          <EuiCodeBlock language="javascript" isCopyable>
+          <EuiCodeBlock language="javascript" isCopyable fontSize="s">
             {`import { colorPalette } from '../../../../src/services';
 
 const customColors = {

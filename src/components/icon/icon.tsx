@@ -1,5 +1,5 @@
 import React, {
-  Component,
+  PureComponent,
   HTMLAttributes,
   ReactElement,
   SVGAttributes,
@@ -7,7 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { CommonProps, Omit, keysOf } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components
@@ -63,6 +63,7 @@ const typeToPathMap = {
   crossClusterReplicationApp: 'app_cross_cluster_replication',
   crosshairs: 'crosshairs',
   crossInACircleFilled: 'crossInACircleFilled',
+  currency: 'currency',
   cut: 'cut',
   dashboardApp: 'app_dashboard',
   database: 'database',
@@ -106,6 +107,7 @@ const typeToPathMap = {
   emsApp: 'app_ems',
   exit: 'exit',
   expand: 'expand',
+  expandMini: 'expandMini',
   exportAction: 'export',
   eye: 'eye',
   eyeClosed: 'eye_closed',
@@ -142,21 +144,24 @@ const typeToPathMap = {
   indexPatternApp: 'app_index_pattern',
   indexRollupApp: 'app_index_rollup',
   indexSettings: 'index_settings',
-  infraApp: 'app_infra',
+  metricsApp: 'app_metrics',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
   invert: 'invert',
+  ip: 'ip',
+  keyboardShortcut: 'keyboard_shortcut',
   kqlField: 'kql_field',
   kqlFunction: 'kql_function',
   kqlOperand: 'kql_operand',
   kqlSelector: 'kql_selector',
   kqlValue: 'kql_value',
+  lensApp: 'app_lens',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
   lock: 'lock',
   lockOpen: 'lockOpen',
-  loggingApp: 'app_logging',
+  logsApp: 'app_logs',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
   logoAPM: 'logo_apm',
@@ -228,6 +233,7 @@ const typeToPathMap = {
   menuRight: 'menuRight',
   merge: 'merge',
   metricbeatApp: 'app_metricbeat',
+  minimize: 'minimize',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
   monitoringApp: 'app_monitoring',
@@ -237,6 +243,7 @@ const typeToPathMap = {
   number: 'number',
   offline: 'offline',
   online: 'online',
+  package: 'package',
   packetbeatApp: 'app_packetbeat',
   partial: 'partial',
   pause: 'pause',
@@ -286,6 +293,9 @@ const typeToPathMap = {
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
   tableOfContents: 'tableOfContents',
+  tableDensityExpanded: 'table_density_expanded',
+  tableDensityCompact: 'table_density_compact',
+  tableDensityNormal: 'table_density_normal',
   tag: 'tag',
   tear: 'tear',
   temperature: 'temperature',
@@ -299,8 +309,11 @@ const typeToPathMap = {
   vector: 'vector',
   videoPlayer: 'videoPlayer',
   visArea: 'vis_area',
+  visAreaStacked: 'vis_area_stacked',
   visBarHorizontal: 'vis_bar_horizontal',
+  visBarHorizontalStacked: 'vis_bar_horizontal_stacked',
   visBarVertical: 'vis_bar_vertical',
+  visBarVerticalStacked: 'vis_bar_vertical_stacked',
   visControls: 'vis_controls',
   visGauge: 'vis_gauge',
   visGoal: 'vis_goal',
@@ -400,25 +413,22 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 
 export type IconSize = keyof typeof sizeToClassNameMap;
 
-export interface EuiIconProps {
-  /**
-   * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
-   */
-  type: IconType;
-  /**
-   * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
-   * Note that coloring only works if your SVG is removed of fill attributes.
-   */
-  color?: IconColor;
-  /**
-   * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
-   */
-  size?: IconSize;
-}
-
-type Props = CommonProps &
-  Omit<SVGAttributes<SVGElement>, keyof EuiIconProps> &
-  EuiIconProps;
+export type EuiIconProps = CommonProps &
+  Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
+    /**
+     * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
+     */
+    type: IconType;
+    /**
+     * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
+     * Note that coloring only works if your SVG is removed of fill attributes.
+     */
+    color?: IconColor;
+    /**
+     * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
+     */
+    size?: IconSize;
+  };
 
 interface State {
   icon: undefined | ReactElement | string;
@@ -439,9 +449,9 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-export class EuiIcon extends Component<Props, State> {
+export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
-  constructor(props: Props) {
+  constructor(props: EuiIconProps) {
     super(props);
 
     const { type } = props;
@@ -459,7 +469,7 @@ export class EuiIcon extends Component<Props, State> {
     };
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: EuiIconProps) {
     const { type } = this.props;
     if (type !== prevProps.type) {
       if (isEuiIconType(type)) {

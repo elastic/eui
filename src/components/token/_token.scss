@@ -20,6 +20,15 @@
   border-radius: $euiBorderRadius - 1px;
 }
 
+.euiToken--xsmall {
+  width: $euiSizeM;
+  height: $euiSizeM;
+
+  &.euiToken--rectangle {
+    padding: 0 $euiSizeXS;
+  }
+}
+
 .euiToken--small {
   width: $euiSize;
   height: $euiSize;
