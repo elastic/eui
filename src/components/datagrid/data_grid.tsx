@@ -456,13 +456,27 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
+  const definedColumnSchemas = useMemo(() => {
+    return columns.reduce<{ [key: string]: string }>(
+      (definedColumnSchemas, { id, schema }) => {
+        if (schema != null) {
+          definedColumnSchemas[id] = schema;
+        }
+        return definedColumnSchemas;
+      },
+      {}
+    );
+  }, [columns]);
+
   const allSchemaDetectors = useMemo(
     () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
     [schemaDetectors]
   );
   const detectedSchema = useDetectSchema(
+    inMemory,
     inMemoryValues,
     allSchemaDetectors,
+    definedColumnSchemas,
     inMemory != null
   );
   const mergedSchema = getMergedSchema(detectedSchema, columns);
@@ -474,7 +488,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const columnSorting = useColumnSorting(
     orderedVisibleColumns,
     sorting,
-    detectedSchema,
+    mergedSchema,
     allSchemaDetectors
   );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
