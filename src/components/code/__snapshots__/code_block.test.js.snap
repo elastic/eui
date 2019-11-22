@@ -81,7 +81,7 @@ console.log(some);
         >
           <svg
             aria-hidden="true"
-            aria-labelledby="title"
+            aria-label="empty icon"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
             focusable="false"
             height="16"
@@ -140,7 +140,7 @@ console.log(some);
     >
       <svg
         aria-hidden="true"
-        aria-labelledby="title"
+        aria-label="empty icon"
         class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
         focusable="false"
         height="16"

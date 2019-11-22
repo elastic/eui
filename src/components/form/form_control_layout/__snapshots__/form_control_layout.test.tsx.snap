@@ -31,7 +31,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
         type="button"
       >
         <svg
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutClearButton__icon"
           focusable="false"
           height="16"
@@ -71,7 +71,7 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
           focusable="false"
           height="16"
@@ -102,7 +102,7 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
           focusable="false"
           height="16"
@@ -132,7 +132,7 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
           focusable="false"
           height="16"
@@ -162,7 +162,7 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
           focusable="false"
           height="16"

@@ -51,7 +51,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
         class="euiTextColor euiTextColor--subdued"
       >
         <svg
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading"
           focusable="false"
           height="16"

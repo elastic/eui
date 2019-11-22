@@ -10,7 +10,7 @@ exports[`EuiSuggestItem is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint1"
   >
     <svg
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"
@@ -39,7 +39,7 @@ exports[`props item with no description has expanded label is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <svg
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"
@@ -68,7 +68,7 @@ exports[`props labelDisplay as expand is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <svg
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"

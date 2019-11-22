@@ -23,7 +23,7 @@ exports[`EuiTablePagination is rendered 1`] = `
           >
             <svg
               aria-hidden="true"
-              aria-labelledby="title"
+              aria-label="empty icon"
               class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
               focusable="false"
               height="16"
@@ -57,7 +57,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
           focusable="false"
           height="16"
@@ -155,7 +155,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
           focusable="false"
           height="16"
@@ -192,7 +192,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
           focusable="false"
           height="16"
@@ -290,7 +290,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
           focusable="false"
           height="16"

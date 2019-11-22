@@ -166,7 +166,7 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
       focusable="false"
       height="16"
@@ -194,7 +194,7 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
       focusable="false"
       height="16"
@@ -222,7 +222,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
       focusable="false"
       height="16"

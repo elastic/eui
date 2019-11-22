@@ -91,7 +91,7 @@ exports[`EuiCardSelect props isSelected 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
       focusable="false"
       height="16"

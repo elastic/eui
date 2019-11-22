@@ -22,7 +22,7 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
         class="euiSwitch__track"
       >
         <svg
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon"
           focusable="false"
           height="16"
@@ -32,7 +32,7 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         />
         <svg
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon euiSwitch__icon--checked"
           focusable="false"
           height="16"
@@ -77,7 +77,7 @@ exports[`EuiSwitch is rendered 1`] = `
         class="euiSwitch__track"
       >
         <svg
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon"
           focusable="false"
           height="16"
@@ -87,7 +87,7 @@ exports[`EuiSwitch is rendered 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         />
         <svg
-          aria-labelledby="title"
+          aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon euiSwitch__icon--checked"
           focusable="false"
           height="16"

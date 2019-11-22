@@ -206,7 +206,7 @@ exports[`EuiToast Props iconType is rendered 1`] = `
           >
             <EuiIconEmpty
               aria-hidden="true"
-              aria-labelledby="title"
+              aria-label="empty icon"
               className="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
               focusable="false"
               role="img"
@@ -215,7 +215,7 @@ exports[`EuiToast Props iconType is rendered 1`] = `
             >
               <svg
                 aria-hidden="true"
-                aria-labelledby="title"
+                aria-label="empty icon"
                 className="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
                 focusable="false"
                 height={16}

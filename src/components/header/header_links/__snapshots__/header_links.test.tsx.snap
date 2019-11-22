@@ -25,7 +25,7 @@ exports[`EuiHeaderLinks is rendered 1`] = `
           type="button"
         >
           <svg
-            aria-labelledby="title"
+            aria-label="empty icon"
             class="euiIcon euiIcon--medium euiIcon-isLoading"
             focusable="false"
             height="16"

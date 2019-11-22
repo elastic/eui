@@ -418,10 +418,7 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 export type IconSize = keyof typeof sizeToClassNameMap;
 
 export type EuiIconProps = CommonProps &
-  Omit<
-    SVGAttributes<SVGElement>,
-    'type' | 'color' | 'size' | 'title' | 'aria-labelledby'
-  > & {
+  Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size' | 'title'> & {
     /**
      * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
      */
@@ -439,8 +436,6 @@ export type EuiIconProps = CommonProps &
      * Overrides the default icon title.
      */
     title?: string;
-
-    'aria-labelledby'?: string;
   };
 
 interface State {
@@ -579,21 +574,6 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     //   - For all other values, the consumer wants the icon to be focusable.
     const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
-    /*
-    If no aria-label or aria-labelledby provided the svg sets the aria-labelledby to the svg title
-    */
-    let ariaAttribute: any;
-
-    if (this.props['aria-label']) {
-      ariaAttribute = { ...{ 'aria-label': this.props['aria-label'] } };
-    } else if (this.props['aria-labelledby']) {
-      ariaAttribute = {
-        ...{ 'aria-labelledby': this.props['aria-labelledby'] },
-      };
-    } else {
-      ariaAttribute = { ...{ 'aria-labelledby': 'title' } };
-    }
-
     if (typeof icon === 'string') {
       return (
         <EuiI18n
@@ -619,18 +599,27 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           token="euiIcon.title"
           values={{ titleDisplayed }}
           default="{titleDisplayed} icon">
-          {(title: string) => (
-            <Svg
-              className={classes}
-              style={optionalCustomStyles}
-              tabIndex={tabIndex}
-              focusable={focusable}
-              title={title}
-              role="img"
-              {...ariaAttribute}
-              {...rest}
-            />
-          )}
+          {(title: string) => {
+            /*
+            If no aria-label is provided the title will be default
+            */
+            const ariaLabel = this.props['aria-label']
+              ? { ...{ 'aria-label': this.props['aria-label'] } }
+              : { ...{ 'aria-label': title } };
+
+            return (
+              <Svg
+                className={classes}
+                style={optionalCustomStyles}
+                tabIndex={tabIndex}
+                focusable={focusable}
+                title={title}
+                role="img"
+                {...ariaLabel}
+                {...rest}
+              />
+            );
+          }}
         </EuiI18n>
       );
     }

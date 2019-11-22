@@ -10,7 +10,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
     class="euiDatePickerRange__icon"
   >
     <svg
-      aria-labelledby="title"
+      aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"

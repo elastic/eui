@@ -15,7 +15,7 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <svg
-        aria-labelledby="title"
+        aria-label="empty icon"
         class="euiIcon euiIcon--medium euiIcon-isLoading"
         focusable="false"
         height="16"

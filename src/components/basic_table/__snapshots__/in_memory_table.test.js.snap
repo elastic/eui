@@ -398,7 +398,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                     >
                                       <EuiIconEmpty
                                         aria-hidden="true"
-                                        aria-labelledby="title"
+                                        aria-label="empty icon"
                                         className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                                         focusable="false"
                                         role="img"
@@ -407,7 +407,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                       >
                                         <svg
                                           aria-hidden="true"
-                                          aria-labelledby="title"
+                                          aria-label="empty icon"
                                           className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                                           focusable="false"
                                           height={16}
@@ -493,7 +493,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 >
                                   <EuiIconEmpty
                                     aria-hidden="true"
-                                    aria-labelledby="title"
+                                    aria-label="empty icon"
                                     className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                     focusable="false"
                                     role="img"
@@ -502,7 +502,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   >
                                     <svg
                                       aria-hidden="true"
-                                      aria-labelledby="title"
+                                      aria-label="empty icon"
                                       className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                       focusable="false"
                                       height={16}
@@ -647,7 +647,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 >
                                   <EuiIconEmpty
                                     aria-hidden="true"
-                                    aria-labelledby="title"
+                                    aria-label="empty icon"
                                     className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                     focusable="false"
                                     role="img"
@@ -656,7 +656,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   >
                                     <svg
                                       aria-hidden="true"
-                                      aria-labelledby="title"
+                                      aria-label="empty icon"
                                       className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                       focusable="false"
                                       height={16}

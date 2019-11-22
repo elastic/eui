@@ -7,7 +7,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <svg
-    aria-labelledby="title"
+    aria-label="empty icon"
     class="euiIcon euiIcon--xxLarge euiIcon--subdued euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -106,7 +106,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
   class="euiEmptyPrompt"
 >
   <svg
-    aria-labelledby="title"
+    aria-label="empty icon"
     class="euiIcon euiIcon--xxLarge euiIcon--subdued euiIcon-isLoading"
     focusable="false"
     height="16"
