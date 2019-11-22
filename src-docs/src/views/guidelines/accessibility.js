@@ -114,7 +114,7 @@ export default {
               panel={false}
               frame="frame"
               type="dont"
-              text="Don’t. This heading hierarchy is confusing. Don't wrap EuiText around anything more that plain HTML text.">
+              text="Don’t. This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation.">
               <EuiCodeBlock language="html">
                 {`<EuiText>
   <EuiScreenReaderOnly>
@@ -138,9 +138,9 @@ export default {
               text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context. Remember that EuiTitle gives you a way to separate your presentation from your semantic markup.">
               <EuiCodeBlock language="html">
                 {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
-  <EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
-  <EuiTitle size="l"><h3>An important site metric</h3></EuiTitle>
-  <EuiTitle size="m"><h3>Another important site metric</h3></EuiTitle>`}
+<EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
+<EuiTitle size="l"><h3>An important site metric</h3></EuiTitle>
+<EuiTitle size="m"><h3>Another important site metric</h3></EuiTitle>`}
               </EuiCodeBlock>
             </GuideRuleExample>
           </GuideRule>
@@ -440,7 +440,7 @@ export default {
             <p>
               For most content, the accessible name comes from the element’s
               inner text, such as:{' '}
-              <EuiCode language="html">
+              <EuiCode language="html" size="s">
                 {'<a href="https://elastic.co">Elastic.co</a>'}
               </EuiCode>
               . A screen reader can now read it out something like
