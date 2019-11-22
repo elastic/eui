@@ -21,6 +21,8 @@ export const GuideRuleExample = ({
   panel,
   frame,
   minHeight,
+  style,
+  panelStyles,
   ...rest
 }) => {
   const classes = classNames(
@@ -34,13 +36,17 @@ export const GuideRuleExample = ({
 
   const ChildrenComponent = panel ? EuiPanel : 'div';
 
+  const styles = { ...style, minHeight };
+
   return (
     <EuiFlexItem
       component="figure"
       className={classes}
-      {...rest}
-      style={{ minHeight: minHeight ? minHeight : '' }}>
-      <ChildrenComponent className="guideRule__example__panel">
+      style={styles}
+      {...rest}>
+      <ChildrenComponent
+        className="guideRule__example__panel"
+        style={panelStyles}>
         {children}
       </ChildrenComponent>
       <figcaption className="guideRule__caption">

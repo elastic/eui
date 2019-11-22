@@ -16,6 +16,12 @@ import {
   EuiIcon,
 } from '../../../../src/components';
 
+const codeBlockProps = {
+  language: 'html',
+  paddingSize: 'none',
+  fontSize: 'm',
+};
+
 export default {
   title: 'Accessibility',
   intro: (
@@ -48,7 +54,7 @@ export default {
 
       <EuiSpacer size="l" />
 
-      <EuiAspectRatio width={16} height={9}>
+      <EuiAspectRatio width={16} height={9} maxWidth={700}>
         <iframe
           title="Building and Testing for Accessibility with EUI"
           width="560"
@@ -67,7 +73,7 @@ export default {
       title: 'Page-level considerations',
       text: (
         <>
-          <EuiText className="guideSection__text" grow={false}>
+          <EuiText grow={false}>
             <h3 id="landmarks-headings">
               Headings and landmarks to aid navigation
             </h3>
@@ -97,8 +103,9 @@ export default {
               panel={false}
               frame="frame"
               type="do"
-              text="Do. Descend through headings as you work your way through the document.">
-              <EuiCodeBlock language="html">
+              text="Do. Descend through headings as you work your way through the document."
+              panelStyles={{ justifyContent: 'flex-start' }}>
+              <EuiCodeBlock {...codeBlockProps}>
                 {`<EuiText>
   <h1>Discover your data</h1>
   <p>Some content</p>
@@ -113,8 +120,9 @@ export default {
               panel={false}
               frame="frame"
               type="dont"
-              text="Don’t. This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation.">
-              <EuiCodeBlock language="html">
+              text="Don’t. This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation."
+              panelStyles={{ justifyContent: 'flex-start' }}>
+              <EuiCodeBlock {...codeBlockProps}>
                 {`<EuiText>
   <EuiScreenReaderOnly>
     <h1>Discover your data</h1>
@@ -134,8 +142,9 @@ export default {
               panel={false}
               frame="frame"
               type="do"
-              text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context. Remember that EuiTitle gives you a way to separate your presentation from your semantic markup.">
-              <EuiCodeBlock language="html">
+              text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context. Remember that EuiTitle gives you a way to separate your presentation from your semantic markup."
+              panelStyles={{ justifyContent: 'flex-start' }}>
+              <EuiCodeBlock {...codeBlockProps}>
                 {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
 <EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
 <EuiTitle size="l"><h3>An important site metric</h3></EuiTitle>
@@ -176,8 +185,9 @@ export default {
               panel={false}
               frame="frame"
               type="do"
-              text="Do. Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements.">
-              <EuiCodeBlock language="html">{`<body>
+              text="Do. Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements."
+              panelStyles={{ justifyContent: 'flex-start' }}>
+              <EuiCodeBlock {...codeBlockProps}>{`<body>
   <header className="appHeader">
     <!-- content -->
   </header>
@@ -191,8 +201,9 @@ export default {
               panel={false}
               frame="frame"
               type="dont"
-              text="Don’t. Classes provide no semantic meaning and not all elements provide semantic meaning either.">
-              <EuiCodeBlock language="html">{`<body>
+              text="Don’t. Classes provide no semantic meaning and not all elements provide semantic meaning either."
+              panelStyles={{ justifyContent: 'flex-start' }}>
+              <EuiCodeBlock {...codeBlockProps}>{`<body>
   <div className="appHeader"></div>
   <discover-app></discover-app>
   <ul className="appFooter"></ul>
@@ -207,8 +218,10 @@ export default {
               panel={false}
               frame="frame"
               type="do"
-              text="Do. Use landmarks and headings together to build complex pages.">
-              <EuiCodeBlock language="html">{`<header aria-labelledby="pageHeading">
+              text="Do. Use landmarks and headings together to build complex pages."
+              panelStyles={{ justifyContent: 'flex-start' }}>
+              <EuiCodeBlock
+                {...codeBlockProps}>{`<header aria-labelledby="pageHeading">
   <h1 id="pageHeading">Discover your data</h1>
   <form role="search" aria-label="Site search"> <!-- input + label go in here --> </form>
 <header>
@@ -257,17 +270,19 @@ export default {
               the page does. The best page titles put the unique content first
               (effectively, they’re reverse-order breadcrumbs).
             </p>
-            <h4>Use this format</h4>
           </EuiText>
           <EuiSpacer />
           <EuiFlexGroup gutterSize="s">
             <EuiFlexItem grow={false}>
               <EuiIcon type="checkInCircleFilled" size="l" color="secondary" />
             </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiTitle size="xxs">
-                <p>{'{Unique page title} - {Site title}'}</p>
+            <EuiFlexItem grow={false}>
+              <EuiTitle size="xxxs">
+                <h4>{'Use this format: '}</h4>
               </EuiTitle>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>{'{Unique page title} - {Site title}'}</EuiCode>
             </EuiFlexItem>
           </EuiFlexGroup>
           <GuideRule>
@@ -452,7 +467,7 @@ export default {
               an accessible name. For images, you can use <EuiCode>alt</EuiCode>{' '}
               attributes, such as:
             </p>
-            <EuiCodeBlock language="html" paddingSize="s">
+            <EuiCodeBlock language="html" paddingSize="s" fontSize="m">
               {'<img src="image1.jpg" alt="An apple lays on a table">'}
             </EuiCodeBlock>
             <h4>Buttons without inner text</h4>
@@ -460,7 +475,7 @@ export default {
               For buttons without descriptive text content, you can rely on ARIA
               to bring meaning back:
             </p>
-            <EuiCodeBlock language="html" paddingSize="s">
+            <EuiCodeBlock language="html" paddingSize="s" fontSize="m">
               {'<button aria-label="Close modal">Ｘ</button>'}
             </EuiCodeBlock>
             <h4>Forms and more complex patterns</h4>
@@ -470,7 +485,7 @@ export default {
               checkbox doesn’t have a name by itself, but when it is associated
               with a label, assistive technologies can make the connection:
             </p>
-            <EuiCodeBlock language="html" paddingSize="s">
+            <EuiCodeBlock language="html" paddingSize="s" fontSize="m">
               {`<input type="checkbox" id="subscribe">
 <label for="subscribe">Subscribe to Elastic news</label>`}
             </EuiCodeBlock>
@@ -481,7 +496,7 @@ export default {
               want to add to their filter (say, on the discovery page of a
               popular open source project):
             </p>
-            <EuiCodeBlock language="html" paddingSize="s">
+            <EuiCodeBlock language="html" paddingSize="m" fontSize="m">
               {`<h3>Available fields</h3>
 <ul>
   <li>
@@ -504,7 +519,7 @@ export default {
               items. For example, each button below shows a possible pattern you
               can use (in order of recommended best practice):
             </p>
-            <EuiCodeBlock language="html" paddingSize="s">
+            <EuiCodeBlock language="html" paddingSize="m" fontSize="m">
               {`<h3 id="available">Available fields</h3>
 <ul aria-labelledby="available">
   <li>
@@ -514,7 +529,7 @@ export default {
     </button>
   </li>
 
-  <!-- The next two options are hardest to make work well with Elastic’s i18n framework -->
+  <!-- The next two options are hardest to make work with Elastic’s i18n framework -->
 
   <li>
     @timestamp
@@ -541,7 +556,7 @@ export default {
             </EuiCallOut>
             <EuiSpacer />
 
-            <EuiCodeBlock language="html" paddingSize="s">
+            <EuiCodeBlock language="html" paddingSize="m" fontSize="m">
               {`<!-- Can be any heading level or even a paragraph -->
 <h1 id="a1b2c3">My favorite fruit</h1>
 <ul aria-labelledby="a1b2c3"><!-- ... --></ul>
@@ -620,7 +635,7 @@ export default {
               related pieces of information should be close enough together for
               a low-vision user to efficiently interact with the UI.
             </p>
-            <h3 id="screen-readers">Lov-vision/blind (screen readers)</h3>
+            <h3 id="screen-readers">Low-vision/blind (screen readers)</h3>
             <p>
               Blind and low-vision users often rely on tools, such as screen
               readers and braille readers, to navigate the web. Screen and

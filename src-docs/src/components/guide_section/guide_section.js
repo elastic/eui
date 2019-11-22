@@ -283,7 +283,7 @@ export class GuideSection extends Component {
           <EuiText>
             <p>{markup(description)}</p>
           </EuiText>
-          <EuiSpacer size="m" key={`propsSpacer-${componentName}`} />
+          <EuiSpacer size="m" id={`propsSpacer-${componentName}`} />
         </div>
       );
     }
