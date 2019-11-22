@@ -11,6 +11,16 @@
     // Vertically center icon with first line of title
     transform: translateY(2px);
   }
+
+  .euiCallOutHeader__title {
+    @include euiCallOutTitle;
+    margin-bottom: 0; // In case it's nested inside EuiText
+  }
+}
+
+// smaller font size for headers in small callout
+.euiCallOut--small .euiCallOutHeader__title {
+  @include euiCallOutTitle('s');
 }
 
 // Create callout modifiers based upon the map.
@@ -35,7 +45,6 @@
  * 3. Apply margin to all but last item in the flex.
  */
 .euiCallOutHeader {
-  @include euiCallOutTitle;
   display: flex;
   align-items: baseline; /* 1 */
 
@@ -45,10 +54,5 @@
 
   > * + * {
     margin-left: $euiSizeS; /* 3 */
-  }
-
-  // smaller font size for headers in small callout
-  .euiCallOut--small & {
-    @include euiCallOutTitle('s');
   }
 }
