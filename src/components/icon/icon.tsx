@@ -594,6 +594,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     } else {
       const Svg = icon;
 
+      const isIconEmpty = icon === empty && { ...{ 'aria-hidden': true } };
+
       return (
         <EuiI18n
           token="euiIcon.title"
@@ -615,6 +617,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
                 focusable={focusable}
                 title={title}
                 role="img"
+                {...isIconEmpty}
                 {...ariaLabel}
                 {...rest}
               />

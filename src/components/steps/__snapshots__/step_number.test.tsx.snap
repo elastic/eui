@@ -19,6 +19,7 @@ exports[`EuiStepNumber props status complete is rendered 1`] = `
   class="euiStepNumber euiStepNumber--complete"
 >
   <svg
+    aria-hidden="true"
     aria-label="complete"
     class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
     focusable="false"
@@ -36,6 +37,7 @@ exports[`EuiStepNumber props status danger is rendered 1`] = `
   class="euiStepNumber euiStepNumber--danger"
 >
   <svg
+    aria-hidden="true"
     aria-label="has errors"
     class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
     focusable="false"
@@ -69,6 +71,7 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
   class="euiStepNumber euiStepNumber--warning"
 >
   <svg
+    aria-hidden="true"
     aria-label="has warnings"
     class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
     focusable="false"

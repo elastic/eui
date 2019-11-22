@@ -218,6 +218,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
+                  aria-hidden="true"
                   aria-label="empty icon"
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
@@ -245,6 +246,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
+                  aria-hidden="true"
                   aria-label="empty icon"
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
@@ -438,6 +440,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
+                  aria-hidden="true"
                   aria-label="empty icon"
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
@@ -466,6 +469,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
+                  aria-hidden="true"
                   aria-label="empty icon"
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
@@ -831,6 +835,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                       class="euiContextMenu__itemLayout"
                                     >
                                       <svg
+                                        aria-hidden="true"
                                         aria-label="empty icon"
                                         class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                         focusable="false"
@@ -859,6 +864,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                       class="euiContextMenu__itemLayout"
                                     >
                                       <svg
+                                        aria-hidden="true"
                                         aria-label="empty icon"
                                         class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                         focusable="false"
@@ -927,6 +933,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         class="euiContextMenu__itemLayout"
                                       >
                                         <svg
+                                          aria-hidden="true"
                                           aria-label="empty icon"
                                           class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                           focusable="false"
@@ -955,6 +962,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         class="euiContextMenu__itemLayout"
                                       >
                                         <svg
+                                          aria-hidden="true"
                                           aria-label="empty icon"
                                           class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                           focusable="false"
@@ -1095,6 +1103,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                           }
                                         >
                                           <EuiIconEmpty
+                                            aria-hidden={true}
                                             aria-label="empty icon"
                                             className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                             focusable="false"
@@ -1103,6 +1112,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                             title="empty icon"
                                           >
                                             <svg
+                                              aria-hidden={true}
                                               aria-label="empty icon"
                                               className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                               focusable="false"
@@ -1164,6 +1174,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                           }
                                         >
                                           <EuiIconEmpty
+                                            aria-hidden={true}
                                             aria-label="empty icon"
                                             className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                             focusable="false"
@@ -1172,6 +1183,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                             title="empty icon"
                                           >
                                             <svg
+                                              aria-hidden={true}
                                               aria-label="empty icon"
                                               className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                               focusable="false"
@@ -1328,6 +1340,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
+                  aria-hidden="true"
                   aria-label="empty icon"
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
@@ -1355,6 +1368,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
+                  aria-hidden="true"
                   aria-label="empty icon"
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"

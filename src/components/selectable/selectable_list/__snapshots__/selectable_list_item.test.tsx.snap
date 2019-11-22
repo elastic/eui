@@ -12,6 +12,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
     class="euiSelectableListItem__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
       focusable="false"
@@ -38,6 +39,7 @@ exports[`EuiSelectableListItem props append 1`] = `
     class="euiSelectableListItem__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
       focusable="false"
@@ -69,6 +71,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
     class="euiSelectableListItem__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon--text euiIcon-isLoading euiSelectableListItem__icon"
       focusable="false"
@@ -95,6 +98,7 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
     class="euiSelectableListItem__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon--text euiIcon-isLoading euiSelectableListItem__icon"
       focusable="false"
@@ -123,6 +127,7 @@ exports[`EuiSelectableListItem props disabled 1`] = `
     class="euiSelectableListItem__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
       focusable="false"
@@ -150,6 +155,7 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
     class="euiSelectableListItem__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
       focusable="false"
@@ -176,6 +182,7 @@ exports[`EuiSelectableListItem props prepend 1`] = `
     class="euiSelectableListItem__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
       focusable="false"

@@ -8,6 +8,7 @@ exports[`EuiFormControlLayoutClearButton is rendered 1`] = `
   type="button"
 >
   <svg
+    aria-hidden="true"
     aria-label="empty icon"
     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutClearButton__icon"
     focusable="false"

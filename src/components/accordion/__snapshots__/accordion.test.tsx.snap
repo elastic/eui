@@ -37,6 +37,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
               }
             >
               <EuiIconEmpty
+                aria-hidden={true}
                 aria-label="empty icon"
                 className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
                 focusable="false"
@@ -45,6 +46,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                 title="empty icon"
               >
                 <svg
+                  aria-hidden={true}
                   aria-label="empty icon"
                   className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
                   focusable="false"
@@ -126,6 +128,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
               }
             >
               <EuiIconEmpty
+                aria-hidden={true}
                 aria-label="empty icon"
                 className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
                 focusable="false"
@@ -134,6 +137,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                 title="empty icon"
               >
                 <svg
+                  aria-hidden={true}
                   aria-label="empty icon"
                   className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
                   focusable="false"
@@ -197,6 +201,7 @@ exports[`EuiAccordion is rendered 1`] = `
         class="euiAccordion__iconWrapper"
       >
         <svg
+          aria-hidden="true"
           aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
           focusable="false"
@@ -240,6 +245,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
         class="euiAccordion__iconWrapper"
       >
         <svg
+          aria-hidden="true"
           aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
           focusable="false"
@@ -287,6 +293,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         class="euiAccordion__iconWrapper"
       >
         <svg
+          aria-hidden="true"
           aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
           focusable="false"
@@ -332,6 +339,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
         class="euiAccordion__iconWrapper"
       >
         <svg
+          aria-hidden="true"
           aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
           focusable="false"
@@ -382,6 +390,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         class="euiAccordion__iconWrapper"
       >
         <svg
+          aria-hidden="true"
           aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
           focusable="false"

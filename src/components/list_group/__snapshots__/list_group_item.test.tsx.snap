@@ -113,6 +113,7 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
     class="euiListGroupItem__text"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
       focusable="false"
@@ -314,6 +315,7 @@ exports[`EuiListGroupItem throws an warning if both iconType and icon are provid
     class="euiListGroupItem__text"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
       focusable="false"

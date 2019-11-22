@@ -2346,6 +2346,7 @@ exports[`EuiIcon props type email is rendered 1`] = `
 
 exports[`EuiIcon props type empty is rendered 1`] = `
 <svg
+  aria-hidden="true"
   aria-label="Empty icon"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"

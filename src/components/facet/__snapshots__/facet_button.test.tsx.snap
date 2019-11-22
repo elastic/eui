@@ -29,6 +29,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
     class="euiFacetButton__content"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiFacetButton__icon"
       focusable="false"

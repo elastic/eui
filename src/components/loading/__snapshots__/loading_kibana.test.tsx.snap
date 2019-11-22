@@ -10,6 +10,7 @@ exports[`EuiLoadingKibana is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
@@ -31,6 +32,7 @@ exports[`EuiLoadingKibana size l is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--large euiIcon-isLoading"
       focusable="false"
@@ -52,6 +54,7 @@ exports[`EuiLoadingKibana size m is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
@@ -73,6 +76,7 @@ exports[`EuiLoadingKibana size xl is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--xLarge euiIcon-isLoading"
       focusable="false"

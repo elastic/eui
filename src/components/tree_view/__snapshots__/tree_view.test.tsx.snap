@@ -30,6 +30,7 @@ exports[`EuiTreeView is rendered 1`] = `
           class="euiTreeView__iconWrapper"
         >
           <svg
+            aria-hidden="true"
             aria-label="empty icon"
             class="euiIcon euiIcon--medium euiIcon-isLoading"
             focusable="false"

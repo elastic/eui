@@ -47,6 +47,7 @@ exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
       class="euiContextMenuItem__text"
     />
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
       focusable="false"

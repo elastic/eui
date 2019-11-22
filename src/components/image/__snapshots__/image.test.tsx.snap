@@ -33,6 +33,7 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
       src="/cat.jpg"
     />
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoading euiImage__icon"
       focusable="false"

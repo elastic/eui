@@ -42,6 +42,7 @@ exports[`EuiLink it is an external link 1`] = `
   rel="noreferrer"
 >
   <svg
+    aria-hidden="true"
     aria-label="External link"
     class="euiIcon euiIcon--small euiIcon-isLoading euiLink__externalIcon"
     focusable="false"

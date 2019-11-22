@@ -182,6 +182,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
                 C
               </span>
               <svg
+                aria-hidden="true"
                 aria-label="empty icon"
                 class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
                 focusable="false"
@@ -488,6 +489,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
                 C
               </span>
               <svg
+                aria-hidden="true"
                 aria-label="empty icon"
                 class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
                 focusable="false"

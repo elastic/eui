@@ -269,6 +269,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
         class="euiContextMenu__itemLayout"
       >
         <svg
+          aria-hidden="true"
           aria-label="empty icon"
           class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
           focusable="false"
@@ -325,6 +326,7 @@ exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
       class="euiContextMenu__itemLayout"
     >
       <svg
+        aria-hidden="true"
         aria-label="empty icon"
         class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
         focusable="false"

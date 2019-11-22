@@ -72,6 +72,7 @@ exports[`EuiStep props status complete is rendered 1`] = `
       class="euiStepNumber euiStepNumber--complete euiStep__circle"
     >
       <svg
+        aria-hidden="true"
         aria-label="complete"
         class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
         focusable="false"
@@ -110,6 +111,7 @@ exports[`EuiStep props status danger is rendered 1`] = `
       class="euiStepNumber euiStepNumber--danger euiStep__circle"
     >
       <svg
+        aria-hidden="true"
         aria-label="has errors"
         class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
         focusable="false"
@@ -204,6 +206,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
       class="euiStepNumber euiStepNumber--warning euiStep__circle"
     >
       <svg
+        aria-hidden="true"
         aria-label="has warnings"
         class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
         focusable="false"

@@ -169,6 +169,7 @@ exports[`EuiCard props icon 1`] = `
     class="euiCard__top"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading myIconClass euiCard__icon"
       focusable="false"

@@ -11,6 +11,7 @@ exports[`EuiTableSortMobileItem is rendered 1`] = `
     class="euiContextMenu__itemLayout"
   >
     <svg
+      aria-hidden="true"
       aria-label="empty icon"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
       focusable="false"

@@ -1,10 +1,7 @@
-/*
- Dynamic import, with which TypeScript accepts static and dynamic paths
-*/
-const glob = await import('glob');
-const svgr = await import('@svgr/core').default;
-const path = await import('path');
-const fs = await import('fs');
+const glob = require('glob');
+const svgr = require('@svgr/core').default;
+const path = require('path');
+const fs = require('fs');
 
 const rootDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(rootDir, 'src');

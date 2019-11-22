@@ -45,6 +45,7 @@ exports[`EuiStepHorizontal props isComplete 1`] = `
     class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
   >
     <svg
+      aria-hidden="true"
       aria-label="complete"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
       focusable="false"
@@ -104,6 +105,7 @@ exports[`EuiStepHorizontal props status complete is rendered 1`] = `
     class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
   >
     <svg
+      aria-hidden="true"
       aria-label="complete"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
       focusable="false"
@@ -138,6 +140,7 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
     class="euiStepNumber euiStepNumber--danger euiStepHorizontal__number"
   >
     <svg
+      aria-hidden="true"
       aria-label="has errors"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
       focusable="false"
@@ -222,6 +225,7 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
     class="euiStepNumber euiStepNumber--warning euiStepHorizontal__number"
   >
     <svg
+      aria-hidden="true"
       aria-label="has warnings"
       class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
       focusable="false"
