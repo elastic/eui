@@ -9,7 +9,7 @@ import { EuiText } from '../text';
 
 type Color = 'primary' | 'success' | 'warning' | 'danger';
 type Size = 's' | 'm';
-type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 export type EuiCallOutProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -28,6 +28,7 @@ const colorToClassNameMap: { [color in Color]: string } = {
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
+export const HEADINGS: Heading[] = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'];
 
 const sizeToClassNameMap: { [size in Size]: string } = {
   s: 'euiCallOut--small',
