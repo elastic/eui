@@ -210,24 +210,19 @@ const EuiDataGridHeaderCell: FunctionComponent<
         }
       }
 
+      const headerNode = headerRef.current;
       // @ts-ignore-next line TS doesn't have focusin
-      headerRef.current.addEventListener('focusin', onFocusIn);
-      headerRef.current.addEventListener('focusout', onFocusOut);
-      headerRef.current.addEventListener('keyup', onKeyUp);
+      headerNode.addEventListener('focusin', onFocusIn);
+      headerNode.addEventListener('focusout', onFocusOut);
+      headerNode.addEventListener('keyup', onKeyUp);
       return () => {
         // @ts-ignore-next line TS doesn't have focusin
-        headerRef.current!.removeEventListener('focusin', onFocusIn);
-        headerRef.current!.removeEventListener('focusout', onFocusOut);
-        headerRef.current!.removeEventListener('keyup', onKeyUp);
+        headerNode.removeEventListener('focusin', onFocusIn);
+        headerNode.removeEventListener('focusout', onFocusOut);
+        headerNode.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [
-    headerIsInteractive,
-    isFocused,
-    headerRef.current,
-    setIsCellEntered,
-    setFocusedCell,
-  ]);
+  }, [headerIsInteractive, isFocused, setIsCellEntered, setFocusedCell, index]);
 
   return (
     <div

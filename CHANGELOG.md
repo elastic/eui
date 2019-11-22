@@ -1,7 +1,29 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
+- Added new keyboard shortcuts for the data grid component: `Home` (same row, first column), `End` (same row, last column), `Ctrl+Home` (first row, first column), `Ctrl+End` (last row, last column), `Page Up` (next page) and `Page Down` (previous page) ([#2519](https://github.com/elastic/eui/pull/2519))
+- Added `disabled` prop to the `EuiCheckboxGroup` definition ([#2545](https://github.com/elastic/eui/pull/2545))
+- Added `disabled` option to the `option` attribute of the `options` object that is passed to the `EuiCheckboxGroup` so that checkboxes in a group can be individually disabled ([#2548](https://github.com/elastic/eui/pull/2548))
+- Added `EuiAspectRatio` component that allows for responsively resizing embeds ([#2535](https://github.com/elastic/eui/pull/2535))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` schema detection on already defined column schemas ([#2550](https://github.com/elastic/eui/pull/2550))
+- Added `euiTextBreakWord()` to `EuiToast` header ([#2549](https://github.com/elastic/eui/pull/2549))
+- Fixed `.eui-textBreakAll` on Firefox ([#2549](https://github.com/elastic/eui/pull/2549))
+
+## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
+
+**Bug fixes**
+
+- `EuiSwitch` now passes `name` attribute into underlying `button` ([#2533](https://github.com/elastic/eui/pull/2533))
+
+## [`16.0.0`](https://github.com/elastic/eui/tree/v16.0.0)
+
 - Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
 - Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
+- Replaced root element in `EuiFlyout`, switching from `span` to `Fragment` ([#2527](https://github.com/elastic/eui/pull/2527))
+- Upgraded `react-virtualized` to `9.21.2` ([#2531](https://github.com/elastic/eui/pull/2531))
 
 **Bug fixes**
 
@@ -15,10 +37,10 @@
 ## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
 
 - Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
-- Upgraded `react-ace` to `7.0.5`
+- Upgraded `react-ace` to `7.0.5` ([#2526](https://github.com/elastic/eui/pull/2526))
 
 **Bug fixes**
-
+- Fixed `EuiButton` disabled text color ([#2534](lhttps://github.com/elastic/eui/pull/2534))
 - Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
 - Fixed `EuiSwitch` to use `aria-labelledby` ([#2522](https://github.com/elastic/eui/pull/2522))
 - Fixed `EuiPanelProps` type definition ([#2516](https://github.com/elastic/eui/pull/2516))
@@ -34,7 +56,7 @@
 - Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
 - Converted `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
 - Added an animation to the arrow on `EuiAccordion` as it opens / closes ([#2507](https://github.com/elastic/eui/pull/2507))
-- Upgraded `react-input-autosize` to `2.2.2`
+- Upgraded `react-input-autosize` to `2.2.2` ([#2514](https://github.com/elastic/eui/pull/2514))
 
 **Bug fixes**
 

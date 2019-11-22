@@ -39,6 +39,8 @@ import { AccessibilityExample } from './views/accessibility/accessibility_exampl
 
 import { AccordionExample } from './views/accordion/accordion_example';
 
+import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
+
 import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
@@ -334,6 +336,7 @@ const navigation = [
   {
     name: 'Display',
     items: [
+      AspectRatioExample,
       AvatarExample,
       BadgeExample,
       CallOutExample,
