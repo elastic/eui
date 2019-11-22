@@ -87,7 +87,7 @@ export default () => {
 
       return 0;
     });
-  }, [raw_data, sortingColumns]);
+  }, [sortingColumns]);
 
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>

@@ -201,7 +201,6 @@ export const EuiDataGridBody: FunctionComponent<
     schema,
     popoverContents,
     visibleRowIndices,
-    startRow,
     interactiveCellId,
   ]);
 

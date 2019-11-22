@@ -122,7 +122,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       const newColorAsHsv = color ? hexToHsv(color) : hexToHsv('');
       setColorAsHsv(newColorAsHsv);
     }
-  }, [color]);
+  }, [color, lastHex]);
 
   const classes = classNames('euiColorPicker', className);
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
