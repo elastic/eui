@@ -1,3 +1,4 @@
+export { EuiCheckablePanel } from './checkable_panel';
 export { EuiCheckbox, EuiCheckboxGroup } from './checkbox';
 export { EuiDescribedFormGroup } from './described_form_group';
 export { EuiFieldNumber } from './field_number';

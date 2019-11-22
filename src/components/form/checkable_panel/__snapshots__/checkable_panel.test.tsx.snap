@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCheckablePanel is rendered 1`] = `
+<div
+  class="euiPanel euiCheckablePanel testClass1 testClass2"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero euiCheckablePanel__control"
+    >
+      <div
+        class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
+      >
+        <div
+          class="euiFlexItem"
+        >
+          <div
+            aria-label="aria-label"
+            class="euiRadio euiRadio--noLabel"
+            data-test-subj="test subject string"
+          >
+            <input
+              class="euiRadio__input"
+              id="id"
+              type="radio"
+            />
+            <div
+              class="euiRadio__circle"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem euiCheckablePanel__label"
+    >
+      <label
+        class="euiFormLabel"
+        for="id"
+      >
+        <div
+          class="euiText euiText--medium"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;

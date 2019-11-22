@@ -1,0 +1,36 @@
+.euiPanel.euiCheckablePanel {
+  transition: border-color $euiAnimSpeedNormal ease-in;
+
+  & > .euiFlexGroup:first-child .euiCheckablePanel__control {
+    border-top-left-radius: $euiBorderRadius;
+  }
+
+  & > .euiFlexGroup:last-child .euiCheckablePanel__control {
+    border-bottom-left-radius: $euiBorderRadius;
+  }
+}
+
+.euiPanel.euiCheckablePanel--isChecked {
+  border-color: makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade);
+}
+
+.euiCheckablePanel__control {
+  text-align: center;
+  width: $euiSize * 3;
+  padding-left: $euiSize;
+  padding-right: $euiSize;
+  background-color: $euiFormInputGroupLabelBackground;
+  transition: background-color $euiAnimSpeedNormal ease-in;
+
+  .euiPanel.euiCheckablePanel--isChecked & {
+    background-color: tintOrShade(makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade), 85, 70);
+  }
+}
+
+.euiCheckablePanel__label {
+  padding: $euiSizeS $euiSizeS $euiSizeS $euiSize;
+}
+
+.euiCheckablePanel__children {
+  padding:  0 $euiSizeS $euiSizeS $euiSize;
+}

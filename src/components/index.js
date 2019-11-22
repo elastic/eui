@@ -103,6 +103,7 @@ export {
 export { EuiFocusTrap } from './focus_trap';
 
 export {
+  EuiCheckablePanel,
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiDescribedFormGroup,
