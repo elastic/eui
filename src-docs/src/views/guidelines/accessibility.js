@@ -13,7 +13,6 @@ import {
   EuiFlexItem,
   EuiTitle,
   EuiAspectRatio,
-  EuiFlexGrid,
   EuiIcon,
 } from '../../../../src/components';
 
