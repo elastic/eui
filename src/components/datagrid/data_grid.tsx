@@ -368,18 +368,30 @@ function createKeyDownHandler(
   };
 }
 
-function useAfterRender(): [unknown, Function] {
+function useAfterRender(fn: Function): Function {
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [subscription, setSubscription] = useState(0);
+  const [needsExecution, setNeedsExecution] = useState(false);
 
+  // first useEffect waits for the parent & children to render & flush to dom
   useEffect(() => {
     if (isSubscribed) {
       setIsSubscribed(false);
-      setSubscription(subscription => ++subscription);
+      setNeedsExecution(true);
     }
-  }, [isSubscribed, setSubscription]);
+  }, [isSubscribed, setIsSubscribed, setNeedsExecution]);
 
-  return [subscription, () => setIsSubscribed(true)];
+  // second useEffect allows for a new `fn` to have been created
+  // with any state updates before being called
+  useEffect(() => {
+    if (needsExecution) {
+      setNeedsExecution(false);
+      fn();
+    }
+  }, [needsExecution, setNeedsExecution, fn]);
+
+  return () => {
+    setIsSubscribed(true);
+  };
 }
 
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
@@ -630,8 +642,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     Map<string, Function>
   >(new Map());
 
-  const [renderSubscription, subscribeToRender] = useAfterRender();
-  useEffect(() => {
+  const focusAfterRender = useAfterRender(() => {
     if (focusedCell) {
       const key = `${focusedCell[0]}-${focusedCell[1]}`;
 
@@ -639,7 +650,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         cellsUpdateFocus.get(key)!();
       }
     }
-  }, [renderSubscription]);
+  });
 
   const datagridContext = {
     onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
@@ -697,7 +708,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   realizedFocusedCell,
                   headerIsInteractive,
                   setFocusedCell,
-                  subscribeToRender
+                  focusAfterRender
                 )}
                 className="euiDataGrid__verticalScroll"
                 ref={resizeRef}
