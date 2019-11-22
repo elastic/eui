@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { GuideRule, GuideRuleExample } from '../../components';
 
@@ -70,34 +71,31 @@ export default {
   ),
   sections: [
     {
-      title: 'Page-level considerations',
+      title: 'Headings and landmarks',
       text: (
         <>
           <EuiText grow={false}>
-            <h3 id="landmarks-headings">
-              Headings and landmarks to aid navigation
-            </h3>
             <p>
-              You can make pages more accessible for screen reader users by
-              using solid headings and landmarks.
-            </p>
-            <p>
-              Headings are the simplest way for screen readers to navigate
-              pages. A good heading hierarchy has:
+              You can aid navigation abd make pages more accessible for screen
+              reader users by using solid headings and landmarks.{' '}
+              <strong>Headings</strong> are the simplest way for screen readers
+              to navigate pages. A good heading hierarchy:
             </p>
             <ul aria-label="Attributes of a good heading hierarchy">
               <li>
-                Do use only one <EuiCode language="html">{'<h1>'}</EuiCode> on
+                Uses only one <EuiCode language="html">{'<h1>'}</EuiCode> on
                 each page
               </li>
-              <li>Don&apos;t skip levels in headings</li>
-              <li>Don&apos;t duplicate content in headings</li>
+              <li>
+                Doesn&apos;t skip levels{' '}
+                <EuiCode language="html">{'<h1> → <h6>'}</EuiCode>
+              </li>
+              <li>Doesn&apos;t duplicate content</li>
             </ul>
           </EuiText>
-          <EuiSpacer size="l" />
-          <EuiText className="guideSection__text">
-            <h4>Headings example</h4>
-          </EuiText>
+
+          <h3>Heading examples</h3>
+
           <GuideRule>
             <GuideRuleExample
               panel={false}
@@ -142,7 +140,7 @@ export default {
               panel={false}
               frame="frame"
               type="do"
-              text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context. Remember that EuiTitle gives you a way to separate your presentation from your semantic markup."
+              text="Do. This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context."
               panelStyles={{ justifyContent: 'flex-start' }}>
               <EuiCodeBlock {...codeBlockProps}>
                 {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
@@ -156,13 +154,28 @@ export default {
           <EuiSpacer size="xxl" />
 
           <EuiText className="guideSection__text" grow={false}>
+            <EuiCallOut
+              iconType="bell"
+              size="s"
+              title={
+                <span>
+                  <Link to="/display/title">
+                    <strong>EuiTitle</strong>
+                  </Link>{' '}
+                  gives you a way to separate your presentation from your
+                  semantic markup.
+                </span>
+              }
+            />
+
+            <EuiSpacer />
             <p>
-              Landmarks are another way for screen readers to navigate pages. A
-              benefit of landmarks is that they offer more context on the type
-              of content to expect than a heading. This is useful for tech that
-              offers reader modes (e.g., Firefox, Safari, and apps like Pocket)
-              and new form factors (e.g., smartwatches). Many landmarks are
-              mapped to HTML elements, such as{' '}
+              <strong>Landmarks</strong> are another way for screen readers to
+              navigate pages. A benefit of landmarks is that they offer more
+              context on the type of content to expect than a heading. This is
+              useful for tech that offers reader modes (e.g., Firefox, Safari,
+              and apps like Pocket) and new form factors (e.g., smartwatches).
+              Many landmarks are mapped to HTML elements, such as{' '}
               <EuiCode language="html">{'<main>'}</EuiCode>,{' '}
               <EuiCode language="html">{'<aside>'}</EuiCode>,{' '}
               <EuiCode language="html">{'<article>'}</EuiCode>; others are
@@ -176,10 +189,9 @@ export default {
               referenced by <EuiCode>aria-labelledby</EuiCode> is preferred.
             </p>
           </EuiText>
-          <EuiSpacer size="xl" />
-          <EuiText className="guideSection__text">
-            <h4>Landmarks example</h4>
-          </EuiText>
+
+          <h3>Landmarks example</h3>
+
           <GuideRule>
             <GuideRuleExample
               panel={false}
@@ -210,9 +222,9 @@ export default {
 </body>`}</EuiCodeBlock>
             </GuideRuleExample>
           </GuideRule>
-          {/* This spacer is hacks because code blocks can't have multi-line captions */}
-          <EuiSpacer size="xl" />
-          <h4>Headings and named landmarks example</h4>
+          {/* This spacer is hacks because GuideRuleExamples can't have multi-line captions */}
+          <EuiSpacer size="xxl" />
+          <h3>Headings and named landmarks example</h3>
           <GuideRule>
             <GuideRuleExample
               panel={false}
@@ -234,8 +246,8 @@ export default {
             </GuideRuleExample>
           </GuideRule>
           <EuiSpacer size="l" />
-          <EuiText className="guideSection__text" grow={false}>
-            <h4 id="further-reading">Further reading</h4>
+          <EuiText className="guideSection__text" size="s" grow={false}>
+            <h3 id="further-reading">Further reading</h3>
             <ul aria-labelledby="landmarks-headings further-reading">
               <li>
                 <EuiLink href="https://www.w3.org/TR/wai-aria-practices/examples/landmarks/HTML5.html">
@@ -263,12 +275,20 @@ export default {
                 </EuiLink>
               </li>
             </ul>
-
-            <h3 id="page-titles">Informative page titles</h3>
+          </EuiText>
+        </>
+      ),
+    },
+    {
+      title: 'Page titles',
+      text: (
+        <>
+          <EuiText grow={false}>
             <p>
-              Each page requires a unique title that accurately reflects what
-              the page does. The best page titles put the unique content first
-              (effectively, they’re reverse-order breadcrumbs).
+              Each page requires a unique, informative title that accurately
+              reflects what the page does. The best page titles put the unique
+              content first. Effectively, they&apos;re reverse-order
+              breadcrumbs.
             </p>
           </EuiText>
           <EuiSpacer />
@@ -277,8 +297,8 @@ export default {
               <EuiIcon type="checkInCircleFilled" size="l" color="secondary" />
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiTitle size="xxxs">
-                <h4>{'Use this format: '}</h4>
+              <EuiTitle size="xs">
+                <p>{'Use this format: '}</p>
               </EuiTitle>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
@@ -340,8 +360,8 @@ export default {
           <EuiSpacer size="xl" />
           <EuiSpacer size="xl" />
 
-          <EuiText className="guideSection__text" grow={false}>
-            <h4>Further reading</h4>
+          <EuiText className="guideSection__text" size="s" grow={false}>
+            <h3>Further reading</h3>
             <ul aria-labelledby="titles further-reading">
               <li>
                 <EuiLink href="https://www.w3.org/WAI/WCAG21/quickref/?showtechniques=242#page-titled">
@@ -354,24 +374,11 @@ export default {
       ),
     },
     {
-      title: 'Component-level considerations',
+      title: 'Focus management',
       text: (
         <>
           <EuiText className="guideSection__text" grow={false}>
-            <p>
-              Accessible components always start with semantic markup, but in
-              complex web apps that often isn’t enough. To fill the gap between
-              HTML elements and complex components you can use ARIA and related
-              attributes to be inclusive.
-            </p>
-
-            <h3 id="focus">Focus management</h3>
-            <p>Focus management has several aspects:</p>
-            <ul aria-label="Aspects of focus management">
-              <li>Where is the focus state right now?</li>
-              <li>Where is the focus state going?</li>
-              <li>How do I get back to where I was?</li>
-            </ul>
+            <h3>Where is the focus state right now?</h3>
             <p>
               Focus states are an important part of design because they let
               keyboard users know where focus is currently at. All browsers ship
@@ -380,23 +387,32 @@ export default {
               focus states to match the Elastic brand and provide better visual
               states, including color contrast.
             </p>
+            <h3>Where is the focus state going?</h3>
             <p>
               Given that a keyboard user primarily navigates pages in one
               direction (either forward or backward), it’s important to have an
               intuitive focus order. Focus order should follow the flow of the
-              page to make it easy to follow. If you’ve made something
-              interactive via JavaScript, you can enable a tab stop using{' '}
+              page to make it easy to follow. If you’ve made a normally
+              non-interactive element like a{' '}
+              <EuiCode language="html">{'<div>'}</EuiCode> interactive via
+              JavaScript, you can enable a tab stop using{' '}
               <EuiCode>tabIndex=0</EuiCode>. If you want something that is only
               focusable programmatically, you can use{' '}
               <EuiCode>tabIndex=-1</EuiCode>.
             </p>
-            <EuiCallOut title="Warning" color="danger" heading="h5">
-              <p>
-                Using <EuiCode>tabIndex</EuiCode> values greater than 0 is
-                problematic and should be avoided.
-              </p>
-            </EuiCallOut>
-            <EuiSpacer size="l" />
+            <EuiCallOut
+              iconType="alert"
+              title={
+                <span>
+                  Using <EuiCode>tabIndex</EuiCode> values greater than 0 is
+                  problematic and should be avoided.
+                </span>
+              }
+              color="danger"
+              size="s"
+              heading="p"
+            />
+            <h3>How do I get back to where I was?</h3>
             <p>
               Navigating complex sites sometimes means your focus state will
               jump around (e.g., skip links, modals, typeaheads, and so on). If
@@ -408,7 +424,10 @@ export default {
               mean your focus is on a close button; when the modal closes, you
               should return focus to the button that opened the modal.
             </p>
-            <h4>Further reading</h4>
+          </EuiText>
+          <EuiSpacer />
+          <EuiText size="s" grow={false}>
+            <h3>Further reading</h3>
             <ul aria-labelledby="focus further-reading">
               <li>
                 <EuiLink href="https://www.w3.org/WAI/perspective-videos/keyboard">
@@ -442,15 +461,22 @@ export default {
                 </EuiLink>
               </li>
             </ul>
-
-            <h3 id="names">Accessible names</h3>
+          </EuiText>
+        </>
+      ),
+    },
+    {
+      title: 'Naming',
+      text: (
+        <>
+          <EuiText grow={false}>
             <p>
               An accessible name is the name of an HTML element as it’s exposed
               to assistive technology. An accessible name can then be read by a
               screen reader or can be targeted for an action.
             </p>
 
-            <h4>Most elements</h4>
+            <h3>Most elements</h3>
             <p>
               For most content, the accessible name comes from the element’s
               inner text, such as:{' '}
@@ -458,10 +484,10 @@ export default {
                 {'<a href="https://elastic.co">Elastic.co</a>'}
               </EuiCode>
               . A screen reader can now read it out something like
-              &ldquo;Elastic.co, link&rdquo; or using voice commands, it can be
+              &ldquo;Elastic.co, link&rdquo; or, using voice commands, it can be
               controlled with &ldquo;Click Elastic.co link&rdquo;.
             </p>
-            <h4>Images and other elements</h4>
+            <h3>Images and other elements</h3>
             <p>
               Some content might require special attributes to give an element
               an accessible name. For images, you can use <EuiCode>alt</EuiCode>{' '}
@@ -470,7 +496,7 @@ export default {
             <EuiCodeBlock language="html" paddingSize="s" fontSize="m">
               {'<img src="image1.jpg" alt="An apple lays on a table">'}
             </EuiCodeBlock>
-            <h4>Buttons without inner text</h4>
+            <h3>Buttons without inner text</h3>
             <p>
               For buttons without descriptive text content, you can rely on ARIA
               to bring meaning back:
@@ -478,7 +504,7 @@ export default {
             <EuiCodeBlock language="html" paddingSize="s" fontSize="m">
               {'<button aria-label="Close modal">Ｘ</button>'}
             </EuiCodeBlock>
-            <h4>Forms and more complex patterns</h4>
+            <h3>Forms and more complex patterns</h3>
             <p>
               Some HTML elements have associated elements that provide
               accessible names. Form elements are the most ubiquitous example: a
@@ -489,7 +515,7 @@ export default {
               {`<input type="checkbox" id="subscribe">
 <label for="subscribe">Subscribe to Elastic news</label>`}
             </EuiCodeBlock>
-            <h4>Of note: Repeated calls to action</h4>
+            <h3>Of note: Repeated calls to action</h3>
             <p>
               Having only an accessible name, however, doesn’t always lead to
               the best UX. Take a list of available fields that someone might
@@ -549,23 +575,24 @@ export default {
 </ul>
 `}
             </EuiCodeBlock>
-            <EuiCallOut title="Developer tip" level={4}>
-              <p>
-                Give lists an accessible name to improve their discoverability!
-              </p>
-            </EuiCallOut>
-            <EuiSpacer />
-
-            <EuiCodeBlock language="html" paddingSize="m" fontSize="m">
-              {`<!-- Can be any heading level or even a paragraph -->
+            <EuiCallOut
+              iconType="bell"
+              title="Give lists an accessible name to improve their discoverability!"
+              heading="p">
+              <EuiCodeBlock language="html" paddingSize="m" fontSize="s">
+                {`<!-- Can be any heading level or even a paragraph -->
 <h1 id="a1b2c3">My favorite fruit</h1>
 <ul aria-labelledby="a1b2c3"><!-- ... --></ul>
 
 <!-- You can still provide an accessible title even if there's no visual label -->
 <ul aria-label="My favorite vegetables">...</ul>`}
-            </EuiCodeBlock>
-
-            <h4>Further reading</h4>
+              </EuiCodeBlock>
+            </EuiCallOut>
+            <EuiSpacer />
+          </EuiText>
+          <EuiSpacer />
+          <EuiText size="s" grow={false}>
+            <h3>Further reading</h3>
             <ul aria-labelledby="names further-reading">
               <li>
                 <EuiLink href="https://www.w3.org/WAI/tutorials/forms/labels/">
@@ -694,8 +721,7 @@ export default {
       text: (
         <>
           <EuiText className="guideSection__text" grow={false}>
-            <EuiLink href="" />
-            <ul aria-labelledby="resources">
+            <ul>
               <li>
                 A wide-reaching{' '}
                 <EuiLink href="https://developer.mozilla.org/en-US/docs/Learn/Accessibility">
