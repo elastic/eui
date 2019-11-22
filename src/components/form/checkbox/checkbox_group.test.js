@@ -56,4 +56,22 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('individual disabled is rendered', () => {
+    const component = render(
+      <EuiCheckboxGroup
+        options={[
+          { id: '1', label: 'kibana', disabled: true },
+          { id: '2', label: 'elastic' },
+        ]}
+        idToSelectedMap={{
+          '1': true,
+          '2': false,
+        }}
+        onChange={() => {}}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

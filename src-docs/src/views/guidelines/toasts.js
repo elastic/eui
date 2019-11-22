@@ -445,7 +445,7 @@ and space to read it properly. Alternatively just link to a full page.
             <EuiToast
               color="success"
               style={{ maxWidth: 300 }}
-              title="Dashboard 'My_dashboard' was saved"
+              title="Dashboard 'My_dashboard_with_a_very_long_name' was saved"
             />
           </GuideRuleExample>
 

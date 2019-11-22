@@ -84,7 +84,7 @@ const ObservedCell: FunctionComponent<{
         observer.disconnect();
       };
     }
-  }, [ref]);
+  }, [column, i, onCellRender, ref]);
 
   const CellElement = renderCellValue as JSXElementConstructor<
     EuiDataGridCellValueElementProps
@@ -145,7 +145,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
     }
 
     return rows;
-  }, [columns, rowCount, renderCellValue, onCellRender]);
+  }, [rowCount, columns, inMemory.skipColumns, renderCellValue, onCellRender]);
 
   return createPortal(
     <Fragment>{rows}</Fragment>,
