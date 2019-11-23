@@ -66,7 +66,7 @@ export const DataGridSchemaExample = {
             </EuiCode>{' '}
             to each matching cell.
           </p>
-          <h4>Defining expansio</h4>
+          <h4>Defining expansiom</h4>
           <p>
             Likewise, you can inject custom content into any of the popovers a
             cell expands into. Add <EuiCode>popoverContents</EuiCode> functions

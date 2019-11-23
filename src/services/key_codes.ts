@@ -11,6 +11,11 @@ export const UP = 38;
 export const LEFT = 37;
 export const RIGHT = 39;
 
+export const PAGE_UP = 33;
+export const PAGE_DOWN = 34;
+export const END = 35;
+export const HOME = 36;
+
 export enum keyCodes {
   ENTER = 13,
   SPACE = 32,
@@ -23,4 +28,9 @@ export enum keyCodes {
   UP = 38,
   LEFT = 37,
   RIGHT = 39,
+
+  PAGE_UP = 33,
+  PAGE_DOWN = 34,
+  END = 35,
+  HOME = 36,
 }
