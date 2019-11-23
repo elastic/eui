@@ -7,7 +7,7 @@ import React, {
   ReactElement,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';

@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiText } from '../../text';
 

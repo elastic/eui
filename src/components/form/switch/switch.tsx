@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 import makeId from '../../form/form_row/make_id';
 import { EuiIcon } from '../../icon';
 
@@ -37,7 +37,6 @@ export type EuiSwitchProps = CommonProps &
 export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   label,
   id,
-  name,
   checked,
   disabled,
   compressed,
@@ -83,7 +82,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         disabled={disabled}
         onClick={onClick}
         aria-label={showLabel ? undefined : (label as string)}
-        aria-describedby={showLabel ? labelId : undefined}
+        aria-labelledby={showLabel ? labelId : undefined}
         {...rest}>
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />

@@ -13,7 +13,7 @@ import {
   EuiComboBoxOptionsListProps,
   EuiComboBoxProps,
 } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
-import { RefCallback, CommonProps, Omit } from '../common';
+import { RefCallback, CommonProps } from '../common';
 import { EuiPanelProps } from '../panel/panel';
 
 declare module '@elastic/eui' {

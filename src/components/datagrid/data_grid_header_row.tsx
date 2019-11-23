@@ -13,7 +13,7 @@ import {
   EuiDataGridColumn,
   EuiDataGridSorting,
 } from './data_grid_types';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';

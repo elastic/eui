@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { Omit, PropsOf } from '../common';
+import { PropsOf } from '../common';
 import { EuiIcon, IconSize, IconType } from '../icon';
 import { EuiToolTip, Props as EuiToolTipProps } from './tool_tip';
 

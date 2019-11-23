@@ -1,17 +1,52 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.10.0`.
+- Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
+
+## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 
 **Bug fixes**
 
+- `EuiSwitch` now passes `name` attribute into underlying `button` ([#2533](https://github.com/elastic/eui/pull/2533))
+
+## [`16.0.0`](https://github.com/elastic/eui/tree/v16.0.0)
+
+- Made `EuiCard` more accessible ([#2521](https://github.com/elastic/eui/pull/2521))
+- Added ability to pass `children` to `EuiCard` ([#2521](https://github.com/elastic/eui/pull/2521))
+- Replaced root element in `EuiFlyout`, switching from `span` to `Fragment` ([#2527](https://github.com/elastic/eui/pull/2527))
+- Upgraded `react-virtualized` to `9.21.2` ([#2531](https://github.com/elastic/eui/pull/2531))
+
+**Bug fixes**
+
+- Added support for `timeFormat` formatting in `EuiSuperDatePicker` and fixed some formatting inconsistencies ([#2518](https://github.com/elastic/eui/pull/2518))
+- Added support for `locale` in `EuiSuperDatePicker` and `EuiDatePicker` both as a prop and from `EuiContext` ([#2518](https://github.com/elastic/eui/pull/2518))
+
+**Breaking changes**
+
+- Removed `EuiCardGraphic` ([#2521](https://github.com/elastic/eui/pull/2521))
+
+## [`15.0.0`](https://github.com/elastic/eui/tree/v15.0.0)
+
+- Converted `EuiShowFor` and `EuiHideFor` to TS ([#2503](https://github.com/elastic/eui/pull/2503))
+- Upgraded `react-ace` to `7.0.5` ([#2526](https://github.com/elastic/eui/pull/2526))
+
+**Bug fixes**
+- Fixed `EuiButton` disabled text color ([#2534](lhttps://github.com/elastic/eui/pull/2534))
 - Created `.euiTableCaption` with `position: relative` to avoid double border under header row ([#2484](https://github.com/elastic/eui/pull/2484))
+- Fixed `EuiSwitch` to use `aria-labelledby` ([#2522](https://github.com/elastic/eui/pull/2522))
+- Fixed `EuiPanelProps` type definition ([#2516](https://github.com/elastic/eui/pull/2516))
+
+**Breaking changes**
+
+- Added `display` modifier to `EuiShowFor` ([#2503](https://github.com/elastic/eui/pull/2503))
+- Updated minimum TypeScript version to 3.5.3 ([#2510](https://github.com/elastic/eui/pull/2510))
+- Removed `Omit` type in favor of TypeScript's built-in ([#2510](https://github.com/elastic/eui/pull/2510))
 
 ## [`14.10.0`](https://github.com/elastic/eui/tree/v14.10.0)
 
 - Added new `euiControlBar` component for bottom-of-screen navigational elements. ([#2204](https://github.com/elastic/eui/pull/2204))
-- Convert `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
+- Converted `EuiFlyout` to TypeScript ([#2500](https://github.com/elastic/eui/pull/2500))
 - Added an animation to the arrow on `EuiAccordion` as it opens / closes ([#2507](https://github.com/elastic/eui/pull/2507))
-- Upgraded `react-input-autosize` to `2.2.2`
+- Upgraded `react-input-autosize` to `2.2.2` ([#2514](https://github.com/elastic/eui/pull/2514))
 
 **Bug fixes**
 

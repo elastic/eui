@@ -1,4 +1,4 @@
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { FocusTarget } from '../focus_trap';
 
 import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';

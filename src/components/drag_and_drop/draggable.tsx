@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { Draggable, DraggableProps } from 'react-beautiful-dnd';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../common';
+import { CommonProps } from '../common';
 import { EuiDroppableContext } from './droppable';
 
 const spacingToClassNameMap = {

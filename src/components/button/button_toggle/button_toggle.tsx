@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { ExclusiveUnion, Omit } from '../../common';
+import { ExclusiveUnion } from '../../common';
 import { EuiToggle, ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
 import { useRenderToText } from '../../inner_text/render_to_text';

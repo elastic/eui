@@ -6,7 +6,7 @@ import { ExclusiveUnion } from '../common';
 
 type IconFunction<T> = (item: T) => EuiIconType;
 type ButtonColor = EuiButtonIconColor | EuiButtonEmptyColor;
-type ButtonIconColorFunction<T> = (item: T) => ButtonColor;
+type EuiButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
 interface DefaultItemActionBase<T> {
   name: string;
@@ -23,14 +23,14 @@ interface DefaultItemActionBase<T> {
 export interface DefaultItemEmptyButtonAction<T>
   extends DefaultItemActionBase<T> {
   type?: 'button';
-  color?: EuiButtonEmptyColor | ButtonIconColorFunction<T>;
+  color?: EuiButtonEmptyColor | EuiButtonIconColorFunction<T>;
 }
 
 export interface DefaultItemIconButtonAction<T>
   extends DefaultItemActionBase<T> {
   type: 'icon';
   icon: EuiIconType | IconFunction<T>;
-  color?: EuiButtonIconColor | ButtonIconColorFunction<T>;
+  color?: EuiButtonIconColor | EuiButtonIconColorFunction<T>;
 }
 
 export type DefaultItemAction<T> = ExclusiveUnion<
