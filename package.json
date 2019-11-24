@@ -147,7 +147,6 @@
     "moment": "^2.20.1",
     "node-sass": "^4.9.3",
     "nodegit": "^0.23.0",
-    "npm-run": "^4.1.2",
     "pegjs": "^0.10.0",
     "postcss-cli": "^4.1.1",
     "postcss-inline-svg": "^3.0.0",

@@ -367,7 +367,13 @@ export function useDetectSchema(
       },
       {}
     );
-  }, [autoDetectSchema, inMemoryValues, schemaDetectors]);
+  }, [
+    autoDetectSchema,
+    definedColumnSchemas,
+    inMemory,
+    inMemoryValues,
+    schemaDetectors,
+  ]);
   return schema;
 }
 
