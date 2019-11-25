@@ -433,7 +433,7 @@ export type EuiIconProps = CommonProps &
      */
     size?: IconSize;
     /**
-     * Overrides the default icon title.
+     * Descriptive title for naming the icon based on its use
      */
     title?: string;
   };
