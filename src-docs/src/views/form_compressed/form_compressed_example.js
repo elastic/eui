@@ -198,7 +198,7 @@ export const FormCompressedExample = {
             This is an example of how to combine compressed form controls with
             from rows, labels, prepend and appends in a column layout.
           </p>
-          <EuiCallOut color="warning" title="Accessiblity in compressed forms">
+          <EuiCallOut color="warning" title="Accessibility in compressed forms">
             <p>
               Pay close attention to the patterns of using{' '}
               <EuiCode>htmlFor</EuiCode> and <EuiCode>aria-label</EuiCode>. For
