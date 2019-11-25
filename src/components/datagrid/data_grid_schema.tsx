@@ -367,11 +367,17 @@ export function useDetectSchema(
       },
       {}
     );
-  }, [inMemoryValues, schemaDetectors]);
+  }, [
+    autoDetectSchema,
+    definedColumnSchemas,
+    inMemory,
+    inMemoryValues,
+    schemaDetectors,
+  ]);
   return schema;
 }
 
-export function getMergedSchema(
+export function useMergedSchema(
   detectedSchema: EuiDataGridSchema,
   columns: EuiDataGridColumn[]
 ) {
