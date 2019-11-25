@@ -8,6 +8,7 @@
 **Bug fixes**
 
 - Fixed `EuiDataGrid` schema detection on already defined column schemas ([#2550](https://github.com/elastic/eui/pull/2550))
+- Fixed `EuiBetaBadge` accessibility with `tab-index=0` ([#2559](https://github.com/elastic/eui/pull/2559))
 
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 
