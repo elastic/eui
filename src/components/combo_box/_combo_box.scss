@@ -1,5 +1,3 @@
-@import '../form/form_control_layout/mixins';
-
 .euiComboBox {
   @include euiFormControlSize(auto, $includeAlternates: true);
   position: relative;

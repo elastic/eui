@@ -1,7 +1,3 @@
-@import '../form/_mixins';
-@import '../form/range/_variables';
-@import '../form/range/_mixins';
-
 // This wraps the range. It is needed because there is no way to do a linear gradeint in ie11 for the track
 .euiHue {
   // sass-lint:disable-block no-color-literals

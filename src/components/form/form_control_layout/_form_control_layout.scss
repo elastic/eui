@@ -1,6 +1,3 @@
-@import '../variables';
-@import '../mixins';
-
 .euiFormControlLayout {
   // Let the height expand as needed
   @include euiFormControlSize($includeAlternates: true);

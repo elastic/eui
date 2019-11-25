@@ -1,5 +1,3 @@
-@import '../variables';
-
 @mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
   $firstIconSize: $euiFormControlPadding + $euiSize + $euiFormControlPadding;
   $secondIconSize: $euiFormControlPadding + $euiSize;

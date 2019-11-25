@@ -1,6 +1,6 @@
-@import 'variables';
-@import 'form_control_layout/variables';
-@import 'form_control_layout/mixins';
+@import '../variables/form';
+@import '../variables/form_control_layout';
+@import 'form_control_layout';
 
 @mixin euiPlaceholderPerBrowser {
   // sass-lint:disable-block no-vendor-prefixes
