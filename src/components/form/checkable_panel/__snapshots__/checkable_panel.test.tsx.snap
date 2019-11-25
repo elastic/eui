@@ -5,7 +5,7 @@ exports[`EuiCheckablePanel is rendered 1`] = `
   class="euiPanel euiCheckablePanel testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--directionRow"
   >
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero euiCheckablePanel__control"

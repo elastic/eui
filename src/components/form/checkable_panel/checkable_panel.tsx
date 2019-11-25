@@ -33,7 +33,11 @@ export const EuiCheckablePanel: FunctionComponent<EuiCheckablePanelProps> = ({
 
   return (
     <EuiPanel paddingSize="none" className={classes}>
-      <EuiFlexGroup gutterSize="none" alignItems="stretch">
+      <EuiFlexGroup
+        gutterSize="none"
+        alignItems="stretch"
+        responsive={false}
+        wrap={false}>
         <EuiFlexItem grow={false} className="euiCheckablePanel__control">
           <EuiFlexGroup
             gutterSize="none"
@@ -53,7 +57,7 @@ export const EuiCheckablePanel: FunctionComponent<EuiCheckablePanelProps> = ({
         </EuiFlexItem>
       </EuiFlexGroup>
       {children && (
-        <EuiFlexGroup gutterSize="none">
+        <EuiFlexGroup gutterSize="none" responsive={false} wrap={false}>
           <EuiFlexItem grow={false} className="euiCheckablePanel__control" />
           <EuiFlexItem
             id={`${id}-details`}
