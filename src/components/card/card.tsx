@@ -33,6 +33,15 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
+type CardDisplay = 'panel' | 'plain';
+
+const displayToClassNameMap: { [display in CardDisplay]: string } = {
+  panel: '',
+  plain: 'euiCard--plain',
+};
+
+export const DISPLAYS = keysOf(displayToClassNameMap);
+
 type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Card's are required to have at least a title and description
@@ -115,6 +124,12 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
    * Adds a button to the bottom of the card to allow for in-place selection
    */
   selectable?: EuiCardSelectProps;
+
+  /**
+   * Visual display of the card. Display as 'panel' or 'plain' (without a border and shadow).
+   * Selectable cards will always display as 'panel'.
+   */
+  display?: CardDisplay;
 };
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
@@ -138,6 +153,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   betaBadgeTitle,
   layout = 'vertical',
   selectable,
+  display = 'panel',
   ...rest
 }) => {
   /**
@@ -169,6 +185,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
+    displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
     {

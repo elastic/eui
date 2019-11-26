@@ -134,6 +134,18 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('display', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          display="plain"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('selectable', () => {
       const component = render(
         <EuiCard
