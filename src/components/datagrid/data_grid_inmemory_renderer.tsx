@@ -6,12 +6,13 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { createPortal, unstable_batchedUpdates } from 'react-dom';
+import { createPortal } from 'react-dom';
 import {
   EuiDataGridCellValueElementProps,
   EuiDataGridCellProps,
 } from './data_grid_cell';
 import { EuiDataGridColumn, EuiDataGridInMemory } from './data_grid_types';
+import { enqueueStateChange } from '../../services/react';
 
 interface EuiDataGridInMemoryRendererProps {
   inMemory: EuiDataGridInMemory;
@@ -26,27 +27,6 @@ interface EuiDataGridInMemoryRendererProps {
 }
 
 function noop() {}
-
-const _queue: Function[] = [];
-
-function processQueue() {
-  // the queued functions trigger react setStates which, if unbatched,
-  // each cause a full update->render->dom pass _per function_
-  // instead, tell React to wait until all updates are finished before re-rendering
-  unstable_batchedUpdates(() => {
-    for (let i = 0; i < _queue.length; i++) {
-      _queue[i]();
-    }
-    _queue.length = 0;
-  });
-}
-
-function enqueue(fn: Function) {
-  if (_queue.length === 0) {
-    setTimeout(processQueue);
-  }
-  _queue.push(fn);
-}
 
 function getElementText(element: HTMLElement) {
   return 'innerText' in element
@@ -71,7 +51,9 @@ const ObservedCell: FunctionComponent<{
       onCellRender(i, column, getElementText(ref));
       const observer = new MutationObserver(() => {
         // onMutation callbacks aren't in the component lifecycle, intentionally batch any effects
-        enqueue(onCellRender.bind(null, i, column, getElementText(ref)));
+        enqueueStateChange(
+          onCellRender.bind(null, i, column, getElementText(ref))
+        );
       });
       observer.observe(ref, {
         characterData: true,
@@ -84,7 +66,7 @@ const ObservedCell: FunctionComponent<{
         observer.disconnect();
       };
     }
-  }, [ref]);
+  }, [column, i, onCellRender, ref]);
 
   const CellElement = renderCellValue as JSXElementConstructor<
     EuiDataGridCellValueElementProps
@@ -145,7 +127,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
     }
 
     return rows;
-  }, [columns, rowCount, renderCellValue, onCellRender]);
+  }, [rowCount, columns, inMemory.skipColumns, renderCellValue, onCellRender]);
 
   return createPortal(
     <Fragment>{rows}</Fragment>,

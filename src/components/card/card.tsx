@@ -294,7 +294,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   return (
     <div className={classes} onClick={outerOnClick} {...rest}>
-      {optionalBetaBadge}
       {optionalCardTop}
 
       <div className="euiCard__content">
@@ -311,6 +310,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
         {children}
       </div>
+
+      {/* Beta badge should always be after the title/description but before any footer buttons */}
+      {optionalBetaBadge}
 
       {layout === 'vertical' && footer && (
         <div className="euiCard__footer">{footer}</div>

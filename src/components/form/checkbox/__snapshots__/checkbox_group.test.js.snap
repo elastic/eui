@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiCheckboxGroup (mocked checkbox) individual disabled is rendered 1`] = `
+<div>
+  <eui_checkbox
+    checked=""
+    class="euiCheckboxGroup__item"
+    disabled=""
+    id="1"
+    label="kibana"
+  />
+  <eui_checkbox
+    class="euiCheckboxGroup__item"
+    id="2"
+    label="elastic"
+  />
+</div>
+`;
+
 exports[`EuiCheckboxGroup (mocked checkbox) disabled is rendered 1`] = `
 <div>
   <eui_checkbox

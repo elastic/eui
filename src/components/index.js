@@ -1,5 +1,7 @@
 export { EuiAccordion } from './accordion';
 
+export { EuiAspectRatio } from './aspect_ratio';
+
 export { EuiAvatar } from './avatar';
 
 export { EuiKeyboardAccessible, EuiScreenReaderOnly } from './accessibility';

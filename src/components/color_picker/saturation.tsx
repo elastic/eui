@@ -72,7 +72,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
           top: (1 - v) * height,
         });
       }
-    }, [color]);
+    }, [color, lastColor]);
 
     const calculateColor = ({
       top,
