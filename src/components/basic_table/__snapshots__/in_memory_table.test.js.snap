@@ -387,38 +387,28 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                     size="m"
                                     type="arrowDown"
                                   >
-                                    <EuiI18n
-                                      default="{titleDisplayed} icon"
-                                      token="euiIcon.title"
-                                      values={
-                                        Object {
-                                          "titleDisplayed": "empty",
-                                        }
-                                      }
+                                    <EuiIconEmpty
+                                      aria-hidden={true}
+                                      aria-label="custom SVG"
+                                      className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+                                      focusable="false"
+                                      role="img"
+                                      style={null}
+                                      title="custom SVG"
                                     >
-                                      <EuiIconEmpty
-                                        aria-hidden="true"
-                                        aria-label="empty icon"
+                                      <svg
+                                        aria-hidden={true}
+                                        aria-label="custom SVG"
                                         className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                                         focusable="false"
+                                        height={16}
                                         role="img"
                                         style={null}
-                                        title="empty icon"
-                                      >
-                                        <svg
-                                          aria-hidden="true"
-                                          aria-label="empty icon"
-                                          className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                                          focusable="false"
-                                          height={16}
-                                          role="img"
-                                          style={null}
-                                          viewBox="0 0 16 16"
-                                          width={16}
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        />
-                                      </EuiIconEmpty>
-                                    </EuiI18n>
+                                        viewBox="0 0 16 16"
+                                        width={16}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      />
+                                    </EuiIconEmpty>
                                   </EuiIcon>
                                   <span
                                     className="euiButtonEmpty__text"
@@ -482,38 +472,28 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 size="m"
                                 type="arrowLeft"
                               >
-                                <EuiI18n
-                                  default="{titleDisplayed} icon"
-                                  token="euiIcon.title"
-                                  values={
-                                    Object {
-                                      "titleDisplayed": "empty",
-                                    }
-                                  }
+                                <EuiIconEmpty
+                                  aria-hidden={true}
+                                  aria-label="custom SVG"
+                                  className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+                                  focusable="false"
+                                  role="img"
+                                  style={null}
+                                  title="custom SVG"
                                 >
-                                  <EuiIconEmpty
-                                    aria-hidden="true"
-                                    aria-label="empty icon"
+                                  <svg
+                                    aria-hidden={true}
+                                    aria-label="custom SVG"
                                     className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                     focusable="false"
+                                    height={16}
                                     role="img"
                                     style={null}
-                                    title="empty icon"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      aria-label="empty icon"
-                                      className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-                                      focusable="false"
-                                      height={16}
-                                      role="img"
-                                      style={null}
-                                      viewBox="0 0 16 16"
-                                      width={16}
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    />
-                                  </EuiIconEmpty>
-                                </EuiI18n>
+                                    viewBox="0 0 16 16"
+                                    width={16}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  />
+                                </EuiIconEmpty>
                               </EuiIcon>
                             </button>
                           </EuiButtonIcon>
@@ -636,38 +616,28 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 size="m"
                                 type="arrowRight"
                               >
-                                <EuiI18n
-                                  default="{titleDisplayed} icon"
-                                  token="euiIcon.title"
-                                  values={
-                                    Object {
-                                      "titleDisplayed": "empty",
-                                    }
-                                  }
+                                <EuiIconEmpty
+                                  aria-hidden={true}
+                                  aria-label="custom SVG"
+                                  className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+                                  focusable="false"
+                                  role="img"
+                                  style={null}
+                                  title="custom SVG"
                                 >
-                                  <EuiIconEmpty
-                                    aria-hidden="true"
-                                    aria-label="empty icon"
+                                  <svg
+                                    aria-hidden={true}
+                                    aria-label="custom SVG"
                                     className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                     focusable="false"
+                                    height={16}
                                     role="img"
                                     style={null}
-                                    title="empty icon"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      aria-label="empty icon"
-                                      className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-                                      focusable="false"
-                                      height={16}
-                                      role="img"
-                                      style={null}
-                                      viewBox="0 0 16 16"
-                                      width={16}
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    />
-                                  </EuiIconEmpty>
-                                </EuiI18n>
+                                    viewBox="0 0 16 16"
+                                    width={16}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  />
+                                </EuiIconEmpty>
                               </EuiIcon>
                             </button>
                           </EuiButtonIcon>

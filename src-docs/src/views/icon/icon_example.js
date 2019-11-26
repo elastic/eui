@@ -152,8 +152,8 @@ export const IconExample = {
       ],
       text: (
         <p>
-          Editor icons relate to the visual styling of elements and are
-          commonly used within <EuiCode>EuiButtonGroup</EuiCode> components.
+          Editor icons relate to the visual styling of elements and are commonly
+          used within <EuiCode>EuiButtonGroup</EuiCode> components.
         </p>
       ),
       snippet: editorSnippet,
@@ -278,6 +278,39 @@ export const IconExample = {
       demo: <LogosThird />,
     },
     {
+      title: 'Accessibility',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accessibilitySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: iconsHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            You can title the icon by passing the <EuiCode>title</EuiCode> prop
+            to <EuiCode>EuiIcon</EuiCode>. When the icon is rendered as an
+            inline SVG this <EuiCode>title</EuiCode> is passed to the
+            <EuiCode>title</EuiCode> tag and it's added to the{' '}
+            <EuiCode>aria-label</EuiCode> attribute. When the icon is rendered
+            as an image tag the title is added to the <EuiCode>alt</EuiCode>{' '}
+            attribute.
+          </p>
+          <p>
+            When no <EuiCode>title</EuiCode> is specified the icon gets the
+            default icon file name. For better accessibility it's always
+            recommended to give a descriptive <EuiCode>title</EuiCode> based on
+            the icon use.
+          </p>
+        </>
+      ),
+      demo: <Accessibility />,
+    },
+    {
       title: 'Sizes',
       source: [
         {
@@ -330,26 +363,6 @@ export const IconExample = {
       ),
       snippet: iconColorsSnippet,
       demo: <IconColors />,
-    },
-    {
-      title: 'Accessibility',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: accessibilitySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
-      text: (
-        <p>
-          You can title the SVG by passing the <EuiCode>aria-label</EuiCode>{' '}
-          prop to <EuiCode>EuiIcon</EuiCode>. No value is set by default.
-        </p>
-      ),
-      demo: <Accessibility />,
     },
     {
       title: 'Custom SVGs',

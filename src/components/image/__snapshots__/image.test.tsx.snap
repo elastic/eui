@@ -34,7 +34,7 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
     />
     <svg
       aria-hidden="true"
-      aria-label="empty icon"
+      aria-label="custom SVG"
       class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoading euiImage__icon"
       focusable="false"
       height="16"

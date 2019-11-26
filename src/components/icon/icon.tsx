@@ -11,8 +11,6 @@ import { CommonProps, keysOf } from '../common';
 
 import _startCase from 'lodash/startCase';
 
-import { EuiI18n } from '../i18n';
-
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
@@ -436,6 +434,10 @@ export type EuiIconProps = CommonProps &
      * Descriptive title for naming the icon based on its use
      */
     title?: string;
+    /**
+     * Its value should be one or more element IDs
+     */
+    'aria-labelledby'?: string;
   };
 
 interface State {
@@ -455,6 +457,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   if (isEuiIconType(icon)) {
     return undefined;
   }
+
   return icon;
 }
 
@@ -474,7 +477,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     this.state = {
       icon: initialIcon,
-      iconTitle: '',
+      iconTitle: undefined,
       isLoading,
     };
   }
@@ -563,7 +566,10 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     );
 
     const icon = this.state.icon || empty;
-    const iconTitle = _startCase(this.state.iconTitle) || 'empty';
+
+    // it's an icon or a custom icon
+    const iconTitle = _startCase(this.state.iconTitle) || 'custom SVG';
+
     const titleDisplayed = title ? title : iconTitle;
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
@@ -576,54 +582,47 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     if (typeof icon === 'string') {
       return (
-        <EuiI18n
-          token="euiIcon.title"
-          values={{ titleDisplayed }}
-          default="{titleDisplayed} icon">
-          {(title: string) => (
-            <img
-              alt={title}
-              src={icon}
-              className={classes}
-              tabIndex={tabIndex}
-              {...rest as HTMLAttributes<HTMLImageElement>}
-            />
-          )}
-        </EuiI18n>
+        <img
+          alt={titleDisplayed}
+          src={icon}
+          className={classes}
+          tabIndex={tabIndex}
+          {...rest as HTMLAttributes<HTMLImageElement>}
+        />
       );
     } else {
       const Svg = icon;
 
       const isIconEmpty = icon === empty && { ...{ 'aria-hidden': true } };
 
-      return (
-        <EuiI18n
-          token="euiIcon.title"
-          values={{ titleDisplayed }}
-          default="{titleDisplayed} icon">
-          {(title: string) => {
-            /*
-            If no aria-label is provided the title will be default
-            */
-            const ariaLabel = this.props['aria-label']
-              ? { ...{ 'aria-label': this.props['aria-label'] } }
-              : { ...{ 'aria-label': title } };
+      let ariaAttribute: any;
 
-            return (
-              <Svg
-                className={classes}
-                style={optionalCustomStyles}
-                tabIndex={tabIndex}
-                focusable={focusable}
-                title={title}
-                role="img"
-                {...isIconEmpty}
-                {...ariaLabel}
-                {...rest}
-              />
-            );
-          }}
-        </EuiI18n>
+      /*
+      If no aria-label or aria-labelledby is provided the title will be default
+      */
+
+      if (this.props['aria-label']) {
+        ariaAttribute = { ...{ 'aria-label': this.props['aria-label'] } };
+      } else if (this.props['aria-labelledby']) {
+        ariaAttribute = {
+          ...{ 'aria-labelledby': this.props['aria-labelledby'] },
+        };
+      } else {
+        ariaAttribute = { ...{ 'aria-label': titleDisplayed } };
+      }
+
+      return (
+        <Svg
+          className={classes}
+          style={optionalCustomStyles}
+          tabIndex={tabIndex}
+          focusable={focusable}
+          title={titleDisplayed}
+          role="img"
+          {...rest}
+          {...isIconEmpty}
+          {...ariaAttribute}
+        />
       );
     }
   }

@@ -8,7 +8,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="empty icon"
+    aria-label="custom SVG"
     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
     focusable="false"
     height="16"
@@ -27,7 +27,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as span 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="empty icon"
+    aria-label="custom SVG"
     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
     focusable="false"
     height="16"

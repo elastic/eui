@@ -36,7 +36,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
@@ -86,7 +86,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
@@ -136,7 +136,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
@@ -186,7 +186,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
@@ -236,7 +236,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
@@ -286,7 +286,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
@@ -339,7 +339,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
@@ -391,7 +391,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            aria-label="empty icon"
+            aria-label="custom SVG"
             class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
