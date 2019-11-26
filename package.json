@@ -47,7 +47,6 @@
     "@types/lodash": "^4.14.116",
     "@types/numeral": "^0.0.25",
     "@types/react-beautiful-dnd": "^10.1.0",
-    "@types/sinon": "^7.5.1",
     "classnames": "^2.2.5",
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
