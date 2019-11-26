@@ -13,6 +13,7 @@
 - Added `euiTextBreakWord()` to `EuiToast` header ([#2549](https://github.com/elastic/eui/pull/2549))
 - Fixed `.eui-textBreakAll` on Firefox ([#2549](https://github.com/elastic/eui/pull/2549))
 - Fixed `EuiBetaBadge` accessibility with `tab-index=0` ([#2559](https://github.com/elastic/eui/pull/2559))
+- Improved `EuiIcon` loading performance ([#2565](https://github.com/elastic/eui/pull/2565))
 
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 
