@@ -416,7 +416,7 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 export type IconSize = keyof typeof sizeToClassNameMap;
 
 export type EuiIconProps = CommonProps &
-  Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size' | 'title'> & {
+  Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
     /**
      * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
      */
@@ -567,8 +567,9 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     const icon = this.state.icon || empty;
 
-    // it's an icon or a custom icon
-    const iconTitle = _startCase(this.state.iconTitle) || 'custom SVG';
+    // it's an icon it gets by default the icon name
+    // if it's an <img /> gets an empty alt
+    const iconTitle = _startCase(this.state.iconTitle) || '';
 
     const titleDisplayed = title ? title : iconTitle;
 
@@ -593,6 +594,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     } else {
       const Svg = icon;
 
+      // if it's an empty icon it gets aria-hidden true
       const isIconEmpty = icon === empty && { ...{ 'aria-hidden': true } };
 
       let ariaAttribute: any;

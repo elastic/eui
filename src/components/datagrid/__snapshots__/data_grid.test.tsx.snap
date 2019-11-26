@@ -63,7 +63,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           >
             <svg
               aria-hidden="true"
-              aria-label="custom SVG"
+              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
               focusable="false"
               height="16"
@@ -97,7 +97,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-label="custom SVG"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
           focusable="false"
           height="16"
@@ -148,7 +148,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       >
         <svg
           aria-hidden="true"
-          aria-label="custom SVG"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
           focusable="false"
           height="16"
@@ -203,7 +203,7 @@ Array [
               >
                 <svg
                   aria-hidden="true"
-                  aria-label="custom SVG"
+                  aria-label=""
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                   focusable="false"
                   height="16"
@@ -238,7 +238,7 @@ Array [
               >
                 <svg
                   aria-hidden="true"
-                  aria-label="custom SVG"
+                  aria-label=""
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                   focusable="false"
                   height="16"
@@ -266,7 +266,7 @@ Array [
           >
             <svg
               aria-hidden="true"
-              aria-label="custom SVG"
+              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
               focusable="false"
               height="16"
@@ -378,7 +378,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -440,7 +440,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -508,7 +508,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -570,7 +570,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -638,7 +638,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -700,7 +700,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -776,7 +776,7 @@ Array [
               >
                 <svg
                   aria-hidden="true"
-                  aria-label="custom SVG"
+                  aria-label=""
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                   focusable="false"
                   height="16"
@@ -811,7 +811,7 @@ Array [
               >
                 <svg
                   aria-hidden="true"
-                  aria-label="custom SVG"
+                  aria-label=""
                   class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                   focusable="false"
                   height="16"
@@ -839,7 +839,7 @@ Array [
           >
             <svg
               aria-hidden="true"
-              aria-label="custom SVG"
+              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
               focusable="false"
               height="16"
@@ -949,7 +949,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -1011,7 +1011,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -1079,7 +1079,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -1141,7 +1141,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -1209,7 +1209,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"
@@ -1271,7 +1271,7 @@ Array [
                           >
                             <svg
                               aria-hidden="true"
-                              aria-label="custom SVG"
+                              aria-label=""
                               class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
                               focusable="false"
                               height="16"

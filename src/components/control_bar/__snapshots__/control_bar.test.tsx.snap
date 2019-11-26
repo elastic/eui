@@ -326,7 +326,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               focusable="false"
               role="img"
               style={null}
-              title="custom SVG"
+              title=""
             >
               <svg
                 aria-hidden={true}
@@ -609,7 +609,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               focusable="false"
               role="img"
               style={null}
-              title="custom SVG"
+              title=""
             >
               <svg
                 aria-hidden={true}
@@ -891,7 +891,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               focusable="false"
               role="img"
               style={null}
-              title="custom SVG"
+              title=""
             >
               <svg
                 aria-hidden={true}
@@ -1093,7 +1093,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
           focusable="false"
           role="img"
           style={null}
-          title="custom SVG"
+          title=""
         >
           <svg
             aria-hidden={true}
@@ -1373,7 +1373,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               focusable="false"
               role="img"
               style={null}
-              title="custom SVG"
+              title=""
             >
               <svg
                 aria-hidden={true}
@@ -1660,7 +1660,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               focusable="false"
               role="img"
               style={null}
-              title="custom SVG"
+              title=""
             >
               <svg
                 aria-hidden={true}
@@ -1947,7 +1947,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
               focusable="false"
               role="img"
               style={null}
-              title="custom SVG"
+              title=""
             >
               <svg
                 aria-hidden={true}

@@ -197,16 +197,16 @@ exports[`EuiToast Props iconType is rendered 1`] = `
         >
           <EuiIconEmpty
             aria-hidden={true}
-            aria-label="custom SVG"
+            aria-label=""
             className="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
             focusable="false"
             role="img"
             style={null}
-            title="custom SVG"
+            title=""
           >
             <svg
               aria-hidden={true}
-              aria-label="custom SVG"
+              aria-label=""
               className="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
               focusable="false"
               height={16}

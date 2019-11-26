@@ -11,7 +11,7 @@ exports[`EuiSuggestItem is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-label="custom SVG"
+      aria-label=""
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"
@@ -41,7 +41,7 @@ exports[`props item with no description has expanded label is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-label="custom SVG"
+      aria-label=""
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"
@@ -71,7 +71,7 @@ exports[`props labelDisplay as expand is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-label="custom SVG"
+      aria-label=""
       class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"

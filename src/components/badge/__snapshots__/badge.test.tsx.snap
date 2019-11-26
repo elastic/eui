@@ -216,7 +216,7 @@ exports[`EuiBadge props iconSide left is rendered 1`] = `
     </span>
     <svg
       aria-hidden="true"
-      aria-label="custom SVG"
+      aria-label=""
       class="euiIcon euiIcon--small euiIcon-isLoading euiBadge__icon"
       focusable="false"
       height="16"
@@ -243,7 +243,7 @@ exports[`EuiBadge props iconSide right is rendered 1`] = `
     </span>
     <svg
       aria-hidden="true"
-      aria-label="custom SVG"
+      aria-label=""
       class="euiIcon euiIcon--small euiIcon-isLoading euiBadge__icon"
       focusable="false"
       height="16"
@@ -270,7 +270,7 @@ exports[`EuiBadge props iconType is rendered 1`] = `
     </span>
     <svg
       aria-hidden="true"
-      aria-label="custom SVG"
+      aria-label=""
       class="euiIcon euiIcon--small euiIcon-isLoading euiBadge__icon"
       focusable="false"
       height="16"

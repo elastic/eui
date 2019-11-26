@@ -16,7 +16,7 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        aria-label="custom SVG"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading"
         focusable="false"
         height="16"

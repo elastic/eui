@@ -6,7 +6,7 @@ exports[`EuiToken is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -24,7 +24,7 @@ exports[`EuiToken props color tokenTint01 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -42,7 +42,7 @@ exports[`EuiToken props color tokenTint02 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -60,7 +60,7 @@ exports[`EuiToken props color tokenTint03 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -78,7 +78,7 @@ exports[`EuiToken props color tokenTint04 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -96,7 +96,7 @@ exports[`EuiToken props color tokenTint05 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -114,7 +114,7 @@ exports[`EuiToken props color tokenTint06 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -132,7 +132,7 @@ exports[`EuiToken props color tokenTint07 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -150,7 +150,7 @@ exports[`EuiToken props color tokenTint08 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -168,7 +168,7 @@ exports[`EuiToken props color tokenTint09 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -186,7 +186,7 @@ exports[`EuiToken props color tokenTint10 is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -204,7 +204,7 @@ exports[`EuiToken props shape circle is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -222,7 +222,7 @@ exports[`EuiToken props shape rectangle is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -240,7 +240,7 @@ exports[`EuiToken props shape square is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -258,7 +258,7 @@ exports[`EuiToken props size l is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -276,7 +276,7 @@ exports[`EuiToken props size m is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -294,7 +294,7 @@ exports[`EuiToken props size s is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"
@@ -312,7 +312,7 @@ exports[`EuiToken props size xs is rendered 1`] = `
 >
   <svg
     aria-hidden="true"
-    aria-label="custom SVG"
+    aria-label=""
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="false"
     height="16"

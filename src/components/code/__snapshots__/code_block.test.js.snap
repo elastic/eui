@@ -81,7 +81,7 @@ console.log(some);
         >
           <svg
             aria-hidden="true"
-            aria-label="custom SVG"
+            aria-label=""
             class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
             focusable="false"
             height="16"
@@ -140,7 +140,7 @@ console.log(some);
     >
       <svg
         aria-hidden="true"
-        aria-label="custom SVG"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
         focusable="false"
         height="16"
