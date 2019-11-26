@@ -24,7 +24,7 @@ export default () => (
         icon={<EuiIcon size="l" type={'logoCloud'} />}
         titleSize="xs"
         title={'Elastic Cloud'}
-        description="This card uses a large size icon and therefore also shrinks its title size to xs."
+        description="This card uses a large size icon but also shrinks its titleSize to xs."
         onClick={() => window.alert('Card clicked')}
       />
     </EuiFlexItem>

@@ -57,17 +57,14 @@ export const CardExample = {
             At its core an <EuiCode>EuiCard</EuiCode> should contain a{' '}
             <EuiCode>title</EuiCode>,<EuiCode>description</EuiCode>, and an{' '}
             <EuiCode>icon</EuiCode>. You can make the whole card clickable by
-            giving it an <EuiCode>onClick</EuiCode> handler.
+            giving it an <EuiCode>onClick</EuiCode> handler or{' '}
+            <EuiCode>href</EuiCode>.
           </p>
           <p>
-            By default a card&apos;s title element is a <EuiCode>span</EuiCode>.
-            This can be changed via the <EuiCode>titleElement</EuiCode> prop.
-            However, it will always remain the same visual size.
-          </p>
-          <p>
-            By default a card&apos;s content is center aligned. To change the
-            alignment set <EuiCode>textAlign</EuiCode> to{' '}
-            <EuiCode>left</EuiCode> or <EuiCode>right</EuiCode>.
+            For accessibility and heading heirarchy, a card&apos;s title element
+            is a <EuiCode>span</EuiCode> by default. However, this can be
+            changed via the <EuiCode>titleElement</EuiCode> prop and it will
+            remain the same visual size.
           </p>
         </div>
       ),
@@ -182,13 +179,17 @@ export const CardExample = {
             <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
             it an <EuiCode>onClick</EuiCode>.
           </p>
-          <EuiCallOut title="Accessibility" color="warning">
-            <p>
-              When using footers to display generic &quot;Go&quot; buttons. You
-              must provide an <EuiCode>aria-label</EuiCode> to the button itself
-              that refers back to the title of the card.
-            </p>
-          </EuiCallOut>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <span>
+                When using footers to display generic &quot;Go&quot; buttons.
+                You must provide an <EuiCode>aria-label</EuiCode> to the button
+                itself that refers back to the title of the card.
+              </span>
+            }
+          />
         </>
       ),
       components: { EuiCard },
