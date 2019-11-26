@@ -13,7 +13,7 @@ const typeToClassNameMap = {
   inList: 'euiCheckbox--inList',
 };
 
-export const TYPES = Object.keys(typeToClassNameMap) as Array<
+export const TYPES = keysOf(typeToClassNameMap);
   keyof typeof typeToClassNameMap
 >;
 
