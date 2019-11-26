@@ -17,6 +17,7 @@ import { CommonProps, keysOf } from '../common';
 import { icon as empty } from './assets/empty.js';
 
 const typeToPathMap = {
+  accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',
