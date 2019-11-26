@@ -34,7 +34,7 @@ export interface EuiCheckboxProps
 }
 
 export class EuiCheckbox extends Component<EuiCheckboxProps> {
-  static defaultProps: Partial<EuiCheckboxProps> = {
+  static defaultProps = {
     checked: false,
     disabled: false,
     indeterminate: false,
