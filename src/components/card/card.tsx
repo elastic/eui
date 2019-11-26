@@ -55,7 +55,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
 
   /**
    * Determines the title's size, matching that of EuiTitle.
-   * Though, card titles can't be too large or smaller than the description text.
+   * Though, card titles can't be too large or small relative to the description text.
    */
   titleSize?: 's' | 'xs';
 
@@ -126,7 +126,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   selectable?: EuiCardSelectProps;
 
   /**
-   * Visual display of the card. Display as 'panel' or 'plain' (without a border and shadow).
+   * Visual display of the card. Display as 'panel' or 'plain'.
    * Selectable cards will always display as 'panel'.
    */
   display?: CardDisplay;

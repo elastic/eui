@@ -205,7 +205,7 @@ export const FormCompressedExample = {
               <span>
                 Pay close attention to the patterns of using{' '}
                 <EuiCode>htmlFor</EuiCode> and <EuiCode>aria-label</EuiCode>.
-                For best results each form control that is not wrapped in an
+                For best results, each form control that is not wrapped in an
                 EuiFormRow should be supplied an <EuiCode>id</EuiCode>.
               </span>
             }

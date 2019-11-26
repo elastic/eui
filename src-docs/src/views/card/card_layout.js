@@ -14,7 +14,7 @@ export default () => (
         layout="horizontal"
         icon={<EuiIcon size="xl" type={'logoBeats'} />}
         title={'Elastic Beats'}
-        description="This card adds uses an xl size icon and it works well in a horizontal layout."
+        description="This card adds uses an 'xl' size icon which works well in a horizontal layout."
         onClick={() => window.alert('Card clicked')}
       />
     </EuiFlexItem>
@@ -24,7 +24,7 @@ export default () => (
         icon={<EuiIcon size="l" type={'logoCloud'} />}
         titleSize="xs"
         title={'Elastic Cloud'}
-        description="This card uses a large size icon but also shrinks its titleSize to xs."
+        description="This card uses an 'l' size icon but also shrinks the 'titleSize' to 'xs'."
         onClick={() => window.alert('Card clicked')}
       />
     </EuiFlexItem>

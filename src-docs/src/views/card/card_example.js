@@ -63,8 +63,8 @@ export const CardExample = {
           <p>
             For accessibility and heading heirarchy, a card&apos;s title element
             is a <EuiCode>span</EuiCode> by default. However, this can be
-            changed via the <EuiCode>titleElement</EuiCode> prop and it will
-            remain the same visual size.
+            changed via the <EuiCode>titleElement</EuiCode> prop without
+            altering the visual size..
           </p>
         </div>
       ),
@@ -184,8 +184,8 @@ export const CardExample = {
             color="warning"
             title={
               <span>
-                When using footers to display generic &quot;Go&quot; buttons.
-                You must provide an <EuiCode>aria-label</EuiCode> to the button
+                When using footers to display generic &quot;Go&quot; buttons,
+                you must provide an <EuiCode>aria-label</EuiCode> to the button
                 itself that refers back to the title of the card.
               </span>
             }
