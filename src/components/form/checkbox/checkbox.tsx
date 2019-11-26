@@ -17,7 +17,7 @@ export const TYPES = keysOf(typeToClassNameMap);
   keyof typeof typeToClassNameMap
 >;
 
-export type EuiCheckboxType = 'inList';
+export type EuiCheckboxType = keyof typeof typeToClassNameMap;
 
 export interface EuiCheckboxProps
   extends CommonProps,
