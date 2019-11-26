@@ -15,7 +15,7 @@ export interface EuiCheckboxGroupIdToSelectedMap {
 
 export interface EuiCheckboxGroupProps extends CommonProps {
   options?: EuiCheckboxGroupOption[];
-  idToSelectedMap?: EuiCheckboxGroupIdToSelectedMap;
+  idToSelectedMap: EuiCheckboxGroupIdToSelectedMap;
   onChange: (optionId: string) => void;
   compressed?: boolean;
   disabled?: boolean;
