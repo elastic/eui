@@ -132,7 +132,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          href="#/display/tables"
+          href="#/tabular-content/tables"
           textAlign="left"
           image={imageTables}
           title="Tables"
