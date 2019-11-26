@@ -88,6 +88,18 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('titleSize', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          titleSize="xs"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('footer', () => {
       const component = render(
         <EuiCard

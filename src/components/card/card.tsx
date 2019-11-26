@@ -40,9 +40,15 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   title: NonNullable<ReactNode>;
 
   /**
-   * Determines the title's heading element.
+   * Determines the title's heading element
    */
   titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+
+  /**
+   * Determines the title's size, matching that of EuiTitle.
+   * Though, card titles can't be too large or smaller than the description text.
+   */
+  titleSize?: 's' | 'xs';
 
   /**
    * Card's are required to have at least a title and description
@@ -60,7 +66,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   image?: string;
 
   /**
-   * Content to be rendered between the description and the footer.
+   * Content to be rendered between the description and the footer
    */
   children?: ReactNode;
 
@@ -106,7 +112,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   betaBadgeTitle?: string;
 
   /**
-   * Adds a button to the bottom of the card to allow for in-place selection.
+   * Adds a button to the bottom of the card to allow for in-place selection
    */
   selectable?: EuiCardSelectProps;
 };
@@ -117,6 +123,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   isDisabled,
   title,
   titleElement = 'span',
+  titleSize = 's',
   icon,
   image,
   children,
@@ -297,7 +304,10 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       {optionalCardTop}
 
       <div className="euiCard__content">
-        <EuiTitle id={`${ariaId}Title`} className="euiCard__title" size="s">
+        <EuiTitle
+          id={`${ariaId}Title`}
+          className="euiCard__title"
+          size={titleSize}>
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 
