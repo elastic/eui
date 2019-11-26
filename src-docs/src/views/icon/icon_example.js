@@ -297,7 +297,7 @@ export const IconExample = {
             inline SVG this <EuiCode>title</EuiCode> is passed to the
             <EuiCode>title</EuiCode> tag and it's added to the{' '}
             <EuiCode>aria-label</EuiCode> attribute. When the icon is rendered
-            as an image tag the title is added to the <EuiCode>alt</EuiCode>{' '}
+            as an <EuiCode>image</EuiCode> tag the <EuiCode>title</EuiCode> is added to the <EuiCode>alt</EuiCode>{' '}
             attribute.
           </p>
           <p>
