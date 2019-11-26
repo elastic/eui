@@ -312,7 +312,7 @@ export const FormControlsExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>CheckablePanel</EuiCode> wraps an{' '}
+            <EuiCode>EuiCheckablePanel</EuiCode> wraps an{' '}
             <EuiCode>EuiRadio</EuiCode> or <EuiCode>EuiCheckbox</EuiCode> with a
             more-prominent panel, allowing for children to be displayed.
           </p>

@@ -1,2 +1,2 @@
-export { EuiCheckbox } from './checkbox';
-export { EuiCheckboxGroup } from './checkbox_group';
+export { EuiCheckbox, EuiCheckboxProps } from './checkbox';
+export { EuiCheckboxGroup, EuiCheckboxGroupProps } from './checkbox_group';

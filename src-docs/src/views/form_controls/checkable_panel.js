@@ -60,6 +60,7 @@ export default class extends Component {
               options={nestedRadios}
               idSelected={this.state.nestedRadio}
               onChange={nestedRadio => this.setState({ nestedRadio })}
+              disabled={this.state.radio !== 'radio2'}
             />
           </EuiText>
         </EuiCheckablePanel>

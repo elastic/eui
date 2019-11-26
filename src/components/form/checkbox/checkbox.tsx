@@ -6,16 +6,13 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { omit } from '../../../services/objects';
-import { CommonProps } from '../../common';
+import { keysOf, CommonProps } from '../../common';
 
 const typeToClassNameMap = {
   inList: 'euiCheckbox--inList',
 };
 
 export const TYPES = keysOf(typeToClassNameMap);
-  keyof typeof typeToClassNameMap
->;
 
 export type EuiCheckboxType = keyof typeof typeToClassNameMap;
 
@@ -29,6 +26,9 @@ export interface EuiCheckboxProps
   label?: ReactNode;
   type?: EuiCheckboxType;
   disabled?: boolean;
+  /**
+   * when `true` creates a shorter height checkbox row
+   */
   compressed?: boolean;
   indeterminate?: boolean;
 }

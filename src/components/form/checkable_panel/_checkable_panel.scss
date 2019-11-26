@@ -1,11 +1,11 @@
 .euiPanel.euiCheckablePanel {
   transition: border-color $euiAnimSpeedNormal ease-in;
 
-  & > .euiFlexGroup:first-child .euiCheckablePanel__control {
+  & > .euiCheckablePanel__row:first-child .euiCheckablePanel__control {
     border-top-left-radius: $euiBorderRadius;
   }
 
-  & > .euiFlexGroup:last-child .euiCheckablePanel__control {
+  & > .euiCheckablePanel__row:last-child .euiCheckablePanel__control {
     border-bottom-left-radius: $euiBorderRadius;
   }
 }
@@ -14,12 +14,16 @@
   border-color: makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade);
 }
 
+.euiCheckablePanel__row {
+  display: flex;
+  align-items: stretch;
+}
+
 .euiCheckablePanel__control {
-  text-align: center;
-  height: auto;
-  width: $euiSize * 3;
-  padding-left: $euiSize;
-  padding-right: $euiSize;
+  display: flex;
+  flex: 0 0 $euiSize * 2.5;
+  justify-content: center;
+  align-items: center;
   background-color: $euiFormInputGroupLabelBackground;
   transition: background-color $euiAnimSpeedNormal ease-in;
 
@@ -34,6 +38,10 @@
 
 .euiCheckablePanel__label {
   padding: $euiSizeS $euiSizeS $euiSizeS $euiSize;
+}
+
+.euiCheckablePanel__label--isDisabled .euiFormLabel {
+  color: $euiFormControlDisabledColor;
 }
 
 .euiCheckablePanel__children {

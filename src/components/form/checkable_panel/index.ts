@@ -1,1 +1,1 @@
-export { EuiCheckablePanel } from './checkable_panel';
+export { EuiCheckablePanel, EuiCheckablePanelProps } from './checkable_panel';

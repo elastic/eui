@@ -1,70 +1,90 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { EuiPanel } from '../../panel';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiRadio, EuiRadioProps } from '../radio';
-// @ts-ignore
-import { EuiCheckbox } from '../checkbox';
+import { EuiCheckbox, EuiCheckboxProps } from '../checkbox';
 import { EuiFormLabel } from '../form_label';
 import { EuiText } from '../../text';
 
-export type EuiCheckablePanelProps = Omit<EuiRadioProps, 'compressed'> & {
+interface EuiCheckablePanelBaseProps {
+  id: string;
+  label: ReactNode;
+}
+
+// if `checkableType` is left out or set to 'radio', use EuiRadioProps
+interface EuiCheckablePanelAsRadioProps
+  extends Omit<EuiRadioProps, 'compressed'> {
   /**
    * Whether the control is a radio button or checkbox
    */
-  checkableType?: 'radio' | 'checkbox';
-  id: string;
-};
+  checkableType?: 'radio';
+}
+
+// if `checkableType` is set to 'checkbox', use EuiCheckboxProps
+interface EuiCheckablePanelAsCheckboxProps
+  extends Omit<EuiCheckboxProps, 'compressed'> {
+  checkableType: 'checkbox';
+}
+
+export type EuiCheckablePanelProps = EuiCheckablePanelBaseProps &
+  (EuiCheckablePanelAsCheckboxProps | EuiCheckablePanelAsRadioProps);
 
 export const EuiCheckablePanel: FunctionComponent<EuiCheckablePanelProps> = ({
   children,
   className,
   checkableType = 'radio',
   label,
+  checked,
+  disabled,
   ...rest
 }) => {
   const { id } = rest;
   const classes = classNames('euiCheckablePanel', className, {
-    'euiCheckablePanel--isChecked': rest.checked,
+    'euiCheckablePanel--isChecked': checked,
   });
 
-  const CheckableComponent = checkableType === 'radio' ? EuiRadio : EuiCheckbox;
+  let checkableElement;
+  if (checkableType === 'radio') {
+    checkableElement = (
+      <EuiRadio
+        checked={checked}
+        disabled={disabled}
+        {...rest as EuiRadioProps}
+      />
+    );
+  } else {
+    checkableElement = (
+      <EuiCheckbox checked={checked} disabled={disabled} {...rest} />
+    );
+  }
+
+  const labelClasses = {
+    euiCheckablePanel__label: true,
+    'euiCheckablePanel__label--isDisabled': disabled,
+  };
 
   return (
     <EuiPanel paddingSize="none" className={classes}>
-      <EuiFlexGroup
-        gutterSize="none"
-        alignItems="stretch"
-        responsive={false}
-        wrap={false}>
-        <EuiFlexItem grow={false} className="euiCheckablePanel__control">
-          <EuiFlexGroup
-            gutterSize="none"
-            justifyContent="center"
-            alignItems="center">
-            <EuiFlexItem>
-              <CheckableComponent {...rest} />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiFlexItem>
-        <EuiFlexItem className="euiCheckablePanel__label">
+      <div className="euiCheckablePanel__row">
+        <div className="euiCheckablePanel__control">
+          <div>{checkableElement}</div>
+        </div>
+        <div className={classNames(labelClasses)}>
           <EuiFormLabel
             htmlFor={id}
             aria-describedby={children ? `${id}-details` : undefined}>
             <EuiText size="m">{label}</EuiText>
           </EuiFormLabel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+        </div>
+      </div>
       {children && (
-        <EuiFlexGroup gutterSize="none" responsive={false} wrap={false}>
-          <EuiFlexItem grow={false} className="euiCheckablePanel__control" />
-          <EuiFlexItem
-            id={`${id}-details`}
-            className="euiCheckablePanel__children">
+        <div className="euiCheckablePanel__row">
+          <div className="euiCheckablePanel__control" />
+          <div id={`${id}-details`} className="euiCheckablePanel__children">
             {children}
-          </EuiFlexItem>
-        </EuiFlexGroup>
+          </div>
+        </div>
       )}
     </EuiPanel>
   );

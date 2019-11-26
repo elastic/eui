@@ -14,16 +14,20 @@ export interface EuiCheckboxGroupIdToSelectedMap {
 }
 
 export interface EuiCheckboxGroupProps extends CommonProps {
-  options?: EuiCheckboxGroupOption[];
+  options: EuiCheckboxGroupOption[];
   idToSelectedMap: EuiCheckboxGroupIdToSelectedMap;
   onChange: (optionId: string) => void;
+  /**
+   * Tightens up the spacing between checkbox rows and sends down the
+   * compressed prop to the checkbox itself
+   */
   compressed?: boolean;
   disabled?: boolean;
 }
 
 export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
-  options,
-  idToSelectedMap,
+  options = [],
+  idToSelectedMap = {},
   onChange,
   className,
   disabled,

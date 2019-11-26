@@ -6,10 +6,20 @@ import { EuiCheckboxGroup } from './checkbox_group';
 
 jest.mock('./checkbox', () => ({ EuiCheckbox: 'eui_checkbox' }));
 
+const checkboxGroupRequiredProps = {
+  options: [],
+  idToSelectedMap: {},
+  onChange: () => {},
+};
+
 describe('EuiCheckboxGroup (mocked checkbox)', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCheckboxGroup onChange={() => {}} {...requiredProps} />
+      <EuiCheckboxGroup
+        onChange={() => {}}
+        {...checkboxGroupRequiredProps}
+        {...requiredProps}
+      />
     );
 
     expect(component).toMatchSnapshot();
@@ -18,6 +28,7 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
   test('options are rendered', () => {
     const component = render(
       <EuiCheckboxGroup
+        {...checkboxGroupRequiredProps}
         options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
         onChange={() => {}}
       />
@@ -29,6 +40,7 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
   test('idToSelectedMap is rendered', () => {
     const component = render(
       <EuiCheckboxGroup
+        {...checkboxGroupRequiredProps}
         options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
         idToSelectedMap={{
           '1': true,
@@ -44,6 +56,7 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
   test('disabled is rendered', () => {
     const component = render(
       <EuiCheckboxGroup
+        {...checkboxGroupRequiredProps}
         options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
         idToSelectedMap={{
           '1': true,
@@ -60,6 +73,7 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
   test('individual disabled is rendered', () => {
     const component = render(
       <EuiCheckboxGroup
+        {...checkboxGroupRequiredProps}
         options={[
           { id: '1', label: 'kibana', disabled: true },
           { id: '2', label: 'elastic' },
