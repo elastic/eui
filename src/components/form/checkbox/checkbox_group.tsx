@@ -22,7 +22,7 @@ export interface EuiCheckboxGroupProps extends CommonProps {
 }
 
 export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
-  options = [],
+  options,
   idToSelectedMap = {},
   onChange,
   className,
