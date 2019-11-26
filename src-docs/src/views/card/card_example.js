@@ -61,7 +61,7 @@ export const CardExample = {
             <EuiCode>href</EuiCode>.
           </p>
           <p>
-            For accessibility and heading heirarchy, a card&apos;s title element
+            For accessibility and heading hierarchy, a card&apos;s title element
             is a <EuiCode>span</EuiCode> by default. However, this can be
             changed via the <EuiCode>titleElement</EuiCode> prop without
             altering the visual size..
