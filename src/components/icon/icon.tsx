@@ -162,6 +162,7 @@ const typeToPathMap = {
   lock: 'lock',
   lockOpen: 'lockOpen',
   logsApp: 'app_logs',
+  logoActivemq: 'logo_activemq',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
   logoAPM: 'logo_apm',

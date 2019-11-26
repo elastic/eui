@@ -21,6 +21,7 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
+  'logoActivemq',
   'logoAerospike',
   'logoApache',
   'logoAWS',
