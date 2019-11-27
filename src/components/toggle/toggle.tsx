@@ -37,6 +37,8 @@ export type EuiToggleProps = HTMLAttributes<HTMLDivElement> &
      */
     inputClassName?: string;
     value?: string | number;
+
+    'data-test-subj'?: string;
   };
 
 export const EuiToggle: React.SFC<EuiToggleProps> = ({
@@ -52,6 +54,7 @@ export const EuiToggle: React.SFC<EuiToggleProps> = ({
   title,
   type,
   value,
+  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
   const classes = classNames(
@@ -75,6 +78,7 @@ export const EuiToggle: React.SFC<EuiToggleProps> = ({
         title={title}
         type={type ? typeToInputTypeMap[type] : undefined}
         value={value}
+        data-test-subj={dataTestSubj}
       />
 
       {children}

@@ -43,6 +43,7 @@ export interface EuiButtonGroupProps {
   name?: string;
   type?: ToggleType;
   idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
+  'data-test-subj'?: string;
 }
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
@@ -62,6 +63,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   onChange,
   options = [],
   type = 'single',
+  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
   const classes = classNames(
@@ -136,6 +138,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               onChange={() => onChange(id, value)}
               size={buttonSize === 'compressed' ? 's' : buttonSize}
               type={type}
+              data-test-subj={dataTestSubj}
               {...rest}
             />
           );

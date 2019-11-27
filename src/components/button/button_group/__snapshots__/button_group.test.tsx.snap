@@ -7,7 +7,6 @@ exports[`EuiButtonGroup is rendered 1`] = `
   <div
     aria-label="aria-label"
     class="euiButtonGroup euiButtonGroup--s testClass1 testClass2"
-    data-test-subj="test subject string"
   />
 </fieldset>
 `;
@@ -1458,12 +1457,12 @@ exports[`EuiButtonGroup props options can pass down data-test-subj 1`] = `
       <input
         aria-label="Option one"
         class="euiToggle__input euiButtonToggle__input"
+        data-test-subj="test"
         title="Option one"
         type="radio"
       />
       <button
         class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonGroup__button"
-        data-test-subj="test"
         id="button00"
         tabindex="-1"
         type="button"

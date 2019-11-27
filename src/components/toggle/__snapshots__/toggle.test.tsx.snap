@@ -4,11 +4,11 @@ exports[`EuiToggle is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiToggle testClass1 testClass2"
-  data-test-subj="test subject string"
 >
   <input
     aria-label="Is toggle on?"
     class="euiToggle__input"
+    data-test-subj="test subject string"
     type="checkbox"
   />
 </div>

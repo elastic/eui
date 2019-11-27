@@ -46,6 +46,8 @@ export interface EuiButtonToggleProps extends EuiButtonProps {
   type?: ToggleType;
 
   onChange?: ChangeEventHandler<HTMLInputElement>;
+
+  'data-test-subj'?: string;
 }
 
 type EuiButtonTogglePropsForAnchor = EuiButtonToggleProps &
@@ -80,6 +82,7 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
   toggleClassName,
   type,
   value,
+  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
   const classes = classNames(
@@ -116,7 +119,8 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
       onChange={onChange}
       type={type}
       title={labelText}
-      value={value}>
+      value={value}
+      data-test-subj={dataTestSubj}>
       <EuiButton
         tabIndex={-1} // prevents double focus from input to button
         className={classes}
