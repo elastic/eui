@@ -27,10 +27,6 @@
   background-color: $euiFormInputGroupLabelBackground;
   transition: background-color $euiAnimSpeedNormal ease-in;
 
-  .euiFlexItem {
-    margin-bottom: 0 !important; // sass-lint:disable-line no-important
-  }
-
   .euiPanel.euiCheckablePanel--isChecked & {
     background-color: tintOrShade(makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade), 85, 70);
   }
