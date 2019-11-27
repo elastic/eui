@@ -76,7 +76,7 @@ export default {
         <>
           <EuiText grow={false}>
             <p>
-              You can aid navigation abd make pages more accessible for screen
+              You can aid navigation and make pages more accessible for screen
               reader users by using solid headings and landmarks.{' '}
               <strong>Headings</strong> are the simplest way for screen readers
               to navigate pages. A good heading hierarchy:
