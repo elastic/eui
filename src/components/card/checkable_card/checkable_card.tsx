@@ -2,18 +2,18 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { EuiPanel } from '../../panel';
-import { EuiRadio, EuiRadioProps } from '../radio';
-import { EuiCheckbox, EuiCheckboxProps } from '../checkbox';
-import { EuiFormLabel } from '../form_label';
+import { EuiRadio, EuiRadioProps } from '../../form/radio';
+import { EuiCheckbox, EuiCheckboxProps } from '../../form/checkbox';
+import { EuiFormLabel } from '../../form/form_label';
 import { EuiText } from '../../text';
 
-interface EuiCheckablePanelBaseProps {
+interface EuiCheckableCardBaseProps {
   id: string;
   label: ReactNode;
 }
 
 // if `checkableType` is left out or set to 'radio', use EuiRadioProps
-interface EuiCheckablePanelAsRadioProps
+interface EuiCheckableCardAsRadioProps
   extends Omit<EuiRadioProps, 'compressed'> {
   /**
    * Whether the control is a radio button or checkbox
@@ -22,15 +22,15 @@ interface EuiCheckablePanelAsRadioProps
 }
 
 // if `checkableType` is set to 'checkbox', use EuiCheckboxProps
-interface EuiCheckablePanelAsCheckboxProps
+interface EuiCheckableCardAsCheckboxProps
   extends Omit<EuiCheckboxProps, 'compressed'> {
   checkableType: 'checkbox';
 }
 
-export type EuiCheckablePanelProps = EuiCheckablePanelBaseProps &
-  (EuiCheckablePanelAsCheckboxProps | EuiCheckablePanelAsRadioProps);
+export type EuiCheckableCardProps = EuiCheckableCardBaseProps &
+  (EuiCheckableCardAsCheckboxProps | EuiCheckableCardAsRadioProps);
 
-export const EuiCheckablePanel: FunctionComponent<EuiCheckablePanelProps> = ({
+export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   children,
   className,
   checkableType = 'radio',
@@ -40,9 +40,13 @@ export const EuiCheckablePanel: FunctionComponent<EuiCheckablePanelProps> = ({
   ...rest
 }) => {
   const { id } = rest;
-  const classes = classNames('euiCheckablePanel', className, {
-    'euiCheckablePanel--isChecked': checked,
-  });
+  const classes = classNames(
+    'euiCheckableCard',
+    {
+      'euiCheckableCard--isChecked': checked,
+    },
+    className
+  );
 
   let checkableElement;
   if (checkableType === 'radio') {
@@ -59,15 +63,14 @@ export const EuiCheckablePanel: FunctionComponent<EuiCheckablePanelProps> = ({
     );
   }
 
-  const labelClasses = {
-    euiCheckablePanel__label: true,
-    'euiCheckablePanel__label--isDisabled': disabled,
-  };
+  const labelClasses = classNames('euiCheckableCard__label', {
+    'euiCheckableCard__label--isDisabled': disabled,
+  });
 
   return (
     <EuiPanel paddingSize="none" className={classes}>
-      <div className="euiCheckablePanel__row">
-        <div className="euiCheckablePanel__control">
+      <div className="euiCheckableCard__row">
+        <div className="euiCheckableCard__control">
           <div>{checkableElement}</div>
         </div>
         <div className={classNames(labelClasses)}>
@@ -79,9 +82,9 @@ export const EuiCheckablePanel: FunctionComponent<EuiCheckablePanelProps> = ({
         </div>
       </div>
       {children && (
-        <div className="euiCheckablePanel__row">
-          <div className="euiCheckablePanel__control" />
-          <div id={`${id}-details`} className="euiCheckablePanel__children">
+        <div className="euiCheckableCard__row">
+          <div className="euiCheckableCard__control" />
+          <div id={`${id}-details`} className="euiCheckableCard__children">
             {children}
           </div>
         </div>

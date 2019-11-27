@@ -8,7 +8,7 @@ import {
   EuiCode,
   EuiCard,
   EuiCallOut,
-  EuiCheckablePanel,
+  EuiCheckableCard,
 } from '../../../../src/components';
 
 import { EuiCardSelect } from '../../../../src/components/card/card_select';
@@ -306,7 +306,7 @@ export const CardExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>EuiCheckablePanel</EuiCode> wraps an{' '}
+            <EuiCode>EuiCheckableCard</EuiCode> wraps an{' '}
             <EuiCode>EuiRadio</EuiCode> or <EuiCode>EuiCheckbox</EuiCode> with a
             more-prominent panel, allowing for children to be displayed.
           </p>
@@ -323,7 +323,7 @@ export const CardExample = {
         },
       ],
       props: {
-        EuiCheckablePanel,
+        EuiCheckableCard,
       },
       demo: <CardCheckable />,
     },

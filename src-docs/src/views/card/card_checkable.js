@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import {
-  EuiCheckablePanel,
+  EuiCheckableCard,
   EuiSpacer,
   EuiText,
   EuiRadioGroup,
@@ -37,7 +37,7 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <EuiCheckablePanel
+        <EuiCheckableCard
           id={makeId()}
           label="Option one"
           name={radioName}
@@ -48,7 +48,7 @@ export default class extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiCheckablePanel
+        <EuiCheckableCard
           id={makeId()}
           label="Option two"
           name={radioName}
@@ -63,11 +63,11 @@ export default class extends Component {
               disabled={this.state.radio !== 'radio2'}
             />
           </EuiText>
-        </EuiCheckablePanel>
+        </EuiCheckableCard>
 
         <EuiSpacer size="m" />
 
-        <EuiCheckablePanel
+        <EuiCheckableCard
           id={makeId()}
           label="Option three (disabled)"
           name={radioName}
@@ -79,7 +79,7 @@ export default class extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiCheckablePanel
+        <EuiCheckableCard
           id={makeId()}
           label="I am a checkbox"
           checkableType="checkbox"

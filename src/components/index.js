@@ -22,7 +22,7 @@ export {
 
 export { EuiCallOut } from './call_out';
 
-export { EuiCard } from './card';
+export { EuiCard, EuiCheckableCard } from './card';
 
 export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
@@ -105,7 +105,6 @@ export {
 export { EuiFocusTrap } from './focus_trap';
 
 export {
-  EuiCheckablePanel,
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiDescribedFormGroup,

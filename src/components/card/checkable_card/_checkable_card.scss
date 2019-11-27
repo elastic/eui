@@ -1,25 +1,25 @@
-.euiPanel.euiCheckablePanel {
+.euiPanel.euiCheckableCard {
   transition: border-color $euiAnimSpeedNormal ease-in;
 
-  & > .euiCheckablePanel__row:first-child .euiCheckablePanel__control {
+  & > .euiCheckableCard__row:first-child .euiCheckableCard__control {
     border-top-left-radius: $euiBorderRadius;
   }
 
-  & > .euiCheckablePanel__row:last-child .euiCheckablePanel__control {
+  & > .euiCheckableCard__row:last-child .euiCheckableCard__control {
     border-bottom-left-radius: $euiBorderRadius;
   }
 }
 
-.euiPanel.euiCheckablePanel--isChecked {
+.euiPanel.euiCheckableCard--isChecked {
   border-color: makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade);
 }
 
-.euiCheckablePanel__row {
+.euiCheckableCard__row {
   display: flex;
   align-items: stretch;
 }
 
-.euiCheckablePanel__control {
+.euiCheckableCard__control {
   display: flex;
   flex: 0 0 $euiSize * 2.5;
   justify-content: center;
@@ -27,19 +27,19 @@
   background-color: $euiFormInputGroupLabelBackground;
   transition: background-color $euiAnimSpeedNormal ease-in;
 
-  .euiPanel.euiCheckablePanel--isChecked & {
+  .euiPanel.euiCheckableCard--isChecked & {
     background-color: tintOrShade(makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade), 85, 70);
   }
 }
 
-.euiCheckablePanel__label {
+.euiCheckableCard__label {
   padding: $euiSizeS $euiSizeS $euiSizeS $euiSize;
 }
 
-.euiCheckablePanel__label--isDisabled .euiFormLabel {
+.euiCheckableCard__label--isDisabled .euiFormLabel {
   color: $euiFormControlDisabledColor;
 }
 
-.euiCheckablePanel__children {
+.euiCheckableCard__children {
   padding:  0 $euiSizeS $euiSizeS $euiSize;
 }

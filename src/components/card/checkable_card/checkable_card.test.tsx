@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiCheckablePanel } from './checkable_panel';
+import { EuiCheckableCard } from './checkable_card';
 
 const checkablePanelRequiredProps = {
   label: 'Label',
@@ -10,10 +10,10 @@ const checkablePanelRequiredProps = {
   onChange: () => {},
 };
 
-describe('EuiCheckablePanel', () => {
+describe('EuiCheckableCard', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCheckablePanel {...requiredProps} {...checkablePanelRequiredProps} />
+      <EuiCheckableCard {...requiredProps} {...checkablePanelRequiredProps} />
     );
 
     expect(component).toMatchSnapshot();
@@ -21,7 +21,7 @@ describe('EuiCheckablePanel', () => {
 
   test('renders a checkbox when specified', () => {
     const component = render(
-      <EuiCheckablePanel
+      <EuiCheckableCard
         {...requiredProps}
         {...checkablePanelRequiredProps}
         checkableType="checkbox"

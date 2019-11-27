@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCheckablePanel is rendered 1`] = `
+exports[`EuiCheckableCard is rendered 1`] = `
 <div
-  class="euiPanel euiCheckablePanel testClass1 testClass2"
+  class="euiPanel euiCheckableCard testClass1 testClass2"
 >
   <div
-    class="euiCheckablePanel__row"
+    class="euiCheckableCard__row"
   >
     <div
-      class="euiCheckablePanel__control"
+      class="euiCheckableCard__control"
     >
       <div>
         <div
@@ -28,7 +28,7 @@ exports[`EuiCheckablePanel is rendered 1`] = `
       </div>
     </div>
     <div
-      class="euiCheckablePanel__label"
+      class="euiCheckableCard__label"
     >
       <label
         class="euiFormLabel"
@@ -45,15 +45,15 @@ exports[`EuiCheckablePanel is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckablePanel renders a checkbox when specified 1`] = `
+exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
 <div
-  class="euiPanel euiCheckablePanel testClass1 testClass2"
+  class="euiPanel euiCheckableCard testClass1 testClass2"
 >
   <div
-    class="euiCheckablePanel__row"
+    class="euiCheckableCard__row"
   >
     <div
-      class="euiCheckablePanel__control"
+      class="euiCheckableCard__control"
     >
       <div>
         <div
@@ -73,7 +73,7 @@ exports[`EuiCheckablePanel renders a checkbox when specified 1`] = `
       </div>
     </div>
     <div
-      class="euiCheckablePanel__label"
+      class="euiCheckableCard__label"
     >
       <label
         class="euiFormLabel"
