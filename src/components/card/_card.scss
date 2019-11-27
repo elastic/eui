@@ -64,6 +64,7 @@
 
       &:focus,
       &:hover {
+        .euiCard__title,
         .euiCard__titleAnchor,
         .euiCard__titleButton {
           text-decoration: underline;
