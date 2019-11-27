@@ -65,7 +65,7 @@ export class AppView extends Component {
         <EuiPageBody>
           <EuiErrorBoundary>
             <GuidePageChrome
-              currentRouteName={currentRoute.name}
+              currentRoute={currentRoute}
               onToggleTheme={toggleTheme}
               selectedTheme={theme}
               onToggleLocale={toggleLocale}

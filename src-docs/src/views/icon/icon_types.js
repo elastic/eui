@@ -30,6 +30,7 @@ export default () => (
           <EuiIcon
             type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
             size="xl"
+            title="My SVG logo"
           />
           <EuiText size="s">
             <p>http://some.svg</p>
@@ -59,7 +60,9 @@ export default () => (
 
     <EuiFlexGroup>
       <EuiFlexItem grow={false}>
-        <EuiButton iconType="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg">
+        <EuiButton
+          iconType="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
+          title="Another SVG Logo">
           http://some.svg
         </EuiButton>
       </EuiFlexItem>

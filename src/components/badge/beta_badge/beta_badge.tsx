@@ -93,7 +93,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         position={tooltipPosition}
         content={tooltipContent}
         title={title || label}>
-        <span className={classes} {...rest}>
+        <span tabIndex={0} className={classes} {...rest}>
           {icon || label}
         </span>
       </EuiToolTip>

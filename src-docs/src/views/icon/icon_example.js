@@ -87,7 +87,7 @@ const iconTypesSource = require('!!raw-loader!./icon_types');
 const iconTypesSnippet = [
   '<EuiIcon type="logoElastic" size="xl" />',
   '<EuiIcon type={reactSVGElement} size="xl" />',
-  '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" />',
+  '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" title="My SVG logo" />',
   '<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>',
 ];
 
@@ -297,8 +297,8 @@ export const IconExample = {
             inline SVG this <EuiCode>title</EuiCode> is passed to the
             <EuiCode>title</EuiCode> tag and it's added to the{' '}
             <EuiCode>aria-label</EuiCode> attribute. When the icon is rendered
-            as an <EuiCode>image</EuiCode> tag the <EuiCode>title</EuiCode> is added to the <EuiCode>alt</EuiCode>{' '}
-            attribute.
+            as an <EuiCode>image</EuiCode> tag the <EuiCode>title</EuiCode> is
+            added to the <EuiCode>alt</EuiCode> attribute.
           </p>
           <p>
             When no <EuiCode>title</EuiCode> is specified the icon gets the
