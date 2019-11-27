@@ -1,17 +1,14 @@
-.euiPanel.euiCheckableCard {
+@import '../../panel/mixins';
+
+@include euiPanel('euiCheckableCard');
+
+.euiCheckableCard {
   transition: border-color $euiAnimSpeedNormal ease-in;
-
-  & > .euiCheckableCard__row:first-child .euiCheckableCard__control {
-    border-top-left-radius: $euiBorderRadius;
-  }
-
-  & > .euiCheckableCard__row:last-child .euiCheckableCard__control {
-    border-bottom-left-radius: $euiBorderRadius;
-  }
+  overflow: hidden; // Hides background color inside panel rounded corners
 }
 
-.euiPanel.euiCheckableCard--isChecked {
-  border-color: makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade);
+.euiCheckableCard--isChecked {
+  border-color: $euiColorPrimary;
 }
 
 .euiCheckableCard__row {
@@ -21,23 +18,28 @@
 
 .euiCheckableCard__control {
   display: flex;
-  flex: 0 0 $euiSize * 2.5;
+  flex: 0 0 $euiSizeXXL;
   justify-content: center;
   align-items: center;
-  background-color: $euiFormInputGroupLabelBackground;
+  background-color: map-get($euiCardSelectButtonBackgrounds, 'text');
   transition: background-color $euiAnimSpeedNormal ease-in;
 
-  .euiPanel.euiCheckableCard--isChecked & {
-    background-color: tintOrShade(makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade), 85, 70);
+  .euiCheckableCard--isChecked & {
+    background-color: map-get($euiCardSelectButtonBackgrounds, 'primary');
   }
 }
 
 .euiCheckableCard__label {
+  flex-grow: 1;
+  font-size: $euiFontSize;
+  line-height: $euiSizeL;
   padding: $euiSizeS $euiSizeS $euiSizeS $euiSize;
+  cursor: pointer;
 }
 
-.euiCheckableCard__label--isDisabled .euiFormLabel {
+.euiCheckableCard__label--isDisabled {
   color: $euiFormControlDisabledColor;
+  cursor: not-allowed;
 }
 
 .euiCheckableCard__children {

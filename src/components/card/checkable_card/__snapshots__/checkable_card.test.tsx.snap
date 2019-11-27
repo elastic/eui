@@ -2,7 +2,7 @@
 
 exports[`EuiCheckableCard is rendered 1`] = `
 <div
-  class="euiPanel euiCheckableCard testClass1 testClass2"
+  class="euiCheckableCard testClass1 testClass2"
 >
   <div
     class="euiCheckableCard__row"
@@ -10,44 +10,34 @@ exports[`EuiCheckableCard is rendered 1`] = `
     <div
       class="euiCheckableCard__control"
     >
-      <div>
+      <div
+        aria-label="aria-label"
+        class="euiRadio euiRadio--noLabel"
+        data-test-subj="test subject string"
+      >
+        <input
+          class="euiRadio__input"
+          id="id"
+          type="radio"
+        />
         <div
-          aria-label="aria-label"
-          class="euiRadio euiRadio--noLabel"
-          data-test-subj="test subject string"
-        >
-          <input
-            class="euiRadio__input"
-            id="id"
-            type="radio"
-          />
-          <div
-            class="euiRadio__circle"
-          />
-        </div>
+          class="euiRadio__circle"
+        />
       </div>
     </div>
-    <div
+    <label
       class="euiCheckableCard__label"
+      for="id"
     >
-      <label
-        class="euiFormLabel"
-        for="id"
-      >
-        <div
-          class="euiText euiText--medium"
-        >
-          Label
-        </div>
-      </label>
-    </div>
+      Label
+    </label>
   </div>
 </div>
 `;
 
 exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
 <div
-  class="euiPanel euiCheckableCard testClass1 testClass2"
+  class="euiCheckableCard testClass1 testClass2"
 >
   <div
     class="euiCheckableCard__row"
@@ -55,37 +45,27 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
     <div
       class="euiCheckableCard__control"
     >
-      <div>
+      <div
+        class="euiCheckbox euiCheckbox--noLabel"
+      >
+        <input
+          aria-label="aria-label"
+          class="euiCheckbox__input"
+          data-test-subj="test subject string"
+          id="id"
+          type="checkbox"
+        />
         <div
-          class="euiCheckbox euiCheckbox--noLabel"
-        >
-          <input
-            aria-label="aria-label"
-            class="euiCheckbox__input"
-            data-test-subj="test subject string"
-            id="id"
-            type="checkbox"
-          />
-          <div
-            class="euiCheckbox__square"
-          />
-        </div>
+          class="euiCheckbox__square"
+        />
       </div>
     </div>
-    <div
+    <label
       class="euiCheckableCard__label"
+      for="id"
     >
-      <label
-        class="euiFormLabel"
-        for="id"
-      >
-        <div
-          class="euiText euiText--medium"
-        >
-          Label
-        </div>
-      </label>
-    </div>
+      Label
+    </label>
   </div>
 </div>
 `;

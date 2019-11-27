@@ -1,11 +1,8 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { EuiPanel } from '../../panel';
 import { EuiRadio, EuiRadioProps } from '../../form/radio';
 import { EuiCheckbox, EuiCheckboxProps } from '../../form/checkbox';
-import { EuiFormLabel } from '../../form/form_label';
-import { EuiText } from '../../text';
 
 interface EuiCheckableCardBaseProps {
   id: string;
@@ -68,27 +65,25 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   });
 
   return (
-    <EuiPanel paddingSize="none" className={classes}>
+    <div className={classes}>
       <div className="euiCheckableCard__row">
-        <div className="euiCheckableCard__control">
-          <div>{checkableElement}</div>
-        </div>
-        <div className={classNames(labelClasses)}>
-          <EuiFormLabel
-            htmlFor={id}
-            aria-describedby={children ? `${id}-details` : undefined}>
-            <EuiText size="m">{label}</EuiText>
-          </EuiFormLabel>
-        </div>
+        <div className="euiCheckableCard__control">{checkableElement}</div>
+        <label
+          className={labelClasses}
+          htmlFor={id}
+          aria-describedby={children ? `${id}-details` : undefined}>
+          {label}
+        </label>
       </div>
       {children && (
         <div className="euiCheckableCard__row">
+          {/* Empty div for left side background color only */}
           <div className="euiCheckableCard__control" />
           <div id={`${id}-details`} className="euiCheckableCard__children">
             {children}
           </div>
         </div>
       )}
-    </EuiPanel>
+    </div>
   );
 };
