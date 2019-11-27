@@ -40,7 +40,8 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   const classes = classNames(
     'euiCheckableCard',
     {
-      'euiCheckableCard--isChecked': checked,
+      'euiCheckableCard-isChecked': checked,
+      'euiCheckableCard-isDisabled': disabled,
     },
     className
   );
@@ -61,7 +62,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   }
 
   const labelClasses = classNames('euiCheckableCard__label', {
-    'euiCheckableCard__label--isDisabled': disabled,
+    'euiCheckableCard__label-isDisabled': disabled,
   });
 
   return (

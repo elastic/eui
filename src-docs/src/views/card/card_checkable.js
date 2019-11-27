@@ -3,8 +3,8 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiCheckableCard,
   EuiSpacer,
-  EuiText,
   EuiRadioGroup,
+  EuiTitle,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -37,47 +37,55 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <EuiCheckableCard
-          id={makeId()}
-          label="Option one"
-          name={radioName}
-          value="radio1"
-          checked={this.state.radio === 'radio1'}
-          onChange={() => this.setState({ radio: 'radio1' })}
-        />
+        <fieldset>
+          <legend>
+            <EuiTitle size="xs">
+              <span>Checkable card radio group with legend</span>
+            </EuiTitle>
+          </legend>
 
-        <EuiSpacer size="m" />
+          <EuiSpacer size="m" />
 
-        <EuiCheckableCard
-          id={makeId()}
-          label="Option two"
-          name={radioName}
-          value="radio2"
-          checked={this.state.radio === 'radio2'}
-          onChange={() => this.setState({ radio: 'radio2' })}>
-          <EuiText>
+          <EuiCheckableCard
+            id={makeId()}
+            label="Option one"
+            name={radioName}
+            value="radio1"
+            checked={this.state.radio === 'radio1'}
+            onChange={() => this.setState({ radio: 'radio1' })}
+          />
+
+          <EuiSpacer size="m" />
+
+          <EuiCheckableCard
+            id={makeId()}
+            label="Option two"
+            name={radioName}
+            value="radio2"
+            checked={this.state.radio === 'radio2'}
+            onChange={() => this.setState({ radio: 'radio2' })}>
             <EuiRadioGroup
               options={nestedRadios}
               idSelected={this.state.nestedRadio}
               onChange={nestedRadio => this.setState({ nestedRadio })}
               disabled={this.state.radio !== 'radio2'}
             />
-          </EuiText>
-        </EuiCheckableCard>
+          </EuiCheckableCard>
 
-        <EuiSpacer size="m" />
+          <EuiSpacer size="m" />
 
-        <EuiCheckableCard
-          id={makeId()}
-          label="Option three (disabled)"
-          name={radioName}
-          value="radio3"
-          checked={this.state.radio === 'radio3'}
-          onChange={() => this.setState({ radio: 'radio3' })}
-          disabled
-        />
+          <EuiCheckableCard
+            id={makeId()}
+            label="Option three (disabled)"
+            name={radioName}
+            value="radio3"
+            checked={this.state.radio === 'radio3'}
+            onChange={() => this.setState({ radio: 'radio3' })}
+            disabled
+          />
+        </fieldset>
 
-        <EuiSpacer size="m" />
+        <EuiSpacer size="xl" />
 
         <EuiCheckableCard
           id={makeId()}

@@ -5,11 +5,19 @@
 .euiCheckableCard {
   transition: border-color $euiAnimSpeedNormal ease-in;
   overflow: hidden; // Hides background color inside panel rounded corners
+
+  &:not(.euiCheckableCard-isDisabled) {
+    &:focus-within {
+      @include euiFocusRing;
+    }
+  }
 }
 
-.euiCheckableCard--isChecked {
+.euiCheckableCard-isChecked {
   border-color: $euiColorPrimary;
 }
+
+
 
 .euiCheckableCard__row {
   display: flex;
@@ -24,7 +32,7 @@
   background-color: map-get($euiCardSelectButtonBackgrounds, 'text');
   transition: background-color $euiAnimSpeedNormal ease-in;
 
-  .euiCheckableCard--isChecked & {
+  .euiCheckableCard-isChecked & {
     background-color: map-get($euiCardSelectButtonBackgrounds, 'primary');
   }
 }
@@ -37,7 +45,7 @@
   cursor: pointer;
 }
 
-.euiCheckableCard__label--isDisabled {
+.euiCheckableCard__label-isDisabled {
   color: $euiFormControlDisabledColor;
   cursor: not-allowed;
 }

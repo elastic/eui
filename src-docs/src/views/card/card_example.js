@@ -310,6 +310,16 @@ export const CardExample = {
             <EuiCode>EuiRadio</EuiCode> or <EuiCode>EuiCheckbox</EuiCode> with a
             more-prominent panel, allowing for children to be displayed.
           </p>
+          <EuiCallOut
+            color="warning"
+            title={
+              <span>
+                When used as a radio group, you must provide a{' '}
+                <EuiCode>fieldset</EuiCode> with a <EuiCode>legend</EuiCode> for
+                accessibility.
+              </span>
+            }
+          />
         </Fragment>
       ),
       source: [
