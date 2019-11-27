@@ -4,7 +4,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCard, EuiCallOut } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiCard,
+  EuiCallOut,
+  EuiCheckablePanel,
+} from '../../../../src/components';
 
 import { EuiCardSelect } from '../../../../src/components/card/card_select';
 
@@ -35,6 +40,10 @@ const cardSelectableHtml = renderToHtml(CardSelectable);
 import CardChildren from './card_children';
 const cardChildrenSource = require('!!raw-loader!./card_children');
 const cardChildrenHtml = renderToHtml(CardChildren);
+
+import CardCheckable from './card_checkable';
+const cardCheckableSource = require('!!raw-loader!./card_checkable');
+const cardCheckableHtml = renderToHtml(CardCheckable);
 
 export const CardExample = {
   title: 'Card',
@@ -291,6 +300,32 @@ export const CardExample = {
     aria-label=""
   />}
 />`,
+    },
+    {
+      title: 'Checkable',
+      text: (
+        <Fragment>
+          <p>
+            <EuiCode>EuiCheckablePanel</EuiCode> wraps an{' '}
+            <EuiCode>EuiRadio</EuiCode> or <EuiCode>EuiCheckbox</EuiCode> with a
+            more-prominent panel, allowing for children to be displayed.
+          </p>
+        </Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardCheckableSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: cardCheckableHtml,
+        },
+      ],
+      props: {
+        EuiCheckablePanel,
+      },
+      demo: <CardCheckable />,
     },
     {
       title: 'Custom children',

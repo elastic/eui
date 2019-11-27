@@ -9,7 +9,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiBadge,
   EuiCallOut,
-  EuiCheckablePanel,
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiCode,
@@ -71,10 +70,6 @@ const radioHtml = renderToHtml(Radio);
 import RadioGroup from './radio_group';
 const radioGroupSource = require('!!raw-loader!./radio_group');
 const radioGroupHtml = renderToHtml(RadioGroup);
-
-import CheckablePanel from './checkable_panel';
-const checkablePanelSource = require('!!raw-loader!./checkable_panel');
-const checkablePanelHtml = renderToHtml(CheckablePanel);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
@@ -306,32 +301,6 @@ export const FormControlsExample = {
         EuiRadioGroup,
       },
       demo: <RadioGroup />,
-    },
-    {
-      title: 'Checkable panel',
-      text: (
-        <Fragment>
-          <p>
-            <EuiCode>EuiCheckablePanel</EuiCode> wraps an{' '}
-            <EuiCode>EuiRadio</EuiCode> or <EuiCode>EuiCheckbox</EuiCode> with a
-            more-prominent panel, allowing for children to be displayed.
-          </p>
-        </Fragment>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: checkablePanelSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: checkablePanelHtml,
-        },
-      ],
-      props: {
-        EuiCheckablePanel,
-      },
-      demo: <CheckablePanel />,
     },
     {
       title: 'Switch',
