@@ -323,13 +323,17 @@ export const ButtonExample = {
             displaying a group of icons, add the prop{' '}
             <EuiCode>isIconOnly</EuiCode>.
           </p>
-          <EuiCallOut title="Accessibility">
-            <p>
-              In order for groups to be properly read as groups with a title,
-              add the <EuiCode>legend</EuiCode> prop. This is only for
-              accessibility, however, so it will be visibly hidden.
-            </p>
-          </EuiCallOut>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <span>
+                In order for groups to be properly read as groups with a title,
+                add the <EuiCode>legend</EuiCode> prop. This is only for
+                accessibility, however, so it will be visibly hidden.
+              </span>
+            }
+          />
         </div>
       ),
       demo: <ButtonGroup />,
