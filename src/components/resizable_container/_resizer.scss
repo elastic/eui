@@ -1,0 +1,43 @@
+// .euiResizer {
+//   display: flex;
+//   background-color: $euiPageBackgroundColor;
+//   align-items: center;
+//   justify-content: center;
+//   margin: 0;
+//   user-select: none;
+// }
+
+
+.euiResizer {
+  display: flex;
+  flex: 0 0 $euiSizeM;
+  background-color: $euiPageBackgroundColor;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  user-select: none;
+
+  cursor: ew-resize;
+  width: $euiSizeM;
+
+  // @if ($direction == horizontal) {
+  //   cursor: ew-resize;
+  //   width: $size;
+  // } @else if ($direction == vertical) {
+  //   cursor: ns-resize;
+  //   height: $size;
+  //   width: 100%;
+  // } @else {
+  //   @warn("Direction unknown for kbnResizer");
+  // }
+
+  &:hover {
+    background-color: tintOrShade($euiColorPrimary, 80%, 60%);
+  }
+
+  &:focus,
+  &.active {
+    background-color: $euiColorPrimary;
+    color: $euiColorEmptyShade;
+  }
+}

@@ -283,3 +283,5 @@ export { EuiToggle } from './toggle';
 export { EuiIconTip, EuiToolTip } from './tool_tip';
 
 export { EuiHideFor, EuiShowFor } from './responsive';
+
+export { EuiResizableContainer } from './resizable_container';
