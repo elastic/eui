@@ -11,6 +11,7 @@
 
 **Bug fixes**
 
+- Fixed `EuiSwitch` clicking on disabled label, positioning (regression) ([#2574](https://github.com/elastic/eui/pull/2574))
 - Fixed `EuiDataGrid` schema detection on already defined column schemas ([#2550](https://github.com/elastic/eui/pull/2550))
 - Added `euiTextBreakWord()` to `EuiToast` header ([#2549](https://github.com/elastic/eui/pull/2549))
 - Fixed `.eui-textBreakAll` on Firefox ([#2549](https://github.com/elastic/eui/pull/2549))
