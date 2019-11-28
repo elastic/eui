@@ -106,9 +106,9 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         // <button> + <label> has poor screen reader support.
         // Click handler added to simulate natural, secondary <label> interactivity.
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        <p className="euiSwitch__label" id={labelId} onClick={onClick}>
+        <span className="euiSwitch__label" id={labelId} onClick={onClick}>
           {label}
-        </p>
+        </span>
       )}
     </div>
   );
