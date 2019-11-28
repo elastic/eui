@@ -70,6 +70,7 @@ type Props = ExclusiveUnion<
 export const EuiButtonToggle: FunctionComponent<Props> = ({
   className,
   color = 'primary',
+  'data-test-subj': dataTestSubj = '',
   isDisabled,
   isEmpty,
   isIconOnly,
@@ -108,6 +109,7 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
   return (
     <EuiToggle
       className={wrapperClasses}
+      data-test-subj={dataTestSubj}
       inputClassName="euiButtonToggle__input"
       checked={isSelected}
       isDisabled={isDisabled}
