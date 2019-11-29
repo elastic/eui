@@ -120,7 +120,7 @@ export const IconExample = {
         color="warning">
         <p>
           If the icon is purely decorative, pass{' '}
-          <EuiCode>aria-hidden=true</EuiCode>
+          <EuiCode>aria-hidden=true</EuiCode>.
         </p>
       </EuiCallOut>
       <EuiSpacer />
