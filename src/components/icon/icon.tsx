@@ -584,7 +584,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     const icon = this.state.icon || empty;
 
-    // it's an icon it gets by default the icon name
+    // If it's a named icon, by default the title will be the name
     // If it's a custom icon, it gets an empty alt
     const iconTitle = _startCase(this.state.iconTitle) || '';
 
