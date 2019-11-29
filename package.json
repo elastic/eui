@@ -12,8 +12,10 @@
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",
     "test-docker": "docker pull $npm_package_docker_image && docker run --rm -i -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test --user=$(id -u):$(id -g) -e HOME=/tmp -v $(pwd):/app -w /app $npm_package_docker_image bash -c 'npm config set spin false && /opt/yarn*/bin/yarn && npm run test && npm run build'",
     "sync-docs": "node ./scripts/docs-sync.js",
-    "build-docs": "cross-env NODE_ENV=production webpack --config=src-docs/webpack.config.js",
+    "increase-memory": "cross-env LIMIT=4096 increase-memory-limit",
+    "build-docs": "cross-env NODE_ENV=production webpack --config=src-docs/webpack.config.js && react-snap",
     "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && node ./scripts/compile-scss.js $npm_package_name",
+    "build:static": "cross-env NODE_ENV=production webpack --config=src-docs/webpack.config.js",
     "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.js\"",
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
@@ -36,6 +38,13 @@
     "postinstall": "node ./scripts/postinstall.js",
     "version": "node ./scripts/update-changelog-version.js"
   },
+  "reactSnap": {
+    "source": "docs",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
@@ -50,6 +59,7 @@
     "classnames": "^2.2.5",
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
+    "increase-memory-limit": "^1.0.7",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.11",
     "numeral": "^2.0.6",
@@ -160,6 +170,7 @@
     "react-redux": "^5.0.6",
     "react-router": "^3.2.0",
     "react-router-redux": "^4.0.8",
+    "react-snap": "^1.23.0",
     "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
