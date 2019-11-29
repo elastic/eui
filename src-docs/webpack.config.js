@@ -30,6 +30,7 @@ const webpackConfig = {
   output: {
     path: path.resolve(__dirname, '../docs'),
     filename: `[name]${isProduction ? '.min' : ''}.js`,
+    publicPath: '/',
   },
 
   resolve: {
@@ -100,6 +101,7 @@ const webpackConfig = {
     allowedHosts: ['*'],
     port: 8030,
     disableHostCheck: true,
+    historyApiFallback: true,
   },
 };
 

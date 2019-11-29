@@ -247,7 +247,7 @@ export class GuidePageChrome extends Component {
 
       const items = matchingItems.map(item => {
         const { name, path, sections } = item;
-        const href = `#/${path}`;
+        const href = `/${path}`;
 
         let visibleName = name;
         if (searchTerm) {
