@@ -11,6 +11,7 @@ import {
   EuiLink,
   EuiText,
   EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
@@ -108,6 +109,20 @@ export const IconExample = {
           CSS helpers if you have complex logos that need to work with theming.
         </p>
       </EuiText>
+      <EuiSpacer />
+      <EuiCallOut
+        title={
+          <>
+            For better accessibility it's always recommended to give a
+            descriptive <EuiCode>title</EuiCode> based on the icon use.
+          </>
+        }
+        color="warning">
+        <p>
+          If the icon is purely decorative, pass{' '}
+          <EuiCode>aria-hidden=true</EuiCode>
+        </p>
+      </EuiCallOut>
       <EuiSpacer />
     </div>
   ),
@@ -276,39 +291,6 @@ export const IconExample = {
       ],
       snippet: logosThirdSnippet,
       demo: <LogosThird />,
-    },
-    {
-      title: 'Accessibility',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: accessibilitySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            You can title the icon by passing the <EuiCode>title</EuiCode> prop
-            to <EuiCode>EuiIcon</EuiCode>. When the icon is rendered as an
-            inline SVG this <EuiCode>title</EuiCode> is passed to the
-            <EuiCode>title</EuiCode> tag and it's added to the{' '}
-            <EuiCode>aria-label</EuiCode> attribute. When the icon is rendered
-            as an <EuiCode>image</EuiCode> tag the <EuiCode>title</EuiCode> is
-            added to the <EuiCode>alt</EuiCode> attribute.
-          </p>
-          <p>
-            When no <EuiCode>title</EuiCode> is specified the icon gets the
-            default icon file name. For better accessibility it's always
-            recommended to give a descriptive <EuiCode>title</EuiCode> based on
-            the icon use.
-          </p>
-        </>
-      ),
-      demo: <Accessibility />,
     },
     {
       title: 'Sizes',

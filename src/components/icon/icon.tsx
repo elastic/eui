@@ -615,9 +615,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
       let ariaAttribute: any;
 
-      /*
-      If no aria-label or aria-labelledby is provided the title will be default
-      */
+      // If no aria-label or aria-labelledby is provided the title will be default
 
       if (this.props['aria-label']) {
         ariaAttribute = { ...{ 'aria-label': this.props['aria-label'] } };
