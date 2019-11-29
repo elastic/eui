@@ -41,9 +41,10 @@
   "reactSnap": {
     "source": "docs",
     "minifyHtml": {
-      "collapseWhitespace": false,
-      "removeComments": false
-    }
+      "collapseWhitespace": true,
+      "removeComments": true
+    },
+    "sourceMaps": true
   },
   "repository": {
     "type": "git",
