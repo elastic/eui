@@ -22,9 +22,12 @@
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
   &.euiCard-isDisabled {
-    background-color: $euiColorLightestShade;
     cursor: not-allowed; // duplicate property due to Chrome bug
     box-shadow: none;
+
+    &:not(.euiCard--plain) {
+      background-color: $euiColorLightestShade;
+    }
 
     .euiCard__title,
     .euiCard__description,
@@ -100,6 +103,17 @@
 
   &.euiCard-isSelected {
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+  }
+}
+
+// Selectable cards don't work well without a border
+.euiCard--plain:not(.euiCard--isSelectable) {
+  border: none;
+  box-shadow: none;
+
+  .euiCard__image {
+    // Without a border, the image should stand on it's own so it needs to have all corners rounded
+    border-radius: $euiBorderRadius;
   }
 }
 
