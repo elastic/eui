@@ -50,8 +50,11 @@ const humanReadableTypes = {
   // push the version commit & tag to upstream
   execSync('git push upstream --tags', execOptions);
 
+  // prompt user for npm 2FA
+  const otp = await getOneTimePassword();
+
   // publish new version to npm
-  execSync('npm publish', execOptions);
+  execSync(`npm publish --otp=${otp}`, execOptions);
 
   // update docs, git commit, git push
   execSync('npm run sync-docs', execOptions);
@@ -75,7 +78,7 @@ async function getVersionTypeFromChangelog() {
 
   // Sanity check, if the changelog contains "No public interface changes"then we shouldn't be releasing
   if (changelog.indexOf('No public interface changes') !== -1) {
-    console.error(`Unable to release: CHANGELOG.md indicates "No public interface changes"`);
+    console.error('Unable to release: CHANGELOG.md indicates "No public interface changes"');
     process.exit(1);
   }
 
@@ -148,6 +151,42 @@ async function promptUserForVersionType() {
           reject(err);
         } else {
           resolve(version);
+        }
+      }
+    );
+  });
+}
+
+async function getOneTimePassword() {
+  const version = require('../package.json').version
+  console.log(chalk.magenta(`Preparing to publish @elastic/eui@${version} to npm registry`));
+  console.log('');
+  console.log(chalk.magenta('The @elastic organization requires membership and 2FA to publish'));
+  console.log(chalk.magenta('What is your one-time password?'));
+
+  return await promptUserForOneTimePassword();
+}
+
+async function promptUserForOneTimePassword() {
+  return new Promise((resolve, reject) => {
+    prompt.message = '';
+    prompt.delimiter = '';
+    prompt.start();
+    prompt.get(
+      {
+        properties: {
+          otp: {
+            description: 'Enter password:',
+            message: 'One-time password is required',
+            required: true
+          },
+        }
+      },
+      (err, { otp }) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(otp);
         }
       }
     );
