@@ -50,7 +50,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   const [labelId] = useState(makeId());
 
   const onClick = (
-    e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>
+    e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>
   ) => {
     const event = (e as unknown) as EuiSwitchEvent;
     event.target.checked = !checked;
