@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import sinon from 'sinon';
 
 import { EuiCheckboxGroup } from './checkbox_group';
 
@@ -9,7 +8,7 @@ import { EuiCheckboxGroup } from './checkbox_group';
 // an interaction that is handled by the Checkbox component.
 describe('EuiCheckboxGroup behavior', () => {
   test('id is bound to onChange', () => {
-    const onChangeHandler = sinon.stub();
+    const onChangeHandler = jest.fn();
     const component = mount(
       <EuiCheckboxGroup
         options={[{ id: '1', label: 'kibana', disabled: false }]}
@@ -21,6 +20,7 @@ describe('EuiCheckboxGroup behavior', () => {
     );
 
     component.find('input[type="checkbox"]').simulate('change');
-    sinon.assert.calledWith(onChangeHandler, '1');
+    expect(onChangeHandler).toBeCalledTimes(1);
+    expect(onChangeHandler.mock.calls[0][0]).toBe('1');
   });
 });
