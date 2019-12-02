@@ -72,6 +72,10 @@
 
     .euiFormRow__fieldWrapper {
       width: auto;
+
+      .euiSwitch--compressed {
+        margin-top: $euiSizeXS / 2; // Better vertical alignment of a compressed swtich to the horizontal label
+      }
     }
 
     + .euiFormRow--horizontal {
