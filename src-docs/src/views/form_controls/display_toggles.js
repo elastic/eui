@@ -68,6 +68,7 @@ export class DisplayToggles extends Component {
         {cloneElement(children, canProps)}
         <EuiSpacer />
         <EuiPopover
+          panelPaddingSize="s"
           isOpen={this.state.isPopoverOpen}
           closePopover={() => {
             this.setState({ isPopoverOpen: false });
@@ -87,6 +88,7 @@ export class DisplayToggles extends Component {
               {(canDisabled || canIsDisabled) && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={'disabled'}
                     checked={this.state.disabled}
                     onChange={e =>
@@ -98,6 +100,7 @@ export class DisplayToggles extends Component {
               {canReadOnly && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={'readOnly'}
                     checked={this.state.readOnly}
                     onChange={e =>
@@ -109,6 +112,7 @@ export class DisplayToggles extends Component {
               {canLoading && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={'loading'}
                     checked={this.state.loading}
                     onChange={e =>
@@ -120,6 +124,7 @@ export class DisplayToggles extends Component {
               {canInvalid && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={'invalid'}
                     checked={this.state.invalid}
                     onChange={e =>
@@ -131,6 +136,7 @@ export class DisplayToggles extends Component {
               {canFullWidth && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={'fullWidth'}
                     checked={this.state.fullWidth}
                     onChange={e =>
@@ -142,6 +148,7 @@ export class DisplayToggles extends Component {
               {canCompressed && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={
                       <span>
                         compressed{' '}
@@ -162,6 +169,7 @@ export class DisplayToggles extends Component {
               {canPrepend && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={'prepend'}
                     checked={this.state.prepend}
                     onChange={e =>
@@ -173,6 +181,7 @@ export class DisplayToggles extends Component {
               {canAppend && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
+                    compressed
                     label={'append'}
                     checked={this.state.append}
                     onChange={e =>
