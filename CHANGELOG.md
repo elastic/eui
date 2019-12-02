@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `16.1.0`.
+**Breaking changes**
+
+- Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
 
 ## [`16.1.0`](https://github.com/elastic/eui/tree/v16.1.0)
 
