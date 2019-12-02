@@ -118,7 +118,7 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
 
   invalidateIndeterminate() {
     if (this.inputRef) {
-      this.inputRef.indeterminate = Boolean(this.props.indeterminate);
+      this.inputRef.indeterminate = this.props.indeterminate!;
     }
   }
 }
