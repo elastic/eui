@@ -22,7 +22,7 @@
     "lint-es-fix": "yarn lint-es --fix",
     "lint-sass": "sass-lint -v --max-warnings 0",
     "lint-sass-fix": "sass-lint-auto-fix -c ./.sass-lint-fix.yml",
-    "test": "yarn lint && yarn test-unit",
+    "test": "yarn lint && yarn test-unit && start-test-server-and-a11y-test",
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
     "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
