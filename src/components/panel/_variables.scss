@@ -9,5 +9,3 @@ $euiPanelPaddingModifiers: (
   'paddingMedium': $euiSize,
   'paddingLarge': $euiSizeL
 ) !default;
-
-$euiPanelBorderColor: tintOrShade($euiShadowColor, 40%, 0%) !default; // match shadow
