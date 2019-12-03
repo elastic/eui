@@ -1,4 +1,43 @@
-@import 'form_control_layout';
+@mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
+  $firstIconSize: $euiFormControlPadding + $euiSize + $euiFormControlPadding;
+  $secondIconSize: $euiFormControlPadding + $euiSize;
+
+  @if ($compressed) {
+    $firstIconSize: $euiFormControlCompressedPadding + $euiSize + $euiFormControlCompressedPadding;
+    $secondIconSize: $euiFormControlCompressedPadding + $euiSize;
+  }
+
+  @if variable-exists(numOfIcons) == false {
+    @error '$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayoutPadding().';
+  } @else if $numOfIcons == 1 {
+    padding-#{$side}: $firstIconSize;
+  } @else if $numOfIcons == 2 {
+    padding-#{$side}: $firstIconSize + $secondIconSize;
+  } @else if $numOfIcons == 3 {
+    padding-#{$side}: $firstIconSize + ($secondIconSize * 2);
+  }
+}
+
+@mixin euiFormControlLayoutClearIcon($iconClass) {
+  $clearSize: $euiSize;
+  @include size($clearSize);
+
+  pointer-events: all;
+  background-color: lightOrDarkTheme($euiColorMediumShade, $euiColorDarkShade);
+  border-radius: $clearSize;
+  line-height: 0; // ensures the icon stays vertically centered
+
+  &:focus {
+    @include euiFocusRing;
+  }
+
+  #{$iconClass} {
+    @include size($euiSizeS);
+    fill: $euiColorEmptyShade;
+    stroke: $euiColorEmptyShade;
+    stroke-width: 2px; // increase thickness of icon at such a small size
+  }
+}
 
 @mixin euiPlaceholderPerBrowser {
   // sass-lint:disable-block no-vendor-prefixes
