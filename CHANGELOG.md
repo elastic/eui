@@ -1,7 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiCheckableCard` component, for radio buttons or checkboxes with complex child content ([#2555](https://github.com/elastic/eui/pull/2555))
-- Updated `EuiCheckbox` and `EuiCheckboxGroup` to TypeScript. ([#2555](https://github.com/elastic/eui/pull/2555))
+- Updated `EuiCheckbox` and `EuiCheckboxGroup` to TypeScript ([#2555](https://github.com/elastic/eui/pull/2555))
+
+**Bug fixes**
+
+- Fixed label wrapping of `EuiSwitch` ([#2585](https://github.com/elastic/eui/pull/2585))
+- Replaced `<p>` tag surrounding the label with a `<span>` tag in `EuiSwitch` to fix any inherited margin ([#2585](https://github.com/elastic/eui/pull/2585))
+- Add the same padding from `EuiSelectableListItem` to the heading to fix alignment ([#2585](https://github.com/elastic/eui/pull/2585))
 
 ## [`16.1.0`](https://github.com/elastic/eui/tree/v16.1.0)
 
