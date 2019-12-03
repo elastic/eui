@@ -3,6 +3,10 @@
 - Added `EuiCheckableCard` component, for radio buttons or checkboxes with complex child content ([#2555](https://github.com/elastic/eui/pull/2555))
 - Updated `EuiCheckbox` and `EuiCheckboxGroup` to TypeScript. ([#2555](https://github.com/elastic/eui/pull/2555))
 
+**Bug fixes**
+
+- Fixed `EuiSwitch` clicking on disabled label ([#2575](https://github.com/elastic/eui/pull/2575))
+
 **Breaking changes**
 
 - Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
