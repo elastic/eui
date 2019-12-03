@@ -2,6 +2,17 @@ const chalk = require('chalk');
 const puppeteer = require('puppeteer');
 const { AxePuppeteer } = require('axe-puppeteer');
 
+const docsPages = (root, page) => {
+  let links = [
+    root,
+    ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
+  ];
+
+  links = links.splice(0, 9);
+
+  return links;
+};
+
 const printResult = result =>
   process.stdout.write(`
 [${result.id}]: ${result.description}
@@ -34,12 +45,7 @@ const printResult = result =>
     }
   }
 
-  let links = [
-    root,
-    ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
-  ];
-
-  links = links.splice(0, 9);
+  const links = docsPages(root, page);
 
   for (const link of links) {
     await page.goto(link);

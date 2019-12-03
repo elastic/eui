@@ -48,6 +48,8 @@ fully-tested the code is, located at `reports/jest-coverage`.
 
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
+Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for info more info on those.
+
 ### Testing the component with Kibana
 
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
@@ -81,7 +83,7 @@ We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-s
 
 Many of our components use `rest parameters` and the `spread` operator to pass props through to an underlying DOM element. In those instances the component's TypeScript definition needs to properly include the target DOM element's props.
 
-A `Foo` component that passes `...rest` through to a `button` element would have the props interface 
+A `Foo` component that passes `...rest` through to a `button` element would have the props interface
 
 ```
 // passes extra props to a button
