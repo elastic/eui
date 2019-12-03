@@ -13,10 +13,7 @@
   display: flex;
   flex-direction: column;
   padding: $euiCardSpacing;
-  min-height: 1px; /* 2 */
-
-  // This creates a bunch of sub selectors for the beta badge
-  @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
+  min-height: 1px; /* 2 */// sass-lint:disable-line mixins-before-declarations
 
   &.euiCard-isDisabled {
     cursor: not-allowed; // duplicate property due to Chrome bug
@@ -103,6 +100,9 @@
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 }
+
+// This creates a bunch of sub selectors for the beta badge
+@include euiHasBetaBadge($selector: '.euiCard', $spacing: $euiCardSpacing);
 
 // Selectable cards don't work well without a border
 .euiCard--plain:not(.euiCard--isSelectable) {
