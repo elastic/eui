@@ -3,6 +3,10 @@
 - Added `EuiCheckableCard` component, for radio buttons or checkboxes with complex child content ([#2555](https://github.com/elastic/eui/pull/2555))
 - Updated `EuiCheckbox` and `EuiCheckboxGroup` to TypeScript. ([#2555](https://github.com/elastic/eui/pull/2555))
 
+**Bug fixes**
+
+- Fixed `EuiSwitch` clicking on disabled label ([#2575](https://github.com/elastic/eui/pull/2575))
+
 ## [`16.1.0`](https://github.com/elastic/eui/tree/v16.1.0)
 
 - Updated compressed styles for `EuiButtonGroup` to include a background color ([#2568](https://github.com/elastic/eui/pull/2568))
@@ -17,7 +21,6 @@
 
 **Bug fixes**
 
-- Fixed `EuiSwitch` clicking on disabled label ([#2575](https://github.com/elastic/eui/pull/2575))
 - Fixed `EuiDataGrid` schema detection on already defined column schemas ([#2550](https://github.com/elastic/eui/pull/2550))
 - Added `euiTextBreakWord()` to `EuiToast` header ([#2549](https://github.com/elastic/eui/pull/2549))
 - Fixed `.eui-textBreakAll` on Firefox ([#2549](https://github.com/elastic/eui/pull/2549))
