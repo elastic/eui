@@ -44,6 +44,7 @@ export default class extends Component {
           options={this.radios}
           idSelected={this.state.radioIdSelected}
           onChange={this.onChange}
+          name="radio group"
         />
 
         <EuiSpacer size="m" />

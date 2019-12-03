@@ -18,6 +18,7 @@ import { icon as empty } from './assets/empty.js';
 import { enqueueStateChange } from '../../services/react';
 
 const typeToPathMap = {
+  accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',

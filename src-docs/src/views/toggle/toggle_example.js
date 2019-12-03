@@ -40,16 +40,20 @@ export const ToggleExample = {
             <Link to="/utilities/css-utility-classes">utility classes</Link>{' '}
             like <EuiCode>.eui-displayInlineBlock</EuiCode>.
           </p>
-          <EuiCallOut title="Accessibility">
-            <p>
-              This utility is just a helper component and comes with no inherit
-              styles including no <EuiCode>:hover</EuiCode> or{' '}
-              <EuiCode>:focus</EuiCode> states. If you use this utility
-              directly, be sure to add these states. Otherwise, you may just
-              want to utilize the{' '}
-              <Link to="/navigation/button">EuiButtonToggle</Link> component.
-            </p>
-          </EuiCallOut>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <span>
+                This utility is just a helper component and comes with no
+                inherit styles including no <EuiCode>:hover</EuiCode> or{' '}
+                <EuiCode>:focus</EuiCode> states. If you use this utility
+                directly, be sure to add these states. Otherwise, you may just
+                want to utilize the{' '}
+                <Link to="/navigation/button">EuiButtonToggle</Link> component.
+              </span>
+            }
+          />
         </div>
       ),
       components: { EuiToggle },

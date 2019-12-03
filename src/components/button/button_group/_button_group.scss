@@ -92,6 +92,7 @@
 .euiButtonGroup--compressed {
   border: 1px solid $euiFormBorderColor;
   border-radius: $euiFormControlCompressedBorderRadius;
+  background-color: $euiFormBackgroundColor;
 
   .euiButtonGroup__button {
     height: $euiFormControlCompressedHeight - 2px;
