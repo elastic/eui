@@ -462,7 +462,6 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
 exports[`EuiFormRow props id is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="id"
 >
   <div
     class="euiFormRow__fieldWrapper"

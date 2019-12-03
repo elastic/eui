@@ -77,6 +77,7 @@ export class EuiFormRow extends Component {
       display,
       displayOnly,
       hasChildLabel,
+      id: propsId,
       ...rest
     } = this.props;
 
