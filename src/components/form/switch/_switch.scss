@@ -1,6 +1,6 @@
 .euiSwitch {
   position: relative;
-  display: flex;
+  display: inline-block;
   min-height: $euiSwitchHeight;
 
   .euiSwitch__label {
