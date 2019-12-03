@@ -10,6 +10,7 @@ No public interface changes since `16.2.0`.
 **Bug fixes**
 
 - Fixed `EuiSwitch` clicking on disabled label ([#2575](https://github.com/elastic/eui/pull/2575))
+- Fixed `EuiComboBox` options list closing when clicking outside the component after scrolling ([#2589](https://github.com/elastic/eui/pull/2589))
 
 ## [`16.1.0`](https://github.com/elastic/eui/tree/v16.1.0)
 
