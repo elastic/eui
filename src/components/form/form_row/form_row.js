@@ -190,7 +190,7 @@ export class EuiFormRow extends Component {
     const Element = labelType === 'legend' ? 'fieldset' : 'div';
 
     return (
-      <Element className={classes} {...rest}>
+      <Element className={classes} id={`${id}-row`} {...rest}>
         {optionalLabel}
         <div className={fieldWrapperClasses}>
           {field}
