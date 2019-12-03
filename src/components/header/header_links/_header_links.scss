@@ -20,6 +20,13 @@
 
 }
 
+.euiHeaderLinks__mobileList {
+  @include euiBreakpoint('m', 'l', 'xl') {
+    // sass-lint:disable-block no-important
+    display: none !important;
+  }
+}
+
 @include euiBreakpoint('xs', 's') {
   // sass-lint:disable-block no-important
   .euiHeaderLinks__mobile {
