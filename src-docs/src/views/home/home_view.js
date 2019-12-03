@@ -20,6 +20,7 @@ import {
   EuiText,
   EuiTitle,
   EuiToolTip,
+  EuiScreenReaderOnly,
 } from '../../../../src/components';
 
 const pkg = require('../../../../package.json');
@@ -44,7 +45,10 @@ export const HomeView = () => (
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiLink href="https://github.com/elastic/eui">
-              <EuiIcon type="logoGithub" />
+              <EuiScreenReaderOnly>
+                <span>Elastic repo on GitHub</span>
+              </EuiScreenReaderOnly>
+              <EuiIcon type="logoGithub" aria-hidden="true" />
             </EuiLink>
           </EuiFlexItem>
         </EuiFlexGroup>

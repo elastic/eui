@@ -70,17 +70,17 @@ export default () => (
 
       <EuiFlexItem>
         <EuiText className="guideSection__text">
-          <h4>The header sets the context</h4>
+          <h3>The header sets the context</h3>
           <p>
             Short and sentence-case, the header should indicate what the modal
             is about.
           </p>
-          <h4>The body is for a single task</h4>
+          <h3>The body is for a single task</h3>
           <p>
             This task should not require a lot of explanation or user
             interaction.
           </p>
-          <h4>Buttons are right-aligned</h4>
+          <h3>Buttons are right-aligned</h3>
           <p>
             The primary action is a filled button, and the secondary action is a
             link button. Labels should use strong action verbs.
