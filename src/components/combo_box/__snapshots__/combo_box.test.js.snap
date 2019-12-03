@@ -466,6 +466,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
       onCloseList={[Function]}
       onOptionClick={[Function]}
       onOptionEnterKey={[Function]}
+      onScroll={[Function]}
       optionRef={[Function]}
       options={
         Array [
