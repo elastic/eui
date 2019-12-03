@@ -158,6 +158,7 @@ export default class extends Component {
           fullWidth>
           <EuiFormRow
             label="Use a switch instead of a single checkbox"
+            hasChildLabel={false}
             fullWidth>
             <EuiSwitch
               name="switch"

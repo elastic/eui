@@ -19,7 +19,7 @@ import { EuiSwitch, EuiFormRow } from '../../../../src/components';
 
 export const GuideLocaleSelector = ({ selectedLocale, onToggleLocale }) => {
   return (
-    <EuiFormRow label="Translations for development">
+    <EuiFormRow label="Translations for development" hasChildLabel={false}>
       <EuiSwitch
         label="Activate babelfish"
         checked={selectedLocale === 'en-xa'}
