@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed `EuiSwitch` clicking on disabled label ([#2575](https://github.com/elastic/eui/pull/2575))
+- Fixed `EuiComboBox` options list closing when clicking outside the component after scrolling ([#](https://github.com/elastic/eui/pull/))
 
 ## [`16.1.0`](https://github.com/elastic/eui/tree/v16.1.0)
 
