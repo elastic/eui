@@ -1,11 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `16.2.0`.
+
+## [`16.2.0`](https://github.com/elastic/eui/tree/v16.2.0)
+
 - Added `EuiCheckableCard` component, for radio buttons or checkboxes with complex child content ([#2555](https://github.com/elastic/eui/pull/2555))
 - Updated `EuiCheckbox` and `EuiCheckboxGroup` to TypeScript. ([#2555](https://github.com/elastic/eui/pull/2555))
 
 **Bug fixes**
 
 - Fixed `EuiSwitch` clicking on disabled label ([#2575](https://github.com/elastic/eui/pull/2575))
+- Fixed `EuiComboBox` options list closing when clicking outside the component after scrolling ([#2589](https://github.com/elastic/eui/pull/2589))
 
 **Breaking changes**
 

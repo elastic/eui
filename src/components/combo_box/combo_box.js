@@ -723,6 +723,7 @@ export class EuiComboBox extends Component {
             fullWidth={fullWidth}
             rootId={this.rootId}
             onCloseList={this.closeList}
+            onScroll={() => this.searchInput.focus()}
           />
         </EuiPortal>
       );
