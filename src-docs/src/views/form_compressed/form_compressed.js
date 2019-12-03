@@ -122,7 +122,10 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow label="Switch" display="rowCompressed">
+        <EuiFormRow
+          label="Switch"
+          display="rowCompressed"
+          hasChildLabel={false}>
           <EuiSwitch
             label="Should we do this?"
             name="switch"

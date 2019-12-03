@@ -54,6 +54,7 @@ export class FilePicker extends Component {
               canReadOnly={false}
               extras={[
                 <EuiSwitch
+                  compressed
                   label={'large'}
                   checked={this.state.large}
                   onChange={e => {

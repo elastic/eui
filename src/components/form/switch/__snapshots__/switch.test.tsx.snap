@@ -40,12 +40,12 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
       </span>
     </span>
   </button>
-  <p
+  <span
     class="euiSwitch__label"
     id="generated-id"
   >
     Label
-  </p>
+  </span>
 </div>
 `;
 
@@ -91,11 +91,11 @@ exports[`EuiSwitch is rendered 1`] = `
       </span>
     </span>
   </button>
-  <p
+  <span
     class="euiSwitch__label"
     id="generated-id"
   >
     Label
-  </p>
+  </span>
 </div>
 `;
