@@ -1,5 +1,3 @@
-@import '../badge/beta_badge/mixins';
-
 // Start with a base of EuiPanel styles
 @include euiPanel($selector: 'euiCard');
 
