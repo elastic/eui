@@ -1,5 +1,5 @@
 // Export basic class & modifiers
-@include euiPanel($selector: 'euiPanel');
+@include euiPanel($selector: '.euiPanel');
 
 .euiPanel {
   @include hasBetaBadge($selector: 'euiPanel');

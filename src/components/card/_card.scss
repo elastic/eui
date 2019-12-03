@@ -1,5 +1,5 @@
 // Start with a base of EuiPanel styles
-@include euiPanel($selector: 'euiCard');
+@include euiPanel($selector: '.euiCard');
 
 /**
  * 1. Footer is always at the bottom.

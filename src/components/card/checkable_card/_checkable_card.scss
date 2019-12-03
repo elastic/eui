@@ -1,4 +1,4 @@
-@include euiPanel('euiCheckableCard');
+@include euiPanel($selector: '.euiCheckableCard');
 
 .euiCheckableCard {
   transition: border-color $euiAnimSpeedNormal ease-in;

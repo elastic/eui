@@ -31,7 +31,7 @@
     }
 
     // Make each row a Panel
-    @include euiPanel($selector: 'euiTableRow');
+    @include euiPanel($selector: '.euiTableRow');
 
     .euiTableRowCell__mobileHeader {
       // Always truncate
