@@ -10,6 +10,7 @@
 **Breaking Changes**
 
 - Moved any shared component-level Sass variables and mixins into the `global_styling` directory ([#2551](https://github.com/elastic/eui/pull/2551))
+- Rework panel mixin to require the entirety of a selector (i.e. require the '.' in addition to the string) ([#2551](https://github.com/elastic/eui/pull/2551))
 
 ## [`16.1.0`](https://github.com/elastic/eui/tree/v16.1.0)
 
