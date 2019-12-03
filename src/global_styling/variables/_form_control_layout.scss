@@ -1,9 +1,0 @@
-@import 'form';
-
-/**
- * 1. Account for inner box-shadow style border
- */
-
-$euiFormControlLayoutGroupInputHeight: $euiFormControlHeight - 2px; /* 1 */
-$euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight - 2px; /* 1 */
-$euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius / 2;

@@ -36,3 +36,8 @@ $euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 40%) !default;
 $euiFormInputGroupBorder: 1px solid shadeOrTint($euiFormInputGroupLabelBackground, 2%, 4%) !default;
 $euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3)) !default;
+
+// Control Layout
+$euiFormControlLayoutGroupInputHeight: $euiFormControlHeight - 2px; /* 1 */
+$euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight - 2px; /* 1 */
+$euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius / 2;
