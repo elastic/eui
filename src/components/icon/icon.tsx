@@ -612,20 +612,14 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       const Svg = icon;
 
       // If it's an empty icon it gets aria-hidden true
-      const isIconEmpty = icon === empty && { 'aria-hidden': true };
+      const hideIconEmpty = icon === empty && { 'aria-hidden': true };
 
-      let ariaAttribute: any;
+      let ariaLabel: any;
 
       // If no aria-label or aria-labelledby is provided the title will be default
 
-      if (this.props['aria-label']) {
-        ariaAttribute = { ...{ 'aria-label': this.props['aria-label'] } };
-      } else if (this.props['aria-labelledby']) {
-        ariaAttribute = {
-          ...{ 'aria-labelledby': this.props['aria-labelledby'] },
-        };
-      } else {
-        ariaAttribute = { ...{ 'aria-label': titleDisplayed } };
+      if (!this.props['aria-label'] && !this.props['aria-labelledby']) {
+        ariaLabel = { 'aria-label': titleDisplayed };
       }
 
       return (
@@ -637,8 +631,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           title={titleDisplayed}
           role="img"
           {...rest}
-          {...isIconEmpty}
-          {...ariaAttribute}
+          {...hideIconEmpty}
+          {...ariaLabel}
         />
       );
     }
