@@ -3,6 +3,7 @@ import React, {
   FunctionComponent,
   ReactNode,
   useState,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -49,13 +50,18 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   const [switchId] = useState(id || makeId());
   const [labelId] = useState(makeId());
 
-  const onClick = (
-    e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>
-  ) => {
-    const event = (e as unknown) as EuiSwitchEvent;
-    event.target.checked = !checked;
-    onChange(event);
-  };
+  const onClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>) => {
+      if (disabled) {
+        return;
+      }
+
+      const event = (e as unknown) as EuiSwitchEvent;
+      event.target.checked = !checked;
+      onChange(event);
+    },
+    [checked, disabled, onChange]
+  );
 
   const classes = classNames(
     'euiSwitch',
