@@ -38,6 +38,6 @@ $euiFormInputGroupBorder: 1px solid shadeOrTint($euiFormInputGroupLabelBackgroun
 $euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3)) !default;
 
 // Control Layout
-$euiFormControlLayoutGroupInputHeight: $euiFormControlHeight - 2px; /* 1 */
-$euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight - 2px; /* 1 */
-$euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius / 2;
+$euiFormControlLayoutGroupInputHeight: $euiFormControlHeight - 2px !default; /* 1 */
+$euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight - 2px !default; /* 1 */
+$euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius / 2 !default;

@@ -8,8 +8,8 @@
   // -- makes for better rounded corners
   border-top-left-radius: $euiBorderRadius - 1px;
   border-top-right-radius: $euiBorderRadius - 1px;
-
 }
+
 @mixin euiPopoverFooter {
   @include euiFontSizeS;
   padding: $euiSizeM;
