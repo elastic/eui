@@ -114,3 +114,8 @@
 
   @return $highContrastTextColor;
 }
+
+// Converting a normal hex color to RBG
+@function hexToRGB($color) {
+  @return 'rgb%28#{round(red($color))}, #{round(green($color))}, #{round(blue($color))}%29';
+}

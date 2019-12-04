@@ -45,3 +45,11 @@
     box-shadow: 0 0 0 $euiFocusRingSizeLarge $euiFocusRingColor;
   }
 }
+
+// Component specific
+
+@keyframes euiButtonActive {
+  50% {
+    transform: translateY(1px);
+  }
+}
