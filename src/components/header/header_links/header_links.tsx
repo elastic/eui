@@ -35,6 +35,10 @@ export class EuiHeaderLinks extends Component<CommonProps, State> {
     window.addEventListener('resize', this.closeMenu);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.closeMenu);
+  }
+
   render() {
     const { children, className, ...rest } = this.props;
 
