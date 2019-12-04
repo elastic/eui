@@ -2,7 +2,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  height: $euiCardGraphicHeight !important;  // sass-lint:disable-line no-important -- To override .euiButtonEmpty--xSmall
+  height: $euiCardBottomNodeHeight !important;  // sass-lint:disable-line no-important -- To override .euiButtonEmpty--xSmall
   width: 100%;
   overflow: hidden;
   // Subtract 1px from border radius since it sits inside a border-radius

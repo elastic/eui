@@ -93,7 +93,7 @@
 
   &.euiCard--isSelectable {
     position: relative;
-    padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;
+    padding-bottom: $euiCardSpacing + $euiCardBottomNodeHeight;
   }
 
   &.euiCard-isSelected {
