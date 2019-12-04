@@ -9,6 +9,8 @@ import { EuiErrorBoundary } from '../../src/components';
 
 // Guidelines
 
+import AccessibilityGuidelines from './views/guidelines/accessibility';
+
 import ButtonGuidelines from './views/guidelines/button';
 
 import ColorGuidelines from './views/guidelines/colors';
@@ -38,6 +40,8 @@ import { UtilityClassesExample } from './views/utility_classes/utility_classes_e
 import { AccessibilityExample } from './views/accessibility/accessibility_example';
 
 import { AccordionExample } from './views/accordion/accordion_example';
+
+import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
 
 import { AvatarExample } from './views/avatar/avatar_example';
 
@@ -257,6 +261,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
+      createExample(AccessibilityGuidelines),
       {
         name: 'Buttons',
         component: ButtonGuidelines,
@@ -334,6 +339,7 @@ const navigation = [
   {
     name: 'Display',
     items: [
+      AspectRatioExample,
       AvatarExample,
       BadgeExample,
       CallOutExample,

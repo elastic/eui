@@ -15,7 +15,7 @@ import {
 
 const iconHtmlWarning = () => (
   <p>
-    HTML preview disabled. Icons use SVG and are not usable usable without React
+    HTML preview disabled. Icons use SVG and are not usable without React
     unless you load the icons manually through a separate asset loader.
   </p>
 );

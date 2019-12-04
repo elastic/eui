@@ -10,14 +10,14 @@ const prettyHtml = cheerio.load('');
 
 function testIcon(props: PropsOf<EuiIcon>) {
   return () => {
-    const component = mount(<EuiIcon {...props} />);
-
+    expect.assertions(1);
     return new Promise(resolve => {
-      setTimeout(() => {
+      const onIconLoad = () => {
         component.update();
         expect(prettyHtml(component.html())).toMatchSnapshot();
         resolve();
-      }, 0);
+      };
+      const component = mount(<EuiIcon {...props} onIconLoad={onIconLoad} />);
     });
   };
 }

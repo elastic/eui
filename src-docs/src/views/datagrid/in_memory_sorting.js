@@ -84,7 +84,7 @@ export default () => {
         ? raw_data[rowIndex][columnId]
         : null;
     };
-  }, [raw_data]);
+  }, []);
 
   return (
     <EuiDataGrid

@@ -15,8 +15,10 @@ import { CommonProps, keysOf } from '../common';
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
 // to generate & git track a TS module definition for each icon component
 import { icon as empty } from './assets/empty.js';
+import { enqueueStateChange } from '../../services/react';
 
 const typeToPathMap = {
+  accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',
@@ -428,6 +430,10 @@ export type EuiIconProps = CommonProps &
      * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
      */
     size?: IconSize;
+    /**
+     * Callback when the icon has been loaded & rendered
+     */
+    onIconLoad?: () => void;
   };
 
 interface State {
@@ -500,12 +506,22 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // eslint-disable-next-line prefer-template
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
-      if (this.isMounted) {
-        this.setState({
-          icon,
-          isLoading: false,
-        });
-      }
+      enqueueStateChange(() => {
+        if (this.isMounted) {
+          this.setState(
+            {
+              icon,
+              isLoading: false,
+            },
+            () => {
+              const { onIconLoad } = this.props;
+              if (onIconLoad) {
+                onIconLoad();
+              }
+            }
+          );
+        }
+      });
     });
   };
 
@@ -516,6 +532,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       color,
       className,
       tabIndex,
+      onIconLoad,
       ...rest
     } = this.props;
 

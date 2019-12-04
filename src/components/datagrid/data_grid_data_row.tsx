@@ -74,6 +74,7 @@ const EuiDataGridDataRow: FunctionComponent<
           <EuiDataGridCell
             key={`${id}-${rowIndex}`}
             rowIndex={rowIndex}
+            visibleRowIndex={visibleRowIndex}
             colIndex={i}
             columnId={id}
             columnType={columnType}

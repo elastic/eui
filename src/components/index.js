@@ -1,5 +1,7 @@
 export { EuiAccordion } from './accordion';
 
+export { EuiAspectRatio } from './aspect_ratio';
+
 export { EuiAvatar } from './avatar';
 
 export { EuiKeyboardAccessible, EuiScreenReaderOnly } from './accessibility';
@@ -20,7 +22,7 @@ export {
 
 export { EuiCallOut } from './call_out';
 
-export { EuiCard } from './card';
+export { EuiCard, EuiCheckableCard } from './card';
 
 export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 

@@ -77,6 +77,104 @@ exports[`EuiCallOut props color warning is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiCallOut props heading h1 is rendered 1`] = `
+<div
+  class="euiCallOut euiCallOut--primary"
+>
+  <div
+    class="euiCallOutHeader"
+  >
+    <h1
+      class="euiCallOutHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCallOut props heading h2 is rendered 1`] = `
+<div
+  class="euiCallOut euiCallOut--primary"
+>
+  <div
+    class="euiCallOutHeader"
+  >
+    <h2
+      class="euiCallOutHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCallOut props heading h3 is rendered 1`] = `
+<div
+  class="euiCallOut euiCallOut--primary"
+>
+  <div
+    class="euiCallOutHeader"
+  >
+    <h3
+      class="euiCallOutHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCallOut props heading h4 is rendered 1`] = `
+<div
+  class="euiCallOut euiCallOut--primary"
+>
+  <div
+    class="euiCallOutHeader"
+  >
+    <h4
+      class="euiCallOutHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCallOut props heading h5 is rendered 1`] = `
+<div
+  class="euiCallOut euiCallOut--primary"
+>
+  <div
+    class="euiCallOutHeader"
+  >
+    <h5
+      class="euiCallOutHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCallOut props heading h6 is rendered 1`] = `
+<div
+  class="euiCallOut euiCallOut--primary"
+>
+  <div
+    class="euiCallOutHeader"
+  >
+    <h6
+      class="euiCallOutHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCallOut props heading p is rendered 1`] = `
+<div
+  class="euiCallOut euiCallOut--primary"
+>
+  <div
+    class="euiCallOutHeader"
+  >
+    <p
+      class="euiCallOutHeader__title"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiCallOut props iconType is rendered 1`] = `
 <div
   class="euiCallOut euiCallOut--primary"

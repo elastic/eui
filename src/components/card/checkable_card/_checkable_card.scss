@@ -1,0 +1,55 @@
+@import '../../panel/mixins';
+
+@include euiPanel('euiCheckableCard');
+
+.euiCheckableCard {
+  transition: border-color $euiAnimSpeedNormal ease-in;
+  overflow: hidden; // Hides background color inside panel rounded corners
+
+  &:not(.euiCheckableCard-isDisabled) {
+    &:focus-within {
+      @include euiFocusRing;
+    }
+  }
+}
+
+.euiCheckableCard-isChecked {
+  border-color: $euiColorPrimary;
+}
+
+
+
+.euiCheckableCard__row {
+  display: flex;
+  align-items: stretch;
+}
+
+.euiCheckableCard__control {
+  display: flex;
+  flex: 0 0 $euiSizeXXL;
+  justify-content: center;
+  align-items: center;
+  background-color: map-get($euiCardSelectButtonBackgrounds, 'text');
+  transition: background-color $euiAnimSpeedNormal ease-in;
+
+  .euiCheckableCard-isChecked & {
+    background-color: map-get($euiCardSelectButtonBackgrounds, 'primary');
+  }
+}
+
+.euiCheckableCard__label {
+  flex-grow: 1;
+  font-size: $euiFontSize;
+  line-height: $euiSizeL;
+  padding: $euiSizeS $euiSizeS $euiSizeS $euiSize;
+  cursor: pointer;
+}
+
+.euiCheckableCard__label-isDisabled {
+  color: $euiFormControlDisabledColor;
+  cursor: not-allowed;
+}
+
+.euiCheckableCard__children {
+  padding:  0 $euiSizeS $euiSizeS $euiSize;
+}

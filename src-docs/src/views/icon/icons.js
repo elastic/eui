@@ -21,6 +21,7 @@ import {
 } from '../../../../src/components';
 
 export const iconTypes = [
+  'accessibility',
   'alert',
   'apmTrace',
   'apps',

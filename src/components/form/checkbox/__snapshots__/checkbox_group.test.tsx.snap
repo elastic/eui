@@ -34,6 +34,23 @@ exports[`EuiCheckboxGroup (mocked checkbox) idToSelectedMap is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiCheckboxGroup (mocked checkbox) individual disabled is rendered 1`] = `
+<div>
+  <eui_checkbox
+    checked=""
+    class="euiCheckboxGroup__item"
+    disabled=""
+    id="1"
+    label="kibana"
+  />
+  <eui_checkbox
+    class="euiCheckboxGroup__item"
+    id="2"
+    label="elastic"
+  />
+</div>
+`;
+
 exports[`EuiCheckboxGroup (mocked checkbox) is rendered 1`] = `
 <div
   aria-label="aria-label"
