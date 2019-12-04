@@ -14,6 +14,8 @@ moment.defineLocale('en-xa', {
   weekdaysMin: enConfig.weekdaysMin.map(translateUsingPseudoLocale),
   weekdaysShort: enConfig.weekdaysShort.map(translateUsingPseudoLocale),
 });
+// Reset default moment locale after using `defineLocale`
+moment.locale('en');
 
 import { EuiSwitch, EuiFormRow } from '../../../../src/components';
 
