@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `16.2.0`.
+**Breaking changes**
+
+- Changed to generated `id` value for `EuiFormRow` to ensure uniqueness  ([#2588](https://github.com/elastic/eui/pull/2588))
 
 ## [`16.2.0`](https://github.com/elastic/eui/tree/v16.2.0)
 
