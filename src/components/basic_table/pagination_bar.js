@@ -23,6 +23,7 @@ export const PaginationBar = ({
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
   const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
+
   return (
     <div>
       <EuiSpacer size="m" />

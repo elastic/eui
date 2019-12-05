@@ -73,7 +73,7 @@ const github = [
 const dob = new Date(1980, 1, 1);
 
 const createUsers = countries => {
-  return times(20, index => {
+  return times(4, index => {
     return {
       id: index,
       firstName: index < 10 ? firstNames[index] : firstNames[index - 10],
