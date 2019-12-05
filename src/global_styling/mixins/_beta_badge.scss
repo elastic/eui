@@ -4,12 +4,12 @@
  * 2. Fix for IE to ensure badges are visible outside of a <button> tag
  */
 
-@mixin hasBetaBadge($selector, $spacing: $euiSize) {
-  &.#{$selector}--hasBetaBadge {
+@mixin euiHasBetaBadge($selector, $spacing: $euiSize) {
+  #{$selector}--hasBetaBadge {
     position: relative;
     overflow: visible; /* 2 */
 
-    .#{$selector}__betaBadgeWrapper {
+    #{$selector}__betaBadgeWrapper {
       position: absolute;
       top: ($euiSizeL / -2);
       left: 50%;
@@ -19,11 +19,11 @@
       max-width: calc(100% - #{($spacing * 2)});
 
       .euiToolTipAnchor,
-      .#{$selector}__betaBadge {
+      #{$selector}__betaBadge {
         width: 100%; /* 1 */
       }
 
-      .#{$selector}__betaBadge {
+      #{$selector}__betaBadge {
         overflow: hidden;
         text-overflow: ellipsis;
         background-color: $euiColorEmptyShade;

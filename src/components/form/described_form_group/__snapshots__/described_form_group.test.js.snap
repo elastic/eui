@@ -335,6 +335,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             >
               <div
                 className="euiFormRow"
+                id="generated-id-row"
               >
                 <div
                   className="euiFormRow__labelWrapper"

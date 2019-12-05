@@ -7,7 +7,7 @@
   @if variable-exists(selector) == false {
     @error 'A $selector must be provided to @mixin euiPanel().';
   } @else {
-    .#{$selector} {
+    #{$selector} {
 
       @include euiBottomShadowSmall;
       background-color: $euiColorEmptyShade;
@@ -15,11 +15,11 @@
       border-radius: $euiBorderRadius;
       flex-grow: 1;
 
-      &.#{$selector}--flexGrowZero {
+      &#{$selector}--flexGrowZero {
         flex-grow: 0;
       }
 
-      &.#{$selector}--isClickable {
+      &#{$selector}--isClickable {
         // in case of button wrapper which inherently is inline-block and no width
         display: block;
         width: 100%;
@@ -36,7 +36,7 @@
         }
       }
 
-      &.#{$selector}--shadow {
+      &#{$selector}--shadow {
         @include euiBottomShadowMedium;
 
         @if (lightness($euiTextColor) < 50) {
@@ -46,8 +46,8 @@
           border-bottom-color: $euiBorderColor;
         }
 
-        &.#{$selector}--isClickable:hover,
-        &.#{$selector}--isClickable:focus {
+        &#{$selector}--isClickable:hover,
+        &#{$selector}--isClickable:focus {
           @include euiBottomShadow($color: $euiShadowColor, $opacity: .2);
         }
       }
