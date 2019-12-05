@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `16.2.1`.
+
+## [`16.2.1`](https://github.com/elastic/eui/tree/v16.2.1)
+
 **Bug fixes**
 
 - Fixed label wrapping of `EuiSwitch` ([#2585](https://github.com/elastic/eui/pull/2585))
