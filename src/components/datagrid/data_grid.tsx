@@ -8,6 +8,7 @@ import React, {
   Fragment,
   ReactChild,
   useMemo,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -93,6 +94,10 @@ type CommonGridProps = CommonProps &
      * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
      */
     toolbarVisibility?: boolean | EuiDataGridTooBarVisibilityOptions;
+    /**
+     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     */
+    toolbarAdditionalControls?: ReactNode;
     /**
      * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
@@ -444,6 +449,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className,
     gridStyle,
     toolbarVisibility = true,
+    toolbarAdditionalControls,
     pagination,
     sorting,
     inMemory,
@@ -564,6 +570,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       {checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showSortSelector')
         ? columnSorting
         : null}
+      {toolbarAdditionalControls ? toolbarAdditionalControls : null}
     </Fragment>
   );
 
