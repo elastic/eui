@@ -95,7 +95,7 @@ type CommonGridProps = CommonProps &
      */
     toolbarVisibility?: boolean | EuiDataGridTooBarVisibilityOptions;
     /**
-     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     * Will place any passed node into the toolbar in front of the fullscreen button. Recommend using EuiButtonEmpty with the props shown in the examples.
      */
     toolbarAdditionalControls?: ReactNode;
     /**
