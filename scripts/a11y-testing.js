@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const puppeteer = require('puppeteer');
 const { AxePuppeteer } = require('axe-puppeteer');
 
-const docsPages = (root, page) => {
+const docsPages = async (root, page) => {
   let links = [
     root,
     ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
@@ -14,12 +14,10 @@ const docsPages = (root, page) => {
 };
 
 const printResult = result =>
-  process.stdout.write(`
-[${result.id}]: ${result.description}
+  console.log(`[${result.id}]: ${result.description}
   Help: ${chalk.blue(result.helpUrl)}
   Elements:
-    - ${result.nodes.map(node => node.target).join('\n    - ')}
-`);
+    - ${result.nodes.map(node => node.target).join('\n    - ')}`);
 
 (async () => {
   let totalViolationsCount = 0;
@@ -45,7 +43,7 @@ const printResult = result =>
     }
   }
 
-  const links = docsPages(root, page);
+  const links = await docsPages(root, page);
 
   for (const link of links) {
     await page.goto(link);
@@ -59,10 +57,7 @@ const printResult = result =>
       totalViolationsCount += violations.length;
 
       const pageName = link.length > 24 ? link.substr(2) : 'the home page';
-      process.stdout.write(
-        chalk.red(`
-Errors on ${pageName}`)
-      );
+      console.log(chalk.red(`Errors on ${pageName}`));
     }
 
     violations.forEach(result => {
@@ -78,19 +73,13 @@ Errors on ${pageName}`)
       `${totalViolationsCount} accessibility errors`
     );
 
-    process.stdout.write(`
-${errorsCount}
+    console.log(`${errorsCount}
 
 Install axe for Chrome or Firefox to debug:
 Chrome: https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdoppojpmngadmnindnejefpokejbdd
-Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/
-
-`);
+Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
     process.exit(1);
   } else {
-    process.stdout.write(
-      chalk.green(`
-axe found no accessability errors!`)
-    );
+    console.log(chalk.green('axe found no accessability errors!'));
   }
 })();
