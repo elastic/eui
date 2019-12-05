@@ -5,6 +5,7 @@
 - Moved any shared component-level Sass variables and mixins into the `global_styling` directory ([#2551](https://github.com/elastic/eui/pull/2551))
 - Reworked `euiPanel()` mixin to require the entirety of a selector (i.e. require the '.' in addition to the string) ([#2551](https://github.com/elastic/eui/pull/2551))
 - Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
+- Changed to generated `id` value for `EuiFormRow` to ensure uniqueness  ([#2588](https://github.com/elastic/eui/pull/2588))
 
 ## [`16.2.1`](https://github.com/elastic/eui/tree/v16.2.1)
 
