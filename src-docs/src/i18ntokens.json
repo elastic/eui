@@ -1424,6 +1424,86 @@
     "filepath": "src/components/link/link.tsx"
   },
   {
+    "token": "euiMarkdownEditor.boldStyles",
+    "defString": "Bold and italic styles",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 136,
+        "column": 16
+      },
+      "end": {
+        "line": 138,
+        "column": 51
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor.tsx"
+  },
+  {
+    "token": "euiMarkdownEditor.quoteStyles",
+    "defString": "Quote, code and link styles",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 155,
+        "column": 16
+      },
+      "end": {
+        "line": 157,
+        "column": 56
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor.tsx"
+  },
+  {
+    "token": "euiMarkdownEditor.listStyles",
+    "defString": "Unordered and ordered list styles",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 174,
+        "column": 16
+      },
+      "end": {
+        "line": 176,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor.tsx"
+  },
+  {
+    "token": "euiMarkdownEditor.edit",
+    "defString": "Edit",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 202,
+        "column": 20
+      },
+      "end": {
+        "line": 202,
+        "column": 77
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor.tsx"
+  },
+  {
+    "token": "euiMarkdownEditor.previewMarkdown",
+    "defString": "Preview markdown",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 204,
+        "column": 20
+      },
+      "end": {
+        "line": 207,
+        "column": 22
+      }
+    },
+    "filepath": "src/components/markdown_editor/markdown_editor.tsx"
+  },
+  {
     "token": "euiModal.closeModal",
     "defString": "Closes this modal window",
     "highlighting": "string",
