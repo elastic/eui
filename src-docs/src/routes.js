@@ -232,6 +232,7 @@ const createExample = example => {
   }
 
   const { title, intro, sections, beta } = example;
+
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -245,9 +246,11 @@ const createExample = example => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
-        {renderedSections}
-      </GuidePage>
+      <React.Suspense fallback={<h1>Loading...</h1>}>
+        <GuidePage title={title} intro={intro} isBeta={beta}>
+          {renderedSections}
+        </GuidePage>
+      </React.Suspense>
     </EuiErrorBoundary>
   );
 

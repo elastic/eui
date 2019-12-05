@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 import {
   EuiFieldSearch,
@@ -40,7 +40,7 @@ function scrollToSelector(selector, attempts = 5) {
   }
 }
 
-export class GuidePageChrome extends Component {
+class GuidePageChrome extends Component {
   constructor(props) {
     super(props);
 
@@ -104,6 +104,12 @@ export class GuidePageChrome extends Component {
         this.scrollNavSectionIntoView
       );
     }, 0);
+  };
+
+  goToPage = href => {
+    console.log('going to:', href);
+
+    this.props.router.push(href);
   };
 
   onButtonClick() {
@@ -263,8 +269,10 @@ export class GuidePageChrome extends Component {
         return {
           id: `${section.type}-${path}`,
           name: visibleName,
-          href,
-          onClick: this.onClickRoute.bind(this),
+          // href,
+          onClick: () => {
+            this.goToPage(`${href}`);
+          },
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item === this.props.currentRoute,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
@@ -282,11 +290,15 @@ export class GuidePageChrome extends Component {
       });
     });
 
+    console.log('sideNavSections', sideNavSections);
+
     return sideNavSections;
   };
 
   render() {
     const sideNav = this.renderSideNav(this.props.navigation);
+
+    console.log('this.props', this.props);
 
     let sideNavContent;
 
@@ -329,6 +341,8 @@ export class GuidePageChrome extends Component {
     );
   }
 }
+
+export default withRouter(GuidePageChrome);
 
 GuidePageChrome.propTypes = {
   currentRoute: PropTypes.object.isRequired,
