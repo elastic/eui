@@ -1,6 +1,7 @@
 .euiSwitch {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: flex-start;
   min-height: $euiSwitchHeight;
 
   .euiSwitch__label {
@@ -13,6 +14,7 @@
   }
 
   .euiSwitch__button {
+    flex-shrink: 0; // ensures the button doesn't lose width because of a long label
     line-height: 0; // ensures button takes height of switch inside
 
     &:focus .euiSwitch__thumb {
