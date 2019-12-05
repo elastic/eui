@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `16.2.1`.
+**Breaking changes**
+
+- Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
 
 ## [`16.2.1`](https://github.com/elastic/eui/tree/v16.2.1)
 
@@ -12,10 +14,6 @@ No public interface changes since `16.2.1`.
 - Added exports for `EuiCheckboxType`, `EuiCheckboxGroupOption`, and `EuiCheckboxGroupIdToSelectedMap` types ([#2593](https://github.com/elastic/eui/pull/2593))
 - Fixed `.euiHeaderLinks__mobileList` in `EuiHeaderLinks` to only display it on mobile ([#2590](https://github.com/elastic/eui/pull/#2590))
 - Fixed `EuiAccordion` icon rotation when it is a child of another accordion so it doesn't inherit the rotation state of the parent ([#2595](https://github.com/elastic/eui/pull/#2595))
-
-**Breaking changes**
-
-- Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
 
 ## [`16.2.0`](https://github.com/elastic/eui/tree/v16.2.0)
 
