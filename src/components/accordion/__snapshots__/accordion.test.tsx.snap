@@ -97,17 +97,17 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
           className="euiAccordion__iconWrapper"
         >
           <EuiIcon
-            className="euiAccordion__icon"
+            className="euiAccordion__icon euiAccordion__icon-isOpen"
             size="m"
             type="arrowRight"
           >
             <EuiIconEmpty
-              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
               focusable="false"
               style={null}
             >
               <svg
-                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
                 focusable="false"
                 height={16}
                 style={null}
@@ -344,7 +344,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         class="euiAccordion__iconWrapper"
       >
         <svg
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
           focusable="false"
           height="16"
           viewBox="0 0 16 16"
