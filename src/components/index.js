@@ -175,6 +175,8 @@ export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
 
+export { EuiMarkdownEditor } from './markdown_editor';
+
 export {
   EUI_MODAL_CANCEL_BUTTON,
   EUI_MODAL_CONFIRM_BUTTON,

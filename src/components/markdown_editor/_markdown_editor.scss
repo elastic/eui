@@ -1,0 +1,40 @@
+.euiMarkdownEditor__actionBar {
+  background: $euiColorEmptyShade;
+  border: $euiBorderThin;
+  border-color: $euiColorLightShade;
+  border-bottom: none;
+  padding: 0 ($euiSizeS + $euiSizeXS);
+}
+
+.euiMarkdownEditor__actionBarItems {
+  padding: $euiSizeS 0;
+}
+
+.euiMarkdownEditor__previewToggleButton {
+  width: 150px;
+}
+
+.euiMarkdownEditor__previewContainer {
+  border: $euiBorderThin;
+  max-height: 150px;
+  overflow-y: auto;
+  @include euiScrollBar;
+  padding: $euiSizeM;
+}
+
+// Overrides for styles in the "preview" pane
+
+.euiMarkdownEditor__markdownWrapper .euiMarkdownEditor__displayText {
+  blockquote {
+    @include euiFont;
+    border-left: $euiBorderThick;
+    color: $euiColorDarkShade;
+    font-style: normal;
+    padding: 0 $euiSize;
+    text-align: left;
+
+    &::before, &::after {
+      display: none;
+    }
+  }
+}
