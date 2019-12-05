@@ -143,9 +143,11 @@ export class EuiAccordion extends Component<
 
     const buttonClasses = classNames('euiAccordion__button', buttonClassName);
 
-    const icon = (
-      <EuiIcon className="euiAccordion__icon" type="arrowRight" size="m" />
-    );
+    const iconClasses = classNames('euiAccordion__icon', {
+      'euiAccordion__icon-isOpen': this.state.isOpen,
+    });
+
+    const icon = <EuiIcon className={iconClasses} type="arrowRight" size="m" />;
 
     let optionalAction = null;
 
