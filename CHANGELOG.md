@@ -7,6 +7,10 @@
 - Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
 - Changed to generated `id` value for `EuiFormRow` to ensure uniqueness  ([#2588](https://github.com/elastic/eui/pull/2588))
 
+**Bug fixes**
+
+- Fixed pagination in `EuiBasicTable` to display it only when there is enough rows of data ([#2598](https://github.com/elastic/eui/pull/#2598))
+
 ## [`16.2.1`](https://github.com/elastic/eui/tree/v16.2.1)
 
 **Bug fixes**
