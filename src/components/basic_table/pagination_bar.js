@@ -23,10 +23,9 @@ export const PaginationBar = ({
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
   const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
-
-  return (
-    <div>
-      <EuiSpacer size="m" />
+  let paginationElement;
+  if (pagination.totalItemCount > Math.min(...pageSizeOptions)) {
+    paginationElement = (
       <EuiTablePagination
         activePage={pagination.pageIndex}
         hidePerPageOptions={pagination.hidePerPageOptions}
@@ -36,6 +35,13 @@ export const PaginationBar = ({
         onChangeItemsPerPage={onPageSizeChange}
         onChangePage={onPageChange}
       />
+    );
+  }
+
+  return (
+    <div>
+      <EuiSpacer size="m" />
+      {paginationElement}
     </div>
   );
 };

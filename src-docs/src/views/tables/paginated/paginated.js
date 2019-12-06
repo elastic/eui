@@ -43,7 +43,7 @@ export class Table extends Component {
 
     this.state = {
       pageIndex: 0,
-      pageSize: 3,
+      pageSize: 5,
       showPerPageOptions: true,
     };
   }
@@ -73,8 +73,6 @@ export class Table extends Component {
       pageIndex,
       pageSize
     );
-
-    console.log(store.findUsers(pageIndex, pageSize), 'hi');
 
     const columns = [
       {
