@@ -3,6 +3,8 @@
 **Bug fixes**
 
 - Fixed UX/focus bug in `EuiDataGrid` when using keyboard shortcuts to paginate ([#2602](https://github.com/elastic/eui/pull/2602))
+- Hide `paginationBar` in `EuiBasicTable` when there is no data ([#2598](https://github.com/elastic/eui/pull/#2598))
+- Display `EuiPagination` in `EuiBasicTable` when there is only 1 page ([#2598](https://github.com/elastic/eui/pull/#2598))
 
 ## [`17.0.0`](https://github.com/elastic/eui/tree/v17.0.0)
 
@@ -12,10 +14,6 @@
 - Reworked `euiPanel()` mixin to require the entirety of a selector (i.e. require the '.' in addition to the string) ([#2551](https://github.com/elastic/eui/pull/2551))
 - Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
 - Changed to generated `id` value for `EuiFormRow` to ensure uniqueness  ([#2588](https://github.com/elastic/eui/pull/2588))
-
-**Bug fixes**
-
-- Hide `paginationBar` in `EuiBasicTable` when there is no data ([#2598](https://github.com/elastic/eui/pull/#2598))
 
 ## [`16.2.1`](https://github.com/elastic/eui/tree/v16.2.1)
 
