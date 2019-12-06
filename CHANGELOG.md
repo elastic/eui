@@ -1,5 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed UX/focus bug in `EuiDataGrid` when using keyboard shortcuts to paginate ([#2602](https://github.com/elastic/eui/pull/2602))
+
+## [`17.0.0`](https://github.com/elastic/eui/tree/v17.0.0)
+
 **Breaking changes**
 
 - Moved any shared component-level Sass variables and mixins into the `global_styling` directory ([#2551](https://github.com/elastic/eui/pull/2551))
