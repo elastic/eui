@@ -91,13 +91,9 @@ type CommonGridProps = CommonProps &
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
      */
     toolbarVisibility?: boolean | EuiDataGridTooBarVisibilityOptions;
-    /**
-     * Will place any passed node into the toolbar in front of the fullscreen button. Recommend using EuiButtonEmpty with the props shown in the examples.
-     */
-    toolbarAdditionalControls?: ReactNode;
     /**
      * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
@@ -449,7 +445,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className,
     gridStyle,
     toolbarVisibility = true,
-    toolbarAdditionalControls,
     pagination,
     sorting,
     inMemory,
@@ -537,7 +532,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   function checkOrDefaultToolBarDiplayOptions(
     arg: EuiDataGridProps['toolbarVisibility'],
     option: keyof EuiDataGridTooBarVisibilityOptions
-  ): boolean {
+  ): boolean | ReactNode {
     if (arg === undefined) {
       return true;
     } else if (typeof arg === 'boolean') {
@@ -570,7 +565,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       {checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showSortSelector')
         ? columnSorting
         : null}
-      {toolbarAdditionalControls ? toolbarAdditionalControls : null}
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
+        'additionalControls'
+      ) && typeof toolbarVisibility !== 'boolean'
+        ? toolbarVisibility.additionalControls
+        : null}
     </Fragment>
   );
 

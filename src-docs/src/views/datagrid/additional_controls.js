@@ -87,26 +87,28 @@ export default class DataGridContainer extends Component {
           onChangeItemsPerPage: this.setPageSize,
           onChangePage: this.setPageIndex,
         }}
-        toolbarAdditionalControls={
-          <Fragment>
-            <EuiButtonEmpty
-              size="xs"
-              iconType="bell"
-              color="primary"
-              className="euiDataGrid__controlBtn"
-              onClick={() => alert('You clicked me! Hugs.')}>
-              New button
-            </EuiButtonEmpty>
-            <EuiButtonEmpty
-              size="xs"
-              iconType="branch"
-              color="danger"
-              className="euiDataGrid__controlBtn"
-              onClick={() => alert('You clicked me! Hugs.')}>
-              Another button
-            </EuiButtonEmpty>
-          </Fragment>
-        }
+        toolbarVisibility={{
+          additionalControls: (
+            <Fragment>
+              <EuiButtonEmpty
+                size="xs"
+                iconType="bell"
+                color="primary"
+                className="euiDataGrid__controlBtn"
+                onClick={() => alert('You clicked me! Hugs.')}>
+                New button
+              </EuiButtonEmpty>
+              <EuiButtonEmpty
+                size="xs"
+                iconType="branch"
+                color="danger"
+                className="euiDataGrid__controlBtn"
+                onClick={() => alert('You clicked me! Hugs.')}>
+                Another button
+              </EuiButtonEmpty>
+            </Fragment>
+          ),
+        }}
       />
     );
   }

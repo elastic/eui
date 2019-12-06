@@ -627,7 +627,7 @@ Array [
           renderCellValue={({ rowIndex, columnId }) =>
             `${rowIndex}, ${columnId}`
           }
-          toolbarAdditionalControls={<button>Button</button>}
+          toolbarVisibility={{ additionalControls: <button>Button</button> }}
         />
       );
 
