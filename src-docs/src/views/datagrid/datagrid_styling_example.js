@@ -27,6 +27,26 @@ const gridSnippet = `<EuiDataGrid
     showStyleSelector: false
     showSortSelector: false
     showFullScreenSelector: false
+    additionalControls: (
+      <Fragment>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="bell"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          New button
+        </EuiButtonEmpty>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="branch"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          Another button
+        </EuiButtonEmpty>
+      </Fragment>
+    )
   }}
   // Or as a boolean to turn everything off.
   toolbarVisibility={false}
@@ -45,27 +65,29 @@ const gridSnippet = `<EuiDataGrid
 
 const controlsSnippet = `<EuiDataGrid
   {...usualGridProps}
-  toolbarAdditionalControls={
+  toolbarVisibility={{
     // Use of a fragment for multiple items will insure proper margins
-    <Fragment>
-      <EuiButtonEmpty
-        size="xs"
-        iconType="bell"
-        color="text"
-        className="euiDataGrid__controlBtn"
-        onClick={() => alert('You clicked me! Hugs.')}>
-        New button
-      </EuiButtonEmpty>
-      <EuiButtonEmpty
-        size="xs"
-        iconType="branch"
-        color="text"
-        className="euiDataGrid__controlBtn"
-        onClick={() => alert('You clicked me! Hugs.')}>
-        Another button
-      </EuiButtonEmpty>
-    </Fragment>
-  }
+    additionalControls: (
+      <Fragment>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="bell"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          New button
+        </EuiButtonEmpty>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="branch"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          Another button
+        </EuiButtonEmpty>
+      </Fragment>
+    )
+  }}
 />
 `;
 
