@@ -173,7 +173,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
     </EuiI18n>
   );
 
-  if (pages.length > 1) {
+  if (pages.length > 0) {
     const selectablePages = pages;
     if (compressed) {
       return (

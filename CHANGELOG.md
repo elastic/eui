@@ -9,7 +9,7 @@
 
 **Bug fixes**
 
-- Fixed pagination in `EuiBasicTable` to display it only when there is enough rows of data ([#2598](https://github.com/elastic/eui/pull/#2598))
+- Hide `paginationBar` in `EuiBasicTable` when there is no data ([#2598](https://github.com/elastic/eui/pull/#2598))
 
 ## [`16.2.1`](https://github.com/elastic/eui/tree/v16.2.1)
 
