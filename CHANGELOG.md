@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.0.0`.
+**Bug fixes**
+
+- Fixed UX/focus bug in `EuiDataGrid` when using keyboard shortcuts to paginate ([#2602](https://github.com/elastic/eui/pull/2602))
 
 ## [`17.0.0`](https://github.com/elastic/eui/tree/v17.0.0)
 
