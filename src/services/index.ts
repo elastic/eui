@@ -56,8 +56,10 @@ export { toInitials } from './string';
 
 export {
   PropertySortType,
+  PropertySort,
   SortDirectionType,
   SortDirection,
+  Direction,
   SortableProperties,
   Comparators,
 } from './sort';

@@ -137,7 +137,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       tabIndex={isAriaHidden ? -1 : undefined}
       disabled={isDisabled}
       className={classes}
-      type={type}
+      type={type as ButtonHTMLAttributes<HTMLButtonElement>['type']}
       ref={buttonRef as Ref<HTMLButtonElement>}
       {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
       {buttonIcon}

@@ -56,10 +56,12 @@ exports[`EuiControlBar is rendered 1`] = `
       class="euiControlBar__divider"
     />
     <svg
+      aria-hidden="true"
       aria-label="Sample Icon"
       class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
@@ -190,10 +192,12 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <svg
+                aria-hidden="true"
                 aria-label="Sample Icon"
                 class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -316,16 +320,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
             type="alert"
           >
             <EuiIconEmpty
+              aria-hidden={true}
               aria-label="Sample Icon"
               className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
               focusable="false"
+              role="img"
               style={null}
+              title=""
             >
               <svg
+                aria-hidden={true}
                 aria-label="Sample Icon"
                 className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height={16}
+                role="img"
                 style={null}
                 viewBox="0 0 16 16"
                 width={16}
@@ -466,10 +475,12 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <svg
+                aria-hidden="true"
                 aria-label="Sample Icon"
                 class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -592,16 +603,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
             type="alert"
           >
             <EuiIconEmpty
+              aria-hidden={true}
               aria-label="Sample Icon"
               className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
               focusable="false"
+              role="img"
               style={null}
+              title=""
             >
               <svg
+                aria-hidden={true}
                 aria-label="Sample Icon"
                 className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height={16}
+                role="img"
                 style={null}
                 viewBox="0 0 16 16"
                 width={16}
@@ -741,10 +757,12 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <svg
+                aria-hidden="true"
                 aria-label="Sample Icon"
                 class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -867,16 +885,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
             type="alert"
           >
             <EuiIconEmpty
+              aria-hidden={true}
               aria-label="Sample Icon"
               className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
               focusable="false"
+              role="img"
               style={null}
+              title=""
             >
               <svg
+                aria-hidden={true}
                 aria-label="Sample Icon"
                 className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height={16}
+                role="img"
                 style={null}
                 viewBox="0 0 16 16"
                 width={16}
@@ -1064,16 +1087,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
         type="alert"
       >
         <EuiIconEmpty
+          aria-hidden={true}
           aria-label="Sample Icon"
           className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
           focusable="false"
+          role="img"
           style={null}
+          title=""
         >
           <svg
+            aria-hidden={true}
             aria-label="Sample Icon"
             className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
             focusable="false"
             height={16}
+            role="img"
             style={null}
             viewBox="0 0 16 16"
             width={16}
@@ -1211,10 +1239,12 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <svg
+                aria-hidden="true"
                 aria-label="Sample Icon"
                 class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1337,16 +1367,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
             type="alert"
           >
             <EuiIconEmpty
+              aria-hidden={true}
               aria-label="Sample Icon"
               className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
               focusable="false"
+              role="img"
               style={null}
+              title=""
             >
               <svg
+                aria-hidden={true}
                 aria-label="Sample Icon"
                 className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height={16}
+                role="img"
                 style={null}
                 viewBox="0 0 16 16"
                 width={16}
@@ -1486,10 +1521,12 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <svg
+                aria-hidden="true"
                 aria-label="Sample Icon"
                 class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1617,16 +1654,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
             type="alert"
           >
             <EuiIconEmpty
+              aria-hidden={true}
               aria-label="Sample Icon"
               className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
               focusable="false"
+              role="img"
               style={null}
+              title=""
             >
               <svg
+                aria-hidden={true}
                 aria-label="Sample Icon"
                 className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height={16}
+                role="img"
                 style={null}
                 viewBox="0 0 16 16"
                 width={16}
@@ -1771,10 +1813,12 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <svg
+                aria-hidden="true"
                 aria-label="Sample Icon"
                 class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1897,16 +1941,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
             type="alert"
           >
             <EuiIconEmpty
+              aria-hidden={true}
               aria-label="Sample Icon"
               className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
               focusable="false"
+              role="img"
               style={null}
+              title=""
             >
               <svg
+                aria-hidden={true}
                 aria-label="Sample Icon"
                 className="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoading euiControlBar__icon"
                 focusable="false"
                 height={16}
+                role="img"
                 style={null}
                 viewBox="0 0 16 16"
                 width={16}
