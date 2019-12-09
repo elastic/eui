@@ -1,7 +1,6 @@
 .euiSelectableListItem {
   @include euiFontSizeS;
-
-  padding: $euiSizeXS $euiSizeM;
+  padding: $euiSelectableListItemPadding;
   display: block; // Necessary to make sure it doesn't force the whole popover to be too wide
   width: 100%;
   text-align: left;

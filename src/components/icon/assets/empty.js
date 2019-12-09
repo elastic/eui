@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconEmpty = props => (
+const EuiIconEmpty = ({ title, ...props }) => (
   <svg
     width={16}
     height={16}

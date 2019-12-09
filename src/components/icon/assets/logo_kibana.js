@@ -1,17 +1,18 @@
 import React from 'react';
 
-const EuiIconLogoKibana = props => (
+const EuiIconLogoKibana = ({ title, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
+    <title>{title}</title>
     <g fill="none" fillRule="evenodd">
       <path fill="#F04E98" d="M4 0v28.789L28.935.017z" />
       <path
         className="euiIcon__fillNegative"
-        d="M4 12v16.789l11.906-13.738A24.721 24.721 0 0 0 4 12"
+        d="M4 12v16.789l11.906-13.738A24.721 24.721 0 004 12"
       />
       <path
         fill="#00BFB3"

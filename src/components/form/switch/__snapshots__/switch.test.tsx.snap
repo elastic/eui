@@ -22,17 +22,23 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
         class="euiSwitch__track"
       >
         <svg
+          aria-hidden="true"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
         />
         <svg
+          aria-hidden="true"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon euiSwitch__icon--checked"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
@@ -40,12 +46,12 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
       </span>
     </span>
   </button>
-  <p
+  <span
     class="euiSwitch__label"
     id="generated-id"
   >
     Label
-  </p>
+  </span>
 </div>
 `;
 
@@ -73,17 +79,23 @@ exports[`EuiSwitch is rendered 1`] = `
         class="euiSwitch__track"
       >
         <svg
+          aria-hidden="true"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
         />
         <svg
+          aria-hidden="true"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiSwitch__icon euiSwitch__icon--checked"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
@@ -91,11 +103,11 @@ exports[`EuiSwitch is rendered 1`] = `
       </span>
     </span>
   </button>
-  <p
+  <span
     class="euiSwitch__label"
     id="generated-id"
   >
     Label
-  </p>
+  </span>
 </div>
 `;

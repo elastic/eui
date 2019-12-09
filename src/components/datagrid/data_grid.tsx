@@ -290,7 +290,7 @@ function createKeyDownHandler(
   focusedCell: [number, number],
   headerIsInteractive: boolean,
   setFocusedCell: (focusedCell: [number, number]) => void,
-  updateFocus: (focusedCell: [number, number]) => void
+  updateFocus: Function
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
     const colCount = visibleColumns.length - 1;
@@ -340,7 +340,7 @@ function createKeyDownHandler(
               ? focusedCell[1]
               : newPageRowCount - 1;
           setFocusedCell([focusedCell[0], rowIndex]);
-          updateFocus([focusedCell[0], rowIndex]);
+          updateFocus();
         }
       }
     } else if (keyCode === keyCodes.PAGE_UP) {
@@ -349,7 +349,7 @@ function createKeyDownHandler(
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
           props.pagination.onChangePage(pageIndex - 1);
-          updateFocus(focusedCell);
+          updateFocus();
         }
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
@@ -365,6 +365,32 @@ function createKeyDownHandler(
       event.preventDefault();
       setFocusedCell([0, y]);
     }
+  };
+}
+
+function useAfterRender(fn: Function): Function {
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [needsExecution, setNeedsExecution] = useState(false);
+
+  // first useEffect waits for the parent & children to render & flush to dom
+  useEffect(() => {
+    if (isSubscribed) {
+      setIsSubscribed(false);
+      setNeedsExecution(true);
+    }
+  }, [isSubscribed, setIsSubscribed, setNeedsExecution]);
+
+  // second useEffect allows for a new `fn` to have been created
+  // with any state updates before being called
+  useEffect(() => {
+    if (needsExecution) {
+      setNeedsExecution(false);
+      fn();
+    }
+  }, [needsExecution, setNeedsExecution, fn]);
+
+  return () => {
+    setIsSubscribed(true);
   };
 }
 
@@ -612,29 +638,37 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     </EuiI18n>
   );
 
-  const [cellsUpdateFocus] = useState<Map<string, Function>>(new Map());
+  const [cellsUpdateFocus, setCellsUpdateFocus] = useState<
+    Map<string, Function>
+  >(new Map());
 
-  const updateFocus = (focusedCell: [number, number]) => {
-    const key = `${focusedCell[0]}-${focusedCell[1]}`;
-    if (cellsUpdateFocus.has(key)) {
-      requestAnimationFrame(() => {
+  const focusAfterRender = useAfterRender(() => {
+    if (focusedCell) {
+      const key = `${focusedCell[0]}-${focusedCell[1]}`;
+
+      if (cellsUpdateFocus.has(key)) {
         cellsUpdateFocus.get(key)!();
-      });
+      }
     }
-  };
+  });
 
   const datagridContext = {
     onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
       if (pagination) {
         const key = `${cell[0]}-${cell[1]}`;
 
-        // this intentionally and purposefully mutates the existing `cellsUpdateFocus` object as the
-        // value/state of `cellsUpdateFocus` must be up-to-date when `updateFocus`'s requestAnimationFrame fires
-        // there is likely a better pattern to use, but this is fine for now as the scope is known & limited
-        cellsUpdateFocus.set(key, updateFocus);
+        setCellsUpdateFocus(cellsUpdateFocus => {
+          const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
+          nextCellsUpdateFocus.set(key, updateFocus);
+          return nextCellsUpdateFocus;
+        });
 
         return () => {
-          cellsUpdateFocus.delete(key);
+          setCellsUpdateFocus(cellsUpdateFocus => {
+            const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
+            nextCellsUpdateFocus.delete(key);
+            return nextCellsUpdateFocus;
+          });
         };
       }
     },
@@ -669,7 +703,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   realizedFocusedCell,
                   headerIsInteractive,
                   setFocusedCell,
-                  updateFocus
+                  focusAfterRender
                 )}
                 className="euiDataGrid__verticalScroll"
                 ref={resizeRef}

@@ -47,7 +47,10 @@ export default class extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
         initialFocus="[id=asdf2]">
-        <EuiFormRow label="Generate a public snapshot?" id="asdf">
+        <EuiFormRow
+          label="Generate a public snapshot?"
+          id="asdf"
+          hasChildLabel={false}>
           <EuiSwitch
             name="switch"
             label="Snapshot data"

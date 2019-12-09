@@ -1,11 +1,3 @@
-// Colors
-$euiFocusRingColor: rgba($euiColorPrimary, .3);
-$euiFocusRingAnimStartColor: rgba($euiColorPrimary, 0);
-
-// Sizing
-$euiFocusRingSize: 2px;
-$euiFocusRingSizeLarge: 4px;
-
 @mixin euiFocusRing($size: 'small') {
   @if $size == 'large' {
     // It's always OK to use the focus animation. This will take precendence over times we turn it off individually like EuiButtonEmpty
