@@ -2,12 +2,34 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiInMemoryTable } from './in_memory_table';
+import {
+  EuiInMemoryTable,
+  EuiInMemoryTableProps,
+  FilterConfig,
+} from './in_memory_table';
 import { ENTER } from '../../services/key_codes';
+import { SortDirection } from '../../services';
+
+interface BasicItem {
+  id: number | string;
+  name: string;
+}
+
+interface StateItem {
+  active: boolean;
+  name: string;
+}
+
+interface ComplexItem {
+  active: boolean;
+  complex: {
+    name: string;
+  };
+}
 
 describe('EuiInMemoryTable', () => {
   test('empty array', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [],
       columns: [
@@ -24,7 +46,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with message', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [],
       columns: [
@@ -42,7 +64,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with message and loading', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [],
       columns: [
@@ -61,7 +83,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with executeQueryOptions', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [],
       columns: [
@@ -81,7 +103,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with items', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -102,7 +124,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with items and expanded item', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -127,7 +149,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with items and message - expecting to show the items', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       message: 'show me!',
       items: [
@@ -149,7 +171,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -173,7 +195,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination and default page size and index', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -199,7 +221,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination, default page size and error', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [{ id: '1', name: 'name1' }],
       error: 'ouch!',
@@ -221,7 +243,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination, hiding the per page options', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -246,7 +268,7 @@ describe('EuiInMemoryTable', () => {
 
   describe('sorting', () => {
     test('with field sorting (off by default)', () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: '3', name: 'name3' },
@@ -273,7 +295,7 @@ describe('EuiInMemoryTable', () => {
     });
 
     test('with field sorting (on by default)', () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: '3', name: 'name3' },
@@ -291,7 +313,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'name',
-            direction: 'asc',
+            direction: SortDirection.ASC,
           },
         },
       };
@@ -305,7 +327,7 @@ describe('EuiInMemoryTable', () => {
     });
 
     test('with name sorting', () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: '3', name: 'name3' },
@@ -323,7 +345,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'Name',
-            direction: 'desc',
+            direction: SortDirection.DESC,
           },
         },
       };
@@ -337,7 +359,7 @@ describe('EuiInMemoryTable', () => {
     });
 
     test('verify field sorting precedes name sorting', () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: '1', name: 'name3' },
@@ -361,7 +383,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'name',
-            direction: 'desc',
+            direction: SortDirection.DESC,
           },
         },
       };
@@ -376,7 +398,7 @@ describe('EuiInMemoryTable', () => {
     });
 
     test('verify an invalid sort field does not blow everything up', () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: '3', name: 'name3' },
@@ -394,7 +416,7 @@ describe('EuiInMemoryTable', () => {
         sorting: {
           sort: {
             field: 'something_nonexistant',
-            direction: 'asc',
+            direction: SortDirection.ASC,
           },
         },
       };
@@ -414,7 +436,7 @@ describe('EuiInMemoryTable', () => {
     // copy the array to ensure the `items` prop doesn't mutate
     const itemsProp = items.slice(0);
 
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: itemsProp,
       columns: [
@@ -428,7 +450,7 @@ describe('EuiInMemoryTable', () => {
       sorting: {
         sort: {
           field: 'name',
-          direction: 'desc',
+          direction: SortDirection.DESC,
         },
       },
     };
@@ -439,7 +461,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination and selection', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -456,7 +478,7 @@ describe('EuiInMemoryTable', () => {
       ],
       pagination: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -465,7 +487,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination, selection and sorting', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -484,7 +506,7 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -493,7 +515,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination, selection, sorting and column renderer', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -507,7 +529,7 @@ describe('EuiInMemoryTable', () => {
           name: 'Name',
           description: 'description',
           sortable: true,
-          render: name => name.toUpperCase(),
+          render: (name: any) => name.toUpperCase(),
         },
       ],
       pagination: {
@@ -515,7 +537,7 @@ describe('EuiInMemoryTable', () => {
       },
       sorting: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -524,7 +546,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination, selection, sorting and a single record action', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -543,7 +565,6 @@ describe('EuiInMemoryTable', () => {
           name: 'Actions',
           actions: [
             {
-              type: 'button',
               name: 'Edit',
               description: 'edit',
               onClick: () => undefined,
@@ -554,7 +575,7 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -563,7 +584,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination, selection, sorting  and simple search', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -582,7 +603,6 @@ describe('EuiInMemoryTable', () => {
           name: 'Actions',
           actions: [
             {
-              type: 'button',
               name: 'Edit',
               description: 'edit',
               onClick: () => undefined,
@@ -594,7 +614,7 @@ describe('EuiInMemoryTable', () => {
       sorting: true,
       search: true,
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -603,7 +623,7 @@ describe('EuiInMemoryTable', () => {
   });
 
   test('with pagination, selection, sorting and configured search', () => {
-    const props = {
+    const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
@@ -622,7 +642,6 @@ describe('EuiInMemoryTable', () => {
           name: 'Actions',
           actions: [
             {
-              type: 'button',
               name: 'Edit',
               description: 'edit',
               onClick: () => undefined,
@@ -636,7 +655,6 @@ describe('EuiInMemoryTable', () => {
         defaultQuery: 'name:name1',
         box: {
           incremental: true,
-          ...requiredProps,
         },
         filters: [
           {
@@ -646,10 +664,10 @@ describe('EuiInMemoryTable', () => {
             name: 'Name1',
             negatedName: 'Not Name1',
           },
-        ],
+        ] as FilterConfig[],
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
@@ -659,35 +677,34 @@ describe('EuiInMemoryTable', () => {
 
   describe('search interaction & functionality', () => {
     it('updates the results as based on the entered query', () => {
-      const items = [
-        {
-          active: true,
-          name: 'Kansas',
-        },
-        {
-          active: true,
-          name: 'North Dakota',
-        },
-        {
-          active: false,
-          name: 'Florida',
-        },
-      ];
-
-      const columns = [
-        {
-          field: 'active',
-          name: 'Is Active',
-        },
-        {
-          field: 'name',
-          name: 'Name',
-        },
-      ];
-
-      const search = {};
-
-      const props = { items, columns, search, className: 'testTable' };
+      const props: EuiInMemoryTableProps<StateItem> = {
+        items: [
+          {
+            active: true,
+            name: 'Kansas',
+          },
+          {
+            active: true,
+            name: 'North Dakota',
+          },
+          {
+            active: false,
+            name: 'Florida',
+          },
+        ],
+        columns: [
+          {
+            field: 'active',
+            name: 'Is Active',
+          },
+          {
+            field: 'name',
+            name: 'Name',
+          },
+        ],
+        search: {},
+        className: 'testTable',
+      };
 
       const component = mount(<EuiInMemoryTable {...props} />);
 
@@ -720,67 +737,86 @@ describe('EuiInMemoryTable', () => {
     });
 
     it('passes down the executeQueryOptions properly', () => {
-      const items = [
-        {
-          active: true,
-          complex: {
-            name: 'Kansas',
+      const props: EuiInMemoryTableProps<ComplexItem> = {
+        items: [
+          {
+            active: true,
+            complex: {
+              name: 'Kansas',
+            },
           },
-        },
-        {
-          active: true,
-          complex: {
-            name: 'North Dakota',
+          {
+            active: true,
+            complex: {
+              name: 'North Dakota',
+            },
           },
-        },
-        {
-          active: false,
-          complex: {
-            name: 'Florida',
+          {
+            active: false,
+            complex: {
+              name: 'Florida',
+            },
           },
-        },
-      ];
-
-      const columns = [
-        {
-          field: 'active',
-          name: 'Is Active',
-        },
-        {
-          field: 'complex.name',
-          name: 'Name',
-        },
-      ];
-
-      const search = {
-        defaultQuery: 'No',
-        executeQueryOptions: {
-          defaultFields: ['complex.name'],
-        },
+        ],
+        columns: [
+          {
+            field: 'active',
+            name: 'Is Active',
+          },
+          {
+            field: 'complex.name',
+            name: 'Name',
+          },
+        ],
+        search: { defaultQuery: 'No' },
+        className: 'testTable',
+        message: <span className="customMessage">No items found!</span>,
       };
 
-      const message = <span className="customMessage">No items found!</span>;
-
-      const noDefaultFieldsComponent = mount(
-        <EuiInMemoryTable
-          {...{
-            items,
-            columns,
-            search: { defaultQuery: 'No' },
-            className: 'testTable',
-            message,
-          }}
-        />
-      );
+      const noDefaultFieldsComponent = mount(<EuiInMemoryTable {...props} />);
       // should render with the no items found text
       expect(noDefaultFieldsComponent.find('.customMessage').length).toBe(1);
 
       // With defaultFields and a search query, we should only see one
-      const defaultFieldComponent = mount(
-        <EuiInMemoryTable
-          {...{ items, columns, search, className: 'testTable', message }}
-        />
-      );
+      const props2: EuiInMemoryTableProps<ComplexItem> = {
+        items: [
+          {
+            active: true,
+            complex: {
+              name: 'Kansas',
+            },
+          },
+          {
+            active: true,
+            complex: {
+              name: 'North Dakota',
+            },
+          },
+          {
+            active: false,
+            complex: {
+              name: 'Florida',
+            },
+          },
+        ],
+        columns: [
+          {
+            field: 'active',
+            name: 'Is Active',
+          },
+          {
+            field: 'complex.name',
+            name: 'Name',
+          },
+        ],
+        search: {
+          defaultQuery: 'No',
+        },
+        className: 'testTable',
+        message: <span className="customMessage">No items found!</span>,
+      };
+
+      const defaultFieldComponent = mount(<EuiInMemoryTable {...props2} />);
       expect(defaultFieldComponent.find('.testTable EuiTableRow').length).toBe(
         1
       );
@@ -789,7 +825,7 @@ describe('EuiInMemoryTable', () => {
 
   describe('custom column sorting', () => {
     it('calls the sortable function and uses its return value for sorting', () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: 7, name: 'Alfred' },
@@ -801,19 +837,19 @@ describe('EuiInMemoryTable', () => {
           {
             field: 'name',
             name: 'Name',
-            sortable: ({ id }) => id,
+            sortable: ({ id }: any) => id,
           },
         ],
         sorting: {
           sort: {
             field: 'name',
-            direction: 'asc',
+            direction: SortDirection.ASC,
           },
         },
       };
       const component = mount(<EuiInMemoryTable {...props} />);
 
-      expect(component.find('EuiBasicTable').props().items).toEqual([
+      expect((component.find('EuiBasicTable').props() as any).items).toEqual([
         { id: 3, name: 'Betty' },
         { id: 5, name: 'Charlie' },
         { id: 7, name: 'Alfred' },
@@ -823,7 +859,7 @@ describe('EuiInMemoryTable', () => {
 
   describe('behavior', () => {
     test('pagination', async () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: '1', name: 'name1' },
@@ -851,13 +887,13 @@ describe('EuiInMemoryTable', () => {
 
       // forces EuiInMemoryTable's getDerivedStateFromProps to re-execute
       // this is specifically testing regression against https://github.com/elastic/eui/issues/1007
-      component.setProps();
+      component.setProps({});
 
       expect(component).toMatchSnapshot();
     });
 
     test('onTableChange callback', () => {
-      const props = {
+      const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
         items: [
           { id: '1', name: 'name1' },
@@ -895,7 +931,7 @@ describe('EuiInMemoryTable', () => {
         },
       });
 
-      props.onTableChange.mockClear();
+      (props.onTableChange as jest.Mock).mockClear();
       component
         .find(
           '[data-test-subj*="tableHeaderCell_name_0"] [data-test-subj="tableHeaderSortButton"]'
@@ -904,7 +940,7 @@ describe('EuiInMemoryTable', () => {
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenCalledWith({
         sort: {
-          direction: 'asc',
+          direction: SortDirection.ASC,
           field: 'name',
         },
         page: {

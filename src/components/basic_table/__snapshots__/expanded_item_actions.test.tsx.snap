@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExpandedItemActions render 1`] = `
-Array [
+<Fragment>
   <DefaultItemAction
     action={
       Object {
@@ -12,15 +12,13 @@ Array [
     }
     className=""
     enabled={true}
-    index={0}
     item={
       Object {
         "id": "xyz",
       }
     }
-    itemId="xyz"
     key="item_action_xyz_0"
-  />,
+  />
   <CustomItemAction
     action={
       Object {
@@ -37,8 +35,7 @@ Array [
         "id": "xyz",
       }
     }
-    itemId="xyz"
     key="item_action_xyz_1"
-  />,
-]
+  />
+</Fragment>
 `;
