@@ -518,12 +518,12 @@ export class EuiBasicTable<T = any> extends Component<
         {(selectAllRows: string) => (
           <EuiCheckbox
             id={`_selection_column-checkbox_${makeId()}`}
-            type={isMobile ? null : 'inList'}
+            type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}
             onChange={onChange}
             // Only add data-test-subj to one of the checkboxes
-            data-test-subj={isMobile ? null : 'checkboxSelectAll'}
+            data-test-subj={isMobile ? undefined : 'checkboxSelectAll'}
             aria-label={selectAllRows}
             label={isMobile ? selectAllRows : null}
           />
