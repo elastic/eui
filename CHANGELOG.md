@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added an optional `key` property inside the prop `options` in `SelectableList` component ([#2608](https://github.com/elastic/eui/pull/2608))
+
 **Bug fixes**
 
 - Fixed UX/focus bug in `EuiDataGrid` when using keyboard shortcuts to paginate ([#2602](https://github.com/elastic/eui/pull/2602))
