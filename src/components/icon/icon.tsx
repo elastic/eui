@@ -9,14 +9,18 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
+import _startCase from 'lodash/startCase';
+
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
 // to generate & git track a TS module definition for each icon component
 import { icon as empty } from './assets/empty.js';
+import { enqueueStateChange } from '../../services/react';
 
 const typeToPathMap = {
+  accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',
@@ -428,10 +432,23 @@ export type EuiIconProps = CommonProps &
      * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
      */
     size?: IconSize;
+    /**
+     * Descriptive title for naming the icon based on its use
+     */
+    title?: string;
+    /**
+     * Its value should be one or more element IDs
+     */
+    'aria-labelledby'?: string;
+    /**
+     * Callback when the icon has been loaded & rendered
+     */
+    onIconLoad?: () => void;
   };
 
 interface State {
   icon: undefined | ReactElement | string;
+  iconTitle: undefined | string;
   isLoading: boolean;
 }
 
@@ -446,6 +463,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   if (isEuiIconType(icon)) {
     return undefined;
   }
+
   return icon;
 }
 
@@ -465,6 +483,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     this.state = {
       icon: initialIcon,
+      iconTitle: undefined,
       isLoading,
     };
   }
@@ -500,12 +519,23 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // eslint-disable-next-line prefer-template
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
-      if (this.isMounted) {
-        this.setState({
-          icon,
-          isLoading: false,
-        });
-      }
+      enqueueStateChange(() => {
+        if (this.isMounted) {
+          this.setState(
+            {
+              icon,
+              iconTitle: iconType,
+              isLoading: false,
+            },
+            () => {
+              const { onIconLoad } = this.props;
+              if (onIconLoad) {
+                onIconLoad();
+              }
+            }
+          );
+        }
+      });
     });
   };
 
@@ -516,13 +546,15 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       color,
       className,
       tabIndex,
+      title,
+      onIconLoad,
       ...rest
     } = this.props;
 
     const { isLoading } = this.state;
 
     let optionalColorClass = null;
-    let optionalCustomStyles = null;
+    let optionalCustomStyles: any = null;
 
     if (color) {
       if (isNamedColor(color)) {
@@ -552,6 +584,12 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     const icon = this.state.icon || empty;
 
+    // If it's a named icon, by default the title will be the name
+    // If it's a custom icon, it gets an empty alt
+    const iconTitle = _startCase(this.state.iconTitle) || '';
+
+    const titleDisplayed = title ? title : iconTitle;
+
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
     //   - If there's no tab index specified, we'll default the icon to not be focusable,
@@ -563,8 +601,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     if (typeof icon === 'string') {
       return (
         <img
-          // TODO: Allow alt prop
-          alt=""
+          alt={titleDisplayed}
           src={icon}
           className={classes}
           tabIndex={tabIndex}
@@ -573,13 +610,29 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       );
     } else {
       const Svg = icon;
+
+      // If it's an empty icon it gets aria-hidden true
+      const hideIconEmpty = icon === empty && { 'aria-hidden': true };
+
+      let ariaLabel: any;
+
+      // If no aria-label or aria-labelledby is provided the title will be default
+
+      if (!this.props['aria-label'] && !this.props['aria-labelledby']) {
+        ariaLabel = { 'aria-label': titleDisplayed };
+      }
+
       return (
         <Svg
           className={classes}
           style={optionalCustomStyles}
           tabIndex={tabIndex}
           focusable={focusable}
+          title={titleDisplayed}
+          role="img"
           {...rest}
+          {...hideIconEmpty}
+          {...ariaLabel}
         />
       );
     }

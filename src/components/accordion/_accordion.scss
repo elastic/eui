@@ -35,6 +35,10 @@
     vertical-align: top;
     transition: transform $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
+
+  .euiAccordion__icon-isOpen {
+    transform: rotate(90deg);
+  }
 }
 
 .euiAccordion__optionalAction {
@@ -73,9 +77,5 @@ $paddingSizes: (
     visibility: visible;
     opacity: 1;
     height: auto;
-  }
-
-  .euiAccordion__icon {
-    transform: rotate(90deg);
   }
 }

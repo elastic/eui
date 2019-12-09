@@ -1,16 +1,48 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  Component,
+  ChangeEventHandler,
+  ReactNode,
+  InputHTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 
-import { omit } from '../../../services/objects';
+import { keysOf, CommonProps } from '../../common';
 
 const typeToClassNameMap = {
   inList: 'euiCheckbox--inList',
 };
 
-export const TYPES = Object.keys(typeToClassNameMap);
+export const TYPES = keysOf(typeToClassNameMap);
 
-export class EuiCheckbox extends Component {
+export type EuiCheckboxType = keyof typeof typeToClassNameMap;
+
+export interface EuiCheckboxProps
+  extends CommonProps,
+    InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  checked?: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>; // overriding to make it required
+  inputRef?: (element: HTMLInputElement) => void;
+  label?: ReactNode;
+  type?: EuiCheckboxType;
+  disabled?: boolean;
+  /**
+   * when `true` creates a shorter height checkbox row
+   */
+  compressed?: boolean;
+  indeterminate?: boolean;
+}
+
+export class EuiCheckbox extends Component<EuiCheckboxProps> {
+  static defaultProps = {
+    checked: false,
+    disabled: false,
+    indeterminate: false,
+    compressed: false,
+  };
+
+  inputRef?: HTMLInputElement = undefined;
+
   componentDidMount() {
     this.invalidateIndeterminate();
   }
@@ -32,11 +64,11 @@ export class EuiCheckbox extends Component {
       ...rest
     } = this.props;
 
-    const inputProps = omit(rest, 'indeterminate');
+    const { indeterminate, ...inputProps } = rest; // `indeterminate` is set dynamically later
 
     const classes = classNames(
       'euiCheckbox',
-      typeToClassNameMap[type],
+      type && typeToClassNameMap[type],
       {
         'euiCheckbox--noLabel': !label,
         'euiCheckbox--compressed': compressed,
@@ -74,7 +106,7 @@ export class EuiCheckbox extends Component {
     );
   }
 
-  setInputRef = input => {
+  setInputRef = (input: HTMLInputElement) => {
     this.inputRef = input;
 
     if (this.props.inputRef) {
@@ -86,29 +118,7 @@ export class EuiCheckbox extends Component {
 
   invalidateIndeterminate() {
     if (this.inputRef) {
-      this.inputRef.indeterminate = this.props.indeterminate;
+      this.inputRef.indeterminate = this.props.indeterminate!;
     }
   }
 }
-
-EuiCheckbox.propTypes = {
-  className: PropTypes.string,
-  id: PropTypes.string.isRequired,
-  checked: PropTypes.bool,
-  label: PropTypes.node,
-  onChange: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(TYPES),
-  disabled: PropTypes.bool,
-  indeterminate: PropTypes.bool,
-  /**
-   * when `true` creates a shorter height checkbox row
-   */
-  compressed: PropTypes.bool,
-};
-
-EuiCheckbox.defaultProps = {
-  checked: false,
-  disabled: false,
-  indeterminate: false,
-  compressed: false,
-};

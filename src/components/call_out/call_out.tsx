@@ -9,6 +9,7 @@ import { EuiText } from '../text';
 
 type Color = 'primary' | 'success' | 'warning' | 'danger';
 type Size = 's' | 'm';
+type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 export type EuiCallOutProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -16,6 +17,7 @@ export type EuiCallOutProps = CommonProps &
     iconType?: IconType;
     color?: Color;
     size?: Size;
+    heading?: Heading;
   };
 
 const colorToClassNameMap: { [color in Color]: string } = {
@@ -26,6 +28,7 @@ const colorToClassNameMap: { [color in Color]: string } = {
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
+export const HEADINGS: Heading[] = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'];
 
 const sizeToClassNameMap: { [size in Size]: string } = {
   s: 'euiCallOut--small',
@@ -39,6 +42,7 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   iconType,
   children,
   className,
+  heading,
   ...rest
 }) => {
   const classes = classNames(
@@ -68,12 +72,14 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
     optionalChildren = <EuiText size="s">{children}</EuiText>;
   }
 
+  const H: any = heading ? `${heading}` : 'span';
+
   return (
     <div className={classes} {...rest}>
       <div className="euiCallOutHeader">
         {headerIcon}
 
-        <span className="euiCallOutHeader__title">{title}</span>
+        <H className="euiCallOutHeader__title">{title}</H>
       </div>
 
       {optionalChildren}

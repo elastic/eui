@@ -4,7 +4,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCard, EuiCallOut } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiCard,
+  EuiCallOut,
+  EuiCheckableCard,
+} from '../../../../src/components';
 
 import { EuiCardSelect } from '../../../../src/components/card/card_select';
 
@@ -36,6 +41,10 @@ import CardChildren from './card_children';
 const cardChildrenSource = require('!!raw-loader!./card_children');
 const cardChildrenHtml = renderToHtml(CardChildren);
 
+import CardCheckable from './card_checkable';
+const cardCheckableSource = require('!!raw-loader!./card_checkable');
+const cardCheckableHtml = renderToHtml(CardCheckable);
+
 export const CardExample = {
   title: 'Card',
   sections: [
@@ -57,17 +66,14 @@ export const CardExample = {
             At its core an <EuiCode>EuiCard</EuiCode> should contain a{' '}
             <EuiCode>title</EuiCode>,<EuiCode>description</EuiCode>, and an{' '}
             <EuiCode>icon</EuiCode>. You can make the whole card clickable by
-            giving it an <EuiCode>onClick</EuiCode> handler.
+            giving it an <EuiCode>onClick</EuiCode> handler or{' '}
+            <EuiCode>href</EuiCode>.
           </p>
           <p>
-            By default a card&apos;s title element is a <EuiCode>span</EuiCode>.
-            This can be changed via the <EuiCode>titleElement</EuiCode> prop.
-            However, it will always remain the same visual size.
-          </p>
-          <p>
-            By default a card&apos;s content is center aligned. To change the
-            alignment set <EuiCode>textAlign</EuiCode> to{' '}
-            <EuiCode>left</EuiCode> or <EuiCode>right</EuiCode>.
+            For accessibility and heading hierarchy, a card&apos;s title element
+            is a <EuiCode>span</EuiCode> by default. However, this can be
+            changed via the <EuiCode>titleElement</EuiCode> prop without
+            altering the visual size.
           </p>
         </div>
       ),
@@ -182,13 +188,17 @@ export const CardExample = {
             <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
             it an <EuiCode>onClick</EuiCode>.
           </p>
-          <EuiCallOut title="Accessibility" color="warning">
-            <p>
-              When using footers to display generic &quot;Go&quot; buttons. You
-              must provide an <EuiCode>aria-label</EuiCode> to the button itself
-              that refers back to the title of the card.
-            </p>
-          </EuiCallOut>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <span>
+                When using footers to display generic &quot;Go&quot; buttons,
+                you must provide an <EuiCode>aria-label</EuiCode> to the button
+                itself that refers back to the title of the card.
+              </span>
+            }
+          />
         </>
       ),
       components: { EuiCard },
@@ -291,6 +301,42 @@ export const CardExample = {
     aria-label=""
   />}
 />`,
+    },
+    {
+      title: 'Checkable',
+      text: (
+        <Fragment>
+          <p>
+            <EuiCode>EuiCheckableCard</EuiCode> wraps an{' '}
+            <EuiCode>EuiRadio</EuiCode> or <EuiCode>EuiCheckbox</EuiCode> with a
+            more-prominent panel, allowing for children to be displayed.
+          </p>
+          <EuiCallOut
+            color="warning"
+            title={
+              <span>
+                When used as a radio group, you must provide a{' '}
+                <EuiCode>fieldset</EuiCode> with a <EuiCode>legend</EuiCode> for
+                accessibility.
+              </span>
+            }
+          />
+        </Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardCheckableSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: cardCheckableHtml,
+        },
+      ],
+      props: {
+        EuiCheckableCard,
+      },
+      demo: <CardCheckable />,
     },
     {
       title: 'Custom children',

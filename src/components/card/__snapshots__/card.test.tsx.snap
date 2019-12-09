@@ -53,6 +53,31 @@ exports[`EuiCard props children 1`] = `
 </div>
 `;
 
+exports[`EuiCard props display 1`] = `
+<div
+  class="euiCard euiCard--plain euiCard--centerAligned"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiCard props footer 1`] = `
 <div
   class="euiCard euiCard--centerAligned"
@@ -169,9 +194,12 @@ exports[`EuiCard props icon 1`] = `
     class="euiCard__top"
   >
     <svg
+      aria-hidden="true"
+      aria-label=""
       class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading myIconClass euiCard__icon"
       focusable="false"
       height="16"
+      role="img"
       viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
@@ -278,6 +306,31 @@ exports[`EuiCard props titleElement 1`] = `
     >
       Card title
     </h4>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props titleSize 1`] = `
+<div
+  class="euiCard euiCard--centerAligned"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--xsmall euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
     <div
       class="euiText euiText--small euiCard__description"
       id="generated-idDescription"

@@ -1,12 +1,13 @@
 import React from 'react';
 
-const EuiIconLogoLogstash = props => (
+const EuiIconLogoLogstash = ({ title, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
+    <title>{title}</title>
     <path fill="#3EBEB0" d="M19 32h11V20H19z" />
     <path fill="#FEC514" d="M4 0H3v20h13v-8C16 5.373 10.627 0 4 0" />
     <path

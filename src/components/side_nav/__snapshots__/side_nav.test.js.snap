@@ -18,9 +18,11 @@ exports[`EuiSideNav is rendered 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -49,9 +51,11 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -80,9 +84,11 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -111,9 +117,11 @@ exports[`EuiSideNav props items is rendered 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -174,9 +182,12 @@ exports[`EuiSideNav props items is rendered 1`] = `
                 C
               </span>
               <svg
+                aria-hidden="true"
+                aria-label=""
                 class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -206,9 +217,11 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -335,9 +348,11 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -408,9 +423,11 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -472,9 +489,12 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
                 C
               </span>
               <svg
+                aria-hidden="true"
+                aria-label=""
                 class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
                 focusable="false"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -504,9 +524,11 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
       />
       <svg
         aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
