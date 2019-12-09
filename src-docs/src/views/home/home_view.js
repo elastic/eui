@@ -104,17 +104,18 @@ export const HomeView = () => (
     <EuiSpacer />
     <EuiFlexGrid gutterSize="l" columns={3}>
       <EuiFlexItem>
-        <EuiCard
-          href="#/display/icons"
-          textAlign="left"
-          image={imageIcons}
-          title="Icons"
-          description="Our SVG icon library gives you full control over size and color"
-        />
+        <Link to="/display/icons">
+          <EuiCard
+            textAlign="left"
+            image={imageIcons}
+            title="Icons"
+            description="Our SVG icon library gives you full control over size and color"
+          />
+        </Link>
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          href="#/navigation/button"
+          href="/navigation/button"
           textAlign="left"
           image={imageButtons}
           title="Buttons"
@@ -123,7 +124,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          href="#/layout/flex"
+          href="/layout/flex"
           textAlign="left"
           image={imageFlexgrid}
           title="Flexible layouts"
@@ -132,7 +133,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          href="#/tabular-content/tables"
+          href="/tabular-content/tables"
           textAlign="left"
           image={imageTables}
           title="Tables"
@@ -141,7 +142,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          href="#/display/card"
+          href="/display/card"
           textAlign="left"
           image={imageCards}
           title="Cards"
@@ -150,7 +151,7 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          href="#/forms/form-layouts"
+          href="/forms/form-layouts"
           textAlign="left"
           image={imageForms}
           title="Forms"
