@@ -72,11 +72,11 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
   mobileOptions = {
     show: true,
   },
+  width,
   // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
   style,
-  width,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {

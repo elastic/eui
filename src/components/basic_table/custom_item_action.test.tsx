@@ -1,17 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CustomItemAction } from './custom_item_action';
+import { CustomItemAction, CustomItemActionProps } from './custom_item_action';
 
 describe('CustomItemAction', () => {
   test('render', () => {
-    const props = {
+    const props: CustomItemActionProps<{ id: string }> = {
       action: {
-        name: 'custom1',
-        description: 'custom 1',
-        render: () => 'test',
+        render: () => <span>test</span>,
       },
       enabled: true,
       item: { id: 'xyz' },
+      className: 'test',
     };
 
     const component = shallow(<CustomItemAction {...props} />);
