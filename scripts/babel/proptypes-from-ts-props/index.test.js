@@ -143,6 +143,35 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('understands undefined & null props', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {
+  foo: undefined;
+  bar: null;
+  bazz: undefined | null;
+}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf([undefined]).isRequired,
+  bar: PropTypes.oneOf([null]).isRequired,
+  bazz: PropTypes.oneOf([undefined, null]).isRequired
+};`);
+      });
+
       it('understands function props', () => {
         const result = transform(
           `
@@ -221,6 +250,33 @@ FooComponent.propTypes = {
   bar3: PropTypes.func.isRequired,
   bar4: PropTypes.func,
   bar5: PropTypes.bool.isRequired
+};`);
+      });
+
+      it('understands literal values as a type', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {
+  foo: 'bar';
+  bazz?: 5;
+}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf(["bar"]).isRequired,
+  bazz: PropTypes.oneOf([5])
 };`);
       });
 
@@ -1117,7 +1173,7 @@ const FooComponent = () => {
 };
 
 FooComponent.propTypes = {
-  type: PropTypes.oneOfType([PropTypes.oneOf(["foo"]), PropTypes.oneOf(["bar"])]),
+  type: PropTypes.oneOfType([PropTypes.oneOf(["foo"]).isRequired, PropTypes.oneOf(["bar"]).isRequired]).isRequired,
   value: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired
 };`);
       });
@@ -1476,6 +1532,40 @@ const FooComponent = () => {
 
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired).isRequired
+};`);
+        });
+
+        it('understands discriminated unions', () => {
+          const result = transform(
+            `
+import React from 'react'
+interface OptA { type: 'a'; value: string; }
+interface OptB { type: 'b'; valid: boolean; }
+type Option = OptA | OptB;
+interface Props { option: Option }
+const Foo: React.SFC<Props> = ({ option }: Props) => {
+  return (<div>{option.type == 'a' ? option.value : option.valid}</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const Foo = ({
+  option
+}) => {
+  return <div>{option.type == 'a' ? option.value : option.valid}</div>;
+};
+
+Foo.propTypes = {
+  option: PropTypes.oneOfType([PropTypes.shape({
+    type: PropTypes.oneOf(["a"]).isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired, PropTypes.shape({
+    type: PropTypes.oneOf(["b"]).isRequired,
+    valid: PropTypes.bool.isRequired
+  }).isRequired]).isRequired
 };`);
         });
 

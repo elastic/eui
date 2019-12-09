@@ -13,7 +13,7 @@
         "column": 14
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiBasicTable.selectAllRows",
@@ -29,7 +29,7 @@
         "column": 77
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiBasicTable.selectThisRow",
@@ -45,7 +45,7 @@
         "column": 79
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiCollapsedItemActions.allActions",
@@ -53,15 +53,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 107,
+        "line": 148,
         "column": 6
       },
       "end": {
-        "line": 107,
+        "line": 148,
         "column": 80
       }
     },
-    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
     "token": "euiCollapsedItemActions.allActions",
@@ -69,15 +69,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 124,
+        "line": 165,
         "column": 6
       },
       "end": {
-        "line": 124,
+        "line": 165,
         "column": 80
       }
     },
-    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
     "token": "euiBottomBar.screenReaderAnnouncement",
@@ -1685,11 +1685,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 49,
+        "line": 60,
         "column": 8
       },
       "end": {
-        "line": 49,
+        "line": 60,
         "column": 72
       }
     },

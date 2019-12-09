@@ -421,6 +421,15 @@ function getPropTypesForNode(node, optional, state) {
     //       ^^^ Foo
     case 'TSTypeAnnotation':
       propType = getPropTypesForNode(node.typeAnnotation, true, state);
+
+      if (
+        types.isLiteral(propType) ||
+        (types.isIdentifier(propType) &&
+          propType.name === 'undefined')
+      ) {
+        // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
+        propType = convertLiteralToOneOf(types, propType);
+      }
       break;
 
     // Foo['bar']
@@ -538,7 +547,11 @@ function getPropTypesForNode(node, optional, state) {
           ];
 
           let propTypeValue = typeProperty.value;
-          if (types.isLiteral(propTypeValue)) {
+          if (
+            types.isLiteral(propTypeValue) ||
+            (types.isIdentifier(propTypeValue) &&
+              propTypeValue.name === 'undefined')
+          ) {
             // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
             propTypeValue = convertLiteralToOneOf(types, propTypeValue);
           }
@@ -628,7 +641,7 @@ function getPropTypesForNode(node, optional, state) {
               // which don't translate to prop types.
               .filter(property => property.key != null)
               .map(property => {
-                const propertyPropType =
+                let propertyPropType =
                   property.type === 'TSMethodSignature'
                     ? getPropTypesForNode(
                         { type: 'TSFunctionType' },
@@ -640,6 +653,17 @@ function getPropTypesForNode(node, optional, state) {
                         property.optional,
                         state
                       );
+
+                if (
+                  types.isLiteral(propertyPropType) ||
+                  (types.isIdentifier(propertyPropType) &&
+                    propertyPropType.name === 'undefined')
+                ) {
+                  propertyPropType = convertLiteralToOneOf(types, propertyPropType);
+                  if (!property.optional) {
+                    propertyPropType = makePropTypeRequired(types, propertyPropType);
+                  }
+                }
 
                 const objectProperty = types.objectProperty(
                   types.identifier(

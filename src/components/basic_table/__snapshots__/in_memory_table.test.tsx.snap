@@ -14,7 +14,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  executeQueryOptions={Object {}}
   items={
     Array [
       Object {
@@ -45,7 +44,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
     }
   }
   responsive={true}
-  sorting={false}
 >
   <EuiBasicTable
     aria-label="aria-label"
@@ -1038,7 +1036,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
   responsive={true}
   selection={
     Object {
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
 />
@@ -1185,7 +1183,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
   responsive={true}
   selection={
     Object {
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
   sorting={
@@ -1222,7 +1220,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
               "description": "edit",
               "name": "Edit",
               "onClick": [Function],
-              "type": "button",
             },
           ],
           "name": "Actions",
@@ -1265,7 +1262,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     responsive={true}
     selection={
       Object {
-        "onSelectionChanged": [Function],
+        "onSelectionChange": [Function],
       }
     }
     sorting={
@@ -1296,7 +1293,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
             "description": "edit",
             "name": "Edit",
             "onClick": [Function],
-            "type": "button",
           },
         ],
         "name": "Actions",
@@ -1339,7 +1335,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
   responsive={true}
   selection={
     Object {
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
   sorting={
@@ -1398,7 +1394,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
   responsive={true}
   selection={
     Object {
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
   sorting={
@@ -1415,9 +1411,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
   <EuiSearchBar
     box={
       Object {
-        "aria-label": "aria-label",
-        "className": "testClass1 testClass2",
-        "data-test-subj": "test subject string",
         "incremental": true,
       }
     }
@@ -1455,7 +1448,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
               "description": "edit",
               "name": "Edit",
               "onClick": [Function],
-              "type": "button",
             },
           ],
           "name": "Actions",
@@ -1490,7 +1482,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     responsive={true}
     selection={
       Object {
-        "onSelectionChanged": [Function],
+        "onSelectionChange": [Function],
       }
     }
     sorting={

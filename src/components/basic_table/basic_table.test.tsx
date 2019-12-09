@@ -2,7 +2,15 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBasicTable, getItemId } from './basic_table';
+import {
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiBasicTableProps,
+  getItemId,
+} from './basic_table';
+
+import { SortDirection } from '../../services';
+import { EuiTableFieldDataColumnType } from './table_types';
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
@@ -17,10 +25,37 @@ describe('getItemId', () => {
   });
 
   it('returns the correct id when a function itemId is given', () => {
-    expect(getItemId({ id: 5 }, () => 6)).toBe(6);
-    expect(getItemId({ x: 2, y: 4 }, ({ x, y }) => x * y)).toBe(8);
+    expect(getItemId({ id: 5 }, () => '6')).toBe('6');
+    expect(
+      getItemId(
+        { x: 2, y: 4 },
+        ({ x, y }: { x: number; y: number }) => `${x * y}`
+      )
+    ).toBe('8');
   });
 });
+
+interface BasicItem {
+  id: string;
+  name: string;
+}
+
+interface AgeItem extends BasicItem {
+  age: number;
+}
+
+interface CountItem {
+  id: string;
+  count: number;
+}
+
+const basicColumns: Array<EuiBasicTableColumn<BasicItem>> = [
+  {
+    field: 'name',
+    name: 'Name',
+    description: 'description',
+  },
+];
 
 describe('EuiBasicTable', () => {
   describe('empty', () => {
@@ -28,13 +63,7 @@ describe('EuiBasicTable', () => {
       const props = {
         ...requiredProps,
         items: [],
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-          },
-        ],
+        columns: basicColumns,
       };
       const component = shallow(<EuiBasicTable {...props} />);
 
@@ -42,7 +71,7 @@ describe('EuiBasicTable', () => {
     });
 
     test('renders a string as a custom message', () => {
-      const props = {
+      const props: EuiBasicTableProps<BasicItem> = {
         items: [],
         columns: [
           {
@@ -59,7 +88,7 @@ describe('EuiBasicTable', () => {
     });
 
     test('renders a node as a custom message', () => {
-      const props = {
+      const props: EuiBasicTableProps<BasicItem> = {
         items: [],
         columns: [
           {
@@ -70,7 +99,7 @@ describe('EuiBasicTable', () => {
         ],
         noItemsMessage: (
           <p>
-            no items, click <a href>here</a> to make some
+            no items, click <a href="">here</a> to make some
           </p>
         ),
       };
@@ -82,7 +111,7 @@ describe('EuiBasicTable', () => {
 
   describe('rowProps', () => {
     test('renders rows with custom props from a callback', () => {
-      const props = {
+      const props: EuiBasicTableProps<BasicItem> = {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
@@ -104,13 +133,13 @@ describe('EuiBasicTable', () => {
           };
         },
       };
-      const component = shallow(<EuiBasicTable {...props} />);
+      const component = shallow(<EuiBasicTable<BasicItem> {...props} />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('renders rows with custom props from an object', () => {
-      const props = {
+      const props: EuiBasicTableProps<BasicItem> = {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
@@ -137,7 +166,7 @@ describe('EuiBasicTable', () => {
 
   describe('cellProps', () => {
     test('renders cells with custom props from a callback', () => {
-      const props = {
+      const props: EuiBasicTableProps<BasicItem> = {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
@@ -152,7 +181,7 @@ describe('EuiBasicTable', () => {
         ],
         cellProps: (item, column) => {
           const { id } = item;
-          const { field } = column;
+          const { field } = column as EuiTableFieldDataColumnType<BasicItem>;
           return {
             'data-test-subj': `cell-${id}-${field}`,
             className: 'customRowClass',
@@ -166,7 +195,7 @@ describe('EuiBasicTable', () => {
     });
 
     test('renders rows with custom props from an object', () => {
-      const props = {
+      const props: EuiBasicTableProps<BasicItem> = {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
@@ -192,7 +221,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('itemIdToExpandedRowMap renders an expanded row', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -217,7 +246,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -243,7 +272,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination - 2nd page', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [{ id: '1', name: 'name1' }, { id: '2', name: 'name2' }],
       columns: [
         {
@@ -265,7 +294,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination and error', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -292,7 +321,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, hiding the per page options', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -319,7 +348,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with sorting', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -334,7 +363,7 @@ describe('EuiBasicTable', () => {
         },
       ],
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -344,7 +373,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with sortable columns and sorting disabled', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -366,7 +395,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination and selection', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -386,7 +415,7 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       onChange: () => {},
     };
@@ -396,7 +425,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection and sorting', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -417,10 +446,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -431,7 +460,7 @@ describe('EuiBasicTable', () => {
 
   describe('footers', () => {
     test('do not render without a column footer definition', () => {
-      const props = {
+      const props: EuiBasicTableProps<AgeItem> = {
         items: [
           { id: '1', name: 'name1', age: 20 },
           { id: '2', name: 'name2', age: 21 },
@@ -463,7 +492,7 @@ describe('EuiBasicTable', () => {
     });
 
     test('render with pagination, selection, sorting, and footer', () => {
-      const props = {
+      const props: EuiBasicTableProps<AgeItem> = {
         items: [
           { id: '1', name: 'name1', age: 20 },
           { id: '2', name: 'name2', age: 21 },
@@ -494,7 +523,7 @@ describe('EuiBasicTable', () => {
                 {items.reduce((acc, cur) => acc + cur.age, 0)}
                 <br />
                 total items:
-                {pagination.totalItemCount}
+                {pagination!.totalItemCount}
               </strong>
             ),
           },
@@ -505,10 +534,10 @@ describe('EuiBasicTable', () => {
           totalItemCount: 5,
         },
         selection: {
-          onSelectionChanged: () => undefined,
+          onSelectionChange: () => undefined,
         },
         sorting: {
-          sort: { field: 'name', direction: 'asc' },
+          sort: { field: 'name', direction: SortDirection.ASC },
         },
         onChange: () => {},
       };
@@ -519,7 +548,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and column renderer', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -532,7 +561,7 @@ describe('EuiBasicTable', () => {
           name: 'Name',
           description: 'description',
           sortable: true,
-          render: name => name.toUpperCase(),
+          render: (name: string) => name.toUpperCase(),
         },
       ],
       pagination: {
@@ -541,10 +570,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -554,7 +583,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and column dataType', () => {
-    const props = {
+    const props: EuiBasicTableProps<CountItem> = {
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
@@ -576,10 +605,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'count', direction: 'asc' },
+        sort: { field: 'count', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -590,7 +619,7 @@ describe('EuiBasicTable', () => {
 
   // here we want to verify that the column renderer takes precedence over the column data type
   test('with pagination, selection, sorting, column renderer and column dataType', () => {
-    const props = {
+    const props: EuiBasicTableProps<CountItem> = {
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
@@ -604,7 +633,7 @@ describe('EuiBasicTable', () => {
           description: 'description of count',
           sortable: true,
           dataType: 'number',
-          render: count => 'x'.repeat(count),
+          render: (count: number) => 'x'.repeat(count),
         },
       ],
       pagination: {
@@ -613,10 +642,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'count', direction: 'asc' },
+        sort: { field: 'count', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -626,7 +655,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and a single record action', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -658,10 +687,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
@@ -671,7 +700,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and multiple record actions', () => {
-    const props = {
+    const props: EuiBasicTableProps<BasicItem> = {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -709,10 +738,10 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined,
+        onSelectionChange: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' },
+        sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
