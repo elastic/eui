@@ -8,7 +8,6 @@ import React, {
   Fragment,
   ReactChild,
   useMemo,
-  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -30,7 +29,7 @@ import {
   EuiDataGridStyleRowHover,
   EuiDataGridPopoverContents,
   EuiDataGridColumnVisibility,
-  EuiDataGridTooBarVisibilityOptions,
+  EuiDataGridToolBarVisibilityOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -93,7 +92,7 @@ type CommonGridProps = CommonProps &
     /**
      * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
      */
-    toolbarVisibility?: boolean | EuiDataGridTooBarVisibilityOptions;
+    toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
      * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
@@ -527,20 +526,26 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // By default the toolbar appears
   const showToolbar = !!toolbarVisibility;
 
-  // Typegaurd to see if toolbarVisibility has a certain boolean property assigned
+  // Typeguards to see if toolbarVisibility has a certain boolean property assigned
   // If not, just set it to true and assume it's OK to show
-  function checkOrDefaultToolBarDiplayOptions(
+  function objectHasKey<
+    O extends Record<string, any>,
+    ObjectKey extends keyof O
+  >(object: O, key: ObjectKey): object is Required<O> {
+    return object.hasOwnProperty(key);
+  }
+  function checkOrDefaultToolBarDiplayOptions<
+    OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
+  >(
     arg: EuiDataGridProps['toolbarVisibility'],
-    option: keyof EuiDataGridTooBarVisibilityOptions
-  ): boolean | ReactNode {
+    option: OptionKey
+  ): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
     if (arg === undefined) {
       return true;
     } else if (typeof arg === 'boolean') {
       return arg as boolean;
-    } else if (
-      (arg as EuiDataGridTooBarVisibilityOptions).hasOwnProperty(option)
-    ) {
-      return arg[option]!;
+    } else if (objectHasKey(arg, option)) {
+      return arg[option];
     } else {
       return true;
     }

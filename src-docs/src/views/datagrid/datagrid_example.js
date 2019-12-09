@@ -202,7 +202,7 @@ const gridConcepts = [
     description: (
       <span>
         Accepts either a boolean or{' '}
-        <EuiCode>EuiDataGridTooBarVisibilityOptions</EuiCode> object. When used
+        <EuiCode>EuiDataGridToolBarVisibilityOptions</EuiCode> object. When used
         as a boolean, defines the visibility of entire toolbar. When passed an
         object allows you to turn off individual controls within the toolbar.
       </span>
