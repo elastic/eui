@@ -8,11 +8,20 @@ const EuiIconAppSecurityAnalytics = ({ title, ...props }) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
     <title>{title}</title>
-    <path d="M2 14h28v16c-3.333 1.333-8 2-14 2s-10.667-.667-14-2V14zm2 2v12.589C6.972 29.52 10.98 30 16 30s9.028-.48 12-1.411V16H4zm20-4V8.09C24 3.626 20.421 0 16 0c-4.421 0-8 3.625-8 8.09V12h2V8.09C10 4.725 12.69 2 16 2s6 2.724 6 6.09V12h2z" />
-    <path
-      className="euiIcon__fillSecondary"
-      d="M8 18v6h2v-6zM22 18v6h2v-6zM15 18v8h2v-8z"
-    />
+    <g fill="none" fillRule="nonzero">
+      <path
+        fill="#535966"
+        d="M10 12c5.43 0 9.848 4.327 9.996 9.72L20 22v1h-9v9h-1C4.477 32 0 27.523 0 22s4.477-10 10-10zm-1 9v-6.938a8.001 8.001 0 00-.25 15.84l.25.036V14.062 21zm2-6.938V21h6.938a8.005 8.005 0 00-6.68-6.902l-.257-.036z"
+      />
+      <path
+        fill="#00BFB3"
+        d="M26 22c0-8.837-7.163-16-16-16v2c7.732 0 14 6.268 14 14h2z"
+      />
+      <path
+        fill="#00BFB3"
+        d="M32 22C32 9.85 22.15 0 10 0v2c11.046 0 20 8.954 20 20h2z"
+      />
+    </g>
   </svg>
 );
 
