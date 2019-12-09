@@ -1,13 +1,7 @@
 // Helper mixins
 
-// Converting a normal hex color to RBG
-@function hexToRGB($color) {
-  @return 'rgb%28#{round(red($color))}, #{round(green($color))}, #{round(blue($color))}%29';
-}
-
 // Useful border shade when dealing with images of unknown color.
 @mixin innerBorder($type: 'dark', $borderRadius: 0, $alpha: .1) {
-
   $color: rgba($euiColorDarkestShade, $alpha);
 
   @if $type == 'light' {

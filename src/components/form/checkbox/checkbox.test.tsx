@@ -26,16 +26,6 @@ describe('EuiCheckbox', () => {
   });
 
   describe('props', () => {
-    test('id is required', () => {
-      expect(() => (
-        <EuiCheckbox checked={true} onChange={() => {}} />
-      )).toThrow();
-    });
-
-    test('onChange is required', () => {
-      expect(() => <EuiCheckbox id="id" checked={true} />).toThrow();
-    });
-
     test('check is rendered', () => {
       const component = render(
         <EuiCheckbox {...checkboxRequiredProps} checked />

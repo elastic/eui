@@ -1,5 +1,14 @@
 [
   {
+    "version": "16.1.0",
+    "changes": [
+      {
+        "token": "euiHeaderAlert.dismiss",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "14.9.0",
     "changes": [
       {

@@ -89,7 +89,7 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow display="columnCompressedSwitch" label="Swtich">
+        <EuiFormRow display="columnCompressedSwitch" label="Switch">
           <EuiSwitch
             showLabel={false}
             label="Switch"

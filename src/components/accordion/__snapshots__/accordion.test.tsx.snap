@@ -104,14 +104,14 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
           className="euiAccordion__iconWrapper"
         >
           <EuiIcon
-            className="euiAccordion__icon"
+            className="euiAccordion__icon euiAccordion__icon-isOpen"
             size="m"
             type="arrowRight"
           >
             <EuiIconEmpty
               aria-hidden={true}
               aria-label=""
-              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
               focusable="false"
               role="img"
               style={null}
@@ -120,7 +120,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
               <svg
                 aria-hidden={true}
                 aria-label=""
-                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
                 focusable="false"
                 height={16}
                 role="img"
@@ -372,7 +372,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         <svg
           aria-hidden="true"
           aria-label=""
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
           focusable="false"
           height="16"
           role="img"
