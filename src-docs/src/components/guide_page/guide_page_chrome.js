@@ -210,9 +210,6 @@ class GuidePageChrome extends Component {
           id: `${section.type}-${path}`,
           name: visibleName,
           href,
-          // onClick: () => {
-          //   this.goToPage(`${href}`);
-          // },
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item === this.props.currentRoute,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
