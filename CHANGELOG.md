@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed UX/focus bug in `EuiDataGrid` when using keyboard shortcuts to paginate ([#2602](https://github.com/elastic/eui/pull/2602))
+- Fixed React warning when `SelectableList` has two items with same key ([#](https://github.com/elastic/eui/pull/))
 
 ## [`17.0.0`](https://github.com/elastic/eui/tree/v17.0.0)
 

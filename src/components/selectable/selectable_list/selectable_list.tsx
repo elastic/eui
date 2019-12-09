@@ -183,7 +183,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                   <EuiSelectableListItem
                     id={this.rootId(`_option-${index}`)}
                     style={style}
-                    key={option.label.toLowerCase()}
+                    key={`${option.label.toLowerCase()}-${index}`}
                     onClick={() => this.onAddOrRemoveOption(option)}
                     ref={ref ? ref.bind(null, index) : undefined}
                     isFocused={activeOptionIndex === index}
