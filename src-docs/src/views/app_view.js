@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { applyTheme, translateUsingPseudoLocale } from '../services';
 
-import { GuidePageChrome } from '../components';
+import GuidePageChrome from '../components/guide_page/guide_page_chrome';
 
 import {
   EuiErrorBoundary,

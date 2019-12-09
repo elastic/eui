@@ -58,7 +58,7 @@ import { CardExample } from './views/card/card_example';
 
 import { CallOutExample } from './views/call_out/call_out_example';
 
-import { CodeEditorExample } from './views/code_editor/code_editor_example';
+// import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
@@ -232,6 +232,7 @@ const createExample = example => {
   }
 
   const { title, intro, sections, beta } = example;
+
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -245,9 +246,11 @@ const createExample = example => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
-        {renderedSections}
-      </GuidePage>
+      <React.Suspense fallback={<h1>Loading...</h1>}>
+        <GuidePage title={title} intro={intro} isBeta={beta}>
+          {renderedSections}
+        </GuidePage>
+      </React.Suspense>
     </EuiErrorBoundary>
   );
 
@@ -372,7 +375,7 @@ const navigation = [
       SuperSelectExample,
       ComboBoxExample,
       ColorPickerExample,
-      CodeEditorExample,
+      // CodeEditorExample,
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,
