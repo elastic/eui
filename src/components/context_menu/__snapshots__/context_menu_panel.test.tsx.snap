@@ -26,15 +26,20 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
+          aria-label="Arrow Left"
           class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <title>
+            Arrow Left
+          </title>
           <path
-            d="M10.843 13.069L6.232 8.384a.546.546 0 0 1 0-.768l4.61-4.685a.552.552 0 0 0 0-.771.53.53 0 0 0-.759 0l-4.61 4.684a1.65 1.65 0 0 0 0 2.312l4.61 4.684a.53.53 0 0 0 .76 0 .552.552 0 0 0 0-.771z"
+            d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
             fill-rule="nonzero"
           />
         </svg>
@@ -74,15 +79,20 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
+          aria-label="Arrow Left"
           class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <title>
+            Arrow Left
+          </title>
           <path
-            d="M10.843 13.069L6.232 8.384a.546.546 0 0 1 0-.768l4.61-4.685a.552.552 0 0 0 0-.771.53.53 0 0 0-.759 0l-4.61 4.684a1.65 1.65 0 0 0 0 2.312l4.61 4.684a.53.53 0 0 0 .76 0 .552.552 0 0 0 0-.771z"
+            d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
             fill-rule="nonzero"
           />
         </svg>
@@ -114,9 +124,12 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
+          aria-hidden="true"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
@@ -143,9 +156,12 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
               2a
             </span>
             <svg
+              aria-hidden="true"
+              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -165,9 +181,12 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
               2b
             </span>
             <svg
+              aria-hidden="true"
+              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -187,9 +206,12 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
               2c
             </span>
             <svg
+              aria-hidden="true"
+              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -219,9 +241,12 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
         class="euiContextMenu__itemLayout"
       >
         <svg
+          aria-hidden="true"
+          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
           focusable="false"
           height="16"
+          role="img"
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
@@ -273,9 +298,12 @@ exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
       class="euiContextMenu__itemLayout"
     >
       <svg
+        aria-hidden="true"
+        aria-label=""
         class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
         focusable="false"
         height="16"
+        role="img"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
