@@ -3,8 +3,7 @@
 **Bug fixes**
 
 - Fixed UX/focus bug in `EuiDataGrid` when using keyboard shortcuts to paginate ([#2602](https://github.com/elastic/eui/pull/2602))
-- Hide `paginationBar` in `EuiBasicTable` when there is no data ([#2598](https://github.com/elastic/eui/pull/#2598))
-- Display `EuiPagination` in `EuiBasicTable` when there is only 1 page ([#2598](https://github.com/elastic/eui/pull/#2598))
+- Improved pagination in `EuiBasicTable`. `paginationBar` is hidden when there is no data and `EuiPagination` is displayed even when there is only one page ([#2598](https://github.com/elastic/eui/pull/#2598))
 
 ## [`17.0.0`](https://github.com/elastic/eui/tree/v17.0.0)
 
