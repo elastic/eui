@@ -10,6 +10,7 @@ import {
 } from './popover';
 
 import { keyCodes } from '../../services';
+import { sleep } from '../../test';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
@@ -253,6 +254,29 @@ describe('EuiPopover', () => {
         expect(component.render()).toMatchSnapshot();
       });
     });
+  });
+
+  it('cleans up timeouts and rAFs on unmount', async () => {
+    const component = mount(
+      <EuiPopover
+        id={getId()}
+        button={<button />}
+        closePopover={() => {}}
+        panelPaddingSize="s"
+        isOpen={false}
+      />
+    );
+
+    component.setProps({ isOpen: true });
+
+    component.unmount();
+
+    // EUI's jest configuration throws an error if there are any console.warn or console.error calls, like
+    // React's setState on an unmounted component warning
+    //
+    // this await gives the environment enough time to execute any pending timeouts or animation frame callbacks
+    // and validates the timeout/rAF clearing done by EuiPopover
+    await sleep(50);
   });
 });
 
