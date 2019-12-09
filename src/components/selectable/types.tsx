@@ -4,10 +4,11 @@ import { CommonProps } from '../common';
 export type OptionCheckedType = 'on' | 'off' | undefined;
 
 export interface Option extends CommonProps {
-  /**
-   * Must be unique across items (todo: fix this)
-   */
   label: string;
+  /**
+   * Must be unique across items
+   */
+  key?: string;
   /**
    * Leave off to indicate not selected,
    * 'on' to indicate inclusion and
