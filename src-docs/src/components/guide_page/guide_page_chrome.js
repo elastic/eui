@@ -59,6 +59,12 @@ class GuidePageChrome extends Component {
     });
   }
 
+  renderItem = ({ href, className, children }) => (
+    <Link to={href} className={className}>
+      {children}
+    </Link>
+  );
+
   renderIdentity() {
     const button = (
       <EuiButtonIcon
@@ -152,7 +158,7 @@ class GuidePageChrome extends Component {
       return {
         id: `subSection-${id}`,
         name,
-        onClick: () => this.goToPage(`${href}#${id}`),
+        href: `${href}#${id}`,
       };
     });
   };
@@ -203,9 +209,10 @@ class GuidePageChrome extends Component {
         return {
           id: `${section.type}-${path}`,
           name: visibleName,
-          onClick: () => {
-            this.goToPage(`${href}`);
-          },
+          href,
+          // onClick: () => {
+          //   this.goToPage(`${href}`);
+          // },
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item === this.props.currentRoute,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
@@ -238,6 +245,7 @@ class GuidePageChrome extends Component {
           toggleOpenOnMobile={this.toggleOpenOnMobile}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
           items={sideNav}
+          renderItem={this.renderItem}
         />
       );
     } else {

@@ -375,7 +375,7 @@ const navigation = [
       SuperSelectExample,
       ComboBoxExample,
       ColorPickerExample,
-      CodeEditorExample,
+      // CodeEditorExample,
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,

@@ -86,7 +86,11 @@ const rootElement = document.getElementById('guide');
 if (rootElement.hasChildNodes()) {
   hydrate(
     <Provider store={store}>
-      <Router history={routerHistory} routes={routes} />
+      <Router
+        history={routerHistory}
+        routes={routes}
+        onUpdate={hashLinkScroll}
+      />
     </Provider>,
     rootElement
   );
