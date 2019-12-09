@@ -29,7 +29,11 @@ describe('EuiIcon', () => {
     describe('other props', () => {
       test(
         'are passed through to the icon',
-        testIcon({ type: 'search', 'aria-label': 'a custom title' })
+        testIcon({
+          type: 'search',
+          'aria-label': 'A Search Icon',
+          title: 'Search',
+        })
       );
     });
 

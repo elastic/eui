@@ -388,16 +388,21 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                     type="arrowDown"
                                   >
                                     <EuiIconEmpty
-                                      aria-hidden="true"
+                                      aria-hidden={true}
+                                      aria-label=""
                                       className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                                       focusable="false"
+                                      role="img"
                                       style={null}
+                                      title=""
                                     >
                                       <svg
-                                        aria-hidden="true"
+                                        aria-hidden={true}
+                                        aria-label=""
                                         className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
                                         focusable="false"
                                         height={16}
+                                        role="img"
                                         style={null}
                                         viewBox="0 0 16 16"
                                         width={16}
@@ -468,16 +473,21 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 type="arrowLeft"
                               >
                                 <EuiIconEmpty
-                                  aria-hidden="true"
+                                  aria-hidden={true}
+                                  aria-label=""
                                   className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                   focusable="false"
+                                  role="img"
                                   style={null}
+                                  title=""
                                 >
                                   <svg
-                                    aria-hidden="true"
+                                    aria-hidden={true}
+                                    aria-label=""
                                     className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                     focusable="false"
                                     height={16}
+                                    role="img"
                                     style={null}
                                     viewBox="0 0 16 16"
                                     width={16}
@@ -607,16 +617,21 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 type="arrowRight"
                               >
                                 <EuiIconEmpty
-                                  aria-hidden="true"
+                                  aria-hidden={true}
+                                  aria-label=""
                                   className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                   focusable="false"
+                                  role="img"
                                   style={null}
+                                  title=""
                                 >
                                   <svg
-                                    aria-hidden="true"
+                                    aria-hidden={true}
+                                    aria-label=""
                                     className="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
                                     focusable="false"
                                     height={16}
+                                    role="img"
                                     style={null}
                                     viewBox="0 0 16 16"
                                     width={16}
