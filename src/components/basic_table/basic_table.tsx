@@ -1092,7 +1092,7 @@ export class EuiBasicTable<T = any> extends Component<
     return profile.align;
   }
 
-  renderPaginationBar(itemsLength) {
+  renderPaginationBar(itemsLength: number) {
     const { error, pagination, onChange } = this.props;
     if (!error && pagination && itemsLength > 0) {
       if (!onChange) {
