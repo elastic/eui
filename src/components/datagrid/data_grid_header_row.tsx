@@ -95,7 +95,7 @@ const EuiDataGridHeaderCell: FunctionComponent<
   }
 
   const columnType = schema[id] ? schema[id].columnType : null;
-  console.log(noToolbar);
+
   const classes = classnames(
     'euiDataGridHeaderCell',
     {
