@@ -388,7 +388,7 @@ export class EuiBasicTable<T = any> extends Component<
     );
 
     const table = this.renderTable();
-    const paginationBar = this.renderPaginationBar();
+    const paginationBar = this.renderPaginationBar(items.length);
 
     return (
       <div className={classes} {...rest}>
@@ -518,12 +518,12 @@ export class EuiBasicTable<T = any> extends Component<
         {(selectAllRows: string) => (
           <EuiCheckbox
             id={`_selection_column-checkbox_${makeId()}`}
-            type={isMobile ? null : 'inList'}
+            type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}
             onChange={onChange}
             // Only add data-test-subj to one of the checkboxes
-            data-test-subj={isMobile ? null : 'checkboxSelectAll'}
+            data-test-subj={isMobile ? undefined : 'checkboxSelectAll'}
             aria-label={selectAllRows}
             label={isMobile ? selectAllRows : null}
           />
@@ -1092,9 +1092,9 @@ export class EuiBasicTable<T = any> extends Component<
     return profile.align;
   }
 
-  renderPaginationBar() {
+  renderPaginationBar(itemsLength: number) {
     const { error, pagination, onChange } = this.props;
-    if (!error && pagination) {
+    if (!error && pagination && itemsLength > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
         not configured. This callback must be implemented to handle pagination changes`);
