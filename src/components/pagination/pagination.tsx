@@ -173,28 +173,23 @@ export const EuiPagination: FunctionComponent<Props> = ({
     </EuiI18n>
   );
 
-  if (pages.length > 1) {
-    const selectablePages = pages;
-    if (compressed) {
-      return (
-        <div className={classes} {...rest}>
-          {previousButton}
-          {nextButton}
-        </div>
-      );
-    }
-
+  const selectablePages = pages;
+  if (compressed) {
     return (
-      <div className={classes} role="group" {...rest}>
+      <div className={classes} {...rest}>
         {previousButton}
-        {firstPageButtons}
-        {selectablePages}
-        {lastPageButtons}
         {nextButton}
       </div>
     );
   }
 
-  // Don't render pagination if it isn't needed. Then span is here for a docs bug.
-  return <span />;
+  return (
+    <div className={classes} role="group" {...rest}>
+      {previousButton}
+      {firstPageButtons}
+      {selectablePages}
+      {lastPageButtons}
+      {nextButton}
+    </div>
+  );
 };

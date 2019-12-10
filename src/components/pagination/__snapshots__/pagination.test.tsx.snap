@@ -1,3 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPagination is rendered 1`] = `<span />`;
+exports[`EuiPagination is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPagination testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="group"
+>
+  <button
+    aria-label="Previous page"
+    class="euiButtonIcon euiButtonIcon--text"
+    data-test-subj="pagination-button-previous"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      aria-label=""
+      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+      focusable="false"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </button>
+  <button
+    aria-label="Page 1 of 1"
+    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
+    data-test-subj="pagination-button-0"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonEmpty__text"
+      >
+        1
+      </span>
+    </span>
+  </button>
+  <button
+    aria-label="Next page"
+    class="euiButtonIcon euiButtonIcon--text"
+    data-test-subj="pagination-button-next"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      aria-label=""
+      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+      focusable="false"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </button>
+</div>
+`;

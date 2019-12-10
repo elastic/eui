@@ -614,6 +614,26 @@ Array [
       ).toBe(2);
     });
 
+    it('renders additional toolbar controls', () => {
+      const component = render(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+          toolbarVisibility={{ additionalControls: <button>Button</button> }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     it('can hide the toolbar', () => {
       const component = mount(
         <EuiDataGrid
