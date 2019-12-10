@@ -10,7 +10,6 @@ import {
 } from './popover';
 
 import { keyCodes } from '../../services';
-import { sleep } from '../../test';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
@@ -256,27 +255,62 @@ describe('EuiPopover', () => {
     });
   });
 
-  it('cleans up timeouts and rAFs on unmount', async () => {
-    const component = mount(
-      <EuiPopover
-        id={getId()}
-        button={<button />}
-        closePopover={() => {}}
-        panelPaddingSize="s"
-        isOpen={false}
-      />
-    );
+  describe('listener cleanup', () => {
+    let _raf: typeof window['requestAnimationFrame'];
+    let _caf: typeof window['cancelAnimationFrame'];
+    beforeAll(() => {
+      jest.useFakeTimers();
+      _raf = window.requestAnimationFrame;
+      _caf = window.cancelAnimationFrame;
 
-    component.setProps({ isOpen: true });
+      const activeAnimationFrames = new Map<number, number>();
+      let nextAnimationFrameId = 0;
+      window.requestAnimationFrame = fn => {
+        const animationFrameId = nextAnimationFrameId++;
+        activeAnimationFrames.set(animationFrameId, setTimeout(fn));
+        return animationFrameId;
+      };
+      window.cancelAnimationFrame = (id: number) => {
+        const timeoutId = activeAnimationFrames.get(id);
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          activeAnimationFrames.delete(id);
+        }
+      };
+    });
 
-    component.unmount();
+    afterAll(() => {
+      jest.useRealTimers();
+      window.requestAnimationFrame = _raf;
+      window.cancelAnimationFrame = _caf;
+    });
 
-    // EUI's jest configuration throws an error if there are any console.warn or console.error calls, like
-    // React's setState on an unmounted component warning
-    //
-    // this await gives the environment enough time to execute any pending timeouts or animation frame callbacks
-    // and validates the timeout/rAF clearing done by EuiPopover
-    await sleep(50);
+    it('cleans up timeouts and rAFs on unmount', () => {
+      const component = mount(
+        <EuiPopover
+          id={getId()}
+          button={<button />}
+          closePopover={() => {}}
+          panelPaddingSize="s"
+          isOpen={false}
+        />
+      );
+
+      component.setProps({ isOpen: true });
+
+      component.unmount();
+
+      // EUI's jest configuration throws an error if there are any console.error calls, like
+      // React's setState on an unmounted component warning
+      // to be future proof, verify that's still the case
+      expect(() => {
+        console.error('This is a test');
+      }).toThrow();
+
+      // execute any pending timeouts or animation frame callbacks
+      // and validate the timeout/rAF clearing done by EuiPopover
+      jest.advanceTimersByTime(10);
+    });
   });
 });
 
