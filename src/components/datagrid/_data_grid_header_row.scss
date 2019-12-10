@@ -76,6 +76,10 @@
     &:first-of-type {
       border-left: $euiBorderThin;
     }
+
+    &.noToolbar {
+      border-top: $euiBorderThin;
+    }
   }
 }
 

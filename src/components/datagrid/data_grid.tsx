@@ -758,6 +758,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                           headerIsInteractive={headerIsInteractive}
                           focusedCell={realizedFocusedCell}
                           setFocusedCell={setFocusedCell}
+                          noToolbar={!showToolbar}
                         />
                       )}
                     </EuiMutationObserver>
