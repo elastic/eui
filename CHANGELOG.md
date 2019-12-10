@@ -11,6 +11,7 @@
 - Fixed `EuiIcon` accessibility by adding a `title` prop and a default `aria-label` ([#2554](https://github.com/elastic/eui/pull/2554))
 - Fixed `EuiDataGrid`'s in-memory sorting of numeric columns when the cell data contains multiple digit groups ([#2603](https://github.com/elastic/eui/pull/2603))
 - Improved pagination in `EuiBasicTable`. `paginationBar` is hidden when there is no data and `EuiPagination` is displayed even when there is only one page ([#2598](https://github.com/elastic/eui/pull/#2598))
+- Fixed react-dom warning when `EuiPopover` was unmounted before calls to setState ([#2614](https://github.com/elastic/eui/pull/2614))
 
 ## [`17.0.0`](https://github.com/elastic/eui/tree/v17.0.0)
 
