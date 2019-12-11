@@ -270,7 +270,10 @@ export class EuiPopover extends Component<Props, State> {
     return null;
   }
 
+  private respositionTimeout: number | undefined;
   private closingTransitionTimeout: number | undefined;
+  private closingTransitionAnimationFrame: number | undefined;
+  private updateFocusAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
 
@@ -304,7 +307,7 @@ export class EuiPopover extends Component<Props, State> {
 
   updateFocus() {
     // Wait for the DOM to update.
-    window.requestAnimationFrame(() => {
+    this.updateFocusAnimationFrame = window.requestAnimationFrame(() => {
       if (!this.props.ownFocus || !this.panel) {
         return;
       }
@@ -374,11 +377,13 @@ export class EuiPopover extends Component<Props, State> {
       clearTimeout(this.closingTransitionTimeout);
       // We need to set this state a beat after the render takes place, so that the CSS
       // transition can take effect.
-      window.requestAnimationFrame(() => {
-        this.setState({
-          isOpening: true,
-        });
-      });
+      this.closingTransitionAnimationFrame = window.requestAnimationFrame(
+        () => {
+          this.setState({
+            isOpening: true,
+          });
+        }
+      );
 
       // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
       const { durationMatch, delayMatch } = Array.prototype.slice
@@ -398,7 +403,7 @@ export class EuiPopover extends Component<Props, State> {
           { durationMatch: 0, delayMatch: 0 }
         );
 
-      setTimeout(() => {
+      this.respositionTimeout = window.setTimeout(() => {
         this.setState({ isOpenStable: true }, () => {
           this.positionPopoverFixed();
           this.updateFocus();
@@ -429,7 +434,10 @@ export class EuiPopover extends Component<Props, State> {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.positionPopoverFixed);
+    clearTimeout(this.respositionTimeout);
     clearTimeout(this.closingTransitionTimeout);
+    cancelAnimationFrame(this.closingTransitionAnimationFrame!);
+    cancelAnimationFrame(this.updateFocusAnimationFrame!);
   }
 
   onMutation = (records: MutationRecord[]) => {
