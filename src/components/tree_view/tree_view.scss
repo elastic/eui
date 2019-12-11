@@ -20,6 +20,8 @@
 }
 
 .euiTreeView__nodeInner {
+  @include euiTextTruncate;
+
   padding-left: $euiSizeS;
   display: flex;
   flex-direction: row;
@@ -42,6 +44,10 @@
     width: $euiSizeXL;
   }
 
+}
+
+.euiTreeView__nodeLabel {
+  @include euiTextTruncate;
 }
 
 .euiTreeView__iconWrapper {
