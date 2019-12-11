@@ -17,7 +17,7 @@ function compileLib() {
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
   execSync(
-    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
     {
       env: {
         ...process.env,
@@ -27,7 +27,16 @@ function compileLib() {
     }
   );
   execSync(
-    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
+    {
+      env: {
+        ...process.env,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+  execSync(
+    'babel --quiet --out-dir=kbn-test --extensions .js,.ts,.tsx --plugins=@babel/plugin-syntax-dynamic-import,dynamic-import-node --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
     {
       env: {
         ...process.env,
@@ -65,32 +74,40 @@ function compileLib() {
 function compileBundle() {
   shell.mkdir('-p', 'dist');
 
-  console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  // console.log('Building bundle...');
+  // execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  //
+  // console.log('Building minified bundle...');
+  // execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
+  //   stdio: 'inherit',
+  // });
 
-  console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
-    stdio: 'inherit',
-  });
-
-  console.log('Building chart theme module...');
+  console.log('Building test environment bundle...');
   execSync(
-    'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.js --output-library-target="commonjs" --config=src/webpack.config.js',
+    'webpack --config=src/webpack.testenv.config.js',
     {
       stdio: 'inherit',
     }
   );
-  dtsGenerator({
-    name: '@elastic/eui/dist/eui_charts_theme',
-    out: 'dist/eui_charts_theme.d.ts',
-    baseDir: path.resolve(__dirname, '..', 'src/themes/charts/'),
-    files: ['themes.ts'],
-    resolveModuleId() {
-      return '@elastic/eui/dist/eui_charts_theme';
-    }
-  });
-  console.log(chalk.green('✔ Finished chart theme module'));
+
+  // console.log('Building chart theme module...');
+  // execSync(
+  //   'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.js --output-library-target="commonjs" --config=src/webpack.config.js',
+  //   {
+  //     stdio: 'inherit',
+  //   }
+  // );
+  // dtsGenerator({
+  //   name: '@elastic/eui/dist/eui_charts_theme',
+  //   out: 'dist/eui_charts_theme.d.ts',
+  //   baseDir: path.resolve(__dirname, '..', 'src/themes/charts/'),
+  //   files: ['themes.ts'],
+  //   resolveModuleId() {
+  //     return '@elastic/eui/dist/eui_charts_theme';
+  //   }
+  // });
+  // console.log(chalk.green('✔ Finished chart theme module'));
 }
 
-compileLib();
+// compileLib();
 compileBundle();
