@@ -5,6 +5,7 @@ exports[`EuiTreeView is rendered 1`] = `
   class="euiText euiText--medium euiTreeView__wrapper"
 >
   <p
+    class="euiScreenReaderOnly"
     id="htmlId--instruction"
   >
     You can quickly navigate this list using arrow keys.

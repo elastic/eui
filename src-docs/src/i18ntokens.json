@@ -1781,12 +1781,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 236,
-        "column": 14
+        "line": 238,
+        "column": 12
       },
       "end": {
-        "line": 238,
-        "column": 79
+        "line": 240,
+        "column": 77
       }
     },
     "filepath": "src/components/tree_view/tree_view.tsx"
@@ -1797,11 +1797,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 257,
         "column": 16
       },
       "end": {
-        "line": 261,
+        "line": 264,
         "column": 21
       }
     },
