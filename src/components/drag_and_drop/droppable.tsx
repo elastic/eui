@@ -21,7 +21,7 @@ export type EuiDroppableSpacing = keyof typeof spacingToClassNameMap;
 export interface EuiDroppableProps
   extends CommonProps,
     Omit<DroppableProps, 'children'> {
-  children: ReactElement | DroppableProps['children'];
+  children: ReactElement | ReactElement[] | DroppableProps['children'];
   className?: string;
   /**
    * Makes its items immutable. Dragging creates cloned items that can be dropped elsewhere.
