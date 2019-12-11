@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router';
+import { Link } from 'react-router';
 
 import {
   EuiFieldSearch,
@@ -19,7 +19,7 @@ import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
 
-class GuidePageChrome extends Component {
+export class GuidePageChrome extends Component {
   constructor(props) {
     super(props);
 
@@ -275,8 +275,6 @@ class GuidePageChrome extends Component {
     );
   }
 }
-
-export default withRouter(GuidePageChrome);
 
 GuidePageChrome.propTypes = {
   currentRoute: PropTypes.object.isRequired,

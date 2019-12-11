@@ -37,11 +37,7 @@
     "version": "node ./scripts/update-changelog-version.js"
   },
   "reactSnap": {
-    "source": "docs",
-    "minifyHtml": {
-      "collapseWhitespace": false,
-      "removeComments": false
-    }
+    "source": "docs"
   },
   "repository": {
     "type": "git",
