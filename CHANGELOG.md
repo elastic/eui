@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.1.0`.
+**Bug fixes**
+
+- Fixed screenreader text in `EuiTreeView` and added truncation ([#2627](https://github.com/elastic/eui/pull/2627))
 
 ## [`17.1.0`](https://github.com/elastic/eui/tree/v17.1.0)
 
