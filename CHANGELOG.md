@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
+- Added new stylesheets for the EUI Amsterdam theme ([#2633](https://github.com/elastic/eui/pull/2633))
 
 **Bug fixes**
 
