@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Replaced `react-router` hash history with browser history and improved the navigation in order to generate static files with `react-snap` ([#2577](https://github.com/elastic/eui/pull/2577)
+
 **Bug fixes**
 
 - Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))

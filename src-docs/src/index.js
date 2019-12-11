@@ -67,7 +67,6 @@ const syncTitleWithRoutes = routesList => {
 
 syncTitleWithRoutes(routes);
 
-// scroll to id
 const hashLinkScroll = () => {
   const { hash } = window.location;
   if (hash !== '') {
