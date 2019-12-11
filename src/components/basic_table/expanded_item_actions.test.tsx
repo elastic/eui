@@ -1,10 +1,13 @@
 import React from 'react';
-import { render } from 'enzyme';
-import { CollapsedItemActions } from './collapsed_item_actions';
+import { shallow } from 'enzyme';
+import {
+  ExpandedItemActions,
+  ExpandedItemActionsProps,
+} from './expanded_item_actions';
 
-describe('CollapsedItemActions', () => {
+describe('ExpandedItemActions', () => {
   test('render', () => {
-    const props = {
+    const props: ExpandedItemActionsProps<{ id: string }> = {
       actions: [
         {
           name: 'default1',
@@ -14,16 +17,15 @@ describe('CollapsedItemActions', () => {
         {
           name: 'custom1',
           description: 'custom 1',
-          render: () => {},
+          render: _item => <></>,
         },
       ],
-      itemId: 'id',
+      itemId: 'xyz',
       item: { id: 'xyz' },
       actionEnabled: () => true,
-      onFocus: () => {},
     };
 
-    const component = render(<CollapsedItemActions {...props} />);
+    const component = shallow(<ExpandedItemActions {...props} />);
 
     expect(component).toMatchSnapshot();
   });

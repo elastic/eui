@@ -167,14 +167,25 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return matchLength / value.length || 0;
     },
     comparator: (a, b, direction) => {
-      const aChars = a.split('').filter(char => numericChars.has(char));
-      const aValue = parseFloat(aChars.join(''));
+      // sort on all digits groups
+      const aGroups = a.split(/\D+/);
+      const bGroups = b.split(/\D+/);
 
-      const bChars = b.split('').filter(char => numericChars.has(char));
-      const bValue = parseFloat(bChars.join(''));
+      const maxGroups = Math.max(aGroups.length, bGroups.length);
+      for (let i = 0; i < maxGroups; i++) {
+        // if A and B's group counts differ and they match until that difference, prefer whichever is shorter
+        if (i >= aGroups.length) return direction === 'asc' ? -1 : 1;
+        if (i >= bGroups.length) return direction === 'asc' ? 1 : -1;
 
-      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
-      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+        const aChars = aGroups[i];
+        const bChars = bGroups[i];
+        const aValue = parseInt(aChars, 10);
+        const bValue = parseInt(bChars, 10);
+
+        if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+      }
+
       return 0;
     },
     icon: 'number',

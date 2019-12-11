@@ -5,7 +5,7 @@ import {
   EuiDataGridSorting,
   EuiDataGridInMemory,
   EuiDataGridStyle,
-  EuiDataGridTooBarVisibilityOptions,
+  EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
   EuiDataGridPopoverContentProps,
 } from '../../../../src/components/datagrid/data_grid_types';
@@ -31,7 +31,7 @@ export const DataGridInMemory: FunctionComponent<EuiDataGridInMemory> = () => (
 export const DataGridStyle: FunctionComponent<EuiDataGridStyle> = () => <div />;
 
 export const DataGridToolbarVisibilityOptions: FunctionComponent<
-  EuiDataGridTooBarVisibilityOptions
+  EuiDataGridToolBarVisibilityOptions
 > = () => <div />;
 
 export const DataGridCellValueElement: FunctionComponent<

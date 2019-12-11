@@ -614,6 +614,26 @@ Array [
       ).toBe(2);
     });
 
+    it('renders additional toolbar controls', () => {
+      const component = render(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+          toolbarVisibility={{ additionalControls: <button>Button</button> }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     it('can hide the toolbar', () => {
       const component = mount(
         <EuiDataGrid
@@ -1402,6 +1422,54 @@ Array [
           ['0', '5'],
           ['0', '7'],
           ['0', '9'],
+        ]);
+      });
+
+      it('sorts with all digit groups in numerical-like', () => {
+        const onSort = jest.fn(columns => {
+          component.setProps({ sorting: { columns, onSort } });
+          component.update();
+        });
+
+        const component = mount(
+          <EuiDataGrid
+            aria-label="test"
+            columns={[{ id: 'version' }]}
+            columnVisibility={{
+              visibleColumns: ['version'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={5}
+            renderCellValue={
+              ({ rowIndex }) => `1.0.${(rowIndex % 3) + rowIndex}` // computes as 0,2,4,3,5
+            }
+            inMemory={{ level: 'sorting' }}
+            sorting={{
+              columns: [],
+              onSort,
+            }}
+          />
+        );
+
+        // verify rows are unordered
+        expect(extractGridData(component)).toEqual([
+          ['version'],
+          ['1.0.0'],
+          ['1.0.2'],
+          ['1.0.4'],
+          ['1.0.3'],
+          ['1.0.5'],
+        ]);
+
+        sortByColumn(component, 'version', 'asc');
+
+        expect(extractGridData(component)).toEqual([
+          ['version'],
+          ['1.0.0'],
+          ['1.0.2'],
+          ['1.0.3'],
+          ['1.0.4'],
+          ['1.0.5'],
         ]);
       });
     });

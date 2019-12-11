@@ -43,6 +43,7 @@ describe('EuiTreeView', () => {
                     label: "I'm a Bug",
                     id: 'item_bug',
                     icon: <EuiToken iconType="tokenEnum" />,
+                    className: 'classForBug',
                   },
                 ],
               },

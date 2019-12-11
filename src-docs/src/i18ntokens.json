@@ -5,15 +5,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 473,
+        "line": 479,
         "column": 12
       },
       "end": {
-        "line": 477,
+        "line": 483,
         "column": 14
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiBasicTable.selectAllRows",
@@ -21,15 +21,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 511,
+        "line": 517,
         "column": 6
       },
       "end": {
-        "line": 511,
+        "line": 517,
         "column": 77
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiBasicTable.selectThisRow",
@@ -37,15 +37,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 869,
+        "line": 891,
         "column": 8
       },
       "end": {
-        "line": 869,
+        "line": 891,
         "column": 79
       }
     },
-    "filepath": "src/components/basic_table/basic_table.js"
+    "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
     "token": "euiCollapsedItemActions.allActions",
@@ -53,15 +53,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 107,
+        "line": 148,
         "column": 6
       },
       "end": {
-        "line": 107,
+        "line": 148,
         "column": 80
       }
     },
-    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
     "token": "euiCollapsedItemActions.allActions",
@@ -69,15 +69,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 124,
+        "line": 165,
         "column": 6
       },
       "end": {
-        "line": 124,
+        "line": 165,
         "column": 80
       }
     },
-    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
     "token": "euiBottomBar.screenReaderAnnouncement",
@@ -773,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 183,
+        "line": 194,
         "column": 6
       },
       "end": {
-        "line": 183,
+        "line": 194,
         "column": 80
       }
     },
@@ -789,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 186,
+        "line": 197,
         "column": 6
       },
       "end": {
-        "line": 189,
+        "line": 200,
         "column": 8
       }
     },
@@ -805,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 226,
         "column": 6
       },
       "end": {
-        "line": 218,
+        "line": 229,
         "column": 8
       }
     },
@@ -821,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
+        "line": 232,
         "column": 6
       },
       "end": {
-        "line": 224,
+        "line": 235,
         "column": 8
       }
     },
@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 743,
+        "line": 789,
         "column": 12
       },
       "end": {
-        "line": 746,
+        "line": 792,
         "column": 14
       }
     },
@@ -1509,11 +1509,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 616,
+        "line": 624,
         "column": 14
       },
       "end": {
-        "line": 619,
+        "line": 627,
         "column": 16
       }
     },
@@ -1685,11 +1685,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 49,
+        "line": 60,
         "column": 8
       },
       "end": {
-        "line": 49,
+        "line": 60,
         "column": 72
       }
     },
@@ -1781,12 +1781,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 236,
-        "column": 14
+        "line": 238,
+        "column": 12
       },
       "end": {
-        "line": 238,
-        "column": 79
+        "line": 240,
+        "column": 77
       }
     },
     "filepath": "src/components/tree_view/tree_view.tsx"
@@ -1797,11 +1797,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 257,
         "column": 16
       },
       "end": {
-        "line": 261,
+        "line": 264,
         "column": 21
       }
     },

@@ -87,6 +87,11 @@ export const TreeViewExample = {
             <EuiCode>expandByDefault</EuiCode> prop, as seen in the example
             below.
           </p>
+          <p>
+            Lastly, each node can also accept a custom{' '}
+            <EuiCode>className</EuiCode> should you need to style them
+            individually.
+          </p>
         </div>
       ),
       components: { EuiTreeView },
