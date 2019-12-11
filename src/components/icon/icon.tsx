@@ -603,8 +603,15 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     } else {
       const Svg = icon;
 
-      // If it's an empty icon it gets aria-hidden true
-      const hideIconEmpty = icon === empty && { 'aria-hidden': true };
+      // If it's an empty icon, or if there is no aria-label, aria-labelledby, or title it gets aria-hidden true
+      const isAriaHidden =
+        icon === empty ||
+        !(
+          this.props['aria-label'] ||
+          this.props['aria-labelledby'] ||
+          this.props.title
+        );
+      const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
 
       let ariaLabel: any;
 

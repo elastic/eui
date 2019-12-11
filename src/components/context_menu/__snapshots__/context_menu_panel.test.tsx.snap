@@ -26,6 +26,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
+          aria-hidden="true"
           class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
           focusable="false"
           height="16"
@@ -76,6 +77,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
+          aria-hidden="true"
           class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
           focusable="false"
           height="16"
