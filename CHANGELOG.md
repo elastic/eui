@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.1.0`.
+**Bug fixes**
+
+- Removed `EuiIcon` default titles ([#2632](https://github.com/elastic/eui/pull/2632))
 
 ## [`17.1.0`](https://github.com/elastic/eui/tree/v17.1.0)
 
