@@ -203,6 +203,8 @@ export class EuiCodeEditor extends Component {
         {prompt}
 
         <AceEditor
+          // Setting a default, existing `mode` is necessary to properly initialize the editor
+          // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
           mode={this.isCustomMode() ? DEFAULT_MODE : mode}
           name={this.idGenerator()}
           ref={this.aceEditorRef}
