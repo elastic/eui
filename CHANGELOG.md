@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Improved `EuiDataGrid` update performance ([#2638](https://github.com/elastic/eui/pull/2638))
 - Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))
 
 ## [`17.1.1`](https://github.com/elastic/eui/tree/v17.1.1)
