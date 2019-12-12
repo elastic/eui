@@ -7,63 +7,30 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiCodeBlock,
+  EuiIcon,
   EuiLink,
   EuiSuperDatePicker,
 } from '../../../../src/components';
-
-// import Suggest from './suggest';
-// const suggestSource = require('!!raw-loader!./suggest');
-// const suggestHtml = renderToHtml(Suggest);
 
 import SuperDatePicker from './super_date_picker';
 const superDatePickerSource = require('!!raw-loader!./super_date_picker');
 const superDatePickerHtml = renderToHtml(SuperDatePicker);
 
-// import SavedQueries from './saved_queries';
-// const savedQueriesSource = require('!!raw-loader!./saved_queries');
-// const savedQueriesHtml = renderToHtml(SavedQueries);
+import SuperDatePickerConfig from './super_date_picker_config';
+const superDatePickerConfigSource = require('!!raw-loader!./super_date_picker_config');
+const superDatePickerConfigHtml = renderToHtml(SuperDatePicker);
 
-// import SuggestItem from './suggest_item';
-// const suggestItemSource = require('!!raw-loader!./suggest_item');
-// const suggestItemHtml = renderToHtml(SuggestItem);
-const suggestItemSnippet = [
-  `<EuiSuggestItem
-  type={sampleItem.type}
-  label={sampleItem.label}
-  description={sampleItem.description}
+import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
+const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
+const superDatePickerCustomQuickSelectHtml = renderToHtml(SuperDatePicker);
+
+const superDatePickerSnippet = `<EuiSuperDatePicker
+  onTimeChange={this.onTimeChange}
 />
-`,
-  `<EuiSuggestItem
-  type={sampleItem.type}
-  label={sampleItem.label}
-  description={sampleItem.description}
-  labelDisplay="expand"
-/>`,
-];
-
-const suggestSnippet = [
-  `<EuiSuggest
-  status={this.state.status}
-  tooltipContent={this.state.tooltipContent}
-  onInputChange={this.getInputValue}
-  onItemClick={this.onItemClick}
-  suggestions={[
-    {
-      type: { iconType: 'kqlField', color: 'tint4' },
-      label: 'Field sample',
-      description: 'This is the description',
-    },
-    {
-      type: { iconType: 'kqlValue', color: 'tint0' },
-      label: 'Value sample',
-      description: 'This is the description',
-    },
-  ]}
-/>`,
-];
+`;
 
 export const SuperDatePickerExample = {
-  title: 'SuperDatePicker',
+  title: 'Super Date Picker',
   sections: [
     {
       source: [
@@ -78,6 +45,17 @@ export const SuperDatePickerExample = {
       ],
       text: (
         <div>
+          <p>
+            <EuiCode>EuiSuperDatePicker</EuiCode> is a date picker that supports
+            relative and absolute dates. It offers a convenient{' '}
+            <strong>Quick select menu</strong>{' '}
+            <EuiCode>
+              <EuiIcon type="calendar" color="primary" />
+            </EuiCode>
+            which includes <strong>Commonly used dates</strong>,{' '}
+            <strong>Recently used date ranges</strong> and{' '}
+            <strong>Set refresh</strong> features.
+          </p>
           <p>
             <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times are
             passed as strings in either datemath format (e.g.: now, now-15m,
@@ -106,6 +84,26 @@ if (!endMoment || !endMoment.isValid()) {
 }
           `}
           </EuiCodeBlock>
+        </div>
+      ),
+      props: { EuiSuperDatePicker },
+      snippet: superDatePickerSnippet,
+      demo: <SuperDatePicker />,
+    },
+    {
+      title: 'Configurations',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: superDatePickerConfigSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: superDatePickerConfigHtml,
+        },
+      ],
+      text: (
+        <div>
           <p>
             <EuiCode>onTimeChange</EuiCode> will be immediately invoked when{' '}
             <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from
@@ -137,9 +135,30 @@ if (!endMoment || !endMoment.isValid()) {
           </p>
         </div>
       ),
-      props: { EuiSuperDatePicker },
-      // snippet: suggestSnippet,
-      demo: <SuperDatePicker />,
+      demo: <SuperDatePickerConfig />,
+    },
+    {
+      title: 'Custom quick select panel',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: superDatePickerCustomQuickSelectSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: superDatePickerCustomQuickSelectHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            <EuiCode>EuiSuperDatePicker</EuiCode>&apos;s quick select menu also
+            supports <strong>custom panels</strong>. These panels can have their
+            own title and perform custom actions on the date picker.
+          </p>
+        </div>
+      ),
+      demo: <SuperDatePickerCustomQuickSelect />,
     },
   ],
 };

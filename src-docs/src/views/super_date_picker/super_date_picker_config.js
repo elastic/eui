@@ -2,17 +2,17 @@ import React, { Component, Fragment } from 'react';
 
 import {
   EuiSuperDatePicker,
+  EuiSwitch,
   EuiSpacer,
-  EuiFormRow,
-  EuiFieldText,
-  EuiPanel,
-  EuiText,
 } from '../../../../src/components';
 
 export default class extends Component {
   state = {
     recentlyUsedRanges: [],
+    isDisabled: false,
     isLoading: false,
+    showUpdateButton: true,
+    isAutoRefreshOnly: false,
     start: 'now-30m',
     end: 'now',
   };
@@ -47,18 +47,6 @@ export default class extends Component {
     });
   };
 
-  onStartInputChange = e => {
-    this.setState({
-      start: e.target.value,
-    });
-  };
-
-  onEndInputChange = e => {
-    this.setState({
-      end: e.target.value,
-    });
-  };
-
   startLoading = () => {
     setTimeout(this.stopLoading, 1000);
   };
@@ -74,39 +62,46 @@ export default class extends Component {
     });
   };
 
-  renderTimeRange = () => {
-    return (
-      <Fragment>
-        <EuiPanel paddingSize="m">
-          <EuiText size="s">
-            EuiSuperDatePicker should be resilient to invalid date values. You
-            can try to break it with unexpected values here.
-          </EuiText>
-          <EuiSpacer />
-          <EuiFormRow
-            label="start"
-            helpText="Start date. Try to break EuiSuperDatePicker with unexpected values">
-            <EuiFieldText
-              onChange={this.onStartInputChange}
-              value={this.state.start}
-            />
-          </EuiFormRow>
-          <EuiFormRow
-            label="end"
-            helpText="End date. Try to break EuiSuperDatePicker with unexpected values">
-            <EuiFieldText
-              onChange={this.onEndInputChange}
-              value={this.state.end}
-            />
-          </EuiFormRow>
-        </EuiPanel>
-      </Fragment>
-    );
+  toggleDisabled = () => {
+    this.setState(prevState => ({
+      isDisabled: !prevState.isDisabled,
+    }));
+  };
+
+  toggleShowApplyButton = () => {
+    this.setState(prevState => ({
+      showUpdateButton: !prevState.showUpdateButton,
+    }));
+  };
+
+  toggleShowRefreshOnly = () => {
+    this.setState(prevState => ({
+      isAutoRefreshOnly: !prevState.isAutoRefreshOnly,
+    }));
   };
 
   render() {
     return (
       <Fragment>
+        <EuiSwitch
+          label="Show update button"
+          onChange={this.toggleShowApplyButton}
+          checked={!this.state.isAutoRefreshOnly && this.state.showUpdateButton}
+          disabled={this.state.isAutoRefreshOnly}
+        />
+        &emsp;
+        <EuiSwitch
+          label="Is auto-refresh only"
+          onChange={this.toggleShowRefreshOnly}
+          checked={this.state.isAutoRefreshOnly}
+        />
+        &emsp;
+        <EuiSwitch
+          label="Is disabled"
+          onChange={this.toggleDisabled}
+          checked={this.state.isDisabled}
+        />
+        <EuiSpacer />
         <EuiSuperDatePicker
           isDisabled={this.state.isDisabled}
           isLoading={this.state.isLoading}
@@ -118,9 +113,10 @@ export default class extends Component {
           refreshInterval={this.state.refreshInterval}
           onRefreshChange={this.onRefreshChange}
           recentlyUsedRanges={this.state.recentlyUsedRanges}
+          showUpdateButton={this.state.showUpdateButton}
+          isAutoRefreshOnly={this.state.isAutoRefreshOnly}
         />
         <EuiSpacer />
-        {this.renderTimeRange()}
       </Fragment>
     );
   }
