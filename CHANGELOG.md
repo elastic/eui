@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
+- Fixed `EuiComboBox` from submitting parent `form` element when selecting options via `Enter` key ([#2642](https://github.com/elastic/eui/pull/2642)) 
 
 ## [`17.1.2`](https://github.com/elastic/eui/tree/v17.1.2)
 
