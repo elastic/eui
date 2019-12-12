@@ -27,7 +27,7 @@ interface EuiDataGridBodyProps {
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
   popoverContents?: EuiDataGridPopoverContents;
-  focusedCell: EuiDataGridDataRowProps['focusedCell'];
+  focusedCell: [number, number];
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
@@ -158,20 +158,18 @@ export const EuiDataGridBody: FunctionComponent<
     return rowMap;
   }, [sorting, inMemory, inMemoryValues, schema, schemaDetectors]);
 
+  const mergedPopoverContents = useMemo(
+    () => ({
+      ...providedPopoverContents,
+      ...popoverContents,
+    }),
+    [popoverContents]
+  );
+
   const rows = useMemo(() => {
-    const rows = [];
-    for (let i = 0; i < visibleRowIndices.length; i++) {
-      let rowIndex = visibleRowIndices[i];
-      if (rowMap.hasOwnProperty(rowIndex)) {
-        rowIndex = rowMap[rowIndex];
-      }
-
-      const mergedPopoverContents = {
-        ...providedPopoverContents,
-        ...popoverContents,
-      };
-
-      rows.push(
+    return visibleRowIndices.map((rowIndex, i) => {
+      rowIndex = rowMap.hasOwnProperty(rowIndex) ? rowMap[rowIndex] : rowIndex;
+      return (
         <EuiDataGridDataRow
           key={rowIndex}
           columns={columns}
@@ -179,7 +177,9 @@ export const EuiDataGridBody: FunctionComponent<
           popoverContents={mergedPopoverContents}
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
-          focusedCell={focusedCell}
+          focusedCellPositionInTheRow={
+            i === focusedCell[1] ? focusedCell[0] : null
+          }
           onCellFocus={onCellFocus}
           renderCellValue={renderCellValue}
           rowIndex={rowIndex}
@@ -187,20 +187,18 @@ export const EuiDataGridBody: FunctionComponent<
           interactiveCellId={interactiveCellId}
         />
       );
-    }
-
-    return rows;
+    });
   }, [
+    visibleRowIndices,
+    rowMap,
     columns,
+    schema,
+    mergedPopoverContents,
     columnWidths,
     defaultColumnWidth,
     focusedCell,
     onCellFocus,
     renderCellValue,
-    rowMap,
-    schema,
-    popoverContents,
-    visibleRowIndices,
     interactiveCellId,
   ]);
 

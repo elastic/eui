@@ -664,27 +664,30 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
   });
 
-  const datagridContext = {
-    onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
-      if (pagination) {
-        const key = `${cell[0]}-${cell[1]}`;
+  const datagridContext = useMemo(
+    () => ({
+      onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
+        if (pagination) {
+          const key = `${cell[0]}-${cell[1]}`;
 
-        setCellsUpdateFocus(cellsUpdateFocus => {
-          const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-          nextCellsUpdateFocus.set(key, updateFocus);
-          return nextCellsUpdateFocus;
-        });
-
-        return () => {
           setCellsUpdateFocus(cellsUpdateFocus => {
             const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-            nextCellsUpdateFocus.delete(key);
+            nextCellsUpdateFocus.set(key, updateFocus);
             return nextCellsUpdateFocus;
           });
-        };
-      }
-    },
-  };
+
+          return () => {
+            setCellsUpdateFocus(cellsUpdateFocus => {
+              const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
+              nextCellsUpdateFocus.delete(key);
+              return nextCellsUpdateFocus;
+            });
+          };
+        }
+      },
+    }),
+    [pagination]
+  );
 
   return (
     <DataGridContext.Provider value={datagridContext}>

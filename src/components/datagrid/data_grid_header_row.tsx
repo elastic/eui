@@ -28,7 +28,7 @@ interface EuiDataGridHeaderRowPropsSpecificProps {
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
   sorting?: EuiDataGridSorting;
-  focusedCell: EuiDataGridDataRowProps['focusedCell'];
+  focusedCell: [number, number];
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
 }
