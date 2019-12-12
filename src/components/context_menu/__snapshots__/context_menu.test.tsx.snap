@@ -26,7 +26,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          aria-label="Arrow Left"
+          aria-hidden="true"
           class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
           focusable="false"
           height="16"
@@ -35,9 +35,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           width="16"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            Arrow Left
-          </title>
+          <title />
           <path
             d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
             fill-rule="nonzero"
@@ -79,7 +77,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          aria-label="Arrow Left"
+          aria-hidden="true"
           class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
           focusable="false"
           height="16"
@@ -88,9 +86,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           width="16"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            Arrow Left
-          </title>
+          <title />
           <path
             d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
             fill-rule="nonzero"
@@ -125,7 +121,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       >
         <svg
           aria-hidden="true"
-          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
           focusable="false"
           height="16"
@@ -157,7 +152,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             </span>
             <svg
               aria-hidden="true"
-              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
               focusable="false"
               height="16"
@@ -182,7 +176,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             </span>
             <svg
               aria-hidden="true"
-              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
               focusable="false"
               height="16"
@@ -207,7 +200,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             </span>
             <svg
               aria-hidden="true"
-              aria-label=""
               class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
               focusable="false"
               height="16"
@@ -242,7 +234,6 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       >
         <svg
           aria-hidden="true"
-          aria-label=""
           class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
           focusable="false"
           height="16"

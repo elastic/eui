@@ -31,7 +31,6 @@ exports[`EuiSuggestInput is rendered 1`] = `
           >
             <svg
               aria-hidden="true"
-              aria-label=""
               class="euiIcon euiIcon--medium euiIcon--accent euiIcon-isLoading euiSuggestInput__statusIcon"
               focusable="false"
               height="16"
