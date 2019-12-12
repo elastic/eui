@@ -2,6 +2,13 @@
 
 **Bug fixes**
 
+- Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))
+
+## [`17.1.1`](https://github.com/elastic/eui/tree/v17.1.1)
+
+**Bug fixes**
+
+- Fixed screenreader text in `EuiTreeView` and added truncation ([#2627](https://github.com/elastic/eui/pull/2627))
 - Removed `EuiIcon` default titles ([#2632](https://github.com/elastic/eui/pull/2632))
 
 ## [`17.1.0`](https://github.com/elastic/eui/tree/v17.1.0)
