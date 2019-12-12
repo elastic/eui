@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Improved `EuiDataGrid` update performance ([#2638](https://github.com/elastic/eui/pull/2638))
 - Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
 
 ## [`17.1.2`](https://github.com/elastic/eui/tree/v17.1.2)
