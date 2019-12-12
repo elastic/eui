@@ -4,16 +4,16 @@ interface EuiPalette {
 
 const euiPaletteColorBlind: EuiPalette = {
   colors: [
-    '#1EA593',
-    '#2B70F7',
-    '#CE0060',
-    '#38007E',
-    '#FCA5D3',
-    '#F37020',
-    '#E49E29',
-    '#B0916F',
-    '#7B000B',
-    '#34130C',
+    '#4DAC93',
+    '#3594D6',
+    '#D15D75',
+    '#9170B8',
+    '#EEAFCF',
+    '#ADB6DD',
+    '#BAA066',
+    '#E59145',
+    '#B46F5F',
+    '#47688A',
   ],
 };
 

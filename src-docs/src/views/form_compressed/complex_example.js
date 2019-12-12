@@ -92,7 +92,7 @@ export default class extends Component {
       isSwitchChecked: false,
       opacityValue: '20',
       buttonGroupIdSelected: `${idPrefix}1`,
-      color: '#DB1374',
+      color: '#D15D75',
       borderValue: 3,
       popoverSliderValues: 16,
       dualValue: [5, 10],

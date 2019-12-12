@@ -2,16 +2,16 @@
 // spots that need a large range of varied, qualitative colors.
 
 export const VISUALIZATION_COLORS = [
-  '#00B3A4',
-  '#3185FC',
-  '#DB1374',
-  '#490092',
-  '#FEB6DB',
-  '#E6C220',
-  '#F98510',
-  '#BFA180',
-  '#461A0A',
-  '#920000',
+  '#4DAC93',
+  '#3594D6',
+  '#D15D75',
+  '#9170B8',
+  '#EEAFCF',
+  '#ADB6DD',
+  '#BAA066',
+  '#E59145',
+  '#B46F5F',
+  '#47688A',
 ];
 
 export const DEFAULT_VISUALIZATION_COLOR = VISUALIZATION_COLORS[1];
