@@ -272,8 +272,7 @@ export class EuiNavDrawer extends Component {
                   title: this.state.isLocked
                     ? sideNavLockExpanded
                     : sideNavLockCollapsed,
-                  'aria-checked': this.state.isLocked ? true : false,
-                  role: 'switch',
+                  'aria-pressed': this.state.isLocked ? true : false,
                 }}
                 onClick={this.collapseButtonClick}
                 data-test-subj={
