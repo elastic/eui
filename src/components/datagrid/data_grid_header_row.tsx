@@ -12,6 +12,7 @@ import {
   EuiDataGridColumnWidths,
   EuiDataGridColumn,
   EuiDataGridSorting,
+  EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { CommonProps } from '../common';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
@@ -28,7 +29,7 @@ interface EuiDataGridHeaderRowPropsSpecificProps {
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
   sorting?: EuiDataGridSorting;
-  focusedCell: EuiDataGridDataRowProps['focusedCell'];
+  focusedCell: EuiDataGridFocusedCell;
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
 }
