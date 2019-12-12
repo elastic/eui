@@ -8,6 +8,7 @@ No public interface changes since `17.1.2`.
 
 - Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))
 - Removed `EuiIcon` default titles ([#2632](https://github.com/elastic/eui/pull/2632))
+- Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
 
 ## [`17.1.1`](https://github.com/elastic/eui/tree/v17.1.1)
 
