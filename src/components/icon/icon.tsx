@@ -9,8 +9,6 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-import _startCase from 'lodash/startCase';
-
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
@@ -584,12 +582,6 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     const icon = this.state.icon || empty;
 
-    // If it's a named icon, by default the title will be the name
-    // If it's a custom icon, it gets an empty alt
-    const iconTitle = _startCase(this.state.iconTitle) || '';
-
-    const titleDisplayed = title ? title : iconTitle;
-
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
     //   - If there's no tab index specified, we'll default the icon to not be focusable,
@@ -601,7 +593,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     if (typeof icon === 'string') {
       return (
         <img
-          alt={titleDisplayed}
+          alt={title}
           src={icon}
           className={classes}
           tabIndex={tabIndex}
@@ -611,15 +603,25 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     } else {
       const Svg = icon;
 
-      // If it's an empty icon it gets aria-hidden true
-      const hideIconEmpty = icon === empty && { 'aria-hidden': true };
+      // If it's an empty icon, or if there is no aria-label, aria-labelledby, or title it gets aria-hidden true
+      const isAriaHidden =
+        icon === empty ||
+        !(
+          this.props['aria-label'] ||
+          this.props['aria-labelledby'] ||
+          this.props.title
+        );
+      const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
 
       let ariaLabel: any;
 
       // If no aria-label or aria-labelledby is provided the title will be default
-
-      if (!this.props['aria-label'] && !this.props['aria-labelledby']) {
-        ariaLabel = { 'aria-label': titleDisplayed };
+      if (
+        !this.props['aria-label'] &&
+        !this.props['aria-labelledby'] &&
+        title
+      ) {
+        ariaLabel = { 'aria-label': title };
       }
 
       return (
@@ -628,8 +630,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           style={optionalCustomStyles}
           tabIndex={tabIndex}
           focusable={focusable}
-          title={titleDisplayed}
           role="img"
+          title={title}
           {...rest}
           {...hideIconEmpty}
           {...ariaLabel}

@@ -3,7 +3,14 @@
 **Bug fixes**
 
 - Improved `EuiDataGrid` update performance ([#2638](https://github.com/elastic/eui/pull/2638))
+- Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
+
+## [`17.1.2`](https://github.com/elastic/eui/tree/v17.1.2)
+
+**Bug fixes**
+
 - Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))
+- Removed `EuiIcon` default titles ([#2632](https://github.com/elastic/eui/pull/2632))
 
 ## [`17.1.1`](https://github.com/elastic/eui/tree/v17.1.1)
 
