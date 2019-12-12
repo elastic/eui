@@ -22,7 +22,7 @@
 
   @each $name, $color in $euiSuggestItemColors {
     .euiSuggestItem__type--#{$name} {
-      $backgroundColor: tintOrShade($color, 90%, 50%);
+      $backgroundColor: tintOrShade($color, 82%, 70%);
       background-color: $backgroundColor;
       color: makeHighContrastColor($color, $backgroundColor);
     }
