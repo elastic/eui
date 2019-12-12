@@ -32,7 +32,6 @@ exports[`EuiTreeView is rendered 1`] = `
         >
           <svg
             aria-hidden="true"
-            aria-label=""
             class="euiIcon euiIcon--medium euiIcon-isLoading"
             focusable="false"
             height="16"
