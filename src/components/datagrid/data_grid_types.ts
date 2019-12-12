@@ -146,6 +146,8 @@ export interface EuiDataGridInMemory {
   skipColumns?: string[];
 }
 
+export type EuiDataGridFocusedCell = [number, number];
+
 export interface EuiDataGridInMemoryValues {
   [key: string]: { [key: string]: string };
 }
