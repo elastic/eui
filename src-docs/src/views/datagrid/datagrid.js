@@ -60,7 +60,7 @@ const columns = [
 
 const raw_data = [];
 
-for (let i = 1; i < 100; i++) {
+for (let i = 1; i < 500; i++) {
   raw_data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
@@ -141,7 +141,7 @@ export default () => {
       sorting={{ columns: sortingColumns, onSort }}
       pagination={{
         ...pagination,
-        pageSizeOptions: [10, 50, 100],
+        pageSizeOptions: [10, 50, 100, 500],
         onChangeItemsPerPage: onChangeItemsPerPage,
         onChangePage: onChangePage,
       }}
