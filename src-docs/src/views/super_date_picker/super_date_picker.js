@@ -91,7 +91,6 @@ export default class extends Component {
                 type="text"
                 value={this.state.start}
                 placeholder="start"
-                label="start"
                 className="euiFieldText"
               />
             }
