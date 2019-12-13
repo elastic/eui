@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const MINIMUM_COLUMN_WIDTH = 40;
 
-interface EuiDataGridColumnResizerProps {
+export interface EuiDataGridColumnResizerProps {
   columnId: string;
   columnWidth: number;
   setColumnWidth: (columnId: string, width: number) => void;

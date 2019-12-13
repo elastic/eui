@@ -21,7 +21,7 @@ import {
   EuiDataGridSchemaDetector,
 } from './data_grid_schema';
 
-interface EuiDataGridBodyProps {
+export interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
