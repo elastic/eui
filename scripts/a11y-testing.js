@@ -22,10 +22,19 @@ const printResult = result =>
 (async () => {
   let totalViolationsCount = 0;
   let root = 'http://localhost:9999/';
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+  let browser;
+  let page;
 
-  await page.setBypassCSP(true);
+  try {
+    browser = await puppeteer.launch();
+    page = await browser.newPage();
+
+    await page.setBypassCSP(true);
+  } catch (e) {
+    console.log(chalk.red('Failed to setup puppeteer'));
+    console.log(e);
+    process.exit(1);
+  }
 
   try {
     await page.goto(root);
