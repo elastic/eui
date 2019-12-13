@@ -29,6 +29,19 @@ const superDatePickerSnippet = `<EuiSuperDatePicker
 />
 `;
 
+const superDatePickerCustomQuickSelectSnippet = `customQuickSelectPanels = [
+  {
+    title: 'My custom panel',
+    content: <MyCustomQuickSelectPanel />,
+  },
+];
+
+<EuiSuperDatePicker
+  onTimeChange={this.onTimeChange}
+  customQuickSelectPanels={customQuickSelectPanels}
+/>
+`;
+
 export const SuperDatePickerExample = {
   title: 'Super Date Picker',
   sections: [
@@ -51,24 +64,24 @@ export const SuperDatePickerExample = {
             <strong>Quick select menu</strong>{' '}
             <EuiCode>
               <EuiIcon type="calendar" color="primary" />
-            </EuiCode>
+            </EuiCode>{' '}
             which includes <strong>Commonly used dates</strong>,{' '}
             <strong>Recently used date ranges</strong> and{' '}
             <strong>Set refresh</strong> features.
           </p>
           <p>
-            <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times are
-            passed as strings in either datemath format (e.g.: now, now-15m,
-            now-15m/m) or as absolute date in the format{' '}
+            Pass <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times
+            as strings in either datemath format (e.g.: <EuiCode>now</EuiCode>,{' '}
+            <EuiCode>now-15m</EuiCode>, <EuiCode>now-15m/m</EuiCode>) or as
+            absolute date in the format{' '}
             <EuiCode>YYYY-MM-DDTHH:mm:ss.SSSZ</EuiCode>. Use{' '}
             <EuiLink href="https://github.com/elastic/datemath-js">
               datemath
             </EuiLink>{' '}
             to convert start and end strings into moment objects.
           </p>
-          <EuiCodeBlock paddingSize="none" isCopyable>
-            {`
-import dateMath from '@elastic/datemath';
+          <EuiCodeBlock language="js" paddingSize="none" isCopyable>
+            {`import dateMath from '@elastic/datemath';
 
 const startMoment = dateMath.parse(start);
 // dateMath.parse is inconsistent with unparsable strings.
@@ -81,8 +94,7 @@ if (!startMoment || !startMoment.isValid()) {
 const endMoment = dateMath.parse(end, { roundUp: true });
 if (!endMoment || !endMoment.isValid()) {
   throw new Error('Unable to parse end string');
-}
-          `}
+}`}
           </EuiCodeBlock>
         </div>
       ),
@@ -105,24 +117,24 @@ if (!endMoment || !endMoment.isValid()) {
       text: (
         <div>
           <p>
-            <EuiCode>onTimeChange</EuiCode> will be immediately invoked when{' '}
-            <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from
+            When <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from
             interactions with <strong> Quick select</strong>,{' '}
             <strong>Commonly used</strong>, or{' '}
-            <strong>Recently used date ranges</strong> since these interactions
-            set both <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> in a
-            single event.
+            <strong>Recently used date ranges</strong>,
+            <EuiCode>onTimeChange</EuiCode> will be immediately invoked. This is
+            because these interactions set both <EuiCode>start</EuiCode> and{' '}
+            <EuiCode>end</EuiCode> in a single event.
           </p>
           <p>
-            <EuiCode>onTimeChange</EuiCode> will <strong>not</strong> be invoked
-            when
-            <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from
+            When <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from
             interactions with <strong>Absolute</strong>,{' '}
-            <strong>Relative</strong>, and <strong>Now</strong> tabs.{' '}
-            <EuiCode>onTimeChange</EuiCode> will be invoked when the user clicks
-            the <strong>Update</strong> button. This gives users the ability to
-            set both <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> before
-            triggering <EuiCode>onTimeChange</EuiCode>. Set{' '}
+            <strong>Relative</strong>, and <strong>Now</strong> tabs,
+            <EuiCode>onTimeChange</EuiCode> will <strong>not</strong> be
+            invoked. In these cases,<EuiCode>onTimeChange</EuiCode> will be
+            invoked when the user clicks the <strong>Update</strong> button.
+            This gives users the ability to set both <EuiCode>start</EuiCode>{' '}
+            and <EuiCode>end</EuiCode> before triggering{' '}
+            <EuiCode>onTimeChange</EuiCode>. Set{' '}
             <EuiCode>showUpdateButton</EuiCode> to <EuiCode>false</EuiCode> to
             immediately invoke <EuiCode>onTimeChange</EuiCode> for all{' '}
             <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> changes.
@@ -158,6 +170,7 @@ if (!endMoment || !endMoment.isValid()) {
           </p>
         </div>
       ),
+      snippet: superDatePickerCustomQuickSelectSnippet,
       demo: <SuperDatePickerCustomQuickSelect />,
     },
   ],

@@ -3,8 +3,8 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiSuperDatePicker,
   EuiSpacer,
-  EuiFormRow,
-  EuiFieldText,
+  EuiFormControlLayoutDelimited,
+  EuiFormLabel,
   EuiPanel,
   EuiText,
 } from '../../../../src/components';
@@ -83,22 +83,28 @@ export default class extends Component {
             can try to break it with unexpected values here.
           </EuiText>
           <EuiSpacer />
-          <EuiFormRow
-            label="start"
-            helpText="Start date. Try to break EuiSuperDatePicker with unexpected values">
-            <EuiFieldText
-              onChange={this.onStartInputChange}
-              value={this.state.start}
-            />
-          </EuiFormRow>
-          <EuiFormRow
-            label="end"
-            helpText="End date. Try to break EuiSuperDatePicker with unexpected values">
-            <EuiFieldText
-              onChange={this.onEndInputChange}
-              value={this.state.end}
-            />
-          </EuiFormRow>
+          <EuiFormControlLayoutDelimited
+            prepend={<EuiFormLabel>Dates</EuiFormLabel>}
+            startControl={
+              <input
+                onChange={this.onStartInputChange}
+                type="text"
+                value={this.state.start}
+                placeholder="start"
+                label="start"
+                className="euiFieldText"
+              />
+            }
+            endControl={
+              <input
+                onChange={this.onEndInputChange}
+                type="text"
+                placeholder="end"
+                value={this.state.end}
+                className="euiFieldText"
+              />
+            }
+          />
         </EuiPanel>
       </Fragment>
     );
@@ -108,7 +114,6 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiSuperDatePicker
-          isDisabled={this.state.isDisabled}
           isLoading={this.state.isLoading}
           start={this.state.start}
           end={this.state.end}
