@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../../common';
 
-export const EuiPageContentHeaderSection = ({
+export const EuiPageContentHeaderSection: FunctionComponent<CommonProps> = ({
   children,
   className,
   ...rest
@@ -14,9 +14,4 @@ export const EuiPageContentHeaderSection = ({
       {children}
     </div>
   );
-};
-
-EuiPageContentHeaderSection.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
 };
