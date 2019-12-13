@@ -387,6 +387,7 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
+        e.preventDefault();
         e.stopPropagation();
         if (this.hasActiveOption()) {
           this.onAddOption(
