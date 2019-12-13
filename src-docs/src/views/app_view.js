@@ -31,6 +31,12 @@ export class AppView extends Component {
     this.updateTheme();
 
     document.addEventListener('keydown', this.onKeydown);
+
+    // redirect old hash url to right path
+    if (this.props.location.hash) {
+      const newPath = this.props.location.hash.replace('#/', '/');
+      this.props.router.push(newPath);
+    }
   }
 
   componentWillUnmount() {
