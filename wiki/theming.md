@@ -8,7 +8,7 @@ variables. Currently we maintain the following themes:
 * theme_amsterdam_light (the next iteration of the EUI light theme)
 * theme_amsterdam_dark (the next iteration of the EUI dark theme)
 
-Each of these themes (outside of the default theme_light one) include variable,
+Each of these themes include variables,
 mixins, functions and other overwrites that adjust colors and sizing to fit the
 needs of that theme.
 
