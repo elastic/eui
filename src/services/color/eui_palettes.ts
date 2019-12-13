@@ -36,15 +36,23 @@ const euiPaletteForDarkBackground: EuiPalette = {
 // createPalette(['#43ad9a', '#fff3b3', '#cc5642'], 10, true),
 const euiPaletteForStatus: EuiPalette = {
   colors: colorPalette(
-    [positiveColor, warmArray[0]],
-    [warmArray[0], negativeColor],
+    [positiveColor, warmArray[0], negativeColor],
+    [],
     11,
     true
   ),
 };
 
 const euiPaletteForTemperature: EuiPalette = {
-  colors: colorPalette(coolArray.slice().reverse(), warmArray, 11, true),
+  colors: colorPalette(
+    coolArray
+      .slice()
+      .reverse()
+      .concat(warmArray),
+    [],
+    11,
+    true
+  ),
 };
 
 const euiPaletteComplimentary: EuiPalette = {
@@ -52,11 +60,11 @@ const euiPaletteComplimentary: EuiPalette = {
 };
 
 const euiPaletteNegative: EuiPalette = {
-  colors: colorPalette('#f4e7e6', negativeColor, 10),
+  colors: colorPalette(['#f4e7e6', negativeColor], [], 10),
 };
 
 const euiPalettePositive: EuiPalette = {
-  colors: colorPalette('#e9f1f1', positiveColor, 10),
+  colors: colorPalette(['#e9f1f1', positiveColor], [], 10),
 };
 
 const euiPaletteCool: EuiPalette = {
