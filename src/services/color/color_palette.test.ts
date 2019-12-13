@@ -18,7 +18,7 @@ describe('colorPalette', () => {
   });
 
   it('should generate a palette with the specified spread', () => {
-    const actualPalette = colorPalette(['#FFFF6D', '#1EA593'], [], 6);
+    const actualPalette = colorPalette(['#FFFF6D', '#1EA593'], 6);
     expect(actualPalette).toEqual([
       '#ffff6d',
       '#d2ed75',

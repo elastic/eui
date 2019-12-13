@@ -13,11 +13,7 @@ export function colorPalette(
   /**
    * The beginning hexadecimal color code or array of codes
    */
-  hexStart: string | string[],
-  /**
-   * The ending hexadecimal color code or array of codes for diverging schemes
-   */
-  hexEnd: string | string[] = [],
+  hexStart: string[],
   /**
    * The number of colors in the resulting array (default 10)
    */
@@ -31,16 +27,10 @@ export function colorPalette(
    */
   categorical: boolean = true
 ) {
-  // if hexes are simple strings convert to an array
-  hexStart = typeof hexStart === 'string' ? hexStart.split('!') : hexStart;
-  hexEnd = typeof hexEnd === 'string' ? hexEnd.split('!') : hexEnd;
-
-  // If diverging is false, combine start and end into one array for continuous
-  hexStart = !diverging ? hexStart.concat(hexEnd) : hexStart;
-  hexEnd = !diverging ? [] : hexEnd;
+  let hexEnd: string[] = [];
 
   // If diverging, but the end array is empty, split the start array and duplicate the mid color
-  if (diverging && hexEnd.length < 1) {
+  if (diverging) {
     const numColorsHalf = Math.ceil(hexStart.length / 2);
 
     const colorsLeft = diverging

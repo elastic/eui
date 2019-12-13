@@ -49,7 +49,7 @@ class _Theming extends Component {
 
     const customColors = {
       colors: {
-        vizColors: colorPalette('#FFFFE0', '#017F75', 5),
+        vizColors: colorPalette(['#FFFFE0', '#017F75'], 5),
       },
     };
 
