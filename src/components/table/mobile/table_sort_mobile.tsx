@@ -63,7 +63,6 @@ export class EuiTableSortMobile extends Component<
 
     const mobileSortPopover = (
       <EuiPopover
-        id="sortPopover"
         ownFocus
         button={mobileSortButton}
         isOpen={this.state.isPopoverOpen}

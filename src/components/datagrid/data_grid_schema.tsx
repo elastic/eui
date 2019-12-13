@@ -241,7 +241,7 @@ export interface EuiDataGridSchema {
   [columnId: string]: { columnType: string | null };
 }
 
-interface SchemaTypeScore {
+export interface SchemaTypeScore {
   type: string;
   score: number;
 }
