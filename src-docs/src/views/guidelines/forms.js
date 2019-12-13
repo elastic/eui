@@ -9,160 +9,222 @@ import {
 
 import {
   EuiText,
-  EuiButton,
-  EuiButtonIcon,
   EuiSpacer,
-  EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonEmpty,
-  EuiToolTip,
-  EuiIcon,
   EuiImage,
-  EuiTable,
-  EuiTableHeader,
-  EuiTableHeaderCell,
-  EuiTableBody,
-  EuiTableRow,
-  EuiTableRowCell,
+  EuiPanel,
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components';
 
-import imgFormRowGood from '../../images/form-row--good.png';
-import imgFormRowLabels from '../../images/form-row--labels.png';
-import imgFormRowDescriptionGood from '../../images/form-row--description-good.png';
-import imgFormRowDescriptionBad from '../../images/form-row--description-bad.png';
-import imgFormRowPanelsGood from '../../images/form-row--panels-good.png';
-import imgFormRowPanelsBad from '../../images/form-row--panels-bad.png';
-import imgFormRowSpacingGood from '../../images/form-row--spacing-good.png';
-import imgFormRowSpacingBad from '../../images/form-row--spacing-bad.png';
+import imgFormRowGeneral from '../../images/form-row--00.png';
+import imgFormRowGood from '../../images/form-row--01.png';
+import imgFormRowBad from '../../images/form-row--02.png';
+import imgFormRowSpacingGood from '../../images/form-row--03.png';
+import imgFormRowSpacingBad from '../../images/form-row--04.png';
+import imgFormRowPanelsBad from '../../images/form-row--05.png';
+import imgFormRowPanelsGood from '../../images/form-row--06.png';
 
 export default () => (
   <GuidePage title="Form guidelines" componentLinkTo="/forms/form-layouts">
     <EuiText className="guideSection__text" grow={false}>
       <p>
-        This page documents patterns for form design, including input types,
-        layout and validation.
+        This page documents patterns for form layout, validation and how best to
+        use various components.
       </p>
     </EuiText>
+    <GuideRuleTitle>Key Principles</GuideRuleTitle>
 
-    <GuideRuleTitle>Form validation recommendations</GuideRuleTitle>
-
-    <EuiFlexGroup alignItems="center">
+    <GuideRule
+      heading="Help users achieve success"
+      description="Forms are difficult and can quickly become frustrating. Our form components try to be as informative and clear as possible for the user to avoid errors or confusion.">
       <EuiFlexItem>
-        <EuiText className="guideSection__text">
-          <h4>Things to show :</h4>
-          <ul>
-            <li>
-              All fields are considered required unless labeled as ‘Optional’.
-              Avoid labeling as ‘Required’
-            </li>
-            <li>
-              Use a label (and description if needed) to describe the form
-              field. Help text should provide guidance how to <em>avoid</em>{' '}
-              validation errors (eg. No spaces, lower case, avoid
-              characters...).
-            </li>
-            <li>
-              Show validation parameters in the help text below the input (eg.,
-              No spaces, lowercase, no special characters, etc.)
-            </li>
-            <li>
-              If there are errors, show a callout at the top of the form listing
-              each field that has an error, or noting that the form has errors.
-              Indicate error fields with a red label and red outline around the
-              input.
-            </li>
-          </ul>
-
-          <h4>When should validation occur:</h4>
-          <ul>
-            <li>Validation should occur on blur from an input field</li>
-            <li>
-              Submit button should be active by default, but then show errors if
-              clicked and form is not valid
-            </li>
-          </ul>
-        </EuiText>
+        <EuiPanel>
+          <EuiText className="guideSection__text">
+            <h4>Use labels and descriptions</h4>
+            <p>
+              <small>
+                Use a label (and description if needed) for each form field. All
+                form fields should be considered required unless stated
+                alongside the label.
+              </small>
+            </p>
+          </EuiText>
+        </EuiPanel>
       </EuiFlexItem>
-    </EuiFlexGroup>
 
-    <GuideRuleTitle>Form layout</GuideRuleTitle>
+      <EuiFlexItem>
+        <EuiPanel>
+          <EuiText className="guideSection__text">
+            <h4>Provide help text</h4>
+            <p>
+              <small>
+                Show validation parameters in the help text below the input
+                (eg., No spaces, lowercase, no special characters, etc.)
+              </small>
+            </p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
 
-    <GuideRule
-      heading="EuiDescribedFormRow best practices"
-      description="EuiDescribedFormRows should have a single input or single column of inputs not a row of inputs.">
-      <GuideRuleExample
-        panel={false}
-        frame="frame"
-        type="do"
-        text="Do. To make grouping clearer and keep the user's eye in one path, it's better to keep inputs in a single column">
-        <EuiImage alt="single column form fields" url={imgFormRowGood} />
-      </GuideRuleExample>
-
-      <GuideRuleExample
-        panel={false}
-        frame="frame"
-        type="do"
-        text="Do. If extra description is not necessary for an individual field, it is possible to remove the label above the input to avoid duplicate labels">
-        <EuiImage alt="single column form fields" url={imgFormRowLabels} />
-      </GuideRuleExample>
+      <EuiFlexItem>
+        <EuiPanel>
+          <EuiText className="guideSection__text">
+            <h4>Validate on blur</h4>
+            <p>
+              <small>
+                Validation should occur on blur from an input field. The submit
+                button should be active by default, then show errors after
+                click.
+              </small>
+            </p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
     </GuideRule>
 
-    <GuideRule>
+    <GuideRule
+      heading="Provide transparency"
+      description="It should be clear to the user what each part of the form is meant to accomplish. ">
+      <EuiFlexItem>
+        <EuiPanel>
+          <EuiText className="guideSection__text">
+            <h4>Layout matters</h4>
+            <p>
+              <small>
+                A poorly formatted form can be confusing and tiring for the user
+                to navigate. As one field is completed, it should be clear where
+                to go next.
+              </small>
+            </p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiPanel>
+          <EuiText className="guideSection__text">
+            <h4>Words matter</h4>
+            <p>
+              <small>
+                Form descriptions are equally as important as layout and should
+                be treated with just as much care.
+              </small>
+            </p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+    </GuideRule>
+
+    <GuideRuleTitle>EuiDescribedFormRow</GuideRuleTitle>
+
+    <GuideRule
+      heading="When to use it"
+      description="An EuiDescribedFormRow provides an additional heading along with description text for a single or set of input fields. ">
+      <EuiFlexItem>
+        <EuiDescriptionList>
+          <EuiDescriptionListTitle>
+            Forms with lengthy descriptions
+          </EuiDescriptionListTitle>
+          <EuiDescriptionListDescription>
+            If long descriptions are needed, using an EuiDescribedFormRow
+            divides the form into a column for descriptions and a column for
+            form fields. This is so there is plenty of space for descriptions to
+            aid new users, but keeps the form fields in a column so frequent
+            users can still quickly navigate the form.
+          </EuiDescriptionListDescription>
+        </EuiDescriptionList>
+
+        <EuiSpacer />
+
+        <EuiDescriptionList>
+          <EuiDescriptionListTitle>
+            Forms with multiple inputs falling under a single heading
+          </EuiDescriptionListTitle>
+          <EuiDescriptionListDescription>
+            Validation should occur on blur from an input field. The submit
+            button should be active by default, then show errors after click.
+          </EuiDescriptionListDescription>
+        </EuiDescriptionList>
+
+        <EuiSpacer />
+
+        <EuiDescriptionList>
+          <EuiDescriptionListTitle>
+            Forms with complex nested options
+          </EuiDescriptionListTitle>
+          <EuiDescriptionListDescription>
+            An EuiDescribedFormRow is useful when there are parts of the form
+            that can be hidden and shown by the user. The toggle to hide and
+            show the row should be beneath the description and the following
+            form fields should be in the right column with the other form
+            fields.
+          </EuiDescriptionListDescription>
+        </EuiDescriptionList>
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiImage alt="eui described form row" url={imgFormRowGeneral} />
+      </EuiFlexItem>
+    </GuideRule>
+
+    <GuideRule
+      heading="Maintain a standard layout"
+      description="Keep the form divided into two columns, with the descriptions on one side and form fields on the other.">
+      <GuideRuleExample
+        panel={false}
+        frame="frame"
+        type="do"
+        text="Do. To make grouping clearer and keep the user's eye in one path, it's better to keep inputs in a single column. If multiple fields are needed, they should still remain within the column.">
+        <EuiImage alt="proper field alignment" url={imgFormRowGood} />
+      </GuideRuleExample>
+
       <GuideRuleExample
         panel={false}
         frame="frame"
         type="dont"
-        text="Don't. Adding additional described form rows within rows makes it more difficult to scan the page and understand the grouping.">
-        <EuiImage
-          alt="single column form fields"
-          url={imgFormRowDescriptionBad}
-        />
-      </GuideRuleExample>
-      <GuideRuleExample
-        panel={false}
-        frame="frame"
-        type="do"
-        text="Do. If extra description is needed for an individual field, but still falls within a for group, add the description between the input label and input.">
-        <EuiImage
-          alt="single column form fields"
-          url={imgFormRowDescriptionGood}
-        />
+        text="Don't. Avoid nesting EuiDescribedFormGroups within eachother. It creates an uneven path for the user's eye to travel down the form.">
+        <EuiImage alt="incorrect field alignment" url={imgFormRowBad} />
       </GuideRuleExample>
     </GuideRule>
+
+    <EuiSpacer />
 
     <GuideRule
-      heading="Layout"
-      description="Proper spacing and dividing of sections insures that the user understands the form grouping and can easily scan the entire layout.">
-      <GuideRuleExample
-        panel={false}
-        frame="frame"
-        type="do"
-        text="Do. Add additional spacing between form groups than fields within the group to better define the grouping.">
-        <EuiImage alt="single column form fields" url={imgFormRowSpacingGood} />
-      </GuideRuleExample>
-      <GuideRuleExample
-        panel={false}
-        frame="frame"
-        type="dont"
-        text="Don't. If the same size spacing is used between groups and the individual fields, it is harder for the user to scan and understand the sections of the form.">
-        <EuiImage alt="single column form fields" url={imgFormRowSpacingBad} />
-      </GuideRuleExample>
-    </GuideRule>
-
-    <GuideRule>
+      heading="Divide the form into sections"
+      description="As a form grows longer than several fields, it's best divide up the form into sections. This helps the user quickly scan the form and provides visual breaks between multiple input fields.">
       <GuideRuleExample
         panel={false}
         frame="frame"
         type="do"
         text="Do. Adding visual indicators can help clearly define the sections of the form.">
-        <EuiImage alt="single column form fields" url={imgFormRowPanelsGood} />
+        <EuiImage alt="prop use of dividers" url={imgFormRowPanelsGood} />
       </GuideRuleExample>
       <GuideRuleExample
         panel={false}
         frame="frame"
         type="dont"
         text="Don't. Using panels within panels creates too much visual noise and can make it confusing where sections begin and end.">
-        <EuiImage alt="single column form fields" url={imgFormRowPanelsBad} />
+        <EuiImage alt="incorrect use of panels" url={imgFormRowPanelsBad} />
+      </GuideRuleExample>
+    </GuideRule>
+
+    <EuiSpacer />
+    <GuideRule>
+      <GuideRuleExample
+        panel={false}
+        frame="frame"
+        type="do"
+        text="Do. Add more spacing between form groups than fields within the group to better define the grouping.">
+        <EuiImage alt="proper use of spacing" url={imgFormRowSpacingGood} />
+      </GuideRuleExample>
+      <GuideRuleExample
+        panel={false}
+        frame="frame"
+        type="dont"
+        text="Don't. Avoid using the same spacing between groups and the individual fields. It is harder for the user to scan and understand the sections of the form.">
+        <EuiImage alt="incorrect use of spacing" url={imgFormRowSpacingBad} />
       </GuideRuleExample>
     </GuideRule>
 
