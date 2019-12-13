@@ -7,63 +7,37 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { colorPalette, palettes } from '../../../../src/services';
-
-const euiColors = palettes.euiPaletteForLightBackground.colors;
+import { palettes } from '../../../../src/services';
+const paletteData = { ...palettes };
+delete paletteData.euiPaletteForLightBackground;
+delete paletteData.euiPaletteForDarkBackground;
+delete paletteData.euiPaletteColorBlind;
+const paletteNames = Object.keys(paletteData);
 
 export default () => (
   <Fragment>
-    <EuiTitle size="xxs">
-      <h3>For mapping density, low to high</h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    {euiColors.map((color, j) => (
-      <div key={j}>
+    {paletteNames.map((paletteName, i) => (
+      <div key={paletteName}>
+        <EuiTitle key={i} size="xxs">
+          <h3>{paletteName}</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
         <EuiFlexGroup
           gutterSize="none"
           alignItems="flexStart"
-          key={`${color}-${j}`}>
-          {colorPalette('FFFFFF', color, 20).map((hexCode, k) => (
+          responsive={false}
+          key={`${paletteName}-${i}`}>
+          {paletteData[paletteName].colors.map((hexCode, j) => (
             <EuiFlexItem
-              key={`${hexCode}-${k}`}
+              key={`${hexCode}-${j}`}
               grow={false}
               className={'guideColorPalette__swatch'}>
               <span title={hexCode} style={{ backgroundColor: hexCode }} />
             </EuiFlexItem>
           ))}
         </EuiFlexGroup>
-        <EuiSpacer size="m" />
+        <EuiSpacer size="l" />
       </div>
     ))}
-    <EuiSpacer size="l" />
-    <EuiTitle size="xxs">
-      <h3>For communicating state, trending negative</h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="none" alignItems="flexStart">
-      {colorPalette('#FBEFD3', '#BD4C48').map((hexCode, l) => (
-        <EuiFlexItem
-          key={`${hexCode}-${l}`}
-          grow={false}
-          className={'guideColorPalette__swatch'}>
-          <span title={hexCode} style={{ backgroundColor: hexCode }} />
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
-    <EuiSpacer size="l" />
-    <EuiTitle size="xxs">
-      <h3>For communicating state, trending positive</h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="none" alignItems="flexStart">
-      {colorPalette('#FFFFE0', '#017F75').map((hexCode, l) => (
-        <EuiFlexItem
-          key={`${hexCode}-${l}`}
-          grow={false}
-          className={'guideColorPalette__swatch'}>
-          <span title={hexCode} style={{ backgroundColor: hexCode }} />
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
   </Fragment>
 );
