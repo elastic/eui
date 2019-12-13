@@ -1,8 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
+
+**Bug fixes**
+
+- Improved `EuiDataGrid` update performance ([#2638](https://github.com/elastic/eui/pull/2638))
+- Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
+- Fixed `EuiComboBox` from submitting parent `form` element when selecting options via `Enter` key ([#2642](https://github.com/elastic/eui/pull/2642))
+- Fixed `EuiNavDrawer` expand button from losing focus after click ([#2643](https://github.com/elastic/eui/pull/2643))
+
+## [`17.1.2`](https://github.com/elastic/eui/tree/v17.1.2)
+
 **Bug fixes**
 
 - Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))
+- Removed `EuiIcon` default titles ([#2632](https://github.com/elastic/eui/pull/2632))
 
 ## [`17.1.1`](https://github.com/elastic/eui/tree/v17.1.1)
 

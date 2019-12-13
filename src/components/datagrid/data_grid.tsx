@@ -30,6 +30,7 @@ import {
   EuiDataGridPopoverContents,
   EuiDataGridColumnVisibility,
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -287,9 +288,9 @@ function useInMemoryValues(
 function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
-  focusedCell: [number, number],
+  focusedCell: EuiDataGridFocusedCell,
   headerIsInteractive: boolean,
-  setFocusedCell: (focusedCell: [number, number]) => void,
+  setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void,
   updateFocus: Function
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
@@ -397,7 +398,9 @@ function useAfterRender(fn: Function): Function {
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<[number, number] | null>(null);
+  const [focusedCell, setFocusedCell] = useState<EuiDataGridFocusedCell | null>(
+    null
+  );
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
 
@@ -626,7 +629,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     delete rest['aria-labelledby'];
   }
 
-  const realizedFocusedCell: [number, number] =
+  const realizedFocusedCell: EuiDataGridFocusedCell =
     focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
 
   const fullScreenSelector = (
@@ -664,27 +667,30 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
   });
 
-  const datagridContext = {
-    onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
-      if (pagination) {
-        const key = `${cell[0]}-${cell[1]}`;
+  const datagridContext = useMemo(
+    () => ({
+      onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
+        if (pagination) {
+          const key = `${cell[0]}-${cell[1]}`;
 
-        setCellsUpdateFocus(cellsUpdateFocus => {
-          const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-          nextCellsUpdateFocus.set(key, updateFocus);
-          return nextCellsUpdateFocus;
-        });
-
-        return () => {
           setCellsUpdateFocus(cellsUpdateFocus => {
             const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-            nextCellsUpdateFocus.delete(key);
+            nextCellsUpdateFocus.set(key, updateFocus);
             return nextCellsUpdateFocus;
           });
-        };
-      }
-    },
-  };
+
+          return () => {
+            setCellsUpdateFocus(cellsUpdateFocus => {
+              const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
+              nextCellsUpdateFocus.delete(key);
+              return nextCellsUpdateFocus;
+            });
+          };
+        }
+      },
+    }),
+    [pagination]
+  );
 
   return (
     <DataGridContext.Provider value={datagridContext}>
