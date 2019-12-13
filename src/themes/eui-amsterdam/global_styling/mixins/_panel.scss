@@ -1,8 +1,3 @@
-/**
- *  Mixin for use in:
- *  - EuiCard
- *  - EuiPageContent
-*/
 @mixin euiPanel($selector) {
   @if variable-exists(selector) == false {
     @error 'A $selector must be provided to @mixin euiPanel().';
