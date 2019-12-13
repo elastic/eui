@@ -1,98 +1,158 @@
-import { rgbDef } from './color_types';
-import { hexToRgb } from './hex_to_rgb';
+import chroma from 'chroma-js';
+import { range } from 'lodash';
+import { HEX } from './color_types';
+import { isValidHex } from './is_valid_hex';
 
-/**
- * Create the color object for manipulation by other functions
- */
-class Color {
-  collection: rgbDef;
-  text: string;
-
-  constructor(public r: number, public g: number, public b: number) {
-    this.collection = [r, g, b];
-    this.text = createHex(this.collection);
-  }
-}
+const MID_COLOR_STOP = '#F5F7FA';
 
 /**
  * This function takes a color palette name and returns an array of hex color
  * codes for use in UI elements such as charts.
+ * https://github.com/gka/palettes
  *
- * @param {string} hexStart The beginning hexadecimal color code
- * @param {string} hexEnd The ending hexadecimal color code
+ * @param {HEX | array of HEX} hexStart The beginning hexadecimal color code or array of codes
+ * @param {HEX | array of HEX} hexEnd The ending hexadecimal color code or array of codes for diverging schemes
  * @param {number} len The number of colors in the resulting array (default 10)
+ * @param {boolean} diverging Forces color interpolation to be calculated separately for each side (default false)
+ * @param {boolean} correctLightness Lightness range is spread evenly across a color scale (default true)
+ * @param {boolean} bezier Smoothed the multi-stop gradients (default true)
  * @returns {Array} Returns an array of hexadecimal color codes
  */
 
 export function colorPalette(
-  hexStart: string,
-  hexEnd: string,
-  len: number = 10
+  hexStart: HEX | HEX[],
+  hexEnd: HEX | HEX[] = [],
+  len: number = 10,
+  diverging: boolean = false,
+  correctLightness: boolean = true,
+  bezier: boolean = true
 ) {
-  if (isHex(hexStart) && isHex(hexEnd)) {
-    const colorArray: Color[] = [];
-    const hexPalette: string[] = [];
-    const count = len - 1;
-    const startHex = hexToRgb(hexStart); // get RGB equivalent values as array
-    const endHex = hexToRgb(hexEnd); // get RGB equivalent values as array
-    colorArray[0] = new Color(startHex[0], startHex[1], startHex[2]); // create first color obj
-    colorArray[count] = new Color(endHex[0], endHex[1], endHex[2]); // create last color obj
-    const step = stepCalc(count, colorArray[0], colorArray[count]); // create array of step increments
-    // build the color palette array
-    hexPalette[0] = colorArray[0].text; // set the first color in the array
-    for (let i = 1; i < count; i++) {
-      // set the intermediate colors in the array
-      const r = colorArray[0].r + step[0] * i;
-      const g = colorArray[0].g + step[1] * i;
-      const b = colorArray[0].b + step[2] * i;
-      colorArray[i] = new Color(r, g, b);
-      hexPalette[i] = colorArray[i].text;
-    } // all the colors in between
-    hexPalette[count] = colorArray[count].text; // set the last color in the array
+  // if hexes are simple strings convert to an array
+  hexStart = typeof hexStart === 'string' ? hexStart.split('!') : hexStart;
+  hexEnd = typeof hexEnd === 'string' ? hexEnd.split('!') : hexEnd;
 
-    return hexPalette;
-  } else {
-    throw new Error('Please provide two valid hex color codes.');
+  // If diverging is false, combine start and end into one array for continuous
+  hexStart = !diverging ? hexStart.concat(hexEnd) : hexStart;
+  hexEnd = !diverging ? [] : hexEnd;
+
+  if (diverging && hexEnd.length < 1) {
+    const numColorsHalf =
+      Math.ceil(hexStart.length / 2) + (hexStart.length % 2 === 0 ? 1 : 0);
+
+    const colorsLeft = diverging
+      ? hexStart.filter(function(item, index) {
+          if (index < numColorsHalf) {
+            return true; // keep it
+          }
+        })
+      : hexStart;
+    const colorsRight = diverging
+      ? hexStart
+          .reverse()
+          .filter(function(item, index) {
+            if (index < numColorsHalf) {
+              return true; // keep it
+            }
+          })
+          .reverse()
+      : [];
+
+    hexStart = colorsLeft;
+    hexEnd = colorsRight;
   }
+
+  // Then validate the colors
+  hexStart.map(color => isHex(color));
+  hexEnd.map(color => isHex(color));
+
+  const even = len % 2 === 0;
+  const numColorsLeft = diverging ? Math.ceil(len / 2) + (even ? 1 : 0) : len;
+  const numColorsRight = diverging ? Math.ceil(len / 2) + (even ? 1 : 0) : 0;
+
+  const genColors =
+    hexStart.length !== 1
+      ? hexStart
+      : autoColors(hexStart[0], numColorsLeft, diverging);
+  const genColors2 =
+    hexEnd.length !== 1
+      ? hexEnd
+      : autoColors(hexEnd[0], numColorsRight, diverging, true);
+
+  const stepsLeft = hexStart.length
+    ? chroma
+        .scale(
+          // @ts-ignore
+          bezier && hexStart.length > 1 ? chroma.bezier(genColors) : genColors
+        )
+        .correctLightness(correctLightness)
+        .colors(numColorsLeft)
+    : [];
+
+  const stepsRight =
+    diverging && hexEnd.length
+      ? chroma
+          .scale(
+            // @ts-ignore
+            bezier && hexEnd.length > 1 ? chroma.bezier(genColors2) : genColors2
+          )
+          .correctLightness(correctLightness)
+          .colors(numColorsRight)
+      : [];
+
+  return (even && diverging
+    ? stepsLeft.slice(0, stepsLeft.length - 1)
+    : stepsLeft
+  ).concat(stepsRight.slice(1));
 }
 
 /**
  * Check if argument is a valid 3 or 6 character hexadecimal color code
  */
 function isHex(value: string): boolean {
-  return /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(value);
-}
-
-/**
- * Calculate and construct the hexadecimal color code from RGB values
- */
-function createHex(rgbValues: rgbDef): string {
-  let result = '';
-  let val = 0;
-  let piece;
-  const base = 16;
-  for (let k = 0; k < 3; k++) {
-    val = Math.round(rgbValues[k]);
-    piece = val.toString(base); // Converts to radix 16 based value (0-9, A-F)
-    if (piece.length < 2) {
-      piece = `0${piece}`;
-    }
-    result = result + piece;
+  if (isValidHex(value)) {
+    return true;
+  } else {
+    throw new Error('Please provide valid hex color codes with the hash sign.');
   }
-  result = `#${result.toUpperCase()}`; // Return in #RRGGBB format
-  return result;
 }
 
-/**
- * Calculate the step increment for each piece of the hexadecimal color code
- */
-function stepCalc(st: number, cStart: Color, cEnd: Color): rgbDef {
-  const steps = st;
-  const step: rgbDef = [
-    (cEnd.r - cStart.r) / steps, // Calc step amount for red value
-    (cEnd.g - cStart.g) / steps, // Calc step amount for green value
-    (cEnd.b - cStart.b) / steps, // Calc step amount for blue value
-  ];
+function autoGradient(
+  color: HEX,
+  numColors: number,
+  diverging: boolean
+): chroma.Color[] {
+  const lab = chroma(color).lab(); // Convert to LAB format
+  const lRange = 100 * (0.95 - 1 / numColors);
+  const lStep = lRange / (numColors - 1);
+  const lStart = (100 - lRange) * 0.5;
+  const theRange = range(lStart, lStart + numColors * lStep, lStep);
+  let offset = 0;
+  if (!diverging) {
+    offset = 9999;
+    for (let i = 0; i < numColors; i++) {
+      const diff = lab[0] - theRange[i];
+      if (Math.abs(diff) < Math.abs(offset)) {
+        offset = diff;
+      }
+    }
+  }
 
-  return step;
+  return theRange.map(l => chroma.lab(l + offset, lab[1], lab[2]));
+}
+
+function autoColors(
+  color: HEX,
+  numColors: number,
+  diverging: boolean,
+  reverse: boolean = false
+): chroma.Color[] {
+  if (diverging) {
+    const colors = autoGradient(color, 3, diverging).concat(
+      chroma(MID_COLOR_STOP)
+    );
+    if (reverse) colors.reverse();
+    return colors;
+  } else {
+    return autoGradient(color, numColors, diverging);
+  }
 }
