@@ -5,75 +5,102 @@ interface EuiPalette {
   colors: string[];
 }
 
-const coolArray: HEX[] = ['#00629f', '#3594d6', '#eef6f6'].reverse();
-const warmArray: HEX[] = ['#fbf2cc', '#e59145', '#bd271e'];
+const euiPalette = function(
+  colors: string[],
+  steps: number,
+  diverge: boolean = false
+): EuiPalette {
+  return {
+    colors: colorPalette(colors, steps, diverge),
+  };
+};
+
+const euiPaletteColorBlind = function(): EuiPalette {
+  return {
+    colors: [
+      '#4DAC93', // 0 green
+      '#3594D6', // 1 blue
+      '#D15D75', // 2 dark pink
+      '#9170B8', // 3 purple
+      '#EEAFCF', // 4 light pink
+      '#ADB6DD', // 5 light purple
+      '#BAA066', // 6 tan
+      '#E59145', // 7 orange
+      '#B46F5F', // 8 brown
+      '#47688A', // 9 blue-gray
+    ],
+  };
+};
+
+const euiPaletteForLightBackground = function(): EuiPalette {
+  return {
+    colors: ['#006BB4', '#017D73', '#F5A700', '#BD271E', '#DD0A73'],
+  };
+};
+
+const euiPaletteForDarkBackground = function(): EuiPalette {
+  return {
+    colors: ['#1BA9F5', '#7DE2D1', '#F990C0', '#F66', '#FFCE7A'],
+  };
+};
+
+const coolArray: HEX[] = [
+  '#eef6f6',
+  euiPaletteColorBlind().colors[1],
+  '#00629f',
+];
+const warmArray: HEX[] = [
+  '#fbf2cc',
+  euiPaletteColorBlind().colors[7],
+  '#bd271e',
+];
 const positiveColor: HEX = '#209280';
 const negativeColor: HEX = '#cc5642';
 
-const euiPaletteColorBlind: EuiPalette = {
-  colors: [
-    '#4DAC93', // green
-    '#3594D6', // blue
-    '#D15D75', // dark pink
-    '#9170B8', // purple
-    '#EEAFCF', // light pink
-    '#ADB6DD', // light purple
-    '#BAA066', // tan
-    '#E59145', // orange
-    '#B46F5F', // brown
-    '#47688A', // blue-gray
-  ],
+const euiPaletteForStatus = function(steps: number): EuiPalette {
+  return euiPalette([positiveColor, warmArray[0], negativeColor], steps, true);
 };
 
-const euiPaletteForLightBackground: EuiPalette = {
-  colors: ['#006BB4', '#017D73', '#F5A700', '#BD271E', '#DD0A73'],
-};
-
-const euiPaletteForDarkBackground: EuiPalette = {
-  colors: ['#1BA9F5', '#7DE2D1', '#F990C0', '#F66', '#FFCE7A'],
-};
-
-// createPalette(['#43ad9a', '#fff3b3', '#cc5642'], 10, true),
-const euiPaletteForStatus: EuiPalette = {
-  colors: colorPalette([positiveColor, warmArray[0], negativeColor], 11, true),
-};
-
-const euiPaletteForTemperature: EuiPalette = {
-  colors: colorPalette(
+const euiPaletteForTemperature = function(steps: number): EuiPalette {
+  return euiPalette(
     coolArray
       .slice()
       .reverse()
       .concat(warmArray),
-    11,
+    steps,
     true
-  ),
+  );
 };
 
-const euiPaletteComplimentary: EuiPalette = {
-  colors: colorPalette(['#e59145', '#dddddd', '#47688a'], 11, true),
+const euiPaletteComplimentary = function(steps: number): EuiPalette {
+  return euiPalette(
+    [euiPaletteColorBlind().colors[7], euiPaletteColorBlind().colors[9]],
+    steps,
+    true
+  );
 };
 
-const euiPaletteNegative: EuiPalette = {
-  colors: colorPalette(['#f4e7e6', negativeColor], 10),
+const euiPaletteNegative = function(steps: number): EuiPalette {
+  return euiPalette(['#f4e7e6', negativeColor], steps);
 };
 
-const euiPalettePositive: EuiPalette = {
-  colors: colorPalette(['#e9f1f1', positiveColor], 10),
+const euiPalettePositive = function(steps: number): EuiPalette {
+  return euiPalette(['#e9f1f1', positiveColor], steps);
 };
 
-const euiPaletteCool: EuiPalette = {
-  colors: colorPalette(coolArray, 10),
+const euiPaletteCool = function(steps: number): EuiPalette {
+  return euiPalette(coolArray, steps);
 };
 
-const euiPaletteWarm: EuiPalette = {
-  colors: colorPalette(warmArray, 10),
+const euiPaletteWarm = function(steps: number): EuiPalette {
+  return euiPalette(warmArray, steps);
 };
 
-const euiPaletteGray: EuiPalette = {
-  colors: colorPalette(
+const euiPaletteGray = function(steps: number): EuiPalette {
+  return euiPalette(
     ['#f5f7fa', '#d3dae6', '#98a2b3', '#69707d', '#343741'],
-    10
-  ),
+    steps
+  );
 };
 
 export const palettes = {

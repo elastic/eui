@@ -111,7 +111,7 @@ function createTheme(colors: any) {
         },
       },
       colors: {
-        vizColors: palettes.euiPaletteColorBlind.colors,
+        vizColors: palettes.euiPaletteColorBlind().colors,
         defaultVizColor: DEFAULT_VISUALIZATION_COLOR,
       },
       crosshair: {

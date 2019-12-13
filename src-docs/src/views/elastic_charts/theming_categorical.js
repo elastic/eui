@@ -36,7 +36,7 @@ class _Categorical extends Component {
   constructor(props) {
     super(props);
 
-    this.highlightColor = palettes.euiPaletteColorBlind.colors[2];
+    this.highlightColor = palettes.euiPaletteColorBlind().colors[2];
 
     this.colorTypeRadios = [
       {
@@ -64,7 +64,7 @@ class _Categorical extends Component {
       numCharts: '3',
       data: null,
       dataString: '[{x: 1, y: 5.5, g: 0}]',
-      vizColors: palettes.euiPaletteColorBlind.colors,
+      vizColors: palettes.euiPaletteColorBlind().colors,
       chartType: 'LineSeries',
     };
   }
@@ -138,14 +138,14 @@ class _Categorical extends Component {
     this.setState({
       data,
       dataString: "[{x: 1, y: 5.5, g: 'Category 1'}]",
-      vizColors: palettes.euiPaletteColorBlind.colors,
+      vizColors: palettes.euiPaletteColorBlind().colors,
       chartType: 'LineSeries',
     });
   };
 
   createQuantityChart = numCharts => {
     const vizColors = createSpectrum(
-      ['#FFFFFF', palettes.euiPaletteColorBlind.colors[0]],
+      ['#FFFFFF', palettes.euiPaletteColorBlind().colors[0]],
       numCharts + 1
     );
     vizColors.shift();
@@ -267,7 +267,7 @@ class _Categorical extends Component {
       colors: { vizColors },
     };
     const customColorsString =
-      vizColors !== palettes.euiPaletteColorBlind.colors
+      vizColors !== palettes.euiPaletteColorBlind().colors
         ? `[
   { colors: { vizColors: [${JSON.stringify(vizColors)}] }},
   isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme
@@ -310,7 +310,7 @@ class _Categorical extends Component {
             xAccessor={'x'}
             yAccessors={['y']}
             customSeriesColors={getColorsMap(
-              palettes.euiPaletteColorBlind.colors[index < 2 ? 0 : 1],
+              palettes.euiPaletteColorBlind().colors[index < 2 ? 0 : 1],
               `data${index}`
             )}
             lineSeriesStyle={{

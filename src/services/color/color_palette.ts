@@ -13,7 +13,7 @@ export function colorPalette(
   /**
    * The beginning hexadecimal color code or array of codes
    */
-  hexStart: string[],
+  colors: string[],
   /**
    * The number of colors in the resulting array (default 10)
    */
@@ -27,46 +27,44 @@ export function colorPalette(
    */
   categorical: boolean = true
 ) {
+  let hexStart: string[] = colors.slice();
   let hexEnd: string[] = [];
-
-  // If diverging, but the end array is empty, split the start array and duplicate the mid color
-  if (diverging) {
-    const numColorsHalf = Math.ceil(hexStart.length / 2);
-
-    const colorsLeft = diverging
-      ? hexStart.filter(function(item, index) {
-          if (index < numColorsHalf) {
-            return true; // keep it
-          }
-        })
-      : hexStart;
-    const colorsRight = diverging
-      ? hexStart
-          .reverse()
-          .filter(function(item, index) {
-            if (index < numColorsHalf) {
-              return true; // keep it
-            }
-          })
-          .reverse()
-      : [];
-
-    hexStart = colorsLeft;
-    hexEnd = colorsRight;
-  }
 
   const even = len % 2 === 0;
   const numColorsLeft = diverging ? Math.ceil(len / 2) + (even ? 1 : 0) : len;
   const numColorsRight = diverging ? Math.ceil(len / 2) + (even ? 1 : 0) : 0;
 
-  // If only a single color is provided append the mid-point color
+  // If only a single color is provided prepend the mid-point color
   if (hexStart.length === 1) {
-    diverging
-      ? hexStart.push(MID_COLOR_STOP)
-      : hexStart.unshift(MID_COLOR_STOP);
+    hexStart.unshift(MID_COLOR_STOP);
   }
-  if (hexEnd.length === 1 && diverging) {
-    hexEnd.unshift(MID_COLOR_STOP);
+
+  // If diverging, split the start array and duplicate the mid color
+  if (diverging) {
+    // If there's no midpoint, create one
+    if (hexStart.length < 3) {
+      hexStart[2] = hexStart[1];
+      hexStart[1] = MID_COLOR_STOP;
+    }
+
+    const numColorsHalf = Math.ceil(hexStart.length / 2);
+
+    const colorsLeft = hexStart.filter(function(item, index) {
+      if (index < numColorsHalf) {
+        return true; // keep it
+      }
+    });
+    const colorsRight = hexStart
+      .reverse()
+      .filter(function(item, index) {
+        if (index < numColorsHalf) {
+          return true; // keep it
+        }
+      })
+      .reverse();
+
+    hexStart = colorsLeft;
+    hexEnd = colorsRight;
   }
 
   function createSteps(colors: string[], steps: number) {

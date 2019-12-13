@@ -9,7 +9,7 @@ import {
 
 import { palettes } from '../../../../src/services';
 
-const paletteData = palettes.euiPaletteColorBlind;
+const paletteData = palettes.euiPaletteColorBlind();
 const paletteName = 'euiPaletteColorBlind';
 
 export default () => (
