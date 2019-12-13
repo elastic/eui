@@ -110,7 +110,7 @@ type CommonGridProps = CommonProps &
 
 // This structure forces either aria-label or aria-labelledby to be defined
 // making some type of label a requirement
-type EuiDataGridProps = Omit<
+export type EuiDataGridProps = Omit<
   CommonGridProps,
   'aria-label' | 'aria-labelledby'
 > &
