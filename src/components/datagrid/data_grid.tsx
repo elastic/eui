@@ -538,6 +538,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     {
       'euiDataGrid--fullScreen': isFullScreen,
     },
+    {
+      'euiDataGrid--noControls': !toolbarVisibility,
+    },
     className
   );
 
@@ -758,7 +761,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                           headerIsInteractive={headerIsInteractive}
                           focusedCell={realizedFocusedCell}
                           setFocusedCell={setFocusedCell}
-                          noToolbar={!showToolbar}
                         />
                       )}
                     </EuiMutationObserver>

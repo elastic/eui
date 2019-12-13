@@ -31,7 +31,6 @@ interface EuiDataGridHeaderRowPropsSpecificProps {
   focusedCell: EuiDataGridDataRowProps['focusedCell'];
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
-  noToolbar?: boolean;
 }
 
 type EuiDataGridHeaderRowProps = CommonProps &
@@ -57,7 +56,6 @@ const EuiDataGridHeaderCell: FunctionComponent<
     focusedCell,
     setFocusedCell,
     headerIsInteractive,
-    noToolbar,
   } = props;
   const { id, display } = column;
 
@@ -96,13 +94,9 @@ const EuiDataGridHeaderCell: FunctionComponent<
 
   const columnType = schema[id] ? schema[id].columnType : null;
 
-  const classes = classnames(
-    'euiDataGridHeaderCell',
-    {
-      [`euiDataGridHeaderCell--${columnType}`]: columnType,
-    },
-    { noToolbar: noToolbar }
-  );
+  const classes = classnames('euiDataGridHeaderCell', {
+    [`euiDataGridHeaderCell--${columnType}`]: columnType,
+  });
 
   const headerRef = useRef<HTMLDivElement>(null);
   const isFocused = focusedCell[0] === index && focusedCell[1] === -1;
@@ -273,7 +267,6 @@ const EuiDataGridHeaderRow = forwardRef<
     focusedCell,
     setFocusedCell,
     headerIsInteractive,
-    noToolbar,
     'data-test-subj': _dataTestSubj,
     ...rest
   } = props;
@@ -301,7 +294,6 @@ const EuiDataGridHeaderRow = forwardRef<
           defaultColumnWidth={defaultColumnWidth}
           sorting={sorting}
           headerIsInteractive={headerIsInteractive}
-          noToolbar={noToolbar}
         />
       ))}
     </div>
