@@ -10,6 +10,10 @@ import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
 const colorPaletteHtml = renderToHtml(ColorPalette);
 
+import ColorPaletteQuant from './color_palette_quantitative';
+const colorPaletteQuantSource = require('!!raw-loader!./color_palette_quantitative');
+const colorPaletteQuantHtml = renderToHtml(ColorPaletteQuant);
+
 import ColorPaletteCustom from './color_palette_custom';
 const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
 const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
@@ -39,8 +43,10 @@ export const ColorPaletteExample = {
             values to other EUI components, such as charts.
           </p>
           <p>
-            Quantitative palettes are best suited for communicating and
-            comparing discrete data series.
+            Qualitative palettes are best suited for communicating and comparing
+            discrete data series. EUI recommends using the{' '}
+            <EuiCode>euiPaletteColorBlind()</EuiCode> for qualitative and
+            categorical data.
           </p>
         </div>
       ),
@@ -48,6 +54,34 @@ export const ColorPaletteExample = {
     },
     {
       title: 'Recommended quantitative palettes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorPaletteQuantSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorPaletteQuantHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Quantitative palettes are best suited for displaying data on a
+            continuum, as in the case of health statuses and large geographic or
+            demographic-based data sets.
+          </p>
+          <p>
+            EUI provides the following common palettes for quantitative data.
+            Just pass in the number of steps needed and the function will
+            interpolate between the colors.
+          </p>
+        </div>
+      ),
+      demo: <ColorPaletteQuant />,
+    },
+    {
+      title: 'Custom palettes',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -62,22 +96,19 @@ export const ColorPaletteExample = {
         <div>
           <p>
             Use the <EuiCode>colorPalette</EuiCode> service to generate a
-            custom, gradiated palette array of any length from two hexadecimal
-            color codes. For example, obtain an array of yellow-to-green health
-            status colors using
-            <EuiCode>
-              colorPalette&#40;&#39;#FFFF6D&#39;, &#39;#1EA593&#39;, 20&#41;
-            </EuiCode>
-            .
-          </p>
-          <p>
-            Custom palettes are best suited for displaying data on a continuum,
-            as in the case of health statuses and large geographic or
-            demographic-based data sets.
+            custom, gradiated palette array of any length from one or more
+            hexadecimal color codes. The third parameter{' '}
+            <EuiCode>divergent</EuiCode>, will interpolate between the two
+            halves of the spectrums separately. If a middle point is not
+            provided, it will graduate to light gray.
           </p>
         </div>
       ),
       demo: <ColorPaletteCustom />,
+      snippet: [
+        "colorPalette(['#fff'. '#000'], 11);",
+        "colorPalette(['#fff'. '#000'], 11, divergent = true);",
+      ],
     },
   ],
 };

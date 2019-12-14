@@ -12,19 +12,12 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { palettes, colorPalette } from '../../../../src/services';
-
-const customPalettes = [
-  [palettes.euiPaletteColorBlind().colors[3]],
-  [
-    palettes.euiPaletteColorBlind().colors[3],
-    palettes.euiPaletteColorBlind().colors[4],
-  ],
-  [
-    palettes.euiPaletteColorBlind().colors[3],
-    palettes.euiPaletteColorBlind().colors[4],
-  ],
-];
+import { palettes } from '../../../../src/services';
+const paletteData = { ...palettes };
+delete paletteData.euiPaletteForLightBackground;
+delete paletteData.euiPaletteForDarkBackground;
+delete paletteData.euiPaletteColorBlind;
+const paletteNames = Object.keys(paletteData);
 
 export default () => {
   const [length, setLength] = useState(10);
@@ -48,14 +41,14 @@ export default () => {
 
       <EuiSpacer />
 
-      {customPalettes.map((palette, i) => (
-        <EuiFlexGroup alignItems="center" key={i}>
+      {paletteNames.map(paletteName => (
+        <EuiFlexGroup alignItems="center" key={paletteName}>
           <EuiFlexItem grow={false}>
             <EuiFlexGroup
               gutterSize="none"
               alignItems="flexStart"
               responsive={false}>
-              {colorPalette(palette, length, i > 1).map(hexCode => (
+              {paletteData[paletteName](length).colors.map(hexCode => (
                 <EuiFlexItem
                   key={hexCode}
                   grow={false}
@@ -69,14 +62,10 @@ export default () => {
             <EuiText>
               <EuiCopy
                 beforeMessage="Click to copy palette config"
-                textToCopy={`colorPalette([], ${length}${
-                  i > 1 ? ', true' : ''
-                });`}>
+                textToCopy={`palettes.${paletteName}(${length}).colors;`}>
                 {copy => (
                   <EuiLink onClick={copy}>
-                    <EuiCode>{`colorPalette([${palette}], ${length}${
-                      i > 1 ? ', true' : ''
-                    });`}</EuiCode>
+                    <EuiCode>{`${paletteName}(${length})`}</EuiCode>
                   </EuiLink>
                 )}
               </EuiCopy>

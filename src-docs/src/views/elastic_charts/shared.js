@@ -9,7 +9,7 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
-import { find } from 'lodash';
+import { find, range } from 'lodash';
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
 
 export const CHART_COMPONENTS = {
@@ -186,7 +186,7 @@ export class MultiChartCard extends Component {
 import chroma from 'chroma-js';
 export function createSpectrum(
   colors,
-  steps = 5,
+  numColors = 5,
   diverging = false,
   correctLightness = true,
   bezier = true
@@ -198,49 +198,122 @@ export function createSpectrum(
     return;
   }
 
-  diverging = diverging || colors.length > 2;
+  const even = numColors % 2 === 0;
 
-  const even = steps % 2 === 0;
-  const numStepsLeft = diverging
-    ? Math.ceil(steps / 2) + (even ? 1 : 0)
-    : steps;
-  const numStepsRight = diverging ? Math.ceil(steps / 2) + (even ? 1 : 0) : 0;
+  // const numStepsLeft = diverging
+  //   ? Math.ceil(numColors / 2) + (even ? 1 : 0)
+  //   : numColors;
+  // const numStepsRight = diverging ? Math.ceil(numColors / 2) + (even ? 1 : 0) : 0;
 
   const numColorsHalf =
     Math.ceil(colors.length / 2) + (colors.length % 2 === 0 ? 1 : 0);
 
-  const colorsLeft = colors.filter(function(item, index) {
-    if (index < numColorsHalf) {
-      return true; // keep it
-    }
-  });
-  const colorsRight =
-    diverging &&
-    colors
-      .reverse()
-      .filter(function(item, index) {
+  const colorsLeft = diverging
+    ? colors.filter(function(item, index) {
         if (index < numColorsHalf) {
           return true; // keep it
         }
       })
-      .reverse();
+    : colors;
+  const colorsRight = diverging
+    ? colors
+        .reverse()
+        .filter(function(item, index) {
+          if (index < numColorsHalf) {
+            return true; // keep it
+          }
+        })
+        .reverse()
+    : [];
 
-  function createSteps(colors, steps) {
-    return colors.length
-      ? chroma
-          .scale(bezier && colors.length > 1 ? chroma.bezier(colors) : colors)
-          .correctLightness(correctLightness)
-          .colors(steps)
-      : [];
+  // function createSteps(colors, steps) {
+  //   return colors.length
+  //     ? chroma
+  //         .scale(bezier && colors.length > 1 ? chroma.bezier(colors) : colors)
+  //         .correctLightness(correctLightness)
+  //         .colors(steps)
+  //     : [];
+  // }
+
+  // const stepsLeft = createSteps(colorsLeft, numStepsLeft);
+  // const stepsRight = createSteps(colorsRight, numStepsRight);
+
+  // const spectrum = (even && diverging
+  //   ? stepsLeft.slice(0, stepsLeft.length - 1)
+  //   : stepsLeft
+  // ).concat(stepsRight.slice(1));
+
+  function autoGradient(color, numColors) {
+    const lab = chroma(color).lab();
+    const lRange = 100 * (0.95 - 1 / numColors);
+    const lStep = lRange / (numColors - 1);
+    const lStart = (100 - lRange) * 0.5;
+    const theRange = range(lStart, lStart + numColors * lStep, lStep);
+    let offset = 0;
+    if (!diverging) {
+      offset = 9999;
+      for (let i = 0; i < numColors; i++) {
+        const diff = lab[0] - range[i];
+        if (Math.abs(diff) < Math.abs(offset)) {
+          offset = diff;
+        }
+      }
+    }
+
+    return theRange.map(l => chroma.lab([l + offset, lab[1], lab[2]]));
   }
 
-  const stepsLeft = createSteps(colorsLeft, numStepsLeft);
-  const stepsRight = createSteps(colorsRight, numStepsRight);
+  function autoColors(color, numColors, reverse = false) {
+    if (diverging) {
+      const colors = autoGradient(color, 3).concat(chroma('#dfdfdf'));
+      if (reverse) colors.reverse();
+      return colors;
+    } else {
+      return autoGradient(color, numColors);
+    }
+  }
 
-  const spectrum = (even && diverging
+  const numColorsLeft = diverging
+    ? Math.ceil(numColors / 2) + (even ? 1 : 0)
+    : numColors;
+  const numColorsRight = diverging
+    ? Math.ceil(numColors / 2) + (even ? 1 : 0)
+    : 0;
+
+  const genColors =
+    colorsLeft.length !== 1
+      ? colorsLeft
+      : autoColors(colorsLeft[0], numColorsLeft);
+  const genColors2 =
+    colorsRight.length !== 1
+      ? colorsRight
+      : autoColors(colorsRight[0], numColorsRight, true);
+
+  const stepsLeft = colorsLeft.length
+    ? chroma
+        .scale(
+          bezier && colorsLeft.length > 1 ? chroma.bezier(genColors) : genColors
+        )
+        .correctLightness(correctLightness)
+        .colors(numColorsLeft)
+    : [];
+
+  const stepsRight =
+    diverging && colorsRight.length
+      ? chroma
+          .scale(
+            bezier && colorsRight.length > 1
+              ? chroma.bezier(genColors2)
+              : genColors2
+          )
+          .correctLightness(correctLightness)
+          .colors(numColorsRight)
+      : [];
+
+  return (even && diverging
     ? stepsLeft.slice(0, stepsLeft.length - 1)
     : stepsLeft
   ).concat(stepsRight.slice(1));
 
-  return spectrum;
+  // return spectrum;
 }
