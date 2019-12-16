@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode } from '../../../../src/components';
+import { palettes, colorPalette } from '../../../../src/services';
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
@@ -48,9 +49,19 @@ export const ColorPaletteExample = {
             <EuiCode>euiPaletteColorBlind()</EuiCode> for qualitative and
             categorical data.
           </p>
+          <p>
+            This palette is restricted to only 10 colors. However, you can add
+            up to 2 more groups of 10 which are alteranates of the original.
+            This is better than allowing the initial set to loop.
+          </p>
         </div>
       ),
       demo: <ColorPalette />,
+      props: { colorPalette, palettes },
+      snippet: [
+        'palettes.euiPaletteColorBlind().colors',
+        'palettes.euiPaletteColorBlind(rotations = 3, combined = true).colors',
+      ],
     },
     {
       title: 'Recommended quantitative palettes',
