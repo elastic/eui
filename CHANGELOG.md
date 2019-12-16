@@ -19,6 +19,7 @@ No public interface changes since `17.2.1`.
 **NOTE: This release had an error in our documentation layer. Use 17.2.1 instead**
 
 - Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
+- Added new stylesheets for the EUI Amsterdam theme ([#2633](https://github.com/elastic/eui/pull/2633))
 - Added exports for available types related to `EuiDataGrid` ([#2640](https://github.com/elastic/eui/pull/2640))
 
 **Bug fixes**
