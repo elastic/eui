@@ -2,7 +2,7 @@
 
 **Bug fixes**
 
-- Changed package.json version to match sure our build scripts release the correct sequential number.
+- Changed package.json version to match sure our build scripts release the correct sequential number ([#2674](https://github.com/elastic/eui/pull/2674))
 
 ## [`17.1.3`](https://github.com/elastic/eui/tree/v17.1.3)
 
