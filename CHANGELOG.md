@@ -1,8 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No changes made.
+No public interface changes since `17.2.0`.
 
-## [`17.1.2`](https://github.com/elastic/eui/tree/v17.2.0)
+## [`17.2.0`](https://github.com/elastic/eui/tree/v17.2.0)
 
 - Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
 - Added exports for available types related to `EuiDataGrid` ([#2640](https://github.com/elastic/eui/pull/2640))
