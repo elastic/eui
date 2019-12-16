@@ -14,7 +14,7 @@ import {
 import { EuiDataGridColumn, EuiDataGridInMemory } from './data_grid_types';
 import { enqueueStateChange } from '../../services/react';
 
-interface EuiDataGridInMemoryRendererProps {
+export interface EuiDataGridInMemoryRendererProps {
   inMemory: EuiDataGridInMemory;
   columns: EuiDataGridColumn[];
   rowCount: number;

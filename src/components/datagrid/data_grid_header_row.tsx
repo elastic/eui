@@ -34,11 +34,11 @@ interface EuiDataGridHeaderRowPropsSpecificProps {
   headerIsInteractive: boolean;
 }
 
-type EuiDataGridHeaderRowProps = CommonProps &
+export type EuiDataGridHeaderRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiDataGridHeaderRowPropsSpecificProps;
 
-interface EuiDataGridHeaderCellProps
+export interface EuiDataGridHeaderCellProps
   extends Omit<EuiDataGridHeaderRowPropsSpecificProps, 'columns'> {
   column: EuiDataGridColumn;
   index: number;
