@@ -4,7 +4,7 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 
 ### Checklist
 
-- [ ] Checked in **dark mode**
+- [ ] Check against **all themes** for compatability in both light and dark modes
 - [ ] Checked in **mobile**
 - [ ] Checked in **IE11** and **Firefox**
 - [ ] Props have proper **autodocs**
@@ -12,5 +12,4 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] Added or updated **jest tests**
 - [ ] Checked for **breaking changes** and labeled appropriately
 - [ ] Checked for **accessibility** including keyboard-only and screenreader modes
-- [ ] Check against **all themes** for compatability in both light and dark modes
 - [ ] A [changelog](https://github.com/elastic/eui/blob/master/CHANGELOG.md) entry exists and is marked appropriately
