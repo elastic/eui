@@ -2,6 +2,10 @@
 
 - Reverted docs changes in `17.2.0` that caused the build script to die ([#2672](https://github.com/elastic/eui/pull/2672))
 
+**Bug fixes**
+
+- Removed TypeScript definitions in `*.test.tsx?` files from _eui.d.ts_ ([#2673](https://github.com/elastic/eui/pull/2673))
+
 ## [`17.2.0`](https://github.com/elastic/eui/tree/v17.2.0)
 
 - Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
