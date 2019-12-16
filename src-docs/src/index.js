@@ -1,5 +1,5 @@
 import React from 'react';
-import { hydrate, render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -67,41 +67,9 @@ const syncTitleWithRoutes = routesList => {
 
 syncTitleWithRoutes(routes);
 
-const hashLinkScroll = () => {
-  const { hash } = window.location;
-  if (hash !== '') {
-    // Push onto callback queue so it runs after the DOM is updated,
-    // this is required when navigating from a different page so that
-    // the element is rendered on the page before trying to getElementById.
-    setTimeout(() => {
-      const id = hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
-    }, 0);
-  }
-};
-
-const rootElement = document.getElementById('guide');
-if (rootElement.hasChildNodes()) {
-  hydrate(
-    <Provider store={store}>
-      <Router
-        history={routerHistory}
-        routes={routes}
-        onUpdate={hashLinkScroll}
-      />
-    </Provider>,
-    rootElement
-  );
-} else {
-  render(
-    <Provider store={store}>
-      <Router
-        history={routerHistory}
-        routes={routes}
-        onUpdate={hashLinkScroll}
-      />
-    </Provider>,
-    rootElement
-  );
-}
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={routerHistory} routes={routes} />
+  </Provider>,
+  document.getElementById('guide')
+);

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
+
 import { Link } from 'react-router';
 
 import {
@@ -18,6 +20,25 @@ import {
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
+
+const scrollTo = position => {
+  $('html, body').animate(
+    {
+      scrollTop: position,
+    },
+    250
+  );
+};
+
+function scrollToSelector(selector, attempts = 5) {
+  const element = $(selector);
+
+  if (element.length) {
+    scrollTo(element.offset().top - 20);
+  } else if (attempts > 0) {
+    setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
+  }
+}
 
 export class GuidePageChrome extends Component {
   constructor(props) {
@@ -43,8 +64,46 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  goToPage = href => {
-    this.props.router.push(href);
+  scrollNavSectionIntoView = () => {
+    setTimeout(() => {
+      // wait a bit for react to blow away and re-create the DOM
+      // then scroll the selected nav section into view
+      const selectedButton = $('.euiSideNavItemButton-isSelected');
+      if (selectedButton.length) {
+        const root = selectedButton.parents('.euiSideNavItem--root');
+        if (root.length) {
+          root.get(0).scrollIntoView();
+        }
+      }
+    }, 250);
+  };
+
+  onClickLink = id => {
+    // Scroll to element.
+    scrollToSelector(`#${id}`);
+
+    this.setState(
+      {
+        search: '',
+        isSideNavOpenOnMobile: false,
+      },
+      this.scrollNavSectionIntoView
+    );
+  };
+
+  onClickRoute = () => {
+    // timeout let's IE11 do its thing and update the url
+    // allowing react-router to navigate to the route
+    // otherwise IE11 somehow kills the navigation
+    setTimeout(() => {
+      this.setState(
+        {
+          search: '',
+          isSideNavOpenOnMobile: false,
+        },
+        this.scrollNavSectionIntoView
+      );
+    }, 0);
   };
 
   onButtonClick() {
@@ -58,12 +117,6 @@ export class GuidePageChrome extends Component {
       isPopoverOpen: false,
     });
   }
-
-  renderItem = ({ href, className, children }) => (
-    <Link to={href} className={className}>
-      {children}
-    </Link>
-  );
 
   renderIdentity() {
     const button = (
@@ -158,7 +211,8 @@ export class GuidePageChrome extends Component {
       return {
         id: `subSection-${id}`,
         name,
-        href: `${href}#${id}`,
+        href,
+        onClick: this.onClickLink.bind(this, id),
       };
     });
   };
@@ -193,7 +247,7 @@ export class GuidePageChrome extends Component {
 
       const items = matchingItems.map(item => {
         const { name, path, sections } = item;
-        const href = `/${path}`;
+        const href = `#/${path}`;
 
         let visibleName = name;
         if (searchTerm) {
@@ -210,6 +264,7 @@ export class GuidePageChrome extends Component {
           id: `${section.type}-${path}`,
           name: visibleName,
           href,
+          onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item === this.props.currentRoute,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
@@ -242,7 +297,6 @@ export class GuidePageChrome extends Component {
           toggleOpenOnMobile={this.toggleOpenOnMobile}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
           items={sideNav}
-          renderItem={this.renderItem}
         />
       );
     } else {
