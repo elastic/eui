@@ -14,7 +14,7 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 
-import { colorPalette } from '../../../../src/services';
+import { palettes } from '../../../../src/services';
 
 class _Theming extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class _Theming extends Component {
 
     const customColors = {
       colors: {
-        vizColors: colorPalette(['#FFFFE0', '#017F75'], 5),
+        vizColors: palettes.euiPalettePositive(5).colors,
       },
     };
 

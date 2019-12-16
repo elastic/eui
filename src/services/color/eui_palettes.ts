@@ -10,9 +10,7 @@ const euiPalette = function(
   steps: number,
   diverge: boolean = false
 ): EuiPalette {
-  return {
-    colors: colorPalette(colors, steps, diverge),
-  };
+  return { colors: colorPalette(colors, steps, diverge) };
 };
 
 const euiPaletteColorBlind = function(
@@ -146,26 +144,41 @@ const euiPaletteComplimentary = function(steps: number): EuiPalette {
 };
 
 const euiPaletteNegative = function(steps: number): EuiPalette {
-  return euiPalette(['#f4e7e6', negativeColor], steps);
+  // Palettes starting with white shouldn't actually show a white (invisible) color
+  const palette = euiPalette(['#FFF', negativeColor], Number(steps) + 1).colors;
+  palette.shift();
+  return { colors: palette };
 };
 
 const euiPalettePositive = function(steps: number): EuiPalette {
-  return euiPalette(['#e9f1f1', positiveColor], steps);
+  // Palettes starting with white shouldn't actually show a white (invisible) color
+  const palette = euiPalette(['#FFF', positiveColor], Number(steps) + 1).colors;
+  palette.shift();
+  return { colors: palette };
 };
 
 const euiPaletteCool = function(steps: number): EuiPalette {
-  return euiPalette(coolArray, steps);
+  // Palettes starting with white shouldn't actually show a white (invisible) color
+  const palette = euiPalette(coolArray, Number(steps) + 1).colors;
+  palette.shift();
+  return { colors: palette };
 };
 
 const euiPaletteWarm = function(steps: number): EuiPalette {
-  return euiPalette(warmArray, steps);
+  // Palettes starting with white shouldn't actually show a white (invisible) color
+  const palette = euiPalette(warmArray, Number(steps) + 1).colors;
+  palette.shift();
+  return { colors: palette };
 };
 
 const euiPaletteGray = function(steps: number): EuiPalette {
-  return euiPalette(
-    ['#f5f7fa', '#d3dae6', '#98a2b3', '#69707d', '#343741'],
-    steps
-  );
+  // Palettes starting with white shouldn't actually show a white (invisible) color
+  const palette = euiPalette(
+    ['#fff', '#d3dae6', '#98a2b3', '#69707d', '#343741'],
+    Number(steps) + 1
+  ).colors;
+  palette.shift();
+  return { colors: palette };
 };
 
 export const palettes = {
