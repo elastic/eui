@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 789,
+        "line": 795,
         "column": 12
       },
       "end": {
-        "line": 792,
+        "line": 798,
         "column": 14
       }
     },
