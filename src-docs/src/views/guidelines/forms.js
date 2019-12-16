@@ -9,6 +9,7 @@ import {
 
 import {
   EuiText,
+  EuiCode,
   EuiSpacer,
   EuiFlexItem,
   EuiImage,
@@ -18,7 +19,8 @@ import {
   EuiDescriptionListDescription,
 } from '../../../../src/components';
 
-import imgFormRowGeneral from '../../images/form-row--00.png';
+// import imgFormRowGeneral from '../../images/form-row--00.png';
+import imgFormRowToggle from '../../images/form-row--toggle.gif';
 import imgFormRowGood from '../../images/form-row--01.png';
 import imgFormRowBad from '../../images/form-row--02.png';
 import imgFormRowSpacingGood from '../../images/form-row--03.png';
@@ -108,8 +110,9 @@ export default () => (
             <h4>Words matter</h4>
             <p>
               <small>
-                Form descriptions are equally as important as layout and should
-                be treated with just as much care.
+                Form labels and descriptions are equally as important as layout
+                and should be treated with just as much care. The text should be
+                concise and easily scannable.
               </small>
             </p>
           </EuiText>
@@ -117,18 +120,26 @@ export default () => (
       </EuiFlexItem>
     </GuideRule>
 
-    <GuideRuleTitle>EuiDescribedFormRow</GuideRuleTitle>
-
+    <GuideRuleTitle>
+      <EuiCode>EuiDescribedFormRow</EuiCode>
+    </GuideRuleTitle>
+    <EuiText className="guideSection__text">
+      <p>
+        An <EuiCode>EuiDescribedFormRow</EuiCode> provides an additional heading
+        along with description text for a single input or set of input fields.
+      </p>
+    </EuiText>
     <GuideRule
       heading="When to use it"
-      description="An EuiDescribedFormRow provides an additional heading along with description text for a single or set of input fields. ">
+      description="This component is not intended for every type of form, but typically works best in the following scenarios.">
       <EuiFlexItem>
         <EuiDescriptionList>
           <EuiDescriptionListTitle>
-            Forms with lengthy descriptions
+            Forms with lengthy descriptions per input
           </EuiDescriptionListTitle>
           <EuiDescriptionListDescription>
-            If long descriptions are needed, using an EuiDescribedFormRow
+            If long descriptions are needed, using an{' '}
+            <EuiCode>EuiDescribedFormRow</EuiCode>
             divides the form into a column for descriptions and a column for
             form fields. This is so there is plenty of space for descriptions to
             aid new users, but keeps the form fields in a column so frequent
@@ -143,8 +154,9 @@ export default () => (
             Forms with multiple inputs falling under a single heading
           </EuiDescriptionListTitle>
           <EuiDescriptionListDescription>
-            Validation should occur on blur from an input field. The submit
-            button should be active by default, then show errors after click.
+            If multiple sub-steps are needed, grouping them together using an{' '}
+            <EuiCode>EuiDescribedFormRow</EuiCode> helps show they are all still
+            related.
           </EuiDescriptionListDescription>
         </EuiDescriptionList>
 
@@ -155,17 +167,17 @@ export default () => (
             Forms with complex nested options
           </EuiDescriptionListTitle>
           <EuiDescriptionListDescription>
-            An EuiDescribedFormRow is useful when there are parts of the form
-            that can be hidden and shown by the user. The toggle to hide and
-            show the row should be beneath the description and the following
-            form fields should be in the right column with the other form
-            fields.
+            An <EuiCode>EuiDescribedFormRow</EuiCode> is useful when there are
+            parts of the form that can be hidden and shown by the user. The
+            toggle to hide and show the row should be beneath the description
+            and the following form fields should be in the right column with the
+            other form fields.
           </EuiDescriptionListDescription>
         </EuiDescriptionList>
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiImage alt="eui described form row" url={imgFormRowGeneral} />
+        <EuiImage alt="eui described form row" url={imgFormRowToggle} />
       </EuiFlexItem>
     </GuideRule>
 
@@ -184,7 +196,7 @@ export default () => (
         panel={false}
         frame="frame"
         type="dont"
-        text="Don't. Avoid nesting EuiDescribedFormGroups within eachother. It creates an uneven path for the user's eye to travel down the form.">
+        text="Don't. Avoid nesting this form rows within eachother. It creates an uneven path for the user's eye to travel down the form.">
         <EuiImage alt="incorrect field alignment" url={imgFormRowBad} />
       </GuideRuleExample>
     </GuideRule>
