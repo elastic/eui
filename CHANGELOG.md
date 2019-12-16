@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.2.0`.
+- Reverted docs changes in `17.2.0` that caused the build script to die ([#2672](https://github.com/elastic/eui/pull/2672))
 
 ## [`17.2.0`](https://github.com/elastic/eui/tree/v17.2.0)
 
