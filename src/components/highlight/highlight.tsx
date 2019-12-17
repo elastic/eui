@@ -5,8 +5,6 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
     children: string;
 
-    className?: string;
-
     /**
      * What to search for
      */
