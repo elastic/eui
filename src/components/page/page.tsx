@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export interface EuiPageProps extends CommonProps {
+export interface EuiPageProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   restrictWidth?: boolean | number | string;
-  style?: React.CSSProperties;
 }
 
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
@@ -28,9 +29,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
     widthClassname = 'euiPage--restrictWidth-default';
   } else if (restrictWidth !== false) {
     widthClassname = 'euiPage--restrictWidth-custom';
-    const value =
-      typeof restrictWidth === 'number' ? `${restrictWidth}px` : restrictWidth;
-    newStyle = { ...style, maxWidth: value };
+    newStyle = { ...style, maxWidth: restrictWidth };
   }
 
   const classes = classNames('euiPage', widthClassname, className);

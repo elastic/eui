@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-import { EuiPanel, PanelPaddingSize } from '../../panel/panel';
+import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../../panel/panel';
 
 export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
@@ -43,7 +43,10 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   );
 
   return (
-    <EuiPanel className={classes} paddingSize={panelPaddingSize} {...rest}>
+    <EuiPanel
+      className={classes}
+      paddingSize={panelPaddingSize}
+      {...rest as EuiPanelProps}>
       {children}
     </EuiPanel>
   );

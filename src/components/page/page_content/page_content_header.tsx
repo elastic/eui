@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-export interface EuiPageContentHeaderProps extends CommonProps {
+export interface EuiPageContentHeaderProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   /**
    * Set to false if you don't want the children to stack
    * at small screen sizes.

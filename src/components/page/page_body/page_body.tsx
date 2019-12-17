@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 type ComponentType = keyof JSX.IntrinsicElements | React.ComponentType<any>;
 
 export type EuiPageBodyProps<T extends ComponentType = 'main'> = CommonProps &
-  React.ComponentProps<T> & {
+  React.ComponentProps<T> &
+  HTMLAttributes<HTMLDivElement> & {
     /**
      * Sets the max-width of the page,
      * set to `true` to use the default size,

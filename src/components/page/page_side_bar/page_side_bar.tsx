@@ -1,8 +1,14 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-export const EuiPageSideBar: FunctionComponent<CommonProps> = ({
+export interface EuiPageSideBarProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
+  restrictWidth?: boolean | number | string;
+}
+
+export const EuiPageSideBar: FunctionComponent<EuiPageSideBarProps> = ({
   children,
   className,
   ...rest
