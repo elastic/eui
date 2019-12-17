@@ -19,11 +19,12 @@ const horizontalPositionToClassNameMap: {
   center: 'euiPageContent--horizontalCenter',
 };
 
-export interface EuiPageContentProps extends CommonProps {
-  panelPaddingSize?: PanelPaddingSize;
-  verticalPosition?: EuiPageContentVerticalPositions;
-  horizontalPosition?: EuiPageContentHorizontalPositions;
-}
+export type EuiPageContentProps = CommonProps &
+  EuiPanelProps & {
+    panelPaddingSize?: PanelPaddingSize;
+    verticalPosition?: EuiPageContentVerticalPositions;
+    horizontalPosition?: EuiPageContentHorizontalPositions;
+  };
 
 export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   verticalPosition,
@@ -43,10 +44,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   );
 
   return (
-    <EuiPanel
-      className={classes}
-      paddingSize={panelPaddingSize}
-      {...rest as EuiPanelProps}>
+    <EuiPanel className={classes} paddingSize={panelPaddingSize} {...rest}>
       {children}
     </EuiPanel>
   );
