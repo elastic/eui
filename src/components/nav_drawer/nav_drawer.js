@@ -75,8 +75,8 @@ export class EuiNavDrawer extends Component {
       }),
       () => {
         this.setState(({ isCollapsed }) => ({
-          outsideClickDisabled: isCollapsed ? true : false,
-          toolTipsEnabled: isCollapsed ? true : false,
+          outsideClickDisabled: isCollapsed,
+          toolTipsEnabled: isCollapsed,
         }));
       }
     );

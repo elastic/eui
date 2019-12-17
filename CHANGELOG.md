@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.2.1`.
+**Bug fixes**
+
+- Reverted removal of `toggleOpen` method from `EuiNavDrawer` ([#2682](https://github.com/elastic/eui/pull/2682))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
