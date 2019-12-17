@@ -66,6 +66,20 @@ export class EuiNavDrawer extends Component {
     });
   };
 
+  toggleOpen = () => {
+    this.setState(
+      ({ isCollapsed }) => ({
+        isCollapsed: !isCollapsed,
+      }),
+      () => {
+        this.setState(({ isCollapsed }) => ({
+          outsideClickDisabled: isCollapsed ? true : false,
+          toolTipsEnabled: isCollapsed ? true : false,
+        }));
+      }
+    );
+  };
+
   collapseButtonClick = () => {
     if (this.state.isCollapsed) {
       this.expandDrawer();
