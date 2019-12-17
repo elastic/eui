@@ -1,6 +1,6 @@
 import chroma from 'chroma-js';
 
-const MID_COLOR_STOP = '#F5F7FA';
+export const MID_COLOR_STOP = '#F5F7FA';
 
 /**
  * This function takes a color palette name and returns an array of hex color
@@ -25,7 +25,7 @@ export function colorPalette(
   /**
    * Uses a more static interpolation for non-continuous spectrums
    */
-  categorical: boolean = true
+  categorical: boolean = false
 ) {
   let hexStart: string[] = colors.slice();
   let hexEnd: string[] = [];
