@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Reverted removal of `toggleOpen` method from `EuiNavDrawer` ([#2682](https://github.com/elastic/eui/pull/2682))
+- Improved `EuiDataGrid` update performance ([#2676](https://github.com/elastic/eui/pull/2676))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
