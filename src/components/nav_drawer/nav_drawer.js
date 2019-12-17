@@ -67,7 +67,7 @@ export class EuiNavDrawer extends Component {
   };
 
   // Although not used in `src/`, this method is available to and used in `src-docs/`
-  // for imlementation-specific nav menu toggling via `ref` reference
+  // for implementation-specific nav menu toggling via `ref` reference
   toggleOpen = () => {
     this.setState(
       ({ isCollapsed }) => ({
