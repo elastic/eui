@@ -14,6 +14,10 @@ No public interface changes since `17.2.1`.
 
 - Reverted docs changes in `17.2.0` that caused the build script to die ([#2672](https://github.com/elastic/eui/pull/2672))
 
+**Bug fixes**
+
+- Removed TypeScript definitions in `*.test.tsx?` files from _eui.d.ts_ ([#2673](https://github.com/elastic/eui/pull/2673))
+
 ## [`17.2.0`](https://github.com/elastic/eui/tree/v17.2.0)
 
 **NOTE: This release had an error in our documentation layer. Use 17.2.1 instead**
