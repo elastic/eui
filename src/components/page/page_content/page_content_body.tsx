@@ -1,8 +1,12 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-export const EuiPageContentBody: FunctionComponent<CommonProps> = ({
+export interface EuiPageContentBodyProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {}
+
+export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
   children,
   className,
   ...rest
