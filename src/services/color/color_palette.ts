@@ -1,6 +1,6 @@
 import chroma from 'chroma-js';
 
-export const MID_COLOR_STOP = '#F5F7FA';
+export const MID_COLOR_STOP = '#EBEFF5';
 
 /**
  * This function takes a color palette name and returns an array of hex color
