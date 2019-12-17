@@ -34,6 +34,11 @@
     width: $euiSizeL;
   }
 
+  &--small span {
+    width: auto;
+    height: $euiSizeS;
+  }
+
   &:first-child span {
     border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
   }

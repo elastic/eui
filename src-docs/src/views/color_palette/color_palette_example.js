@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -83,9 +84,10 @@ export const ColorPaletteExample = {
             demographic-based data sets.
           </p>
           <p>
-            EUI provides the following common palettes for quantitative data.
-            Just pass in the number of steps needed and the function will
-            interpolate between the colors.
+            EUI provides the following common palettes for quantitative data and{' '}
+            <Link to="/elastic-charts/creating-charts">charts</Link>. Just pass
+            in the number of steps needed and the function will interpolate
+            between the colors.
           </p>
         </div>
       ),
