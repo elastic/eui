@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.2.1`.
+- Converted `EuiFieldNumber` to Typescript ([#](https://github.com/elastic/eui/pull/))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
