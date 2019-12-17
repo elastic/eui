@@ -1,31 +1,34 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-export interface EuiPageBodyProps extends CommonProps {
-  /**
-   * Sets the max-width of the page,
-   * set to `true` to use the default size,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
-   */
-  restrictWidth?: boolean | number | string;
-  style?: React.CSSProperties;
-  /**
-   * Sets the HTML element for `EuiPageBody`.
-   */
-  component?: keyof JSX.IntrinsicElements;
-}
+type ComponentType = keyof JSX.IntrinsicElements | React.ComponentType<any>;
 
-export const EuiPageBody: FunctionComponent<EuiPageBodyProps> = ({
+export type EuiPageBodyProps<T extends ComponentType = 'main'> = CommonProps &
+  React.ComponentProps<T> & {
+    /**
+     * Sets the max-width of the page,
+     * set to `true` to use the default size,
+     * set to `false` to not restrict the width,
+     * set to a number for a custom width in px,
+     * set to a string for a custom width in custom measurement.
+     */
+    restrictWidth?: boolean | number | string;
+    style?: React.CSSProperties;
+    /**
+     * Sets the HTML element for `EuiPageBody`.
+     */
+    component?: T;
+  };
+
+export const EuiPageBody = <T extends ComponentType>({
   children,
   restrictWidth = false,
   style,
   className,
-  component: Component = 'main',
+  component: Component = 'main' as T,
   ...rest
-}) => {
+}: React.PropsWithChildren<EuiPageBodyProps<T>>) => {
   let widthClassname;
   let newStyle;
 
