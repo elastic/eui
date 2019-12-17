@@ -1,6 +1,29 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `17.2.1`.
+
+## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
+
+**Bug fixes**
+
+- Changed package.json version to match sure our build scripts release the correct sequential number ([#2674](https://github.com/elastic/eui/pull/2674))
+
+## [`17.1.3`](https://github.com/elastic/eui/tree/v17.1.3)
+
+**NOTE: This release came out of order due to a release script error. It actually came after 17.2.0 and can be ignored in favor of 17.2.1**
+
+- Reverted docs changes in `17.2.0` that caused the build script to die ([#2672](https://github.com/elastic/eui/pull/2672))
+
+**Bug fixes**
+
+- Removed TypeScript definitions in `*.test.tsx?` files from _eui.d.ts_ ([#2673](https://github.com/elastic/eui/pull/2673))
+
+## [`17.2.0`](https://github.com/elastic/eui/tree/v17.2.0)
+
+**NOTE: This release had an error in our documentation layer. Use 17.2.1 instead**
+
 - Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
+- Added new stylesheets for the EUI Amsterdam theme ([#2633](https://github.com/elastic/eui/pull/2633))
 - Added exports for available types related to `EuiDataGrid` ([#2640](https://github.com/elastic/eui/pull/2640))
 - Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
 
