@@ -2,8 +2,10 @@ import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import PropTypes from 'prop-types';
 
-export type EuiHighlightProps = HTMLAttributes<HTMLDivElement> &
+export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
+    children: string;
+
     /**
      * What to search for
      */
@@ -66,7 +68,7 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
 }) => {
   return (
     <span className={className} {...rest}>
-      {highlight(children as string, search, strict)}
+      {highlight(children, search, strict)}
     </span>
   );
 };
@@ -74,6 +76,4 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
 EuiHighlight.propTypes = {
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
-  search: PropTypes.string.isRequired,
-  strict: PropTypes.bool,
 };
