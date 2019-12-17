@@ -55,7 +55,7 @@ export default () => {
               gutterSize="none"
               alignItems="flexStart"
               responsive={false}>
-              {colorPalette(palette, length, i > 1).map(hexCode => (
+              {colorPalette(palette, Number(length), i > 1).map(hexCode => (
                 <EuiFlexItem
                   key={hexCode}
                   grow={false}

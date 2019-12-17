@@ -64,11 +64,9 @@ export default () => (
                 {copy => (
                   <EuiLink onClick={copy}>
                     <EuiCode>
-                      <span className="eui-textNoWrap">
-                        {`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
-                          i > 1 ? ', true' : ''
-                        })`}
-                      </span>
+                      {`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
+                        i > 1 ? ', true' : ''
+                      })`}
                     </EuiCode>
                   </EuiLink>
                 )}

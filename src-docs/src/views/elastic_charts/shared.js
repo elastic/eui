@@ -9,7 +9,7 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
-import { find, range } from 'lodash';
+import { find } from 'lodash';
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
 
 export const CHART_COMPONENTS = {

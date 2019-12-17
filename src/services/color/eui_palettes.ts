@@ -5,14 +5,6 @@ interface EuiPalette {
   colors: string[];
 }
 
-const euiPalette = function(
-  colors: string[],
-  steps: number,
-  diverge: boolean = false
-): EuiPalette {
-  return { colors: colorPalette(colors, steps, diverge) };
-};
-
 const euiPaletteColorBlind = function(
   /**
    * How many variations of the series is needed
@@ -39,29 +31,29 @@ const euiPaletteColorBlind = function(
   ];
 
   const lighter = [
-    '#8ec5b4',
-    '#7fb0df',
-    '#df8795',
-    '#ab92c6',
-    '#edd6e5',
-    '#d3d6e6',
-    '#d2bf9b',
-    '#f3b379',
-    '#c19489',
-    '#6484a8',
+    '#8EC5B4',
+    '#7FB0DF',
+    '#DF8795',
+    '#AB92C6',
+    '#EDD6E5',
+    '#D3D6E6',
+    '#D2BF9B',
+    '#F3B379',
+    '#C19489',
+    '#6484A8',
   ];
 
   const lightest = [
-    '#c8ded7',
-    '#b5cde7',
-    '#e9afb7',
-    '#c4b5d3',
-    '#fbf8fb',
-    '#e5e5e5',
-    '#e8e0d2',
-    '#f4d5ae',
-    '#cab9b5',
-    '#94a0b0',
+    '#C8DED7',
+    '#B5CDE7',
+    '#E9AFB7',
+    '#C4B5D3',
+    '#FBF8FB',
+    '#E5E5E5',
+    '#E8E0D2',
+    '#F4D5AE',
+    '#CAB9B5',
+    '#94A0B0',
   ];
 
   if (rotations === 2) {
@@ -107,35 +99,63 @@ const euiPaletteForDarkBackground = function(): EuiPalette {
   };
 };
 
-const coolArray: HEX[] = [
-  '#eef6f6',
-  euiPaletteColorBlind().colors[1],
-  '#00629f',
-];
-const warmArray: HEX[] = [
-  '#fbf2cc',
-  euiPaletteColorBlind().colors[7],
-  '#bd271e',
-];
 const positiveColor: HEX = '#209280';
-const negativeColor: HEX = '#cc5642';
+const negativeColor: HEX = '#CC5642';
+const lightNegativeColor: HEX = '#E37660';
+const coolArray: HEX[] = [euiPaletteColorBlind().colors[1], '#6092C0'];
+const warmArray: HEX[] = [euiPaletteColorBlind().colors[7], negativeColor];
+
+const euiPalette = function(
+  colors: string[],
+  steps: number,
+  diverge: boolean = false
+): EuiPalette {
+  // This function also trims the lightest color so white is never a color
+  if (!diverge && steps > 1) {
+    const palette = colorPalette(colors, steps + 1);
+    palette.shift();
+    return { colors: palette };
+  }
+
+  return { colors: colorPalette(colors, steps, diverge) };
+};
 
 const euiPaletteForStatus = function(steps: number): EuiPalette {
-  return euiPalette([positiveColor, warmArray[0], negativeColor], steps, true);
+  if (steps === 1) {
+    return {
+      colors: [euiPaletteColorBlind().colors[0]],
+    };
+  }
+  if (steps <= 3) {
+    return euiPalette(
+      [euiPaletteColorBlind().colors[0], lightNegativeColor],
+      steps,
+      true
+    );
+  }
+
+  return euiPalette([positiveColor, negativeColor], steps, true);
 };
 
 const euiPaletteForTemperature = function(steps: number): EuiPalette {
-  return euiPalette(
-    coolArray
-      .slice()
-      .reverse()
-      .concat(warmArray),
-    steps,
-    true
-  );
+  const midColor = '#F4F3DB';
+  const cools = colorPalette([...coolArray.slice().reverse(), midColor], 3);
+  const warms = colorPalette([midColor, ...warmArray], 3);
+
+  if (steps === 1) {
+    return { colors: [cools[0]] };
+  } else if (steps <= 3) {
+    return euiPalette([cools[0], midColor, lightNegativeColor], steps, true);
+  }
+
+  return euiPalette([...cools, ...warms], steps, true);
 };
 
 const euiPaletteComplimentary = function(steps: number): EuiPalette {
+  if (steps === 1) {
+    return { colors: [euiPaletteColorBlind().colors[7]] };
+  }
+
   return euiPalette(
     [euiPaletteColorBlind().colors[7], euiPaletteColorBlind().colors[9]],
     steps,
@@ -144,41 +164,47 @@ const euiPaletteComplimentary = function(steps: number): EuiPalette {
 };
 
 const euiPaletteNegative = function(steps: number): EuiPalette {
-  // Palettes starting with white shouldn't actually show a white (invisible) color
-  const palette = euiPalette(['#FFF', negativeColor], Number(steps) + 1).colors;
-  palette.shift();
-  return { colors: palette };
+  if (steps === 1) {
+    return { colors: [lightNegativeColor] };
+  }
+
+  return euiPalette(['white', negativeColor], steps);
 };
 
 const euiPalettePositive = function(steps: number): EuiPalette {
-  // Palettes starting with white shouldn't actually show a white (invisible) color
-  const palette = euiPalette(['#FFF', positiveColor], Number(steps) + 1).colors;
-  palette.shift();
-  return { colors: palette };
+  if (steps === 1) {
+    return { colors: [euiPaletteColorBlind().colors[0]] };
+  }
+
+  return euiPalette(['white', positiveColor], steps);
 };
 
 const euiPaletteCool = function(steps: number): EuiPalette {
-  // Palettes starting with white shouldn't actually show a white (invisible) color
-  const palette = euiPalette(coolArray, Number(steps) + 1).colors;
-  palette.shift();
-  return { colors: palette };
+  if (steps === 1) {
+    return { colors: [coolArray[1]] };
+  }
+
+  return euiPalette(['white', ...coolArray], steps);
 };
 
 const euiPaletteWarm = function(steps: number): EuiPalette {
-  // Palettes starting with white shouldn't actually show a white (invisible) color
-  const palette = euiPalette(warmArray, Number(steps) + 1).colors;
-  palette.shift();
-  return { colors: palette };
+  if (steps === 1) {
+    return { colors: [lightNegativeColor] };
+  }
+
+  return euiPalette(['#FBFBDC', ...warmArray], steps);
 };
 
 const euiPaletteGray = function(steps: number): EuiPalette {
-  // Palettes starting with white shouldn't actually show a white (invisible) color
-  const palette = euiPalette(
-    ['#fff', '#d3dae6', '#98a2b3', '#69707d', '#343741'],
-    Number(steps) + 1
-  ).colors;
-  palette.shift();
-  return { colors: palette };
+  if (steps === 1) {
+    return { colors: ['#98a2b3'] };
+  }
+
+  return euiPalette(
+    ['white', '#d3dae6', '#98a2b3', '#69707d', '#343741'],
+    steps,
+    false
+  );
 };
 
 export const palettes = {

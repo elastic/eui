@@ -41,15 +41,15 @@ class _Categorical extends Component {
     this.colorTypeRadios = [
       {
         id: `${this.idPrefix}3`,
-        label: 'Category',
+        label: 'Categorical',
       },
       {
         id: `${this.idPrefix}0`,
-        label: 'Quantity',
+        label: 'Sequential',
       },
       {
         id: `${this.idPrefix}1`,
-        label: 'Trend',
+        label: 'Diverging',
       },
       {
         id: `${this.idPrefix}2`,
@@ -104,13 +104,13 @@ class _Categorical extends Component {
 
   updateCorrectChart = (numCharts, chartType) => {
     switch (chartType) {
-      case 'Category':
+      case 'Categorical':
         this.createCategoryChart(numCharts);
         break;
-      case 'Quantity':
+      case 'Sequential':
         this.createQuantityChart(numCharts);
         break;
-      case 'Trend':
+      case 'Diverging':
         this.createTrendChart(numCharts);
         break;
       case 'Highlight':
@@ -132,13 +132,13 @@ class _Categorical extends Component {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
       const index = Number(item.g);
-      item.g = `Category ${index + 1}`;
+      item.g = `Categorical ${index + 1}`;
       return item;
     });
 
     this.setState({
       data,
-      dataString: "[{x: 1, y: 5.5, g: 'Category 1'}]",
+      dataString: "[{x: 1, y: 5.5, g: 'Categorical 1'}]",
       vizColors: palettes.euiPaletteColorBlind().colors,
       vizColorsString: 'palettes.euiPaletteColorBlind().colors',
       chartType: 'LineSeries',
@@ -146,7 +146,7 @@ class _Categorical extends Component {
   };
 
   createQuantityChart = numCharts => {
-    const vizColors = palettes.euiPaletteCool(numCharts).colors;
+    const vizColors = palettes.euiPalettePositive(numCharts).colors;
 
     // convert series labels to percentages
     const dg = new DataGenerator();

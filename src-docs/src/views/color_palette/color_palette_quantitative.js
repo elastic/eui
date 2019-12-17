@@ -20,7 +20,7 @@ delete paletteData.euiPaletteColorBlind;
 const paletteNames = Object.keys(paletteData);
 
 export default () => {
-  const [length, setLength] = useState(10);
+  const [length, setLength] = useState(5);
 
   const onLengthChange = e => {
     setLength(e.currentTarget.value);
@@ -32,7 +32,7 @@ export default () => {
         <EuiRange
           value={length}
           onChange={onLengthChange}
-          min={2}
+          min={1}
           max={20}
           compressed
           showValue
@@ -48,7 +48,7 @@ export default () => {
               gutterSize="none"
               alignItems="flexStart"
               responsive={false}>
-              {paletteData[paletteName](length).colors.map(hexCode => (
+              {paletteData[paletteName](Number(length)).colors.map(hexCode => (
                 <EuiFlexItem
                   key={hexCode}
                   grow={false}
