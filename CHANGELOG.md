@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Converted `EuiFieldPassword` to Typescript ([#](https://github.com/elastic/eui/pull/))
+- Converted `EuiFieldPassword` to Typescript ([#2683](https://github.com/elastic/eui/pull/2683))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
