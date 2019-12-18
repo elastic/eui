@@ -1,12 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
+import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
 import { EuiFormControlLayout } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
 
-export const EuiFieldPassword = ({
+export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
+  CommonProps & {
+    isInvalid?: boolean;
+    fullWidth?: boolean;
+    isLoading?: boolean;
+    compressed?: boolean;
+    inputRef?: Ref<HTMLInputElement>;
+  };
+
+export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   className,
   id,
   name,
@@ -49,21 +58,6 @@ export const EuiFieldPassword = ({
       </EuiValidatableControl>
     </EuiFormControlLayout>
   );
-};
-
-EuiFieldPassword.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  isInvalid: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  inputRef: PropTypes.func,
-  isLoading: PropTypes.bool,
-  /**
-   * when `true` creates a shorter height input
-   */
-  compressed: PropTypes.bool,
 };
 
 EuiFieldPassword.defaultProps = {
