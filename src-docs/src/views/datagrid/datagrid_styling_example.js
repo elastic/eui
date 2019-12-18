@@ -99,6 +99,21 @@ const controlsSnippet = `<EuiDataGrid
 />
 `;
 
+const widthsSnippet = `<EuiDataGrid
+  {...usualGridProps}
+  columns={[
+    {
+      id: 'Column A',
+      initialWidth: 100, // start at 100px
+    },
+    {
+      id: 'Column B',
+      isResizable: false, // don't let users resize this column
+    },
+  ]}
+/>
+`;
+
 export const DataGridStylingExample = {
   title: 'Data grid styling and toolbar',
   sections: [
@@ -229,7 +244,7 @@ export const DataGridStylingExample = {
         </Fragment>
       ),
       components: { DataGridColumnWidths },
-      snippet: controlsSnippet,
+      snippet: widthsSnippet,
       props: {
         EuiDataGrid,
         EuiDataGridColumn: DataGridColumn,
