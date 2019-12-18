@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
+- Added `annotation` glyph ([#2691](https://github.com/elastic/eui/pull/2691))
 
 **Bug fixes**
 
