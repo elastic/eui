@@ -95,6 +95,12 @@ export type EuiListGroupItemProps = CommonProps &
      * Allow link text to wrap
      */
     wrapText?: boolean;
+
+    /**
+     * Pass-through ref reference specifically for targeting
+     * instances where the item content is rendered as a `button`
+     */
+    buttonRef?: React.RefObject<HTMLButtonElement>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -110,6 +116,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   size = 'm',
   showToolTip = false,
   wrapText,
+  buttonRef,
   ...rest
 }) => {
   const classes = classNames(
@@ -200,6 +207,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         className="euiListGroupItem__button"
         disabled={isDisabled}
         onClick={onClick}
+        ref={buttonRef}
         {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
         {iconNode}
         {labelContent}

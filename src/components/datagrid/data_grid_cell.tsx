@@ -73,7 +73,7 @@ interface EuiDataGridCellState {
   popoverIsOpen: boolean;
 }
 
-type EuiDataGridCellValueProps = Omit<
+export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
   'width' | 'isFocused' | 'interactiveCellId' | 'onCellFocus' | 'popoverContent'
 >;

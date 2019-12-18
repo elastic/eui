@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
+import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
+import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
 import { calculateContrast, rgbToHex } from '../../../../src/services';
 
 import { GuidePage } from '../../components';
@@ -152,9 +154,19 @@ export default class extends Component {
   };
 
   render() {
-    const palette =
-      this.props.selectedTheme === 'light' ? lightColors : darkColors;
     const { value } = this.state;
+    const { selectedTheme } = this.props;
+
+    let palette;
+    if (selectedTheme === 'amsterdam-dark') {
+      palette = darkAmsterdamColors;
+    } else if (selectedTheme === 'amsterdam-light') {
+      palette = { ...lightColors, ...lightAmsterdamColors };
+    } else if (selectedTheme === 'dark') {
+      palette = darkColors;
+    } else {
+      palette = lightColors;
+    }
 
     return (
       <GuidePage title="Color guidelines">
