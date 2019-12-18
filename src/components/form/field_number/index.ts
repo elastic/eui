@@ -1,1 +1,1 @@
-export { EuiFieldNumber } from './field_number';
+export { EuiFieldNumber, EuiFieldNumberProps } from './field_number';

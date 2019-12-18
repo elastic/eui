@@ -51,9 +51,9 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
   max,
   value,
   isInvalid,
-  fullWidth,
-  isLoading,
-  compressed,
+  fullWidth = false,
+  isLoading = false,
+  compressed = false,
   prepend,
   append,
   inputRef,
@@ -104,11 +104,4 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
       {control}
     </EuiFormControlLayout>
   );
-};
-
-EuiFieldNumber.defaultProps = {
-  value: undefined,
-  fullWidth: false,
-  isLoading: false,
-  compressed: false,
 };
