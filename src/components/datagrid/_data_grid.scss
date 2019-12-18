@@ -23,10 +23,6 @@
   }
 }
 
-.euiDataGrid--noControls {
-  border-top: $euiBorderThin;
-}
-
 .euiDataGrid__content {
   @include euiScrollBar;
   @include euiScrollBar;
