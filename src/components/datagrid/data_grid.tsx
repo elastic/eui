@@ -29,7 +29,8 @@ import {
   EuiDataGridStyleRowHover,
   EuiDataGridPopoverContents,
   EuiDataGridColumnVisibility,
-  EuiDataGridTooBarVisibilityOptions,
+  EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -90,9 +91,9 @@ type CommonGridProps = CommonProps &
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar.
+     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
      */
-    toolbarVisibility?: boolean | EuiDataGridTooBarVisibilityOptions;
+    toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
      * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When ommited, disables all enhancements and assumes content is flat strings.
      */
@@ -109,7 +110,7 @@ type CommonGridProps = CommonProps &
 
 // This structure forces either aria-label or aria-labelledby to be defined
 // making some type of label a requirement
-type EuiDataGridProps = Omit<
+export type EuiDataGridProps = Omit<
   CommonGridProps,
   'aria-label' | 'aria-labelledby'
 > &
@@ -287,9 +288,9 @@ function useInMemoryValues(
 function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
-  focusedCell: [number, number],
+  focusedCell: EuiDataGridFocusedCell,
   headerIsInteractive: boolean,
-  setFocusedCell: (focusedCell: [number, number]) => void,
+  setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void,
   updateFocus: Function
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
@@ -397,7 +398,9 @@ function useAfterRender(fn: Function): Function {
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<[number, number] | null>(null);
+  const [focusedCell, setFocusedCell] = useState<EuiDataGridFocusedCell | null>(
+    null
+  );
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
 
@@ -538,6 +541,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     {
       'euiDataGrid--fullScreen': isFullScreen,
     },
+    {
+      'euiDataGrid--noControls': !toolbarVisibility,
+    },
     className
   );
 
@@ -552,20 +558,26 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // By default the toolbar appears
   const showToolbar = !!toolbarVisibility;
 
-  // Typegaurd to see if toolbarVisibility has a certain boolean property assigned
+  // Typeguards to see if toolbarVisibility has a certain boolean property assigned
   // If not, just set it to true and assume it's OK to show
-  function checkOrDefaultToolBarDiplayOptions(
+  function objectHasKey<
+    O extends Record<string, any>,
+    ObjectKey extends keyof O
+  >(object: O, key: ObjectKey): object is Required<O> {
+    return object.hasOwnProperty(key);
+  }
+  function checkOrDefaultToolBarDiplayOptions<
+    OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
+  >(
     arg: EuiDataGridProps['toolbarVisibility'],
-    option: keyof EuiDataGridTooBarVisibilityOptions
-  ): boolean {
+    option: OptionKey
+  ): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
     if (arg === undefined) {
       return true;
     } else if (typeof arg === 'boolean') {
       return arg as boolean;
-    } else if (
-      (arg as EuiDataGridTooBarVisibilityOptions).hasOwnProperty(option)
-    ) {
-      return arg[option]!;
+    } else if (objectHasKey(arg, option)) {
+      return arg[option];
     } else {
       return true;
     }
@@ -589,6 +601,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         : null}
       {checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showSortSelector')
         ? columnSorting
+        : null}
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
+        'additionalControls'
+      ) && typeof toolbarVisibility !== 'boolean'
+        ? toolbarVisibility.additionalControls
         : null}
     </Fragment>
   );
@@ -614,7 +632,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     delete rest['aria-labelledby'];
   }
 
-  const realizedFocusedCell: [number, number] =
+  const realizedFocusedCell: EuiDataGridFocusedCell =
     focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
 
   const fullScreenSelector = (
@@ -652,27 +670,30 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
   });
 
-  const datagridContext = {
-    onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
-      if (pagination) {
-        const key = `${cell[0]}-${cell[1]}`;
+  const datagridContext = useMemo(
+    () => ({
+      onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
+        if (pagination) {
+          const key = `${cell[0]}-${cell[1]}`;
 
-        setCellsUpdateFocus(cellsUpdateFocus => {
-          const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-          nextCellsUpdateFocus.set(key, updateFocus);
-          return nextCellsUpdateFocus;
-        });
-
-        return () => {
           setCellsUpdateFocus(cellsUpdateFocus => {
             const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-            nextCellsUpdateFocus.delete(key);
+            nextCellsUpdateFocus.set(key, updateFocus);
             return nextCellsUpdateFocus;
           });
-        };
-      }
-    },
-  };
+
+          return () => {
+            setCellsUpdateFocus(cellsUpdateFocus => {
+              const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
+              nextCellsUpdateFocus.delete(key);
+              return nextCellsUpdateFocus;
+            });
+          };
+        }
+      },
+    }),
+    [pagination]
+  );
 
   return (
     <DataGridContext.Provider value={datagridContext}>

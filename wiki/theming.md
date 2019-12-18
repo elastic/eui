@@ -5,9 +5,12 @@ variables. Currently we maintain the following themes:
 
 * theme_light (the default EUI theme)
 * theme_dark (the same theme in dark)
+* theme_amsterdam_light (the next iteration of the EUI light theme)
+* theme_amsterdam_dark (the next iteration of the EUI dark theme)
 
-Each of these themes (outside of the default theme_light one) simply include variable
-overwrites that adjust colors and sizing to fit the needs of that theme.
+Each of these themes include variables,
+mixins, functions and other overwrites that adjust colors and sizing to fit the
+needs of that theme.
 
 ## How to create and test a theme
 

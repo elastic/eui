@@ -52,7 +52,8 @@ export class TreeView extends React.Component {
                 icon: <EuiToken iconType="tokenConstant" />,
               },
               {
-                label: 'Another Bug',
+                label:
+                  'This one is a really long string that we will check truncates correctly',
                 id: 'item_bug2',
                 icon: <EuiToken iconType="tokenEnum" />,
                 callback: this.showAlert,
