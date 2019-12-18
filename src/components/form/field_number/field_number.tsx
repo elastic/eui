@@ -6,30 +6,6 @@ import { EuiFormControlLayout } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
 
-/*
-function numberOrEmptyString(props: any, propName: string, componentName: string) {
-  componentName = componentName || 'ANONYMOUS';
-
-  if (props[propName]) {
-    const value = props[propName];
-    if (typeof value === 'string' && value !== '') {
-      return new Error(
-        `Invalid prop '${propName}' of type 'string' supplied to '${componentName}',` +
-          ` expected empty string or type 'number', you supplied a string with the contents '${value}'.`
-      );
-    } else if (typeof value !== 'number') {
-      return new Error(
-        `Invalid prop '${propName}' of type '${typeof value}' supplied to '${componentName}',` +
-          " expected empty string or type 'number'."
-      );
-    }
-  }
-
-  // assume all ok
-  return null;
-}
-*/
-
 export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
     value?: number | '';
