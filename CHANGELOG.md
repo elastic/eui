@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiFieldPassword` to Typescript ([#2683](https://github.com/elastic/eui/pull/2683))
 - Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
 - Converted `EuiTextArea` to Typescript ([#2695](https://github.com/elastic/eui/pull/2695))
 - Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
