@@ -1,8 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
+import { CommonProps } from '../../common';
 import classNames from 'classnames';
-
 import { EuiValidatableControl } from '../validatable_control';
+
+export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
+  CommonProps & {
+    isInvalid?: boolean;
+    fullWidth?: boolean;
+    compressed?: boolean;
+
+    /**
+     * Which direction, if at all, should the textarea resize
+     */
+    resize?: keyof typeof resizeToClassNameMap;
+
+    inputRef?: Ref<HTMLTextAreaElement>;
+  };
 
 const resizeToClassNameMap = {
   vertical: 'euiTextArea--resizeVertical',
@@ -13,17 +26,17 @@ const resizeToClassNameMap = {
 
 export const RESIZE = Object.keys(resizeToClassNameMap);
 
-export const EuiTextArea = ({
+export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   children,
   className,
   compressed,
-  fullWidth,
+  fullWidth = false,
   id,
   inputRef,
   isInvalid,
   name,
   placeholder,
-  resize,
+  resize = 'vertical',
   rows,
   ...rest
 }) => {
@@ -37,7 +50,7 @@ export const EuiTextArea = ({
     className
   );
 
-  let definedRows;
+  let definedRows: number;
 
   if (rows) {
     definedRows = rows;
@@ -61,24 +74,4 @@ export const EuiTextArea = ({
       </textarea>
     </EuiValidatableControl>
   );
-};
-
-EuiTextArea.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  placeholder: PropTypes.string,
-  rows: PropTypes.number,
-  isInvalid: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  compressed: PropTypes.bool,
-
-  /**
-   * Which direction, if at all, should the textarea resize
-   */
-  resize: PropTypes.oneOf(RESIZE),
-};
-
-EuiTextArea.defaultProps = {
-  fullWidth: false,
-  resize: 'vertical',
 };
