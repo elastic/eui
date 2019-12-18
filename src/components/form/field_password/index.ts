@@ -1,1 +1,1 @@
-export { EuiFieldPassword } from './field_password';
+export { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
