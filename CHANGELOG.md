@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Converted `EuiFieldText` to Typescript ([#](https://github.com/elastic/eui/pull/))
+- Converted `EuiFieldText` to Typescript ([#2688](https://github.com/elastic/eui/pull/2688))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
