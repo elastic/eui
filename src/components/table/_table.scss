@@ -11,6 +11,11 @@
   border: none;
   border-collapse: collapse;
   background-color: $euiColorEmptyShade;
+
+  &.euiTable--auto {
+    table-layout: auto;
+  }
+
 }
 
 .euiTableCaption {

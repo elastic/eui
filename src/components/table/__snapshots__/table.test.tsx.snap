@@ -3,7 +3,7 @@
 exports[`renders EuiTable 1`] = `
 <table
   aria-label="aria-label"
-  class="euiTable testClass1 testClass2 euiTable--responsive"
+  class="euiTable testClass1 testClass2 euiTable--responsive euiTable--fixed"
   data-test-subj="test subject string"
 >
   <thead>

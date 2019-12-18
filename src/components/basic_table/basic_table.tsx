@@ -56,6 +56,7 @@ import {
   EuiTableSortingType,
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
+import { FixedOffsetZone } from 'luxon';
 
 type DataTypeProfiles = Record<
   EuiTableDataType,
@@ -190,7 +191,10 @@ interface BasicTableProps<T> {
   rowProps?: object | RowPropsCallback<T>;
   selection?: EuiTableSelectionType<T>;
   sorting?: EuiTableSortingType<T>;
+  tableLayout?: LayoutType;
 }
+
+type LayoutType = 'fixed' | 'auto';
 
 type BasicTableWithPaginationProps<T> = Omit<
   BasicTableProps<T>,
@@ -227,6 +231,7 @@ export class EuiBasicTable<T = any> extends Component<
 > {
   static defaultProps = {
     responsive: true,
+    tableLayout: 'fixed',
     noItemsMessage: 'No items found',
   };
 
@@ -376,6 +381,7 @@ export class EuiBasicTable<T = any> extends Component<
       hasActions, // eslint-disable-line no-unused-vars
       rowProps, // eslint-disable-line no-unused-vars
       cellProps, // eslint-disable-line no-unused-vars
+      tableLayout, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -384,6 +390,7 @@ export class EuiBasicTable<T = any> extends Component<
       {
         'euiBasicTable-loading': loading,
       },
+      // labelDisplayToClassMap[tableLayout],
       className
     );
 
@@ -399,7 +406,7 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTable() {
-    const { compressed, responsive } = this.props;
+    const { compressed, responsive, tableLayout } = this.props;
 
     const mobileHeader = responsive ? (
       <EuiTableHeaderMobile>
@@ -421,7 +428,10 @@ export class EuiBasicTable<T = any> extends Component<
     return (
       <div>
         {mobileHeader}
-        <EuiTable responsive={responsive} compressed={compressed}>
+        <EuiTable
+          tableLayout={tableLayout}
+          responsive={responsive}
+          compressed={compressed}>
           {caption}
           {head}
           {body}

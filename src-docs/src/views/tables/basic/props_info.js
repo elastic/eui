@@ -95,6 +95,14 @@ export const propsInfo = {
           required: false,
           type: { name: '(criteria: #Criteria) => void' },
         },
+        tableLayout: {
+          description: 'Configures table layout',
+          required: false,
+          type: {
+            name: '(fixed | auto)',
+          },
+          defaultValue: { value: 'fixed' },
+        },
       },
     },
   },

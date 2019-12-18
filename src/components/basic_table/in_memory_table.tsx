@@ -189,6 +189,7 @@ type InMemoryTableProps<T> = Omit<
     isClauseMatcher?: (...args: any) => boolean;
     explain?: boolean;
   };
+  tableLayout?: string;
 };
 
 type InMemoryTablePropsWithPagination<T> = Omit<
@@ -325,6 +326,7 @@ export class EuiInMemoryTable<T> extends Component<
 > {
   static defaultProps = {
     responsive: true,
+    tableLayout: 'fixed',
   };
 
   static getDerivedStateFromProps<T>(
@@ -583,6 +585,7 @@ export class EuiInMemoryTable<T> extends Component<
       itemId,
       rowProps,
       cellProps,
+      tableLayout,
       items: _unuseditems, // eslint-disable-line no-unused-vars
       search, // eslint-disable-line no-unused-vars
       onTableChange, // eslint-disable-line no-unused-vars
@@ -647,6 +650,7 @@ export class EuiInMemoryTable<T> extends Component<
         error={error}
         loading={loading}
         noItemsMessage={message}
+        tableLayout={tableLayout}
         compressed={compressed}
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}
         {...rest}
