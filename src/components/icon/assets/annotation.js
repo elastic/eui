@@ -8,7 +8,7 @@ const EuiIconAnnotation = ({ title, ...props }) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
     <title>{title}</title>
-    <path d="M9 6.965a3.5 3.5 0 10-1 0V15.5a.5.5 0 001 0V6.965z" />
+    <path d="M7.5 2a4.5 4.5 0 00-.5 8.973V15.5a.5.5 0 001 0v-4.527A4.5 4.5 0 007.5 2z" />
   </svg>
 );
 
