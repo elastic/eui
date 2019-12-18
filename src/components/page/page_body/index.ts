@@ -1,1 +1,1 @@
-export { EuiPageBody } from './page_body';
+export { EuiPageBody, EuiPageBodyProps } from './page_body';

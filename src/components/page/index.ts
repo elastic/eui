@@ -1,14 +1,23 @@
-export { EuiPage } from './page';
+export { EuiPage, EuiPageProps } from './page';
 
-export { EuiPageBody } from './page_body';
+export { EuiPageBody, EuiPageBodyProps } from './page_body';
 
 export {
   EuiPageContent,
+  EuiPageContentProps,
   EuiPageContentBody,
+  EuiPageContentBodyProps,
   EuiPageContentHeader,
+  EuiPageContentHeaderProps,
   EuiPageContentHeaderSection,
+  EuiPageContentHeaderSectionProps,
 } from './page_content';
 
-export { EuiPageHeader, EuiPageHeaderSection } from './page_header';
+export {
+  EuiPageHeader,
+  EuiPageHeaderProps,
+  EuiPageHeaderSection,
+  EuiPageHeaderSectionProps,
+} from './page_header';
 
-export { EuiPageSideBar } from './page_side_bar';
+export { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
