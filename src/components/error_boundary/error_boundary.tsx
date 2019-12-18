@@ -8,14 +8,17 @@ interface Error {
   stack?: any;
 }
 
-interface ErrorState {
+interface EuiErrorBoundaryState {
   hasError: boolean;
-  error: Error | undefined;
+  error?: Error;
 }
 
-export type EuiErrorBoundaryProps = ErrorState & CommonProps & {};
+export type EuiErrorBoundaryProps = EuiErrorBoundaryState & CommonProps & {};
 
-export class EuiErrorBoundary extends Component<{}, EuiErrorBoundaryProps> {
+export class EuiErrorBoundary extends Component<
+  EuiErrorBoundaryProps,
+  EuiErrorBoundaryState
+> {
   static propTypes = {
     children: PropTypes.node,
   };
@@ -23,7 +26,7 @@ export class EuiErrorBoundary extends Component<{}, EuiErrorBoundaryProps> {
   constructor(props: EuiErrorBoundaryProps) {
     super(props);
 
-    const errorState: ErrorState = {
+    const errorState: EuiErrorBoundaryState = {
       hasError: false,
       error: undefined,
     };

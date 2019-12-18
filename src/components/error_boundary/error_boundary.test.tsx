@@ -17,7 +17,7 @@ describe('EuiErrorBoundary', () => {
   test('is rendered without an error', () => {
     const component = takeMountedSnapshot(
       mount(
-        <EuiErrorBoundary {...requiredProps}>
+        <EuiErrorBoundary {...requiredProps} hasError={false}>
           <GoodComponent />
         </EuiErrorBoundary>
       )
@@ -33,7 +33,10 @@ describe('EuiErrorBoundary', () => {
     // Because the error contains the stack trace, it's non-deterministic. So we'll just check that
     // it contains our error message.
     const errorText = mount(
-      <EuiErrorBoundary {...requiredProps}>
+      <EuiErrorBoundary
+        {...requiredProps}
+        error={new Error(errorMessage)}
+        hasError={true}>
         <BadComponent />
       </EuiErrorBoundary>
     ).text();
