@@ -126,3 +126,15 @@
     padding: $euiDataGridCellPaddingL;
   }
 }
+
+@include euiDataGridStyles(noControls, bordersAll) {
+  @include euiDataGridHeaderCell {
+    border-top: $euiBorderThin;
+  }
+}
+
+@include euiDataGridStyles(noControls, bordersHorizontal) {
+  @include euiDataGridHeaderCell {
+    border-top: $euiBorderThin;
+  }
+}
