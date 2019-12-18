@@ -541,6 +541,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     {
       'euiDataGrid--fullScreen': isFullScreen,
     },
+    {
+      'euiDataGrid--noControls': !toolbarVisibility,
+    },
     className
   );
 
