@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.2.1`.
+- Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
+
+**Bug fixes**
+
+- Reverted removal of `toggleOpen` method from `EuiNavDrawer` ([#2682](https://github.com/elastic/eui/pull/2682))
+- Improved `EuiDataGrid` update performance ([#2676](https://github.com/elastic/eui/pull/2676))
+- Fixed `EuiDatagrid` header top border when configured to have no toolbar ([#2619](https://github.com/elastic/eui/pull/#2619))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
@@ -25,6 +31,7 @@ No public interface changes since `17.2.1`.
 - Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
 - Added new stylesheets for the EUI Amsterdam theme ([#2633](https://github.com/elastic/eui/pull/2633))
 - Added exports for available types related to `EuiDataGrid` ([#2640](https://github.com/elastic/eui/pull/2640))
+- Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
 
 **Bug fixes**
 
