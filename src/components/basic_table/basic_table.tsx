@@ -56,7 +56,6 @@ import {
   EuiTableSortingType,
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
-import { FixedOffsetZone } from 'luxon';
 
 type DataTypeProfiles = Record<
   EuiTableDataType,
@@ -390,7 +389,6 @@ export class EuiBasicTable<T = any> extends Component<
       {
         'euiBasicTable-loading': loading,
       },
-      // labelDisplayToClassMap[tableLayout],
       className
     );
 

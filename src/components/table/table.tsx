@@ -9,7 +9,7 @@ export type Props = {
 } & CommonProps &
   TableHTMLAttributes<HTMLTableElement>;
 
-const labelDisplayToClassMap: { [tableLayout: string]: string | null } = {
+const tableLayoutToClassMap: { [tableLayout: string]: string | null } = {
   fixed: 'euiTable--fixed',
   auto: 'euiTable--auto',
 };
@@ -29,7 +29,7 @@ export const EuiTable: FunctionComponent<Props> = ({
       'euiTable--compressed': compressed,
       'euiTable--responsive': responsive,
     },
-    labelDisplayToClassMap[tableLayout]
+    tableLayoutToClassMap[tableLayout]
   );
 
   return (

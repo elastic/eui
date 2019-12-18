@@ -24,7 +24,7 @@ export const section = {
     <div>
       <p>
         <EuiCode>EuiBasicTable</EuiCode> has a fixed layout by default. You can
-        change it to auto using the <EuiCode>tableLayout</EuiCode>.
+        change it to auto using the <EuiCode>tableLayout</EuiCode> prop.
       </p>
     </div>
   ),
