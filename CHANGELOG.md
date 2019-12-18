@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
+- Converted `EuiTextArea` to Typescript ([#](https://github.com/elastic/eui/pull/))
 
 **Bug fixes**
 
