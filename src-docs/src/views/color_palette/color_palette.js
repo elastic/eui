@@ -5,13 +5,10 @@ import {
   EuiFlexItem,
   EuiTitle,
   EuiSpacer,
-  EuiText,
-  EuiCode,
-  EuiCopy,
-  EuiLink,
 } from '../../../../src/components';
 
 import { palettes } from '../../../../src/services';
+import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
 const customPalettes = [
   {
@@ -38,40 +35,26 @@ export default () => (
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiFlexGroup alignItems="center">
-          <EuiFlexItem grow={false}>
+          <EuiFlexItem grow={false} style={{ maxWidth: 240 }}>
             <EuiFlexGroup
               gutterSize="none"
               alignItems="flexStart"
               responsive={false}
               wrap>
               {palette.palette.map(hexCode => (
-                <EuiFlexItem
-                  key={hexCode}
-                  grow={false}
-                  className={'guideColorPalette__swatch'}>
-                  <span title={hexCode} style={{ backgroundColor: hexCode }} />
-                </EuiFlexItem>
+                <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiText>
-              <EuiCopy
-                beforeMessage="Click to copy palette config"
-                textToCopy={`palettes.euiPaletteColorBlind(${
-                  i > 0 ? i + 1 : ''
-                }${i > 1 ? ', true' : ''}).colors`}>
-                {copy => (
-                  <EuiLink onClick={copy}>
-                    <EuiCode>
-                      {`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
-                        i > 1 ? ', true' : ''
-                      })`}
-                    </EuiCode>
-                  </EuiLink>
-                )}
-              </EuiCopy>
-            </EuiText>
+            <ColorPaletteCopyCode
+              textToCopy={`palettes.euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
+                i > 1 ? ', true' : ''
+              }).colors`}
+              code={`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
+                i > 1 ? ', true' : ''
+              })`}
+            />
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="xl" />

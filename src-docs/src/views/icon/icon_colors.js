@@ -32,7 +32,7 @@ const iconColors = [
   'subdued',
   'ghost',
   '#490',
-  '#E59145',
+  '#F19F58',
   '#DDDDDD',
 ];
 

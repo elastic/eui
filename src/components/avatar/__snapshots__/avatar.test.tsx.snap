@@ -5,7 +5,7 @@ exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
   aria-label="aria-label"
   class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2"
   data-test-subj="test subject string"
-  style="background-image:none;background-color:#D15D75;color:#000000"
+  style="background-image:none;background-color:#D36086;color:#000000"
   title="  "
 >
   <span

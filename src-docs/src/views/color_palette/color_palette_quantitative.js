@@ -3,16 +3,13 @@ import React, { Fragment, useState } from 'react';
 import {
   EuiFlexGroup,
   EuiFlexItem,
-  EuiCopy,
-  EuiText,
   EuiRange,
-  EuiCode,
-  EuiLink,
   EuiFormRow,
   EuiSpacer,
 } from '../../../../src/components';
 
 import { palettes } from '../../../../src/services';
+import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 const paletteData = { ...palettes };
 delete paletteData.euiPaletteForLightBackground;
 delete paletteData.euiPaletteForDarkBackground;
@@ -44,32 +41,17 @@ export default () => {
       {paletteNames.map(paletteName => (
         <EuiFlexGroup alignItems="center" key={paletteName}>
           <EuiFlexItem grow={false}>
-            <EuiFlexGroup
-              gutterSize="none"
-              alignItems="flexStart"
-              responsive={false}>
+            <EuiFlexGroup gutterSize="none" responsive={false}>
               {paletteData[paletteName](Number(length)).colors.map(hexCode => (
-                <EuiFlexItem
-                  key={hexCode}
-                  grow={false}
-                  className={'guideColorPalette__swatch'}>
-                  <span title={hexCode} style={{ backgroundColor: hexCode }} />
-                </EuiFlexItem>
+                <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiText>
-              <EuiCopy
-                beforeMessage="Click to copy palette config"
-                textToCopy={`palettes.${paletteName}(${length}).colors;`}>
-                {copy => (
-                  <EuiLink onClick={copy}>
-                    <EuiCode>{`${paletteName}(${length})`}</EuiCode>
-                  </EuiLink>
-                )}
-              </EuiCopy>
-            </EuiText>
+            <ColorPaletteCopyCode
+              textToCopy={`palettes.${paletteName}(${length}).colors;`}
+              code={`${paletteName}(${length})`}
+            />
           </EuiFlexItem>
         </EuiFlexGroup>
       ))}

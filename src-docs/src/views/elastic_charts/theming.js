@@ -25,7 +25,6 @@ import { palettes } from '../../../../src/services';
 const paletteData = { ...palettes };
 delete paletteData.euiPaletteForLightBackground;
 delete paletteData.euiPaletteForDarkBackground;
-delete paletteData.euiPaletteColorBlind;
 const paletteNames = Object.keys(paletteData);
 
 const _Theming = props => {
@@ -36,7 +35,7 @@ const _Theming = props => {
     createPaletteOption(paletteName, index)
   );
 
-  const [barPalette, setBarPalette] = useState('4');
+  const [barPalette, setBarPalette] = useState('5');
   const onBarPaletteChange = value => {
     setBarPalette(value);
   };
@@ -117,12 +116,16 @@ const _Theming = props => {
 const createPaletteOption = function(paletteName, index) {
   return {
     value: String(index),
-    inputDisplay: createPalette(paletteData[paletteNames[index]](10).colors),
+    inputDisplay: createPalette(
+      paletteData[paletteNames[index]](index > 0 ? 10 : 1).colors
+    ),
     dropdownDisplay: (
       <Fragment>
         <strong>{paletteName}</strong>
         <EuiSpacer size="xs" />
-        {createPalette(paletteData[paletteNames[index]](10).colors)}
+        {createPalette(
+          paletteData[paletteNames[index]](index > 0 ? 10 : 1).colors
+        )}
       </Fragment>
     ),
   };

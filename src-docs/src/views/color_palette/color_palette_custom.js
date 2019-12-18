@@ -3,16 +3,13 @@ import React, { Fragment, useState } from 'react';
 import {
   EuiFlexGroup,
   EuiFlexItem,
-  EuiCopy,
-  EuiText,
   EuiRange,
-  EuiCode,
-  EuiLink,
   EuiFormRow,
   EuiSpacer,
 } from '../../../../src/components';
 
 import { palettes, colorPalette } from '../../../../src/services';
+import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
 const customPalettes = [
   [palettes.euiPaletteColorBlind().colors[3]],
@@ -51,36 +48,21 @@ export default () => {
       {customPalettes.map((palette, i) => (
         <EuiFlexGroup alignItems="center" key={i}>
           <EuiFlexItem grow={false}>
-            <EuiFlexGroup
-              gutterSize="none"
-              alignItems="flexStart"
-              responsive={false}>
+            <EuiFlexGroup gutterSize="none" responsive={false}>
               {colorPalette(palette, Number(length), i > 1).map(hexCode => (
-                <EuiFlexItem
-                  key={hexCode}
-                  grow={false}
-                  className={'guideColorPalette__swatch'}>
-                  <span title={hexCode} style={{ backgroundColor: hexCode }} />
-                </EuiFlexItem>
+                <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiText>
-              <EuiCopy
-                beforeMessage="Click to copy palette config"
-                textToCopy={`colorPalette([], ${length}${
-                  i > 1 ? ', true' : ''
-                });`}>
-                {copy => (
-                  <EuiLink onClick={copy}>
-                    <EuiCode>{`colorPalette([${palette}], ${length}${
-                      i > 1 ? ', true' : ''
-                    });`}</EuiCode>
-                  </EuiLink>
-                )}
-              </EuiCopy>
-            </EuiText>
+            <ColorPaletteCopyCode
+              textToCopy={`colorPalette([], ${length}${
+                i > 1 ? ', true' : ''
+              });`}
+              code={`colorPalette([${palette}], ${length}${
+                i > 1 ? ', true' : ''
+              });`}
+            />
           </EuiFlexItem>
         </EuiFlexGroup>
       ))}

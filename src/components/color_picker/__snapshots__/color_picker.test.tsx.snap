@@ -604,10 +604,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #4DAC93 as the color"
+        aria-label="Select #5BBAA0 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#4DAC93"
+        style="background:#5BBAA0"
         type="button"
       />
     </div>
@@ -615,10 +615,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #3594D6 as the color"
+        aria-label="Select #6092C0 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#3594D6"
+        style="background:#6092C0"
         type="button"
       />
     </div>
@@ -626,10 +626,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #D15D75 as the color"
+        aria-label="Select #D36086 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#D15D75"
+        style="background:#D36086"
         type="button"
       />
     </div>
@@ -659,10 +659,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #ADB6DD as the color"
+        aria-label="Select #FAE181 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#ADB6DD"
+        style="background:#FAE181"
         type="button"
       />
     </div>
@@ -670,10 +670,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #BAA066 as the color"
+        aria-label="Select #CDBD9D as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#BAA066"
+        style="background:#CDBD9D"
         type="button"
       />
     </div>
@@ -681,10 +681,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #E59145 as the color"
+        aria-label="Select #F19F58 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#E59145"
+        style="background:#F19F58"
         type="button"
       />
     </div>
@@ -703,10 +703,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #47688A as the color"
+        aria-label="Select #E7664C as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#47688A"
+        style="background:#E7664C"
         type="button"
       />
     </div>

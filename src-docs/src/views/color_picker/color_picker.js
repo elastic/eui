@@ -7,7 +7,7 @@ export class ColorPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: '#D15D75',
+      color: '#D36086',
     };
   }
 
