@@ -14,7 +14,7 @@ function compileLib() {
     'lib/test'
   );
 
-  console.log('Compiling src/ to es/ and lib/');
+  console.log('Compiling src/ to es/, lib/, and kbn-test/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
@@ -40,7 +40,7 @@ function compileLib() {
   );
 
   execSync(
-    'babel --quiet --out-dir=kbn-test --extensions .js,.ts,.tsx --plugins=@babel/plugin-syntax-dynamic-import,dynamic-import-node --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
+    'babel --quiet --out-dir=kbn-test --extensions .js,.ts,.tsx --plugins=@babel/plugin-transform-runtime,@babel/plugin-transform-async-to-generator,@babel/plugin-syntax-dynamic-import,dynamic-import-node --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
     {
       env: {
         ...process.env,
