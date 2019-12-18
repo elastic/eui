@@ -123,10 +123,9 @@ export class EuiCodeEditor extends Component {
       setOptions,
       cursorStart,
       mode = DEFAULT_MODE,
+      'data-test-subj': dataTestSubj = 'codeEditorContainer',
       ...rest
     } = this.props;
-
-    const dataTestSubj = this.props['data-test-subj'];
 
     const classes = classNames('euiCodeEditorWrapper', {
       'euiCodeEditorWrapper-isEditing': this.state.isEditing,
@@ -201,7 +200,7 @@ export class EuiCodeEditor extends Component {
       <div
         className={classes}
         style={{ width, height }}
-        data-test-subj={dataTestSubj || 'codeEditorContainer'}>
+        data-test-subj={dataTestSubj}>
         {prompt}
 
         <AceEditor
