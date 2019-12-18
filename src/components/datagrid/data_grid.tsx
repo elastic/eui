@@ -220,7 +220,18 @@ function useDefaultColumnWidth(
   useEffect(() => {
     if (container != null) {
       const gridWidth = container.clientWidth;
-      const columnWidth = Math.max(gridWidth / columns.length, 100);
+
+      const columnsWithWidths = columns.filter<
+        EuiDataGridColumn & { initialWidth: number }
+      >(doesColumnHaveAnInitialWidth);
+      const claimedWidth = columnsWithWidths.reduce(
+        (claimedWidth, column) => claimedWidth + column.initialWidth,
+        0
+      );
+
+      const widthToFill = gridWidth - claimedWidth;
+      const unsizedColumnCount = columns.length - columnsWithWidths.length;
+      const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
       setDefaultColumnWidth(columnWidth);
     }
   }, [container, columns]);
@@ -228,14 +239,34 @@ function useDefaultColumnWidth(
   return defaultColumnWidth;
 }
 
-function useColumnWidths(): [
-  EuiDataGridColumnWidths,
-  (columnId: string, width: number) => void
-] {
+function doesColumnHaveAnInitialWidth(
+  column: EuiDataGridColumn
+): column is EuiDataGridColumn & { initialWidth: number } {
+  return column.hasOwnProperty('initialWidth');
+}
+
+function useColumnWidths(
+  columns: EuiDataGridColumn[]
+): [EuiDataGridColumnWidths, (columnId: string, width: number) => void] {
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
+
+  useEffect(() => {
+    setColumnWidths(
+      columns
+        .filter<EuiDataGridColumn & { initialWidth: number }>(
+          doesColumnHaveAnInitialWidth
+        )
+        .reduce<EuiDataGridColumnWidths>((initialWidths, column) => {
+          initialWidths[column.id] = column.initialWidth;
+          return initialWidths;
+        }, {})
+    );
+  }, [setColumnWidths, columns]);
+
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
   };
+
   return [columnWidths, setColumnWidth];
 }
 
@@ -444,8 +475,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
   );
 
-  const [columnWidths, setColumnWidth] = useColumnWidths();
-
   // enables/disables grid controls based on available width
   const onResize = useOnResize(nextHasRoomForGridControls => {
     if (nextHasRoomForGridControls !== hasRoomForGridControls) {
@@ -479,6 +508,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     popoverContents,
     ...rest
   } = props;
+
+  const [columnWidths, setColumnWidth] = useColumnWidths(columns);
 
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
