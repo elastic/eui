@@ -11,6 +11,7 @@ tmp/
 dist/
 lib/
 es/
+kbn-test/
 .idea
 .vscode/
 .DS_Store
