@@ -1,12 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
-- Fixed `EuiDatagrid` header top border when configured to have no toolbar ([#2619](https://github.com/elastic/eui/pull/#2619))
 
 **Bug fixes**
 
 - Reverted removal of `toggleOpen` method from `EuiNavDrawer` ([#2682](https://github.com/elastic/eui/pull/2682))
 - Improved `EuiDataGrid` update performance ([#2676](https://github.com/elastic/eui/pull/2676))
+- Fixed `EuiDatagrid` header top border when configured to have no toolbar ([#2619](https://github.com/elastic/eui/pull/#2619))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
@@ -36,7 +36,6 @@
 
 - Improved `EuiDataGrid` update performance ([#2638](https://github.com/elastic/eui/pull/2638))
 - Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
-- Fixed `EuiComboBox` from submitting parent `form` element when selecting options via `Enter` key ([#2642](https://github.com/elastic/eui/pull/2642))
 - Fixed `EuiComboBox` from submitting parent `form` element when selecting options via `Enter` key ([#2642](https://github.com/elastic/eui/pull/2642))
 - Fixed `EuiNavDrawer` expand button from losing focus after click ([#2643](https://github.com/elastic/eui/pull/2643))
 - Fixed instances of potentially duplicate `EuiPopover` `id` attributes ([#2667](https://github.com/elastic/eui/pull/2667))
