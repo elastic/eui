@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
+- Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
 
 **Bug fixes**
 
