@@ -1,23 +1,57 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { SelectHTMLAttributes, Ref, FunctionComponent } from 'react';
+import { CommonProps } from '../../common';
 import classNames from 'classnames';
-
 import { EuiFormControlLayout } from '../form_control_layout';
-
 import { EuiValidatableControl } from '../validatable_control';
+import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
 
-export const EuiSelect = ({
+interface Option {
+  value?: string;
+  text?: string;
+  disabled?: boolean;
+}
+
+export type EuiSelectProps = SelectHTMLAttributes<HTMLSelectElement> &
+  CommonProps & {
+    options?: Option[];
+    isInvalid?: boolean;
+    fullWidth?: boolean;
+    isLoading?: boolean;
+
+    /**
+     * Simulates no selection by creating an empty, selected, hidden first option
+     */
+    hasNoInitialSelection?: boolean;
+    inputRef?: Ref<HTMLSelectElement>;
+
+    /**
+     * when `true` creates a shorter height input
+     */
+    compressed?: boolean;
+    readOnly?: boolean;
+
+    /**
+     * Creates an input group with element(s) coming before select
+     */
+    prepend?: JSX.Element | JSX.Element[];
+    /**
+     * Creates an input group with element(s) coming after select
+     */
+    append?: JSX.Element | JSX.Element[];
+  };
+
+export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   className,
-  options,
+  options = [],
   id,
   name,
   inputRef,
   isInvalid,
-  fullWidth,
-  isLoading,
-  hasNoInitialSelection,
+  fullWidth = false,
+  isLoading = false,
+  hasNoInitialSelection = false,
   defaultValue,
-  compressed,
+  compressed = false,
   value,
   prepend,
   append,
@@ -25,7 +59,7 @@ export const EuiSelect = ({
   readOnly,
   ...rest
 }) => {
-  const handleMouseUp = e => {
+  const handleMouseUp = (e: any) => {
     // Normalizes cross-browser mouse eventing by preventing propagation,
     // notably for use in conjunction with EuiOutsideClickDetector.
     // See https://github.com/elastic/eui/pull/1926 for full discussion on
@@ -61,7 +95,7 @@ export const EuiSelect = ({
     selectDefaultValue = defaultValue || '';
   }
 
-  const icon = {
+  const icon: EuiFormControlLayoutIconsProps['icon'] = {
     type: 'arrowDown',
     side: 'right',
   };
@@ -84,7 +118,7 @@ export const EuiSelect = ({
           ref={inputRef}
           defaultValue={selectDefaultValue}
           value={value}
-          readOnly={readOnly}
+          disabled={readOnly}
           onMouseUp={handleMouseUp}
           {...rest}>
           {emptyOptionNode}
@@ -100,50 +134,4 @@ export const EuiSelect = ({
       </EuiValidatableControl>
     </EuiFormControlLayout>
   );
-};
-
-EuiSelect.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.node.isRequired,
-    })
-  ).isRequired,
-  isInvalid: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  isLoading: PropTypes.bool,
-
-  /**
-   * Simulates no selection by creating an empty, selected, hidden first option
-   */
-  hasNoInitialSelection: PropTypes.bool,
-  inputRef: PropTypes.func,
-  /**
-   * when `true` creates a shorter height input
-   */
-  compressed: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  /**
-   * Creates an input group with element(s) coming before select
-   */
-  prepend: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  /**
-   * Creates an input group with element(s) coming after select
-   */
-  append: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-};
-
-EuiSelect.defaultProps = {
-  options: [],
-  fullWidth: false,
-  isLoading: false,
-  hasNoInitialSelection: false,
-  compressed: false,
 };

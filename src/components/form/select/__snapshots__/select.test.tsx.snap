@@ -131,7 +131,7 @@ exports[`EuiSelect props readOnly is rendered 1`] = `
   <eui-validatable-control>
     <select
       class="euiSelect"
-      readonly=""
+      disabled=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
