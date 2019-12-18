@@ -31,6 +31,7 @@
 - Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
 - Added new stylesheets for the EUI Amsterdam theme ([#2633](https://github.com/elastic/eui/pull/2633))
 - Added exports for available types related to `EuiDataGrid` ([#2640](https://github.com/elastic/eui/pull/2640))
+- Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
 
 **Bug fixes**
 
