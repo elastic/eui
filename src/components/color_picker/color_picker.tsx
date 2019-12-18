@@ -343,7 +343,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 fullWidth={fullWidth}
                 autoComplete="off"
                 data-test-subj={testSubjAnchor}
-                aria-label={isColorSelectorShown ? openLabel : closeLabel}
+                aria-label={
+                  isColorSelectorShown
+                    ? (openLabel as string)
+                    : (closeLabel as string)
+                }
               />
             )}
           </EuiI18n>

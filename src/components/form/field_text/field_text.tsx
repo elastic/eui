@@ -1,12 +1,43 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
+import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
 import { EuiFormControlLayout } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
 
-export const EuiFieldText = ({
+export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
+  CommonProps & {
+    icon?: string;
+    isInvalid?: boolean;
+    fullWidth?: boolean;
+    isLoading?: boolean;
+    readOnly?: boolean;
+    inputRef?: Ref<HTMLInputElement>;
+
+    /**
+     * Creates an input group with element(s) coming before input
+     */
+    prepend?: JSX.Element | JSX.Element[];
+
+    /**
+     * Creates an input group with element(s) coming after input
+     */
+    append?: string;
+
+    /**
+     * Completely removes form control layout wrapper and ignores
+     * icon, prepend, and append. Best used inside EuiFormControlLayoutDelimited.
+     */
+    controlOnly?: boolean;
+
+    /**
+     * when `true` creates a shorter height input
+     */
+    compressed?: boolean;
+  };
+
+export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   id,
   name,
   placeholder,
@@ -63,42 +94,6 @@ export const EuiFieldText = ({
       {control}
     </EuiFormControlLayout>
   );
-};
-
-EuiFieldText.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  icon: PropTypes.string,
-  isInvalid: PropTypes.bool,
-  inputRef: PropTypes.func,
-  fullWidth: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  /**
-   * when `true` creates a shorter height input
-   */
-  compressed: PropTypes.bool,
-  /**
-   * Creates an input group with element(s) coming before input
-   */
-  prepend: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  /**
-   * Creates an input group with element(s) coming after input
-   */
-  append: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  /**
-   * Completely removes form control layout wrapper and ignores
-   * icon, prepend, and append. Best used inside EuiFormControlLayoutDelimited.
-   */
-  controlOnly: PropTypes.bool,
 };
 
 EuiFieldText.defaultProps = {
