@@ -4,9 +4,7 @@ import { CommonProps } from '../../common';
 
 export interface EuiPageSideBarProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  restrictWidth?: boolean | number | string;
-}
+    HTMLAttributes<HTMLDivElement> {}
 
 export const EuiPageSideBar: FunctionComponent<EuiPageSideBarProps> = ({
   children,

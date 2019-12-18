@@ -1,12 +1,11 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 type ComponentType = keyof JSX.IntrinsicElements | React.ComponentType<any>;
 
 export type EuiPageBodyProps<T extends ComponentType = 'main'> = CommonProps &
-  React.ComponentProps<T> &
-  HTMLAttributes<HTMLDivElement> & {
+  React.ComponentProps<T> & {
     /**
      * Sets the max-width of the page,
      * set to `true` to use the default size,
@@ -15,7 +14,6 @@ export type EuiPageBodyProps<T extends ComponentType = 'main'> = CommonProps &
      * set to a string for a custom width in custom measurement.
      */
     restrictWidth?: boolean | number | string;
-    style?: React.CSSProperties;
     /**
      * Sets the HTML element for `EuiPageBody`.
      */
