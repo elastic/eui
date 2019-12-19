@@ -14,9 +14,6 @@ import {
   EuiFlexItem,
   EuiImage,
   EuiPanel,
-  EuiDescriptionList,
-  EuiDescriptionListTitle,
-  EuiDescriptionListDescription,
 } from '../../../../src/components';
 
 // import imgFormRowGeneral from '../../images/form-row--00.png';
@@ -46,11 +43,9 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Use labels and descriptions</h4>
             <p>
-              <small>
-                Use a label (and description if needed) for each form field. All
-                form fields should be considered required unless stated
-                alongside the label.
-              </small>
+              Use a label (and description if needed) for each form field. All
+              form fields should be considered required unless stated alongside
+              the label.
             </p>
           </EuiText>
         </EuiPanel>
@@ -61,10 +56,8 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Provide help text</h4>
             <p>
-              <small>
-                Show validation parameters in the help text below the input
-                (eg., No spaces, lowercase, no special characters, etc.)
-              </small>
+              Show validation parameters in the help text below the input (eg.,
+              No spaces, lowercase, no special characters, etc.)
             </p>
           </EuiText>
         </EuiPanel>
@@ -75,11 +68,8 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Validate on blur</h4>
             <p>
-              <small>
-                Validation should occur on blur from an input field. The submit
-                button should be active by default, then show errors after
-                click.
-              </small>
+              Validation should occur on blur from an input field. The submit
+              button should be active by default, then show errors after click.
             </p>
           </EuiText>
         </EuiPanel>
@@ -94,11 +84,9 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Layout matters</h4>
             <p>
-              <small>
-                A poorly formatted form can be confusing and tiring for the user
-                to navigate. As one field is completed, it should be clear where
-                to go next.
-              </small>
+              A poorly formatted form can be confusing and tiring for the user
+              to navigate. As one field is completed, it should be clear where
+              to go next.
             </p>
           </EuiText>
         </EuiPanel>
@@ -109,11 +97,9 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Words matter</h4>
             <p>
-              <small>
-                Form labels and descriptions are equally as important as layout
-                and should be treated with just as much care. The text should be
-                concise and easily scannable.
-              </small>
+              Form labels and descriptions are equally as important as layout
+              and should be treated with just as much care. The text should be
+              concise and easily scannable.
             </p>
           </EuiText>
         </EuiPanel>
@@ -133,47 +119,37 @@ export default () => (
       heading="When to use it"
       description="This component is not intended for every type of form, but typically works best in the following scenarios.">
       <EuiFlexItem>
-        <EuiDescriptionList>
-          <EuiDescriptionListTitle>
-            Forms with lengthy descriptions per input
-          </EuiDescriptionListTitle>
-          <EuiDescriptionListDescription>
+        <EuiText>
+          <h4>Forms with lengthy descriptions per input</h4>
+          <p>
             If long descriptions are needed, using an{' '}
             <EuiCode>EuiDescribedFormRow</EuiCode>
             divides the form into a column for descriptions and a column for
             form fields. This is so there is plenty of space for descriptions to
             aid new users, but keeps the form fields in a column so frequent
             users can still quickly navigate the form.
-          </EuiDescriptionListDescription>
-        </EuiDescriptionList>
-
+          </p>
+        </EuiText>
         <EuiSpacer />
-
-        <EuiDescriptionList>
-          <EuiDescriptionListTitle>
-            Forms with multiple inputs falling under a single heading
-          </EuiDescriptionListTitle>
-          <EuiDescriptionListDescription>
+        <EuiText>
+          <h4>Forms with multiple inputs falling under a single heading</h4>
+          <p>
             If multiple sub-steps are needed, grouping them together using an{' '}
             <EuiCode>EuiDescribedFormRow</EuiCode> helps show they are all still
             related.
-          </EuiDescriptionListDescription>
-        </EuiDescriptionList>
-
+          </p>
+        </EuiText>
         <EuiSpacer />
-
-        <EuiDescriptionList>
-          <EuiDescriptionListTitle>
-            Forms with complex nested options
-          </EuiDescriptionListTitle>
-          <EuiDescriptionListDescription>
+        <EuiText>
+          <h4>Forms with complex nested options</h4>
+          <p>
             An <EuiCode>EuiDescribedFormRow</EuiCode> is useful when there are
             parts of the form that can be hidden and shown by the user. The
             toggle to hide and show the row should be beneath the description
             and the following form fields should be in the right column with the
             other form fields.
-          </EuiDescriptionListDescription>
-        </EuiDescriptionList>
+          </p>
+        </EuiText>
       </EuiFlexItem>
 
       <EuiFlexItem>
