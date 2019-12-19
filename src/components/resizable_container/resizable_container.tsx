@@ -1,5 +1,12 @@
-import React, { ReactNode, useRef, useState, useCallback } from 'react';
+import React, {
+  ReactNode,
+  useRef,
+  useState,
+  useCallback,
+  CSSProperties,
+} from 'react';
 
+import { CommonProps } from '../common';
 import { keyCodes } from '../../services';
 import { PanelContextProvider, PanelRegistry } from './context';
 import {
@@ -10,14 +17,13 @@ import {
 } from './resizer';
 import { Panel, PanelProps } from './panel';
 
-export interface Props {
+export interface Props extends CommonProps {
   children: (
     Panel: React.ComponentType<PanelProps>,
     Resizer: React.ComponentType<ResizerProps>
   ) => ReactNode;
-  className?: string;
   onPanelWidthChange?: (arrayOfPanelWidths: number[]) => any;
-  resizerClassName?: string;
+  style?: CSSProperties;
 }
 
 interface State {
@@ -34,6 +40,8 @@ export function EuiResizableContainer({
   children,
   className,
   onPanelWidthChange,
+  style = {},
+  ...rest
 }: Props) {
   const registryRef = useRef(new PanelRegistry());
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,7 +92,7 @@ export function EuiResizableContainer({
       <div
         className={className}
         ref={containerRef}
-        style={{ display: 'flex', height: '100%', width: '100%' }}
+        style={{ ...style, display: 'flex', width: '100%' }}
         onMouseMove={event => {
           if (state.isDragging) {
             const { clientX: x } = event;
@@ -112,7 +120,8 @@ export function EuiResizableContainer({
         }}
         onMouseUp={() => {
           setState(initialState);
-        }}>
+        }}
+        {...rest}>
         {children(
           Panel,
           resizerWithControls({

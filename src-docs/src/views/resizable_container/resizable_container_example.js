@@ -12,7 +12,7 @@ import {
 } from '../../../../src/components';
 
 import ResizableContainer from './resizable_container';
-const ResizableContainerSource = require('!!raw-loader!./resizable_container');
+const ResizableContainerSource = require('!!raw-loader!./resizable_container.js');
 const ResizableContainerHtml = renderToHtml(ResizableContainer);
 
 export const ResizableContainerExample = {

@@ -1,14 +1,5 @@
-// .euiResizer {
-//   display: flex;
-//   background-color: $euiPageBackgroundColor;
-//   align-items: center;
-//   justify-content: center;
-//   margin: 0;
-//   user-select: none;
-// }
-
-
 .euiResizer {
+  position: relative;
   display: flex;
   flex: 0 0 $euiSizeM;
   background-color: $euiPageBackgroundColor;
@@ -16,20 +7,6 @@
   justify-content: center;
   margin: 0;
   user-select: none;
-
-  cursor: ew-resize;
-  width: $euiSizeM;
-
-  // @if ($direction == horizontal) {
-  //   cursor: ew-resize;
-  //   width: $size;
-  // } @else if ($direction == vertical) {
-  //   cursor: ns-resize;
-  //   height: $size;
-  //   width: 100%;
-  // } @else {
-  //   @warn("Direction unknown for kbnResizer");
-  // }
 
   &:hover {
     background-color: tintOrShade($euiColorPrimary, 80%, 60%);
@@ -40,4 +17,37 @@
     background-color: $euiColorPrimary;
     color: $euiColorEmptyShade;
   }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.euiResizer--horizontal {
+    width: $euiSizeM;
+
+    &::after {
+      cursor: ew-resize;
+    }
+  }
+
+  &.euiResizer--vertical {
+    cursor: ns-resize;
+    height: $euiSizeM;
+    width: 100%;
+
+    &::after {
+      cursor: ns-resize;
+    }
+  }
+}
+
+.euiScrollablePanel {
+  @include euiScrollBar;
+
+  overflow-y: auto;
 }
