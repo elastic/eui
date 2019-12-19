@@ -8,17 +8,17 @@ interface Error {
   stack?: any;
 }
 
-interface ErrorState {
+interface EuiErrorBoundaryState {
   hasError: boolean;
-  error: Error | undefined;
+  error?: Error;
 }
 
 export type EuiErrorBoundaryProps = CommonProps &
   HTMLAttributes<HTMLDivElement>;
 
 export class EuiErrorBoundary extends Component<
-  {},
-  EuiErrorBoundaryProps & ErrorState
+  EuiErrorBoundaryProps,
+  EuiErrorBoundaryState
 > {
   static propTypes = {
     children: PropTypes.node,
@@ -27,7 +27,7 @@ export class EuiErrorBoundary extends Component<
   constructor(props: EuiErrorBoundaryProps) {
     super(props);
 
-    const errorState: ErrorState = {
+    const errorState: EuiErrorBoundaryState = {
       hasError: false,
       error: undefined,
     };
