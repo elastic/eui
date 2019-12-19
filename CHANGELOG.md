@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.3.0`.
+- Added `aggregate`, `checkbox`, `checkboxMultiple`, `signal`, `signalDetected`, `signalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
 
 ## [`17.3.0`](https://github.com/elastic/eui/tree/v17.3.0)
 
