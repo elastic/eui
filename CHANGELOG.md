@@ -7,6 +7,7 @@
 - Converted `EuiTextArea` to Typescript ([#2695](https://github.com/elastic/eui/pull/2695))
 - Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
 - Added `annotation` glyph ([#2691](https://github.com/elastic/eui/pull/2691))
+- Added `initialWidth` and `isResizable` configurations to `EuiDataGrid`'s columns ([#2696](https://github.com/elastic/eui/pull/2696))
 
 **Bug fixes**
 
