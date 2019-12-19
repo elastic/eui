@@ -1,5 +1,4 @@
 import { CommonProps } from '../common';
-/// <reference path="./field_number/index.d.ts" />
 /// <reference path="./field_search/index.d.ts" />
 /// <reference path="./field_text/index.d.ts" />
 /// <reference path="./form_row/index.d.ts" />
