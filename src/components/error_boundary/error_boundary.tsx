@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 
 import { EuiText } from '../text';
 
-interface Error {
-  stack?: any;
-}
-
 interface EuiErrorBoundaryState {
   hasError: boolean;
   error?: Error;
