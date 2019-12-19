@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import PropTypes from 'prop-types';
 
@@ -13,9 +13,13 @@ interface ErrorState {
   error: Error | undefined;
 }
 
-export type EuiErrorBoundaryProps = ErrorState & CommonProps & {};
+export type EuiErrorBoundaryProps = CommonProps &
+  HTMLAttributes<HTMLDivElement>;
 
-export class EuiErrorBoundary extends Component<{}, EuiErrorBoundaryProps> {
+export class EuiErrorBoundary extends Component<
+  {},
+  EuiErrorBoundaryProps & ErrorState
+> {
   static propTypes = {
     children: PropTypes.node,
   };

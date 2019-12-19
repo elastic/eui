@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
-- Converted `EuiErroBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
+- Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
 
 **Bug fixes**
 
