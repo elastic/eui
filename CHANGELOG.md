@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.3.1`.
+- Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
