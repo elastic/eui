@@ -372,6 +372,14 @@ export const FormControlsExample = {
         EuiFormLegend,
       },
       demo: <Fieldset />,
+      snippet: [
+        `<EuiFormFieldset legend={{ children: 'Legend' }}>
+  /* Controls */
+</EuiFormFieldset>`,
+        `<EuiFormFieldset legend={{ children: 'Hidden legend', display: 'hidden' }}>
+  /* Controls */
+</EuiFormFieldset>`,
+      ],
     },
     {
       title: 'Prepend and Append',
