@@ -5,9 +5,13 @@ export type OptionCheckedType = 'on' | 'off' | undefined;
 
 export interface Option extends CommonProps {
   /**
-   * Must be unique across items (todo: fix this)
+   * Visible label of option. Must be unique across items if `key` is not supplied
    */
   label: string;
+  /**
+   * Must be unique across items
+   */
+  key?: string;
   /**
    * Leave off to indicate not selected,
    * 'on' to indicate inclusion and

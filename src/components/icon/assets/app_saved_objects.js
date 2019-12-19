@@ -1,12 +1,13 @@
 import React from 'react';
 
-const EuiIconAppSavedObjects = props => (
+const EuiIconAppSavedObjects = ({ title, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
+    <title>{title}</title>
     <path
       className="euiIcon__fillSecondary"
       d="M20.38 7.001L17 9.619V0h-2v9.619l-3.37-2.618-1.25 1.513L16 12.878l5.63-4.364z"

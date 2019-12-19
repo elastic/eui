@@ -154,7 +154,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
               rowHeight={rowHeight}
               scrollToIndex={activeOptionIndex}
               {...virtualizedProps}
-              rowRenderer={({ key, index, style }) => {
+              rowRenderer={({ key: rowKey, index, style }) => {
                 const option = optionArray[index];
                 const {
                   label,
@@ -164,13 +164,14 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                   prepend,
                   append,
                   ref,
+                  key,
                   ...optionRest
                 } = option;
                 if (isGroupLabel) {
                   return (
                     <div
                       className="euiSelectableList__groupLabel"
-                      key={key}
+                      key={rowKey}
                       style={style}
                       {...optionRest}>
                       {prepend}
@@ -183,7 +184,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                   <EuiSelectableListItem
                     id={this.rootId(`_option-${index}`)}
                     style={style}
-                    key={option.label.toLowerCase()}
+                    key={key || option.label.toLowerCase()}
                     onClick={() => this.onAddOrRemoveOption(option)}
                     ref={ref ? ref.bind(null, index) : undefined}
                     isFocused={activeOptionIndex === index}

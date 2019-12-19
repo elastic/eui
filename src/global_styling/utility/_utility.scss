@@ -29,6 +29,7 @@
 }
 
 .eui-textBreakAll {
+  overflow-wrap: break-word !important; // Fixes FF when dashes are involved #2288
   word-break: break-all !important;
 }
 

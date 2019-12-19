@@ -5,6 +5,7 @@ exports[`EuiTreeView is rendered 1`] = `
   class="euiText euiText--medium euiTreeView__wrapper"
 >
   <p
+    class="euiScreenReaderOnly"
     id="htmlId--instruction"
   >
     You can quickly navigate this list using arrow keys.
@@ -30,9 +31,11 @@ exports[`EuiTreeView is rendered 1`] = `
           class="euiTreeView__iconWrapper"
         >
           <svg
+            aria-hidden="true"
             class="euiIcon euiIcon--medium euiIcon-isLoading"
             focusable="false"
             height="16"
+            role="img"
             viewBox="0 0 16 16"
             width="16"
             xmlns="http://www.w3.org/2000/svg"

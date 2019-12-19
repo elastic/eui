@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiAspectRatio is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAspectRatio testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="padding-bottom:44.44444444444444%;max-width:auto"
+>
+  <iframe
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen=""
+    frameborder="0"
+    height="315"
+    src="https://www.youtube.com/embed/yJarWSLRM24"
+    title="Elastic is a search company"
+    width="560"
+  />
+</div>
+`;
+
+exports[`EuiAspectRatio props maxWidth is rendered 1`] = `
+<div
+  style="max-width:500px"
+>
+  <div
+    aria-label="aria-label"
+    class="euiAspectRatio testClass1 testClass2"
+    data-test-subj="test subject string"
+    style="padding-bottom:177.77777777777777%;max-width:500px"
+  >
+    <iframe
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen=""
+      frameborder="0"
+      height="315"
+      src="https://www.youtube.com/embed/yJarWSLRM24"
+      title="Elastic is a search company"
+      width="560"
+    />
+  </div>
+</div>
+`;

@@ -13,6 +13,10 @@ import DataGridStyling from './styling';
 const dataGridStylingSource = require('!!raw-loader!./styling');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
+import DataGridControls from './additional_controls';
+const dataGridControlsSource = require('!!raw-loader!./additional_controls');
+const dataGridControlsHtml = renderToHtml(DataGridControls);
+
 import { DataGridStyle, DataGridToolbarVisibilityOptions } from './props';
 
 const gridSnippet = `<EuiDataGrid
@@ -23,6 +27,26 @@ const gridSnippet = `<EuiDataGrid
     showStyleSelector: false
     showSortSelector: false
     showFullScreenSelector: false
+    additionalControls: (
+      <Fragment>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="bell"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          New button
+        </EuiButtonEmpty>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="branch"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          Another button
+        </EuiButtonEmpty>
+      </Fragment>
+    )
   }}
   // Or as a boolean to turn everything off.
   toolbarVisibility={false}
@@ -39,8 +63,36 @@ const gridSnippet = `<EuiDataGrid
 />
 `;
 
+const controlsSnippet = `<EuiDataGrid
+  {...usualGridProps}
+  toolbarVisibility={{
+    // Use of a fragment for multiple items will insure proper margins
+    additionalControls: (
+      <Fragment>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="bell"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          New button
+        </EuiButtonEmpty>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="branch"
+          color="text"
+          className="euiDataGrid__controlBtn"
+          onClick={() => alert('You clicked me! Hugs.')}>
+          Another button
+        </EuiButtonEmpty>
+      </Fragment>
+    )
+  }}
+/>
+`;
+
 export const DataGridStylingExample = {
-  title: 'Data grid styling',
+  title: 'Data grid styling and toolbar',
   sections: [
     {
       source: [
@@ -107,6 +159,34 @@ export const DataGridStylingExample = {
       components: { DataGridContainer },
 
       demo: <DataGridContainer />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridControlsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridControlsHtml,
+        },
+      ],
+      title: 'Additional controls in the toolbar',
+      text: (
+        <p>
+          Use the <EuiCode>toolbarVisibility.additionalControls</EuiCode> prop
+          to pass additional controls to the toolbar. These will always live to
+          the left of the full screen button. It will respect the{' '}
+          <EuiCode>toolbarVisibility={'{false}'}</EuiCode> setting and hide when
+          appropriate. Although any node can fit in this space, the
+          recommendation is to use
+          <EuiCode>EuiButtonEmpty</EuiCode> components with the configuration
+          shown in the snippet.
+        </p>
+      ),
+      components: { DataGridControls },
+      snippet: controlsSnippet,
+      demo: <DataGridControls />,
     },
   ],
 };

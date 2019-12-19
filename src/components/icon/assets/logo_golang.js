@@ -1,12 +1,13 @@
 import React from 'react';
 
-const EuiIconLogoGolang = props => (
+const EuiIconLogoGolang = ({ title, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
+    <title>{title}</title>
     <image
       width={23.511}
       height={32}

@@ -1,8 +1,5 @@
-@import '../panel/variables';
-
 $euiCardSpacing: map-get($euiPanelPaddingModifiers, 'paddingMedium');
-$euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
-$euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
+$euiCardBottomNodeHeight: $euiSizeXXL;
 
 $euiCardSelectButtonBorders: (
   text: $euiColorSuccess, // Default for selected

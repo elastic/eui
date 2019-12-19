@@ -4,6 +4,6 @@ import { EuiIcon } from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiIcon type="search" size="l" aria-label="Find information" />
+    <EuiIcon type="search" size="l" title="Find information" />
   </div>
 );

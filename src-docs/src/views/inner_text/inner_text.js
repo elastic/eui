@@ -25,7 +25,7 @@ export default () => {
       setThing(newThing);
       setThingAndType([newThing, newType]);
     }, 5000);
-  }, [thing]);
+  }, [thing, type]);
 
   return (
     <EuiText size="s">

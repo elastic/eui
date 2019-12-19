@@ -1,6 +1,7 @@
 import React, { useMemo, ReactNode } from 'react';
 import {
   EuiDataGridColumn,
+  EuiDataGridInMemory,
   EuiDataGridInMemoryValues,
 } from './data_grid_types';
 
@@ -166,14 +167,25 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return matchLength / value.length || 0;
     },
     comparator: (a, b, direction) => {
-      const aChars = a.split('').filter(char => numericChars.has(char));
-      const aValue = parseFloat(aChars.join(''));
+      // sort on all digits groups
+      const aGroups = a.split(/\D+/);
+      const bGroups = b.split(/\D+/);
 
-      const bChars = b.split('').filter(char => numericChars.has(char));
-      const bValue = parseFloat(bChars.join(''));
+      const maxGroups = Math.max(aGroups.length, bGroups.length);
+      for (let i = 0; i < maxGroups; i++) {
+        // if A and B's group counts differ and they match until that difference, prefer whichever is shorter
+        if (i >= aGroups.length) return direction === 'asc' ? -1 : 1;
+        if (i >= bGroups.length) return direction === 'asc' ? 1 : -1;
 
-      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
-      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+        const aChars = aGroups[i];
+        const bChars = bGroups[i];
+        const aValue = parseInt(aChars, 10);
+        const bValue = parseInt(bChars, 10);
+
+        if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+      }
+
       return 0;
     },
     icon: 'number',
@@ -229,7 +241,7 @@ export interface EuiDataGridSchema {
   [columnId: string]: { columnType: string | null };
 }
 
-interface SchemaTypeScore {
+export interface SchemaTypeScore {
   type: string;
   score: number;
 }
@@ -254,8 +266,10 @@ function scoreValueBySchemaType(
 const MINIMUM_SCORE_MATCH = 0.5;
 
 export function useDetectSchema(
+  inMemory: EuiDataGridInMemory | undefined,
   inMemoryValues: EuiDataGridInMemoryValues,
   schemaDetectors: EuiDataGridSchemaDetector[] | undefined,
+  definedColumnSchemas: { [key: string]: string },
   autoDetectSchema: boolean
 ) {
   const schema = useMemo(() => {
@@ -271,6 +285,11 @@ export function useDetectSchema(
     // for each row, score each value by each detector and put the results on `columnSchemas`
     const rowIndices = Object.keys(inMemoryValues);
 
+    const columnIdsWithDefinedSchemas = new Set<string>([
+      ...((inMemory && inMemory.skipColumns) || []),
+      ...Object.keys(definedColumnSchemas),
+    ]);
+
     for (let i = 0; i < rowIndices.length; i++) {
       const rowIndex = rowIndices[i];
       const rowData = inMemoryValues[rowIndex];
@@ -278,6 +297,7 @@ export function useDetectSchema(
 
       for (let j = 0; j < columnIds.length; j++) {
         const columnId = columnIds[j];
+        if (columnIdsWithDefinedSchemas.has(columnId)) continue;
 
         const schemaColumn = (columnSchemas[columnId] =
           columnSchemas[columnId] || {});
@@ -358,11 +378,17 @@ export function useDetectSchema(
       },
       {}
     );
-  }, [inMemoryValues, schemaDetectors]);
+  }, [
+    autoDetectSchema,
+    definedColumnSchemas,
+    inMemory,
+    inMemoryValues,
+    schemaDetectors,
+  ]);
   return schema;
 }
 
-export function getMergedSchema(
+export function useMergedSchema(
   detectedSchema: EuiDataGridSchema,
   columns: EuiDataGridColumn[]
 ) {

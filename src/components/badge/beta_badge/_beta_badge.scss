@@ -12,8 +12,11 @@
   line-height: $euiSizeL;
   text-align: center;
   white-space: nowrap;
-
   cursor: default;
+
+  &:focus {
+    @include euiFocusRing;
+  }
 }
 
 // When it's just an icon, make it a circle

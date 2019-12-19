@@ -1,9 +1,4 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { Fragment, FunctionComponent, useMemo } from 'react';
 // @ts-ignore-next-line
 import { EuiCodeBlock } from '../code';
 import {
@@ -14,6 +9,7 @@ import {
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
+  EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import {
@@ -25,14 +21,14 @@ import {
   EuiDataGridSchemaDetector,
 } from './data_grid_schema';
 
-interface EuiDataGridBodyProps {
+export interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
   popoverContents?: EuiDataGridPopoverContents;
-  focusedCell: EuiDataGridDataRowProps['focusedCell'];
+  focusedCell: EuiDataGridFocusedCell;
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
@@ -163,44 +159,18 @@ export const EuiDataGridBody: FunctionComponent<
     return rowMap;
   }, [sorting, inMemory, inMemoryValues, schema, schemaDetectors]);
 
-  const setCellFocus = useCallback(
-    ([colIndex, rowIndex]) => {
-      // If the rows in the grid have been mapped in some way (e.g. sorting)
-      // then this callback must unmap the reported rowIndex
-      const mappedRowIndicies = Object.keys(rowMap);
-      let reverseMappedIndex = rowIndex;
-      for (let i = 0; i < mappedRowIndicies.length; i++) {
-        const mappedRowIndex = mappedRowIndicies[i];
-        const rowMappedToIndex = rowMap[(mappedRowIndex as any) as number];
-        if (`${rowMappedToIndex}` === `${rowIndex}`) {
-          reverseMappedIndex = parseInt(mappedRowIndex);
-          break;
-        }
-      }
-
-      // map the row into the visible rows
-      if (pagination) {
-        reverseMappedIndex -= pagination.pageIndex * pagination.pageSize;
-      }
-      onCellFocus([colIndex, reverseMappedIndex]);
-    },
-    [onCellFocus, rowMap, pagination]
+  const mergedPopoverContents = useMemo(
+    () => ({
+      ...providedPopoverContents,
+      ...popoverContents,
+    }),
+    [popoverContents]
   );
 
   const rows = useMemo(() => {
-    const rows = [];
-    for (let i = 0; i < visibleRowIndices.length; i++) {
-      let rowIndex = visibleRowIndices[i];
-      if (rowMap.hasOwnProperty(rowIndex)) {
-        rowIndex = rowMap[rowIndex];
-      }
-
-      const mergedPopoverContents = {
-        ...providedPopoverContents,
-        ...popoverContents,
-      };
-
-      rows.push(
+    return visibleRowIndices.map((rowIndex, i) => {
+      rowIndex = rowMap.hasOwnProperty(rowIndex) ? rowMap[rowIndex] : rowIndex;
+      return (
         <EuiDataGridDataRow
           key={rowIndex}
           columns={columns}
@@ -208,29 +178,28 @@ export const EuiDataGridBody: FunctionComponent<
           popoverContents={mergedPopoverContents}
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
-          focusedCell={focusedCell}
-          onCellFocus={setCellFocus}
+          focusedCellPositionInTheRow={
+            i === focusedCell[1] ? focusedCell[0] : null
+          }
+          onCellFocus={onCellFocus}
           renderCellValue={renderCellValue}
           rowIndex={rowIndex}
           visibleRowIndex={i}
           interactiveCellId={interactiveCellId}
         />
       );
-    }
-
-    return rows;
+    });
   }, [
+    visibleRowIndices,
+    rowMap,
     columns,
+    schema,
+    mergedPopoverContents,
     columnWidths,
     defaultColumnWidth,
     focusedCell,
     onCellFocus,
     renderCellValue,
-    rowMap,
-    schema,
-    popoverContents,
-    visibleRowIndices,
-    startRow,
     interactiveCellId,
   ]);
 

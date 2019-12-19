@@ -1,0 +1,12 @@
+// BUTTON TOGGLES
+// Pointer events and interactions are handled by the input (checkbox/radio)
+// and not the button, this mixin helps to target that element for states
+@mixin euiButtonToggleStates {
+  @at-root {
+    .euiButtonToggle__input:enabled:hover + #{&},
+    .euiButtonToggle__input:enabled:focus + #{&},
+    .euiButtonToggle__input:enabled:active + #{&} {
+      @content;
+    }
+  }
+}

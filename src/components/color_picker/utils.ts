@@ -52,7 +52,7 @@ export function useMouseMove<T = HTMLDivElement>(
 ] {
   useEffect(() => {
     return unbindEventListeners;
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const handleInteraction = (
     e: ReactMouseEvent<T> | TouchEvent<T>,
     isFirstInteraction?: boolean

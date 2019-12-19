@@ -1,6 +1,8 @@
 import React from 'react';
 import lightColors from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_colors.scss';
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
+import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
+import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
 import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_z_index.scss';
 import animations from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_animations.scss';
@@ -358,7 +360,16 @@ const contrastExample = `// Make sure text passes a contrast check
 `;
 
 export const SassGuidelines = ({ selectedTheme }) => {
-  const palette = selectedTheme === 'light' ? lightColors : darkColors;
+  let palette;
+  if (selectedTheme === 'amsterdam-dark') {
+    palette = darkAmsterdamColors;
+  } else if (selectedTheme === 'amsterdam-light') {
+    palette = { ...lightColors, ...lightAmsterdamColors };
+  } else if (selectedTheme === 'dark') {
+    palette = darkColors;
+  } else {
+    palette = lightColors;
+  }
 
   return (
     <GuidePage title="Sass guidelines">

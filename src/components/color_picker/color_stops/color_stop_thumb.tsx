@@ -94,7 +94,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     if (isPopoverOpen && popoverRef && popoverRef.current) {
       popoverRef.current.positionPopoverFixed();
     }
-  }, [stop]);
+  }, [isPopoverOpen, stop]);
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
     // Guard against `null` ref in usage

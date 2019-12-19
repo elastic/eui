@@ -33,6 +33,15 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
+type CardDisplay = 'panel' | 'plain';
+
+const displayToClassNameMap: { [display in CardDisplay]: string } = {
+  panel: '',
+  plain: 'euiCard--plain',
+};
+
+export const DISPLAYS = keysOf(displayToClassNameMap);
+
 type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Card's are required to have at least a title and description
@@ -40,9 +49,15 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   title: NonNullable<ReactNode>;
 
   /**
-   * Determines the title's heading element.
+   * Determines the title's heading element
    */
   titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+
+  /**
+   * Determines the title's size, matching that of EuiTitle.
+   * Though, card titles can't be too large or small relative to the description text.
+   */
+  titleSize?: 's' | 'xs';
 
   /**
    * Card's are required to have at least a title and description
@@ -60,7 +75,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   image?: string;
 
   /**
-   * Content to be rendered between the description and the footer.
+   * Content to be rendered between the description and the footer
    */
   children?: ReactNode;
 
@@ -106,9 +121,15 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   betaBadgeTitle?: string;
 
   /**
-   * Adds a button to the bottom of the card to allow for in-place selection.
+   * Adds a button to the bottom of the card to allow for in-place selection
    */
   selectable?: EuiCardSelectProps;
+
+  /**
+   * Visual display of the card. Display as 'panel' or 'plain'.
+   * Selectable cards will always display as 'panel'.
+   */
+  display?: CardDisplay;
 };
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
@@ -117,6 +138,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   isDisabled,
   title,
   titleElement = 'span',
+  titleSize = 's',
   icon,
   image,
   children,
@@ -131,6 +153,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   betaBadgeTitle,
   layout = 'vertical',
   selectable,
+  display = 'panel',
   ...rest
 }) => {
   /**
@@ -162,6 +185,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
+    displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
     {
@@ -294,11 +318,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   return (
     <div className={classes} onClick={outerOnClick} {...rest}>
-      {optionalBetaBadge}
       {optionalCardTop}
 
       <div className="euiCard__content">
-        <EuiTitle id={`${ariaId}Title`} className="euiCard__title" size="s">
+        <EuiTitle
+          id={`${ariaId}Title`}
+          className="euiCard__title"
+          size={titleSize}>
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 
@@ -311,6 +337,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
         {children}
       </div>
+
+      {/* Beta badge should always be after the title/description but before any footer buttons */}
+      {optionalBetaBadge}
 
       {layout === 'vertical' && footer && (
         <div className="euiCard__footer">{footer}</div>

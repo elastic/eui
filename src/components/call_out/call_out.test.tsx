@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiCallOut, COLORS } from './call_out';
+import { EuiCallOut, COLORS, HEADINGS } from './call_out';
 
 describe('EuiCallOut', () => {
   test('is rendered', () => {
@@ -36,6 +36,16 @@ describe('EuiCallOut', () => {
       COLORS.forEach(color => {
         test(`${color} is rendered`, () => {
           const component = render(<EuiCallOut color={color} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('heading', () => {
+      HEADINGS.forEach(heading => {
+        test(`${heading} is rendered`, () => {
+          const component = render(<EuiCallOut heading={heading} />);
 
           expect(component).toMatchSnapshot();
         });

@@ -32,6 +32,8 @@ const generator = dtsGenerator({
     'node_modules/**/*.d.ts',
     '*/custom_typings/**/*.d.ts',
     'src-framer/**/*',
+    '**/*.test.ts',
+    '**/*.test.tsx',
   ],
   resolveModuleId(params) {
     if (

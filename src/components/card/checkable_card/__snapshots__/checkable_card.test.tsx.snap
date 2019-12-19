@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCheckableCard is rendered 1`] = `
+<div
+  class="euiCheckableCard testClass1 testClass2"
+>
+  <div
+    class="euiCheckableCard__row"
+  >
+    <div
+      class="euiCheckableCard__control"
+    >
+      <div
+        aria-label="aria-label"
+        class="euiRadio euiRadio--noLabel"
+        data-test-subj="test subject string"
+      >
+        <input
+          class="euiRadio__input"
+          id="id"
+          type="radio"
+        />
+        <div
+          class="euiRadio__circle"
+        />
+      </div>
+    </div>
+    <label
+      class="euiCheckableCard__label"
+      for="id"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
+<div
+  class="euiCheckableCard testClass1 testClass2"
+>
+  <div
+    class="euiCheckableCard__row"
+  >
+    <div
+      class="euiCheckableCard__control"
+    >
+      <div
+        class="euiCheckbox euiCheckbox--noLabel"
+      >
+        <input
+          aria-label="aria-label"
+          class="euiCheckbox__input"
+          data-test-subj="test subject string"
+          id="id"
+          type="checkbox"
+        />
+        <div
+          class="euiCheckbox__square"
+        />
+      </div>
+    </div>
+    <label
+      class="euiCheckableCard__label"
+      for="id"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;

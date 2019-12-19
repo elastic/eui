@@ -15,11 +15,14 @@ import { CommonProps, keysOf } from '../common';
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
 // to generate & git track a TS module definition for each icon component
 import { icon as empty } from './assets/empty.js';
+import { enqueueStateChange } from '../../services/react';
 
 const typeToPathMap = {
+  accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',
+  annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
   apps: 'apps',
@@ -428,10 +431,23 @@ export type EuiIconProps = CommonProps &
      * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
      */
     size?: IconSize;
+    /**
+     * Descriptive title for naming the icon based on its use
+     */
+    title?: string;
+    /**
+     * Its value should be one or more element IDs
+     */
+    'aria-labelledby'?: string;
+    /**
+     * Callback when the icon has been loaded & rendered
+     */
+    onIconLoad?: () => void;
   };
 
 interface State {
   icon: undefined | ReactElement | string;
+  iconTitle: undefined | string;
   isLoading: boolean;
 }
 
@@ -446,6 +462,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   if (isEuiIconType(icon)) {
     return undefined;
   }
+
   return icon;
 }
 
@@ -465,6 +482,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     this.state = {
       icon: initialIcon,
+      iconTitle: undefined,
       isLoading,
     };
   }
@@ -500,12 +518,23 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // eslint-disable-next-line prefer-template
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
-      if (this.isMounted) {
-        this.setState({
-          icon,
-          isLoading: false,
-        });
-      }
+      enqueueStateChange(() => {
+        if (this.isMounted) {
+          this.setState(
+            {
+              icon,
+              iconTitle: iconType,
+              isLoading: false,
+            },
+            () => {
+              const { onIconLoad } = this.props;
+              if (onIconLoad) {
+                onIconLoad();
+              }
+            }
+          );
+        }
+      });
     });
   };
 
@@ -516,13 +545,15 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       color,
       className,
       tabIndex,
+      title,
+      onIconLoad,
       ...rest
     } = this.props;
 
     const { isLoading } = this.state;
 
     let optionalColorClass = null;
-    let optionalCustomStyles = null;
+    let optionalCustomStyles: any = null;
 
     if (color) {
       if (isNamedColor(color)) {
@@ -563,8 +594,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     if (typeof icon === 'string') {
       return (
         <img
-          // TODO: Allow alt prop
-          alt=""
+          alt={title}
           src={icon}
           className={classes}
           tabIndex={tabIndex}
@@ -573,13 +603,39 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       );
     } else {
       const Svg = icon;
+
+      // If it's an empty icon, or if there is no aria-label, aria-labelledby, or title it gets aria-hidden true
+      const isAriaHidden =
+        icon === empty ||
+        !(
+          this.props['aria-label'] ||
+          this.props['aria-labelledby'] ||
+          this.props.title
+        );
+      const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
+
+      let ariaLabel: any;
+
+      // If no aria-label or aria-labelledby is provided the title will be default
+      if (
+        !this.props['aria-label'] &&
+        !this.props['aria-labelledby'] &&
+        title
+      ) {
+        ariaLabel = { 'aria-label': title };
+      }
+
       return (
         <Svg
           className={classes}
           style={optionalCustomStyles}
           tabIndex={tabIndex}
           focusable={focusable}
+          role="img"
+          title={title}
           {...rest}
+          {...hideIconEmpty}
+          {...ariaLabel}
         />
       );
     }

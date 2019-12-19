@@ -89,7 +89,7 @@ export default () => {
 
       return 0;
     });
-  }, [raw_data, sortingColumns]);
+  }, [sortingColumns]);
 
   // Pagination
   data = useMemo(() => {
@@ -114,7 +114,7 @@ export default () => {
         ? data[adjustedRowIndex][columnId]
         : null;
     };
-  }, [data]);
+  }, [data, pagination.pageIndex, pagination.pageSize]);
 
   return (
     <div>

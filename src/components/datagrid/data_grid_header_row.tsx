@@ -12,6 +12,7 @@ import {
   EuiDataGridColumnWidths,
   EuiDataGridColumn,
   EuiDataGridSorting,
+  EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { CommonProps } from '../common';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
@@ -28,16 +29,16 @@ interface EuiDataGridHeaderRowPropsSpecificProps {
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
   sorting?: EuiDataGridSorting;
-  focusedCell: EuiDataGridDataRowProps['focusedCell'];
+  focusedCell: EuiDataGridFocusedCell;
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
 }
 
-type EuiDataGridHeaderRowProps = CommonProps &
+export type EuiDataGridHeaderRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiDataGridHeaderRowPropsSpecificProps;
 
-interface EuiDataGridHeaderCellProps
+export interface EuiDataGridHeaderCellProps
   extends Omit<EuiDataGridHeaderRowPropsSpecificProps, 'columns'> {
   column: EuiDataGridColumn;
   index: number;
@@ -210,24 +211,19 @@ const EuiDataGridHeaderCell: FunctionComponent<
         }
       }
 
+      const headerNode = headerRef.current;
       // @ts-ignore-next line TS doesn't have focusin
-      headerRef.current.addEventListener('focusin', onFocusIn);
-      headerRef.current.addEventListener('focusout', onFocusOut);
-      headerRef.current.addEventListener('keyup', onKeyUp);
+      headerNode.addEventListener('focusin', onFocusIn);
+      headerNode.addEventListener('focusout', onFocusOut);
+      headerNode.addEventListener('keyup', onKeyUp);
       return () => {
         // @ts-ignore-next line TS doesn't have focusin
-        headerRef.current!.removeEventListener('focusin', onFocusIn);
-        headerRef.current!.removeEventListener('focusout', onFocusOut);
-        headerRef.current!.removeEventListener('keyup', onKeyUp);
+        headerNode.removeEventListener('focusin', onFocusIn);
+        headerNode.removeEventListener('focusout', onFocusOut);
+        headerNode.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [
-    headerIsInteractive,
-    isFocused,
-    headerRef.current,
-    setIsCellEntered,
-    setFocusedCell,
-  ]);
+  }, [headerIsInteractive, isFocused, setIsCellEntered, setFocusedCell, index]);
 
   return (
     <div
