@@ -22,6 +22,7 @@ const typeToPathMap = {
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',
+  annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
   apps: 'apps',

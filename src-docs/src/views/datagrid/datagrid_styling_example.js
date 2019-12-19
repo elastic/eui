@@ -17,10 +17,24 @@ import DataGridControls from './additional_controls';
 const dataGridControlsSource = require('!!raw-loader!./additional_controls');
 const dataGridControlsHtml = renderToHtml(DataGridControls);
 
-import { DataGridStyle, DataGridToolbarVisibilityOptions } from './props';
+import DataGridColumnWidths from './column_widths';
+const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
+const dataGridColumnWidthsHtml = renderToHtml(DataGridColumnWidths);
+
+import {
+  DataGridStyle,
+  DataGridToolbarVisibilityOptions,
+  DataGridColumn,
+} from './props';
 
 const gridSnippet = `<EuiDataGrid
   {...usualProps}
+  columns={[
+    // three columns are available, but restrict Avatar to 50px and don't let users resize it
+    { id: 'Avatar', initialWidth: 50, isResizable: false },
+    { id: 'Name' },
+    { id: 'Email' },
+  ]}
   // This can work as a shape.
   toolbarVisibility={{
     showColumnSelector: false
@@ -88,6 +102,21 @@ const controlsSnippet = `<EuiDataGrid
       </Fragment>
     )
   }}
+/>
+`;
+
+const widthsSnippet = `<EuiDataGrid
+  {...usualGridProps}
+  columns={[
+    {
+      id: 'Column A',
+      initialWidth: 100, // start at 100px
+    },
+    {
+      id: 'Column B',
+      isResizable: false, // don't let users resize this column
+    },
+  ]}
 />
 `;
 
@@ -187,6 +216,46 @@ export const DataGridStylingExample = {
       components: { DataGridControls },
       snippet: controlsSnippet,
       demo: <DataGridControls />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridColumnWidthsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridColumnWidthsHtml,
+        },
+      ],
+      title: 'Column width constraints',
+      text: (
+        <Fragment>
+          <p>
+            By default, visible columns are given equal widths to fill up
+            available space in the grid and can be resized by the user to any
+            desired width. There are two parameters on{' '}
+            <EuiCode>EuiDataGridColumn</EuiCode> to change this default
+            behavior. <EuiCode>initialWidth</EuiCode> is a numeric value
+            providing the starting width of a column, in pixels. Second, the{' '}
+            <EuiCode>isResizable</EuiCode> value can be set to{' '}
+            <EuiCode>false</EuiCode> to remove the user&apos;s ability to resize
+            column.
+          </p>
+          <p>
+            Below, the first column is given an initial width and is not
+            resizable. The second column is also given an initial width but its
+            width can still be changed.
+          </p>
+        </Fragment>
+      ),
+      components: { DataGridColumnWidths },
+      snippet: widthsSnippet,
+      props: {
+        EuiDataGrid,
+        EuiDataGridColumn: DataGridColumn,
+      },
+      demo: <DataGridColumnWidths />,
     },
   ],
 };

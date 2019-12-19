@@ -39,7 +39,8 @@ const gridSnippet = `
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
     // The second column B won't allow clicking in to see the content in a popup.
-    columns={[{ id: 'A' }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
+    // The first column defines an starting width of 150px and prevents the user from resizing it 
+    columns={[{ id: 'A', initialWidth: 150, isResizable: false }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
