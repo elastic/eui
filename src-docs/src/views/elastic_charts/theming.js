@@ -133,7 +133,10 @@ const createPaletteOption = function(paletteName, index) {
 
 const createPalette = function(palette) {
   return (
-    <EuiFlexGroup gutterSize="none" responsive={false}>
+    <EuiFlexGroup
+      className="guideColorPalette__swatchHolder"
+      gutterSize="none"
+      responsive={false}>
       {palette.map(hexCode => (
         <EuiFlexItem
           key={hexCode}

@@ -37,12 +37,17 @@ export default () => (
         <EuiFlexGroup alignItems="center">
           <EuiFlexItem grow={false} style={{ maxWidth: 240 }}>
             <EuiFlexGroup
+              className="guideColorPalette__swatchHolder"
               gutterSize="none"
               alignItems="flexStart"
               responsive={false}
               wrap>
               {palette.palette.map(hexCode => (
-                <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
+                <ColorPaletteFlexItem
+                  className="guideColorPalette__swatch--notRound"
+                  hexCode={hexCode}
+                  key={hexCode}
+                />
               ))}
             </EuiFlexGroup>
           </EuiFlexItem>
