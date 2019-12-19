@@ -26,7 +26,7 @@ export interface EuiButtonGroupOption extends CommonProps {
   iconType?: IconType;
 }
 
-export interface EuiButtonGroupProps {
+export interface EuiButtonGroupProps extends CommonProps {
   options?: EuiButtonGroupOption[];
   onChange: (id: string, value?: any) => void;
   /**
@@ -43,7 +43,6 @@ export interface EuiButtonGroupProps {
   name?: string;
   type?: ToggleType;
   idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
-  'data-test-subj'?: string;
 }
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &

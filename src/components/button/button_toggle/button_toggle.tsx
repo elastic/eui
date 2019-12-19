@@ -7,13 +7,13 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
+import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { ExclusiveUnion } from '../../common';
 import { EuiToggle, ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
 import { useRenderToText } from '../../inner_text/render_to_text';
 
-export interface EuiButtonToggleProps extends EuiButtonProps {
+export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
   /**
    * Simulates a `EuiButtonEmpty`
    */
@@ -46,8 +46,6 @@ export interface EuiButtonToggleProps extends EuiButtonProps {
   type?: ToggleType;
 
   onChange?: ChangeEventHandler<HTMLInputElement>;
-
-  'data-test-subj'?: string;
 }
 
 type EuiButtonTogglePropsForAnchor = EuiButtonToggleProps &
