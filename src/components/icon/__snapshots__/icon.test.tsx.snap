@@ -554,6 +554,24 @@ exports[`EuiIcon props type alert is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type annotation is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M3 6.5a4.5 4.5 0 115 4.473V16H7v-5.027A4.5 4.5 0 013 6.5z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type apmApp is rendered 1`] = `
 <svg
   aria-hidden="true"

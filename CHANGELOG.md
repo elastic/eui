@@ -4,6 +4,7 @@
 - Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
 - Converted `EuiTextArea` to Typescript ([#2695](https://github.com/elastic/eui/pull/2695))
 - Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
+- Added `annotation` glyph ([#2691](https://github.com/elastic/eui/pull/2691))
 
 **Bug fixes**
 
