@@ -45,6 +45,10 @@ export default class extends Component {
           idSelected={this.state.radioIdSelected}
           onChange={this.onChange}
           name="radio group"
+          legend={{
+            children: <span>This is a legend for a radio group</span>,
+            // display: 'hidden',
+          }}
         />
 
         <EuiSpacer size="m" />
