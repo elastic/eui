@@ -55,6 +55,8 @@ const columns = [
   },
   {
     id: 'version',
+    initialWidth: 65,
+    isResizable: false,
   },
 ];
 

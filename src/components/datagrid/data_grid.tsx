@@ -30,6 +30,7 @@ import {
   EuiDataGridPopoverContents,
   EuiDataGridColumnVisibility,
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 // @ts-ignore-next-line
@@ -109,7 +110,7 @@ type CommonGridProps = CommonProps &
 
 // This structure forces either aria-label or aria-labelledby to be defined
 // making some type of label a requirement
-type EuiDataGridProps = Omit<
+export type EuiDataGridProps = Omit<
   CommonGridProps,
   'aria-label' | 'aria-labelledby'
 > &
@@ -219,7 +220,18 @@ function useDefaultColumnWidth(
   useEffect(() => {
     if (container != null) {
       const gridWidth = container.clientWidth;
-      const columnWidth = Math.max(gridWidth / columns.length, 100);
+
+      const columnsWithWidths = columns.filter<
+        EuiDataGridColumn & { initialWidth: number }
+      >(doesColumnHaveAnInitialWidth);
+      const claimedWidth = columnsWithWidths.reduce(
+        (claimedWidth, column) => claimedWidth + column.initialWidth,
+        0
+      );
+
+      const widthToFill = gridWidth - claimedWidth;
+      const unsizedColumnCount = columns.length - columnsWithWidths.length;
+      const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
       setDefaultColumnWidth(columnWidth);
     }
   }, [container, columns]);
@@ -227,14 +239,34 @@ function useDefaultColumnWidth(
   return defaultColumnWidth;
 }
 
-function useColumnWidths(): [
-  EuiDataGridColumnWidths,
-  (columnId: string, width: number) => void
-] {
+function doesColumnHaveAnInitialWidth(
+  column: EuiDataGridColumn
+): column is EuiDataGridColumn & { initialWidth: number } {
+  return column.hasOwnProperty('initialWidth');
+}
+
+function useColumnWidths(
+  columns: EuiDataGridColumn[]
+): [EuiDataGridColumnWidths, (columnId: string, width: number) => void] {
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
+
+  useEffect(() => {
+    setColumnWidths(
+      columns
+        .filter<EuiDataGridColumn & { initialWidth: number }>(
+          doesColumnHaveAnInitialWidth
+        )
+        .reduce<EuiDataGridColumnWidths>((initialWidths, column) => {
+          initialWidths[column.id] = column.initialWidth;
+          return initialWidths;
+        }, {})
+    );
+  }, [setColumnWidths, columns]);
+
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
   };
+
   return [columnWidths, setColumnWidth];
 }
 
@@ -287,9 +319,9 @@ function useInMemoryValues(
 function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
-  focusedCell: [number, number],
+  focusedCell: EuiDataGridFocusedCell,
   headerIsInteractive: boolean,
-  setFocusedCell: (focusedCell: [number, number]) => void,
+  setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void,
   updateFocus: Function
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
@@ -397,7 +429,9 @@ function useAfterRender(fn: Function): Function {
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<[number, number] | null>(null);
+  const [focusedCell, setFocusedCell] = useState<EuiDataGridFocusedCell | null>(
+    null
+  );
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
 
@@ -441,8 +475,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
   );
 
-  const [columnWidths, setColumnWidth] = useColumnWidths();
-
   // enables/disables grid controls based on available width
   const onResize = useOnResize(nextHasRoomForGridControls => {
     if (nextHasRoomForGridControls !== hasRoomForGridControls) {
@@ -476,6 +508,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     popoverContents,
     ...rest
   } = props;
+
+  const [columnWidths, setColumnWidth] = useColumnWidths(columns);
 
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
@@ -537,6 +571,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     },
     {
       'euiDataGrid--fullScreen': isFullScreen,
+    },
+    {
+      'euiDataGrid--noControls': !toolbarVisibility,
     },
     className
   );
@@ -626,7 +663,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     delete rest['aria-labelledby'];
   }
 
-  const realizedFocusedCell: [number, number] =
+  const realizedFocusedCell: EuiDataGridFocusedCell =
     focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
 
   const fullScreenSelector = (
@@ -664,27 +701,30 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
   });
 
-  const datagridContext = {
-    onFocusUpdate: (cell: [number, number], updateFocus: Function) => {
-      if (pagination) {
-        const key = `${cell[0]}-${cell[1]}`;
+  const datagridContext = useMemo(
+    () => ({
+      onFocusUpdate: (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
+        if (pagination) {
+          const key = `${cell[0]}-${cell[1]}`;
 
-        setCellsUpdateFocus(cellsUpdateFocus => {
-          const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-          nextCellsUpdateFocus.set(key, updateFocus);
-          return nextCellsUpdateFocus;
-        });
-
-        return () => {
           setCellsUpdateFocus(cellsUpdateFocus => {
             const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
-            nextCellsUpdateFocus.delete(key);
+            nextCellsUpdateFocus.set(key, updateFocus);
             return nextCellsUpdateFocus;
           });
-        };
-      }
-    },
-  };
+
+          return () => {
+            setCellsUpdateFocus(cellsUpdateFocus => {
+              const nextCellsUpdateFocus = new Map(cellsUpdateFocus);
+              nextCellsUpdateFocus.delete(key);
+              return nextCellsUpdateFocus;
+            });
+          };
+        }
+      },
+    }),
+    [pagination]
+  );
 
   return (
     <DataGridContext.Provider value={datagridContext}>

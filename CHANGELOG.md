@@ -1,6 +1,74 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.1.0`.
+No public interface changes since `17.3.1`.
+
+## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
+
+**Bug fixes**
+
+- Fixed TS types and exports for `EuiTextArea` and `EuiFieldNumber` ([#2703](https://github.com/elastic/eui/pull/2703))
+
+## [`17.3.0`](https://github.com/elastic/eui/tree/v17.3.0)
+
+- Converted `EuiFieldNumber` to Typescript ([#2685](https://github.com/elastic/eui/pull/2685))
+- Converted `EuiFieldPassword` to Typescript ([#2683](https://github.com/elastic/eui/pull/2683))
+- Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
+- Added `data-test-subj` property to the `EuiCodeEditor` component ([#2689](https://github.com/elastic/eui/pull/2689))
+- Converted `EuiTextArea` to Typescript ([#2695](https://github.com/elastic/eui/pull/2695))
+- Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
+- Added `annotation` glyph ([#2691](https://github.com/elastic/eui/pull/2691))
+- Added `initialWidth` and `isResizable` configurations to `EuiDataGrid`'s columns ([#2696](https://github.com/elastic/eui/pull/2696))
+
+**Bug fixes**
+
+- Reverted removal of `toggleOpen` method from `EuiNavDrawer` ([#2682](https://github.com/elastic/eui/pull/2682))
+- Improved `EuiDataGrid` update performance ([#2676](https://github.com/elastic/eui/pull/2676))
+- Fixed `EuiDatagrid` header top border when configured to have no toolbar ([#2619](https://github.com/elastic/eui/pull/#2619))
+
+## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
+
+**Bug fixes**
+
+- Changed package.json version to match sure our build scripts release the correct sequential number ([#2674](https://github.com/elastic/eui/pull/2674))
+
+## [`17.1.3`](https://github.com/elastic/eui/tree/v17.1.3)
+
+**NOTE: This release came out of order due to a release script error. It actually came after 17.2.0 and can be ignored in favor of 17.2.1**
+
+- Reverted docs changes in `17.2.0` that caused the build script to die ([#2672](https://github.com/elastic/eui/pull/2672))
+
+**Bug fixes**
+
+- Removed TypeScript definitions in `*.test.tsx?` files from _eui.d.ts_ ([#2673](https://github.com/elastic/eui/pull/2673))
+
+## [`17.2.0`](https://github.com/elastic/eui/tree/v17.2.0)
+
+**NOTE: This release had an error in our documentation layer. Use 17.2.1 instead**
+
+- Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
+- Added new stylesheets for the EUI Amsterdam theme ([#2633](https://github.com/elastic/eui/pull/2633))
+- Added exports for available types related to `EuiDataGrid` ([#2640](https://github.com/elastic/eui/pull/2640))
+
+**Bug fixes**
+
+- Improved `EuiDataGrid` update performance ([#2638](https://github.com/elastic/eui/pull/2638))
+- Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
+- Fixed `EuiComboBox` from submitting parent `form` element when selecting options via `Enter` key ([#2642](https://github.com/elastic/eui/pull/2642))
+- Fixed `EuiNavDrawer` expand button from losing focus after click ([#2643](https://github.com/elastic/eui/pull/2643))
+- Fixed instances of potentially duplicate `EuiPopover` `id` attributes ([#2667](https://github.com/elastic/eui/pull/2667))
+
+## [`17.1.2`](https://github.com/elastic/eui/tree/v17.1.2)
+
+**Bug fixes**
+
+- Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))
+- Removed `EuiIcon` default titles ([#2632](https://github.com/elastic/eui/pull/2632))
+
+## [`17.1.1`](https://github.com/elastic/eui/tree/v17.1.1)
+
+**Bug fixes**
+
+- Fixed screenreader text in `EuiTreeView` and added truncation ([#2627](https://github.com/elastic/eui/pull/2627))
 
 ## [`17.1.0`](https://github.com/elastic/eui/tree/v17.1.0)
 

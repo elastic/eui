@@ -12,6 +12,7 @@ import { throttle } from '../color_picker/utils';
 export class EuiNavDrawer extends Component {
   constructor(props) {
     super(props);
+    this.expandButtonRef;
 
     this.state = {
       isLocked: props.isLocked,
@@ -65,17 +66,20 @@ export class EuiNavDrawer extends Component {
     });
   };
 
+  // Although not used in `src/`, this method is available to and used in `src-docs/`
+  // for implementation-specific nav menu toggling via `ref` reference
   toggleOpen = () => {
-    this.setState({
-      isCollapsed: !this.state.isCollapsed,
-    });
-
-    setTimeout(() => {
-      this.setState({
-        outsideClickDisabled: this.state.isCollapsed ? true : false,
-        toolTipsEnabled: this.state.isCollapsed ? true : false,
-      });
-    }, 150);
+    this.setState(
+      ({ isCollapsed }) => ({
+        isCollapsed: !isCollapsed,
+      }),
+      () => {
+        this.setState(({ isCollapsed }) => ({
+          outsideClickDisabled: isCollapsed,
+          toolTipsEnabled: isCollapsed,
+        }));
+      }
+    );
   };
 
   collapseButtonClick = () => {
@@ -86,6 +90,12 @@ export class EuiNavDrawer extends Component {
     }
 
     this.collapseFlyout();
+
+    requestAnimationFrame(() => {
+      if (this.expandButtonRef) {
+        this.expandButtonRef.focus();
+      }
+    });
   };
 
   expandDrawer = () => {
@@ -253,6 +263,7 @@ export class EuiNavDrawer extends Component {
               sideNavLockCollapsed,
             ]) => (
               <EuiListGroupItem
+                buttonRef={node => (this.expandButtonRef = node)}
                 label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
                 iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
                 size="s"
@@ -272,8 +283,7 @@ export class EuiNavDrawer extends Component {
                   title: this.state.isLocked
                     ? sideNavLockExpanded
                     : sideNavLockCollapsed,
-                  'aria-checked': this.state.isLocked ? true : false,
-                  role: 'switch',
+                  'aria-pressed': this.state.isLocked ? true : false,
                 }}
                 onClick={this.collapseButtonClick}
                 data-test-subj={
@@ -334,7 +344,6 @@ export class EuiNavDrawer extends Component {
                 id="navDrawerMenu"
                 className={menuClasses}
                 onClick={this.handleDrawerMenuClick}>
-                {/* Put expand button first so it's first in tab order then on toggle starts the tabbing of the items from the top */}
                 {/* TODO: Add a "skip navigation" keyboard only button */}
                 {footerContent}
                 {modifiedChildren}
