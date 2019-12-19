@@ -123,6 +123,7 @@ export class EuiCodeEditor extends Component {
       setOptions,
       cursorStart,
       mode = DEFAULT_MODE,
+      'data-test-subj': dataTestSubj = 'codeEditorContainer',
       ...rest
     } = this.props;
 
@@ -199,7 +200,7 @@ export class EuiCodeEditor extends Component {
       <div
         className={classes}
         style={{ width, height }}
-        data-test-subj="codeEditorContainer">
+        data-test-subj={dataTestSubj}>
         {prompt}
 
         <AceEditor
@@ -231,6 +232,7 @@ EuiCodeEditor.propTypes = {
   isReadOnly: PropTypes.bool,
   setOptions: PropTypes.object,
   cursorStart: PropTypes.number,
+  'data-test-subj': PropTypes.string,
 
   /**
    * Use string for a built-in mode or object for a custom mode
