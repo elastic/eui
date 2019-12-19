@@ -29,6 +29,12 @@ import {
 
 const gridSnippet = `<EuiDataGrid
   {...usualProps}
+  columns={[
+    // three columns are available, but restrict Avatar to 50px and don't let users resize it
+    { id: 'Avatar', initialWidth: 50, isResizable: false },
+    { id: 'Name' },
+    { id: 'Email' },
+  ]}
   // This can work as a shape.
   toolbarVisibility={{
     showColumnSelector: false
