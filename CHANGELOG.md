@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `17.3.1`.
+
+## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
+
 **Bug fixes**
 
 - Fixed TS types and exports for `EuiTextArea` and `EuiFieldNumber` ([#2703](https://github.com/elastic/eui/pull/2703))
