@@ -1,8 +1,23 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
-- Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
 - Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
+
+## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
+
+**Bug fixes**
+
+- Fixed TS types and exports for `EuiTextArea` and `EuiFieldNumber` ([#2703](https://github.com/elastic/eui/pull/2703))
+
+## [`17.3.0`](https://github.com/elastic/eui/tree/v17.3.0)
+
+- Converted `EuiFieldNumber` to Typescript ([#2685](https://github.com/elastic/eui/pull/2685))
+- Converted `EuiFieldPassword` to Typescript ([#2683](https://github.com/elastic/eui/pull/2683))
+- Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
+- Added `data-test-subj` property to the `EuiCodeEditor` component ([#2689](https://github.com/elastic/eui/pull/2689))
+- Converted `EuiTextArea` to Typescript ([#2695](https://github.com/elastic/eui/pull/2695))
+- Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
+- Added `annotation` glyph ([#2691](https://github.com/elastic/eui/pull/2691))
+- Added `initialWidth` and `isResizable` configurations to `EuiDataGrid`'s columns ([#2696](https://github.com/elastic/eui/pull/2696))
 
 **Bug fixes**
 
@@ -61,6 +76,7 @@
 - Added `toolbarAdditionalControls` prop to `EuiDataGrid` to allow for custom buttons in the toolbar ([#2594](https://github.com/elastic/eui/pull/2594))
 - Added TypeScript definitions for `EuiBasicTable`, `EuiInMemoryTable`, and related components ([#2428](https://github.com/elastic/eui/pull/2428))
 - Updated `logoSecurity` and `appSecurityAnalytics` icons ([#2613](https://github.com/elastic/eui/pull/2613))
+- Added support for `.gif` base64 images in the webpack.config
 
 **Bug fixes**
 
