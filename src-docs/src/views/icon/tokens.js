@@ -25,7 +25,6 @@ import {
 const tokens = [
   'tokenAnnotation',
   'tokenArray',
-  'tokenBoolean',
   'tokenClass',
   'tokenConstant',
   'tokenElement',
@@ -41,18 +40,26 @@ const tokens = [
   'tokenModule',
   'tokenNamespace',
   'tokenNull',
-  'tokenNumber',
-  'tokenObject',
   'tokenOperator',
   'tokenPackage',
   'tokenParameter',
   'tokenProperty',
-  'tokenString',
   'tokenStruct',
   'tokenVariable',
   'tokenFile',
   'tokenSymbol',
   'tokenRepo',
+  'tokenString',
+  'tokenNumber',
+  'tokenBoolean',
+  'tokenDate',
+  'tokenGeo',
+  'tokenIP',
+  'tokenRange',
+  'tokenShape',
+  'tokenObject',
+  'tokenNested',
+  'tokenAlias',
 ];
 
 export default () => (
@@ -107,7 +114,51 @@ export default () => (
               marginBottom: '8px',
             }}>
             <EuiToken
-              iconType="tokenEvent"
+              iconType="tokenStruct"
+              size="xs"
+              displayOptions={{
+                color: 'tokenTint10',
+                shape: 'square',
+                fill: true,
+              }}
+            />
+          </div>
+          <EuiText size="s">
+            <p>A custom token</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+      <EuiFlexItem className="guideDemo__icon">
+        <EuiPanel>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '8px',
+            }}>
+            <EuiToken
+              iconType="tokenStruct"
+              displayOptions={{
+                color: 'tokenTint05',
+                shape: 'circle',
+              }}
+            />
+          </div>
+          <EuiText size="s">
+            <p>A custom token</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+      <EuiFlexItem className="guideDemo__icon">
+        <EuiPanel>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '8px',
+            }}>
+            <EuiToken
+              iconType="tokenStruct"
               size="m"
               displayOptions={{
                 color: 'tokenTint10',
@@ -130,28 +181,7 @@ export default () => (
               marginBottom: '8px',
             }}>
             <EuiToken
-              iconType="visMapCoordinate"
-              displayOptions={{
-                color: 'tokenTint05',
-                shape: 'circle',
-              }}
-            />
-          </div>
-          <EuiText size="s">
-            <p>A custom token</p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-      <EuiFlexItem className="guideDemo__icon">
-        <EuiPanel>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginBottom: '8px',
-            }}>
-            <EuiToken
-              iconType="tokenElement"
+              iconType="tokenStruct"
               size="l"
               displayOptions={{
                 color: 'tokenTint07',

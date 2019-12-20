@@ -46,6 +46,7 @@ export type EuiTokenMapType =
   | 'tokenField'
   | 'tokenFile'
   | 'tokenFunction'
+  | 'tokenGeo'
   | 'tokenInterface'
   | 'tokenKey'
   | 'tokenMethod'
@@ -61,6 +62,12 @@ export type EuiTokenMapType =
   | 'tokenRepo'
   | 'tokenString'
   | 'tokenStruct'
+  | 'tokenDate'
+  | 'tokenIP'
+  | 'tokenNested'
+  | 'tokenRange'
+  | 'tokenAlias'
+  | 'tokenShape'
   | 'tokenSymbol'
   | 'tokenVariable';
 
@@ -117,26 +124,26 @@ export const TOKEN_MAP: {
   },
   tokenBoolean: {
     shape: 'square',
-    color: 'tokenTint01',
+    color: 'tokenTint07',
   },
   tokenString: {
     shape: 'square',
-    color: 'tokenTint00',
+    color: 'tokenTint02',
   },
   tokenArray: {
     shape: 'square',
     color: 'tokenTint07',
   },
   tokenNumber: {
-    shape: 'circle',
-    color: 'tokenTint01',
+    shape: 'square',
+    color: 'tokenTint00',
   },
   tokenConstant: {
     shape: 'circle',
     color: 'tokenTint00',
   },
   tokenObject: {
-    shape: 'square',
+    shape: 'circle',
     color: 'tokenTint03',
   },
   tokenEvent: {
@@ -189,5 +196,40 @@ export const TOKEN_MAP: {
   tokenModule: {
     shape: 'square',
     color: 'tokenTint04',
+  },
+  tokenDate: {
+    shape: 'square',
+    color: 'tokenTint06',
+    iconType: 'calendar',
+  },
+  tokenGeo: {
+    shape: 'square',
+    color: 'tokenTint01',
+    iconType: 'globe',
+  },
+  tokenIP: {
+    shape: 'square',
+    color: 'tokenTint09',
+    iconType: 'ip',
+  },
+  tokenRange: {
+    shape: 'circle',
+    color: 'tokenTint04',
+    iconType: 'tokenElement',
+  },
+  tokenShape: {
+    shape: 'circle',
+    color: 'tokenTint08',
+    iconType: 'vector',
+  },
+  tokenNested: {
+    shape: 'circle',
+    color: 'tokenTint11',
+    iconType: 'nested',
+  },
+  tokenAlias: {
+    shape: 'circle',
+    color: 'tokenTint12',
+    iconType: 'link',
   },
 };
