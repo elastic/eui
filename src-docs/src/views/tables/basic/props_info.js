@@ -96,7 +96,7 @@ export const propsInfo = {
           type: { name: '(criteria: #Criteria) => void' },
         },
         tableLayout: {
-          description: 'Configures table layout',
+          description: 'Sets the table-layout CSS property',
           required: false,
           type: {
             name: '(fixed | auto)',

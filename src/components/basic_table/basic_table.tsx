@@ -32,6 +32,7 @@ import {
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
+  LayoutType,
 } from '../table';
 
 import { CollapsedItemActions } from './collapsed_item_actions';
@@ -192,8 +193,6 @@ interface BasicTableProps<T> {
   sorting?: EuiTableSortingType<T>;
   tableLayout?: LayoutType;
 }
-
-type LayoutType = 'fixed' | 'auto';
 
 type BasicTableWithPaginationProps<T> = Omit<
   BasicTableProps<T>,

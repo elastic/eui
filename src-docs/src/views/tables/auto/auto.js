@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 import { createDataStore } from '../data_store';
 
+import makeId from '../../../../../src/components/form/form_row/make_id';
+
 import {
   EuiBasicTable,
+  EuiButtonGroup,
+  EuiCallOut,
   EuiLink,
   EuiSpacer,
-  EuiSwitch,
 } from '../../../../../src/components';
 
 /*
@@ -38,6 +41,7 @@ const columns = [
     field: 'firstName',
     name: 'First Name',
     sortable: true,
+    truncateText: true,
     'data-test-subj': 'firstNameCell',
     mobileOptions: {
       render: item => (
@@ -57,7 +61,47 @@ const columns = [
   {
     field: 'lastName',
     name: 'Last Name',
+    render: name => (
+      <EuiLink href="#" target="_blank">
+        {name}
+      </EuiLink>
+    ),
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'github',
+    name: 'Github',
+  },
+];
+
+const customColumns = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
     truncateText: true,
+    'data-test-subj': 'firstNameCell',
+    width: '20%',
+    mobileOptions: {
+      render: item => (
+        <span>
+          {item.firstName}{' '}
+          <EuiLink href="#" target="_blank">
+            {item.lastName}
+          </EuiLink>
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      fullWidth: true,
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
     render: name => (
       <EuiLink href="#" target="_blank">
         {name}
@@ -94,31 +138,78 @@ const getCellProps = (item, column) => {
   };
 };
 
+const idPrefix = makeId();
+
+const toggleButtons = [
+  {
+    id: `${idPrefix}0`,
+    label: 'Auto',
+    value: 'auto',
+  },
+  {
+    id: `${idPrefix}1`,
+    label: 'Fixed',
+    value: 'fixed',
+  },
+  {
+    id: `${idPrefix}2`,
+    label: 'Custom',
+    value: 'custom',
+  },
+];
+
 export class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      autoLayout: true,
+      layout: 'auto',
+      toggleIdSelected: `${idPrefix}0`,
     };
   }
+
+  onChange = optionId => {
+    this.setState({
+      toggleIdSelected: optionId,
+      layout: toggleButtons.find(x => x.id === optionId).value,
+    });
+  };
 
   toggleTableLayout = () => {
     this.setState(prevState => ({ autoLayout: !prevState.autoLayout }));
   };
 
   render() {
+    let callOutText;
+
+    switch (this.state.layout) {
+      case 'fixed':
+        callOutText = 'First Name has truncateText set to true';
+        break;
+      case 'auto':
+        callOutText =
+          'First Name has truncateText set to true which is not applied since tableLayout is set to auto';
+        break;
+      case 'custom':
+        callOutText =
+          'First Name has truncateText set true and width set to 20%';
+        break;
+    }
+
     return (
       <div>
-        <EuiSwitch
-          label="Show auto layout"
-          checked={this.state.autoLayout}
-          onChange={this.toggleTableLayout}
+        <EuiButtonGroup
+          legend="Table layout group"
+          options={toggleButtons}
+          idSelected={this.state.toggleIdSelected}
+          onChange={this.onChange}
         />
+        <EuiSpacer size="m" />
+        <EuiCallOut size="s" title={callOutText} />
         <EuiSpacer size="m" />
         <EuiBasicTable
           items={items}
-          columns={columns}
-          tableLayout={this.state.autoLayout ? 'auto' : 'fixed'}
+          columns={this.state.layout === 'custom' ? customColumns : columns}
+          tableLayout={this.state.layout === 'auto' ? 'auto' : 'fixed'}
           rowProps={getRowProps}
           cellProps={getCellProps}
         />

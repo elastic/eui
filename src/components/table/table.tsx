@@ -5,12 +5,17 @@ import { CommonProps } from '../common';
 export type Props = {
   compressed?: boolean;
   responsive?: boolean;
-  tableLayout?: string;
+  /**
+   * Sets the table-layout CSS property
+   */
+  tableLayout?: LayoutType;
 } & CommonProps &
   TableHTMLAttributes<HTMLTableElement>;
 
+export type LayoutType = 'fixed' | 'auto';
+
 const tableLayoutToClassMap: { [tableLayout: string]: string | null } = {
-  fixed: 'euiTable--fixed',
+  fixed: null,
   auto: 'euiTable--auto',
 };
 

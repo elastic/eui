@@ -22,6 +22,7 @@ import { Comparators, Direction } from '../../services/sort';
 import { EuiSearchBar } from '../search_bar';
 import { EuiSpacer } from '../spacer';
 import { CommonProps } from '../common';
+import { LayoutType } from '../table';
 
 // Search bar types. Should be moved when it is typescriptified.
 interface SearchBoxConfig {
@@ -189,7 +190,7 @@ type InMemoryTableProps<T> = Omit<
     isClauseMatcher?: (...args: any) => boolean;
     explain?: boolean;
   };
-  tableLayout?: string;
+  tableLayout?: LayoutType;
 };
 
 type InMemoryTablePropsWithPagination<T> = Omit<

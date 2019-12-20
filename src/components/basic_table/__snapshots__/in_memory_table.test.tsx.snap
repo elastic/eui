@@ -130,7 +130,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           tableLayout="fixed"
         >
           <table
-            className="euiTable euiTable--responsive euiTable--fixed"
+            className="euiTable euiTable--responsive"
           >
             <EuiScreenReaderOnly>
               <caption

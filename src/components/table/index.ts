@@ -1,4 +1,5 @@
 export { EuiTable, Props as EuiTableProps } from './table';
+export { LayoutType } from './table';
 export { EuiTableBody } from './table_body';
 export { EuiTableFooter } from './table_footer';
 export { EuiTableFooterCell } from './table_footer_cell';

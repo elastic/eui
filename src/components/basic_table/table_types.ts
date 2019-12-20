@@ -6,12 +6,8 @@ import { Primitive } from '../../services/sort/comparators';
 import { CommonProps } from '../common';
 
 export type ItemId<T> = string | ((item: T) => string);
-export type EuiTableDataType =
-  | 'auto'
-  | 'string'
-  | 'number'
-  | 'boolean'
-  | 'date';
+
+export type EuiTableDataType = 'auto' | 'string';
 
 export interface EuiTableFooterProps<T> {
   items: T[];
