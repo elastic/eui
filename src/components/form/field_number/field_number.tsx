@@ -2,14 +2,19 @@ import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
-import { EuiFormControlLayout } from '../form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
+
+import { IconType } from '../../icon';
 
 export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
     value?: number | '';
-    icon?: string;
+    icon?: IconType;
     isInvalid?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;
@@ -22,12 +27,12 @@ export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
     /**
      * Creates an input group with element(s) coming before input
      */
-    prepend?: JSX.Element | JSX.Element[];
+    prepend?: EuiFormControlLayoutProps['prepend'];
 
     /**
      * Creates an input group with element(s) coming after input
      */
-    append?: string;
+    append?: EuiFormControlLayoutProps['append'];
 
     /**
      * Completely removes form control layout wrapper and ignores
