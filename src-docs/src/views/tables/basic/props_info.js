@@ -96,7 +96,8 @@ export const propsInfo = {
           type: { name: '(criteria: #Criteria) => void' },
         },
         tableLayout: {
-          description: 'Sets the table-layout CSS property',
+          description:
+            'Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working regularly.',
           required: false,
           type: {
             name: '(fixed | auto)',
