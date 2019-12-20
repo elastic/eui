@@ -2,24 +2,23 @@ import React, { FunctionComponent, TableHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export type Props = {
+export interface EuiTableProps
+  extends CommonProps,
+    TableHTMLAttributes<HTMLTableElement> {
   compressed?: boolean;
   responsive?: boolean;
   /**
    * Sets the table-layout CSS property
    */
-  tableLayout?: LayoutType;
-} & CommonProps &
-  TableHTMLAttributes<HTMLTableElement>;
-
-export type LayoutType = 'fixed' | 'auto';
+  tableLayout?: 'fixed' | 'auto';
+}
 
 const tableLayoutToClassMap: { [tableLayout: string]: string | null } = {
   fixed: null,
   auto: 'euiTable--auto',
 };
 
-export const EuiTable: FunctionComponent<Props> = ({
+export const EuiTable: FunctionComponent<EuiTableProps> = ({
   children,
   className,
   compressed,
