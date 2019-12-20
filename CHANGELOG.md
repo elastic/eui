@@ -2,6 +2,10 @@
 
 - Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
 
+**Bug fixes**
+
+- Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
+
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
 **Bug fixes**
@@ -24,7 +28,6 @@
 - Reverted removal of `toggleOpen` method from `EuiNavDrawer` ([#2682](https://github.com/elastic/eui/pull/2682))
 - Improved `EuiDataGrid` update performance ([#2676](https://github.com/elastic/eui/pull/2676))
 - Fixed `EuiDatagrid` header top border when configured to have no toolbar ([#2619](https://github.com/elastic/eui/pull/#2619))
-- Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
 
 ## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
 
