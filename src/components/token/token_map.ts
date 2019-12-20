@@ -1,3 +1,5 @@
+import { IconType } from '../icon';
+
 // Sets default displayOptions for EuiTokens based on iconType
 // tokenClass: {
 //   shape: 'square',
@@ -27,6 +29,7 @@ export interface EuiTokenMapDisplayOptions {
   shape?: TokenShape;
   fill?: boolean;
   hideBorder?: boolean;
+  iconType?: IconType;
 }
 
 export type EuiTokenMapType =

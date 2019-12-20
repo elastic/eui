@@ -1,6 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { IconType, EuiIcon } from '../icon';
+import { IconType, EuiIcon, IconSize } from '../icon';
 import {
   EuiTokenMapType,
   EuiTokenMapDisplayOptions,
@@ -86,6 +86,8 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   let tokenColor: TokenColor;
   let fill: boolean;
   let tokenHidesBorder: boolean;
+  let icon: IconType = iconType;
+  let iconSize: IconSize = size === 'xs' ? 's' : size;
 
   // Check if this has a mapping, and doesn't have custom displayOptions
   if (iconType in TOKEN_MAP && displayOptionsIsEmpty) {
@@ -96,6 +98,8 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
     tokenColor = mapping.color || 'tokenTint01';
     fill = mapping.fill ? true : false;
     tokenHidesBorder = mapping.hideBorder ? true : false;
+    icon = mapping.iconType || iconType;
+    iconSize = mapping.iconType ? 's' : 'm';
   } else {
     // Use the displayOptions passed or use some defaults
     tokenShape = displayOptions.shape ? displayOptions.shape : 'square';
@@ -118,7 +122,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      <EuiIcon type={iconType} />
+      <EuiIcon type={icon} size={iconSize} />
     </div>
   );
 };
