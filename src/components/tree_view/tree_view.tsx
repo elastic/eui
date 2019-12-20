@@ -98,7 +98,11 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
             children ? id : ((null as unknown) as string)
           )
           .filter(x => x != null)
-      : [],
+      : this.props.items
+          .map<string>(({ id, children, isExpanded }) =>
+            children && isExpanded ? id : ((null as unknown) as string)
+          )
+          .filter(x => x != null),
     activeItem: '',
     treeID: this.context || treeIdGenerator(),
     expandChildNodes: this.props.expandByDefault || false,
@@ -119,6 +123,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     this.setState({
       expandChildNodes: false,
     });
+
+    node.isExpanded = !node.isExpanded;
 
     if (!ignoreCallback && node.callback !== undefined) {
       node.callback();
