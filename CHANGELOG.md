@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `17.3.1`.
+- Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
