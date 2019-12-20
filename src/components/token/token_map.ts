@@ -6,6 +6,7 @@
 // },
 
 export type TokenColor =
+  | 'tokenTint00'
   | 'tokenTint01'
   | 'tokenTint02'
   | 'tokenTint03'
@@ -29,36 +30,36 @@ export interface EuiTokenMapDisplayOptions {
 }
 
 export type EuiTokenMapType =
-  | 'tokenClass'
-  | 'tokenProperty'
-  | 'tokenEnum'
-  | 'tokenVariable'
-  | 'tokenMethod'
   | 'tokenAnnotation'
-  | 'tokenException'
-  | 'tokenInterface'
-  | 'tokenParameter'
-  | 'tokenField'
-  | 'tokenFunction'
-  | 'tokenElement'
-  | 'tokenBoolean'
-  | 'tokenString'
   | 'tokenArray'
+  | 'tokenBoolean'
+  | 'tokenClass'
   | 'tokenConstant'
+  | 'tokenElement'
+  | 'tokenEnum'
+  | 'tokenEnumMember'
+  | 'tokenEvent'
+  | 'tokenException'
+  | 'tokenField'
+  | 'tokenFile'
+  | 'tokenFunction'
+  | 'tokenInterface'
+  | 'tokenKey'
+  | 'tokenMethod'
+  | 'tokenModule'
+  | 'tokenNamespace'
+  | 'tokenNull'
   | 'tokenNumber'
   | 'tokenObject'
-  | 'tokenEvent'
-  | 'tokenKey'
-  | 'tokenNull'
-  | 'tokenStruct'
-  | 'tokenPackage'
   | 'tokenOperator'
-  | 'tokenEnumMember'
+  | 'tokenPackage'
+  | 'tokenParameter'
+  | 'tokenProperty'
   | 'tokenRepo'
+  | 'tokenString'
+  | 'tokenStruct'
   | 'tokenSymbol'
-  | 'tokenFile'
-  | 'tokenNamespace'
-  | 'tokenModule';
+  | 'tokenVariable';
 
 export const TOKEN_MAP: {
   [mapType in EuiTokenMapType]: EuiTokenMapDisplayOptions
@@ -77,7 +78,7 @@ export const TOKEN_MAP: {
   },
   tokenVariable: {
     shape: 'circle',
-    color: 'tokenTint04',
+    color: 'tokenTint07',
   },
   tokenMethod: {
     shape: 'square',
@@ -85,23 +86,23 @@ export const TOKEN_MAP: {
   },
   tokenAnnotation: {
     shape: 'square',
-    color: 'tokenTint06',
+    color: 'tokenTint05',
   },
   tokenException: {
     shape: 'circle',
-    color: 'tokenTint07',
+    color: 'tokenTint00',
   },
   tokenInterface: {
     shape: 'circle',
-    color: 'tokenTint08',
+    color: 'tokenTint09',
   },
   tokenParameter: {
     shape: 'square',
-    color: 'tokenTint09',
+    color: 'tokenTint04',
   },
   tokenField: {
     shape: 'circle',
-    color: 'tokenTint10',
+    color: 'tokenTint12',
   },
   tokenElement: {
     shape: 'square',
@@ -113,23 +114,23 @@ export const TOKEN_MAP: {
   },
   tokenBoolean: {
     shape: 'square',
-    color: 'tokenTint05',
+    color: 'tokenTint01',
   },
   tokenString: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'tokenTint00',
   },
   tokenArray: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'tokenTint07',
   },
   tokenNumber: {
     shape: 'circle',
-    color: 'tokenTint05',
+    color: 'tokenTint01',
   },
   tokenConstant: {
     shape: 'circle',
-    color: 'tokenTint07',
+    color: 'tokenTint00',
   },
   tokenObject: {
     shape: 'square',
@@ -137,11 +138,11 @@ export const TOKEN_MAP: {
   },
   tokenEvent: {
     shape: 'circle',
-    color: 'tokenTint09',
+    color: 'tokenTint04',
   },
   tokenKey: {
     shape: 'circle',
-    color: 'tokenTint06',
+    color: 'tokenTint05',
   },
   tokenNull: {
     shape: 'square',
@@ -149,33 +150,33 @@ export const TOKEN_MAP: {
   },
   tokenStruct: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'tokenTint00',
   },
   tokenPackage: {
     shape: 'square',
-    color: 'tokenTint10',
+    color: 'tokenTint12',
   },
   tokenOperator: {
     shape: 'circle',
-    color: 'tokenTint09',
+    color: 'tokenTint04',
   },
   tokenEnumMember: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'tokenTint07',
   },
   tokenRepo: {
     shape: 'rectangle',
-    color: 'tokenTint05',
+    color: 'tokenTint01',
     fill: true,
   },
   tokenSymbol: {
     shape: 'rectangle',
-    color: 'tokenTint07',
+    color: 'tokenTint00',
     fill: true,
   },
   tokenFile: {
     shape: 'rectangle',
-    color: 'tokenTint12',
+    color: 'tokenTint10',
     fill: true,
   },
   tokenNamespace: {
@@ -184,6 +185,6 @@ export const TOKEN_MAP: {
   },
   tokenModule: {
     shape: 'square',
-    color: 'tokenTint09',
+    color: 'tokenTint04',
   },
 };

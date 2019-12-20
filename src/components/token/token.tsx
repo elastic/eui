@@ -30,6 +30,7 @@ const shapeToClassMap: { [shape in TokenShape]: string } = {
 export const SHAPES = keysOf(shapeToClassMap);
 
 const colorToClassMap: { [color in TokenColor]: string } = {
+  tokenTint00: 'euiToken--tokenTint00',
   tokenTint01: 'euiToken--tokenTint01',
   tokenTint02: 'euiToken--tokenTint02',
   tokenTint03: 'euiToken--tokenTint03',

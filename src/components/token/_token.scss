@@ -61,18 +61,19 @@
 }
 
 $tokenTypes: (
-  tokenTint01: $euiColorPrimary,
-  tokenTint02: $euiColorAccent,
-  tokenTint03: $euiColorVis3,
-  tokenTint04: $euiColorVis7,
-  tokenTint05: $euiColorVis1,
-  tokenTint06: #E6C220,
-  tokenTint07: $euiColorVis0,
-  tokenTint08: #920000,
-  tokenTint09: #F0F,
-  tokenTint10: #26AB00,
-  tokenTint11: #4C1604,
-  tokenTint12: #666
+  tokenTint00: $euiColorVis0, // green
+  tokenTint01: $euiColorVis1, // blue
+  tokenTint02: $euiColorVis2, // hot pink
+  tokenTint03: $euiColorVis3, // purple
+  tokenTint04: $euiColorVis4, // light pink
+  tokenTint05: $euiColorVis5, // yellow
+  tokenTint06: $euiColorVis6, // tan
+  tokenTint07: $euiColorVis7, // orange
+  tokenTint08: $euiColorVis8, // brown
+  tokenTint09: $euiColorVis9, // red
+  tokenTint10: lightOrDarkTheme($euiColorDarkShade, $euiColorMediumShade), // mid-gray
+  tokenTint11: #F0F,
+  tokenTint12: #26AB00,
 );
 
 @each $tintName, $tintValue in $tokenTypes {
