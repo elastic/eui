@@ -7,9 +7,26 @@ import { Table } from './auto';
 
 const source = require('!!raw-loader!./auto');
 const html = renderToHtml(Table);
+const layoutSnippet = [
+  `<EuiBasicTable
+  columns={[
+    { field: 'column1', name: 'Column 1' },
+    { field: 'column2', name: 'Column 2' }
+  ]}
+  tableLayout="auto"
+/>
+`,
+  `<EuiBasicTable
+    columns={[
+      { field: 'column1', name: 'Column 1', truncateText: true, width: '20%' },
+      { field: 'column2', name: 'Column 2' }
+    ]}
+    tableLayout="fixed"
+/>`,
+];
 
 export const section = {
-  title: 'A BasicTable with auto layout',
+  title: 'Table layout',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -34,5 +51,6 @@ export const section = {
       </p>
     </div>
   ),
+  snippet: layoutSnippet,
   demo: <Table />,
 };

@@ -143,13 +143,13 @@ const idPrefix = makeId();
 const toggleButtons = [
   {
     id: `${idPrefix}0`,
-    label: 'Auto',
-    value: 'auto',
+    label: 'Fixed',
+    value: 'fixed',
   },
   {
     id: `${idPrefix}1`,
-    label: 'Fixed',
-    value: 'fixed',
+    label: 'Auto',
+    value: 'auto',
   },
   {
     id: `${idPrefix}2`,
@@ -162,7 +162,7 @@ export class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      layout: 'auto',
+      layout: 'fixed',
       toggleIdSelected: `${idPrefix}0`,
     };
   }
@@ -191,7 +191,7 @@ export class Table extends Component {
         break;
       case 'custom':
         callOutText =
-          'First Name has truncateText set true and width set to 20%';
+          'First Name has truncateText set to true and width set to 20%';
         break;
     }
 
@@ -204,7 +204,11 @@ export class Table extends Component {
           onChange={this.onChange}
         />
         <EuiSpacer size="m" />
-        <EuiCallOut size="s" title={callOutText} />
+        <EuiCallOut
+          size="s"
+          color={this.state.layout === 'auto' ? 'warning' : 'primary'}
+          title={callOutText}
+        />
         <EuiSpacer size="m" />
         <EuiBasicTable
           items={items}

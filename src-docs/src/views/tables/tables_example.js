@@ -45,7 +45,6 @@ export const TableExample = {
   ),
   sections: [
     basicSection,
-    autoSection,
     paginatedSection,
     sortingSection,
     selectionSection,
@@ -57,6 +56,7 @@ export const TableExample = {
     inMemorySearchSection,
     inMemorySearchCallbackSection,
     inMemoryCustomSortingSection,
+    autoSection,
     mobileSection,
     customSection,
   ],

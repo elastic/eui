@@ -97,7 +97,7 @@ export const propsInfo = {
         },
         tableLayout: {
           description:
-            'Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working regularly.',
+            'Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.',
           required: false,
           type: {
             name: '(fixed | auto)',
