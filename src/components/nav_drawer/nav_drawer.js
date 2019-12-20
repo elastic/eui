@@ -214,7 +214,9 @@ export class EuiNavDrawer extends Component {
 
   modifyChildren = children => {
     // Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
-    return React.Children.map(children, child => {
+    // Filter out falsy items
+    const filteredChildren = React.Children.toArray(children);
+    return React.Children.map(filteredChildren, child => {
       // Allow for Fragments by recursive modification
       if (child.type === React.Fragment) {
         return this.modifyChildren(child.props.children);

@@ -1,0 +1,845 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiNavDrawer is rendered 1`] = `
+<nav
+  class="euiNavDrawer euiNavDrawer-isCollapsed euiNavDrawer-flyoutIsCollapsed"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiNavDrawerMenu euiNavDrawerMenu-hasFooter"
+        id="navDrawerMenu"
+      >
+        <ul
+          class="euiListGroup euiListGroup-flush euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction navDrawerExpandButton-isCollapsed"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <button
+                class="euiListGroupItem__button"
+                data-test-subj="navDrawerExpandButton-isCollapsed"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Expand
+                </span>
+              </button>
+            </span>
+          </li>
+        </ul>
+        <ul
+          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <button
+                aria-label="Recently viewed"
+                class="euiListGroupItem__button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Recently viewed
+                </span>
+              </button>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <button
+                aria-label="Favorites"
+                class="euiListGroupItem__button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Favorites
+                </span>
+              </button>
+            </span>
+          </li>
+        </ul>
+        <ul
+          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Canvas"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Canvas
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Discover"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Discover
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Visualize"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Visualize
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Dashboard"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Dashboard
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Machine learning"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Machine learning
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Custom Plugin (no icon)"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <span
+                  class="euiListGroupItem__icon euiNavDrawerGroup__itemDefaultIcon"
+                >
+                  CP
+                </span>
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Custom Plugin (no icon)
+                </span>
+              </a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      aria-labelledby="navDrawerFlyoutTitle"
+      class="euiNavDrawerFlyout euiNavDrawerFlyout-isCollapsed"
+      id="navDrawerFlyout"
+    >
+      <div
+        class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
+        id="navDrawerFlyoutTitle"
+        tabindex="-1"
+      />
+      <ul
+        class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+      />
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiNavDrawer renders with falsy children 1`] = `
+<nav
+  class="euiNavDrawer euiNavDrawer-isCollapsed euiNavDrawer-flyoutIsCollapsed"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiNavDrawerMenu euiNavDrawerMenu-hasFooter"
+        id="navDrawerMenu"
+      >
+        <ul
+          class="euiListGroup euiListGroup-flush euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction navDrawerExpandButton-isCollapsed"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <button
+                class="euiListGroupItem__button"
+                data-test-subj="navDrawerExpandButton-isCollapsed"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Expand
+                </span>
+              </button>
+            </span>
+          </li>
+        </ul>
+        <ul
+          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Canvas"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Canvas
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Discover"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Discover
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Visualize"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Visualize
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Dashboard"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Dashboard
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Machine learning"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Machine learning
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Custom Plugin (no icon)"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <span
+                  class="euiListGroupItem__icon euiNavDrawerGroup__itemDefaultIcon"
+                >
+                  CP
+                </span>
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Custom Plugin (no icon)
+                </span>
+              </a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      aria-labelledby="navDrawerFlyoutTitle"
+      class="euiNavDrawerFlyout euiNavDrawerFlyout-isCollapsed"
+      id="navDrawerFlyout"
+    >
+      <div
+        class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
+        id="navDrawerFlyoutTitle"
+        tabindex="-1"
+      />
+      <ul
+        class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+      />
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiNavDrawer renders with fragments 1`] = `
+<nav
+  class="euiNavDrawer euiNavDrawer-isCollapsed euiNavDrawer-flyoutIsCollapsed"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiNavDrawerMenu euiNavDrawerMenu-hasFooter"
+        id="navDrawerMenu"
+      >
+        <ul
+          class="euiListGroup euiListGroup-flush euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction navDrawerExpandButton-isCollapsed"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <button
+                class="euiListGroupItem__button"
+                data-test-subj="navDrawerExpandButton-isCollapsed"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Expand
+                </span>
+              </button>
+            </span>
+          </li>
+        </ul>
+        <ul
+          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <button
+                aria-label="Recently viewed"
+                class="euiListGroupItem__button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Recently viewed
+                </span>
+              </button>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <button
+                aria-label="Favorites"
+                class="euiListGroupItem__button"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Favorites
+                </span>
+              </button>
+            </span>
+          </li>
+        </ul>
+        <ul
+          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+        >
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Canvas"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Canvas
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Discover"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Discover
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Visualize"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Visualize
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Dashboard"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Dashboard
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Machine learning"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
+                  focusable="false"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Machine learning
+                </span>
+              </a>
+            </span>
+          </li>
+          <li
+            class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
+          >
+            <span
+              class="euiToolTipAnchor euiListGroupItem__tooltip"
+            >
+              <a
+                aria-label="Custom Plugin (no icon)"
+                class="euiListGroupItem__button"
+                href="#"
+              >
+                <span
+                  class="euiListGroupItem__icon euiNavDrawerGroup__itemDefaultIcon"
+                >
+                  CP
+                </span>
+                <span
+                  class="euiListGroupItem__label"
+                >
+                  Custom Plugin (no icon)
+                </span>
+              </a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      aria-labelledby="navDrawerFlyoutTitle"
+      class="euiNavDrawerFlyout euiNavDrawerFlyout-isCollapsed"
+      id="navDrawerFlyout"
+    >
+      <div
+        class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
+        id="navDrawerFlyoutTitle"
+        tabindex="-1"
+      />
+      <ul
+        class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+      />
+    </div>
+  </div>
+</nav>
+`;
