@@ -22,7 +22,6 @@ import { Comparators, Direction } from '../../services/sort';
 import { EuiSearchBar } from '../search_bar';
 import { EuiSpacer } from '../spacer';
 import { CommonProps } from '../common';
-import { LayoutType } from '../table';
 
 // Search bar types. Should be moved when it is typescriptified.
 interface SearchBoxConfig {
@@ -190,7 +189,6 @@ type InMemoryTableProps<T> = Omit<
     isClauseMatcher?: (...args: any) => boolean;
     explain?: boolean;
   };
-  tableLayout?: LayoutType;
 };
 
 type InMemoryTablePropsWithPagination<T> = Omit<
@@ -587,11 +585,11 @@ export class EuiInMemoryTable<T> extends Component<
       rowProps,
       cellProps,
       tableLayout,
-      items: _unuseditems, // eslint-disable-line no-unused-vars
-      search, // eslint-disable-line no-unused-vars
-      onTableChange, // eslint-disable-line no-unused-vars
-      executeQueryOptions, // eslint-disable-line no-unused-vars
-      allowNeutralSort, // eslint-disable-line no-unused-vars
+      items: _unuseditems,
+      search,
+      onTableChange,
+      executeQueryOptions,
+      allowNeutralSort,
       ...rest
     } = this.props;
 
