@@ -20,6 +20,10 @@ import {
   EuiLink,
 } from '../../../../src/components';
 
+import { getParameters } from 'codesandbox/lib/api/define';
+
+import { EuiButton } from '../../../../src/components/button';
+
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split(regex).map((token, index) => {
@@ -427,11 +431,72 @@ export class GuideSection extends Component {
   render() {
     const chrome = this.renderChrome();
 
+    console.log(this.props.source);
+
+    const npmImports = this.props.source[0].code
+      .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
+      .replace(
+        /(from )'(..\/)+src\/services(\/?';)/,
+        "from '@elastic/eui/lib/services';"
+      )
+      .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';")
+      .replace('export default', 'const Demo =');
+
+    const end = `ReactDOM.render(
+  <Demo />,
+  document.getElementById('root')
+);`;
+    const beggining = `import ReactDOM from 'react-dom';
+import '@elastic/eui/dist/eui_theme_light.css'`;
+
+    const finalCode = `${beggining}
+${npmImports}
+${end}
+        `;
+    const extraDeps = [
+      ...npmImports.matchAll(/import\s.*?'(?<import>[^.].*?)'/g),
+    ]
+      .map(x => x.groups.import)
+      .reduce((deps, dep) => {
+        deps[dep] = 'latest';
+        return deps;
+      }, {});
+
+    const parameters = getParameters({
+      files: {
+        'package.json': {
+          content: {
+            dependencies: {
+              react: 'latest',
+              'react-dom': 'latest',
+              'react-scripts': 'latest',
+              moment: 'latest',
+              '@elastic/eui': 'latest',
+              '@elastic/datemath': 'latest',
+              ...extraDeps,
+            },
+          },
+        },
+        'index.js': {
+          content: finalCode,
+        },
+      },
+    });
+
     return (
       <div className="guideSection" id={this.props.id}>
         {chrome}
         {this.renderContent()}
         {this.props.extraContent}
+        <form
+          action="https://codesandbox.io/api/v1/sandboxes/define"
+          method="POST"
+          target="_blank">
+          <input type="hidden" name="parameters" value={parameters} />
+          <EuiButton type="submit" iconType="logoCodesandbox">
+            Open in Codesandbox
+          </EuiButton>
+        </form>
       </div>
     );
   }
