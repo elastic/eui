@@ -20,9 +20,9 @@
 import React, { createContext, useContext } from 'react';
 
 export interface PanelController {
-  setWidth: (percent: number) => void;
-  getWidth: () => number;
-  width: number;
+  setSize: (percent: number) => void;
+  getSize: () => number;
+  size: number;
 }
 
 export class PanelRegistry {

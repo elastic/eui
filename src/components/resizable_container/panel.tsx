@@ -10,6 +10,10 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { usePanelContext } from './context';
 
+interface Controls {
+  isHorizontal: boolean;
+}
+
 export interface PanelProps extends CommonProps {
   /**
    * Add Eui scroll and overflow for the panel
@@ -21,9 +25,9 @@ export interface PanelProps extends CommonProps {
   children: ReactNode;
 
   /**
-   * initial width of the panel in percents
+   * Initial size of the panel in percents
    */
-  initialWidth?: number;
+  initialSize?: number;
 
   /**
    * Custom CSS properties
@@ -31,15 +35,16 @@ export interface PanelProps extends CommonProps {
   style?: CSSProperties;
 }
 
-export function Panel({
+function Panel({
   children,
   className,
-  initialWidth = 100,
+  isHorizontal,
+  initialSize = 100,
   scrollable,
   style = {},
   ...rest
-}: PanelProps) {
-  const [width, setWidth] = useState(`${initialWidth}%`);
+}: PanelProps & Controls) {
+  const [size, setSize] = useState(`${initialSize}%`);
   const { registry } = usePanelContext();
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -50,26 +55,35 @@ export function Panel({
     className
   );
 
+  const styles = {
+    ...style,
+    width: isHorizontal ? size : '100%',
+    height: isHorizontal ? '100%' : size,
+    display: 'flex',
+  };
+
   useEffect(() => {
     registry.registerPanel({
-      width: initialWidth,
-      setWidth(value) {
-        setWidth(`${value}%`);
-        this.width = value;
+      size: initialSize,
+      setSize(value) {
+        setSize(`${value}%`);
+        this.size = value;
       },
-      getWidth() {
-        return divRef.current!.getBoundingClientRect().width;
+      getSize() {
+        return isHorizontal
+          ? divRef.current!.getBoundingClientRect().width
+          : divRef.current!.getBoundingClientRect().height;
       },
     });
-  }, [initialWidth, registry]);
+  }, [initialSize, isHorizontal, registry]);
 
   return (
-    <div
-      className={classes}
-      ref={divRef}
-      style={{ ...style, width, display: 'flex' }}
-      {...rest}>
+    <div className={classes} ref={divRef} style={styles} {...rest}>
       {children}
     </div>
   );
+}
+
+export function paneWithControls(controls: Controls) {
+  return (props: PanelProps) => <Panel {...controls} {...props} />;
 }

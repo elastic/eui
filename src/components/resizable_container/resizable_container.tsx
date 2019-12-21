@@ -5,130 +5,98 @@ import React, {
   useCallback,
   CSSProperties,
 } from 'react';
+import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { keyCodes } from '../../services';
 import { PanelContextProvider, PanelRegistry } from './context';
-import {
-  resizerWithControls,
-  ResizerMouseEvent,
-  ResizerKeyDownEvent,
-  ResizerProps,
-} from './resizer';
-import { Panel, PanelProps } from './panel';
+import { resizerWithControls } from './resizer';
+import { PanelProps, paneWithControls } from './panel';
+import { useContainerCallbacks } from './helpers';
+
+const containerDirections = {
+  vertical: 'vertical',
+  horizontal: 'horizontal',
+};
 
 export interface Props extends CommonProps {
+  /**
+   * Specify the container direction
+   *
+   * @default "horizontal"
+   */
+  direction?: keyof typeof containerDirections;
   children: (
     Panel: React.ComponentType<PanelProps>,
-    Resizer: React.ComponentType<ResizerProps>
+    Resizer: React.ComponentType<CommonProps>
   ) => ReactNode;
   onPanelWidthChange?: (arrayOfPanelWidths: number[]) => any;
   style?: CSSProperties;
 }
 
-interface State {
+export interface State {
   isDragging: boolean;
   currentResizerPos: number;
 }
 
 const initialState: State = { isDragging: false, currentResizerPos: -1 };
 
-const pxToPercent = (proportion: number, whole: number) =>
-  (proportion / whole) * 100;
-
 export function EuiResizableContainer({
+  direction = 'horizontal',
   children,
   className,
   onPanelWidthChange,
-  style = {},
   ...rest
 }: Props) {
   const registryRef = useRef(new PanelRegistry());
   const containerRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<State>(initialState);
+  const isHorizontal = direction === containerDirections.horizontal;
 
-  const getContainerWidth = () => {
-    return containerRef.current!.getBoundingClientRect().width;
-  };
-
-  const handleMouseDown = useCallback(
-    (event: ResizerMouseEvent) => {
-      setState({
-        ...state,
-        isDragging: true,
-        currentResizerPos: event.clientX,
-      });
+  const classes = classNames(
+    'euiResizableContainer',
+    {
+      'euiResizableContainer--vertical': !isHorizontal,
+      'euiResizableContainer--horizontal': isHorizontal,
     },
-    [state]
+    className
   );
 
-  const handleKeyDown = useCallback(
-    (ev: ResizerKeyDownEvent) => {
-      const { keyCode } = ev;
+  const { onKeyDown, onMouseDown, onMouseMove } = useContainerCallbacks({
+    isHorizontal,
+    state,
+    setState,
+    containerRef,
+    registryRef,
+    onPanelWidthChange,
+  });
 
-      if (keyCode === keyCodes.LEFT || keyCode === keyCodes.RIGHT) {
-        ev.preventDefault();
+  const Resizer = useCallback(
+    resizerWithControls({
+      onKeyDown,
+      onMouseDown,
+      isHorizontal,
+    }),
+    [onKeyDown, onMouseDown, isHorizontal]
+  );
 
-        const { current: registry } = registryRef;
-        const [left, right] = registry.getPanels();
-
-        const leftPercent = left.width - (keyCode === keyCodes.LEFT ? 1 : -1);
-        const rightPercent =
-          right.width - (keyCode === keyCodes.RIGHT ? 1 : -1);
-
-        left.setWidth(leftPercent);
-        right.setWidth(rightPercent);
-
-        if (onPanelWidthChange) {
-          onPanelWidthChange([leftPercent, rightPercent]);
-        }
-      }
-    },
-    [onPanelWidthChange]
+  const Panel = useCallback(
+    paneWithControls({
+      isHorizontal,
+    }),
+    [isHorizontal]
   );
 
   return (
     <PanelContextProvider registry={registryRef.current}>
       <div
-        className={className}
+        className={classes}
         ref={containerRef}
-        style={{ ...style, display: 'flex', width: '100%' }}
-        onMouseMove={event => {
-          if (state.isDragging) {
-            const { clientX: x } = event;
-            const { current: registry } = registryRef;
-            const [left, right] = registry.getPanels();
-            const delta = x - state.currentResizerPos;
-            const containerWidth = getContainerWidth();
-            const leftPercent = pxToPercent(
-              left.getWidth() + delta,
-              containerWidth
-            );
-            const rightPercent = pxToPercent(
-              right.getWidth() - delta,
-              containerWidth
-            );
-            left.setWidth(leftPercent);
-            right.setWidth(rightPercent);
-
-            if (onPanelWidthChange) {
-              onPanelWidthChange([leftPercent, rightPercent]);
-            }
-
-            setState({ ...state, currentResizerPos: x });
-          }
-        }}
+        onMouseMove={onMouseMove}
         onMouseUp={() => {
           setState(initialState);
         }}
         {...rest}>
-        {children(
-          Panel,
-          resizerWithControls({
-            onKeyDown: handleKeyDown,
-            onMouseDown: handleMouseDown,
-          })
-        )}
+        {children(Panel, Resizer)}
       </div>
     </PanelContextProvider>
   );

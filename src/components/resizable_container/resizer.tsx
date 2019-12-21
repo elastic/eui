@@ -8,16 +8,13 @@ import { EuiI18n } from '../i18n';
 export type ResizerMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 export type ResizerKeyDownEvent = React.KeyboardEvent<HTMLButtonElement>;
 
-export interface ResizerProps extends CommonProps {
-  /**
-   * This flag specifies if the resizable container should be horizontal or vertical
-   *
-   * @default true
-   */
-  isHorizontal?: boolean;
+interface Controls {
+  onKeyDown: (eve: ResizerKeyDownEvent) => void;
+  onMouseDown: (eve: ResizerMouseEvent) => void;
+  isHorizontal: boolean;
 }
 
-function Resizer({ isHorizontal = true, className, ...rest }: ResizerProps) {
+function Resizer({ isHorizontal, className, ...rest }: CommonProps & Controls) {
   const classes = classNames(
     'euiResizer',
     {
@@ -52,9 +49,6 @@ function Resizer({ isHorizontal = true, className, ...rest }: ResizerProps) {
   );
 }
 
-export function resizerWithControls(controls: {
-  onKeyDown: (eve: ResizerKeyDownEvent) => void;
-  onMouseDown: (eve: ResizerMouseEvent) => void;
-}) {
-  return (props: ResizerProps) => <Resizer {...controls} {...props} />;
+export function resizerWithControls(controls: Controls) {
+  return (props: CommonProps) => <Resizer {...controls} {...props} />;
 }

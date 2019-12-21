@@ -45,9 +45,3 @@
     }
   }
 }
-
-.euiScrollablePanel {
-  @include euiScrollBar;
-
-  overflow-y: auto;
-}

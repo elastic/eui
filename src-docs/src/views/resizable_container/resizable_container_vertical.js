@@ -12,13 +12,13 @@ import {
 const text = require('!!raw-loader!./lorem.txt');
 
 export default () => (
-  <EuiResizableContainer style={{ height: '400px' }}>
+  <EuiResizableContainer style={{ height: '600px' }} direction="vertical">
     {(Panel, Resizer) => (
       <>
         <Panel
-          initialSize={50}
+          initialSize={80}
           style={{
-            minWidth: '30%',
+            minHeight: '40%',
             padding: '10px',
           }}>
           <EuiFlexGroup direction="column" gutterSize="none">
@@ -48,7 +48,7 @@ export default () => (
 
         <Resizer />
 
-        <Panel initialSize={50} style={{ minWidth: '35%' }} scrollable={true}>
+        <Panel initialSize={20} style={{ minHeight: '10%' }} scrollable={true}>
           <EuiText>
             <p>{text}</p>
           </EuiText>
