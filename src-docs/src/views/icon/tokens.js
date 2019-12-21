@@ -52,14 +52,13 @@ const tokens = [
   'tokenString',
   'tokenNumber',
   'tokenBoolean',
-  'tokenDate',
-  'tokenGeo',
-  'tokenIP',
-  'tokenRange',
-  'tokenShape',
+  'calendar',
+  'globe',
+  'ip',
+  'vector',
   'tokenObject',
-  'tokenNested',
-  'tokenAlias',
+  'nested',
+  'link',
 ];
 
 export default () => (
@@ -139,7 +138,6 @@ export default () => (
             <EuiToken
               iconType="tokenStruct"
               displayOptions={{
-                color: 'tokenTint05',
                 shape: 'circle',
               }}
             />
@@ -161,9 +159,7 @@ export default () => (
               iconType="tokenStruct"
               size="m"
               displayOptions={{
-                color: 'tokenTint10',
-                shape: 'square',
-                fill: true,
+                hideBorder: true,
               }}
             />
           </div>

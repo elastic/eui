@@ -1,5 +1,3 @@
-import { IconType } from '../icon';
-
 // Sets default displayOptions for EuiTokens based on iconType
 // tokenClass: {
 //   shape: 'square',
@@ -29,7 +27,6 @@ export interface EuiTokenMapDisplayOptions {
   shape?: TokenShape;
   fill?: boolean;
   hideBorder?: boolean;
-  iconType?: IconType;
 }
 
 export type EuiTokenMapType =
@@ -46,7 +43,6 @@ export type EuiTokenMapType =
   | 'tokenField'
   | 'tokenFile'
   | 'tokenFunction'
-  | 'tokenGeo'
   | 'tokenInterface'
   | 'tokenKey'
   | 'tokenMethod'
@@ -62,12 +58,12 @@ export type EuiTokenMapType =
   | 'tokenRepo'
   | 'tokenString'
   | 'tokenStruct'
-  | 'tokenDate'
-  | 'tokenIP'
-  | 'tokenNested'
-  | 'tokenRange'
-  | 'tokenAlias'
-  | 'tokenShape'
+  | 'calendar'
+  | 'ip'
+  | 'nested'
+  | 'link'
+  | 'vector'
+  | 'globe'
   | 'tokenSymbol'
   | 'tokenVariable';
 
@@ -197,39 +193,28 @@ export const TOKEN_MAP: {
     shape: 'square',
     color: 'tokenTint04',
   },
-  tokenDate: {
+  calendar: {
     shape: 'square',
     color: 'tokenTint06',
-    iconType: 'calendar',
   },
-  tokenGeo: {
+  globe: {
     shape: 'square',
     color: 'tokenTint01',
-    iconType: 'globe',
   },
-  tokenIP: {
+  ip: {
     shape: 'square',
     color: 'tokenTint09',
-    iconType: 'ip',
   },
-  tokenRange: {
-    shape: 'circle',
-    color: 'tokenTint04',
-    iconType: 'tokenElement',
-  },
-  tokenShape: {
+  vector: {
     shape: 'circle',
     color: 'tokenTint08',
-    iconType: 'vector',
   },
-  tokenNested: {
+  nested: {
     shape: 'circle',
     color: 'tokenTint11',
-    iconType: 'nested',
   },
-  tokenAlias: {
+  link: {
     shape: 'circle',
     color: 'tokenTint12',
-    iconType: 'link',
   },
 };

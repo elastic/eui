@@ -1,5 +1,5 @@
 .euiToken {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
@@ -82,25 +82,24 @@ $tokenTypes: (
 
 @each $tintName, $tintValue in $tokenTypes {
   .euiToken--#{$tintName} {
-    box-shadow: 0 0 0 1px $tintValue;
-
-    $backgroundColor: tintOrShade($tintValue, 70%, 70%);
+    $backgroundColor: tintOrShade($tintValue, 90%, 90%);
     background-color: $backgroundColor;
 
-    &.euiToken--no-border {
-      box-shadow: none;
+    svg {
+      fill: makeHighContrastColor($tintValue, $backgroundColor);
+    }
+
+    &.euiToken--border {
+      box-shadow: 0 0 0 1px tintOrShade($tintValue, 70%, 70%);
     }
 
     &.euiToken--fill {
       background-color: $tintValue;
+      box-shadow: none !important; // sass-lint:disable-line no-important
 
       svg {
         fill: $euiColorGhost;
       }
-    }
-
-    svg {
-      fill: makeHighContrastColor($tintValue, $backgroundColor);
     }
   }
 }

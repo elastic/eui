@@ -1,5 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { defaults } from 'lodash';
 import classNames from 'classnames';
+
 import { IconType, EuiIcon, IconSize } from '../icon';
 import {
   EuiTokenMapType,
@@ -47,6 +49,13 @@ const colorToClassMap: { [color in TokenColor]: string } = {
 
 export const COLORS = keysOf(colorToClassMap);
 
+const defaultDisplayOptions: EuiTokenMapDisplayOptions = {
+  color: 'tokenTint10',
+  shape: 'square',
+  fill: false,
+  hideBorder: false,
+};
+
 interface TokenProps {
   /**
    * An EUI icon type
@@ -58,7 +67,7 @@ interface TokenProps {
   size?: TokenSize;
   /**
    * By default EUI will auto color tokens. You can can however control it
-   * - `color`: can be `tokenTint01` thru `tokenTint10`
+   * - `color`: can be `tokenTint00` thru `tokenTint12`
    * - `shape`: square, circle, rectangle as options
    * - `fill`: makes it a solid color
    * - `hideBorder`: disables the outer border
@@ -72,50 +81,43 @@ export type EuiTokenProps = CommonProps &
 
 export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   iconType,
-  displayOptions = {},
+  displayOptions,
   size = 's',
   className,
   ...rest
 }) => {
-  // Check if display options is empty
-  const displayOptionsIsEmpty =
-    Object.keys(displayOptions).length === 0 &&
-    displayOptions.constructor === Object;
-
-  let tokenShape: TokenShape;
-  let tokenColor: TokenColor;
-  let fill: boolean;
-  let tokenHidesBorder: boolean;
-  let icon: IconType = iconType;
+  const icon: IconType = iconType;
   let iconSize: IconSize = size === 'xs' ? 's' : size;
+  let finalOptions: EuiTokenMapDisplayOptions;
 
-  // Check if this has a mapping, and doesn't have custom displayOptions
-  if (iconType in TOKEN_MAP && displayOptionsIsEmpty) {
-    const mapping = TOKEN_MAP[iconType as EuiTokenMapType];
-    // These should be found in the standard mappings, but apply defaults
-    // just in case.
-    tokenShape = mapping.shape || 'square';
-    tokenColor = mapping.color || 'tokenTint01';
-    fill = mapping.fill ? true : false;
-    tokenHidesBorder = mapping.hideBorder ? true : false;
-    icon = mapping.iconType || iconType;
-    iconSize = mapping.iconType ? 's' : 'm';
-  } else {
-    // Use the displayOptions passed or use some defaults
-    tokenShape = displayOptions.shape ? displayOptions.shape : 'square';
-    tokenColor = displayOptions.color ? displayOptions.color : 'tokenTint01';
-    fill = displayOptions.fill ? true : false;
-    tokenHidesBorder = displayOptions.hideBorder ? true : false;
+  // When displaying at the small size, the token specific icons
+  // should actually be displayed at medium size
+  if (String(iconType).indexOf('token') === 0 && size === 's') {
+    iconSize = 'm';
   }
+
+  if (iconType in TOKEN_MAP) {
+    const definedToken = TOKEN_MAP[iconType as EuiTokenMapType];
+    finalOptions = defaults(
+      displayOptions,
+      definedToken,
+      defaultDisplayOptions
+    );
+  } else {
+    finalOptions = defaults(displayOptions, defaultDisplayOptions);
+  }
+
+  const color = finalOptions.color || 'tokenTint10';
+  const shape = finalOptions.shape || 'circle';
 
   const classes = classNames(
     'euiToken',
-    colorToClassMap[tokenColor],
-    shapeToClassMap[tokenShape],
+    shapeToClassMap[shape],
+    colorToClassMap[color],
     sizeToClassMap[size],
     {
-      'euiToken--fill': fill,
-      'euiToken--no-border': tokenHidesBorder,
+      'euiToken--fill': finalOptions.fill,
+      'euiToken--border': !finalOptions.hideBorder,
     },
     className
   );
