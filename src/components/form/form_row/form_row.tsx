@@ -31,7 +31,8 @@ const displayToClassNameMap: ClassNameMap = {
     'euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch',
 }
 
-export const DISPLAYS = Object.keys(displayToClassNameMap)
+// @ts-ignore
+export const DISPLAYS: Array<FormRowDisplayKeys> = Object.keys(displayToClassNameMap)
 
 interface EuiFormRowState {
   isFocused: boolean;

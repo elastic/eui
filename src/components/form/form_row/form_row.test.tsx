@@ -19,6 +19,7 @@ describe('EuiFormRow', () => {
   });
 
   test('no children is an error', () => {
+    // @ts-ignore
     expect(() => <EuiFormRow {...requiredProps} />).toThrow();
   });
 
