@@ -8,6 +8,7 @@ import {
   EuiTokenMapDisplayOptions,
   TokenColor,
   TokenShape,
+  TokenFill,
   TOKEN_MAP,
 } from './token_map';
 import { CommonProps, keysOf } from '../common';
@@ -31,6 +32,14 @@ const shapeToClassMap: { [shape in TokenShape]: string } = {
 
 export const SHAPES = keysOf(shapeToClassMap);
 
+const fillToClassMap: { [fill in TokenFill]: string | null } = {
+  none: null,
+  light: 'euiToken--light',
+  dark: 'euiToken--dark',
+};
+
+export const FILLS = keysOf(fillToClassMap);
+
 const colorToClassMap: { [color in TokenColor]: string } = {
   tokenTint00: 'euiToken--tokenTint00',
   tokenTint01: 'euiToken--tokenTint01',
@@ -52,8 +61,7 @@ export const COLORS = keysOf(colorToClassMap);
 const defaultDisplayOptions: EuiTokenMapDisplayOptions = {
   color: 'tokenTint10',
   shape: 'square',
-  fill: false,
-  hideBorder: false,
+  fill: 'light',
 };
 
 interface TokenProps {
@@ -69,8 +77,7 @@ interface TokenProps {
    * By default EUI will auto color tokens. You can can however control it
    * - `color`: can be `tokenTint00` thru `tokenTint12`
    * - `shape`: square, circle, rectangle as options
-   * - `fill`: makes it a solid color
-   * - `hideBorder`: disables the outer border
+   * - `fill`: light for transparent, dark for solid, or none
    */
   displayOptions?: EuiTokenMapDisplayOptions;
 }
@@ -109,16 +116,14 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   const color = finalOptions.color || 'tokenTint10';
   const shape = finalOptions.shape || 'circle';
+  const fill = finalOptions.fill || 'light';
 
   const classes = classNames(
     'euiToken',
     shapeToClassMap[shape],
     colorToClassMap[color],
+    fillToClassMap[fill],
     sizeToClassMap[size],
-    {
-      'euiToken--fill': finalOptions.fill,
-      'euiToken--border': !finalOptions.hideBorder,
-    },
     className
   );
 

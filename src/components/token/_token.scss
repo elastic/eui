@@ -82,24 +82,20 @@ $tokenTypes: (
 
 @each $tintName, $tintValue in $tokenTypes {
   .euiToken--#{$tintName} {
+    // Coloring the fill against the light background color whether the background exists
+    // or not, ensures the color of the icon is the same in all circumstances
     $backgroundColor: tintOrShade($tintValue, 90%, 90%);
-    background-color: $backgroundColor;
+    $fillColor: makeHighContrastColor($tintValue, $backgroundColor);
+    color: $fillColor;
 
-    svg {
-      fill: makeHighContrastColor($tintValue, $backgroundColor);
-    }
-
-    &.euiToken--border {
+    &.euiToken--light {
+      background-color: $backgroundColor;
       box-shadow: 0 0 0 1px tintOrShade($tintValue, 70%, 70%);
     }
 
-    &.euiToken--fill {
+    &.euiToken--dark {
       background-color: $tintValue;
-      box-shadow: none !important; // sass-lint:disable-line no-important
-
-      svg {
-        fill: $euiColorGhost;
-      }
+      color: chooseLightOrDarkText($tintValue, $euiColorGhost, $euiColorInk);
     }
   }
 }

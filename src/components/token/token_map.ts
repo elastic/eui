@@ -21,12 +21,12 @@ export type TokenColor =
   | 'tokenTint12';
 
 export type TokenShape = 'circle' | 'square' | 'rectangle';
+export type TokenFill = 'dark' | 'light' | 'none';
 
 export interface EuiTokenMapDisplayOptions {
   color?: TokenColor;
   shape?: TokenShape;
-  fill?: boolean;
-  hideBorder?: boolean;
+  fill?: TokenFill;
 }
 
 export type EuiTokenMapType =
@@ -173,17 +173,17 @@ export const TOKEN_MAP: {
   tokenRepo: {
     shape: 'rectangle',
     color: 'tokenTint01',
-    fill: true,
+    fill: 'dark',
   },
   tokenSymbol: {
     shape: 'rectangle',
     color: 'tokenTint00',
-    fill: true,
+    fill: 'dark',
   },
   tokenFile: {
     shape: 'rectangle',
     color: 'tokenTint10',
-    fill: true,
+    fill: 'dark',
   },
   tokenNamespace: {
     shape: 'square',

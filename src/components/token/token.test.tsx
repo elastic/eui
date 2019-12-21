@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { EuiToken, SHAPES, SIZES } from './token';
+import { EuiToken, SHAPES, SIZES, FILLS } from './token';
 import { TokenColor } from './token_map';
 
 const tokenColors: TokenColor[] = [
@@ -73,6 +73,23 @@ describe('EuiToken', () => {
               displayOptions={{
                 color: 'tokenTint01',
                 shape: 'circle',
+              }}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('fill', () => {
+      FILLS.forEach(fill => {
+        test(`${fill} is rendered`, () => {
+          const component = render(
+            <EuiToken
+              iconType="dot"
+              displayOptions={{
+                fill: fill,
               }}
             />
           );

@@ -118,7 +118,6 @@ export default () => (
               displayOptions={{
                 color: 'tokenTint10',
                 shape: 'square',
-                fill: true,
               }}
             />
           </div>
@@ -138,7 +137,7 @@ export default () => (
             <EuiToken
               iconType="tokenStruct"
               displayOptions={{
-                shape: 'circle',
+                fill: 'none',
               }}
             />
           </div>
@@ -159,7 +158,7 @@ export default () => (
               iconType="tokenStruct"
               size="m"
               displayOptions={{
-                hideBorder: true,
+                shape: 'circle',
               }}
             />
           </div>
@@ -182,7 +181,7 @@ export default () => (
               displayOptions={{
                 color: 'tokenTint07',
                 shape: 'rectangle',
-                hideBorder: true,
+                fill: 'dark',
               }}
             />
           </div>
