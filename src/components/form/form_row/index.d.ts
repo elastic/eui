@@ -9,7 +9,7 @@ import {
 
 declare module '@elastic/eui' {
   /**
-   * @see './form_row.js'
+   * @see './form_row.ts'
    */
   export type EuiFormRowCommonProps = CommonProps & {
     error?: ReactNode | ReactNode[];
