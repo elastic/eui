@@ -554,6 +554,24 @@ exports[`EuiIcon props type alert is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type annotation is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M3 6.5a4.5 4.5 0 115 4.473V16H7v-5.027A4.5 4.5 0 013 6.5z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type apmApp is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -5803,6 +5821,24 @@ exports[`EuiIcon props type moon is rendered 1`] = `
   <title />
   <path
     d="M8.796 9.048c-1.552-2.238-1.199-5.323.61-8.1-3.47-.12-6.6 2.232-7.269 5.672-.742 3.82 1.83 7.533 5.749 8.294a7.226 7.226 0 007.526-3.218c-2.794.177-5.27-.711-6.616-2.648z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type nested is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M5.5 1a.5.5 0 010 1H3.006C2.45 2 2 2.45 2 3.006v9.988C2 13.55 2.45 14 3.006 14H5.5a.5.5 0 110 1H3.006A2.005 2.005 0 011 12.994V3.006C1 1.898 1.897 1 3.006 1H5.5zm7.494 0c1.059 0 1.924.818 2 1.856l.006.15v9.988a2.005 2.005 0 01-1.856 2l-.15.006H10.5a.5.5 0 01-.09-.992L10.5 14h2.494c.516 0 .941-.388 1-.888l.006-.118V3.006c0-.516-.388-.941-.888-1L12.994 2H10.5a.5.5 0 01-.09-.992L10.5 1h2.494zM5 7a1 1 0 110 2 1 1 0 010-2zm3 0a1 1 0 110 2 1 1 0 010-2zm3 0a1 1 0 110 2 1 1 0 010-2z"
   />
 </svg>
 `;
