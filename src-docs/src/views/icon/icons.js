@@ -129,6 +129,7 @@ export const iconTypes = [
   'minusInCircle',
   'minusInCircleFilled',
   'moon',
+  'nested',
   'node',
   'number',
   'offline',
