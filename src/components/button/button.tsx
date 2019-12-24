@@ -30,7 +30,7 @@ export type ButtonColor =
   | 'ghost'
   | 'text';
 
-export type ButtonSize = 's' | 'm';
+export type ButtonSize = 'xs' | 's' | 'm';
 
 const colorToClassNameMap: { [color in ButtonColor]: string } = {
   primary: 'euiButton--primary',
