@@ -1,16 +1,45 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react'
 import PropTypes from 'prop-types';
 
 import { htmlIdGenerator } from '../../../services';
 
-import { EuiTabs, DISPLAYS, SIZES } from '../tabs';
+import { EuiTabs, DISPLAYS, SIZES, EuiTabsDisplayKeys, EuiTabsSizeKeys } from '../tabs'
 import { EuiTab } from '../tab';
+import { CommonProps } from '../../common'
 
 const makeId = htmlIdGenerator();
 
-export const AUTOFOCUS = ['initial', 'selected'];
+/**
+ * Marked as const so type is `['initial', 'selected']` instead of `string[]`
+ */
+export const AUTOFOCUS = ['initial', 'selected'] as const;
 
-export class EuiTabbedContent extends Component {
+export interface EuiTabbedContentTabDescriptor {
+  id: string;
+  name: string;
+  content: ReactNode;
+}
+
+interface EuiTabbedContentState {
+  selectedTabId: string | undefined;
+  inFocus: boolean;
+}
+
+export type EuiTabbedContentProps = CommonProps
+  & HTMLAttributes<HTMLDivElement>
+  & {
+  autoFocus?: 'initial' | 'selected';
+  className?: string;
+  display?: EuiTabsDisplayKeys;
+  expand?: boolean;
+  initialSelectedTab?: EuiTabbedContentTabDescriptor;
+  onTabClick?: Function
+  selectedTab?: EuiTabbedContentTabDescriptor;
+  size?: EuiTabsSizeKeys;
+  tabs: Array<EuiTabbedContentTabDescriptor>
+}
+
+export class EuiTabbedContent extends Component<EuiTabbedContentProps, EuiTabbedContentState> {
   static propTypes = {
     className: PropTypes.string,
     /**
@@ -51,13 +80,18 @@ export class EuiTabbedContent extends Component {
     ).isRequired,
   };
 
-  constructor(props) {
+  static defaultProps = {
+    autoFocus: 'initial',
+  };
+
+  private readonly rootId = makeId();
+
+  private readonly divRef = createRef<HTMLDivElement>()
+
+  constructor(props: EuiTabbedContentProps) {
     super(props);
 
     const { initialSelectedTab, selectedTab, tabs } = props;
-
-    this.rootId = makeId();
-    this.divRef = createRef();
 
     // Only track selection state if it's not controlled externally.
     let selectedTabId;
@@ -91,15 +125,16 @@ export class EuiTabbedContent extends Component {
       // Must wait for setState to finish before calling `.focus()`
       // as the focus call triggers a blur on the first tab
       this.setState({ inFocus: true }, () => {
-        const targetTab = this.divRef.current.querySelector(
+        const targetTab: HTMLDivElement | null = this.divRef.current!.querySelector(
           `#${this.state.selectedTabId}`
         );
-        targetTab.focus();
+        targetTab!.focus();
       });
     }
   };
 
-  removeFocus = blurEvent => {
+  // todo: figure out type for blurEvent
+  removeFocus = (blurEvent: any) => {
     // only set inFocus to false if the wrapping div doesn't contain the now-focusing element
     if (blurEvent.currentTarget.contains(blurEvent.relatedTarget) === false) {
       this.setState({
@@ -108,7 +143,7 @@ export class EuiTabbedContent extends Component {
     }
   };
 
-  onTabClick = selectedTab => {
+  onTabClick = (selectedTab: EuiTabbedContentTabDescriptor) => {
     const { onTabClick, selectedTab: externalSelectedTab } = this.props;
 
     if (onTabClick) {
@@ -138,9 +173,9 @@ export class EuiTabbedContent extends Component {
     // Allow the consumer to control tab selection.
     const selectedTab =
       externalSelectedTab ||
-      tabs.find(tab => tab.id === this.state.selectedTabId);
+      tabs.find((tab: EuiTabbedContentTabDescriptor) => tab.id === this.state.selectedTabId);
 
-    const { content: selectedTabContent, id: selectedTabId } = selectedTab;
+    const { content: selectedTabContent, id: selectedTabId } = selectedTab!;
 
     return (
       <div
@@ -149,7 +184,7 @@ export class EuiTabbedContent extends Component {
         {...rest}
         onFocus={this.initializeFocus}>
         <EuiTabs expand={expand} display={display} size={size}>
-          {tabs.map(tab => {
+          {tabs.map((tab: EuiTabbedContentTabDescriptor) => {
             const {
               id,
               name,
@@ -179,7 +214,3 @@ export class EuiTabbedContent extends Component {
     );
   }
 }
-
-EuiTabbedContent.defaultProps = {
-  autoFocus: 'initial',
-};
