@@ -1,50 +1,46 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { CommonProps } from '../common'
+import { CommonProps, keysOf } from '../common'
 
-export type EuiTabsDisplayKeys = 'default' | 'condensed';
-export type EuiTabsSizeKeys = 's' | 'm'
-
-const displayToClassNameMap: { [key in EuiTabsDisplayKeys]: string | null } = {
+const displayToClassNameMap = {
   condensed: 'euiTabs--condensed',
   default: null,
 };
 
-export const DISPLAYS = Object.keys(displayToClassNameMap);
+export const DISPLAYS = keysOf(displayToClassNameMap)
 
-const sizeToClassNameMap: { [key in EuiTabsSizeKeys]: string | null } = {
+export type EuiTabsDisplaySizes = keyof typeof displayToClassNameMap;
+
+const sizeToClassNameMap = {
   s: 'euiTabs--small',
   m: null,
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const SIZES = keysOf(sizeToClassNameMap)
+
+export type EuiTabsSizes = keyof typeof sizeToClassNameMap
 
 export type EuiTabsProps = CommonProps
   & HTMLAttributes<HTMLDivElement>
   & {
-  display?: EuiTabsDisplayKeys
+  display?: EuiTabsDisplaySizes;
   expand?: boolean;
-  size?: EuiTabsSizeKeys
-  className?: string;
+  size?: EuiTabsSizes
 }
 
 export const EuiTabs = ({
   children,
   className,
-  display,
-  expand,
-  size,
+  display = 'default',
+  expand = false,
+  size = 'm',
   ...rest
 }: PropsWithChildren<EuiTabsProps>) => {
   const classes = classNames(
     'euiTabs',
-    /**
-     * Safe usage of ! as these values are always set
-     * by default property values
-     */
-    displayToClassNameMap[display!],
-    sizeToClassNameMap[size!],
+    displayToClassNameMap[display],
+    sizeToClassNameMap[size],
     {
       'euiTabs--expand': expand,
     },
@@ -71,10 +67,4 @@ EuiTabs.propTypes = {
    */
   expand: PropTypes.bool,
   size: PropTypes.oneOf(SIZES),
-};
-
-EuiTabs.defaultProps = {
-  display: 'default',
-  expand: false,
-  size: 'm',
 };

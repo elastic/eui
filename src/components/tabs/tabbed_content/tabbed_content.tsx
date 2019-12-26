@@ -1,9 +1,8 @@
 import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react'
-import PropTypes from 'prop-types';
 
 import { htmlIdGenerator } from '../../../services';
 
-import { EuiTabs, DISPLAYS, SIZES, EuiTabsDisplayKeys, EuiTabsSizeKeys } from '../tabs'
+import { EuiTabs, EuiTabsDisplaySizes, EuiTabsSizes } from '../tabs'
 import { EuiTab } from '../tab';
 import { CommonProps } from '../../common'
 
@@ -29,57 +28,16 @@ export type EuiTabbedContentProps = CommonProps
   & HTMLAttributes<HTMLDivElement>
   & {
   autoFocus?: 'initial' | 'selected';
-  className?: string;
-  display?: EuiTabsDisplayKeys;
+  display?: EuiTabsDisplaySizes;
   expand?: boolean;
   initialSelectedTab?: EuiTabbedContentTabDescriptor;
-  onTabClick?: Function
+  onTabClick?: (selectedTab: EuiTabbedContentTabDescriptor) => void;
   selectedTab?: EuiTabbedContentTabDescriptor;
-  size?: EuiTabsSizeKeys;
+  size?: EuiTabsSizes;
   tabs: Array<EuiTabbedContentTabDescriptor>
 }
 
 export class EuiTabbedContent extends Component<EuiTabbedContentProps, EuiTabbedContentState> {
-  static propTypes = {
-    className: PropTypes.string,
-    /**
-     * Choose `default` or alternative `condensed` display styles
-     */
-    display: PropTypes.oneOf(DISPLAYS),
-    /**
-     * Evenly stretches each tab to fill the horizontal space
-     */
-    expand: PropTypes.bool,
-    /**
-     * Use this prop to set the initially selected tab while letting the tabbed content component
-     * control selection state internally
-     */
-    initialSelectedTab: PropTypes.object,
-    onTabClick: PropTypes.func,
-    /**
-     * Use this prop if you want to control selection state within the owner component
-     */
-    selectedTab: PropTypes.object,
-    /**
-     * When tabbing into the tabs, set the focus on `initial` for the first tab,
-     * or `selected` for the currently selected tab. Best use case is for inside of
-     * overlay content like popovers or flyouts.
-     */
-    autoFocus: PropTypes.oneOf(AUTOFOCUS),
-    size: PropTypes.oneOf(SIZES),
-    /**
-     * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
-     * The name property is also required to display to the user.
-     */
-    tabs: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.node.isRequired,
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  };
-
   static defaultProps = {
     autoFocus: 'initial',
   };
