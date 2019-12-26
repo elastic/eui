@@ -1,1 +1,5 @@
-export { EuiTabbedContent, EuiTabbedContentTabDescriptor, EuiTabbedContentProps } from './tabbed_content';
+export {
+  EuiTabbedContent,
+  EuiTabbedContentTabDescriptor,
+  EuiTabbedContentProps,
+} from './tabbed_content';

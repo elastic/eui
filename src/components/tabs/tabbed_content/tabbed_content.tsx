@@ -1,10 +1,10 @@
-import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react'
+import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react';
 
 import { htmlIdGenerator } from '../../../services';
 
-import { EuiTabs, EuiTabsDisplaySizes, EuiTabsSizes } from '../tabs'
+import { EuiTabs, EuiTabsDisplaySizes, EuiTabsSizes } from '../tabs';
 import { EuiTab } from '../tab';
-import { CommonProps } from '../../common'
+import { CommonProps } from '../../common';
 
 const makeId = htmlIdGenerator();
 
@@ -24,49 +24,51 @@ interface EuiTabbedContentState {
   inFocus: boolean;
 }
 
-export type EuiTabbedContentProps = CommonProps
-  & HTMLAttributes<HTMLDivElement>
-  & {
-  /**
-   * When tabbing into the tabs, set the focus on `initial` for the first tab,
-   * or `selected` for the currently selected tab. Best use case is for inside of
-   * overlay content like popovers or flyouts.
-   */
-  autoFocus?: 'initial' | 'selected';
-  /**
-   * Choose `default` or alternative `condensed` display styles
-   */
-  display?: EuiTabsDisplaySizes;
-  /**
-   * Evenly stretches each tab to fill the horizontal space
-   */
-  expand?: boolean;
-  /**
-   * Use this prop to set the initially selected tab while letting the tabbed content component
-   * control selection state internally
-   */
-  initialSelectedTab?: EuiTabbedContentTabDescriptor;
-  onTabClick?: (selectedTab: EuiTabbedContentTabDescriptor) => void;
-  /**
-   * Use this prop if you want to control selection state within the owner component
-   */
-  selectedTab?: EuiTabbedContentTabDescriptor;
-  size?: EuiTabsSizes;
-  /**
-   * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
-   * The name property is also required to display to the user.
-   */
-  tabs: Array<EuiTabbedContentTabDescriptor>
-}
+export type EuiTabbedContentProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    /**
+     * When tabbing into the tabs, set the focus on `initial` for the first tab,
+     * or `selected` for the currently selected tab. Best use case is for inside of
+     * overlay content like popovers or flyouts.
+     */
+    autoFocus?: 'initial' | 'selected';
+    /**
+     * Choose `default` or alternative `condensed` display styles
+     */
+    display?: EuiTabsDisplaySizes;
+    /**
+     * Evenly stretches each tab to fill the horizontal space
+     */
+    expand?: boolean;
+    /**
+     * Use this prop to set the initially selected tab while letting the tabbed content component
+     * control selection state internally
+     */
+    initialSelectedTab?: EuiTabbedContentTabDescriptor;
+    onTabClick?: (selectedTab: EuiTabbedContentTabDescriptor) => void;
+    /**
+     * Use this prop if you want to control selection state within the owner component
+     */
+    selectedTab?: EuiTabbedContentTabDescriptor;
+    size?: EuiTabsSizes;
+    /**
+     * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
+     * The name property is also required to display to the user.
+     */
+    tabs: EuiTabbedContentTabDescriptor[];
+  };
 
-export class EuiTabbedContent extends Component<EuiTabbedContentProps, EuiTabbedContentState> {
+export class EuiTabbedContent extends Component<
+  EuiTabbedContentProps,
+  EuiTabbedContentState
+> {
   static defaultProps = {
     autoFocus: 'initial',
   };
 
   private readonly rootId = makeId();
 
-  private readonly divRef = createRef<HTMLDivElement>()
+  private readonly divRef = createRef<HTMLDivElement>();
 
   constructor(props: EuiTabbedContentProps) {
     super(props);
@@ -91,14 +93,20 @@ export class EuiTabbedContent extends Component<EuiTabbedContentProps, EuiTabbed
     // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
     if (this.divRef.current) {
       // Current short-term solution for event listener (see https://github.com/elastic/eui/pull/2717)
-      this.divRef.current.addEventListener('focusout' as 'blur', this.removeFocus);
+      this.divRef.current.addEventListener(
+        'focusout' as 'blur',
+        this.removeFocus
+      );
     }
   }
 
   componentWillUnmount() {
     if (this.divRef.current) {
       // Current short-term solution for event listener (see https://github.com/elastic/eui/pull/2717)
-      this.divRef.current.removeEventListener('focusout' as 'blur', this.removeFocus);
+      this.divRef.current.removeEventListener(
+        'focusout' as 'blur',
+        this.removeFocus
+      );
     }
   }
 
@@ -157,7 +165,10 @@ export class EuiTabbedContent extends Component<EuiTabbedContentProps, EuiTabbed
     // Allow the consumer to control tab selection.
     const selectedTab =
       externalSelectedTab ||
-      tabs.find((tab: EuiTabbedContentTabDescriptor) => tab.id === this.state.selectedTabId);
+      tabs.find(
+        (tab: EuiTabbedContentTabDescriptor) =>
+          tab.id === this.state.selectedTabId
+      );
 
     const { content: selectedTabContent, id: selectedTabId } = selectedTab!;
 
