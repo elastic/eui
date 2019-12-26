@@ -27,13 +27,35 @@ interface EuiTabbedContentState {
 export type EuiTabbedContentProps = CommonProps
   & HTMLAttributes<HTMLDivElement>
   & {
+  /**
+   * When tabbing into the tabs, set the focus on `initial` for the first tab,
+   * or `selected` for the currently selected tab. Best use case is for inside of
+   * overlay content like popovers or flyouts.
+   */
   autoFocus?: 'initial' | 'selected';
+  /**
+   * Choose `default` or alternative `condensed` display styles
+   */
   display?: EuiTabsDisplaySizes;
+  /**
+   * Evenly stretches each tab to fill the horizontal space
+   */
   expand?: boolean;
+  /**
+   * Use this prop to set the initially selected tab while letting the tabbed content component
+   * control selection state internally
+   */
   initialSelectedTab?: EuiTabbedContentTabDescriptor;
   onTabClick?: (selectedTab: EuiTabbedContentTabDescriptor) => void;
+  /**
+   * Use this prop if you want to control selection state within the owner component
+   */
   selectedTab?: EuiTabbedContentTabDescriptor;
   size?: EuiTabsSizes;
+  /**
+   * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
+   * The name property is also required to display to the user.
+   */
   tabs: Array<EuiTabbedContentTabDescriptor>
 }
 

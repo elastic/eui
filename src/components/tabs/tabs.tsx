@@ -23,7 +23,14 @@ export type EuiTabsSizes = keyof typeof sizeToClassNameMap
 export type EuiTabsProps = CommonProps
   & HTMLAttributes<HTMLDivElement>
   & {
+  /**
+   * Choose `default` or alternative `condensed` display styles
+   */
   display?: EuiTabsDisplaySizes;
+  /**
+   * Evenly stretches each tab to fill the
+   * horizontal space
+   */
   expand?: boolean;
   size?: EuiTabsSizes
 }
@@ -31,6 +38,7 @@ export type EuiTabsProps = CommonProps
 export const EuiTabs = ({
   children,
   className,
+
   display = 'default',
   expand = false,
   size = 'm',
