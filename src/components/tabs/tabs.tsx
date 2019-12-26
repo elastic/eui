@@ -1,5 +1,4 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common'
 
@@ -52,19 +51,4 @@ export const EuiTabs = ({
       {children}
     </div>
   );
-};
-
-EuiTabs.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  /**
-   * Choose `default` or alternative `condensed` display styles
-   */
-  display: PropTypes.oneOf(DISPLAYS),
-  /**
-   * Evenly stretches each tab to fill the
-   * horizontal space
-   */
-  expand: PropTypes.bool,
-  size: PropTypes.oneOf(SIZES),
 };
