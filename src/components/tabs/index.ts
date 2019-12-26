@@ -1,3 +1,3 @@
 export { EuiTab } from './tab';
-export { EuiTabs } from './tabs';
-export { EuiTabbedContent } from './tabbed_content';
+export { EuiTabs, EuiTabsProps } from './tabs';
+export { EuiTabbedContent, EuiTabbedContentProps } from './tabbed_content';

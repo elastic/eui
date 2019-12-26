@@ -110,13 +110,15 @@ export class EuiTabbedContent extends Component<EuiTabbedContentProps, EuiTabbed
     // IE11 doesn't support the `relatedTarget` event property for blur events
     // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
     if (this.divRef.current) {
-      this.divRef.current.addEventListener('focusout', this.removeFocus);
+      // Current short-term solution for event listener (see https://github.com/elastic/eui/pull/2717)
+      this.divRef.current.addEventListener('focusout' as 'blur', this.removeFocus);
     }
   }
 
   componentWillUnmount() {
     if (this.divRef.current) {
-      this.divRef.current.removeEventListener('focusout', this.removeFocus);
+      // Current short-term solution for event listener (see https://github.com/elastic/eui/pull/2717)
+      this.divRef.current.removeEventListener('focusout' as 'blur', this.removeFocus);
     }
   }
 
@@ -134,9 +136,11 @@ export class EuiTabbedContent extends Component<EuiTabbedContentProps, EuiTabbed
   };
 
   // todo: figure out type for blurEvent
-  removeFocus = (blurEvent: any) => {
+  removeFocus = (blurEvent: FocusEvent) => {
     // only set inFocus to false if the wrapping div doesn't contain the now-focusing element
-    if (blurEvent.currentTarget.contains(blurEvent.relatedTarget) === false) {
+    const currentTarget = blurEvent.currentTarget! as HTMLElement;
+    const relatedTarget = blurEvent.relatedTarget! as HTMLElement;
+    if (currentTarget.contains(relatedTarget) === false) {
       this.setState({
         inFocus: false,
       });
