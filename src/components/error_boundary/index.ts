@@ -1,1 +1,1 @@
-export { EuiErrorBoundary } from './error_boundary';
+export { EuiErrorBoundary, EuiErrorBoundaryProps } from './error_boundary';
