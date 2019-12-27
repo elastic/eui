@@ -37,8 +37,6 @@ export type EuiToggleProps = HTMLAttributes<HTMLDivElement> &
      */
     inputClassName?: string;
     value?: string | number;
-
-    'data-test-subj'?: string;
   };
 
 export const EuiToggle: React.SFC<EuiToggleProps> = ({
