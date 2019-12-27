@@ -211,13 +211,7 @@ function sortByColumn(
       `input[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    act(() =>
-      sortButton.parents('EuiButtonGroup').props().onChange!(
-        undefined,
-        // @ts-ignore TS wants to use react's onChange definition instead of the EuiButtonGroup one
-        direction
-      )
-    );
+    sortButton.simulate('change', [undefined, direction]);
   }
 
   // close popover
