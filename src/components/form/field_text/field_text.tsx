@@ -2,13 +2,16 @@ import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
-import { EuiFormControlLayout } from '../form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
 
 export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
-    icon?: string;
+    icon?: EuiFormControlLayoutProps['icon'];
     isInvalid?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;
@@ -18,12 +21,12 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
     /**
      * Creates an input group with element(s) coming before input
      */
-    prepend?: JSX.Element | JSX.Element[];
+    prepend?: EuiFormControlLayoutProps['prepend'];
 
     /**
      * Creates an input group with element(s) coming after input
      */
-    append?: string;
+    append?: EuiFormControlLayoutProps['append'];
 
     /**
      * Completely removes form control layout wrapper and ignores
@@ -46,7 +49,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   icon,
   isInvalid,
   inputRef,
-  fullWidth,
+  fullWidth = false,
   isLoading,
   compressed,
   prepend,
@@ -94,11 +97,4 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
       {control}
     </EuiFormControlLayout>
   );
-};
-
-EuiFieldText.defaultProps = {
-  value: undefined,
-  fullWidth: false,
-  isLoading: false,
-  compressed: false,
 };

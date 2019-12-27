@@ -17,6 +17,14 @@ export interface EuiDataGridColumn {
    * Defauls to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
+  /**
+   * Whether this column's width can be changed by the user, defaults to true
+   */
+  isResizable?: boolean;
+  /**
+   * Initial width (in pixels) of the column
+   */
+  initialWidth?: number;
 }
 
 export interface EuiDataGridColumnVisibility {

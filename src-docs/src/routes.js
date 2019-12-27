@@ -13,6 +13,8 @@ import AccessibilityGuidelines from './views/guidelines/accessibility';
 
 import ButtonGuidelines from './views/guidelines/button';
 
+import FormGuidelines from './views/guidelines/forms';
+
 import ColorGuidelines from './views/guidelines/colors';
 
 import ModalGuidelines from './views/guidelines/modals';
@@ -271,6 +273,10 @@ const navigation = [
       {
         name: 'Colors',
         component: ColorGuidelines,
+      },
+      {
+        name: 'Forms',
+        component: FormGuidelines,
       },
       {
         name: 'Modals',

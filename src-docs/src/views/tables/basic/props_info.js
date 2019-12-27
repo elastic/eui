@@ -95,6 +95,15 @@ export const propsInfo = {
           required: false,
           type: { name: '(criteria: #Criteria) => void' },
         },
+        tableLayout: {
+          description:
+            'Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.',
+          required: false,
+          type: {
+            name: '(fixed | auto)',
+          },
+          defaultValue: { value: 'fixed' },
+        },
       },
     },
   },
