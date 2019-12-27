@@ -7,13 +7,13 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
+import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { ExclusiveUnion } from '../../common';
 import { EuiToggle, ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
 import { useRenderToText } from '../../inner_text/render_to_text';
 
-export interface EuiButtonToggleProps extends EuiButtonProps {
+export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
   /**
    * Simulates a `EuiButtonEmpty`
    */
@@ -80,6 +80,7 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
   toggleClassName,
   type,
   value,
+  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
   const classes = classNames(
@@ -116,7 +117,8 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
       onChange={onChange}
       type={type}
       title={labelText}
-      value={value}>
+      value={value}
+      data-test-subj={dataTestSubj}>
       <EuiButton
         tabIndex={-1} // prevents double focus from input to button
         className={classes}
