@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, memo } from 'react';
 import classnames from 'classnames';
 import {
   EuiDataGridColumn,
@@ -20,7 +20,7 @@ export type EuiDataGridDataRowProps = CommonProps &
     popoverContents: EuiDataGridPopoverContents;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
-    focusedCell: [number, number];
+    focusedCellPositionInTheRow?: number | null;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     onCellFocus: Function;
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
@@ -31,65 +31,66 @@ const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
   return <EuiText>{children}</EuiText>;
 };
 
-const EuiDataGridDataRow: FunctionComponent<
-  EuiDataGridDataRowProps
-> = props => {
-  const {
-    columns,
-    schema,
-    popoverContents,
-    columnWidths,
-    defaultColumnWidth,
-    className,
-    renderCellValue,
-    rowIndex,
-    focusedCell,
-    onCellFocus,
-    interactiveCellId,
-    'data-test-subj': _dataTestSubj,
-    visibleRowIndex,
-    ...rest
-  } = props;
+const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
+  props => {
+    const {
+      columns,
+      schema,
+      popoverContents,
+      columnWidths,
+      defaultColumnWidth,
+      className,
+      renderCellValue,
+      rowIndex,
+      focusedCellPositionInTheRow,
+      onCellFocus,
+      interactiveCellId,
+      'data-test-subj': _dataTestSubj,
+      visibleRowIndex,
+      ...rest
+    } = props;
 
-  const classes = classnames('euiDataGridRow', className);
-  const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
+    const classes = classnames('euiDataGridRow', className);
+    const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
 
-  return (
-    <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
-      {columns.map((props, i) => {
-        const { id } = props;
-        const columnType = schema[id] ? schema[id].columnType : null;
+    return (
+      <div
+        role="row"
+        className={classes}
+        data-test-subj={dataTestSubj}
+        {...rest}>
+        {columns.map((props, i) => {
+          const { id } = props;
+          const columnType = schema[id] ? schema[id].columnType : null;
 
-        const isExpandable =
-          props.isExpandable !== undefined ? props.isExpandable : true;
-        const popoverContent =
-          popoverContents[columnType as string] || DefaultColumnFormatter;
+          const isExpandable =
+            props.isExpandable !== undefined ? props.isExpandable : true;
+          const popoverContent =
+            popoverContents[columnType as string] || DefaultColumnFormatter;
 
-        const width = columnWidths[id] || defaultColumnWidth;
+          const width = columnWidths[id] || defaultColumnWidth;
 
-        const isFocused =
-          focusedCell[0] === i && focusedCell[1] === visibleRowIndex;
-
-        return (
-          <EuiDataGridCell
-            key={`${id}-${rowIndex}`}
-            rowIndex={rowIndex}
-            visibleRowIndex={visibleRowIndex}
-            colIndex={i}
-            columnId={id}
-            columnType={columnType}
-            popoverContent={popoverContent}
-            width={width || undefined}
-            renderCellValue={renderCellValue}
-            onCellFocus={onCellFocus}
-            isFocused={isFocused}
-            interactiveCellId={interactiveCellId}
-            isExpandable={isExpandable}
-          />
-        );
-      })}
-    </div>
-  );
-};
+          return (
+            <EuiDataGridCell
+              key={`${id}-${rowIndex}`}
+              rowIndex={rowIndex}
+              visibleRowIndex={visibleRowIndex}
+              colIndex={i}
+              columnId={id}
+              columnType={columnType}
+              popoverContent={popoverContent}
+              width={width || undefined}
+              renderCellValue={renderCellValue}
+              onCellFocus={onCellFocus}
+              isFocused={focusedCellPositionInTheRow === i}
+              interactiveCellId={interactiveCellId}
+              isExpandable={isExpandable}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+);
 
 export { EuiDataGridDataRow };

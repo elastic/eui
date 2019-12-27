@@ -387,6 +387,7 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
+        e.preventDefault();
         e.stopPropagation();
         if (this.hasActiveOption()) {
           this.onAddOption(
@@ -723,6 +724,7 @@ export class EuiComboBox extends Component {
             fullWidth={fullWidth}
             rootId={this.rootId}
             onCloseList={this.closeList}
+            onScroll={() => this.searchInput.focus()}
           />
         </EuiPortal>
       );

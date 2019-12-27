@@ -1,0 +1,11 @@
+// These are variable overwrites used only for this theme.
+@import 'themes/eui-amsterdam/eui_amsterdam_colors_dark';
+
+// Global styling
+@import 'themes/eui-amsterdam/global_styling/index';
+
+// Components
+@import 'components/index';
+
+// Packages
+@import '../packages/index';

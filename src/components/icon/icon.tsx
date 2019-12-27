@@ -22,6 +22,7 @@ const typeToPathMap = {
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',
+  annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
   apps: 'apps',
@@ -146,7 +147,6 @@ const typeToPathMap = {
   indexPatternApp: 'app_index_pattern',
   indexRollupApp: 'app_index_rollup',
   indexSettings: 'index_settings',
-  metricsApp: 'app_metrics',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
   invert: 'invert',
@@ -235,11 +235,13 @@ const typeToPathMap = {
   menuRight: 'menuRight',
   merge: 'merge',
   metricbeatApp: 'app_metricbeat',
+  metricsApp: 'app_metrics',
   minimize: 'minimize',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
   monitoringApp: 'app_monitoring',
   moon: 'moon',
+  nested: 'nested',
   node: 'node',
   notebookApp: 'app_notebook',
   number: 'number',
@@ -431,6 +433,14 @@ export type EuiIconProps = CommonProps &
      */
     size?: IconSize;
     /**
+     * Descriptive title for naming the icon based on its use
+     */
+    title?: string;
+    /**
+     * Its value should be one or more element IDs
+     */
+    'aria-labelledby'?: string;
+    /**
      * Callback when the icon has been loaded & rendered
      */
     onIconLoad?: () => void;
@@ -438,6 +448,7 @@ export type EuiIconProps = CommonProps &
 
 interface State {
   icon: undefined | ReactElement | string;
+  iconTitle: undefined | string;
   isLoading: boolean;
 }
 
@@ -452,6 +463,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   if (isEuiIconType(icon)) {
     return undefined;
   }
+
   return icon;
 }
 
@@ -471,6 +483,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     this.state = {
       icon: initialIcon,
+      iconTitle: undefined,
       isLoading,
     };
   }
@@ -511,6 +524,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           this.setState(
             {
               icon,
+              iconTitle: iconType,
               isLoading: false,
             },
             () => {
@@ -532,6 +546,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       color,
       className,
       tabIndex,
+      title,
       onIconLoad,
       ...rest
     } = this.props;
@@ -539,7 +554,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     const { isLoading } = this.state;
 
     let optionalColorClass = null;
-    let optionalCustomStyles = null;
+    let optionalCustomStyles: any = null;
 
     if (color) {
       if (isNamedColor(color)) {
@@ -580,8 +595,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     if (typeof icon === 'string') {
       return (
         <img
-          // TODO: Allow alt prop
-          alt=""
+          alt={title}
           src={icon}
           className={classes}
           tabIndex={tabIndex}
@@ -590,13 +604,39 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       );
     } else {
       const Svg = icon;
+
+      // If it's an empty icon, or if there is no aria-label, aria-labelledby, or title it gets aria-hidden true
+      const isAriaHidden =
+        icon === empty ||
+        !(
+          this.props['aria-label'] ||
+          this.props['aria-labelledby'] ||
+          this.props.title
+        );
+      const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
+
+      let ariaLabel: any;
+
+      // If no aria-label or aria-labelledby is provided the title will be default
+      if (
+        !this.props['aria-label'] &&
+        !this.props['aria-labelledby'] &&
+        title
+      ) {
+        ariaLabel = { 'aria-label': title };
+      }
+
       return (
         <Svg
           className={classes}
           style={optionalCustomStyles}
           tabIndex={tabIndex}
           focusable={focusable}
+          role="img"
+          title={title}
           {...rest}
+          {...hideIconEmpty}
+          {...ariaLabel}
         />
       );
     }

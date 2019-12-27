@@ -74,7 +74,9 @@ export default class extends Component {
                   title: 'Embed code',
                   content: (
                     <div style={{ padding: 16 }}>
-                      <EuiFormRow label="Generate a public snapshot?">
+                      <EuiFormRow
+                        label="Generate a public snapshot?"
+                        hasChildLabel={false}>
                         <EuiSwitch
                           name="switch"
                           id="asdf"
@@ -83,7 +85,9 @@ export default class extends Component {
                           onChange={() => {}}
                         />
                       </EuiFormRow>
-                      <EuiFormRow label="Include the following in the embed">
+                      <EuiFormRow
+                        label="Include the following in the embed"
+                        hasChildLabel={false}>
                         <EuiSwitch
                           name="switch"
                           id="asdf2"

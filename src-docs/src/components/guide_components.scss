@@ -255,3 +255,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .euiDataGridHeaderCell--favoriteFranchise {
   background: transparentize($color: #800080, $amount: .9) !important;
 }
+
+.euiTreeView__nodeInnerExample {
+  color: $euiColorDanger;
+  font-weight: $euiFontWeightBold;
+}

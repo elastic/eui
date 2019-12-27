@@ -616,6 +616,26 @@ Array [
       ).toBe(2);
     });
 
+    it('renders additional toolbar controls', () => {
+      const component = render(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+          toolbarVisibility={{ additionalControls: <button>Button</button> }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     it('can hide the toolbar', () => {
       const component = mount(
         <EuiDataGrid
@@ -1108,12 +1128,12 @@ Array [
     });
   });
 
-  describe('column resizing', () => {
-    it('resizes a column by grab handles', () => {
+  describe('column sizing', () => {
+    it('uses a columns initialWidth', () => {
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
-          columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
+          columns={[{ id: 'Column 1', initialWidth: 400 }, { id: 'Column 2' }]}
           columnVisibility={{
             visibleColumns: ['Column 1', 'Column 2'],
             setVisibleColumns: () => {},
@@ -1125,42 +1145,97 @@ Array [
 
       const originalCellWidths = extractColumnWidths(component);
       expect(originalCellWidths).toEqual({
-        'Column 1': 100,
-        'Column 2': 100,
-      });
-
-      resizeColumn(component, 'Column 1', 150);
-
-      const updatedCellWidths = extractColumnWidths(component);
-      expect(updatedCellWidths).toEqual({
-        'Column 1': 150,
+        'Column 1': 400,
         'Column 2': 100,
       });
     });
 
-    it('does not trigger value re-renders', () => {
-      const renderCellValue = jest.fn(() => 'value');
+    describe('resizing', () => {
+      it('resizes a column by grab handles', () => {
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
+            columnVisibility={{
+              visibleColumns: ['Column 1', 'Column 2'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={3}
+            renderCellValue={() => 'value'}
+          />
+        );
 
-      const component = mount(
-        <EuiDataGrid
-          aria-labelledby="#test"
-          columns={[{ id: 'ColumnA' }]}
-          columnVisibility={{
-            visibleColumns: ['ColumnA'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={3}
-          renderCellValue={renderCellValue}
-        />
-      );
+        const originalCellWidths = extractColumnWidths(component);
+        expect(originalCellWidths).toEqual({
+          'Column 1': 100,
+          'Column 2': 100,
+        });
 
-      expect(renderCellValue).toHaveBeenCalledTimes(3);
-      renderCellValue.mockClear();
+        resizeColumn(component, 'Column 1', 150);
 
-      resizeColumn(component, 'ColumnA', 200);
+        const updatedCellWidths = extractColumnWidths(component);
+        expect(updatedCellWidths).toEqual({
+          'Column 1': 150,
+          'Column 2': 100,
+        });
+      });
 
-      expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
-      expect(renderCellValue).toHaveBeenCalledTimes(0);
+      it('is prevented by isResizable:false', () => {
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[
+              { id: 'Column 1', isResizable: false },
+              { id: 'Column 2' },
+            ]}
+            columnVisibility={{
+              visibleColumns: ['Column 1', 'Column 2'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={3}
+            renderCellValue={() => 'value'}
+          />
+        );
+
+        const originalCellWidths = extractColumnWidths(component);
+        expect(originalCellWidths).toEqual({
+          'Column 1': 100,
+          'Column 2': 100,
+        });
+
+        // verify there is no resizer on Column 1 but that there is on Column 2
+        expect(
+          component.find('EuiDataGridColumnResizer[columnId="Column 1"]').length
+        ).toBe(0);
+        expect(
+          component.find('EuiDataGridColumnResizer[columnId="Column 2"]').length
+        ).toBe(1);
+      });
+
+      it('does not trigger value re-renders', () => {
+        const renderCellValue = jest.fn(() => 'value');
+
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'ColumnA' }]}
+            columnVisibility={{
+              visibleColumns: ['ColumnA'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={3}
+            renderCellValue={renderCellValue}
+          />
+        );
+
+        expect(renderCellValue).toHaveBeenCalledTimes(3);
+        renderCellValue.mockClear();
+
+        resizeColumn(component, 'ColumnA', 200);
+
+        expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
+        expect(renderCellValue).toHaveBeenCalledTimes(0);
+      });
     });
   });
 
@@ -1404,6 +1479,54 @@ Array [
           ['0', '5'],
           ['0', '7'],
           ['0', '9'],
+        ]);
+      });
+
+      it('sorts with all digit groups in numerical-like', () => {
+        const onSort = jest.fn(columns => {
+          component.setProps({ sorting: { columns, onSort } });
+          component.update();
+        });
+
+        const component = mount(
+          <EuiDataGrid
+            aria-label="test"
+            columns={[{ id: 'version' }]}
+            columnVisibility={{
+              visibleColumns: ['version'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={5}
+            renderCellValue={
+              ({ rowIndex }) => `1.0.${(rowIndex % 3) + rowIndex}` // computes as 0,2,4,3,5
+            }
+            inMemory={{ level: 'sorting' }}
+            sorting={{
+              columns: [],
+              onSort,
+            }}
+          />
+        );
+
+        // verify rows are unordered
+        expect(extractGridData(component)).toEqual([
+          ['version'],
+          ['1.0.0'],
+          ['1.0.2'],
+          ['1.0.4'],
+          ['1.0.3'],
+          ['1.0.5'],
+        ]);
+
+        sortByColumn(component, 'version', 'asc');
+
+        expect(extractGridData(component)).toEqual([
+          ['version'],
+          ['1.0.0'],
+          ['1.0.2'],
+          ['1.0.3'],
+          ['1.0.4'],
+          ['1.0.5'],
         ]);
       });
     });

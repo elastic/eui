@@ -7,7 +7,6 @@ exports[`EuiSuggest is rendered 1`] = `
   >
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth"
-      id="popover"
     >
       <div
         class="euiPopover__anchor"

@@ -100,7 +100,6 @@ export class EuiSuggestInput extends Component {
     return (
       <div className={classes}>
         <EuiInputPopover
-          id="popover"
           input={customInput}
           isOpen={this.state.isPopoverOpen}
           panelPaddingSize="none"
