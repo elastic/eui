@@ -81,7 +81,7 @@ const labelDisplayToClassMap = {
   expand: 'euiSuggestItem__labelDisplay--expand',
 };
 
-export const DISPLAYS = Object.keys(labelDisplayToClassMap);
+export const DISPLAYS = keysOf(labelDisplayToClassMap);
 
 export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   className,
