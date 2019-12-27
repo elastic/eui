@@ -80,7 +80,7 @@ export const EuiSuggestInput: FunctionComponent<
   const onFieldChange = (e: any) => {
     setValue(e.target.value);
     setIsPopoverOpen(e.target.value !== '' ? true : false);
-    sendValue ? sendValue(e.target.value) : null;
+    if (sendValue) sendValue(e.target.value);
   };
 
   const closePopover = () => {

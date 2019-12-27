@@ -1,5 +1,5 @@
-export { EuiSuggestInput } from './suggest_input';
+export { EuiSuggestInput, EuiSuggestInputProps } from './suggest_input';
 
-export { EuiSuggestItem } from './suggest_item';
+export { EuiSuggestItem, EuiSuggestItemProps } from './suggest_item';
 
-export { EuiSuggest } from './suggest';
+export { EuiSuggest, EuiSuggestProps } from './suggest';

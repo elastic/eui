@@ -1,5 +1,10 @@
-import React, { FunctionComponent } from 'react';
-import { CommonProps } from '../common';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+} from 'react';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import classNames from 'classnames';
 import { EuiIcon } from '../icon';
 
@@ -8,7 +13,7 @@ interface Type {
   color: string | keyof typeof colorToClassNameMap;
 }
 
-export type EuiSuggestItemProps = CommonProps & {
+interface EuiSuggestItemPropsBase {
   /**
    * Takes 'iconType' for EuiIcon and 'color'. 'color' can be tint1 through tint9.
    */
@@ -28,12 +33,19 @@ export type EuiSuggestItemProps = CommonProps & {
    * Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'.
    */
   labelDisplay?: keyof typeof labelDisplayToClassMap;
+}
 
-  /**
-   * Handler for click on a suggestItem.
-   */
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+type PropsForDiv = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
+type PropsForButton = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'onClick' | 'type'
+> & {
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 };
+
+export type EuiSuggestItemProps = CommonProps &
+  EuiSuggestItemPropsBase &
+  ExclusiveUnion<PropsForDiv, PropsForButton>;
 
 interface ColorToClassMap {
   tint0: string;
@@ -62,14 +74,9 @@ const colorToClassNameMap: ColorToClassMap = {
   tint9: 'euiSuggestItem__type--tint9',
 };
 
-export const COLORS = Object.keys(colorToClassNameMap);
+export const COLORS = keysOf(colorToClassNameMap);
 
-interface LabelDisplayToClassMap {
-  fixed: string;
-  expand: string;
-}
-
-const labelDisplayToClassMap: LabelDisplayToClassMap = {
+const labelDisplayToClassMap = {
   fixed: 'euiSuggestItem__labelDisplay--fixed',
   expand: 'euiSuggestItem__labelDisplay--expand',
 };
@@ -121,13 +128,13 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
 
   if (onClick) {
     return (
-      <button onClick={onClick} className={classes} {...rest}>
+      <button onClick={onClick} className={classes} {...rest as PropsForButton}>
         {innerContent}
       </button>
     );
   } else {
     return (
-      <div onClick={onClick} className={classes} {...rest}>
+      <div className={classes} {...rest as PropsForDiv}>
         {innerContent}
       </div>
     );

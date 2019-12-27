@@ -1,39 +1,26 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import { EuiSuggestItem, EuiSuggestItemProps } from './suggest_item';
-import { EuiSuggestInput } from './suggest_input';
+import { EuiSuggestInput, EuiSuggestInputProps } from './suggest_input';
 
-export type EuiSuggestProps = CommonProps & {
-  tooltipContent?: string;
+export type EuiSuggestProps = CommonProps &
+  EuiSuggestInputProps & {
+    /**
+     * List of suggestions to display using 'suggestItem'.
+     */
+    suggestions: EuiSuggestItemProps[];
 
-  /**
-   * Status of the current query 'notYetSaved', 'saved', 'unchanged' or 'loading'.
-   */
-  status?: 'unsaved' | 'saved' | 'unchanged' | 'loading';
+    /**
+     * Handler for click on a suggestItem.
+     */
+    onItemClick?: (item: EuiSuggestItemProps) => void;
 
-  /**
-   * Element to be appended to the input bar (e.g. hashtag popover).
-   */
-  append?: JSX.Element;
-
-  /**
-   * List of suggestions to display using 'suggestItem'.
-   */
-  suggestions: EuiSuggestItemProps[];
-
-  /**
-   * Handler for click on a suggestItem.
-   */
-  onItemClick?: Function;
-
-  onInputChange?: Function;
-};
+    onInputChange?: (target: EventTarget) => void;
+  };
 
 export const EuiSuggest: FunctionComponent<EuiSuggestProps> = (
   props: EuiSuggestProps
 ) => {
-  const setValue = useState<string>('')[1];
-
   const {
     onItemClick,
     onInputChange,
@@ -43,10 +30,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = (
     suggestions,
     ...rest
   } = props;
-
-  const getValue = (val: string) => {
-    setValue(val);
-  };
 
   const onChange = (e: React.FormEvent<HTMLDivElement>) => {
     onInputChange ? onInputChange(e.target) : null;
@@ -67,7 +50,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = (
       status={status}
       tooltipContent={tooltipContent}
       append={append}
-      sendValue={getValue}
       suggestions={suggestionList}
       {...rest}
     />
