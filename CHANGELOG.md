@@ -3,6 +3,7 @@
 - Converted `EuiFieldText` to Typescript ([#2688](https://github.com/elastic/eui/pull/2688))
 - Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
 - Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
+- Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
 - Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
 
 **Bug fixes**
