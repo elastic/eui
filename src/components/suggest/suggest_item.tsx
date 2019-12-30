@@ -6,10 +6,10 @@ import React, {
 } from 'react';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import classNames from 'classnames';
-import { EuiIcon } from '../icon';
+import { EuiIcon, IconType } from '../icon';
 
 interface Type {
-  iconType: string;
+  iconType: IconType;
   color: string | keyof typeof colorToClassNameMap;
 }
 
