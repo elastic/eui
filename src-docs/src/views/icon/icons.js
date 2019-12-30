@@ -23,6 +23,7 @@ import {
 export const iconTypes = [
   'accessibility',
   'alert',
+  'annotation',
   'apmTrace',
   'apps',
   'arrowDown',
@@ -128,6 +129,7 @@ export const iconTypes = [
   'minusInCircle',
   'minusInCircleFilled',
   'moon',
+  'nested',
   'node',
   'number',
   'offline',

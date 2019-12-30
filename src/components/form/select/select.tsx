@@ -28,7 +28,6 @@ export type EuiSelectProps = SelectHTMLAttributes<HTMLSelectElement> &
      * when `true` creates a shorter height input
      */
     compressed?: boolean;
-    readOnly?: boolean;
 
     /**
      * Creates an input group with element(s) coming before select
@@ -56,7 +55,6 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   prepend,
   append,
   onMouseUp,
-  readOnly,
   ...rest
 }) => {
   const handleMouseUp = (e: any) => {
@@ -106,7 +104,6 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
-      readOnly={readOnly}
       prepend={prepend}
       append={append}
       inputId={id}>
@@ -118,7 +115,6 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
           ref={inputRef}
           defaultValue={selectDefaultValue}
           value={value}
-          disabled={readOnly}
           onMouseUp={handleMouseUp}
           {...rest}>
           {emptyOptionNode}

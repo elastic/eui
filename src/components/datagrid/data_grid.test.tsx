@@ -145,9 +145,11 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter.find(
-    'button[className*="euiButtonGroup__button--selected"]'
-  );
+  const activeSort = columnSorter
+    .find('button[className*="euiButtonGroup__button--selected"]')
+    .closest('EuiToggle')
+    .find('input[className*="euiButtonToggle__input"]');
+
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
   })['data-test-subj'].match(/(?<direction>[^-]+)$/)!.groups!.direction;
@@ -206,16 +208,10 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `button[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `input[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    act(() =>
-      sortButton.parents('EuiButtonGroup').props().onChange!(
-        undefined,
-        // @ts-ignore TS wants to use react's onChange definition instead of the EuiButtonGroup one
-        direction
-      )
-    );
+    sortButton.simulate('change', [undefined, direction]);
   }
 
   // close popover
@@ -1126,12 +1122,12 @@ Array [
     });
   });
 
-  describe('column resizing', () => {
-    it('resizes a column by grab handles', () => {
+  describe('column sizing', () => {
+    it('uses a columns initialWidth', () => {
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
-          columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
+          columns={[{ id: 'Column 1', initialWidth: 400 }, { id: 'Column 2' }]}
           columnVisibility={{
             visibleColumns: ['Column 1', 'Column 2'],
             setVisibleColumns: () => {},
@@ -1143,42 +1139,97 @@ Array [
 
       const originalCellWidths = extractColumnWidths(component);
       expect(originalCellWidths).toEqual({
-        'Column 1': 100,
-        'Column 2': 100,
-      });
-
-      resizeColumn(component, 'Column 1', 150);
-
-      const updatedCellWidths = extractColumnWidths(component);
-      expect(updatedCellWidths).toEqual({
-        'Column 1': 150,
+        'Column 1': 400,
         'Column 2': 100,
       });
     });
 
-    it('does not trigger value re-renders', () => {
-      const renderCellValue = jest.fn(() => 'value');
+    describe('resizing', () => {
+      it('resizes a column by grab handles', () => {
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
+            columnVisibility={{
+              visibleColumns: ['Column 1', 'Column 2'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={3}
+            renderCellValue={() => 'value'}
+          />
+        );
 
-      const component = mount(
-        <EuiDataGrid
-          aria-labelledby="#test"
-          columns={[{ id: 'ColumnA' }]}
-          columnVisibility={{
-            visibleColumns: ['ColumnA'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={3}
-          renderCellValue={renderCellValue}
-        />
-      );
+        const originalCellWidths = extractColumnWidths(component);
+        expect(originalCellWidths).toEqual({
+          'Column 1': 100,
+          'Column 2': 100,
+        });
 
-      expect(renderCellValue).toHaveBeenCalledTimes(3);
-      renderCellValue.mockClear();
+        resizeColumn(component, 'Column 1', 150);
 
-      resizeColumn(component, 'ColumnA', 200);
+        const updatedCellWidths = extractColumnWidths(component);
+        expect(updatedCellWidths).toEqual({
+          'Column 1': 150,
+          'Column 2': 100,
+        });
+      });
 
-      expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
-      expect(renderCellValue).toHaveBeenCalledTimes(0);
+      it('is prevented by isResizable:false', () => {
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[
+              { id: 'Column 1', isResizable: false },
+              { id: 'Column 2' },
+            ]}
+            columnVisibility={{
+              visibleColumns: ['Column 1', 'Column 2'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={3}
+            renderCellValue={() => 'value'}
+          />
+        );
+
+        const originalCellWidths = extractColumnWidths(component);
+        expect(originalCellWidths).toEqual({
+          'Column 1': 100,
+          'Column 2': 100,
+        });
+
+        // verify there is no resizer on Column 1 but that there is on Column 2
+        expect(
+          component.find('EuiDataGridColumnResizer[columnId="Column 1"]').length
+        ).toBe(0);
+        expect(
+          component.find('EuiDataGridColumnResizer[columnId="Column 2"]').length
+        ).toBe(1);
+      });
+
+      it('does not trigger value re-renders', () => {
+        const renderCellValue = jest.fn(() => 'value');
+
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'ColumnA' }]}
+            columnVisibility={{
+              visibleColumns: ['ColumnA'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={3}
+            renderCellValue={renderCellValue}
+          />
+        );
+
+        expect(renderCellValue).toHaveBeenCalledTimes(3);
+        renderCellValue.mockClear();
+
+        resizeColumn(component, 'ColumnA', 200);
+
+        expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
+        expect(renderCellValue).toHaveBeenCalledTimes(0);
+      });
     });
   });
 
