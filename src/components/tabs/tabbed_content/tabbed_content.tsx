@@ -13,7 +13,7 @@ const makeId = htmlIdGenerator();
  */
 export const AUTOFOCUS = ['initial', 'selected'] as const;
 
-export interface EuiTabbedContentTabDescriptor {
+export interface EuiTabbedContentTab {
   id: string;
   name: string;
   content: ReactNode;
@@ -44,18 +44,18 @@ export type EuiTabbedContentProps = CommonProps &
      * Use this prop to set the initially selected tab while letting the tabbed content component
      * control selection state internally
      */
-    initialSelectedTab?: EuiTabbedContentTabDescriptor;
-    onTabClick?: (selectedTab: EuiTabbedContentTabDescriptor) => void;
+    initialSelectedTab?: EuiTabbedContentTab;
+    onTabClick?: (selectedTab: EuiTabbedContentTab) => void;
     /**
      * Use this prop if you want to control selection state within the owner component
      */
-    selectedTab?: EuiTabbedContentTabDescriptor;
+    selectedTab?: EuiTabbedContentTab;
     size?: EuiTabsSizes;
     /**
      * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
      * The name property is also required to display to the user.
      */
-    tabs: EuiTabbedContentTabDescriptor[];
+    tabs: EuiTabbedContentTab[];
   };
 
 export class EuiTabbedContent extends Component<
@@ -135,7 +135,7 @@ export class EuiTabbedContent extends Component<
     }
   };
 
-  onTabClick = (selectedTab: EuiTabbedContentTabDescriptor) => {
+  onTabClick = (selectedTab: EuiTabbedContentTab) => {
     const { onTabClick, selectedTab: externalSelectedTab } = this.props;
 
     if (onTabClick) {
@@ -166,8 +166,7 @@ export class EuiTabbedContent extends Component<
     const selectedTab =
       externalSelectedTab ||
       tabs.find(
-        (tab: EuiTabbedContentTabDescriptor) =>
-          tab.id === this.state.selectedTabId
+        (tab: EuiTabbedContentTab) => tab.id === this.state.selectedTabId
       );
 
     const { content: selectedTabContent, id: selectedTabId } = selectedTab!;
@@ -179,7 +178,7 @@ export class EuiTabbedContent extends Component<
         {...rest}
         onFocus={this.initializeFocus}>
         <EuiTabs expand={expand} display={display} size={size}>
-          {tabs.map((tab: EuiTabbedContentTabDescriptor) => {
+          {tabs.map((tab: EuiTabbedContentTab) => {
             const {
               id,
               name,
