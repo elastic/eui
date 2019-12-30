@@ -145,9 +145,11 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter.find(
-    'button[className*="euiButtonGroup__button--selected"]'
-  );
+  const activeSort = columnSorter
+    .find('button[className*="euiButtonGroup__button--selected"]')
+    .closest('EuiToggle')
+    .find('input[className*="euiButtonToggle__input"]');
+
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;
   })['data-test-subj'].match(/(?<direction>[^-]+)$/)!.groups!.direction;
@@ -206,16 +208,10 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `button[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `input[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    act(() =>
-      sortButton.parents('EuiButtonGroup').props().onChange!(
-        undefined,
-        // @ts-ignore TS wants to use react's onChange definition instead of the EuiButtonGroup one
-        direction
-      )
-    );
+    sortButton.simulate('change', [undefined, direction]);
   }
 
   // close popover
