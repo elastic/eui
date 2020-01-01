@@ -27,6 +27,7 @@ export class DisplayToggles extends Component {
       append: false,
       isPopoverOpen: false,
       invalid: false,
+      isClearable: false,
     };
   }
 
@@ -48,6 +49,7 @@ export class DisplayToggles extends Component {
       canPrepend,
       canAppend,
       canInvalid,
+      canClear,
       children,
       extras,
     } = this.props;
@@ -59,6 +61,7 @@ export class DisplayToggles extends Component {
     if (canLoading) canProps.isLoading = this.state.loading;
     if (canFullWidth) canProps.fullWidth = this.state.fullWidth;
     if (canCompressed) canProps.compressed = this.state.compressed;
+    if (canClear) canProps.isClearable = this.state.isClearable;
     if (canPrepend && this.state.prepend) canProps.prepend = 'Prepend';
     if (canAppend && this.state.append) canProps.append = 'Append';
     if (canInvalid) canProps.isInvalid = this.state.invalid;
@@ -141,6 +144,18 @@ export class DisplayToggles extends Component {
                     checked={this.state.fullWidth}
                     onChange={e =>
                       this.updateProperty(e.target.checked, 'fullWidth')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canClear && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    compressed
+                    label={'clearable'}
+                    checked={this.state.isClearable}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'isClearable')
                     }
                   />
                 </EuiFlexItem>

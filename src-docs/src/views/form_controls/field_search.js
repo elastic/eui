@@ -14,14 +14,14 @@ export default class extends Component {
 
   onChange = e => {
     this.setState({
-      value: e.target.value,
+      value: e === '' ? '' : e.target.value,
     });
   };
 
   render() {
     return (
       /* DisplayToggles wrapper for Docs only */
-      <DisplayToggles>
+      <DisplayToggles canClear>
         <EuiFieldSearch
           placeholder="Search this"
           value={this.state.value}
