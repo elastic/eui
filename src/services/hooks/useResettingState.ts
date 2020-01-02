@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 export function useResettingState<T>(
   valueFn: (previousState: undefined | T) => T,
   deps: unknown[]
-) {
+): [T, React.Dispatch<React.SetStateAction<T>>] {
   const [state, setState] = useState<T>(valueFn as () => T);
   const [updateCount, setUpdateCount] = useState(0);
 
@@ -19,5 +19,5 @@ export function useResettingState<T>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
-  return [state, setState] as const;
+  return [state, setState];
 }
