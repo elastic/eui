@@ -18,11 +18,10 @@ import {
   EuiTextColor,
   EuiTitle,
   EuiLink,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
 import { getParameters } from 'codesandbox/lib/api/define';
-
-import { EuiButton } from '../../../../src/components/button';
 
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -390,6 +389,9 @@ export class GuideSection extends Component {
 
     return (
       <div key={name} ref={name}>
+        <EuiSpacer size="s" />
+        {this.renderCodeSandBoxButton()}
+        <EuiSpacer size="s" />
         <EuiCodeBlock language={codeClass} overflowHeight={400}>
           {npmImports}
         </EuiCodeBlock>
@@ -428,12 +430,12 @@ export class GuideSection extends Component {
     );
   }
 
-  render() {
-    const chrome = this.renderChrome();
-
-    console.log(this.props.source);
-
-    const npmImports = this.props.source[0].code
+  renderCodeSandBoxButton() {
+    /** This cleans the Demo JS example for Code Sanbox.
+        - Replaces relative imports with pure @elastic/eui ones
+        - Changes the JS example from a default export to a component const named Demo
+        **/
+    const exampleCleaned = this.props.source[0].code
       .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
       .replace(
         /(from )'(..\/)+src\/services(\/?';)/,
@@ -442,19 +444,24 @@ export class GuideSection extends Component {
       .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';")
       .replace('export default', 'const Demo =');
 
-    const end = `ReactDOM.render(
-  <Demo />,
-  document.getElementById('root')
-);`;
-    const beggining = `import ReactDOM from 'react-dom';
-import '@elastic/eui/dist/eui_theme_light.css'`;
+    // Renders the new Demo component generically into the code sandbox page
+    const exampleClose = `ReactDOM.render(
+      <Demo />,
+      document.getElementById('root')
+    );`;
+    // The Code Sanbbox demo needs to import CSS at the top of the document
+    const exampleStart = `import ReactDOM from 'react-dom';
+    import '@elastic/eui/dist/eui_theme_light.css'`;
 
-    const finalCode = `${beggining}
-${npmImports}
-${end}
-        `;
+    // Concat the three pieces of the example into a single string
+    const codeSandboxExample = `${exampleStart}
+    ${exampleCleaned}
+    ${exampleClose}
+    `;
+
+    // Check the imports
     const extraDeps = [
-      ...npmImports.matchAll(/import\s.*?'(?<import>[^.].*?)'/g),
+      ...exampleCleaned.matchAll(/import\s.*?'(?<import>[^.].*?)'/g),
     ]
       .map(x => x.groups.import)
       .reduce((deps, dep) => {
@@ -462,7 +469,7 @@ ${end}
         return deps;
       }, {});
 
-    const parameters = getParameters({
+    const codeSandboxParams = getParameters({
       files: {
         'package.json': {
           content: {
@@ -478,25 +485,33 @@ ${end}
           },
         },
         'index.js': {
-          content: finalCode,
+          content: codeSandboxExample,
         },
       },
     });
+
+    return (
+      <form
+        action="https://codesandbox.io/api/v1/sandboxes/define"
+        method="POST"
+        target="_blank"
+        className="eui-textRight">
+        <input type="hidden" name="parameters" value={codeSandboxParams} />
+        <EuiButtonEmpty size="xs" type="submit" iconType="logoCodesandbox">
+          Open in Codesandbox
+        </EuiButtonEmpty>
+      </form>
+    );
+  }
+
+  render() {
+    const chrome = this.renderChrome();
 
     return (
       <div className="guideSection" id={this.props.id}>
         {chrome}
         {this.renderContent()}
         {this.props.extraContent}
-        <form
-          action="https://codesandbox.io/api/v1/sandboxes/define"
-          method="POST"
-          target="_blank">
-          <input type="hidden" name="parameters" value={parameters} />
-          <EuiButton type="submit" iconType="logoCodesandbox">
-            Open in Codesandbox
-          </EuiButton>
-        </form>
       </div>
     );
   }
