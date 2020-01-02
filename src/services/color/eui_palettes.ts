@@ -161,17 +161,3 @@ export const euiPaletteGray = function(steps: number): EuiPalette {
     false
   );
 };
-
-export const palettes = {
-  euiPaletteForLightBackground,
-  euiPaletteForDarkBackground,
-  euiPaletteColorBlind,
-  euiPaletteForStatus,
-  euiPaletteForTemperature,
-  euiPaletteComplimentary,
-  euiPaletteNegative,
-  euiPalettePositive,
-  euiPaletteCool,
-  euiPaletteWarm,
-  euiPaletteGray,
-};

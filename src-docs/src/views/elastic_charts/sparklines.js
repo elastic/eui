@@ -26,7 +26,10 @@ import {
 } from '../../../../src/components';
 
 import { TIME_DATA_SMALL } from './data';
-import { palettes } from '../../../../src/services';
+import {
+  euiPaletteForDarkBackground,
+  euiPaletteForLightBackground,
+} from '../../../../src/services';
 
 const getColorsMap = (color, specId) => {
   const map = new Map();
@@ -71,6 +74,12 @@ class _Sparklines extends Component {
                     data={TIME_DATA_SMALL}
                     xAccessor={0}
                     yAccessors={[1]}
+                    customSeriesColors={getColorsMap(
+                      isDarkTheme
+                        ? euiPaletteForDarkBackground()[1]
+                        : euiPaletteForLightBackground()[1],
+                      'numbers'
+                    )}
                   />
                 </Chart>
               </EuiStat>
@@ -93,8 +102,8 @@ class _Sparklines extends Component {
                     yAccessors={[1]}
                     customSeriesColors={getColorsMap(
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground[1]
-                        : palettes.euiPaletteForLightBackground[1],
+                        ? euiPaletteForDarkBackground()[1]
+                        : euiPaletteForLightBackground()[1],
                       'increase'
                     )}
                   />
@@ -127,8 +136,8 @@ class _Sparklines extends Component {
                     yAccessors={[1]}
                     customSeriesColors={getColorsMap(
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground[3]
-                        : palettes.euiPaletteForLightBackground[3],
+                        ? euiPaletteForDarkBackground()[3]
+                        : euiPaletteForLightBackground()[3],
                       'major'
                     )}
                   />
@@ -153,8 +162,8 @@ class _Sparklines extends Component {
                     yAccessors={[1]}
                     customSeriesColors={getColorsMap(
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground[3]
-                        : palettes.euiPaletteForLightBackground[3],
+                        ? euiPaletteForDarkBackground()[3]
+                        : euiPaletteForLightBackground()[3],
                       'subtle'
                     )}
                   />

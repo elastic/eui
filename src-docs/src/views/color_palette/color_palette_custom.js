@@ -8,13 +8,13 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { palettes, colorPalette } from '../../../../src/services';
+import { euiPaletteColorBlind, colorPalette } from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
 const customPalettes = [
-  [palettes.euiPaletteColorBlind()[3]],
-  [palettes.euiPaletteColorBlind()[3], palettes.euiPaletteColorBlind()[4]],
-  [palettes.euiPaletteColorBlind()[3], palettes.euiPaletteColorBlind()[4]],
+  [euiPaletteColorBlind()[3]],
+  [euiPaletteColorBlind()[3], euiPaletteColorBlind()[4]],
+  [euiPaletteColorBlind()[3], euiPaletteColorBlind()[4]],
 ];
 
 export default () => {

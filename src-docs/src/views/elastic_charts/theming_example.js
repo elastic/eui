@@ -94,11 +94,11 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
           </p>
 
           <EuiCodeBlock language="javascript" isCopyable fontSize="s">
-            {`import { colorPalette } from '../../../../src/services';
+            {`import { euiPalettePositive } from '../../../../src/services';
 
 const customColors = {
   colors: {
-    vizColors: palettes.euiPalettePositive(5),
+    vizColors: euiPalettePositive(5),
   },
 };
 

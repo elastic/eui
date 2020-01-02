@@ -21,10 +21,28 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 
-import { palettes } from '../../../../src/services';
-const paletteData = { ...palettes };
-delete paletteData.euiPaletteForLightBackground;
-delete paletteData.euiPaletteForDarkBackground;
+import {
+  euiPaletteColorBlind,
+  euiPaletteComplimentary,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteGray,
+} from '../../../../src/services';
+const paletteData = {
+  euiPaletteColorBlind,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteGray,
+};
 const paletteNames = Object.keys(paletteData);
 
 const _Theming = props => {

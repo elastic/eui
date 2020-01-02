@@ -15,7 +15,8 @@
 **Breaking changes**
 
 - Changed accepted properties of the `color_palette` method to accept an array of colors ([#2686](https://github.com/elastic/eui/pull/#2686))
-- Changed the `eui_palettes`/`palette` functions to be methods that accept a number of steps and removed `.colors` key. ([#2686](https://github.com/elastic/eui/pull/#2686))
+- Removed the `palette` export to export each palette function directly ([#2686](https://github.com/elastic/eui/pull/#2686))
+- Changed the palette functions to be methods that accept a number of steps and removed `.colors` key ([#2686](https://github.com/elastic/eui/pull/#2686))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 

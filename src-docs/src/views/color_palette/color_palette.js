@@ -7,22 +7,22 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { palettes } from '../../../../src/services';
+import { euiPaletteColorBlind } from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
 const customPalettes = [
   {
     title: 'Max 10 colors',
-    palette: palettes.euiPaletteColorBlind(),
+    palette: euiPaletteColorBlind(),
   },
   {
     title: 'More than 10 colors are needed',
-    palette: palettes.euiPaletteColorBlind(2),
+    palette: euiPaletteColorBlind(2),
   },
   {
     title:
       'Series have multiple metrics and so the colors must coordinate but be distinguishable',
-    palette: palettes.euiPaletteColorBlind(3, 'group'),
+    palette: euiPaletteColorBlind(3, 'group'),
   },
 ];
 
@@ -53,7 +53,7 @@ export default () => (
           </EuiFlexItem>
           <EuiFlexItem>
             <ColorPaletteCopyCode
-              textToCopy={`palettes.euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
+              textToCopy={`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
                 i > 1 ? ", 'group'" : ''
               })`}
               code={`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${

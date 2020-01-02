@@ -57,10 +57,7 @@ export const ColorPaletteExample = {
         </div>
       ),
       demo: <ColorPalette />,
-      snippet: [
-        'palettes.euiPaletteColorBlind()',
-        "palettes.euiPaletteColorBlind(3, 'group')",
-      ],
+      snippet: ['euiPaletteColorBlind()', "euiPaletteColorBlind(3, 'group')"],
     },
     {
       title: 'Recommended quantitative palettes',

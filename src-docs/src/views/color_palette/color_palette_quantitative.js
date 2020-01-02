@@ -8,12 +8,28 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { palettes } from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
-const paletteData = { ...palettes };
-delete paletteData.euiPaletteForLightBackground;
-delete paletteData.euiPaletteForDarkBackground;
-delete paletteData.euiPaletteColorBlind;
+
+import {
+  euiPaletteComplimentary,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteGray,
+} from '../../../../src/services';
+const paletteData = {
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteGray,
+};
 const paletteNames = Object.keys(paletteData);
 
 export default () => {
@@ -52,7 +68,7 @@ export default () => {
           </EuiFlexItem>
           <EuiFlexItem>
             <ColorPaletteCopyCode
-              textToCopy={`palettes.${paletteName}(${length});`}
+              textToCopy={`${paletteName}(${length});`}
               code={`${paletteName}(${length})`}
             />
           </EuiFlexItem>
