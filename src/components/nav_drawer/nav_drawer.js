@@ -212,6 +212,26 @@ export class EuiNavDrawer extends Component {
     }
   };
 
+  modifyChildren = children => {
+    // Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
+    // Filter out falsy items
+    const filteredChildren = React.Children.toArray(children);
+    return React.Children.map(filteredChildren, child => {
+      // Allow for Fragments by recursive modification
+      if (child.type === React.Fragment) {
+        return this.modifyChildren(child.props.children);
+      } else if (child.type === EuiNavDrawerGroup) {
+        // Check if child is an EuiNavDrawerGroup and if it does have a flyout, add the expand function
+        return React.cloneElement(child, {
+          flyoutMenuButtonClick: this.expandFlyout,
+          showToolTips: this.state.toolTipsEnabled && this.props.showToolTips,
+        });
+      } else {
+        return child;
+      }
+    });
+  };
+
   render() {
     const {
       children,
@@ -312,19 +332,7 @@ export class EuiNavDrawer extends Component {
     // that have a flyoutMenu prop (sub links)
     let modifiedChildren = children;
 
-    // 1. Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
-    modifiedChildren = React.Children.map(this.props.children, child => {
-      // 2. Check if child is an EuiNavDrawerGroup and if it does have a flyout, add the expand function
-      if (child.type === EuiNavDrawerGroup) {
-        const item = React.cloneElement(child, {
-          flyoutMenuButtonClick: this.expandFlyout,
-          showToolTips: this.state.toolTipsEnabled && showToolTips,
-        });
-        return item;
-      } else {
-        return child;
-      }
-    });
+    modifiedChildren = this.modifyChildren(this.props.children);
 
     const menuClasses = classNames('euiNavDrawerMenu', {
       'euiNavDrawerMenu-hasFooter': footerContent,
