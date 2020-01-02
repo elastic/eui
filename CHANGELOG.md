@@ -1,12 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiFieldText` to Typescript ([#2688](https://github.com/elastic/eui/pull/2688))
 - Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
 - Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
-- Added `bellMuted` glyph to `EuiIcon` ([#2714](https://github.com/elastic/eui/pull/2714))
+- Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
+- Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
+- Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
+- Added `bellSlash` glyph to `EuiIcon` ([#2714](https://github.com/elastic/eui/pull/2714))
 
 **Bug fixes**
 
 - Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
+- Added text selection to `EuiLink` button ([#2722](https://github.com/elastic/eui/pull/#2722))
+- Fixed bug in `EuiDataGrid` where resizing columns changed the active DOM element ([#2724](https://github.com/elastic/eui/pull/#2724))
+- Fixed position of scrollbar in `EuiCodeBlock` ([#2727](https://github.com/elastic/eui/pull/#2727))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 

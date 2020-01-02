@@ -1,7 +1,6 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
-  ReactChild,
   ReactElement,
   cloneElement,
   useEffect,
@@ -324,7 +323,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
               'Press the escape key to close the popover',
               'Press the down key to open a popover containing color options',
             ]}>
-            {([openLabel, closeLabel]: ReactChild[]) => (
+            {([openLabel, closeLabel]: string[]) => (
               <EuiFieldText
                 className="euiColorPicker__input"
                 onClick={handleInputActivity}

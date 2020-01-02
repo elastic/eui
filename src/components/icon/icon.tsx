@@ -34,7 +34,7 @@ const typeToPathMap = {
   auditbeatApp: 'app_auditbeat',
   beaker: 'beaker',
   bell: 'bell',
-  bellMuted: 'bellMuted',
+  bellSlash: 'bellSlash',
   bolt: 'bolt',
   boxesHorizontal: 'boxes_horizontal',
   boxesVertical: 'boxes_vertical',

@@ -33,7 +33,7 @@ export const iconTypes = [
   'asterisk',
   'beaker',
   'bell',
-  'bellMuted',
+  'bellSlash',
   'bolt',
   'boxesHorizontal',
   'boxesVertical',
