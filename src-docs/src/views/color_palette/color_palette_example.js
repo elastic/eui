@@ -6,7 +6,6 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode } from '../../../../src/components';
-import { palettes, colorPalette } from '../../../../src/services';
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
@@ -58,7 +57,6 @@ export const ColorPaletteExample = {
         </div>
       ),
       demo: <ColorPalette />,
-      props: { colorPalette, palettes },
       snippet: [
         'palettes.euiPaletteColorBlind().colors',
         'palettes.euiPaletteColorBlind(rotations = 3, combined = true).colors',
