@@ -51,15 +51,15 @@ export const ColorPaletteExample = {
           </p>
           <p>
             This palette is restricted to only 10 colors. However, you can add
-            up to 2 more groups of 10 which are alternates of the original. This
-            is better than allowing the initial set to loop.
+            more groups of 10 which are alternates of the original. This is
+            better than allowing the initial set to loop.
           </p>
         </div>
       ),
       demo: <ColorPalette />,
       snippet: [
         'palettes.euiPaletteColorBlind()',
-        'palettes.euiPaletteColorBlind(rotations = 3, combined = true)',
+        "palettes.euiPaletteColorBlind(3, 'group')",
       ],
     },
     {

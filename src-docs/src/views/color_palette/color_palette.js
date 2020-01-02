@@ -22,7 +22,7 @@ const customPalettes = [
   {
     title:
       'Series have multiple metrics and so the colors must coordinate but be distinguishable',
-    palette: palettes.euiPaletteColorBlind(3, true),
+    palette: palettes.euiPaletteColorBlind(3, 'group'),
   },
 ];
 
@@ -54,10 +54,10 @@ export default () => (
           <EuiFlexItem>
             <ColorPaletteCopyCode
               textToCopy={`palettes.euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
-                i > 1 ? ', true' : ''
+                i > 1 ? ", 'group'" : ''
               })`}
               code={`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
-                i > 1 ? ', true' : ''
+                i > 1 ? ", 'group'" : ''
               })`}
             />
           </EuiFlexItem>

@@ -25,9 +25,9 @@ export const euiPaletteColorBlind = function(
    */
   rotations: number = 1,
   /**
-   * Should similar colors be grouped (true) or just append each variation (false)
+   * Order similar colors as `group`s or just `append` each variation
    */
-  combined: boolean = false
+  order: 'append' | 'group' = 'append'
 ): EuiPalette {
   let colors: string[] = [];
 
@@ -49,7 +49,7 @@ export const euiPaletteColorBlind = function(
       euiPalette(['white', color], rotations).reverse()
     );
 
-    if (combined) {
+    if (order === 'group') {
       colors = flatten(palettes);
     } else {
       for (let i = 0; i < rotations; i++) {
