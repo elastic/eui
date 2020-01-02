@@ -20,10 +20,6 @@
     font-size: inherit;
   }
 
-  &.euiCodeBlock--hasControls {
-    padding-right: $euiSizeL + $euiSizeXS;
-  }
-
   .euiCodeBlock__controls {
     position: absolute;
     top: 0;
@@ -64,6 +60,8 @@
     font-size: $euiFontSize;
   }
 
+  $controlsPadding: $euiSizeL + $euiSizeXS;
+
   // Small padding
   &.euiCodeBlock--paddingSmall {
     .euiCodeBlock__pre {
@@ -73,6 +71,10 @@
     .euiCodeBlock__controls {
       top: $euiSizeS;
       right: $euiSizeS;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+      padding-right: $euiSizeS + $controlsPadding;
     }
   }
 
@@ -86,6 +88,10 @@
       top: $euiSize;
       right: $euiSize;
     }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+      padding-right: $euiSize + $controlsPadding;
+    }
   }
 
   // Large padding
@@ -97,6 +103,10 @@
     .euiCodeBlock__controls {
       top: $euiSizeL;
       right: $euiSizeL;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+      padding-right: $euiSizeL + $controlsPadding;
     }
   }
 
