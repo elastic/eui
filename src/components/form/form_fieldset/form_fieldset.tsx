@@ -4,7 +4,7 @@ import { EuiFormLegendProps, EuiFormLegend } from './form_legend';
 
 export interface EuiFormFieldsetProps
   extends CommonProps,
-    Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
+    HTMLAttributes<HTMLFieldSetElement> {
   /**
    * Adds an EuiFormLegend element as the first child
    */

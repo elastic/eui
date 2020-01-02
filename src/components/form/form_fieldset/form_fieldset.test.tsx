@@ -6,7 +6,11 @@ import { EuiFormFieldset } from './form_fieldset';
 
 describe('EuiFormFieldset', () => {
   test('is rendered', () => {
-    const component = render(<EuiFormFieldset {...requiredProps} />);
+    const component = render(
+      <EuiFormFieldset {...requiredProps}>
+        <input />
+      </EuiFormFieldset>
+    );
 
     expect(component).toMatchSnapshot();
   });
@@ -14,7 +18,9 @@ describe('EuiFormFieldset', () => {
   describe('props', () => {
     test('legend is rendered', () => {
       const component = render(
-        <EuiFormFieldset legend={{ children: 'Legend' }} />
+        <EuiFormFieldset legend={{ children: 'Legend' }}>
+          <input />
+        </EuiFormFieldset>
       );
 
       expect(component).toMatchSnapshot();
