@@ -12,6 +12,7 @@
 - Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
 - Added text selection to `EuiLink` button ([#2722](https://github.com/elastic/eui/pull/#2722))
 - Fixed bug in `EuiDataGrid` where resizing columns changed the active DOM element ([#2724](https://github.com/elastic/eui/pull/#2724))
+- Fixed position of scrollbar in `EuiCodeBlock` ([#2727](https://github.com/elastic/eui/pull/#2727))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
