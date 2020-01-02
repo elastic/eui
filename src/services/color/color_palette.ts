@@ -5,7 +5,7 @@ export const MID_COLOR_STOP = '#EBEFF5';
 /**
  * This function takes an array of colors and returns an array of interpolated
  * colors based on the number of steps/len needed for use in UI elements such as charts.
- * Derived from https://github.com/gka/palettes
+ * Derived from https://github.com/gka/palettes (Unlicensed)
  */
 
 export function colorPalette(
