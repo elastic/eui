@@ -10,6 +10,7 @@
 **Bug fixes**
 
 - Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
+- Added text selection to `EuiLink` button ([#2722](https://github.com/elastic/eui/pull/#2722))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
