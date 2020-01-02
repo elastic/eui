@@ -52,6 +52,7 @@ export const EuiToggle: React.SFC<EuiToggleProps> = ({
   title,
   type,
   value,
+  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
   const classes = classNames(
@@ -75,6 +76,7 @@ export const EuiToggle: React.SFC<EuiToggleProps> = ({
         title={title}
         type={type ? typeToInputTypeMap[type] : undefined}
         value={value}
+        data-test-subj={dataTestSubj}
       />
 
       {children}
