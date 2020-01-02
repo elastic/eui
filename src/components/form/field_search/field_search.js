@@ -42,7 +42,7 @@ const defaultProps = {
   isLoading: false,
   incremental: false,
   compressed: false,
-  isClearable: false,
+  isClearable: true,
 };
 
 export class EuiFieldSearch extends Component {
@@ -129,7 +129,11 @@ export class EuiFieldSearch extends Component {
         icon="search"
         fullWidth={fullWidth}
         isLoading={isLoading}
-        clear={isClearable && value ? { onClick: this.onClear } : null}
+        clear={
+          isClearable && value && !rest.readOnly && !rest.disabled
+            ? { onClick: this.onClear }
+            : null
+        }
         compressed={compressed}>
         <EuiValidatableControl isInvalid={isInvalid}>
           <input
