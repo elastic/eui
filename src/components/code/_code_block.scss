@@ -60,6 +60,7 @@
     font-size: $euiFontSize;
   }
 
+  // Storing for re-use the sizing of controls plus extra padding
   $controlsPadding: $euiSizeL + $euiSizeXS;
 
   // Small padding
@@ -110,14 +111,14 @@
     }
   }
 
-  /**
-  ** 1. Size the code against the text its embedded within.
-  **/
+  /*
+   * 1. Size the code against the text its embedded within.
+   */
   &.euiCodeBlock--inline {
     display: inline-block;
     white-space: pre;
     color: $euiTextColor;
-    font-size: 90%; // 1
+    font-size: 90%; /* 1 */
     padding: 0 $euiSizeS;
     background: $euiCodeBlockBackgroundColor;
 
