@@ -67,7 +67,11 @@ function resizeColumn(
   const firstResizer = datagrid
     .find(`EuiDataGridColumnResizer[columnId="${columnId}"]`)
     .instance() as EuiDataGridColumnResizer;
-  firstResizer.onMouseDown({ pageX: originalWidth });
+  firstResizer.onMouseDown({
+    pageX: originalWidth,
+    stopPropagation: () => {},
+    preventDefault: () => {},
+  } as React.MouseEvent<HTMLDivElement>);
   firstResizer.onMouseMove({ pageX: columnWidth });
   act(() => firstResizer.onMouseUp());
 

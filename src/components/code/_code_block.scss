@@ -20,10 +20,6 @@
     font-size: inherit;
   }
 
-  &.euiCodeBlock--hasControls {
-    padding-right: $euiSizeL + $euiSizeXS;
-  }
-
   .euiCodeBlock__controls {
     position: absolute;
     top: 0;
@@ -64,6 +60,9 @@
     font-size: $euiFontSize;
   }
 
+  // Storing for re-use the sizing of controls plus extra padding
+  $controlsPadding: $euiSizeL + $euiSizeXS;
+
   // Small padding
   &.euiCodeBlock--paddingSmall {
     .euiCodeBlock__pre {
@@ -73,6 +72,10 @@
     .euiCodeBlock__controls {
       top: $euiSizeS;
       right: $euiSizeS;
+    }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+      padding-right: $euiSizeS + $controlsPadding;
     }
   }
 
@@ -86,6 +89,10 @@
       top: $euiSize;
       right: $euiSize;
     }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+      padding-right: $euiSize + $controlsPadding;
+    }
   }
 
   // Large padding
@@ -98,16 +105,20 @@
       top: $euiSizeL;
       right: $euiSizeL;
     }
+
+    &.euiCodeBlock--hasControls .euiCodeBlock__pre {
+      padding-right: $euiSizeL + $controlsPadding;
+    }
   }
 
-  /**
-  ** 1. Size the code against the text its embedded within.
-  **/
+  /*
+   * 1. Size the code against the text its embedded within.
+   */
   &.euiCodeBlock--inline {
     display: inline-block;
     white-space: pre;
     color: $euiTextColor;
-    font-size: 90%; // 1
+    font-size: 90%; /* 1 */
     padding: 0 $euiSizeS;
     background: $euiCodeBlockBackgroundColor;
 
