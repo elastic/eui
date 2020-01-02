@@ -74,3 +74,5 @@ export {
 } from './transition';
 
 export { EuiWindowEvent } from './window_event';
+
+export { useResettingState } from './hooks';
