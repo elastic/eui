@@ -44,6 +44,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
     }
   }
   responsive={true}
+  tableLayout="fixed"
 >
   <EuiBasicTable
     aria-label="aria-label"
@@ -86,6 +87,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       }
     }
     responsive={true}
+    tableLayout="fixed"
   >
     <div
       aria-label="aria-label"
@@ -125,6 +127,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         </EuiTableHeaderMobile>
         <EuiTable
           responsive={true}
+          tableLayout="fixed"
         >
           <table
             className="euiTable euiTable--responsive"
@@ -663,6 +666,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
   noItemsMessage="No items found"
   onChange={[Function]}
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -684,6 +688,7 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
   noItemsMessage="No items found"
   onChange={[Function]}
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -730,6 +735,7 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
       },
     }
   }
+  tableLayout="fixed"
 />
 `;
 
@@ -766,6 +772,7 @@ exports[`EuiInMemoryTable with items 1`] = `
   noItemsMessage="No items found"
   onChange={[Function]}
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -810,6 +817,7 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
   noItemsMessage="No items found"
   onChange={[Function]}
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -846,6 +854,7 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
   noItemsMessage="show me!"
   onChange={[Function]}
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -867,6 +876,7 @@ exports[`EuiInMemoryTable with message 1`] = `
   noItemsMessage="where my items at?"
   onChange={[Function]}
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -889,6 +899,7 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
   noItemsMessage="Loading items...."
   onChange={[Function]}
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -934,6 +945,7 @@ exports[`EuiInMemoryTable with pagination 1`] = `
     }
   }
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -975,6 +987,7 @@ exports[`EuiInMemoryTable with pagination and default page size and index 1`] = 
     }
   }
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -1030,6 +1043,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
       "onSelectionChange": [Function],
     }
   }
+  tableLayout="fixed"
 />
 `;
 
@@ -1072,6 +1086,7 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
     }
   }
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -1121,6 +1136,7 @@ exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
     }
   }
   responsive={true}
+  tableLayout="fixed"
 />
 `;
 
@@ -1183,6 +1199,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
       "sort": undefined,
     }
   }
+  tableLayout="fixed"
 />
 `;
 
@@ -1262,6 +1279,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
         "sort": undefined,
       }
     }
+    tableLayout="fixed"
   />
 </div>
 `;
@@ -1335,6 +1353,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
       "sort": undefined,
     }
   }
+  tableLayout="fixed"
 />
 `;
 
@@ -1394,6 +1413,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
       "sort": undefined,
     }
   }
+  tableLayout="fixed"
 />
 `;
 
@@ -1482,6 +1502,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
         "sort": undefined,
       }
     }
+    tableLayout="fixed"
   />
 </div>
 `;

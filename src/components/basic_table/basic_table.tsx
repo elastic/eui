@@ -16,11 +16,11 @@ import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-// @ts-ignore
 import { EuiCheckbox } from '../form/checkbox/checkbox';
 
 import {
   EuiTable,
+  EuiTableProps,
   EuiTableBody,
   EuiTableFooter,
   EuiTableFooterCell,
@@ -171,13 +171,12 @@ export interface CriteriaWithPagination<T> extends Criteria<T> {
 type CellPropsCallback<T> = (item: T, column: EuiBasicTableColumn<T>) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
-interface BasicTableProps<T> {
+interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
   itemId?: ItemId<T>;
   itemIdToExpandedRowMap?: ItemIdToExpandedRowMap;
   items: T[];
   cellProps?: object | CellPropsCallback<T>;
   columns: Array<EuiBasicTableColumn<T>>;
-  compressed?: boolean;
   error?: string;
   hasActions?: boolean;
   isExpandable?: boolean;
@@ -186,7 +185,6 @@ interface BasicTableProps<T> {
   noItemsMessage?: ReactNode;
   onChange?: (criteria: Criteria<T>) => void;
   pagination?: undefined;
-  responsive?: boolean;
   rowProps?: object | RowPropsCallback<T>;
   selection?: EuiTableSelectionType<T>;
   sorting?: EuiTableSortingType<T>;
@@ -227,6 +225,7 @@ export class EuiBasicTable<T = any> extends Component<
 > {
   static defaultProps = {
     responsive: true,
+    tableLayout: 'fixed',
     noItemsMessage: 'No items found',
   };
 
@@ -359,23 +358,24 @@ export class EuiBasicTable<T = any> extends Component<
     const {
       className,
       loading,
-      items, // eslint-disable-line no-unused-vars
-      itemId, // eslint-disable-line no-unused-vars
-      columns, // eslint-disable-line no-unused-vars
-      pagination, // eslint-disable-line no-unused-vars
-      sorting, // eslint-disable-line no-unused-vars
-      selection, // eslint-disable-line no-unused-vars
-      onChange, // eslint-disable-line no-unused-vars
-      error, // eslint-disable-line no-unused-vars
-      noItemsMessage, // eslint-disable-line no-unused-vars
-      compressed, // eslint-disable-line no-unused-vars
-      itemIdToExpandedRowMap, // eslint-disable-line no-unused-vars
-      responsive, // eslint-disable-line no-unused-vars
-      isSelectable, // eslint-disable-line no-unused-vars
-      isExpandable, // eslint-disable-line no-unused-vars
-      hasActions, // eslint-disable-line no-unused-vars
-      rowProps, // eslint-disable-line no-unused-vars
-      cellProps, // eslint-disable-line no-unused-vars
+      items,
+      itemId,
+      columns,
+      pagination,
+      sorting,
+      selection,
+      onChange,
+      error,
+      noItemsMessage,
+      compressed,
+      itemIdToExpandedRowMap,
+      responsive,
+      isSelectable,
+      isExpandable,
+      hasActions,
+      rowProps,
+      cellProps,
+      tableLayout,
       ...rest
     } = this.props;
 
@@ -399,7 +399,7 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTable() {
-    const { compressed, responsive } = this.props;
+    const { compressed, responsive, tableLayout } = this.props;
 
     const mobileHeader = responsive ? (
       <EuiTableHeaderMobile>
@@ -421,7 +421,10 @@ export class EuiBasicTable<T = any> extends Component<
     return (
       <div>
         {mobileHeader}
-        <EuiTable responsive={responsive} compressed={compressed}>
+        <EuiTable
+          tableLayout={tableLayout}
+          responsive={responsive}
+          compressed={compressed}>
           {caption}
           {head}
           {body}

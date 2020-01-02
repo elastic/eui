@@ -1,23 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, HTMLAttributes } from 'react';
+import { CommonProps } from '../common';
 import PropTypes from 'prop-types';
 
 import { EuiText } from '../text';
 
-export class EuiErrorBoundary extends Component {
+interface EuiErrorBoundaryState {
+  hasError: boolean;
+  error?: Error;
+}
+
+export type EuiErrorBoundaryProps = CommonProps &
+  HTMLAttributes<HTMLDivElement>;
+
+export class EuiErrorBoundary extends Component<
+  EuiErrorBoundaryProps,
+  EuiErrorBoundaryState
+> {
   static propTypes = {
     children: PropTypes.node,
   };
 
-  constructor(props) {
+  constructor(props: EuiErrorBoundaryProps) {
     super(props);
 
-    this.state = {
+    const errorState: EuiErrorBoundaryState = {
       hasError: false,
       error: undefined,
     };
+
+    this.state = errorState;
   }
 
-  componentDidCatch(error) {
+  componentDidCatch(error: Error) {
     // Display fallback UI
     this.setState({
       hasError: true,
