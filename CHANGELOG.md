@@ -9,6 +9,7 @@
 **Bug fixes**
 
 - Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
+- Fixed bug in `EuiDataGrid` where resizing columns changed the active DOM element ([#2724](https://github.com/elastic/eui/pull/#2724))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
