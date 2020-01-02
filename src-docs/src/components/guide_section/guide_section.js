@@ -389,9 +389,7 @@ export class GuideSection extends Component {
 
     return (
       <div key={name} ref={name}>
-        <EuiSpacer size="s" />
-        {this.renderCodeSandBoxButton()}
-        <EuiSpacer size="s" />
+        {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
         <EuiCodeBlock language={codeClass} overflowHeight={400}>
           {npmImports}
         </EuiCodeBlock>
@@ -446,17 +444,17 @@ export class GuideSection extends Component {
 
     // Renders the new Demo component generically into the code sandbox page
     const exampleClose = `ReactDOM.render(
-      <Demo />,
-      document.getElementById('root')
-    );`;
+  <Demo />,
+  document.getElementById('root')
+);`;
     // The Code Sanbbox demo needs to import CSS at the top of the document
     const exampleStart = `import ReactDOM from 'react-dom';
-    import '@elastic/eui/dist/eui_theme_light.css'`;
+import '@elastic/eui/dist/eui_theme_light.css'`;
 
     // Concat the three pieces of the example into a single string
     const codeSandboxExample = `${exampleStart}
-    ${exampleCleaned}
-    ${exampleClose}
+${exampleCleaned}
+${exampleClose}
     `;
 
     // Check the imports
@@ -491,16 +489,20 @@ export class GuideSection extends Component {
     });
 
     return (
-      <form
-        action="https://codesandbox.io/api/v1/sandboxes/define"
-        method="POST"
-        target="_blank"
-        className="eui-textRight">
-        <input type="hidden" name="parameters" value={codeSandboxParams} />
-        <EuiButtonEmpty size="xs" type="submit" iconType="logoCodesandbox">
-          Open in Codesandbox
-        </EuiButtonEmpty>
-      </form>
+      <Fragment>
+        <EuiSpacer size="s" />
+        <form
+          action="https://codesandbox.io/api/v1/sandboxes/define"
+          method="POST"
+          target="_blank"
+          className="eui-textRight">
+          <input type="hidden" name="parameters" value={codeSandboxParams} />
+          <EuiButtonEmpty size="xs" type="submit" iconType="logoCodesandbox">
+            Try out this demo on Code Sandbox
+          </EuiButtonEmpty>
+        </form>
+        <EuiSpacer size="s" />
+      </Fragment>
     );
   }
 

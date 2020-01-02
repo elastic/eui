@@ -22,7 +22,7 @@ import {
 
 import SuperSelectComplexExample from '../super_select/super_select_complex';
 
-export class FlyoutComplicated extends Component {
+export default class extends Component {
   constructor(props) {
     super(props);
 

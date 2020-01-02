@@ -9,7 +9,7 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-export class FlyoutLarge extends Component {
+export default class extends Component {
   constructor(props) {
     super(props);
 
