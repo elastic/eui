@@ -13,16 +13,16 @@ import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 const customPalettes = [
   {
     title: 'Max 10 colors',
-    palette: palettes.euiPaletteColorBlind().colors,
+    palette: palettes.euiPaletteColorBlind(),
   },
   {
     title: 'More than 10 colors are needed',
-    palette: palettes.euiPaletteColorBlind(2).colors,
+    palette: palettes.euiPaletteColorBlind(2),
   },
   {
     title:
       'Series have multiple metrics and so the colors must coordinate but be distinguishable',
-    palette: palettes.euiPaletteColorBlind(3, true).colors,
+    palette: palettes.euiPaletteColorBlind(3, true),
   },
 ];
 
@@ -55,7 +55,7 @@ export default () => (
             <ColorPaletteCopyCode
               textToCopy={`palettes.euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
                 i > 1 ? ', true' : ''
-              }).colors`}
+              })`}
               code={`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
                 i > 1 ? ', true' : ''
               })`}

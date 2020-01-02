@@ -35,7 +35,7 @@ export const useColumnSorting = (
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
-  const defaultSchemaColor: string = palettes.euiPaletteColorBlind().colors[4];
+  const defaultSchemaColor: string = palettes.euiPaletteColorBlind()[4];
 
   // prune any non-existant/hidden columns from sorting
   useEffect(() => {

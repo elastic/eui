@@ -93,8 +93,8 @@ class _Sparklines extends Component {
                     yAccessors={[1]}
                     customSeriesColors={getColorsMap(
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground.colors[1]
-                        : palettes.euiPaletteForLightBackground.colors[1],
+                        ? palettes.euiPaletteForDarkBackground[1]
+                        : palettes.euiPaletteForLightBackground[1],
                       'increase'
                     )}
                   />
@@ -127,8 +127,8 @@ class _Sparklines extends Component {
                     yAccessors={[1]}
                     customSeriesColors={getColorsMap(
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground.colors[3]
-                        : palettes.euiPaletteForLightBackground.colors[3],
+                        ? palettes.euiPaletteForDarkBackground[3]
+                        : palettes.euiPaletteForLightBackground[3],
                       'major'
                     )}
                   />
@@ -153,8 +153,8 @@ class _Sparklines extends Component {
                     yAccessors={[1]}
                     customSeriesColors={getColorsMap(
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground.colors[3]
-                        : palettes.euiPaletteForLightBackground.colors[3],
+                        ? palettes.euiPaletteForDarkBackground[3]
+                        : palettes.euiPaletteForLightBackground[3],
                       'subtle'
                     )}
                   />

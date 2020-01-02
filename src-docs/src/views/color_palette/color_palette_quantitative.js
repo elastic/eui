@@ -45,14 +45,14 @@ export default () => {
               className="guideColorPalette__swatchHolder"
               gutterSize="none"
               responsive={false}>
-              {paletteData[paletteName](Number(length)).colors.map(hexCode => (
+              {paletteData[paletteName](Number(length)).map(hexCode => (
                 <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
             <ColorPaletteCopyCode
-              textToCopy={`palettes.${paletteName}(${length}).colors;`}
+              textToCopy={`palettes.${paletteName}(${length});`}
               code={`${paletteName}(${length})`}
             />
           </EuiFlexItem>

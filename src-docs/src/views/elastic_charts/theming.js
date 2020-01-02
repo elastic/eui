@@ -57,7 +57,7 @@ const _Theming = props => {
 
   const customColors = {
     colors: {
-      vizColors: paletteData[paletteNames[Number(barPalette)]](5).colors,
+      vizColors: paletteData[paletteNames[Number(barPalette)]](5),
     },
   };
 
@@ -117,15 +117,13 @@ const createPaletteOption = function(paletteName, index) {
   return {
     value: String(index),
     inputDisplay: createPalette(
-      paletteData[paletteNames[index]](index > 0 ? 10 : 1).colors
+      paletteData[paletteNames[index]](index > 0 ? 10 : 1)
     ),
     dropdownDisplay: (
       <Fragment>
         <strong>{paletteName}</strong>
         <EuiSpacer size="xs" />
-        {createPalette(
-          paletteData[paletteNames[index]](index > 0 ? 10 : 1).colors
-        )}
+        {createPalette(paletteData[paletteNames[index]](index > 0 ? 10 : 1))}
       </Fragment>
     ),
   };

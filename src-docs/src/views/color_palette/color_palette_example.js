@@ -58,8 +58,8 @@ export const ColorPaletteExample = {
       ),
       demo: <ColorPalette />,
       snippet: [
-        'palettes.euiPaletteColorBlind().colors',
-        'palettes.euiPaletteColorBlind(rotations = 3, combined = true).colors',
+        'palettes.euiPaletteColorBlind()',
+        'palettes.euiPaletteColorBlind(rotations = 3, combined = true)',
       ],
     },
     {

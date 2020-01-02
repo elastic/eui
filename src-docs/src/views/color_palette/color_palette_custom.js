@@ -12,15 +12,9 @@ import { palettes, colorPalette } from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
 const customPalettes = [
-  [palettes.euiPaletteColorBlind().colors[3]],
-  [
-    palettes.euiPaletteColorBlind().colors[3],
-    palettes.euiPaletteColorBlind().colors[4],
-  ],
-  [
-    palettes.euiPaletteColorBlind().colors[3],
-    palettes.euiPaletteColorBlind().colors[4],
-  ],
+  [palettes.euiPaletteColorBlind()[3]],
+  [palettes.euiPaletteColorBlind()[3], palettes.euiPaletteColorBlind()[4]],
+  [palettes.euiPaletteColorBlind()[3], palettes.euiPaletteColorBlind()[4]],
 ];
 
 export default () => {

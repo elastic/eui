@@ -98,7 +98,7 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
 
 const customColors = {
   colors: {
-    vizColors: palettes.euiPalettePositive(5).colors,
+    vizColors: palettes.euiPalettePositive(5),
   },
 };
 

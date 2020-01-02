@@ -6,10 +6,16 @@
 - Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
 - Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
 - Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
+- Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
 
 **Bug fixes**
 
 - Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
+
+**Breaking changes**
+
+- Changed accepted properties of the `color_palette` method to accept an array of colors ([#2686](https://github.com/elastic/eui/pull/#2686))
+- Changed the `eui_palettes`/`palette` functions to be methods that accept a number of steps and removed `.colors` key. ([#2686](https://github.com/elastic/eui/pull/#2686))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
