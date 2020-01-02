@@ -38,4 +38,7 @@ $textColors: (
   }
 }
 
-
+// Make button EuiLink's text selectable
+button.euiLink { // sass-lint:disable-line no-qualifying-elements
+  user-select: text;
+}

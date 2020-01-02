@@ -18,11 +18,11 @@ exports[`EuiTreeView is rendered 1`] = `
     id="htmlId"
   >
     <li
-      class="euiTreeView__node"
+      class="euiTreeView__node euiTreeView__node--expanded"
     >
       <button
         aria-controls="euiNestedTreeView-htmlId"
-        aria-expanded="false"
+        aria-expanded="true"
         class="euiTreeView__nodeInner"
         data-test-subj="euiTreeViewButton-htmlId"
         id="htmlId--0--node"
@@ -49,7 +49,120 @@ exports[`EuiTreeView is rendered 1`] = `
       </button>
       <div
         id="euiNestedTreeView-htmlId"
-      />
+      >
+        <div
+          class="euiText euiText--medium euiTreeView__wrapper"
+        >
+          <ul
+            aria-label="Item One child of aria-label"
+            class="euiTreeView"
+            id="htmlId"
+          >
+            <li
+              class="euiTreeView__node"
+            >
+              <button
+                aria-controls="euiNestedTreeView-htmlId"
+                aria-expanded="false"
+                class="euiTreeView__nodeInner"
+                data-test-subj="euiTreeViewButton-htmlId"
+                id="htmlId--0--node"
+              >
+                <span
+                  class="euiTreeView__iconWrapper"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading"
+                    focusable="false"
+                    height="16"
+                    role="img"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
+                <span
+                  class="euiTreeView__nodeLabel"
+                >
+                  Item A
+                </span>
+              </button>
+              <div
+                id="euiNestedTreeView-htmlId"
+              />
+            </li>
+            <li
+              class="euiTreeView__node"
+            >
+              <button
+                aria-controls="euiNestedTreeView-htmlId"
+                aria-expanded="false"
+                class="euiTreeView__nodeInner"
+                data-test-subj="euiTreeViewButton-htmlId"
+                id="htmlId--1--node"
+              >
+                <span
+                  class="euiTreeView__iconWrapper"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading"
+                    focusable="false"
+                    height="16"
+                    role="img"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
+                <span
+                  class="euiTreeView__nodeLabel"
+                >
+                  Item B
+                </span>
+              </button>
+              <div
+                id="euiNestedTreeView-htmlId"
+              />
+            </li>
+            <li
+              class="euiTreeView__node"
+            >
+              <button
+                aria-controls="euiNestedTreeView-htmlId"
+                aria-expanded="false"
+                class="euiTreeView__nodeInner"
+                data-test-subj="euiTreeViewButton-htmlId"
+                id="htmlId--2--node"
+              >
+                <span
+                  class="euiTreeView__iconWrapper"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading"
+                    focusable="false"
+                    height="16"
+                    role="img"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
+                <span
+                  class="euiTreeView__nodeLabel"
+                >
+                  Item C
+                </span>
+              </button>
+              <div
+                id="euiNestedTreeView-htmlId"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
     </li>
     <li
       class="euiTreeView__node"

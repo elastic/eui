@@ -4,7 +4,7 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 
 ### Checklist
 
-- [ ] Check against **all themes** for compatability in both light and dark modes
+- [ ] Check against **all themes** for compatibility in both light and dark modes
 - [ ] Checked in **mobile**
 - [ ] Checked in **IE11** and **Firefox**
 - [ ] Props have proper **autodocs**
