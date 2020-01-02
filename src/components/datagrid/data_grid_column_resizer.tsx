@@ -33,7 +33,6 @@ export class EuiDataGridColumnResizer extends Component<
 
     // don't let this action steal focus
     e.preventDefault();
-    e.stopPropagation();
   };
 
   onMouseUp = () => {
