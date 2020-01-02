@@ -3,6 +3,7 @@ import React from 'react';
 import { EuiCode, EuiSpacer, EuiCallOut } from '../../../../src/components';
 
 import { section as basicSection } from './basic';
+import { section as autoSection } from './auto';
 import { section as paginatedSection } from './paginated';
 import { section as sortingSection } from './sorting';
 import { section as selectionSection } from './selection';
@@ -55,6 +56,7 @@ export const TableExample = {
     inMemorySearchSection,
     inMemorySearchCallbackSection,
     inMemoryCustomSortingSection,
+    autoSection,
     mobileSection,
     customSection,
   ],
