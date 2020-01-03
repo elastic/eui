@@ -26,7 +26,7 @@ export interface EuiButtonGroupOption extends CommonProps {
   iconType?: IconType;
 }
 
-export interface EuiButtonGroupProps {
+export interface EuiButtonGroupProps extends CommonProps {
   options?: EuiButtonGroupOption[];
   onChange: (id: string, value?: any) => void;
   /**
@@ -62,6 +62,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   onChange,
   options = [],
   type = 'single',
+  'data-test-subj': dataTestSubj,
   ...rest
 }) => {
   const classes = classNames(
@@ -136,6 +137,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               onChange={() => onChange(id, value)}
               size={buttonSize === 'compressed' ? 's' : buttonSize}
               type={type}
+              data-test-subj={dataTestSubj}
               {...rest}
             />
           );

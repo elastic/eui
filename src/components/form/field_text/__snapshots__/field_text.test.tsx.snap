@@ -2,11 +2,9 @@
 
 exports[`EuiFieldText is rendered 1`] = `
 <eui-form-control-layout
-  compressed="false"
   fullwidth="false"
   icon="foo"
   inputid="1"
-  isloading="false"
 >
   <eui-validatable-control>
     <input
@@ -34,9 +32,7 @@ exports[`EuiFieldText props controlOnly is rendered 1`] = `
 
 exports[`EuiFieldText props fullWidth is rendered 1`] = `
 <eui-form-control-layout
-  compressed="false"
   fullwidth="true"
-  isloading="false"
 >
   <eui-validatable-control>
     <input
@@ -49,9 +45,7 @@ exports[`EuiFieldText props fullWidth is rendered 1`] = `
 
 exports[`EuiFieldText props isInvalid is rendered 1`] = `
 <eui-form-control-layout
-  compressed="false"
   fullwidth="false"
-  isloading="false"
 >
   <eui-validatable-control
     isinvalid="true"
@@ -66,7 +60,6 @@ exports[`EuiFieldText props isInvalid is rendered 1`] = `
 
 exports[`EuiFieldText props isLoading is rendered 1`] = `
 <eui-form-control-layout
-  compressed="false"
   fullwidth="false"
   isloading="true"
 >
@@ -81,9 +74,7 @@ exports[`EuiFieldText props isLoading is rendered 1`] = `
 
 exports[`EuiFieldText props readOnly is rendered 1`] = `
 <eui-form-control-layout
-  compressed="false"
   fullwidth="false"
-  isloading="false"
   readonly="true"
 >
   <eui-validatable-control>
