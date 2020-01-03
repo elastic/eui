@@ -459,7 +459,10 @@ ${exampleClose}
 
     // Check the imports
     const extraDeps = [
-      ...exampleCleaned.matchAll(/import\s.*?'(?<import>[^.].*?)'/g),
+      ...exampleCleaned.matchAll(
+        // Match anything not directly calling eui (like lib dirs)
+        /(import)(?!.*elastic\/eui)\s.*?'(?<import>[^.].*?)'/g
+      ),
     ]
       .map(x => x.groups.import)
       .reduce((deps, dep) => {

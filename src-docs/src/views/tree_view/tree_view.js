@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { EuiIcon, EuiTreeView, EuiToken } from '../../../../src/components';
 
-export class TreeView extends React.Component {
+export default class extends Component {
   showAlert = () => {
     alert('You squashed a bug!');
   };
