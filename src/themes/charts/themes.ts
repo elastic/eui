@@ -1,4 +1,4 @@
-import { palettes } from '../../services/color/eui_palettes';
+import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
 import { PartialTheme, LineAnnotationStyle } from '@elastic/charts';
 
@@ -111,7 +111,7 @@ function createTheme(colors: any) {
         },
       },
       colors: {
-        vizColors: palettes.euiPaletteColorBlind.colors,
+        vizColors: euiPaletteColorBlind(),
         defaultVizColor: DEFAULT_VISUALIZATION_COLOR,
       },
       crosshair: {
