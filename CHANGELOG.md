@@ -6,6 +6,7 @@
 - Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
 - Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
 - Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
+- Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
 
 **Bug fixes**
 
