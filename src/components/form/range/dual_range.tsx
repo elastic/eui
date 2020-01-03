@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { keyCodes } from '../../../services';
@@ -8,26 +7,61 @@ import { EuiInputPopover } from '../../popover';
 import { EuiFormControlLayoutDelimited } from '../form_control_layout';
 import makeId from '../form_row/make_id';
 
+import { EuiRangeProps } from './range';
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeSlider } from './range_slider';
 import { EuiRangeThumb } from './range_thumb';
-import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
+import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
-export class EuiDualRange extends Component {
+type ValueMember = number | string;
+
+export interface EuiDualRangeProps
+  extends Omit<EuiRangeProps, 'onChange' | 'onBlur' | 'onFocus' | 'value'> {
+  value: [ValueMember, ValueMember];
+  onBlur?: (
+    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
+  ) => void;
+  onFocus?: (
+    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
+  ) => void;
+  onChange: (
+    values: [ValueMember, ValueMember],
+    isValid: boolean,
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => void;
+}
+
+export class EuiDualRange extends Component<EuiDualRangeProps> {
+  static defaultProps = {
+    min: 0,
+    max: 100,
+    step: 1,
+    fullWidth: false,
+    compressed: false,
+    showLabels: false,
+    showInput: false,
+    showRange: true,
+    showTicks: false,
+    levels: [],
+  };
+
   state = {
     id: this.props.id || makeId(),
     hasFocus: false,
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
-    rangeWidth: null,
+    rangeWidth: undefined,
   };
 
   preventPopoverClose = false;
-  rangeSliderRef = null;
-  handleRangeSliderRefUpdate = ref => {
+  rangeSliderRef: HTMLInputElement | null = null;
+  handleRangeSliderRefUpdate = (ref: HTMLInputElement | null) => {
     this.rangeSliderRef = ref;
     this.setState({
       rangeSliderRefAvailable: !!ref,
@@ -51,7 +85,15 @@ export class EuiDualRange extends Component {
     return this.lowerValueIsValid && this.upperValueIsValid;
   }
 
-  _determineInvalidThumbMovement = (newVal, lower, upper, e) => {
+  _determineInvalidThumbMovement = (
+    newVal: ValueMember,
+    lower: ValueMember,
+    upper: ValueMember,
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     // If the values are invalid, find whether the new value is in the upper
     // or lower half and move the appropriate handle to the new value,
     // while the other handle gets moved to the opposite bound (if invalid)
@@ -68,9 +110,18 @@ export class EuiDualRange extends Component {
     this._handleOnChange(lower, upper, e);
   };
 
-  _determineValidThumbMovement = (newVal, lower, upper, e) => {
+  _determineValidThumbMovement = (
+    newVal: ValueMember,
+    lower: ValueMember,
+    upper: ValueMember,
+    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    console.log(newVal, lower, upper);
     // Lower thumb targeted or right-moving swap has occured
-    if (Math.abs(lower - newVal) < Math.abs(upper - newVal)) {
+    if (
+      Math.abs((lower as number) - (newVal as number)) <
+      Math.abs((upper as number) - (newVal as number))
+    ) {
       lower = newVal;
     }
     // Upper thumb targeted or left-moving swap has occured
@@ -80,7 +131,10 @@ export class EuiDualRange extends Component {
     this._handleOnChange(lower, upper, e);
   };
 
-  _determineThumbMovement = (newVal, e) => {
+  _determineThumbMovement = (
+    newVal: number,
+    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+  ) => {
     // Determine thumb movement based on slider interaction
     if (!this.isValid) {
       // Non-standard positioning follows
@@ -101,18 +155,27 @@ export class EuiDualRange extends Component {
     }
   };
 
-  _handleOnChange = (lower, upper, e) => {
+  _handleOnChange = (
+    lower: ValueMember,
+    upper: ValueMember,
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     const isValid =
       isWithinRange(this.props.min, upper, lower) &&
       isWithinRange(lower, this.props.max, upper);
     this.props.onChange([lower, upper], isValid, e);
   };
 
-  handleSliderChange = e => {
-    this._determineThumbMovement(e.target.value, e);
+  handleSliderChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    this._determineThumbMovement(Number(e.currentTarget.value), e);
   };
 
-  _resetToRangeEnds = e => {
+  _resetToRangeEnds = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // Arbitrary decision to pass `min` instead of `max`. Result is the same.
     this._determineInvalidThumbMovement(
       this.props.min,
@@ -122,7 +185,7 @@ export class EuiDualRange extends Component {
     );
   };
 
-  _isDirectionalKeyPress = e => {
+  _isDirectionalKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     return (
       [keyCodes.UP, keyCodes.RIGHT, keyCodes.DOWN, keyCodes.LEFT].indexOf(
         e.keyCode
@@ -130,7 +193,7 @@ export class EuiDualRange extends Component {
     );
   };
 
-  handleInputKeyDown = e => {
+  handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // Relevant only when initial values are both `''` and `showInput` is set
     if (this._isDirectionalKeyPress(e) && !this.isValid) {
       e.preventDefault();
@@ -138,15 +201,18 @@ export class EuiDualRange extends Component {
     }
   };
 
-  handleLowerInputChange = e => {
+  handleLowerInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this._handleOnChange(e.target.value, this.upperValue, e);
   };
 
-  handleUpperInputChange = e => {
+  handleUpperInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this._handleOnChange(this.lowerValue, e.target.value, e);
   };
 
-  _handleKeyDown = (value, e) => {
+  _handleKeyDown = (
+    value: ValueMember,
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     let newVal = Number(value);
     let stepRemainder = 0;
     const step = this.props.step || 1;
@@ -173,7 +239,7 @@ export class EuiDualRange extends Component {
     return newVal;
   };
 
-  handleLowerKeyDown = e => {
+  handleLowerKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     let lower = this.lowerValue;
     switch (e.keyCode) {
       case keyCodes.TAB:
@@ -191,7 +257,7 @@ export class EuiDualRange extends Component {
     this._handleOnChange(lower, this.upperValue, e);
   };
 
-  handleUpperKeyDown = e => {
+  handleUpperKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     let upper = this.upperValue;
     switch (e.keyCode) {
       case keyCodes.TAB:
@@ -209,7 +275,7 @@ export class EuiDualRange extends Component {
     this._handleOnChange(this.lowerValue, upper, e);
   };
 
-  calculateThumbPositionStyle = (value, width) => {
+  calculateThumbPositionStyle = (value: number, width?: number) => {
     // Calculate the left position based on value
     const decimal =
       (value - this.props.min) / (this.props.max - this.props.min);
@@ -219,9 +285,9 @@ export class EuiDualRange extends Component {
 
     const EUI_THUMB_SIZE = 16;
     const trackWidth =
-      this.props.showInput === 'only' && !!width
+      this.props.showInput === 'inputWithPopover' && !!width
         ? width
-        : this.rangeSliderRef.clientWidth;
+        : this.rangeSliderRef!.clientWidth;
     const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
     const trackPositionScale = (1 - thumbToTrackRatio) * 100;
     return { left: `${valuePosition * trackPositionScale}%` };
@@ -233,21 +299,21 @@ export class EuiDualRange extends Component {
     });
   };
 
-  onThumbFocus = e => {
+  onThumbFocus = (e: React.FocusEvent<HTMLDivElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
     this.toggleHasFocus(true);
   };
 
-  onThumbBlur = e => {
+  onThumbBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
     this.toggleHasFocus(false);
   };
 
-  onInputFocus = e => {
+  onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
@@ -257,7 +323,7 @@ export class EuiDualRange extends Component {
     });
   };
 
-  onInputBlur = e =>
+  onInputBlur = (e: React.FocusEvent<HTMLInputElement>) =>
     setTimeout(() => {
       // Safari does not recognize any focus-related eventing for input[type=range]
       // making it impossible to capture its state using active/focus/relatedTarget
@@ -280,7 +346,7 @@ export class EuiDualRange extends Component {
     });
   };
 
-  onResize = width => {
+  onResize = (width?: number) => {
     this.setState({
       rangeWidth: width,
     });
@@ -345,7 +411,7 @@ export class EuiDualRange extends Component {
         isInvalid={isInvalid}
         controlOnly={showInputOnly}
         onMouseDown={
-          showInputOnly ? () => (this.preventPopoverClose = true) : null
+          showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
     ) : (
@@ -375,7 +441,7 @@ export class EuiDualRange extends Component {
         controlOnly={showInputOnly}
         isInvalid={isInvalid}
         onMouseDown={
-          showInputOnly ? () => (this.preventPopoverClose = true) : null
+          showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
       />
     ) : (
@@ -458,7 +524,7 @@ export class EuiDualRange extends Component {
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
                 style={this.calculateThumbPositionStyle(
-                  this.lowerValue || min,
+                  Number(this.lowerValue) || min,
                   this.state.rangeWidth
                 )}
                 aria-describedby={this.props['aria-describedby']}
@@ -475,7 +541,7 @@ export class EuiDualRange extends Component {
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
                 style={this.calculateThumbPositionStyle(
-                  this.upperValue || max,
+                  Number(this.upperValue) || max,
                   this.state.rangeWidth
                 )}
                 aria-describedby={this.props['aria-describedby']}
@@ -499,8 +565,8 @@ export class EuiDualRange extends Component {
         className="euiRange__popover"
         input={
           <EuiFormControlLayoutDelimited
-            startControl={minInput}
-            endControl={maxInput}
+            startControl={minInput!}
+            endControl={maxInput!}
             isDisabled={disabled}
             fullWidth={fullWidth}
             compressed={compressed}
@@ -523,78 +589,3 @@ export class EuiDualRange extends Component {
     return thePopover || theRange;
   }
 }
-
-EuiDualRange.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  step: PropTypes.number,
-  /**
-   * Array containing lower and upper values. Fallback is `min` and `max` respectively
-   */
-  value: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  fullWidth: PropTypes.bool,
-  compressed: PropTypes.bool,
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  /**
-   * Shows static min/max labels on the sides of the range slider
-   */
-  showLabels: PropTypes.bool,
-  /**
-   * Pass `true` to displays an extra input control for direct manipulation.
-   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
-   */
-  showInput: PropTypes.oneOf([true, false, 'inputWithPopover']),
-  /**
-   * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
-   */
-  showTicks: PropTypes.bool,
-  /**
-   * Modifies the number of tick marks and at what interval
-   */
-  tickInterval: PropTypes.number,
-  /**
-   * Specified ticks at specified values
-   */
-  ticks: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.number.isRequired,
-      label: PropTypes.node.isRequired,
-    })
-  ),
-  /**
-   * Function signature: `([lowerValue, upperValue], isValid, event)`
-   */
-  onChange: PropTypes.func,
-  /**
-   * Create colored indicators for certain intervals
-   */
-  levels: PropTypes.arrayOf(
-    PropTypes.shape({
-      min: PropTypes.number,
-      max: PropTypes.number,
-      color: PropTypes.oneOf(LEVEL_COLORS),
-    })
-  ),
-  /**
-   * Shows a thick line from lower value to upper value
-   */
-  showRange: PropTypes.bool,
-};
-
-EuiDualRange.defaultProps = {
-  min: 0,
-  max: 100,
-  step: 1,
-  fullWidth: false,
-  compressed: false,
-  showLabels: false,
-  showInput: false,
-  showRange: true,
-  showTicks: false,
-  levels: [],
-};
