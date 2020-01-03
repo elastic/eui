@@ -1,12 +1,18 @@
-import React, {cloneElement, Component, Children, HTMLAttributes, ReactNode} from 'react';
+import React, {
+  cloneElement,
+  Component,
+  Children,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
-import {CommonProps, keysOf} from '../../common';
+import { CommonProps, keysOf } from '../../common';
 
-import {get} from '../../../services/objects';
+import { get } from '../../../services/objects';
 
-import {EuiFormHelpText} from '../form_help_text';
-import {EuiFormErrorText} from '../form_error_text';
-import {EuiFormLabel} from '../form_label';
+import { EuiFormHelpText } from '../form_help_text';
+import { EuiFormErrorText } from '../form_error_text';
+import { EuiFormLabel } from '../form_label';
 
 import makeId from './make_id';
 
@@ -27,61 +33,60 @@ export type EuiFormRowDisplayKeys = keyof typeof displayToClassNameMap;
 interface EuiFormRowState {
   isFocused: boolean;
   id: string;
-};
+}
 
-export type EuiFormRowProps = CommonProps
-  & HTMLAttributes<HTMLDivElement & HTMLFieldSetElement>
-  & {
-  /**
-   * When `rowCompressed`, just tightens up the spacing;
-   * Set to `columnCompressed` if compressed
-   * and horizontal layout is needed.
-   * Set to `center` or `centerCompressed` to align non-input
-   * content better with inline rows.
-   * Set to `columnCompressedSwitch` if the form control being passed
-   * as the child is a switch.
-   */
-  display?: EuiFormRowDisplayKeys;
-  hasEmptyLabelSpace?: boolean;
-  fullWidth?: boolean;
-  /**
-   * IDs of additional elements that should be part of children's `aria-describedby`
-   */
-  describedByIds?: string[];
-  /**
-   * Sets the type of html element the label should be based
-   * on the form row contents. For instance checkbox groups
-   * should use 'legend' instead of the default 'label'
-   */
-  labelType?: 'label' | 'legend';
-  /**
-   * Escape hatch to not render duplicate labels if the child also renders a label
-   */
-  hasChildLabel?: boolean;
-  children: ReactNode;
-  label?: ReactNode;
-  /**
-   * Adds an extra node to the right of the form label without
-   * being contained inside the form label. Good for things
-   * like documentation links.
-   */
-  labelAppend?: any;
-  id?: string;
-  isInvalid?: boolean;
-  error?: ReactNode | Array<ReactNode>;
-  helpText?: ReactNode;
-  /**
-   * **DEPRECATED: use `display: rowCompressed` instead.**
-   * When `true`, tightens up the spacing.
-   */
-  compressed?: boolean;
-  /**
-   * **DEPRECATED: use `display: center` instead.**
-   * Vertically centers non-input style content so it aligns
-   * better with input style content.
-   */
-  displayOnly?: boolean;
-};
+export type EuiFormRowProps = CommonProps &
+  HTMLAttributes<HTMLDivElement & HTMLFieldSetElement> & {
+    /**
+     * When `rowCompressed`, just tightens up the spacing;
+     * Set to `columnCompressed` if compressed
+     * and horizontal layout is needed.
+     * Set to `center` or `centerCompressed` to align non-input
+     * content better with inline rows.
+     * Set to `columnCompressedSwitch` if the form control being passed
+     * as the child is a switch.
+     */
+    display?: EuiFormRowDisplayKeys;
+    hasEmptyLabelSpace?: boolean;
+    fullWidth?: boolean;
+    /**
+     * IDs of additional elements that should be part of children's `aria-describedby`
+     */
+    describedByIds?: string[];
+    /**
+     * Sets the type of html element the label should be based
+     * on the form row contents. For instance checkbox groups
+     * should use 'legend' instead of the default 'label'
+     */
+    labelType?: 'label' | 'legend';
+    /**
+     * Escape hatch to not render duplicate labels if the child also renders a label
+     */
+    hasChildLabel?: boolean;
+    children: ReactNode;
+    label?: ReactNode;
+    /**
+     * Adds an extra node to the right of the form label without
+     * being contained inside the form label. Good for things
+     * like documentation links.
+     */
+    labelAppend?: any;
+    id?: string;
+    isInvalid?: boolean;
+    error?: ReactNode | ReactNode[];
+    helpText?: ReactNode;
+    /**
+     * **DEPRECATED: use `display: rowCompressed` instead.**
+     * When `true`, tightens up the spacing.
+     */
+    compressed?: boolean;
+    /**
+     * **DEPRECATED: use `display: center` instead.**
+     * Vertically centers non-input style content so it aligns
+     * better with input style content.
+     */
+    displayOnly?: boolean;
+  };
 
 export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
   static defaultProps = {
@@ -150,7 +155,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       ...rest
     } = this.props;
 
-    const {id} = this.state;
+    const { id } = this.state;
 
     /**
      * Remove when `compressed` is deprecated
@@ -260,9 +265,9 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
     const fieldWrapperClasses = classNames('euiFormRow__fieldWrapper', {
       euiFormRow__fieldWrapperDisplayOnly:
-      /**
-       * Safe use of ! as default prop is 'row'
-       */
+        /**
+         * Safe use of ! as default prop is 'row'
+         */
         displayOnly || display!.startsWith('center'),
     });
 
