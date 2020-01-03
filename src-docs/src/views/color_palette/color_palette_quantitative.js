@@ -8,17 +8,32 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { euiPaletteColorBlind, colorPalette } from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
-const customPalettes = [
-  [euiPaletteColorBlind()[3]],
-  [euiPaletteColorBlind()[3], euiPaletteColorBlind()[4]],
-  [euiPaletteColorBlind()[3], euiPaletteColorBlind()[4]],
-];
+import {
+  euiPaletteComplimentary,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteGray,
+} from '../../../../src/services';
+const paletteData = {
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteGray,
+};
+const paletteNames = Object.keys(paletteData);
 
 export default () => {
-  const [length, setLength] = useState(10);
+  const [length, setLength] = useState(5);
 
   const onLengthChange = e => {
     setLength(e.currentTarget.value);
@@ -30,7 +45,7 @@ export default () => {
         <EuiRange
           value={length}
           onChange={onLengthChange}
-          min={2}
+          min={1}
           max={20}
           compressed
           showValue
@@ -39,26 +54,22 @@ export default () => {
 
       <EuiSpacer />
 
-      {customPalettes.map((palette, i) => (
-        <EuiFlexGroup alignItems="center" key={i}>
+      {paletteNames.map(paletteName => (
+        <EuiFlexGroup alignItems="center" key={paletteName}>
           <EuiFlexItem grow={false}>
             <EuiFlexGroup
               className="guideColorPalette__swatchHolder"
               gutterSize="none"
               responsive={false}>
-              {colorPalette(palette, Number(length), i > 1).map(hexCode => (
+              {paletteData[paletteName](Number(length)).map(hexCode => (
                 <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
             <ColorPaletteCopyCode
-              textToCopy={`colorPalette([], ${length}${
-                i > 1 ? ', true' : ''
-              });`}
-              code={`colorPalette([${palette}], ${length}${
-                i > 1 ? ', true' : ''
-              });`}
+              textToCopy={`${paletteName}(${length});`}
+              code={`${paletteName}(${length})`}
             />
           </EuiFlexItem>
         </EuiFlexGroup>

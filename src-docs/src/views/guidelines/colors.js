@@ -321,10 +321,10 @@ color: $${color2};`;
         <EuiSpacer size="xxl" />
 
         <EuiText grow={false} className="guideSection__text">
-          <h2>Qualitative visualization palette</h2>
+          <h2>Categorical visualization palette</h2>
           <p>
             The following colors are color-blind safe and should be used in
-            qualitative visualizations.
+            categorically seried visualizations.
           </p>
           <p>
             For more visualization palettes and rendering services, go to the{' '}

@@ -25,7 +25,7 @@ import {
   EuiDataGridSchemaDetector,
   getDetailsForSchema,
 } from './data_grid_schema';
-import { palettes } from '../../services/color/eui_palettes';
+import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 
 export const useColumnSorting = (
   columns: EuiDataGridColumn[],
@@ -35,7 +35,7 @@ export const useColumnSorting = (
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
-  const defaultSchemaColor: string = palettes.euiPaletteColorBlind.colors[4];
+  const defaultSchemaColor: string = euiPaletteColorBlind()[4];
 
   // prune any non-existant/hidden columns from sorting
   useEffect(() => {

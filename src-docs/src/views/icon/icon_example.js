@@ -16,8 +16,8 @@ import {
 
 const iconHtmlWarning = () => (
   <p>
-    HTML preview disabled. Icons use SVG and are not usable without React
-    unless you load the icons manually through a separate asset loader.
+    HTML preview disabled. Icons use SVG and are not usable without React unless
+    you load the icons manually through a separate asset loader.
   </p>
 );
 
@@ -77,7 +77,7 @@ import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
 const iconColorsSnippet = [
   '<EuiIcon type="brush" color="primary" />',
-  '<EuiIcon type="brush" color="#F98510" />',
+  '<EuiIcon type="brush" color="#F19F58" />',
 ];
 
 import Accessibility from './accessibility';

@@ -58,6 +58,7 @@ interface ColorToClassMap {
   tint7: string;
   tint8: string;
   tint9: string;
+  tint10: string;
   [key: string]: string;
 }
 
@@ -72,6 +73,7 @@ const colorToClassNameMap: ColorToClassMap = {
   tint7: 'euiSuggestItem__type--tint7',
   tint8: 'euiSuggestItem__type--tint8',
   tint9: 'euiSuggestItem__type--tint9',
+  tint10: 'euiSuggestItem__type--tint10',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
