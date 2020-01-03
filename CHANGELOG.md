@@ -6,7 +6,7 @@
 - Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
 - Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
 - Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
-- Added `aggregate`, `checkbox`, `checkboxMultiple`, `securitySignal`, `securitySignalDetected`, `securitySignalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
+- Added `aggregate`, `pageSelect`, `pagesSelect`, `securitySignal`, `securitySignalDetected`, `securitySignalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
 
 **Bug fixes**
 
