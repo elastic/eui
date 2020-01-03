@@ -7,7 +7,7 @@ import {
 
 import { EuiI18n } from '../i18n';
 
-import { palettes } from '../../services/color/eui_palettes';
+import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { IconType } from '../icon';
 
 export interface EuiDataGridSchemaDetector {
@@ -71,7 +71,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'invert',
-    color: palettes.euiPaletteColorBlind.colors[5],
+    color: euiPaletteColorBlind()[5],
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextAsc"
@@ -112,7 +112,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'currency',
-    color: palettes.euiPaletteColorBlind.colors[0],
+    color: euiPaletteColorBlind()[0],
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.currencySortTextAsc"
@@ -151,7 +151,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
     icon: 'calendar',
-    color: palettes.euiPaletteColorBlind.colors[7],
+    color: euiPaletteColorBlind()[7],
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
     ),
@@ -189,7 +189,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'number',
-    color: palettes.euiPaletteColorBlind.colors[0],
+    color: euiPaletteColorBlind()[0],
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.numberSortTextAsc" default="Low-High" />
     ),
@@ -221,7 +221,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'visVega',
-    color: palettes.euiPaletteColorBlind.colors[3],
+    color: euiPaletteColorBlind()[3],
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.jsonSortTextAsc"
