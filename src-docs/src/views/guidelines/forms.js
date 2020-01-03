@@ -56,8 +56,8 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Provide help text</h4>
             <p>
-              Show validation parameters in the help text below the input.
-              For example: Spaces and special charaters are not allowed.
+              Show validation parameters in the help text below the input. For
+              example: Spaces and special charaters are not allowed.
             </p>
           </EuiText>
         </EuiPanel>
@@ -79,14 +79,15 @@ export default () => (
 
     <GuideRule
       heading="Provide transparency"
-      description="It should be clear users what they can accomplish in each part of the form. ">
+      description="It should be clear to users what they can accomplish in each part of the form. ">
       <EuiFlexItem>
         <EuiPanel>
           <EuiText className="guideSection__text">
             <h4>Layout matters</h4>
             <p>
-              A well-formatted layout makes it clear to users how to navigate the form. As one field is completed, it should be clear where
-              to go next.
+              A well-formatted layout makes it clear to users how to navigate
+              the form. As one field is completed, it should be clear where to
+              go next.
             </p>
           </EuiText>
         </EuiPanel>
@@ -97,8 +98,8 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Words matter</h4>
             <p>
-              Form labels and descriptions are equally important as layout
-              and should be treated with just as much care. The text should be
+              Form labels and descriptions are equally important as layout and
+              should be treated with just as much care. The text should be
               specific, concise, and easy to scan.
             </p>
           </EuiText>
@@ -125,10 +126,10 @@ export default () => (
             If a longer description is needed, use an{' '}
             <EuiCode>EuiDescribedFormRow</EuiCode>
             to divide the form into a column for descriptions and a column for
-            form fields. This is so there is space for descriptions to
-            aid new users, but keeps the form fields in a column, so frequent
-            users can still quickly navigate the form. Try to limit the description
-            to three sentences or less.
+            form fields. This is so there is space for descriptions to aid new
+            users, but keeps the form fields in a column, so frequent users can
+            still quickly navigate the form. Try to limit the description to
+            three sentences or less.
           </p>
         </EuiText>
         <EuiSpacer />
