@@ -17,6 +17,8 @@ import {
   EuiFieldSearch,
   EuiFieldText,
   EuiFilePicker,
+  EuiFormFieldset,
+  EuiFormLegend,
   EuiFormControlLayout,
   EuiFormControlLayoutDelimited,
   EuiLink,
@@ -25,6 +27,7 @@ import {
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import FieldSearch from './field_search';
@@ -78,6 +81,10 @@ const switchHtml = renderToHtml(Switch);
 import PrependAppend from './prepend_append';
 const PrependAppendSource = require('!!raw-loader!./prepend_append');
 const PrependAppendHtml = renderToHtml(PrependAppend);
+
+import Fieldset from './fieldset';
+const fieldsetSource = require('!!raw-loader!./fieldset');
+const fieldsetHtml = renderToHtml(Fieldset);
 
 import FormControlLayout from './form_control_layout';
 const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
@@ -318,6 +325,61 @@ export const FormControlsExample = {
         EuiSwitch,
       },
       demo: <Switch />,
+    },
+    {
+      title: 'Fieldset and legend',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldsetSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fieldsetHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            size="s"
+            title={
+              <span>
+                &quot;[Use a fieldset and legend] for groups of related controls
+                where the individual labels for each control do not provide a
+                sufficient description, and an additional group level
+                description is needed.&quot;{' '}
+                <EuiLink
+                  external
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71">
+                  WCAG Spec
+                </EuiLink>
+              </span>
+            }
+          />
+          <EuiSpacer />
+          <p>
+            <EuiCode>EuiFieldset</EuiCode> simply wraps its children in a{' '}
+            <EuiCode>&lt;fieldset&gt;</EuiCode> with the option to add a{' '}
+            <EuiCode>&lt;legend&gt;</EuiCode> via the <EuiCode>legend</EuiCode>{' '}
+            object prop.
+          </p>
+        </Fragment>
+      ),
+      props: {
+        EuiFormFieldset,
+        EuiFormLegend,
+      },
+      demo: <Fieldset />,
+      snippet: [
+        `<EuiFormFieldset legend={{ children: 'Legend' }}>
+  /* Controls */
+</EuiFormFieldset>`,
+        `<EuiFormFieldset legend={{ children: 'Hidden legend', display: 'hidden' }}>
+  /* Controls */
+</EuiFormFieldset>`,
+      ],
     },
     {
       title: 'Prepend and Append',

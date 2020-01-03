@@ -1,14 +1,20 @@
-import React, { SelectHTMLAttributes, Ref, FunctionComponent } from 'react';
+import React, {
+  SelectHTMLAttributes,
+  OptionHTMLAttributes,
+  Ref,
+  FunctionComponent,
+} from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
-import { EuiFormControlLayout } from '../form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
 
-interface Option {
-  value?: string;
-  text?: string;
-  disabled?: boolean;
+interface Option extends OptionHTMLAttributes<HTMLOptionElement> {
+  text: string;
 }
 
 export type EuiSelectProps = SelectHTMLAttributes<HTMLSelectElement> &
@@ -32,11 +38,11 @@ export type EuiSelectProps = SelectHTMLAttributes<HTMLSelectElement> &
     /**
      * Creates an input group with element(s) coming before select
      */
-    prepend?: JSX.Element | JSX.Element[];
+    prepend?: EuiFormControlLayoutProps['prepend'];
     /**
      * Creates an input group with element(s) coming after select
      */
-    append?: JSX.Element | JSX.Element[];
+    append?: EuiFormControlLayoutProps['append'];
   };
 
 export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
@@ -57,7 +63,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   onMouseUp,
   ...rest
 }) => {
-  const handleMouseUp = (e: any) => {
+  const handleMouseUp = (e: React.MouseEvent<HTMLSelectElement>) => {
     // Normalizes cross-browser mouse eventing by preventing propagation,
     // notably for use in conjunction with EuiOutsideClickDetector.
     // See https://github.com/elastic/eui/pull/1926 for full discussion on

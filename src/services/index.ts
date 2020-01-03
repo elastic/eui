@@ -30,7 +30,17 @@ export {
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
   colorPalette,
-  palettes,
+  euiPaletteForLightBackground,
+  euiPaletteForDarkBackground,
+  euiPaletteColorBlind,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteGray,
   HSV,
 } from './color';
 

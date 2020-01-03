@@ -3,12 +3,25 @@
 - Converted `EuiFieldText` to Typescript ([#2688](https://github.com/elastic/eui/pull/2688))
 - Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
 - Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
+- Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
 - Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
+- Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
+- Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
+- Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
 - Converted `EuiSelect` to Typescript ([#2694](https://github.com/elastic/eui/pull/2694))
 
 **Bug fixes**
 
 - Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
+- Added text selection to `EuiLink` button ([#2722](https://github.com/elastic/eui/pull/#2722))
+- Fixed bug in `EuiDataGrid` where resizing columns changed the active DOM element ([#2724](https://github.com/elastic/eui/pull/#2724))
+- Fixed position of scrollbar in `EuiCodeBlock` ([#2727](https://github.com/elastic/eui/pull/#2727))
+
+**Breaking changes**
+
+- Changed accepted properties of the `color_palette` method to accept an array of colors ([#2686](https://github.com/elastic/eui/pull/#2686))
+- Removed the `palette` export to export each palette function directly ([#2686](https://github.com/elastic/eui/pull/#2686))
+- Changed the palette functions to be methods that accept a number of steps and removed `.colors` key ([#2686](https://github.com/elastic/eui/pull/#2686))
 
 ## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
 
