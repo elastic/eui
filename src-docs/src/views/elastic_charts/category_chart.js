@@ -52,7 +52,6 @@ class _CategoryChart extends Component {
     this.setState({
       rotated: e.target.checked,
     });
-    console.log(e.target.checked);
   };
 
   onOrderedChange = e => {

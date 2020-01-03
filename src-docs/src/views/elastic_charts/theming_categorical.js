@@ -31,12 +31,6 @@ import {
   euiPaletteGray,
 } from '../../../../src/services';
 
-const getColorsMap = (color, specId) => {
-  const map = new Map();
-  map.set({ colorValues: [], specId }, color);
-  return map;
-};
-
 class _Categorical extends Component {
   constructor(props) {
     super(props);
@@ -307,10 +301,7 @@ class _Categorical extends Component {
             data={data}
             xAccessor={'x'}
             yAccessors={['y']}
-            customSeriesColors={getColorsMap(
-              euiPaletteColorBlind()[index < 2 ? 0 : 1],
-              `data${index}`
-            )}
+            customSeriesColors={[euiPaletteColorBlind()[index < 2 ? 0 : 1]]}
             lineSeriesStyle={{
               line: {
                 strokeWidth: isOdd ? 1 : 6,

@@ -109,7 +109,7 @@ const _Theming = props => {
           data={data1}
           xAccessor={'x'}
           yAccessors={['y']}
-          customSeriesColors={data1CustomSeriesColors}
+          customSeriesColors={['black']}
         />
         <Axis id="bottom-axis" position="bottom" showGridLines />
         <Axis id="left-axis" position="left" showGridLines />
