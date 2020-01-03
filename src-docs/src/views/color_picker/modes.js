@@ -10,7 +10,7 @@ import {
 import { useColorPicker, useColorStop } from './utils';
 
 export const Modes = () => {
-  const [color, setColor, errors] = useColorPicker('#DB1374');
+  const [color, setColor, errors] = useColorPicker('#D36086');
   const [colorStops, setColorStops] = useColorStop();
 
   return (
