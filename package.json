@@ -109,6 +109,7 @@
     "chroma-js": "^2.0.4",
     "chromedriver": "2.37.0",
     "circular-dependency-plugin": "^5.0.2",
+    "codesandbox": "^2.1.11",
     "core-js": "^2.5.1",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.7",

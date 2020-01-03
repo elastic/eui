@@ -22,6 +22,8 @@ import {
   EuiToolTip,
 } from '../../../../src/components';
 
+import { CodeSandboxLink } from '../../components/codesandbox';
+
 const pkg = require('../../../../package.json');
 
 export const HomeView = () => (
@@ -72,9 +74,11 @@ export const HomeView = () => (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
-            <EuiLink href="https://codesandbox.io/s/ll7lnlpm97">
-              <strong>Codesandbox</strong>
-            </EuiLink>
+            <CodeSandboxLink>
+              <EuiLink>
+                <strong>Codesandbox</strong>
+              </EuiLink>
+            </CodeSandboxLink>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiIcon type="logoCodesandbox" />

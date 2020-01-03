@@ -21,7 +21,7 @@ import {
   EuiButtonEmpty,
 } from '../../../../src/components';
 
-import { getParameters } from 'codesandbox/lib/api/define';
+import { CodeSandboxLink } from '../codesandbox';
 
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -470,40 +470,14 @@ ${exampleClose}
         return deps;
       }, {});
 
-    const codeSandboxParams = getParameters({
-      files: {
-        'package.json': {
-          content: {
-            dependencies: {
-              react: 'latest',
-              'react-dom': 'latest',
-              'react-scripts': 'latest',
-              moment: 'latest',
-              '@elastic/eui': 'latest',
-              '@elastic/datemath': 'latest',
-              ...extraDeps,
-            },
-          },
-        },
-        'index.js': {
-          content: codeSandboxExample,
-        },
-      },
-    });
-
     return (
       <Fragment>
         <EuiSpacer size="s" />
-        <form
-          action="https://codesandbox.io/api/v1/sandboxes/define"
-          method="POST"
-          target="_blank"
-          className="eui-textRight">
-          <input type="hidden" name="parameters" value={codeSandboxParams} />
-          <EuiButtonEmpty size="xs" type="submit" iconType="logoCodesandbox">
+        <CodeSandboxLink extraDeps={extraDeps} content={codeSandboxExample}>
+          <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
             Try out this demo on Code Sandbox
           </EuiButtonEmpty>
-        </form>
+        </CodeSandboxLink>
         <EuiSpacer size="s" />
       </Fragment>
     );
