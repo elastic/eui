@@ -23,6 +23,16 @@ import {
 } from '../../../../src/components';
 
 const tokens = [
+  'tokenString',
+  'tokenNumber',
+  'tokenBoolean',
+  'tokenDate',
+  'tokenGeo',
+  'tokenIP',
+  'tokenShape',
+  'tokenNested',
+  'tokenAlias',
+  'tokenRange',
   'tokenAnnotation',
   'tokenArray',
   'tokenClass',
@@ -40,6 +50,7 @@ const tokens = [
   'tokenModule',
   'tokenNamespace',
   'tokenNull',
+  'tokenObject',
   'tokenOperator',
   'tokenPackage',
   'tokenParameter',
@@ -49,16 +60,6 @@ const tokens = [
   'tokenFile',
   'tokenSymbol',
   'tokenRepo',
-  'tokenString',
-  'tokenNumber',
-  'tokenBoolean',
-  'calendar',
-  'globe',
-  'ip',
-  'vector',
-  'tokenObject',
-  'nested',
-  'link',
 ];
 
 export default () => (

@@ -77,7 +77,7 @@ interface TokenProps {
    * By default EUI will auto color tokens. You can can however control it
    * - `color`: can be `tokenTint00` thru `tokenTint12`
    * - `shape`: square, circle, rectangle as options
-   * - `fill`: light for transparent, dark for solid, or none
+   * - `fill`: `light` for transparent, `dark` for solid, or `none`
    */
   displayOptions?: EuiTokenMapDisplayOptions;
 }

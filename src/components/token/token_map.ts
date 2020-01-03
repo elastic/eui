@@ -58,12 +58,13 @@ export type EuiTokenMapType =
   | 'tokenRepo'
   | 'tokenString'
   | 'tokenStruct'
-  | 'calendar'
-  | 'ip'
-  | 'nested'
-  | 'link'
-  | 'vector'
-  | 'globe'
+  | 'tokenDate'
+  | 'tokenIP'
+  | 'tokenNested'
+  | 'tokenAlias'
+  | 'tokenShape'
+  | 'tokenGeo'
+  | 'tokenRange'
   | 'tokenSymbol'
   | 'tokenVariable';
 
@@ -193,27 +194,31 @@ export const TOKEN_MAP: {
     shape: 'square',
     color: 'tokenTint04',
   },
-  calendar: {
+  tokenDate: {
     shape: 'square',
     color: 'tokenTint06',
   },
-  globe: {
+  tokenGeo: {
     shape: 'square',
     color: 'tokenTint01',
   },
-  ip: {
+  tokenIP: {
     shape: 'square',
     color: 'tokenTint09',
   },
-  vector: {
+  tokenShape: {
     shape: 'circle',
     color: 'tokenTint08',
   },
-  nested: {
+  tokenRange: {
+    shape: 'circle',
+    color: 'tokenTint04',
+  },
+  tokenNested: {
     shape: 'circle',
     color: 'tokenTint11',
   },
-  link: {
+  tokenAlias: {
     shape: 'circle',
     color: 'tokenTint12',
   },
