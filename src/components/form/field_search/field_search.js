@@ -32,7 +32,7 @@ const propTypes = {
    */
   compressed: PropTypes.bool,
   /**
-   * Shows a clear button when set to true
+   * Shows a button that quickly clears any input
    */
   isClearable: PropTypes.bool,
 };
