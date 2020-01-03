@@ -8,7 +8,7 @@
 - Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
 - Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
 - Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
-- Added `useResettingState` custom hook ([#2725](https://github.com/elastic/eui/pull/#2725))
+- Added `useDependentState` custom hook ([#2725](https://github.com/elastic/eui/pull/#2725))
 
 **Bug fixes**
 

@@ -85,4 +85,4 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export { useResettingState } from './hooks';
+export { useDependentState } from './hooks';

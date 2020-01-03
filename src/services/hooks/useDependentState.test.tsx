@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { useResettingState } from './useResettingState';
+import { useDependentState } from './useDependentState';
 
-describe('useResettingState', () => {
+describe('useDependentState', () => {
   it('sets the base state', () => {
     // this is a huge abuse of closure scope
     // but allows for jest's built in mock expect'ing
@@ -12,7 +12,7 @@ describe('useResettingState', () => {
     });
 
     function Foo() {
-      const [value] = useResettingState(doubler, [sourceValue]);
+      const [value] = useDependentState(doubler, [sourceValue]);
 
       return <div>{value}</div>;
     }

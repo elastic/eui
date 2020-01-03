@@ -1,1 +1,1 @@
-export * from './useResettingState';
+export * from './useDependentState';
