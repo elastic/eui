@@ -5,7 +5,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode } from '../../../../src/components';
+import { EuiCode, EuiText, EuiSpacer } from '../../../../src/components';
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
@@ -21,6 +21,17 @@ const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
 
 export const ColorPaletteExample = {
   title: 'Color Palettes',
+  intro: (
+    <>
+      <EuiText>
+        <p>
+          EUI provides a base set of color palettes that return an array of
+          hexadecimal color for use in other EUI components or charts.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+    </>
+  ),
   sections: [
     {
       title: 'Preset qualitative palettes',
@@ -36,13 +47,6 @@ export const ColorPaletteExample = {
       ],
       text: (
         <div>
-          <p>
-            The <EuiCode>eui_palettes.js</EuiCode> file provides a base set of
-            color palettes in an array format. The hexadecimal color codes in
-            these sets consist of both color safe and EUI themed colors. Import
-            the file, then use JavaScript to read and apply the color array
-            values to other EUI components, such as charts.
-          </p>
           <p>
             Qualitative palettes are best suited for communicating and comparing
             discrete data series. EUI recommends using the{' '}

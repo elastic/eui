@@ -76,7 +76,7 @@ const positiveColor: HEX = '#209280';
 const negativeColor: HEX = '#CC5642';
 const lightNegativeColor: HEX = euiPaletteColorBlind()[9];
 const coolArray: HEX[] = [euiPaletteColorBlind()[1], '#6092C0'];
-const warmArray: HEX[] = [euiPaletteColorBlind()[7], negativeColor];
+const warmArray: HEX[] = [euiPaletteColorBlind()[7], euiPaletteColorBlind()[9]];
 
 export const euiPaletteForStatus = function(steps: number): EuiPalette {
   if (steps === 1) {
@@ -84,13 +84,26 @@ export const euiPaletteForStatus = function(steps: number): EuiPalette {
   }
   if (steps <= 3) {
     return euiPalette(
-      [euiPaletteColorBlind()[0], lightNegativeColor],
+      [
+        euiPaletteColorBlind()[0],
+        euiPaletteColorBlind()[5],
+        lightNegativeColor,
+      ],
       steps,
       true
     );
   }
-
-  return euiPalette([positiveColor, negativeColor], steps, true);
+  return euiPalette(
+    [
+      positiveColor,
+      euiPaletteColorBlind()[0],
+      euiPaletteColorBlind()[5],
+      lightNegativeColor,
+      negativeColor,
+    ],
+    steps,
+    true
+  );
 };
 
 export const euiPaletteForTemperature = function(steps: number): EuiPalette {
