@@ -31,6 +31,11 @@ import {
   euiPaletteGray,
 } from '../../../../src/services';
 
+function getAlphaIndex(letter) {
+  const alpha = 'abcdefghijklmnop';
+  return alpha.indexOf(letter);
+}
+
 class _Categorical extends Component {
   constructor(props) {
     super(props);
@@ -61,17 +66,9 @@ class _Categorical extends Component {
       colorTypeIdSelected: this.colorTypeRadios[0].id,
       colorType: this.colorTypeRadios[0].label,
       numCharts: '3',
-      data: null,
-      dataString: '[{x: 1, y: 5.5, g: 0}]',
-      vizColors: euiPaletteColorBlind(),
-      vizColorsString: 'euiPaletteColorBlind()',
-      chartType: 'LineSeries',
+      ...this.createCategoryChart(3),
     };
   }
-
-  componentDidMount = () => {
-    this.createCategoryChart(3);
-  };
 
   onNumChartsChange = e => {
     this.updateCorrectChart(Number(e.target.value), this.state.colorType);
@@ -104,7 +101,7 @@ class _Categorical extends Component {
   updateCorrectChart = (numCharts, chartType) => {
     switch (chartType) {
       case 'Categorical':
-        this.createCategoryChart(numCharts);
+        this.setState(this.createCategoryChart(numCharts));
         break;
       case 'Sequential':
         this.createQuantityChart(numCharts);
@@ -130,18 +127,17 @@ class _Categorical extends Component {
   createCategoryChart = numCharts => {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
-      const index = Number(item.g);
-      item.g = `Categorical ${index + 1}`;
+      item.g = `Category ${item.g}`;
       return item;
     });
 
-    this.setState({
+    return {
       data,
-      dataString: "[{x: 1, y: 5.5, g: 'Categorical 1'}]",
+      dataString: "[{x: 1, y: 5.5, g: 'Category a'}]",
       vizColors: euiPaletteColorBlind(),
       vizColorsString: 'euiPaletteColorBlind()',
       chartType: 'LineSeries',
-    });
+    };
   };
 
   createQuantityChart = numCharts => {
@@ -151,7 +147,7 @@ class _Categorical extends Component {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
       const increment = 100 / numCharts;
-      const index = Number(item.g);
+      const index = getAlphaIndex(item.g);
       const lower = Math.floor(increment * index);
       const higher =
         index + 1 === numCharts
@@ -179,7 +175,7 @@ class _Categorical extends Component {
 
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
-      const index = Number(item.g);
+      const index = getAlphaIndex(item.g);
       let howManyErs;
       if (oddSeries && index === numOfHalf) {
         item.g = 'Meh';
@@ -216,7 +212,7 @@ class _Categorical extends Component {
 
     this.setState({
       data,
-      dataString: "[{x: 1, y: 5.5, g: '0'}]",
+      dataString: "[{x: 1, y: 5.5, g: 'a'}]",
       vizColors: numCharts < 2 ? [this.highlightColor] : vizColors,
       vizColorsString: `euiPaletteGray(${numCharts})[length - 1] = this.highlightColor`,
       chartType: 'LineSeries',
