@@ -5,7 +5,7 @@ import { EuiBadge } from '../../../../src/components';
 export default () => (
   <div>
     <EuiBadge
-      color="#333"
+      color="primary"
       onClick={() => window.alert('Badge clicked')}
       onClickAriaLabel="Example of onclick event for the button"
       data-test-sub="testExample1">
@@ -25,7 +25,19 @@ export default () => (
     <EuiBadge
       iconType="cross"
       iconSide="right"
-      color="#333"
+      color="secondary"
+      onClick={() => window.alert('Badge clicked')}
+      onClickAriaLabel="Example of onclick event for the button"
+      iconOnClick={() => window.alert('Icon inside badge clicked')}
+      iconOnClickAriaLabel="Example of onclick event for icon within the button"
+      data-test-sub="testExample3">
+      onClick on itself and the icon
+    </EuiBadge>
+
+    <EuiBadge
+      iconType="cross"
+      iconSide="right"
+      color="danger"
       onClick={() => window.alert('Badge clicked')}
       onClickAriaLabel="Example of onclick event for the button"
       iconOnClick={() => window.alert('Icon inside badge clicked')}

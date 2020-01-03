@@ -80,6 +80,18 @@ const colorToHexMap: { [color in IconColor]: string } = {
 
 export const COLORS = keysOf(colorToHexMap);
 
+const colorToClassNameMap: { [color in IconColor]: string } = {
+  default: 'euiBadge--default',
+  primary: 'euiBadge--primary',
+  secondary: 'euiBadge--secondary',
+  accent: 'euiBadge--accent',
+  warning: 'euiBadge--warning',
+  danger: 'euiBadge--danger',
+  hollow: 'euiBadge--hollow',
+};
+
+export const BUTTONCOLORS = keysOf(colorToClassNameMap);
+
 const iconSideToClassNameMap: { [side in IconSide]: string } = {
   left: 'euiBadge--iconLeft',
   right: 'euiBadge--iconRight',
@@ -103,6 +115,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 }) => {
   checkValidColor(color);
 
+  let optionalColorClass = null;
   let optionalCustomStyles: object | undefined = undefined;
   let customBackgroundColor = null;
   let textColor = null;
@@ -116,32 +129,36 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const colorGhost = palettes.euiPaletteMonotones.colors[0];
 
   if (COLORS.indexOf(color) > -1) {
-    // Map the EUI color name to its hex value from palettes
-    colorHex = colorToHexMap[color];
-
-    textColor = chroma(colorHex)
-      .darken(2)
-      .hex(); // darken text vs background
-
-    currentLightness = chroma(colorHex).lab()[0]; // get LAB Lightness value
-
-    // Use variations of the provided color for both background and text
-    // If it's too light, then leave it as-is and use dark text for contrast
-    if (currentLightness < maxLightness) {
-      // Increase the lightness of the provided color to use as background
-      customBackgroundColor = chroma(colorHex)
-        .set('lab.l', '*1.5')
-        .hex();
+    if (onClick || iconOnClick) {
+      optionalColorClass = colorToClassNameMap[color];
     } else {
-      // The color is already light, so just leave it as is and use dark text
-      customBackgroundColor = colorHex;
-      textColor = colorInk;
-    }
+      // Map the EUI color name to its hex value from palettes
+      colorHex = colorToHexMap[color];
 
-    optionalCustomStyles = {
-      backgroundColor: customBackgroundColor,
-      color: textColor,
-    };
+      textColor = chroma(colorHex)
+        .darken(2)
+        .hex(); // darken text vs background
+
+      currentLightness = chroma(colorHex).lab()[0]; // get LAB Lightness value
+
+      // Use variations of the provided color for both background and text
+      // If it's too light, then leave it as-is and use dark text for contrast
+      if (currentLightness < maxLightness) {
+        // Increase the lightness of the provided color to use as background
+        customBackgroundColor = chroma(colorHex)
+          .set('lab.l', '*1.5')
+          .hex();
+      } else {
+        // The color is already light, so just leave it as is and use dark text
+        customBackgroundColor = colorHex;
+        textColor = colorInk;
+      }
+
+      optionalCustomStyles = {
+        backgroundColor: customBackgroundColor,
+        color: textColor,
+      };
+    }
   } else if (color !== 'hollow') {
     if (isColorDark(...hexToRgb(color))) {
       // If the provided hex color is dark, then use white text for max contrast
@@ -187,6 +204,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       'euiBadge--hollow': color === 'hollow',
     },
     iconSideToClassNameMap[iconSide],
+    optionalColorClass,
     className
   );
 
@@ -209,7 +227,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           aria-label={iconOnClickAriaLabel}
           disabled={isDisabled}
           title={iconOnClickAriaLabel}
-          onClick={iconOnClick}>
+          onClick={iconOnClick}
+          color={color}>
           <EuiIcon
             type={iconType}
             size="s"
@@ -244,6 +263,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
                 onClick={onClick}
                 ref={ref}
                 title={innerText}
+                color={color}
                 {...rest}>
                 {children}
               </button>
