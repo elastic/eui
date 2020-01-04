@@ -9,6 +9,7 @@
 - Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
 - Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
 - Converted `EuiSelect` to Typescript ([#2694](https://github.com/elastic/eui/pull/2694))
+- Added `aggregate`, `pageSelect`, `pagesSelect`, `securitySignal`, `securitySignalDetected`, `securitySignalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
 
 **Bug fixes**
 
