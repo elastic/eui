@@ -11,6 +11,7 @@
 - Converted `EuiSelect` to Typescript ([#2694](https://github.com/elastic/eui/pull/2694))
 - Added `aggregate`, `pageSelect`, `pagesSelect`, `securitySignal`, `securitySignalDetected`, `securitySignalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
 - Added `useDependentState` custom hook ([#2725](https://github.com/elastic/eui/pull/#2725))
+- Added `isClearable` prop to `EuiFieldSearch` ([#2723](https://github.com/elastic/eui/pull/2723))
 
 **Bug fixes**
 
