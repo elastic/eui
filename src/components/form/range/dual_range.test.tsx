@@ -7,8 +7,6 @@ import { EuiDualRange } from './dual_range';
 jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 const props = {
-  min: 1,
-  max: 10,
   onChange: () => {},
 };
 
@@ -74,11 +72,9 @@ describe('EuiDualRange', () => {
     });
 
     test('custom ticks should render', () => {
-      const { max, ...localProps } = props;
       const component = render(
         <EuiDualRange
-          {...localProps}
-          max={120}
+          {...props}
           value={[20, 100]}
           showTicks
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
@@ -141,8 +137,6 @@ describe('EuiDualRange', () => {
               color: 'success',
             },
           ]}
-          min={0}
-          max={100}
           value={['1', '8']}
           onChange={() => {}}
         />

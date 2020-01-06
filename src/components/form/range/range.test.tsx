@@ -7,8 +7,6 @@ import { EuiRange } from './range';
 jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 const props = {
-  min: 1,
-  max: 10,
   value: '8',
 };
 
@@ -61,11 +59,9 @@ describe('EuiRange', () => {
     });
 
     test('custom ticks should render', () => {
-      const { max, ...localProps } = props;
       const component = render(
         <EuiRange
-          {...localProps}
-          max={100}
+          {...props}
           showTicks
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
         />
@@ -140,8 +136,6 @@ describe('EuiRange', () => {
               color: 'success',
             },
           ]}
-          min={0}
-          max={100}
           value={20}
         />
       );

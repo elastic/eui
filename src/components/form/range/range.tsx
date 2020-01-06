@@ -27,8 +27,6 @@ export interface EuiRangeProps
    * Create colored indicators for certain intervals
    */
   levels?: EuiRangeLevel[];
-  max: number;
-  min: number;
   step?: number;
   /**
    * Pass `true` to displays an extra input control for direct manipulation.
