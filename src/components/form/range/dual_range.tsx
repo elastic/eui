@@ -116,7 +116,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     upper: ValueMember,
     e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
   ) => {
-    console.log(newVal, lower, upper);
     // Lower thumb targeted or right-moving swap has occured
     if (
       Math.abs((lower as number) - (newVal as number)) <
