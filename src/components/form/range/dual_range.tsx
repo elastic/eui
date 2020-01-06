@@ -4,22 +4,30 @@ import classNames from 'classnames';
 import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
-import { EuiFormControlLayoutDelimited } from '../form_control_layout';
+import {
+  EuiFormControlLayoutDelimited,
+  EuiFormControlLayoutProps,
+} from '../form_control_layout';
 import makeId from '../form_row/make_id';
 
 import { EuiRangeProps } from './range';
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
 import { EuiRangeLabel } from './range_label';
-import { EuiRangeSlider } from './range_slider';
+import { EuiRangeLevel } from './range_levels';
+import { EuiRangeSlider, EuiRangeSliderProps } from './range_slider';
 import { EuiRangeThumb } from './range_thumb';
+import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
 type ValueMember = number | string;
 
 export interface EuiDualRangeProps
-  extends Omit<EuiRangeProps, 'onChange' | 'onBlur' | 'onFocus' | 'value'> {
+  extends Omit<
+    EuiRangeSliderProps,
+    'onChange' | 'onBlur' | 'onFocus' | 'value'
+  > {
   value: [ValueMember, ValueMember];
   onBlur?: (
     event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
@@ -35,6 +43,15 @@ export interface EuiDualRangeProps
       | React.MouseEvent<HTMLButtonElement>
       | React.KeyboardEvent<HTMLInputElement>
   ) => void;
+  fullWidth?: boolean;
+  isInvalid?: boolean;
+  levels?: EuiRangeLevel[];
+  showLabels?: boolean;
+  showInput?: EuiRangeProps['showInput'];
+  tickInterval?: number;
+  ticks?: EuiRangeTick[];
+  append?: EuiFormControlLayoutProps['append'];
+  prepend?: EuiFormControlLayoutProps['prepend'];
 }
 
 export class EuiDualRange extends Component<EuiDualRangeProps> {
