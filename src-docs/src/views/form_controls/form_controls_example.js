@@ -274,6 +274,20 @@ export const FormControlsExample = {
         EuiCheckboxGroup,
       },
       demo: <CheckboxGroup />,
+      snippet: `<EuiCheckboxGroup
+  options={[
+    {
+      id: id1,
+      label: 'Option one',
+    },
+    {
+      id: id2,
+      label: 'Option two',
+    }
+  ]}
+  idToSelectedMap={{ id1: true }}
+  onChange={(id) => {}}
+/>`,
     },
     {
       title: 'Radio',
