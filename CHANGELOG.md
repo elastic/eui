@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `18.0.0`.
+
+## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
+
 - Converted `EuiFieldText` to Typescript ([#2688](https://github.com/elastic/eui/pull/2688))
 - Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
 - Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
@@ -8,7 +12,10 @@
 - Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
 - Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
 - Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
+- Converted `EuiSelect` to Typescript ([#2694](https://github.com/elastic/eui/pull/2694))
+- Added `aggregate`, `pageSelect`, `pagesSelect`, `securitySignal`, `securitySignalDetected`, `securitySignalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
 - Added `useDependentState` custom hook ([#2725](https://github.com/elastic/eui/pull/#2725))
+- Added `isClearable` prop to `EuiFieldSearch` ([#2723](https://github.com/elastic/eui/pull/2723))
 
 **Bug fixes**
 
