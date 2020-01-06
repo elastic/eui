@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `18.0.0`.
+
+## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
+
 - Converted `EuiFieldText` to Typescript ([#2688](https://github.com/elastic/eui/pull/2688))
 - Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
 - Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
