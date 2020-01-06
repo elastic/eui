@@ -11,6 +11,7 @@ export {
   EuiFormControlLayoutDelimited,
 } from './form_control_layout';
 export { EuiFormErrorText } from './form_error_text';
+export { EuiFormFieldset, EuiFormLegend } from './form_fieldset';
 export { EuiFormHelpText } from './form_help_text';
 export { EuiFormLabel } from './form_label';
 export { EuiFormRow } from './form_row';

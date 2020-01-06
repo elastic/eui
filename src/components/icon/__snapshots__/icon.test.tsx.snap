@@ -535,6 +535,25 @@ exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type aggregate is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M2.5 2a.5.5 0 100 1 .5.5 0 000-1zm0-1a1.5 1.5 0 011.415 1h1.908a1.5 1.5 0 011.393.943L8.839 7H12.5a.5.5 0 010 1H8.839l-1.623 4.057A1.5 1.5 0 015.823 13H3.915a1.5 1.5 0 110-1h1.908a.5.5 0 00.464-.314L7.761 8H3.915a1.5 1.5 0 110-1H7.76L6.287 3.314A.5.5 0 005.823 3H3.915A1.5 1.5 0 112.5 1zm0 11a.5.5 0 110 1 .5.5 0 010-1zM3 7.5a.5.5 0 10-1 0 .5.5 0 001 0zm9.354-3.354a.5.5 0 00-.708.708L13.793 7a.707.707 0 010 1l-2.147 2.146a.5.5 0 00.708.708L14.5 8.707a1.707 1.707 0 000-2.414l-2.146-2.147z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type alert is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -5981,6 +6000,44 @@ exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type pageSelect is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M3 1a1 1 0 00-1 1v12a1 1 0 001 1h5a4.995 4.995 0 01-.584-1H3V2h7v2a1 1 0 001 1h2v2.1c.348.07.682.177 1 .316V4a1 1 0 00-.293-.707l-2-2A1 1 0 0011 1H3zm13 11a4 4 0 11-8 0 4 4 0 018 0zm-1.646-1.354a.5.5 0 010 .708l-2.5 2.5a.5.5 0 01-.708 0l-1-1a.5.5 0 01.708-.708l.646.647 2.146-2.147a.5.5 0 01.708 0z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type pagesSelect is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M3 1a1 1 0 011-1h8a1 1 0 01.707.293l2 2A1 1 0 0115 3v5a4.995 4.995 0 00-1-.584V4h-2a1 1 0 01-1-1V1H4v12h3.1c.07.348.177.682.316 1H4a1 1 0 01-1-1V1zm5 14H2V2a1 1 0 00-1 1v12a1 1 0 001 1h7a5.029 5.029 0 01-1-1zm8-3a4 4 0 11-8 0 4 4 0 018 0zm-1.646-1.354a.5.5 0 010 .708l-2.5 2.5a.5.5 0 01-.708 0l-1-1a.5.5 0 01.708-.708l.646.647 2.146-2.147a.5.5 0 01.708 0z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type partial is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -6378,6 +6435,63 @@ exports[`EuiIcon props type securityApp is rendered 1`] = `
   <path
     class="euiIcon__fillSecondary"
     d="M9 17.83h2V23H9zM11 10.18V7H9v3.18a3 3 0 102 0zM10 14a1 1 0 110-2 1 1 0 010 2zM17 7h2v5.17h-2zM21 17a3 3 0 10-4 2.82V23h2v-3.18A3 3 0 0021 17zm-3 1a1 1 0 110-2 1 1 0 010 2z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type securitySignal is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M11.875 3.418a6 6 0 10.707.707l-2.46 2.46-1.156 1.156a1 1 0 11-.707-.707l.757-.757a2 2 0 00-2.43 3.137.5.5 0 11-.707.707 3 3 0 013.86-4.567l.714-.714A4 4 0 108 12a.5.5 0 110 1 5 5 0 113.164-8.871l.71-.71zm.709-.709a7 7 0 10.707.707l.366-.366a.5.5 0 10-.707-.707l-.366.366z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type securitySignalDetected is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M13.657 3.05a.5.5 0 00-.707-.707l-.366.366A7 7 0 108 15a4.994 4.994 0 01-.597-1.03 6 6 0 114.471-10.552l-.71.71a5 5 0 10-4.08 8.788 5.027 5.027 0 01-.082-1.042A4.002 4.002 0 018 4a3.98 3.98 0 012.453.84l-.715.714a3 3 0 00-3.86 4.567.5.5 0 10.708-.707 2 2 0 012.43-3.137l-.757.757a1 1 0 10.707.707l1.155-1.155 2.46-2.46a5.972 5.972 0 011.39 3.277c.367.158.713.36 1.029.597 0-1.636-.57-3.271-1.71-4.584l.367-.366zM16 12a4 4 0 11-8 0 4 4 0 018 0zm-4 .5a.577.577 0 01-.57-.495l-.29-2.015a.867.867 0 111.718 0l-.288 2.015a.577.577 0 01-.57.495zm0 2.5a1 1 0 100-2 1 1 0 000 2z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type securitySignalResolved is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M13.657 3.05a.5.5 0 10-.707-.707l-.366.366A7 7 0 108 15a4.994 4.994 0 01-.597-1.03 6 6 0 114.471-10.552l-.71.71a5 5 0 10-4.08 8.788 5.028 5.028 0 01-.082-1.042A4.002 4.002 0 018 4a3.98 3.98 0 012.453.84l-.715.714a3 3 0 00-3.86 4.567.5.5 0 10.708-.707 2 2 0 012.43-3.137l-.757.757a1 1 0 10.707.707l1.155-1.155 2.46-2.46a5.972 5.972 0 011.39 3.277c.367.158.713.36 1.029.597 0-1.636-.57-3.271-1.71-4.584l.367-.366zM16 12a4 4 0 11-8 0 4 4 0 018 0zm-1.646-1.354a.5.5 0 010 .707l-2.5 2.5a.5.5 0 01-.708 0l-1-1a.5.5 0 01.708-.707l.646.647 2.146-2.147a.5.5 0 01.708 0z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -7059,6 +7173,25 @@ exports[`EuiIcon props type temperature is rendered 1`] = `
   />
   <path
     d="M8.5 9a2.5 2.5 0 110 5 2.5 2.5 0 010-5"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type timeline is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M7 4.5a.5.5 0 001 0V4h1a1 1 0 001-1V1a1 1 0 00-1-1H6a1 1 0 00-1 1v2a1 1 0 001 1h1v.5zM9 1H6v2h3V1zM2 7.5a.5.5 0 111 0 .5.5 0 01-1 0zM2.5 9a1.5 1.5 0 01-1.415-1H.5a.5.5 0 010-1h.585a1.5 1.5 0 012.83 0h2.17a1.5 1.5 0 012.83 0h2.17a1.5 1.5 0 012.83 0h.585a.5.5 0 010 1h-.585a1.5 1.5 0 01-2.83 0h-2.17a1.5 1.5 0 01-2.83 0h-2.17A1.5 1.5 0 012.5 9zM13 7.5a.5.5 0 10-1 0 .5.5 0 001 0zm-5 0a.5.5 0 10-1 0 .5.5 0 001 0zM2.5 10a.5.5 0 00-.5.5v.5H1a1 1 0 00-1 1v2a1 1 0 001 1h3a1 1 0 001-1v-2a1 1 0 00-1-1H3v-.5a.5.5 0 00-.5-.5zM4 14v-2H1v2h3zm8-3.5a.5.5 0 011 0v.5h1a1 1 0 011 1v2a1 1 0 01-1 1h-3a1 1 0 01-1-1v-2a1 1 0 011-1h1v-.5zm2 2.5v1h-3v-2h3v1z"
+    fill-rule="evenodd"
   />
 </svg>
 `;

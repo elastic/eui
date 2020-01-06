@@ -163,7 +163,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideCharts__customLegend {
   font-size: $euiFontSizeXS;
   position: absolute;
-  width: 123px;
+  width: 93px;
   right: 0;
   bottom: 0;
   padding: $euiSizeXS;
@@ -228,23 +228,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   .guidePageContent {
     margin-left: 0;
     width: 100%;
-  }
-
-  .euiFlexGroup--responsive > .euiFlexItem.guideColorPalette__swatch {
-    margin-bottom: 0 !important;
-
-    span {
-      height: $euiSize;
-      width: $euiSizeL;
-    }
-
-    &:first-child span {
-      border-radius: $euiBorderRadius $euiBorderRadius 0 0;
-    }
-
-    &:last-child span {
-      border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
-    }
   }
 }
 
