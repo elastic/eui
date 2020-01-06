@@ -308,6 +308,24 @@ export const FormControlsExample = {
         EuiRadioGroup,
       },
       demo: <RadioGroup />,
+      snippet: `<EuiRadioGroup
+  options={[
+    {
+      id: id1,
+      label: 'Option one',
+    },
+    {
+      id: id2,
+      label: 'Option two',
+    }
+  ]}
+  idSelected={id1}
+  onChange={(id) => {}}
+  name={groupName}
+  legend={{
+    children: 'A legend',
+  }}
+/>`,
     },
     {
       title: 'Switch',

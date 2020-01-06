@@ -5,15 +5,3 @@
     margin-top: 0;
   }
 }
-
-.euiRadioGroup__legend {
-  @include euiFormLabel;
-}
-
-.euiRadioGroup__legend:not(.euiRadioGroup__legend--hidden) + .euiRadioGroup__item {
-  margin-top: $euiSizeS;
-
-  &.euiRadio--compressed {
-    margin-top: $euiSizeXS;
-  }
-}

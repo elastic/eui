@@ -1,35 +1,32 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { EuiRadio, RadioProps } from './radio';
-import { EuiScreenReaderOnly } from '../../accessibility';
+import {
+  EuiFormFieldsetProps,
+  EuiFormLegendProps,
+  EuiFormFieldset,
+} from '../form_fieldset';
+import { EuiRadio, EuiRadioProps } from './radio';
 
 export interface EuiRadioGroupOption
-  extends Omit<RadioProps, 'checked' | 'onChange'> {
+  extends Omit<EuiRadioProps, 'checked' | 'onChange'> {
   id: string;
-}
-
-export interface EuiRadioGroupLegend
-  extends CommonProps,
-    HTMLAttributes<HTMLLegendElement> {
-  children: ReactNode;
-  /**
-   * For a hidden legend that is still visible to the screen reader, set to 'hidden'
-   */
-  display?: 'hidden';
 }
 
 export type EuiRadioGroupChangeCallback = (id: string, value?: string) => void;
 
+// Must omit inherit `onChange` properties or else TS complaines when applying to the EuiRadio
 type AsDivProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>;
-type WithLegendProps = {
+type WithLegendProps = Omit<EuiFormFieldsetProps, 'onChange'> & {
   /**
    * If the individual labels for each radio do not provide a sufficient description, add a legend.
-   * Wraps the group in a `fieldset` and adds a `legend` for titling the whole group.
+   * Wraps the group in a `EuiFieldset` which adds an `EuiLegend` for titling the whole group.
+   * Accepts an `EuiFormLegendProps` shape.
    */
-  legend: EuiRadioGroupLegend;
-} & Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'>;
+  legend?: EuiFormLegendProps;
+};
 
 export type EuiRadioGroupProps = CommonProps & {
   disabled?: boolean;
@@ -56,10 +53,14 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
   ...rest
 }) => {
   const radios = options.map((option, index) => {
-    const { disabled: isOptionDisabled, ...optionRest } = option;
+    const {
+      disabled: isOptionDisabled,
+      className: optionClass,
+      ...optionRest
+    } = option;
     return (
       <EuiRadio
-        className="euiRadioGroup__item"
+        className={classNames('euiRadioGroup__item', optionClass)}
         key={index}
         name={name}
         checked={option.id === idSelected}
@@ -72,37 +73,16 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
   });
 
   if (!!legend) {
-    const {
-      children,
-      display,
-      className: legendClassName,
-      ...legendRest
-    } = legend;
-    const isLegendHidden = display === 'hidden';
-    const legendClasses = classNames(
-      'euiRadioGroup__legend',
-      {
-        'euiRadioGroup__legend--hidden': isLegendHidden,
-      },
-      legendClassName
-    );
-    const legendDisplay = isLegendHidden ? (
-      <EuiScreenReaderOnly>
-        <span>{children}</span>
-      </EuiScreenReaderOnly>
-    ) : (
-      children
-    );
+    // Be sure to pass down the compressed option to the legend
+    legend.compressed = compressed;
 
     return (
-      <fieldset
+      <EuiFormFieldset
         className={className}
-        {...rest as HTMLAttributes<HTMLFieldSetElement>}>
-        <legend className={legendClasses} {...legendRest}>
-          {legendDisplay}
-        </legend>
+        legend={legend}
+        {...rest as EuiFormFieldsetProps}>
         {radios}
-      </fieldset>
+      </EuiFormFieldset>
     );
   }
 

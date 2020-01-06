@@ -53,7 +53,6 @@ export default class extends Component {
           name="radio group"
           legend={{
             children: <span>This is a legend for a radio group</span>,
-            // display: 'hidden',
           }}
         />
       </DisplayToggles>
