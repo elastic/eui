@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `18.0.0`.
+- Added `bellSlash` glyph to `EuiIcon` ([#2714](https://github.com/elastic/eui/pull/2714))
 
 ## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
 
@@ -10,7 +10,6 @@ No public interface changes since `18.0.0`.
 - Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
 - Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
 - Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
-- Added `bellSlash` glyph to `EuiIcon` ([#2714](https://github.com/elastic/eui/pull/2714))
 - Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
 - Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
 - Converted `EuiSelect` to Typescript ([#2694](https://github.com/elastic/eui/pull/2694))
