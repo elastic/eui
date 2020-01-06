@@ -10,6 +10,7 @@
 - Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
 - Converted `EuiSelect` to Typescript ([#2694](https://github.com/elastic/eui/pull/2694))
 - Added `aggregate`, `pageSelect`, `pagesSelect`, `securitySignal`, `securitySignalDetected`, `securitySignalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
+- Added `useDependentState` custom hook ([#2725](https://github.com/elastic/eui/pull/#2725))
 
 **Bug fixes**
 
@@ -17,6 +18,7 @@
 - Added text selection to `EuiLink` button ([#2722](https://github.com/elastic/eui/pull/#2722))
 - Fixed bug in `EuiDataGrid` where resizing columns changed the active DOM element ([#2724](https://github.com/elastic/eui/pull/#2724))
 - Fixed position of scrollbar in `EuiCodeBlock` ([#2727](https://github.com/elastic/eui/pull/#2727))
+- Fixed bug in `EuiDataGrid` that prevented the "Hide fields" popover from showing an updated column list ([#2725](https://github.com/elastic/eui/pull/#2725))
 
 **Breaking changes**
 
