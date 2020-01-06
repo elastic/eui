@@ -7,43 +7,31 @@ export default () => (
     <EuiBadge
       color="primary"
       onClick={() => window.alert('Badge clicked')}
-      onClickAriaLabel="Example of onclick event for the button"
+      onClickAriaLabel="Example of onClick event for the button"
       data-test-sub="testExample1">
-      onClick on badge itself
+      onClick on text within badge
     </EuiBadge>
 
     <EuiBadge
+      color="hollow"
       iconType="cross"
       iconSide="right"
-      color="#333"
       iconOnClick={() => window.alert('Icon inside badge clicked')}
-      iconOnClickAriaLabel="Example of onclick event for icon within the button"
+      iconOnClickAriaLabel="Example of onClick event for icon within the button"
       data-test-sub="testExample2">
       onClick on icon within badge
     </EuiBadge>
 
     <EuiBadge
-      iconType="cross"
-      iconSide="right"
       color="secondary"
-      onClick={() => window.alert('Badge clicked')}
-      onClickAriaLabel="Example of onclick event for the button"
-      iconOnClick={() => window.alert('Icon inside badge clicked')}
-      iconOnClickAriaLabel="Example of onclick event for icon within the button"
-      data-test-sub="testExample3">
-      onClick on itself and the icon
-    </EuiBadge>
-
-    <EuiBadge
       iconType="cross"
       iconSide="right"
-      color="danger"
       onClick={() => window.alert('Badge clicked')}
-      onClickAriaLabel="Example of onclick event for the button"
+      onClickAriaLabel="Example of onClick event for the button"
       iconOnClick={() => window.alert('Icon inside badge clicked')}
-      iconOnClickAriaLabel="Example of onclick event for icon within the button"
+      iconOnClickAriaLabel="Example of onClick event for icon within the button"
       data-test-sub="testExample3">
-      onClick on itself and the icon
+      onClick on both text and icon within badge
     </EuiBadge>
   </div>
 );

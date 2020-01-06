@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   EuiBadge,
   EuiFlexItem,
   EuiFlexGroup,
   EuiSpacer,
+  EuiSwitch,
+  EuiText,
   EuiTitle,
 } from '../../../../src/components';
 
@@ -19,12 +21,10 @@ const badges = [
 ];
 
 const customBadges = [
-  '#AAA',
   '#DDD',
-  '#999',
+  '#AAA',
   '#666',
   '#333',
-  '#000',
   '#BADA55',
   '#FCF7BC',
   '#FEA27F',
@@ -32,41 +32,61 @@ const customBadges = [
   '#0000FF',
 ];
 
-export default () => (
-  <Fragment>
-    <EuiTitle size="xxs">
-      <h3>EUI colors</h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup
-      wrap
-      responsive={false}
-      gutterSize="xs"
-      style={{ width: 300 }}>
-      {badges.map(badge => (
-        <EuiFlexItem grow={false} key={badge}>
-          <EuiBadge color={badge}>{badge}</EuiBadge>
+export default () => {
+  const [isDisabled, setDisabled] = useState(false);
+
+  return (
+    <Fragment>
+      <EuiTitle size="xs">
+        <h3>Accepted color names</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+        {badges.map(badge => (
+          <EuiFlexItem grow={false} key={badge}>
+            <EuiBadge color={badge}>{badge}</EuiBadge>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h3>Custom color examples</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiFlexGroup
+        wrap
+        responsive={false}
+        gutterSize="xs"
+        style={{ width: '300px' }}>
+        {customBadges.map(badge => (
+          <EuiFlexItem grow={false} key={badge}>
+            <EuiBadge color={badge}>{badge}</EuiBadge>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h3>Disabled state</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiText size="s">
+        Regardless of the assigned color, all badges use the same disabled state
+        styles.
+      </EuiText>
+      <EuiSpacer size="m" />
+      <EuiSwitch
+        label="Show disabled state"
+        checked={isDisabled}
+        onChange={e => setDisabled(e.target.checked)}
+      />
+      <EuiSpacer size="m" />
+      <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+        <EuiFlexItem grow={false}>
+          <EuiBadge color="secondary" isDisabled={isDisabled}>
+            {isDisabled ? 'Disabled badge' : 'Disable me!'}
+          </EuiBadge>
         </EuiFlexItem>
-      ))}
-      <EuiFlexItem grow={false}>
-        <EuiBadge isDisabled={true}>disabled</EuiBadge>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-    <EuiSpacer />
-    <EuiTitle size="xxs">
-      <h3>Custom HEX colors</h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup
-      wrap
-      responsive={false}
-      gutterSize="xs"
-      style={{ width: 300 }}>
-      {customBadges.map(badge => (
-        <EuiFlexItem grow={false} key={badge}>
-          <EuiBadge color={badge}>{badge}</EuiBadge>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
-  </Fragment>
-);
+      </EuiFlexGroup>
+    </Fragment>
+  );
+};
