@@ -442,6 +442,13 @@ export class GuideSection extends Component {
       .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';")
       .replace('export default', 'const Demo =');
 
+    // If the code example still has local doc imports after the above cleaning it's
+    // too complicated for code sandbox
+    const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
+    if (hasLocalImports) {
+      return;
+    }
+
     // Renders the new Demo component generically into the code sandbox page
     const exampleClose = `ReactDOM.render(
   <Demo />,
