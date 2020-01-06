@@ -31,6 +31,10 @@ const propTypes = {
    * when `true` creates a shorter height input
    */
   compressed: PropTypes.bool,
+  /**
+   * Shows a button that quickly clears any input
+   */
+  isClearable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -38,6 +42,7 @@ const defaultProps = {
   isLoading: false,
   incremental: false,
   compressed: false,
+  isClearable: true,
 };
 
 export class EuiFieldSearch extends Component {
@@ -62,6 +67,11 @@ export class EuiFieldSearch extends Component {
       );
     }
   }
+
+  onClear = () => {
+    this.props.onChange('');
+    this.inputElement.focus();
+  };
 
   componentWillUnmount() {
     this.cleanups.forEach(cleanup => cleanup());
@@ -100,6 +110,7 @@ export class EuiFieldSearch extends Component {
       incremental,
       compressed,
       onSearch,
+      isClearable,
       ...rest
     } = this.props;
 
@@ -118,6 +129,11 @@ export class EuiFieldSearch extends Component {
         icon="search"
         fullWidth={fullWidth}
         isLoading={isLoading}
+        clear={
+          isClearable && value && !rest.readOnly && !rest.disabled
+            ? { onClick: this.onClear }
+            : null
+        }
         compressed={compressed}>
         <EuiValidatableControl isInvalid={isInvalid}>
           <input

@@ -10,15 +10,15 @@ export const useColorStop = (useRandomColor = false) => {
   const [colorStops, setColorStops] = useState([
     {
       stop: 20,
-      color: '#00B3A4',
+      color: '#5BBAA0',
     },
     {
       stop: 50,
-      color: '#DB1374',
+      color: '#D36086',
     },
     {
       stop: 65,
-      color: '#490092',
+      color: '#9170B8',
     },
   ]);
 
