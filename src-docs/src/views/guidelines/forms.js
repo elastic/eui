@@ -37,7 +37,7 @@ export default () => (
 
     <GuideRule
       heading="Help users achieve success"
-      description="Forms are difficult and can quickly become frustrating. Our form components try to be as informative and clear as possible for the user to avoid errors or confusion.">
+      description="Our form components try to be as informative and clear as possible for the user to avoid errors or confusion.">
       <EuiFlexItem>
         <EuiPanel>
           <EuiText className="guideSection__text">
@@ -56,8 +56,8 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Provide help text</h4>
             <p>
-              Show validation parameters in the help text below the input (eg.,
-              No spaces, lowercase, no special characters, etc.)
+              Show validation parameters in the help text below the input. For
+              example: Spaces and special charaters are not allowed.
             </p>
           </EuiText>
         </EuiPanel>
@@ -70,6 +70,7 @@ export default () => (
             <p>
               Validation should occur on blur from an input field. The submit
               button should be active by default, then show errors after click.
+              Error messages should be specific to the situation.
             </p>
           </EuiText>
         </EuiPanel>
@@ -78,15 +79,15 @@ export default () => (
 
     <GuideRule
       heading="Provide transparency"
-      description="It should be clear to the user what each part of the form is meant to accomplish. ">
+      description="It should be clear to users what they can accomplish in each part of the form. ">
       <EuiFlexItem>
         <EuiPanel>
           <EuiText className="guideSection__text">
             <h4>Layout matters</h4>
             <p>
-              A poorly formatted form can be confusing and tiring for the user
-              to navigate. As one field is completed, it should be clear where
-              to go next.
+              A well-formatted layout makes it clear to users how to navigate
+              the form. As one field is completed, it should be clear where to
+              go next.
             </p>
           </EuiText>
         </EuiPanel>
@@ -97,9 +98,9 @@ export default () => (
           <EuiText className="guideSection__text">
             <h4>Words matter</h4>
             <p>
-              Form labels and descriptions are equally as important as layout
-              and should be treated with just as much care. The text should be
-              concise and easily scannable.
+              Form labels and descriptions are equally important as layout and
+              should be treated with just as much care. The text should be
+              specific, concise, and easy to scan.
             </p>
           </EuiText>
         </EuiPanel>
@@ -122,12 +123,13 @@ export default () => (
         <EuiText>
           <h4>Forms with lengthy descriptions per input</h4>
           <p>
-            If long descriptions are needed, using an{' '}
+            If a longer description is needed, use an{' '}
             <EuiCode>EuiDescribedFormRow</EuiCode>
-            divides the form into a column for descriptions and a column for
-            form fields. This is so there is plenty of space for descriptions to
-            aid new users, but keeps the form fields in a column so frequent
-            users can still quickly navigate the form.
+            to divide the form into a column for descriptions and a column for
+            form fields. This is so there is space for descriptions to aid new
+            users, but keeps the form fields in a column, so frequent users can
+            still quickly navigate the form. Try to limit the description to
+            three sentences or less.
           </p>
         </EuiText>
         <EuiSpacer />
@@ -164,7 +166,7 @@ export default () => (
         panel={false}
         frame="frame"
         type="do"
-        text="Do. To make grouping clearer and keep the user's eye in one path, it's better to keep inputs in a single column. If multiple fields are needed, they should still remain within the column.">
+        text="Do. To make groupings clearer and keep the user's eye in one path, it's better to keep inputs in a single column. If multiple fields are needed, they should still remain within the column.">
         <EuiImage alt="proper field alignment" url={imgFormRowGood} />
       </GuideRuleExample>
 
@@ -172,7 +174,7 @@ export default () => (
         panel={false}
         frame="frame"
         type="dont"
-        text="Don't. Avoid nesting this form rows within eachother. It creates an uneven path for the user's eye to travel down the form.">
+        text="Don't. Avoid nesting form rows. It creates an uneven path for the user's eye to travel down the form.">
         <EuiImage alt="incorrect field alignment" url={imgFormRowBad} />
       </GuideRuleExample>
     </GuideRule>
@@ -181,7 +183,7 @@ export default () => (
 
     <GuideRule
       heading="Divide the form into sections"
-      description="As a form grows longer than several fields, it's best divide up the form into sections. This helps the user quickly scan the form and provides visual breaks between multiple input fields.">
+      description="As a form grows longer, it's best to divide the form into sections. This helps the user quickly scan the form and provides visual breaks between multiple input fields.">
       <GuideRuleExample
         panel={false}
         frame="frame"
@@ -211,7 +213,7 @@ export default () => (
         panel={false}
         frame="frame"
         type="dont"
-        text="Don't. Avoid using the same spacing between groups and the individual fields. It is harder for the user to scan and understand the sections of the form.">
+        text="Don't. Avoid using the same spacing between groups and individual fields. It is harder for the user to scan and understand the sections of the form.">
         <EuiImage alt="incorrect use of spacing" url={imgFormRowSpacingBad} />
       </GuideRuleExample>
     </GuideRule>
