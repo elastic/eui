@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added possibility to set `aria-label` for both `min` and `max` inputs of `EuiDualRange` ([#2738](https://github.com/elastic/eui/pull/2738))
+- Converted `EuiRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Converted `EuiDualRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Converted `EuiRangeInput` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
 
 ## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
 

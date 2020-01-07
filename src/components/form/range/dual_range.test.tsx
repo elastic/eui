@@ -6,16 +6,18 @@ import { EuiDualRange } from './dual_range';
 
 jest.mock('../form_row/make_id', () => () => 'generated-id');
 
+const props = {
+  onChange: () => {},
+};
+
 describe('EuiDualRange', () => {
   test('is rendered', () => {
     const component = render(
       <EuiDualRange
         name="name"
         id="id"
-        min={1}
-        max={10}
         value={['1', '8']}
-        onChange={() => {}}
+        {...props}
         {...requiredProps}
       />
     );
@@ -25,31 +27,46 @@ describe('EuiDualRange', () => {
 
   describe('props', () => {
     test('disabled should render', () => {
-      const component = render(<EuiDualRange disabled />);
+      const component = render(
+        <EuiDualRange {...props} value={['1', '8']} disabled />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('fullWidth should render', () => {
-      const component = render(<EuiDualRange fullWidth />);
+      const component = render(
+        <EuiDualRange {...props} value={['1', '8']} fullWidth />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('compressed should render', () => {
-      const component = render(<EuiDualRange compressed />);
+      const component = render(
+        <EuiDualRange {...props} value={['1', '8']} compressed />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('labels should render', () => {
-      const component = render(<EuiDualRange showLabels />);
+      const component = render(
+        <EuiDualRange {...props} value={['1', '8']} showLabels />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('ticks should render', () => {
-      const component = render(<EuiDualRange showTicks tickInterval={20} />);
+      const component = render(
+        <EuiDualRange
+          {...props}
+          value={['1', '8']}
+          showTicks
+          tickInterval={20}
+        />
+      );
 
       expect(component).toMatchSnapshot();
     });
@@ -57,6 +74,8 @@ describe('EuiDualRange', () => {
     test('custom ticks should render', () => {
       const component = render(
         <EuiDualRange
+          {...props}
+          value={[20, 100]}
           showTicks
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
         />
@@ -66,7 +85,9 @@ describe('EuiDualRange', () => {
     });
 
     test('range should render', () => {
-      const component = render(<EuiDualRange showRange value={[1, 8]} />);
+      const component = render(
+        <EuiDualRange {...props} showRange value={[1, 8]} />
+      );
 
       expect(component).toMatchSnapshot();
     });
@@ -76,11 +97,9 @@ describe('EuiDualRange', () => {
         <EuiDualRange
           name="name"
           id="id"
-          min={1}
-          max={10}
           value={['1', '8']}
-          onChange={() => {}}
           showInput
+          {...props}
           {...requiredProps}
         />
       );
@@ -93,11 +112,9 @@ describe('EuiDualRange', () => {
         <EuiDualRange
           name="name"
           id="id"
-          min={1}
-          max={10}
           value={['1', '8']}
-          onChange={() => {}}
           showInput="inputWithPopover"
+          {...props}
           {...requiredProps}
         />
       );
@@ -120,6 +137,8 @@ describe('EuiDualRange', () => {
               color: 'success',
             },
           ]}
+          value={['1', '8']}
+          onChange={() => {}}
         />
       );
 
@@ -128,17 +147,13 @@ describe('EuiDualRange', () => {
   });
 
   test('allows value prop to accept numbers', () => {
-    const component = render(
-      <EuiDualRange value={[1, 8]} onChange={() => {}} />
-    );
+    const component = render(<EuiDualRange value={[1, 8]} {...props} />);
 
     expect(component).toMatchSnapshot();
   });
 
   test('allows value prop to accept empty strings', () => {
-    const component = render(
-      <EuiDualRange value={['', '']} onChange={() => {}} />
-    );
+    const component = render(<EuiDualRange value={['', '']} {...props} />);
 
     expect(component).toMatchSnapshot();
   });

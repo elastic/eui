@@ -68,8 +68,8 @@ exports[`EuiRange is rendered 1`] = `
       class="euiRangeSlider"
       data-test-subj="test subject string"
       id="id"
-      max="10"
-      min="1"
+      max="100"
+      min="0"
       name="name"
       step="1"
       type="range"
@@ -96,6 +96,7 @@ exports[`EuiRange props compressed should render 1`] = `
       min="0"
       step="1"
       type="range"
+      value="8"
     />
   </div>
   <div
@@ -143,6 +144,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
       min="0"
       step="1"
       type="range"
+      value="8"
     />
   </div>
   <div
@@ -166,6 +168,7 @@ exports[`EuiRange props disabled should render 1`] = `
       min="0"
       step="1"
       type="range"
+      value="8"
     />
   </div>
   <div
@@ -188,6 +191,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
       min="0"
       step="1"
       type="range"
+      value="8"
     />
   </div>
   <div
@@ -207,8 +211,8 @@ exports[`EuiRange props input should render 1`] = `
       aria-label="aria-label"
       class="euiRangeSlider"
       data-test-subj="test subject string"
-      max="10"
-      min="1"
+      max="100"
+      min="0"
       name="name"
       step="1"
       tabindex="-1"
@@ -230,11 +234,11 @@ exports[`EuiRange props input should render 1`] = `
         class="euiFieldNumber euiRangeInput euiRangeInput--max"
         data-test-subj="test subject string"
         id="id"
-        max="10"
-        min="1"
+        max="100"
+        min="0"
         name="name"
         step="1"
-        style="width:3.6em"
+        style="width:4.4em"
         type="number"
         value="8"
       />
@@ -262,6 +266,7 @@ exports[`EuiRange props labels should render 1`] = `
       min="0"
       step="1"
       type="range"
+      value="8"
     />
   </div>
   <label
@@ -301,6 +306,7 @@ exports[`EuiRange props levels should render 1`] = `
       min="0"
       step="1"
       type="range"
+      value="20"
     />
   </div>
   <div
@@ -359,8 +365,8 @@ exports[`EuiRange props slider should display in popover 1`] = `
             class="euiFieldNumber euiRangeInput euiRangeInput--max"
             data-test-subj="test subject string"
             id="id"
-            max="10"
-            min="1"
+            max="100"
+            min="0"
             name="name"
             step="1"
             type="number"
@@ -447,6 +453,7 @@ exports[`EuiRange props ticks should render 1`] = `
       min="0"
       step="1"
       type="range"
+      value="8"
     />
   </div>
   <div
