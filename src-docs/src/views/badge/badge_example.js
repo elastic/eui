@@ -249,10 +249,10 @@ export const BadgeExample = {
       ],
       text: (
         <p>
-          Used to showcase the number of notifications, alerts or hidden
-          selections. Typically used in{' '}
-          <Link to="/layout/header">EuiHeader</Link>{' '}
-          <Link to="/forms/filter-group">EuiFilterButtons</Link>.
+          Used to showcase the number of notifications, alerts, or hidden
+          selections. This badge type is commonly used in the{' '}
+          <Link to="/layout/header">EuiHeader</Link> and{' '}
+          <Link to="/forms/filter-group">EuiFilterButton</Link> components.
         </p>
       ),
       props: { EuiNotificationBadge },

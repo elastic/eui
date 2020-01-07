@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `18.0.0`.
+- Changed `EuiBadge` to use EUI palette colors ([#2455](https://github.com/elastic/eui/pull/2455))
 
 ## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
 
