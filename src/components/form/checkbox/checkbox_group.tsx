@@ -24,7 +24,7 @@ type AsDivProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>;
 type WithLegendProps = Omit<EuiFormFieldsetProps, 'onChange'> & {
   /**
    * If the individual labels for each radio do not provide a sufficient description, add a legend.
-   * Wraps the group in a `EuiFieldset` which adds an `EuiLegend` for titling the whole group.
+   * Wraps the group in a `EuiFormFieldset` which adds an `EuiLegend` for titling the whole group.
    * Accepts an `EuiFormLegendProps` shape.
    */
   legend?: EuiFormLegendProps;
