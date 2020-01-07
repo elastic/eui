@@ -57,7 +57,7 @@ export default () => {
         wrap
         responsive={false}
         gutterSize="xs"
-        style={{ width: '300px' }}>
+        style={{ maxWidth: '300px' }}>
         {customBadges.map(badge => (
           <EuiFlexItem grow={false} key={badge}>
             <EuiBadge color={badge}>{badge}</EuiBadge>
