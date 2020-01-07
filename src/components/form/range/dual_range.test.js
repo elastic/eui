@@ -154,7 +154,8 @@ describe('EuiDualRange', () => {
           value={['1', '8']}
           onChange={() => {}}
           showInput
-          ariaLabels={['Min value', 'Max value']}
+          minInputProps={{ 'aria-label': 'Min value' }}
+          maxInputProps={{ 'aria-label': 'Max value' }}
           {...requiredProps}
         />
       );
@@ -172,7 +173,7 @@ describe('EuiDualRange', () => {
           value={['1', '8']}
           onChange={() => {}}
           showInput
-          ariaLabels={['Min value']}
+          minInputProps={{ 'aria-label': 'Min value' }}
           {...requiredProps}
         />
       );
@@ -190,7 +191,7 @@ describe('EuiDualRange', () => {
           value={['1', '8']}
           onChange={() => {}}
           showInput
-          ariaLabels={[null, 'Max value']}
+          maxInputProps={{ 'aria-label': 'Max value' }}
           {...requiredProps}
         />
       );

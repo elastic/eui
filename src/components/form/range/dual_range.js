@@ -313,7 +313,8 @@ export class EuiDualRange extends Component {
       isInvalid,
       append,
       prepend,
-      ariaLabels,
+      minInputProps,
+      maxInputProps,
       ...rest
     } = this.props;
 
@@ -322,8 +323,6 @@ export class EuiDualRange extends Component {
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
-    const minAriaLabel = ariaLabels && ariaLabels[0] ? ariaLabels[0] : null;
-    const maxAriaLabel = ariaLabels && ariaLabels[1] ? ariaLabels[1] : null;
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -349,7 +348,7 @@ export class EuiDualRange extends Component {
         onMouseDown={
           showInputOnly ? () => (this.preventPopoverClose = true) : null
         }
-        aria-label={minAriaLabel}
+        {...minInputProps}
       />
     ) : (
       undefined
@@ -379,7 +378,7 @@ export class EuiDualRange extends Component {
         onMouseDown={
           showInputOnly ? () => (this.preventPopoverClose = true) : null
         }
-        aria-label={maxAriaLabel}
+        {...maxInputProps}
       />
     ) : (
       undefined
@@ -588,7 +587,8 @@ EuiDualRange.propTypes = {
    */
   showRange: PropTypes.bool,
 
-  ariaLabels: PropTypes.arrayOf(PropTypes.string),
+  minInputProps: PropTypes.object,
+  maxInputProps: PropTypes.object,
 };
 
 EuiDualRange.defaultProps = {
