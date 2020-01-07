@@ -7,9 +7,12 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiText } from '../../text';
-import { EuiFormControlLayout } from './form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from './form_control_layout';
 
-type EuiFormControlLayoutDelimitedProps = Partial<EuiFormControlLayout> & {
+type EuiFormControlLayoutDelimitedProps = Partial<EuiFormControlLayoutProps> & {
   /**
    * Left side control
    */
