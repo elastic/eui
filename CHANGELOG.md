@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `18.0.0`.
+- Converted `EuiRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Converted `EuiDualRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Converted `EuiRangeInput` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
 
 ## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
 
