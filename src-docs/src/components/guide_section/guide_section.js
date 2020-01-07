@@ -456,6 +456,7 @@ export class GuideSection extends Component {
 );`;
     // The Code Sanbbox demo needs to import CSS at the top of the document
     const exampleStart = `import ReactDOM from 'react-dom';
+// import '@elastic/eui/dist/eui_theme_dark.css';
 import '@elastic/eui/dist/eui_theme_light.css'`;
 
     // Concat the three pieces of the example into a single string
