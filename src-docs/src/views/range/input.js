@@ -43,6 +43,7 @@ export default class extends Component {
           value={this.state.dualValue}
           onChange={this.onDualChange}
           showInput
+          ariaLabels={['Min value', 'Max value']}
         />
       </Fragment>
     );

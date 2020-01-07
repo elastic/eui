@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `18.0.0`.
+- Added possibility to set `aria-label` for both `min` and `max` inputs of `EuiDualRange` ([#](https://github.com/elastic/eui/pull/))
 
 ## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
 

@@ -277,7 +277,6 @@ exports[`EuiDualRange props inputs should render 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--min"
         max="8"
         min="1"
@@ -327,7 +326,6 @@ exports[`EuiDualRange props inputs should render 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--max"
         max="10"
         min="1"
@@ -484,7 +482,6 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
-            aria-label="aria-label"
             class="euiFieldNumber euiFormControlLayoutDelimited__input"
             max="8"
             min="1"
@@ -503,7 +500,6 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             </div>
           </div>
           <input
-            aria-label="aria-label"
             class="euiFieldNumber euiFormControlLayoutDelimited__input"
             max="10"
             min="1"
@@ -613,3 +609,230 @@ exports[`EuiDualRange props ticks should render 1`] = `
   />
 </div>
 `;
+
+exports[`EuiDualRange aria labels should be set for both min and max inputs 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange testClass1 testClass2"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="Min value"
+        class="euiFieldNumber euiRangeInput euiRangeInput--min"
+        max="8"
+        min="1"
+        name="name-minValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="1"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:77.77777777777779%"
+      />
+    </div>
+    <input
+      aria-hidden="true"
+      aria-label="aria-label"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      data-test-subj="test subject string"
+      id="id"
+      max="10"
+      min="1"
+      name="name"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="Max value"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max"
+        max="10"
+        min="1"
+        name="name-maxValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="8"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDualRange aria labels should be set only for the min input 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange testClass1 testClass2"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="Min value"
+        class="euiFieldNumber euiRangeInput euiRangeInput--min"
+        max="8"
+        min="1"
+        name="name-minValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="1"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:77.77777777777779%"
+      />
+    </div>
+    <input
+      aria-hidden="true"
+      aria-label="aria-label"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      data-test-subj="test subject string"
+      id="id"
+      max="10"
+      min="1"
+      name="name"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        class="euiFieldNumber euiRangeInput euiRangeInput--max"
+        max="10"
+        min="1"
+        name="name-maxValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="8"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDualRange aria labels should be set only for the max input 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange testClass1 testClass2"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        class="euiFieldNumber euiRangeInput euiRangeInput--min"
+        max="8"
+        min="1"
+        name="name-minValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="1"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:77.77777777777779%"
+      />
+    </div>
+    <input
+      aria-hidden="true"
+      aria-label="aria-label"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      data-test-subj="test subject string"
+      id="id"
+      max="10"
+      min="1"
+      name="name"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="Max value"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max"
+        max="10"
+        min="1"
+        name="name-maxValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="8"
+      />
+    </div>
+  </div>
+</div>
+`;
+

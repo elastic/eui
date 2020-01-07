@@ -142,4 +142,60 @@ describe('EuiDualRange', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  describe('aria labels', () => {
+    test('should be set for both min and max inputs', () => {
+      const component = render(
+        <EuiDualRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value={['1', '8']}
+          onChange={() => {}}
+          showInput
+          ariaLabels={['Min value', 'Max value']}
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('should be set only for the min input', () => {
+      const component = render(
+        <EuiDualRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value={['1', '8']}
+          onChange={() => {}}
+          showInput
+          ariaLabels={['Min value']}
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('should be set only for the max input', () => {
+      const component = render(
+        <EuiDualRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value={['1', '8']}
+          onChange={() => {}}
+          showInput
+          ariaLabels={[null, 'Max value']}
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

@@ -313,6 +313,7 @@ export class EuiDualRange extends Component {
       isInvalid,
       append,
       prepend,
+      ariaLabels,
       ...rest
     } = this.props;
 
@@ -321,6 +322,8 @@ export class EuiDualRange extends Component {
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
+    const minAriaLabel = ariaLabels && ariaLabels[0] ? ariaLabels[0] : null;
+    const maxAriaLabel = ariaLabels && ariaLabels[1] ? ariaLabels[1] : null;
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -336,7 +339,6 @@ export class EuiDualRange extends Component {
         onKeyDown={this.handleInputKeyDown}
         name={`${name}-minValue`}
         aria-describedby={this.props['aria-describedby']}
-        aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
         onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
@@ -347,6 +349,7 @@ export class EuiDualRange extends Component {
         onMouseDown={
           showInputOnly ? () => (this.preventPopoverClose = true) : null
         }
+        aria-label={minAriaLabel}
       />
     ) : (
       undefined
@@ -366,7 +369,6 @@ export class EuiDualRange extends Component {
         onKeyDown={this.handleInputKeyDown}
         name={`${name}-maxValue`}
         aria-describedby={this.props['aria-describedby']}
-        aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
         onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
@@ -377,6 +379,7 @@ export class EuiDualRange extends Component {
         onMouseDown={
           showInputOnly ? () => (this.preventPopoverClose = true) : null
         }
+        aria-label={maxAriaLabel}
       />
     ) : (
       undefined
@@ -584,6 +587,8 @@ EuiDualRange.propTypes = {
    * Shows a thick line from lower value to upper value
    */
   showRange: PropTypes.bool,
+
+  ariaLabels: PropTypes.arrayOf(PropTypes.string),
 };
 
 EuiDualRange.defaultProps = {
