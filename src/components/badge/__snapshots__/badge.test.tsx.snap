@@ -167,7 +167,7 @@ exports[`EuiBadge props color primary is rendered 1`] = `
 exports[`EuiBadge props color secondary is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
-  style="background-color:#5BBAA0;color:#000"
+  style="background-color:#54B399;color:#000"
 >
   <span
     class="euiBadge__content"
@@ -184,7 +184,7 @@ exports[`EuiBadge props color secondary is rendered 1`] = `
 exports[`EuiBadge props color warning is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
-  style="background-color:#FAE181;color:#000"
+  style="background-color:#D6BF57;color:#000"
 >
   <span
     class="euiBadge__content"

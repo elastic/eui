@@ -67,21 +67,21 @@ export default class extends Component {
         },
         label:
           "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-        color: '#F19F58',
+        color: '#DA8B45',
       },
       {
         value: {
           size: 9,
         },
         label: 'Tethys',
-        color: '#EEAFCF',
+        color: '#CA8EAE',
       },
       {
         value: {
           size: 4,
         },
         label: 'Hyperion',
-        color: '#CDBD9D',
+        color: '#B9A888',
       },
     ];
 
