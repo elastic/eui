@@ -23,6 +23,13 @@ import { EuiRangeWrapper } from './range_wrapper';
 
 type ValueMember = number | string;
 
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  min?: number;
+  max?: number;
+  step?: number;
+  value?: string | number;
+};
+
 export interface EuiDualRangeProps
   extends Omit<
     EuiRangeSliderProps,
@@ -52,8 +59,8 @@ export interface EuiDualRangeProps
   ticks?: EuiRangeTick[];
   append?: EuiFormControlLayoutProps['append'];
   prepend?: EuiFormControlLayoutProps['prepend'];
-  minInputProps?: InputHTMLAttributes<HTMLInputElement>;
-  maxInputProps?: InputHTMLAttributes<HTMLInputElement>;
+  minInputProps?: InputProps;
+  maxInputProps?: InputProps;
 }
 
 export class EuiDualRange extends Component<EuiDualRangeProps> {
