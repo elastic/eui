@@ -158,8 +158,8 @@ describe('EuiDualRange', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('aria labels', () => {
-    test('should be set for both min and max inputs', () => {
+  describe('input props', () => {
+    test('can be applied to min and max inputs', () => {
       const component = render(
         <EuiDualRange
           name="name"
@@ -171,57 +171,6 @@ describe('EuiDualRange', () => {
           showInput
           minInputProps={{ 'aria-label': 'Min value' }}
           maxInputProps={{ 'aria-label': 'Max value' }}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('should be set only for the min input', () => {
-      const component = render(
-        <EuiDualRange
-          name="name"
-          id="id"
-          min={1}
-          max={10}
-          value={['1', '8']}
-          onChange={() => {}}
-          showInput
-          minInputProps={{ 'aria-label': 'Min value' }}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('should be set only for the max input', () => {
-      const component = render(
-        <EuiDualRange
-          name="name"
-          id="id"
-          min={1}
-          max={10}
-          value={['1', '8']}
-          onChange={() => {}}
-          showInput
-          maxInputProps={{ 'aria-label': 'Max value' }}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('defined for the whole component should be set only for both min and max input', () => {
-      const component = render(
-        <EuiDualRange
-          name="name"
-          id="id"
-          min={1}
-          max={10}
-          value={['1', '8']}
-          onChange={() => {}}
-          showInput
-          aria-label="aria-label"
         />
       );
 
