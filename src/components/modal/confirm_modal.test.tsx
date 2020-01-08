@@ -1,5 +1,4 @@
 import React from 'react';
-import sinon from 'sinon';
 import { mount, render } from 'enzyme';
 
 import { findTestSubject, requiredProps } from '../../test';
@@ -15,8 +14,8 @@ let onConfirm: any;
 let onCancel: any;
 
 beforeEach(() => {
-  onConfirm = sinon.spy();
-  onCancel = sinon.spy();
+  onConfirm = jest.fn();
+  onCancel = jest.fn();
 });
 
 test('renders EuiConfirmModal', () => {
@@ -59,8 +58,8 @@ test('onConfirm', () => {
   );
 
   findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
-  sinon.assert.calledOnce(onConfirm);
-  sinon.assert.notCalled(onCancel);
+  expect(onConfirm).toHaveBeenCalledTimes(1);
+  expect(onCancel).toHaveBeenCalledTimes(0);
 });
 
 test('onConfirm can be disabled', () => {
@@ -75,8 +74,8 @@ test('onConfirm can be disabled', () => {
   );
 
   findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
-  sinon.assert.notCalled(onConfirm);
-  sinon.assert.notCalled(onCancel);
+  expect(onConfirm).toHaveBeenCalledTimes(0);
+  expect(onCancel).toHaveBeenCalledTimes(0);
 });
 
 describe('onCancel', () => {
@@ -91,8 +90,8 @@ describe('onCancel', () => {
     );
 
     findTestSubject(component, 'confirmModalCancelButton').simulate('click');
-    sinon.assert.notCalled(onConfirm);
-    sinon.assert.calledOnce(onCancel);
+    expect(onConfirm).toHaveBeenCalledTimes(0);
+    expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
   test('triggered by esc key', () => {
@@ -109,8 +108,8 @@ describe('onCancel', () => {
     findTestSubject(component, 'modal').simulate('keydown', {
       keyCode: keyCodes.ESCAPE,
     });
-    sinon.assert.notCalled(onConfirm);
-    sinon.assert.calledOnce(onCancel);
+    expect(onConfirm).toHaveBeenCalledTimes(0);
+    expect(onCancel).toHaveBeenCalledTimes(1);
   });
 });
 
