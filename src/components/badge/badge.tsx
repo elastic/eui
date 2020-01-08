@@ -71,24 +71,28 @@ export type EuiBadgeProps = {
 const colorInk = '#000';
 const colorGhost = '#fff';
 
+// The color blind palette has some stricter accessibility needs with regards to
+// charts and contrast. We can ease (brighten) that requirement here since our
+// accessibility concerns pertain to foreground (text) and background contrast
+const brightenValue = 0.5;
+
 const colorToHexMap: { [color in IconColor]: string } = {
   // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
   default: '#d3dae6',
-  // Brighten vis palette slightly for better text contrast
   primary: chroma(euiPaletteColorBlind()[1])
-    .brighten(0.5)
+    .brighten(brightenValue)
     .hex(),
   secondary: chroma(euiPaletteColorBlind()[0])
-    .brighten(0.5)
+    .brighten(brightenValue)
     .hex(),
   accent: chroma(euiPaletteColorBlind()[2])
-    .brighten(0.5)
+    .brighten(brightenValue)
     .hex(),
   warning: chroma(euiPaletteColorBlind()[5])
-    .brighten(0.5)
+    .brighten(brightenValue)
     .hex(),
   danger: chroma(euiPaletteColorBlind()[9])
-    .brighten(0.5)
+    .brighten(brightenValue)
     .hex(),
 };
 
@@ -117,9 +121,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 }) => {
   checkValidColor(color);
 
-  const optionalColorClass = null;
   let optionalCustomStyles: object | undefined = undefined;
   let textColor = null;
+  // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
   const wcagContrastBase = 4.5; // WCAG AA contrast level
   let wcagContrast = null;
   let colorHex = null;
@@ -170,7 +174,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       'euiBadge--hollow': color === 'hollow',
     },
     iconSideToClassNameMap[iconSide],
-    optionalColorClass,
     className
   );
 
@@ -193,8 +196,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           aria-label={iconOnClickAriaLabel}
           disabled={isDisabled}
           title={iconOnClickAriaLabel}
-          onClick={iconOnClick}
-          color={color}>
+          onClick={iconOnClick}>
           <EuiIcon
             type={iconType}
             size="s"
@@ -229,7 +231,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
                 onClick={onClick}
                 ref={ref}
                 title={innerText}
-                color={color}
                 {...rest}>
                 {children}
               </button>

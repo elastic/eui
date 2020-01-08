@@ -22,6 +22,8 @@ const badgeSnippet = [
 `,
   `<EuiBadge color="hollow">Hollow</EuiBadge>
 `,
+  `<EuiBadge color="primary">Primary</EuiBadge>
+`,
   `<EuiBadge color="#BADA55">Custom</EuiBadge>
 `,
   `<EuiBadge color="secondary" isDisabled>Disabled</EuiBadge>
