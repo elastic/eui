@@ -5,9 +5,13 @@ import {
   EuiFlexItem,
   EuiTitle,
   EuiSpacer,
+  EuiBadge,
 } from '../../../../src/components';
 
-import { euiPaletteColorBlind } from '../../../../src/services';
+import {
+  euiPaletteColorBlind,
+  euiPaletteColorBlindWithText,
+} from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
 const customPalettes = [
@@ -64,6 +68,11 @@ export default () => (
         </EuiFlexGroup>
         <EuiSpacer size="xl" />
       </Fragment>
+    ))}
+    {euiPaletteColorBlindWithText().map((color, i) => (
+      <EuiBadge key={i} color={color}>
+        Text
+      </EuiBadge>
     ))}
   </Fragment>
 );
