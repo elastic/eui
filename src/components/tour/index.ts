@@ -1,0 +1,1 @@
+export { EuiTour } from './tour';
