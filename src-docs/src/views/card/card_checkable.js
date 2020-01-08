@@ -5,6 +5,7 @@ import {
   EuiSpacer,
   EuiRadioGroup,
   EuiTitle,
+  EuiFormFieldset,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -37,15 +38,14 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <fieldset>
-          <legend>
-            <EuiTitle size="xs">
-              <span>Checkable card radio group with legend</span>
-            </EuiTitle>
-          </legend>
-
-          <EuiSpacer size="m" />
-
+        <EuiFormFieldset
+          legend={{
+            children: (
+              <EuiTitle size="xs">
+                <span>Checkable card radio group with legend</span>
+              </EuiTitle>
+            ),
+          }}>
           <EuiCheckableCard
             id={makeId()}
             label="Option one"
@@ -83,7 +83,7 @@ export default class extends Component {
             onChange={() => this.setState({ radio: 'radio3' })}
             disabled
           />
-        </fieldset>
+        </EuiFormFieldset>
 
         <EuiSpacer size="xl" />
 
