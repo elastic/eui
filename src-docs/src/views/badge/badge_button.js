@@ -1,37 +1,45 @@
 import React from 'react';
 
-import { EuiBadge } from '../../../../src/components';
+import {
+  EuiBadge,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../../../../src/components';
 
 export default () => (
-  <div>
-    <EuiBadge
-      color="#333"
-      onClick={() => window.alert('Badge clicked')}
-      onClickAriaLabel="Example of onclick event for the button"
-      data-test-sub="testExample1">
-      onClick on badge itself
-    </EuiBadge>
-
-    <EuiBadge
-      iconType="cross"
-      iconSide="right"
-      color="#333"
-      iconOnClick={() => window.alert('Icon inside badge clicked')}
-      iconOnClickAriaLabel="Example of onclick event for icon within the button"
-      data-test-sub="testExample2">
-      onClick on icon within badge
-    </EuiBadge>
-
-    <EuiBadge
-      iconType="cross"
-      iconSide="right"
-      color="#333"
-      onClick={() => window.alert('Badge clicked')}
-      onClickAriaLabel="Example of onclick event for the button"
-      iconOnClick={() => window.alert('Icon inside badge clicked')}
-      iconOnClickAriaLabel="Example of onclick event for icon within the button"
-      data-test-sub="testExample3">
-      onClick on itself and the icon
-    </EuiBadge>
-  </div>
+  <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        color="primary"
+        onClick={() => window.alert('Badge clicked')}
+        onClickAriaLabel="Example of onClick event for the button"
+        data-test-sub="testExample1">
+        onClick on text within badge
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        color="hollow"
+        iconType="cross"
+        iconSide="right"
+        iconOnClick={() => window.alert('Icon inside badge clicked')}
+        iconOnClickAriaLabel="Example of onClick event for icon within the button"
+        data-test-sub="testExample2">
+        onClick on icon within badge
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        color="secondary"
+        iconType="cross"
+        iconSide="right"
+        onClick={() => window.alert('Badge clicked')}
+        onClickAriaLabel="Example of onClick event for the button"
+        iconOnClick={() => window.alert('Icon inside badge clicked')}
+        iconOnClickAriaLabel="Example of onClick event for icon within the button"
+        data-test-sub="testExample3">
+        onClick on both text and icon within badge
+      </EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );
