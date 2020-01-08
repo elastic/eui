@@ -1,9 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Changed `EuiBadge` to use EUI palette colors ([#2455](https://github.com/elastic/eui/pull/2455))
+- Fixed bug in `EuiCard` where button text was not properly aligned ([#2741](https://github.com/elastic/eui/pull/2741))
 - Converted `EuiRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
 - Converted `EuiDualRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
 - Converted `EuiRangeInput` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Added `bellSlash` glyph to `EuiIcon` ([#2714](https://github.com/elastic/eui/pull/2714))
 
 ## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
 
