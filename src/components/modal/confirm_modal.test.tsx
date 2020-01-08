@@ -11,8 +11,8 @@ import {
   EuiConfirmModal,
 } from './confirm_modal';
 
-let onConfirm;
-let onCancel;
+let onConfirm: any;
+let onCancel: any;
 
 beforeEach(() => {
   onConfirm = sinon.spy();
