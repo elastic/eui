@@ -10,6 +10,7 @@ import {
   EuiSelect,
   EuiSwitch,
   EuiPanel,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -135,14 +136,17 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow label="Checkboxes" display="rowCompressed">
-          <EuiCheckboxGroup
-            options={this.state.checkboxes}
-            idToSelectedMap={this.state.checkboxIdToSelectedMap}
-            onChange={this.onCheckboxChange}
-            compressed
-          />
-        </EuiFormRow>
+        <EuiSpacer size="m" />
+
+        <EuiCheckboxGroup
+          options={this.state.checkboxes}
+          idToSelectedMap={this.state.checkboxIdToSelectedMap}
+          onChange={this.onCheckboxChange}
+          legend={{
+            children: 'Checkboxes',
+          }}
+          compressed
+        />
       </EuiPanel>
     );
   }

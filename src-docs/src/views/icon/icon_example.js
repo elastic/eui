@@ -77,7 +77,7 @@ import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
 const iconColorsSnippet = [
   '<EuiIcon type="brush" color="primary" />',
-  '<EuiIcon type="brush" color="#F19F58" />',
+  '<EuiIcon type="brush" color="#DA8B45" />',
 ];
 
 import Accessibility from './accessibility';
