@@ -99,7 +99,7 @@ exports[`EuiBadge is rendered with onClick provided 1`] = `
 exports[`EuiBadge props color accent is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
-  style="background-color:#D36086;color:#000"
+  style="background-color:#ee789d;color:#000"
 >
   <span
     class="euiBadge__content"
@@ -116,7 +116,7 @@ exports[`EuiBadge props color accent is rendered 1`] = `
 exports[`EuiBadge props color danger is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
-  style="background-color:#E7664C;color:#000"
+  style="background-color:#ff7e62;color:#000"
 >
   <span
     class="euiBadge__content"
@@ -150,7 +150,7 @@ exports[`EuiBadge props color default is rendered 1`] = `
 exports[`EuiBadge props color primary is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
-  style="background-color:#6092C0;color:#000"
+  style="background-color:#79aad9;color:#000"
 >
   <span
     class="euiBadge__content"
@@ -167,7 +167,7 @@ exports[`EuiBadge props color primary is rendered 1`] = `
 exports[`EuiBadge props color secondary is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
-  style="background-color:#54B399;color:#000"
+  style="background-color:#6dccb1;color:#000"
 >
   <span
     class="euiBadge__content"
@@ -184,7 +184,7 @@ exports[`EuiBadge props color secondary is rendered 1`] = `
 exports[`EuiBadge props color warning is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
-  style="background-color:#D6BF57;color:#000"
+  style="background-color:#f1d86f;color:#000"
 >
   <span
     class="euiBadge__content"

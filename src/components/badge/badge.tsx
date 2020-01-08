@@ -74,11 +74,22 @@ const colorGhost = '#fff';
 const colorToHexMap: { [color in IconColor]: string } = {
   // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
   default: '#d3dae6',
-  primary: euiPaletteColorBlind()[1],
-  secondary: euiPaletteColorBlind()[0],
-  accent: euiPaletteColorBlind()[2],
-  warning: euiPaletteColorBlind()[5],
-  danger: euiPaletteColorBlind()[9],
+  // Brighten vis palette slightly for better text contrast
+  primary: chroma(euiPaletteColorBlind()[1])
+    .brighten(0.5)
+    .hex(),
+  secondary: chroma(euiPaletteColorBlind()[0])
+    .brighten(0.5)
+    .hex(),
+  accent: chroma(euiPaletteColorBlind()[2])
+    .brighten(0.5)
+    .hex(),
+  warning: chroma(euiPaletteColorBlind()[5])
+    .brighten(0.5)
+    .hex(),
+  danger: chroma(euiPaletteColorBlind()[9])
+    .brighten(0.5)
+    .hex(),
 };
 
 export const COLORS = keysOf(colorToHexMap);
