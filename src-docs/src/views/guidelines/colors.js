@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import chroma from 'chroma-js';
 
 import { Link } from 'react-router';
 
@@ -6,7 +7,12 @@ import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
 import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
-import { calculateContrast, rgbToHex } from '../../../../src/services';
+import {
+  calculateContrast,
+  rgbToHex,
+  isColorDark,
+} from '../../../../src/services';
+import { createNonTextContrast } from '../../../../src/services/color/luminance_and_contrast';
 
 import { GuidePage } from '../../components';
 
@@ -168,6 +174,37 @@ export default class extends Component {
       palette = lightColors;
     }
 
+    function getContrastRatings(color1, color2) {
+      if (color1.indexOf('Shade') === -1 && color2.indexOf('Shade') === -1) {
+        // Exit out, i.e. don't render, if non-shade top of non-shade
+        return;
+      }
+
+      const contrast = calculateContrast(
+        [palette[color1].r, palette[color1].g, palette[color1].b],
+        [palette[color2].r, palette[color2].g, palette[color2].b]
+      );
+
+      let contrastRating;
+      let contrastRatingBadge;
+      if (contrast >= 7) {
+        contrastRating = <EuiIcon type="checkInCircleFilled" />;
+        contrastRatingBadge = ratingAAA;
+      } else if (contrast >= 4.5) {
+        contrastRating = <EuiIcon type="checkInCircleFilled" />;
+        contrastRatingBadge = ratingAA;
+      } else if (contrast >= 3) {
+        contrastRating = <EuiIcon type="editorBold" />;
+        contrastRatingBadge = ratingAA18;
+      } else if (color2.includes('Shade') && contrast >= 2) {
+        contrastRating = <EuiIcon type="minusInCircle" />;
+      } else {
+        contrastRating = <EuiIcon type="cross" />;
+      }
+
+      return { contrast, contrastRating, contrastRatingBadge };
+    }
+
     return (
       <GuidePage title="Color guidelines">
         <EuiSpacer size="xl" />
@@ -254,31 +291,17 @@ export default class extends Component {
                 <EuiText size="xs">
                   <h3>{color}</h3>
                   {allowedColors.map(function(color2, index) {
-                    const contrast = calculateContrast(
-                      [palette[color].r, palette[color].g, palette[color].b],
-                      [palette[color2].r, palette[color2].g, palette[color2].b]
-                    );
+                    const contrastRatings = getContrastRatings(color, color2);
 
-                    if (contrast < value) {
+                    if (!contrastRatings || contrastRatings.contrast < value) {
                       return;
                     }
 
-                    let contrastRating;
-                    let contrastRatingBadge;
-                    if (contrast >= 7) {
-                      contrastRating = <EuiIcon type="checkInCircleFilled" />;
-                      contrastRatingBadge = ratingAAA;
-                    } else if (contrast >= 4.5) {
-                      contrastRating = <EuiIcon type="checkInCircleFilled" />;
-                      contrastRatingBadge = ratingAA;
-                    } else if (contrast >= 3) {
-                      contrastRating = <EuiIcon type="editorBold" />;
-                      contrastRatingBadge = ratingAA18;
-                    } else if (color2.includes('Shade') && contrast >= 2) {
-                      contrastRating = <EuiIcon type="minusInCircle" />;
-                    } else {
-                      contrastRating = <EuiIcon type="cross" />;
-                    }
+                    const {
+                      contrast,
+                      contrastRating,
+                      contrastRatingBadge,
+                    } = getContrastRatings(color, color2);
 
                     const tooltipContent = (
                       <div>
@@ -340,7 +363,73 @@ color: $${color2};`;
             return renderPaletteColor(palette, color, index);
           })}
         </EuiFlexGroup>
+
+        <EuiSpacer />
+
+        <EuiFlexGrid columns={3}>
+          {visColors.map(function(color, index) {
+            return (
+              <EuiFlexItem key={index}>
+                <EuiText size="xs">
+                  <h3>{color}</h3>
+                  {visPaletteContrast(
+                    palette[color].rgba,
+                    palette[allowedColors[0]].rgba,
+                    index,
+                    color
+                  )}
+                </EuiText>
+              </EuiFlexItem>
+            );
+          })}
+        </EuiFlexGrid>
       </GuidePage>
     );
   }
+}
+
+function visPaletteContrast(foreground, background, index, name) {
+  const initialContrast = chroma.contrast(foreground, background);
+  const textColor = isColorDark(foreground) ? '#FFFFFF' : '#000000';
+
+  const betterForeground = createNonTextContrast(background, foreground);
+  const betterContrast = chroma.contrast(betterForeground, background);
+  const betterTextColor = isColorDark(betterForeground) ? '#FFFFFF' : '#000000';
+
+  return (
+    <>
+      <span
+        className="eui-fullWidth eui-textLeft"
+        style={{
+          backgroundColor: chroma(foreground).hex(),
+          color: textColor,
+          padding: 6,
+          marginBottom: 2,
+          borderRadius: 4,
+        }}>
+        {initialContrast.toFixed(1)} &ensp;{' '}
+        {(index > 0 && index < 4) || index === 9 ? 'original' : 'new'}
+      </span>
+      {initialContrast < 3 && (
+        <span
+          className="eui-fullWidth eui-textLeft"
+          style={{
+            backgroundColor: chroma(betterForeground).hex(),
+            color: betterTextColor,
+            padding: 6,
+            marginBottom: 2,
+            borderRadius: 4,
+          }}>
+          {betterContrast.toFixed(1)} &ensp; {'better'}
+        </span>
+      )}
+      <EuiBadge color={foreground}>{name}</EuiBadge>
+      <EuiBadge
+        color={chroma(foreground)
+          .brighten(0.5)
+          .hex()}>
+        {'lightened by 0.5'}
+      </EuiBadge>
+    </>
+  );
 }
