@@ -79,6 +79,10 @@
   &.euiCard--leftAligned {
     text-align: left;
     align-items: flex-start;
+
+    .euiCard__titleButton {
+      text-align: left;
+    }
   }
 
   &.euiCard--centerAligned {
@@ -89,6 +93,10 @@
   &.euiCard--rightAligned {
     text-align: right;
     align-items: flex-end;
+
+    .euiCard__titleButton {
+      text-align: right;
+    }
   }
 
   &.euiCard--isSelectable {

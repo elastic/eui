@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiModal` and `EuiConfirmModal` to TypeScript ([#2742](https://github.com/elastic/eui/pull/2742))
+- Fixed bug in `EuiCard` where button text was not properly aligned ([#2741](https://github.com/elastic/eui/pull/2741))
 - Converted `EuiRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
 - Converted `EuiDualRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
 - Converted `EuiRangeInput` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
