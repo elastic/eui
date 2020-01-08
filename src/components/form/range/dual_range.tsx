@@ -1,4 +1,4 @@
-import React, { Component, InputHTMLAttributes } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
 import { keyCodes } from '../../../services';
@@ -12,7 +12,7 @@ import makeId from '../form_row/make_id';
 
 import { EuiRangeProps } from './range';
 import { EuiRangeHighlight } from './range_highlight';
-import { EuiRangeInput } from './range_input';
+import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeLevel } from './range_levels';
 import { EuiRangeSlider, EuiRangeSliderProps } from './range_slider';
@@ -22,13 +22,6 @@ import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
 type ValueMember = number | string;
-
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  min?: number;
-  max?: number;
-  step?: number;
-  value?: string | number;
-};
 
 export interface EuiDualRangeProps
   extends Omit<
@@ -59,8 +52,16 @@ export interface EuiDualRangeProps
   ticks?: EuiRangeTick[];
   append?: EuiFormControlLayoutProps['append'];
   prepend?: EuiFormControlLayoutProps['prepend'];
-  minInputProps?: InputProps;
-  maxInputProps?: InputProps;
+
+  /**
+   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
+   */
+  minInputProps?: Partial<EuiRangeInputProps>;
+
+  /**
+   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
+   */
+  maxInputProps?: Partial<EuiRangeInputProps>;
 }
 
 export class EuiDualRange extends Component<EuiDualRangeProps> {
@@ -429,6 +430,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onKeyDown={this.handleInputKeyDown}
         name={`${name}-minValue`}
         aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        {...minInputProps}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
         onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
@@ -439,7 +442,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onMouseDown={
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
-        {...minInputProps}
       />
     ) : (
       undefined
@@ -459,6 +461,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onKeyDown={this.handleInputKeyDown}
         name={`${name}-maxValue`}
         aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        {...maxInputProps}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
         onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
@@ -469,7 +473,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onMouseDown={
           showInputOnly ? () => (this.preventPopoverClose = true) : undefined
         }
-        {...maxInputProps}
       />
     ) : (
       undefined
