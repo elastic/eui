@@ -32,15 +32,15 @@ export const euiPaletteColorBlind = function(
   let colors: string[] = [];
 
   const base = [
-    '#5BBAA0', // 0 green
+    '#54B399', // 0 green
     '#6092C0', // 1 blue
     '#D36086', // 2 dark pink
     '#9170B8', // 3 purple
-    '#EEAFCF', // 4 light pink
-    '#FAE181', // 5 yellow
-    '#CDBD9D', // 6 tan
-    '#F19F58', // 7 orange
-    '#B46F5F', // 8 brown
+    '#CA8EAE', // 4 light pink
+    '#D6BF57', // 5 yellow
+    '#B9A888', // 6 tan
+    '#DA8B45', // 7 orange
+    '#AA6556', // 8 brown
     '#E7664C', // 9 red
   ];
 

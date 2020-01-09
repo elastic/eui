@@ -59,6 +59,16 @@ exports[`EuiCheckboxGroup (mocked checkbox) is rendered 1`] = `
 />
 `;
 
+exports[`EuiCheckboxGroup (mocked checkbox) legend is rendered 1`] = `
+<fieldset>
+  <legend
+    class="euiFormLegend"
+  >
+    A legend
+  </legend>
+</fieldset>
+`;
+
 exports[`EuiCheckboxGroup (mocked checkbox) options are rendered 1`] = `
 <div>
   <eui_checkbox
