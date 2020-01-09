@@ -8,6 +8,7 @@
 - Converted `EuiRangeInput` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
 - Added `bellSlash` glyph to `EuiIcon` ([#2714](https://github.com/elastic/eui/pull/2714))
 - Added `legend` prop to `EuiCheckboxGroup` and `EuiRadioGroup` to add `EuiFieldset` wrappers for title the groups ([#2739](https://github.com/elastic/eui/pull/2739))
+- Improved focus state of compressed and mini `EuiSwitch` ([#2745](https://github.com/elastic/eui/pull/2745))
 
 **Bug fixes**
 
