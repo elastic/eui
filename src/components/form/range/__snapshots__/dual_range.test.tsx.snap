@@ -62,6 +62,80 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
 </div>
 `;
 
+exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="Min value"
+        class="euiFieldNumber euiRangeInput euiRangeInput--min"
+        max="8"
+        min="1"
+        name="name-minValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="1"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:77.77777777777779%"
+      />
+    </div>
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="id"
+      max="10"
+      min="1"
+      name="name"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="Max value"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max"
+        max="10"
+        min="1"
+        name="name-maxValue"
+        step="1"
+        style="width:3.6em"
+        type="number"
+        value="8"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiDualRange is rendered 1`] = `
 <div
   class="euiRangeWrapper euiDualRange testClass1 testClass2"
