@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import { EuiListGroup } from '../list_group/list_group';
 import { toInitials } from '../../services';
 
+export const ATTR_SELECTOR = 'data-name';
+
 export const EuiNavDrawerGroup = ({
   className,
   listItems,
@@ -26,6 +28,7 @@ export const EuiNavDrawerGroup = ({
           const items = [...flyoutMenu.listItems];
           const title = `${flyoutMenu.title}`;
           itemProps.onClick = () => flyoutMenuButtonClick(items, title, item);
+          itemProps['aria-expanded'] = false;
         } else {
           itemProps.onClick = (...args) => {
             if (onClick) {
@@ -41,6 +44,7 @@ export const EuiNavDrawerGroup = ({
           item.className
         );
         itemProps.size = item.size || 's';
+        itemProps[ATTR_SELECTOR] = item.label;
         itemProps['aria-label'] = item['aria-label'] || item.label;
 
         // Add an avatar in place of non-existent icons

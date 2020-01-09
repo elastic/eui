@@ -57,8 +57,10 @@ exports[`EuiNavDrawer is rendered 1`] = `
               class="euiToolTipAnchor euiListGroupItem__tooltip"
             >
               <button
+                aria-expanded="false"
                 aria-label="Recently viewed"
                 class="euiListGroupItem__button"
+                data-name="Recently viewed"
                 type="button"
               >
                 <svg
@@ -86,8 +88,10 @@ exports[`EuiNavDrawer is rendered 1`] = `
               class="euiToolTipAnchor euiListGroupItem__tooltip"
             >
               <button
+                aria-expanded="false"
                 aria-label="Favorites"
                 class="euiListGroupItem__button"
+                data-name="Favorites"
                 type="button"
               >
                 <svg
@@ -121,6 +125,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
               <a
                 aria-label="Canvas"
                 class="euiListGroupItem__button"
+                data-name="Canvas"
                 href="#"
               >
                 <svg
@@ -150,6 +155,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
               <a
                 aria-label="Discover"
                 class="euiListGroupItem__button"
+                data-name="Discover"
                 href="#"
               >
                 <svg
@@ -179,6 +185,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
               <a
                 aria-label="Visualize"
                 class="euiListGroupItem__button"
+                data-name="Visualize"
                 href="#"
               >
                 <svg
@@ -208,6 +215,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
               <a
                 aria-label="Dashboard"
                 class="euiListGroupItem__button"
+                data-name="Dashboard"
                 href="#"
               >
                 <svg
@@ -237,6 +245,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
               <a
                 aria-label="Machine learning"
                 class="euiListGroupItem__button"
+                data-name="Machine learning"
                 href="#"
               >
                 <svg
@@ -266,6 +275,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
               <a
                 aria-label="Custom Plugin (no icon)"
                 class="euiListGroupItem__button"
+                data-name="Custom Plugin (no icon)"
                 href="#"
               >
                 <span
@@ -308,6 +318,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
         data-focus-lock-disabled="false"
       >
         <ul
+          aria-labelledby="navDrawerFlyoutTitle"
           class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
         />
       </div>
@@ -380,6 +391,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
               <a
                 aria-label="Canvas"
                 class="euiListGroupItem__button"
+                data-name="Canvas"
                 href="#"
               >
                 <svg
@@ -409,6 +421,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
               <a
                 aria-label="Discover"
                 class="euiListGroupItem__button"
+                data-name="Discover"
                 href="#"
               >
                 <svg
@@ -438,6 +451,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
               <a
                 aria-label="Visualize"
                 class="euiListGroupItem__button"
+                data-name="Visualize"
                 href="#"
               >
                 <svg
@@ -467,6 +481,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
               <a
                 aria-label="Dashboard"
                 class="euiListGroupItem__button"
+                data-name="Dashboard"
                 href="#"
               >
                 <svg
@@ -496,6 +511,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
               <a
                 aria-label="Machine learning"
                 class="euiListGroupItem__button"
+                data-name="Machine learning"
                 href="#"
               >
                 <svg
@@ -525,6 +541,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
               <a
                 aria-label="Custom Plugin (no icon)"
                 class="euiListGroupItem__button"
+                data-name="Custom Plugin (no icon)"
                 href="#"
               >
                 <span
@@ -567,6 +584,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
         data-focus-lock-disabled="false"
       >
         <ul
+          aria-labelledby="navDrawerFlyoutTitle"
           class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
         />
       </div>
@@ -637,8 +655,10 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               class="euiToolTipAnchor euiListGroupItem__tooltip"
             >
               <button
+                aria-expanded="false"
                 aria-label="Recently viewed"
                 class="euiListGroupItem__button"
+                data-name="Recently viewed"
                 type="button"
               >
                 <svg
@@ -666,8 +686,10 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               class="euiToolTipAnchor euiListGroupItem__tooltip"
             >
               <button
+                aria-expanded="false"
                 aria-label="Favorites"
                 class="euiListGroupItem__button"
+                data-name="Favorites"
                 type="button"
               >
                 <svg
@@ -701,6 +723,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               <a
                 aria-label="Canvas"
                 class="euiListGroupItem__button"
+                data-name="Canvas"
                 href="#"
               >
                 <svg
@@ -730,6 +753,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               <a
                 aria-label="Discover"
                 class="euiListGroupItem__button"
+                data-name="Discover"
                 href="#"
               >
                 <svg
@@ -759,6 +783,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               <a
                 aria-label="Visualize"
                 class="euiListGroupItem__button"
+                data-name="Visualize"
                 href="#"
               >
                 <svg
@@ -788,6 +813,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               <a
                 aria-label="Dashboard"
                 class="euiListGroupItem__button"
+                data-name="Dashboard"
                 href="#"
               >
                 <svg
@@ -817,6 +843,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               <a
                 aria-label="Machine learning"
                 class="euiListGroupItem__button"
+                data-name="Machine learning"
                 href="#"
               >
                 <svg
@@ -846,6 +873,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
               <a
                 aria-label="Custom Plugin (no icon)"
                 class="euiListGroupItem__button"
+                data-name="Custom Plugin (no icon)"
                 href="#"
               >
                 <span
@@ -888,6 +916,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
         data-focus-lock-disabled="false"
       >
         <ul
+          aria-labelledby="navDrawerFlyoutTitle"
           class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
         />
       </div>

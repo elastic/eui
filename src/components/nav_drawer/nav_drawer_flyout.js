@@ -18,6 +18,7 @@ export const EuiNavDrawerFlyout = ({
   onClose,
   ...rest
 }) => {
+  const LABEL = 'navDrawerFlyoutTitle';
   const classes = classNames(
     'euiNavDrawerFlyout',
     {
@@ -36,15 +37,16 @@ export const EuiNavDrawerFlyout = ({
   return (
     <div
       className={classes}
-      aria-labelledby="navDrawerFlyoutTitle"
+      aria-labelledby={LABEL}
       onKeyDown={handleKeyDown}
       {...rest}>
       <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs">
-        <div id="navDrawerFlyoutTitle">{title}</div>
+        <div id={LABEL}>{title}</div>
       </EuiTitle>
       <EuiFocusTrap returnFocus={false}>
         <EuiNavDrawerGroup
           className="euiNavDrawerFlyout__listGroup"
+          ariaLabelledby={LABEL}
           listItems={listItems}
           wrapText={wrapText}
           onClose={() => onClose(false)}

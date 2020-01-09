@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiNavDrawerFlyout } from './nav_drawer_flyout';
-import { EuiNavDrawerGroup } from './nav_drawer_group';
+import { EuiNavDrawerGroup, ATTR_SELECTOR } from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
@@ -170,15 +170,23 @@ export class EuiNavDrawer extends Component {
     if (this.state.navFlyoutTitle === title) {
       this.collapseFlyout();
     } else {
-      this.setState({
-        flyoutIsCollapsed: false,
-        navFlyoutTitle: title,
-        navFlyoutContent: content,
-        isCollapsed: this.state.isLocked ? false : true,
-        toolTipsEnabled: false,
-        outsideClickDisabled: false,
-        focusReturnRef: item.label,
-      });
+      this.setState(
+        {
+          flyoutIsCollapsed: false,
+          navFlyoutTitle: title,
+          navFlyoutContent: content,
+          isCollapsed: this.state.isLocked ? false : true,
+          toolTipsEnabled: false,
+          outsideClickDisabled: false,
+          focusReturnRef: item.label,
+        },
+        () => {
+          const element = document.querySelector(
+            `#${MENU_ELEMENT_ID} [${ATTR_SELECTOR}='${item.label}']`
+          );
+          element.setAttribute('aria-expanded', 'true');
+        }
+      );
     }
   };
 
@@ -193,15 +201,19 @@ export class EuiNavDrawer extends Component {
         focusReturnRef: null,
       },
       () => {
-        if (shouldReturnFocus) {
-          // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
-          // does not allow for deep `ref` element management at present
-          const element = document.querySelector(
-            `#${MENU_ELEMENT_ID} [aria-label='${focusReturn}']`
-          );
-          if (!element) return;
-          requestAnimationFrame(() => element.focus());
-        }
+        // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
+        // does not allow for deep `ref` element management at present
+        const element = document.querySelector(
+          `#${MENU_ELEMENT_ID} [${ATTR_SELECTOR}='${focusReturn}']`
+        );
+        if (!element) return;
+        requestAnimationFrame(() => {
+          element.setAttribute('aria-expanded', 'false');
+        });
+        if (!shouldReturnFocus) return;
+        requestAnimationFrame(() => {
+          element.focus();
+        });
       }
     );
   };
