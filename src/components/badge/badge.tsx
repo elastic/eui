@@ -7,7 +7,7 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import chroma from 'chroma-js';
-import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
+import { euiPaletteColorBlind, isValidHex } from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
 
@@ -297,11 +297,9 @@ function setTextColor(bgColor: string) {
 }
 
 function checkValidColor(color: null | IconColor | string) {
-  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
-
   if (
     color != null &&
-    !validHex.test(color) &&
+    !isValidHex(color) &&
     !COLORS.includes(color) &&
     color !== 'hollow'
   ) {

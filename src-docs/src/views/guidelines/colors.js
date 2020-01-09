@@ -410,7 +410,7 @@ color: $${color2};`;
 }
 
 function visPaletteContrast(foreground, background, index, name) {
-  const initialContrast = chroma.contrast(foreground, background);
+  // const initialContrast = chroma.contrast(foreground, background);
   // const textColor = isColorDark(foreground) ? '#FFFFFF' : '#000000';
 
   // const betterForeground = createNonTextContrast(background, foreground);
@@ -432,9 +432,9 @@ function visPaletteContrast(foreground, background, index, name) {
           {betterContrast.toFixed(1)} &ensp; {'better'}
         </span>
       )} */}
-      <EuiBadge color={foreground}>
+      {/* <EuiBadge color={foreground}>
         {initialContrast.toFixed(1)}: {name}
-      </EuiBadge>
+      </EuiBadge> */}
       <EuiBadge
         color={chroma(foreground)
           .brighten(0.5)
