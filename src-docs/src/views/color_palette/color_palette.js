@@ -10,7 +10,7 @@ import {
 
 import {
   euiPaletteColorBlind,
-  euiPaletteColorBlindWithText,
+  euiPaletteColorBlindBehindText,
 } from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
@@ -69,7 +69,7 @@ export default () => (
         <EuiSpacer size="xl" />
       </Fragment>
     ))}
-    {euiPaletteColorBlindWithText().map((color, i) => (
+    {euiPaletteColorBlindBehindText().map((color, i) => (
       <EuiBadge key={i} color={color}>
         Text
       </EuiBadge>

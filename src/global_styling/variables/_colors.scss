@@ -34,6 +34,7 @@ $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
 // Maps allow for easier JSON usage
 // Use map_merge($euiColorVisColors, $yourMap) to change individual colors after importing ths file
+// The `behindText` variant is a direct copy of the hex output by the JS euiPaletteColorBlindBehindText() function
 $euiPaletteColorBlind: (
   euiColorVis0: (
     graphic: #54B399,

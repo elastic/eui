@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import chroma from 'chroma-js';
-
 import { Link } from 'react-router';
-
-import lightColorsJSON from '../../../../dist/eui_theme_light.json';
 
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
@@ -388,65 +384,7 @@ color: $${color2};`;
             );
           })}
         </EuiFlexGroup>
-
-        <EuiSpacer />
-
-        <EuiFlexGrid columns={1}>
-          {visColorKeys.map(function(color, index) {
-            const foreground = visColors[color].graphic.rgba;
-            const background = palette[allowedColors[0]].rgba;
-            return (
-              <EuiFlexItem key={index}>
-                <span>
-                  {visPaletteContrast(foreground, background, index, color)}
-                </span>
-              </EuiFlexItem>
-            );
-          })}
-        </EuiFlexGrid>
       </GuidePage>
     );
   }
-}
-
-function visPaletteContrast(foreground, background, index, name) {
-  // const initialContrast = chroma.contrast(foreground, background);
-  // const textColor = isColorDark(foreground) ? '#FFFFFF' : '#000000';
-
-  // const betterForeground = createNonTextContrast(background, foreground);
-  // const betterContrast = chroma.contrast(betterForeground, background);
-  // const betterTextColor = isColorDark(betterForeground) ? '#FFFFFF' : '#000000';
-
-  return (
-    <>
-      {/* {initialContrast < 3 && (
-        <span
-          className="eui-fullWidth eui-textLeft"
-          style={{
-            backgroundColor: chroma(betterForeground).hex(),
-            color: betterTextColor,
-            padding: 6,
-            marginBottom: 2,
-            borderRadius: 4,
-          }}>
-          {betterContrast.toFixed(1)} &ensp; {'better'}
-        </span>
-      )} */}
-      {/* <EuiBadge color={foreground}>
-        {initialContrast.toFixed(1)}: {name}
-      </EuiBadge> */}
-      <EuiBadge
-        color={chroma(foreground)
-          .brighten(0.5)
-          .hex()}>
-        JS:{' '}
-        {chroma(foreground)
-          .brighten(0.5)
-          .hex()}
-      </EuiBadge>
-      <EuiBadge color={lightColorsJSON.euiColorVisColorsBehindText[name]}>
-        CSS: {lightColorsJSON.euiColorVisColorsBehindText[name]}
-      </EuiBadge>
-    </>
-  );
 }
