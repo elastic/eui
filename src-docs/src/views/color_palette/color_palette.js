@@ -6,6 +6,7 @@ import {
   EuiTitle,
   EuiSpacer,
   EuiBadge,
+  EuiFlexGrid,
 } from '../../../../src/components';
 
 import {
@@ -69,10 +70,28 @@ export default () => (
         <EuiSpacer size="xl" />
       </Fragment>
     ))}
-    {euiPaletteColorBlindBehindText().map((color, i) => (
-      <EuiBadge key={i} color={color}>
-        Text
-      </EuiBadge>
-    ))}
+    <EuiTitle size="xxs">
+      <h3>Behind text variant</h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false} style={{ maxWidth: 240 }}>
+        <EuiFlexGrid columns={4} gutterSize="s">
+          {euiPaletteColorBlindBehindText().map((color, i) => (
+            <EuiFlexItem key={i}>
+              <span>
+                <EuiBadge color={color}>Text</EuiBadge>
+              </span>
+            </EuiFlexItem>
+          ))}
+        </EuiFlexGrid>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <ColorPaletteCopyCode
+          textToCopy={'euiPaletteColorBlindBehindText()'}
+          code={'euiPaletteColorBlindBehindText()'}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </Fragment>
 );

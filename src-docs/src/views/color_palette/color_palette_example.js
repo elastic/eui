@@ -58,6 +58,14 @@ export const ColorPaletteExample = {
             more groups of 10 which are alternates of the original. This is
             better than allowing the initial set to loop.
           </p>
+          <p>
+            These colors are meant to be used as graphics and contrasted against
+            the value of <EuiCode>euiColorEmptyShade</EuiCode> for the current
+            theme. When placing text on top of these colors, use the{' '}
+            <EuiCode>euiPaletteColorBlindBehindText()</EuiCode> variant. It is a
+            brightened version of the base palette to create better contrast
+            with text.
+          </p>
         </div>
       ),
       demo: <ColorPalette />,
