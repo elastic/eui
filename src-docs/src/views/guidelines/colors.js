@@ -3,6 +3,8 @@ import chroma from 'chroma-js';
 
 import { Link } from 'react-router';
 
+import lightColorsJSON from '../../../../dist/eui_theme_light.json';
+
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
@@ -44,19 +46,6 @@ const allowedColors = [
   'euiColorWarning',
   'euiColorDanger',
   'euiColorAccent',
-];
-
-const visColors = [
-  'euiColorVis0',
-  'euiColorVis1',
-  'euiColorVis2',
-  'euiColorVis3',
-  'euiColorVis4',
-  'euiColorVis5',
-  'euiColorVis6',
-  'euiColorVis7',
-  'euiColorVis8',
-  'euiColorVis9',
 ];
 
 const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
@@ -173,6 +162,10 @@ export default class extends Component {
     } else {
       palette = lightColors;
     }
+
+    // Vis colors are the same for all palettes
+    const visColors = lightColors.euiColorVisColors;
+    const visColorKeys = Object.keys(lightColors.euiColorVisColors);
 
     function getContrastRatings(color1, color2) {
       if (color1.indexOf('Shade') === -1 && color2.indexOf('Shade') === -1) {
@@ -359,25 +352,24 @@ color: $${color2};`;
         <EuiSpacer />
 
         <EuiFlexGroup direction="column" gutterSize="s">
-          {visColors.map(function(color, index) {
-            return renderPaletteColor(palette, color, index);
+          {visColorKeys.map(function(color, index) {
+            return renderPaletteColor(visColors, color, index);
           })}
         </EuiFlexGroup>
 
         <EuiSpacer />
 
         <EuiFlexGrid columns={3}>
-          {visColors.map(function(color, index) {
+          {visColorKeys.map(function(color, index) {
+            const foreground = visColors[color].rgba;
+            const background = palette[allowedColors[0]].rgba;
             return (
               <EuiFlexItem key={index}>
                 <EuiText size="xs">
-                  <h3>{color}</h3>
-                  {visPaletteContrast(
-                    palette[color].rgba,
-                    palette[allowedColors[0]].rgba,
-                    index,
-                    color
-                  )}
+                  <h3>
+                    {chroma.contrast(foreground, background).toFixed(1)} {color}
+                  </h3>
+                  {visPaletteContrast(foreground, background, index, color)}
                 </EuiText>
               </EuiFlexItem>
             );
@@ -407,8 +399,7 @@ function visPaletteContrast(foreground, background, index, name) {
           marginBottom: 2,
           borderRadius: 4,
         }}>
-        {initialContrast.toFixed(1)} &ensp;{' '}
-        {(index > 0 && index < 4) || index === 9 ? 'original' : 'new'}
+        {/* {initialContrast.toFixed(1)} &ensp; Base: {chroma(foreground).hex()} */}
       </span>
       {initialContrast < 3 && (
         <span
@@ -428,7 +419,13 @@ function visPaletteContrast(foreground, background, index, name) {
         color={chroma(foreground)
           .brighten(0.5)
           .hex()}>
-        {'lightened by 0.5'}
+        JS:{' '}
+        {chroma(foreground)
+          .brighten(0.5)
+          .hex()}
+      </EuiBadge>
+      <EuiBadge color={lightColorsJSON.euiColorVisColorsBehindText[name]}>
+        CSS: {lightColorsJSON.euiColorVisColorsBehindText[name]}
       </EuiBadge>
     </>
   );

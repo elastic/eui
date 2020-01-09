@@ -32,20 +32,47 @@ $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
 // Visualization colors
 
-$euiColorVis0: #54B399 !default;
-$euiColorVis1: #6092C0 !default;
-$euiColorVis2: #D36086 !default;
-$euiColorVis3: #9170B8 !default;
-$euiColorVis4: #CA8EAE !default;
-$euiColorVis5: #D6BF57 !default;
-$euiColorVis6: #B9A888 !default;
-$euiColorVis7: #DA8B45 !default;
-$euiColorVis8: #AA6556 !default;
-$euiColorVis9: #E7664C !default;
+// Maps allow for easier JSON usage
+// Use map_merge($euiColorVisColors, $yourMap) to change individual colors after importing ths file
+$euiColorVisColors: (
+  euiColorVis0: #54B399,
+  euiColorVis1: #6092C0,
+  euiColorVis2: #D36086,
+  euiColorVis3: #9170B8,
+  euiColorVis4: #CA8EAE,
+  euiColorVis5: #D6BF57,
+  euiColorVis6: #B9A888,
+  euiColorVis7: #DA8B45,
+  euiColorVis8: #AA6556,
+  euiColorVis9: #E7664C
+) !default;
+
+$euiColorVis0: map-get($euiColorVisColors, 'euiColorVis0') !default;
+$euiColorVis1: map-get($euiColorVisColors, 'euiColorVis1') !default;
+$euiColorVis2: map-get($euiColorVisColors, 'euiColorVis2') !default;
+$euiColorVis3: map-get($euiColorVisColors, 'euiColorVis3') !default;
+$euiColorVis4: map-get($euiColorVisColors, 'euiColorVis4') !default;
+$euiColorVis5: map-get($euiColorVisColors, 'euiColorVis5') !default;
+$euiColorVis6: map-get($euiColorVisColors, 'euiColorVis6') !default;
+$euiColorVis7: map-get($euiColorVisColors, 'euiColorVis7') !default;
+$euiColorVis8: map-get($euiColorVisColors, 'euiColorVis8') !default;
+$euiColorVis9: map-get($euiColorVisColors, 'euiColorVis9') !default;
+
+$euiColorVisColorsBehindText: (
+  euiColorVis0: convertVisColorForBehindText($euiColorVis0),
+  euiColorVis1: convertVisColorForBehindText($euiColorVis1),
+  euiColorVis2: convertVisColorForBehindText($euiColorVis2),
+  euiColorVis3: convertVisColorForBehindText($euiColorVis3),
+  euiColorVis4: convertVisColorForBehindText($euiColorVis4),
+  euiColorVis5: convertVisColorForBehindText($euiColorVis5),
+  euiColorVis6: convertVisColorForBehindText($euiColorVis6),
+  euiColorVis7: convertVisColorForBehindText($euiColorVis7),
+  euiColorVis8: convertVisColorForBehindText($euiColorVis8),
+  euiColorVis9: convertVisColorForBehindText($euiColorVis9)
+) !default;
 
 $euiColorChartLines: #EFF1F4 !default;
 $euiColorChartBand: #F5F7FA !default;
-
 
 // Code
 

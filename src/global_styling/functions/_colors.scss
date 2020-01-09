@@ -1,3 +1,8 @@
+// Converting a normal hex color to RBG
+@function hexToRGB($color) {
+  @return 'rgb%28#{round(red($color))}, #{round(green($color))}, #{round(blue($color))}%29';
+}
+
 // Mixes a provided color with white.
 @function tint($color, $percent) {
   @return mix($euiColorGhost, $color, $percent);
@@ -115,7 +120,13 @@
   @return $highContrastTextColor;
 }
 
-// Converting a normal hex color to RBG
-@function hexToRGB($color) {
-  @return 'rgb%28#{round(red($color))}, #{round(green($color))}, #{round(blue($color))}%29';
+// The visualization palette is meant to be used as a graphic and contrated with the page background.
+// However, if using text on top of the visualization color, the background color can be lightened to increase the contrast with the text.
+@function convertVisColorForBehindText($color) {
+  // Chroma adjusts brightness on an 18 pt scale
+  // Therefore 1 chroma brightness = ~18% sass lightness
+
+  // adjust-color properties:
+  // $color, $red: null, $green: null, $blue: null, $hue: null, $saturation: null, $lightness: null, $alpha: null
+  @return adjust-color($color, null, null, null, null, 9.7%, 9.7%, null);
 }
