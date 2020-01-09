@@ -5,7 +5,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiText, EuiSpacer } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiText,
+  EuiSpacer,
+  EuiCallOut,
+} from '../../../../src/components';
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
@@ -96,6 +101,11 @@ export const ColorPaletteExample = {
             in the number of steps needed and the function will interpolate
             between the colors.
           </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title="The palette for status is the only palette that has proper contrast ratios. When using the other palettes, consider adding another form of the data for screen readers."
+          />
         </div>
       ),
       demo: <ColorPaletteQuant />,
