@@ -69,7 +69,7 @@ export const euiPaletteColorBlind = function(
  * Color blind palette with text is meant for use when text is applied on top of the color.
  * It increases the brightness of the color to give the text more contrast.
  */
-export const euiPaletteColorBlindWithText = function(): EuiPalette {
+export const euiPaletteColorBlindBehindText = function(): EuiPalette {
   const originalPalette = euiPaletteColorBlind();
   const newPalette = originalPalette.map(color =>
     chroma(color)
