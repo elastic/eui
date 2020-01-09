@@ -30,7 +30,17 @@ export {
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
   colorPalette,
-  palettes,
+  euiPaletteForLightBackground,
+  euiPaletteForDarkBackground,
+  euiPaletteColorBlind,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteGray,
   HSV,
 } from './color';
 
@@ -74,3 +84,5 @@ export {
 } from './transition';
 
 export { EuiWindowEvent } from './window_event';
+
+export { useDependentState } from './hooks';

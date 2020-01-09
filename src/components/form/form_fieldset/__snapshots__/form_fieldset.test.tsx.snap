@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFormFieldset is rendered 1`] = `
+<fieldset
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <input />
+</fieldset>
+`;
+
+exports[`EuiFormFieldset props legend is rendered 1`] = `
+<fieldset>
+  <legend
+    class="euiFormLegend"
+  >
+    Legend
+  </legend>
+  <input />
+</fieldset>
+`;

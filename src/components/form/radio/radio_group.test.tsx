@@ -74,6 +74,23 @@ describe('EuiRadioGroup', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('legend is rendered', () => {
+      const component = render(
+        <EuiRadioGroup
+          options={[
+            { id: '1', label: 'Option #1' },
+            { id: '2', label: 'Option #2' },
+          ]}
+          onChange={() => {}}
+          legend={{
+            children: 'A legend',
+          }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('callbacks', () => {

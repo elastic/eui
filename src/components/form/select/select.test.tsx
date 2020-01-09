@@ -52,12 +52,6 @@ describe('EuiSelect', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('readOnly is rendered', () => {
-      const component = render(<EuiSelect readOnly />);
-
-      expect(component).toMatchSnapshot();
-    });
-
     test('disabled options are rendered', () => {
       const component = render(
         <EuiSelect

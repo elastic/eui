@@ -64,7 +64,7 @@ export class Table extends Component {
     this.setState({
       message: 'Loading users...',
       loading: true,
-      users: undefined,
+      users: [],
       error: undefined,
     });
     setTimeout(() => {
@@ -81,14 +81,14 @@ export class Table extends Component {
     this.setState({
       message: 'Loading users...',
       loading: true,
-      users: undefined,
+      users: [],
       error: undefined,
     });
     setTimeout(() => {
       this.setState({
         loading: false,
         error: 'ouch!... again... ',
-        users: undefined,
+        users: [],
         message: noItemsFoundMsg,
       });
     }, random.number({ min: 0, max: 3000 }));
