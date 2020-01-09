@@ -44,7 +44,6 @@ export const EuiNavDrawerFlyout = ({
       </EuiTitle>
       <EuiFocusTrap returnFocus={false}>
         <EuiNavDrawerGroup
-          id="flyoutLinks"
           className="euiNavDrawerFlyout__listGroup"
           listItems={listItems}
           wrapText={wrapText}

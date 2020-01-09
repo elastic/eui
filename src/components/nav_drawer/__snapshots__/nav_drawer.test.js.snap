@@ -309,7 +309,6 @@ exports[`EuiNavDrawer is rendered 1`] = `
       >
         <ul
           class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
-          id="flyoutLinks"
         />
       </div>
       <div
@@ -569,7 +568,6 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
       >
         <ul
           class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
-          id="flyoutLinks"
         />
       </div>
       <div
@@ -891,7 +889,6 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
       >
         <ul
           class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
-          id="flyoutLinks"
         />
       </div>
       <div

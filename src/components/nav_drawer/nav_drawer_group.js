@@ -25,7 +25,7 @@ export const EuiNavDrawerGroup = ({
         if (flyoutMenu && flyoutMenuButtonClick) {
           const items = [...flyoutMenu.listItems];
           const title = `${flyoutMenu.title}`;
-          itemProps.onClick = e => flyoutMenuButtonClick(items, title, item, e);
+          itemProps.onClick = () => flyoutMenuButtonClick(items, title, item);
         } else {
           itemProps.onClick = (...args) => {
             if (onClick) {
