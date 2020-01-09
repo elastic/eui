@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { keyCodes } from '../../services';
+
 import { EuiTitle } from '../title';
 import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiListGroup } from '../list_group/list_group';
+import { EuiFocusTrap } from '../focus_trap';
 
 export const EuiNavDrawerFlyout = ({
   className,
@@ -12,6 +15,7 @@ export const EuiNavDrawerFlyout = ({
   isCollapsed,
   listItems,
   wrapText,
+  onClose,
   ...rest
 }) => {
   const classes = classNames(
@@ -23,16 +27,30 @@ export const EuiNavDrawerFlyout = ({
     className
   );
 
+  const handleKeyDown = e => {
+    if (e.keyCode === keyCodes.ESCAPE) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={classes} aria-labelledby="navDrawerFlyoutTitle" {...rest}>
+    <div
+      className={classes}
+      aria-labelledby="navDrawerFlyoutTitle"
+      onKeyDown={handleKeyDown}
+      {...rest}>
       <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs">
         <div id="navDrawerFlyoutTitle">{title}</div>
       </EuiTitle>
-      <EuiNavDrawerGroup
-        className="euiNavDrawerFlyout__listGroup"
-        listItems={listItems}
-        wrapText={wrapText}
-      />
+      <EuiFocusTrap returnFocus={false}>
+        <EuiNavDrawerGroup
+          id="flyoutLinks"
+          className="euiNavDrawerFlyout__listGroup"
+          listItems={listItems}
+          wrapText={wrapText}
+          onClose={() => onClose(false)}
+        />
+      </EuiFocusTrap>
     </div>
   );
 };
@@ -51,6 +69,12 @@ EuiNavDrawerFlyout.propTypes = {
    * Toggle the nav drawer between collapsed and expanded
    */
   isCollapsed: PropTypes.bool,
+
+  /**
+   * Passthrough function to be called when the flyout is closing
+   * See ./nav_drawer.js
+   */
+  onClose: PropTypes.func,
 };
 
 EuiNavDrawerFlyout.defaultProps = {

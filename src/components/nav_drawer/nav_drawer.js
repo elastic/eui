@@ -9,6 +9,8 @@ import { EuiI18n } from '../i18n';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { throttle } from '../color_picker/utils';
 
+const MENU_ELEMENT_ID = 'navDrawerMenu';
+
 export class EuiNavDrawer extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,7 @@ export class EuiNavDrawer extends Component {
       outsideClickDisabled: true,
       isManagingFocus: false,
       toolTipsEnabled: true,
+      focusReturnRef: null,
     };
   }
 
@@ -161,7 +164,7 @@ export class EuiNavDrawer extends Component {
     }, 0);
   };
 
-  expandFlyout = (links, title) => {
+  expandFlyout = (links, title, item) => {
     const content = links;
 
     if (this.state.navFlyoutTitle === title) {
@@ -174,22 +177,38 @@ export class EuiNavDrawer extends Component {
         isCollapsed: this.state.isLocked ? false : true,
         toolTipsEnabled: false,
         outsideClickDisabled: false,
+        focusReturnRef: item.label,
       });
     }
   };
 
-  collapseFlyout = () => {
-    this.setState({
-      flyoutIsCollapsed: true,
-      navFlyoutTitle: null,
-      navFlyoutContent: null,
-      toolTipsEnabled: this.state.isLocked ? false : true,
-    });
+  collapseFlyout = (shouldReturnFocus = true) => {
+    const focusReturn = this.state.focusReturnRef;
+    this.setState(
+      {
+        flyoutIsCollapsed: true,
+        navFlyoutTitle: null,
+        navFlyoutContent: null,
+        toolTipsEnabled: this.state.isLocked ? false : true,
+        focusReturnRef: null,
+      },
+      () => {
+        if (shouldReturnFocus) {
+          // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
+          // does not allow for deep `ref` element management at present
+          const element = document.querySelector(
+            `#${MENU_ELEMENT_ID} [aria-label='${focusReturn}']`
+          );
+          if (!element) return;
+          requestAnimationFrame(() => element.focus());
+        }
+      }
+    );
   };
 
   closeBoth = () => {
     if (!this.state.isLocked) this.collapseDrawer();
-    this.collapseFlyout();
+    this.collapseFlyout(false);
   };
 
   handleDrawerMenuClick = e => {
@@ -325,6 +344,7 @@ export class EuiNavDrawer extends Component {
         isCollapsed={this.state.flyoutIsCollapsed}
         listItems={this.state.navFlyoutContent}
         wrapText
+        onClose={this.collapseFlyout}
       />
     );
 
@@ -349,7 +369,7 @@ export class EuiNavDrawer extends Component {
             onFocus={this.manageFocus}>
             <EuiFlexItem grow={false}>
               <div
-                id="navDrawerMenu"
+                id={MENU_ELEMENT_ID}
                 className={menuClasses}
                 onClick={this.handleDrawerMenuClick}>
                 {/* TODO: Add a "skip navigation" keyboard only button */}

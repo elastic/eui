@@ -9,6 +9,7 @@ export const EuiNavDrawerGroup = ({
   className,
   listItems,
   flyoutMenuButtonClick,
+  onClose = () => {},
   ...rest
 }) => {
   const classes = classNames('euiNavDrawerGroup', className);
@@ -20,11 +21,18 @@ export const EuiNavDrawerGroup = ({
     ? undefined
     : listItems.map(item => {
         // If the flyout menu exists, pass back the list of times and the title with the onClick handler of the item
-        const { flyoutMenu, ...itemProps } = item;
+        const { flyoutMenu, onClick, ...itemProps } = item;
         if (flyoutMenu && flyoutMenuButtonClick) {
           const items = [...flyoutMenu.listItems];
           const title = `${flyoutMenu.title}`;
-          itemProps.onClick = () => flyoutMenuButtonClick(items, title);
+          itemProps.onClick = e => flyoutMenuButtonClick(items, title, item, e);
+        } else {
+          itemProps.onClick = (...args) => {
+            if (onClick) {
+              onClick(...args);
+            }
+            onClose();
+          };
         }
 
         // Make some declarations of props for the side nav implementation
@@ -69,4 +77,9 @@ EuiNavDrawerGroup.propTypes = {
    * of the flyout menu button click
    */
   flyoutMenuButtonClick: PropTypes.func,
+  /**
+   * Passthrough function to be called when the flyout is closing
+   * See ./nav_drawer.js
+   */
+  onClose: PropTypes.func,
 };
