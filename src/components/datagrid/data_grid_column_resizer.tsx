@@ -22,7 +22,7 @@ export class EuiDataGridColumnResizer extends Component<
     offset: 0,
   };
 
-  onMouseDown = (e: { pageX: number }) => {
+  onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     this.setState({
       initialX: e.pageX,
     });
@@ -30,6 +30,9 @@ export class EuiDataGridColumnResizer extends Component<
     window.addEventListener('mouseup', this.onMouseUp);
     window.addEventListener('blur', this.onMouseUp);
     window.addEventListener('mousemove', this.onMouseMove);
+
+    // don't let this action steal focus
+    e.preventDefault();
   };
 
   onMouseUp = () => {

@@ -177,11 +177,12 @@ export const EuiButton: FunctionComponent<Props> = ({
     );
   }
 
+  let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   return (
     <button
       disabled={isDisabled}
       className={classes}
-      type={type as ButtonHTMLAttributes<HTMLButtonElement>['type']}
+      type={type as typeof buttonType}
       ref={buttonRef as Ref<HTMLButtonElement>}
       {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
       {innerNode}

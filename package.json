@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "17.2.1",
+  "version": "18.0.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -44,9 +44,11 @@
     "test-staged"
   ],
   "dependencies": {
+    "@types/chroma-js": "^1.4.3",
     "@types/lodash": "^4.14.116",
     "@types/numeral": "^0.0.25",
     "@types/react-beautiful-dnd": "^10.1.0",
+    "chroma-js": "^2.0.4",
     "classnames": "^2.2.5",
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
@@ -108,7 +110,6 @@
     "chai-webdriverio": "^0.4.3",
     "chalk": "^2.4.1",
     "chokidar": "^1.7.0",
-    "chroma-js": "^2.0.4",
     "chromedriver": "2.37.0",
     "circular-dependency-plugin": "^5.0.2",
     "core-js": "^2.5.1",

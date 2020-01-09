@@ -66,7 +66,7 @@ exports[`EuiCodeEditor behavior hint element should be tabable 1`] = `
 exports[`EuiCodeEditor is rendered 1`] = `
 <div
   class="euiCodeEditorWrapper"
-  data-test-subj="codeEditorContainer"
+  data-test-subj="test subject string"
 >
   <div
     class="euiCodeEditorKeyboardHint"

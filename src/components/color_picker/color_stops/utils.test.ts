@@ -74,7 +74,7 @@ describe('addDefinedStop', () => {
   test('Should add stop', () => {
     expect(addDefinedStop(colorStops, 1)).toEqual([
       { stop: 0, color: '#FF0000' },
-      { stop: 1, color: '#3185FC' },
+      { stop: 1, color: '#6092C0' },
     ]);
   });
 
