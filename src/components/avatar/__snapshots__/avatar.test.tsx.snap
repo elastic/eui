@@ -5,7 +5,7 @@ exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
   aria-label="aria-label"
   class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2"
   data-test-subj="test subject string"
-  style="background-image:none;background-color:#D36086;color:#000000"
+  style="background-image:none;background-color:#ee789d;color:#000000"
   title="  "
 >
   <span
@@ -21,7 +21,7 @@ exports[`EuiAvatar is rendered 1`] = `
   aria-label="aria-label"
   class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2"
   data-test-subj="test subject string"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -51,7 +51,7 @@ exports[`EuiAvatar props imageUrl is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user"
-  style="background-image:url(image url);background-color:#CA8EAE;color:#000000"
+  style="background-image:url(image url);background-color:#e4a6c7;color:#000000"
   title="name"
 />
 `;
@@ -60,7 +60,7 @@ exports[`EuiAvatar props initials is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -75,7 +75,7 @@ exports[`EuiAvatar props initialsLength is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -90,7 +90,7 @@ exports[`EuiAvatar props size l is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--l euiAvatar--user"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -105,7 +105,7 @@ exports[`EuiAvatar props size m is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -120,7 +120,7 @@ exports[`EuiAvatar props size none is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--user"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -135,7 +135,7 @@ exports[`EuiAvatar props size s is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--s euiAvatar--user"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -150,7 +150,7 @@ exports[`EuiAvatar props size xl is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--xl euiAvatar--user"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
@@ -165,7 +165,7 @@ exports[`EuiAvatar props type is rendered 1`] = `
 <div
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--space"
-  style="background-image:none;background-color:#CA8EAE;color:#000000"
+  style="background-image:none;background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
