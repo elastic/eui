@@ -307,8 +307,8 @@
   }
 }
 
-@mixin euiCustomControlFocused {
-  @include euiFocusRing;
+@mixin euiCustomControlFocused($size: null) {
+  @include euiFocusRing($size);
   border-color: $euiColorPrimary;
 }
 

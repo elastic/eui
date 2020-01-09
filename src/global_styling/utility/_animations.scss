@@ -46,6 +46,16 @@
   }
 }
 
+@keyframes focusRingAnimateMini {
+  0% {
+    box-shadow: 0 0 0 10px $euiFocusRingAnimStartColor;
+  }
+
+  100% {
+    box-shadow: 0 0 0 $euiFocusRingSizeMini $euiFocusRingColor;
+  }
+}
+
 // Component specific
 
 @keyframes euiButtonActive {

@@ -182,6 +182,10 @@
   &.euiSwitch--compressed,
   &.euiSwitch--mini {
 
+    .euiSwitch__button:focus .euiSwitch__thumb {
+      @include euiCustomControlFocused('mini');
+    }
+
     .euiSwitch__button[aria-checked='false'] {
       .euiSwitch__thumb {
         left: 1px;
