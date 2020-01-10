@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
-import {
-  euiPaletteColorBlind,
-  euiPaletteColorBlindBehindText,
-} from '../../../../src/services';
+import { euiPaletteColorBlindBehindText } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.visColors = euiPaletteColorBlind();
     this.visColorsBehindText = euiPaletteColorBlindBehindText();
 
     this.options = [
