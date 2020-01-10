@@ -52,8 +52,6 @@ const colorToClassMap: { [color in TokenColor]: string } = {
   tokenTint08: 'euiToken--tokenTint08',
   tokenTint09: 'euiToken--tokenTint09',
   tokenTint10: 'euiToken--tokenTint10',
-  tokenTint11: 'euiToken--tokenTint11',
-  tokenTint12: 'euiToken--tokenTint12',
 };
 
 export const COLORS = keysOf(colorToClassMap);
@@ -75,7 +73,7 @@ interface TokenProps {
   size?: TokenSize;
   /**
    * By default EUI will auto color tokens. You can can however control it
-   * - `color`: can be `tokenTint00` thru `tokenTint12`
+   * - `color`: can be `tokenTint00` thru `tokenTint10`
    * - `shape`: square, circle, rectangle as options
    * - `fill`: `light` for transparent, `dark` for solid, or `none`
    */

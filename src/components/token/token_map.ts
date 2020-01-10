@@ -16,9 +16,7 @@ export type TokenColor =
   | 'tokenTint07'
   | 'tokenTint08'
   | 'tokenTint09'
-  | 'tokenTint10'
-  | 'tokenTint11'
-  | 'tokenTint12';
+  | 'tokenTint10';
 
 export type TokenShape = 'circle' | 'square' | 'rectangle';
 export type TokenFill = 'dark' | 'light' | 'none';
@@ -109,7 +107,7 @@ export const TOKEN_MAP: {
   },
   tokenField: {
     shape: 'circle',
-    color: 'tokenTint12',
+    color: 'tokenTint00',
   },
   tokenElement: {
     shape: 'square',
@@ -125,7 +123,7 @@ export const TOKEN_MAP: {
   },
   tokenString: {
     shape: 'square',
-    color: 'tokenTint02',
+    color: 'tokenTint01',
   },
   tokenArray: {
     shape: 'square',
@@ -161,7 +159,7 @@ export const TOKEN_MAP: {
   },
   tokenPackage: {
     shape: 'square',
-    color: 'tokenTint12',
+    color: 'tokenTint00',
   },
   tokenOperator: {
     shape: 'circle',
@@ -200,7 +198,7 @@ export const TOKEN_MAP: {
   },
   tokenGeo: {
     shape: 'square',
-    color: 'tokenTint01',
+    color: 'tokenTint05',
   },
   tokenIP: {
     shape: 'square',
@@ -216,10 +214,10 @@ export const TOKEN_MAP: {
   },
   tokenNested: {
     shape: 'circle',
-    color: 'tokenTint11',
+    color: 'tokenTint02',
   },
   tokenAlias: {
     shape: 'circle',
-    color: 'tokenTint12',
+    color: 'tokenTint03',
   },
 };

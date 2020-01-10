@@ -64,38 +64,21 @@
   box-sizing: content-box;
 }
 
-$tokenTypes: (
-  tokenTint00: $euiColorVis0, // green
-  tokenTint01: $euiColorVis1, // blue
-  tokenTint02: $euiColorVis2, // hot pink
-  tokenTint03: $euiColorVis3, // purple
-  tokenTint04: $euiColorVis4, // light pink
-  tokenTint05: $euiColorVis5, // yellow
-  tokenTint06: $euiColorVis6, // tan
-  tokenTint07: $euiColorVis7, // orange
-  tokenTint08: $euiColorVis8, // brown
-  tokenTint09: $euiColorVis9, // red
-  tokenTint10: lightOrDarkTheme($euiColorDarkShade, $euiColorMediumShade), // mid-gray
-  tokenTint11: #F0F,
-  tokenTint12: #26AB00,
-);
-
-@each $tintName, $tintValue in $tokenTypes {
+@each $tintName, $tintValue in $euiTokenTypes {
   .euiToken--#{$tintName} {
-    // Coloring the fill against the light background color whether the background exists
-    // or not, ensures the color of the icon is the same in all circumstances
-    $backgroundColor: tintOrShade($tintValue, 90%, 90%);
-    $fillColor: makeHighContrastColor($tintValue, $backgroundColor);
-    color: $fillColor;
+    // Check to make to see if it exists in the allowed color blind palette
+    $index: index($euiPaletteColorBlindKeys, $tintValue);
+    $color: $tintValue;
 
-    &.euiToken--light {
-      background-color: $backgroundColor;
-      box-shadow: inset 0 0 0 1px tintOrShade($tintValue, 70%, 70%);
-    }
+    @if ( $index ) {
+      $color: map-get(map-get($euiPaletteColorBlind, $tintValue), 'graphic');
+      @include euiTokenCreateLightStyle($color);
 
-    &.euiToken--dark {
-      background-color: $tintValue;
-      color: chooseLightOrDarkText($tintValue, $euiColorGhost, $euiColorInk);
+      $color: map-get(map-get($euiPaletteColorBlind, $tintValue), 'behindText');
+      @include euiTokenCreateDarkStyle($color);
+    } @else {
+      @include euiTokenCreateLightStyle($color);
+      @include euiTokenCreateDarkStyle($color);
     }
   }
 }
