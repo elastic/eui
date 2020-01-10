@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import tabbable from 'tabbable';
 
 import { keyCodes } from '../../services';
 
@@ -8,6 +9,8 @@ import { EuiTitle } from '../title';
 import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiListGroup } from '../list_group/list_group';
 import { EuiFocusTrap } from '../focus_trap';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
 
 export const EuiNavDrawerFlyout = ({
   className,
@@ -18,6 +21,8 @@ export const EuiNavDrawerFlyout = ({
   onClose,
   ...rest
 }) => {
+  const [menuEl, setMenuEl] = useState();
+  const [tabbables, setTabbables] = useState();
   const LABEL = 'navDrawerFlyoutTitle';
   const classes = classNames(
     'euiNavDrawerFlyout',
@@ -30,13 +35,38 @@ export const EuiNavDrawerFlyout = ({
 
   const handleKeyDown = e => {
     if (e.keyCode === keyCodes.ESCAPE) {
-      onClose();
+      handleClose();
+    } else if (e.keyCode === keyCodes.TAB) {
+      let tabs = tabbables;
+      if (!tabs) {
+        tabs = tabbable(menuEl).filter(el => el.tagName !== 'DIV');
+        setTabbables(tabs);
+      }
+      if (
+        (!e.shiftKey && document.activeElement === tabs[tabs.length - 1]) ||
+        (e.shiftKey && document.activeElement === tabs[0])
+      ) {
+        handleClose();
+      }
     }
+  };
+
+  const handleClose = (shouldReturnFocus = true) => {
+    setTabbables(null);
+    onClose(shouldReturnFocus);
   };
 
   return (
     <div role="dialog" className={classes} aria-labelledby={LABEL} {...rest}>
-      <div onKeyDown={handleKeyDown}>
+      <EuiScreenReaderOnly>
+        <p>
+          <EuiI18n
+            token="euiNavDrawerFlyout.screenReaderAnnouncement"
+            default="You are in a dialog. To close this dialog, hit escape."
+          />
+        </p>
+      </EuiScreenReaderOnly>
+      <div onKeyDown={handleKeyDown} ref={setMenuEl}>
         <EuiTitle
           className="euiNavDrawerFlyout__title"
           tabIndex="-1"
@@ -49,7 +79,7 @@ export const EuiNavDrawerFlyout = ({
             ariaLabelledby={LABEL}
             listItems={listItems}
             wrapText={wrapText}
-            onClose={() => onClose(false)}
+            onClose={() => handleClose(false)}
           />
         </EuiFocusTrap>
       </div>

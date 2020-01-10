@@ -300,6 +300,11 @@ exports[`EuiNavDrawer is rendered 1`] = `
       id="navDrawerFlyout"
       role="dialog"
     >
+      <p
+        class="euiScreenReaderOnly"
+      >
+        You are in a dialog. To close this dialog, hit escape.
+      </p>
       <div>
         <div
           class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
@@ -569,6 +574,11 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
       id="navDrawerFlyout"
       role="dialog"
     >
+      <p
+        class="euiScreenReaderOnly"
+      >
+        You are in a dialog. To close this dialog, hit escape.
+      </p>
       <div>
         <div
           class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
@@ -904,6 +914,11 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
       id="navDrawerFlyout"
       role="dialog"
     >
+      <p
+        class="euiScreenReaderOnly"
+      >
+        You are in a dialog. To close this dialog, hit escape.
+      </p>
       <div>
         <div
           class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
