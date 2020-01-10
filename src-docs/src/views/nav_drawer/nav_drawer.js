@@ -136,7 +136,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add to Tools and Settings to favorites',
               },
             },
             {
@@ -147,7 +147,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Stack Monitoring to favorites',
               },
             },
             {
@@ -158,7 +158,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Stack Management to favorites',
               },
             },
             {
@@ -193,7 +193,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Discover to favorites',
               },
             },
             {
@@ -204,7 +204,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Visualize to favorites',
               },
             },
             {
@@ -215,7 +215,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Canvas to favorites',
               },
             },
             {
@@ -226,7 +226,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Maps to favorites',
               },
             },
             {
@@ -237,7 +237,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Machine Learning to favorites',
               },
             },
             {
@@ -248,13 +248,14 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Graph to favorites',
               },
             },
           ],
         },
       },
     ];
+
     this.securityLinks = [
       {
         label: 'Security',
@@ -276,13 +277,14 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add SIEM to favorites',
               },
             },
           ],
         },
       },
     ];
+
     this.searchLinks = [
       {
         label: 'Enterprise Search',
@@ -298,7 +300,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Enterprise search to favorites',
               },
             },
             {
@@ -309,7 +311,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add App Search to favorites',
               },
             },
             {
@@ -320,13 +322,14 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Workplace Search to favorites',
               },
             },
           ],
         },
       },
     ];
+
     this.observabilityLinks = [
       {
         label: 'Observability',
@@ -342,7 +345,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Logs to favorites',
               },
             },
             {
@@ -353,7 +356,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Metrics to favorites',
               },
             },
             {
@@ -364,7 +367,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add APM to favorites',
               },
             },
             {
@@ -375,7 +378,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Uptime to favorites',
               },
             },
           ],
@@ -512,11 +515,8 @@ export default class extends Component {
               <EuiNavDrawerGroup listItems={this.topLinks} />
               <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.analyzeLinks} />
-              <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.securityLinks} />
-              <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.searchLinks} />
-              <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.observabilityLinks} />
               <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.adminLinks} />
