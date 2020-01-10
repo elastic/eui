@@ -5,10 +5,13 @@ import classNames from 'classnames';
 import { EuiListGroup } from '../list_group/list_group';
 import { toInitials } from '../../services';
 
+export const ATTR_SELECTOR = 'data-name';
+
 export const EuiNavDrawerGroup = ({
   className,
   listItems,
   flyoutMenuButtonClick,
+  onClose = () => {},
   ...rest
 }) => {
   const classes = classNames('euiNavDrawerGroup', className);
@@ -20,11 +23,19 @@ export const EuiNavDrawerGroup = ({
     ? undefined
     : listItems.map(item => {
         // If the flyout menu exists, pass back the list of times and the title with the onClick handler of the item
-        const { flyoutMenu, ...itemProps } = item;
+        const { flyoutMenu, onClick, ...itemProps } = item;
         if (flyoutMenu && flyoutMenuButtonClick) {
           const items = [...flyoutMenu.listItems];
           const title = `${flyoutMenu.title}`;
-          itemProps.onClick = () => flyoutMenuButtonClick(items, title);
+          itemProps.onClick = () => flyoutMenuButtonClick(items, title, item);
+          itemProps['aria-expanded'] = false;
+        } else {
+          itemProps.onClick = (...args) => {
+            if (onClick) {
+              onClick(...args);
+            }
+            onClose();
+          };
         }
 
         // Make some declarations of props for the side nav implementation
@@ -33,6 +44,7 @@ export const EuiNavDrawerGroup = ({
           item.className
         );
         itemProps.size = item.size || 's';
+        itemProps[ATTR_SELECTOR] = item.label;
         itemProps['aria-label'] = item['aria-label'] || item.label;
 
         // Add an avatar in place of non-existent icons
@@ -69,4 +81,9 @@ EuiNavDrawerGroup.propTypes = {
    * of the flyout menu button click
    */
   flyoutMenuButtonClick: PropTypes.func,
+  /**
+   * Passthrough function to be called when the flyout is closing
+   * See ./nav_drawer.js
+   */
+  onClose: PropTypes.func,
 };
