@@ -1,13 +1,13 @@
-$euiTokenTypes: (
-  tokenTint00: euiColorVis0, // green
-  tokenTint01: euiColorVis1, // blue
-  tokenTint02: euiColorVis2, // hot pink
-  tokenTint03: euiColorVis3, // purple
-  tokenTint04: euiColorVis4, // light pink
-  tokenTint05: euiColorVis5, // yellow
-  tokenTint06: euiColorVis6, // tan
-  tokenTint07: euiColorVis7, // orange
-  tokenTint08: euiColorVis8, // brown
-  tokenTint09: euiColorVis9, // red
-  tokenTint10: lightOrDarkTheme($euiColorDarkShade, $euiColorMediumShade), // mid-gray
-);
+// sass-lint:disable indentation
+
+$euiTokenGrayColor: lightOrDarkTheme($euiColorDarkShade, $euiColorMediumShade);
+
+// Appends the gray color to the color blind palette
+$euiTokenTypes: map-merge($euiPaletteColorBlind, (
+  'gray': (
+    graphic: $euiTokenGrayColor,
+    behindText: $euiTokenGrayColor,
+  )
+));
+
+$euiTokenTypeKeys: map-keys($euiTokenTypes);

@@ -34,7 +34,7 @@ const tokensSnippet = [
   `<EuiToken
   iconType="visMapCoordinate"
   displayOptions={{
-    color: 'tokenTint05',
+    color: 'euiColorVis05',
     shape: 'circle',
   }}
 />`,
@@ -42,9 +42,9 @@ const tokensSnippet = [
   iconType="tokenElement"
   size="l"
   displayOptions={{
-    color: 'tokenTint07',
+    color: 'euiColorVis07',
     shape: 'rectangle',
-    hideBorder: true
+    fill: 'dark'
   }}
 />`,
 ];

@@ -1,22 +1,15 @@
-// Sets default displayOptions for EuiTokens based on iconType
-// tokenClass: {
-//   shape: 'square',
-//   color: 'tokenTint01',
-//   fill: false,
-// },
-
 export type TokenColor =
-  | 'tokenTint00'
-  | 'tokenTint01'
-  | 'tokenTint02'
-  | 'tokenTint03'
-  | 'tokenTint04'
-  | 'tokenTint05'
-  | 'tokenTint06'
-  | 'tokenTint07'
-  | 'tokenTint08'
-  | 'tokenTint09'
-  | 'tokenTint10';
+  | 'euiColorVis0'
+  | 'euiColorVis1'
+  | 'euiColorVis2'
+  | 'euiColorVis3'
+  | 'euiColorVis4'
+  | 'euiColorVis5'
+  | 'euiColorVis6'
+  | 'euiColorVis7'
+  | 'euiColorVis8'
+  | 'euiColorVis9'
+  | 'gray';
 
 export type TokenShape = 'circle' | 'square' | 'rectangle';
 export type TokenFill = 'dark' | 'light' | 'none';
@@ -71,153 +64,153 @@ export const TOKEN_MAP: {
 } = {
   tokenClass: {
     shape: 'circle',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
   },
   tokenProperty: {
     shape: 'circle',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenEnum: {
     shape: 'circle',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
   tokenVariable: {
     shape: 'circle',
-    color: 'tokenTint07',
+    color: 'euiColorVis7',
   },
   tokenMethod: {
     shape: 'square',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenAnnotation: {
     shape: 'square',
-    color: 'tokenTint05',
+    color: 'euiColorVis5',
   },
   tokenException: {
     shape: 'circle',
-    color: 'tokenTint00',
+    color: 'euiColorVis0',
   },
   tokenInterface: {
     shape: 'circle',
-    color: 'tokenTint09',
+    color: 'euiColorVis9',
   },
   tokenParameter: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'euiColorVis4',
   },
   tokenField: {
     shape: 'circle',
-    color: 'tokenTint00',
+    color: 'euiColorVis0',
   },
   tokenElement: {
     shape: 'square',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
   tokenFunction: {
     shape: 'circle',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenBoolean: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'euiColorVis7',
   },
   tokenString: {
     shape: 'square',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
   },
   tokenArray: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'euiColorVis7',
   },
   tokenNumber: {
     shape: 'square',
-    color: 'tokenTint00',
+    color: 'euiColorVis0',
   },
   tokenConstant: {
     shape: 'circle',
-    color: 'tokenTint00',
+    color: 'euiColorVis0',
   },
   tokenObject: {
     shape: 'circle',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
   tokenEvent: {
     shape: 'circle',
-    color: 'tokenTint04',
+    color: 'euiColorVis4',
   },
   tokenKey: {
     shape: 'circle',
-    color: 'tokenTint05',
+    color: 'euiColorVis5',
   },
   tokenNull: {
     shape: 'square',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenStruct: {
     shape: 'square',
-    color: 'tokenTint00',
+    color: 'euiColorVis0',
   },
   tokenPackage: {
     shape: 'square',
-    color: 'tokenTint00',
+    color: 'euiColorVis0',
   },
   tokenOperator: {
     shape: 'circle',
-    color: 'tokenTint04',
+    color: 'euiColorVis4',
   },
   tokenEnumMember: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'euiColorVis7',
   },
   tokenRepo: {
     shape: 'rectangle',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
     fill: 'dark',
   },
   tokenSymbol: {
     shape: 'rectangle',
-    color: 'tokenTint00',
+    color: 'euiColorVis0',
     fill: 'dark',
   },
   tokenFile: {
     shape: 'rectangle',
-    color: 'tokenTint10',
+    color: 'gray',
     fill: 'dark',
   },
   tokenNamespace: {
     shape: 'square',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
   },
   tokenModule: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'euiColorVis4',
   },
   tokenDate: {
     shape: 'square',
-    color: 'tokenTint06',
+    color: 'euiColorVis6',
   },
   tokenGeo: {
     shape: 'square',
-    color: 'tokenTint05',
+    color: 'euiColorVis1',
   },
   tokenIP: {
     shape: 'square',
-    color: 'tokenTint09',
+    color: 'euiColorVis9',
   },
   tokenShape: {
     shape: 'circle',
-    color: 'tokenTint08',
+    color: 'euiColorVis8',
   },
   tokenRange: {
     shape: 'circle',
-    color: 'tokenTint04',
+    color: 'euiColorVis4',
   },
   tokenNested: {
     shape: 'circle',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenAlias: {
     shape: 'circle',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
 };

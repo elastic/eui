@@ -1,21 +1,10 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { EuiToken, SHAPES, SIZES, FILLS } from './token';
+import { EuiToken, COLORS, SHAPES, SIZES, FILLS } from './token';
 import { TokenColor } from './token_map';
 
-const tokenColors: TokenColor[] = [
-  'tokenTint01',
-  'tokenTint02',
-  'tokenTint03',
-  'tokenTint04',
-  'tokenTint05',
-  'tokenTint06',
-  'tokenTint07',
-  'tokenTint08',
-  'tokenTint09',
-  'tokenTint10',
-];
+const tokenColors: TokenColor[] = COLORS;
 
 describe('EuiToken', () => {
   test('is rendered', () => {
@@ -34,7 +23,7 @@ describe('EuiToken', () => {
               size="s"
               displayOptions={{
                 shape: shape,
-                color: 'tokenTint01',
+                color: 'euiColorVis1',
               }}
             />
           );
@@ -71,7 +60,7 @@ describe('EuiToken', () => {
               iconType="dot"
               size={tokenSize}
               displayOptions={{
-                color: 'tokenTint01',
+                color: 'euiColorVis1',
                 shape: 'circle',
               }}
             />

@@ -64,21 +64,27 @@
   box-sizing: content-box;
 }
 
-@each $tintName, $tintValue in $euiTokenTypes {
-  .euiToken--#{$tintName} {
-    // Check to make to see if it exists in the allowed color blind palette
-    $index: index($euiPaletteColorBlindKeys, $tintValue);
-    $color: $tintValue;
+@each $type in $euiTokenTypeKeys {
+  .euiToken--#{$type} {
+    $color: map-get(map-get($euiTokenTypes, $type), 'graphic');
+    $backgroundColor: tintOrShade($color, 90%, 90%);
+    $fillColor: makeHighContrastColor($color, $backgroundColor);
 
-    @if ( $index ) {
-      $color: map-get(map-get($euiPaletteColorBlind, $tintValue), 'graphic');
-      @include euiTokenCreateLightStyle($color);
+    // Always coloring the fill against the tinted/shaded background color,
+    // ensures the color of the icon is the same with or without a background
+    color: $fillColor;
 
-      $color: map-get(map-get($euiPaletteColorBlind, $tintValue), 'behindText');
-      @include euiTokenCreateDarkStyle($color);
-    } @else {
-      @include euiTokenCreateLightStyle($color);
-      @include euiTokenCreateDarkStyle($color);
+    &.euiToken--light {
+      background-color: $backgroundColor;
+      box-shadow: inset 0 0 0 1px tintOrShade($color, 70%, 70%);
+    }
+
+    // Dark tokens uses the main color as the background against light or dark text
+    $color: map-get(map-get($euiTokenTypes, $type), 'behindText');
+
+    &.euiToken--dark {
+      background-color: $color;
+      color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
     }
   }
 }

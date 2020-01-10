@@ -41,23 +41,23 @@ const fillToClassMap: { [fill in TokenFill]: string | null } = {
 export const FILLS = keysOf(fillToClassMap);
 
 const colorToClassMap: { [color in TokenColor]: string } = {
-  tokenTint00: 'euiToken--tokenTint00',
-  tokenTint01: 'euiToken--tokenTint01',
-  tokenTint02: 'euiToken--tokenTint02',
-  tokenTint03: 'euiToken--tokenTint03',
-  tokenTint04: 'euiToken--tokenTint04',
-  tokenTint05: 'euiToken--tokenTint05',
-  tokenTint06: 'euiToken--tokenTint06',
-  tokenTint07: 'euiToken--tokenTint07',
-  tokenTint08: 'euiToken--tokenTint08',
-  tokenTint09: 'euiToken--tokenTint09',
-  tokenTint10: 'euiToken--tokenTint10',
+  euiColorVis0: 'euiToken--euiColorVis0',
+  euiColorVis1: 'euiToken--euiColorVis1',
+  euiColorVis2: 'euiToken--euiColorVis2',
+  euiColorVis3: 'euiToken--euiColorVis3',
+  euiColorVis4: 'euiToken--euiColorVis4',
+  euiColorVis5: 'euiToken--euiColorVis5',
+  euiColorVis6: 'euiToken--euiColorVis6',
+  euiColorVis7: 'euiToken--euiColorVis7',
+  euiColorVis8: 'euiToken--euiColorVis8',
+  euiColorVis9: 'euiToken--euiColorVis9',
+  gray: 'euiToken--gray',
 };
 
 export const COLORS = keysOf(colorToClassMap);
 
 const defaultDisplayOptions: EuiTokenMapDisplayOptions = {
-  color: 'tokenTint10',
+  color: 'gray',
   shape: 'square',
   fill: 'light',
 };
@@ -73,7 +73,7 @@ interface TokenProps {
   size?: TokenSize;
   /**
    * By default EUI will auto color tokens. You can can however control it
-   * - `color`: can be `tokenTint00` thru `tokenTint10`
+   * - `color`: can be `euiColorVis0` thru `tokenTint10`
    * - `shape`: square, circle, rectangle as options
    * - `fill`: `light` for transparent, `dark` for solid, or `none`
    */
@@ -112,7 +112,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
     finalOptions = defaults(displayOptions, defaultDisplayOptions);
   }
 
-  const color = finalOptions.color || 'tokenTint10';
+  const color = finalOptions.color || 'gray';
   const shape = finalOptions.shape || 'circle';
   const fill = finalOptions.fill || 'light';
 
