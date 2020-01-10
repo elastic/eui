@@ -181,9 +181,12 @@ export class EuiNavDrawer extends Component {
           focusReturnRef: item.label,
         },
         () => {
+          // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
+          // does not allow for deep `ref` element management at present
           const element = document.querySelector(
             `#${MENU_ELEMENT_ID} [${ATTR_SELECTOR}='${item.label}']`
           );
+          if (!element) return;
           element.setAttribute('aria-expanded', 'true');
         }
       );

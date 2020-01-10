@@ -35,23 +35,24 @@ export const EuiNavDrawerFlyout = ({
   };
 
   return (
-    <div
-      className={classes}
-      aria-labelledby={LABEL}
-      onKeyDown={handleKeyDown}
-      {...rest}>
-      <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs">
-        <div id={LABEL}>{title}</div>
-      </EuiTitle>
-      <EuiFocusTrap returnFocus={false}>
-        <EuiNavDrawerGroup
-          className="euiNavDrawerFlyout__listGroup"
-          ariaLabelledby={LABEL}
-          listItems={listItems}
-          wrapText={wrapText}
-          onClose={() => onClose(false)}
-        />
-      </EuiFocusTrap>
+    <div role="dialog" className={classes} aria-labelledby={LABEL} {...rest}>
+      <div onKeyDown={handleKeyDown}>
+        <EuiTitle
+          className="euiNavDrawerFlyout__title"
+          tabIndex="-1"
+          size="xxs">
+          <div id={LABEL}>{title}</div>
+        </EuiTitle>
+        <EuiFocusTrap returnFocus={false}>
+          <EuiNavDrawerGroup
+            className="euiNavDrawerFlyout__listGroup"
+            ariaLabelledby={LABEL}
+            listItems={listItems}
+            wrapText={wrapText}
+            onClose={() => onClose(false)}
+          />
+        </EuiFocusTrap>
+      </div>
     </div>
   );
 };

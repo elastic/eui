@@ -298,35 +298,38 @@ exports[`EuiNavDrawer is rendered 1`] = `
       aria-labelledby="navDrawerFlyoutTitle"
       class="euiNavDrawerFlyout euiNavDrawerFlyout-isCollapsed"
       id="navDrawerFlyout"
+      role="dialog"
     >
-      <div
-        class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
-        id="navDrawerFlyoutTitle"
-        tabindex="-1"
-      />
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="0"
-      />
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="1"
-      />
-      <div
-        data-focus-lock-disabled="false"
-      >
-        <ul
-          aria-labelledby="navDrawerFlyoutTitle"
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+      <div>
+        <div
+          class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
+          id="navDrawerFlyoutTitle"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="0"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="1"
+        />
+        <div
+          data-focus-lock-disabled="false"
+        >
+          <ul
+            aria-labelledby="navDrawerFlyoutTitle"
+            class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+          />
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="0"
         />
       </div>
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="0"
-      />
     </div>
   </div>
 </nav>
@@ -564,35 +567,38 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
       aria-labelledby="navDrawerFlyoutTitle"
       class="euiNavDrawerFlyout euiNavDrawerFlyout-isCollapsed"
       id="navDrawerFlyout"
+      role="dialog"
     >
-      <div
-        class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
-        id="navDrawerFlyoutTitle"
-        tabindex="-1"
-      />
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="0"
-      />
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="1"
-      />
-      <div
-        data-focus-lock-disabled="false"
-      >
-        <ul
-          aria-labelledby="navDrawerFlyoutTitle"
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+      <div>
+        <div
+          class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
+          id="navDrawerFlyoutTitle"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="0"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="1"
+        />
+        <div
+          data-focus-lock-disabled="false"
+        >
+          <ul
+            aria-labelledby="navDrawerFlyoutTitle"
+            class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+          />
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="0"
         />
       </div>
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="0"
-      />
     </div>
   </div>
 </nav>
@@ -896,35 +902,38 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
       aria-labelledby="navDrawerFlyoutTitle"
       class="euiNavDrawerFlyout euiNavDrawerFlyout-isCollapsed"
       id="navDrawerFlyout"
+      role="dialog"
     >
-      <div
-        class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
-        id="navDrawerFlyoutTitle"
-        tabindex="-1"
-      />
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="0"
-      />
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="1"
-      />
-      <div
-        data-focus-lock-disabled="false"
-      >
-        <ul
-          aria-labelledby="navDrawerFlyoutTitle"
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+      <div>
+        <div
+          class="euiTitle euiTitle--xxsmall euiNavDrawerFlyout__title"
+          id="navDrawerFlyoutTitle"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="0"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="1"
+        />
+        <div
+          data-focus-lock-disabled="false"
+        >
+          <ul
+            aria-labelledby="navDrawerFlyoutTitle"
+            class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup euiNavDrawerFlyout__listGroup"
+          />
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="0"
         />
       </div>
-      <div
-        data-focus-guard="true"
-        style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-        tabindex="0"
-      />
     </div>
   </div>
 </nav>
