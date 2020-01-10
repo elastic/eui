@@ -64,15 +64,17 @@ export const EuiNavDrawerFlyout = ({
       <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs">
         <div id={LABEL}>{title}</div>
       </EuiTitle>
-      <EuiFocusTrap returnFocus={false}>
-        <EuiNavDrawerGroup
-          className="euiNavDrawerFlyout__listGroup"
-          ariaLabelledby={LABEL}
-          listItems={listItems}
-          wrapText={wrapText}
-          onClose={() => handleClose(false)}
-        />
-      </EuiFocusTrap>
+      {listItems ? (
+        <EuiFocusTrap returnFocus={false}>
+          <EuiNavDrawerGroup
+            className="euiNavDrawerFlyout__listGroup"
+            ariaLabelledby={LABEL}
+            listItems={listItems}
+            wrapText={wrapText}
+            onClose={() => handleClose(false)}
+          />
+        </EuiFocusTrap>
+      ) : null}
     </div>
   );
 };
