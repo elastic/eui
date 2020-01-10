@@ -12,7 +12,7 @@ import makeId from '../form_row/make_id';
 
 import { EuiRangeProps } from './range';
 import { EuiRangeHighlight } from './range_highlight';
-import { EuiRangeInput } from './range_input';
+import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeLevel } from './range_levels';
 import { EuiRangeSlider, EuiRangeSliderProps } from './range_slider';
@@ -52,6 +52,16 @@ export interface EuiDualRangeProps
   ticks?: EuiRangeTick[];
   append?: EuiFormControlLayoutProps['append'];
   prepend?: EuiFormControlLayoutProps['prepend'];
+
+  /**
+   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
+   */
+  minInputProps?: Partial<EuiRangeInputProps>;
+
+  /**
+   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
+   */
+  maxInputProps?: Partial<EuiRangeInputProps>;
 }
 
 export class EuiDualRange extends Component<EuiDualRangeProps> {
@@ -395,6 +405,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       isInvalid,
       append,
       prepend,
+      minInputProps,
+      maxInputProps,
       ...rest
     } = this.props;
 
@@ -406,6 +418,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
     const minInput = !!showInput ? (
       <EuiRangeInput
+        // Overridable props
+        aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        {...minInputProps}
+        // Non-overridable props
         digitTolerance={digitTolerance}
         side="min"
         min={min}
@@ -417,8 +434,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onChange={this.handleLowerInputChange}
         onKeyDown={this.handleInputKeyDown}
         name={`${name}-minValue`}
-        aria-describedby={this.props['aria-describedby']}
-        aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
         onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
@@ -436,6 +451,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
     const maxInput = !!showInput ? (
       <EuiRangeInput
+        // Overridable props
+        aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        {...maxInputProps}
+        // Non-overridable props
         digitTolerance={digitTolerance}
         side="max"
         min={Number(this.lowerValue)}
@@ -447,8 +467,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         onChange={this.handleUpperInputChange}
         onKeyDown={this.handleInputKeyDown}
         name={`${name}-maxValue`}
-        aria-describedby={this.props['aria-describedby']}
-        aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
         onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}

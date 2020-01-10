@@ -16,6 +16,7 @@
   .euiNavDrawerMenu {
     @include euiScrollBar;
     overflow-y: auto;
+    overflow-x: hidden;
     width: $euiNavDrawerWidthCollapsed;
     height: 100%;
 
@@ -141,6 +142,9 @@
       // Instead of one collapsed and one expanded, they're now both expanded
       // Double the width of expanded sidebars
       width: $euiNavDrawerWidthExpanded * 2 !important; // sass-lint:disable-line no-important
+      // Prevents a shift in the main menu on initial open.
+      // The lack of horizontal transition is less alarming than the shift.
+      transition: none;
     }
   }
 

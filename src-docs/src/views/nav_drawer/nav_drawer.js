@@ -121,99 +121,6 @@ export default class extends Component {
       },
     ];
 
-    this.exploreLinks = [
-      {
-        label: 'Canvas',
-        href: '#/layout/nav-drawer',
-        iconType: 'canvasApp',
-        isActive: true,
-        extraAction: {
-          ...pinExtraActionFn('Canvas'),
-          alwaysShow: true,
-        },
-      },
-      {
-        label: 'Discover',
-        href: '#/layout/nav-drawer',
-        iconType: 'discoverApp',
-        extraAction: { ...pinExtraActionFn('Discover') },
-      },
-      {
-        label: 'Visualize',
-        href: '#/layout/nav-drawer',
-        iconType: 'visualizeApp',
-        extraAction: { ...pinExtraActionFn('Visualize') },
-      },
-      {
-        label: 'Dashboard',
-        href: '#/layout/nav-drawer',
-        iconType: 'dashboardApp',
-        extraAction: { ...pinExtraActionFn('Dashboard') },
-      },
-      {
-        label: 'Machine learning',
-        href: '#/layout/nav-drawer',
-        iconType: 'machineLearningApp',
-        extraAction: { ...pinExtraActionFn('Machine learning') },
-      },
-      {
-        label: 'Custom Plugin (no icon)',
-        href: '#/layout/nav-drawer',
-        extraAction: { ...pinExtraActionFn('Custom Plugin') },
-      },
-      {
-        label: 'Nature Plugin (image as icon)',
-        href: '#/layout/nav-drawer',
-        extraAction: { ...pinExtraActionFn('Nature Plugin') },
-        icon: (
-          <EuiImage
-            size="s"
-            alt="Random nature image"
-            url="https://source.unsplash.com/300x300/?Nature"
-          />
-        ),
-      },
-    ];
-
-    this.solutionsLinks = [
-      {
-        label: 'APM',
-        href: '#/layout/nav-drawer',
-        iconType: 'apmApp',
-        extraAction: { ...pinExtraActionFn('APM') },
-      },
-      {
-        label: 'Metrics',
-        href: '#/layout/nav-drawer',
-        iconType: 'metricsApp',
-        extraAction: { ...pinExtraActionFn('Infrastructure') },
-      },
-      {
-        label: 'Logs',
-        href: '#/layout/nav-drawer',
-        iconType: 'logsApp',
-        extraAction: { ...pinExtraActionFn('Log viewer') },
-      },
-      {
-        label: 'Uptime',
-        href: '#/layout/nav-drawer',
-        iconType: 'upgradeAssistantApp',
-        extraAction: { ...pinExtraActionFn('Uptime') },
-      },
-      {
-        label: 'Maps',
-        href: '#/layout/nav-drawer',
-        iconType: 'gisApp',
-        extraAction: { ...pinExtraActionFn('Maps') },
-      },
-      {
-        label: 'SIEM',
-        href: '#/layout/nav-drawer',
-        iconType: 'securityAnalyticsApp',
-        extraAction: { ...pinExtraActionFn('SIEM') },
-      },
-    ];
-
     this.adminLinks = [
       {
         label: 'Admin',
@@ -229,7 +136,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add to Tools and Settings to favorites',
               },
             },
             {
@@ -240,7 +147,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Stack Monitoring to favorites',
               },
             },
             {
@@ -251,7 +158,227 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starEmpty',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Add Stack Management to favorites',
+              },
+            },
+            {
+              label: 'Nature Plugin (image as icon)',
+              href: '#/layout/nav-drawer',
+              extraAction: { ...pinExtraActionFn('Nature Plugin') },
+              icon: (
+                <EuiImage
+                  size="s"
+                  alt="Random nature image"
+                  url="https://source.unsplash.com/300x300/?Nature"
+                />
+              ),
+            },
+          ],
+        },
+      },
+    ];
+
+    this.analyzeLinks = [
+      {
+        label: 'Analyze',
+        iconType: 'logoBusinessAnalytics',
+        flyoutMenu: {
+          title: 'Analyze your data',
+          listItems: [
+            {
+              label: 'Discover',
+              href: '#/layout/nav-drawer',
+              iconType: 'discoverApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Discover to favorites',
+              },
+            },
+            {
+              label: 'Visualize',
+              href: '#/layout/nav-drawer',
+              iconType: 'visualizeApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Visualize to favorites',
+              },
+            },
+            {
+              label: 'Canvas',
+              href: '#/layout/nav-drawer',
+              iconType: 'canvasApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Canvas to favorites',
+              },
+            },
+            {
+              label: 'Maps',
+              href: '#/layout/nav-drawer',
+              iconType: 'gisApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Maps to favorites',
+              },
+            },
+            {
+              label: 'Machine Learning',
+              href: '#/layout/nav-drawer',
+              iconType: 'machineLearningApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Machine Learning to favorites',
+              },
+            },
+            {
+              label: 'Graph',
+              href: '#/layout/nav-drawer',
+              iconType: 'graphApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Graph to favorites',
+              },
+            },
+          ],
+        },
+      },
+    ];
+
+    this.securityLinks = [
+      {
+        label: 'Security',
+        iconType: 'logoSecurity',
+        flyoutMenu: {
+          title: 'Security',
+          listItems: [
+            {
+              label: 'SIEM',
+              href: '#/layout/nav-drawer',
+              iconType: 'securityApp',
+              extraAction: { ...pinExtraActionFn('SIEM') },
+            },
+            {
+              label: 'Endpoints',
+              href: '#/layout/nav-drawer',
+              iconType: 'securityAnalyticsApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add SIEM to favorites',
+              },
+            },
+          ],
+        },
+      },
+    ];
+
+    this.searchLinks = [
+      {
+        label: 'Enterprise Search',
+        iconType: 'logoAppSearch',
+        flyoutMenu: {
+          title: 'Enterprise search',
+          listItems: [
+            {
+              label: 'Site search',
+              href: '#/layout/nav-drawer',
+              iconType: 'searchProfilerApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Enterprise search to favorites',
+              },
+            },
+            {
+              label: 'App search',
+              href: '#/layout/nav-drawer',
+              iconType: 'searchProfilerApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add App Search to favorites',
+              },
+            },
+            {
+              label: 'Workplace search',
+              href: '#/layout/nav-drawer',
+              iconType: 'searchProfilerApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Workplace Search to favorites',
+              },
+            },
+          ],
+        },
+      },
+    ];
+
+    this.observabilityLinks = [
+      {
+        label: 'Observability',
+        iconType: 'logoMetrics',
+        flyoutMenu: {
+          title: 'Observe your operations',
+          listItems: [
+            {
+              label: 'Logs',
+              href: '#/layout/nav-drawer',
+              iconType: 'logsApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Logs to favorites',
+              },
+            },
+            {
+              label: 'Metrics',
+              href: '#/layout/nav-drawer',
+              iconType: 'metricsApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Metrics to favorites',
+              },
+            },
+            {
+              label: 'APM',
+              href: '#/layout/nav-drawer',
+              iconType: 'apmApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add APM to favorites',
+              },
+            },
+            {
+              label: 'Uptime',
+              href: '#/layout/nav-drawer',
+              iconType: 'uptimeApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add Uptime to favorites',
               },
             },
           ],
@@ -262,9 +389,9 @@ export default class extends Component {
 
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.closeFullScreen();
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      //   this.closeFullScreen();
     }
   };
 
@@ -387,9 +514,10 @@ export default class extends Component {
             <EuiNavDrawer ref={this.setNavDrawerRef}>
               <EuiNavDrawerGroup listItems={this.topLinks} />
               <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.exploreLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.solutionsLinks} />
+              <EuiNavDrawerGroup listItems={this.analyzeLinks} />
+              <EuiNavDrawerGroup listItems={this.securityLinks} />
+              <EuiNavDrawerGroup listItems={this.searchLinks} />
+              <EuiNavDrawerGroup listItems={this.observabilityLinks} />
               <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.adminLinks} />
             </EuiNavDrawer>
