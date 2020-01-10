@@ -116,6 +116,8 @@ export interface EuiPopoverProps {
    * Function callback for when the focus trap is deactivated
    */
   onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
+
+  style?: CSSProperties;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -500,6 +502,7 @@ export class EuiPopover extends Component<Props, State> {
           ? anchorBoundingBox.left
           : left,
       zIndex,
+      ...this.props.style,
     };
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
