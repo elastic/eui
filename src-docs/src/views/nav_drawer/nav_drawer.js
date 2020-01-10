@@ -255,6 +255,7 @@ export default class extends Component {
         },
       },
     ];
+
     this.securityLinks = [
       {
         label: 'Security',
@@ -283,6 +284,7 @@ export default class extends Component {
         },
       },
     ];
+
     this.searchLinks = [
       {
         label: 'Enterprise Search',
@@ -327,6 +329,7 @@ export default class extends Component {
         },
       },
     ];
+
     this.observabilityLinks = [
       {
         label: 'Observability',
@@ -512,11 +515,8 @@ export default class extends Component {
               <EuiNavDrawerGroup listItems={this.topLinks} />
               <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.analyzeLinks} />
-              <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.securityLinks} />
-              <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.searchLinks} />
-              <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.observabilityLinks} />
               <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.adminLinks} />
