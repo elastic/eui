@@ -72,6 +72,16 @@ export default class extends Component {
           onChange={this.onChange}
           compressed
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiSwitch
+          label="I am a mini switch"
+          checked={this.state.checked}
+          onChange={this.onChange}
+          compressed
+          className="euiSwitch--mini"
+        />
       </Fragment>
     );
   }

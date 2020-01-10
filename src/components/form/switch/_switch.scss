@@ -17,7 +17,7 @@
     flex-shrink: 0; // ensures the button doesn't lose width because of a long label
     line-height: 0; // ensures button takes height of switch inside
 
-    &:focus .euiSwitch__thumb {
+    &:focus .euiSwitch__track {
       @include euiCustomControlFocused;
     }
 
@@ -181,10 +181,6 @@
   // Compressed and mini switches have some style overlap
   &.euiSwitch--compressed,
   &.euiSwitch--mini {
-
-    .euiSwitch__button:focus .euiSwitch__thumb {
-      @include euiCustomControlFocused('mini');
-    }
 
     .euiSwitch__button[aria-checked='false'] {
       .euiSwitch__thumb {
