@@ -126,6 +126,6 @@
 // Hollow has a border and is mostly used for autocompleters.
 .euiBadge--hollow {
   background-color: $euiColorEmptyShade;
-  border-color: $euiBorderColor;
+  border-color: lightOrDarkTheme($euiBorderColor, tint($euiBorderColor, 15%));
   color: $euiTextColor;
 }
