@@ -7,7 +7,7 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import chroma from 'chroma-js';
-import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
+import { euiPaletteColorBlindBehindText, isValidHex } from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
 
@@ -72,28 +72,18 @@ const colorInk = '#000';
 const colorGhost = '#fff';
 
 // The color blind palette has some stricter accessibility needs with regards to
-// charts and contrast. We can ease (brighten) that requirement here since our
+// charts and contrast. We use the euiPaletteColorBlindBehindText variant here since our
 // accessibility concerns pertain to foreground (text) and background contrast
-const brightenValue = 0.5;
+const visColors = euiPaletteColorBlindBehindText();
 
 const colorToHexMap: { [color in IconColor]: string } = {
   // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
   default: '#d3dae6',
-  primary: chroma(euiPaletteColorBlind()[1])
-    .brighten(brightenValue)
-    .hex(),
-  secondary: chroma(euiPaletteColorBlind()[0])
-    .brighten(brightenValue)
-    .hex(),
-  accent: chroma(euiPaletteColorBlind()[2])
-    .brighten(brightenValue)
-    .hex(),
-  warning: chroma(euiPaletteColorBlind()[5])
-    .brighten(brightenValue)
-    .hex(),
-  danger: chroma(euiPaletteColorBlind()[9])
-    .brighten(brightenValue)
-    .hex(),
+  primary: visColors[1],
+  secondary: visColors[0],
+  accent: visColors[2],
+  warning: visColors[5],
+  danger: visColors[9],
 };
 
 export const COLORS = keysOf(colorToHexMap);
@@ -297,11 +287,9 @@ function setTextColor(bgColor: string) {
 }
 
 function checkValidColor(color: null | IconColor | string) {
-  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
-
   if (
     color != null &&
-    !validHex.test(color) &&
+    !isValidHex(color) &&
     !COLORS.includes(color) &&
     color !== 'hollow'
   ) {

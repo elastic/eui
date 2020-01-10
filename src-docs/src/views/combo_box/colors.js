@@ -1,58 +1,61 @@
 import React, { Component } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
+import { euiPaletteColorBlindBehindText } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
+    this.visColorsBehindText = euiPaletteColorBlindBehindText();
+
     this.options = [
       {
         label: 'Titan',
         'data-test-subj': 'titanOption',
-        color: 'primary',
+        color: this.visColorsBehindText[0],
       },
       {
         label: 'Enceladus',
-        color: 'secondary',
+        color: this.visColorsBehindText[1],
       },
       {
         label: 'Mimas',
-        color: '#D36086',
+        color: this.visColorsBehindText[2],
       },
       {
         label: 'Dione',
-        color: 'accent',
+        color: this.visColorsBehindText[3],
       },
       {
         label: 'Iapetus',
-        color: 'warning',
+        color: this.visColorsBehindText[4],
       },
       {
         label: 'Phoebe',
-        color: 'danger',
+        color: this.visColorsBehindText[5],
       },
       {
         label: 'Rhea',
-        color: 'default',
+        color: this.visColorsBehindText[6],
       },
       {
         label:
           "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-        color: '#DA8B45',
+        color: this.visColorsBehindText[7],
       },
       {
         label: 'Tethys',
-        color: '#CA8EAE',
+        color: this.visColorsBehindText[8],
       },
       {
         label: 'Hyperion',
-        color: '#B9A888',
+        color: this.visColorsBehindText[9],
       },
     ];
 
     this.state = {
-      selectedOptions: [this.options[2], this.options[4]],
+      selectedOptions: [this.options[2], this.options[5]],
     };
   }
 
