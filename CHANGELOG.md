@@ -12,6 +12,7 @@
 - Added `legend` prop to `EuiCheckboxGroup` and `EuiRadioGroup` to add `EuiFieldset` wrappers for title the groups ([#2739](https://github.com/elastic/eui/pull/2739))
 - Changed `EuiNavDrawerFlyout` to close after child nav items are clicked ([#2749](https://github.com/elastic/eui/pull/2749))
 - Changed `EuiNavDrawerFlyout` to trap focus while navigating via keyboard ([#2749](https://github.com/elastic/eui/pull/2749))
+- Created a `euiPaletteColorBlindBehindText` variant of the color blind palette ([#2750](https://github.com/elastic/eui/pull/2750))
 
 **Bug fixes**
 

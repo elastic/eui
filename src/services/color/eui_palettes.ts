@@ -1,6 +1,7 @@
+import { flatten } from 'lodash';
+import chroma from 'chroma-js';
 import { HEX } from './color_types';
 import { colorPalette } from './color_palette';
-import { flatten } from 'lodash';
 
 export type EuiPalette = string[];
 
@@ -62,6 +63,20 @@ export const euiPaletteColorBlind = function(
   }
 
   return colors;
+};
+
+/**
+ * Color blind palette with text is meant for use when text is applied on top of the color.
+ * It increases the brightness of the color to give the text more contrast.
+ */
+export const euiPaletteColorBlindBehindText = function(): EuiPalette {
+  const originalPalette = euiPaletteColorBlind();
+  const newPalette = originalPalette.map(color =>
+    chroma(color)
+      .brighten(0.5)
+      .hex()
+  );
+  return newPalette;
 };
 
 export const euiPaletteForLightBackground = function(): EuiPalette {
