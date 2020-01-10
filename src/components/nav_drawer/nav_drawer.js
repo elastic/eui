@@ -51,8 +51,6 @@ export class EuiNavDrawer extends Component {
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
 
-  timeoutID;
-
   sideNavLockClicked = () => {
     if (this.state.isLocked) {
       window.removeEventListener('resize', this.functionToCallOnWindowResize);
@@ -133,37 +131,6 @@ export class EuiNavDrawer extends Component {
     window.removeEventListener('resize', this.functionToCallOnWindowResize);
   };
 
-  manageFocus = () => {
-    // This prevents the drawer from collapsing when tabbing through children
-    // by clearing the timeout thus cancelling the onBlur event (see focusOut).
-    // This means isManagingFocus remains true as long as a child element
-    // has focus. This is the case since React bubbles up onFocus and onBlur
-    // events from the child elements.
-    clearTimeout(this.timeoutID);
-
-    if (!this.state.isManagingFocus) {
-      this.setState({
-        isManagingFocus: true,
-      });
-    }
-  };
-
-  focusOut = () => {
-    // This collapses the drawer when no children have focus (i.e. tabbed out).
-    // In other words, if focus does not bubble up from a child element, then
-    // the drawer will collapse. See the corresponding block in expandDrawer
-    // (called by onFocus) which cancels this operation via clearTimeout.
-    this.timeoutID = setTimeout(() => {
-      if (this.state.isManagingFocus) {
-        this.setState({
-          isManagingFocus: false,
-        });
-
-        this.closeBoth();
-      }
-    }, 0);
-  };
-
   expandFlyout = (links, title, item) => {
     const content = links;
 
@@ -171,14 +138,16 @@ export class EuiNavDrawer extends Component {
       this.collapseFlyout();
     } else {
       this.setState(
-        {
-          flyoutIsCollapsed: false,
-          navFlyoutTitle: title,
-          navFlyoutContent: content,
-          isCollapsed: this.state.isLocked ? false : true,
-          toolTipsEnabled: false,
-          outsideClickDisabled: false,
-          focusReturnRef: item.label,
+        ({ isLocked }) => {
+          return {
+            flyoutIsCollapsed: false,
+            navFlyoutTitle: title,
+            navFlyoutContent: content,
+            isCollapsed: isLocked ? false : true,
+            toolTipsEnabled: false,
+            outsideClickDisabled: false,
+            focusReturnRef: item.label,
+          };
         },
         () => {
           // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
@@ -378,10 +347,7 @@ export class EuiNavDrawer extends Component {
         onOutsideClick={() => this.closeBoth()}
         isDisabled={this.state.outsideClickDisabled}>
         <nav className={classes} {...rest}>
-          <EuiFlexGroup
-            gutterSize="none"
-            onBlur={this.focusOut}
-            onFocus={this.manageFocus}>
+          <EuiFlexGroup gutterSize="none">
             <EuiFlexItem grow={false}>
               <div
                 id={MENU_ELEMENT_ID}
