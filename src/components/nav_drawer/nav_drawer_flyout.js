@@ -9,8 +9,6 @@ import { EuiTitle } from '../title';
 import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiListGroup } from '../list_group/list_group';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiI18n } from '../i18n';
 
 export const EuiNavDrawerFlyout = ({
   className,
@@ -57,32 +55,24 @@ export const EuiNavDrawerFlyout = ({
   };
 
   return (
-    <div role="dialog" className={classes} aria-labelledby={LABEL} {...rest}>
-      <EuiScreenReaderOnly>
-        <p>
-          <EuiI18n
-            token="euiNavDrawerFlyout.screenReaderAnnouncement"
-            default="You are in a dialog. To close this dialog, hit escape."
-          />
-        </p>
-      </EuiScreenReaderOnly>
-      <div onKeyDown={handleKeyDown} ref={setMenuEl}>
-        <EuiTitle
-          className="euiNavDrawerFlyout__title"
-          tabIndex="-1"
-          size="xxs">
-          <div id={LABEL}>{title}</div>
-        </EuiTitle>
-        <EuiFocusTrap returnFocus={false}>
-          <EuiNavDrawerGroup
-            className="euiNavDrawerFlyout__listGroup"
-            ariaLabelledby={LABEL}
-            listItems={listItems}
-            wrapText={wrapText}
-            onClose={() => handleClose(false)}
-          />
-        </EuiFocusTrap>
-      </div>
+    <div
+      className={classes}
+      aria-labelledby={LABEL}
+      onKeyDown={handleKeyDown}
+      ref={setMenuEl}
+      {...rest}>
+      <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs">
+        <div id={LABEL}>{title}</div>
+      </EuiTitle>
+      <EuiFocusTrap returnFocus={false}>
+        <EuiNavDrawerGroup
+          className="euiNavDrawerFlyout__listGroup"
+          ariaLabelledby={LABEL}
+          listItems={listItems}
+          wrapText={wrapText}
+          onClose={() => handleClose(false)}
+        />
+      </EuiFocusTrap>
     </div>
   );
 };
