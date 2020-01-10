@@ -1151,7 +1151,10 @@ const typeDefinitionExtractors = {
    */
   VariableDeclaration: node => {
     return node.declarations.reduce((declarations, declaration) => {
-      if (declaration.init.type === 'ObjectExpression') {
+      if (
+        declaration.init != null &&
+        declaration.init.type === 'ObjectExpression'
+      ) {
         declarations.push({
           name: declaration.id.name,
           definition: declaration.init,
