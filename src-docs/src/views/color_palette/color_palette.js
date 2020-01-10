@@ -78,7 +78,7 @@ export default () => (
       <EuiFlexItem grow={false} style={{ maxWidth: 240 }}>
         <EuiFlexGrid columns={4} gutterSize="s">
           {euiPaletteColorBlindBehindText().map((color, i) => (
-            <EuiFlexItem key={i}>
+            <EuiFlexItem key={i} grow={false}>
               <span>
                 <EuiBadge color={color}>Text</EuiBadge>
               </span>

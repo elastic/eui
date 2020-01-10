@@ -52,7 +52,7 @@ function renderPaletteColor(palette, color, index, key) {
   const name = key && key !== 'graphic' ? `${color}_${key}` : color;
 
   return (
-    <EuiFlexItem key={index}>
+    <EuiFlexItem key={index} grow={false}>
       <EuiFlexGroup responsive={false} alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiCopy beforeMessage="Click to copy color name" textToCopy={name}>
