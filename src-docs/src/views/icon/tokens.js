@@ -96,9 +96,11 @@ export default () => (
     <EuiText size="s">
       <p>
         By default the <EuiCode>iconType</EuiCode> prop defines the styling of
-        the token. However, <EuiCode>displayOptions</EuiCode> allows you to
-        overwrite the color, shape and fill used if you need a more custom token
-        using any of the EUI glyph set.
+        the token if it is a valid <EuiCode>EuiTokenMapType</EuiCode> (starts
+        with <EuiCode>token</EuiCode>) or you can pass any valid{' '}
+        <EuiCode>IconType</EuiCode>. You can customize the both by changing the{' '}
+        <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,
+        <EuiCode>color</EuiCode>, and <EuiCode>fill</EuiCode>.
       </p>
     </EuiText>
 
@@ -113,17 +115,10 @@ export default () => (
               justifyContent: 'center',
               marginBottom: '8px',
             }}>
-            <EuiToken
-              iconType="tokenStruct"
-              size="xs"
-              displayOptions={{
-                color: 'tokenTint10',
-                shape: 'square',
-              }}
-            />
+            <EuiToken iconType="tokenStruct" size="xs" color="gray" />
           </div>
           <EuiText size="s">
-            <p>A custom token</p>
+            <p>An xs, gray tokenStruct</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
@@ -135,15 +130,10 @@ export default () => (
               justifyContent: 'center',
               marginBottom: '8px',
             }}>
-            <EuiToken
-              iconType="tokenStruct"
-              displayOptions={{
-                fill: 'none',
-              }}
-            />
+            <EuiToken iconType="tokenStruct" fill="none" />
           </div>
           <EuiText size="s">
-            <p>A custom token</p>
+            <p>A none fill tokenStruct</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
@@ -158,13 +148,12 @@ export default () => (
             <EuiToken
               iconType="tokenStruct"
               size="m"
-              displayOptions={{
-                shape: 'circle',
-              }}
+              shape="circle"
+              color="#FF0000"
             />
           </div>
           <EuiText size="s">
-            <p>A custom token</p>
+            <p>A size m, circle, #FF0000 tokenStruct</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
@@ -177,17 +166,15 @@ export default () => (
               marginBottom: '8px',
             }}>
             <EuiToken
-              iconType="tokenStruct"
+              iconType="faceNeutral"
               size="l"
-              displayOptions={{
-                color: 'tokenTint07',
-                shape: 'rectangle',
-                fill: 'dark',
-              }}
+              color="euiColorVis7"
+              shape="rectangle"
+              fill="dark"
             />
           </div>
           <EuiText size="s">
-            <p>A custom token</p>
+            <p>A completely custom token</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>

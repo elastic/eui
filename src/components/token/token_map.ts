@@ -15,8 +15,18 @@ export type TokenShape = 'circle' | 'square' | 'rectangle';
 export type TokenFill = 'dark' | 'light' | 'none';
 
 export interface EuiTokenMapDisplayOptions {
-  color?: TokenColor;
+  /**
+   * For best results use one of the vis color names (or 'gray').
+   * Or supply your own color (can be used with dark or no fill only).
+   */
+  color?: TokenColor | string;
+  /**
+   * Outer shape surrounding the icon
+   */
   shape?: TokenShape;
+  /**
+   * `light` for lightened color with border, `dark` for solid, or `none`
+   */
   fill?: TokenFill;
 }
 

@@ -1,32 +1,36 @@
 import React from 'react';
 import { render } from 'enzyme';
+import { requiredProps } from '../../test';
 
 import { EuiToken, COLORS, SHAPES, SIZES, FILLS } from './token';
-import { TokenColor } from './token_map';
+import { TokenColor, TOKEN_MAP, EuiTokenMapType } from './token_map';
+import { keysOf } from '../common';
 
+const tokenTypes: EuiTokenMapType[] = keysOf(TOKEN_MAP);
 const tokenColors: TokenColor[] = COLORS;
 
 describe('EuiToken', () => {
   test('is rendered', () => {
-    const component = render(<EuiToken iconType="dot" size="s" />);
+    const component = render(<EuiToken iconType="dot" {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
+    describe('iconType as EuiTokenMapType', () => {
+      tokenTypes.forEach(type => {
+        test(`${type} is rendered`, () => {
+          const component = render(<EuiToken iconType={type} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
     describe('shape', () => {
       SHAPES.forEach(shape => {
         test(`${shape} is rendered`, () => {
-          const component = render(
-            <EuiToken
-              iconType="dot"
-              size="s"
-              displayOptions={{
-                shape: shape,
-                color: 'euiColorVis1',
-              }}
-            />
-          );
+          const component = render(<EuiToken iconType="dot" shape={shape} />);
 
           expect(component).toMatchSnapshot();
         });
@@ -36,19 +40,16 @@ describe('EuiToken', () => {
     describe('color', () => {
       tokenColors.forEach(color => {
         test(`${color} is rendered`, () => {
-          const component = render(
-            <EuiToken
-              iconType="dot"
-              size="s"
-              displayOptions={{
-                color: color,
-                shape: 'square',
-              }}
-            />
-          );
+          const component = render(<EuiToken iconType="dot" color={color} />);
 
           expect(component).toMatchSnapshot();
         });
+      });
+
+      test('can be a custom hex', () => {
+        const component = render(<EuiToken iconType="dot" color="#FF0000" />);
+
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -56,14 +57,7 @@ describe('EuiToken', () => {
       SIZES.forEach(tokenSize => {
         test(`${tokenSize} is rendered`, () => {
           const component = render(
-            <EuiToken
-              iconType="dot"
-              size={tokenSize}
-              displayOptions={{
-                color: 'euiColorVis1',
-                shape: 'circle',
-              }}
-            />
+            <EuiToken iconType="dot" size={tokenSize} />
           );
 
           expect(component).toMatchSnapshot();
@@ -74,14 +68,7 @@ describe('EuiToken', () => {
     describe('fill', () => {
       FILLS.forEach(fill => {
         test(`${fill} is rendered`, () => {
-          const component = render(
-            <EuiToken
-              iconType="dot"
-              displayOptions={{
-                fill: fill,
-              }}
-            />
-          );
+          const component = render(<EuiToken iconType="dot" fill={fill} />);
 
           expect(component).toMatchSnapshot();
         });
