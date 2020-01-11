@@ -5,7 +5,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiText, EuiSpacer } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiText,
+  EuiSpacer,
+  EuiCallOut,
+} from '../../../../src/components';
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
@@ -58,6 +63,14 @@ export const ColorPaletteExample = {
             more groups of 10 which are alternates of the original. This is
             better than allowing the initial set to loop.
           </p>
+          <p>
+            These colors are meant to be used as graphics and contrasted against
+            the value of <EuiCode>euiColorEmptyShade</EuiCode> for the current
+            theme. When placing text on top of these colors, use the{' '}
+            <EuiCode>euiPaletteColorBlindBehindText()</EuiCode> variant. It is a
+            brightened version of the base palette to create better contrast
+            with text.
+          </p>
         </div>
       ),
       demo: <ColorPalette />,
@@ -88,6 +101,11 @@ export const ColorPaletteExample = {
             in the number of steps needed and the function will interpolate
             between the colors.
           </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title="The palette for status is the only palette that has proper contrast ratios. When using the other palettes, consider adding another form of the data for screen readers."
+          />
         </div>
       ),
       demo: <ColorPaletteQuant />,
