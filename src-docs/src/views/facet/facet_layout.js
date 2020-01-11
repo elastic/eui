@@ -9,7 +9,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { VISUALIZATION_COLORS } from '../../../../src/services/color/visualization_colors';
+import { euiPaletteColorBlind } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
@@ -29,42 +29,42 @@ export default class extends Component {
         id: 'facet0',
         label: 'Simple, no icon',
         quantity: 6,
-        iconColor: VISUALIZATION_COLORS[0],
+        iconColor: euiPaletteColorBlind[0],
         onClick: this.facet0Clicked,
       },
       {
         id: 'facet1',
         label: 'Label or color indicator',
         quantity: 60,
-        iconColor: VISUALIZATION_COLORS[1],
+        iconColor: euiPaletteColorBlind[1],
         onClick: this.facet1Clicked,
       },
       {
         id: 'facet2',
         label: 'Disable all others',
         quantity: 600,
-        iconColor: VISUALIZATION_COLORS[2],
+        iconColor: euiPaletteColorBlind[2],
         onClick: this.facet2Clicked,
       },
       {
         id: 'facet3',
         label: 'Avatars instead of icons',
         quantity: 60,
-        iconColor: VISUALIZATION_COLORS[3],
+        iconColor: euiPaletteColorBlind[3],
         onClick: this.facet3Clicked,
       },
       {
         id: 'facet4',
         label: 'Show all as loading',
         quantity: 6,
-        iconColor: VISUALIZATION_COLORS[4],
+        iconColor: euiPaletteColorBlind[4],
         onClick: this.facet4Clicked,
       },
       {
         id: 'facet5',
         label: 'Just here to show truncation of really long labels',
         quantity: 0,
-        iconColor: VISUALIZATION_COLORS[5],
+        iconColor: euiPaletteColorBlind[5],
       },
     ];
   }
