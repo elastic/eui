@@ -455,7 +455,13 @@ export class GuideSection extends Component {
   document.getElementById('root')
 );`;
     // The Code Sanbbox demo needs to import CSS at the top of the document
-    const exampleStart = `import ReactDOM from 'react-dom';
+    const exampleStart = `/**
+// NOTICE ABOUT ICONS
+// Codesandbox has issues with the way EUI dynamically imports icons.
+// As a result these demos will not render icons in them.
+**/
+
+import ReactDOM from 'react-dom';
 // import '@elastic/eui/dist/eui_theme_dark.css';
 import '@elastic/eui/dist/eui_theme_light.css'`;
 
