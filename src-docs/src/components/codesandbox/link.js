@@ -6,6 +6,8 @@ import {
   listExtraDeps,
 } from '../../services';
 
+import { EuiSpacer } from '../../../../src/components';
+
 /* HOW THE CODE SANDBOX REGEX WORKS
  * Given the prop `content` we manipulate the provided source string to format
  * it for use as an independent file in Code Sandbox. In order the following
@@ -57,7 +59,7 @@ ReactDOM.render(
   const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
 
   if (hasLocalImports && !hasDisplayToggles(exampleCleaned)) {
-    return;
+    return null;
   }
 
   // Renders the new Demo component generically into the code sandbox page
@@ -146,7 +148,10 @@ ${exampleClose}
       className="eui-textRight">
       {/* 6 */}
       <input type="hidden" name="parameters" value={params} />
+
+      <EuiSpacer size="s" />
       {childWithSubmit}
+      <EuiSpacer size="s" />
     </form>
   );
 };

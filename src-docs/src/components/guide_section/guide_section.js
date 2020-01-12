@@ -426,15 +426,11 @@ export class GuideSection extends Component {
 
   renderCodeSandBoxButton() {
     return (
-      <Fragment>
-        <EuiSpacer size="s" />
-        <CodeSandboxLink content={this.props.source[0].code}>
-          <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
-            Try out this demo on Code Sandbox
-          </EuiButtonEmpty>
-        </CodeSandboxLink>
-        <EuiSpacer size="s" />
-      </Fragment>
+      <CodeSandboxLink content={this.props.source[0].code}>
+        <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
+          Try out this demo on Code Sandbox
+        </EuiButtonEmpty>
+      </CodeSandboxLink>
     );
   }
 
