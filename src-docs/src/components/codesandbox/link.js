@@ -25,8 +25,11 @@ const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/di
 
 /* 1 */
 export const CodeSandboxLink = ({ children, content }) => {
-  /* 2 */
-  const defaultContent = `import ReactDOM from 'react-dom';
+  let indexContent;
+
+  if (!content) {
+    /* 2 */
+    indexContent = `import ReactDOM from 'react-dom';
 import '@elastic/eui/dist/eui_theme_light.css'
 // import '@elastic/eui/dist/eui_theme_dark.css'
 import React from 'react';
@@ -42,34 +45,34 @@ ReactDOM.render(
   document.getElementById('root')
 );
 `;
+  } else {
+    /** This cleans the Demo JS example for Code Sanbox.
+    - Replaces relative imports with pure @elastic/eui ones
+    - Changes the JS example from a default export to a component const named Demo
+    **/
+    const exampleCleaned = cleanEuiImports(content)
+      .replace('export default', 'const Demo =')
+      .replace(
+        /(from )'(..\/)+display_toggles(\/?';)/,
+        "from './display_toggles';"
+      );
 
-  /** This cleans the Demo JS example for Code Sanbox.
-  - Replaces relative imports with pure @elastic/eui ones
-  - Changes the JS example from a default export to a component const named Demo
-  **/
-  const exampleCleaned = cleanEuiImports(content)
-    .replace('export default', 'const Demo =')
-    .replace(
-      /(from )'(..\/)+display_toggles(\/?';)/,
-      "from './display_toggles';"
-    );
+    // If the code example still has local doc imports after the above cleaning it's
+    // too complicated for code sandbox so we don't provide a link
+    const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
 
-  // If the code example still has local doc imports after the above cleaning it's
-  // too complicated for code sandbox so we don't provide a link
-  const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
+    if (hasLocalImports && !hasDisplayToggles(exampleCleaned)) {
+      return null;
+    }
 
-  if (hasLocalImports && !hasDisplayToggles(exampleCleaned)) {
-    return null;
-  }
-
-  // Renders the new Demo component generically into the code sandbox page
-  const exampleClose = `ReactDOM.render(
-  <Demo />,
-  document.getElementById('root')
-);`;
-  // The Code Sanbbox demo needs to import CSS at the top of the document. CS has trouble
-  // with our dynamic imports so we need to warn the user for now
-  const exampleStart = `/**
+    // Renders the new Demo component generically into the code sandbox page
+    const exampleClose = `ReactDOM.render(
+    <Demo />,
+    document.getElementById('root')
+  );`;
+    // The Code Sanbbox demo needs to import CSS at the top of the document. CS has trouble
+    // with our dynamic imports so we need to warn the user for now
+    const exampleStart = `/**
 // NOTICE ABOUT ICONS
 // Codesandbox has issues with the way EUI dynamically imports icons.
 // As a result these demos will not render icons in them.
@@ -79,18 +82,17 @@ import ReactDOM from 'react-dom';
 // import '@elastic/eui/dist/eui_theme_dark.css';
 import '@elastic/eui/dist/eui_theme_light.css'`;
 
-  // Concat the three pieces of the example into a single string to use for index.js
-  const cleanedContent = `${exampleStart}
+    // Concat the three pieces of the example into a single string to use for index.js
+    const cleanedContent = `${exampleStart}
 ${exampleCleaned}
 ${exampleClose}
-    `;
+      `;
+    indexContent = cleanedContent.replace(
+      /(from )'.+display_toggles';/,
+      "from './display_toggles';"
+    );
+  }
 
-  const indexContent = cleanedContent
-    ? cleanedContent.replace(
-        /(from )'.+display_toggles';/,
-        "from './display_toggles';"
-      )
-    : defaultContent;
   const indexContentDeps = listExtraDeps(indexContent);
   let mergedDeps = indexContentDeps;
 
