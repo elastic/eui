@@ -23,6 +23,8 @@ import {
 
 import { CodeSandboxLink } from '../codesandbox';
 
+import { cleanEuiImports, hasDisplayToggles } from '../../services';
+
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split(regex).map((token, index) => {
@@ -379,19 +381,13 @@ export class GuideSection extends Component {
     const { code } = this.props.source.find(
       sourceObject => sourceObject.type === name
     );
-    const npmImports = code
-      .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
-      .replace(
-        /(from )'(..\/)+src\/services(\/?';)/,
-        "from '@elastic/eui/lib/services';"
-      )
-      .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';");
+    const cleanedExampleCode = cleanEuiImports(code);
 
     return (
       <div key={name} ref={name}>
         {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
         <EuiCodeBlock language={codeClass} overflowHeight={400}>
-          {npmImports}
+          {cleanedExampleCode}
         </EuiCodeBlock>
       </div>
     );
@@ -433,19 +429,21 @@ export class GuideSection extends Component {
         - Replaces relative imports with pure @elastic/eui ones
         - Changes the JS example from a default export to a component const named Demo
         **/
-    const exampleCleaned = this.props.source[0].code
-      .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
+    const exampleCleaned = cleanEuiImports(this.props.source[0].code)
+      .replace('export default', 'const Demo =')
+      // MAKE SURE THIS WORKS
+      // YOU ARE REPLACING THE REFERENCE
+      // THEN YOU SHOULD PASS THAT THE COMPONENT TO THE RIGHT HAS IT AND INMPORT THE FILE THERE
       .replace(
-        /(from )'(..\/)+src\/services(\/?';)/,
-        "from '@elastic/eui/lib/services';"
-      )
-      .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';")
-      .replace('export default', 'const Demo =');
+        /(from )'(..\/)+display_toggles(\/?';)/,
+        "from './display_toggles';"
+      );
 
     // If the code example still has local doc imports after the above cleaning it's
     // too complicated for code sandbox
     const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
-    if (hasLocalImports) {
+
+    if (hasLocalImports && !hasDisplayToggles(exampleCleaned)) {
       return;
     }
 
@@ -471,23 +469,10 @@ ${exampleCleaned}
 ${exampleClose}
     `;
 
-    // Check the imports
-    const extraDeps = [
-      ...exampleCleaned.matchAll(
-        // Match anything not directly calling eui (like lib dirs)
-        /(import)(?!.*elastic\/eui)\s.*?'(?<import>[^.].*?)'/g
-      ),
-    ]
-      .map(x => x.groups.import)
-      .reduce((deps, dep) => {
-        deps[dep] = 'latest';
-        return deps;
-      }, {});
-
     return (
       <Fragment>
         <EuiSpacer size="s" />
-        <CodeSandboxLink extraDeps={extraDeps} content={codeSandboxExample}>
+        <CodeSandboxLink content={codeSandboxExample}>
           <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
             Try out this demo on Code Sandbox
           </EuiButtonEmpty>

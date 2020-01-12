@@ -4,6 +4,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
+  // @ts-ignore
 } from '../../../../src/components';
 
 export default () => (

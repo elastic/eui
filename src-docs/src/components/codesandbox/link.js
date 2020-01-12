@@ -1,7 +1,14 @@
 import React from 'react';
 import { getParameters } from 'codesandbox/lib/api/define';
+import {
+  cleanEuiImports,
+  hasDisplayToggles,
+  listExtraDeps,
+} from '../../services';
 
-export const CodeSandboxLink = ({ children, extraDeps, content }) => {
+const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles');
+
+export const CodeSandboxLink = ({ children, content }) => {
   const defaultContent = `import ReactDOM from 'react-dom';
 import '@elastic/eui/dist/eui_theme_light.css'
 // import '@elastic/eui/dist/eui_theme_dark.css'
@@ -19,7 +26,17 @@ ReactDOM.render(
 );
 `;
   const indexContent = content ? content : defaultContent;
-  const params = getParameters({
+  const indexContentDeps = listExtraDeps(indexContent);
+  let mergedDeps = indexContentDeps;
+
+  if (hasDisplayToggles(indexContent)) {
+    const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
+    const displayToggleDeps = listExtraDeps(cleanedDisplayToggles);
+
+    mergedDeps = { ...indexContentDeps, ...displayToggleDeps };
+  }
+
+  const config = {
     files: {
       'package.json': {
         content: {
@@ -30,7 +47,7 @@ ReactDOM.render(
             moment: 'latest',
             '@elastic/eui': 'latest',
             '@elastic/datemath': 'latest',
-            ...extraDeps,
+            ...mergedDeps,
           },
         },
       },
@@ -38,13 +55,21 @@ ReactDOM.render(
         content: indexContent,
       },
     },
-  });
+  };
+
+  if (hasDisplayToggles(indexContent)) {
+    const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
+
+    config.files['display_toggles.js'] = {
+      content: cleanedDisplayToggles,
+    };
+  }
+
+  const params = getParameters(config);
 
   const childWithSubmit = React.cloneElement(children, {
     type: 'submit',
   });
-
-  console.log(params);
 
   return (
     <form
