@@ -23,7 +23,7 @@ import {
 
 import { CodeSandboxLink } from '../codesandbox';
 
-import { cleanEuiImports, hasDisplayToggles } from '../../services';
+import { cleanEuiImports } from '../../services';
 
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -425,54 +425,10 @@ export class GuideSection extends Component {
   }
 
   renderCodeSandBoxButton() {
-    /** This cleans the Demo JS example for Code Sanbox.
-        - Replaces relative imports with pure @elastic/eui ones
-        - Changes the JS example from a default export to a component const named Demo
-        **/
-    const exampleCleaned = cleanEuiImports(this.props.source[0].code)
-      .replace('export default', 'const Demo =')
-      // MAKE SURE THIS WORKS
-      // YOU ARE REPLACING THE REFERENCE
-      // THEN YOU SHOULD PASS THAT THE COMPONENT TO THE RIGHT HAS IT AND INMPORT THE FILE THERE
-      .replace(
-        /(from )'(..\/)+display_toggles(\/?';)/,
-        "from './display_toggles';"
-      );
-
-    // If the code example still has local doc imports after the above cleaning it's
-    // too complicated for code sandbox
-    const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
-
-    if (hasLocalImports && !hasDisplayToggles(exampleCleaned)) {
-      return;
-    }
-
-    // Renders the new Demo component generically into the code sandbox page
-    const exampleClose = `ReactDOM.render(
-  <Demo />,
-  document.getElementById('root')
-);`;
-    // The Code Sanbbox demo needs to import CSS at the top of the document
-    const exampleStart = `/**
-// NOTICE ABOUT ICONS
-// Codesandbox has issues with the way EUI dynamically imports icons.
-// As a result these demos will not render icons in them.
-**/
-
-import ReactDOM from 'react-dom';
-// import '@elastic/eui/dist/eui_theme_dark.css';
-import '@elastic/eui/dist/eui_theme_light.css'`;
-
-    // Concat the three pieces of the example into a single string
-    const codeSandboxExample = `${exampleStart}
-${exampleCleaned}
-${exampleClose}
-    `;
-
     return (
       <Fragment>
         <EuiSpacer size="s" />
-        <CodeSandboxLink content={codeSandboxExample}>
+        <CodeSandboxLink content={this.props.source[0].code}>
           <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
             Try out this demo on Code Sandbox
           </EuiButtonEmpty>

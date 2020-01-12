@@ -8,8 +8,7 @@ export const cleanEuiImports = code => {
     .replace(
       /(from )'(..\/)+src\/services(\/?';)/,
       "from '@elastic/eui/lib/services';"
-    )
-    .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';");
+    );
 };
 
 export const listExtraDeps = code => {
