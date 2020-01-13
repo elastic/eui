@@ -2,7 +2,6 @@
 
 exports[`EuiDescribedFormGroup is rendered 1`] = `
 <div
-  aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup testClass1 testClass2"
@@ -91,7 +90,6 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
 
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 <div
-  aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup euiDescribedFormGroup--fullWidth testClass1 testClass2"
@@ -140,7 +138,6 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 <div
-  aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup testClass1 testClass2"
@@ -189,7 +186,6 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 <div
-  aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup testClass1 testClass2"
@@ -253,7 +249,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   titleSize="xs"
 >
   <div
-    aria-describedby={null}
     aria-label="aria-label"
     aria-labelledby="test-id-title"
     className="euiDescribedFormGroup testClass1 testClass2"

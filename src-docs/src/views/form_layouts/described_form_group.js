@@ -86,29 +86,17 @@ export default class extends Component {
     return (
       <EuiForm>
         <EuiDescribedFormGroup
-          idAria="single-example-aria"
           title={<h3>Single text field</h3>}
-          description={
-            <Fragment>
-              When using this with a single form row where this text serves as
-              the help text for the input, it is a good idea to pass{' '}
-              <EuiCode>idAria=&quot;someID&quot;</EuiCode> to the form group and
-              pass
-              <EuiCode>describedByIds=&#123;[someID]&#125;</EuiCode> to its form
-              row.
-            </Fragment>
-          }>
-          <EuiFormRow
-            label="Text field"
-            describedByIds={['single-example-aria']}>
-            <EuiFieldText name="first" />
+          description={<Fragment>A single text field to describe</Fragment>}>
+          <EuiFormRow label="Text field">
+            <EuiFieldText name="first" aria-label="Example" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
 
         <EuiDescribedFormGroup
           idAria="no-description"
           title={<h3>No description</h3>}>
-          <EuiFormRow label="Text field" describedByIds={['no-description']}>
+          <EuiFormRow label="Text field">
             <EuiFieldText name="first" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
@@ -119,12 +107,7 @@ export default class extends Component {
           description="Here are three form rows. The first form row does not have a title.">
           <EuiFormRow
             hasEmptyLabelSpace
-            helpText={
-              <span>
-                We do not pass <EuiCode>describedByIds</EuiCode> when there are
-                multiple form rows.
-              </span>
-            }>
+            helpText={<span>This is a help text</span>}>
             <EuiSelect
               hasNoInitialSelection
               options={[

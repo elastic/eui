@@ -68,10 +68,6 @@ export class EuiDescribedFormGroup extends Component {
           {description}
         </EuiText>
       );
-
-      // If user has defined an aria ID, assume they have passed the ID to
-      // the form row describedByIds and skip describedby here.
-      ariaProps['aria-describedby'] = userAriaId ? null : ariaId;
     }
 
     return (
@@ -109,7 +105,6 @@ EuiDescribedFormGroup.propTypes = {
   titleSize: PropTypes.oneOf(TITLE_SIZES),
   title: PropTypes.node.isRequired,
   description: PropTypes.node,
-  idAria: PropTypes.string,
 };
 
 EuiDescribedFormGroup.defaultProps = {
