@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `rencentlyViewedApp` glyph to `EuiIcon` ([#2755](https://github.com/elastic/eui/pull/2755))
+- Added `rencentlyViewedApp` app icon to `EuiIcon` ([#2755](https://github.com/elastic/eui/pull/2755))
 
 ## [`18.1.0`](https://github.com/elastic/eui/tree/v18.1.0)
 
