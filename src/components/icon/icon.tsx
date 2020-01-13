@@ -264,6 +264,7 @@ const typeToPathMap = {
   plusInCircleFilled: 'plus_in_circle_filled',
   popout: 'popout',
   questionInCircle: 'question_in_circle',
+  recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
   reportingApp: 'app_reporting',
   save: 'save',

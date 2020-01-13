@@ -51,6 +51,7 @@ const iconTypes = [
   'notebookApp',
   'packetbeatApp',
   'pipelineApp',
+  'recentlyViewedApp',
   'reportingApp',
   'savedObjectsApp',
   'searchProfilerApp',
