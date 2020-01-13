@@ -6,7 +6,6 @@ import {
   EuiBasicTable,
   EuiLink,
   EuiHealth,
-  EuiPopover,
 } from '../../../../../src/components';
 
 /*
@@ -33,22 +32,7 @@ Example country object:
 
 const store = createDataStore();
 
-function CountryColumn({ country }) {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  return (
-    <EuiPopover
-      isOpen={isOpen}
-      closePopover={() => setIsOpen(false)}
-      button={<span onClick={() => setIsOpen(!isOpen)}>{country}</span>}>
-      Country: {country}
-    </EuiPopover>
-  );
-}
-
 export const Table = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
-  window.setIsLoading = setIsLoading;
   const columns = [
     {
       field: 'firstName',
@@ -98,7 +82,7 @@ export const Table = () => {
       name: 'Nationality',
       render: countryCode => {
         const country = store.getCountry(countryCode);
-        return <CountryColumn country={`${country.flag} ${country.name}`} />;
+        return `${country.flag} ${country.name}`;
       },
     },
     {
@@ -136,7 +120,6 @@ export const Table = () => {
 
   return (
     <EuiBasicTable
-      loading={isLoading}
       items={items}
       columns={columns}
       rowProps={getRowProps}
