@@ -1,16 +1,21 @@
-import React, { CSSProperties, HTMLAttributes, useState } from 'react';
+import React, { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, NoArgCallback } from '../common';
 
-import { EuiButton } from '../button';
 import { EuiPopover, EuiPopoverProps } from '../popover';
 import { EuiTourStep } from './tour_step';
 
 export type EuiTourProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & EuiPopoverProps & {
-    title: string;
-    subtitle: string;
+    // TODO make than an attchedToId prop of some sort
+    button: NonNullable<ReactNode>;
+
+    // TODO carried over from popover, is this needed?
+    closePopover: NoArgCallback<void>;
+
+    isOpen?: boolean;
+
     /**
      * Sets the min-width of the tour popover,
      * set to `true` to use the default size,
@@ -21,16 +26,23 @@ export type EuiTourProps = HTMLAttributes<HTMLDivElement> &
     minWidth?: boolean | number | string;
 
     style?: CSSProperties;
+
+    // TODO add prop docs desc
+    subtitle: string;
+
+    // TODO add prop docs desc
+    title: string;
   };
 
 export const EuiTour: React.FunctionComponent<EuiTourProps> = ({
   anchorPosition = 'leftUp',
+  button,
   children,
   className,
+  closePopover,
+  isOpen = false,
   minWidth = true,
   style,
-  subtitle,
-  title,
 }) => {
 
   let newStyle;
@@ -43,31 +55,14 @@ export const EuiTour: React.FunctionComponent<EuiTourProps> = ({
   }
 
   const classes = classNames('euiTour', widthClassName, className);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(true);
-  
-  const button = (
-    <EuiButton
-      iconType="arrowDown"
-      iconSide="right"
-      onClick={() => handleToggle()}>
-      Do this first
-    </EuiButton>
-  );
-
-  const handleToggle = () => {
-    if (isPopoverOpen) {
-      setIsPopoverOpen(false);
-    } else {
-      setIsPopoverOpen(true);
-    }
-  };
 
   return (
     <EuiPopover
       anchorPosition={anchorPosition}
+      // TODO the button should retain its own action, not just opening a popover
       button={button}
-      closePopover={() => handleToggle()}
-      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      isOpen={isOpen}
       panelClassName={classes}
       style={newStyle || style}
       withTitle>

@@ -16,11 +16,3 @@
   margin-top: $euiSizeL !important; // sass-lint:disable-line no-important
   background-color: $euiColorLightestShade;
 }
-
-.euiTourStepFooter__stepListItem  {
-  display: inline-block;
-}
-
-.euiTour--minWidth-default {
-  min-width: calc(#{$euiSizeL} * 10);
-}

@@ -1,3 +1,3 @@
-.euiTour {
-  border: 1px solid $euiColorDanger;
+.euiTour--minWidth-default {
+  min-width: calc(#{$euiSizeL} * 10);
 }
