@@ -78,7 +78,7 @@ interface TokenProps {
 export type EuiTokenProps = CommonProps &
   TokenProps &
   EuiTokenMapDisplayOptions &
-  HTMLAttributes<HTMLDivElement>;
+  HTMLAttributes<HTMLSpanElement>;
 
 export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   iconType,
@@ -153,8 +153,8 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   );
 
   return (
-    <div className={classes} style={style} {...rest}>
+    <span className={classes} style={style} {...rest}>
       <EuiIcon type={iconType} size={iconSize} />
-    </div>
+    </span>
   );
 };

@@ -201,7 +201,7 @@ export const TOKEN_MAP: {
   },
   tokenGeo: {
     shape: 'square',
-    color: 'euiColorVis1',
+    color: 'euiColorVis5',
   },
   tokenIP: {
     shape: 'square',

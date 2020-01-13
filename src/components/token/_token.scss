@@ -72,9 +72,10 @@
 
     // Always coloring the fill against the tinted/shaded background color,
     // ensures the color of the icon is the same with or without a background
-    color: $fillColor;
+    color: $color;
 
     &.euiToken--light {
+      color: $fillColor;
       background-color: $backgroundColor;
       box-shadow: inset 0 0 0 1px tintOrShade($color, 70%, 70%);
     }
