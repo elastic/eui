@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `18.2.0`.
+
+## [`18.2.0`](https://github.com/elastic/eui/tree/v18.2.0)
+
 - Added `rencentlyViewedApp` app icon to `EuiIcon` ([#2755](https://github.com/elastic/eui/pull/2755))
 
 **Bug fixes**
