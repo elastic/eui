@@ -3,11 +3,11 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiToken, COLORS, SHAPES, SIZES, FILLS } from './token';
-import { TokenColor, TOKEN_MAP, EuiTokenMapType } from './token_map';
+import { TOKEN_MAP } from './token_map';
 import { keysOf } from '../common';
 
-const tokenTypes: EuiTokenMapType[] = keysOf(TOKEN_MAP);
-const tokenColors: TokenColor[] = COLORS;
+const tokenTypes = keysOf(TOKEN_MAP);
+const tokenColors = COLORS;
 
 describe('EuiToken', () => {
   test('is rendered', () => {

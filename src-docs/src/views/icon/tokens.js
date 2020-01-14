@@ -98,7 +98,7 @@ export default () => (
         By default the <EuiCode>iconType</EuiCode> prop defines the styling of
         the token if it is a valid <EuiCode>EuiTokenMapType</EuiCode> (starts
         with <EuiCode>token</EuiCode>) or you can pass any valid{' '}
-        <EuiCode>IconType</EuiCode>. You can customize the both by changing the{' '}
+        <EuiCode>IconType</EuiCode>. You can customize both by changing the{' '}
         <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,
         <EuiCode>color</EuiCode>, and <EuiCode>fill</EuiCode>.
       </p>

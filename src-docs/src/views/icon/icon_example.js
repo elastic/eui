@@ -206,7 +206,7 @@ export const IconExample = {
       text: (
         <div>
           <p>
-            Tokens are most commonly used in to visually signify field or code
+            Tokens are most commonly used to visually signify field or code
             types. An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
             <EuiCode>EuiIcon</EuiCode> as its
             <EuiCode>iconType</EuiCode> property. However, icons designed

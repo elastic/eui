@@ -3,7 +3,7 @@
 exports[`EuiToken is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--small testClass1 testClass2"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <svg
@@ -21,7 +21,7 @@ exports[`EuiToken is rendered 1`] = `
 
 exports[`EuiToken props color can be a custom hex 1`] = `
 <span
-  class="euiToken euiToken--square euiToken--dark euiToken--small"
+  class="euiToken euiToken--circle euiToken--dark euiToken--small"
   style="background-color:#FF0000;color:#000000"
 >
   <svg
@@ -39,7 +39,7 @@ exports[`EuiToken props color can be a custom hex 1`] = `
 
 exports[`EuiToken props color euiColorVis0 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -56,7 +56,7 @@ exports[`EuiToken props color euiColorVis0 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis1 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis1 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -73,7 +73,7 @@ exports[`EuiToken props color euiColorVis1 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis2 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -90,7 +90,7 @@ exports[`EuiToken props color euiColorVis2 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis3 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -107,7 +107,7 @@ exports[`EuiToken props color euiColorVis3 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis4 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -124,7 +124,7 @@ exports[`EuiToken props color euiColorVis4 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis5 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis5 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -141,7 +141,7 @@ exports[`EuiToken props color euiColorVis5 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis6 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis6 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis6 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -158,7 +158,7 @@ exports[`EuiToken props color euiColorVis6 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis7 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis7 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -175,7 +175,7 @@ exports[`EuiToken props color euiColorVis7 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis8 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis8 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis8 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -192,7 +192,7 @@ exports[`EuiToken props color euiColorVis8 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis9 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis9 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis9 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -209,7 +209,7 @@ exports[`EuiToken props color euiColorVis9 is rendered 1`] = `
 
 exports[`EuiToken props color gray is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -226,7 +226,7 @@ exports[`EuiToken props color gray is rendered 1`] = `
 
 exports[`EuiToken props fill dark is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--dark euiToken--small"
+  class="euiToken euiToken--gray euiToken--circle euiToken--dark euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -243,7 +243,7 @@ exports[`EuiToken props fill dark is rendered 1`] = `
 
 exports[`EuiToken props fill light is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -260,7 +260,7 @@ exports[`EuiToken props fill light is rendered 1`] = `
 
 exports[`EuiToken props fill none is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--small"
+  class="euiToken euiToken--gray euiToken--circle euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -957,7 +957,7 @@ exports[`EuiToken props shape square is rendered 1`] = `
 
 exports[`EuiToken props size l is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--large"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--large"
 >
   <svg
     aria-hidden="true"
@@ -974,7 +974,7 @@ exports[`EuiToken props size l is rendered 1`] = `
 
 exports[`EuiToken props size m is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--medium"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--medium"
 >
   <svg
     aria-hidden="true"
@@ -991,7 +991,7 @@ exports[`EuiToken props size m is rendered 1`] = `
 
 exports[`EuiToken props size s is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -1008,7 +1008,7 @@ exports[`EuiToken props size s is rendered 1`] = `
 
 exports[`EuiToken props size xs is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--xsmall"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--xsmall"
 >
   <svg
     aria-hidden="true"

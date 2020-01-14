@@ -4,7 +4,6 @@
   justify-content: center;
 
   svg {
-    // width: 100%;
     height: 100%;
     margin: auto;
   }
@@ -70,8 +69,7 @@
     $backgroundColor: tintOrShade($color, 90%, 90%);
     $fillColor: makeHighContrastColor($color, $backgroundColor);
 
-    // Always coloring the fill against the tinted/shaded background color,
-    // ensures the color of the icon is the same with or without a background
+    // Without a background, the fill color should be the graphic color
     color: $color;
 
     &.euiToken--light {

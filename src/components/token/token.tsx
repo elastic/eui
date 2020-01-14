@@ -5,16 +5,23 @@ import { CommonProps, keysOf } from '../common';
 import { isColorDark, hexToRgb } from '../../services';
 
 import { IconType, EuiIcon, IconSize } from '../icon';
-import {
-  EuiTokenMapType,
-  EuiTokenMapDisplayOptions,
-  TokenColor,
-  TokenShape,
-  TokenFill,
-  TOKEN_MAP,
-} from './token_map';
+import { EuiTokenMapType, TOKEN_MAP } from './token_map';
 
 type TokenSize = 'xs' | 's' | 'm' | 'l';
+type TokenShape = 'circle' | 'square' | 'rectangle';
+type TokenFill = 'dark' | 'light' | 'none';
+type TokenColor =
+  | 'euiColorVis0'
+  | 'euiColorVis1'
+  | 'euiColorVis2'
+  | 'euiColorVis3'
+  | 'euiColorVis4'
+  | 'euiColorVis5'
+  | 'euiColorVis6'
+  | 'euiColorVis7'
+  | 'euiColorVis8'
+  | 'euiColorVis9'
+  | 'gray';
 
 const sizeToClassMap: { [size in TokenSize]: string } = {
   xs: 'euiToken--xsmall',
@@ -57,17 +64,24 @@ const colorToClassMap: { [color in TokenColor]: string } = {
 
 export const COLORS = keysOf(colorToClassMap);
 
-const defaultDisplayOptions: EuiTokenMapDisplayOptions = {
-  color: 'gray',
-  shape: 'square',
-  fill: 'light',
-};
-
-interface TokenProps {
+export interface TokenProps {
   /**
    * An EUI icon type
    */
   iconType: IconType;
+  /**
+   * For best results use one of the vis color names (or 'gray').
+   * Or supply your own color (can be used with dark or no fill only).
+   */
+  color?: TokenColor | string;
+  /**
+   * Outer shape surrounding the icon
+   */
+  shape?: TokenShape;
+  /**
+   * `light` for lightened color with border, `dark` for solid, or `none`
+   */
+  fill?: TokenFill;
   /**
    * Size of the token
    */
@@ -77,7 +91,6 @@ interface TokenProps {
 
 export type EuiTokenProps = CommonProps &
   TokenProps &
-  EuiTokenMapDisplayOptions &
   HTMLAttributes<HTMLSpanElement>;
 
 export const EuiToken: FunctionComponent<EuiTokenProps> = ({
@@ -92,35 +105,38 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 }) => {
   // Set the icon size to the same as the passed size
   // unless they passed `xs` which IconSize doesn't support
-  let iconSize: IconSize = size === 'xs' ? 's' : size;
-
-  const displayOptions: EuiTokenMapDisplayOptions = {
-    color,
-    fill,
-    shape,
-  };
-  let finalOptions: EuiTokenMapDisplayOptions;
+  let finalSize: IconSize = size === 'xs' ? 's' : size;
 
   // When displaying at the small size, the token specific icons
   // should actually be displayed at medium size
   if (String(iconType).indexOf('token') === 0 && size === 's') {
-    iconSize = 'm';
+    finalSize = 'm';
   }
 
+  const defaultDisplay = {
+    color: 'gray',
+    fill: 'light',
+    shape: 'sqaure',
+  };
+  const currentDisplay = {
+    color,
+    fill,
+    shape,
+  };
+  let finalDisplay;
+
+  // If the iconType passed is one of the prefab token types,
+  // grab its properties
   if (iconType in TOKEN_MAP) {
-    const definedToken = TOKEN_MAP[iconType as EuiTokenMapType];
-    finalOptions = defaults(
-      displayOptions,
-      definedToken,
-      defaultDisplayOptions
-    );
+    const tokenDisplay = TOKEN_MAP[iconType as EuiTokenMapType];
+    finalDisplay = defaults(currentDisplay, tokenDisplay, defaultDisplay);
   } else {
-    finalOptions = defaults(displayOptions, defaultDisplayOptions);
+    finalDisplay = currentDisplay;
   }
 
-  const finalColor = finalOptions.color || 'gray';
-  const finalShape = finalOptions.shape || 'circle';
-  let finalFill = finalOptions.fill || 'light';
+  const finalColor = finalDisplay.color || 'gray';
+  const finalShape = finalDisplay.shape || 'circle';
+  let finalFill = finalDisplay.fill || 'light';
 
   // Color can be a named space via euiColorVis
   let colorClass;
@@ -154,7 +170,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   return (
     <span className={classes} style={style} {...rest}>
-      <EuiIcon type={iconType} size={iconSize} />
+      <EuiIcon type={iconType} size={finalSize} />
     </span>
   );
 };

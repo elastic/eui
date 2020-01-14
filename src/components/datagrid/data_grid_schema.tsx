@@ -8,7 +8,7 @@ import {
 import { EuiI18n } from '../i18n';
 
 import { IconType } from '../icon';
-import { TokenColor } from '../token/token_map';
+import { EuiTokenProps } from '../token';
 
 export interface EuiDataGridSchemaDetector {
   /**
@@ -30,7 +30,7 @@ export interface EuiDataGridSchemaDetector {
   /**
    * The color associated with this data type; it's used to color the icon token
    */
-  color?: TokenColor | string;
+  color?: EuiTokenProps['color'] | string;
   /**
    * Text for how to represent an ascending sort of this data type, e.g. 'A -> Z'
    */

@@ -1,34 +1,4 @@
-export type TokenColor =
-  | 'euiColorVis0'
-  | 'euiColorVis1'
-  | 'euiColorVis2'
-  | 'euiColorVis3'
-  | 'euiColorVis4'
-  | 'euiColorVis5'
-  | 'euiColorVis6'
-  | 'euiColorVis7'
-  | 'euiColorVis8'
-  | 'euiColorVis9'
-  | 'gray';
-
-export type TokenShape = 'circle' | 'square' | 'rectangle';
-export type TokenFill = 'dark' | 'light' | 'none';
-
-export interface EuiTokenMapDisplayOptions {
-  /**
-   * For best results use one of the vis color names (or 'gray').
-   * Or supply your own color (can be used with dark or no fill only).
-   */
-  color?: TokenColor | string;
-  /**
-   * Outer shape surrounding the icon
-   */
-  shape?: TokenShape;
-  /**
-   * `light` for lightened color with border, `dark` for solid, or `none`
-   */
-  fill?: TokenFill;
-}
+import { TokenProps } from './token';
 
 export type EuiTokenMapType =
   | 'tokenAnnotation'
@@ -70,7 +40,7 @@ export type EuiTokenMapType =
   | 'tokenVariable';
 
 export const TOKEN_MAP: {
-  [mapType in EuiTokenMapType]: EuiTokenMapDisplayOptions
+  [mapType in EuiTokenMapType]: Omit<TokenProps, 'iconType'>
 } = {
   tokenClass: {
     shape: 'circle',
