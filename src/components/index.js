@@ -272,6 +272,11 @@ export {
 
 export { EuiToken } from './token';
 
+export {
+  EuiTour,
+  EuiTourStepIndicator,
+} from './tour';
+
 export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
 
 export { EuiTab, EuiTabs, EuiTabbedContent } from './tabs';

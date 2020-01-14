@@ -7,6 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import { EuiCode, EuiPopover } from '../../../../src/components';
 
 import Tour from './tour';
+
 const tourSource = require('!!raw-loader!./tour');
 const tourHtml = renderToHtml(Tour);
 
@@ -14,7 +15,7 @@ const tourSnippet = '<EuiTour size="xs" />';
 
 export const TourExample = {
   title: 'Tour',
-  intro: <p>Intro text goes here.</p>,
+  intro: <p>The example(s) will demonstrate how the tour component attaches to/wraps around existing elements on the page.</p>,
   sections: [
     {
       source: [
@@ -34,11 +35,7 @@ export const TourExample = {
       ),
       props: { EuiPopover },
       snippet: tourSnippet,
-      demo: (
-        <div className="guideDemo__highlightSpacer">
-          <Tour />
-        </div>
-      ),
+      demo: <Tour />,
     },
   ],
 };

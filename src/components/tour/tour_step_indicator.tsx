@@ -20,7 +20,7 @@ export type EuiTourStepStatus =
   | 'active';
 
 export interface EuiTourStepIndicatorProps {
-  // TODO this shouldn't be a prop, but I added it to clear a warning
+  // TODO this was carried over from steps component, need to remove and clear warning
   indicatorIcon?: ReactNode;
   number?: number;
   /**
@@ -80,8 +80,6 @@ export const EuiTourStepIndicator: FunctionComponent<
         <li
           className={classes}
           aria-label={ariaLabel}
-          // TODO is this needed?
-          // {...rest}
         >
           {indicatorIcon}
         </li>

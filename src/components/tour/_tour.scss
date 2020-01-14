@@ -1,3 +1,22 @@
 .euiTour--minWidth-default {
   min-width: calc(#{$euiSizeL} * 10);
 }
+
+.euiTourHeader {
+  margin-bottom: $euiSizeS !important; // sass-lint:disable-line no-important
+  border-bottom: none;
+
+  .euiTourHeader__title { // nested for additional specificity to override EuiTitle styles
+    margin-top: 0;
+    text-transform: capitalize;
+  }
+}
+
+.euiTourHeader__subtitle {
+  color: $euiColorDarkShade;
+}
+
+.euiTourFooter {
+  margin-top: $euiSizeL !important; // sass-lint:disable-line no-important
+  background-color: $euiColorLightestShade;
+}

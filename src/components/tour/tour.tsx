@@ -1,50 +1,83 @@
-import React, { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import React, { CSSProperties, Fragment, FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, NoArgCallback } from '../common';
 
-import { EuiPopover, EuiPopoverProps } from '../popover';
-import { EuiTourStep } from './tour_step';
+import { EuiButtonEmpty } from '../button';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiPopover, EuiPopoverFooter, EuiPopoverProps, EuiPopoverTitle } from '../popover';
+import { EuiTitle } from '../title';
+import { EuiTourStepIndicator } from './tour_step_indicator';
 
-export type EuiTourProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & EuiPopoverProps & {
-    // TODO make than an attchedToId prop of some sort
-    button: NonNullable<ReactNode>;
+export interface EuiTourProps {
+  children: ReactNode;
+  content: ReactNode;
+  // TODO this should handle more than only buttons
+  // button: NonNullable<ReactNode>;
+  
+  // TODO carried over from popover, using to close tour for now
+  closePopover: NoArgCallback<void>;
+  
+  // TODO add prop docs desc
+  isStepOpen?: boolean;
 
-    // TODO carried over from popover, is this needed?
-    closePopover: NoArgCallback<void>;
+  // TODO add prop docs desc
+  isTourActive: boolean;
 
-    isOpen?: boolean;
+  /**
+   * Sets the min-width of the tour popover,
+   * set to `true` to use the default size,
+   * set to `false` to not restrict the width,
+   * set to a number for a custom width in px,
+   * set to a string for a custom width in custom measurement.
+   */
+  minWidth?: boolean | number | string;
+  
+  skipOnClick: NoArgCallback<void>;
 
-    /**
-     * Sets the min-width of the tour popover,
-     * set to `true` to use the default size,
-     * set to `false` to not restrict the width,
-     * set to a number for a custom width in px,
-     * set to a string for a custom width in custom measurement.
-     */
-    minWidth?: boolean | number | string;
+  // TODO add prop docs desc
+  status: string;
+  /**
+   * The number of the step in the list of steps
+   */
+  step?: number;
 
-    style?: CSSProperties;
+  style?: CSSProperties;
 
-    // TODO add prop docs desc
-    subtitle: string;
+  // TODO add prop docs desc
+  subtitle: string;
 
-    // TODO add prop docs desc
-    title: string;
-  };
+  // TODO add prop docs desc
+  title: string;
 
-export const EuiTour: React.FunctionComponent<EuiTourProps> = ({
+  // TODO add prop docs desc
+  // Not doing anything with this yet, but I think it will be necessary
+  tourId: string; 
+}
+
+// TODO button is required on EuiPopover, but not on EuiTour which passes children to the button
+export type StandaloneEuiTourProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & EuiPopoverProps &
+  EuiTourProps;
+
+export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
   anchorPosition = 'leftUp',
-  button,
   children,
   className,
   closePopover,
-  isOpen = false,
+  content,
+  isStepOpen = false,
+  isTourActive = false,
   minWidth = true,
+  skipOnClick,
+  status = 'incomplete',
+  step = 1,
   style,
+  subtitle,
+  title,
+  tourId,
+  ...rest
 }) => {
-
   let newStyle;
   let widthClassName;
   if (minWidth === true) {
@@ -56,22 +89,50 @@ export const EuiTour: React.FunctionComponent<EuiTourProps> = ({
 
   const classes = classNames('euiTour', widthClassName, className);
 
+  const footer = (
+    <EuiFlexGroup responsive={false} justifyContent="spaceBetween">
+      <EuiFlexItem grow={false} aria-labelledby="stepProgress">
+        {/* // TODO make this dynamic and more accessible or remove it */}
+        {/* <EuiScreenReaderOnly>
+          <h6 id="stepProgress">Step 3 of 5</h6>
+        </EuiScreenReaderOnly> */}
+        {/* // TODO use loop based upon length of steps array; also make this ul a component? */}
+        {/* // TODO would the total steps be stored in a wrapper component? */}
+        <ul className="euiTourFooter__stepList">
+          <EuiTourStepIndicator number={1} status={step === 1 ? "active" : "incomplete"} />
+          <EuiTourStepIndicator number={2} status={step === 2 ? "active" : "incomplete"} />
+        </ul>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        {/* // TODO if final step, change this to a done button */}
+        <EuiButtonEmpty onClick={skipOnClick} color="text" flush="right" size="xs">Skip tour</EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+
   return (
+    isTourActive ?
     <EuiPopover
       anchorPosition={anchorPosition}
-      // TODO the button should retain its own action, not just opening a popover
-      button={button}
+      button={children}
       closePopover={closePopover}
-      isOpen={isOpen}
+      isOpen={isStepOpen}
       panelClassName={classes}
       style={newStyle || style}
-      withTitle>
-      <EuiTourStep
-        title="Get started"
-        subtitle="Demo tour"
+      withTitle
+      {...rest}
       >
-        {children}
-      </EuiTourStep>
+      <EuiPopoverTitle className="euiTourHeader">
+        <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
+          <h6>{subtitle}</h6>
+        </EuiTitle>
+        <EuiTitle size="xxs" className="euiTourHeader__title">
+          <h5>{title}</h5>
+        </EuiTitle>
+      </EuiPopoverTitle>
+      <div className="euiTour__content">{content}</div>
+      <EuiPopoverFooter className="euiTourFooter">{footer}</EuiPopoverFooter>
     </EuiPopover>
+    : <Fragment>children</Fragment>
   );
 };
