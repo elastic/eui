@@ -39,7 +39,6 @@ import { ExpandedItemActions } from './expanded_item_actions';
 
 import { Pagination, PaginationBar } from './pagination_bar';
 import { EuiIcon } from '../icon';
-import { LoadingTableBody } from './loading_table_body';
 import { EuiKeyboardAccessible, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
@@ -258,8 +257,73 @@ export class EuiBasicTable<T = any> extends Component<
     return null;
   }
 
+  // used for moving in & out of `loading` state
+  private cleanups: Array<() => void> = [];
+  private tbody: HTMLTableSectionElement | null = null;
+
   state = {
     selection: [],
+  };
+
+  componentDidMount() {
+    if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
+  }
+
+  componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
+    if (prevProps.loading !== this.props.loading) {
+      if (this.props.loading && this.tbody) {
+        this.addLoadingListeners(this.tbody);
+      } else {
+        this.removeLoadingListeners();
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.removeLoadingListeners();
+  }
+
+  private setTbody = (tbody: HTMLTableSectionElement | null) => {
+    // remove listeners from an existing element
+    this.removeLoadingListeners();
+
+    // update the ref
+    this.tbody = tbody;
+
+    // if loading, add listeners
+    if (this.props.loading === true && tbody) {
+      this.addLoadingListeners(tbody);
+    }
+  };
+
+  private addLoadingListeners = (tbody: HTMLTableSectionElement) => {
+    const listener = (event: Event) => {
+      event.stopPropagation();
+      event.preventDefault();
+    };
+    [
+      'mousedown',
+      'mouseup',
+      'mouseover',
+      'mouseout',
+      'mouseenter',
+      'mouseleave',
+      'click',
+      'dblclick',
+      'keydown',
+      'keyup',
+      'keypress',
+    ].forEach(event => {
+      tbody.addEventListener(event, listener, true);
+      this.cleanups.push(() => {
+        tbody.removeEventListener(event, listener, true);
+      });
+    });
+  };
+
+  private removeLoadingListeners = () => {
+    this.cleanups.forEach(cleanup => cleanup());
+    this.cleanups.length = 0;
   };
 
   buildCriteria(props: EuiBasicTableProps<T>): Criteria<T> {
@@ -702,10 +766,7 @@ export class EuiBasicTable<T = any> extends Component<
         : index;
       return this.renderItemRow(item, tableItemIndex);
     });
-    if (this.props.loading) {
-      return <LoadingTableBody>{rows}</LoadingTableBody>;
-    }
-    return <EuiTableBody>{rows}</EuiTableBody>;
+    return <EuiTableBody bodyRef={this.setTbody}>{rows}</EuiTableBody>;
   }
 
   renderErrorBody(error: string) {

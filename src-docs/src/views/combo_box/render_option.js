@@ -5,10 +5,17 @@ import {
   EuiHighlight,
   EuiHealth,
 } from '../../../../src/components';
+import {
+  euiPaletteColorBlind,
+  euiPaletteColorBlindBehindText,
+} from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
     super(props);
+
+    this.visColors = euiPaletteColorBlind();
+    this.visColorsBehindText = euiPaletteColorBlindBehindText();
 
     this.options = [
       {
@@ -17,49 +24,49 @@ export default class extends Component {
         },
         label: 'Titan',
         'data-test-subj': 'titanOption',
-        color: 'primary',
+        color: this.visColorsBehindText[0],
       },
       {
         value: {
           size: 2,
         },
         label: 'Enceladus',
-        color: 'secondary',
+        color: this.visColorsBehindText[1],
       },
       {
         value: {
           size: 15,
         },
         label: 'Mimas',
-        color: '#D36086',
+        color: this.visColorsBehindText[2],
       },
       {
         value: {
           size: 1,
         },
         label: 'Dione',
-        color: 'accent',
+        color: this.visColorsBehindText[3],
       },
       {
         value: {
           size: 8,
         },
         label: 'Iapetus',
-        color: 'warning',
+        color: this.visColorsBehindText[4],
       },
       {
         value: {
           size: 2,
         },
         label: 'Phoebe',
-        color: 'danger',
+        color: this.visColorsBehindText[5],
       },
       {
         value: {
           size: 33,
         },
         label: 'Rhea',
-        color: 'default',
+        color: this.visColorsBehindText[6],
       },
       {
         value: {
@@ -67,26 +74,26 @@ export default class extends Component {
         },
         label:
           "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-        color: '#DA8B45',
+        color: this.visColorsBehindText[7],
       },
       {
         value: {
           size: 9,
         },
         label: 'Tethys',
-        color: '#CA8EAE',
+        color: this.visColorsBehindText[8],
       },
       {
         value: {
           size: 4,
         },
         label: 'Hyperion',
-        color: '#B9A888',
+        color: this.visColorsBehindText[9],
       },
     ];
 
     this.state = {
-      selectedOptions: [this.options[2], this.options[4]],
+      selectedOptions: [this.options[2], this.options[5]],
     };
   }
 
@@ -129,8 +136,9 @@ export default class extends Component {
 
   renderOption = (option, searchValue, contentClassName) => {
     const { color, label, value } = option;
+    const dotColor = this.visColors[this.visColorsBehindText.indexOf(color)];
     return (
-      <EuiHealth color={color}>
+      <EuiHealth color={dotColor}>
         <span className={contentClassName}>
           <EuiHighlight search={searchValue}>{label}</EuiHighlight>
           &nbsp;
