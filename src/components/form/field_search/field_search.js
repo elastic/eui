@@ -69,7 +69,19 @@ export class EuiFieldSearch extends Component {
   }
 
   onClear = () => {
-    this.props.onChange('');
+    // clear the field's value
+    this.inputElement.value = '';
+
+    // dispatch onChange event, with IE11 support/fallback
+    if ('createEvent' in document) {
+      const evt = document.createEvent('HTMLEvents');
+      evt.initEvent('change', true, false);
+      this.inputElement.dispatchEvent(evt);
+    } else {
+      this.inputElement.fireEvent('onchange');
+    }
+
+    // set focus on the search field
     this.inputElement.focus();
   };
 
