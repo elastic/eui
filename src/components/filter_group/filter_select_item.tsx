@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { ButtonHTMLAttributes, Component } from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
 import { EuiIcon } from '../icon';
 
-const CHECKED_ON = 'on';
-const CHECKED_OFF = 'off';
+export type FilterChecked = 'on' | 'off';
+export interface EuiFilterSelectItemProps
+  extends CommonProps,
+    ButtonHTMLAttributes<HTMLButtonElement> {
+  checked?: FilterChecked;
+  showIcons?: boolean;
+  isFocused?: boolean;
+}
 
-const resolveIconAndColor = checked => {
+const resolveIconAndColor = (checked?: FilterChecked) => {
   if (!checked) {
     return { icon: 'empty' };
   }
-  return checked === CHECKED_ON
+  return checked === 'on'
     ? { icon: 'check', color: 'text' }
     : { icon: 'cross', color: 'text' };
 };
 
-export class EuiFilterSelectItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasFocus: false };
-  }
+export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
+  static defaultProps = {
+    showIcons: true,
+  };
+
+  buttonRef: HTMLButtonElement | null = null;
+  mounted: boolean = false;
+
+  state = {
+    hasFocus: false,
+  };
 
   focus = () => {
     if (this.buttonRef) {
@@ -98,18 +111,3 @@ export class EuiFilterSelectItem extends Component {
     );
   }
 }
-
-EuiFilterSelectItem.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  /**
-   * Applies an icon and visual styling to activated items
-   */
-  checked: PropTypes.oneOf([CHECKED_ON, CHECKED_OFF]),
-  onClick: PropTypes.func,
-  showIcons: PropTypes.bool,
-};
-
-EuiFilterSelectItem.defaultProps = {
-  showIcons: true,
-};
