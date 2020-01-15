@@ -136,6 +136,6 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
       <div className="euiTour__content">{content}</div>
       <EuiPopoverFooter className="euiTourFooter">{footer}</EuiPopoverFooter>
     </EuiPopover>
-    : <Fragment>children</Fragment>
+    : <Fragment>{children}</Fragment>
   );
 };

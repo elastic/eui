@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
+  EuiCodeBlock,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiForm,
+  EuiFormRow,
   EuiSpacer,
+  EuiTextArea,
   EuiTour
 } from '../../../../src/components';
 
@@ -18,14 +22,18 @@ const demoTourSteps = [
   {
     step: 1,
     title: 'Step 1',
-    body: <p>Some instructions for the first step.</p>,
-    anchorRef: 'tourStep1',
+    body: <span><p>Copy and paste this sample query.</p><EuiSpacer />
+    <EuiCodeBlock language="html" paddingSize="s" isCopyable>
+      { `SELECT email FROM “kibana_sample_data_ecommerce”` }
+    </EuiCodeBlock>
+    </span>,
+    anchorRef: 'tourStep2',
   },
   {
     step: 2,
     title: 'Step 2',
-    body: <p>More instructions for the second step.</p>,
-    anchorRef: 'tourStep2',
+    body: <p>Save your changes.</p>,
+    anchorRef: 'tourStep1',
   },
 ];
 
@@ -35,9 +43,10 @@ export default class extends Component {
 
     this.state = {
       // TODO demo this in a global scope, pull from localStorage?
+      currentTourStep: 1,
       isTourActive: true,
       isTourPopoverOpen: true,
-      currentTourStep: 1,
+      value:'',
     };
   }
 
@@ -49,7 +58,6 @@ export default class extends Component {
   }
 
   handleClick = () => {
-    window.alert('Action completed, move to next step');
     this.incrementStep();
   }
 
@@ -57,6 +65,7 @@ export default class extends Component {
     this.setState({
       currentTourStep: 1,
       isTourActive: true,
+      value:'',
     });
   }
 
@@ -72,14 +81,21 @@ export default class extends Component {
     });
   }
 
+  onChange = e => {
+    this.setState({
+      value: e.target.value,
+    });
+    this.handleClick();
+  };
+
   render() {
 
     return (
       <div>
         <EuiButtonEmpty iconType="refresh" flush="left" onClick={this.resetTour}>Reset tour</EuiButtonEmpty>
         <EuiSpacer />
-        <EuiFlexGroup justifyContent="spaceBetween">
-          <EuiFlexItem grow={false}>
+        <EuiForm>
+          <EuiFormRow label="Enter an ES SQL query">
             <EuiTour
               closePopover={this.closeTourPopover.bind(this)}
               content={demoTourSteps[0].body}
@@ -91,31 +107,36 @@ export default class extends Component {
               subtitle={tourSubtitle}
               title={demoTourSteps[0].title}
               tourId={tourId}>
-                <EuiButton
-                  onClick={this.handleClick}>
-                  Do this first
-                </EuiButton>
+                <EuiTextArea
+                  placeholder="Placeholder text"
+                  aria-label="Enter ES SQL query"
+                  value={this.state.value}
+                  onChange={this.onChange}
+                  style={{width: 400}}
+                />
             </EuiTour>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiTour
-              closePopover={this.closeTourPopover.bind(this)}
-              content={demoTourSteps[1].body}
-              isStepOpen={this.state.currentTourStep === 2}
-              isTourActive={this.state.isTourActive}
-              minWidth={tourPopoverWidth}
-              skipOnClick={this.skipTour.bind(this)}
-              step={2}
-              subtitle={tourSubtitle}
-              title={demoTourSteps[1].title}
-              tourId={tourId}>
-                <EuiButton
-                  onClick={this.handleClick}>
-                  Do this second
-                </EuiButton>
-            </EuiTour>
-          </EuiFlexItem>
-        </EuiFlexGroup>
+          </EuiFormRow>
+
+          <EuiSpacer />
+
+          <EuiTour
+            anchorPosition="rightUp"
+            closePopover={this.closeTourPopover.bind(this)}
+            content={demoTourSteps[1].body}
+            isStepOpen={this.state.currentTourStep === 2}
+            isTourActive={this.state.isTourActive}
+            minWidth={tourPopoverWidth}
+            skipOnClick={this.skipTour.bind(this)}
+            step={2}
+            subtitle={tourSubtitle}
+            title={demoTourSteps[1].title}
+            tourId={tourId}>
+              <EuiButton
+                onClick={this.handleClick}>
+                Save query
+              </EuiButton>
+          </EuiTour>
+        </EuiForm>
       </div>
     )
   }
