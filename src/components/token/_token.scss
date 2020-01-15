@@ -23,10 +23,6 @@
   width: $euiSizeM;
   height: $euiSizeM;
 
-  svg {
-    max-width: $euiSizeS + 2px;
-  }
-
   &.euiToken--rectangle {
     padding: 0 $euiSizeXS;
   }
