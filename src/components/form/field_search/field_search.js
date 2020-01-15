@@ -70,15 +70,33 @@ export class EuiFieldSearch extends Component {
 
   onClear = () => {
     // clear the field's value
-    this.inputElement.value = '';
 
-    // dispatch onChange event, with IE11 support/fallback
-    if ('createEvent' in document) {
-      const evt = document.createEvent('HTMLEvents');
-      evt.initEvent('change', true, false);
-      this.inputElement.dispatchEvent(evt);
+    // 1. React doesn't listen for `change` events, instead it maps `input` events to `change`
+    // 2. React only fires the mapped `change` event if the element's value has changed
+    // 3. An input's value is, in addition to other methods, tracked by intercepting element.value = '...'
+    //
+    // So we have to go below the element's value setter to avoid React intercepting it,
+    // only then will React treat the value as different and fire its `change` event
+    //
+    // https://stackoverflow.com/questions/23892547/what-is-the-best-way-to-trigger-onchange-event-in-react-js
+    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      'value'
+    ).set;
+    nativeInputValueSetter.call(this.inputElement, '');
+
+    // dispatch input event, with IE11 support/fallback
+    if ('Event' in window && typeof Event === 'function') {
+      const event = new Event('input', {
+        bubbles: true,
+        cancelable: false,
+      });
+      this.inputElement.dispatchEvent(event);
     } else {
-      this.inputElement.fireEvent('onchange');
+      // IE11
+      const event = document.createEvent('Event');
+      event.initEvent('input', true, false);
+      this.inputElement.dispatchEvent(event);
     }
 
     // set focus on the search field
