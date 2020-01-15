@@ -12,16 +12,18 @@ import { EuiTourStepIndicator } from './tour_step_indicator';
 export interface EuiTourProps {
   children: ReactNode;
   content: ReactNode;
-  // TODO this should handle more than only buttons
-  // button: NonNullable<ReactNode>;
   
-  // TODO carried over from popover, using to close tour for now
+  // TODO carried over from popover
   closePopover: NoArgCallback<void>;
   
-  // TODO add prop docs desc
+  /**
+   * Set to `true`, step will display if parent tour is active
+   */
   isStepOpen?: boolean;
 
-  // TODO add prop docs desc
+  /**
+   * State of the parent tour
+   */
   isTourActive: boolean;
 
   /**
@@ -33,24 +35,26 @@ export interface EuiTourProps {
    */
   minWidth?: boolean | number | string;
   
+  /**
+   * OnClick function for the 'Skip tour' footer link
+   */
   skipOnClick: NoArgCallback<void>;
 
-  // TODO add prop docs desc
-  status: string;
   /**
-   * The number of the step in the list of steps
+   * The number of the step within the parent tour
    */
   step?: number;
 
   style?: CSSProperties;
 
-  // TODO add prop docs desc
+  /**
+   * Smaller title text that appears atop each step in the tour
+   */
   subtitle: string;
 
-  // TODO add prop docs desc
+  // Larger title text specific to this step
   title: string;
 
-  // TODO add prop docs desc
   // Not doing anything with this yet, but I think it will be necessary
   tourId: string; 
 }
@@ -70,7 +74,6 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
   isTourActive = false,
   minWidth = true,
   skipOnClick,
-  status = 'incomplete',
   step = 1,
   style,
   subtitle,
@@ -97,7 +100,7 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
           <h6 id="stepProgress">Step 3 of 5</h6>
         </EuiScreenReaderOnly> */}
         {/* // TODO use loop based upon length of steps array; also make this ul a component? */}
-        {/* // TODO would the total steps be stored in a wrapper component? */}
+        {/* Would the total steps be stored in a wrapper component? */}
         <ul className="euiTourFooter__stepList">
           <EuiTourStepIndicator number={1} status={step === 1 ? "active" : "incomplete"} />
           <EuiTourStepIndicator number={2} status={step === 2 ? "active" : "incomplete"} />
