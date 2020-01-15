@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `18.2.0`.
+- Convert `EuiFilterButton` to TS ([#2761](https://github.com/elastic/eui/pull/2761))
+- Convert `EuiFilterSelectItem` to TS ([#2761](https://github.com/elastic/eui/pull/2761))
 
 ## [`18.2.0`](https://github.com/elastic/eui/tree/v18.2.0)
 
