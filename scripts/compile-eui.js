@@ -40,7 +40,7 @@ function compileLib() {
   );
 
   execSync(
-    'babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --plugins=@babel/plugin-transform-runtime,@babel/plugin-transform-async-to-generator,@babel/plugin-syntax-dynamic-import,dynamic-import-node --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
+    'babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
     {
       env: {
         ...process.env,
