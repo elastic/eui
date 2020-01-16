@@ -1,0 +1,7 @@
+<svg width="32px" height="32px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M10,32 L7.23844886,32 C3.79338506,32 1,28.8645317 1,24.997579 L1,15 L10,15 L10,32 Z" fill="#F04E98"></path>
+    <polygon class="euiIcon__fillNegative" points="10 32 19 32 19 8 10 8"></polygon>
+    <path d="M31,32 L22,32 L22,0 L23.9733022,0.0244675041 C27.8658435,0.0716548334 31,3.73129437 31,8.22807209 L31,22.3161114 L31,32 Z" fill="#0077CC"></path>
+  </g>
+</svg>

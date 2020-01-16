@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Updated `logoAPM`, `logoSecurity` and `logoEnterpriseSearch`. Added `logoWorkplaceSearch` ([#2769](https://github.com/elastic/eui/pull/2769))
+- Updated `logoAPM`, `logoSecurity` and `logoEnterpriseSearch`. Added `logoWorkplaceSearch` and `logoObservability` ([#2769](https://github.com/elastic/eui/pull/2769))
 
 ## [`18.2.1`](https://github.com/elastic/eui/tree/v18.2.1)
 
