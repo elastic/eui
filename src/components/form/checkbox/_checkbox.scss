@@ -5,7 +5,7 @@
     @include euiScreenReaderOnly;
 
     ~ .euiCheckbox__label {
-      display: block;
+      display: inline-block;
       padding-left: ($euiCheckBoxSize * 1.5);
       line-height: $euiSizeL;
       font-size: $euiFontSizeS;

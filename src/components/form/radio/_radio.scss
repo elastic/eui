@@ -5,7 +5,7 @@
     @include euiScreenReaderOnly;
 
     ~ .euiRadio__label {
-      display: block;
+      display: inline-block;
       padding-left: ($euiRadioSize * 1.5);
       line-height: $euiSizeL;
       font-size: $euiFontSizeS;

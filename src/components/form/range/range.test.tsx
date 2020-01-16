@@ -2,20 +2,22 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiDualRange } from './dual_range';
+import { EuiRange } from './range';
 
 jest.mock('../form_row/make_id', () => () => 'generated-id');
 
-describe('EuiDualRange', () => {
+const props = {
+  value: '8',
+};
+
+describe('EuiRange', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiDualRange
+      <EuiRange
         name="name"
         id="id"
-        min={1}
-        max={10}
-        value={['1', '8']}
         onChange={() => {}}
+        {...props}
         {...requiredProps}
       />
     );
@@ -25,38 +27,41 @@ describe('EuiDualRange', () => {
 
   describe('props', () => {
     test('disabled should render', () => {
-      const component = render(<EuiDualRange disabled />);
+      const component = render(<EuiRange {...props} disabled />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('fullWidth should render', () => {
-      const component = render(<EuiDualRange fullWidth />);
+      const component = render(<EuiRange {...props} fullWidth />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('compressed should render', () => {
-      const component = render(<EuiDualRange compressed />);
+      const component = render(<EuiRange {...props} compressed />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('labels should render', () => {
-      const component = render(<EuiDualRange showLabels />);
+      const component = render(<EuiRange {...props} showLabels />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('ticks should render', () => {
-      const component = render(<EuiDualRange showTicks tickInterval={20} />);
+      const component = render(
+        <EuiRange {...props} showTicks tickInterval={20} />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('custom ticks should render', () => {
       const component = render(
-        <EuiDualRange
+        <EuiRange
+          {...props}
           showTicks
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
         />
@@ -66,21 +71,34 @@ describe('EuiDualRange', () => {
     });
 
     test('range should render', () => {
-      const component = render(<EuiDualRange showRange value={[1, 8]} />);
+      const component = render(<EuiRange {...props} showRange />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test('inputs should render', () => {
+    test('value should render', () => {
+      const { value, ...localProps } = props;
       const component = render(
-        <EuiDualRange
+        <EuiRange
+          value="200"
+          showValue
+          valuePrepend="before"
+          valueAppend="after"
+          {...localProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('input should render', () => {
+      const component = render(
+        <EuiRange
           name="name"
           id="id"
-          min={1}
-          max={10}
-          value={['1', '8']}
           onChange={() => {}}
           showInput
+          {...props}
           {...requiredProps}
         />
       );
@@ -90,14 +108,12 @@ describe('EuiDualRange', () => {
 
     test('slider should display in popover', () => {
       const component = render(
-        <EuiDualRange
+        <EuiRange
           name="name"
           id="id"
-          min={1}
-          max={10}
-          value={['1', '8']}
           onChange={() => {}}
           showInput="inputWithPopover"
+          {...props}
           {...requiredProps}
         />
       );
@@ -107,7 +123,7 @@ describe('EuiDualRange', () => {
 
     test('levels should render', () => {
       const component = render(
-        <EuiDualRange
+        <EuiRange
           levels={[
             {
               min: 0,
@@ -120,6 +136,7 @@ describe('EuiDualRange', () => {
               color: 'success',
             },
           ]}
+          value={20}
         />
       );
 
@@ -127,17 +144,19 @@ describe('EuiDualRange', () => {
     });
   });
 
-  test('allows value prop to accept numbers', () => {
+  test('allows value prop to accept a number', () => {
+    const { value, ...localProps } = props;
     const component = render(
-      <EuiDualRange value={[1, 8]} onChange={() => {}} />
+      <EuiRange value={8} onChange={() => {}} showValue {...localProps} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  test('allows value prop to accept empty strings', () => {
+  test('allows value prop to accept empty string', () => {
+    const { value, ...localProps } = props;
     const component = render(
-      <EuiDualRange value={['', '']} onChange={() => {}} />
+      <EuiRange value={''} onChange={() => {}} {...localProps} />
     );
 
     expect(component).toMatchSnapshot();

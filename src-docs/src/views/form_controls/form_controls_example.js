@@ -274,6 +274,20 @@ export const FormControlsExample = {
         EuiCheckboxGroup,
       },
       demo: <CheckboxGroup />,
+      snippet: `<EuiCheckboxGroup
+  options={[
+    {
+      id: id1,
+      label: 'Option one',
+    },
+    {
+      id: id2,
+      label: 'Option two',
+    }
+  ]}
+  idToSelectedMap={{ id1: true }}
+  onChange={(id) => {}}
+/>`,
     },
     {
       title: 'Radio',
@@ -308,6 +322,24 @@ export const FormControlsExample = {
         EuiRadioGroup,
       },
       demo: <RadioGroup />,
+      snippet: `<EuiRadioGroup
+  options={[
+    {
+      id: id1,
+      label: 'Option one',
+    },
+    {
+      id: id2,
+      label: 'Option two',
+    }
+  ]}
+  idSelected={id1}
+  onChange={(id) => {}}
+  name={groupName}
+  legend={{
+    children: 'A legend',
+  }}
+/>`,
     },
     {
       title: 'Switch',
@@ -360,7 +392,7 @@ export const FormControlsExample = {
           />
           <EuiSpacer />
           <p>
-            <EuiCode>EuiFieldset</EuiCode> simply wraps its children in a{' '}
+            <EuiCode>EuiFormFieldset</EuiCode> simply wraps its children in a{' '}
             <EuiCode>&lt;fieldset&gt;</EuiCode> with the option to add a{' '}
             <EuiCode>&lt;legend&gt;</EuiCode> via the <EuiCode>legend</EuiCode>{' '}
             object prop.
