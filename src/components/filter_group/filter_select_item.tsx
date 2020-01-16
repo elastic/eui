@@ -31,7 +31,6 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
   };
 
   buttonRef: HTMLButtonElement | null = null;
-  mounted: boolean = false;
 
   state = {
     hasFocus: false,
@@ -40,18 +39,6 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
   focus = () => {
     if (this.buttonRef) {
       this.buttonRef.focus();
-    }
-  };
-
-  onFocus = () => {
-    if (this.mounted) {
-      this.setState({ hasFocus: true });
-    }
-  };
-
-  onBlur = () => {
-    if (this.mounted) {
-      this.setState({ hasFocus: false });
     }
   };
 
