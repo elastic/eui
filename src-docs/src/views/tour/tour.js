@@ -4,29 +4,26 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiCodeBlock,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiForm,
   EuiFormRow,
   EuiSpacer,
   EuiTextArea,
-  EuiTour
+  EuiTour,
 } from '../../../../src/components';
-
-// TODO could/should these be stored in a wrapper component/global scope?
-const tourId = "abc123" // placeholder that could be used in global scope
-const tourSubtitle = "Demo tour";
-const tourPopoverWidth = 360;
 
 const demoTourSteps = [
   {
     step: 1,
     title: 'Step 1',
-    body: <span><p>Copy and paste this sample query.</p><EuiSpacer />
-    <EuiCodeBlock language="html" paddingSize="s" isCopyable>
-      { `SELECT email FROM “kibana_sample_data_ecommerce”` }
-    </EuiCodeBlock>
-    </span>,
+    body: (
+      <span>
+        <p>Copy and paste this sample query.</p>
+        <EuiSpacer />
+        <EuiCodeBlock language="html" paddingSize="s" isCopyable>
+          {'SELECT email FROM “kibana_sample_data_ecommerce”'}
+        </EuiCodeBlock>
+      </span>
+    ),
     anchorRef: 'tourStep2',
   },
   {
@@ -46,8 +43,18 @@ export default class extends Component {
       currentTourStep: 1,
       isTourActive: true,
       isTourPopoverOpen: true,
-      value:'',
+      tourPopoverWidth: 360,
+      // TODO This probably needs hard-coded since steps can live in other views
+      // tourSteps: demoTourSteps.length,
+      tourSteps: 3,
+      tourSubtitle: 'Demo tour',
+      value: '',
     };
+
+    // Store the tour data
+    localStorage.setItem('tourDemo', JSON.stringify(this.state));
+
+    this.tourData = JSON.parse(localStorage.getItem('tourDemo'));
   }
 
   // TODO could this be built-in? e.g. do any time an EuiTour child is clicked
@@ -55,19 +62,19 @@ export default class extends Component {
     this.setState({
       currentTourStep: this.state.currentTourStep + 1,
     });
-  }
+  };
 
   handleClick = () => {
     this.incrementStep();
-  }
+  };
 
   resetTour = () => {
     this.setState({
       currentTourStep: 1,
       isTourActive: true,
-      value:'',
+      value: '',
     });
-  }
+  };
 
   // TODO required for popover but would like to keep visible until child action
   // or 'Skip tour' is clicked. Handle this in tour.tsx?
@@ -85,14 +92,25 @@ export default class extends Component {
     this.setState({
       value: e.target.value,
     });
-    this.handleClick();
+
+    if (this.state.currentTourStep < 2) {
+      this.incrementStep();
+    }
   };
 
-  render() {
+  componentWillUpdate(nextState) {
+    localStorage.setItem('tourDemo', JSON.stringify(nextState));
+  }
 
+  render() {
     return (
       <div>
-        <EuiButtonEmpty iconType="refresh" flush="left" onClick={this.resetTour}>Reset tour</EuiButtonEmpty>
+        <EuiButtonEmpty
+          iconType="refresh"
+          flush="left"
+          onClick={this.resetTour}>
+          Reset tour
+        </EuiButtonEmpty>
         <EuiSpacer />
         <EuiForm>
           <EuiFormRow label="Enter an ES SQL query">
@@ -101,19 +119,19 @@ export default class extends Component {
               content={demoTourSteps[0].body}
               isStepOpen={this.state.currentTourStep === 1}
               isTourActive={this.state.isTourActive}
-              minWidth={tourPopoverWidth}
+              minWidth={this.tourData.tourPopoverWidth}
               skipOnClick={this.skipTour.bind(this)}
               step={1}
-              subtitle={tourSubtitle}
-              title={demoTourSteps[0].title}
-              tourId={tourId}>
-                <EuiTextArea
-                  placeholder="Placeholder text"
-                  aria-label="Enter ES SQL query"
-                  value={this.state.value}
-                  onChange={this.onChange}
-                  style={{width: 400}}
-                />
+              stepsTotal={this.tourData.tourSteps}
+              subtitle={this.tourData.tourSubtitle}
+              title={demoTourSteps[0].title}>
+              <EuiTextArea
+                placeholder="Placeholder text"
+                aria-label="Enter ES SQL query"
+                value={this.state.value}
+                onChange={this.onChange}
+                style={{ width: 400 }}
+              />
             </EuiTour>
           </EuiFormRow>
 
@@ -125,19 +143,16 @@ export default class extends Component {
             content={demoTourSteps[1].body}
             isStepOpen={this.state.currentTourStep === 2}
             isTourActive={this.state.isTourActive}
-            minWidth={tourPopoverWidth}
+            minWidth={this.tourData.tourPopoverWidth}
             skipOnClick={this.skipTour.bind(this)}
             step={2}
-            subtitle={tourSubtitle}
-            title={demoTourSteps[1].title}
-            tourId={tourId}>
-              <EuiButton
-                onClick={this.handleClick}>
-                Save query
-              </EuiButton>
+            stepsTotal={this.tourData.tourSteps}
+            subtitle={this.tourData.tourSubtitle}
+            title={demoTourSteps[1].title}>
+            <EuiButton onClick={this.handleClick}>Save query</EuiButton>
           </EuiTour>
         </EuiForm>
       </div>
-    )
+    );
   }
-};
+}

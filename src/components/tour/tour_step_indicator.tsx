@@ -14,10 +14,7 @@ const statusToClassNameMap = {
 
 export const STATUS = keysOf(statusToClassNameMap);
 
-export type EuiTourStepStatus =
-  | 'complete'
-  | 'incomplete'
-  | 'active';
+export type EuiTourStepStatus = 'complete' | 'incomplete' | 'active';
 
 export interface EuiTourStepIndicatorProps {
   // TODO this was carried over from steps component, need to remove and clear warning
@@ -73,14 +70,11 @@ export const EuiTourStepIndicator: FunctionComponent<
     <EuiI18n
       token="euiTourStepIndicator.ariaLabel"
       default={({ status }: { status?: EuiTourStepStatus }) => {
-        return 'Step ' + number + ' ' + status;
+        return `Step ${number} ${status}`;
       }}
       values={{ status }}>
-        {(ariaLabel: string) => (
-        <li
-          className={classes}
-          aria-label={ariaLabel}
-        >
+      {(ariaLabel: string) => (
+        <li className={classes} aria-label={ariaLabel}>
           {indicatorIcon}
         </li>
       )}

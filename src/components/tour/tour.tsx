@@ -1,21 +1,32 @@
-import React, { CSSProperties, Fragment, FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  CSSProperties,
+  Fragment,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, NoArgCallback } from '../common';
 
 import { EuiButtonEmpty } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiPopover, EuiPopoverFooter, EuiPopoverProps, EuiPopoverTitle } from '../popover';
+import {
+  EuiPopover,
+  EuiPopoverFooter,
+  EuiPopoverProps,
+  EuiPopoverTitle,
+} from '../popover';
 import { EuiTitle } from '../title';
 import { EuiTourStepIndicator } from './tour_step_indicator';
 
 export interface EuiTourProps {
   children: ReactNode;
   content: ReactNode;
-  
+
   // TODO carried over from popover
   closePopover: NoArgCallback<void>;
-  
+
   /**
    * Set to `true`, step will display if parent tour is active
    */
@@ -34,7 +45,7 @@ export interface EuiTourProps {
    * set to a string for a custom width in custom measurement.
    */
   minWidth?: boolean | number | string;
-  
+
   /**
    * OnClick function for the 'Skip tour' footer link
    */
@@ -43,7 +54,12 @@ export interface EuiTourProps {
   /**
    * The number of the step within the parent tour
    */
-  step?: number;
+  step: number;
+
+  /**
+   * The total number of steps in the tour
+   */
+  stepsTotal: number;
 
   style?: CSSProperties;
 
@@ -54,14 +70,12 @@ export interface EuiTourProps {
 
   // Larger title text specific to this step
   title: string;
-
-  // Not doing anything with this yet, but I think it will be necessary
-  tourId: string; 
 }
 
 // TODO button is required on EuiPopover, but not on EuiTour which passes children to the button
 export type StandaloneEuiTourProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & EuiPopoverProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiPopoverProps &
   EuiTourProps;
 
 export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
@@ -75,13 +89,14 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
   minWidth = true,
   skipOnClick,
   step = 1,
+  stepsTotal,
   style,
   subtitle,
   title,
-  tourId,
   ...rest
 }) => {
   let newStyle;
+
   let widthClassName;
   if (minWidth === true) {
     widthClassName = 'euiTour--minWidth-default';
@@ -92,6 +107,17 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
 
   const classes = classNames('euiTour', widthClassName, className);
 
+  const stepIndicators = [];
+  for (let i = 1; i <= stepsTotal; i++) {
+    stepIndicators.push(
+      <EuiTourStepIndicator
+        key={i}
+        number={i}
+        status={step === i ? 'active' : 'incomplete'}
+      />
+    );
+  }
+
   const footer = (
     <EuiFlexGroup responsive={false} justifyContent="spaceBetween">
       <EuiFlexItem grow={false} aria-labelledby="stepProgress">
@@ -101,20 +127,22 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
         </EuiScreenReaderOnly> */}
         {/* // TODO use loop based upon length of steps array; also make this ul a component? */}
         {/* Would the total steps be stored in a wrapper component? */}
-        <ul className="euiTourFooter__stepList">
-          <EuiTourStepIndicator number={1} status={step === 1 ? "active" : "incomplete"} />
-          <EuiTourStepIndicator number={2} status={step === 2 ? "active" : "incomplete"} />
-        </ul>
+        <ul className="euiTourFooter__stepList">{stepIndicators}</ul>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         {/* // TODO if final step, change this to a done button */}
-        <EuiButtonEmpty onClick={skipOnClick} color="text" flush="right" size="xs">Skip tour</EuiButtonEmpty>
+        <EuiButtonEmpty
+          onClick={skipOnClick}
+          color="text"
+          flush="right"
+          size="xs">
+          Skip tour
+        </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>
   );
 
-  return (
-    isTourActive ?
+  return isTourActive ? (
     <EuiPopover
       anchorPosition={anchorPosition}
       button={children}
@@ -123,8 +151,7 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
       panelClassName={classes}
       style={newStyle || style}
       withTitle
-      {...rest}
-      >
+      {...rest}>
       <EuiPopoverTitle className="euiTourHeader">
         <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
           <h6>{subtitle}</h6>
@@ -136,6 +163,7 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
       <div className="euiTour__content">{content}</div>
       <EuiPopoverFooter className="euiTourFooter">{footer}</EuiPopoverFooter>
     </EuiPopover>
-    : <Fragment>{children}</Fragment>
+  ) : (
+    <Fragment>{children}</Fragment>
   );
 };
