@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiFormRow` to Typescript ([#2712](https://github.com/elastic/eui/pull/2712))
+
 No public interface changes since `18.2.1`.
 
 ## [`18.2.1`](https://github.com/elastic/eui/tree/v18.2.1)
