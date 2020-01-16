@@ -8,12 +8,12 @@ const EuiIconLogoApm = ({ title, ...props }) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
     <title>{title}</title>
-    <path fill="#F04E98" d="M0 0h32v10H0z" />
+    <path d="M10 32H7.238C3.793 32 1 28.865 1 24.998V15h9v17z" fill="#F04E98" />
+    <path className="euiIcon__fillNegative" d="M10 32h9V8h-9z" />
     <path
-      className="euiIcon__fillNegative"
-      d="M10 10h22a10 10 0 01-10 10H10V10z"
+      d="M31 32h-9V0l1.973.024C27.866.072 31 3.731 31 8.228V32z"
+      fill="#07C"
     />
-    <path fill="#0080D5" d="M19 23h13v9H19z" />
   </svg>
 );
 

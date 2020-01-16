@@ -221,6 +221,7 @@ const typeToPathMap = {
   logoUptime: 'logo_uptime',
   logoWebhook: 'logo_webhook',
   logoWindows: 'logo_windows',
+  logoWorkplaceSearch: 'logo_workplace_search',
   logstashFilter: 'logstash_filter',
   logstashIf: 'logstash_if',
   logstashInput: 'logstash_input',

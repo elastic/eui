@@ -31,7 +31,6 @@ const iconTypes = [
   'logoElastic',
   'logoElasticStack',
   'logoElasticsearch',
-  'logoEnterpriseSearch',
   'logoKibana',
   'logoLogging',
   'logoLogstash',
@@ -40,6 +39,7 @@ const iconTypes = [
   'logoSecurity',
   'logoSiteSearch',
   'logoUptime',
+  'logoWorkplaceSearch',
 ].sort();
 
 export default () => (
