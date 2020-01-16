@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import hljs from 'highlight.js';
@@ -37,6 +38,8 @@ export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
  * share the same propTypes definition with EuiCodeBlockImpl.
  */
 export class EuiCodeBlockImpl extends Component {
+  codeTarget = document.createElement('div');
+
   constructor(props) {
     super(props);
 
@@ -46,6 +49,20 @@ export class EuiCodeBlockImpl extends Component {
   }
 
   highlight = () => {
+    // because React maintains a mapping between its Virtual DOM representation and the actual
+    // DOM elements (including text nodes), and hljs modifies the DOM structure which leads
+    // to React updating detached nodes, we render to a document fragment and
+    // copy from that fragment into the target elements
+    // (https://github.com/elastic/eui/issues/2322)
+    const html = this.codeTarget.innerHTML;
+
+    if (this.code) {
+      this.code.innerHTML = html;
+    }
+    if (this.codeFullScreen) {
+      this.codeFullScreen.innerHTML = html;
+    }
+
     if (this.props.language) {
       hljs.highlightBlock(this.code);
 
@@ -123,9 +140,8 @@ export class EuiCodeBlockImpl extends Component {
           this.code = ref;
         }}
         className={codeClasses}
-        {...otherProps}>
-        {children}
-      </code>
+        {...otherProps}
+      />
     );
 
     const wrapperProps = {
@@ -134,7 +150,12 @@ export class EuiCodeBlockImpl extends Component {
     };
 
     if (inline) {
-      return <span {...wrapperProps}>{codeSnippet}</span>;
+      return (
+        <>
+          {createPortal(<div>{children}</div>, this.codeTarget)}
+          <span {...wrapperProps}>{codeSnippet}</span>
+        </>
+      );
     }
 
     function getCopyButton(textToCopy) {
@@ -235,9 +256,8 @@ export class EuiCodeBlockImpl extends Component {
                     }}
                     className={codeClasses}
                     tabIndex={0}
-                    onKeyDown={this.onKeyDown}>
-                    {children}
-                  </code>
+                    onKeyDown={this.onKeyDown}
+                  />
                 </pre>
 
                 {codeBlockControls}
@@ -251,28 +271,31 @@ export class EuiCodeBlockImpl extends Component {
     };
 
     return (
-      <EuiInnerText fallback="">
-        {(innerTextRef, innerText) => {
-          const codeBlockControls = getCodeBlockControls(innerText);
-          return (
-            <div {...wrapperProps}>
-              <pre
-                ref={innerTextRef}
-                style={optionalStyles}
-                className="euiCodeBlock__pre">
-                {codeSnippet}
-              </pre>
+      <>
+        {createPortal(<div>{children}</div>, this.codeTarget)}
+        <EuiInnerText fallback="">
+          {(innerTextRef, innerText) => {
+            const codeBlockControls = getCodeBlockControls(innerText);
+            return (
+              <div {...wrapperProps}>
+                <pre
+                  ref={innerTextRef}
+                  style={optionalStyles}
+                  className="euiCodeBlock__pre">
+                  {codeSnippet}
+                </pre>
 
-              {/*
-              If the below fullScreen code renders, it actually attaches to the body because of
-              EuiOverlayMask's React portal usage.
-            */}
-              {codeBlockControls}
-              {getFullScreenDisplay(codeBlockControls)}
-            </div>
-          );
-        }}
-      </EuiInnerText>
+                {/*
+                If the below fullScreen code renders, it actually attaches to the body because of
+                EuiOverlayMask's React portal usage.
+              */}
+                {codeBlockControls}
+                {getFullScreenDisplay(codeBlockControls)}
+              </div>
+            );
+          }}
+        </EuiInnerText>
+      </>
     );
   }
 }
