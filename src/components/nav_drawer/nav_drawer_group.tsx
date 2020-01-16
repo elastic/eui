@@ -1,16 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { HTMLAttributes, FunctionComponent, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
-import { EuiListGroup } from '../list_group/list_group';
 import { toInitials } from '../../services';
+import { CommonProps } from '../common';
+import { EuiListGroup } from '../list_group';
+import { FlyoutLinks } from './nav_drawer';
 
 export const ATTR_SELECTOR = 'data-name';
 
-export const EuiNavDrawerGroup = ({
+export interface EuiNavDrawerGroupProps
+  extends CommonProps, HTMLAttributes<HTMLDivElement> {
+    className: string,
+    listItems: Array<FlyoutLinks>,
+    flyoutMenuButtonClick: (items: unknown[], title: string, item: unknown) => MouseEventHandler<HTMLButtonElement>,
+    onClose: () => void,
+  }
+
+export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
   className,
   listItems,
-  flyoutMenuButtonClick,
+  flyoutMenuButtonClick = () => {},
   onClose = () => {},
   ...rest
 }) => {
@@ -30,7 +39,7 @@ export const EuiNavDrawerGroup = ({
           itemProps.onClick = () => flyoutMenuButtonClick(items, title, item);
           itemProps['aria-expanded'] = false;
         } else {
-          itemProps.onClick = (...args) => {
+          itemProps.onClick = (...args: any[]) => {
             if (onClick) {
               onClick(...args);
             }
@@ -64,26 +73,4 @@ export const EuiNavDrawerGroup = ({
   return (
     <EuiListGroup className={classes} listItems={newListItems} {...rest} />
   );
-};
-
-EuiNavDrawerGroup.propTypes = {
-  listItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      ...EuiListGroup.propTypes.listItems[0],
-      flyoutMenu: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        listItems: EuiListGroup.propTypes.listItems.isRequired,
-      }),
-    })
-  ),
-  /**
-   * While not normally required, it is required to pass a function for handling
-   * of the flyout menu button click
-   */
-  flyoutMenuButtonClick: PropTypes.func,
-  /**
-   * Passthrough function to be called when the flyout is closing
-   * See ./nav_drawer.js
-   */
-  onClose: PropTypes.func,
 };

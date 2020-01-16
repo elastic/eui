@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
@@ -7,10 +6,20 @@ import { keyCodes } from '../../services';
 
 import { EuiTitle } from '../title';
 import { EuiNavDrawerGroup } from './nav_drawer_group';
-import { EuiListGroup } from '../list_group/list_group';
+import { EuiListGroupProps } from '../list_group/list_group';
 import { EuiFocusTrap } from '../focus_trap';
+import { CommonProps } from '../common';
 
-export const EuiNavDrawerFlyout = ({
+export interface EuiNavDrawerFlyoutProps
+  extends CommonProps, HTMLAttributes<HTMLDivElement> {
+    isCollapsed: boolean,
+    title: string,
+    listItems: EuiListGroupProps["listItems"],
+    wrapText: EuiListGroupProps["wrapText"],
+    onClose: (shouldReturnFocus: boolean) => void,
+  }
+
+export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
   className,
   title,
   isCollapsed,
@@ -31,7 +40,7 @@ export const EuiNavDrawerFlyout = ({
     className
   );
 
-  const handleKeyDown = e => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.keyCode === keyCodes.ESCAPE) {
       handleClose();
     } else if (e.keyCode === keyCodes.TAB) {
@@ -77,30 +86,4 @@ export const EuiNavDrawerFlyout = ({
       ) : null}
     </div>
   );
-};
-
-EuiNavDrawerFlyout.propTypes = {
-  className: PropTypes.string,
-  listItems: EuiListGroup.propTypes.listItems,
-  wrapText: EuiListGroup.propTypes.wrapText,
-
-  /**
-   * Display a title atop the flyout
-   */
-  title: PropTypes.string,
-
-  /**
-   * Toggle the nav drawer between collapsed and expanded
-   */
-  isCollapsed: PropTypes.bool,
-
-  /**
-   * Passthrough function to be called when the flyout is closing
-   * See ./nav_drawer.js
-   */
-  onClose: PropTypes.func,
-};
-
-EuiNavDrawerFlyout.defaultProps = {
-  isCollapsed: true,
 };
