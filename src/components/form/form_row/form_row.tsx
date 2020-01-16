@@ -3,10 +3,11 @@ import React, {
   Component,
   Children,
   HTMLAttributes,
+  ReactElement,
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import { ExclusiveUnion, CommonProps, keysOf } from '../../common';
 
 import { get } from '../../../services/objects';
 
@@ -35,58 +36,63 @@ interface EuiFormRowState {
   id: string;
 }
 
-export type EuiFormRowProps = CommonProps &
-  HTMLAttributes<HTMLDivElement & HTMLFieldSetElement> & {
-    /**
-     * When `rowCompressed`, just tightens up the spacing;
-     * Set to `columnCompressed` if compressed
-     * and horizontal layout is needed.
-     * Set to `center` or `centerCompressed` to align non-input
-     * content better with inline rows.
-     * Set to `columnCompressedSwitch` if the form control being passed
-     * as the child is a switch.
-     */
-    display?: EuiFormRowDisplayKeys;
-    hasEmptyLabelSpace?: boolean;
-    fullWidth?: boolean;
-    /**
-     * IDs of additional elements that should be part of children's `aria-describedby`
-     */
-    describedByIds?: string[];
-    /**
-     * Sets the type of html element the label should be based
-     * on the form row contents. For instance checkbox groups
-     * should use 'legend' instead of the default 'label'
-     */
-    labelType?: 'label' | 'legend';
-    /**
-     * Escape hatch to not render duplicate labels if the child also renders a label
-     */
-    hasChildLabel?: boolean;
-    children: ReactNode;
-    label?: ReactNode;
-    /**
-     * Adds an extra node to the right of the form label without
-     * being contained inside the form label. Good for things
-     * like documentation links.
-     */
-    labelAppend?: any;
-    id?: string;
-    isInvalid?: boolean;
-    error?: ReactNode | ReactNode[];
-    helpText?: ReactNode;
-    /**
-     * **DEPRECATED: use `display: rowCompressed` instead.**
-     * When `true`, tightens up the spacing.
-     */
-    compressed?: boolean;
-    /**
-     * **DEPRECATED: use `display: center` instead.**
-     * Vertically centers non-input style content so it aligns
-     * better with input style content.
-     */
-    displayOnly?: boolean;
-  };
+type EuiFormRowCommonProps = CommonProps & {
+  /**
+   * When `rowCompressed`, just tightens up the spacing;
+   * Set to `columnCompressed` if compressed
+   * and horizontal layout is needed.
+   * Set to `center` or `centerCompressed` to align non-input
+   * content better with inline rows.
+   * Set to `columnCompressedSwitch` if the form control being passed
+   * as the child is a switch.
+   */
+  display?: EuiFormRowDisplayKeys;
+  hasEmptyLabelSpace?: boolean;
+  fullWidth?: boolean;
+  /**
+   * IDs of additional elements that should be part of children's `aria-describedby`
+   */
+  describedByIds?: string[];
+  /**
+   * Escape hatch to not render duplicate labels if the child also renders a label
+   */
+  hasChildLabel?: boolean;
+  children: ReactElement;
+  label?: ReactNode;
+  /**
+   * Adds an extra node to the right of the form label without
+   * being contained inside the form label. Good for things
+   * like documentation links.
+   */
+  labelAppend?: any;
+  id?: string;
+  isInvalid?: boolean;
+  error?: ReactNode | ReactNode[];
+  helpText?: ReactNode;
+  /**
+   * **DEPRECATED: use `display: rowCompressed` instead.**
+   * When `true`, tightens up the spacing.
+   */
+  compressed?: boolean;
+  /**
+   * **DEPRECATED: use `display: center` instead.**
+   * Vertically centers non-input style content so it aligns
+   * better with input style content.
+   */
+  displayOnly?: boolean;
+};
+
+type LabelProps = {
+  labelType?: 'label';
+} & EuiFormRowCommonProps &
+  HTMLAttributes<HTMLDivElement>;
+
+type LegendProps = {
+  labelType?: 'legend';
+} & EuiFormRowCommonProps &
+  HTMLAttributes<HTMLFieldSetElement>;
+
+export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
 export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
   static defaultProps = {
@@ -220,15 +226,25 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     const isLegend = label && labelType === 'legend' ? true : false;
 
     if (label || labelAppend) {
+      let labelProps = {};
+      if (isLegend) {
+        labelProps = {
+          type: labelType,
+        };
+      } else {
+        labelProps = {
+          htmlFor: hasChildLabel ? id : undefined,
+          isFocused: this.state.isFocused,
+          type: labelType,
+        };
+      }
       optionalLabel = (
         <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
             className="euiFormRow__label"
-            isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
             aria-invalid={isInvalid}
-            htmlFor={!isLegend && hasChildLabel ? id : undefined}
-            type={labelType as 'label' | undefined}>
+            {...labelProps}>
             {label}
           </EuiFormLabel>
           {labelAppend && ' '}
@@ -255,7 +271,6 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    // @ts-ignore
     const field = cloneElement(Children.only(children), {
       id,
       onFocus: this.onFocus,
@@ -271,17 +286,32 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
         displayOnly || display!.startsWith('center'),
     });
 
-    const Element = labelType === 'legend' ? 'fieldset' : 'div';
+    const sharedProps = {
+      className: classes,
+      id: `${id}-row`,
+    };
 
-    return (
-      <Element className={classes} id={`${id}-row`} {...rest}>
+    const contents = (
+      <React.Fragment>
         {optionalLabel}
         <div className={fieldWrapperClasses}>
           {field}
           {optionalErrors}
           {optionalHelpText}
         </div>
-      </Element>
+      </React.Fragment>
+    );
+
+    return labelType === 'legend' ? (
+      <fieldset
+        {...sharedProps}
+        {...rest as HTMLAttributes<HTMLFieldSetElement>}>
+        {contents}
+      </fieldset>
+    ) : (
+      <div {...sharedProps} {...rest as HTMLAttributes<HTMLDivElement>}>
+        {contents}
+      </div>
     );
   }
 }

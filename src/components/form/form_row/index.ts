@@ -1,1 +1,1 @@
-export { EuiFormRow } from './form_row';
+export { EuiFormRow, EuiFormRowProps } from './form_row';
