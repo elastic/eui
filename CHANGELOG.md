@@ -3,6 +3,12 @@
 - Convert `EuiFilterButton` to TS ([#2761](https://github.com/elastic/eui/pull/2761))
 - Convert `EuiFilterSelectItem` to TS ([#2761](https://github.com/elastic/eui/pull/2761))
 
+## [`18.2.1`](https://github.com/elastic/eui/tree/v18.2.1)
+
+**Bug fixes**
+
+- Fixed `EuiFieldSearch`'s trigger of `onChange` when clearing the field value ([#2764](https://github.com/elastic/eui/pull/2764))
+
 ## [`18.2.0`](https://github.com/elastic/eui/tree/v18.2.0)
 
 - Added `rencentlyViewedApp` app icon to `EuiIcon` ([#2755](https://github.com/elastic/eui/pull/2755))

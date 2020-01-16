@@ -15,7 +15,7 @@ export default class extends Component {
 
   onChange = e => {
     this.setState({
-      value: e === '' ? '' : e.target.value,
+      value: e.target.value,
     });
   };
 
