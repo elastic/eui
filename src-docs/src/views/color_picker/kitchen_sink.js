@@ -10,7 +10,7 @@ import { DisplayToggles } from '../form_controls/display_toggles';
 import { useColorPicker, useColorStop } from './utils';
 
 export const KitchenSink = () => {
-  const [color, setColor] = useColorPicker('#DB1374');
+  const [color, setColor] = useColorPicker('#D36086');
   const [colorStops, setColorStops, addStop] = useColorStop(true);
 
   return (

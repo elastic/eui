@@ -1,44 +1,124 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { CommonProps } from '../../common';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
-import { EuiRangeInput } from './range_input';
+import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
+import { EuiRangeLevel } from './range_levels';
 import { EuiRangeSlider } from './range_slider';
+import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTooltip } from './range_tooltip';
-import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
+import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
-export class EuiRange extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: props.id || makeId(),
-      isPopoverOpen: false,
-    };
+export interface EuiRangeProps
+  extends CommonProps,
+    Omit<EuiRangeInputProps, 'onChange' | 'digitTolerance'> {
+  compressed?: boolean;
+  readOnly?: boolean;
+  fullWidth?: boolean;
+  id?: string;
+  /**
+   * Create colored indicators for certain intervals
+   */
+  levels?: EuiRangeLevel[];
+  step?: number;
+  /**
+   * Pass `true` to displays an extra input control for direct manipulation.
+   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
+   */
+  showInput?: boolean | 'inputWithPopover';
+  /**
+   * Shows static min/max labels on the sides of the range slider
+   */
+  showLabels?: boolean;
+  /**
+   * Shows a thick line from min to value
+   */
+  showRange?: boolean;
+  /**
+   * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
+   */
+  showTicks?: boolean;
+  /**
+   * Shows a tooltip styled value
+   */
+  showValue?: boolean;
+  /**
+   * Specified ticks at specified values
+   */
+  ticks?: EuiRangeTick[];
+  /**
+   * Modifies the number of tick marks and at what interval
+   */
+  tickInterval?: number;
+  /**
+   * Appends to the tooltip
+   */
+  valueAppend?: ReactNode;
+  /**
+   * Prepends to the tooltip
+   */
+  valuePrepend?: ReactNode;
 
-    this.preventPopoverClose = false;
-  }
+  onChange?: (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>,
+    isValid: boolean
+  ) => void;
+}
 
-  handleOnChange = e => {
+export class EuiRange extends Component<EuiRangeProps> {
+  static defaultProps = {
+    min: 0,
+    max: 100,
+    step: 1,
+    fullWidth: false,
+    compressed: false,
+    isLoading: false,
+    showLabels: false,
+    showInput: false,
+    showRange: false,
+    showTicks: false,
+    showValue: false,
+    levels: [],
+  };
+
+  preventPopoverClose: boolean = false;
+
+  state = {
+    id: this.props.id || makeId(),
+    isPopoverOpen: false,
+  };
+
+  handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+  ) => {
     const isValid = isWithinRange(
       this.props.min,
       this.props.max,
-      e.target.value
+      e.currentTarget.value
     );
-    this.props.onChange(e, isValid);
+    if (this.props.onChange) {
+      this.props.onChange(e, isValid);
+    }
   };
 
   get isValid() {
-    return isWithinRange(this.props.min, this.props.max, this.props.value);
+    return isWithinRange(
+      this.props.min,
+      this.props.max,
+      this.props.value || ''
+    );
   }
 
-  onInputFocus = e => {
+  onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
@@ -47,7 +127,7 @@ export class EuiRange extends Component {
     });
   };
 
-  onInputBlur = e =>
+  onInputBlur = (e: React.FocusEvent<HTMLInputElement>) =>
     setTimeout(() => {
       // Safari does not recognize any focus-related eventing for input[type=range]
       // making it impossible to capture its state using active/focus/relatedTarget
@@ -109,7 +189,7 @@ export class EuiRange extends Component {
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
-    const theInput = !!showInput ? (
+    const theInput: ReactNode = !!showInput ? (
       <EuiRangeInput
         id={id}
         min={min}
@@ -130,9 +210,7 @@ export class EuiRange extends Component {
         autoSize={!showInputOnly}
         {...rest}
       />
-    ) : (
-      undefined
-    );
+    ) : null;
 
     const classes = classNames('euiRange', className);
 
@@ -182,11 +260,13 @@ export class EuiRange extends Component {
             style={style}
             showTicks={showTicks}
             showRange={showRange}
-            tabIndex={showInput ? -1 : tabIndex || null}
+            tabIndex={showInput ? -1 : tabIndex}
             onMouseDown={
-              showInputOnly ? () => (this.preventPopoverClose = true) : null
+              showInputOnly
+                ? () => (this.preventPopoverClose = true)
+                : undefined
             }
-            onFocus={showInput === true ? null : onFocus}
+            onFocus={showInput === true ? undefined : onFocus}
             onBlur={showInputOnly ? this.onInputBlur : onBlur}
             {...rest}
           />
@@ -221,7 +301,7 @@ export class EuiRange extends Component {
     const thePopover = showInputOnly ? (
       <EuiInputPopover
         className="euiRange__popover"
-        input={theInput}
+        input={theInput!} // `showInputOnly` confirms existence
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
@@ -235,85 +315,3 @@ export class EuiRange extends Component {
     return thePopover ? thePopover : theRange;
   }
 }
-
-EuiRange.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  step: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  fullWidth: PropTypes.bool,
-  compressed: PropTypes.bool,
-  disabled: PropTypes.bool,
-  /**
-   * Shows static min/max labels on the sides of the range slider
-   */
-  showLabels: PropTypes.bool,
-  /**
-   * Pass `true` to displays an extra input control for direct manipulation.
-   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
-   */
-  showInput: PropTypes.oneOf([true, false, 'inputWithPopover']),
-  /**
-   * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
-   */
-  showTicks: PropTypes.bool,
-  /**
-   * Modifies the number of tick marks and at what interval
-   */
-  tickInterval: PropTypes.number,
-  /**
-   * Specified ticks at specified values
-   */
-  ticks: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.number.isRequired,
-      label: PropTypes.node.isRequired,
-    })
-  ),
-  /**
-   * Function signature: `(event, isValid)`
-   */
-  onChange: PropTypes.func,
-  /**
-   * Create colored indicators for certain intervals
-   */
-  levels: PropTypes.arrayOf(
-    PropTypes.shape({
-      min: PropTypes.number,
-      max: PropTypes.number,
-      color: PropTypes.oneOf(LEVEL_COLORS),
-    })
-  ),
-  /**
-   * Shows a thick line from min to value
-   */
-  showRange: PropTypes.bool,
-  /**
-   * Shows a tooltip styled value
-   */
-  showValue: PropTypes.bool,
-  /**
-   * Appends to the tooltip
-   */
-  valueAppend: PropTypes.node,
-  /**
-   * Prepends to the tooltip
-   */
-  valuePrepend: PropTypes.node,
-};
-
-EuiRange.defaultProps = {
-  min: 0,
-  max: 100,
-  step: 1,
-  fullWidth: false,
-  compressed: false,
-  showLabels: false,
-  showInput: false,
-  showRange: false,
-  showTicks: false,
-  showValue: false,
-  levels: [],
-};

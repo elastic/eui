@@ -1,9 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 
-import { EuiFieldNumber } from '../field_number';
+import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
 
-export const EuiRangeInput = ({
+export interface EuiRangeInputProps
+  extends Omit<EuiFieldNumberProps, 'max' | 'min' | 'value'> {
+  autoSize?: boolean;
+  digitTolerance: number;
+  max: number;
+  min: number;
+  side?: 'min' | 'max';
+  value: string | number;
+}
+
+export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
   min,
   max,
   step,
@@ -12,10 +21,10 @@ export const EuiRangeInput = ({
   compressed,
   onChange,
   name,
-  side,
+  side = 'max',
   digitTolerance,
   fullWidth,
-  autoSize,
+  autoSize = true,
   ...rest
 }) => {
   // Chrome will properly size the input based on the max value, but FF & IE do not.
@@ -41,23 +50,4 @@ export const EuiRangeInput = ({
       {...rest}
     />
   );
-};
-
-EuiRangeInput.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  step: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  compressed: PropTypes.bool,
-  onChange: PropTypes.func,
-  name: PropTypes.string,
-  digitTolerance: PropTypes.number.isRequired,
-  side: PropTypes.oneOf(['min', 'max']),
-  fullWidth: PropTypes.bool,
-  autoSize: PropTypes.bool,
-  inputRef: PropTypes.func,
-};
-EuiRangeInput.defaultProps = {
-  side: 'max',
-  autoSize: true,
 };

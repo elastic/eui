@@ -30,7 +30,6 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
         options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
-        onChange={() => {}}
       />
     );
 
@@ -46,7 +45,6 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
           '1': true,
           '2': false,
         }}
-        onChange={() => {}}
       />
     );
 
@@ -62,7 +60,6 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
           '1': true,
           '2': false,
         }}
-        onChange={() => {}}
         disabled
       />
     );
@@ -82,7 +79,19 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
           '1': true,
           '2': false,
         }}
-        onChange={() => {}}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('legend is rendered', () => {
+    const component = render(
+      <EuiCheckboxGroup
+        {...checkboxGroupRequiredProps}
+        legend={{
+          children: 'A legend',
+        }}
       />
     );
 

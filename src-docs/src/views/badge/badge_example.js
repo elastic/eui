@@ -17,26 +17,79 @@ import {
 import Badge from './badge';
 const badgeSource = require('!!raw-loader!./badge');
 const badgeHtml = renderToHtml(Badge);
+const badgeSnippet = [
+  `<EuiBadge>Default</EuiBadge>
+`,
+  `<EuiBadge color="hollow">Hollow</EuiBadge>
+`,
+  `<EuiBadge color="primary">Primary</EuiBadge>
+`,
+  `<EuiBadge color="#BADA55">Custom</EuiBadge>
+`,
+  `<EuiBadge color="secondary" isDisabled>Disabled</EuiBadge>
+`,
+];
 
 import BadgeWithIcon from './badge_with_icon';
 const badgeWithIconSource = require('!!raw-loader!./badge_with_icon');
 const badgeWithIconHtml = renderToHtml(BadgeWithIcon);
+const badgeWithIconSnippet = `<EuiBadge color="hollow" iconType="cross" iconSide="right">Label</EuiBadge>
+`;
 
 import BadgeButton from './badge_button';
 const badgeButtonSource = require('!!raw-loader!./badge_button');
 const badgeButtonHtml = renderToHtml(BadgeButton);
-
-import BetaBadge from './beta_badge';
-const betaBadgeSource = require('!!raw-loader!./beta_badge');
-const betaBadgeHtml = renderToHtml(BetaBadge);
-
-import NotificationBadge from './notification_badge';
-const notificationBadgeSource = require('!!raw-loader!./notification_badge');
-const notificationBadgeHtml = renderToHtml(NotificationBadge);
+const badgeButtonSnippet = [
+  `<EuiBadge
+  color="primary"
+  onClick={this.onBadgeClick}
+  onClickAriaLabel="Aria label applied to text button"
+/>
+  Clickable text
+</EuiBadge>`,
+  `<EuiBadge
+  iconType="cross"
+  iconSide="right"
+  color="hollow"
+  iconOnClick={this.onBadgeIconClick}
+  iconOnClickAriaLabel="Aria label applied to icon button"
+  />
+  Text with clickable icon
+</EuiBadge>`,
+  `<EuiBadge
+  iconType="cross"
+  iconSide="right"
+  color="secondary"
+  onClick={this.onBadgeClick}
+  onClickAriaLabel="Aria label applied to text button"
+  iconOnClick={this.onBadgeIconClick}
+  iconOnClickAriaLabel="Aria label applied to icon button"
+  />
+  Clickable text with clickable icon
+</EuiBadge>`,
+];
 
 import BadgeTruncate from './badge_truncate';
 const badgeTruncateSource = require('!!raw-loader!./badge_truncate');
 const badgeTruncateHtml = renderToHtml(BadgeTruncate);
+
+import BetaBadge from './beta_badge';
+const betaBadgeSource = require('!!raw-loader!./beta_badge');
+const betaBadgeHtml = renderToHtml(BetaBadge);
+const betaBadgeSnippet = [
+  `<EuiBetaBadge label="Beta" />
+`,
+  `<EuiBetaBadge label="Lab" tooltipContent="Describe why this is considered beta." />
+`,
+  `<EuiBetaBadge label="Lab" iconType="beaker" />
+`,
+];
+
+import NotificationBadge from './notification_badge';
+const notificationBadgeSource = require('!!raw-loader!./notification_badge');
+const notificationBadgeHtml = renderToHtml(NotificationBadge);
+const notificationBadgeSnippet = `<EuiNotificationBadge>3</EuiNotificationBadge>
+`;
 
 export const BadgeExample = {
   title: 'Badge',
@@ -58,10 +111,11 @@ export const BadgeExample = {
           they will automatically space themselves if you use them in a
           repetitive fashion it is good form to wrap them using a{' '}
           <EuiCode>FlexGroup</EuiCode> so that they will wrap when width is
-          constrained (as is done artificially in the example below).
+          constrained (as seen in the custom color example below).
         </p>
       ),
       props: { EuiBadge },
+      snippet: badgeSnippet,
       demo: <Badge />,
     },
     {
@@ -77,6 +131,7 @@ export const BadgeExample = {
         },
       ],
       text: <p>Badges can use icons on the left and right (default) sides.</p>,
+      snippet: badgeWithIconSnippet,
       demo: <BadgeWithIcon />,
     },
     {
@@ -111,6 +166,7 @@ export const BadgeExample = {
           </EuiCallOut>
         </div>
       ),
+      snippet: badgeButtonSnippet,
       demo: <BadgeButton />,
     },
     {
@@ -178,6 +234,7 @@ export const BadgeExample = {
         </div>
       ),
       props: { EuiBetaBadge },
+      snippet: betaBadgeSnippet,
       demo: <BetaBadge />,
     },
     {
@@ -194,13 +251,14 @@ export const BadgeExample = {
       ],
       text: (
         <p>
-          Used to showcase the number of notifications, alerts or hidden
-          selections. Typically used in{' '}
-          <Link to="/layout/header">EuiHeader</Link> or (eventually){' '}
-          <Link to="/forms/filter-group">EuiFilterButtons</Link>.
+          Used to showcase the number of notifications, alerts, or hidden
+          selections. This badge type is commonly used in the{' '}
+          <Link to="/layout/header">EuiHeader</Link> and{' '}
+          <Link to="/forms/filter-group">EuiFilterButton</Link> components.
         </p>
       ),
       props: { EuiNotificationBadge },
+      snippet: notificationBadgeSnippet,
       demo: <NotificationBadge />,
     },
   ],

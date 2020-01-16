@@ -39,6 +39,7 @@ type EuiListGroupProps = CommonProps &
      * Allow link text to wrap
      */
     wrapText?: boolean;
+    ariaLabelledby?: string;
   };
 
 export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
@@ -51,6 +52,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   wrapText = false,
   maxWidth = true,
   showToolTips = false,
+  ariaLabelledby,
   ...rest
 }) => {
   let newStyle: CSSProperties | undefined;
@@ -105,7 +107,11 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   }
 
   return (
-    <ul className={classes} style={newStyle || style} {...rest}>
+    <ul
+      className={classes}
+      style={newStyle || style}
+      aria-labelledby={ariaLabelledby}
+      {...rest}>
       {childrenOrListItems}
     </ul>
   );

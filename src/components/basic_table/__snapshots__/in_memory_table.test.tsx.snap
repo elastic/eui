@@ -177,7 +177,9 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 </tr>
               </thead>
             </EuiTableHeader>
-            <EuiTableBody>
+            <EuiTableBody
+              bodyRef={[Function]}
+            >
               <tbody>
                 <EuiTableRow
                   isSelected={false}
