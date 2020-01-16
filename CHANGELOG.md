@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `18.2.0`.
+**Bug fixes**
+
+- Fixed `EuiFieldSearch`'s trigger of `onChange` when clearing the field value ([#2764](https://github.com/elastic/eui/pull/2764))
 
 ## [`18.2.0`](https://github.com/elastic/eui/tree/v18.2.0)
 
