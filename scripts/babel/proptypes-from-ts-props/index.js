@@ -17,20 +17,6 @@ function stripTypeScript(filename, ast) {
   }).code;
 }
 
-// .ts file could import types from a .tsx file, so force nested imports to parse JSX
-function forceTSXParsing(opts) {
-  return {
-    ...opts,
-    plugins: opts.plugins.map(plugin => {
-      if (plugin.key.indexOf(`@babel${path.sep}preset-typescript`) !== -1) {
-        plugin.options.isTSX = true;
-        plugin.options.allExtensions = true;
-      }
-      return plugin;
-    }),
-  };
-}
-
 // determine is a node is a TS*, or if it is a proptype that came from one
 function isTSType(node) {
   if (node == null) return false;
@@ -1343,8 +1329,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
               this.file.opts.filename
             ),
             fs: opts.fs || fs,
-            parse: code =>
-              babelCore.parse(code, forceTSXParsing(state.file.opts)),
+            parse: code => babelCore.parse(code, state.file.opts),
           };
 
           // collect named TS type definitions for later reference

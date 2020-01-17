@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 export function useDependentState<T>(
   valueFn: (previousState: undefined | T) => T,
   deps: unknown[]
-): [T, React.Dispatch<React.SetStateAction<T>>] {
+) {
   const [state, setState] = useState<T>(valueFn as () => T);
 
   // use ref instead of a state to avoid causing an unnecessary re-render
@@ -22,5 +22,5 @@ export function useDependentState<T>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
-  return [state, setState];
+  return [state, setState] as const;
 }
