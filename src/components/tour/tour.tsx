@@ -17,6 +17,7 @@ import {
   EuiPopoverProps,
   EuiPopoverTitle,
 } from '../popover';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiTitle } from '../title';
 import { EuiTourStepIndicator } from './tour_step_indicator';
 
@@ -121,10 +122,11 @@ export const EuiTour: FunctionComponent<StandaloneEuiTourProps> = ({
   const footer = (
     <EuiFlexGroup responsive={false} justifyContent="spaceBetween">
       <EuiFlexItem grow={false} aria-labelledby="stepProgress">
-        {/* // TODO make this dynamic and more accessible or remove it */}
-        {/* <EuiScreenReaderOnly>
-          <h6 id="stepProgress">Step 3 of 5</h6>
-        </EuiScreenReaderOnly> */}
+        <EuiScreenReaderOnly>
+          <h6 id="stepProgress">
+            Step {step} of {stepsTotal}
+          </h6>
+        </EuiScreenReaderOnly>
         {/* // TODO use loop based upon length of steps array; also make this ul a component? */}
         {/* Would the total steps be stored in a wrapper component? */}
         <ul className="euiTourFooter__stepList">{stepIndicators}</ul>
