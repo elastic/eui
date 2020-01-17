@@ -96,6 +96,7 @@ export class EuiSuperSelect<T extends string> extends Component<
     fullWidth: false,
     compressed: false,
     isInvalid: false,
+    isLoading: false,
   };
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
