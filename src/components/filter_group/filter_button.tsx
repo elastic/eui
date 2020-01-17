@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactChild } from 'react';
+import React, { Fragment, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { EuiI18n } from '../i18n';
