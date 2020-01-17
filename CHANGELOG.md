@@ -5,7 +5,7 @@
 
 **Bug fixes**
 
-- Removed inline width from `EuiTableHeaderCellCheckbox`in `EuiBasicTable` to prevent `EuiCheckbox`'s focus ring from getting clipped ([#2770](https://github.com/elastic/eui/pull/2770))
+- Increased column width on `EuiTableHeaderCellCheckbox` to prevent `EuiCheckbox`'s focus ring from getting clipped in `EuiBasicTable` ([#2770](https://github.com/elastic/eui/pull/2770))
 
 **Deprecations**
 
