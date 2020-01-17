@@ -67,7 +67,7 @@ export const EuiSuperSelectControl: <T extends string>(
 
   // React HTML input can not have both value and defaultValue properties.
   // https://reactjs.org/docs/uncontrolled-components.html#default-values
-  let selectDefaultValue: string | number | string[] = '';
+  let selectDefaultValue;
   if (value == null) {
     selectDefaultValue = defaultValue || '';
   }

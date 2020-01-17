@@ -347,3 +347,54 @@ Array [
   </div>,
 ]
 `;
+
+exports[`EuiSuperSelectControl props value option is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value="1"
+  />,
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: Option #1, is selected
+      </span>
+      <button
+        aria-haspopup="true"
+        aria-labelledby="undefined generated-id"
+        aria-selected="true"
+        class="euiSuperSelectControl"
+        role="option"
+        type="button"
+      >
+        Option #1
+      </button>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
