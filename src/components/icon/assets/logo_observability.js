@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconLogoApm = ({ title, ...props }) => (
+const EuiIconLogoObservability = ({ title, ...props }) => (
   <svg
     width={32}
     height={32}
@@ -17,4 +17,4 @@ const EuiIconLogoApm = ({ title, ...props }) => (
   </svg>
 );
 
-export const icon = EuiIconLogoApm;
+export const icon = EuiIconLogoObservability;
