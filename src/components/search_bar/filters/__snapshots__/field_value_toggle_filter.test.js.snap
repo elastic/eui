@@ -3,12 +3,8 @@
 exports[`FieldValueToggleFilter render - active 1`] = `
 <EuiFilterButton
   aria-pressed={true}
-  color="text"
-  grow={true}
   hasActiveFilters={true}
-  iconSide="right"
   onClick={[Function]}
-  type="button"
 >
   Kibana
 </EuiFilterButton>
@@ -17,12 +13,8 @@ exports[`FieldValueToggleFilter render - active 1`] = `
 exports[`FieldValueToggleFilter render - active negated - custom negated name 1`] = `
 <EuiFilterButton
   aria-pressed={true}
-  color="text"
-  grow={true}
   hasActiveFilters={true}
-  iconSide="right"
   onClick={[Function]}
-  type="button"
 >
   Others
 </EuiFilterButton>
@@ -31,12 +23,8 @@ exports[`FieldValueToggleFilter render - active negated - custom negated name 1`
 exports[`FieldValueToggleFilter render - active negated 1`] = `
 <EuiFilterButton
   aria-pressed={true}
-  color="text"
-  grow={true}
   hasActiveFilters={true}
-  iconSide="right"
   onClick={[Function]}
-  type="button"
 >
   Not Kibana
 </EuiFilterButton>
@@ -45,12 +33,8 @@ exports[`FieldValueToggleFilter render - active negated 1`] = `
 exports[`FieldValueToggleFilter render 1`] = `
 <EuiFilterButton
   aria-pressed={false}
-  color="text"
-  grow={true}
   hasActiveFilters={false}
-  iconSide="right"
   onClick={[Function]}
-  type="button"
 >
   Kibana
 </EuiFilterButton>

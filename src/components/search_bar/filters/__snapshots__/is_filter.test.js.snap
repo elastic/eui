@@ -3,12 +3,8 @@
 exports[`IsFilter render 1`] = `
 <EuiFilterButton
   aria-pressed={false}
-  color="text"
-  grow={true}
   hasActiveFilters={false}
-  iconSide="right"
   onClick={[Function]}
-  type="button"
 >
   Open
 </EuiFilterButton>

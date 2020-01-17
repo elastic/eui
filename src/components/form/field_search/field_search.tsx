@@ -1,70 +1,70 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
 import { ENTER } from '../../../services/key_codes';
+import { CommonProps } from '../../common';
 
 import { EuiFormControlLayout } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
 
-const propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  isInvalid: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  inputRef: PropTypes.func,
+export interface EuiFieldSearchProps
+  extends CommonProps,
+    InputHTMLAttributes<HTMLInputElement> {
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  value?: string;
+  isInvalid?: boolean;
+  fullWidth?: boolean;
+  isLoading?: boolean;
   /**
    * Called when the user presses [Enter] OR on change if the incremental prop is `true`.
    * If you don't need the on[Enter] functionality, prefer using onChange
    */
-  onSearch: PropTypes.func,
+  onSearch?: (value: string) => void;
   /**
    * When `true` the search will be executed (that is, the `onSearch` will be called) as the
    * user types.
    */
-  incremental: PropTypes.bool,
+  incremental?: boolean;
   /**
    * when `true` creates a shorter height input
    */
-  compressed: PropTypes.bool,
+  compressed?: boolean;
+  inputRef?: (node: HTMLInputElement | null) => void;
   /**
    * Shows a button that quickly clears any input
    */
-  isClearable: PropTypes.bool,
-};
+  isClearable?: boolean;
+}
 
-const defaultProps = {
-  fullWidth: false,
-  isLoading: false,
-  incremental: false,
-  compressed: false,
-  isClearable: true,
-};
+export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
+  static defaultProps = {
+    fullWidth: false,
+    isLoading: false,
+    incremental: false,
+    compressed: false,
+    isClearable: true,
+  };
 
-export class EuiFieldSearch extends Component {
-  static propTypes = propTypes;
-  static defaultProps = defaultProps;
-
-  constructor(props) {
-    super(props);
-    this.cleanups = [];
-  }
+  inputElement: HTMLInputElement | null = null;
+  cleanups: Array<() => void> = [];
 
   componentDidMount() {
+    if (!this.inputElement) return;
     if (Browser.isEventSupported('search', this.inputElement)) {
-      const onSearch = event => {
+      const onSearch = (event?: Event) => {
         if (this.props.onSearch) {
-          this.props.onSearch(event.target.value);
+          if (!event || !event.target) return;
+          this.props.onSearch((event.target as HTMLInputElement).value);
         }
       };
       this.inputElement.addEventListener('search', onSearch);
-      this.cleanups.push(() =>
-        this.inputElement.removeEventListener('search', onSearch)
-      );
+      this.cleanups.push(() => {
+        if (!this.inputElement) return;
+        this.inputElement.removeEventListener('search', onSearch);
+      });
     }
   }
 
@@ -79,42 +79,55 @@ export class EuiFieldSearch extends Component {
     // only then will React treat the value as different and fire its `change` event
     //
     // https://stackoverflow.com/questions/23892547/what-is-the-best-way-to-trigger-onchange-event-in-react-js
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
+    const nativeInputValue = Object.getOwnPropertyDescriptor(
+      HTMLInputElement.prototype,
       'value'
-    ).set;
-    nativeInputValueSetter.call(this.inputElement, '');
+    );
+    const nativeInputValueSetter = nativeInputValue
+      ? nativeInputValue.set
+      : undefined;
+    if (nativeInputValueSetter) {
+      nativeInputValueSetter.call(this.inputElement, '');
+    }
 
     // dispatch input event, with IE11 support/fallback
+    let event;
     if ('Event' in window && typeof Event === 'function') {
-      const event = new Event('input', {
+      event = new Event('input', {
         bubbles: true,
         cancelable: false,
       });
-      this.inputElement.dispatchEvent(event);
     } else {
       // IE11
-      const event = document.createEvent('Event');
+      event = document.createEvent('Event');
       event.initEvent('input', true, false);
-      this.inputElement.dispatchEvent(event);
     }
 
-    // set focus on the search field
-    this.inputElement.focus();
+    if (this.inputElement) {
+      if (event) {
+        this.inputElement.dispatchEvent(event);
+      }
+      // set focus on the search field
+      this.inputElement.focus();
+    }
   };
 
   componentWillUnmount() {
     this.cleanups.forEach(cleanup => cleanup());
   }
 
-  setRef = inputElement => {
+  setRef = (inputElement: HTMLInputElement | null) => {
     this.inputElement = inputElement;
     if (this.props.inputRef) {
       this.props.inputRef(inputElement);
     }
   };
 
-  onKeyUp = (incremental, onSearch, event) => {
+  onKeyUp = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+    incremental?: boolean,
+    onSearch?: (value: string) => void
+  ) => {
     if (this.props.onKeyUp) {
       this.props.onKeyUp(event);
       if (event.defaultPrevented) {
@@ -122,7 +135,7 @@ export class EuiFieldSearch extends Component {
       }
     }
     if (onSearch && (incremental || event.keyCode === ENTER)) {
-      onSearch(event.target.value);
+      onSearch((event.target as HTMLInputElement).value);
     }
   };
 
@@ -162,7 +175,7 @@ export class EuiFieldSearch extends Component {
         clear={
           isClearable && value && !rest.readOnly && !rest.disabled
             ? { onClick: this.onClear }
-            : null
+            : undefined
         }
         compressed={compressed}>
         <EuiValidatableControl isInvalid={isInvalid}>
@@ -173,7 +186,7 @@ export class EuiFieldSearch extends Component {
             placeholder={placeholder}
             className={classes}
             value={value}
-            onKeyUp={this.onKeyUp.bind(this, incremental, onSearch)}
+            onKeyUp={e => this.onKeyUp(e, incremental, onSearch)}
             ref={this.setRef}
             {...rest}
           />
