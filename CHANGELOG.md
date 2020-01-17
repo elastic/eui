@@ -2,6 +2,8 @@
 
 - Converted `EuiFormRow` to Typescript ([#2712](https://github.com/elastic/eui/pull/2712))
 - Updated `logoAPM`, `logoSecurity` and `logoEnterpriseSearch`. Added `logoWorkplaceSearch` and `logoObservability` ([#2769](https://github.com/elastic/eui/pull/2769))
+- Convert `EuiFilterButton` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
+- Convert `EuiFilterSelectItem` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
 
 **Bug fixes**
 
