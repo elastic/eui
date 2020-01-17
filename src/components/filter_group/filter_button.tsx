@@ -100,17 +100,17 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       {numFiltersDefined && (
         <EuiI18n
           token="euiFilterButton.filterBadge"
-          values={{ count: numActiveFilters || numFilters, hasActiveFilters }}
-          default={({ count, hasActiveFilters }) =>
-            `${count} ${hasActiveFilters ? 'active' : 'available'} filters`
-          }>
-          {(filterBadge: ReactChild) => {
-            const ariaLabel = filterBadge as string;
+          values={{
+            count: numActiveFilters || numFilters,
+            hasActiveFilters: hasActiveFilters ? 'active' : 'available',
+          }}
+          default="{count} {hasActiveFilters} filters">
+          {(filterBadge: string) => {
             return (
               <EuiNotificationBadge
                 className="euiFilterButton__notification"
                 size="m"
-                aria-label={ariaLabel}
+                aria-label={filterBadge}
                 color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}>
                 {numActiveFilters || numFilters}
               </EuiNotificationBadge>
