@@ -741,7 +741,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
@@ -1734,7 +1734,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2050,7 +2050,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2243,7 +2243,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2529,7 +2529,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2722,7 +2722,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2915,7 +2915,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
@@ -3219,7 +3219,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
+          width="32px"
         >
           <EuiI18n
             default="Select all rows"
