@@ -6,11 +6,12 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPagination } from '../../pagination';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
+import { CommonProps } from '../../common';
 
 export type PageChangeHandler = (pageIndex: number) => void;
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
 
-export interface Props {
+export interface Props extends CommonProps {
   activePage?: number;
   hidePerPageOptions?: boolean;
   itemsPerPage?: number;
@@ -50,6 +51,7 @@ export class EuiTablePagination extends Component<Props, State> {
       onChangeItemsPerPage = () => {},
       onChangePage,
       pageCount,
+      'data-test-subj': dataTestSubj,
     } = this.props;
 
     const button = (
@@ -75,7 +77,8 @@ export class EuiTablePagination extends Component<Props, State> {
         onClick={() => {
           this.closePopover();
           onChangeItemsPerPage(itemsPerPageOption);
-        }}>
+        }}
+        data-test-subj={dataTestSubj}>
         <EuiI18n
           token="euiTablePagination.rowsPerPageOption"
           values={{ rowsPerPage: itemsPerPageOption }}
