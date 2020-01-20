@@ -125,7 +125,42 @@ export const EuiPagination: FunctionComponent<Props> = ({
     }
   }
 
+  const firstPageButtonCompressed = (
+    <EuiI18n
+      key="0"
+      token="euiPagination.pageOfTotal"
+      default="Page {page} of {total}"
+      values={{ page: activePage + 1, total: pageCount }}>
+      {(pageOfTotal: string) => (
+        <EuiPaginationButton
+          onClick={onPageClick.bind(null, 0)}
+          hideOnMobile
+          isActive={true}
+          aria-label={pageOfTotal}>
+          {activePage + 1}
+        </EuiPaginationButton>
+      )}
+    </EuiI18n>
+  );
+
   const lastPageButtons = [];
+
+  const lastPageButtonCompressed = (
+    <EuiI18n
+      key={pageCount - 1}
+      token="euiPagination.jumpToLastPage"
+      default="Jump to the last page, number {pageCount}"
+      values={{ pageCount }}>
+      {(jumpToLastPage: string) => (
+        <EuiPaginationButton
+          onClick={onPageClick.bind(null, pageCount - 1)}
+          hideOnMobile
+          aria-label={jumpToLastPage}>
+          {pageCount}
+        </EuiPaginationButton>
+      )}
+    </EuiI18n>
+  );
 
   if (lastPageInRange < pageCount) {
     if (lastPageInRange < pageCount - 1) {
@@ -178,6 +213,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
     return (
       <div className={classes} {...rest}>
         {previousButton}
+        {firstPageButtonCompressed}/{lastPageButtonCompressed}
         {nextButton}
       </div>
     );
