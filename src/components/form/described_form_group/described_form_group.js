@@ -103,6 +103,9 @@ EuiDescribedFormGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   fullWidth: PropTypes.bool,
   titleSize: PropTypes.oneOf(TITLE_SIZES),
+  /**
+   * For better accessibiity it's recommended the use of HTML headings
+   */
   title: PropTypes.node.isRequired,
   description: PropTypes.node,
 };

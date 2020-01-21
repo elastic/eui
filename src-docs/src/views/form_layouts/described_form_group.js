@@ -10,6 +10,7 @@ import {
   EuiRange,
   EuiSelect,
   EuiSwitch,
+  EuiLink,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -87,15 +88,24 @@ export default class extends Component {
       <EuiForm>
         <EuiDescribedFormGroup
           title={<h3>Single text field</h3>}
-          description={<Fragment>A single text field to describe</Fragment>}>
-          <EuiFormRow label="Text field">
+          description={
+            <Fragment>
+              A single text field that can be used to display additional text.
+              It can have{' '}
+              <EuiLink href="http://www.elastic.co" target="_blank">
+                links
+              </EuiLink>{' '}
+              or any other type of content.
+            </Fragment>
+          }>
+          <EuiFormRow
+            label="Text field"
+            helpText={<span>This is a help text</span>}>
             <EuiFieldText name="first" aria-label="Example" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
 
-        <EuiDescribedFormGroup
-          idAria="no-description"
-          title={<h3>No description</h3>}>
+        <EuiDescribedFormGroup title={<h3>No description</h3>}>
           <EuiFormRow label="Text field">
             <EuiFieldText name="first" />
           </EuiFormRow>
