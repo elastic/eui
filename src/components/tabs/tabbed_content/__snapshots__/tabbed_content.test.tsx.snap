@@ -74,11 +74,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
   <div
     onFocus={[Function]}
   >
-    <EuiTabs
-      display="default"
-      expand={false}
-      size="m"
-    >
+    <EuiTabs>
       <div
         className="euiTabs"
         role="tablist"
