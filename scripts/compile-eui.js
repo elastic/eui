@@ -48,10 +48,12 @@ function compileLib() {
       },
     }
   );
-  glob('./test-env/**/index.testenv.js', undefined, (error, files) => {
+  glob('./test-env/**/*.testenv.js', undefined, (error, files) => {
     files.forEach(file => {
       const dir = path.dirname(file);
-      fs.renameSync(file, `${dir}/index.js`);
+      const fileName = path.basename(file, '.js');
+      const targetName = fileName.replace('.testenv', '');
+      fs.renameSync(file, `${dir}/${targetName}.js`);
     });
   });
 
