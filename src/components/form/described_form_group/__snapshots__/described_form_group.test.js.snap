@@ -3,7 +3,6 @@
 exports[`EuiDescribedFormGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
@@ -51,7 +50,6 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
 exports[`EuiDescribedFormGroup props description is not rendered when it's not provided 1`] = `
 <div
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
@@ -91,7 +89,6 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 <div
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup euiDescribedFormGroup--fullWidth testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
@@ -139,7 +136,6 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 <div
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
@@ -187,7 +183,6 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 <div
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
@@ -240,7 +235,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   description="Test description"
   fullWidth={false}
   gutterSize="l"
-  idAria="test-id"
   title={
     <h3>
       Title
@@ -250,7 +244,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
 >
   <div
     aria-label="aria-label"
-    aria-labelledby="test-id-title"
     className="euiDescribedFormGroup testClass1 testClass2"
     data-test-subj="test subject string"
     role="group"
@@ -267,12 +260,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
-              id="test-id-title"
+              id="generated-id-title"
               size="xs"
             >
               <h3
                 className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
-                id="test-id-title"
+                id="generated-id-title"
               >
                 Title
               </h3>
@@ -280,12 +273,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             <EuiText
               className="euiDescribedFormGroup__description"
               color="subdued"
-              id="test-id"
+              id="generated-id"
               size="s"
             >
               <div
                 className="euiText euiText--small euiDescribedFormGroup__description"
-                id="test-id"
+                id="generated-id"
               >
                 <EuiTextColor
                   color="subdued"
@@ -308,11 +301,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
             <EuiFormRow
-              describedByIds={
-                Array [
-                  "test-id",
-                ]
-              }
+              describedByIds={Array []}
               display="row"
               error={
                 Array [
@@ -356,7 +345,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   className="euiFormRow__fieldWrapper"
                 >
                   <input
-                    aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
+                    aria-describedby="generated-id-help generated-id-error-0 generated-id-error-1"
                     id="generated-id"
                     onBlur={[Function]}
                     onFocus={[Function]}

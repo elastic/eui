@@ -21,7 +21,7 @@ const paddingSizeToClassNameMap = {
 export class EuiDescribedFormGroup extends Component {
   constructor(props) {
     super(props);
-    this.ariaId = props.idAria || makeId();
+    this.ariaId = makeId();
   }
 
   render() {
@@ -33,7 +33,6 @@ export class EuiDescribedFormGroup extends Component {
       titleSize,
       title,
       description,
-      idAria: userAriaId,
       ...rest
     } = this.props;
 
@@ -52,10 +51,6 @@ export class EuiDescribedFormGroup extends Component {
       paddingSizeToClassNameMap[titleSize]
     );
 
-    const ariaProps = {
-      'aria-labelledby': `${ariaId}-title`,
-    };
-
     let renderedDescription;
 
     if (description) {
@@ -71,7 +66,7 @@ export class EuiDescribedFormGroup extends Component {
     }
 
     return (
-      <div role="group" className={classes} {...ariaProps} {...rest}>
+      <div role="group" className={classes} {...rest}>
         <EuiFlexGroup gutterSize={gutterSize}>
           <EuiFlexItem>
             <EuiTitle

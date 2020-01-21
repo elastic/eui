@@ -98,9 +98,7 @@ export default class extends Component {
               or any other type of content.
             </Fragment>
           }>
-          <EuiFormRow
-            label="Text field"
-            helpText={<span>This is a help text</span>}>
+          <EuiFormRow label="Text field">
             <EuiFieldText name="first" aria-label="Example" />
           </EuiFormRow>
         </EuiDescribedFormGroup>

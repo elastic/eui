@@ -26,23 +26,15 @@ describe('EuiDescribedFormGroup', () => {
   });
 
   test('ties together parts for accessibility', () => {
-    const describedFormGroupProps = {
-      idAria: 'test-id',
-    };
-
     const formRowProps = {
       label: 'Label',
       helpText: 'Help text',
       isInvalid: true,
       error: ['Error one', 'Error two'],
-      describedByIds: ['test-id'],
     };
 
     const tree = mount(
-      <EuiDescribedFormGroup
-        {...requiredProps}
-        {...props}
-        {...describedFormGroupProps}>
+      <EuiDescribedFormGroup {...requiredProps} {...props}>
         <EuiFormRow {...formRowProps}>
           <input />
         </EuiFormRow>

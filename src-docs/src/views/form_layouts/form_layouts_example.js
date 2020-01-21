@@ -118,7 +118,7 @@ export const FormLayoutsExample = {
       text: (
         <p>
           Use <EuiCode>EuiDescribedFormGroup</EuiCode> component to associate
-          multiple <EuiCode>EuiFormRow</EuiCode>s.Or it can also simply be used
+          multiple <EuiCode>EuiFormRow</EuiCode>s. Or it can also simply be used
           with one <EuiCode>EuiFormRow</EuiCode> as a way to display additional
           text next to the field (on mobile, will revert to being stacked).
         </p>
