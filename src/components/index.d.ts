@@ -3,7 +3,6 @@
 /// <reference path="./date_picker/index.d.ts" />
 /// <reference path="./form/index.d.ts" />
 /// <reference path="./modal/index.d.ts" />
-/// <reference path="./tabs/index.d.ts" />
 
 declare module '@elastic/eui' {
   // @ts-ignore
