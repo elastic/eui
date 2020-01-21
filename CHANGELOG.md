@@ -11,6 +11,7 @@
 **Bug fixes**
 
 - Increased column width on `EuiTableHeaderCellCheckbox` to prevent `EuiCheckbox`'s focus ring from getting clipped in `EuiBasicTable` ([#2770](https://github.com/elastic/eui/pull/2770))
+- Fixed filled `EuiButton`s in `EuiControlBar` ([#2781](https://github.com/elastic/eui/pull/2781))
 
 **Deprecations**
 
