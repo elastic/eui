@@ -3306,16 +3306,16 @@ exports[`EuiIcon props type logoAPM is rendered 1`] = `
 >
   <title />
   <path
-    d="M0 0h32v10H0z"
+    d="M10 32H7.238C3.793 32 1 28.865 1 24.998V15h9v17z"
     fill="#F04E98"
   />
   <path
     class="euiIcon__fillNegative"
-    d="M10 10h22a10 10 0 01-10 10H10V10z"
+    d="M10 32h9V8h-9z"
   />
   <path
-    d="M19 23h13v9H19z"
-    fill="#0080D5"
+    d="M31 32h-9V0l1.973.024C27.866.072 31 3.731 31 8.228V32z"
+    fill="#07C"
   />
 </svg>
 `;
@@ -4064,23 +4064,18 @@ exports[`EuiIcon props type logoEnterpriseSearch is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <title />
-  <g
-    fill="none"
-    fill-rule="evenodd"
-  >
-    <path
-      d="M16 0c-2.918 0-5.645.794-8 2.158 4.777 2.768 8 7.923 8 13.842 0 5.919-3.223 11.074-8 13.842A15.907 15.907 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0"
-      fill="#00BFB3"
-    />
-    <path
-      d="M8 24h2.222A12.996 12.996 0 0013 16c0-2.935-1.012-5.744-2.778-8H8a8 8 0 000 16"
-      fill="#FEC514"
-    />
-    <path
-      class="euiIcon__fillNegative"
-      d="M16 8h-2.152A15.877 15.877 0 0116 16c0 2.918-.786 5.647-2.152 8H16a8 8 0 000-16"
-    />
-  </g>
+  <path
+    d="M17.557 5.05c.17-.202.457-.512.86-.93C19.483 3.017 21.828 1 23.801 1H30v30h-6.2c-1.972 0-3.995-1.449-5.383-3.106l-.764-1.052 2.75-3.477c3.462-4.376 3.463-10.332.001-14.707L17.557 5.05z"
+    fill="#FEC514"
+  />
+  <path
+    d="M2 31V1h5.81c1.71 0 3.35.786 4.387 2.1l5.855 7.42c2.598 3.283 2.598 7.698-.002 10.983l-5.855 7.403C11.158 30.217 9.52 31 7.815 31H2z"
+    fill="#F04E98"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M15.384 24.89L12.15 21.7c-2.868-3.318-2.868-8.22.002-11.322 1.535-1.639 2.611-2.718 3.23-3.238l2.67 3.238c2.637 3.385 2.575 7.987-.062 11.374l-2.607 3.137z"
+  />
 </svg>
 `;
 
@@ -4878,6 +4873,33 @@ exports[`EuiIcon props type logoNginx is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoObservability is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M10 32H7.238C3.793 32 1 28.865 1 24.998V15h9v17z"
+    fill="#F04E98"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M10 32h9V8h-9z"
+  />
+  <path
+    d="M31 32h-9V0l1.973.024C27.866.072 31 3.731 31 8.228V32z"
+    fill="#07C"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoOsquery is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -5214,16 +5236,16 @@ exports[`EuiIcon props type logoSecurity is rendered 1`] = `
 >
   <title />
   <path
-    d="M0 22c0 5.522 4.478 10 10 10V12C4.478 12 0 16.477 0 22"
-    fill="#00BFB3"
+    d="M9 7.008V0h20v16.744c0 3.913-6.378 6.477-9.015 7.256V7.008H9z"
+    fill="#FA744E"
   />
   <path
-    d="M10 0v9c7.168 0 13 5.831 13 13h9C32 9.85 22.15 0 10 0"
-    fill="#F04E98"
+    d="M3 20.073V10h14v22C7.667 27.98 3 24.004 3 20.073z"
+    fill="#1DBAB0"
   />
   <path
     class="euiIcon__fillNegative"
-    d="M10 12v10h10c0-5.523-4.478-10-10-10"
+    d="M9 10h8v14c-2.983-1.14-8-3.756-8-7.043V10z"
   />
 </svg>
 `;
@@ -5411,6 +5433,33 @@ exports[`EuiIcon props type logoWindows is rendered 1`] = `
   <path
     d="M0 4.51l12.977-1.768.006 12.518-12.971.074L0 4.51zm12.97 12.192l.011 12.529-12.97-1.784-.002-10.829 12.962.084zm1.574-14.19L31.751 0v15.1l-17.207.137V2.511zm17.21 14.308l-.003 15.033-17.207-2.429-.024-12.632 17.235.028z"
     fill="#00ADEF"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type logoWorkplaceSearch is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title />
+  <path
+    d="M17.557 5.05c.17-.202.457-.512.86-.93C19.483 3.017 21.828 1 23.801 1H30v30h-6.2c-1.972 0-3.995-1.449-5.383-3.106l-.764-1.052 2.75-3.477c3.462-4.376 3.463-10.332.001-14.707L17.557 5.05z"
+    fill="#FEC514"
+  />
+  <path
+    d="M2 31V1h5.81c1.71 0 3.35.786 4.387 2.1l5.855 7.42c2.598 3.283 2.598 7.698-.002 10.983l-5.855 7.403C11.158 30.217 9.52 31 7.815 31H2z"
+    fill="#F04E98"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M15.384 24.89L12.15 21.7c-2.868-3.318-2.868-8.22.002-11.322 1.535-1.639 2.611-2.718 3.23-3.238l2.67 3.238c2.637 3.385 2.575 7.987-.062 11.374l-2.607 3.137z"
   />
 </svg>
 `;

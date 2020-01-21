@@ -66,11 +66,21 @@ function compileBundle() {
   shell.mkdir('-p', 'dist');
 
   console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  execSync('webpack --config=src/webpack.config.js', {
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      BABEL_MODULES: false,
+    },
+  });
 
   console.log('Building minified bundle...');
   execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
     stdio: 'inherit',
+    env: {
+      ...process.env,
+      BABEL_MODULES: false,
+    },
   });
 
   console.log('Building chart theme module...');

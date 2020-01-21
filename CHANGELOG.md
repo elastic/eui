@@ -1,5 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiFormRow` to TypeScript ([#2712](https://github.com/elastic/eui/pull/2712))
+- Updated `logoAPM`, `logoSecurity` and `logoEnterpriseSearch`. Added `logoWorkplaceSearch` and `logoObservability` ([#2769](https://github.com/elastic/eui/pull/2769))
+- Converted `EuiFilterButton` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
+- Converted `EuiFilterSelectItem` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
+- Converted `EuiFieldSearch` to TypeScript ([#2775](https://github.com/elastic/eui/pull/2775))
+
+**Bug fixes**
+
+- Increased column width on `EuiTableHeaderCellCheckbox` to prevent `EuiCheckbox`'s focus ring from getting clipped in `EuiBasicTable` ([#2770](https://github.com/elastic/eui/pull/2770))
+
+**Deprecations**
+
+- `EuiIcon`'s `logoEnterpriseSearch` type deprecated in favor of `logoWorkplaceSearch`
+- `EuiIcon`'s `logoAPM` type deprecated in favor of `logoObservability`
+
+## [`18.2.1`](https://github.com/elastic/eui/tree/v18.2.1)
+
+**Bug fixes**
+
+- Fixed `EuiFieldSearch`'s trigger of `onChange` when clearing the field value ([#2764](https://github.com/elastic/eui/pull/2764))
+
+## [`18.2.0`](https://github.com/elastic/eui/tree/v18.2.0)
+
 - Added `rencentlyViewedApp` app icon to `EuiIcon` ([#2755](https://github.com/elastic/eui/pull/2755))
 
 **Bug fixes**

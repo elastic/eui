@@ -606,7 +606,7 @@ export class EuiBasicTable<T = any> extends Component<
 
     if (selection) {
       headers.push(
-        <EuiTableHeaderCellCheckbox key="_selection_column_h" width="24px">
+        <EuiTableHeaderCellCheckbox key="_selection_column_h">
           {this.renderSelectAll(false)}
         </EuiTableHeaderCellCheckbox>
       );

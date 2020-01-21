@@ -9,16 +9,16 @@ const EuiIconLogoSecurity = ({ title, ...props }) => (
     {...props}>
     <title>{title}</title>
     <path
-      fill="#00BFB3"
-      d="M0 22c0 5.522 4.478 10 10 10V12C4.478 12 0 16.477 0 22"
+      d="M9 7.008V0h20v16.744c0 3.913-6.378 6.477-9.015 7.256V7.008H9z"
+      fill="#FA744E"
     />
     <path
-      fill="#F04E98"
-      d="M10 0v9c7.168 0 13 5.831 13 13h9C32 9.85 22.15 0 10 0"
+      d="M3 20.073V10h14v22C7.667 27.98 3 24.004 3 20.073z"
+      fill="#1DBAB0"
     />
     <path
+      d="M9 10h8v14c-2.983-1.14-8-3.756-8-7.043V10z"
       className="euiIcon__fillNegative"
-      d="M10 12v10h10c0-5.523-4.478-10-10-10"
     />
   </svg>
 );
