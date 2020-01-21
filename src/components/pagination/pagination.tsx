@@ -5,6 +5,7 @@ import { CommonProps } from '../common';
 import { EuiPaginationButton } from './pagination_button';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
+import { EuiText } from '../text';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -209,7 +210,11 @@ export const EuiPagination: FunctionComponent<Props> = ({
     return (
       <div className={classes} {...rest}>
         {previousButton}
-        {firstPageButtonCompressed}/{lastPageButtonCompressed}
+        {firstPageButtonCompressed}
+        <EuiText size="s">
+          <EuiI18n token="euiPagination.of" default="of" />
+        </EuiText>
+        {lastPageButtonCompressed}
         {nextButton}
       </div>
     );
