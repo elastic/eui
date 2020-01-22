@@ -1,7 +1,12 @@
-import React, { FunctionComponent, ReactNode, useEffect } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react';
 import classnames from 'classnames';
 
-import { EuiModal } from './modal';
+import { EuiModal, EuiModalProps } from './modal';
 import { EuiModalFooter } from './modal_footer';
 import { EuiModalHeader } from './modal_header';
 import { EuiModalHeaderTitle } from './modal_header_title';
@@ -11,12 +16,20 @@ import { EuiButton, EuiButtonEmpty } from '../button';
 
 import { EuiText } from '../text';
 
-export interface EuiConfirmModalProps {
+export interface EuiConfirmModalProps
+  extends Omit<
+    EuiModalProps,
+    'children' | 'initialFocus' | 'onClose' | 'title'
+  > {
   children?: ReactNode;
   title?: ReactNode;
   cancelButtonText?: ReactNode;
   confirmButtonText?: ReactNode;
-  onCancel: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onCancel: (
+    event?:
+      | React.KeyboardEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => void;
   onConfirm?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   confirmButtonDisabled?: boolean;
   className?: string;
@@ -42,31 +55,29 @@ export interface EuiConfirmModalProps {
 export const CONFIRM_BUTTON = 'confirm';
 export const CANCEL_BUTTON = 'cancel';
 
-export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = (
-  props: EuiConfirmModalProps
-) => {
-  const {
-    children,
-    title,
-    onCancel,
-    onConfirm,
-    cancelButtonText,
-    confirmButtonText,
-    confirmButtonDisabled,
-    className,
-    buttonColor = 'primary',
-    defaultFocusedButton,
-    ...rest
-  } = props;
-
-  let cancelButton: any;
-  let confirmButton: any;
+export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
+  children,
+  title,
+  onCancel,
+  onConfirm,
+  cancelButtonText,
+  confirmButtonText,
+  confirmButtonDisabled,
+  className,
+  buttonColor = 'primary',
+  defaultFocusedButton,
+  ...rest
+}) => {
+  const [cancelButton, setCancelButton] = useState<
+    HTMLButtonElement | HTMLAnchorElement | null
+  >(null);
+  const [confirmButton, setConfirmButton] = useState<HTMLButtonElement | null>(
+    null
+  );
 
   useEffect(() => {
     // We have to do this instead of using `autoFocus` because React's polyfill for auto-focusing
     // elements conflicts with the focus-trap logic we have on EuiModal.
-    const { defaultFocusedButton } = props;
-
     // Wait a beat for the focus-trap to complete, and then set focus to the right button. Check that
     // the buttons exist first, because it's possible the modal has been closed already.
     requestAnimationFrame(() => {
@@ -76,10 +87,11 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = (
         confirmButton.focus();
       }
     });
-  }, [cancelButton, confirmButton, props]);
+  });
 
-  const confirmRef = (node: any) => (confirmButton = node);
-  const cancelRef = (node: any) => (cancelButton = node);
+  const confirmRef = (node: HTMLButtonElement | null) => setConfirmButton(node);
+  const cancelRef = (node: HTMLButtonElement | HTMLAnchorElement | null) =>
+    setCancelButton(node);
 
   const classes = classnames('euiModal--confirmation', className);
 

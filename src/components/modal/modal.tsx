@@ -12,7 +12,11 @@ import { EuiI18n } from '../i18n';
 export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: ReactNode;
-  onClose: (event?: any) => void;
+  onClose: (
+    event?:
+      | React.KeyboardEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => void;
   /**
    * Sets the max-width of the modal.
    * Set to `true` to use the default (`euiBreakpoints 'm'`),
@@ -25,19 +29,15 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
   initialFocus?: HTMLElement | (() => HTMLElement) | string;
 }
 
-export const EuiModal: FunctionComponent<EuiModalProps> = (
-  props: EuiModalProps
-) => {
-  const {
-    className,
-    children,
-    initialFocus,
-    onClose, // eslint-disable-line no-unused-vars
-    maxWidth = true,
-    style,
-    ...rest
-  } = props;
-
+export const EuiModal: FunctionComponent<EuiModalProps> = ({
+  className,
+  children,
+  initialFocus,
+  onClose,
+  maxWidth = true,
+  style,
+  ...rest
+}) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.keyCode === keyCodes.ESCAPE) {
       event.preventDefault();
@@ -70,7 +70,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = (
         style={newStyle || style}
         {...rest}>
         <EuiI18n token="euiModal.closeModal" default="Closes this modal window">
-          {(closeModal: any) => (
+          {(closeModal: string) => (
             <EuiButtonIcon
               iconType="cross"
               onClick={onClose}
