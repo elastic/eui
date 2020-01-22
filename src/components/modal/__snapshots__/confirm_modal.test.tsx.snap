@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders EuiConfirmModal 1`] = `
+exports[`EuiConfirmModal renders EuiConfirmModal 1`] = `
 Array [
   <div
     data-focus-guard="true"
@@ -111,7 +111,7 @@ Array [
 ]
 `;
 
-exports[`renders EuiConfirmModal without EuiModalBody, if empty 1`] = `
+exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 1`] = `
 Array [
   <div
     data-focus-guard="true"
