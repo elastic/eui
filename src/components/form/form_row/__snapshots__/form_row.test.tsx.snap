@@ -590,7 +590,6 @@ exports[`EuiFormRow props label renders as a legend and subsquently a fieldset w
   >
     <EuiFormLabel
       className="euiFormRow__label"
-      isFocused={false}
       type="legend"
     >
       label

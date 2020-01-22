@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import sinon from 'sinon';
 import { requiredProps, findTestSubject } from '../../../test';
 
 import { EuiTabbedContent, AUTOFOCUS } from './tabbed_content';
@@ -38,13 +37,13 @@ describe('EuiTabbedContent', () => {
   describe('props', () => {
     describe('onTabClick', () => {
       test('is called when a tab is clicked', () => {
-        const onTabClickHandler = sinon.stub();
+        const onTabClickHandler = jest.fn();
         const component = mount(
           <EuiTabbedContent onTabClick={onTabClickHandler} tabs={tabs} />
         );
         findTestSubject(component, 'kibanaTab').simulate('click');
-        sinon.assert.calledOnce(onTabClickHandler);
-        sinon.assert.calledWith(onTabClickHandler, kibanaTab);
+        expect(onTabClickHandler).toBeCalledTimes(1);
+        expect(onTabClickHandler).toBeCalledWith(kibanaTab);
       });
     });
 

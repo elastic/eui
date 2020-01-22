@@ -17,7 +17,7 @@ export default () => (
     &emsp;
     <EuiBetaBadge label="Lab" iconType="beaker" />
     <EuiSpacer />
-    <EuiTitle>
+    <EuiTitle size="s">
       <h3>
         Beta badges will also line up nicely with titles &nbsp;
         <EuiBetaBadge

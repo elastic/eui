@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import { requiredProps } from '../../../test';
-import sinon from 'sinon';
 
 import { EuiFormRow, DISPLAYS } from './form_row';
 
@@ -16,19 +15,6 @@ describe('EuiFormRow', () => {
     );
 
     expect(component).toMatchSnapshot();
-  });
-
-  test('no children is an error', () => {
-    expect(() => <EuiFormRow {...requiredProps} />).toThrow();
-  });
-
-  test('two children is an error', () => {
-    expect(() => (
-      <EuiFormRow {...requiredProps}>
-        <div />
-        <div />
-      </EuiFormRow>
-    )).toThrow();
   });
 
   test('ties together parts for accessibility', () => {
@@ -231,7 +217,7 @@ describe('EuiFormRow', () => {
   describe('behavior', () => {
     describe('onFocus', () => {
       test('is called in child', () => {
-        const focusMock = sinon.stub();
+        const focusMock = jest.fn();
 
         const component = mount(
           <EuiFormRow label={<span>Label</span>}>
@@ -241,7 +227,7 @@ describe('EuiFormRow', () => {
 
         component.find('input').simulate('focus');
 
-        sinon.assert.calledOnce(focusMock);
+        expect(focusMock).toBeCalledTimes(1);
 
         // Ensure the focus event is properly fired on the parent
         // which will pass down to the EuiFormLabel
@@ -265,7 +251,7 @@ describe('EuiFormRow', () => {
 
     describe('onBlur', () => {
       test('is called in child', () => {
-        const blurMock = sinon.stub();
+        const blurMock = jest.fn();
 
         const component = mount(
           <EuiFormRow label={<span>Label</span>}>
@@ -275,7 +261,7 @@ describe('EuiFormRow', () => {
 
         component.find('input').simulate('blur');
 
-        sinon.assert.calledOnce(blurMock);
+        expect(blurMock).toBeCalledTimes(1);
 
         // Ensure the blur event is properly fired on the parent
         // which will pass down to the EuiFormLabel

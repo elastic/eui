@@ -4,28 +4,20 @@ exports[`TermToggleGroupFilter render - active 1`] = `
 Array [
   <EuiFilterButton
     aria-pressed={true}
-    color="text"
-    grow={true}
     hasActiveFilters={true}
-    iconSide="right"
     key="field_value_toggle_filter_item_0"
     noDivider={true}
     onClick={[Function]}
-    type="button"
     withNext={true}
   >
     Kibana
   </EuiFilterButton>,
   <EuiFilterButton
     aria-pressed={false}
-    color="text"
-    grow={true}
     hasActiveFilters={false}
-    iconSide="right"
     key="field_value_toggle_filter_item_1"
     noDivider={false}
     onClick={[Function]}
-    type="button"
     withNext={false}
   >
     Elasticsearch
@@ -37,28 +29,20 @@ exports[`TermToggleGroupFilter render - active negated - custom negated name 1`]
 Array [
   <EuiFilterButton
     aria-pressed={true}
-    color="text"
-    grow={true}
     hasActiveFilters={true}
-    iconSide="right"
     key="field_value_toggle_filter_item_0"
     noDivider={true}
     onClick={[Function]}
-    type="button"
     withNext={true}
   >
     -Kibana
   </EuiFilterButton>,
   <EuiFilterButton
     aria-pressed={false}
-    color="text"
-    grow={true}
     hasActiveFilters={false}
-    iconSide="right"
     key="field_value_toggle_filter_item_1"
     noDivider={false}
     onClick={[Function]}
-    type="button"
     withNext={false}
   >
     Elasticsearch
@@ -70,28 +54,20 @@ exports[`TermToggleGroupFilter render - active negated 1`] = `
 Array [
   <EuiFilterButton
     aria-pressed={true}
-    color="text"
-    grow={true}
     hasActiveFilters={true}
-    iconSide="right"
     key="field_value_toggle_filter_item_0"
     noDivider={true}
     onClick={[Function]}
-    type="button"
     withNext={true}
   >
     Not Kibana
   </EuiFilterButton>,
   <EuiFilterButton
     aria-pressed={false}
-    color="text"
-    grow={true}
     hasActiveFilters={false}
-    iconSide="right"
     key="field_value_toggle_filter_item_1"
     noDivider={false}
     onClick={[Function]}
-    type="button"
     withNext={false}
   >
     Elasticsearch
@@ -103,28 +79,20 @@ exports[`TermToggleGroupFilter render 1`] = `
 Array [
   <EuiFilterButton
     aria-pressed={false}
-    color="text"
-    grow={true}
     hasActiveFilters={false}
-    iconSide="right"
     key="field_value_toggle_filter_item_0"
     noDivider={true}
     onClick={[Function]}
-    type="button"
     withNext={true}
   >
     Kibana
   </EuiFilterButton>,
   <EuiFilterButton
     aria-pressed={false}
-    color="text"
-    grow={true}
     hasActiveFilters={false}
-    iconSide="right"
     key="field_value_toggle_filter_item_1"
     noDivider={false}
     onClick={[Function]}
-    type="button"
     withNext={false}
   >
     Elasticsearch
