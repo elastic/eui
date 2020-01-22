@@ -534,7 +534,30 @@ export class EuiBasicTable<T = any> extends Component<
 
   renderTableCaption() {
     const { items } = this.props;
-
+    const { pagination } = this.props;
+    let paginationElement;
+    if (pagination && pagination.totalItemCount > 0) {
+      paginationElement = (
+        <EuiI18n
+          token="euiBasicTable.tableDescription"
+          default="Below is a table containing {itemCount} rows out of {totalItemCount}."
+          values={{
+            totalItemCount: pagination.totalItemCount,
+            itemCount: items.length,
+          }}
+        />
+      );
+    } else {
+      paginationElement = (
+        <EuiI18n
+          token="euiBasicTable.tableDescription"
+          default="Below is a table containing {itemCount} rows."
+          values={{
+            itemCount: items.length,
+          }}
+        />
+      );
+    }
     return (
       <EuiScreenReaderOnly>
         <caption
@@ -542,13 +565,7 @@ export class EuiBasicTable<T = any> extends Component<
           role="status"
           aria-relevant="text"
           aria-live="polite">
-          <EuiDelayRender>
-            <EuiI18n
-              token="euiBasicTable.tableDescription"
-              default="Below is a table of {itemCount} items."
-              values={{ itemCount: items.length }}
-            />
-          </EuiDelayRender>
+          <EuiDelayRender>{paginationElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
     );
