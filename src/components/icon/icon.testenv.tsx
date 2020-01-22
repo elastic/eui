@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 export const EuiIcon = ({
   type,
   className,
@@ -22,8 +21,3 @@ export const EuiIcon = ({
 export const TYPES = [];
 export const COLORS = [];
 export const SIZES = [];
-
-export const IconPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.node,
-]);
