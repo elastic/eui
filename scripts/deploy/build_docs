@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#
+# Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+# or more contributor license agreements. Licensed under the Elastic License;
+# you may not use this file except in compliance with the Elastic License.
+#
+
+set -e
+
+NODE_IMG="node:10"
+
+# Compile using node image
+echo "Building docs using ${NODE_IMG} Docker image"
+docker pull $NODE_IMG
+docker run \
+    --rm -i \
+    --env HOME=/tmp \
+    --user=$(id -u):$(id -g) \
+    --volume $PWD:/app \
+    --workdir /app \
+    $NODE_IMG \
+    bash -c 'yarn && npm run build && npm run build-docs'
