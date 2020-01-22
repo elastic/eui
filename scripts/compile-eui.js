@@ -53,7 +53,7 @@ function compileLib() {
       const dir = path.dirname(file);
       const fileName = path.basename(file, '.js');
       const targetName = fileName.replace('.testenv', '');
-      fs.renameSync(file, `${dir}/${targetName}.js`);
+      fs.renameSync(file, path.join(dir, `${targetName}.js`));
     });
   });
 
