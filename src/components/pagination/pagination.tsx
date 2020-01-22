@@ -184,7 +184,6 @@ export const EuiPagination: FunctionComponent<Props> = ({
         {(pageOfTotal: string) => (
           <EuiPaginationButton
             onClick={onPageClick.bind(null, 0)}
-            hideOnMobile
             isActive={true}
             aria-label={pageOfTotal}>
             {activePage + 1}
@@ -200,7 +199,6 @@ export const EuiPagination: FunctionComponent<Props> = ({
         {(jumpToLastPage: string) => (
           <EuiPaginationButton
             onClick={onPageClick.bind(null, pageCount - 1)}
-            hideOnMobile
             aria-label={jumpToLastPage}>
             {pageCount}
           </EuiPaginationButton>
