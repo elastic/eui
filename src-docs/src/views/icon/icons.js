@@ -218,6 +218,9 @@ export const iconTypes = [
 
 export default () => (
   <EuiFlexGrid columns={4}>
+    <EuiIcon type="alert" title="alert icon" />
+    <EuiIcon type="alert" title="alert icon" aria-label="my title" />
+    <EuiIcon type="alert" title="alert icon" aria-labelledby="my labelledby" />
     {iconTypes.map(iconType => (
       <EuiFlexItem
         className="guideDemo__icon"

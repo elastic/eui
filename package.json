@@ -78,7 +78,7 @@
     "@elastic/charts": "^13.0.0",
     "@elastic/datemath": "^5.0.2",
     "@elastic/eslint-config-kibana": "^0.15.0",
-    "@svgr/core": "^4.1.0",
+    "@svgr/core": "5.0.1",
     "@svgr/plugin-svgo": "^4.0.3",
     "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.13",
