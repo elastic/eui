@@ -79,7 +79,12 @@ else
   # The trailing slash is critical with the branch.
   # Otherwise, files from subdirs will go to the same destination dir.
   echo "Copying $PWD/docs/* to gs://$BUCKET/$BRANCH/"
-  gsutil -m cp -r -a public-read -z js,css,html "$PWD/docs/*" "gs://$BUCKET/$BRANCH/"
+  gsutil -m cp \
+    -r \
+    -a public-read \
+    -z js,css,html \
+    -h "Cache-Control:public, max-age=604800" \
+    "$PWD/docs/*" "gs://$BUCKET/$BRANCH/"
 
   # if this is the highest release number to date, set redirect from root to
   # this version's directory
@@ -89,6 +94,10 @@ else
     sed -e \
       "s/___URL___/https:\/\/eui.elastic.co\/$GIT_BRANCH\//g" \
       scripts/deploy/redirect_template.html > $OUT_FILE
-    gsutil cp -a public-read -z html "$OUT_FILE" "gs://$BUCKET/index.html"
+    gsutil cp \
+      -a public-read \
+      -z html \
+      -h "Cache-Control:public, max-age=3600" \
+      "$OUT_FILE" "gs://$BUCKET/index.html"
   fi
 fi
