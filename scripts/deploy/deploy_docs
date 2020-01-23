@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+#
+# Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+# or more contributor license agreements. Licensed under the Elastic License;
+# you may not use this file except in compliance with the Elastic License.
+#
+
+set -e
+set +x
+
+# Two stage script: first it compiles using Node Docker container, then it runs
+# itself from within another docker container to deploy to GCP.
+
+# Usage:
+# * Compile and deploy:          ./scripts/deploy/deploy_docs
+# * Deploy only without docker:  ./scripts/deploy/deploy_docs nodocker
+
+# Expected env variables:
+# * GPROJECT - GCE project name, e.g. elastic-bekitzur
+# * GCE_ACCOUNT - credentials for the google service account (JSON blob)
+# * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/master", "v18.2.1")
+
+if [[ -z "${GPROJECT}" ]]; then
+    echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
+    exit 1
+fi
+if [[ -z "${GCE_ACCOUNT}" ]]; then
+  echo "GCE_ACCOUNT is not set. Expected Google service account JSON blob."
+  exit 1
+fi
+if [[ -z "${GIT_BRANCH}" ]]; then
+  echo "GIT_BRANCH is not set, e.g. 'GIT_BRANCH=refs/heads/master'"
+  exit 1
+fi
+
+if [[ "$1" != "nodocker" ]]; then
+  ./scripts/deploy/build_docs
+
+  # Run this script from inside the docker container, using google/cloud-sdk
+  # image echo "Deploying to bucket"
+  docker run \
+    --rm -i \
+    --env GCE_ACCOUNT \
+    --env GIT_BRANCH \
+    --env GPROJECT \
+    --env HOME=/tmp \
+    --volume $PWD:/app \
+    --user=$(id -u):$(id -g) \
+    --workdir /app \
+    'google/cloud-sdk:slim' \
+    /app/scripts/deploy/deploy_docs nodocker "$@"
+  unset GCE_ACCOUNT
+else
+  # Copying files to the bucket
+  # Login to the cloud with the service account
+  gcloud auth activate-service-account --key-file <(echo "$GCE_ACCOUNT")
+  unset GCE_ACCOUNT
+
+  # All branches go into correspondingly named dirs.
+  # remove remote "origin/", leaving just the branch name
+  BRANCH="${GIT_BRANCH#*/}"
+
+  # Copy files
+  EUI_DOCS_PROJECT=eui-docs-live
+  BUCKET=${GPROJECT}-${EUI_DOCS_PROJECT}
+
+  # The trailing slash is critical with the branch.
+  # Otherwise, files from subdirs will go to the same destination dir.
+  echo "Copying $PWD/release/* to gs://$BUCKET/$BRANCH/"
+  gsutil -m cp -r -a public-read -z js,css,html "$PWD/docs/*" "gs://$BUCKET/$BRANCH/"
+fi
