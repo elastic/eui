@@ -67,6 +67,23 @@ else
 
   # The trailing slash is critical with the branch.
   # Otherwise, files from subdirs will go to the same destination dir.
-  echo "Copying $PWD/release/* to gs://$BUCKET/$BRANCH/"
+  echo "Copying $PWD/docs/* to gs://$BUCKET/$BRANCH/"
   gsutil -m cp -r -a public-read -z js,css,html "$PWD/docs/*" "gs://$BUCKET/$BRANCH/"
+
+  # if this is the highest release number to date, set redirect from root to
+  # this version's directory
+  LATEST_RELEASE=$(docker run \
+    --rm -i \
+    --volume $PWD:/app \
+    --workdir /app \
+    node:10 \
+    bash -c 'git tag | xargs npx semver' | tail -n 1)
+  if [[ "v$LATEST_RELEASE" == "$GIT_BRANCH" ]]; then
+    echo "This is the latest release. Redirecting https://eui.elastic.co/ to path https://eui.elastic.co/$GIT_BRANCH/"
+    OUT_FILE=scripts/deploy/redirect_$GIT_BRANCH.html
+    sed -e \
+      "s/___URL___/https:\/\/eui.elastic.co\/v$GIT_BRANCH\//g" \
+      scripts/deploy/redirect_template.html > $OUT_FILE
+    gsutil cp -a public-read -z html "$OUT_FILE" "gs://$BUCKET/index.html"
+  fi
 fi
