@@ -177,6 +177,7 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
   cellProps?: object | CellPropsCallback<T>;
   columns: Array<EuiBasicTableColumn<T>>;
   error?: string;
+  tableCaption?: string;
   hasActions?: boolean;
   isExpandable?: boolean;
   isSelectable?: boolean;
@@ -440,6 +441,7 @@ export class EuiBasicTable<T = any> extends Component<
       rowProps,
       cellProps,
       tableLayout,
+      tableCaption,
       ...rest
     } = this.props;
 
@@ -533,39 +535,46 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTableCaption() {
-    const { items } = this.props;
-    const { pagination } = this.props;
-    let paginationElement;
-    if (pagination && pagination.totalItemCount > 0) {
-      paginationElement = (
+    const { items, pagination, tableCaption } = this.props;
+    let captionElement;
+    if (tableCaption) {
+      captionElement = (
         <EuiI18n
           token="euiBasicTable.tableDescription"
-          default="Below is a table containing {itemCount} rows out of {totalItemCount}."
+          default="{tableCaption}"
           values={{
-            totalItemCount: pagination.totalItemCount,
-            itemCount: items.length,
+            tableCaption: tableCaption,
           }}
         />
       );
     } else {
-      paginationElement = (
-        <EuiI18n
-          token="euiBasicTable.tableDescription"
-          default="Below is a table containing {itemCount} rows."
-          values={{
-            itemCount: items.length,
-          }}
-        />
-      );
+      if (pagination && pagination.totalItemCount > 0) {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescription"
+            default="Below is a table containing {itemCount} rows out of {totalItemCount}."
+            values={{
+              totalItemCount: pagination.totalItemCount,
+              itemCount: items.length,
+            }}
+          />
+        );
+      } else {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescription"
+            default="Below is a table containing {itemCount} rows."
+            values={{
+              itemCount: items.length,
+            }}
+          />
+        );
+      }
     }
     return (
       <EuiScreenReaderOnly>
-        <caption
-          className="euiTableCaption"
-          role="status"
-          aria-relevant="text"
-          aria-live="polite">
-          <EuiDelayRender>{paginationElement}</EuiDelayRender>
+        <caption className="euiTableCaption">
+          <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
     );

@@ -25,10 +25,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -148,10 +145,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -273,10 +267,7 @@ exports[`EuiBasicTable empty is rendered 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -343,10 +334,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -421,10 +409,7 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -491,10 +476,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -718,10 +700,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1010,10 +989,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1138,10 +1114,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1267,10 +1240,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1396,10 +1366,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1505,10 +1472,7 @@ exports[`EuiBasicTable with pagination 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1631,10 +1595,7 @@ exports[`EuiBasicTable with pagination and error 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1714,10 +1675,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -1883,10 +1841,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -2031,10 +1986,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -2224,10 +2176,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -2510,10 +2459,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -2703,10 +2649,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -2896,10 +2839,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -3200,10 +3140,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -3372,10 +3309,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
@@ -3500,10 +3434,7 @@ exports[`EuiBasicTable with sorting 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
