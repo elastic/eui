@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiModal` and `EuiConfirmModal` to TypeScript ([#2742](https://github.com/elastic/eui/pull/2742))
 - Converted `EuiTabs` to TypeScript ([#2717](https://github.com/elastic/eui/pull/2717))
 - Converted `EuiFormRow` to TypeScript ([#2712](https://github.com/elastic/eui/pull/2712))
 - Updated `logoAPM`, `logoSecurity` and `logoEnterpriseSearch`. Added `logoWorkplaceSearch` and `logoObservability` ([#2769](https://github.com/elastic/eui/pull/2769))
