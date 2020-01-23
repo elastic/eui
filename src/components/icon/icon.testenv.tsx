@@ -2,19 +2,16 @@ import React from 'react';
 export const EuiIcon = ({
   type,
   className,
-  dataTestSubj,
+  'data-test-subj': dataTestSubj,
   id,
-}: {
-  type: string;
-  className?: string;
-  dataTestSubj?: string;
-  id?: string;
-}) => (
+  ...rest
+}: any) => (
   <div
     data-euiicon-type={type}
     id={id}
     className={className}
     data-test-subj={dataTestSubj}
+    {...rest}
   />
 );
 
