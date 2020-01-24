@@ -23,7 +23,10 @@ enum ShiftDirection {
 }
 
 export type EuiSuperSelectProps<T extends string> = CommonProps &
-  Omit<EuiSuperSelectControlProps<T>, 'onClick' | 'options' | 'value'> & {
+  Omit<
+    EuiSuperSelectControlProps<T>,
+    'onChange' | 'onClick' | 'options' | 'value'
+  > & {
     /**
      * Pass an array of options that must at least include:
      * `value`: storing unique value of item,
