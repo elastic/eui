@@ -1,4 +1,4 @@
-import React, { Component, ButtonHTMLAttributes } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -6,6 +6,7 @@ import { CommonProps } from '../../common';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiSuperSelectControl,
+  EuiSuperSelectControlProps,
   EuiSuperSelectOption,
 } from './super_select_control';
 import { EuiPopover } from '../../popover';
@@ -21,11 +22,8 @@ enum ShiftDirection {
   FORWARD = 'forward',
 }
 
-const SHIFT_BACK = ShiftDirection.BACK as const;
-const SHIFT_FORWARD = ShiftDirection.FORWARD as const;
-
 export type EuiSuperSelectProps<T extends string> = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value'> & {
+  Omit<EuiSuperSelectControlProps<T>, 'onClick' | 'options' | 'value'> & {
     /**
      * Pass an array of options that must at least include:
      * `value`: storing unique value of item,
@@ -56,26 +54,6 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * Change `EuiContextMenuItem` layout position of icon
      */
     itemLayoutAlign?: EuiContextMenuItemLayoutAlignment;
-
-    /**
-     * Make it wide. Default: false
-     */
-    fullWidth?: boolean;
-
-    /**
-     * Provides invalid styling. Default: false
-     */
-    isInvalid?: boolean;
-
-    /**
-     * Provides a loading indicator. Default: false
-     */
-    isLoading?: boolean;
-
-    /**
-     * Make it short. Default: false
-     */
-    compressed?: boolean;
 
     /**
      * Applied to the outermost wrapper (popover)
@@ -130,8 +108,8 @@ export class EuiSuperSelect<T extends string> extends Component<
     });
 
     const focusSelected = () => {
-      const indexOfSelected: number | null = this.props.options.reduce(
-        (indexOfSelected: number | null, option, index) => {
+      const indexOfSelected = this.props.options.reduce<number | null>(
+        (indexOfSelected, option, index) => {
           if (indexOfSelected != null) return indexOfSelected;
           if (option == null) return null;
           return option.value === this.props.valueOfSelected ? index : null;
@@ -151,7 +129,7 @@ export class EuiSuperSelect<T extends string> extends Component<
 
         if (this.props.valueOfSelected != null) {
           if (indexOfSelected != null) {
-            this.focusItemAt(indexOfSelected as number);
+            this.focusItemAt(indexOfSelected);
           } else {
             focusSelected();
           }
@@ -203,13 +181,13 @@ export class EuiSuperSelect<T extends string> extends Component<
       case keyCodes.UP:
         e.preventDefault();
         e.stopPropagation();
-        this.shiftFocus(SHIFT_BACK);
+        this.shiftFocus(ShiftDirection.BACK);
         break;
 
       case keyCodes.DOWN:
         e.preventDefault();
         e.stopPropagation();
-        this.shiftFocus(SHIFT_FORWARD);
+        this.shiftFocus(ShiftDirection.FORWARD);
         break;
     }
   };
@@ -231,7 +209,7 @@ export class EuiSuperSelect<T extends string> extends Component<
       // somehow the select options has lost focus
       targetElementIndex = 0;
     } else {
-      if (direction === SHIFT_BACK) {
+      if (direction === ShiftDirection.BACK) {
         targetElementIndex =
           currentIndex === 0 ? this.itemNodes.length - 1 : currentIndex - 1;
       } else {
