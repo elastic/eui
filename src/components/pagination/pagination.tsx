@@ -208,11 +208,16 @@ export const EuiPagination: FunctionComponent<Props> = ({
     return (
       <div className={classes} {...rest}>
         {previousButton}
-        {firstPageButtonCompressed}
         <EuiText size="s">
-          <EuiI18n token="euiPagination.of" default="of" />
+          <EuiI18n
+            token="euiPagination.pageOfTotalCompressed"
+            default="{page} of {total}"
+            values={{
+              page: firstPageButtonCompressed,
+              total: lastPageButtonCompressed,
+            }}
+          />
         </EuiText>
-        {lastPageButtonCompressed}
         {nextButton}
       </div>
     );
