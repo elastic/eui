@@ -97,7 +97,7 @@ else
     gsutil cp \
       -a public-read \
       -z html \
-      -h "Cache-Control:public, max-age=3600" \
+      -h "Cache-Control:public, max-age=300" \
       "$OUT_FILE" "gs://$BUCKET/index.html"
   fi
 fi
