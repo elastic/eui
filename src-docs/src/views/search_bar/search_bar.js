@@ -35,7 +35,7 @@ const items = times(10, id => {
     type: random.oneOf(types),
     tag: random.setOf(tags.map(tag => tag.name), { min: 0, max: 3 }),
     active: random.boolean(),
-    owner: random.oneOf(users),
+    owner: random.oneOf(users) + (Math.random() > 0.5 ? '(' : ')'),
     followers: random.integer({ min: 0, max: 20 }),
     comments: random.integer({ min: 0, max: 10 }),
     stars: random.integer({ min: 0, max: 5 }),
