@@ -134,7 +134,10 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           >
             <EuiScreenReaderOnly>
               <caption
+                aria-live="polite"
+                aria-relevant="text"
                 className="euiScreenReaderOnly euiTableCaption"
+                role="status"
               >
                 <EuiDelayRender
                   delay={500}

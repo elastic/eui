@@ -440,8 +440,8 @@ export class EuiBasicTable<T = any> extends Component<
       hasActions,
       rowProps,
       cellProps,
-      tableLayout,
       tableCaption,
+      tableLayout,
       ...rest
     } = this.props;
 
@@ -535,8 +535,15 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTableCaption() {
-    const { items, pagination, tableCaption } = this.props;
+    const { tableCaption, columns } = this.props;
     let captionElement;
+    const columnsNames: ReactNode[] = [];
+
+    columns.forEach((column: EuiBasicTableColumn<T>) => {
+      const { field } = column as EuiTableFieldDataColumnType<T>;
+      columnsNames.push(field);
+    });
+
     if (tableCaption) {
       captionElement = (
         <EuiI18n
@@ -548,32 +555,24 @@ export class EuiBasicTable<T = any> extends Component<
         />
       );
     } else {
-      if (pagination && pagination.totalItemCount > 0) {
-        captionElement = (
-          <EuiI18n
-            token="euiBasicTable.tableDescription"
-            default="Below is a table containing {itemCount} rows out of {totalItemCount}."
-            values={{
-              totalItemCount: pagination.totalItemCount,
-              itemCount: items.length,
-            }}
-          />
-        );
-      } else {
-        captionElement = (
-          <EuiI18n
-            token="euiBasicTable.tableDescription"
-            default="Below is a table containing {itemCount} rows."
-            values={{
-              itemCount: items.length,
-            }}
-          />
-        );
-      }
+      captionElement = (
+        <EuiI18n
+          token="euiBasicTable.tableDescription"
+          default="This table contains: {columnNames}"
+          values={{
+            columnNames: columnsNames.join(', '),
+          }}
+        />
+      );
     }
+
     return (
       <EuiScreenReaderOnly>
-        <caption className="euiTableCaption">
+        <caption
+          className="euiTableCaption"
+          role="status"
+          aria-relevant="text"
+          aria-live="polite">
           <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
