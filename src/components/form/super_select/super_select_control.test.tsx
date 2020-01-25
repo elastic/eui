@@ -67,13 +67,14 @@ describe('EuiSuperSelectControl', () => {
     });
 
     test('empty value option is rendered', () => {
+      const value = undefined;
       const component = render(
         <EuiSuperSelectControl
           options={[
             { value: '1', inputDisplay: 'Option #1' },
             { value: '2', inputDisplay: 'Option #2' },
           ]}
-          value={''}
+          value={value}
           onChange={() => {}}
         />
       );

@@ -1,22 +1,56 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  Fragment,
+  FunctionComponent,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
 import makeId from '../form_row/make_id';
-import { EuiFormControlLayout } from '../form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form_control_layout';
 import { EuiI18n } from '../../i18n';
 
-export const EuiSuperSelectControl = ({
+export interface EuiSuperSelectOption<T> {
+  value: T;
+  inputDisplay?: ReactNode;
+  dropdownDisplay?: ReactNode;
+  disabled?: boolean;
+  'data-test-subj'?: string;
+}
+
+export interface EuiSuperSelectControlProps<T>
+  extends CommonProps,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
+  compressed?: boolean;
+  fullWidth?: boolean;
+  isInvalid?: boolean;
+  isLoading?: boolean;
+  readOnly?: boolean;
+
+  name?: string;
+  value?: T;
+
+  options?: Array<EuiSuperSelectOption<T>>;
+}
+
+export const EuiSuperSelectControl: <T extends string>(
+  props: EuiSuperSelectControlProps<T>
+) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = ({
   className,
-  options,
+  options = [],
   id,
   name,
-  fullWidth,
-  isLoading,
-  isInvalid,
+  fullWidth = false,
+  isLoading = false,
+  isInvalid = false,
   defaultValue,
-  compressed,
+  compressed = false,
   value,
   ...rest
 }) => {
@@ -38,7 +72,7 @@ export const EuiSuperSelectControl = ({
     selectDefaultValue = defaultValue || '';
   }
 
-  let selectedValue = '';
+  let selectedValue;
   if (value) {
     const selectedOption = options.find(option => option.value === value);
     selectedValue = selectedOption
@@ -46,7 +80,7 @@ export const EuiSuperSelectControl = ({
       : selectedValue;
   }
 
-  const icon = {
+  const icon: EuiFormControlLayoutProps['icon'] = {
     type: 'arrowDown',
     side: 'right',
   };
@@ -95,30 +129,4 @@ export const EuiSuperSelectControl = ({
       </EuiFormControlLayout>
     </Fragment>
   );
-};
-
-EuiSuperSelectControl.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.node.isRequired,
-      inputDisplay: PropTypes.node.isRequired,
-    })
-  ).isRequired,
-  isInvalid: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  /**
-   * when `true` creates a shorter height input
-   */
-  compressed: PropTypes.bool,
-};
-
-EuiSuperSelectControl.defaultProps = {
-  options: [],
-  fullWidth: false,
-  isLoading: false,
-  isInvalid: false,
-  compressed: false,
 };

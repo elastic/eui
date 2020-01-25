@@ -2613,6 +2613,18 @@ FooComponent.propTypes = {
       });
     });
 
+    describe('misc', () => {
+      it('supports non-initialized variable declarations', () => {
+        const result = transform(
+          `
+let something: any;
+`,
+          babelOptions
+        );
+
+        expect(result.code).toBe('let something;');
+      });
+    });
   });
 
   describe('remove types from exports', () => {
