@@ -201,7 +201,8 @@ exports[`EuiBreadcrumbs props render a popover is rendered 1`] = `
     >
       <button
         aria-label="Show all breadcrumbs"
-        class="euiBadge euiBadge-isClickable euiBadge--iconLeft euiBadge--default euiBreadcrumb euiBreadcrumb__collapsedBadge"
+        class="euiBadge euiBadge-isClickable euiBadge--iconLeft euiBreadcrumb euiBreadcrumb__collapsedBadge"
+        style="background-color:#d3dae6;color:#000"
         title="View hidden breadcrumbs"
       >
         <span

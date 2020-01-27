@@ -42,6 +42,7 @@ exports[`renders EuiColorPicker 1`] = `
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,6 +63,7 @@ exports[`renders EuiColorPicker 1`] = `
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -116,6 +118,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +139,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -189,6 +193,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -209,6 +214,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -262,6 +268,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -282,6 +289,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -336,6 +344,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -356,6 +365,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -411,6 +421,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -431,6 +442,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -485,6 +497,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -505,6 +518,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
               class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
+              role="img"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
@@ -590,10 +604,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #00B3A4 as the color"
+        aria-label="Select #54B399 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#00B3A4"
+        style="background:#54B399"
         type="button"
       />
     </div>
@@ -601,10 +615,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #3185FC as the color"
+        aria-label="Select #6092C0 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#3185FC"
+        style="background:#6092C0"
         type="button"
       />
     </div>
@@ -612,10 +626,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #DB1374 as the color"
+        aria-label="Select #D36086 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#DB1374"
+        style="background:#D36086"
         type="button"
       />
     </div>
@@ -623,10 +637,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #490092 as the color"
+        aria-label="Select #9170B8 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#490092"
+        style="background:#9170B8"
         type="button"
       />
     </div>
@@ -634,10 +648,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #FEB6DB as the color"
+        aria-label="Select #CA8EAE as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#FEB6DB"
+        style="background:#CA8EAE"
         type="button"
       />
     </div>
@@ -645,10 +659,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #E6C220 as the color"
+        aria-label="Select #D6BF57 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#E6C220"
+        style="background:#D6BF57"
         type="button"
       />
     </div>
@@ -656,10 +670,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #F98510 as the color"
+        aria-label="Select #B9A888 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#F98510"
+        style="background:#B9A888"
         type="button"
       />
     </div>
@@ -667,10 +681,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #BFA180 as the color"
+        aria-label="Select #DA8B45 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#BFA180"
+        style="background:#DA8B45"
         type="button"
       />
     </div>
@@ -678,10 +692,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #461A0A as the color"
+        aria-label="Select #AA6556 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#461A0A"
+        style="background:#AA6556"
         type="button"
       />
     </div>
@@ -689,10 +703,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #920000 as the color"
+        aria-label="Select #E7664C as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#920000"
+        style="background:#E7664C"
         type="button"
       />
     </div>
@@ -743,6 +757,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
                     class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                     focusable="false"
                     height="16"
+                    role="img"
                     viewBox="0 0 16 16"
                     width="16"
                     xmlns="http://www.w3.org/2000/svg"

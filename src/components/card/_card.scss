@@ -1,8 +1,5 @@
-@import '../panel/mixins';
-@import '../badge/beta_badge/mixins';
-
 // Start with a base of EuiPanel styles
-@include euiPanel($selector: 'euiCard');
+@include euiPanel($selector: '.euiCard');
 
 /**
  * 1. Footer is always at the bottom.
@@ -16,15 +13,15 @@
   display: flex;
   flex-direction: column;
   padding: $euiCardSpacing;
-  min-height: 1px; /* 2 */
-
-  // This creates a bunch of sub selectors for the beta badge
-  @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
+  min-height: 1px; /* 2 */// sass-lint:disable-line mixins-before-declarations
 
   &.euiCard-isDisabled {
-    background-color: $euiColorLightestShade;
     cursor: not-allowed; // duplicate property due to Chrome bug
     box-shadow: none;
+
+    &:not(.euiCard--plain) {
+      background-color: $euiColorLightestShade;
+    }
 
     .euiCard__title,
     .euiCard__description,
@@ -64,6 +61,7 @@
 
       &:focus,
       &:hover {
+        .euiCard__title,
         .euiCard__titleAnchor,
         .euiCard__titleButton {
           text-decoration: underline;
@@ -81,6 +79,10 @@
   &.euiCard--leftAligned {
     text-align: left;
     align-items: flex-start;
+
+    .euiCard__titleButton {
+      text-align: left;
+    }
   }
 
   &.euiCard--centerAligned {
@@ -91,15 +93,33 @@
   &.euiCard--rightAligned {
     text-align: right;
     align-items: flex-end;
+
+    .euiCard__titleButton {
+      text-align: right;
+    }
   }
 
   &.euiCard--isSelectable {
     position: relative;
-    padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;
+    padding-bottom: $euiCardSpacing + $euiCardBottomNodeHeight;
   }
 
   &.euiCard-isSelected {
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+  }
+}
+
+// This creates a bunch of sub selectors for the beta badge
+@include euiHasBetaBadge($selector: '.euiCard', $spacing: $euiCardSpacing);
+
+// Selectable cards don't work well without a border
+.euiCard--plain:not(.euiCard--isSelectable) {
+  border: none;
+  box-shadow: none;
+
+  .euiCard__image {
+    // Without a border, the image should stand on it's own so it needs to have all corners rounded
+    border-radius: $euiBorderRadius;
   }
 }
 
@@ -197,4 +217,3 @@
 .euiCard--hasChildren .euiCard__description {
   margin-bottom: $euiCardSpacing;
 }
-

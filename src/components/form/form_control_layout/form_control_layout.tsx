@@ -19,7 +19,7 @@ export { ICON_SIDES } from './form_control_layout_icons';
 type StringOrReactElement = string | ReactElement;
 type PrependAppendType = StringOrReactElement | StringOrReactElement[];
 
-type EuiFormControlLayoutProps = CommonProps &
+export type EuiFormControlLayoutProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
      * Creates an input group with element(s) coming before children

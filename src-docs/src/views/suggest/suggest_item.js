@@ -6,7 +6,7 @@ const shortDescription = 'This is the description';
 
 const sampleItems = [
   {
-    type: { iconType: 'kqlField', color: 'tint4' },
+    type: { iconType: 'kqlField', color: 'tint5' },
     label: 'Field sample',
     description: shortDescription,
   },
@@ -26,11 +26,11 @@ const sampleItems = [
     description: shortDescription,
   },
   {
-    type: { iconType: 'search', color: 'tint8' },
+    type: { iconType: 'search', color: 'tint10' },
     label: 'Recent search',
   },
   {
-    type: { iconType: 'save', color: 'tint5' },
+    type: { iconType: 'save', color: 'tint7' },
     label: 'Saved query',
   },
 ];
@@ -64,7 +64,7 @@ export default () => (
     />
     <EuiSpacer size="m" />
     <EuiSuggestItem
-      type={{ iconType: 'search', color: 'tint8' }}
+      type={{ iconType: 'search', color: 'tint10' }}
       label="Items with no description will expand their label"
     />
   </div>

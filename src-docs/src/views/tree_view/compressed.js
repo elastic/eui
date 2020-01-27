@@ -68,9 +68,10 @@ export class TreeViewCompressed extends React.Component {
             icon: <EuiToken size="xs" iconType="tokenConstant" />,
           },
           {
-            label: 'mailOptions',
-            id: 'mailOptions',
+            label: 'A custom class is on this one',
+            id: 'cutomClass',
             icon: <EuiToken size="xs" iconType="tokenObject" />,
+            className: 'euiTreeView__nodeInnerExample',
           },
         ],
       },

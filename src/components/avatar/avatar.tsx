@@ -2,8 +2,8 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 
-import { isColorDark, hexToRgb } from '../../services/color';
-import { VISUALIZATION_COLORS, toInitials } from '../../services';
+import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
+import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
 
 const sizeToClassNameMap = {
   none: null,
@@ -67,6 +67,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   type = 'user',
   ...rest
 }) => {
+  const visColors = euiPaletteColorBlindBehindText();
+
   const classes = classNames(
     'euiAvatar',
     sizeToClassNameMap[size],
@@ -85,8 +87,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   }
 
   const assignedColor =
-    color ||
-    VISUALIZATION_COLORS[Math.floor(name.length % VISUALIZATION_COLORS.length)];
+    color || visColors[Math.floor(name.length % visColors.length)];
   const textColor = isColorDark(...hexToRgb(assignedColor))
     ? '#FFFFFF'
     : '#000000';
@@ -111,7 +112,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
 // TODO: Migrate to a service
 function checkValidColor(color: EuiAvatarProps['color']) {
-  const validHex = color && /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
+  const validHex = color && isValidHex(color);
   if (color && !validHex) {
     throw new Error(
       'EuiAvatar needs to pass a valid color. This can either be a three ' +

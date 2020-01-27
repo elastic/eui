@@ -32,6 +32,21 @@ describe('EuiDroppable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('can be given multiple ReactElement children', () => {
+    const handler = jest.fn();
+    const component = render(
+      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+        <EuiDroppable droppableId="testDroppable">
+          <div />
+          <div />
+          <div />
+        </EuiDroppable>
+      </EuiDragDropContext>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('custom behavior', () => {
     describe('cloneDraggables', () => {
       const handler = jest.fn();

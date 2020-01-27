@@ -1,16 +1,225 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiModal` and `EuiConfirmModal` to TypeScript ([#2742](https://github.com/elastic/eui/pull/2742))
+- Converted `EuiTabs` to TypeScript ([#2717](https://github.com/elastic/eui/pull/2717))
+- Converted `EuiFormRow` to TypeScript ([#2712](https://github.com/elastic/eui/pull/2712))
+- Updated `logoAPM`, `logoSecurity` and `logoEnterpriseSearch`. Added `logoWorkplaceSearch` and `logoObservability` ([#2769](https://github.com/elastic/eui/pull/2769))
+- Converted `EuiFilterButton` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
+- Converted `EuiFilterSelectItem` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
+- Converted `EuiFieldSearch` to TypeScript ([#2775](https://github.com/elastic/eui/pull/2775))
+- Added `data-test-subj` to the `EuiContextMenuItem` in `EuiTablePagination` ([#2778](https://github.com/elastic/eui/pull/2778))
+- Improved `EuiIcon` a11y by using a `title` and `aria-labelledby` ([#2786](https://github.com/elastic/eui/pull/2786))
+- Improved compressed `EuiPagination` by including active and last page numbers ([#2779](https://github.com/elastic/eui/pull/2779))
+- Converted `EuiSuperSelect` to TypeScript ([#2776](https://github.com/elastic/eui/pull/2776))
+
+**Bug fixes**
+
+- Increased column width on `EuiTableHeaderCellCheckbox` to prevent `EuiCheckbox`'s focus ring from getting clipped in `EuiBasicTable` ([#2770](https://github.com/elastic/eui/pull/2770))
+- Fixed the display of `EuiButton` within `EuiControlBar` when `fill={true}` to be more consistent with other buttons ([#2781](https://github.com/elastic/eui/pull/2781))
+
+**Deprecations**
+
+- `EuiIcon`'s `logoEnterpriseSearch` type deprecated in favor of `logoWorkplaceSearch`
+- `EuiIcon`'s `logoAPM` type deprecated in favor of `logoObservability`
+
+## [`18.2.1`](https://github.com/elastic/eui/tree/v18.2.1)
+
+**Bug fixes**
+
+- Fixed `EuiFieldSearch`'s trigger of `onChange` when clearing the field value ([#2764](https://github.com/elastic/eui/pull/2764))
+
+## [`18.2.0`](https://github.com/elastic/eui/tree/v18.2.0)
+
+- Added `rencentlyViewedApp` app icon to `EuiIcon` ([#2755](https://github.com/elastic/eui/pull/2755))
+
+**Bug fixes**
+
+- Fixed `EuiBasicTable` & `EuiInMemoryTable` to not un- and re-mount rows when toggling `loading` prop ([#2754](https://github.com/elastic/eui/pull/2754))
+
+## [`18.1.0`](https://github.com/elastic/eui/tree/v18.1.0)
+
+- Lightened `EuiBadge` hollow border color in dark mode ([#2746](https://github.com/elastic/eui/pull/2746))
+- Added `minInputProps` and `maxInputProps` to supply more props to the inputs of `EuiDualRange` ([#2738](https://github.com/elastic/eui/pull/2738))
+- Changed `EuiBadge` to use EUI palette colors ([#2455](https://github.com/elastic/eui/pull/2455))
+- Darkened a few `euiPaletteColorBlind` colors ([#2455](https://github.com/elastic/eui/pull/2455))
+- Fixed bug in `EuiCard` where button text was not properly aligned ([#2741](https://github.com/elastic/eui/pull/2741))
+- Converted `EuiRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Converted `EuiDualRange` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Converted `EuiRangeInput` to TypeScript ([#2732](https://github.com/elastic/eui/pull/2732))
+- Added `bellSlash` glyph to `EuiIcon` ([#2714](https://github.com/elastic/eui/pull/2714))
+- Added `legend` prop to `EuiCheckboxGroup` and `EuiRadioGroup` to add `EuiFieldset` wrappers for title the groups ([#2739](https://github.com/elastic/eui/pull/2739))
+- Changed `EuiNavDrawerFlyout` to close after child nav items are clicked ([#2749](https://github.com/elastic/eui/pull/2749))
+- Changed `EuiNavDrawerFlyout` to trap focus while navigating via keyboard ([#2749](https://github.com/elastic/eui/pull/2749))
+- Created a `euiPaletteColorBlindBehindText` variant of the color blind palette ([#2750](https://github.com/elastic/eui/pull/2750))
+- Improved focus state of `EuiSwitch`, `EuiCheckbox`, `EuiRadio` and `EuiRange` ([#2745](https://github.com/elastic/eui/pull/2745))
+
+**Bug fixes**
+
+- Changed `EuiRadio` and `EuiCheckbox` labels to be `inline-block` ([#2739](https://github.com/elastic/eui/pull/2739))
+- Fixed `EuiCheckboxGroup`'s `options` type to fully extend the `EuiCheckbox` type ([#2739](https://github.com/elastic/eui/pull/2739))
+
+## [`18.0.0`](https://github.com/elastic/eui/tree/v18.0.0)
+
+- Converted `EuiFieldText` to Typescript ([#2688](https://github.com/elastic/eui/pull/2688))
+- Added `nested` glyph to `EuiIcon` ([#2707](https://github.com/elastic/eui/pull/2707))
+- Added `tableLayout` prop to `EuiTable`, `EuiBasicTable` and `EuiInMemoryTable` to provide the option of auto layout ([#2697](https://github.com/elastic/eui/pull/2697))
+- Converted `EuiSuggest` to Typescript ([#2692](https://github.com/elastic/eui/pull/2692))
+- Converted `EuiErrorBoundary` to Typescript  ([#2690](https://github.com/elastic/eui/pull/2690))
+- Updated `EuiNavDrawer` to accept React fragments ([#2710](https://github.com/elastic/eui/pull/2710))
+- Added `EuiFormFieldset` and `EuiFormLegend` components ([#2706](https://github.com/elastic/eui/pull/2706))
+- Adjusted colors of color blind viz palette ([#2686](https://github.com/elastic/eui/pull/2686))
+- Converted `EuiSelect` to Typescript ([#2694](https://github.com/elastic/eui/pull/2694))
+- Added `aggregate`, `pageSelect`, `pagesSelect`, `securitySignal`, `securitySignalDetected`, `securitySignalResolved` and `timeline` icons ([#2704](https://github.com/elastic/eui/pull/2704))
+- Added `useDependentState` custom hook ([#2725](https://github.com/elastic/eui/pull/#2725))
+- Added `isClearable` prop to `EuiFieldSearch` ([#2723](https://github.com/elastic/eui/pull/2723))
+
+**Bug fixes**
+
+- Fixed `isExpanded` property of nodes from `EuiTreeView` ([#2700](https://github.com/elastic/eui/pull/#2700))
+- Added text selection to `EuiLink` button ([#2722](https://github.com/elastic/eui/pull/#2722))
+- Fixed bug in `EuiDataGrid` where resizing columns changed the active DOM element ([#2724](https://github.com/elastic/eui/pull/#2724))
+- Fixed position of scrollbar in `EuiCodeBlock` ([#2727](https://github.com/elastic/eui/pull/#2727))
+- Fixed bug in `EuiDataGrid` that prevented the "Hide fields" popover from showing an updated column list ([#2725](https://github.com/elastic/eui/pull/#2725))
+
+**Breaking changes**
+
+- Changed accepted properties of the `color_palette` method to accept an array of colors ([#2686](https://github.com/elastic/eui/pull/#2686))
+- Removed the `palette` export to export each palette function directly ([#2686](https://github.com/elastic/eui/pull/#2686))
+- Changed the palette functions to be methods that accept a number of steps and removed `.colors` key ([#2686](https://github.com/elastic/eui/pull/#2686))
+
+## [`17.3.1`](https://github.com/elastic/eui/tree/v17.3.1)
+
+**Bug fixes**
+
+- Fixed TS types and exports for `EuiTextArea` and `EuiFieldNumber` ([#2703](https://github.com/elastic/eui/pull/2703))
+
+## [`17.3.0`](https://github.com/elastic/eui/tree/v17.3.0)
+
+- Converted `EuiFieldNumber` to Typescript ([#2685](https://github.com/elastic/eui/pull/2685))
+- Converted `EuiFieldPassword` to Typescript ([#2683](https://github.com/elastic/eui/pull/2683))
+- Converted `EuiHighlight` to Typescript ([#2681](https://github.com/elastic/eui/pull/2681))
+- Added `data-test-subj` property to the `EuiCodeEditor` component ([#2689](https://github.com/elastic/eui/pull/2689))
+- Converted `EuiTextArea` to Typescript ([#2695](https://github.com/elastic/eui/pull/2695))
+- Converted `EuiPage` and related child components to  TypeScript ([#2669](https://github.com/elastic/eui/pull/2669))
+- Added `annotation` glyph ([#2691](https://github.com/elastic/eui/pull/2691))
+- Added `initialWidth` and `isResizable` configurations to `EuiDataGrid`'s columns ([#2696](https://github.com/elastic/eui/pull/2696))
+
+**Bug fixes**
+
+- Reverted removal of `toggleOpen` method from `EuiNavDrawer` ([#2682](https://github.com/elastic/eui/pull/2682))
+- Improved `EuiDataGrid` update performance ([#2676](https://github.com/elastic/eui/pull/2676))
+- Fixed `EuiDatagrid` header top border when configured to have no toolbar ([#2619](https://github.com/elastic/eui/pull/#2619))
+
+## [`17.2.1`](https://github.com/elastic/eui/tree/v17.2.1)
+
+**Bug fixes**
+
+- Changed package.json version to match sure our build scripts release the correct sequential number ([#2674](https://github.com/elastic/eui/pull/2674))
+
+## [`17.1.3`](https://github.com/elastic/eui/tree/v17.1.3)
+
+**NOTE: This release came out of order due to a release script error. It actually came after 17.2.0 and can be ignored in favor of 17.2.1**
+
+- Reverted docs changes in `17.2.0` that caused the build script to die ([#2672](https://github.com/elastic/eui/pull/2672))
+
+**Bug fixes**
+
+- Removed TypeScript definitions in `*.test.tsx?` files from _eui.d.ts_ ([#2673](https://github.com/elastic/eui/pull/2673))
+
+## [`17.2.0`](https://github.com/elastic/eui/tree/v17.2.0)
+
+**NOTE: This release had an error in our documentation layer. Use 17.2.1 instead**
+
+- Improved a11y of `EuiNavDrawer` lock button state via `aria-pressed` ([#2643](https://github.com/elastic/eui/pull/2643))
+- Added new stylesheets for the EUI Amsterdam theme ([#2633](https://github.com/elastic/eui/pull/2633))
+- Added exports for available types related to `EuiDataGrid` ([#2640](https://github.com/elastic/eui/pull/2640))
+
+**Bug fixes**
+
+- Improved `EuiDataGrid` update performance ([#2638](https://github.com/elastic/eui/pull/2638))
+- Fixed `EuiDroppable` not accepting multiple children when using TypeScript ([#2634](https://github.com/elastic/eui/pull/2634))
+- Fixed `EuiComboBox` from submitting parent `form` element when selecting options via `Enter` key ([#2642](https://github.com/elastic/eui/pull/2642))
+- Fixed `EuiNavDrawer` expand button from losing focus after click ([#2643](https://github.com/elastic/eui/pull/2643))
+- Fixed instances of potentially duplicate `EuiPopover` `id` attributes ([#2667](https://github.com/elastic/eui/pull/2667))
+
+## [`17.1.2`](https://github.com/elastic/eui/tree/v17.1.2)
+
+**Bug fixes**
+
+- Fixed `EuiCodeEditor` custom mode file error by initializing with existing mode ([#2616](https://github.com/elastic/eui/pull/2616))
+- Removed `EuiIcon` default titles ([#2632](https://github.com/elastic/eui/pull/2632))
+
+## [`17.1.1`](https://github.com/elastic/eui/tree/v17.1.1)
+
+**Bug fixes**
+
+- Fixed screenreader text in `EuiTreeView` and added truncation ([#2627](https://github.com/elastic/eui/pull/2627))
+
+## [`17.1.0`](https://github.com/elastic/eui/tree/v17.1.0)
+
+- Added an optional `key` property inside the `options` prop in `EuiSelectableList` component ([#2608](https://github.com/elastic/eui/pull/2608))
+- Added `toolbarAdditionalControls` prop to `EuiDataGrid` to allow for custom buttons in the toolbar ([#2594](https://github.com/elastic/eui/pull/2594))
+- Added TypeScript definitions for `EuiBasicTable`, `EuiInMemoryTable`, and related components ([#2428](https://github.com/elastic/eui/pull/2428))
+- Updated `logoSecurity` and `appSecurityAnalytics` icons ([#2613](https://github.com/elastic/eui/pull/2613))
+- Added support for `.gif` base64 images in the webpack.config
+
+**Bug fixes**
+
+- Fixed UX/focus bug in `EuiDataGrid` when using keyboard shortcuts to paginate ([#2602](https://github.com/elastic/eui/pull/2602))
+- Fixed `EuiIcon` accessibility by adding a `title` prop and a default `aria-label` ([#2554](https://github.com/elastic/eui/pull/2554))
+- Fixed `EuiDataGrid`'s in-memory sorting of numeric columns when the cell data contains multiple digit groups ([#2603](https://github.com/elastic/eui/pull/2603))
+- Improved pagination in `EuiBasicTable`. `paginationBar` is hidden when there is no data and `EuiPagination` is displayed even when there is only one page ([#2598](https://github.com/elastic/eui/pull/#2598))
+- Fixed react-dom warning when `EuiPopover` was unmounted before calls to setState ([#2614](https://github.com/elastic/eui/pull/2614))
+
+## [`17.0.0`](https://github.com/elastic/eui/tree/v17.0.0)
+
+**Breaking changes**
+
+- Moved any shared component-level Sass variables and mixins into the `global_styling` directory ([#2551](https://github.com/elastic/eui/pull/2551))
+- Reworked `euiPanel()` mixin to require the entirety of a selector (i.e. require the '.' in addition to the string) ([#2551](https://github.com/elastic/eui/pull/2551))
+- Updated React peerDependencies to version 16.12 ([#2571](https://github.com/elastic/eui/pull/2571))
+- Changed to generated `id` value for `EuiFormRow` to ensure uniqueness  ([#2588](https://github.com/elastic/eui/pull/2588))
+
+## [`16.2.1`](https://github.com/elastic/eui/tree/v16.2.1)
+
+**Bug fixes**
+
+- Fixed label wrapping of `EuiSwitch` ([#2585](https://github.com/elastic/eui/pull/2585))
+- Replaced `<p>` tag surrounding the label with a `<span>` tag in `EuiSwitch` to fix any inherited margin ([#2585](https://github.com/elastic/eui/pull/2585))
+- Added the same padding from `EuiSelectableListItem` to the heading to fix alignment ([#2585](https://github.com/elastic/eui/pull/2585))
+- Added exports for `EuiCheckboxType`, `EuiCheckboxGroupOption`, and `EuiCheckboxGroupIdToSelectedMap` types ([#2593](https://github.com/elastic/eui/pull/2593))
+- Fixed `.euiHeaderLinks__mobileList` in `EuiHeaderLinks` to only display it on mobile ([#2590](https://github.com/elastic/eui/pull/#2590))
+- Fixed `EuiAccordion` icon rotation when it is a child of another accordion so it doesn't inherit the rotation state of the parent ([#2595](https://github.com/elastic/eui/pull/#2595))
+
+## [`16.2.0`](https://github.com/elastic/eui/tree/v16.2.0)
+
+- Added `EuiCheckableCard` component, for radio buttons or checkboxes with complex child content ([#2555](https://github.com/elastic/eui/pull/2555))
+- Updated `EuiCheckbox` and `EuiCheckboxGroup` to TypeScript ([#2555](https://github.com/elastic/eui/pull/2555))
+
+**Bug fixes**
+
+- Fixed `EuiSwitch` clicking on disabled label ([#2575](https://github.com/elastic/eui/pull/2575))
+- Fixed `EuiComboBox` options list closing when clicking outside the component after scrolling ([#2589](https://github.com/elastic/eui/pull/2589))
+
+## [`16.1.0`](https://github.com/elastic/eui/tree/v16.1.0)
+
+- Updated compressed styles for `EuiButtonGroup` to include a background color ([#2568](https://github.com/elastic/eui/pull/2568))
+- Added `heading` prop to `EuiCallOut` to allow for variance in the title tag ([#2357](https://github.com/elastic/eui/pull/2357))
 - Added `badge` prop and new styles `EuiHeaderAlert` ([#2506](https://github.com/elastic/eui/pull/2506))
 - Added new keyboard shortcuts for the data grid component: `Home` (same row, first column), `End` (same row, last column), `Ctrl+Home` (first row, first column), `Ctrl+End` (last row, last column), `Page Up` (next page) and `Page Down` (previous page) ([#2519](https://github.com/elastic/eui/pull/2519))
 - Added `disabled` prop to the `EuiCheckboxGroup` definition ([#2545](https://github.com/elastic/eui/pull/2545))
 - Added `disabled` option to the `option` attribute of the `options` object that is passed to the `EuiCheckboxGroup` so that checkboxes in a group can be individually disabled ([#2548](https://github.com/elastic/eui/pull/2548))
 - Added `EuiAspectRatio` component that allows for responsively resizing embeds ([#2535](https://github.com/elastic/eui/pull/2535))
+- Added `display` and `titleSize` props to `EuiCard` ([#2566](https://github.com/elastic/eui/pull/2566))
+- Added `accessibility` glyph to `EuiIcon` ([#2566](https://github.com/elastic/eui/pull/2566))
 
 **Bug fixes**
 
 - Fixed `EuiDataGrid` schema detection on already defined column schemas ([#2550](https://github.com/elastic/eui/pull/2550))
 - Added `euiTextBreakWord()` to `EuiToast` header ([#2549](https://github.com/elastic/eui/pull/2549))
 - Fixed `.eui-textBreakAll` on Firefox ([#2549](https://github.com/elastic/eui/pull/2549))
+- Fixed `EuiBetaBadge` accessibility with `tab-index=0` ([#2559](https://github.com/elastic/eui/pull/2559))
+- Improved `EuiIcon` loading performance ([#2565](https://github.com/elastic/eui/pull/2565))
 
 ## [`16.0.1`](https://github.com/elastic/eui/tree/v16.0.1)
 

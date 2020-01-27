@@ -17,20 +17,6 @@ function stripTypeScript(filename, ast) {
   }).code;
 }
 
-// .ts file could import types from a .tsx file, so force nested imports to parse JSX
-function forceTSXParsing(opts) {
-  return {
-    ...opts,
-    plugins: opts.plugins.map(plugin => {
-      if (plugin.key.indexOf(`@babel${path.sep}preset-typescript`) !== -1) {
-        plugin.options.isTSX = true;
-        plugin.options.allExtensions = true;
-      }
-      return plugin;
-    }),
-  };
-}
-
 // determine is a node is a TS*, or if it is a proptype that came from one
 function isTSType(node) {
   if (node == null) return false;
@@ -421,6 +407,15 @@ function getPropTypesForNode(node, optional, state) {
     //       ^^^ Foo
     case 'TSTypeAnnotation':
       propType = getPropTypesForNode(node.typeAnnotation, true, state);
+
+      if (
+        types.isLiteral(propType) ||
+        (types.isIdentifier(propType) &&
+          propType.name === 'undefined')
+      ) {
+        // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
+        propType = convertLiteralToOneOf(types, propType);
+      }
       break;
 
     // Foo['bar']
@@ -538,7 +533,11 @@ function getPropTypesForNode(node, optional, state) {
           ];
 
           let propTypeValue = typeProperty.value;
-          if (types.isLiteral(propTypeValue)) {
+          if (
+            types.isLiteral(propTypeValue) ||
+            (types.isIdentifier(propTypeValue) &&
+              propTypeValue.name === 'undefined')
+          ) {
             // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
             propTypeValue = convertLiteralToOneOf(types, propTypeValue);
           }
@@ -628,7 +627,7 @@ function getPropTypesForNode(node, optional, state) {
               // which don't translate to prop types.
               .filter(property => property.key != null)
               .map(property => {
-                const propertyPropType =
+                let propertyPropType =
                   property.type === 'TSMethodSignature'
                     ? getPropTypesForNode(
                         { type: 'TSFunctionType' },
@@ -640,6 +639,17 @@ function getPropTypesForNode(node, optional, state) {
                         property.optional,
                         state
                       );
+
+                if (
+                  types.isLiteral(propertyPropType) ||
+                  (types.isIdentifier(propertyPropType) &&
+                    propertyPropType.name === 'undefined')
+                ) {
+                  propertyPropType = convertLiteralToOneOf(types, propertyPropType);
+                  if (!property.optional) {
+                    propertyPropType = makePropTypeRequired(types, propertyPropType);
+                  }
+                }
 
                 const objectProperty = types.objectProperty(
                   types.identifier(
@@ -1127,7 +1137,10 @@ const typeDefinitionExtractors = {
    */
   VariableDeclaration: node => {
     return node.declarations.reduce((declarations, declaration) => {
-      if (declaration.init.type === 'ObjectExpression') {
+      if (
+        declaration.init != null &&
+        declaration.init.type === 'ObjectExpression'
+      ) {
         declarations.push({
           name: declaration.id.name,
           definition: declaration.init,
@@ -1319,8 +1332,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
               this.file.opts.filename
             ),
             fs: opts.fs || fs,
-            parse: code =>
-              babelCore.parse(code, forceTSXParsing(state.file.opts)),
+            parse: code => babelCore.parse(code, state.file.opts),
           };
 
           // collect named TS type definitions for later reference

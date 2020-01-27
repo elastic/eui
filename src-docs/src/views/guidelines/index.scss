@@ -28,19 +28,20 @@
 }
 
 .guideColorPalette__swatch {
-
   span {
     height: $euiSize;
     width: $euiSizeL;
   }
 
-  &:first-child span {
-    border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
+  &--small span {
+    width: auto;
+    height: $euiSizeS;
   }
+}
 
-  &:last-child span {
-    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
-  }
+.guideColorPalette__swatchHolder {
+  border-radius: $euiBorderRadius;
+  overflow: hidden;
 }
 
 // -------------------------------------

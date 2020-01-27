@@ -6,6 +6,8 @@ import AceEditor from 'react-ace';
 import { htmlIdGenerator, keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 
+const DEFAULT_MODE = 'text';
+
 function setOrRemoveAttribute(element, attributeName, value) {
   if (value === null || value === undefined) {
     element.removeAttribute(attributeName);
@@ -120,6 +122,8 @@ export class EuiCodeEditor extends Component {
       isReadOnly,
       setOptions,
       cursorStart,
+      mode = DEFAULT_MODE,
+      'data-test-subj': dataTestSubj = 'codeEditorContainer',
       ...rest
     } = this.props;
 
@@ -192,18 +196,17 @@ export class EuiCodeEditor extends Component {
       </div>
     );
 
-    if (this.isCustomMode()) {
-      delete rest.mode; // Otherwise, the AceEditor component will complain about wanting a string value for the mode prop.
-    }
-
     return (
       <div
         className={classes}
         style={{ width, height }}
-        data-test-subj="codeEditorContainer">
+        data-test-subj={dataTestSubj}>
         {prompt}
 
         <AceEditor
+          // Setting a default, existing `mode` is necessary to properly initialize the editor
+          // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
+          mode={this.isCustomMode() ? DEFAULT_MODE : mode}
           name={this.idGenerator()}
           ref={this.aceEditorRef}
           width={width}
@@ -229,6 +232,7 @@ EuiCodeEditor.propTypes = {
   isReadOnly: PropTypes.bool,
   setOptions: PropTypes.object,
   cursorStart: PropTypes.number,
+  'data-test-subj': PropTypes.string,
 
   /**
    * Use string for a built-in mode or object for a custom mode

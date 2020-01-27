@@ -1,4 +1,8 @@
-export { EuiFormControlLayout, ICON_SIDES } from './form_control_layout';
+export {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+  ICON_SIDES,
+} from './form_control_layout';
 export {
   EuiFormControlLayoutClearButton,
 } from './form_control_layout_clear_button';

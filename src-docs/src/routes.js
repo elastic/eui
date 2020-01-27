@@ -9,7 +9,11 @@ import { EuiErrorBoundary } from '../../src/components';
 
 // Guidelines
 
+import AccessibilityGuidelines from './views/guidelines/accessibility';
+
 import ButtonGuidelines from './views/guidelines/button';
+
+import FormGuidelines from './views/guidelines/forms';
 
 import ColorGuidelines from './views/guidelines/colors';
 
@@ -175,6 +179,8 @@ import { StepsExample } from './views/steps/steps_example';
 
 import { SuggestExample } from './views/suggest/suggest_example';
 
+import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
+
 import { TableExample } from './views/tables/tables_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
@@ -259,6 +265,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
+      createExample(AccessibilityGuidelines),
       {
         name: 'Buttons',
         component: ButtonGuidelines,
@@ -266,6 +273,10 @@ const navigation = [
       {
         name: 'Colors',
         component: ColorGuidelines,
+      },
+      {
+        name: 'Forms',
+        component: FormGuidelines,
       },
       {
         name: 'Modals',
@@ -376,6 +387,7 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
+      SuperDatePickerExample,
     ].map(example => createExample(example)),
   },
   {

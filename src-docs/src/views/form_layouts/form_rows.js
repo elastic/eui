@@ -118,8 +118,7 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          label="Use a switch instead of a single checkbox"
-          labelAppend="Some inputs also render their own labels, such as the switch, so they need the row label turned off because multiple labels break screen readers. "
+          label="Use a switch instead of a single checkbox and set 'hasChildLabel' to false"
           hasChildLabel={false}>
           <EuiSwitch
             name="switch"
@@ -129,15 +128,17 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="Checkbox group labels should use a `legend` label type"
-          labelType="legend">
-          <EuiCheckboxGroup
-            options={this.state.checkboxes}
-            idToSelectedMap={this.state.checkboxIdToSelectedMap}
-            onChange={this.onCheckboxChange}
-          />
-        </EuiFormRow>
+        <EuiSpacer />
+
+        <EuiCheckboxGroup
+          options={this.state.checkboxes}
+          idToSelectedMap={this.state.checkboxIdToSelectedMap}
+          onChange={this.onCheckboxChange}
+          legend={{
+            children:
+              'Checkbox groups should use the `legend` prop instead of form row',
+          }}
+        />
 
         <EuiSpacer />
 

@@ -16,6 +16,14 @@ export class GuideThemeSelector extends Component {
         text: 'Dark',
         value: 'dark',
       },
+      {
+        text: 'Amsterdam: Light',
+        value: 'amsterdam-light',
+      },
+      {
+        text: 'Amsterdam: Dark',
+        value: 'amsterdam-dark',
+      },
     ];
 
     this.state = {

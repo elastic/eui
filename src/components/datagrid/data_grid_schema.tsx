@@ -7,7 +7,7 @@ import {
 
 import { EuiI18n } from '../i18n';
 
-import { palettes } from '../../services/color/eui_palettes';
+import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { IconType } from '../icon';
 
 export interface EuiDataGridSchemaDetector {
@@ -71,7 +71,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'invert',
-    color: palettes.euiPaletteColorBlind.colors[5],
+    color: euiPaletteColorBlind()[5],
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextAsc"
@@ -112,7 +112,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'currency',
-    color: palettes.euiPaletteColorBlind.colors[0],
+    color: euiPaletteColorBlind()[0],
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.currencySortTextAsc"
@@ -151,7 +151,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
     icon: 'calendar',
-    color: palettes.euiPaletteColorBlind.colors[7],
+    color: euiPaletteColorBlind()[7],
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
     ),
@@ -167,18 +167,29 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return matchLength / value.length || 0;
     },
     comparator: (a, b, direction) => {
-      const aChars = a.split('').filter(char => numericChars.has(char));
-      const aValue = parseFloat(aChars.join(''));
+      // sort on all digits groups
+      const aGroups = a.split(/\D+/);
+      const bGroups = b.split(/\D+/);
 
-      const bChars = b.split('').filter(char => numericChars.has(char));
-      const bValue = parseFloat(bChars.join(''));
+      const maxGroups = Math.max(aGroups.length, bGroups.length);
+      for (let i = 0; i < maxGroups; i++) {
+        // if A and B's group counts differ and they match until that difference, prefer whichever is shorter
+        if (i >= aGroups.length) return direction === 'asc' ? -1 : 1;
+        if (i >= bGroups.length) return direction === 'asc' ? 1 : -1;
 
-      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
-      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+        const aChars = aGroups[i];
+        const bChars = bGroups[i];
+        const aValue = parseInt(aChars, 10);
+        const bValue = parseInt(bChars, 10);
+
+        if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+      }
+
       return 0;
     },
     icon: 'number',
-    color: palettes.euiPaletteColorBlind.colors[0],
+    color: euiPaletteColorBlind()[0],
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.numberSortTextAsc" default="Low-High" />
     ),
@@ -210,7 +221,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'visVega',
-    color: palettes.euiPaletteColorBlind.colors[3],
+    color: euiPaletteColorBlind()[3],
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.jsonSortTextAsc"
@@ -230,7 +241,7 @@ export interface EuiDataGridSchema {
   [columnId: string]: { columnType: string | null };
 }
 
-interface SchemaTypeScore {
+export interface SchemaTypeScore {
   type: string;
   score: number;
 }
