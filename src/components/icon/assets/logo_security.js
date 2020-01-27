@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconLogoSecurity = ({ title, ...props }) => (
+const EuiIconLogoSecurity = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path
       d="M9 7.008V0h20v16.744c0 3.913-6.378 6.477-9.015 7.256V7.008H9z"
       fill="#FA744E"

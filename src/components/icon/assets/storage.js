@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconStorage = ({ title, ...props }) => (
+const EuiIconStorage = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <g fillRule="evenodd" transform="translate(0 2)">
       <path
         fillRule="nonzero"
