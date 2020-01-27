@@ -535,15 +535,8 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTableCaption() {
-    const { tableCaption, columns } = this.props;
+    const { items, pagination, tableCaption } = this.props;
     let captionElement;
-    const columnsNames: ReactNode[] = [];
-
-    columns.forEach((column: EuiBasicTableColumn<T>) => {
-      const { field } = column as EuiTableFieldDataColumnType<T>;
-      columnsNames.push(field);
-    });
-
     if (tableCaption) {
       captionElement = (
         <EuiI18n
@@ -555,24 +548,32 @@ export class EuiBasicTable<T = any> extends Component<
         />
       );
     } else {
-      captionElement = (
-        <EuiI18n
-          token="euiBasicTable.tableDescription"
-          default="This table contains: {columnNames}"
-          values={{
-            columnNames: columnsNames.join(', '),
-          }}
-        />
-      );
+      if (pagination && pagination.totalItemCount > 0) {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescription"
+            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            values={{
+              totalItemCount: pagination.totalItemCount,
+              itemCount: items.length,
+            }}
+          />
+        );
+      } else {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescription"
+            default="This table contains {itemCount} rows."
+            values={{
+              itemCount: items.length,
+            }}
+          />
+        );
+      }
     }
-
     return (
       <EuiScreenReaderOnly>
-        <caption
-          className="euiTableCaption"
-          role="status"
-          aria-relevant="text"
-          aria-live="polite">
+        <caption className="euiTableCaption">
           <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
