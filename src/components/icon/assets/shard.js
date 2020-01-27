@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconShard = ({ title, ...props }) => (
+const EuiIconShard = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path d="M5.134 7.031L8 12.764l2.866-5.733L8 2.016 5.134 7.03zM8 0l4 7-4 8-4-8 4-7z" />
   </svg>
 );

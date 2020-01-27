@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconFaceNeutral = ({ title, ...props }) => (
+const EuiIconFaceNeutral = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <g fill="#13252D" fillRule="evenodd">
       <circle cx={5} cy={5} r={1} />
       <circle cx={10} cy={5} r={1} />
