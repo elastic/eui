@@ -136,7 +136,10 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     key: React.Key
   ) {
     return cloneElement(node, {
-      className: `euiFormControlLayout__${side}`,
+      className: classNames(
+        `euiFormControlLayout__${side}`,
+        node.props.className
+      ),
       key: key,
     });
   }
