@@ -497,6 +497,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
   fullWidth={false}
   hasDividers={false}
   isInvalid={false}
+  isLoading={false}
   onChange={[Function]}
   options={
     Array [
@@ -1032,10 +1033,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                 role="listbox"
                                 style={
                                   Object {
-                                    "width": null,
+                                    "width": undefined,
                                   }
                                 }
-                                tabIndex="0"
+                                tabIndex={0}
                               >
                                 <EuiContextMenuItem
                                   aria-selected={true}

@@ -17,7 +17,7 @@ import { getSecureRelForTarget } from '../../services';
 
 export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
 
-type LayoutAlignment = 'center' | 'top' | 'bottom';
+export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
 export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
@@ -43,14 +43,16 @@ export interface EuiContextMenuItemProps extends CommonProps {
   /**
    * How to align icon with content of button
    */
-  layoutAlign?: LayoutAlignment;
+  layoutAlign?: EuiContextMenuItemLayoutAlignment;
 }
 
 type Props = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> &
   EuiContextMenuItemProps;
 
-const layoutAlignToClassNames: { [align in LayoutAlignment]: string | null } = {
+const layoutAlignToClassNames: {
+  [align in EuiContextMenuItemLayoutAlignment]: string | null
+} = {
   center: null,
   top: 'euiContextMenu__itemLayout--top',
   bottom: 'euiContextMenu__itemLayout--bottom',
