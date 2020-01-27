@@ -97,7 +97,7 @@ export const propsInfo = {
         },
         tableCaption: {
           description:
-            'Describes the content of the table. If not specified, the caption will be "Below is a table of {itemCount} items."',
+            'Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."',
           required: false,
           type: { name: 'string' },
         },
