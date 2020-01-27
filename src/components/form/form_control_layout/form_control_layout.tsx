@@ -142,9 +142,5 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       ),
       key: key,
     });
-    /*return cloneElement(node, {
-      className: `euiFormControlLayout__${side}`,
-      key: key,
-    });*/
   }
 }
