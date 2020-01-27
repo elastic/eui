@@ -16,6 +16,7 @@
 
 - Increased column width on `EuiTableHeaderCellCheckbox` to prevent `EuiCheckbox`'s focus ring from getting clipped in `EuiBasicTable` ([#2770](https://github.com/elastic/eui/pull/2770))
 - Fixed the display of `EuiButton` within `EuiControlBar` when `fill={true}` to be more consistent with other buttons ([#2781](https://github.com/elastic/eui/pull/2781))
+- Fixed `EuiFormControlLayout` from overwriting className for `prepend` nodes.  ([#2796](https://github.com/elastic/eui/pull/2796))
 
 **Deprecations**
 
