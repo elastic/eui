@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconAppSearchProfiler = ({ title, ...props }) => (
+const EuiIconAppSearchProfiler = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path className="euiIcon__fillSecondary" d="M11.63 8h7.38v2h-7.38z" />
     <path d="M7 8h3.19v2H7z" />
     <path className="euiIcon__fillSecondary" d="M7 16h7.38v2H7z" />
