@@ -113,5 +113,24 @@ describe('EuiDescribedFormGroup', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('legend is rendered', () => {
+      const describedFormGroupProps = {
+        legend: 'Legend for screen readers',
+      };
+
+      const component = shallow(
+        <EuiDescribedFormGroup
+          {...requiredProps}
+          {...props}
+          {...describedFormGroupProps}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiDescribedFormGroup is rendered 1`] = `
-<div
+<fieldset
   aria-label="aria-label"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
 >
   <EuiFlexGroup
     gutterSize="l"
@@ -13,7 +12,6 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
     <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
-        id="generated-id-title"
         size="xs"
       >
         <h3>
@@ -23,7 +21,6 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        id="generated-id"
         size="s"
       >
         Test description
@@ -44,15 +41,14 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>
-</div>
+</fieldset>
 `;
 
 exports[`EuiDescribedFormGroup props description is not rendered when it's not provided 1`] = `
-<div
+<fieldset
   aria-label="aria-label"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
 >
   <EuiFlexGroup
     gutterSize="l"
@@ -60,7 +56,6 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
-        id="generated-id-title"
         size="xs"
       >
         <h3>
@@ -83,15 +78,14 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>
-</div>
+</fieldset>
 `;
 
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
-<div
+<fieldset
   aria-label="aria-label"
   className="euiDescribedFormGroup euiDescribedFormGroup--fullWidth testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
 >
   <EuiFlexGroup
     gutterSize="l"
@@ -99,7 +93,6 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
-        id="generated-id-title"
         size="xs"
       >
         <h3>
@@ -109,7 +102,6 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        id="generated-id"
         size="s"
       >
         Test description
@@ -130,15 +122,14 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>
-</div>
+</fieldset>
 `;
 
 exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
-<div
+<fieldset
   aria-label="aria-label"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
 >
   <EuiFlexGroup
     gutterSize="s"
@@ -146,7 +137,6 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
-        id="generated-id-title"
         size="xs"
       >
         <h3>
@@ -156,7 +146,6 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        id="generated-id"
         size="s"
       >
         Test description
@@ -177,15 +166,64 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>
-</div>
+</fieldset>
 `;
 
-exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
-<div
+exports[`EuiDescribedFormGroup props legend is rendered 1`] = `
+<fieldset
   aria-label="aria-label"
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
+>
+  <EuiScreenReaderOnly>
+    <legend>
+      Legend for screen readers
+    </legend>
+  </EuiScreenReaderOnly>
+  <EuiFlexGroup
+    gutterSize="l"
+  >
+    <EuiFlexItem>
+      <EuiTitle
+        aria-hidden="true"
+        className="euiDescribedFormGroup__title"
+        size="xs"
+      >
+        <h3>
+          Title
+        </h3>
+      </EuiTitle>
+      <EuiText
+        className="euiDescribedFormGroup__description"
+        color="subdued"
+        size="s"
+      >
+        Test description
+      </EuiText>
+    </EuiFlexItem>
+    <EuiFlexItem
+      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+    >
+      <EuiFormRow
+        describedByIds={Array []}
+        display="row"
+        fullWidth={false}
+        hasChildLabel={true}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <input />
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</fieldset>
+`;
+
+exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
+<fieldset
+  aria-label="aria-label"
+  className="euiDescribedFormGroup testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <EuiFlexGroup
     gutterSize="l"
@@ -193,7 +231,6 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
-        id="generated-id-title"
         size="l"
       >
         <h3>
@@ -203,7 +240,6 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        id="generated-id"
         size="s"
       >
         Test description
@@ -224,7 +260,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>
-</div>
+</fieldset>
 `;
 
 exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
@@ -242,11 +278,10 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   }
   titleSize="xs"
 >
-  <div
+  <fieldset
     aria-label="aria-label"
     className="euiDescribedFormGroup testClass1 testClass2"
     data-test-subj="test subject string"
-    role="group"
   >
     <EuiFlexGroup
       gutterSize="l"
@@ -260,12 +295,10 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
-              id="generated-id-title"
               size="xs"
             >
               <h3
                 className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
-                id="generated-id-title"
               >
                 Title
               </h3>
@@ -273,12 +306,10 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             <EuiText
               className="euiDescribedFormGroup__description"
               color="subdued"
-              id="generated-id"
               size="s"
             >
               <div
                 className="euiText euiText--small euiDescribedFormGroup__description"
-                id="generated-id"
               >
                 <EuiTextColor
                   color="subdued"
@@ -394,6 +425,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
         </EuiFlexItem>
       </div>
     </EuiFlexGroup>
-  </div>
+  </fieldset>
 </EuiDescribedFormGroup>
 `;

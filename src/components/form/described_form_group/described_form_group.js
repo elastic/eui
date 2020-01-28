@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,7 +7,7 @@ import { EuiText } from '../../text/text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { GUTTER_SIZES } from '../../flex/flex_group';
 
-import makeId from '../form_row/make_id';
+import { EuiScreenReaderOnly } from '../../accessibility';
 
 const paddingSizeToClassNameMap = {
   xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
@@ -18,12 +18,7 @@ const paddingSizeToClassNameMap = {
   l: 'euiDescribedFormGroup__fieldPadding--large',
 };
 
-export class EuiDescribedFormGroup extends Component {
-  constructor(props) {
-    super(props);
-    this.ariaId = makeId();
-  }
-
+export class EuiDescribedFormGroup extends PureComponent {
   render() {
     const {
       children,
@@ -33,10 +28,9 @@ export class EuiDescribedFormGroup extends Component {
       titleSize,
       title,
       description,
+      legend,
       ...rest
     } = this.props;
-
-    const ariaId = this.ariaId;
 
     const classes = classNames(
       'euiDescribedFormGroup',
@@ -56,7 +50,6 @@ export class EuiDescribedFormGroup extends Component {
     if (description) {
       renderedDescription = (
         <EuiText
-          id={ariaId}
           size="s"
           color="subdued"
           className="euiDescribedFormGroup__description">
@@ -65,13 +58,24 @@ export class EuiDescribedFormGroup extends Component {
       );
     }
 
+    let legendNode;
+    if (legend) {
+      legendNode = (
+        <EuiScreenReaderOnly>
+          <legend>{legend}</legend>
+        </EuiScreenReaderOnly>
+      );
+    }
+
     return (
-      <div role="group" className={classes} {...rest}>
+      <fieldset className={classes} {...rest}>
+        {legendNode}
+
         <EuiFlexGroup gutterSize={gutterSize}>
           <EuiFlexItem>
             <EuiTitle
-              id={`${ariaId}-title`}
               size={titleSize}
+              aria-hidden={legend && 'true'}
               className="euiDescribedFormGroup__title">
               {title}
             </EuiTitle>
@@ -81,7 +85,7 @@ export class EuiDescribedFormGroup extends Component {
 
           <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
         </EuiFlexGroup>
-      </div>
+      </fieldset>
     );
   }
 }
@@ -99,9 +103,13 @@ EuiDescribedFormGroup.propTypes = {
   fullWidth: PropTypes.bool,
   titleSize: PropTypes.oneOf(TITLE_SIZES),
   /**
-   * For better accessibiity it's recommended the use of HTML headings
+   * It's recommended the use of HTML headings
    */
   title: PropTypes.node.isRequired,
+  /**
+   * For better accessibility, it's recommended a legend that will act as the group title and it will only be read by screen readers
+   */
+  legend: PropTypes.string,
   description: PropTypes.node,
 };
 
