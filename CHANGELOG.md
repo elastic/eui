@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `18.3.0`.
+
+## [`18.3.0`](https://github.com/elastic/eui/tree/v18.3.0)
+
 - Converted `EuiModal` and `EuiConfirmModal` to TypeScript ([#2742](https://github.com/elastic/eui/pull/2742))
 - Converted `EuiTabs` to TypeScript ([#2717](https://github.com/elastic/eui/pull/2717))
 - Converted `EuiFormRow` to TypeScript ([#2712](https://github.com/elastic/eui/pull/2712))
