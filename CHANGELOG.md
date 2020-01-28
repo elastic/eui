@@ -29,6 +29,21 @@ No public interface changes since `18.3.0`.
 - `EuiIcon`'s `logoEnterpriseSearch` type deprecated in favor of `logoWorkplaceSearch`
 - `EuiIcon`'s `logoAPM` type deprecated in favor of `logoObservability`
 
+## [`18.2.2`](https://github.com/elastic/eui/tree/v18.2.2)
+
+**Note: this release is a backport containing changes originally made in `18.3.0`**
+
+- Updated `logoAPM`, `logoSecurity` and `logoEnterpriseSearch`. Added `logoWorkplaceSearch` and `logoObservability` ([#2769](https://github.com/elastic/eui/pull/2769))
+
+**Bug fixes**
+
+- Fixed `useRenderToText` and `EuiButtonToggle` from attempting state updates on unmounted components ([#2797](https://github.com/elastic/eui/pull/2797))
+
+**Deprecations**
+
+- `EuiIcon`'s `logoEnterpriseSearch` type deprecated in favor of `logoWorkplaceSearch`
+- `EuiIcon`'s `logoAPM` type deprecated in favor of `logoObservability`
+
 ## [`18.2.1`](https://github.com/elastic/eui/tree/v18.2.1)
 
 **Bug fixes**
