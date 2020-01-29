@@ -1,239 +1,552 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiDescribedFormGroup is rendered 1`] = `
-<div
-  aria-describedby="generated-id"
+<EuiDescribedFormGroup
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
-  className="euiDescribedFormGroup testClass1 testClass2"
+  className="testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
+  description="Test description"
+  fullWidth={false}
+  gutterSize="l"
+  title={
+    <h3>
+      Title
+    </h3>
+  }
+  titleSize="xs"
 >
-  <EuiFlexGroup
-    gutterSize="l"
-  >
-    <EuiFlexItem>
-      <EuiTitle
-        className="euiDescribedFormGroup__title"
-        id="generated-id-title"
-        size="xs"
-      >
-        <h3>
-          Title
-        </h3>
-      </EuiTitle>
-      <EuiText
-        className="euiDescribedFormGroup__description"
-        color="subdued"
-        id="generated-id"
-        size="s"
-      >
-        Test description
-      </EuiText>
-    </EuiFlexItem>
-    <EuiFlexItem
-      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+  <EuiInnerText>
+    <fieldset
+      aria-label="aria-label"
+      className="euiDescribedFormGroup testClass1 testClass2"
+      data-test-subj="test subject string"
     >
-      <EuiFormRow
-        describedByIds={Array []}
-        display="row"
-        fullWidth={false}
-        hasChildLabel={true}
-        hasEmptyLabelSpace={false}
-        labelType="label"
+      <EuiScreenReaderOnly>
+        <legend
+          className="euiScreenReaderOnly"
+        >
+          Title
+        </legend>
+      </EuiScreenReaderOnly>
+      <EuiFlexGroup
+        gutterSize="l"
       >
-        <input />
-      </EuiFormRow>
-    </EuiFlexItem>
-  </EuiFlexGroup>
-</div>
+        <div
+          className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        >
+          <EuiFlexItem>
+            <div
+              className="euiFlexItem"
+            >
+              <span
+                title="Title"
+              >
+                <EuiTitle
+                  aria-hidden="true"
+                  className="euiDescribedFormGroup__title"
+                  size="xs"
+                >
+                  <h3
+                    aria-hidden="true"
+                    className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
+                  >
+                    Title
+                  </h3>
+                </EuiTitle>
+              </span>
+              <EuiText
+                className="euiDescribedFormGroup__description"
+                color="subdued"
+                size="s"
+              >
+                <div
+                  className="euiText euiText--small euiDescribedFormGroup__description"
+                >
+                  <EuiTextColor
+                    color="subdued"
+                    component="div"
+                  >
+                    <div
+                      className="euiTextColor euiTextColor--subdued"
+                    >
+                      Test description
+                    </div>
+                  </EuiTextColor>
+                </div>
+              </EuiText>
+            </div>
+          </EuiFlexItem>
+          <EuiFlexItem
+            className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          >
+            <div
+              className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            >
+              <EuiFormRow
+                describedByIds={Array []}
+                display="row"
+                fullWidth={false}
+                hasChildLabel={true}
+                hasEmptyLabelSpace={false}
+                labelType="label"
+              >
+                <div
+                  className="euiFormRow"
+                  id="generated-id-row"
+                >
+                  <div
+                    className="euiFormRow__fieldWrapper"
+                  >
+                    <input
+                      id="generated-id"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    />
+                  </div>
+                </div>
+              </EuiFormRow>
+            </div>
+          </EuiFlexItem>
+        </div>
+      </EuiFlexGroup>
+    </fieldset>
+  </EuiInnerText>
+</EuiDescribedFormGroup>
 `;
 
 exports[`EuiDescribedFormGroup props description is not rendered when it's not provided 1`] = `
-<div
+<EuiDescribedFormGroup
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
-  className="euiDescribedFormGroup testClass1 testClass2"
+  className="testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
+  fullWidth={false}
+  gutterSize="l"
+  title={
+    <h3>
+      Title
+    </h3>
+  }
+  titleSize="xs"
 >
-  <EuiFlexGroup
-    gutterSize="l"
-  >
-    <EuiFlexItem>
-      <EuiTitle
-        className="euiDescribedFormGroup__title"
-        id="generated-id-title"
-        size="xs"
-      >
-        <h3>
-          Title
-        </h3>
-      </EuiTitle>
-    </EuiFlexItem>
-    <EuiFlexItem
-      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+  <EuiInnerText>
+    <fieldset
+      aria-label="aria-label"
+      className="euiDescribedFormGroup testClass1 testClass2"
+      data-test-subj="test subject string"
     >
-      <EuiFormRow
-        describedByIds={Array []}
-        display="row"
-        fullWidth={false}
-        hasChildLabel={true}
-        hasEmptyLabelSpace={false}
-        labelType="label"
+      <EuiScreenReaderOnly>
+        <legend
+          className="euiScreenReaderOnly"
+        >
+          Title
+        </legend>
+      </EuiScreenReaderOnly>
+      <EuiFlexGroup
+        gutterSize="l"
       >
-        <input />
-      </EuiFormRow>
-    </EuiFlexItem>
-  </EuiFlexGroup>
-</div>
+        <div
+          className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        >
+          <EuiFlexItem>
+            <div
+              className="euiFlexItem"
+            >
+              <span
+                title="Title"
+              >
+                <EuiTitle
+                  aria-hidden="true"
+                  className="euiDescribedFormGroup__title"
+                  size="xs"
+                >
+                  <h3
+                    aria-hidden="true"
+                    className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
+                  >
+                    Title
+                  </h3>
+                </EuiTitle>
+              </span>
+            </div>
+          </EuiFlexItem>
+          <EuiFlexItem
+            className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          >
+            <div
+              className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            >
+              <EuiFormRow
+                describedByIds={Array []}
+                display="row"
+                fullWidth={false}
+                hasChildLabel={true}
+                hasEmptyLabelSpace={false}
+                labelType="label"
+              >
+                <div
+                  className="euiFormRow"
+                  id="generated-id-row"
+                >
+                  <div
+                    className="euiFormRow__fieldWrapper"
+                  >
+                    <input
+                      id="generated-id"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    />
+                  </div>
+                </div>
+              </EuiFormRow>
+            </div>
+          </EuiFlexItem>
+        </div>
+      </EuiFlexGroup>
+    </fieldset>
+  </EuiInnerText>
+</EuiDescribedFormGroup>
 `;
 
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
-<div
-  aria-describedby="generated-id"
+<EuiDescribedFormGroup
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
-  className="euiDescribedFormGroup euiDescribedFormGroup--fullWidth testClass1 testClass2"
+  className="testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
+  description="Test description"
+  fullWidth={true}
+  gutterSize="l"
+  title={
+    <h3>
+      Title
+    </h3>
+  }
+  titleSize="xs"
 >
-  <EuiFlexGroup
-    gutterSize="l"
-  >
-    <EuiFlexItem>
-      <EuiTitle
-        className="euiDescribedFormGroup__title"
-        id="generated-id-title"
-        size="xs"
-      >
-        <h3>
-          Title
-        </h3>
-      </EuiTitle>
-      <EuiText
-        className="euiDescribedFormGroup__description"
-        color="subdued"
-        id="generated-id"
-        size="s"
-      >
-        Test description
-      </EuiText>
-    </EuiFlexItem>
-    <EuiFlexItem
-      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+  <EuiInnerText>
+    <fieldset
+      aria-label="aria-label"
+      className="euiDescribedFormGroup euiDescribedFormGroup--fullWidth testClass1 testClass2"
+      data-test-subj="test subject string"
     >
-      <EuiFormRow
-        describedByIds={Array []}
-        display="row"
-        fullWidth={true}
-        hasChildLabel={true}
-        hasEmptyLabelSpace={false}
-        labelType="label"
+      <EuiScreenReaderOnly>
+        <legend
+          className="euiScreenReaderOnly"
+        >
+          Title
+        </legend>
+      </EuiScreenReaderOnly>
+      <EuiFlexGroup
+        gutterSize="l"
       >
-        <input />
-      </EuiFormRow>
-    </EuiFlexItem>
-  </EuiFlexGroup>
-</div>
+        <div
+          className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        >
+          <EuiFlexItem>
+            <div
+              className="euiFlexItem"
+            >
+              <span
+                title="Title"
+              >
+                <EuiTitle
+                  aria-hidden="true"
+                  className="euiDescribedFormGroup__title"
+                  size="xs"
+                >
+                  <h3
+                    aria-hidden="true"
+                    className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
+                  >
+                    Title
+                  </h3>
+                </EuiTitle>
+              </span>
+              <EuiText
+                className="euiDescribedFormGroup__description"
+                color="subdued"
+                size="s"
+              >
+                <div
+                  className="euiText euiText--small euiDescribedFormGroup__description"
+                >
+                  <EuiTextColor
+                    color="subdued"
+                    component="div"
+                  >
+                    <div
+                      className="euiTextColor euiTextColor--subdued"
+                    >
+                      Test description
+                    </div>
+                  </EuiTextColor>
+                </div>
+              </EuiText>
+            </div>
+          </EuiFlexItem>
+          <EuiFlexItem
+            className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          >
+            <div
+              className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            >
+              <EuiFormRow
+                describedByIds={Array []}
+                display="row"
+                fullWidth={true}
+                hasChildLabel={true}
+                hasEmptyLabelSpace={false}
+                labelType="label"
+              >
+                <div
+                  className="euiFormRow euiFormRow--fullWidth"
+                  id="generated-id-row"
+                >
+                  <div
+                    className="euiFormRow__fieldWrapper"
+                  >
+                    <input
+                      id="generated-id"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    />
+                  </div>
+                </div>
+              </EuiFormRow>
+            </div>
+          </EuiFlexItem>
+        </div>
+      </EuiFlexGroup>
+    </fieldset>
+  </EuiInnerText>
+</EuiDescribedFormGroup>
 `;
 
 exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
-<div
-  aria-describedby="generated-id"
+<EuiDescribedFormGroup
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
-  className="euiDescribedFormGroup testClass1 testClass2"
+  className="testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
+  description="Test description"
+  fullWidth={false}
+  gutterSize="s"
+  title={
+    <h3>
+      Title
+    </h3>
+  }
+  titleSize="xs"
 >
-  <EuiFlexGroup
-    gutterSize="s"
-  >
-    <EuiFlexItem>
-      <EuiTitle
-        className="euiDescribedFormGroup__title"
-        id="generated-id-title"
-        size="xs"
-      >
-        <h3>
-          Title
-        </h3>
-      </EuiTitle>
-      <EuiText
-        className="euiDescribedFormGroup__description"
-        color="subdued"
-        id="generated-id"
-        size="s"
-      >
-        Test description
-      </EuiText>
-    </EuiFlexItem>
-    <EuiFlexItem
-      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+  <EuiInnerText>
+    <fieldset
+      aria-label="aria-label"
+      className="euiDescribedFormGroup testClass1 testClass2"
+      data-test-subj="test subject string"
     >
-      <EuiFormRow
-        describedByIds={Array []}
-        display="row"
-        fullWidth={false}
-        hasChildLabel={true}
-        hasEmptyLabelSpace={false}
-        labelType="label"
+      <EuiScreenReaderOnly>
+        <legend
+          className="euiScreenReaderOnly"
+        >
+          Title
+        </legend>
+      </EuiScreenReaderOnly>
+      <EuiFlexGroup
+        gutterSize="s"
       >
-        <input />
-      </EuiFormRow>
-    </EuiFlexItem>
-  </EuiFlexGroup>
-</div>
+        <div
+          className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--responsive"
+        >
+          <EuiFlexItem>
+            <div
+              className="euiFlexItem"
+            >
+              <span
+                title="Title"
+              >
+                <EuiTitle
+                  aria-hidden="true"
+                  className="euiDescribedFormGroup__title"
+                  size="xs"
+                >
+                  <h3
+                    aria-hidden="true"
+                    className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
+                  >
+                    Title
+                  </h3>
+                </EuiTitle>
+              </span>
+              <EuiText
+                className="euiDescribedFormGroup__description"
+                color="subdued"
+                size="s"
+              >
+                <div
+                  className="euiText euiText--small euiDescribedFormGroup__description"
+                >
+                  <EuiTextColor
+                    color="subdued"
+                    component="div"
+                  >
+                    <div
+                      className="euiTextColor euiTextColor--subdued"
+                    >
+                      Test description
+                    </div>
+                  </EuiTextColor>
+                </div>
+              </EuiText>
+            </div>
+          </EuiFlexItem>
+          <EuiFlexItem
+            className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          >
+            <div
+              className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            >
+              <EuiFormRow
+                describedByIds={Array []}
+                display="row"
+                fullWidth={false}
+                hasChildLabel={true}
+                hasEmptyLabelSpace={false}
+                labelType="label"
+              >
+                <div
+                  className="euiFormRow"
+                  id="generated-id-row"
+                >
+                  <div
+                    className="euiFormRow__fieldWrapper"
+                  >
+                    <input
+                      id="generated-id"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    />
+                  </div>
+                </div>
+              </EuiFormRow>
+            </div>
+          </EuiFlexItem>
+        </div>
+      </EuiFlexGroup>
+    </fieldset>
+  </EuiInnerText>
+</EuiDescribedFormGroup>
 `;
 
 exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
-<div
-  aria-describedby="generated-id"
+<EuiDescribedFormGroup
   aria-label="aria-label"
-  aria-labelledby="generated-id-title"
-  className="euiDescribedFormGroup testClass1 testClass2"
+  className="testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
+  description="Test description"
+  fullWidth={false}
+  gutterSize="l"
+  title={
+    <h3>
+      Title
+    </h3>
+  }
+  titleSize="l"
 >
-  <EuiFlexGroup
-    gutterSize="l"
-  >
-    <EuiFlexItem>
-      <EuiTitle
-        className="euiDescribedFormGroup__title"
-        id="generated-id-title"
-        size="l"
-      >
-        <h3>
-          Title
-        </h3>
-      </EuiTitle>
-      <EuiText
-        className="euiDescribedFormGroup__description"
-        color="subdued"
-        id="generated-id"
-        size="s"
-      >
-        Test description
-      </EuiText>
-    </EuiFlexItem>
-    <EuiFlexItem
-      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
+  <EuiInnerText>
+    <fieldset
+      aria-label="aria-label"
+      className="euiDescribedFormGroup testClass1 testClass2"
+      data-test-subj="test subject string"
     >
-      <EuiFormRow
-        describedByIds={Array []}
-        display="row"
-        fullWidth={false}
-        hasChildLabel={true}
-        hasEmptyLabelSpace={false}
-        labelType="label"
+      <EuiScreenReaderOnly>
+        <legend
+          className="euiScreenReaderOnly"
+        >
+          Title
+        </legend>
+      </EuiScreenReaderOnly>
+      <EuiFlexGroup
+        gutterSize="l"
       >
-        <input />
-      </EuiFormRow>
-    </EuiFlexItem>
-  </EuiFlexGroup>
-</div>
+        <div
+          className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        >
+          <EuiFlexItem>
+            <div
+              className="euiFlexItem"
+            >
+              <span
+                title="Title"
+              >
+                <EuiTitle
+                  aria-hidden="true"
+                  className="euiDescribedFormGroup__title"
+                  size="l"
+                >
+                  <h3
+                    aria-hidden="true"
+                    className="euiTitle euiTitle--large euiDescribedFormGroup__title"
+                  >
+                    Title
+                  </h3>
+                </EuiTitle>
+              </span>
+              <EuiText
+                className="euiDescribedFormGroup__description"
+                color="subdued"
+                size="s"
+              >
+                <div
+                  className="euiText euiText--small euiDescribedFormGroup__description"
+                >
+                  <EuiTextColor
+                    color="subdued"
+                    component="div"
+                  >
+                    <div
+                      className="euiTextColor euiTextColor--subdued"
+                    >
+                      Test description
+                    </div>
+                  </EuiTextColor>
+                </div>
+              </EuiText>
+            </div>
+          </EuiFlexItem>
+          <EuiFlexItem
+            className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
+          >
+            <div
+              className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
+            >
+              <EuiFormRow
+                describedByIds={Array []}
+                display="row"
+                fullWidth={false}
+                hasChildLabel={true}
+                hasEmptyLabelSpace={false}
+                labelType="label"
+              >
+                <div
+                  className="euiFormRow"
+                  id="generated-id-row"
+                >
+                  <div
+                    className="euiFormRow__fieldWrapper"
+                  >
+                    <input
+                      id="generated-id"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    />
+                  </div>
+                </div>
+              </EuiFormRow>
+            </div>
+          </EuiFlexItem>
+        </div>
+      </EuiFlexGroup>
+    </fieldset>
+  </EuiInnerText>
+</EuiDescribedFormGroup>
 `;
 
 exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
@@ -244,7 +557,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   description="Test description"
   fullWidth={false}
   gutterSize="l"
-  idAria="test-id"
   title={
     <h3>
       Title
@@ -252,164 +564,168 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   }
   titleSize="xs"
 >
-  <div
-    aria-describedby={null}
-    aria-label="aria-label"
-    aria-labelledby="test-id-title"
-    className="euiDescribedFormGroup testClass1 testClass2"
-    data-test-subj="test subject string"
-    role="group"
-  >
-    <EuiFlexGroup
-      gutterSize="l"
+  <EuiInnerText>
+    <fieldset
+      aria-label="aria-label"
+      className="euiDescribedFormGroup testClass1 testClass2"
+      data-test-subj="test subject string"
     >
-      <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+      <EuiScreenReaderOnly>
+        <legend
+          className="euiScreenReaderOnly"
+        >
+          Title
+        </legend>
+      </EuiScreenReaderOnly>
+      <EuiFlexGroup
+        gutterSize="l"
       >
-        <EuiFlexItem>
-          <div
-            className="euiFlexItem"
+        <div
+          className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        >
+          <EuiFlexItem>
+            <div
+              className="euiFlexItem"
+            >
+              <span
+                title="Title"
+              >
+                <EuiTitle
+                  aria-hidden="true"
+                  className="euiDescribedFormGroup__title"
+                  size="xs"
+                >
+                  <h3
+                    aria-hidden="true"
+                    className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
+                  >
+                    Title
+                  </h3>
+                </EuiTitle>
+              </span>
+              <EuiText
+                className="euiDescribedFormGroup__description"
+                color="subdued"
+                size="s"
+              >
+                <div
+                  className="euiText euiText--small euiDescribedFormGroup__description"
+                >
+                  <EuiTextColor
+                    color="subdued"
+                    component="div"
+                  >
+                    <div
+                      className="euiTextColor euiTextColor--subdued"
+                    >
+                      Test description
+                    </div>
+                  </EuiTextColor>
+                </div>
+              </EuiText>
+            </div>
+          </EuiFlexItem>
+          <EuiFlexItem
+            className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
-            <EuiTitle
-              className="euiDescribedFormGroup__title"
-              id="test-id-title"
-              size="xs"
+            <div
+              className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
             >
-              <h3
-                className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
-                id="test-id-title"
+              <EuiFormRow
+                describedByIds={Array []}
+                display="row"
+                error={
+                  Array [
+                    "Error one",
+                    "Error two",
+                  ]
+                }
+                fullWidth={false}
+                hasChildLabel={true}
+                hasEmptyLabelSpace={false}
+                helpText="Help text"
+                isInvalid={true}
+                label="Label"
+                labelType="label"
               >
-                Title
-              </h3>
-            </EuiTitle>
-            <EuiText
-              className="euiDescribedFormGroup__description"
-              color="subdued"
-              id="test-id"
-              size="s"
-            >
-              <div
-                className="euiText euiText--small euiDescribedFormGroup__description"
-                id="test-id"
-              >
-                <EuiTextColor
-                  color="subdued"
-                  component="div"
+                <div
+                  className="euiFormRow"
+                  id="generated-id-row"
                 >
                   <div
-                    className="euiTextColor euiTextColor--subdued"
+                    className="euiFormRow__labelWrapper"
                   >
-                    Test description
-                  </div>
-                </EuiTextColor>
-              </div>
-            </EuiText>
-          </div>
-        </EuiFlexItem>
-        <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-        >
-          <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-          >
-            <EuiFormRow
-              describedByIds={
-                Array [
-                  "test-id",
-                ]
-              }
-              display="row"
-              error={
-                Array [
-                  "Error one",
-                  "Error two",
-                ]
-              }
-              fullWidth={false}
-              hasChildLabel={true}
-              hasEmptyLabelSpace={false}
-              helpText="Help text"
-              isInvalid={true}
-              label="Label"
-              labelType="label"
-            >
-              <div
-                className="euiFormRow"
-                id="generated-id-row"
-              >
-                <div
-                  className="euiFormRow__labelWrapper"
-                >
-                  <EuiFormLabel
-                    aria-invalid={true}
-                    className="euiFormRow__label"
-                    htmlFor="generated-id"
-                    isFocused={false}
-                    isInvalid={true}
-                    type="label"
-                  >
-                    <label
+                    <EuiFormLabel
                       aria-invalid={true}
-                      className="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
+                      className="euiFormRow__label"
                       htmlFor="generated-id"
+                      isFocused={false}
+                      isInvalid={true}
+                      type="label"
                     >
-                      Label
-                    </label>
-                  </EuiFormLabel>
-                </div>
-                <div
-                  className="euiFormRow__fieldWrapper"
-                >
-                  <input
-                    aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
-                    id="generated-id"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                  />
-                  <EuiFormErrorText
-                    className="euiFormRow__text"
-                    id="generated-id-error-0"
-                    key="Error one"
+                      <label
+                        aria-invalid={true}
+                        className="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
+                        htmlFor="generated-id"
+                      >
+                        Label
+                      </label>
+                    </EuiFormLabel>
+                  </div>
+                  <div
+                    className="euiFormRow__fieldWrapper"
                   >
-                    <div
-                      aria-live="polite"
-                      className="euiFormErrorText euiFormRow__text"
+                    <input
+                      aria-describedby="generated-id-help generated-id-error-0 generated-id-error-1"
+                      id="generated-id"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    />
+                    <EuiFormErrorText
+                      className="euiFormRow__text"
                       id="generated-id-error-0"
+                      key="Error one"
                     >
-                      Error one
-                    </div>
-                  </EuiFormErrorText>
-                  <EuiFormErrorText
-                    className="euiFormRow__text"
-                    id="generated-id-error-1"
-                    key="Error two"
-                  >
-                    <div
-                      aria-live="polite"
-                      className="euiFormErrorText euiFormRow__text"
+                      <div
+                        aria-live="polite"
+                        className="euiFormErrorText euiFormRow__text"
+                        id="generated-id-error-0"
+                      >
+                        Error one
+                      </div>
+                    </EuiFormErrorText>
+                    <EuiFormErrorText
+                      className="euiFormRow__text"
                       id="generated-id-error-1"
+                      key="Error two"
                     >
-                      Error two
-                    </div>
-                  </EuiFormErrorText>
-                  <EuiFormHelpText
-                    className="euiFormRow__text"
-                    id="generated-id-help"
-                  >
-                    <div
-                      className="euiFormHelpText euiFormRow__text"
+                      <div
+                        aria-live="polite"
+                        className="euiFormErrorText euiFormRow__text"
+                        id="generated-id-error-1"
+                      >
+                        Error two
+                      </div>
+                    </EuiFormErrorText>
+                    <EuiFormHelpText
+                      className="euiFormRow__text"
                       id="generated-id-help"
                     >
-                      Help text
-                    </div>
-                  </EuiFormHelpText>
+                      <div
+                        className="euiFormHelpText euiFormRow__text"
+                        id="generated-id-help"
+                      >
+                        Help text
+                      </div>
+                    </EuiFormHelpText>
+                  </div>
                 </div>
-              </div>
-            </EuiFormRow>
-          </div>
-        </EuiFlexItem>
-      </div>
-    </EuiFlexGroup>
-  </div>
+              </EuiFormRow>
+            </div>
+          </EuiFlexItem>
+        </div>
+      </EuiFlexGroup>
+    </fieldset>
+  </EuiInnerText>
 </EuiDescribedFormGroup>
 `;

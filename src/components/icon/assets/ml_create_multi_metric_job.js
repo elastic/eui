@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconMlCreateMultiMetricJob = ({ title, ...props }) => (
+const EuiIconMlCreateMultiMetricJob = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path d="M30.976 10.41a6.23 6.23 0 01-1.75.715 12.979 12.979 0 010 9.75 6.23 6.23 0 011.75.716 14.984 14.984 0 000-11.182zM12.125 3.764a12.979 12.979 0 019.75 0 6.23 6.23 0 01.716-1.75 14.984 14.984 0 00-11.182 0 6.23 6.23 0 01.716 1.75zM3.824 16c-.005-1.67.315-3.326.94-4.875a6.061 6.061 0 01-1.74-.716 14.861 14.861 0 000 11.182 6.061 6.061 0 011.74-.716A12.932 12.932 0 013.825 16zm18.051 12.235a12.979 12.979 0 01-9.75 0 6.061 6.061 0 01-.716 1.741 14.861 14.861 0 0011.182 0 6.061 6.061 0 01-.716-1.74z" />
     <path
       className="euiIcon__fillSecondary"

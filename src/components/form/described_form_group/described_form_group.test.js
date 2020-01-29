@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../../test';
 
 import { EuiFormRow } from '../form_row';
@@ -14,7 +14,7 @@ describe('EuiDescribedFormGroup', () => {
   };
 
   test('is rendered', () => {
-    const component = shallow(
+    const component = mount(
       <EuiDescribedFormGroup {...requiredProps} {...props}>
         <EuiFormRow>
           <input />
@@ -26,23 +26,15 @@ describe('EuiDescribedFormGroup', () => {
   });
 
   test('ties together parts for accessibility', () => {
-    const describedFormGroupProps = {
-      idAria: 'test-id',
-    };
-
     const formRowProps = {
       label: 'Label',
       helpText: 'Help text',
       isInvalid: true,
       error: ['Error one', 'Error two'],
-      describedByIds: ['test-id'],
     };
 
     const tree = mount(
-      <EuiDescribedFormGroup
-        {...requiredProps}
-        {...props}
-        {...describedFormGroupProps}>
+      <EuiDescribedFormGroup {...requiredProps} {...props}>
         <EuiFormRow {...formRowProps}>
           <input />
         </EuiFormRow>
@@ -58,7 +50,7 @@ describe('EuiDescribedFormGroup', () => {
         fullWidth: true,
       };
 
-      const component = shallow(
+      const component = mount(
         <EuiDescribedFormGroup
           {...requiredProps}
           {...props}
@@ -77,7 +69,7 @@ describe('EuiDescribedFormGroup', () => {
         gutterSize: 's',
       };
 
-      const component = shallow(
+      const component = mount(
         <EuiDescribedFormGroup
           {...requiredProps}
           {...props}
@@ -96,7 +88,7 @@ describe('EuiDescribedFormGroup', () => {
         titleSize: 'l',
       };
 
-      const component = shallow(
+      const component = mount(
         <EuiDescribedFormGroup
           {...requiredProps}
           {...props}
@@ -111,7 +103,7 @@ describe('EuiDescribedFormGroup', () => {
     });
 
     test("description is not rendered when it's not provided", () => {
-      const component = shallow(
+      const component = mount(
         <EuiDescribedFormGroup {...requiredProps} title={<h3>Title</h3>}>
           <EuiFormRow>
             <input />

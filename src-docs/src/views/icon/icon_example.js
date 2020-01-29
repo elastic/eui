@@ -119,8 +119,8 @@ export const IconExample = {
         }
         color="warning">
         <p>
-          If the icon is purely decorative, pass{' '}
-          <EuiCode>aria-hidden=true</EuiCode>.
+          If no title is provided the icon is going to be purely decorative and
+          it will get by default an <EuiCode>aria-hidden=true</EuiCode>.
         </p>
       </EuiCallOut>
       <EuiSpacer />

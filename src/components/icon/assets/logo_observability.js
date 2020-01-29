@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconLogoObservability = ({ title, ...props }) => (
+const EuiIconLogoObservability = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path d="M10 32H7.238C3.793 32 1 28.865 1 24.998V15h9v17z" fill="#F04E98" />
     <path className="euiIcon__fillNegative" d="M10 32h9V8h-9z" />
     <path
