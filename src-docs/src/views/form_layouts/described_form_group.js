@@ -87,7 +87,7 @@ export default class extends Component {
     return (
       <EuiForm>
         <EuiDescribedFormGroup
-          title="Single text field"
+          title={<h3>Single text field</h3>}
           description={
             <Fragment>
               A single text field that can be used to display additional text.
@@ -103,14 +103,14 @@ export default class extends Component {
           </EuiFormRow>
         </EuiDescribedFormGroup>
 
-        <EuiDescribedFormGroup title="No description">
+        <EuiDescribedFormGroup title={<h3>No description</h3>}>
           <EuiFormRow label="Text field">
             <EuiFieldText name="first" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
 
         <EuiDescribedFormGroup
-          title="Multiple fields"
+          title={<h3>Multiple fields</h3>}
           description="Here are three form rows. The first form row does not have a title.">
           <EuiFormRow
             hasEmptyLabelSpace
@@ -135,7 +135,7 @@ export default class extends Component {
         </EuiDescribedFormGroup>
 
         <EuiDescribedFormGroup
-          title="Full width"
+          title={<h2>Full width</h2>}
           titleSize="xxxs"
           description={
             <Fragment>

@@ -16,7 +16,6 @@
 **Breaking changes**
 
 - Removed `idAria` prop from `EuiDescribedFormGroup` ([#2783](https://github.com/elastic/eui/pull/2783))
-- Changed `title` prop of `EuiDescribedFormGroup` to accept a `string` instead of `node` ([#2783](https://github.com/elastic/eui/pull/2783))
 
 **Deprecations**
 

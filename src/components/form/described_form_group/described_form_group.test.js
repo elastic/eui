@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../../test';
 
 import { EuiFormRow } from '../form_row';
@@ -9,12 +9,12 @@ jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 describe('EuiDescribedFormGroup', () => {
   const props = {
-    title: 'Title',
+    title: <h3>Title</h3>,
     description: 'Test description',
   };
 
   test('is rendered', () => {
-    const component = shallow(
+    const component = mount(
       <EuiDescribedFormGroup {...requiredProps} {...props}>
         <EuiFormRow>
           <input />
@@ -50,7 +50,7 @@ describe('EuiDescribedFormGroup', () => {
         fullWidth: true,
       };
 
-      const component = shallow(
+      const component = mount(
         <EuiDescribedFormGroup
           {...requiredProps}
           {...props}
@@ -69,7 +69,7 @@ describe('EuiDescribedFormGroup', () => {
         gutterSize: 's',
       };
 
-      const component = shallow(
+      const component = mount(
         <EuiDescribedFormGroup
           {...requiredProps}
           {...props}
@@ -88,7 +88,7 @@ describe('EuiDescribedFormGroup', () => {
         titleSize: 'l',
       };
 
-      const component = shallow(
+      const component = mount(
         <EuiDescribedFormGroup
           {...requiredProps}
           {...props}
@@ -103,8 +103,8 @@ describe('EuiDescribedFormGroup', () => {
     });
 
     test("description is not rendered when it's not provided", () => {
-      const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} title="Title">
+      const component = mount(
+        <EuiDescribedFormGroup {...requiredProps} title={<h3>Title</h3>}>
           <EuiFormRow>
             <input />
           </EuiFormRow>

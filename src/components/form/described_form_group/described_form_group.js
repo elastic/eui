@@ -8,6 +8,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { GUTTER_SIZES } from '../../flex/flex_group';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiInnerText } from '../../inner_text';
 
 const paddingSizeToClassNameMap = {
   xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
@@ -58,26 +59,32 @@ export class EuiDescribedFormGroup extends PureComponent {
     }
 
     return (
-      <fieldset className={classes} {...rest}>
-        <EuiScreenReaderOnly>
-          <legend>{title}</legend>
-        </EuiScreenReaderOnly>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <fieldset className={classes} {...rest}>
+            <EuiScreenReaderOnly>
+              <legend>{innerText}</legend>
+            </EuiScreenReaderOnly>
 
-        <EuiFlexGroup gutterSize={gutterSize}>
-          <EuiFlexItem>
-            <EuiTitle
-              size={titleSize}
-              aria-hidden="true"
-              className="euiDescribedFormGroup__title">
-              <h3>{title}</h3>
-            </EuiTitle>
+            <EuiFlexGroup gutterSize={gutterSize}>
+              <EuiFlexItem>
+                <span ref={ref} title={innerText}>
+                  <EuiTitle
+                    size={titleSize}
+                    aria-hidden="true"
+                    className="euiDescribedFormGroup__title">
+                    {title}
+                  </EuiTitle>
+                </span>
 
-            {renderedDescription}
-          </EuiFlexItem>
+                {renderedDescription}
+              </EuiFlexItem>
 
-          <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
-        </EuiFlexGroup>
-      </fieldset>
+              <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
+            </EuiFlexGroup>
+          </fieldset>
+        )}
+      </EuiInnerText>
     );
   }
 }
@@ -94,7 +101,10 @@ EuiDescribedFormGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   fullWidth: PropTypes.bool,
   titleSize: PropTypes.oneOf(TITLE_SIZES),
-  title: PropTypes.string.isRequired,
+  /**
+   * For better accessibility, it's recommended the use of HTML headings
+   */
+  title: PropTypes.node.isRequired,
   description: PropTypes.node,
 };
 

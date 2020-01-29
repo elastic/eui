@@ -128,7 +128,6 @@ export const FormLayoutsExample = {
       },
       demo: <DescribedFormGroup />,
       snippet: `<EuiDescribedFormGroup
-  idAria="id"
   title={<h3>Set heading level based on context</h3>}
   description={
     <Fragment>
@@ -138,7 +137,6 @@ export const FormLayoutsExample = {
 >
   <EuiFormRow
     label="Text field"
-    describedByIds={['id']}
   >
     <EuiFieldText />
   </EuiFormRow>
