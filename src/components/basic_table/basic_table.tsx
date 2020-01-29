@@ -538,15 +538,7 @@ export class EuiBasicTable<T = any> extends Component<
     const { items, pagination, tableCaption } = this.props;
     let captionElement;
     if (tableCaption) {
-      captionElement = (
-        <EuiI18n
-          token="euiBasicTable.tableDescription"
-          default="{tableCaption}"
-          values={{
-            tableCaption: tableCaption,
-          }}
-        />
-      );
+      captionElement = tableCaption;
     } else {
       if (pagination && pagination.totalItemCount > 0) {
         captionElement = (
