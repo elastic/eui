@@ -2613,6 +2613,18 @@ FooComponent.propTypes = {
       });
     });
 
+    describe('misc', () => {
+      it('supports non-initialized variable declarations', () => {
+        const result = transform(
+          `
+let something: any;
+`,
+          babelOptions
+        );
+
+        expect(result.code).toBe('let something;');
+      });
+    });
   });
 
   describe('remove types from exports', () => {
@@ -2625,7 +2637,7 @@ export { Foo };
         babelOptions
       );
 
-      expect(result.code).toBe(`export {};`);
+      expect(result.code).toBe('');
     });
 
     it('removes multiple type export from ExportNamedDeclaration', () => {
@@ -2638,7 +2650,7 @@ export { Foo, Bar };
         babelOptions
       );
 
-      expect(result.code).toBe(`export {};`);
+      expect(result.code).toBe('');
     });
 
     it('removes type exports from ExportNamedDeclaration, leaving legitimate exports', () => {

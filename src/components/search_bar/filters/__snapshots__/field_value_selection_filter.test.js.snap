@@ -5,13 +5,11 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={true}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -65,13 +63,11 @@ exports[`FieldValueSelectionFilter active - fields in options 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={true}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -125,13 +121,11 @@ exports[`FieldValueSelectionFilter inactive - field is global 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -184,13 +178,11 @@ exports[`FieldValueSelectionFilter inactive - fields in options 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -243,13 +235,11 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -289,13 +279,11 @@ exports[`FieldValueSelectionFilter render - fields in options 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -348,13 +336,11 @@ exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -394,13 +380,11 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>
@@ -440,13 +424,11 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
   anchorPosition="downCenter"
   button={
     <EuiFilterButton
-      color="text"
       grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
-      type="button"
     >
       Tag
     </EuiFilterButton>

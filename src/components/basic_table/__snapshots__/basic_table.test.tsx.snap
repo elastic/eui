@@ -21,6 +21,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -53,7 +54,9 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >
@@ -141,6 +144,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -173,7 +177,9 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >
@@ -263,6 +269,7 @@ exports[`EuiBasicTable empty is rendered 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -332,6 +339,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -409,6 +417,7 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -478,6 +487,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -524,7 +534,9 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           Age
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >
@@ -702,6 +714,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -728,7 +741,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -762,7 +774,9 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           Age
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelectable={true}
           isSelected={false}
@@ -991,6 +1005,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1023,7 +1038,9 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           aria-owns="row_1_expansion"
           isSelected={false}
@@ -1116,6 +1133,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1148,7 +1166,9 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiKeyboardAccessible>
           <EuiTableRow
             className="customRowClass"
@@ -1242,6 +1262,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1274,7 +1295,9 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiKeyboardAccessible>
           <EuiTableRow
             className="customClass"
@@ -1368,6 +1391,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1400,7 +1424,9 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >
@@ -1473,6 +1499,7 @@ exports[`EuiBasicTable with pagination 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1505,7 +1532,9 @@ exports[`EuiBasicTable with pagination 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >
@@ -1595,6 +1624,7 @@ exports[`EuiBasicTable with pagination and error 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1676,6 +1706,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1702,7 +1733,6 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -1719,7 +1749,9 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelectable={true}
           isSelected={false}
@@ -1842,6 +1874,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -1874,7 +1907,9 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >
@@ -1986,6 +2021,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -2012,7 +2048,6 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2032,7 +2067,9 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelectable={true}
           isSelected={false}
@@ -2176,6 +2213,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -2202,7 +2240,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2228,7 +2265,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           Actions
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           hasActions={true}
           isSelectable={true}
@@ -2459,6 +2498,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -2485,7 +2525,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2505,7 +2544,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           Count
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelectable={true}
           isSelected={false}
@@ -2649,6 +2690,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -2675,7 +2717,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2695,7 +2736,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelectable={true}
           isSelected={false}
@@ -2839,6 +2882,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -2865,7 +2909,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -2891,7 +2934,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           Actions
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           hasActions={true}
           isSelectable={true}
@@ -3140,6 +3185,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -3166,7 +3212,6 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          width="24px"
         >
           <EuiI18n
             default="Select all rows"
@@ -3186,7 +3231,9 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           Count
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelectable={true}
           isSelected={false}
@@ -3309,6 +3356,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -3341,7 +3389,9 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >
@@ -3434,6 +3484,7 @@ exports[`EuiBasicTable with sorting 1`] = `
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
+      tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
@@ -3469,7 +3520,9 @@ exports[`EuiBasicTable with sorting 1`] = `
           Name
         </EuiTableHeaderCell>
       </EuiTableHeader>
-      <EuiTableBody>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
         <EuiTableRow
           isSelected={false}
         >

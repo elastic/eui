@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
-import { EuiRadioGroup, EuiSpacer, EuiTitle } from '../../../../src/components';
+import { EuiRadioGroup } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
+import { DisplayToggles } from './display_toggles';
 
 export default class extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class extends Component {
       },
       {
         id: `${idPrefix}2`,
-        label: 'Option three',
+        label: 'Option three is disabled',
         disabled: true,
       },
     ];
@@ -39,29 +40,22 @@ export default class extends Component {
 
   render() {
     return (
-      <Fragment>
+      /* DisplayToggles wrapper for Docs only */
+      <DisplayToggles
+        canLoading={false}
+        canReadOnly={false}
+        canInvalid={false}
+        canFullWidth={false}>
         <EuiRadioGroup
           options={this.radios}
           idSelected={this.state.radioIdSelected}
           onChange={this.onChange}
           name="radio group"
+          legend={{
+            children: <span>This is a legend for a radio group</span>,
+          }}
         />
-
-        <EuiSpacer size="m" />
-
-        <EuiTitle size="xxs">
-          <h3>Disabled</h3>
-        </EuiTitle>
-
-        <EuiSpacer size="s" />
-
-        <EuiRadioGroup
-          options={this.radios}
-          idSelected={this.state.radioIdSelected}
-          onChange={this.onChange}
-          disabled
-        />
-      </Fragment>
+      </DisplayToggles>
     );
   }
 }

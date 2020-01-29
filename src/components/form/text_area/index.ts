@@ -1,1 +1,1 @@
-export { EuiTextArea } from './text_area';
+export { EuiTextArea, EuiTextAreaProps } from './text_area';

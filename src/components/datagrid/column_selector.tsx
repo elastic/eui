@@ -27,13 +27,15 @@ import {
 } from '../drag_and_drop';
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../icon';
+import { useDependentState } from '../../services';
 
 export const useColumnSelector = (
   availableColumns: EuiDataGridColumn[],
   columnVisibility: EuiDataGridColumnVisibility
 ): [ReactElement, EuiDataGridColumn[]] => {
-  const [sortedColumns, setSortedColumns] = useState(() =>
-    availableColumns.map(({ id }) => id)
+  const [sortedColumns, setSortedColumns] = useDependentState(
+    () => availableColumns.map(({ id }) => id),
+    [availableColumns]
   );
 
   const { visibleColumns, setVisibleColumns } = columnVisibility;

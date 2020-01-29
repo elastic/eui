@@ -2,30 +2,30 @@ import { colorPalette } from './color_palette';
 
 describe('colorPalette', () => {
   it('should generate the expected palette', () => {
-    const actualPalette = colorPalette('#FFFF6D', '#1EA593');
+    const actualPalette = colorPalette(['#FFFF6D', '#1EA593']);
     expect(actualPalette).toEqual([
-      '#FFFF6D',
-      '#E6F571',
-      '#CDEB75',
-      '#B4E17A',
-      '#9BD77E',
-      '#82CD82',
-      '#69C386',
-      '#50B98B',
-      '#37AF8F',
-      '#1EA593',
+      '#ffff6d',
+      '#ecf573',
+      '#d8eb79',
+      '#c4e07d',
+      '#b0d682',
+      '#9acc86',
+      '#84c28a',
+      '#6bb98d',
+      '#4daf90',
+      '#1ea593',
     ]);
   });
 
   it('should generate a palette with the specified spread', () => {
-    const actualPalette = colorPalette('#FFFF6D', '#1EA593', 6);
+    const actualPalette = colorPalette(['#FFFF6D', '#1EA593'], 6);
     expect(actualPalette).toEqual([
-      '#FFFF6D',
-      '#D2ED75',
-      '#A5DB7C',
-      '#78C984',
-      '#4BB78B',
-      '#1EA593',
+      '#ffff6d',
+      '#dced77',
+      '#b8da80',
+      '#92c887',
+      '#66b78e',
+      '#1ea593',
     ]);
   });
 });

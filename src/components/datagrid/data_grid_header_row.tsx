@@ -235,7 +235,7 @@ const EuiDataGridHeaderCell: FunctionComponent<
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       style={width != null ? { width: `${width}px` } : {}}>
-      {width ? (
+      {column.isResizable !== false && width != null ? (
         <EuiDataGridColumnResizer
           columnId={id}
           columnWidth={width}

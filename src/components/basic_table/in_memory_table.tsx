@@ -325,6 +325,7 @@ export class EuiInMemoryTable<T> extends Component<
 > {
   static defaultProps = {
     responsive: true,
+    tableLayout: 'fixed',
   };
 
   static getDerivedStateFromProps<T>(
@@ -583,11 +584,12 @@ export class EuiInMemoryTable<T> extends Component<
       itemId,
       rowProps,
       cellProps,
-      items: _unuseditems, // eslint-disable-line no-unused-vars
-      search, // eslint-disable-line no-unused-vars
-      onTableChange, // eslint-disable-line no-unused-vars
-      executeQueryOptions, // eslint-disable-line no-unused-vars
-      allowNeutralSort, // eslint-disable-line no-unused-vars
+      tableLayout,
+      items: _unuseditems,
+      search,
+      onTableChange,
+      executeQueryOptions,
+      allowNeutralSort,
       ...rest
     } = this.props;
 
@@ -647,6 +649,7 @@ export class EuiInMemoryTable<T> extends Component<
         error={error}
         loading={loading}
         noItemsMessage={message}
+        tableLayout={tableLayout}
         compressed={compressed}
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}
         {...rest}

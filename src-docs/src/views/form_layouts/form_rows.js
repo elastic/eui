@@ -128,15 +128,17 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="Checkbox group labels should use a `legend` label type"
-          labelType="legend">
-          <EuiCheckboxGroup
-            options={this.state.checkboxes}
-            idToSelectedMap={this.state.checkboxIdToSelectedMap}
-            onChange={this.onCheckboxChange}
-          />
-        </EuiFormRow>
+        <EuiSpacer />
+
+        <EuiCheckboxGroup
+          options={this.state.checkboxes}
+          idToSelectedMap={this.state.checkboxIdToSelectedMap}
+          onChange={this.onCheckboxChange}
+          legend={{
+            children:
+              'Checkbox groups should use the `legend` prop instead of form row',
+          }}
+        />
 
         <EuiSpacer />
 

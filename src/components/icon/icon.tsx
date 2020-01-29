@@ -17,10 +17,13 @@ import { CommonProps, keysOf } from '../common';
 import { icon as empty } from './assets/empty.js';
 import { enqueueStateChange } from '../../services/react';
 
+import { htmlIdGenerator } from '../../services';
+
 const typeToPathMap = {
   accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
+  aggregate: 'aggregate',
   alert: 'alert',
   annotation: 'annotation',
   apmApp: 'app_apm',
@@ -34,6 +37,7 @@ const typeToPathMap = {
   auditbeatApp: 'app_auditbeat',
   beaker: 'beaker',
   bell: 'bell',
+  bellSlash: 'bellSlash',
   bolt: 'bolt',
   boxesHorizontal: 'boxes_horizontal',
   boxesVertical: 'boxes_vertical',
@@ -147,7 +151,6 @@ const typeToPathMap = {
   indexPatternApp: 'app_index_pattern',
   indexRollupApp: 'app_index_rollup',
   indexSettings: 'index_settings',
-  metricsApp: 'app_metrics',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
   invert: 'invert',
@@ -207,6 +210,7 @@ const typeToPathMap = {
   logoMongodb: 'logo_mongodb',
   logoMySQL: 'logo_mysql',
   logoNginx: 'logo_nginx',
+  logoObservability: 'logo_observability',
   logoOsquery: 'logo_osquery',
   logoPhp: 'logo_php',
   logoPostgres: 'logo_postgres',
@@ -220,6 +224,7 @@ const typeToPathMap = {
   logoUptime: 'logo_uptime',
   logoWebhook: 'logo_webhook',
   logoWindows: 'logo_windows',
+  logoWorkplaceSearch: 'logo_workplace_search',
   logstashFilter: 'logstash_filter',
   logstashIf: 'logstash_if',
   logstashInput: 'logstash_input',
@@ -236,11 +241,13 @@ const typeToPathMap = {
   menuRight: 'menuRight',
   merge: 'merge',
   metricbeatApp: 'app_metricbeat',
+  metricsApp: 'app_metrics',
   minimize: 'minimize',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
   monitoringApp: 'app_monitoring',
   moon: 'moon',
+  nested: 'nested',
   node: 'node',
   notebookApp: 'app_notebook',
   number: 'number',
@@ -248,6 +255,8 @@ const typeToPathMap = {
   online: 'online',
   package: 'package',
   packetbeatApp: 'app_packetbeat',
+  pageSelect: 'pageSelect',
+  pagesSelect: 'pagesSelect',
   partial: 'partial',
   pause: 'pause',
   pencil: 'pencil',
@@ -259,6 +268,7 @@ const typeToPathMap = {
   plusInCircleFilled: 'plus_in_circle_filled',
   popout: 'popout',
   questionInCircle: 'question_in_circle',
+  recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
   reportingApp: 'app_reporting',
   save: 'save',
@@ -268,6 +278,9 @@ const typeToPathMap = {
   searchProfilerApp: 'app_search_profiler',
   securityAnalyticsApp: 'app_security_analytics',
   securityApp: 'app_security',
+  securitySignal: 'securitySignal',
+  securitySignalDetected: 'securitySignalDetected',
+  securitySignalResolved: 'securitySignalResolved',
   shard: 'shard',
   share: 'share',
   snowflake: 'snowflake',
@@ -302,6 +315,7 @@ const typeToPathMap = {
   tag: 'tag',
   tear: 'tear',
   temperature: 'temperature',
+  timeline: 'timeline',
   timelionApp: 'app_timelion',
   training: 'training',
   trash: 'trash',
@@ -436,6 +450,10 @@ export type EuiIconProps = CommonProps &
      */
     title?: string;
     /**
+     * A unique identifier for the title element
+     */
+    titleId?: string;
+    /**
      * Its value should be one or more element IDs
      */
     'aria-labelledby'?: string;
@@ -465,6 +483,8 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 
   return icon;
 }
+
+const generateId = htmlIdGenerator();
 
 export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
@@ -614,15 +634,17 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
         );
       const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
 
-      let ariaLabel: any;
+      let titleId: any;
 
-      // If no aria-label or aria-labelledby is provided the title will be default
+      // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
+      //  The svg aria-labelledby attribute gets this titleId
+      //  The svg title element gets this titleId as an id
       if (
         !this.props['aria-label'] &&
         !this.props['aria-labelledby'] &&
         title
       ) {
-        ariaLabel = { 'aria-label': title };
+        titleId = { titleId: generateId() };
       }
 
       return (
@@ -633,9 +655,9 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           focusable={focusable}
           role="img"
           title={title}
+          {...titleId}
           {...rest}
           {...hideIconEmpty}
-          {...ariaLabel}
         />
       );
     }

@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiNavDrawerFlyout } from './nav_drawer_flyout';
-import { EuiNavDrawerGroup } from './nav_drawer_group';
+import { EuiNavDrawerGroup, ATTR_SELECTOR } from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { throttle } from '../color_picker/utils';
+
+const MENU_ELEMENT_ID = 'navDrawerMenu';
 
 export class EuiNavDrawer extends Component {
   constructor(props) {
@@ -21,6 +23,7 @@ export class EuiNavDrawer extends Component {
       outsideClickDisabled: true,
       isManagingFocus: false,
       toolTipsEnabled: true,
+      focusReturnRef: null,
     };
   }
 
@@ -47,8 +50,6 @@ export class EuiNavDrawer extends Component {
     }
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
-
-  timeoutID;
 
   sideNavLockClicked = () => {
     if (this.state.isLocked) {
@@ -130,66 +131,68 @@ export class EuiNavDrawer extends Component {
     window.removeEventListener('resize', this.functionToCallOnWindowResize);
   };
 
-  manageFocus = () => {
-    // This prevents the drawer from collapsing when tabbing through children
-    // by clearing the timeout thus cancelling the onBlur event (see focusOut).
-    // This means isManagingFocus remains true as long as a child element
-    // has focus. This is the case since React bubbles up onFocus and onBlur
-    // events from the child elements.
-    clearTimeout(this.timeoutID);
-
-    if (!this.state.isManagingFocus) {
-      this.setState({
-        isManagingFocus: true,
-      });
-    }
-  };
-
-  focusOut = () => {
-    // This collapses the drawer when no children have focus (i.e. tabbed out).
-    // In other words, if focus does not bubble up from a child element, then
-    // the drawer will collapse. See the corresponding block in expandDrawer
-    // (called by onFocus) which cancels this operation via clearTimeout.
-    this.timeoutID = setTimeout(() => {
-      if (this.state.isManagingFocus) {
-        this.setState({
-          isManagingFocus: false,
-        });
-
-        this.closeBoth();
-      }
-    }, 0);
-  };
-
-  expandFlyout = (links, title) => {
+  expandFlyout = (links, title, item) => {
     const content = links;
 
     if (this.state.navFlyoutTitle === title) {
       this.collapseFlyout();
     } else {
-      this.setState({
-        flyoutIsCollapsed: false,
-        navFlyoutTitle: title,
-        navFlyoutContent: content,
-        isCollapsed: this.state.isLocked ? false : true,
-        toolTipsEnabled: false,
-        outsideClickDisabled: false,
-      });
+      this.setState(
+        ({ isLocked }) => {
+          return {
+            flyoutIsCollapsed: false,
+            navFlyoutTitle: title,
+            navFlyoutContent: content,
+            isCollapsed: isLocked ? false : true,
+            toolTipsEnabled: false,
+            outsideClickDisabled: false,
+            focusReturnRef: item.label,
+          };
+        },
+        () => {
+          // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
+          // does not allow for deep `ref` element management at present
+          const element = document.querySelector(
+            `#${MENU_ELEMENT_ID} [${ATTR_SELECTOR}='${item.label}']`
+          );
+          if (!element) return;
+          element.setAttribute('aria-expanded', 'true');
+        }
+      );
     }
   };
 
-  collapseFlyout = () => {
-    this.setState({
-      flyoutIsCollapsed: true,
-      navFlyoutTitle: null,
-      navFlyoutContent: null,
-      toolTipsEnabled: this.state.isLocked ? false : true,
-    });
+  collapseFlyout = (shouldReturnFocus = true) => {
+    const focusReturn = this.state.focusReturnRef;
+    this.setState(
+      {
+        flyoutIsCollapsed: true,
+        navFlyoutTitle: null,
+        navFlyoutContent: null,
+        toolTipsEnabled: this.state.isLocked ? false : true,
+        focusReturnRef: null,
+      },
+      () => {
+        // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
+        // does not allow for deep `ref` element management at present
+        const element = document.querySelector(
+          `#${MENU_ELEMENT_ID} [${ATTR_SELECTOR}='${focusReturn}']`
+        );
+        if (!element) return;
+        requestAnimationFrame(() => {
+          element.setAttribute('aria-expanded', 'false');
+        });
+        if (!shouldReturnFocus) return;
+        requestAnimationFrame(() => {
+          element.focus();
+        });
+      }
+    );
   };
 
   closeBoth = () => {
     if (!this.state.isLocked) this.collapseDrawer();
-    this.collapseFlyout();
+    this.collapseFlyout(false);
   };
 
   handleDrawerMenuClick = e => {
@@ -210,6 +213,26 @@ export class EuiNavDrawer extends Component {
       // this is an anchor with an href
       this.closeBoth();
     }
+  };
+
+  modifyChildren = children => {
+    // Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
+    // Filter out falsy items
+    const filteredChildren = React.Children.toArray(children);
+    return React.Children.map(filteredChildren, child => {
+      // Allow for Fragments by recursive modification
+      if (child.type === React.Fragment) {
+        return this.modifyChildren(child.props.children);
+      } else if (child.type === EuiNavDrawerGroup) {
+        // Check if child is an EuiNavDrawerGroup and if it does have a flyout, add the expand function
+        return React.cloneElement(child, {
+          flyoutMenuButtonClick: this.expandFlyout,
+          showToolTips: this.state.toolTipsEnabled && this.props.showToolTips,
+        });
+      } else {
+        return child;
+      }
+    });
   };
 
   render() {
@@ -305,6 +328,7 @@ export class EuiNavDrawer extends Component {
         isCollapsed={this.state.flyoutIsCollapsed}
         listItems={this.state.navFlyoutContent}
         wrapText
+        onClose={this.collapseFlyout}
       />
     );
 
@@ -312,19 +336,7 @@ export class EuiNavDrawer extends Component {
     // that have a flyoutMenu prop (sub links)
     let modifiedChildren = children;
 
-    // 1. Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
-    modifiedChildren = React.Children.map(this.props.children, child => {
-      // 2. Check if child is an EuiNavDrawerGroup and if it does have a flyout, add the expand function
-      if (child.type === EuiNavDrawerGroup) {
-        const item = React.cloneElement(child, {
-          flyoutMenuButtonClick: this.expandFlyout,
-          showToolTips: this.state.toolTipsEnabled && showToolTips,
-        });
-        return item;
-      } else {
-        return child;
-      }
-    });
+    modifiedChildren = this.modifyChildren(this.props.children);
 
     const menuClasses = classNames('euiNavDrawerMenu', {
       'euiNavDrawerMenu-hasFooter': footerContent,
@@ -335,13 +347,10 @@ export class EuiNavDrawer extends Component {
         onOutsideClick={() => this.closeBoth()}
         isDisabled={this.state.outsideClickDisabled}>
         <nav className={classes} {...rest}>
-          <EuiFlexGroup
-            gutterSize="none"
-            onBlur={this.focusOut}
-            onFocus={this.manageFocus}>
+          <EuiFlexGroup gutterSize="none">
             <EuiFlexItem grow={false}>
               <div
-                id="navDrawerMenu"
+                id={MENU_ELEMENT_ID}
                 className={menuClasses}
                 onClick={this.handleDrawerMenuClick}>
                 {/* TODO: Add a "skip navigation" keyboard only button */}
