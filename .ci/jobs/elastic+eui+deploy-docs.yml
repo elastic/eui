@@ -18,6 +18,9 @@
           url: git@github.com:elastic/eui.git
           reference-repo: /var/lib/jenkins/.git-references/eui.git
     triggers: []
+    vault:
+      # auth/approle/role/bekitzur-ci/role-id
+      role_id: 3a72c576-4f45-3b41-b698-d371dc717227
     builders:
     - shell: |-
         #!/usr/local/bin/runbld

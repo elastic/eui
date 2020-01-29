@@ -3,3 +3,20 @@
     name: elastic-eui-pull-request
     display-name: 'elastic / eui # pull-request'
     description: Testing of eui pull requests.
+    triggers:
+    - github-pull-request:
+        org-list:
+        - elastic
+        allow-whitelist-orgs-as-admins: true
+        github-hooks: true
+        status-context: eui-ci
+        cancel-builds-on-update: true
+    builders:
+    - shell: |-
+        #!/usr/local/bin/runbld
+        export NVM_DIR="/var/lib/jenkins/.nvm"
+        [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
+        NPM_VERSION=10
+        nvm install ${NPM_VERSION}
+        nvm use ${NPM_VERSION} --delete-prefix
+        npm run test-docker
