@@ -543,7 +543,7 @@ export class EuiBasicTable<T = any> extends Component<
       if (pagination && pagination.totalItemCount > 0) {
         captionElement = (
           <EuiI18n
-            token="euiBasicTable.tableDescription"
+            token="euiBasicTable.tableDescriptionWithPagination"
             default="This table contains {itemCount} rows out of {totalItemCount} rows."
             values={{
               totalItemCount: pagination.totalItemCount,
@@ -554,7 +554,7 @@ export class EuiBasicTable<T = any> extends Component<
       } else {
         captionElement = (
           <EuiI18n
-            token="euiBasicTable.tableDescription"
+            token="euiBasicTable.tableDescriptionWithoutPagination"
             default="This table contains {itemCount} rows."
             values={{
               itemCount: items.length,
