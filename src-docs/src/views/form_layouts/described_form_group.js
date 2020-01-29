@@ -10,6 +10,7 @@ import {
   EuiRange,
   EuiSelect,
   EuiSwitch,
+  EuiLink,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -86,45 +87,34 @@ export default class extends Component {
     return (
       <EuiForm>
         <EuiDescribedFormGroup
-          idAria="single-example-aria"
           title={<h3>Single text field</h3>}
           description={
             <Fragment>
-              When using this with a single form row where this text serves as
-              the help text for the input, it is a good idea to pass{' '}
-              <EuiCode>idAria=&quot;someID&quot;</EuiCode> to the form group and
-              pass
-              <EuiCode>describedByIds=&#123;[someID]&#125;</EuiCode> to its form
-              row.
+              A single text field that can be used to display additional text.
+              It can have{' '}
+              <EuiLink href="http://www.elastic.co" target="_blank">
+                links
+              </EuiLink>{' '}
+              or any other type of content.
             </Fragment>
           }>
-          <EuiFormRow
-            label="Text field"
-            describedByIds={['single-example-aria']}>
+          <EuiFormRow label="Text field">
+            <EuiFieldText name="first" aria-label="Example" />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+
+        <EuiDescribedFormGroup title={<h3>No description</h3>}>
+          <EuiFormRow label="Text field">
             <EuiFieldText name="first" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
 
         <EuiDescribedFormGroup
-          idAria="no-description"
-          title={<h3>No description</h3>}>
-          <EuiFormRow label="Text field" describedByIds={['no-description']}>
-            <EuiFieldText name="first" />
-          </EuiFormRow>
-        </EuiDescribedFormGroup>
-
-        <EuiDescribedFormGroup
-          title={<strong>Multiple fields</strong>}
-          titleSize="m"
+          title={<h3>Multiple fields</h3>}
           description="Here are three form rows. The first form row does not have a title.">
           <EuiFormRow
             hasEmptyLabelSpace
-            helpText={
-              <span>
-                We do not pass <EuiCode>describedByIds</EuiCode> when there are
-                multiple form rows.
-              </span>
-            }>
+            helpText={<span>This is a help text</span>}>
             <EuiSelect
               hasNoInitialSelection
               options={[
