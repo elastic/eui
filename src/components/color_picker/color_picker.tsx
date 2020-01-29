@@ -3,11 +3,13 @@ import React, {
   HTMLAttributes,
   ReactElement,
   cloneElement,
+  useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
+import chroma, { ColorSpaces } from 'chroma-js';
 
 import { CommonProps } from '../common';
 
@@ -15,19 +17,11 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-// @ts-ignore
 import { EuiFieldText } from '../form/field_text';
 import { EuiFormControlLayout } from '../form/form_control_layout';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
-import {
-  HSV,
-  VISUALIZATION_COLORS,
-  keyCodes,
-  hexToHsv,
-  hsvToHex,
-  isValidHex,
-} from '../../services';
+import { VISUALIZATION_COLORS, keyCodes, isValidHex } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -103,10 +97,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   swatches = VISUALIZATION_COLORS,
   popoverZIndex,
 }) => {
-  const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
-  const [colorAsHsv, setColorAsHsv] = useState(
-    color ? hexToHsv(color) : hexToHsv('')
+  const getHsvFromColor = useCallback(
+    (): ColorSpaces['hsv'] =>
+      color && chroma.valid(color) ? chroma(color).hsv() : [0, 0, 0],
+    [color]
   );
+  const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
+  const [colorAsHsv, setColorAsHsv] = useState(getHsvFromColor());
   const [lastHex, setLastHex] = useState(color);
   const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
   const [popoverShouldOwnFocus, setPopoverShouldOwnFocus] = useState(false);
@@ -114,14 +111,20 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const satruationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
+  const updateColorAsHsv = ([h, s, v]: ColorSpaces['hsv']) => {
+    // Chroma's passthrough (RGB) parsing determines that black/white/gray are hue-less and returns `NaN`
+    // For our purposes we can process `NaN` as `0`
+    const hue = isNaN(h) ? 0 : h;
+    setColorAsHsv([hue, s, v]);
+  };
+
   useEffect(() => {
-    // Mimics `componentDidMount` and `componentDidUpdate`
     if (lastHex !== color) {
       // Only react to outside changes
-      const newColorAsHsv = color ? hexToHsv(color) : hexToHsv('');
-      setColorAsHsv(newColorAsHsv);
+      const newColorAsHsv = getHsvFromColor();
+      updateColorAsHsv(newColorAsHsv);
     }
-  }, [color, lastHex]);
+  }, [color, lastHex, getHsvFromColor]);
 
   const classes = classNames('euiColorPicker', className);
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
@@ -218,29 +221,28 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const handleColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleOnChange(e.target.value);
     if (isValidHex(e.target.value)) {
-      setColorAsHsv(hexToHsv(e.target.value));
+      updateColorAsHsv(chroma(e.target.value).hsv());
     }
   };
 
-  const handleColorSelection = (color: HSV) => {
-    const { h } = colorAsHsv;
-    const hue = h ? h : 1;
-    const newHsv = { ...color, h: hue };
-    handleOnChange(hsvToHex(newHsv));
-    setColorAsHsv(newHsv);
+  const handleColorSelection = (color: ColorSpaces['hsv']) => {
+    const [h] = colorAsHsv;
+    const [, s, v] = color;
+    const newHsv: ColorSpaces['hsv'] = [h, s, v];
+    handleOnChange(chroma.hsv(...newHsv).hex());
+    updateColorAsHsv(newHsv);
   };
 
   const handleHueSelection = (hue: number) => {
-    const { s, v } = colorAsHsv;
-    const satVal = s && v ? { s, v } : { s: 1, v: 1 };
-    const newHsv = { ...satVal, h: hue };
-    handleOnChange(hsvToHex(newHsv));
-    setColorAsHsv(newHsv);
+    const [, s, v] = colorAsHsv;
+    const newHsv: ColorSpaces['hsv'] = [hue, s, v];
+    handleOnChange(chroma.hsv(...newHsv).hex());
+    updateColorAsHsv(newHsv);
   };
 
   const handleSwatchSelection = (color: string) => {
     handleOnChange(color);
-    setColorAsHsv(hexToHsv(color));
+    updateColorAsHsv(chroma(color).hsv());
 
     handleFinalSelection();
   };
@@ -258,7 +260,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           />
           <EuiHue
             id={id}
-            hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
+            hue={typeof colorAsHsv === 'object' ? colorAsHsv[0] : undefined}
             hex={color || undefined}
             onChange={handleHueSelection}
           />
