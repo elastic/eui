@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `18.3.0`.
+- Added `tableCaption` prop to `EuiBasicTable` and improved the default one ([#2782](https://github.com/elastic/eui/pull/2782))
 
 ## [`18.3.0`](https://github.com/elastic/eui/tree/v18.3.0)
 

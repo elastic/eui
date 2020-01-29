@@ -177,6 +177,7 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
   cellProps?: object | CellPropsCallback<T>;
   columns: Array<EuiBasicTableColumn<T>>;
   error?: string;
+  tableCaption?: string;
   hasActions?: boolean;
   isExpandable?: boolean;
   isSelectable?: boolean;
@@ -439,6 +440,7 @@ export class EuiBasicTable<T = any> extends Component<
       hasActions,
       rowProps,
       cellProps,
+      tableCaption,
       tableLayout,
       ...rest
     } = this.props;
@@ -533,22 +535,38 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTableCaption() {
-    const { items } = this.props;
-
+    const { items, pagination, tableCaption } = this.props;
+    let captionElement;
+    if (tableCaption) {
+      captionElement = tableCaption;
+    } else {
+      if (pagination && pagination.totalItemCount > 0) {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescriptionWithPagination"
+            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            values={{
+              totalItemCount: pagination.totalItemCount,
+              itemCount: items.length,
+            }}
+          />
+        );
+      } else {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescriptionWithoutPagination"
+            default="This table contains {itemCount} rows."
+            values={{
+              itemCount: items.length,
+            }}
+          />
+        );
+      }
+    }
     return (
       <EuiScreenReaderOnly>
-        <caption
-          className="euiTableCaption"
-          role="status"
-          aria-relevant="text"
-          aria-live="polite">
-          <EuiDelayRender>
-            <EuiI18n
-              token="euiBasicTable.tableDescription"
-              default="Below is a table of {itemCount} items."
-              values={{ itemCount: items.length }}
-            />
-          </EuiDelayRender>
+        <caption className="euiTableCaption">
+          <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
     );

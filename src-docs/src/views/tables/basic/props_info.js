@@ -95,6 +95,12 @@ export const propsInfo = {
           required: false,
           type: { name: '(criteria: #Criteria) => void' },
         },
+        tableCaption: {
+          description:
+            'Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."',
+          required: false,
+          type: { name: 'string' },
+        },
         tableLayout: {
           description:
             'Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.',
