@@ -9,7 +9,7 @@ jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 describe('EuiDescribedFormGroup', () => {
   const props = {
-    title: <h3>Title</h3>,
+    title: 'Title',
     description: 'Test description',
   };
 
@@ -104,26 +104,7 @@ describe('EuiDescribedFormGroup', () => {
 
     test("description is not rendered when it's not provided", () => {
       const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} title={<h3>Title</h3>}>
-          <EuiFormRow>
-            <input />
-          </EuiFormRow>
-        </EuiDescribedFormGroup>
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('legend is rendered', () => {
-      const describedFormGroupProps = {
-        legend: 'Legend for screen readers',
-      };
-
-      const component = shallow(
-        <EuiDescribedFormGroup
-          {...requiredProps}
-          {...props}
-          {...describedFormGroupProps}>
+        <EuiDescribedFormGroup {...requiredProps} title="Title">
           <EuiFormRow>
             <input />
           </EuiFormRow>

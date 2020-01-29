@@ -6,11 +6,17 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
 >
+  <EuiScreenReaderOnly>
+    <legend>
+      Title
+    </legend>
+  </EuiScreenReaderOnly>
   <EuiFlexGroup
     gutterSize="l"
   >
     <EuiFlexItem>
       <EuiTitle
+        aria-hidden="true"
         className="euiDescribedFormGroup__title"
         size="xs"
       >
@@ -50,11 +56,17 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
 >
+  <EuiScreenReaderOnly>
+    <legend>
+      Title
+    </legend>
+  </EuiScreenReaderOnly>
   <EuiFlexGroup
     gutterSize="l"
   >
     <EuiFlexItem>
       <EuiTitle
+        aria-hidden="true"
         className="euiDescribedFormGroup__title"
         size="xs"
       >
@@ -87,11 +99,17 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
   className="euiDescribedFormGroup euiDescribedFormGroup--fullWidth testClass1 testClass2"
   data-test-subj="test subject string"
 >
+  <EuiScreenReaderOnly>
+    <legend>
+      Title
+    </legend>
+  </EuiScreenReaderOnly>
   <EuiFlexGroup
     gutterSize="l"
   >
     <EuiFlexItem>
       <EuiTitle
+        aria-hidden="true"
         className="euiDescribedFormGroup__title"
         size="xs"
       >
@@ -131,57 +149,13 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <EuiFlexGroup
-    gutterSize="s"
-  >
-    <EuiFlexItem>
-      <EuiTitle
-        className="euiDescribedFormGroup__title"
-        size="xs"
-      >
-        <h3>
-          Title
-        </h3>
-      </EuiTitle>
-      <EuiText
-        className="euiDescribedFormGroup__description"
-        color="subdued"
-        size="s"
-      >
-        Test description
-      </EuiText>
-    </EuiFlexItem>
-    <EuiFlexItem
-      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-    >
-      <EuiFormRow
-        describedByIds={Array []}
-        display="row"
-        fullWidth={false}
-        hasChildLabel={true}
-        hasEmptyLabelSpace={false}
-        labelType="label"
-      >
-        <input />
-      </EuiFormRow>
-    </EuiFlexItem>
-  </EuiFlexGroup>
-</fieldset>
-`;
-
-exports[`EuiDescribedFormGroup props legend is rendered 1`] = `
-<fieldset
-  aria-label="aria-label"
-  className="euiDescribedFormGroup testClass1 testClass2"
-  data-test-subj="test subject string"
->
   <EuiScreenReaderOnly>
     <legend>
-      Legend for screen readers
+      Title
     </legend>
   </EuiScreenReaderOnly>
   <EuiFlexGroup
-    gutterSize="l"
+    gutterSize="s"
   >
     <EuiFlexItem>
       <EuiTitle
@@ -225,11 +199,17 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
   className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
 >
+  <EuiScreenReaderOnly>
+    <legend>
+      Title
+    </legend>
+  </EuiScreenReaderOnly>
   <EuiFlexGroup
     gutterSize="l"
   >
     <EuiFlexItem>
       <EuiTitle
+        aria-hidden="true"
         className="euiDescribedFormGroup__title"
         size="l"
       >
@@ -271,11 +251,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   description="Test description"
   fullWidth={false}
   gutterSize="l"
-  title={
-    <h3>
-      Title
-    </h3>
-  }
+  title="Title"
   titleSize="xs"
 >
   <fieldset
@@ -283,6 +259,13 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
     className="euiDescribedFormGroup testClass1 testClass2"
     data-test-subj="test subject string"
   >
+    <EuiScreenReaderOnly>
+      <legend
+        className="euiScreenReaderOnly"
+      >
+        Title
+      </legend>
+    </EuiScreenReaderOnly>
     <EuiFlexGroup
       gutterSize="l"
     >
@@ -294,10 +277,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             className="euiFlexItem"
           >
             <EuiTitle
+              aria-hidden="true"
               className="euiDescribedFormGroup__title"
               size="xs"
             >
               <h3
+                aria-hidden="true"
                 className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
               >
                 Title

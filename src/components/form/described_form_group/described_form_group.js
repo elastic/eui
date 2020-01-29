@@ -28,7 +28,6 @@ export class EuiDescribedFormGroup extends PureComponent {
       titleSize,
       title,
       description,
-      legend,
       ...rest
     } = this.props;
 
@@ -58,26 +57,19 @@ export class EuiDescribedFormGroup extends PureComponent {
       );
     }
 
-    let legendNode;
-    if (legend) {
-      legendNode = (
-        <EuiScreenReaderOnly>
-          <legend>{legend}</legend>
-        </EuiScreenReaderOnly>
-      );
-    }
-
     return (
       <fieldset className={classes} {...rest}>
-        {legendNode}
+        <EuiScreenReaderOnly>
+          <legend>{title}</legend>
+        </EuiScreenReaderOnly>
 
         <EuiFlexGroup gutterSize={gutterSize}>
           <EuiFlexItem>
             <EuiTitle
               size={titleSize}
-              aria-hidden={legend && 'true'}
+              aria-hidden="true"
               className="euiDescribedFormGroup__title">
-              {title}
+              <h3>{title}</h3>
             </EuiTitle>
 
             {renderedDescription}
@@ -102,14 +94,7 @@ EuiDescribedFormGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   fullWidth: PropTypes.bool,
   titleSize: PropTypes.oneOf(TITLE_SIZES),
-  /**
-   * It's recommended the use of HTML headings
-   */
-  title: PropTypes.node.isRequired,
-  /**
-   * For better accessibility, it's recommended a legend that will act as the group title and it will only be read by screen readers
-   */
-  legend: PropTypes.string,
+  title: PropTypes.string.isRequired,
   description: PropTypes.node,
 };
 

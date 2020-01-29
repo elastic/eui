@@ -9,7 +9,6 @@ import {
   EuiForm,
   EuiFormRow,
   EuiDescribedFormGroup,
-  EuiCallOut,
 } from '../../../../src/components';
 
 import FormRows from './form_rows';
@@ -117,27 +116,12 @@ export const FormLayoutsExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            Use <EuiCode>EuiDescribedFormGroup</EuiCode> component to associate
-            multiple <EuiCode>EuiFormRow</EuiCode>s. It can also simply be used
-            with one <EuiCode>EuiFormRow</EuiCode> as a way to display
-            additional text next to the field (on mobile, it will revert to
-            being stacked).
-          </p>
-          <EuiCallOut
-            iconType="accessibility"
-            color="warning"
-            title={
-              <span>
-                In order for a described form group to be properly read as a
-                group with a title, add the <EuiCode>legend</EuiCode> prop. This
-                is only for accessibility, however, so it will be visibly
-                hidden.
-              </span>
-            }
-          />
-        </div>
+        <p>
+          Use <EuiCode>EuiDescribedFormGroup</EuiCode> component to associate
+          multiple <EuiCode>EuiFormRow</EuiCode>s. It can also simply be used
+          with one <EuiCode>EuiFormRow</EuiCode> as a way to display additional
+          text next to the field (on mobile, it will revert to being stacked).
+        </p>
       ),
       props: {
         EuiDescribedFormGroup,

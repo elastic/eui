@@ -13,6 +13,11 @@
 
 - Increased column width on `EuiTableHeaderCellCheckbox` to prevent `EuiCheckbox`'s focus ring from getting clipped in `EuiBasicTable` ([#2770](https://github.com/elastic/eui/pull/2770))
 
+**Breaking changes**
+
+- Removed `idAria` prop from `EuiDescribedFormGroup` ([#2783](https://github.com/elastic/eui/pull/#2783))
+- Changed `title` prop of `EuiDescribedFormGroup` to accept a `string` instead of `node` ([#2783](https://github.com/elastic/eui/pull/#2783))
+
 **Deprecations**
 
 - `EuiIcon`'s `logoEnterpriseSearch` type deprecated in favor of `logoWorkplaceSearch`
