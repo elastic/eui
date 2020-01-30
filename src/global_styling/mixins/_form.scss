@@ -209,11 +209,11 @@
   padding: $euiFormControlPadding;
 
   @if ($includeStates) {
-    &:invalid { /* 4 */
+    &:invalid { // 2
       @include euiFormControlInvalidStyle;
     }
 
-    &:focus { /* 4 */
+    &:focus { // 2
       @include euiFormControlFocusStyle;
     }
 
