@@ -207,86 +207,45 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const hideForMobileClasses = 'euiTableRowCell--hideForMobile';
   const showForMobileClasses = 'euiTableRowCell--hideForDesktop';
 
-  let cellRender;
-
+  const Element = setScopeRow ? 'th' : 'td';
+  const sharedProps = {
+    scope: setScopeRow ? 'row' : undefined,
+    style: styleObj,
+    ...rest,
+  };
   if (mobileOptions.show === false || hideForMobile) {
-    if (setScopeRow) {
-      cellRender = (
-        <th
-          scope="row"
-          className={`${cellClasses} ${hideForMobileClasses}`}
-          style={styleObj}
-          {...rest}>
-          <div className={contentClasses}>{childrenNode}</div>
-        </th>
-      );
-    } else {
-      cellRender = (
-        <td
-          className={`${cellClasses} ${hideForMobileClasses}`}
-          style={styleObj}
-          {...rest}>
-          <div className={contentClasses}>{childrenNode}</div>
-        </td>
-      );
-    }
+    return (
+      <Element
+        className={`${cellClasses} ${hideForMobileClasses}`}
+        {...sharedProps}>
+        <div className={contentClasses}>{childrenNode}</div>
+      </Element>
+    );
   } else {
-    if (setScopeRow) {
-      cellRender = (
-        <th scope="row" className={cellClasses} style={styleObj} {...rest}>
-          {/* Mobile-only header */}
-          {(mobileOptions.header || header) && !isMobileHeader && (
-            <div
-              className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>
-              {mobileOptions.header || header}
-            </div>
-          )}
+    return (
+      <Element className={cellClasses} {...sharedProps}>
+        {/* Mobile-only header */}
+        {(mobileOptions.header || header) && !isMobileHeader && (
+          <div
+            className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>
+            {mobileOptions.header || header}
+          </div>
+        )}
 
-          {/* Content depending on mobile render existing */}
-          {mobileOptions.render ? (
-            <Fragment>
-              <div
-                className={`${mobileContentClasses} ${showForMobileClasses}`}>
-                {modifyChildren(mobileOptions.render)}
-              </div>
-              <div className={`${contentClasses} ${hideForMobileClasses}`}>
-                {childrenNode}
-              </div>
-            </Fragment>
-          ) : (
-            <div className={contentClasses}>{childrenNode}</div>
-          )}
-        </th>
-      );
-    } else {
-      cellRender = (
-        <td className={cellClasses} style={styleObj} {...rest}>
-          {/* Mobile-only header */}
-          {(mobileOptions.header || header) && !isMobileHeader && (
-            <div
-              className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>
-              {mobileOptions.header || header}
+        {/* Content depending on mobile render existing */}
+        {mobileOptions.render ? (
+          <Fragment>
+            <div className={`${mobileContentClasses} ${showForMobileClasses}`}>
+              {modifyChildren(mobileOptions.render)}
             </div>
-          )}
-
-          {/* Content depending on mobile render existing */}
-          {mobileOptions.render ? (
-            <Fragment>
-              <div
-                className={`${mobileContentClasses} ${showForMobileClasses}`}>
-                {modifyChildren(mobileOptions.render)}
-              </div>
-              <div className={`${contentClasses} ${hideForMobileClasses}`}>
-                {childrenNode}
-              </div>
-            </Fragment>
-          ) : (
-            <div className={contentClasses}>{childrenNode}</div>
-          )}
-        </td>
-      );
-    }
+            <div className={`${contentClasses} ${hideForMobileClasses}`}>
+              {childrenNode}
+            </div>
+          </Fragment>
+        ) : (
+          <div className={contentClasses}>{childrenNode}</div>
+        )}
+      </Element>
+    );
   }
-
-  return cellRender;
 };
