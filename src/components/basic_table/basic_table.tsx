@@ -864,27 +864,16 @@ export class EuiBasicTable<T = any> extends Component<
         );
         calculatedHasActions = true;
       } else if ((column as EuiTableFieldDataColumnType<T>).field) {
-        if ((column as EuiTableFieldDataColumnType<T>).field === rowHeader) {
-          cells.push(
-            this.renderItemFieldDataCell(
-              itemId,
-              item,
-              column as EuiTableFieldDataColumnType<T>,
-              columnIndex,
-              true
-            )
-          );
-        } else {
-          cells.push(
-            this.renderItemFieldDataCell(
-              itemId,
-              item,
-              column as EuiTableFieldDataColumnType<T>,
-              columnIndex,
-              false
-            )
-          );
-        }
+        const fieldDataColumn = column as EuiTableFieldDataColumnType<T>;
+        cells.push(
+          this.renderItemFieldDataCell(
+            itemId,
+            item,
+            column as EuiTableFieldDataColumnType<T>,
+            columnIndex,
+            fieldDataColumn.field === rowHeader
+          )
+        );
       } else {
         cells.push(
           this.renderItemComputedCell(
