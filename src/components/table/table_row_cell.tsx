@@ -109,6 +109,7 @@ interface EuiTableRowCellProps {
    */
   mobileOptions?: EuiTableRowCellMobileOptionsShape &
     EuiTableRowCellSharedPropsShape;
+  setScopeRow?: boolean;
 }
 
 type Props = CommonProps &
@@ -121,6 +122,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   children,
   className,
   truncateText,
+  setScopeRow,
   showOnHover,
   textOnly = true,
   hasActions,
@@ -205,40 +207,82 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   let cellRender;
 
   if (mobileOptions.show === false || hideForMobile) {
-    cellRender = (
-      <td
-        className={`${cellClasses} ${hideForMobileClasses}`}
-        style={styleObj}
-        {...rest}>
-        <div className={contentClasses}>{childrenNode}</div>
-      </td>
-    );
-  } else {
-    cellRender = (
-      <td className={cellClasses} style={styleObj} {...rest}>
-        {/* Mobile-only header */}
-        {(mobileOptions.header || header) && !isMobileHeader && (
-          <div
-            className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>
-            {mobileOptions.header || header}
-          </div>
-        )}
-
-        {/* Content depending on mobile render existing */}
-        {mobileOptions.render ? (
-          <Fragment>
-            <div className={`${mobileContentClasses} ${showForMobileClasses}`}>
-              {modifyChildren(mobileOptions.render)}
-            </div>
-            <div className={`${contentClasses} ${hideForMobileClasses}`}>
-              {childrenNode}
-            </div>
-          </Fragment>
-        ) : (
+    if (setScopeRow) {
+      cellRender = (
+        <th
+          scope="row"
+          className={`${cellClasses} ${hideForMobileClasses}`}
+          style={styleObj}
+          {...rest}>
           <div className={contentClasses}>{childrenNode}</div>
-        )}
-      </td>
-    );
+        </th>
+      );
+    } else {
+      cellRender = (
+        <td
+          className={`${cellClasses} ${hideForMobileClasses}`}
+          style={styleObj}
+          {...rest}>
+          <div className={contentClasses}>{childrenNode}</div>
+        </td>
+      );
+    }
+  } else {
+    if (setScopeRow) {
+      cellRender = (
+        <th scope="row" className={cellClasses} style={styleObj} {...rest}>
+          {/* Mobile-only header */}
+          {(mobileOptions.header || header) && !isMobileHeader && (
+            <div
+              className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>
+              {mobileOptions.header || header}
+            </div>
+          )}
+
+          {/* Content depending on mobile render existing */}
+          {mobileOptions.render ? (
+            <Fragment>
+              <div
+                className={`${mobileContentClasses} ${showForMobileClasses}`}>
+                {modifyChildren(mobileOptions.render)}
+              </div>
+              <div className={`${contentClasses} ${hideForMobileClasses}`}>
+                {childrenNode}
+              </div>
+            </Fragment>
+          ) : (
+            <div className={contentClasses}>{childrenNode}</div>
+          )}
+        </th>
+      );
+    } else {
+      cellRender = (
+        <td className={cellClasses} style={styleObj} {...rest}>
+          {/* Mobile-only header */}
+          {(mobileOptions.header || header) && !isMobileHeader && (
+            <div
+              className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>
+              {mobileOptions.header || header}
+            </div>
+          )}
+
+          {/* Content depending on mobile render existing */}
+          {mobileOptions.render ? (
+            <Fragment>
+              <div
+                className={`${mobileContentClasses} ${showForMobileClasses}`}>
+                {modifyChildren(mobileOptions.render)}
+              </div>
+              <div className={`${contentClasses} ${hideForMobileClasses}`}>
+                {childrenNode}
+              </div>
+            </Fragment>
+          ) : (
+            <div className={contentClasses}>{childrenNode}</div>
+          )}
+        </td>
+      );
+    }
   }
 
   return cellRender;

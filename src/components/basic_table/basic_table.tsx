@@ -178,6 +178,7 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
   columns: Array<EuiBasicTableColumn<T>>;
   error?: string;
   tableCaption?: string;
+  rowHeader?: string;
   hasActions?: boolean;
   isExpandable?: boolean;
   isSelectable?: boolean;
@@ -441,6 +442,7 @@ export class EuiBasicTable<T = any> extends Component<
       rowProps,
       cellProps,
       tableCaption,
+      rowHeader,
       tableLayout,
       ...rest
     } = this.props;
@@ -826,6 +828,7 @@ export class EuiBasicTable<T = any> extends Component<
       selection,
       isSelectable,
       hasActions,
+      rowHeader,
       itemIdToExpandedRowMap = {},
       isExpandable,
     } = this.props;
@@ -861,14 +864,27 @@ export class EuiBasicTable<T = any> extends Component<
         );
         calculatedHasActions = true;
       } else if ((column as EuiTableFieldDataColumnType<T>).field) {
-        cells.push(
-          this.renderItemFieldDataCell(
-            itemId,
-            item,
-            column as EuiTableFieldDataColumnType<T>,
-            columnIndex
-          )
-        );
+        if ((column as EuiTableFieldDataColumnType<T>).field === rowHeader) {
+          cells.push(
+            this.renderItemFieldDataCell(
+              itemId,
+              item,
+              column as EuiTableFieldDataColumnType<T>,
+              columnIndex,
+              true
+            )
+          );
+        } else {
+          cells.push(
+            this.renderItemFieldDataCell(
+              itemId,
+              item,
+              column as EuiTableFieldDataColumnType<T>,
+              columnIndex,
+              false
+            )
+          );
+        }
       } else {
         cells.push(
           this.renderItemComputedCell(
@@ -1051,7 +1067,8 @@ export class EuiBasicTable<T = any> extends Component<
     itemId: ItemId<T>,
     item: T,
     column: EuiTableFieldDataColumnType<T>,
-    columnIndex: number
+    columnIndex: number,
+    setScopeRow: boolean
   ) {
     const { field, render, dataType } = column;
 
@@ -1060,7 +1077,7 @@ export class EuiBasicTable<T = any> extends Component<
     const value = get(item, field as string);
     const content = contentRenderer(value, item);
 
-    return this.renderItemCell(item, column, key, content);
+    return this.renderItemCell(item, column, key, content, setScopeRow);
   }
 
   renderItemComputedCell(
@@ -1075,14 +1092,15 @@ export class EuiBasicTable<T = any> extends Component<
     const contentRenderer = render || this.getRendererForDataType();
     const content = contentRenderer(item);
 
-    return this.renderItemCell(item, column, key, content);
+    return this.renderItemCell(item, column, key, content, false);
   }
 
   renderItemCell(
     item: T,
     column: EuiBasicTableColumn<T>,
     key: string | number,
-    content: ReactNode
+    content: ReactNode,
+    setScopeRow: boolean
   ) {
     const {
       align,
@@ -1112,6 +1130,7 @@ export class EuiBasicTable<T = any> extends Component<
         align={columnAlign}
         isExpander={isExpander}
         textOnly={textOnly || !render}
+        setScopeRow={setScopeRow}
         mobileOptions={{
           ...mobileOptions,
           render:
