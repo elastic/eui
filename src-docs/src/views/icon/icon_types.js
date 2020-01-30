@@ -12,7 +12,8 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import reactSvg from '../../images/custom.svg';
+// import reactSvg from '../../images/custom.svg';
+import reactSvg from '../../../../src/components/icon/assets/alert.svg';
 
 export default () => (
   <div>
