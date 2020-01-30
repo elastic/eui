@@ -6,14 +6,11 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
   className="testClass1 testClass2"
   data-test-subj="test subject string"
   description="Test description"
-  fullWidth={false}
-  gutterSize="l"
   title={
     <h3>
       Title
     </h3>
   }
-  titleSize="xs"
 >
   <EuiInnerText>
     <fieldset
@@ -119,14 +116,11 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
   aria-label="aria-label"
   className="testClass1 testClass2"
   data-test-subj="test subject string"
-  fullWidth={false}
-  gutterSize="l"
   title={
     <h3>
       Title
     </h3>
   }
-  titleSize="xs"
 >
   <EuiInnerText>
     <fieldset
@@ -214,13 +208,11 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
   data-test-subj="test subject string"
   description="Test description"
   fullWidth={true}
-  gutterSize="l"
   title={
     <h3>
       Title
     </h3>
   }
-  titleSize="xs"
 >
   <EuiInnerText>
     <fieldset
@@ -327,14 +319,12 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
   className="testClass1 testClass2"
   data-test-subj="test subject string"
   description="Test description"
-  fullWidth={false}
   gutterSize="s"
   title={
     <h3>
       Title
     </h3>
   }
-  titleSize="xs"
 >
   <EuiInnerText>
     <fieldset
@@ -441,8 +431,6 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
   className="testClass1 testClass2"
   data-test-subj="test subject string"
   description="Test description"
-  fullWidth={false}
-  gutterSize="l"
   title={
     <h3>
       Title
@@ -555,14 +543,11 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   className="testClass1 testClass2"
   data-test-subj="test subject string"
   description="Test description"
-  fullWidth={false}
-  gutterSize="l"
   title={
     <h3>
       Title
     </h3>
   }
-  titleSize="xs"
 >
   <EuiInnerText>
     <fieldset
