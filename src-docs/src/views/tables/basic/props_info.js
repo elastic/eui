@@ -95,6 +95,12 @@ export const propsInfo = {
           required: false,
           type: { name: '(criteria: #Criteria) => void' },
         },
+        rowHeader: {
+          description:
+            'Indicates which column should be used as the identifying cell in each row. Should match a "field" prop in FieldDataColumn',
+          required: false,
+          type: { name: 'string' },
+        },
         tableCaption: {
           description:
             'Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."',

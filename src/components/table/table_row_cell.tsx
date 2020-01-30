@@ -109,6 +109,9 @@ interface EuiTableRowCellProps {
    */
   mobileOptions?: EuiTableRowCellMobileOptionsShape &
     EuiTableRowCellSharedPropsShape;
+  /**
+   * Indicates whether the cell should be marked as the heading for its row
+   */
   setScopeRow?: boolean;
 }
 

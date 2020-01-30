@@ -215,7 +215,6 @@ export class Table extends Component {
           isSelectable={true}
           selection={selection}
           onChange={this.onTableChange}
-          rowHeader="firstName"
         />
       </Fragment>
     );
