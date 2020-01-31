@@ -38,7 +38,7 @@ export type EuiDescribedFormGroupProps = CommonProps &
     /**
      * For better accessibility, it's recommended the use of HTML headings
      */
-    title: ReactElement<any>;
+    title: EuiTitleProps['children'];
     titleSize?: EuiTitleSize;
     /**
      * Added as a child of `EuiText`
