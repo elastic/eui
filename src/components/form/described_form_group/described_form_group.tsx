@@ -1,13 +1,12 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../../common';
 
-import { EuiTitle, EuiTitleSize } from '../../title/title';
-import { EuiText } from '../../text/text';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiGutterSize } from '../../flex/flex_group';
+import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
+import { EuiText } from '../../text';
+import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupGutterSize } from '../../flex';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiInnerText } from '../../inner_text';
@@ -23,25 +22,29 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-export type paddingSize = keyof typeof paddingSizeToClassNameMap;
+export type EuiDescribedFormGroupPaddingSize = keyof typeof paddingSizeToClassNameMap;
 
-export type EuiDescribedFormGroupProps = CommonProps & {
-  /**
-   * One or more `EuiFormRow`s
-   */
-  children?: ReactNode;
-  /**
-   * Passed to `EuiFlexGroup`
-   */
-  gutterSize?: EuiGutterSize;
-  fullWidth?: boolean;
-  /**
-   * For better accessibility, it's recommended the use of HTML headings
-   */
-  title: ReactElement<any>;
-  titleSize?: EuiTitleSize;
-  description?: ReactNode;
-};
+export type EuiDescribedFormGroupProps = CommonProps &
+  Omit<HTMLAttributes<HTMLFieldSetElement>, 'title'> & {
+    /**
+     * One or more `EuiFormRow`s
+     */
+    children?: EuiTitleProps['children'];
+    /**
+     * Passed to `EuiFlexGroup`
+     */
+    gutterSize?: EuiFlexGroupGutterSize;
+    fullWidth?: boolean;
+    /**
+     * For better accessibility, it's recommended the use of HTML headings
+     */
+    title: ReactElement<any>;
+    titleSize?: EuiTitleSize;
+    /**
+     * Added as a child of `EuiText`
+     */
+    description?: ReactNode;
+  };
 
 export const EuiDescribedFormGroup: React.FunctionComponent<
   EuiDescribedFormGroupProps
