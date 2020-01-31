@@ -29,7 +29,7 @@ export type EuiDescribedFormGroupProps = CommonProps &
     /**
      * One or more `EuiFormRow`s
      */
-    children?: EuiTitleProps['children'];
+    children?: ReactNode;
     /**
      * Passed to `EuiFlexGroup`
      */
