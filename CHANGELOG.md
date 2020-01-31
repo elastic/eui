@@ -5,6 +5,10 @@
 - Changed SASS comments to non-compiled comments in invisibles files ([#2807](https://github.com/elastic/eui/pull/2807))
 - Added `rowHeader` prop to `EuiBasicTable` to allow consumers to set the identifying cell in a row ([#2802](https://github.com/elastic/eui/pull/2802))
 
+**Bug fixes**
+
+- Exported missing `EuiSelectProps` type ([#2815](https://github.com/elastic/eui/pull/2815))
+
 ## [`18.3.0`](https://github.com/elastic/eui/tree/v18.3.0)
 
 - Converted `EuiModal` and `EuiConfirmModal` to TypeScript ([#2742](https://github.com/elastic/eui/pull/2742))
