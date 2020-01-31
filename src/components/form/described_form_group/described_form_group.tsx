@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, HTMLAttributes } from 'react';
+import React, { ReactNode, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
