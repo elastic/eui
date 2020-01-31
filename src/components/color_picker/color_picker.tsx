@@ -21,7 +21,7 @@ import { EuiFieldText } from '../form/field_text';
 import { EuiFormControlLayout } from '../form/form_control_layout';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
-import { VISUALIZATION_COLORS, keyCodes, isValidHex } from '../../services';
+import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -97,9 +97,15 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   swatches = VISUALIZATION_COLORS,
   popoverZIndex,
 }) => {
+  const chromaValid = (color: string) => {
+    // Temporary function until @types/chroma-js allows the 2nd param.
+    // Consolidating the `ts-ignore`s to one location
+    // @ts-ignore
+    return chroma.valid(color, 'hex');
+  };
   const getHsvFromColor = useCallback(
     (): ColorSpaces['hsv'] =>
-      color && chroma.valid(color) ? chroma(color).hsv() : [0, 0, 0],
+      color && chromaValid(color) ? chroma(color).hsv() : [0, 0, 0],
     [color]
   );
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
@@ -220,7 +226,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const handleColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleOnChange(e.target.value);
-    if (isValidHex(e.target.value)) {
+    if (chromaValid(e.target.value)) {
       updateColorAsHsv(chroma(e.target.value).hsv());
     }
   };
@@ -301,7 +307,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'data-test-subj': testSubjAnchor,
     });
   } else {
-    const showColor = color && isValidHex(color);
+    const showColor = color && chromaValid(color);
     buttonOrInput = (
       <EuiFormControlLayout
         icon={
