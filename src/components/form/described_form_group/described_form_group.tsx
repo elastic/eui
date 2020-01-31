@@ -91,7 +91,7 @@ export const EuiDescribedFormGroup: React.FunctionComponent<
 
           <EuiFlexGroup gutterSize={gutterSize}>
             <EuiFlexItem>
-              <span ref={ref} title={innerText}>
+              <span ref={ref}>
                 <EuiTitle
                   size={titleSize}
                   aria-hidden="true"

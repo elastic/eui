@@ -35,9 +35,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
             <div
               className="euiFlexItem"
             >
-              <span
-                title="Title"
-              >
+              <span>
                 <EuiTitle
                   aria-hidden="true"
                   className="euiDescribedFormGroup__title"
@@ -145,9 +143,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
             <div
               className="euiFlexItem"
             >
-              <span
-                title="Title"
-              >
+              <span>
                 <EuiTitle
                   aria-hidden="true"
                   className="euiDescribedFormGroup__title"
@@ -237,9 +233,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
             <div
               className="euiFlexItem"
             >
-              <span
-                title="Title"
-              >
+              <span>
                 <EuiTitle
                   aria-hidden="true"
                   className="euiDescribedFormGroup__title"
@@ -349,9 +343,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
             <div
               className="euiFlexItem"
             >
-              <span
-                title="Title"
-              >
+              <span>
                 <EuiTitle
                   aria-hidden="true"
                   className="euiDescribedFormGroup__title"
@@ -461,9 +453,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
             <div
               className="euiFlexItem"
             >
-              <span
-                title="Title"
-              >
+              <span>
                 <EuiTitle
                   aria-hidden="true"
                   className="euiDescribedFormGroup__title"
@@ -572,9 +562,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             <div
               className="euiFlexItem"
             >
-              <span
-                title="Title"
-              >
+              <span>
                 <EuiTitle
                   aria-hidden="true"
                   className="euiDescribedFormGroup__title"
