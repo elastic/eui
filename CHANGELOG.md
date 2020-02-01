@@ -1,11 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `cheer` glyph to `EuiIcon` ([#2814](https://github.com/elastic/eui/pull/2814))
 - Added `tableCaption` prop to `EuiBasicTable` and improved the default one ([#2782](https://github.com/elastic/eui/pull/2782))
 - Changed SASS comments to non-compiled comments in invisibles files ([#2807](https://github.com/elastic/eui/pull/2807))
 - Added `rowHeader` prop to `EuiBasicTable` to allow consumers to set the identifying cell in a row ([#2802](https://github.com/elastic/eui/pull/2802))
 
 **Bug fixes**
 
+- Exported missing `EuiSelectProps` type ([#2815](https://github.com/elastic/eui/pull/2815))
 - Fixed coloring of input fields when autofill is on in Chrome ([#2798](https://github.com/elastic/eui/pull/2798))
 
 ## [`18.3.0`](https://github.com/elastic/eui/tree/v18.3.0)
