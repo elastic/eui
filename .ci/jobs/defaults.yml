@@ -39,6 +39,9 @@
         github-hooks: true
         status-context: eui-ci
         cancel-builds-on-update: true
+    vault:
+      # auth/approle/role/bekitzur-ci/role-id
+      role_id: 3a72c576-4f45-3b41-b698-d371dc717227
     wrappers:
     - ansicolor
     - timeout:

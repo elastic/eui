@@ -33,10 +33,9 @@
   }
 }
 
-/**
- * 1. Apply margin to all but last item in the flex.
- * 2. Margin gets flipped because of the row-reverse.
- */
+// 1. Apply margin to all but last item in the flex.
+// 2. Margin gets flipped because of the row-reverse.
+
 @mixin euiButtonContent($isReverse: false) {
   height: 100%;
   width: 100%;
@@ -51,8 +50,8 @@
     flex-direction: row-reverse;
 
     > * + * {
-      margin-left: 0; /* 1 */
-      margin-right: $euiSizeS; /* 1 */
+      margin-left: 0; // 1, 2
+      margin-right: $euiSizeS; // 1, 2
     }
   } @else {
     display: flex;
@@ -60,7 +59,7 @@
     align-items: center;
 
     > * + * {
-      margin-left: $euiSizeS; /* 1 */
+      margin-left: $euiSizeS; // 1
     }
   }
 }

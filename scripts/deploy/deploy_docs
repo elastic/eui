@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+#
+# Licensed to Elasticsearch B.V. under one or more contributor license
+# agreements. See the NOTICE file distributed with this work for additional
+# information regarding copyright ownership. Elasticsearch B.V. licenses this
+# file to you under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License. You may obtain a copy of
+# the License at
+#
+#	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations under
+# the License.
+#
+
+set -e
+set +x
+
+# Two stage script: first it compiles using Node Docker container, then it runs
+# itself from within another docker container to deploy to GCP.
+
+# Usage:
+# * Compile and deploy:          ./scripts/deploy/deploy_docs
+# * Deploy only without docker:  ./scripts/deploy/deploy_docs nodocker
+
+# Expected env variables:
+# * GPROJECT - GCE project name, e.g. elastic-bekitzur
+# * GCE_ACCOUNT - credentials for the google service account (JSON blob)
+# * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/master", "v18.2.1")
+
+if [[ -z "${GPROJECT}" ]]; then
+    echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
+    exit 1
+fi
+if [[ -z "${GCE_ACCOUNT}" ]]; then
+  echo "GCE_ACCOUNT is not set. Expected Google service account JSON blob."
+  exit 1
+fi
+if [[ -z "${GIT_BRANCH}" ]]; then
+  echo "GIT_BRANCH is not set, e.g. 'GIT_BRANCH=refs/heads/master'"
+  exit 1
+fi
+
+if [[ "$1" != "nodocker" ]]; then
+  ./scripts/deploy/build_docs
+
+  # we look this up to inject into the next docker run so it can decide whether
+  # we need to overwrite the root /index.html file with a new one.
+  echo "Looking up most-current release info"
+  CURRENT_RELEASE=$(docker run \
+    --rm -i \
+    --volume $PWD:/app \
+    --workdir /app \
+    node:10 \
+    bash -c 'git tag | xargs npx semver' | tail -n 1)
+
+  # Run this script from inside the docker container, using google/cloud-sdk
+  # image echo "Deploying to bucket"
+  docker run \
+    --rm -i \
+    --env GCE_ACCOUNT \
+    --env GIT_BRANCH \
+    --env GPROJECT \
+    --env CURRENT_RELEASE="$CURRENT_RELEASE" \
+    --env HOME=/tmp \
+    --volume $PWD:/app \
+    --user=$(id -u):$(id -g) \
+    --workdir /app \
+    'google/cloud-sdk:slim' \
+    /app/scripts/deploy/deploy_docs nodocker "$@"
+  unset GCE_ACCOUNT
+else
+  # Copying files to the bucket
+  # Login to the cloud with the service account
+  gcloud auth activate-service-account --key-file <(echo "$GCE_ACCOUNT")
+  unset GCE_ACCOUNT
+
+  # All branches go into correspondingly named dirs.
+  # remove remote "origin/", leaving just the branch name
+  BRANCH="${GIT_BRANCH#*/}"
+
+  # Copy files
+  EUI_DOCS_PROJECT=eui-docs-live
+  BUCKET=${GPROJECT}-${EUI_DOCS_PROJECT}
+
+  # The trailing slash is critical with the branch.
+  # Otherwise, files from subdirs will go to the same destination dir.
+  echo "Copying $PWD/docs/* to gs://$BUCKET/$BRANCH/"
+  gsutil -m \
+    -h "Cache-Control:public, max-age=604800" \
+    cp \
+    -r \
+    -a public-read \
+    -z js,css,html \
+    "$PWD/docs/*" "gs://$BUCKET/$BRANCH/"
+
+  # if this is the highest release number to date, also publish the docs to the
+  # root directory
+  if [[ "v$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
+    echo "This is the current release. Copying $PWD/docs/* to the root gs://$BUCKET/ directory."
+    gsutil -m \
+      -h "Cache-Control:public, max-age=1800" \
+      cp \
+      -r \
+      -a public-read \
+      -z js,css,html \
+      "$PWD/docs/*" "gs://$BUCKET/"
+  fi
+fi
