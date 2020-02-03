@@ -130,6 +130,14 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('one prepend node is rendered with className', () => {
+      const component = render(
+        <EuiFormControlLayout prepend={<span className="myClass">1</span>} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('one prepend string is rendered', () => {
       const component = render(<EuiFormControlLayout prepend="1" />);
 

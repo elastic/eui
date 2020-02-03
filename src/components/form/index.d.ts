@@ -1,5 +1,4 @@
 import { CommonProps } from '../common';
-/// <reference path="./super_select/index.d.ts" />
 
 import { FunctionComponent, FormHTMLAttributes, ReactNode } from 'react';
 

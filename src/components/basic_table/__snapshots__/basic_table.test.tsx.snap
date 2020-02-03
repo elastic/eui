@@ -25,17 +25,14 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -72,6 +69,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
               }
             }
             onClick={[Function]}
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -92,6 +90,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
               }
             }
             onClick={[Function]}
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -112,6 +111,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
               }
             }
             onClick={[Function]}
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -148,17 +148,14 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -195,6 +192,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
               }
             }
             onClick={[Function]}
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -215,6 +213,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
               }
             }
             onClick={[Function]}
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -235,6 +234,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
               }
             }
             onClick={[Function]}
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -273,17 +273,14 @@ exports[`EuiBasicTable empty is rendered 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 0,
@@ -343,17 +340,14 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 0,
@@ -421,17 +415,14 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 0,
@@ -491,17 +482,14 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -549,6 +537,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -562,6 +551,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             1
@@ -575,6 +565,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             20
@@ -592,6 +583,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -605,6 +597,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             2
@@ -618,6 +611,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             21
@@ -635,6 +629,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -648,6 +643,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             3
@@ -661,6 +657,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             22
@@ -718,20 +715,18 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -800,6 +795,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -813,6 +809,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             1
@@ -826,6 +823,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             20
@@ -854,6 +852,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -867,6 +866,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             2
@@ -880,6 +880,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             21
@@ -908,6 +909,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -921,6 +923,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             3
@@ -934,6 +937,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             22
@@ -1009,17 +1013,14 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -1054,6 +1055,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -1084,6 +1086,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -1101,6 +1104,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -1137,17 +1141,14 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -1185,6 +1186,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
                   "render": undefined,
                 }
               }
+              setScopeRow={false}
               textOnly={true}
             >
               name1
@@ -1207,6 +1209,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
                   "render": undefined,
                 }
               }
+              setScopeRow={false}
               textOnly={true}
             >
               name2
@@ -1229,6 +1232,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
                   "render": undefined,
                 }
               }
+              setScopeRow={false}
               textOnly={true}
             >
               name3
@@ -1266,17 +1270,14 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -1314,6 +1315,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
                   "render": undefined,
                 }
               }
+              setScopeRow={false}
               textOnly={true}
             >
               name1
@@ -1336,6 +1338,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
                   "render": undefined,
                 }
               }
+              setScopeRow={false}
               textOnly={true}
             >
               name2
@@ -1358,6 +1361,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
                   "render": undefined,
                 }
               }
+              setScopeRow={false}
               textOnly={true}
             >
               name3
@@ -1395,20 +1399,18 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 2,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -1439,6 +1441,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -1456,6 +1459,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -1503,20 +1507,18 @@ exports[`EuiBasicTable with pagination 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -1547,6 +1549,7 @@ exports[`EuiBasicTable with pagination 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -1564,6 +1567,7 @@ exports[`EuiBasicTable with pagination 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -1581,6 +1585,7 @@ exports[`EuiBasicTable with pagination 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -1628,20 +1633,18 @@ exports[`EuiBasicTable with pagination and error 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -1710,20 +1713,18 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -1775,6 +1776,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -1803,6 +1805,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -1831,6 +1834,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -1878,20 +1882,18 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -1922,6 +1924,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -1939,6 +1942,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -1956,6 +1960,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -2025,20 +2030,18 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -2093,6 +2096,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -2121,6 +2125,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -2149,6 +2154,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -2217,20 +2223,18 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -2292,6 +2296,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -2349,6 +2354,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -2406,6 +2412,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -2502,20 +2509,18 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -2570,6 +2575,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             1
@@ -2598,6 +2604,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             2
@@ -2626,6 +2633,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             3
@@ -2694,20 +2702,18 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -2762,6 +2768,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={false}
           >
             NAME1
@@ -2790,6 +2797,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={false}
           >
             NAME2
@@ -2818,6 +2826,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={false}
           >
             NAME3
@@ -2886,20 +2895,18 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -2961,6 +2968,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -3024,6 +3032,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -3087,6 +3096,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -3189,20 +3199,18 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "totalItemCount": 5,
                 }
               }
             />
@@ -3257,6 +3265,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={false}
           >
             x
@@ -3285,6 +3294,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={false}
           >
             xx
@@ -3313,6 +3323,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={false}
           >
             xxx
@@ -3360,17 +3371,14 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -3404,6 +3412,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -3421,6 +3430,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -3438,6 +3448,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3
@@ -3488,17 +3499,14 @@ exports[`EuiBasicTable with sorting 1`] = `
     >
       <EuiScreenReaderOnly>
         <caption
-          aria-live="polite"
-          aria-relevant="text"
           className="euiTableCaption"
-          role="status"
         >
           <EuiDelayRender
             delay={500}
           >
             <EuiI18n
-              default="Below is a table of {itemCount} items."
-              token="euiBasicTable.tableDescription"
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -3535,6 +3543,7 @@ exports[`EuiBasicTable with sorting 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name1
@@ -3552,6 +3561,7 @@ exports[`EuiBasicTable with sorting 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name2
@@ -3569,6 +3579,7 @@ exports[`EuiBasicTable with sorting 1`] = `
                 "render": undefined,
               }
             }
+            setScopeRow={false}
             textOnly={true}
           >
             name3

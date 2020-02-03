@@ -276,6 +276,21 @@ exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormControlLayout props one prepend node is rendered with className 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <span
+    class="euiFormControlLayout__prepend myClass"
+  >
+    1
+  </span>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+</div>
+`;
+
 exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--group"
