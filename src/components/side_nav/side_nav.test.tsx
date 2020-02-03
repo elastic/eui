@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
@@ -109,7 +109,11 @@ describe('EuiSideNav', () => {
           },
         ];
 
-        const renderItem = ({ href, className, children }) => (
+        const renderItem: ComponentProps<typeof EuiSideNav>['renderItem'] = ({
+          href,
+          className,
+          children,
+        }) => (
           <a data-test-id="my-custom-element" href={href} className={className}>
             {children}
           </a>

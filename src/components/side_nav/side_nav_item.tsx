@@ -1,10 +1,38 @@
-import React, { cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  cloneElement,
+  ReactNode,
+  MouseEvent,
+  ReactElement,
+} from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../common';
 
 import { EuiIcon } from '../icon';
 
-const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
+type ItemProps = CommonProps & {
+  href?: string;
+  onClick?: (e: MouseEvent) => void;
+  children: ReactNode;
+};
+
+type EuiSideNavItemProps = ItemProps & {
+  isOpen?: boolean;
+  isSelected?: boolean;
+  isParent?: boolean;
+  icon?: ReactElement;
+  items?: ReactNode;
+  depth?: number;
+  renderItem?: (props: ItemProps) => JSX.Element;
+};
+
+const DefaultRenderItem = ({
+  href,
+  onClick,
+  className,
+  children,
+  ...rest
+}: ItemProps) => {
   if (href) {
     return (
       <a className={className} href={href} onClick={onClick} {...rest}>
@@ -37,10 +65,10 @@ export const EuiSideNavItem = ({
   href,
   items,
   children,
-  depth,
-  renderItem = defaultRenderItem,
+  depth = 0,
+  renderItem: RenderItem = DefaultRenderItem,
   ...rest
-}) => {
+}: EuiSideNavItemProps) => {
   let childItems;
 
   if (items && isOpen) {
@@ -87,27 +115,15 @@ export const EuiSideNavItem = ({
 
   return (
     <div className={classes}>
-      {renderItem({
-        href,
-        onClick,
-        className: buttonClasses,
-        children: buttonContent,
-        ...rest,
-      })}
+      <RenderItem
+        href={href}
+        onClick={onClick}
+        className={buttonClasses}
+        {...rest}>
+        {buttonContent}
+      </RenderItem>
+
       {childItems}
     </div>
   );
-};
-
-EuiSideNavItem.propTypes = {
-  isOpen: PropTypes.bool,
-  isSelected: PropTypes.bool,
-  isParent: PropTypes.bool,
-  icon: PropTypes.node,
-  onClick: PropTypes.func,
-  href: PropTypes.string,
-  items: PropTypes.node,
-  children: PropTypes.node,
-  depth: PropTypes.number,
-  renderItem: PropTypes.func,
 };
