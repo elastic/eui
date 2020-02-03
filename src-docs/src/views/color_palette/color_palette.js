@@ -19,21 +19,24 @@ const customPalettes = [
   {
     title: 'Max 10 colors',
     palette: euiPaletteColorBlind(),
+    code: 'euiPaletteColorBlind()',
   },
   {
     title: 'More than 10 colors are needed',
     palette: euiPaletteColorBlind(2),
+    code: 'euiPaletteColorBlind(2)',
   },
   {
     title:
-      'Series have multiple metrics and so the colors must coordinate but be distinguishable',
-    palette: euiPaletteColorBlind(3, 'group'),
+      'Series may have multiple metrics and so the colors must coordinate but be distinguishable',
+    palette: euiPaletteColorBlind(3, 'group', 'both'),
+    code: "euiPaletteColorBlind(3, 'group', 'both')",
   },
 ];
 
 export default () => (
   <Fragment>
-    {customPalettes.map((palette, i) => (
+    {customPalettes.map(palette => (
       <Fragment key={palette.title}>
         <EuiTitle size="xxs">
           <h3>{palette.title}</h3>
@@ -57,14 +60,7 @@ export default () => (
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <ColorPaletteCopyCode
-              textToCopy={`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
-                i > 1 ? ", 'group'" : ''
-              })`}
-              code={`euiPaletteColorBlind(${i > 0 ? i + 1 : ''}${
-                i > 1 ? ", 'group'" : ''
-              })`}
-            />
+            <ColorPaletteCopyCode code={palette.code} />
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="xl" />
