@@ -224,6 +224,17 @@
     &[readOnly] {
       @include euiFormControlReadOnlyStyle;
     }
+
+    // Needs to be set for autofill
+    // sass-lint:disable-block no-vendor-prefixes
+    &:-webkit-autofill {
+      -webkit-text-fill-color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
+
+      ~ .euiFormControlLayoutIcons {
+        color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
+      }
+    }
+
   }
 
   @if ($includeSizes) {
