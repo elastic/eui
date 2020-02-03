@@ -72,14 +72,17 @@ export interface TokenProps {
   /**
    * For best results use one of the vis color names (or 'gray').
    * Or supply your own color (can be used with dark or no fill only).
+   * Default: `gray`
    */
   color?: TokenColor | string;
   /**
    * Outer shape surrounding the icon
+   * Default: `circle`
    */
   shape?: TokenShape;
   /**
    * `light` for lightened color with border, `dark` for solid, or `none`
+   * Default: `light`
    */
   fill?: TokenFill;
   /**
@@ -109,15 +112,14 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   // When displaying at the small size, the token specific icons
   // should actually be displayed at medium size
-  if (String(iconType).indexOf('token') === 0 && size === 's') {
+  if (
+    typeof iconType === 'string' &&
+    iconType.indexOf('token') === 0 &&
+    size === 's'
+  ) {
     finalSize = 'm';
   }
 
-  const defaultDisplay = {
-    color: 'gray',
-    fill: 'light',
-    shape: 'sqaure',
-  };
   const currentDisplay = {
     color,
     fill,
@@ -129,7 +131,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   // grab its properties
   if (iconType in TOKEN_MAP) {
     const tokenDisplay = TOKEN_MAP[iconType as EuiTokenMapType];
-    finalDisplay = defaults(currentDisplay, tokenDisplay, defaultDisplay);
+    finalDisplay = defaults(currentDisplay, tokenDisplay);
   } else {
     finalDisplay = currentDisplay;
   }

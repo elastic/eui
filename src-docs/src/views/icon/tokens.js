@@ -94,13 +94,13 @@ export default () => (
     <EuiSpacer />
 
     <EuiText size="s">
+      <h3>Custom tokens</h3>
       <p>
-        By default the <EuiCode>iconType</EuiCode> prop defines the styling of
-        the token if it is a valid <EuiCode>EuiTokenMapType</EuiCode> (starts
-        with <EuiCode>token</EuiCode>) or you can pass any valid{' '}
-        <EuiCode>IconType</EuiCode>. You can customize both by changing the{' '}
-        <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,
-        <EuiCode>color</EuiCode>, and <EuiCode>fill</EuiCode>.
+        By default, an <EuiCode>iconType</EuiCode> with the token prefix (i.e.
+        those listed above) will have predefined styles. However, any valid{' '}
+        <EuiCode>iconType</EuiCode> can be passed and, in either case, the{' '}
+        <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,{' '}
+        <EuiCode>color</EuiCode>, and <EuiCode>fill</EuiCode> can be customized.
       </p>
     </EuiText>
 

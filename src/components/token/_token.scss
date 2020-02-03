@@ -62,7 +62,7 @@
 @each $type in $euiTokenTypeKeys {
   .euiToken--#{$type} {
     $color: map-get(map-get($euiTokenTypes, $type), 'graphic');
-    $backgroundColor: tintOrShade($color, 90%, 90%);
+    $backgroundColor: tintOrShade($color, 90%, 70%);
     $fillColor: makeHighContrastColor($color, $backgroundColor);
 
     // Without a background, the fill color should be the graphic color
@@ -71,7 +71,7 @@
     &.euiToken--light {
       color: $fillColor;
       background-color: $backgroundColor;
-      box-shadow: inset 0 0 0 1px tintOrShade($color, 70%, 70%);
+      box-shadow: inset 0 0 0 1px tintOrShade($color, 70%, 60%);
     }
 
     // Dark tokens uses the main color as the background against light or dark text
