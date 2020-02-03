@@ -9,8 +9,10 @@ exports[`EuiCode renders a code snippet 1`] = `
     class="euiCodeBlock__code"
     data-test-subj="test subject string"
   >
-    var some = 'code';
+    <div>
+      var some = 'code';
 console.log(some);
+    </div>
   </code>
 </span>
 `;

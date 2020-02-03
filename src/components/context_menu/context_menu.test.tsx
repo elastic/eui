@@ -5,6 +5,17 @@ import { requiredProps, takeMountedSnapshot } from '../../test';
 import { EuiContextMenu } from './context_menu';
 import { setTimeout } from 'timers';
 
+const panel3 = {
+  id: 3,
+  title: '3',
+  items: [
+    {
+      name: <span style={{ color: 'tomato' }}>foo</span>,
+      key: 'foo',
+    },
+  ],
+};
+
 const panel2 = {
   id: 2,
   title: '2',
@@ -42,7 +53,7 @@ const panel0 = {
   ],
 };
 
-const panels = [panel0, panel1, panel2];
+const panels = [panel0, panel1, panel2, panel3];
 
 export const tick = (ms = 0) =>
   new Promise(resolve => {
@@ -52,6 +63,14 @@ export const tick = (ms = 0) =>
 describe('EuiContextMenu', () => {
   test('is rendered', () => {
     const component = render(<EuiContextMenu {...requiredProps} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('panel item can contain JSX', () => {
+    const component = render(
+      <EuiContextMenu panels={panels} initialPanelId={3} />
+    );
 
     expect(component).toMatchSnapshot();
   });
