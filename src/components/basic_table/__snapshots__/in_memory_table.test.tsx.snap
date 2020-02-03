@@ -134,10 +134,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           >
             <EuiScreenReaderOnly>
               <caption
-                aria-live="polite"
-                aria-relevant="text"
                 className="euiScreenReaderOnly euiTableCaption"
-                role="status"
               >
                 <EuiDelayRender
                   delay={500}
@@ -177,7 +174,9 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 </tr>
               </thead>
             </EuiTableHeader>
-            <EuiTableBody>
+            <EuiTableBody
+              bodyRef={[Function]}
+            >
               <tbody>
                 <EuiTableRow
                   isSelected={false}
@@ -194,6 +193,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           "render": undefined,
                         }
                       }
+                      setScopeRow={false}
                       textOnly={true}
                     >
                       <td
@@ -237,6 +237,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           "render": undefined,
                         }
                       }
+                      setScopeRow={false}
                       textOnly={true}
                     >
                       <td

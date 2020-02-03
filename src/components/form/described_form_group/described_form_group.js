@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,7 +7,8 @@ import { EuiText } from '../../text/text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { GUTTER_SIZES } from '../../flex/flex_group';
 
-import makeId from '../form_row/make_id';
+import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiInnerText } from '../../inner_text';
 
 const paddingSizeToClassNameMap = {
   xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
@@ -18,12 +19,7 @@ const paddingSizeToClassNameMap = {
   l: 'euiDescribedFormGroup__fieldPadding--large',
 };
 
-export class EuiDescribedFormGroup extends Component {
-  constructor(props) {
-    super(props);
-    this.ariaId = props.idAria || makeId();
-  }
-
+export class EuiDescribedFormGroup extends PureComponent {
   render() {
     const {
       children,
@@ -33,11 +29,8 @@ export class EuiDescribedFormGroup extends Component {
       titleSize,
       title,
       description,
-      idAria: userAriaId,
       ...rest
     } = this.props;
-
-    const ariaId = this.ariaId;
 
     const classes = classNames(
       'euiDescribedFormGroup',
@@ -52,45 +45,46 @@ export class EuiDescribedFormGroup extends Component {
       paddingSizeToClassNameMap[titleSize]
     );
 
-    const ariaProps = {
-      'aria-labelledby': `${ariaId}-title`,
-    };
-
     let renderedDescription;
 
     if (description) {
       renderedDescription = (
         <EuiText
-          id={ariaId}
           size="s"
           color="subdued"
           className="euiDescribedFormGroup__description">
           {description}
         </EuiText>
       );
-
-      // If user has defined an aria ID, assume they have passed the ID to
-      // the form row describedByIds and skip describedby here.
-      ariaProps['aria-describedby'] = userAriaId ? null : ariaId;
     }
 
     return (
-      <div role="group" className={classes} {...ariaProps} {...rest}>
-        <EuiFlexGroup gutterSize={gutterSize}>
-          <EuiFlexItem>
-            <EuiTitle
-              id={`${ariaId}-title`}
-              size={titleSize}
-              className="euiDescribedFormGroup__title">
-              {title}
-            </EuiTitle>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <fieldset className={classes} {...rest}>
+            <EuiScreenReaderOnly>
+              <legend>{innerText}</legend>
+            </EuiScreenReaderOnly>
 
-            {renderedDescription}
-          </EuiFlexItem>
+            <EuiFlexGroup gutterSize={gutterSize}>
+              <EuiFlexItem>
+                <span ref={ref} title={innerText}>
+                  <EuiTitle
+                    size={titleSize}
+                    aria-hidden="true"
+                    className="euiDescribedFormGroup__title">
+                    {title}
+                  </EuiTitle>
+                </span>
 
-          <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
-        </EuiFlexGroup>
-      </div>
+                {renderedDescription}
+              </EuiFlexItem>
+
+              <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
+            </EuiFlexGroup>
+          </fieldset>
+        )}
+      </EuiInnerText>
     );
   }
 }
@@ -107,9 +101,11 @@ EuiDescribedFormGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   fullWidth: PropTypes.bool,
   titleSize: PropTypes.oneOf(TITLE_SIZES),
+  /**
+   * For better accessibility, it's recommended the use of HTML headings
+   */
   title: PropTypes.node.isRequired,
   description: PropTypes.node,
-  idAria: PropTypes.string,
 };
 
 EuiDescribedFormGroup.defaultProps = {
