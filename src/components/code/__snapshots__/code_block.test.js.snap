@@ -5,10 +5,8 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
   <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
     <pre class=\\"euiCodeBlock__pre\\">
       <code class=\\"euiCodeBlock__code javascript hljs\\">
-        <div>
-          <span class=\\"hljs-keyword\\">const</span>value =
-          <span class=\\"hljs-string\\">'State 1'</span>
-        </div>
+        <span class=\\"hljs-keyword\\">const</span>value =
+        <span class=\\"hljs-string\\">'State 1'</span>
       </code>
     </pre>
   </div>
@@ -20,10 +18,8 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
   <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
     <pre class=\\"euiCodeBlock__pre\\">
       <code class=\\"euiCodeBlock__code javascript hljs\\">
-        <div>
-          <span class=\\"hljs-keyword\\">const</span>value =
-          <span class=\\"hljs-string\\">'State 2'</span>
-        </div>
+        <span class=\\"hljs-keyword\\">const</span>value =
+        <span class=\\"hljs-string\\">'State 2'</span>
       </code>
     </pre>
   </div>
@@ -40,10 +36,8 @@ exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -59,10 +53,8 @@ exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -78,10 +70,8 @@ exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -97,10 +87,8 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
   <div
@@ -144,10 +132,8 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
     <code
       class="euiCodeBlock__code html hljs xml"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -165,10 +151,8 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
   <div
@@ -204,10 +188,8 @@ exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -223,10 +205,8 @@ exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -242,10 +222,8 @@ exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -261,10 +239,8 @@ exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -280,10 +256,8 @@ exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
     <code
       class="euiCodeBlock__code"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
@@ -301,10 +275,8 @@ exports[`EuiCodeBlock renders a code block 1`] = `
       class="euiCodeBlock__code"
       data-test-subj="test subject string"
     >
-      <div>
-        var some = 'code';
+      var some = 'code';
 console.log(some);
-      </div>
     </code>
   </pre>
 </div>
