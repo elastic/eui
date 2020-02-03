@@ -23,7 +23,8 @@ export type EuiContextMenuPanelItemDescriptor = Omit<
   EuiContextMenuItemProps,
   'hasPanel'
 > & {
-  name: string;
+  name: React.ReactNode;
+  key?: string;
   panel?: EuiContextMenuPanelId;
 };
 
@@ -260,6 +261,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       const {
         panel,
         name,
+        key,
         icon,
         onClick,
         toolTipTitle,
@@ -285,7 +287,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
       return (
         <EuiContextMenuItem
-          key={name}
+          key={key || (typeof name === 'string' ? name : undefined) || index}
           icon={icon}
           onClick={onClickHandler}
           hasPanel={Boolean(panel)}

@@ -1,8 +1,16 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCodeBlockImpl } from './_code_block';
+
+function snapshotCodeBlock(component) {
+  // Get the Portal's sibling and return its html
+  const renderedHtml = component.find('Portal + *').html();
+  const container = document.createElement('div');
+  container.innerHTML = renderedHtml;
+  return container.firstChild;
+}
 
 const code = `var some = 'code';
 console.log(some);`;
@@ -10,57 +18,55 @@ console.log(some);`;
 describe('EuiCodeBlockImpl', () => {
   describe('inline', () => {
     test('renders an inline code tag', () => {
-      const component = render(
+      const component = mount(
         <EuiCodeBlockImpl inline={true} {...requiredProps}>
           {code}
         </EuiCodeBlockImpl>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
 
     test('highlights javascript code, adding "js" class', () => {
-      const component = render(
-        <EuiCodeBlockImpl inline={true} language="js" />
-      );
+      const component = mount(<EuiCodeBlockImpl inline={true} language="js" />);
 
-      expect(component).toMatchSnapshot();
+      expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
 
     test('renders with transparent background', () => {
-      const component = render(
+      const component = mount(
         <EuiCodeBlockImpl inline={true} transparentBackground={true} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
   });
 
   describe('block', () => {
     test('renders a pre block tag', () => {
-      const component = render(
+      const component = mount(
         <EuiCodeBlockImpl inline={false} {...requiredProps}>
           {code}
         </EuiCodeBlockImpl>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
 
     test('highlights javascript code, adding "js" class', () => {
-      const component = render(
+      const component = mount(
         <EuiCodeBlockImpl inline={false} language="js" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
 
     test('renders with transparent background', () => {
-      const component = render(
+      const component = mount(
         <EuiCodeBlockImpl inline={false} transparentBackground={true} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
   });
 });

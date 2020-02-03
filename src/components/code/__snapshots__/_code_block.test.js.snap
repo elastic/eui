@@ -8,7 +8,7 @@ exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`
     class="euiCodeBlock__pre"
   >
     <code
-      class="euiCodeBlock__code js"
+      class="euiCodeBlock__code js hljs javascript"
     />
   </pre>
 </div>
@@ -52,7 +52,7 @@ exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
 >
   <code
-    class="euiCodeBlock__code js"
+    class="euiCodeBlock__code js hljs javascript"
   />
 </span>
 `;
