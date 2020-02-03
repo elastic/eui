@@ -4,10 +4,15 @@
 - Added `tableCaption` prop to `EuiBasicTable` and improved the default one ([#2782](https://github.com/elastic/eui/pull/2782))
 - Changed SASS comments to non-compiled comments in invisibles files ([#2807](https://github.com/elastic/eui/pull/2807))
 - Added `rowHeader` prop to `EuiBasicTable` to allow consumers to set the identifying cell in a row ([#2802](https://github.com/elastic/eui/pull/2802))
+- Improved `EuiDescribedFormGroup` accessibility by avoiding duplicated output in screen readers ([#2783](https://github.com/elastic/eui/pull/2783))
 
 **Bug fixes**
 
 - Exported missing `EuiSelectProps` type ([#2815](https://github.com/elastic/eui/pull/2815))
+
+**Breaking changes**
+
+- Removed `idAria` prop from `EuiDescribedFormGroup` ([#2783](https://github.com/elastic/eui/pull/2783))
 
 ## [`18.3.0`](https://github.com/elastic/eui/tree/v18.3.0)
 
@@ -18,7 +23,6 @@
 - Converted `EuiFilterButton` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
 - Converted `EuiFilterSelectItem` to TypeScript ([#2761](https://github.com/elastic/eui/pull/2761))
 - Converted `EuiFieldSearch` to TypeScript ([#2775](https://github.com/elastic/eui/pull/2775))
-- Improved `EuiDescribedFormGroup` accessibility by avoiding duplicated output in screen readers ([#2783](https://github.com/elastic/eui/pull/2783))
 - Added `data-test-subj` to the `EuiContextMenuItem` in `EuiTablePagination` ([#2778](https://github.com/elastic/eui/pull/2778))
 - Improved `EuiIcon` a11y by using a `title` and `aria-labelledby` ([#2786](https://github.com/elastic/eui/pull/2786))
 - Improved compressed `EuiPagination` by including active and last page numbers ([#2779](https://github.com/elastic/eui/pull/2779))
@@ -46,10 +50,6 @@
 **Bug fixes**
 
 - Fixed `useRenderToText` and `EuiButtonToggle` from attempting state updates on unmounted components ([#2797](https://github.com/elastic/eui/pull/2797))
-
-**Breaking changes**
-
-- Removed `idAria` prop from `EuiDescribedFormGroup` ([#2783](https://github.com/elastic/eui/pull/2783))
 
 **Deprecations**
 
