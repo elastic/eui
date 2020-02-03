@@ -152,7 +152,7 @@ export class EuiCodeBlockImpl extends Component {
     if (inline) {
       return (
         <>
-          {createPortal(<div>{children}</div>, this.codeTarget)}
+          {createPortal(children, this.codeTarget)}
           <span {...wrapperProps}>{codeSnippet}</span>
         </>
       );
@@ -272,7 +272,7 @@ export class EuiCodeBlockImpl extends Component {
 
     return (
       <>
-        {createPortal(<div>{children}</div>, this.codeTarget)}
+        {createPortal(children, this.codeTarget)}
         <EuiInnerText fallback="">
           {(innerTextRef, innerText) => {
             const codeBlockControls = getCodeBlockControls(innerText);
