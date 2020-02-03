@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { defaults } from 'lodash';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
@@ -89,7 +89,6 @@ export interface TokenProps {
    * Size of the token
    */
   size?: TokenSize;
-  style?: CSSProperties;
 }
 
 export type EuiTokenProps = CommonProps &
