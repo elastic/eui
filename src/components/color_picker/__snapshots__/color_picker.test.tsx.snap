@@ -25,7 +25,7 @@ exports[`renders EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+                class="euiFieldText euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -101,7 +101,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+                class="euiFieldText euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -175,7 +175,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+                class="euiFieldText euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 placeholder="Transparent"
@@ -250,7 +250,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+                class="euiFieldText euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 placeholder="Transparent"
@@ -302,6 +302,92 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 </div>
 `;
 
+exports[`renders a EuiColorPicker with a prepend and append 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div
+      class="euiFormControlLayout euiFormControlLayout--group"
+    >
+      <label
+        class="euiFormLabel euiFormControlLayout__prepend"
+      >
+        prepend
+      </label>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          style="color:#ffeedd"
+        >
+          <div
+            class="euiFormControlLayout"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiColorPicker__input--inGroup euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                type="text"
+                value="#FFEEDD"
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    role="img"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
+      </div>
+      <label
+        class="euiFormLabel euiFormControlLayout__append"
+      >
+        append
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders compressed EuiColorPicker 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
@@ -327,7 +413,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--compressed"
+                class="euiFieldText euiFieldText--withIcon euiFieldText--compressed"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -403,7 +489,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+                class="euiFieldText euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 disabled=""
                 maxlength="7"
@@ -480,7 +566,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--fullWidth"
+                class="euiFieldText euiFieldText--withIcon euiFieldText--fullWidth"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -739,7 +825,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+                class="euiFieldText euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 readonly=""
