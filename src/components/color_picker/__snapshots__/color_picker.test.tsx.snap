@@ -25,7 +25,7 @@ exports[`renders EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -101,7 +101,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -175,7 +175,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 placeholder="Transparent"
@@ -250,7 +250,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 placeholder="Transparent"
@@ -332,7 +332,7 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiColorPicker__input--inGroup euiFieldText--withIcon"
+                class="euiFieldText euiColorPicker__input euiColorPicker__input--inGroup euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -413,7 +413,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon euiFieldText--compressed"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--compressed"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -489,7 +489,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 disabled=""
                 maxlength="7"
@@ -566,7 +566,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon euiFieldText--fullWidth"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--fullWidth"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 type="text"
@@ -825,7 +825,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
               <input
                 aria-label="Press the down key to open a popover containing color options"
                 autocomplete="off"
-                class="euiFieldText euiFieldText--withIcon"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 maxlength="7"
                 readonly=""
