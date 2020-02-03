@@ -46,6 +46,7 @@ export const iconTypes = [
   'calendar',
   'check',
   'checkInCircleFilled',
+  'cheer',
   'clock',
   'cloudDrizzle',
   'cloudStormy',

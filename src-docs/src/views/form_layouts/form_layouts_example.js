@@ -119,9 +119,8 @@ export const FormLayoutsExample = {
         <p>
           Use <EuiCode>EuiDescribedFormGroup</EuiCode> component to associate
           multiple <EuiCode>EuiFormRow</EuiCode>s. It can also simply be used
-          with one <EuiCode>EuiFormRow</EuiCode> as a way to display help text
-          (or additional text) next to the field instead of below (on mobile,
-          will revert to being stacked).
+          with one <EuiCode>EuiFormRow</EuiCode> as a way to display additional
+          text next to the field (on mobile, it will revert to being stacked).
         </p>
       ),
       props: {
@@ -129,7 +128,6 @@ export const FormLayoutsExample = {
       },
       demo: <DescribedFormGroup />,
       snippet: `<EuiDescribedFormGroup
-  idAria="id"
   title={<h3>Set heading level based on context</h3>}
   description={
     <Fragment>
@@ -139,7 +137,6 @@ export const FormLayoutsExample = {
 >
   <EuiFormRow
     label="Text field"
-    describedByIds={['id']}
   >
     <EuiFieldText />
   </EuiFormRow>

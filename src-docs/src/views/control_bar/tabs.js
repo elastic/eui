@@ -72,6 +72,7 @@ export class ControlBarWithTabs extends React.Component {
         controlType: 'button',
         id: 'close_the_hatch',
         label: 'Close the Hatch',
+        fill: true,
         onClick: this.closeTheHatch,
         className: 'customClassName',
         color: 'primary',

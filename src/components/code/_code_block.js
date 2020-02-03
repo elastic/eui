@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import hljs from 'highlight.js';
@@ -13,6 +14,7 @@ import { EuiFocusTrap } from '../focus_trap';
 
 import { keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
+import { EuiInnerText } from '../inner_text';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
@@ -36,6 +38,8 @@ export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
  * share the same propTypes definition with EuiCodeBlockImpl.
  */
 export class EuiCodeBlockImpl extends Component {
+  codeTarget = document.createElement('div');
+
   constructor(props) {
     super(props);
 
@@ -45,6 +49,20 @@ export class EuiCodeBlockImpl extends Component {
   }
 
   highlight = () => {
+    // because React maintains a mapping between its Virtual DOM representation and the actual
+    // DOM elements (including text nodes), and hljs modifies the DOM structure which leads
+    // to React updating detached nodes, we render to a document fragment and
+    // copy from that fragment into the target elements
+    // (https://github.com/elastic/eui/issues/2322)
+    const html = this.codeTarget.innerHTML;
+
+    if (this.code) {
+      this.code.innerHTML = html;
+    }
+    if (this.codeFullScreen) {
+      this.codeFullScreen.innerHTML = html;
+    }
+
     if (this.props.language) {
       hljs.highlightBlock(this.code);
 
@@ -96,23 +114,6 @@ export class EuiCodeBlockImpl extends Component {
       ...otherProps
     } = this.props;
 
-    // To maintain backwards compatibility with incorrect datatypes being passed, this
-    // logic is a bit expanded to support arrays of non-strings. In those cases two bugs are present:
-    // * "copy" button does not have access to the correct string values to put on the clipboard
-    // * dynamically changing the content fails to update the DOM
-    //
-    // When this is converted to typescript and children that do not meet `string | string[]`
-    // invalid uses will fail at compile time and this can be removed for the much simpler
-    // const childrenAsString = typeof children === 'string' ? children : children.join('');
-    let childrenAsString = children;
-    if (Array.isArray(children)) {
-      const isArrayOfStrings =
-        children.filter(item => typeof item !== 'string').length === 0;
-      if (isArrayOfStrings === true) {
-        childrenAsString = children.join('');
-      }
-    }
-
     const classes = classNames(
       'euiCodeBlock',
       fontSizeToClassNameMap[fontSize],
@@ -139,9 +140,8 @@ export class EuiCodeBlockImpl extends Component {
           this.code = ref;
         }}
         className={codeClasses}
-        {...otherProps}>
-        {childrenAsString}
-      </code>
+        {...otherProps}
+      />
     );
 
     const wrapperProps = {
@@ -150,31 +150,40 @@ export class EuiCodeBlockImpl extends Component {
     };
 
     if (inline) {
-      return <span {...wrapperProps}>{codeSnippet}</span>;
+      return (
+        <>
+          {createPortal(<div>{children}</div>, this.codeTarget)}
+          <span {...wrapperProps}>{codeSnippet}</span>
+        </>
+      );
     }
 
-    let copyButton;
+    function getCopyButton(textToCopy) {
+      let copyButton;
 
-    if (isCopyable) {
-      copyButton = (
-        <div className="euiCodeBlock__copyButton">
-          <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
-            {copyButton => (
-              <EuiCopy textToCopy={childrenAsString}>
-                {copy => (
-                  <EuiButtonIcon
-                    size="s"
-                    onClick={copy}
-                    iconType="copy"
-                    color="text"
-                    aria-label={copyButton}
-                  />
-                )}
-              </EuiCopy>
-            )}
-          </EuiI18n>
-        </div>
-      );
+      if (isCopyable) {
+        copyButton = (
+          <div className="euiCodeBlock__copyButton">
+            <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
+              {copyButton => (
+                <EuiCopy textToCopy={textToCopy}>
+                  {copy => (
+                    <EuiButtonIcon
+                      size="s"
+                      onClick={copy}
+                      iconType="copy"
+                      color="text"
+                      aria-label={copyButton}
+                    />
+                  )}
+                </EuiCopy>
+              )}
+            </EuiI18n>
+          </div>
+        );
+      }
+
+      return copyButton;
     }
 
     let fullScreenButton;
@@ -203,78 +212,96 @@ export class EuiCodeBlockImpl extends Component {
       );
     }
 
-    let codeBlockControls;
+    function getCodeBlockControls(textToCopy) {
+      let codeBlockControls;
+      const copyButton = getCopyButton(textToCopy);
 
-    if (copyButton || fullScreenButton) {
-      codeBlockControls = (
-        <div className="euiCodeBlock__controls">
-          {fullScreenButton}
-          {copyButton}
-        </div>
-      );
-    }
-
-    let fullScreenDisplay;
-
-    if (this.state.isFullScreen) {
-      {
-        /*
-        Force fullscreen to use large font and padding.
-      */
+      if (copyButton || fullScreenButton) {
+        codeBlockControls = (
+          <div className="euiCodeBlock__controls">
+            {fullScreenButton}
+            {copyButton}
+          </div>
+        );
       }
-      const fullScreenClasses = classNames(
-        'euiCodeBlock',
-        fontSizeToClassNameMap[fontSize],
-        'euiCodeBlock-paddingLarge',
-        'euiCodeBlock-isFullScreen',
-        className
-      );
 
-      fullScreenDisplay = (
-        <EuiOverlayMask>
-          <EuiFocusTrap clickOutsideDisables={true}>
-            <div className={fullScreenClasses}>
-              <pre className="euiCodeBlock__pre">
-                <code
-                  ref={ref => {
-                    this.codeFullScreen = ref;
-                  }}
-                  className={codeClasses}
-                  tabIndex={0}
-                  onKeyDown={this.onKeyDown}>
-                  {childrenAsString}
-                </code>
-              </pre>
-
-              {codeBlockControls}
-            </div>
-          </EuiFocusTrap>
-        </EuiOverlayMask>
-      );
+      return codeBlockControls;
     }
+
+    const getFullScreenDisplay = codeBlockControls => {
+      let fullScreenDisplay;
+
+      if (this.state.isFullScreen) {
+        {
+          /*
+          Force fullscreen to use large font and padding.
+        */
+        }
+        const fullScreenClasses = classNames(
+          'euiCodeBlock',
+          fontSizeToClassNameMap[fontSize],
+          'euiCodeBlock-paddingLarge',
+          'euiCodeBlock-isFullScreen',
+          className
+        );
+
+        fullScreenDisplay = (
+          <EuiOverlayMask>
+            <EuiFocusTrap clickOutsideDisables={true}>
+              <div className={fullScreenClasses}>
+                <pre className="euiCodeBlock__pre">
+                  <code
+                    ref={ref => {
+                      this.codeFullScreen = ref;
+                    }}
+                    className={codeClasses}
+                    tabIndex={0}
+                    onKeyDown={this.onKeyDown}
+                  />
+                </pre>
+
+                {codeBlockControls}
+              </div>
+            </EuiFocusTrap>
+          </EuiOverlayMask>
+        );
+      }
+
+      return fullScreenDisplay;
+    };
 
     return (
-      <div {...wrapperProps}>
-        <pre style={optionalStyles} className="euiCodeBlock__pre">
-          {codeSnippet}
-        </pre>
+      <>
+        {createPortal(<div>{children}</div>, this.codeTarget)}
+        <EuiInnerText fallback="">
+          {(innerTextRef, innerText) => {
+            const codeBlockControls = getCodeBlockControls(innerText);
+            return (
+              <div {...wrapperProps}>
+                <pre
+                  ref={innerTextRef}
+                  style={optionalStyles}
+                  className="euiCodeBlock__pre">
+                  {codeSnippet}
+                </pre>
 
-        {/*
-          If the below fullScreen code renders, it actually attaches to the body because of
-          EuiOverlayMask's React portal usage.
-        */}
-        {codeBlockControls}
-        {fullScreenDisplay}
-      </div>
+                {/*
+                If the below fullScreen code renders, it actually attaches to the body because of
+                EuiOverlayMask's React portal usage.
+              */}
+                {codeBlockControls}
+                {getFullScreenDisplay(codeBlockControls)}
+              </div>
+            );
+          }}
+        </EuiInnerText>
+      </>
     );
   }
 }
 
 EuiCodeBlockImpl.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  children: PropTypes.node,
   className: PropTypes.string,
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
 

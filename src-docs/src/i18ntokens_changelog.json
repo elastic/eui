@@ -1,5 +1,20 @@
 [
   {
+    "version": "18.3.0",
+    "changes": [
+      {
+        "token": "euiFilterButton.filterBadge",
+        "changeType": "modified",
+        "value": "{count} {hasActiveFilters} filters"
+      },
+      {
+        "token": "euiPagination.pageOfTotalCompressed",
+        "changeType": "added",
+        "value": "{page} of {total}"
+      }
+    ]
+  },
+  {
     "version": "16.1.0",
     "changes": [
       {

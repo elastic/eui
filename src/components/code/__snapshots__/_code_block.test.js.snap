@@ -8,8 +8,10 @@ exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`
     class="euiCodeBlock__pre"
   >
     <code
-      class="euiCodeBlock__code js"
-    />
+      class="euiCodeBlock__code js hljs javascript"
+    >
+      <div />
+    </code>
   </pre>
 </div>
 `;
@@ -26,8 +28,10 @@ exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
       class="euiCodeBlock__code"
       data-test-subj="test subject string"
     >
-      var some = 'code';
+      <div>
+        var some = 'code';
 console.log(some);
+      </div>
     </code>
   </pre>
 </div>
@@ -42,7 +46,9 @@ exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
   >
     <code
       class="euiCodeBlock__code"
-    />
+    >
+      <div />
+    </code>
   </pre>
 </div>
 `;
@@ -52,8 +58,10 @@ exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
 >
   <code
-    class="euiCodeBlock__code js"
-  />
+    class="euiCodeBlock__code js hljs javascript"
+  >
+    <div />
+  </code>
 </span>
 `;
 
@@ -66,8 +74,10 @@ exports[`EuiCodeBlockImpl inline renders an inline code tag 1`] = `
     class="euiCodeBlock__code"
     data-test-subj="test subject string"
   >
-    var some = 'code';
+    <div>
+      var some = 'code';
 console.log(some);
+    </div>
   </code>
 </span>
 `;
@@ -78,6 +88,8 @@ exports[`EuiCodeBlockImpl inline renders with transparent background 1`] = `
 >
   <code
     class="euiCodeBlock__code"
-  />
+  >
+    <div />
+  </code>
 </span>
 `;

@@ -7,7 +7,7 @@ import { EuiSuperSelect } from './super_select';
 jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 jest.mock('../../portal', () => ({
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: any) => children,
 }));
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests

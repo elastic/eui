@@ -167,9 +167,12 @@
     }
 
     .euiControlBar__button.euiButton--#{$colorName}:enabled {
+      box-shadow: none;
+    }
+
+    .euiControlBar__button.euiButton--#{$colorName}:enabled:not(.euiButton--fill) {
       color: makeHighContrastColor($colorValue, $euiControlBarBackground);
       border-color: makeHighContrastColor($colorValue, $euiControlBarBackground);
-      box-shadow: none;
     }
 
     .euiButtonIcon--#{$colorName} {

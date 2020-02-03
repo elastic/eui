@@ -37,6 +37,17 @@ describe('EuiIcon', () => {
       );
     });
 
+    describe('title and titleId', () => {
+      test(
+        'are passed and generate an aria-labelledby',
+        testIcon({
+          type: 'search',
+          title: 'Search icon',
+          titleId: 'id-test',
+        })
+      );
+    });
+
     describe('size', () => {
       SIZES.forEach(size => {
         test('${size} is rendered', testIcon({ type: 'search', size }));
