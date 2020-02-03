@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconLogoMaps = ({ title, ...props }) => (
+const EuiIconLogoMaps = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path
       fill="#22A7F3"
       d="M25.5 9.5c0 6.65-9.5 11.425-9.5 11.425S6.5 16.15 6.5 9.5A9.5 9.5 0 0116 0a9.5 9.5 0 019.5 9.5"

@@ -244,7 +244,7 @@ export default class extends Component {
         id: 'checkbox',
         isCheckbox: true,
         textOnly: false,
-        width: '24px',
+        width: '32px',
       },
       {
         id: 'type',

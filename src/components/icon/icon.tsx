@@ -17,6 +17,8 @@ import { CommonProps, keysOf } from '../common';
 import { icon as empty } from './assets/empty.js';
 import { enqueueStateChange } from '../../services/react';
 
+import { htmlIdGenerator } from '../../services';
+
 const typeToPathMap = {
   accessibility: 'accessibility',
   addDataApp: 'app_add_data',
@@ -49,6 +51,7 @@ const typeToPathMap = {
   codeApp: 'app_code',
   check: 'check',
   checkInCircleFilled: 'checkInCircleFilled',
+  cheer: 'cheer',
   clock: 'clock',
   cloudDrizzle: 'cloudDrizzle',
   cloudStormy: 'cloudStormy',
@@ -208,6 +211,7 @@ const typeToPathMap = {
   logoMongodb: 'logo_mongodb',
   logoMySQL: 'logo_mysql',
   logoNginx: 'logo_nginx',
+  logoObservability: 'logo_observability',
   logoOsquery: 'logo_osquery',
   logoPhp: 'logo_php',
   logoPostgres: 'logo_postgres',
@@ -221,6 +225,7 @@ const typeToPathMap = {
   logoUptime: 'logo_uptime',
   logoWebhook: 'logo_webhook',
   logoWindows: 'logo_windows',
+  logoWorkplaceSearch: 'logo_workplace_search',
   logstashFilter: 'logstash_filter',
   logstashIf: 'logstash_if',
   logstashInput: 'logstash_input',
@@ -446,6 +451,10 @@ export type EuiIconProps = CommonProps &
      */
     title?: string;
     /**
+     * A unique identifier for the title element
+     */
+    titleId?: string;
+    /**
      * Its value should be one or more element IDs
      */
     'aria-labelledby'?: string;
@@ -475,6 +484,8 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 
   return icon;
 }
+
+const generateId = htmlIdGenerator();
 
 export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
@@ -624,15 +635,17 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
         );
       const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
 
-      let ariaLabel: any;
+      let titleId: any;
 
-      // If no aria-label or aria-labelledby is provided the title will be default
+      // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
+      //  The svg aria-labelledby attribute gets this titleId
+      //  The svg title element gets this titleId as an id
       if (
         !this.props['aria-label'] &&
         !this.props['aria-labelledby'] &&
         title
       ) {
-        ariaLabel = { 'aria-label': title };
+        titleId = { titleId: generateId() };
       }
 
       return (
@@ -643,9 +656,9 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           focusable={focusable}
           role="img"
           title={title}
+          {...titleId}
           {...rest}
           {...hideIconEmpty}
-          {...ariaLabel}
         />
       );
     }

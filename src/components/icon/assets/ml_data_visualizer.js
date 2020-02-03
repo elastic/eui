@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconMlDataVisualizer = ({ title, ...props }) => (
+const EuiIconMlDataVisualizer = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path
       className="euiIcon__fillSecondary"
       d="M23 12.05V13a10 10 0 01-.11 1.44 6 6 0 11-8.45 8.45A10 10 0 0113 23h-.95A8 8 0 1023 12.05z"
