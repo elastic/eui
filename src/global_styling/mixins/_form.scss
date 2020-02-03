@@ -228,10 +228,10 @@
     // Needs to be set for autofill
     // sass-lint:disable-block no-vendor-prefixes
     &:-webkit-autofill {
-      -webkit-text-fill-color: lightOrDarkTheme($euiColorDarkestShade, $euiColorDarkestShade);
+      -webkit-text-fill-color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
 
       ~ .euiFormControlLayoutIcons {
-        color: lightOrDarkTheme($euiColorDarkestShade, $euiColorDarkestShade);
+        color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
       }
     }
 
