@@ -12,6 +12,7 @@
 
 - Exported missing `EuiSelectProps` type ([#2815](https://github.com/elastic/eui/pull/2815))
 - Fixed `EuiCode`'s & `EuiCodeBlock`'s ability to accept non-string children ([#2792](https://github.com/elastic/eui/pull/2792))
+- Fixed `EuiSearchBar`, `Query`, and `AST`'s ability to accept literal parenthesis characters ([#2791](https://github.com/elastic/eui/pull/2791))
 
 **Breaking changes**
 
