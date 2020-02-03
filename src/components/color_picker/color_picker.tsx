@@ -146,7 +146,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const swatchClass = 'euiColorPicker__swatchSelect';
   const testSubjAnchor = 'colorPickerAnchor';
   const testSubjPopover = 'colorPickerPopover';
-  const inputClasses = classNames({
+  const inputClasses = classNames('euiColorPicker__input', {
     'euiColorPicker__input--inGroup': prepend || append,
   });
 
