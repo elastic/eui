@@ -18,7 +18,10 @@ import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiFieldText } from '../form/field_text';
-import { EuiFormControlLayout } from '../form/form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form/form_control_layout';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
@@ -71,6 +74,16 @@ export interface EuiColorPickerProps
    *  Array of hex strings (3 or 6 character) to use as swatch options. Defaults to EUI visualization colors
    */
   swatches?: string[];
+
+  /**
+   * Creates an input group with element(s) coming before input. It only shows when the `display` is set to `default`.
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+
+  /**
+   * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 function isKeyboardEvent(
@@ -103,6 +116,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   readOnly = false,
   swatches = VISUALIZATION_COLORS,
   popoverZIndex,
+  prepend,
+  append,
 }) => {
   const getHsvFromColor = useCallback(
     (): ColorSpaces['hsv'] =>
@@ -134,6 +149,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   }, [color, lastHex, getHsvFromColor]);
 
   const classes = classNames('euiColorPicker', className);
+  const popoverClass = 'euiColorPicker__popoverAnchor';
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
     'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker',
     'euiColorPicker__popoverPanel--customButton': button,
@@ -141,6 +157,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const swatchClass = 'euiColorPicker__swatchSelect';
   const testSubjAnchor = 'colorPickerAnchor';
   const testSubjPopover = 'colorPickerPopover';
+  const inputClasses = classNames('euiColorPicker__input', {
+    'euiColorPicker__input--inGroup': prepend || append,
+  });
 
   const handleOnChange = (hex: string) => {
     setLastHex(hex);
@@ -322,7 +341,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         readOnly={readOnly}
         fullWidth={fullWidth}
         compressed={compressed}
-        onKeyDown={handleToggleOnKeyDown}>
+        onKeyDown={handleToggleOnKeyDown}
+        prepend={prepend}
+        append={append}>
         <div
           // Used to pass the chosen color through to form layout SVG using currentColor
           style={{ color: showColor && color ? color : undefined }}>
@@ -334,7 +355,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             ]}>
             {([openLabel, closeLabel]: string[]) => (
               <EuiFieldText
-                className="euiColorPicker__input"
+                className={inputClasses}
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
                 value={color ? color.toUpperCase() : ''}
@@ -369,6 +390,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       isOpen={isColorSelectorShown}
       closePopover={handleFinalSelection}
       zIndex={popoverZIndex}
+      className={popoverClass}
       panelClassName={panelClasses}
       display={button ? 'inlineBlock' : 'block'}
       attachToAnchor={button ? false : true}

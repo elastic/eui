@@ -109,6 +109,10 @@ interface EuiTableRowCellProps {
    */
   mobileOptions?: EuiTableRowCellMobileOptionsShape &
     EuiTableRowCellSharedPropsShape;
+  /**
+   * Indicates whether the cell should be marked as the heading for its row
+   */
+  setScopeRow?: boolean;
 }
 
 type Props = CommonProps &
@@ -121,6 +125,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   children,
   className,
   truncateText,
+  setScopeRow,
   showOnHover,
   textOnly = true,
   hasActions,
@@ -202,20 +207,23 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const hideForMobileClasses = 'euiTableRowCell--hideForMobile';
   const showForMobileClasses = 'euiTableRowCell--hideForDesktop';
 
-  let cellRender;
-
+  const Element = setScopeRow ? 'th' : 'td';
+  const sharedProps = {
+    scope: setScopeRow ? 'row' : undefined,
+    style: styleObj,
+    ...rest,
+  };
   if (mobileOptions.show === false || hideForMobile) {
-    cellRender = (
-      <td
+    return (
+      <Element
         className={`${cellClasses} ${hideForMobileClasses}`}
-        style={styleObj}
-        {...rest}>
+        {...sharedProps}>
         <div className={contentClasses}>{childrenNode}</div>
-      </td>
+      </Element>
     );
   } else {
-    cellRender = (
-      <td className={cellClasses} style={styleObj} {...rest}>
+    return (
+      <Element className={cellClasses} {...sharedProps}>
         {/* Mobile-only header */}
         {(mobileOptions.header || header) && !isMobileHeader && (
           <div
@@ -237,9 +245,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
         ) : (
           <div className={contentClasses}>{childrenNode}</div>
         )}
-      </td>
+      </Element>
     );
   }
-
-  return cellRender;
 };

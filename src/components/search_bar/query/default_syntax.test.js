@@ -91,12 +91,12 @@ describe('defaultSyntax', () => {
   });
 
   test('escaped chars as default clauses', () => {
-    const query = '-\\: \\\\';
+    const query = '-\\: \\\\ \\( \\)';
     const ast = defaultSyntax.parse(query);
 
     expect(ast).toBeDefined();
     expect(ast.clauses).toBeDefined();
-    expect(ast.clauses).toHaveLength(2);
+    expect(ast.clauses).toHaveLength(4);
 
     let clause = ast.getTermClause(':');
     expect(clause).toBeDefined();
@@ -109,6 +109,18 @@ describe('defaultSyntax', () => {
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('\\');
+
+    clause = ast.getTermClause('(');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe('(');
+
+    clause = ast.getTermClause(')');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe(')');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -424,20 +436,20 @@ describe('defaultSyntax', () => {
   });
 
   test('term phrases', () => {
-    const query = '"foo bar"';
+    const query = '"foo (bar)"';
     const ast = defaultSyntax.parse(query);
 
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(1);
 
-    const clause = ast.getTermClause('foo bar');
+    const clause = ast.getTermClause('foo (bar)');
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
-    expect(clause.value).toBe('foo bar');
+    expect(clause.value).toBe('foo (bar)');
 
     const printedQuery = defaultSyntax.print(ast);
-    expect(printedQuery).toBe(query);
+    expect(printedQuery).toBe('"foo \\(bar\\)"');
   });
 
   test('field phrases', () => {

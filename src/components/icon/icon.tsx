@@ -51,6 +51,7 @@ const typeToPathMap = {
   codeApp: 'app_code',
   check: 'check',
   checkInCircleFilled: 'checkInCircleFilled',
+  cheer: 'cheer',
   clock: 'clock',
   cloudDrizzle: 'cloudDrizzle',
   cloudStormy: 'cloudStormy',
