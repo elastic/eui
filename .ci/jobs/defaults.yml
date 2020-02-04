@@ -31,6 +31,12 @@
         refspec: +refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*
         basedir: ''
         wipe-workspace: 'True'
+    parameters:
+      - string:
+          name: branch_specifier
+          default: refs/heads/master
+          description: the Git branch specifier to build (&lt;branchName&gt;,
+            &lt;tagName&gt;, &lt;commitId&gt;, etc.)
     wrappers:
     - ansicolor
     - timeout:

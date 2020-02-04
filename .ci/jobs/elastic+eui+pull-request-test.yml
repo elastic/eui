@@ -1,0 +1,14 @@
+---
+- job:
+    name: elastic+eui+pull-request-test
+    display-name: 'elastic / eui # pull request test'
+    description: Testing of eui pull requests.
+    builders:
+      - shell: |-
+          #!/usr/local/bin/runbld
+          export NVM_DIR="/var/lib/jenkins/.nvm"
+          [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
+          NPM_VERSION=10
+          nvm install ${NPM_VERSION}
+          nvm use ${NPM_VERSION} --delete-prefix
+          npm run test-docker
