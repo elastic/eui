@@ -4,6 +4,7 @@
 - Added `tableCaption` prop to `EuiBasicTable` and improved the default one ([#2782](https://github.com/elastic/eui/pull/2782))
 - Converted `EuiDescribedFormGroup` to TypeScript ([#2810](https://github.com/elastic/eui/pull/2810))
 - Changed SASS comments to non-compiled comments in invisibles files ([#2807](https://github.com/elastic/eui/pull/2807))
+- Optimized the third party logos Ceph, DropWizard, Golang, and Haproxy ([#2812](https://github.com/elastic/eui/pull/2812))
 - Added `rowHeader` prop to `EuiBasicTable` to allow consumers to set the identifying cell in a row ([#2802](https://github.com/elastic/eui/pull/2802))
 - Added prepend and append to `EuiColorPicker` ([#2819](https://github.com/elastic/eui/pull/2819))
 - Improved `EuiDescribedFormGroup` accessibility by avoiding duplicated output in screen readers ([#2783](https://github.com/elastic/eui/pull/2783))
