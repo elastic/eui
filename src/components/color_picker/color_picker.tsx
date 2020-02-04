@@ -82,12 +82,12 @@ export interface EuiColorPickerProps
   swatches?: string[];
 
   /**
-   * Creates an input group with element(s) coming before input
+   * Creates an input group with element(s) coming before input. It only shows when the `display` is set to `default`.
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
 
   /**
-   * Creates an input group with element(s) coming after input
+   * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
    */
   append?: EuiFormControlLayoutProps['append'];
 }
