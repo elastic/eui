@@ -32,8 +32,10 @@
 .euiColorPicker__input--inGroup {
   height: $euiFormControlLayoutGroupInputHeight !important;
   box-shadow: none !important;
+  border-radius: 0;
 
   &.euiFieldText--compressed {
     height: $euiFormControlLayoutGroupInputCompressedHeight !important;
+    border-radius: 0;
   }
 }
