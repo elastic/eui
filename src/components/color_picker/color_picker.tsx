@@ -79,6 +79,13 @@ function isKeyboardEvent(
   return typeof event === 'object' && 'keyCode' in event;
 }
 
+const chromaValid = (color: string) => {
+  // Temporary function until `@types/chroma-js` allows the 2nd param.
+  // Consolidating the `ts-ignore`s to one location
+  // @ts-ignore
+  return chroma.valid(color, 'hex');
+};
+
 export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   button,
   className,
@@ -97,12 +104,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   swatches = VISUALIZATION_COLORS,
   popoverZIndex,
 }) => {
-  const chromaValid = (color: string) => {
-    // Temporary function until @types/chroma-js allows the 2nd param.
-    // Consolidating the `ts-ignore`s to one location
-    // @ts-ignore
-    return chroma.valid(color, 'hex');
-  };
   const getHsvFromColor = useCallback(
     (): ColorSpaces['hsv'] =>
       color && chromaValid(color) ? chroma(color).hsv() : [0, 0, 0],
