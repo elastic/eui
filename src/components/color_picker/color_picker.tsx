@@ -3,11 +3,13 @@ import React, {
   HTMLAttributes,
   ReactElement,
   cloneElement,
+  useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
+import chroma, { ColorSpaces } from 'chroma-js';
 
 import { CommonProps } from '../common';
 
@@ -15,19 +17,14 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-// @ts-ignore
 import { EuiFieldText } from '../form/field_text';
-import { EuiFormControlLayout } from '../form/form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form/form_control_layout';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
-import {
-  HSV,
-  VISUALIZATION_COLORS,
-  keyCodes,
-  hexToHsv,
-  hsvToHex,
-  isValidHex,
-} from '../../services';
+import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -77,6 +74,16 @@ export interface EuiColorPickerProps
    *  Array of hex strings (3 or 6 character) to use as swatch options. Defaults to EUI visualization colors
    */
   swatches?: string[];
+
+  /**
+   * Creates an input group with element(s) coming before input. It only shows when the `display` is set to `default`.
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+
+  /**
+   * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 function isKeyboardEvent(
@@ -84,6 +91,13 @@ function isKeyboardEvent(
 ): event is React.KeyboardEvent {
   return typeof event === 'object' && 'keyCode' in event;
 }
+
+const chromaValid = (color: string) => {
+  // Temporary function until `@types/chroma-js` allows the 2nd param.
+  // Consolidating the `ts-ignore`s to one location
+  // @ts-ignore
+  return chroma.valid(color, 'hex');
+};
 
 export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   button,
@@ -102,11 +116,16 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   readOnly = false,
   swatches = VISUALIZATION_COLORS,
   popoverZIndex,
+  prepend,
+  append,
 }) => {
-  const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
-  const [colorAsHsv, setColorAsHsv] = useState(
-    color ? hexToHsv(color) : hexToHsv('')
+  const getHsvFromColor = useCallback(
+    (): ColorSpaces['hsv'] =>
+      color && chromaValid(color) ? chroma(color).hsv() : [0, 0, 0],
+    [color]
   );
+  const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
+  const [colorAsHsv, setColorAsHsv] = useState(getHsvFromColor());
   const [lastHex, setLastHex] = useState(color);
   const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
   const [popoverShouldOwnFocus, setPopoverShouldOwnFocus] = useState(false);
@@ -114,16 +133,23 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const satruationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
+  const updateColorAsHsv = ([h, s, v]: ColorSpaces['hsv']) => {
+    // Chroma's passthrough (RGB) parsing determines that black/white/gray are hue-less and returns `NaN`
+    // For our purposes we can process `NaN` as `0`
+    const hue = isNaN(h) ? 0 : h;
+    setColorAsHsv([hue, s, v]);
+  };
+
   useEffect(() => {
-    // Mimics `componentDidMount` and `componentDidUpdate`
     if (lastHex !== color) {
       // Only react to outside changes
-      const newColorAsHsv = color ? hexToHsv(color) : hexToHsv('');
-      setColorAsHsv(newColorAsHsv);
+      const newColorAsHsv = getHsvFromColor();
+      updateColorAsHsv(newColorAsHsv);
     }
-  }, [color, lastHex]);
+  }, [color, lastHex, getHsvFromColor]);
 
   const classes = classNames('euiColorPicker', className);
+  const popoverClass = 'euiColorPicker__popoverAnchor';
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
     'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker',
     'euiColorPicker__popoverPanel--customButton': button,
@@ -131,6 +157,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const swatchClass = 'euiColorPicker__swatchSelect';
   const testSubjAnchor = 'colorPickerAnchor';
   const testSubjPopover = 'colorPickerPopover';
+  const inputClasses = classNames('euiColorPicker__input', {
+    'euiColorPicker__input--inGroup': prepend || append,
+  });
 
   const handleOnChange = (hex: string) => {
     setLastHex(hex);
@@ -217,30 +246,29 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const handleColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleOnChange(e.target.value);
-    if (isValidHex(e.target.value)) {
-      setColorAsHsv(hexToHsv(e.target.value));
+    if (chromaValid(e.target.value)) {
+      updateColorAsHsv(chroma(e.target.value).hsv());
     }
   };
 
-  const handleColorSelection = (color: HSV) => {
-    const { h } = colorAsHsv;
-    const hue = h ? h : 1;
-    const newHsv = { ...color, h: hue };
-    handleOnChange(hsvToHex(newHsv));
-    setColorAsHsv(newHsv);
+  const handleColorSelection = (color: ColorSpaces['hsv']) => {
+    const [h] = colorAsHsv;
+    const [, s, v] = color;
+    const newHsv: ColorSpaces['hsv'] = [h, s, v];
+    handleOnChange(chroma.hsv(...newHsv).hex());
+    updateColorAsHsv(newHsv);
   };
 
   const handleHueSelection = (hue: number) => {
-    const { s, v } = colorAsHsv;
-    const satVal = s && v ? { s, v } : { s: 1, v: 1 };
-    const newHsv = { ...satVal, h: hue };
-    handleOnChange(hsvToHex(newHsv));
-    setColorAsHsv(newHsv);
+    const [, s, v] = colorAsHsv;
+    const newHsv: ColorSpaces['hsv'] = [hue, s, v];
+    handleOnChange(chroma.hsv(...newHsv).hex());
+    updateColorAsHsv(newHsv);
   };
 
   const handleSwatchSelection = (color: string) => {
     handleOnChange(color);
-    setColorAsHsv(hexToHsv(color));
+    updateColorAsHsv(chroma(color).hsv());
 
     handleFinalSelection();
   };
@@ -258,7 +286,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           />
           <EuiHue
             id={id}
-            hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
+            hue={typeof colorAsHsv === 'object' ? colorAsHsv[0] : undefined}
             hex={color || undefined}
             onChange={handleHueSelection}
           />
@@ -299,7 +327,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'data-test-subj': testSubjAnchor,
     });
   } else {
-    const showColor = color && isValidHex(color);
+    const showColor = color && chromaValid(color);
     buttonOrInput = (
       <EuiFormControlLayout
         icon={
@@ -313,7 +341,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         readOnly={readOnly}
         fullWidth={fullWidth}
         compressed={compressed}
-        onKeyDown={handleToggleOnKeyDown}>
+        onKeyDown={handleToggleOnKeyDown}
+        prepend={prepend}
+        append={append}>
         <div
           // Used to pass the chosen color through to form layout SVG using currentColor
           style={{ color: showColor && color ? color : undefined }}>
@@ -325,7 +355,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             ]}>
             {([openLabel, closeLabel]: string[]) => (
               <EuiFieldText
-                className="euiColorPicker__input"
+                className={inputClasses}
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
                 value={color ? color.toUpperCase() : ''}
@@ -360,6 +390,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       isOpen={isColorSelectorShown}
       closePopover={handleFinalSelection}
       zIndex={popoverZIndex}
+      className={popoverClass}
       panelClassName={panelClasses}
       display={button ? 'inlineBlock' : 'block'}
       attachToAnchor={button ? false : true}

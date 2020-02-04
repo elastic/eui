@@ -79,6 +79,20 @@ test('renders inline EuiColorPicker', () => {
   expect(colorPicker).toMatchSnapshot();
 });
 
+test('renders a EuiColorPicker with a prepend and append', () => {
+  const component = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      prepend="prepend"
+      append="append"
+      {...requiredProps}
+    />
+  );
+
+  expect(component).toMatchSnapshot();
+});
+
 test('renders EuiColorPicker with an empty swatch when color is null', () => {
   const colorPicker = render(
     <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
