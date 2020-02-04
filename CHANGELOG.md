@@ -9,6 +9,7 @@
 - Added prepend and append to `EuiColorPicker` ([#2819](https://github.com/elastic/eui/pull/2819))
 - Improved `EuiDescribedFormGroup` accessibility by avoiding duplicated output in screen readers ([#2783](https://github.com/elastic/eui/pull/2783))
 - Added optional `key` attribute to `EuiContextMenu` items and relaxed `name` attribute to allow any React node ([#2817](https://github.com/elastic/eui/pull/2817))
+- Converted `EuiColorPicker` color conversion functions to `chroma-js` methods ([#2805](https://github.com/elastic/eui/pull/2805))
 
 **Bug fixes**
 
