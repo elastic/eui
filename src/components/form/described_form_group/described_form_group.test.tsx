@@ -65,15 +65,8 @@ describe('EuiDescribedFormGroup', () => {
     });
 
     test('gutterSize is rendered', () => {
-      const describedFormGroupProps = {
-        gutterSize: 's',
-      };
-
       const component = mount(
-        <EuiDescribedFormGroup
-          {...requiredProps}
-          {...props}
-          {...describedFormGroupProps}>
+        <EuiDescribedFormGroup gutterSize="s" {...requiredProps} {...props}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
@@ -84,15 +77,8 @@ describe('EuiDescribedFormGroup', () => {
     });
 
     test('titleSize is rendered', () => {
-      const describedFormGroupProps = {
-        titleSize: 'l',
-      };
-
       const component = mount(
-        <EuiDescribedFormGroup
-          {...requiredProps}
-          {...props}
-          {...describedFormGroupProps}>
+        <EuiDescribedFormGroup titleSize="l" {...requiredProps} {...props}>
           <EuiFormRow>
             <input />
           </EuiFormRow>

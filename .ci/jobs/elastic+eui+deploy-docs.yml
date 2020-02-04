@@ -10,6 +10,13 @@
           description: >-
             the Git branch specifier to build
             (&lt;branchName&gt;, &lt;tagName&gt;, &lt;commitId&gt;, etc.)
+    scm:
+      - git:
+          clone: true
+          branches:
+          - $branch_specifier
+          url: git@github.com:elastic/eui.git
+          reference-repo: /var/lib/jenkins/.git-references/eui.git
     triggers: []
     builders:
     - shell: |-
