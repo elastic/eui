@@ -1,8 +1,8 @@
-import React, { ComponentProps } from 'react';
+import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiSideNav } from './side_nav';
+import { EuiSideNav, EuiSideNavProps } from './side_nav';
 
 describe('EuiSideNav', () => {
   test('is rendered', () => {
@@ -109,7 +109,7 @@ describe('EuiSideNav', () => {
           },
         ];
 
-        const renderItem: ComponentProps<typeof EuiSideNav>['renderItem'] = ({
+        const renderItem: EuiSideNavProps['renderItem'] = ({
           href,
           className,
           children,

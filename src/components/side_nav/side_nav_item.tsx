@@ -1,8 +1,8 @@
 import React, {
   cloneElement,
   ReactNode,
-  MouseEvent,
   ReactElement,
+  MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
 
@@ -12,11 +12,11 @@ import { EuiIcon } from '../icon';
 
 type ItemProps = CommonProps & {
   href?: string;
-  onClick?: (e: MouseEvent) => void;
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLElement>;
   children: ReactNode;
 };
 
-type EuiSideNavItemProps = ItemProps & {
+export type EuiSideNavItemProps = ItemProps & {
   isOpen?: boolean;
   isSelected?: boolean;
   isParent?: boolean;
