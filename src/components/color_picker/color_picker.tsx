@@ -139,6 +139,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   }, [color, lastHex]);
 
   const classes = classNames('euiColorPicker', className);
+  const popoverClass = 'euiColorPicker__popoverAnchor';
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
     'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker',
     'euiColorPicker__popoverPanel--customButton': button,
@@ -380,6 +381,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       isOpen={isColorSelectorShown}
       closePopover={handleFinalSelection}
       zIndex={popoverZIndex}
+      className={popoverClass}
       panelClassName={panelClasses}
       display={button ? 'inlineBlock' : 'block'}
       attachToAnchor={button ? false : true}
