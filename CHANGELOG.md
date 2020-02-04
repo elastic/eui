@@ -10,6 +10,7 @@
 - Improved `EuiDescribedFormGroup` accessibility by avoiding duplicated output in screen readers ([#2783](https://github.com/elastic/eui/pull/2783))
 - Added optional `key` attribute to `EuiContextMenu` items and relaxed `name` attribute to allow any React node ([#2817](https://github.com/elastic/eui/pull/2817))
 - Converted `EuiColorPicker` color conversion functions to `chroma-js` methods ([#2805](https://github.com/elastic/eui/pull/2805))
+- Added `direction` parameter to `euiPaletteColorBlind()` for specifiying lighter or darker (or both) alternates ([#2822](https://github.com/elastic/eui/pull/2822))
 
 **Bug fixes**
 
