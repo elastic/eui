@@ -1,7 +1,6 @@
 .euiColorPicker {
   position: relative;
   width: $euiColorPickerWidth;
-
 }
 
 .euiColorPicker__popoverAnchor {
@@ -27,4 +26,16 @@
   // Override of EuiPanel padding
   // sass-lint:disable no-important
   padding-bottom: 0 !important;
+}
+
+// sass-lint:disable no-important
+.euiColorPicker__input--inGroup {
+  height: $euiFormControlLayoutGroupInputHeight !important;
+  box-shadow: none !important;
+  border-radius: 0;
+
+  &.euiFieldText--compressed {
+    height: $euiFormControlLayoutGroupInputCompressedHeight !important;
+    border-radius: 0;
+  }
 }

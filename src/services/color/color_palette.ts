@@ -10,7 +10,7 @@ export const MID_COLOR_STOP = '#EBEFF5';
 
 export function colorPalette(
   /**
-   * The beginning hexadecimal color code or array of codes
+   * The main color code or array of codes
    */
   colors: string[],
   /**
@@ -18,7 +18,7 @@ export function colorPalette(
    */
   len: number = 10,
   /**
-   * Forces color interpolation to be calculated separately for each side (default false)
+   * Forces color interpolation to be calculated separately for each half (default false)
    */
   diverging: boolean = false,
   /**

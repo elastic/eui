@@ -16,7 +16,7 @@ export const KitchenSink = () => {
   return (
     <React.Fragment>
       {/* DisplayToggles wrapper for Docs only */}
-      <DisplayToggles canLoading={false}>
+      <DisplayToggles canLoading={false} canPrepend={true} canAppend={true}>
         <EuiColorPicker color={color} onChange={setColor} />
       </DisplayToggles>
       <EuiSpacer />
