@@ -6,7 +6,9 @@ import { EuiMarkdownEditor } from './markdown_editor';
 
 describe('EuiMarkdownEditor', () => {
   test('is rendered', () => {
-    const component = render(<EuiMarkdownEditor {...requiredProps} />);
+    const component = render(
+      <EuiMarkdownEditor editorId="editorId" {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });

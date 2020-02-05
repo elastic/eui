@@ -12,7 +12,7 @@ import { EuiHideFor } from '../responsive';
 import { EuiText } from '../text';
 // @ts-ignore
 import { EuiTextArea } from '../form/text_area';
-import { EuiButtonGroup, EuiButtonEmpty } from '../button';
+import { EuiButtonGroup, EuiButtonToggle } from '../button';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { EuiI18n } from '../i18n';
 
@@ -20,7 +20,7 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /** A unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
-    editorID?: string;
+    editorId?: string;
   };
 
 export interface MarkdownEditorState {
@@ -33,7 +33,7 @@ export class EuiMarkdownEditor extends Component<
   MarkdownEditorState
 > {
   converter: showdown.Converter;
-  editorID: string;
+  editorId: string;
   markdownActions: MarkdownActions;
 
   constructor(props: EuiMarkdownEditorProps) {
@@ -54,12 +54,12 @@ export class EuiMarkdownEditor extends Component<
     };
 
     // If an ID wasn't provided, just generate a rando
-    this.editorID =
-      this.props.editorID ||
+    this.editorId =
+      this.props.editorId ||
       Math.random()
         .toString(35)
         .substring(2, 10);
-    this.markdownActions = new MarkdownActions(this.editorID);
+    this.markdownActions = new MarkdownActions(this.editorId);
 
     this.handleMdButtonClick = this.handleMdButtonClick.bind(this);
   }
@@ -119,8 +119,12 @@ export class EuiMarkdownEditor extends Component<
     this.markdownActions.do(mdButtonId);
   };
 
+  onTogglePreview = (e: any) => {
+    this.setState({ viewMarkdownPreview: e.target.checked });
+  };
+
   render() {
-    const { className, ...rest } = this.props;
+    const { className, editorId, ...rest } = this.props;
 
     const classes = classNames('euiMarkdownEditor', className);
 
@@ -190,23 +194,25 @@ export class EuiMarkdownEditor extends Component<
                 </EuiI18n>
               </EuiFlexItem>
               <EuiFlexItem grow={false}>
-                <EuiButtonEmpty
-                  className="euiMarkdownEditor__previewToggleButton"
-                  size="xs"
-                  onClick={() => {
-                    this.setState({
-                      viewMarkdownPreview: !this.state.viewMarkdownPreview,
-                    });
-                  }}>
-                  {this.state.viewMarkdownPreview ? (
-                    <EuiI18n token="euiMarkdownEditor.edit" default="Edit" />
-                  ) : (
-                    <EuiI18n
-                      token="euiMarkdownEditor.previewMarkdown"
-                      default="Preview markdown"
-                    />
-                  )}
-                </EuiButtonEmpty>
+                <EuiButtonToggle
+                  size="s"
+                  label={
+                    this.state.viewMarkdownPreview ? (
+                      <EuiI18n token="euiMarkdownEditor.edit" default="Edit" />
+                    ) : (
+                      <EuiI18n
+                        token="euiMarkdownEditor.previewMarkdown"
+                        default="Preview"
+                      />
+                    )
+                  }
+                  iconType={
+                    this.state.viewMarkdownPreview ? 'eye' : 'eyeClosed'
+                  }
+                  onChange={this.onTogglePreview}
+                  isSelected={this.state.viewMarkdownPreview}
+                  isEmpty
+                />
               </EuiFlexItem>
             </EuiFlexGroup>
           </div>
@@ -226,7 +232,7 @@ export class EuiMarkdownEditor extends Component<
         ) : (
           <div>
             <EuiTextArea
-              id={this.editorID}
+              id={this.editorId}
               fullWidth
               onChange={(e: any) => {
                 this.setState({ editorContent: e.target.value });
