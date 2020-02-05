@@ -6,9 +6,16 @@
 
 When creating new components, adding new features, or fixing bugs, please refer to the [Component Development guidelines][docs-components]. If there isn't an associated issue on the bug tracker yet, consider creating one so that you get a chance to discuss the changes you have in mind with the rest of the team.
 
-### Pull request handoffs
+### Feel free to submit pull requests in draft stages
 
- We acknowledge that our PR's go through a rigourous amount of testing including cross-browser checks and accessibility concerns. We greatly appreciate your contribution and welcome the chance to get your PR over the finish line. By handing off your PR to EUI experts, we can finalize it per EUI standards. In the event you do want to pass over your PR, you can simply acknowledge by adding a comment similar to "This is a starter PR and would like to pass over to EUI to finish."
+EUI has strict quality and testing standards due to its large downstream footprint and accessibility requirements. Don't feel intimidated and think you need to submit perfect PRs because of this. We welcome draft PRs to show conceptual ideas or enhancements you would like to see. The EUI team normally engages on these PRs in one of two ways, which is largely up to you.
+- We can provide review and guidance for how to get the PR up to the library's standards. (slower, but you might enjoy this).
+- We can commit directly to your PR to get it over the finish line. (faster)
+
+If you have a preference, let us know when you make your PR, but never feel guilty about just handing it off. We're here to help.
+
+
+
 
 ### Adding icons
 
