@@ -79,13 +79,6 @@ const _Theming = props => {
     },
   };
 
-  const data1CustomSeriesColors = new Map();
-  const data1DataSeriesColorValues = {
-    colorValues: [],
-    specId: 'control',
-  };
-  data1CustomSeriesColors.set(data1DataSeriesColorValues, 'black');
-
   return (
     <Fragment>
       <Chart size={{ height: 200 }}>
@@ -109,7 +102,7 @@ const _Theming = props => {
           data={data1}
           xAccessor={'x'}
           yAccessors={['y']}
-          customSeriesColors={data1CustomSeriesColors}
+          customSeriesColors={['black']}
         />
         <Axis id="bottom-axis" position="bottom" showGridLines />
         <Axis id="left-axis" position="left" showGridLines />
