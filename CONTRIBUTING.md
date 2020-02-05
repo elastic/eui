@@ -9,13 +9,10 @@ When creating new components, adding new features, or fixing bugs, please refer 
 ### Feel free to submit pull requests in draft stages
 
 EUI has strict quality and testing standards due to its large downstream footprint and accessibility requirements. Don't feel intimidated and think you need to submit perfect PRs because of this. We welcome draft PRs to show conceptual ideas or enhancements you would like to see. The EUI team normally engages on these PRs in one of two ways, which is largely up to you.
-- We can provide review and guidance for how to get the PR up to the library's standards. (slower, but you might enjoy this).
-- We can commit directly to your PR to get it over the finish line. (faster)
+1. We can provide review and guidance for how to get the PR up to the library's standards. (slower, but you might enjoy this)
+2. We can commit directly to your PR to get it over the finish line. (faster)
 
 If you have a preference, let us know when you make your PR, but never feel guilty about just handing it off. We're here to help.
-
-
-
 
 ### Adding icons
 
