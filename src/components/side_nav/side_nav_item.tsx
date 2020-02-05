@@ -34,8 +34,8 @@ type OmitEuiSideNavItemProps<T> = {
 };
 
 interface GuaranteedRenderItemProps {
-  href: string | undefined;
-  onClick: ItemProps['onClick'] | undefined;
+  href?: string;
+  onClick?: ItemProps['onClick'];
   className: string;
   children: ReactNode;
 }
