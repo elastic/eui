@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToken is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--square euiToken--small"
+<span
+  aria-label="aria-label"
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -14,16 +16,17 @@ exports[`EuiToken is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint01 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--square euiToken--small"
+exports[`EuiToken props color can be a custom hex 1`] = `
+<span
+  class="euiToken euiToken--circle euiToken--dark euiToken--small"
+  style="background-color:#FF0000;color:#000000"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -31,16 +34,16 @@ exports[`EuiToken props color tokenTint01 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint02 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint02 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis0 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -48,16 +51,16 @@ exports[`EuiToken props color tokenTint02 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint03 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint03 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis1 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis1 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -65,16 +68,16 @@ exports[`EuiToken props color tokenTint03 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint04 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint04 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis2 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -82,16 +85,16 @@ exports[`EuiToken props color tokenTint04 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint05 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint05 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis3 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -99,16 +102,16 @@ exports[`EuiToken props color tokenTint05 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint06 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint06 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis4 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -116,16 +119,16 @@ exports[`EuiToken props color tokenTint06 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint07 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint07 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis5 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis5 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -133,16 +136,16 @@ exports[`EuiToken props color tokenTint07 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint08 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint08 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis6 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis6 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -150,16 +153,16 @@ exports[`EuiToken props color tokenTint08 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint09 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint09 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis7 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis7 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -167,12 +170,114 @@ exports[`EuiToken props color tokenTint09 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
-exports[`EuiToken props color tokenTint10 is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint10 euiToken--square euiToken--small"
+exports[`EuiToken props color euiColorVis8 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis8 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props color euiColorVis9 is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis9 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props color gray is rendered 1`] = `
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props fill dark is rendered 1`] = `
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--dark euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props fill light is rendered 1`] = `
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props fill none is rendered 1`] = `
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenAlias is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
@@ -184,16 +289,628 @@ exports[`EuiToken props color tokenTint10 is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenAnnotation is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenArray is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenBoolean is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenClass is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis1 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenConstant is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenDate is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis6 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenElement is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis3 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenEnum is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenEnumMember is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenEvent is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenException is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenField is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenFile is rendered 1`] = `
+<span
+  class="euiToken euiToken--gray euiToken--rectangle euiToken--dark euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenFunction is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenGeo is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenIP is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis9 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenInterface is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis9 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenKey is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis5 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenMethod is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis2 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenModule is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenNamespace is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenNested is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenNull is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis2 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenNumber is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenObject is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenOperator is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenPackage is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenParameter is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenProperty is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenRange is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenRepo is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis1 euiToken--rectangle euiToken--dark euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenShape is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis8 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenString is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenStruct is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenSymbol is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis0 euiToken--rectangle euiToken--dark euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenVariable is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis7 euiToken--circle euiToken--light euiToken--small"
+>
+  <svg
+    aria-hidden="true"
+    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    focusable="false"
+    height="16"
+    role="img"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</span>
 `;
 
 exports[`EuiToken props shape circle is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--small"
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -201,16 +918,16 @@ exports[`EuiToken props shape circle is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
 exports[`EuiToken props shape rectangle is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--rectangle euiToken--small"
+<span
+  class="euiToken euiToken--gray euiToken--rectangle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -218,16 +935,16 @@ exports[`EuiToken props shape rectangle is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
 exports[`EuiToken props shape square is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--square euiToken--small"
+<span
+  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -235,16 +952,16 @@ exports[`EuiToken props shape square is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
 exports[`EuiToken props size l is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--large"
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--large"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--large euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -252,12 +969,12 @@ exports[`EuiToken props size l is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
 exports[`EuiToken props size m is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--medium"
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--medium"
 >
   <svg
     aria-hidden="true"
@@ -269,16 +986,16 @@ exports[`EuiToken props size m is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
 exports[`EuiToken props size s is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--small"
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -286,16 +1003,16 @@ exports[`EuiToken props size s is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
 
 exports[`EuiToken props size xs is rendered 1`] = `
-<div
-  class="euiToken euiToken--tokenTint01 euiToken--circle euiToken--xsmall"
+<span
+  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--xsmall"
 >
   <svg
     aria-hidden="true"
-    class="euiIcon euiIcon--medium euiIcon-isLoading"
+    class="euiIcon euiIcon--small euiIcon-isLoading"
     focusable="false"
     height="16"
     role="img"
@@ -303,5 +1020,5 @@ exports[`EuiToken props size xs is rendered 1`] = `
     width="16"
     xmlns="http://www.w3.org/2000/svg"
   />
-</div>
+</span>
 `;
