@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode, MouseEventHandler } from 'react';
 
-import { EuiSideNavItemProps } from './side_nav_item';
+import { RenderItem } from './side_nav_item';
 
-export interface EuiSideNavItemType {
+export interface EuiSideNavItemType<T> {
   /**
    * A value that is passed to React as the `key` for this item
    */
@@ -26,7 +26,7 @@ export interface EuiSideNavItemType {
   /**
    * Array containing additional item objects, representing nested children of this navigation item.
    */
-  items?: EuiSideNavItemType[];
+  items?: Array<EuiSideNavItemType<T>>;
   /**
    * React node representing the text to render for this item (usually a string will suffice).
    */
@@ -38,5 +38,5 @@ export interface EuiSideNavItemType {
   /**
    * Function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
    */
-  renderItem?: EuiSideNavItemProps['renderItem'];
+  renderItem?: RenderItem<T>;
 }

@@ -16,15 +16,39 @@ type ItemProps = CommonProps & {
   children: ReactNode;
 };
 
-export type EuiSideNavItemProps = ItemProps & {
+interface SideNavItemProps {
   isOpen?: boolean;
   isSelected?: boolean;
   isParent?: boolean;
   icon?: ReactElement;
   items?: ReactNode;
   depth?: number;
-  renderItem?: (props: ItemProps) => JSX.Element;
+}
+
+type ExcludeEuiSideNavItemProps<T> = Pick<
+  T,
+  Exclude<keyof T, keyof SideNavItemProps | 'renderItem'>
+>;
+type OmitEuiSideNavItemProps<T> = {
+  [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K]
 };
+
+interface GuaranteedRenderItemProps {
+  href: string | undefined;
+  onClick: ItemProps['onClick'] | undefined;
+  className: string;
+  children: ReactNode;
+}
+export type RenderItem<T> = (
+  // argument is the set of extra component props + GuaranteedRenderItemProps
+  props: OmitEuiSideNavItemProps<T> & GuaranteedRenderItemProps
+) => JSX.Element;
+
+type WithOrWithoutRenderItem<T> = T extends { renderItem: Function }
+  ? T & { renderItem: RenderItem<T> }
+  : T;
+
+export type EuiSideNavItemProps<T> = WithOrWithoutRenderItem<T>;
 
 const DefaultRenderItem = ({
   href,
@@ -56,7 +80,10 @@ const DefaultRenderItem = ({
   );
 };
 
-export const EuiSideNavItem = ({
+export function EuiSideNavItem<
+  T extends ItemProps &
+    SideNavItemProps & { renderItem?: (props: any) => JSX.Element }
+>({
   isOpen,
   isSelected,
   isParent,
@@ -65,10 +92,10 @@ export const EuiSideNavItem = ({
   href,
   items,
   children,
-  depth = 0,
   renderItem: RenderItem = DefaultRenderItem,
+  depth = 0,
   ...rest
-}: EuiSideNavItemProps) => {
+}: EuiSideNavItemProps<T>) {
   let childItems;
 
   if (items && isOpen) {
@@ -113,17 +140,16 @@ export const EuiSideNavItem = ({
     </span>
   );
 
+  const renderItemProps: GuaranteedRenderItemProps = {
+    href,
+    onClick,
+    className: buttonClasses,
+    children: buttonContent,
+  };
   return (
     <div className={classes}>
-      <RenderItem
-        href={href}
-        onClick={onClick}
-        className={buttonClasses}
-        {...rest}>
-        {buttonContent}
-      </RenderItem>
-
+      <RenderItem {...renderItemProps} {...rest} />
       {childItems}
     </div>
   );
-};
+}
