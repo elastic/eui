@@ -30,7 +30,7 @@ export type EuiSideNavProps = CommonProps & {
    */
   mobileTitle?: ReactNode;
   /**
-   *  An array of #EuiSideNavItemType objects. Lists navigation menu items.
+   *  An array of #EuiSideNavItem objects. Lists navigation menu items.
    */
   items: EuiSideNavItemType[];
   /**

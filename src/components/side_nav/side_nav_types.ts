@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode, MouseEventHandler } from 'react';
 
-// import { EuiSideNavItemProps } from './side_nav_item';
+import { EuiSideNavItemProps } from './side_nav_item';
 
 export interface EuiSideNavItemType {
   /**
@@ -38,5 +38,5 @@ export interface EuiSideNavItemType {
   /**
    * Function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
    */
-  renderItem?: any;
+  renderItem?: EuiSideNavItemProps['renderItem'];
 }
