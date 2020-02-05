@@ -381,6 +381,13 @@ const typeToPathMap = {
   tokenFile: 'tokens/tokenFile',
   tokenModule: 'tokens/tokenModule',
   tokenNamespace: 'tokens/tokenNamespace',
+  tokenDate: 'tokens/tokenDate',
+  tokenIP: 'tokens/tokenIP',
+  tokenNested: 'tokens/tokenNested',
+  tokenAlias: 'tokens/tokenAlias',
+  tokenShape: 'tokens/tokenShape',
+  tokenGeo: 'tokens/tokenGeo',
+  tokenRange: 'tokens/tokenRange',
 };
 
 export const TYPES = keysOf(typeToPathMap);

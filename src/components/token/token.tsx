@@ -1,16 +1,27 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { defaults } from 'lodash';
 import classNames from 'classnames';
-import { IconType, EuiIcon } from '../icon';
-import {
-  EuiTokenMapType,
-  EuiTokenMapDisplayOptions,
-  TokenColor,
-  TokenShape,
-  TOKEN_MAP,
-} from './token_map';
 import { CommonProps, keysOf } from '../common';
+import { isColorDark, hexToRgb } from '../../services';
+
+import { IconType, EuiIcon, IconSize } from '../icon';
+import { EuiTokenMapType, TOKEN_MAP } from './token_map';
 
 type TokenSize = 'xs' | 's' | 'm' | 'l';
+type TokenShape = 'circle' | 'square' | 'rectangle';
+type TokenFill = 'dark' | 'light' | 'none';
+type TokenColor =
+  | 'euiColorVis0'
+  | 'euiColorVis1'
+  | 'euiColorVis2'
+  | 'euiColorVis3'
+  | 'euiColorVis4'
+  | 'euiColorVis5'
+  | 'euiColorVis6'
+  | 'euiColorVis7'
+  | 'euiColorVis8'
+  | 'euiColorVis9'
+  | 'gray';
 
 const sizeToClassMap: { [size in TokenSize]: string } = {
   xs: 'euiToken--xsmall',
@@ -29,95 +40,138 @@ const shapeToClassMap: { [shape in TokenShape]: string } = {
 
 export const SHAPES = keysOf(shapeToClassMap);
 
+const fillToClassMap: { [fill in TokenFill]: string | null } = {
+  none: null,
+  light: 'euiToken--light',
+  dark: 'euiToken--dark',
+};
+
+export const FILLS = keysOf(fillToClassMap);
+
 const colorToClassMap: { [color in TokenColor]: string } = {
-  tokenTint01: 'euiToken--tokenTint01',
-  tokenTint02: 'euiToken--tokenTint02',
-  tokenTint03: 'euiToken--tokenTint03',
-  tokenTint04: 'euiToken--tokenTint04',
-  tokenTint05: 'euiToken--tokenTint05',
-  tokenTint06: 'euiToken--tokenTint06',
-  tokenTint07: 'euiToken--tokenTint07',
-  tokenTint08: 'euiToken--tokenTint08',
-  tokenTint09: 'euiToken--tokenTint09',
-  tokenTint10: 'euiToken--tokenTint10',
-  tokenTint11: 'euiToken--tokenTint11',
-  tokenTint12: 'euiToken--tokenTint12',
+  euiColorVis0: 'euiToken--euiColorVis0',
+  euiColorVis1: 'euiToken--euiColorVis1',
+  euiColorVis2: 'euiToken--euiColorVis2',
+  euiColorVis3: 'euiToken--euiColorVis3',
+  euiColorVis4: 'euiToken--euiColorVis4',
+  euiColorVis5: 'euiToken--euiColorVis5',
+  euiColorVis6: 'euiToken--euiColorVis6',
+  euiColorVis7: 'euiToken--euiColorVis7',
+  euiColorVis8: 'euiToken--euiColorVis8',
+  euiColorVis9: 'euiToken--euiColorVis9',
+  gray: 'euiToken--gray',
 };
 
 export const COLORS = keysOf(colorToClassMap);
 
-interface TokenProps {
+export interface TokenProps {
   /**
    * An EUI icon type
    */
   iconType: IconType;
   /**
+   * For best results use one of the vis color names (or 'gray').
+   * Or supply your own color (can be used with dark or no fill only).
+   * Default: `gray`
+   */
+  color?: TokenColor | string;
+  /**
+   * Outer shape surrounding the icon
+   * Default: `circle`
+   */
+  shape?: TokenShape;
+  /**
+   * `light` for lightened color with border, `dark` for solid, or `none`
+   * Default: `light`
+   */
+  fill?: TokenFill;
+  /**
    * Size of the token
    */
   size?: TokenSize;
-  /**
-   * By default EUI will auto color tokens. You can can however control it
-   * - `color`: can be `tokenTint01` thru `tokenTint10`
-   * - `shape`: square, circle, rectangle as options
-   * - `fill`: makes it a solid color
-   * - `hideBorder`: disables the outer border
-   */
-  displayOptions?: EuiTokenMapDisplayOptions;
 }
 
 export type EuiTokenProps = CommonProps &
   TokenProps &
-  HTMLAttributes<HTMLDivElement>;
+  HTMLAttributes<HTMLSpanElement>;
 
 export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   iconType,
-  displayOptions = {},
+  color,
+  fill,
+  shape,
   size = 's',
+  style = {},
   className,
   ...rest
 }) => {
-  // Check if display options is empty
-  const displayOptionsIsEmpty =
-    Object.keys(displayOptions).length === 0 &&
-    displayOptions.constructor === Object;
+  // Set the icon size to the same as the passed size
+  // unless they passed `xs` which IconSize doesn't support
+  let finalSize: IconSize = size === 'xs' ? 's' : size;
 
-  let tokenShape: TokenShape;
-  let tokenColor: TokenColor;
-  let fill: boolean;
-  let tokenHidesBorder: boolean;
+  // When displaying at the small size, the token specific icons
+  // should actually be displayed at medium size
+  if (
+    typeof iconType === 'string' &&
+    iconType.indexOf('token') === 0 &&
+    size === 's'
+  ) {
+    finalSize = 'm';
+  }
 
-  // Check if this has a mapping, and doesn't have custom displayOptions
-  if (iconType in TOKEN_MAP && displayOptionsIsEmpty) {
-    const mapping = TOKEN_MAP[iconType as EuiTokenMapType];
-    // These should be found in the standard mappings, but apply defaults
-    // just in case.
-    tokenShape = mapping.shape || 'square';
-    tokenColor = mapping.color || 'tokenTint01';
-    fill = mapping.fill ? true : false;
-    tokenHidesBorder = mapping.hideBorder ? true : false;
+  const currentDisplay = {
+    color,
+    fill,
+    shape,
+  };
+  let finalDisplay;
+
+  // If the iconType passed is one of the prefab token types,
+  // grab its properties
+  if (iconType in TOKEN_MAP) {
+    const tokenDisplay = TOKEN_MAP[iconType as EuiTokenMapType];
+    finalDisplay = defaults(currentDisplay, tokenDisplay);
   } else {
-    // Use the displayOptions passed or use some defaults
-    tokenShape = displayOptions.shape ? displayOptions.shape : 'square';
-    tokenColor = displayOptions.color ? displayOptions.color : 'tokenTint01';
-    fill = displayOptions.fill ? true : false;
-    tokenHidesBorder = displayOptions.hideBorder ? true : false;
+    finalDisplay = currentDisplay;
+  }
+
+  const finalColor = finalDisplay.color || 'gray';
+  const finalShape = finalDisplay.shape || 'circle';
+  let finalFill = finalDisplay.fill || 'light';
+
+  // Color can be a named space via euiColorVis
+  let colorClass;
+  if (finalColor in colorToClassMap) {
+    colorClass = colorToClassMap[finalColor as TokenColor];
+  }
+  // Or it can be a string which adds inline styles for the
+  else {
+    // text color if fill='none' or
+    if (finalFill === 'none') {
+      style.color = finalColor;
+    }
+    // full background color if fill='dark' and overrides fill='light' with dark
+    else {
+      finalFill = 'dark';
+      style.backgroundColor = finalColor;
+      style.color = isColorDark(...hexToRgb(finalColor))
+        ? '#FFFFFF'
+        : '#000000';
+    }
   }
 
   const classes = classNames(
     'euiToken',
-    colorToClassMap[tokenColor],
-    shapeToClassMap[tokenShape],
+    colorClass,
+    shapeToClassMap[finalShape],
+    fillToClassMap[finalFill],
     sizeToClassMap[size],
-    {
-      'euiToken--fill': fill,
-      'euiToken--no-border': tokenHidesBorder,
-    },
     className
   );
 
   return (
-    <div className={classes} {...rest}>
-      <EuiIcon type={iconType} />
-    </div>
+    <span className={classes} style={style} {...rest}>
+      <EuiIcon type={iconType} size={finalSize} />
+    </span>
   );
 };
