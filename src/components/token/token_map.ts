@@ -39,6 +39,12 @@ export type EuiTokenMapType =
   | 'tokenSymbol'
   | 'tokenVariable';
 
+/**
+ * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
+ * to use the square shape for more common token types like string and number. Reserving the
+ * circle shape for more uncommon token types so they grab attention.
+ */
+
 export const TOKEN_MAP: {
   [mapType in EuiTokenMapType]: Omit<TokenProps, 'iconType'>
 } = {
