@@ -44,11 +44,9 @@ export type RenderItem<T> = (
   props: OmitEuiSideNavItemProps<T> & GuaranteedRenderItemProps
 ) => JSX.Element;
 
-type WithOrWithoutRenderItem<T> = T extends { renderItem: Function }
+export type EuiSideNavItemProps<T> = T extends { renderItem: Function }
   ? T & { renderItem: RenderItem<T> }
   : T;
-
-export type EuiSideNavItemProps<T> = WithOrWithoutRenderItem<T>;
 
 const DefaultRenderItem = ({
   href,
