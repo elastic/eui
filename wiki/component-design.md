@@ -111,7 +111,7 @@ export const EuiMegaMenu: FunctionComponent<EuiMegaMenuProps> = ({
 
 ### Enums
 
-Enums (strings) should be used wherever possible and prioritized over booleans. This allows for the most extensibility when it comes to adding more features/options in the future. For example, instead of the prop `isHorizontal: boolean` use `layout: 'horizontal' | 'vertical'`.
+String literals should be used wherever possible and prioritized over booleans. This allows for the most extensibility when it comes to adding more features/options in the future. For example, instead of the prop `isHorizontal: boolean` use `layout: 'horizontal' | 'vertical'`.
 
 ### Booleans
 
