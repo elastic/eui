@@ -20,7 +20,7 @@ describe('EuiHue', () => {
   test('accepts a color', () => {
     const component = render(
       <EuiSaturation
-        color={{ h: 180, s: 1, v: 0.5 }}
+        color={[180, 1, 0.5]}
         onChange={onChange}
         {...requiredProps}
       />
