@@ -18,14 +18,13 @@ import {
   euiDragDropReorder,
 } from '../drag_and_drop';
 import { DropResult } from 'react-beautiful-dnd';
-import { EuiIcon } from '../icon';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
 import {
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   getDetailsForSchema,
 } from './data_grid_schema';
-import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
+import { EuiToken } from '../token';
 
 export const useColumnSorting = (
   columns: EuiDataGridColumn[],
@@ -35,7 +34,6 @@ export const useColumnSorting = (
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
-  const defaultSchemaColor: string = euiPaletteColorBlind()[4];
 
   // prune any non-existant/hidden columns from sorting
   useEffect(() => {
@@ -143,7 +141,6 @@ export const useColumnSorting = (
                       sorting={sorting}
                       schema={schema}
                       schemaDetectors={schemaDetectors}
-                      defaultSchemaColor={defaultSchemaColor}
                     />
                   );
                 })}
@@ -216,7 +213,16 @@ export const useColumnSorting = (
                               gutterSize="s"
                               component="span">
                               <EuiFlexItem grow={false}>
-                                <EuiIcon
+                                <EuiToken
+                                  iconType={
+                                    schema.hasOwnProperty(id) &&
+                                    schema[id].columnType != null
+                                      ? getDetailsForSchema(
+                                          schemaDetectors,
+                                          schema[id].columnType
+                                        ).icon
+                                      : 'tokenString'
+                                  }
                                   color={
                                     schema.hasOwnProperty(id) &&
                                     schema[id].columnType != null
@@ -224,16 +230,7 @@ export const useColumnSorting = (
                                           schemaDetectors,
                                           schema[id].columnType
                                         ).color
-                                      : defaultSchemaColor
-                                  }
-                                  type={
-                                    schema.hasOwnProperty(id) &&
-                                    schema[id].columnType != null
-                                      ? getDetailsForSchema(
-                                          schemaDetectors,
-                                          schema[id].columnType
-                                        ).icon
-                                      : 'string'
+                                      : undefined
                                   }
                                 />
                               </EuiFlexItem>

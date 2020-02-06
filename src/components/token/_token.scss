@@ -1,10 +1,9 @@
 .euiToken {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
   svg {
-    width: 100%;
     height: 100%;
     margin: auto;
   }
@@ -60,42 +59,27 @@
   box-sizing: content-box;
 }
 
-$tokenTypes: (
-  tokenTint01: $euiColorPrimary,
-  tokenTint02: $euiColorAccent,
-  tokenTint03: $euiColorVis3,
-  tokenTint04: $euiColorVis7,
-  tokenTint05: $euiColorVis1,
-  tokenTint06: #E6C220,
-  tokenTint07: $euiColorVis0,
-  tokenTint08: #920000,
-  tokenTint09: #F0F,
-  tokenTint10: #26AB00,
-  tokenTint11: #4C1604,
-  tokenTint12: #666
-);
+@each $type in $euiTokenTypeKeys {
+  .euiToken--#{$type} {
+    $color: map-get(map-get($euiTokenTypes, $type), 'graphic');
+    $backgroundColor: tintOrShade($color, 90%, 70%);
+    $fillColor: makeHighContrastColor($color, $backgroundColor);
 
-@each $tintName, $tintValue in $tokenTypes {
-  .euiToken--#{$tintName} {
-    box-shadow: 0 0 0 1px $tintValue;
+    // Without a background, the fill color should be the graphic color
+    color: $color;
 
-    $backgroundColor: tintOrShade($tintValue, 70%, 70%);
-    background-color: $backgroundColor;
-
-    &.euiToken--no-border {
-      box-shadow: none;
+    &.euiToken--light {
+      color: $fillColor;
+      background-color: $backgroundColor;
+      box-shadow: inset 0 0 0 1px tintOrShade($color, 70%, 60%);
     }
 
-    &.euiToken--fill {
-      background-color: $tintValue;
+    // Dark tokens uses the main color as the background against light or dark text
+    $color: map-get(map-get($euiTokenTypes, $type), 'behindText');
 
-      svg {
-        fill: $euiColorGhost;
-      }
-    }
-
-    svg {
-      fill: makeHighContrastColor($tintValue, $backgroundColor);
+    &.euiToken--dark {
+      background-color: $color;
+      color: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
     }
   }
 }

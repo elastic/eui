@@ -31,12 +31,6 @@ import {
   euiPaletteGray,
 } from '../../../../src/services';
 
-const getColorsMap = (color, specId) => {
-  const map = new Map();
-  map.set({ colorValues: [], specId }, color);
-  return map;
-};
-
 class _Categorical extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +61,7 @@ class _Categorical extends Component {
       colorTypeIdSelected: this.colorTypeRadios[0].id,
       colorType: this.colorTypeRadios[0].label,
       numCharts: '3',
-      data: null,
+      data: [],
       dataString: '[{x: 1, y: 5.5, g: 0}]',
       vizColors: euiPaletteColorBlind(),
       vizColorsString: 'euiPaletteColorBlind()',
@@ -136,8 +130,7 @@ class _Categorical extends Component {
   createCategoryChart = numCharts => {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
-      const index = Number(item.g);
-      item.g = `Categorical ${index + 1}`;
+      item.g = `Categorical ${item.g.toUpperCase()}`;
       return item;
     });
 
@@ -157,7 +150,7 @@ class _Categorical extends Component {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
       const increment = 100 / numCharts;
-      const index = Number(item.g);
+      const index = item.g.charCodeAt(0) - 97;
       const lower = Math.floor(increment * index);
       const higher =
         index + 1 === numCharts
@@ -185,7 +178,7 @@ class _Categorical extends Component {
 
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
-      const index = Number(item.g);
+      const index = item.g.charCodeAt(0) - 97;
       let howManyErs;
       if (oddSeries && index === numOfHalf) {
         item.g = 'Meh';
@@ -240,6 +233,10 @@ class _Categorical extends Component {
       colorType,
       colorTypeIdSelected,
     } = this.state;
+
+    if (data.length === 0) {
+      return null;
+    }
 
     const dg = new DataGenerator();
     const isDarkTheme = this.props.theme.includes('dark');
@@ -307,10 +304,7 @@ class _Categorical extends Component {
             data={data}
             xAccessor={'x'}
             yAccessors={['y']}
-            customSeriesColors={getColorsMap(
-              euiPaletteColorBlind()[index < 2 ? 0 : 1],
-              `data${index}`
-            )}
+            customSeriesColors={[euiPaletteColorBlind()[index < 2 ? 0 : 1]]}
             lineSeriesStyle={{
               line: {
                 strokeWidth: isOdd ? 1 : 6,

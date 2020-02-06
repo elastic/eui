@@ -7,8 +7,8 @@ import {
 
 import { EuiI18n } from '../i18n';
 
-import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { IconType } from '../icon';
+import { EuiTokenProps } from '../token';
 
 export interface EuiDataGridSchemaDetector {
   /**
@@ -28,9 +28,9 @@ export interface EuiDataGridSchemaDetector {
    */
   icon: IconType;
   /**
-   * The color associated with this data type; it's used to color the icon
+   * The color associated with this data type; it's used to color the icon token
    */
-  color: string;
+  color?: EuiTokenProps['color'] | string;
   /**
    * Text for how to represent an ascending sort of this data type, e.g. 'A -> Z'
    */
@@ -70,8 +70,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       if (aValue > bValue) return direction === 'asc' ? -1 : 1;
       return 0;
     },
-    icon: 'invert',
-    color: euiPaletteColorBlind()[5],
+    icon: 'tokenBoolean',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextAsc"
@@ -112,7 +111,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'currency',
-    color: euiPaletteColorBlind()[0],
+    color: 'euiColorVis0',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.currencySortTextAsc"
@@ -150,8 +149,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
 
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
-    icon: 'calendar',
-    color: euiPaletteColorBlind()[7],
+    icon: 'tokenDate',
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
     ),
@@ -188,8 +186,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
 
       return 0;
     },
-    icon: 'number',
-    color: euiPaletteColorBlind()[0],
+    icon: 'tokenNumber',
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.numberSortTextAsc" default="Low-High" />
     ),
@@ -220,8 +217,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       if (a.length < b.length) return direction === 'asc' ? 1 : -1;
       return 0;
     },
-    icon: 'visVega',
-    color: euiPaletteColorBlind()[3],
+    icon: 'tokenObject',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.jsonSortTextAsc"

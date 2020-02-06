@@ -36,6 +36,7 @@ const generator = dtsGenerator({
     '**/*.test.tsx',
     '**/*.testenv.ts',
     '**/*.testenv.tsx',
+    'src/themes/charts/*' // A separate d.ts file is generated for the charts theme file
   ],
   resolveModuleId(params) {
     if (
