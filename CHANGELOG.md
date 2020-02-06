@@ -12,6 +12,7 @@
 - Converted `EuiColorPicker` color conversion functions to `chroma-js` methods ([#2805](https://github.com/elastic/eui/pull/2805))
 - Added `direction` parameter to `euiPaletteColorBlind()` for specifiying lighter or darker (or both) alternates ([#2822](https://github.com/elastic/eui/pull/2822))
 - Converted `EuiSideNav` to TypeScript ([#2818](https://github.com/elastic/eui/issues/2818))
+- Added babel-transformed and partially mocked commonjs build (`test-env/`) to target Kibana's Jest environment ([#2698](https://github.com/elastic/eui/pull/2698))
 
 **Bug fixes**
 

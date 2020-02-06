@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const shell = require('shelljs');
 const path = require('path');
 const glob = require('glob');
+const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
 function compileLib() {
@@ -13,11 +14,12 @@ function compileLib() {
     'lib/test'
   );
 
-  console.log('Compiling src/ to es/ and lib/');
+  console.log('Compiling src/ to es/, lib/, and test-env/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
+
   execSync(
-    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts" src',
     {
       env: {
         ...process.env,
@@ -26,8 +28,9 @@ function compileLib() {
       },
     }
   );
+
   execSync(
-    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts" src',
     {
       env: {
         ...process.env,
@@ -35,6 +38,24 @@ function compileLib() {
       },
     }
   );
+
+  execSync(
+    'babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
+    {
+      env: {
+        ...process.env,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+  glob('./test-env/**/*.testenv.js', undefined, (error, files) => {
+    files.forEach(file => {
+      const dir = path.dirname(file);
+      const fileName = path.basename(file, '.js');
+      const targetName = fileName.replace('.testenv', '');
+      fs.renameSync(file, path.join(dir, `${targetName}.js`));
+    });
+  });
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
