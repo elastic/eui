@@ -95,3 +95,23 @@ ReactDOM.render(
 ### "Module build failed" or "Module parse failed: Unexpected token" error
 
 If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` intead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
+
+## Using the `test-env` build
+
+EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
+
+### Mapping to the `test-env` directory
+
+In Kibana's Jest configuration, the `moduleNameMapper` option is used to resolve standard EUI import statements with `test-env` aliases.
+
+```js
+moduleNameMapper: {
+  '@elastic/eui$': '<rootDir>/node_modules/@elastic/eui/test-env'
+}
+```
+
+This eliminates the need to polyfill or transform the EUI build for an environment that otherwise has no need for such processing.
+
+### Mocked component files
+
+Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](testing).

@@ -4,7 +4,6 @@ import React, {
   ReactElement,
   SVGAttributes,
 } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
@@ -395,11 +394,6 @@ export const TYPES = keysOf(typeToPathMap);
 export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ReactElement;
-
-export const IconPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.node,
-]);
 
 const colorToClassMap = {
   default: null,
