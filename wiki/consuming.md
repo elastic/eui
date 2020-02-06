@@ -98,7 +98,7 @@ If you get an error when importing a React component, you might need to configur
 
 ## Using the `test-env` build
 
-EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and will resolve component imports using a file namespace (if available). This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
+EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
 
 ### Mapping to the `test-env` directory
 
