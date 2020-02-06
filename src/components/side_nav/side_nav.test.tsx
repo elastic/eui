@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiSideNav, EuiSideNavProps } from './side_nav';
+import { EuiSideNav } from './side_nav';
+import { RenderItem } from './side_nav_item';
 
 describe('EuiSideNav', () => {
   test('is rendered', () => {
@@ -109,11 +110,7 @@ describe('EuiSideNav', () => {
           },
         ];
 
-        const renderItem: EuiSideNavProps['renderItem'] = ({
-          href,
-          className,
-          children,
-        }) => (
+        const renderItem: RenderItem<{}> = ({ href, className, children }) => (
           <a data-test-id="my-custom-element" href={href} className={className}>
             {children}
           </a>

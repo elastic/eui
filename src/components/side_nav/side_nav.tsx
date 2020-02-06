@@ -5,46 +5,47 @@ import { CommonProps } from '../common';
 
 import { EuiIcon } from '../icon';
 
-import { EuiSideNavItem, EuiSideNavItemProps } from './side_nav_item';
+import { EuiSideNavItem, RenderItem } from './side_nav_item';
 import { EuiSideNavItemType } from './side_nav_types';
 
-export type EuiSideNavProps = CommonProps & {
-  /**
-   * `children` are not rendered. Use `items` to specify navigation items instead.
-   */
-  children?: never;
-  /**
-   * Class names to be merged into the final `className` property.
-   */
-  className?: string;
-  /**
-   * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
-   */
-  toggleOpenOnMobile?: MouseEventHandler<HTMLButtonElement>;
-  /**
-   * If `true`, the navigation menu will be open at mobile device widths. Use in conjunction with the `toggleOpenOnMobile` prop.
-   */
-  isOpenOnMobile?: boolean;
-  /**
-   * A React node to render at mobile responsive widths, representing the title of this navigation menu.
-   */
-  mobileTitle?: ReactNode;
-  /**
-   *  An array of #EuiSideNavItem objects. Lists navigation menu items.
-   */
-  items: EuiSideNavItemType[];
-  /**
-   * Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item.
-   */
-  renderItem?: EuiSideNavItemProps['renderItem'];
-};
+export type EuiSideNavProps<T> = T &
+  CommonProps & {
+    /**
+     * `children` are not rendered. Use `items` to specify navigation items instead.
+     */
+    children?: never;
+    /**
+     * Class names to be merged into the final `className` property.
+     */
+    className?: string;
+    /**
+     * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
+     */
+    toggleOpenOnMobile?: MouseEventHandler<HTMLButtonElement>;
+    /**
+     * If `true`, the navigation menu will be open at mobile device widths. Use in conjunction with the `toggleOpenOnMobile` prop.
+     */
+    isOpenOnMobile?: boolean;
+    /**
+     * A React node to render at mobile responsive widths, representing the title of this navigation menu.
+     */
+    mobileTitle?: ReactNode;
+    /**
+     *  An array of #EuiSideNavItem objects. Lists navigation menu items.
+     */
+    items: Array<EuiSideNavItemType<T>>;
+    /**
+     * Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item.
+     */
+    renderItem?: RenderItem<T>;
+  };
 
-export class EuiSideNav extends Component<EuiSideNavProps> {
+export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
   static defaultProps = {
     items: [],
   };
 
-  isItemOpen = (item: EuiSideNavItemType) => {
+  isItemOpen = (item: EuiSideNavItemType<T>) => {
     // The developer can force the item to be open.
     if (item.forceOpen) {
       return true;
@@ -63,7 +64,7 @@ export class EuiSideNav extends Component<EuiSideNavProps> {
     return false;
   };
 
-  renderTree = (items: EuiSideNavItemType[], depth = 0) => {
+  renderTree = (items: Array<EuiSideNavItemType<T>>, depth = 0) => {
     const { renderItem } = this.props;
 
     return items.map(item => {
