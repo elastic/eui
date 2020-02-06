@@ -17,7 +17,7 @@ export { EuiFormLabel } from './form_label';
 export { EuiFormRow } from './form_row';
 export { EuiRadio, EuiRadioGroup } from './radio';
 export { EuiDualRange, EuiRange } from './range';
-export { EuiSelect } from './select';
+export { EuiSelect, Option } from './select';
 export { EuiSuperSelect, EuiSuperSelectControl } from './super_select';
 export { EuiSwitch } from './switch';
 export { EuiTextArea } from './text_area';

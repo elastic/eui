@@ -13,7 +13,7 @@ import {
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
 
-interface Option extends OptionHTMLAttributes<HTMLOptionElement> {
+export interface Option extends OptionHTMLAttributes<HTMLOptionElement> {
   text: React.ReactNode;
 }
 
