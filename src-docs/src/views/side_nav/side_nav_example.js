@@ -18,6 +18,8 @@ import SideNavForceOpen from './side_nav_force_open';
 const sideNavForceOpenSource = require('!!raw-loader!./side_nav_force_open');
 const sideNavForceOpenHtml = renderToHtml(SideNavForceOpen);
 
+import { SideNavItem } from './props';
+
 export const SideNavExample = {
   title: 'Side Nav',
   sections: [
@@ -48,7 +50,7 @@ export const SideNavExample = {
           </p>
         </div>
       ),
-      props: { EuiSideNav },
+      props: { EuiSideNav, EuiSideNavItem: SideNavItem },
       demo: <SideNav />,
     },
     {

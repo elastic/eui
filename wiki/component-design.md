@@ -13,9 +13,12 @@ We use abbreviations to refer to sizes, e.g. `xxl`, `xl`, `l`, `m`, `s`, `xs`, a
 We define objects which map enums to corresponding values, typically CSS classes. For example,
 here's how we would define maps for colors and sizes in a fictional `MegaMenu` component.
 
-```jsx
-// We first define the map for getting the appropriate class for each enum value.
-const colorToClassNameMap = {
+```tsx
+// We first define the enum values as a type
+type EuiMegaMenuColor = 'primary' | 'secondary' | 'warning' | 'danger';
+
+// Then we define the map for getting the appropriate class for each enum value.
+const colorToClassNameMap: { [color in EuiMegaMenuColor]: string } = {
   primary: 'euiMegaMenu--primary',
   secondary: 'euiMegaMenu--secondary',
   warning: 'euiMegaMenu--warning',
@@ -23,33 +26,34 @@ const colorToClassNameMap = {
 };
 
 // Then we generate the enums themselves by pulling out the keys.
-export const COLORS = Object.keys(colorToClassNameMap);
-
-// We can repeat this pattern for other things, e.g. sizes.
-const sizeToClassNameMap = {
-  s: 'euiMegaMenu--small',
-  l: 'euiMegaMenu--large',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const COLORS = keysOf(colorToClassNameMap);
 ```
 
-We use the maps to generate the classname for the component:
+This is how we define the prop types using the enums we generated in Typescript:
 
-```jsx
-export const MegaMenu = ({
+```tsx
+// We can refer to the enums objects for the prop types.
+export type EuiMegaMenuProps = {
+  color: EuiMegaMenuColor;
+  isDisabled?: boolean;
+  /* ... */
+};
+```
+
+For the default props we can just specify the enum values we want to use in the constructor and then use the maps to generate the classname for the component:
+
+```tsx
+export const EuiMegaMenu: FunctionComponent<EuiMegaMenuProps> = ({
   children,
   className,
-  color,
-  size,
+  color = 'primary',
   className,
-  isDisabled,
+  isDisabled = false,
   ...rest
 }) => {
   const classes = classNames(
     'euiMegaMenu',
     colorToClassNameMap[color],
-    sizeToClassNameMap[size],
     className,
     {
       'euiMegaMenu--isDisabled': isDisabled,
@@ -57,24 +61,7 @@ export const MegaMenu = ({
   );
 
   /* ... */
-```
-
-This is how we define the prop types using the enums we generated:
-
-```jsx
-// We can refer to the enums objects for the prop types.
-EuiMegaMenu.propTypes = {
-  color: PropTypes.oneOf(COLORS),
-  size: PropTypes.oneOf(SIZES),
-  /* ... */
-};
-
-// For the default props we can just specify the enum values we want to use.
-EuiMegaMenu.defaultProps = {
-  color: 'primary',
-  size: 'l',
-  /* ... */
-};
+}
 ```
 
 ## Pass-through props
@@ -88,33 +75,47 @@ The main benefit behind this practice is that the consumer can specify any of
 the [DOM attributes](https://reactjs.org/docs/dom-elements.html) supported by React, including
 custom ones with the `data-` prefix.
 
+In Typescript, it makes sense to then extend the props of that element when declaring the component's type. EUI also provides a shortlist of commonly used props like `className`, `aria-label`, and `data-test-subj` that you should extend as well.
+
 ```jsx
-export const EuiMegaMenu = ({
+import { HTMLAttributes, FunctionComponent } from 'react';
+import { CommonProps } from '../common';
+
+export type EuiMegaMenuProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    color: EuiMegaMenuColor;
+    isDisabled?: boolean;
+    /* ... */
+  };
+
+export const EuiMegaMenu: FunctionComponent<EuiMegaMenuProps> = ({
   children,
   className,
-  color,
+  color = 'primary',
   size,
   className,
-  isDisabled,
+  isDisabled = false,
   ...rest
 }) => {
 
   // Anything else specified by the consumer will be applied to the div as a DOM attribute.
   return (
-    <div
-      {...rest}
-    >
+    <div {...rest}>
+      {/* ... */}
     </div>
   );
-
-  /* ... */
+}
 ```
 
 ## Naming props
 
+### Enums
+
+String literals should be used wherever possible and prioritized over booleans. This allows for the most extensibility when it comes to adding more features/options in the future. For example, instead of the prop `isHorizontal: boolean` use `layout: 'horizontal' | 'vertical'`.
+
 ### Booleans
 
-Generally, boolean props should have an `is` prefix, e.g. `isPlaceholder` or `isReadOnly`. The exception to this is when the prop matches an existing HTML attribute such as `disabled`; to avoid confusion prop name should align with the HTML specification. This type of mirroring the attributes makes the most sense when the component is a thin wrapper around an existing HTML element, e.g. EuiButton -> button and EuiRadio -> <input type="radio">. 
+Generally, boolean props should have an `is` prefix, e.g. `isPlaceholder` or `isReadOnly`. The exception to this is when the prop matches an existing HTML attribute such as `disabled`; to avoid confusion the prop name should align with the HTML specification. Mirroring the attributes this way makes the most sense when the component is a thin wrapper around an existing HTML element, e.g. EuiButton -> `<button>` and EuiRadio ->   `<input type="radio">`.
 
 ### Event handlers
 
@@ -126,13 +127,6 @@ Try to leverage the `children` prop wherever possible. This will create a simple
 API throughout our components.
 
 We also [require some props](../src/test/reqiured_props.js) to be supported by all components, as
-reflected in our tests; for example, `className`.
-
-```jsx
-EuiMegaMenu.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-}
-```
+reflected in our tests; for example, `className`. These are easily added via the `CommonProps` mentioned above.
 
 [component-development]: component-development.md

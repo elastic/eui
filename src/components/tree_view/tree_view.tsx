@@ -40,6 +40,9 @@ export interface Node {
   /** Whether or not the item is expanded.
    */
   isExpanded?: boolean;
+  /** Optional class to throw on the node
+   */
+  className?: string;
   /** Function to call when the item is clicked.
    The open state of the item will always be toggled.
    */
@@ -95,7 +98,11 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
             children ? id : ((null as unknown) as string)
           )
           .filter(x => x != null)
-      : [],
+      : this.props.items
+          .map<string>(({ id, children, isExpanded }) =>
+            children && isExpanded ? id : ((null as unknown) as string)
+          )
+          .filter(x => x != null),
     activeItem: '',
     treeID: this.context || treeIdGenerator(),
     expandChildNodes: this.props.expandByDefault || false,
@@ -116,6 +123,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     this.setState({
       expandChildNodes: false,
     });
+
+    node.isExpanded = !node.isExpanded;
 
     if (!ignoreCallback && node.callback !== undefined) {
       node.callback();
@@ -232,15 +241,15 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
           size={display === 'compressed' ? 's' : 'm'}
           className="euiTreeView__wrapper">
           {!this.isNested && (
-            <EuiScreenReaderOnly>
-              <EuiI18n
-                token="euiTreeView.listNavigationInstructions"
-                default="You can quickly navigate this list using arrow keys.">
-                {(listNavigationInstructions: string) => (
+            <EuiI18n
+              token="euiTreeView.listNavigationInstructions"
+              default="You can quickly navigate this list using arrow keys.">
+              {(listNavigationInstructions: string) => (
+                <EuiScreenReaderOnly>
                   <p id={instructionsId}>{listNavigationInstructions}</p>
-                )}
-              </EuiI18n>
-            </EuiScreenReaderOnly>
+                </EuiScreenReaderOnly>
+              )}
+            </EuiI18n>
           )}
           <ul
             className={classes}
@@ -272,15 +281,26 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                           }`,
                         };
 
+                    const nodeClasses = classNames(
+                      'euiTreeView__node',
+                      display ? displayToClassNameMap[display] : null,
+                      { 'euiTreeView__node--expanded': this.isNodeOpen(node) }
+                    );
+
+                    const nodeButtonClasses = classNames(
+                      'euiTreeView__nodeInner',
+                      showExpansionArrows && node.children
+                        ? 'euiTreeView__nodeInner--withArrows'
+                        : null,
+                      this.state.activeItem === node.id
+                        ? 'euiTreeView__node--active'
+                        : null,
+                      node.className ? node.className : null
+                    );
+
                     return (
                       <React.Fragment>
-                        <li
-                          className={classNames(
-                            'euiTreeView__node',
-                            this.isNodeOpen(node)
-                              ? 'euiTreeView__node--expanded'
-                              : null
-                          )}>
+                        <li className={nodeClasses}>
                           <button
                             id={buttonId}
                             aria-controls={`euiNestedTreeView-${
@@ -295,15 +315,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                               this.onKeyDown(event, node)
                             }
                             onClick={() => this.handleNodeClick(node)}
-                            className={classNames(
-                              'euiTreeView__nodeInner',
-                              showExpansionArrows && node.children
-                                ? 'euiTreeView__nodeInner--withArrows'
-                                : null,
-                              this.state.activeItem === node.id
-                                ? 'euiTreeView__node--active'
-                                : null
-                            )}>
+                            className={nodeButtonClasses}>
                             {showExpansionArrows && node.children ? (
                               <EuiIcon
                                 className="euiTreeView__expansionArrow"

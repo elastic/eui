@@ -19,7 +19,7 @@ export { ICON_SIDES } from './form_control_layout_icons';
 type StringOrReactElement = string | ReactElement;
 type PrependAppendType = StringOrReactElement | StringOrReactElement[];
 
-type EuiFormControlLayoutProps = CommonProps &
+export type EuiFormControlLayoutProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
      * Creates an input group with element(s) coming before children
@@ -136,7 +136,10 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     key: React.Key
   ) {
     return cloneElement(node, {
-      className: `euiFormControlLayout__${side}`,
+      className: classNames(
+        `euiFormControlLayout__${side}`,
+        node.props.className
+      ),
       key: key,
     });
   }

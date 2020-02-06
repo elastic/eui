@@ -26,13 +26,10 @@ import {
 } from '../../../../src/components';
 
 import { TIME_DATA_SMALL } from './data';
-import { palettes } from '../../../../src/services';
-
-const getColorsMap = (color, specId) => {
-  const map = new Map();
-  map.set({ colorValues: [], specId }, color);
-  return map;
-};
+import {
+  euiPaletteForDarkBackground,
+  euiPaletteForLightBackground,
+} from '../../../../src/services';
 
 class _Sparklines extends Component {
   constructor(props) {
@@ -71,6 +68,11 @@ class _Sparklines extends Component {
                     data={TIME_DATA_SMALL}
                     xAccessor={0}
                     yAccessors={[1]}
+                    customSeriesColors={[
+                      isDarkTheme
+                        ? euiPaletteForDarkBackground()[1]
+                        : euiPaletteForLightBackground()[1],
+                    ]}
                   />
                 </Chart>
               </EuiStat>
@@ -91,12 +93,11 @@ class _Sparklines extends Component {
                     data={TIME_DATA_SMALL}
                     xAccessor={0}
                     yAccessors={[1]}
-                    customSeriesColors={getColorsMap(
+                    customSeriesColors={[
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground.colors[1]
-                        : palettes.euiPaletteForLightBackground.colors[1],
-                      'increase'
-                    )}
+                        ? euiPaletteForDarkBackground()[1]
+                        : euiPaletteForLightBackground()[1],
+                    ]}
                   />
                 </Chart>
                 <EuiSpacer size="s" />
@@ -125,12 +126,11 @@ class _Sparklines extends Component {
                     data={TIME_DATA_SMALL_REVERSE_MAJOR}
                     xAccessor={0}
                     yAccessors={[1]}
-                    customSeriesColors={getColorsMap(
+                    customSeriesColors={[
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground.colors[3]
-                        : palettes.euiPaletteForLightBackground.colors[3],
-                      'major'
-                    )}
+                        ? euiPaletteForDarkBackground()[3]
+                        : euiPaletteForLightBackground()[3],
+                    ]}
                   />
                 </Chart>
               </EuiStat>
@@ -151,12 +151,11 @@ class _Sparklines extends Component {
                     data={TIME_DATA_SMALL_REVERSE}
                     xAccessor={0}
                     yAccessors={[1]}
-                    customSeriesColors={getColorsMap(
+                    customSeriesColors={[
                       isDarkTheme
-                        ? palettes.euiPaletteForDarkBackground.colors[3]
-                        : palettes.euiPaletteForLightBackground.colors[3],
-                      'subtle'
-                    )}
+                        ? euiPaletteForDarkBackground()[3]
+                        : euiPaletteForLightBackground()[3],
+                    ]}
                   />
                 </Chart>
                 <EuiSpacer size="s" />

@@ -30,7 +30,18 @@ export {
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
   colorPalette,
-  palettes,
+  euiPaletteForLightBackground,
+  euiPaletteForDarkBackground,
+  euiPaletteColorBlind,
+  euiPaletteColorBlindBehindText,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteComplimentary,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteCool,
+  euiPaletteWarm,
+  euiPaletteGray,
   HSV,
 } from './color';
 
@@ -56,8 +67,10 @@ export { toInitials } from './string';
 
 export {
   PropertySortType,
+  PropertySort,
   SortDirectionType,
   SortDirection,
+  Direction,
   SortableProperties,
   Comparators,
 } from './sort';
@@ -72,3 +85,5 @@ export {
 } from './transition';
 
 export { EuiWindowEvent } from './window_event';
+
+export { useDependentState } from './hooks';

@@ -23,33 +23,32 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import { CHART_COMPONENTS, createSpectrum, ChartCard } from './shared';
-import { palettes } from '../../../../src/services';
-
-const getColorsMap = (color, specId) => {
-  const map = new Map();
-  map.set({ colorValues: [], specId }, color);
-  return map;
-};
+import { CHART_COMPONENTS, ChartCard } from './shared';
+import {
+  euiPaletteColorBlind,
+  euiPalettePositive,
+  euiPaletteForStatus,
+  euiPaletteGray,
+} from '../../../../src/services';
 
 class _Categorical extends Component {
   constructor(props) {
     super(props);
 
-    this.highlightColor = palettes.euiPaletteColorBlind.colors[2];
+    this.highlightColor = euiPaletteColorBlind()[2];
 
     this.colorTypeRadios = [
       {
         id: `${this.idPrefix}3`,
-        label: 'Category',
+        label: 'Categorical',
       },
       {
         id: `${this.idPrefix}0`,
-        label: 'Quantity',
+        label: 'Sequential',
       },
       {
         id: `${this.idPrefix}1`,
-        label: 'Trend',
+        label: 'Diverging',
       },
       {
         id: `${this.idPrefix}2`,
@@ -62,9 +61,10 @@ class _Categorical extends Component {
       colorTypeIdSelected: this.colorTypeRadios[0].id,
       colorType: this.colorTypeRadios[0].label,
       numCharts: '3',
-      data: null,
+      data: [],
       dataString: '[{x: 1, y: 5.5, g: 0}]',
-      vizColors: palettes.euiPaletteColorBlind.colors,
+      vizColors: euiPaletteColorBlind(),
+      vizColorsString: 'euiPaletteColorBlind()',
       chartType: 'LineSeries',
     };
   }
@@ -103,13 +103,13 @@ class _Categorical extends Component {
 
   updateCorrectChart = (numCharts, chartType) => {
     switch (chartType) {
-      case 'Category':
+      case 'Categorical':
         this.createCategoryChart(numCharts);
         break;
-      case 'Quantity':
+      case 'Sequential':
         this.createQuantityChart(numCharts);
         break;
-      case 'Trend':
+      case 'Diverging':
         this.createTrendChart(numCharts);
         break;
       case 'Highlight':
@@ -130,31 +130,27 @@ class _Categorical extends Component {
   createCategoryChart = numCharts => {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
-      const index = Number(item.g);
-      item.g = `Category ${index + 1}`;
+      item.g = `Categorical ${item.g.toUpperCase()}`;
       return item;
     });
 
     this.setState({
       data,
-      dataString: "[{x: 1, y: 5.5, g: 'Category 1'}]",
-      vizColors: palettes.euiPaletteColorBlind.colors,
+      dataString: "[{x: 1, y: 5.5, g: 'Categorical 1'}]",
+      vizColors: euiPaletteColorBlind(),
+      vizColorsString: 'euiPaletteColorBlind()',
       chartType: 'LineSeries',
     });
   };
 
   createQuantityChart = numCharts => {
-    const vizColors = createSpectrum(
-      ['#FFFFFF', palettes.euiPaletteColorBlind.colors[0]],
-      numCharts + 1
-    );
-    vizColors.shift();
+    const vizColors = euiPalettePositive(numCharts);
 
     // convert series labels to percentages
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
       const increment = 100 / numCharts;
-      const index = Number(item.g);
+      const index = item.g.charCodeAt(0) - 97;
       const lower = Math.floor(increment * index);
       const higher =
         index + 1 === numCharts
@@ -168,15 +164,13 @@ class _Categorical extends Component {
       data,
       dataString: "[{x: 1, y: 5.5, g: '0 - 100%'}]",
       vizColors,
+      vizColorsString: `euiPaletteCool(${numCharts})`,
       chartType: 'BarSeries',
     });
   };
 
   createTrendChart = numCharts => {
-    const vizColors = createSpectrum(
-      ['#58ba6d', '#ebdf62', '#d75949'],
-      numCharts
-    );
+    const vizColors = euiPaletteForStatus(numCharts);
 
     // convert series labels to better/worse
     const oddSeries = numCharts % 2;
@@ -184,7 +178,7 @@ class _Categorical extends Component {
 
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map(item => {
-      const index = Number(item.g);
+      const index = item.g.charCodeAt(0) - 97;
       let howManyErs;
       if (oddSeries && index === numOfHalf) {
         item.g = 'Meh';
@@ -207,15 +201,13 @@ class _Categorical extends Component {
       data,
       dataString: "[{x: 1, y: 5.5, g: 'Better'}]",
       vizColors,
+      vizColorsString: `euiPaletteForStatus(${numCharts})`,
       chartType: 'BarSeries',
     });
   };
 
   createHighlightChart = numCharts => {
-    const isDarkTheme = this.props.theme.includes('dark');
-    const vizColors = isDarkTheme
-      ? createSpectrum(['#343741', '#535966'], numCharts)
-      : createSpectrum(['#D3DAE6', '#98A2B3'], numCharts);
+    const vizColors = euiPaletteGray(numCharts);
     vizColors[vizColors.length - 1] = this.highlightColor;
 
     const dg = new DataGenerator();
@@ -225,6 +217,7 @@ class _Categorical extends Component {
       data,
       dataString: "[{x: 1, y: 5.5, g: '0'}]",
       vizColors: numCharts < 2 ? [this.highlightColor] : vizColors,
+      vizColorsString: `euiPaletteGray(${numCharts})[length - 1] = this.highlightColor`,
       chartType: 'LineSeries',
     });
   };
@@ -234,11 +227,16 @@ class _Categorical extends Component {
       data,
       dataString,
       vizColors,
+      vizColorsString,
       chartType,
       numCharts,
       colorType,
       colorTypeIdSelected,
     } = this.state;
+
+    if (data.length === 0) {
+      return null;
+    }
 
     const dg = new DataGenerator();
     const isDarkTheme = this.props.theme.includes('dark');
@@ -266,13 +264,10 @@ class _Categorical extends Component {
     const customColors = {
       colors: { vizColors },
     };
-    const customColorsString =
-      vizColors !== palettes.euiPaletteColorBlind.colors
-        ? `[
-  { colors: { vizColors: [${JSON.stringify(vizColors)}] }},
+    const customColorsString = `[
+  { colors: { vizColors: ${vizColorsString} }},
   isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme
-]`
-        : null;
+]`;
 
     const charts = [];
     let customLegend;
@@ -309,10 +304,7 @@ class _Categorical extends Component {
             data={data}
             xAccessor={'x'}
             yAccessors={['y']}
-            customSeriesColors={getColorsMap(
-              palettes.euiPaletteColorBlind.colors[index < 2 ? 0 : 1],
-              `data${index}`
-            )}
+            customSeriesColors={[euiPaletteColorBlind()[index < 2 ? 0 : 1]]}
             lineSeriesStyle={{
               line: {
                 strokeWidth: isOdd ? 1 : 6,
@@ -442,11 +434,7 @@ class _Categorical extends Component {
             }
 <Chart size={{height: 200}}>
   <Settings
-    ${
-      customColorsString
-        ? `theme={${customColorsString}}`
-        : 'theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}'
-    }
+    theme={${customColorsString}}
     showLegend={${showLegend}}
     legendPosition="right"
     showLegendDisplayValue={false}

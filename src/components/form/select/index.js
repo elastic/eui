@@ -1,1 +1,0 @@
-export { EuiSelect } from './select';

@@ -22,7 +22,7 @@ export const ColorStopsRange = () => {
   };
 
   const [singleColorStops, setSingleColorStops] = useState([
-    { stop: 10, color: '#DB1374' },
+    { stop: 10, color: '#D36086' },
   ]);
 
   const handleSingleChange = colorStops => {
@@ -30,7 +30,7 @@ export const ColorStopsRange = () => {
   };
 
   const [singleColorStops2, setSingleColorStops2] = useState([
-    { stop: 10, color: '#DB1374' },
+    { stop: 10, color: '#D36086' },
   ]);
 
   const handleSingleChange2 = colorStops => {
@@ -38,7 +38,7 @@ export const ColorStopsRange = () => {
   };
 
   const [singleColorStops3, setSingleColorStops3] = useState([
-    { stop: 10, color: '#DB1374' },
+    { stop: 10, color: '#D36086' },
   ]);
 
   const handleSingleChange3 = colorStops => {

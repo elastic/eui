@@ -8,7 +8,6 @@ exports[`EuiTableSortMobile is rendered 1`] = `
     aria-label="aria-label"
     class="euiPopover euiPopover--anchorDownRight"
     data-test-subj="test subject string"
-    id="sortPopover"
   >
     <div
       class="euiPopover__anchor"
@@ -25,6 +24,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
             class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
             focusable="false"
             height="16"
+            role="img"
             viewBox="0 0 16 16"
             width="16"
             xmlns="http://www.w3.org/2000/svg"

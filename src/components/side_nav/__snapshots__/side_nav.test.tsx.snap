@@ -1,0 +1,626 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSideNav is rendered 1`] = `
+<nav
+  aria-label="aria-label"
+  class="euiSideNav testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  />
+</nav>
+`;
+
+exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  />
+</nav>
+`;
+
+exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] = `
+<nav
+  class="euiSideNav euiSideNav-isOpenMobile"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  />
+</nav>
+`;
+
+exports[`EuiSideNav props items is rendered 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+    >
+      <div
+        class="euiSideNavItemButton"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <div
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <div
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+              <svg
+                aria-hidden="true"
+                class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
+                focusable="false"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav props items renders items having { forceOpen: true } in open state, and automatically opens parent items 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+    >
+      <div
+        class="euiSideNavItemButton"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <div
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
+        >
+          <div
+            class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+            </span>
+          </div>
+          <div
+            class="euiSideNavItem__items"
+          >
+            <div
+              class="euiSideNavItem euiSideNavItem--branch euiSideNavItem--hasChildItems"
+            >
+              <div
+                class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+              >
+                <span
+                  class="euiSideNavItemButton__content"
+                >
+                  <span
+                    class="euiSideNavItemButton__label"
+                  >
+                    D
+                  </span>
+                </span>
+              </div>
+              <div
+                class="euiSideNavItem__items"
+              >
+                <div
+                  class="euiSideNavItem euiSideNavItem--branch"
+                >
+                  <div
+                    class="euiSideNavItemButton"
+                  >
+                    <span
+                      class="euiSideNavItemButton__content"
+                    >
+                      <span
+                        class="euiSideNavItemButton__label"
+                      >
+                        E
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav props items renders items using a specified callback 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+    >
+      <a
+        class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+        data-test-id="my-custom-element"
+        href="http://www.elastic.co"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </a>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <a
+            class="euiSideNavItemButton"
+            data-test-id="my-custom-element"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav props items renders items which are links 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+    >
+      <a
+        class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+        href="http://www.elastic.co"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </a>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <div
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <div
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+              <svg
+                aria-hidden="true"
+                class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
+                focusable="false"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav props items renders selected item and automatically opens parent items 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+    >
+      <div
+        class="euiSideNavItemButton"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <div
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
+        >
+          <div
+            class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+            </span>
+          </div>
+          <div
+            class="euiSideNavItem__items"
+          >
+            <div
+              class="euiSideNavItem euiSideNavItem--branch"
+            >
+              <div
+                class="euiSideNavItemButton euiSideNavItemButton-isSelected"
+              >
+                <span
+                  class="euiSideNavItemButton__content"
+                >
+                  <span
+                    class="euiSideNavItemButton__label"
+                  >
+                    D
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div
+              class="euiSideNavItem euiSideNavItem--branch"
+            >
+              <div
+                class="euiSideNavItemButton"
+              >
+                <span
+                  class="euiSideNavItemButton__content"
+                >
+                  <span
+                    class="euiSideNavItemButton__label"
+                  >
+                    E
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;

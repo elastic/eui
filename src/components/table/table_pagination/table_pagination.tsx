@@ -75,7 +75,8 @@ export class EuiTablePagination extends Component<Props, State> {
         onClick={() => {
           this.closePopover();
           onChangeItemsPerPage(itemsPerPageOption);
-        }}>
+        }}
+        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}>
         <EuiI18n
           token="euiTablePagination.rowsPerPageOption"
           values={{ rowsPerPage: itemsPerPageOption }}

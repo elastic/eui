@@ -17,6 +17,14 @@ export interface EuiDataGridColumn {
    * Defauls to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
+  /**
+   * Whether this column's width can be changed by the user, defaults to true
+   */
+  isResizable?: boolean;
+  /**
+   * Initial width (in pixels) of the column
+   */
+  initialWidth?: number;
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -67,7 +75,7 @@ export interface EuiDataGridStyle {
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
-export interface EuiDataGridTooBarVisibilityOptions {
+export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns
    */
@@ -84,6 +92,10 @@ export interface EuiDataGridTooBarVisibilityOptions {
    * Allows user to be able to full screen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
    */
   showFullScreenSelector?: boolean;
+  /**
+   * Will place any passed node into the toolbar in front of the fullscreen button. Recommend using EuiButtonEmpty with the props shown in the examples.
+   */
+  additionalControls?: ReactNode;
 }
 
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,
@@ -141,6 +153,8 @@ export interface EuiDataGridInMemory {
    */
   skipColumns?: string[];
 }
+
+export type EuiDataGridFocusedCell = [number, number];
 
 export interface EuiDataGridInMemoryValues {
   [key: string]: { [key: string]: string };

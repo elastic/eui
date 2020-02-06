@@ -12,4 +12,5 @@ export {
 export {
   EuiContextMenuItem,
   EuiContextMenuItemIcon,
+  EuiContextMenuItemLayoutAlignment,
 } from './context_menu_item';

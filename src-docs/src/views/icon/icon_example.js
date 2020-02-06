@@ -11,12 +11,13 @@ import {
   EuiLink,
   EuiText,
   EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
   <p>
-    HTML preview disabled. Icons use SVG and are not usable without React
-    unless you load the icons manually through a separate asset loader.
+    HTML preview disabled. Icons use SVG and are not usable without React unless
+    you load the icons manually through a separate asset loader.
   </p>
 );
 
@@ -31,20 +32,16 @@ const tokensSource = require('!!raw-loader!./tokens');
 const tokensSnippet = [
   '<EuiToken type="tokenAnnotation" />',
   `<EuiToken
-  iconType="visMapCoordinate"
-  displayOptions={{
-    color: 'tokenTint05',
-    shape: 'circle',
-  }}
+  iconType="tokenElement"
+  color="euiColorVis07"
+  shape="circle"
 />`,
   `<EuiToken
-  iconType="tokenElement"
+  iconType="visMapCoordinate"
   size="l"
-  displayOptions={{
-    color: 'tokenTint07',
-    shape: 'rectangle',
-    hideBorder: true
-  }}
+  color="#FF0000"
+  shape="rectangle"
+  fill="dark"
 />`,
 ];
 
@@ -76,7 +73,7 @@ import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
 const iconColorsSnippet = [
   '<EuiIcon type="brush" color="primary" />',
-  '<EuiIcon type="brush" color="#F98510" />',
+  '<EuiIcon type="brush" color="#DA8B45" />',
 ];
 
 import Accessibility from './accessibility';
@@ -87,7 +84,7 @@ const iconTypesSource = require('!!raw-loader!./icon_types');
 const iconTypesSnippet = [
   '<EuiIcon type="logoElastic" size="xl" />',
   '<EuiIcon type={reactSVGElement} size="xl" />',
-  '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" />',
+  '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" title="My SVG logo" />',
   '<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>',
 ];
 
@@ -108,6 +105,20 @@ export const IconExample = {
           CSS helpers if you have complex logos that need to work with theming.
         </p>
       </EuiText>
+      <EuiSpacer />
+      <EuiCallOut
+        title={
+          <>
+            For better accessibility it's always recommended to give a
+            descriptive <EuiCode>title</EuiCode> based on the icon use.
+          </>
+        }
+        color="warning">
+        <p>
+          If no title is provided the icon is going to be purely decorative and
+          it will get by default an <EuiCode>aria-hidden=true</EuiCode>.
+        </p>
+      </EuiCallOut>
       <EuiSpacer />
     </div>
   ),
@@ -152,8 +163,8 @@ export const IconExample = {
       ],
       text: (
         <p>
-          Editor icons relate to the visual styling of elements and are
-          commonly used within <EuiCode>EuiButtonGroup</EuiCode> components.
+          Editor icons relate to the visual styling of elements and are commonly
+          used within <EuiCode>EuiButtonGroup</EuiCode> components.
         </p>
       ),
       snippet: editorSnippet,
@@ -195,23 +206,12 @@ export const IconExample = {
       text: (
         <div>
           <p>
-            Tokens are most commonly used in search to help visually classify
-            results. The tokens included in EUI can be used to identify a number
-            of code-based search results.
-          </p>
-
-          <p>
-            An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
+            Tokens are most commonly used to visually signify field or code
+            types. An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
             <EuiCode>EuiIcon</EuiCode> as its
             <EuiCode>iconType</EuiCode> property. However, icons designed
             specifically for use in the <EuiCode>EuiToken</EuiCode> are prefixed
-            with &quot;token&quot; in their name.
-          </p>
-
-          <p>
-            Multiple variants are available including: <EuiCode>shape</EuiCode>,{' '}
-            <EuiCode>size</EuiCode>,<EuiCode>color</EuiCode>,{' '}
-            <EuiCode>hideBorder</EuiCode>, and <EuiCode>fill</EuiCode>.
+            with &quot;token&quot; in their name and have pre-defined styles.
           </p>
         </div>
       ),
@@ -330,26 +330,6 @@ export const IconExample = {
       ),
       snippet: iconColorsSnippet,
       demo: <IconColors />,
-    },
-    {
-      title: 'Accessibility',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: accessibilitySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
-      text: (
-        <p>
-          You can title the SVG by passing the <EuiCode>aria-label</EuiCode>{' '}
-          prop to <EuiCode>EuiIcon</EuiCode>. No value is set by default.
-        </p>
-      ),
-      demo: <Accessibility />,
     },
     {
       title: 'Custom SVGs',

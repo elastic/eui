@@ -9,6 +9,16 @@ import {
   EuiText,
 } from '../../../../src/components';
 
+const noteHeight = (
+  <EuiText>
+    <p style={{ width: 200 }}>
+      For left- or right-aligned popovers, make sure there is sufficient
+      content. If the popover height is too short, the arrow positioning will
+      appear off.
+    </p>
+  </EuiText>
+);
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -306,13 +316,7 @@ export default class extends Component {
               isOpen={this.state.isPopoverOpen7}
               closePopover={this.closePopover7.bind(this)}
               anchorPosition="leftUp">
-              <EuiText>
-                <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers.
-                  There needs to be enough content to make make enough height
-                  for the arrow positioning.
-                </p>
-              </EuiText>
+              {noteHeight}
             </EuiPopover>
           </EuiFlexItem>
 
@@ -350,13 +354,7 @@ export default class extends Component {
               isOpen={this.state.isPopoverOpen9}
               closePopover={this.closePopover9.bind(this)}
               anchorPosition="leftDown">
-              <EuiText>
-                <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers.
-                  There needs to be enough content to make make enough height
-                  for the arrow positioning.
-                </p>
-              </EuiText>
+              {noteHeight}
             </EuiPopover>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -379,13 +377,7 @@ export default class extends Component {
               isOpen={this.state.isPopoverOpen10}
               closePopover={this.closePopover10.bind(this)}
               anchorPosition="rightUp">
-              <EuiText>
-                <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers.
-                  There needs to be enough content to make make enough height
-                  for the arrow positioning.
-                </p>
-              </EuiText>
+              {noteHeight}
             </EuiPopover>
           </EuiFlexItem>
 
@@ -423,13 +415,7 @@ export default class extends Component {
               isOpen={this.state.isPopoverOpen12}
               closePopover={this.closePopover12.bind(this)}
               anchorPosition="rightDown">
-              <EuiText>
-                <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers.
-                  There needs to be enough content to make make enough height
-                  for the arrow positioning.
-                </p>
-              </EuiText>
+              {noteHeight}
             </EuiPopover>
           </EuiFlexItem>
         </EuiFlexGroup>

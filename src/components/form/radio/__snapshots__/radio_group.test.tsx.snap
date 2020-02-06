@@ -50,6 +50,52 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiRadioGroup props legend is rendered 1`] = `
+<fieldset>
+  <legend
+    class="euiFormLegend"
+  >
+    A legend
+  </legend>
+  <div
+    class="euiRadio euiRadioGroup__item"
+  >
+    <input
+      class="euiRadio__input"
+      id="1"
+      type="radio"
+    />
+    <div
+      class="euiRadio__circle"
+    />
+    <label
+      class="euiRadio__label"
+      for="1"
+    >
+      Option #1
+    </label>
+  </div>
+  <div
+    class="euiRadio euiRadioGroup__item"
+  >
+    <input
+      class="euiRadio__input"
+      id="2"
+      type="radio"
+    />
+    <div
+      class="euiRadio__circle"
+    />
+    <label
+      class="euiRadio__label"
+      for="2"
+    >
+      Option #2
+    </label>
+  </div>
+</fieldset>
+`;
+
 exports[`EuiRadioGroup props name is propagated to radios 1`] = `
 <div>
   <div

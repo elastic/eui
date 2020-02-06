@@ -91,7 +91,10 @@ export const SelectableExample = {
           <ul>
             <li>
               <EuiCode>label: string</EuiCode> <strong>required</strong> Must be
-              unique across items (todo: fix this)
+              unique across items if <EuiCode>key</EuiCode> is not passed
+            </li>
+            <li>
+              <EuiCode>key?: string</EuiCode> Must be unique across items
             </li>
             <li>
               <EuiCode>checked?: &apos;on&apos; | &apos;off&apos;</EuiCode>{' '}

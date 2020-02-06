@@ -12,6 +12,7 @@ import {
   EuiDataGridColumnWidths,
   EuiDataGridColumn,
   EuiDataGridSorting,
+  EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { CommonProps } from '../common';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
@@ -28,16 +29,16 @@ interface EuiDataGridHeaderRowPropsSpecificProps {
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
   sorting?: EuiDataGridSorting;
-  focusedCell: EuiDataGridDataRowProps['focusedCell'];
+  focusedCell: EuiDataGridFocusedCell;
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
 }
 
-type EuiDataGridHeaderRowProps = CommonProps &
+export type EuiDataGridHeaderRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiDataGridHeaderRowPropsSpecificProps;
 
-interface EuiDataGridHeaderCellProps
+export interface EuiDataGridHeaderCellProps
   extends Omit<EuiDataGridHeaderRowPropsSpecificProps, 'columns'> {
   column: EuiDataGridColumn;
   index: number;
@@ -234,7 +235,7 @@ const EuiDataGridHeaderCell: FunctionComponent<
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       style={width != null ? { width: `${width}px` } : {}}>
-      {width ? (
+      {column.isResizable !== false && width != null ? (
         <EuiDataGridColumnResizer
           columnId={id}
           columnWidth={width}

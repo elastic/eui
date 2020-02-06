@@ -1,6 +1,7 @@
 import React, {
   Fragment,
   useState,
+  useMemo,
   ReactChild,
   ReactElement,
   ChangeEvent,
@@ -26,13 +27,15 @@ import {
 } from '../drag_and_drop';
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../icon';
+import { useDependentState } from '../../services';
 
 export const useColumnSelector = (
   availableColumns: EuiDataGridColumn[],
   columnVisibility: EuiDataGridColumnVisibility
 ): [ReactElement, EuiDataGridColumn[]] => {
-  const [sortedColumns, setSortedColumns] = useState(() =>
-    availableColumns.map(({ id }) => id)
+  const [sortedColumns, setSortedColumns] = useDependentState(
+    () => availableColumns.map(({ id }) => id),
+    [availableColumns]
   );
 
   const { visibleColumns, setVisibleColumns } = columnVisibility;
@@ -199,11 +202,18 @@ export const useColumnSelector = (
     </EuiPopover>
   );
 
-  const orderedVisibleColumns = visibleColumns
-    .map<EuiDataGridColumn>(
-      columnId =>
-        availableColumns.find(({ id }) => id === columnId) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
-    )
-    .filter(column => column != null);
+  const orderedVisibleColumns = useMemo(
+    () =>
+      visibleColumns
+        .map<EuiDataGridColumn>(
+          columnId =>
+            availableColumns.find(
+              ({ id }) => id === columnId
+            ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
+        )
+        .filter(column => column != null),
+    [availableColumns, visibleColumns]
+  );
+
   return [columnSelector, orderedVisibleColumns];
 };

@@ -12,6 +12,7 @@ import {
   EuiDataGridSchemaDetector,
 } from './data_grid_schema';
 import { EuiDataGridSorting } from './data_grid_types';
+import { EuiToken } from '../token';
 
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
@@ -20,21 +21,11 @@ export interface EuiDataGridColumnSortingDraggableProps {
   sorting: EuiDataGridSorting;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  defaultSchemaColor: string;
 }
 
 export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   EuiDataGridColumnSortingDraggableProps
-> = ({
-  id,
-  direction,
-  index,
-  sorting,
-  schema,
-  schemaDetectors,
-  defaultSchemaColor,
-  ...rest
-}) => {
+> = ({ id, direction, index, sorting, schema, schemaDetectors, ...rest }) => {
   const textSortAsc =
     schema.hasOwnProperty(id) && schema[id].columnType != null ? (
       getDetailsForSchema(schemaDetectors, schema[id].columnType).sortTextAsc
@@ -116,22 +107,22 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
             </EuiFlexItem>
 
             <EuiFlexItem grow={false}>
-              <EuiIcon
+              <EuiToken
                 color={
                   schema.hasOwnProperty(id) && schema[id].columnType != null
                     ? getDetailsForSchema(
                         schemaDetectors,
                         schema[id].columnType
                       ).color
-                    : defaultSchemaColor
+                    : undefined
                 }
-                type={
+                iconType={
                   schema.hasOwnProperty(id) && schema[id].columnType != null
                     ? getDetailsForSchema(
                         schemaDetectors,
                         schema[id].columnType
                       ).icon
-                    : 'string'
+                    : 'tokenString'
                 }
               />
             </EuiFlexItem>

@@ -68,14 +68,13 @@ If a component has subcomponents (`<EuiToolBar>` and `<EuiToolBarSearch>`), tigh
 
 ### Writing CSS
 
-We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-scss].
+Refer to the [SASS page][sass] of our documentation site for a guide to writing styles.
 
 [component-design]: component-design.md
 [docs]: https://elastic.github.io/eui/
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md
-[kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
-[kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
+[sass]: https://elastic.github.io/eui/#/guidelines/sass
 
 ## TypeScript definitions
 

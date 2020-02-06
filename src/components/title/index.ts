@@ -1,1 +1,1 @@
-export { EuiTitle } from './title';
+export { EuiTitle, EuiTitleProps, EuiTitleSize } from './title';

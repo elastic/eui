@@ -1,189 +1,202 @@
-// Sets default displayOptions for EuiTokens based on iconType
-// tokenClass: {
-//   shape: 'square',
-//   color: 'tokenTint01',
-//   fill: false,
-// },
-
-export type TokenColor =
-  | 'tokenTint01'
-  | 'tokenTint02'
-  | 'tokenTint03'
-  | 'tokenTint04'
-  | 'tokenTint05'
-  | 'tokenTint06'
-  | 'tokenTint07'
-  | 'tokenTint08'
-  | 'tokenTint09'
-  | 'tokenTint10'
-  | 'tokenTint11'
-  | 'tokenTint12';
-
-export type TokenShape = 'circle' | 'square' | 'rectangle';
-
-export interface EuiTokenMapDisplayOptions {
-  color?: TokenColor;
-  shape?: TokenShape;
-  fill?: boolean;
-  hideBorder?: boolean;
-}
+import { TokenProps } from './token';
 
 export type EuiTokenMapType =
-  | 'tokenClass'
-  | 'tokenProperty'
-  | 'tokenEnum'
-  | 'tokenVariable'
-  | 'tokenMethod'
   | 'tokenAnnotation'
-  | 'tokenException'
-  | 'tokenInterface'
-  | 'tokenParameter'
-  | 'tokenField'
-  | 'tokenFunction'
-  | 'tokenElement'
-  | 'tokenBoolean'
-  | 'tokenString'
   | 'tokenArray'
+  | 'tokenBoolean'
+  | 'tokenClass'
   | 'tokenConstant'
+  | 'tokenElement'
+  | 'tokenEnum'
+  | 'tokenEnumMember'
+  | 'tokenEvent'
+  | 'tokenException'
+  | 'tokenField'
+  | 'tokenFile'
+  | 'tokenFunction'
+  | 'tokenInterface'
+  | 'tokenKey'
+  | 'tokenMethod'
+  | 'tokenModule'
+  | 'tokenNamespace'
+  | 'tokenNull'
   | 'tokenNumber'
   | 'tokenObject'
-  | 'tokenEvent'
-  | 'tokenKey'
-  | 'tokenNull'
-  | 'tokenStruct'
-  | 'tokenPackage'
   | 'tokenOperator'
-  | 'tokenEnumMember'
+  | 'tokenPackage'
+  | 'tokenParameter'
+  | 'tokenProperty'
   | 'tokenRepo'
+  | 'tokenString'
+  | 'tokenStruct'
+  | 'tokenDate'
+  | 'tokenIP'
+  | 'tokenNested'
+  | 'tokenAlias'
+  | 'tokenShape'
+  | 'tokenGeo'
+  | 'tokenRange'
   | 'tokenSymbol'
-  | 'tokenFile'
-  | 'tokenNamespace'
-  | 'tokenModule';
+  | 'tokenVariable';
+
+/**
+ * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
+ * to use the square shape for more common token types like string and number. Reserving the
+ * circle shape for more uncommon token types so they grab attention.
+ */
 
 export const TOKEN_MAP: {
-  [mapType in EuiTokenMapType]: EuiTokenMapDisplayOptions
+  [mapType in EuiTokenMapType]: Omit<TokenProps, 'iconType'>
 } = {
   tokenClass: {
     shape: 'circle',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
   },
   tokenProperty: {
     shape: 'circle',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenEnum: {
     shape: 'circle',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
   tokenVariable: {
     shape: 'circle',
-    color: 'tokenTint04',
+    color: 'euiColorVis7',
   },
   tokenMethod: {
     shape: 'square',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenAnnotation: {
     shape: 'square',
-    color: 'tokenTint06',
+    color: 'euiColorVis5',
   },
   tokenException: {
     shape: 'circle',
-    color: 'tokenTint07',
+    color: 'euiColorVis0',
   },
   tokenInterface: {
     shape: 'circle',
-    color: 'tokenTint08',
+    color: 'euiColorVis9',
   },
   tokenParameter: {
     shape: 'square',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
   },
   tokenField: {
     shape: 'circle',
-    color: 'tokenTint10',
+    color: 'euiColorVis0',
   },
   tokenElement: {
     shape: 'square',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
   tokenFunction: {
     shape: 'circle',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenBoolean: {
     shape: 'square',
-    color: 'tokenTint05',
+    color: 'euiColorVis7',
   },
   tokenString: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'euiColorVis1',
   },
   tokenArray: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'euiColorVis7',
   },
   tokenNumber: {
-    shape: 'circle',
-    color: 'tokenTint05',
+    shape: 'square',
+    color: 'euiColorVis0',
   },
   tokenConstant: {
     shape: 'circle',
-    color: 'tokenTint07',
+    color: 'euiColorVis0',
   },
   tokenObject: {
-    shape: 'square',
-    color: 'tokenTint03',
+    shape: 'circle',
+    color: 'euiColorVis3',
   },
   tokenEvent: {
     shape: 'circle',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
   },
   tokenKey: {
     shape: 'circle',
-    color: 'tokenTint06',
+    color: 'euiColorVis5',
   },
   tokenNull: {
     shape: 'square',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenStruct: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'euiColorVis0',
   },
   tokenPackage: {
     shape: 'square',
-    color: 'tokenTint10',
+    color: 'euiColorVis0',
   },
   tokenOperator: {
     shape: 'circle',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
   },
   tokenEnumMember: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'euiColorVis7',
   },
   tokenRepo: {
     shape: 'rectangle',
-    color: 'tokenTint05',
-    fill: true,
+    color: 'euiColorVis1',
+    fill: 'dark',
   },
   tokenSymbol: {
     shape: 'rectangle',
-    color: 'tokenTint07',
-    fill: true,
+    color: 'euiColorVis0',
+    fill: 'dark',
   },
   tokenFile: {
     shape: 'rectangle',
-    color: 'tokenTint12',
-    fill: true,
+    color: 'gray',
+    fill: 'dark',
   },
   tokenNamespace: {
     shape: 'square',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
   },
   tokenModule: {
     shape: 'square',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
+  },
+  tokenDate: {
+    shape: 'square',
+    color: 'euiColorVis6',
+  },
+  tokenGeo: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenIP: {
+    shape: 'square',
+    color: 'euiColorVis9',
+  },
+  tokenShape: {
+    shape: 'circle',
+    color: 'euiColorVis8',
+  },
+  tokenRange: {
+    shape: 'circle',
+    color: 'euiColorVis4',
+  },
+  tokenNested: {
+    shape: 'circle',
+    color: 'euiColorVis2',
+  },
+  tokenAlias: {
+    shape: 'circle',
+    color: 'euiColorVis3',
   },
 };
