@@ -17,6 +17,7 @@ No public interface changes since `19.0.0`.
 - Added `direction` parameter to `euiPaletteColorBlind()` for specifiying lighter or darker (or both) alternates ([#2822](https://github.com/elastic/eui/pull/2822))
 - Converted `EuiSideNav` to TypeScript ([#2818](https://github.com/elastic/eui/issues/2818))
 - Added babel-transformed and partially mocked commonjs build (`test-env/`) to target Kibana's Jest environment ([#2698](https://github.com/elastic/eui/pull/2698))
+- Altered styles of `EuiToken` and add added more token types to match ES field types of `tokenAlias`, `tokenDate`, `tokenGeo`, `tokenIP`, `tokenNested`, `tokenRange`, `tokenShape` ([#2758](https://github.com/elastic/eui/pull/2758))
 
 **Bug fixes**
 
@@ -30,6 +31,7 @@ No public interface changes since `19.0.0`.
 **Breaking changes**
 
 - Removed `idAria` prop from `EuiDescribedFormGroup` ([#2783](https://github.com/elastic/eui/pull/2783))
+- Removed `EuiToken`'s `hideBorder` and `displayOptions` prop for applying `color`, `shape`, and `fill` props directly. Changed `fill` prop type from `boolean` to `light | dark | none`. ([#2758](https://github.com/elastic/eui/pull/2758))
 
 ## [`18.3.0`](https://github.com/elastic/eui/tree/v18.3.0)
 
