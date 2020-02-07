@@ -1,4 +1,3 @@
-/// <reference path="./code/index.d.ts" />
 /// <reference path="./combo_box/index.d.ts" />
 /// <reference path="./date_picker/index.d.ts" />
 /// <reference path="./form/index.d.ts" />

@@ -142,11 +142,11 @@ console.log(some);
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls"
-  style="max-height: 200px;"
+  style="max-height: 200;"
 >
   <pre
     class="euiCodeBlock__pre"
-    style="max-height: 200px;"
+    style="max-height: 200;"
   >
     <code
       class="euiCodeBlock__code"
