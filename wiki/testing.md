@@ -94,3 +94,17 @@ describe('YourComponent', () => {
 });
 
 ```
+
+## Writing mock component files
+
+A component file can be mocked for snapshot simplification or to mitigate nondeterministic rendering in test environments. See [`src/components/icon`](../src/components/icon) for a example.
+
+_Although mock component files are currently only used as part of consuming project test environments, the concept will soon be applied to EUI's own testing environment._
+
+### Using the mock namespace
+
+Component mocking relies on using the `[name].testenv.*` namespace for identification. The mocked module will replace the standard import in the `test-env` build. Both `index` files and individual component files can mocked.
+
+### Mapping all module exports
+
+The rendered output of a mocked component is at the author's discretion, however, all public exports from a module must be preserved in the mock file. Note that this does not apply to exported TypeScript types and interfaces, which will always be derived from the original component file.
