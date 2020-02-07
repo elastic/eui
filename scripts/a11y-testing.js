@@ -89,6 +89,6 @@ Chrome: https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdo
 Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
     process.exit(1);
   } else {
-    console.log(chalk.green('axe found no accessability errors!'));
+    console.log(chalk.green('axe found no accessibility errors!'));
   }
 })();
