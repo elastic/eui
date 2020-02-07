@@ -7,6 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiFlyout,
+  EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiFlyoutFooter,
   EuiCallOut,
@@ -144,7 +145,7 @@ export const FlyoutExample = {
           </p>
         </div>
       ),
-      props: { EuiFlyout, EuiFlyoutHeader },
+      props: { EuiFlyout, EuiFlyoutHeader, EuiFlyoutBody },
       snippet: flyOutSnippet,
       demo: <Flyout />,
     },

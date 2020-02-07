@@ -5,6 +5,10 @@
 
   .euiFlyoutBody__overflow {
     @include euiYScrollWithShadows;
+  }
+
+  .euiFlyoutBody__overflowContent {
     padding: $euiSizeL;
   }
+
 }
