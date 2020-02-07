@@ -1,6 +1,6 @@
 import React from 'react';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { EuiCodeEditor } from './code_editor';
 import { keyCodes } from '../../services';
 import {
@@ -46,7 +46,7 @@ describe('EuiCodeEditor', () => {
   });
 
   describe('behavior', () => {
-    let component;
+    let component: ReactWrapper;
 
     beforeEach(() => {
       component = mount(<EuiCodeEditor />);
@@ -69,6 +69,7 @@ describe('EuiCodeEditor', () => {
       test('should be enabled when the ui ace box loses focus', () => {
         const hint = findTestSubject(component, 'codeEditorHint');
         hint.simulate('keyup', { keyCode: keyCodes.ENTER });
+        // @ts-ignore
         component.instance().onBlurAce();
         expect(
           findTestSubject(component, 'codeEditorHint').getDOMNode()
@@ -80,11 +81,13 @@ describe('EuiCodeEditor', () => {
       test('bluring the ace textbox should call a passed onBlur prop', () => {
         const blurSpy = sinon.spy();
         const el = mount(<EuiCodeEditor onBlur={blurSpy} />);
+        // @ts-ignore
         el.instance().onBlurAce();
         expect(blurSpy.called).toBe(true);
       });
 
       test('pressing escape in ace textbox will enable overlay', () => {
+        // @ts-ignore
         component.instance().onKeydownAce({
           preventDefault: () => {},
           stopPropagation: () => {},

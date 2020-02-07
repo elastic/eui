@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, AriaAttributes, KeyboardEventHandler } from 'react';
 import classNames from 'classnames';
-import AceEditor from 'react-ace';
+import AceEditor, { IAceEditorProps } from 'react-ace';
 
 import { htmlIdGenerator, keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 
 const DEFAULT_MODE = 'text';
 
-function setOrRemoveAttribute(element, attributeName, value) {
+function setOrRemoveAttribute(
+  element: HTMLTextAreaElement,
+  attributeName: SupportedAriaAttribute,
+  value: SupportedAriaAttributes[SupportedAriaAttribute]
+) {
   if (value === null || value === undefined) {
     element.removeAttribute(attributeName);
   } else {
@@ -16,18 +19,54 @@ function setOrRemoveAttribute(element, attributeName, value) {
   }
 }
 
-export class EuiCodeEditor extends Component {
-  state = {
+type SupportedAriaAttribute =
+  | 'aria-label'
+  | 'aria-labelledby'
+  | 'aria-describedby';
+type SupportedAriaAttributes = Pick<AriaAttributes, SupportedAriaAttribute>;
+
+export interface EuiCodeEditorProps extends SupportedAriaAttributes {
+  width?: string;
+  height?: string;
+  onBlur?: IAceEditorProps['onBlur'];
+  onFocus?: IAceEditorProps['onFocus'];
+  isReadOnly?: boolean;
+  setOptions: IAceEditorProps['setOptions'];
+  cursorStart?: number;
+  'data-test-subj'?: string;
+
+  /**
+   * Use string for a built-in mode or object for a custom mode
+   */
+  mode?: IAceEditorProps['mode'] | object;
+}
+
+export interface EuiCodeEditorState {
+  isHintActive: boolean;
+  isEditing: boolean;
+}
+
+export class EuiCodeEditor extends Component<
+  EuiCodeEditorProps,
+  EuiCodeEditorState
+> {
+  static defaultProps = {
+    setOptions: {},
+  };
+
+  state: EuiCodeEditorState = {
     isHintActive: true,
     isEditing: false,
   };
 
   idGenerator = htmlIdGenerator();
+  aceEditor: AceEditor | null = null;
+  editorHint: HTMLDivElement | null = null;
 
-  aceEditorRef = aceEditor => {
+  aceEditorRef = (aceEditor: AceEditor | null) => {
     if (aceEditor) {
       this.aceEditor = aceEditor;
-      const textbox = aceEditor.editor.textInput.getElement();
+      const textbox = aceEditor.editor.textInput.getElement() as HTMLTextAreaElement;
       textbox.tabIndex = -1;
       textbox.addEventListener('keydown', this.onKeydownAce);
       setOrRemoveAttribute(textbox, 'aria-label', this.props['aria-label']);
@@ -44,38 +83,40 @@ export class EuiCodeEditor extends Component {
     }
   };
 
-  onKeydownAce = ev => {
-    if (ev.keyCode === keyCodes.ESCAPE) {
+  onKeydownAce = (event: KeyboardEvent) => {
+    if (event.keyCode === keyCodes.ESCAPE) {
       // If the autocompletion context menu is open then we want to let ESCAPE close it but
       // **not** exit out of editing mode.
-      if (!this.aceEditor.editor.completer) {
-        ev.preventDefault();
-        ev.stopPropagation();
+      if (this.aceEditor !== null && !this.aceEditor.editor.completer) {
+        event.preventDefault();
+        event.stopPropagation();
         this.stopEditing();
-        this.editorHint.focus();
+        if (this.editorHint) {
+          this.editorHint.focus();
+        }
       }
     }
   };
 
-  onFocusAce = (...args) => {
+  onFocusAce: IAceEditorProps['onFocus'] = (event, editor) => {
     this.setState({
       isEditing: true,
     });
     if (this.props.onFocus) {
-      this.props.onFocus(...args);
+      this.props.onFocus(event, editor);
     }
   };
 
-  onBlurAce = (...args) => {
+  onBlurAce: IAceEditorProps['onBlur'] = (event, editor) => {
     this.stopEditing();
     if (this.props.onBlur) {
-      this.props.onBlur(...args);
+      this.props.onBlur(event, editor);
     }
   };
 
-  onKeyDownHint = ev => {
-    if (ev.keyCode === keyCodes.ENTER) {
-      ev.preventDefault();
+  onKeyDownHint: KeyboardEventHandler<HTMLDivElement> = event => {
+    if (event.keyCode === keyCodes.ENTER) {
+      event.preventDefault();
       this.startEditing();
     }
   };
@@ -84,7 +125,9 @@ export class EuiCodeEditor extends Component {
     this.setState({
       isHintActive: false,
     });
-    this.aceEditor.editor.textInput.focus();
+    if (this.aceEditor !== null) {
+      this.aceEditor.editor.textInput.focus();
+    }
   };
 
   stopEditing() {
@@ -99,7 +142,9 @@ export class EuiCodeEditor extends Component {
   }
 
   setCustomMode() {
-    this.aceEditor.editor.getSession().setMode(this.props.mode);
+    if (this.aceEditor !== null) {
+      this.aceEditor.editor.getSession().setMode(this.props.mode);
+    }
   }
 
   componentDidMount() {
@@ -108,7 +153,7 @@ export class EuiCodeEditor extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: EuiCodeEditorProps) {
     if (this.props.mode !== prevProps.mode && this.isCustomMode()) {
       this.setCustomMode();
     }
@@ -161,7 +206,7 @@ export class EuiCodeEditor extends Component {
         ref={hint => {
           this.editorHint = hint;
         }}
-        tabIndex="0"
+        tabIndex={0}
         role="button"
         onClick={this.startEditing}
         onKeyDown={this.onKeyDownHint}
@@ -206,7 +251,7 @@ export class EuiCodeEditor extends Component {
         <AceEditor
           // Setting a default, existing `mode` is necessary to properly initialize the editor
           // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
-          mode={this.isCustomMode() ? DEFAULT_MODE : mode}
+          mode={this.isCustomMode() ? DEFAULT_MODE : (mode as string)} // https://github.com/securingsincity/react-ace/pull/771
           name={this.idGenerator()}
           ref={this.aceEditorRef}
           width={width}
@@ -224,22 +269,3 @@ export class EuiCodeEditor extends Component {
     );
   }
 }
-
-EuiCodeEditor.propTypes = {
-  width: PropTypes.string,
-  height: PropTypes.string,
-  onBlur: PropTypes.func,
-  isReadOnly: PropTypes.bool,
-  setOptions: PropTypes.object,
-  cursorStart: PropTypes.number,
-  'data-test-subj': PropTypes.string,
-
-  /**
-   * Use string for a built-in mode or object for a custom mode
-   */
-  mode: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-};
-
-EuiCodeEditor.defaultProps = {
-  setOptions: {},
-};
