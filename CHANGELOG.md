@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `19.0.0`.
+- Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
