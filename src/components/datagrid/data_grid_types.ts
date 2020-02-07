@@ -1,4 +1,14 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { ComponentType, ReactNode } from 'react';
+import { EuiDataGridCellProps } from './data_grid_cell';
+
+export interface EuiDataGridActionColumn {
+  id: string;
+  headerCellRender: ComponentType;
+  rowCellRender: EuiDataGridCellProps['renderCellValue'];
+  isExpandable?: boolean;
+  popoverContent?: EuiDataGridPopoverContent;
+  width: number;
+}
 
 export interface EuiDataGridColumn {
   /**
@@ -170,7 +180,7 @@ export interface EuiDataGridPopoverContentProps {
    */
   cellContentsElement: HTMLDivElement;
 }
-export type EuiDataGridPopoverContent = FunctionComponent<
+export type EuiDataGridPopoverContent = ComponentType<
   EuiDataGridPopoverContentProps
 >;
 export interface EuiDataGridPopoverContents {

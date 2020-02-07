@@ -1,6 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes, memo } from 'react';
 import classnames from 'classnames';
 import {
+  EuiDataGridActionColumn,
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
   EuiDataGridPopoverContent,
@@ -15,6 +16,7 @@ import { EuiText } from '../text';
 export type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
+    leadingColumns: EuiDataGridActionColumn[];
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
     popoverContents: EuiDataGridPopoverContents;
@@ -34,6 +36,7 @@ const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
 const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
   props => {
     const {
+      leadingColumns,
       columns,
       schema,
       popoverContents,
@@ -59,6 +62,31 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
         className={classes}
         data-test-subj={dataTestSubj}
         {...rest}>
+        {leadingColumns.map((leadingColumn, i) => {
+          const { id, rowCellRender, popoverContent } = leadingColumn;
+
+          const isExpandable =
+            leadingColumn.isExpandable !== undefined
+              ? leadingColumn.isExpandable
+              : true;
+
+          return (
+            <EuiDataGridCell
+              key={`${id}-${rowIndex}`}
+              rowIndex={rowIndex}
+              visibleRowIndex={visibleRowIndex}
+              colIndex={i}
+              columnId={id}
+              popoverContent={popoverContent || DefaultColumnFormatter}
+              width={leadingColumn.width}
+              renderCellValue={rowCellRender}
+              onCellFocus={onCellFocus}
+              isFocused={focusedCellPositionInTheRow === i}
+              interactiveCellId={interactiveCellId}
+              isExpandable={isExpandable}
+            />
+          );
+        })}
         {columns.map((props, i) => {
           const { id } = props;
           const columnType = schema[id] ? schema[id].columnType : null;

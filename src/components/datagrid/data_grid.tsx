@@ -20,6 +20,7 @@ import {
   EuiDataGridInMemory,
   EuiDataGridPaginationProps,
   EuiDataGridInMemoryValues,
+  EuiDataGridActionColumn,
   EuiDataGridSorting,
   EuiDataGridStyle,
   EuiDataGridStyleBorders,
@@ -33,15 +34,12 @@ import {
   EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
-// @ts-ignore-next-line
 import { EuiButtonEmpty } from '../button';
 import { keyCodes, htmlIdGenerator } from '../../services';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
 import { useStyleSelector, startingStyles } from './style_selector';
-// @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
-// @ts-ignore-next-line
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
@@ -60,6 +58,7 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
+    leadingColumns?: EuiDataGridActionColumn[];
     /**
      * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
      */
@@ -494,6 +493,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   };
 
   const {
+    leadingColumns,
     columns,
     columnVisibility,
     schemaDetectors,
@@ -789,6 +789,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       {ref => (
                         <EuiDataGridHeaderRow
                           ref={ref}
+                          leadingColumns={leadingColumns}
                           columns={orderedVisibleColumns}
                           columnWidths={columnWidths}
                           defaultColumnWidth={defaultColumnWidth}
@@ -806,6 +807,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       defaultColumnWidth={defaultColumnWidth}
                       inMemoryValues={inMemoryValues}
                       inMemory={inMemory}
+                      leadingColumns={leadingColumns}
                       columns={orderedVisibleColumns}
                       schema={mergedSchema}
                       schemaDetectors={allSchemaDetectors}
