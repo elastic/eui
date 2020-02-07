@@ -174,7 +174,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     const optionalStyles: CSSProperties = {};
 
     if (overflowHeight) {
-      optionalStyles.maxHeight = String(overflowHeight);
+      optionalStyles.maxHeight = overflowHeight;
     }
 
     const codeSnippet = (
