@@ -63,7 +63,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
 
   fileInput: HTMLInputElement | null = null;
 
-  handleChange = (filesSelected?: any) => {
+  handleChange = (filesSelected?: string | null) => {
     if (!this.fileInput) return;
 
     if (this.fileInput.files && this.fileInput.files.length > 1) {
