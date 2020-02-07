@@ -90,7 +90,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     if (!this.fileInput) return;
 
     this.fileInput.value = '';
-    this.handleChange();
+    this.handleChange(null);
   };
 
   showDrop = () => {
