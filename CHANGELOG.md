@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `19.0.0`.
+- Added `banner` prop to `EuiFlyoutBody` and `borderless` prop to `EuiCallOut` ([#2837](https://github.com/elastic/eui/pull/2837))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 

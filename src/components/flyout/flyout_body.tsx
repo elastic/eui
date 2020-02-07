@@ -20,11 +20,9 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
 }) => {
   const classes = classNames('euiFlyoutBody', className);
 
-  const overflowClasses = classNames('euiFlyoutBody__overflow', className);
-
   return (
     <div className={classes} {...rest}>
-      <div className={overflowClasses}>
+      <div className="euiFlyoutBody__overflow">
         {banner}
         <div className="euiFlyoutBody__overflowContent">{children}</div>
       </div>
