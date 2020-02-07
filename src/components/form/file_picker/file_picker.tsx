@@ -21,7 +21,7 @@ export type EuiFilePickerDisplay = keyof typeof displayToClassNameMap;
 
 export interface EuiFilePickerProps
   extends CommonProps,
-    InputHTMLAttributes<HTMLInputElement> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   id?: string;
   name?: string;
   className?: string;
