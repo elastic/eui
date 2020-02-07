@@ -32,7 +32,7 @@ export interface EuiFilePickerProps
   /**
    * Use as a callback to access the HTML FileList API
    */
-  onChange?: (e: any) => void;
+  onChange?: (files: FileList | null) => void;
   /**
    * Reduces the size to a typical (compressed) input
    */
