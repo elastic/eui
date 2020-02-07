@@ -111,7 +111,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
           'euiFilePicker.filesSelected',
         ]}
         defaults={['Clear selected files', 'files selected']}>
-        {([clearSelectedFiles, filesSelected]: any) => {
+        {([clearSelectedFiles, filesSelected]: string[]) => {
           const {
             id,
             name,
