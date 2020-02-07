@@ -26,7 +26,7 @@
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
     "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
-    "start-test-server": "webpack-dev-server --config src-docs/webpack.config.js --port 9999",
+    "start-test-server": "NODE_ENV=puppeteer BABEL_MODULES=false webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "test-visual": "wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",
     "test-visual-tests": "node ./scripts/run-visual-tests.js",
