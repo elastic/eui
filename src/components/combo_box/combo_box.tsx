@@ -4,8 +4,7 @@
  */
 /* eslint-disable jsx-a11y/role-has-required-aria-props */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Ref, FocusEventHandler, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -15,7 +14,6 @@ import {
 } from '../../services';
 import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
 import { EuiPortal } from '../portal';
-import { EuiComboBoxInput } from './combo_box_input';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
 import {
@@ -23,78 +21,97 @@ import {
   flattenOptionGroups,
   getSelectedOptionForSearchValue,
 } from './matching_options';
+import { EuiComboBoxSingleSelectionShape, EuiComboBoxInputProps, EuiComboBoxInput } from './combo_box_input/combo_box_input';
+import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_options_list';
+import {
+  EuiComboBoxOptionOption,
+  EuiComboBoxOptionsListPosition,
+} from './index';
+import { EuiPanelProps } from '../panel/panel';
+import { RefCallback } from '../common';
 
-export class EuiComboBox extends Component {
-  static propTypes = {
-    id: PropTypes.string,
-    isDisabled: PropTypes.bool,
-    className: PropTypes.string,
-    placeholder: PropTypes.string,
-    isLoading: PropTypes.bool,
-    async: PropTypes.bool,
-    singleSelection: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.shape({
-        asPlainText: PropTypes.bool,
-      }),
-    ]),
-    noSuggestions: PropTypes.bool,
-    options: PropTypes.array,
-    selectedOptions: PropTypes.array,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onSearchChange: PropTypes.func,
-    onCreateOption: PropTypes.func,
-    renderOption: PropTypes.func,
-    isInvalid: PropTypes.bool,
-    rowHeight: PropTypes.number,
-    isClearable: PropTypes.bool,
-    fullWidth: PropTypes.bool,
-    compressed: PropTypes.bool,
-    inputRef: PropTypes.func,
-  };
+type DrillProps<T> = Pick<
+  EuiComboBoxOptionsListProps<T>,
+  'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
+>;
 
+export interface EuiComboBoxProps<T> extends DrillProps<T> {
+  'data-test-subj'?: string;
+  async: boolean;
+  className?: string;
+  compressed: boolean;
+  fullWidth: boolean;
+  id?: string;
+  inputRef?: RefCallback<HTMLInputElement>;
+  isClearable: boolean;
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isLoading?: boolean;
+  noSuggestions?: boolean;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onChange?: <T>(options: Array<EuiComboBoxOptionOption<T>>) => void;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
+  onKeyDown?: (event: KeyboardEvent<HTMLDivElement>) => void;
+  onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
+  placeholder?: string;
+  rowHeight?: number;
+  singleSelection: boolean | EuiComboBoxSingleSelectionShape;
+}
+
+interface EuiComboBoxState<T> {
+  activeOptionIndex: number;
+  hasFocus: boolean;
+  isListOpen: boolean;
+  listElement?: UIEvent | EuiPanelProps['panelRef'];
+  listPosition: EuiComboBoxOptionsListPosition;
+  matchingOptions: Array<EuiComboBoxOptionOption<T>>;
+  searchValue: string;
+  width: number;
+}
+
+const initialSearchValue = '';
+
+export class EuiComboBox<T> extends Component<
+  EuiComboBoxProps<T>,
+  EuiComboBoxState<T>
+  > {
   static defaultProps = {
+    async: false,
+    compressed: false,
+    fullWidth: false,
+    isClearable: true,
     options: [],
     selectedOptions: [],
-    isClearable: true,
     singleSelection: false,
-    fullWidth: false,
-    compressed: false,
   };
 
-  constructor(props) {
-    super(props);
+  state: EuiComboBoxState<T> = {
+    activeOptionIndex: -1,
+    hasFocus: false,
+    isListOpen: false,
+    listElement: undefined,
+    listPosition: 'bottom',
+    matchingOptions: getMatchingOptions<T>(
+      this.props.options,
+      this.props.selectedOptions,
+      initialSearchValue,
+      this.props.async,
+      this.props.singleSelection
+    ),
+    searchValue: initialSearchValue,
+    width: 0,
+  };
 
-    const initialSearchValue = '';
-    const { options, selectedOptions, singleSelection } = props;
+  _isMounted = false;
+  rootId = htmlIdGenerator();
 
-    this.state = {
-      matchingOptions: getMatchingOptions(
-        options,
-        selectedOptions,
-        initialSearchValue,
-        props.async,
-        singleSelection
-      ),
-      listElement: undefined,
-      searchValue: initialSearchValue,
-      isListOpen: false,
-      listPosition: 'bottom',
-      activeOptionIndex: -1,
-      hasFocus: false,
-    };
-
-    this.rootId = htmlIdGenerator();
-
-    // Refs.
-    this.comboBox = undefined;
-    this.autoSizeInput = undefined;
-    this.searchInput = undefined;
-    this.optionsList = undefined;
-    this.options = [];
-  }
+  // Refs
+  comboBox: HTMLDivElement | null = null;
+  autoSizeInput: HTMLInputElement | null = null;
+  searchInput: HTMLInputElement | null = null;
+  optionsList: HTMLInputElement | null = null;
+  toggleButton: HTMLInputElement | null = null;
+  options: Array<HTMLDivElement | null> = [];
 
   openList = () => {
     this.setState({
@@ -109,7 +126,9 @@ export class EuiComboBox extends Component {
     });
   };
 
-  updateListPosition = (listElement = this.state.listElement) => {
+  updateListPosition = (
+    listElement: UIEvent | EuiPanelProps['panelRef'] = this.state.listElement
+  ) => {
     if (!this._isMounted) {
       return;
     }
@@ -128,13 +147,17 @@ export class EuiComboBox extends Component {
       return;
     }
 
+    if (!this.comboBox) {
+      return;
+    }
+
     const comboBoxBounds = this.comboBox.getBoundingClientRect();
 
     const { position, top } = findPopoverPosition({
+      allowCrossAxis: false,
       anchor: this.comboBox,
       popover: listElement,
       position: 'bottom',
-      allowCrossAxis: false,
     });
 
     this.optionsList.style.top = `${top}px`;
@@ -148,12 +171,12 @@ export class EuiComboBox extends Component {
     // Cache for future calls.
     this.setState({
       listElement,
-      width: comboBoxBounds.width,
       listPosition: position,
+      width: comboBoxBounds.width,
     });
   };
 
-  incrementActiveOptionIndex = amount => {
+  incrementActiveOptionIndex = (amount: number) => {
     // If there are no options available, do nothing.
     if (!this.state.matchingOptions.length) {
       return;
@@ -230,11 +253,11 @@ export class EuiComboBox extends Component {
     }
   };
 
-  addCustomOption = isContainerBlur => {
+  addCustomOption = (isContainerBlur: boolean) => {
     const {
+      onCreateOption,
       options,
       selectedOptions,
-      onCreateOption,
       singleSelection,
     } = this.props;
 
@@ -260,7 +283,7 @@ export class EuiComboBox extends Component {
     }
 
     // Add new custom pill if this is custom input, even if it partially matches an option..
-    const isOptionCreated = this.props.onCreateOption(
+    const isOptionCreated = onCreateOption(
       searchValue,
       flattenOptionGroups(options)
     );
@@ -317,9 +340,9 @@ export class EuiComboBox extends Component {
     );
   };
 
-  onComboBoxFocus = () => {
+  onComboBoxFocus: FocusEventHandler<HTMLInputElement> = event => {
     if (this.props.onFocus) {
-      this.props.onFocus();
+      this.props.onFocus(event);
     }
     if (!this.isSingleSelectionCustomOption()) {
       this.openList();
@@ -327,11 +350,18 @@ export class EuiComboBox extends Component {
     this.setState({ hasFocus: true });
   };
 
-  onContainerBlur = e => {
+  onContainerBlur = (event: FocusEvent) => {
     // close the options list, unless the use clicked on an option
 
-    // FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
-    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    /**
+     * FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`.
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/explicitOriginalTarget
+     */
+    const relatedTarget =
+      event.relatedTarget ||
+      // @ts-ignore
+      (event.explicitOriginalTarget as EventTarget | null);
+
     const focusedInOptionsList =
       relatedTarget &&
       this.optionsList &&
@@ -342,7 +372,7 @@ export class EuiComboBox extends Component {
       this.closeList();
 
       if (this.props.onBlur) {
-        this.props.onBlur();
+        this.props.onBlur(event);
       }
       this.setState({ hasFocus: false });
 
@@ -354,11 +384,11 @@ export class EuiComboBox extends Component {
     }
   };
 
-  onKeyDown = e => {
-    switch (e.keyCode) {
+  onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    switch (event.keyCode) {
       case comboBoxKeyCodes.UP:
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         if (this.state.isListOpen) {
           this.incrementActiveOptionIndex(-1);
         } else {
@@ -367,8 +397,8 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.DOWN:
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         if (this.state.isListOpen) {
           this.incrementActiveOptionIndex(1);
         } else {
@@ -377,65 +407,74 @@ export class EuiComboBox extends Component {
         break;
 
       case BACKSPACE:
-        e.stopPropagation();
+        event.stopPropagation();
         this.removeLastOption();
         break;
 
       case ESCAPE:
-        e.stopPropagation();
+        event.stopPropagation();
         this.closeList();
         break;
 
       case comboBoxKeyCodes.ENTER:
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         if (this.hasActiveOption()) {
           this.onAddOption(
             this.state.matchingOptions[this.state.activeOptionIndex]
           );
         } else {
-          this.addCustomOption();
+          this.addCustomOption(false);
         }
         break;
 
       case TAB:
         // Disallow tabbing when the user is navigating the options.
         if (this.hasActiveOption() && this.state.isListOpen) {
-          e.preventDefault();
-          e.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
         }
         break;
 
       default:
         if (this.props.onKeyDown) {
-          this.props.onKeyDown(e);
+          this.props.onKeyDown(event);
         }
     }
   };
 
-  onOptionEnterKey = option => {
+  onOptionEnterKey = <T extends {}>(option: EuiComboBoxOptionOption<T>) => {
     this.onAddOption(option);
   };
 
-  onOptionClick = option => {
+  onOptionClick = <T extends {}>(option: EuiComboBoxOptionOption<T>) => {
     this.onAddOption(option);
   };
 
-  onAddOption = (addedOption, isContainerBlur) => {
+  onAddOption = <T extends {}>(
+    addedOption: EuiComboBoxOptionOption<T>,
+    isContainerBlur?: boolean
+  ) => {
     if (addedOption.disabled) {
       return;
     }
 
     const { onChange, selectedOptions, singleSelection } = this.props;
-    onChange(
-      singleSelection ? [addedOption] : selectedOptions.concat(addedOption)
-    );
+    const changeOptions = Boolean(singleSelection)
+      ? [addedOption]
+      : [...(selectedOptions as Array<typeof addedOption>), addedOption];
+
+    if (onChange) {
+      onChange(changeOptions);
+    }
 
     this.clearSearchValue();
     this.clearActiveOption();
 
     if (!isContainerBlur) {
-      this.searchInput.focus();
+      if (this.searchInput) {
+        this.searchInput.focus();
+      }
     }
 
     if (singleSelection) {
@@ -443,18 +482,29 @@ export class EuiComboBox extends Component {
     }
   };
 
-  onRemoveOption = removedOption => {
+  onRemoveOption = <T extends {}>(
+    removedOption: EuiComboBoxOptionOption<T>
+  ) => {
     const { onChange, selectedOptions } = this.props;
-    onChange(selectedOptions.filter(option => option !== removedOption));
+    if (onChange) {
+      onChange(selectedOptions.filter(option => option !== removedOption));
+    }
 
     this.clearActiveOption();
   };
 
   clearSelectedOptions = () => {
-    this.props.onChange([]);
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange([]);
+    }
+
     // Clicking the clear button will also cause it to disappear. This would result in focus
     // shifting unexpectedly to the body element so we set it to the input which is more reasonable,
-    this.searchInput.focus();
+    if (this.searchInput) {
+      this.searchInput.focus();
+    }
+
     if (!this.state.isListOpen) {
       this.openList();
     }
@@ -462,7 +512,9 @@ export class EuiComboBox extends Component {
 
   onComboBoxClick = () => {
     // When the user clicks anywhere on the box, enter the interaction state.
-    this.searchInput.focus();
+    if (this.searchInput) {
+      this.searchInput.focus();
+    }
 
     // If the user does this from a state in which an option has focus, then we need to reset it or clear it.
     if (this.props.singleSelection && this.props.selectedOptions.length === 1) {
@@ -477,7 +529,9 @@ export class EuiComboBox extends Component {
   };
 
   onOpenListClick = () => {
-    this.searchInput.focus();
+    if (this.searchInput) {
+      this.searchInput.focus();
+    }
     if (!this.state.isListOpen) {
       this.openList();
     }
@@ -487,10 +541,13 @@ export class EuiComboBox extends Component {
     this.closeList();
   };
 
-  onSearchChange = searchValue => {
-    if (this.props.onSearchChange) {
+  onSearchChange: NonNullable<
+    EuiComboBoxInputProps<T>['onChange']
+  > = searchValue => {
+    const { onSearchChange } = this.props;
+    if (onSearchChange) {
       const hasMatchingOptions = this.state.matchingOptions.length > 0;
-      this.props.onSearchChange(searchValue, hasMatchingOptions);
+      onSearchChange(searchValue, hasMatchingOptions);
     }
 
     this.setState({ searchValue }, () => {
@@ -498,10 +555,10 @@ export class EuiComboBox extends Component {
     });
   };
 
-  comboBoxRef = node => {
+  comboBoxRef: Ref<HTMLDivElement> = node => {
     // IE11 doesn't support the `relatedTarget` event property for blur events
     // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
-    if (this.comboBox != null) {
+    if (this.comboBox) {
       this.comboBox.removeEventListener('focusout', this.onContainerBlur);
     }
 
@@ -516,26 +573,27 @@ export class EuiComboBox extends Component {
     }
   };
 
-  autoSizeInputRef = node => {
-    this.autoSizeInput = node;
+  autoSizeInputef: Ref<HTMLInputElement> = node => {
+    this.autoSizeInput = node = null;
   };
 
-  searchInputRef = node => {
+  searchInputRef: Ref<HTMLInputElement> = node => {
+    const { inputRef } = this.props;
     this.searchInput = node;
-    if (this.props.inputRef) {
-      this.props.inputRef(node);
+    if (inputRef && node !== null) {
+      inputRef(node);
     }
   };
 
-  optionsListRef = node => {
+  optionsListRef: Ref<HTMLInputElement> = node => {
     this.optionsList = node;
   };
 
-  optionRef = (index, node) => {
+  optionRef = (index: number, node: HTMLDivElement | null) => {
     this.options[index] = node;
   };
 
-  toggleButtonRef = node => {
+  toggleButtonRef: Ref<HTMLDivElement> = node => {
     this.toggleButton = node;
   };
 
@@ -545,12 +603,15 @@ export class EuiComboBox extends Component {
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
       if (this.autoSizeInput) {
-        this.autoSizeInput.copyInputStyles();
+        this.autoSizeInputcopyInputStyles() = null;
       }
     }, 100);
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps<T>(
+    nextProps: EuiComboBoxProps<T>,
+    prevState: EuiComboBoxState<T>
+  ) {
     const { options, selectedOptions, singleSelection } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
@@ -560,11 +621,11 @@ export class EuiComboBox extends Component {
       options,
       selectedOptions,
       searchValue,
-      nextProps.async,
+      Boolean(nextProps.async),
       singleSelection
     );
 
-    const stateUpdate = { matchingOptions };
+    const stateUpdate: Partial<EuiComboBoxState<T>> = { matchingOptions };
 
     if (activeOptionIndex >= matchingOptions.length) {
       stateUpdate.activeOptionIndex = -1;
@@ -573,7 +634,9 @@ export class EuiComboBox extends Component {
     return stateUpdate;
   }
 
-  updateMatchingOptionsIfDifferent(newMatchingOptions) {
+  updateMatchingOptionsIfDifferent = <T extends {}>(
+    newMatchingOptions: Array<EuiComboBoxOptionOption<T>>
+  ) => {
     const { matchingOptions, activeOptionIndex } = this.state;
     const { singleSelection, selectedOptions } = this.props;
 
@@ -639,37 +702,37 @@ export class EuiComboBox extends Component {
 
   render() {
     const {
-      id,
-      isDisabled,
-      className,
-      isLoading,
-      options,
-      selectedOptions,
-      onCreateOption,
-      placeholder,
-      noSuggestions,
-      renderOption,
-      singleSelection,
-      onChange,
-      onSearchChange,
-      async,
-      onBlur,
-      inputRef,
-      isInvalid,
-      rowHeight,
-      isClearable,
-      fullWidth,
-      compressed,
       'data-test-subj': dataTestSubj,
+      async,
+      className,
+      compressed,
+      fullWidth,
+      id,
+      inputRef,
+      isClearable,
+      isDisabled,
+      isInvalid,
+      isLoading,
+      noSuggestions,
+      onBlur,
+      onChange,
+      onCreateOption,
+      onSearchChange,
+      options,
+      placeholder,
+      renderOption,
+      rowHeight,
+      selectedOptions,
+      singleSelection,
       ...rest
     } = this.props;
     const {
+      activeOptionIndex,
       hasFocus,
-      searchValue,
       isListOpen,
       listPosition,
+      searchValue,
       width,
-      activeOptionIndex,
     } = this.state;
 
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
@@ -680,11 +743,11 @@ export class EuiComboBox extends Component {
       ((hasFocus === false || isListOpen === false) && searchValue);
 
     const classes = classNames('euiComboBox', className, {
-      'euiComboBox-isOpen': isListOpen,
-      'euiComboBox-isInvalid': markAsInvalid,
-      'euiComboBox-isDisabled': isDisabled,
-      'euiComboBox--fullWidth': fullWidth,
       'euiComboBox--compressed': compressed,
+      'euiComboBox--fullWidth': fullWidth,
+      'euiComboBox-isDisabled': isDisabled,
+      'euiComboBox-isInvalid': markAsInvalid,
+      'euiComboBox-isOpen': isListOpen,
     });
 
     const value = selectedOptions
@@ -701,30 +764,33 @@ export class EuiComboBox extends Component {
       optionsList = (
         <EuiPortal>
           <EuiComboBoxOptionsList
-            isLoading={isLoading}
-            options={options}
-            selectedOptions={selectedOptions}
-            onCreateOption={onCreateOption}
-            searchValue={searchValue}
-            matchingOptions={this.state.matchingOptions}
             activeOptionIndex={this.state.activeOptionIndex}
-            listRef={this.optionsListRef}
-            optionRef={this.optionRef}
-            onOptionClick={this.onOptionClick}
-            onOptionEnterKey={this.onOptionEnterKey}
             areAllOptionsSelected={this.areAllOptionsSelected()}
-            getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
-            updatePosition={this.updateListPosition}
-            position={listPosition}
-            renderOption={renderOption}
-            width={width}
-            scrollToIndex={activeOptionIndex}
-            rowHeight={rowHeight}
             data-test-subj={optionsListDataTestSubj}
             fullWidth={fullWidth}
-            rootId={this.rootId}
+            isLoading={isLoading}
+            listRef={this.optionsListRef}
+            matchingOptions={this.state.matchingOptions}
             onCloseList={this.closeList}
-            onScroll={() => this.searchInput.focus()}
+            onCreateOption={onCreateOption}
+            onOptionClick={this.onOptionClick}
+            onOptionEnterKey={this.onOptionEnterKey}
+            onScroll={() => {
+              if (this.searchInput) {
+                this.searchInput.focus();
+              }
+            }}
+            optionRef={this.optionRef}
+            options={options}
+            position={listPosition}
+            renderOption={renderOption}
+            rootId={this.rootId}
+            rowHeight={rowHeight}
+            scrollToIndex={activeOptionIndex}
+            searchValue={searchValue}
+            selectedOptions={selectedOptions}
+            updatePosition={this.updateListPosition}
+            width={width}
           />
         </EuiPortal>
       );
@@ -744,45 +810,45 @@ export class EuiComboBox extends Component {
       // eslint-disable-next-line jsx-a11y/interactive-supports-focus
       <div
         {...rest}
+        aria-expanded={isListOpen}
+        aria-haspopup="listbox"
         className={classes}
+        data-test-subj={dataTestSubj}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
-        data-test-subj={dataTestSubj}
-        role="combobox"
-        aria-haspopup="listbox"
-        aria-expanded={isListOpen}>
+        role="combobox">
         <EuiComboBoxInput
-          id={id}
-          placeholder={placeholder}
-          selectedOptions={selectedOptions}
-          onRemoveOption={this.onRemoveOption}
-          onClick={this.onComboBoxClick}
-          onChange={this.onSearchChange}
-          onFocus={this.onComboBoxFocus}
-          value={value}
-          searchValue={searchValue}
-          autoSizeInputRef={this.autoSizeInputRef}
-          inputRef={this.searchInputRef}
-          updatePosition={this.updateListPosition}
-          onClear={
-            isClearable && !isDisabled ? this.clearSelectedOptions : undefined
-          }
-          hasSelectedOptions={selectedOptions.length > 0}
-          isListOpen={isListOpen}
-          onOpenListClick={this.onOpenListClick}
-          onCloseListClick={this.onCloseListClick}
-          singleSelection={singleSelection}
-          isDisabled={isDisabled}
-          toggleButtonRef={this.toggleButtonRef}
-          fullWidth={fullWidth}
-          noIcon={!!noSuggestions}
-          rootId={this.rootId}
+          autoSizeInputef={this.autoSizeInputef}
+          compressed={compressed}
           focusedOptionId={
             this.hasActiveOption()
               ? this.rootId(`_option-${this.state.activeOptionIndex}`)
-              : null
+              : undefined
           }
-          compressed={compressed}
+          fullWidth={fullWidth}
+          hasSelectedOptions={selectedOptions.length > 0}
+          id={id}
+          inputRef={this.searchInputRef}
+          isDisabled={isDisabled}
+          isListOpen={isListOpen}
+          noIcon={!!noSuggestions}
+          onChange={this.onSearchChange}
+          onClear={
+            isClearable && !isDisabled ? this.clearSelectedOptions : undefined
+          }
+          onClick={this.onComboBoxClick}
+          onCloseListClick={this.onCloseListClick}
+          onFocus={this.onComboBoxFocus}
+          onOpenListClick={this.onOpenListClick}
+          onRemoveOption={this.onRemoveOption}
+          placeholder={placeholder}
+          rootId={this.rootId}
+          searchValue={searchValue}
+          selectedOptions={selectedOptions}
+          singleSelection={singleSelection}
+          toggleButtonRef={this.toggleButtonRef}
+          updatePosition={this.updateListPosition}
+          value={value}
         />
 
         {optionsList}

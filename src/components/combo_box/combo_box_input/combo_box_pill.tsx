@@ -1,41 +1,43 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { AriaAttributes, Component } from 'react';
 import classNames from 'classnames';
 
 import { EuiBadge } from '../../badge';
 import { EuiI18n } from '../../i18n';
+import { EuiComboBoxOptionOption } from '..';
 
-export class EuiComboBoxPill extends Component {
-  static propTypes = {
-    option: PropTypes.object.isRequired,
-    children: PropTypes.string,
-    className: PropTypes.string,
-    color: PropTypes.string,
-    onClose: PropTypes.func,
-    asPlainText: PropTypes.bool,
-    onClick: PropTypes.func,
-    onClickAriaLabel: PropTypes.string,
-  };
+export interface EuiComboBoxPillProps<T> {
+  asPlainText?: boolean;
+  children?: string;
+  className?: string;
+  color?: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClickAriaLabel?: AriaAttributes['aria-label'];
+  onClose?: (option: EuiComboBoxOptionOption<T>) => void;
+  option: EuiComboBoxOptionOption<T>;
+}
 
+export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
   static defaultProps = {
     color: 'hollow',
   };
 
   onCloseButtonClick = () => {
     const { onClose, option } = this.props;
-    onClose(option);
+    if (onClose) {
+      onClose(option);
+    }
   };
 
   render() {
     const {
+      asPlainText,
       children,
       className,
-      option, // eslint-disable-line no-unused-vars
-      onClose, // eslint-disable-line no-unused-vars
       color,
       onClick,
       onClickAriaLabel,
-      asPlainText,
+      onClose, // eslint-disable-line no-unused-vars
+      option, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
     const classes = classNames(
@@ -52,20 +54,18 @@ export class EuiComboBoxPill extends Component {
           token="euiComboBoxPill.removeSelection"
           default="Remove {children} from selection in this group"
           values={{ children }}>
-          {removeSelection => (
+          {(removeSelection: string) => (
             <EuiBadge
               className={classes}
-              title={children}
+              closeButtonProps={{ tabIndex: -1 }}
+              color={color}
               iconOnClick={this.onCloseButtonClick}
               iconOnClickAriaLabel={removeSelection}
-              iconType="cross"
               iconSide="right"
-              color={color}
-              closeButtonProps={{
-                tabIndex: '-1',
-              }}
+              iconType="cross"
               onClick={onClick}
               onClickAriaLabel={onClickAriaLabel}
+              title={children}
               {...rest}>
               {children}
             </EuiBadge>
@@ -85,8 +85,8 @@ export class EuiComboBoxPill extends Component {
     return (
       <EuiBadge
         className={classes}
-        title={children}
         color={color}
+        title={children}
         {...rest}
         onClick={onClick}
         onClickAriaLabel={onClickAriaLabel}>
