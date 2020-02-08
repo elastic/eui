@@ -10,8 +10,8 @@ import { EuiCodeBlockImpl } from './_code_block';
  * */
 export type HTMLCodeElement = HTMLElement;
 
-type FontSize = 's' | 'm' | 'l';
-type PaddingSize = 'none' | 's' | 'm' | 'l';
+export type FontSize = 's' | 'm' | 'l';
+export type PaddingSize = 'none' | 's' | 'm' | 'l';
 
 export interface EuiCodeSharedProps {
   paddingSize?: PaddingSize;

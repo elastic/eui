@@ -15,9 +15,8 @@ import { keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
-import { HTMLCodeElement } from './code';
+import { HTMLCodeElement, FontSize, PaddingSize } from './code';
 
-type FontSize = 's' | 'm' | 'l';
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
@@ -26,7 +25,6 @@ const fontSizeToClassNameMap = {
 
 export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
 
-type PaddingSize = 's' | 'm' | 'l' | 'none';
 const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
   none: '',
   s: 'euiCodeBlock--paddingSmall',
