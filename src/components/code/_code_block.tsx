@@ -14,15 +14,16 @@ import { EuiFocusTrap } from '../focus_trap';
 import { keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
+import { keysOf } from '../common';
 
 type FontSize = 's' | 'm' | 'l';
-const fontSizeToClassNameMap: { [fontSize in FontSize]: string } = {
+const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
   l: 'euiCodeBlock--fontLarge',
 };
 
-export const FONT_SIZES = Object.keys(fontSizeToClassNameMap) as FontSize[];
+export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
 
 type PaddingSize = 's' | 'm' | 'l' | 'none';
 const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
@@ -32,9 +33,7 @@ const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
   l: 'euiCodeBlock--paddingLarge',
 };
 
-export const PADDING_SIZES = Object.keys(
-  paddingSizeToClassNameMap
-) as PaddingSize[];
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 interface Props {
   className?: string;
