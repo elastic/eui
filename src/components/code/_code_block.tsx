@@ -15,6 +15,7 @@ import { keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
+import { HTMLCodeElement } from './code';
 
 type FontSize = 's' | 'm' | 'l';
 const fontSizeToClassNameMap = {
@@ -83,8 +84,8 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
   }
 
   codeTarget = document.createElement('div');
-  code: HTMLElement | null = null;
-  codeFullScreen: HTMLElement | null = null;
+  code: HTMLCodeElement | null = null;
+  codeFullScreen: HTMLCodeElement | null = null;
 
   highlight = () => {
     /**
