@@ -7,306 +7,132 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiMarkdownEditor__actionBar eui-hideFor--xs eui-hideFor--s"
+    class="euiMarkdownEditor__toolbar"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive euiMarkdownEditor__actionBarItems"
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
     >
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem euiFlexItem--flexGrowZero euiMarkdownEditor__toolbar__buttons"
       >
-        <fieldset
-          class="euiButtonGroup__fieldset"
+        <button
+          aria-label="Next"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
         >
-          <legend
-            class="euiScreenReaderOnly"
-          >
-            Bold and italic styles
-          </legend>
-          <div
-            class="euiButtonGroup euiButtonGroup--s"
-          >
-            <div
-              class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-            >
-              <input
-                aria-label="Bold"
-                class="euiToggle__input euiButtonToggle__input"
-                name="bold"
-                title="Bold"
-                type="checkbox"
-              />
-              <button
-                class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-                id="mdBold"
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="euiButton__content"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <span
-                    class="euiButton__text"
-                  />
-                </span>
-              </button>
-            </div>
-            <div
-              class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-            >
-              <input
-                aria-label="Italic"
-                class="euiToggle__input euiButtonToggle__input"
-                name="italic"
-                title="Italic"
-                type="checkbox"
-              />
-              <button
-                class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-                id="mdItalic"
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="euiButton__content"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <span
-                    class="euiButton__text"
-                  />
-                </span>
-              </button>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-      <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
-      >
-        <fieldset
-          class="euiButtonGroup__fieldset"
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+        <button
+          aria-label="Next"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
         >
-          <legend
-            class="euiScreenReaderOnly"
-          >
-            Quote, code and link styles
-          </legend>
-          <div
-            class="euiButtonGroup euiButtonGroup--s"
-          >
-            <div
-              class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-            >
-              <input
-                aria-label="Quote"
-                class="euiToggle__input euiButtonToggle__input"
-                name="quote"
-                title="Quote"
-                type="checkbox"
-              />
-              <button
-                class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-                id="mdQuote"
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="euiButton__content"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <span
-                    class="euiButton__text"
-                  />
-                </span>
-              </button>
-            </div>
-            <div
-              class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-            >
-              <input
-                aria-label="Code"
-                class="euiToggle__input euiButtonToggle__input"
-                name="code"
-                title="Code"
-                type="checkbox"
-              />
-              <button
-                class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-                id="mdCode"
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="euiButton__content"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <span
-                    class="euiButton__text"
-                  />
-                </span>
-              </button>
-            </div>
-            <div
-              class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-            >
-              <input
-                aria-label="Link"
-                class="euiToggle__input euiButtonToggle__input"
-                name="link"
-                title="Link"
-                type="checkbox"
-              />
-              <button
-                class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-                id="mdLink"
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="euiButton__content"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <span
-                    class="euiButton__text"
-                  />
-                </span>
-              </button>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-      <div
-        class="euiFlexItem"
-      >
-        <fieldset
-          class="euiButtonGroup__fieldset"
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+        <span
+          class="euiMarkdownEditor__toolbar__divider"
+        />
+        <button
+          aria-label="Next"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
         >
-          <legend
-            class="euiScreenReaderOnly"
-          >
-            Unordered and ordered list styles
-          </legend>
-          <div
-            class="euiButtonGroup euiButtonGroup--s"
-          >
-            <div
-              class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-            >
-              <input
-                aria-label="Unordered list"
-                class="euiToggle__input euiButtonToggle__input"
-                name="ul"
-                title="Unordered list"
-                type="checkbox"
-              />
-              <button
-                class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-                id="mdUl"
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="euiButton__content"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <span
-                    class="euiButton__text"
-                  />
-                </span>
-              </button>
-            </div>
-            <div
-              class="euiToggle euiButtonToggle__wrapper euiButtonGroup__toggle"
-            >
-              <input
-                aria-label="Ordered list"
-                class="euiToggle__input euiButtonToggle__input"
-                name="ol"
-                title="Ordered list"
-                type="checkbox"
-              />
-              <button
-                class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isIconOnly euiButtonGroup__button"
-                id="mdOl"
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="euiButton__content"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <span
-                    class="euiButton__text"
-                  />
-                </span>
-              </button>
-            </div>
-          </div>
-        </fieldset>
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+        <button
+          aria-label="Next"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+        <button
+          aria-label="Next"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+        <span
+          class="euiMarkdownEditor__toolbar__divider"
+        />
+        <button
+          aria-label="Next"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+        <button
+          aria-label="Next"
+          class="euiButtonIcon euiButtonIcon--text"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
       </div>
       <div
         class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -321,7 +147,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             type="checkbox"
           />
           <button
-            class="euiButton euiButton--primary euiButton--small euiButtonToggle euiButtonToggle--isEmpty"
+            class="euiButton euiButton--text euiButton--small euiButtonToggle euiButtonToggle--isEmpty"
             tabindex="-1"
             type="button"
           >
@@ -349,7 +175,9 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    class="euiMarkdownEditor__markdownWrapper"
+  >
     <textarea
       class="euiTextArea euiTextArea--resizeVertical euiTextArea--fullWidth"
       id="editorId"

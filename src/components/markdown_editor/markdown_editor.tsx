@@ -7,14 +7,12 @@ import MarkdownActions from './markdown_actions';
 import showdown from 'showdown';
 // @ts-ignore
 import showdownHtmlEscape from 'showdown-htmlescape';
-
-import { EuiHideFor } from '../responsive';
 import { EuiText } from '../text';
 // @ts-ignore
 import { EuiTextArea } from '../form/text_area';
-import { EuiButtonGroup, EuiButtonToggle } from '../button';
-import { EuiFlexItem, EuiFlexGroup } from '../flex';
-import { EuiI18n } from '../i18n';
+// import { EuiI18n } from '../i18n';
+
+import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 
 export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -64,57 +62,6 @@ export class EuiMarkdownEditor extends Component<
     this.handleMdButtonClick = this.handleMdButtonClick.bind(this);
   }
 
-  getBoldItalicButtons = () => [
-    {
-      id: 'mdBold',
-      label: 'Bold',
-      name: 'bold',
-      iconType: 'editorBold',
-    },
-    {
-      id: 'mdItalic',
-      label: 'Italic',
-      name: 'italic',
-      iconType: 'editorItalic',
-    },
-  ];
-
-  getQuoteCodeLinkButtons = () => [
-    {
-      id: 'mdQuote',
-      label: 'Quote',
-      name: 'quote',
-      iconType: 'editorComment',
-    },
-    {
-      id: 'mdCode',
-      label: 'Code',
-      name: 'code',
-      iconType: 'editorCodeBlock',
-    },
-    {
-      id: 'mdLink',
-      label: 'Link',
-      name: 'link',
-      iconType: 'editorLink',
-    },
-  ];
-
-  getListButtons = () => [
-    {
-      id: 'mdUl',
-      label: 'Unordered list',
-      name: 'ul',
-      iconType: 'editorUnorderedList',
-    },
-    {
-      id: 'mdOl',
-      label: 'Ordered list',
-      name: 'ol',
-      iconType: 'editorOrderedList',
-    },
-  ];
-
   handleMdButtonClick = (mdButtonId: string) => {
     this.markdownActions.do(mdButtonId);
   };
@@ -126,97 +73,18 @@ export class EuiMarkdownEditor extends Component<
   render() {
     const { className, editorId, ...rest } = this.props;
 
+    const { viewMarkdownPreview } = this.state;
+
     const classes = classNames('euiMarkdownEditor', className);
 
     return (
       <div className={classes} {...rest}>
-        <EuiHideFor sizes={['xs', 's']}>
-          <div className="euiMarkdownEditor__actionBar">
-            <EuiFlexGroup
-              justifyContent="spaceBetween"
-              alignItems="center"
-              className="euiMarkdownEditor__actionBarItems">
-              <EuiFlexItem grow={false}>
-                <EuiI18n
-                  token="euiMarkdownEditor.boldStyles"
-                  default="Bold and italic styles">
-                  {(legend: string) => (
-                    <EuiButtonGroup
-                      isDisabled={
-                        this.state.viewMarkdownPreview ? true : undefined
-                      }
-                      legend={legend}
-                      options={this.getBoldItalicButtons()}
-                      idToSelectedMap={{}}
-                      onChange={this.handleMdButtonClick}
-                      type="multi"
-                      isIconOnly
-                    />
-                  )}
-                </EuiI18n>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiI18n
-                  token="euiMarkdownEditor.quoteStyles"
-                  default="Quote, code and link styles">
-                  {(legend: string) => (
-                    <EuiButtonGroup
-                      isDisabled={
-                        this.state.viewMarkdownPreview ? true : undefined
-                      }
-                      legend={legend}
-                      options={this.getQuoteCodeLinkButtons()}
-                      idToSelectedMap={{}}
-                      onChange={this.handleMdButtonClick}
-                      type="multi"
-                      isIconOnly
-                    />
-                  )}
-                </EuiI18n>
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <EuiI18n
-                  token="euiMarkdownEditor.listStyles"
-                  default="Unordered and ordered list styles">
-                  {(legend: string) => (
-                    <EuiButtonGroup
-                      isDisabled={
-                        this.state.viewMarkdownPreview ? true : undefined
-                      }
-                      legend={legend}
-                      options={this.getListButtons()}
-                      idToSelectedMap={{}}
-                      onChange={this.handleMdButtonClick}
-                      type="multi"
-                      isIconOnly
-                    />
-                  )}
-                </EuiI18n>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiButtonToggle
-                  size="s"
-                  label={
-                    this.state.viewMarkdownPreview ? (
-                      <EuiI18n token="euiMarkdownEditor.edit" default="Edit" />
-                    ) : (
-                      <EuiI18n
-                        token="euiMarkdownEditor.previewMarkdown"
-                        default="Preview"
-                      />
-                    )
-                  }
-                  iconType={
-                    this.state.viewMarkdownPreview ? 'eye' : 'eyeClosed'
-                  }
-                  onChange={this.onTogglePreview}
-                  isSelected={this.state.viewMarkdownPreview}
-                  isEmpty
-                />
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </div>
-        </EuiHideFor>
+        <EuiMarkdownEditorToolbar
+          markdownActions={this.markdownActions}
+          onTogglePreview={this.onTogglePreview}
+          viewMarkdownPreview={viewMarkdownPreview}
+        />
+
         {this.state.viewMarkdownPreview ? (
           <div className="euiMarkdownEditor__markdownWrapper">
             <div className="euiMarkdownEditor__previewContainer">
@@ -230,7 +98,7 @@ export class EuiMarkdownEditor extends Component<
             </div>
           </div>
         ) : (
-          <div>
+          <div className="euiMarkdownEditor__markdownWrapper">
             <EuiTextArea
               id={this.editorId}
               fullWidth

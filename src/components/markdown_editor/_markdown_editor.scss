@@ -1,14 +1,28 @@
-.euiMarkdownEditor__actionBar {
+.euiMarkdownEditor__toolbar {
   background: $euiColorEmptyShade;
   border: $euiBorderThin;
   border-color: $euiColorLightShade;
   border-bottom: none;
-  padding: 0 ($euiSizeS + $euiSizeXS);
+  padding: $euiSizeXS;
+
+  &__buttons {
+    flex-direction: row;
+
+    > * {
+      margin-right: $euiSizeXS;
+    }
+  }
+
+  &__divider {
+    content: '';
+    height: $euiSizeL;
+    display: block;
+    margin-left: $euiSizeXS;
+    padding-right: $euiSizeXS;
+    border-left: 1px solid $euiColorLightShade;
+  }
 }
 
-.euiMarkdownEditor__actionBarItems {
-  padding: $euiSizeS 0;
-}
 
 .euiMarkdownEditor__previewToggleButton {
   width: 150px;
@@ -16,7 +30,7 @@
 
 .euiMarkdownEditor__previewContainer {
   border: $euiBorderThin;
-  max-height: 150px;
+  min-height: 150px;
   overflow-y: auto;
   @include euiScrollBar;
   padding: $euiSizeM;
