@@ -1,18 +1,22 @@
+.euiMarkdownEditor__markdownWrapper {
+  line-height: 0;
+
+  .euiMarkdownEditor__textArea,
+  .euiMarkdownEditor__previewContainer {
+    padding: $euiSizeM;
+  }
+}
+
 .euiMarkdownEditor__previewContainer {
   @include euiScrollBar;
-  @include euiFormControlDefaultShadow;
   background: $euiColorEmptyShade;
   height: 150px;
   overflow-y: auto;
-  padding: $euiSizeM;
+  border: $euiBorderThin;
 }
 
 .euiMarkdownEditor__textArea {
   background: $euiColorEmptyShade;
-}
-
-.euiMarkdownEditor__markdownWrapper {
-  line-height: 0;
 }
 
 // Overrides for styles in the "preview" pane

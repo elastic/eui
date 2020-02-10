@@ -1,0 +1,7 @@
+.euiMarkdownEditor__textArea {
+  @include euiFormControlText;
+  width: 100%;
+  border: $euiBorderThin;
+  border-color: $euiColorLightShade;
+  border-bottom: none;
+}

@@ -129,7 +129,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   />
                 )
               }
-              iconType={viewMarkdownPreview ? 'eye' : 'eyeClosed'}
+              iconType={viewMarkdownPreview ? 'pencil' : 'eye'}
               onChange={onTogglePreview}
               isSelected={viewMarkdownPreview}
               isEmpty

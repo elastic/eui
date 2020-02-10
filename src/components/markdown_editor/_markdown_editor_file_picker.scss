@@ -1,7 +1,11 @@
 .euiMarkdownEditor__filePicker {
+  display: flex;
   height: $euiSizeXL;
   background: $euiPageBackgroundColor;
   border: $euiBorderThin;
+  border-top: 1px dashed $euiColorLightShade;
+  align-items: center;
+
 
   &__input {
     position: absolute;
@@ -19,5 +23,22 @@
     &:hover:disabled {
       cursor: not-allowed;
     }
+  }
+
+  &__placeholder {
+    display: inline-flex;
+    padding: 0 $euiSizeS;
+  }
+
+  &__icon {
+    align-self: center;
+    margin-right: $euiSizeS;
+  }
+
+  &__text {
+    @include euiFontSizeS;
+    @include euiTextTruncate;
+    line-height: $euiSize;
+    display: block;
   }
 }

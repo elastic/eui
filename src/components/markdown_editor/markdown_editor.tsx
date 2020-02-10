@@ -8,11 +8,9 @@ import showdown from 'showdown';
 // @ts-ignore
 import showdownHtmlEscape from 'showdown-htmlescape';
 import { EuiText } from '../text';
-// @ts-ignore
-import { EuiTextArea } from '../form/text_area';
-// import { EuiI18n } from '../i18n';
-
-import { EuiMarkdownEditorToolbar, EuiMarkdownEditorFilePicker } from './';
+import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
+import { EuiMarkdownEditorFilePicker } from './markdown_editor_file_picker';
+import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 
 export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -84,7 +82,6 @@ export class EuiMarkdownEditor extends Component<
           onTogglePreview={this.onTogglePreview}
           viewMarkdownPreview={viewMarkdownPreview}
         />
-
         {this.state.viewMarkdownPreview ? (
           <div className="euiMarkdownEditor__markdownWrapper">
             <div className="euiMarkdownEditor__previewContainer">
@@ -99,11 +96,8 @@ export class EuiMarkdownEditor extends Component<
           </div>
         ) : (
           <div className="euiMarkdownEditor__markdownWrapper">
-            <EuiTextArea
+            <EuiMarkdownEditorTextArea
               id={this.editorId}
-              className="euiMarkdownEditor__textArea"
-              fullWidth
-              compressed
               onChange={(e: any) => {
                 this.setState({ editorContent: e.target.value });
               }}
