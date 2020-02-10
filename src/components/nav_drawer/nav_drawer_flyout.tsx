@@ -6,17 +6,27 @@ import { keyCodes } from '../../services';
 
 import { EuiTitle } from '../title';
 import { EuiNavDrawerGroup } from './nav_drawer_group';
-import { EuiListGroupProps } from '../list_group/list_group';
+import { EuiListGroupProps } from '../list_group';
 import { EuiFocusTrap } from '../focus_trap';
 import { CommonProps } from '../common';
 
 export interface EuiNavDrawerFlyoutProps
   extends CommonProps, HTMLAttributes<HTMLDivElement> {
-    isCollapsed: boolean,
-    title: string,
+    /**
+     * Toggle the nav drawer between collapsed and expanded
+     */
+    isCollapsed?: boolean,
+    /**
+     * Display a title atop the flyout
+     */
+    title?: string,
     listItems: EuiListGroupProps["listItems"],
     wrapText: EuiListGroupProps["wrapText"],
-    onClose: (shouldReturnFocus: boolean) => void,
+    /**
+     * Passthrough function to be called when the flyout is closing
+     * See ./nav_drawer.js
+     */
+    onClose?: (shouldReturnFocus: boolean) => void,
   }
 
 export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
@@ -60,7 +70,9 @@ export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
 
   const handleClose = (shouldReturnFocus = true) => {
     setTabbables(null);
-    onClose(shouldReturnFocus);
+    if (onClose) {
+      onClose(shouldReturnFocus);
+    }
   };
 
   return (

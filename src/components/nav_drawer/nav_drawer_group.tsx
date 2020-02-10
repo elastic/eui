@@ -1,25 +1,33 @@
-import React, { HTMLAttributes, FunctionComponent, MouseEventHandler } from 'react';
+import React, { HTMLAttributes, FunctionComponent, MouseEventHandler, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
 import { toInitials } from '../../services';
 import { CommonProps } from '../common';
 import { EuiListGroup } from '../list_group';
-import { FlyoutLinks } from './nav_drawer';
+import { FlyoutLink } from './nav_drawer';
 
 export const ATTR_SELECTOR = 'data-name';
 
 export interface EuiNavDrawerGroupProps
   extends CommonProps, HTMLAttributes<HTMLDivElement> {
     className: string,
-    listItems: Array<FlyoutLinks>,
-    flyoutMenuButtonClick: (items: unknown[], title: string, item: unknown) => MouseEventHandler<HTMLButtonElement>,
+    listItems: Array<FlyoutLink>,
+    /**
+     * While not normally required, it is required to pass a function for handling
+     * of the flyout menu button click
+     */
+    flyoutMenuButtonClick: (items: Array<FlyoutLink>, title: string, item: FlyoutLink) => MouseEventHandler<HTMLButtonElement>,
+    /**
+     * Passthrough function to be called when the flyout is closing
+     * See ./nav_drawer.js
+     */
     onClose: () => void,
   }
 
 export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
   className,
   listItems,
-  flyoutMenuButtonClick = () => {},
+  flyoutMenuButtonClick,
   onClose = () => {},
   ...rest
 }) => {
@@ -32,16 +40,17 @@ export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
     ? undefined
     : listItems.map(item => {
         // If the flyout menu exists, pass back the list of times and the title with the onClick handler of the item
-        const { flyoutMenu, onClick, ...itemProps } = item;
-        if (flyoutMenu && flyoutMenuButtonClick) {
+        const { flyoutMenu, onClick } = item;
+        const { ...itemProps } = item;
+        if (flyoutMenu && flyoutMenuButtonClick && flyoutMenu.listItems) {
           const items = [...flyoutMenu.listItems];
           const title = `${flyoutMenu.title}`;
           itemProps.onClick = () => flyoutMenuButtonClick(items, title, item);
           itemProps['aria-expanded'] = false;
         } else {
-          itemProps.onClick = (...args: any[]) => {
+          itemProps.onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
             if (onClick) {
-              onClick(...args);
+              onClick(event);
             }
             onClose();
           };
@@ -54,14 +63,14 @@ export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
         );
         itemProps.size = item.size || 's';
         itemProps[ATTR_SELECTOR] = item.label;
-        itemProps['aria-label'] = item['aria-label'] || item.label;
+        itemProps['aria-label'] = item['aria-label'] || item.label as string;
 
         // Add an avatar in place of non-existent icons
         const itemProvidesIcon = !!item.iconType || !!item.icon;
         if (!itemProvidesIcon) {
           itemProps.icon = (
             <span className="euiNavDrawerGroup__itemDefaultIcon">
-              {toInitials(item.label)}
+              {toInitials(item.label as string)}
             </span>
           );
         }
