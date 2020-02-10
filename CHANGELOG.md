@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
+- Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
