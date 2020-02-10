@@ -2,6 +2,7 @@ dist
 node_modules
 es
 lib
+test-env
 types
 eui.d.ts
 **/*.snap.js
