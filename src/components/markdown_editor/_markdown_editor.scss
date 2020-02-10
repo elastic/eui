@@ -1,43 +1,21 @@
-.euiMarkdownEditor__toolbar {
-  background: $euiColorEmptyShade;
-  border: $euiBorderThin;
-  border-color: $euiColorLightShade;
-  border-bottom: none;
-  padding: $euiSizeXS;
-
-  &__buttons {
-    flex-direction: row;
-
-    > * {
-      margin-right: $euiSizeXS;
-    }
-  }
-
-  &__divider {
-    content: '';
-    height: $euiSizeL;
-    display: block;
-    margin-left: $euiSizeXS;
-    padding-right: $euiSizeXS;
-    border-left: 1px solid $euiColorLightShade;
-  }
-}
-
-
-.euiMarkdownEditor__previewToggleButton {
-  width: 150px;
-}
-
 .euiMarkdownEditor__previewContainer {
-  border: $euiBorderThin;
-  min-height: 150px;
-  overflow-y: auto;
   @include euiScrollBar;
+  @include euiFormControlDefaultShadow;
+  background: $euiColorEmptyShade;
+  height: 150px;
+  overflow-y: auto;
   padding: $euiSizeM;
 }
 
-// Overrides for styles in the "preview" pane
+.euiMarkdownEditor__textArea {
+  background: $euiColorEmptyShade;
+}
 
+.euiMarkdownEditor__markdownWrapper {
+  line-height: 0;
+}
+
+// Overrides for styles in the "preview" pane
 .euiMarkdownEditor__markdownWrapper .euiMarkdownEditor__displayText {
   blockquote {
     @include euiFont;
@@ -47,7 +25,8 @@
     padding: 0 $euiSize;
     text-align: left;
 
-    &::before, &::after {
+    &::before,
+    &::after {
       display: none;
     }
   }

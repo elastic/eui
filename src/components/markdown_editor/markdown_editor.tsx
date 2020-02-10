@@ -12,7 +12,7 @@ import { EuiText } from '../text';
 import { EuiTextArea } from '../form/text_area';
 // import { EuiI18n } from '../i18n';
 
-import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
+import { EuiMarkdownEditorToolbar, EuiMarkdownEditorFilePicker } from './';
 
 export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -101,12 +101,15 @@ export class EuiMarkdownEditor extends Component<
           <div className="euiMarkdownEditor__markdownWrapper">
             <EuiTextArea
               id={this.editorId}
+              className="euiMarkdownEditor__textArea"
               fullWidth
+              compressed
               onChange={(e: any) => {
                 this.setState({ editorContent: e.target.value });
               }}
               value={this.state.editorContent}
             />
+            <EuiMarkdownEditorFilePicker />
           </div>
         )}
       </div>

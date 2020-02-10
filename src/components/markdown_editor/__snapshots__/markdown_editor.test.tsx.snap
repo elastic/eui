@@ -179,10 +179,18 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     class="euiMarkdownEditor__markdownWrapper"
   >
     <textarea
-      class="euiTextArea euiTextArea--resizeVertical euiTextArea--fullWidth"
+      class="euiTextArea euiTextArea--resizeVertical euiTextArea--fullWidth euiTextArea--compressed euiMarkdownEditor__textArea"
       id="editorId"
-      rows="6"
+      rows="3"
     />
+    <div
+      class="euiMarkdownEditor__filePicker"
+    >
+      <input
+        class="euiMarkdownEditor__filePicker__input"
+        type="file"
+      />
+    </div>
   </div>
 </div>
 `;

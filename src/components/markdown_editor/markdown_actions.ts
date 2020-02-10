@@ -200,7 +200,11 @@ function insertText(
 
     const nativeInputValueSetter =
       // @ts-ignore
-      Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;
+      Object.getOwnPropertyDescriptor(
+        // @ts-ignore
+        window.HTMLTextAreaElement.prototype,
+        'value'
+      ).set;
     try {
       // @ts-ignore
       nativeInputValueSetter.call(textarea, before + text + after);
