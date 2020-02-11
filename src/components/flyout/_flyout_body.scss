@@ -8,7 +8,12 @@
 
     &.euiFlyoutBody__overflow-banner {
       @include euiYScrollWithBottomShadows;
+
     }
+  }
+
+  .euiFlyoutBody__overflow-banner .euiCallOut {
+    border: none;
   }
 
   .euiFlyoutBody__overflowContent {
