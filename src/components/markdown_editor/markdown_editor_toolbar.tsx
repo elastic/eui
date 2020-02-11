@@ -7,7 +7,7 @@ import { EuiI18n } from '../i18n';
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     markdownActions?: any;
-    viewMarkdownPreview?: any;
+    viewMarkdownPreview?: boolean;
     onTogglePreview?: any;
   };
 
@@ -26,6 +26,21 @@ export class EuiMarkdownEditorToolbar extends Component<
       label: 'Italic',
       name: 'italic',
       iconType: 'editorItalic',
+    },
+  ];
+
+  listButtons = [
+    {
+      id: 'mdUl',
+      label: 'Unordered list',
+      name: 'ul',
+      iconType: 'editorUnorderedList',
+    },
+    {
+      id: 'mdOl',
+      label: 'Ordered list',
+      name: 'ol',
+      iconType: 'editorOrderedList',
     },
   ];
 
@@ -50,21 +65,6 @@ export class EuiMarkdownEditorToolbar extends Component<
     },
   ];
 
-  listButtons = [
-    {
-      id: 'mdUl',
-      label: 'Unordered list',
-      name: 'ul',
-      iconType: 'editorUnorderedList',
-    },
-    {
-      id: 'mdOl',
-      label: 'Ordered list',
-      name: 'ol',
-      iconType: 'editorOrderedList',
-    },
-  ];
-
   handleMdButtonClick = (mdButtonId: string) => {
     this.props.markdownActions.do(mdButtonId);
   };
@@ -84,18 +84,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                 color="text"
                 onClick={() => this.handleMdButtonClick(item.id)}
                 iconType={item.iconType}
-                aria-label="Next"
-                isDisabled={viewMarkdownPreview}
-              />
-            ))}
-            <span className="euiMarkdownEditor__toolbar__divider" />
-            {this.quoteCodeLinkButtons.map(item => (
-              <EuiButtonIcon
-                key={item.id}
-                color="text"
-                onClick={() => this.handleMdButtonClick(item.id)}
-                iconType={item.iconType}
-                aria-label="Next"
+                aria-label={item.label}
                 isDisabled={viewMarkdownPreview}
               />
             ))}
@@ -106,7 +95,18 @@ export class EuiMarkdownEditorToolbar extends Component<
                 color="text"
                 onClick={() => this.handleMdButtonClick(item.id)}
                 iconType={item.iconType}
-                aria-label="Next"
+                aria-label={item.label}
+                isDisabled={viewMarkdownPreview}
+              />
+            ))}
+            <span className="euiMarkdownEditor__toolbar__divider" />
+            {this.quoteCodeLinkButtons.map(item => (
+              <EuiButtonIcon
+                key={item.id}
+                color="text"
+                onClick={() => this.handleMdButtonClick(item.id)}
+                iconType={item.iconType}
+                aria-label={item.label}
                 isDisabled={viewMarkdownPreview}
               />
             ))}
