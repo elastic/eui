@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFilePicker is rendered 1`] = `
+<div
+  class="euiFilePicker euiFilePicker--large testClass1 testClass2"
+>
+  <div
+    class="euiFilePicker__wrap"
+  >
+    <input
+      aria-label="aria-label"
+      class="euiFilePicker__input"
+      data-test-subj="test subject string"
+      type="file"
+    />
+    <div
+      class="euiFilePicker__prompt"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--large euiIcon-isLoading euiFilePicker__icon"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+      <div
+        class="euiFilePicker__promptText"
+      >
+        Select or drag and drop a file
+      </div>
+    </div>
+  </div>
+</div>
+`;

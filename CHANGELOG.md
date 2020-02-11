@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `banner` prop to `EuiFlyoutBody` and `borderless` prop to `EuiCallOut` ([#2837](https://github.com/elastic/eui/pull/2837))
+- Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
+- Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
+- Added `banner` prop to `EuiFlyoutBody` and updated `euiOverflowShadow` mixin ([#2837](https://github.com/elastic/eui/pull/2837))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
