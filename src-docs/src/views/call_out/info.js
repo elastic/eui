@@ -12,15 +12,6 @@ export default () => (
         really long so that, when viewed within a browser that&rsquo;s fairly
         narrow, it will wrap, too.
       </p>
-      <EuiLink href="#">View docs</EuiLink>
-    </EuiCallOut>
-    <EuiSpacer size="m" />
-    <EuiCallOut borderless title="This callout has no border" iconType="help">
-      <p>
-        Here&rsquo;s some stuff that you need to know. We can make this text
-        really long so that, when viewed within a browser that&rsquo;s fairly
-        narrow, it will wrap, too.
-      </p>
       <p>
         And some other stuff on another line, just for kicks. And{' '}
         <EuiLink href="#">here&rsquo;s a link</EuiLink>.
