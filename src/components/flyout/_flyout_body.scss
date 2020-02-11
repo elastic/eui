@@ -5,6 +5,10 @@
 
   .euiFlyoutBody__overflow {
     @include euiYScrollWithShadows;
+
+    &.euiFlyoutBody__overflow-banner {
+      @include euiYScrollWithBottomShadows;
+    }
   }
 
   .euiFlyoutBody__overflowContent {

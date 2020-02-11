@@ -6,10 +6,6 @@
     padding: $euiSizeS;
   }
 
-  &.euiCallOut--borderless {
-    border: none;
-  }
-
   .euiCallOutHeader__icon {
     flex: 0 0 auto;
     // Vertically center icon with first line of title

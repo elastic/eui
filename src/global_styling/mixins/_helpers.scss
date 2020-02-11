@@ -48,6 +48,33 @@
   }
 }
 
+// Custom overflow shadow plus scrollbars
+@mixin euiYScrollWithBottomShadows {
+  @include euiScrollBar;
+  @include euiOverflowShadow('y', 'end');
+  height: 100%;
+  overflow-y: auto;
+}
+
+@mixin euiYScrollWithTopShadows {
+  @include euiScrollBar;
+  @include euiOverflowShadow('y', 'start');
+  height: 100%;
+  overflow-y: auto;
+}
+
+@mixin euiXScrollWithLeftShadows {
+  @include euiScrollBar;
+  @include euiOverflowShadow('x', 'start');
+  overflow-x: auto;
+}
+
+@mixin euiXScrollWithRightShadows {
+  @include euiScrollBar;
+  @include euiOverflowShadow('x', 'end');
+  overflow-x: auto;
+}
+
 // The full overflow shadow plus scrollbars
 @mixin euiYScrollWithShadows {
   @include euiScrollBar;

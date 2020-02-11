@@ -18,7 +18,6 @@ export type EuiCallOutProps = CommonProps &
     color?: Color;
     size?: Size;
     heading?: Heading;
-    borderless?: boolean;
   };
 
 const colorToClassNameMap: { [color in Color]: string } = {
@@ -44,14 +43,12 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   children,
   className,
   heading,
-  borderless = false,
   ...rest
 }) => {
   const classes = classNames(
     'euiCallOut',
     colorToClassNameMap[color],
     sizeToClassNameMap[size],
-    { 'euiCallOut--borderless': borderless },
     className
   );
 

@@ -806,6 +806,14 @@ export const SassGuidelines = ({ selectedTheme }) => {
                   <EuiCode>.eui-yScrollWithShadows</EuiCode>.
                 </p>
                 <p>
+                  To have shadows in only one side, use
+                  <EuiCode>euiYScrollWithTopShadows</EuiCode> or
+                  <EuiCode>euiYScrollWithBottomShadows</EuiCode>. CSS utility
+                  classes are also available:{' '}
+                  <EuiCode>.eui-yScrollWithTopShadows</EuiCode> and{' '}
+                  <EuiCode>.eui-yScrollWithBottomShadows</EuiCode>
+                </p>
+                <p>
                   <b>Example:</b>
                 </p>
                 <EuiCodeBlock language="sass" isCopyable paddingSize="s">
