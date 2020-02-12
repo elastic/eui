@@ -140,6 +140,7 @@ export const iconTypes = [
   'package',
   'pageSelect',
   'pagesSelect',
+  'paperClip',
   'partial',
   'pause',
   'pencil',
