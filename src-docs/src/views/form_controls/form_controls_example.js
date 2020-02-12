@@ -22,7 +22,6 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutDelimited,
   EuiLink,
-  EuiMarkdownEditor,
   EuiRadio,
   EuiRadioGroup,
   EuiSelect,
@@ -50,10 +49,6 @@ const fieldPasswordHtml = renderToHtml(FieldPassword);
 import TextArea from './text_area';
 const textAreaSource = require('!!raw-loader!./text_area');
 const textAreaHtml = renderToHtml(TextArea);
-
-import MarkdownEditor from './markdown_editor';
-const markdownEditorSource = require('!!raw-loader!./markdown_editor');
-const markdownEditorHtml = renderToHtml(MarkdownEditor);
 
 import { FilePicker } from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
@@ -214,29 +209,6 @@ export const FormControlsExample = {
         EuiTextArea,
       },
       demo: <TextArea />,
-    },
-    {
-      title: 'Markdown Editor',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: markdownEditorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorHtml,
-        },
-      ],
-      text: (
-        <p>
-          This component renders a markdown editor, including buttons for
-          quickly inserting common markdown elements and a preview mode.
-        </p>
-      ),
-      props: {
-        EuiMarkdownEditor,
-      },
-      demo: <MarkdownEditor />,
     },
     {
       title: 'File Picker',

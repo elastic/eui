@@ -1,5 +1,6 @@
 .euiMarkdownEditor__filePicker {
   display: flex;
+  position: relative;
   height: $euiSizeXL;
   background: $euiPageBackgroundColor;
   border: $euiBorderThin;
