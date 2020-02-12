@@ -70,6 +70,13 @@ const alphaSnippet = `<EuiColorPicker
   id={colorPickerId}
   onChange={handleChange}
   color={chosenColor}
+  alpha={0.25}
+  isInvalid={hasErrors}
+/>`;
+const alphaSnippetShow = `<EuiColorPicker
+  id={colorPickerId}
+  onChange={handleChange}
+  color={chosenColor}
   alpha={1}
   showAlpha={true}
   isInvalid={hasErrors}
@@ -353,8 +360,14 @@ export const ColorPickerExample = {
           code: alphaHtml,
         },
       ],
-      //text: <p>alpha</p>,
-      snippet: alphaSnippet,
+      text: (
+        <p>
+          Set the <EuiCode>alpha</EuiCode> prop to designate a starting opacity
+          value (decimal range, 0 to 1). To allow user updates to the color
+          opacity, set the <EuiCode>showAlpha</EuiCode> prop to `true`.
+        </p>
+      ),
+      snippet: [alphaSnippet, alphaSnippetShow],
       demo: <Alpha />,
     },
     {
