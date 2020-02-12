@@ -14,8 +14,6 @@
   }
 }
 
-
-
 // Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
 .euiSwatchInput__stroke {
   fill: none;
@@ -37,5 +35,11 @@
   &.euiFieldText--compressed {
     height: $euiFormControlLayoutGroupInputCompressedHeight !important;
     border-radius: 0;
+  }
+}
+
+.euiColorPicker__alphaRange {
+  .euiRangeInput {
+    min-width: 0;
   }
 }

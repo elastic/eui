@@ -63,6 +63,18 @@ const colorPickerRangeSnippet = `<EuiColorStops
 />
 `;
 
+import { Alpha } from './alpha';
+const alphaSource = require('!!raw-loader!./alpha');
+const alphaHtml = renderToHtml(Alpha);
+const alphaSnippet = `<EuiColorPicker
+  id={colorPickerId}
+  onChange={handleChange}
+  color={chosenColor}
+  alpha={1}
+  showAlpha={true}
+  isInvalid={hasErrors}
+/>`;
+
 import { CustomSwatches } from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
@@ -328,6 +340,22 @@ export const ColorPickerExample = {
       ],
       snippet: colorPickerRangeSnippet,
       demo: <ColorStopsRange />,
+    },
+    {
+      title: 'Alpha channel (opacity) selection',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: alphaSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: alphaHtml,
+        },
+      ],
+      //text: <p>alpha</p>,
+      snippet: alphaSnippet,
+      demo: <Alpha />,
     },
     {
       title: 'Custom color swatches',

@@ -18,12 +18,14 @@ import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiFieldText } from '../form/field_text';
+import { EuiRange } from '../form/range';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form/form_control_layout';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
+import { EuiSpacer } from '../spacer';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 
 import { EuiHue } from './hue';
@@ -38,7 +40,7 @@ interface HTMLDivElementOverrides {
    */
   color?: string | null;
   onBlur?: () => void;
-  onChange: (hex: string) => void;
+  onChange: (hex: string, rgba?: number[]) => void;
   onFocus?: () => void;
 }
 export interface EuiColorPickerProps
@@ -84,6 +86,14 @@ export interface EuiColorPickerProps
    * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
    */
   append?: EuiFormControlLayoutProps['append'];
+  /**
+   * Alpha channel (opacity) value. Scale of 0-1.
+   */
+  alpha?: number;
+  /**
+   * Whether to render the alpha channel (opacity) value range slider.
+   */
+  showAlpha?: boolean;
 }
 
 function isKeyboardEvent(
@@ -93,9 +103,6 @@ function isKeyboardEvent(
 }
 
 const chromaValid = (color: string) => {
-  // Temporary function until `@types/chroma-js` allows the 2nd param.
-  // Consolidating the `ts-ignore`s to one location
-  // @ts-ignore
   return chroma.valid(color, 'hex');
 };
 
@@ -118,15 +125,23 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   popoverZIndex,
   prepend,
   append,
+  alpha = 1,
+  showAlpha = false,
 }) => {
+  const getRgb = (hex?: string | null): ColorSpaces['rgb'] =>
+    hex && chromaValid(hex) ? chroma(hex).rgb() : [NaN, NaN, NaN];
   const getHsvFromColor = useCallback(
     (): ColorSpaces['hsv'] =>
       color && chromaValid(color) ? chroma(color).hsv() : [0, 0, 0],
     [color]
   );
+  const getRgbFromColor = useCallback((): ColorSpaces['rgb'] => {
+    return getRgb(color);
+  }, [color]);
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
   const [colorAsHsv, setColorAsHsv] = useState(getHsvFromColor());
   const [lastHex, setLastHex] = useState(color);
+  const [lastRgb, setLastRgb] = useState(getRgbFromColor());
   const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
   const [popoverShouldOwnFocus, setPopoverShouldOwnFocus] = useState(false);
 
@@ -143,10 +158,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   useEffect(() => {
     if (lastHex !== color) {
       // Only react to outside changes
-      const newColorAsHsv = getHsvFromColor();
-      updateColorAsHsv(newColorAsHsv);
+      updateColorAsHsv(getHsvFromColor());
+      setLastRgb(getRgbFromColor());
     }
-  }, [color, lastHex, getHsvFromColor]);
+  }, [color, lastHex, getHsvFromColor, getRgbFromColor]);
 
   const classes = classNames('euiColorPicker', className);
   const popoverClass = 'euiColorPicker__popoverAnchor';
@@ -163,7 +178,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const handleOnChange = (hex: string) => {
     setLastHex(hex);
-    onChange(hex);
+    const rgb = getRgb(hex);
+    setLastRgb(rgb);
+    onChange(hex, [...rgb, alpha]);
   };
 
   const closeColorSelector = (shouldDelay = false) => {
@@ -273,6 +290,20 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     handleFinalSelection();
   };
 
+  const handleAlphaChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>,
+    isValid: boolean
+  ) => {
+    if (isValid) {
+      const target = e.target as HTMLInputElement;
+      const alpha = parseInt(target.value, 10) / 100;
+      const hex = lastHex || '';
+      onChange(hex, [...lastRgb, alpha]);
+    }
+  };
+
   const composite = (
     <React.Fragment>
       {mode !== 'swatch' && (
@@ -315,6 +346,28 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           ))}
         </EuiFlexGroup>
       )}
+      {showAlpha && (
+        <React.Fragment>
+          <EuiSpacer size="s" />
+          <EuiI18n
+            token="euiColorPicker.alphaLabel"
+            default="Alpha channel (opacity) value">
+            {(alphaLabel: string) => (
+              <EuiRange
+                className="euiColorPicker__alphaRange"
+                compressed={true}
+                showInput={true}
+                max={100}
+                min={0}
+                value={(alpha * 100).toFixed()}
+                append="%"
+                onChange={handleAlphaChange}
+                aria-label={alphaLabel}
+              />
+            )}
+          </EuiI18n>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 
@@ -346,7 +399,12 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         append={append}>
         <div
           // Used to pass the chosen color through to form layout SVG using currentColor
-          style={{ color: showColor && color ? color : undefined }}>
+          style={{
+            color:
+              showColor && color
+                ? `rgba(${lastRgb[0]},${lastRgb[1]},${lastRgb[2]},${alpha})`
+                : undefined,
+          }}>
           <EuiI18n
             tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
             defaults={[
