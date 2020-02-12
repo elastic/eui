@@ -6,7 +6,7 @@ export type EuiFlyoutBodyProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
     CommonProps & {
       /**
-       * Use to display a banner at the top of the body. It is suggested to use a `EuiCallOut` for it.
+       * Use to display a banner at the top of the body. It is suggested to use `EuiCallOut` for it.
        */
       banner?: ReactNode;
     }
