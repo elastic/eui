@@ -97,24 +97,8 @@
 /**
   * Overflow scrolling
   */
-.eui-yScrollWithTopShadows {
-  @include euiYScrollWithTopShadows;
-}
-
-.eui-yScrollWithBottomShadows {
-  @include euiYScrollWithBottomShadows;
-}
-
 .eui-yScrollWithShadows {
   @include euiYScrollWithShadows;
-}
-
-.eui-xScrollWithLeftShadows {
-  @include euiXScrollWithLeftShadows;
-}
-
-.eui-xScrollWithRightShadows {
-  @include euiXScrollWithRightShadows;
 }
 
 .eui-xScrollWithShadows {

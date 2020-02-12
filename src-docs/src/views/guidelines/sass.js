@@ -806,14 +806,6 @@ export const SassGuidelines = ({ selectedTheme }) => {
                   <EuiCode>.eui-yScrollWithShadows</EuiCode>.
                 </p>
                 <p>
-                  To have shadows in only one side, use
-                  <EuiCode>euiYScrollWithTopShadows</EuiCode> or
-                  <EuiCode>euiYScrollWithBottomShadows</EuiCode>. CSS utility
-                  classes are also available:{' '}
-                  <EuiCode>.eui-yScrollWithTopShadows</EuiCode> and{' '}
-                  <EuiCode>.eui-yScrollWithBottomShadows</EuiCode>
-                </p>
-                <p>
                   <b>Example:</b>
                 </p>
                 <EuiCodeBlock language="sass" isCopyable paddingSize="s">
@@ -875,6 +867,17 @@ export const SassGuidelines = ({ selectedTheme }) => {
               </EuiText>
             </div>
           </EuiPanel>
+          <EuiSpacer size="xl" />
+          <EuiText>
+            <p>
+              If you need to further customize the position or side of the
+              overflow shadow use the <EuiCode>euiOverflowShadow</EuiCode>{' '}
+              <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_shadow.scss">
+                mixin
+              </EuiLink>
+              .
+            </p>
+          </EuiText>
         </EuiFlexItem>
       </EuiFlexGrid>
 
