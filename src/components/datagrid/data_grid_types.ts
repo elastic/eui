@@ -15,14 +15,6 @@ export interface EuiDataGridControlColumn {
    */
   rowCellRender: EuiDataGridCellProps['renderCellValue'];
   /**
-   * Whether or not the column is expandable
-   */
-  isExpandable?: boolean;
-  /**
-   * When expanded, Component used for rendering the popover contents
-   */
-  popoverContent?: EuiDataGridPopoverContent;
-  /**
    * Width of the column, uses are unable to change this
    */
   width: number;

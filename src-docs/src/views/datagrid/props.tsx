@@ -53,4 +53,4 @@ export const DataGridPopoverContent: FunctionComponent<
 
 export const DataGridControlColumn: FunctionComponent<
   EuiDataGridControlColumn
-> = ({ isExpandable: _isExpandable = false }) => <div />;
+> = () => <div />;

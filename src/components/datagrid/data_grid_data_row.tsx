@@ -65,8 +65,7 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
         data-test-subj={dataTestSubj}
         {...rest}>
         {leadingControlColumns.map((leadingColumn, i) => {
-          const { id, rowCellRender, popoverContent } = leadingColumn;
-          const isExpandable = leadingColumn.isExpandable === true;
+          const { id, rowCellRender } = leadingColumn;
 
           return (
             <EuiDataGridCell
@@ -75,13 +74,13 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
               visibleRowIndex={visibleRowIndex}
               colIndex={i}
               columnId={id}
-              popoverContent={popoverContent || DefaultColumnFormatter}
+              popoverContent={DefaultColumnFormatter}
               width={leadingColumn.width}
               renderCellValue={rowCellRender}
               onCellFocus={onCellFocus}
               isFocused={focusedCellPositionInTheRow === i}
               interactiveCellId={interactiveCellId}
-              isExpandable={isExpandable}
+              isExpandable={false}
             />
           );
         })}
@@ -116,8 +115,7 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
           );
         })}
         {trailingControlColumns.map((leadingColumn, i) => {
-          const { id, rowCellRender, popoverContent } = leadingColumn;
-          const isExpandable = leadingColumn.isExpandable === true;
+          const { id, rowCellRender } = leadingColumn;
           const colIndex = i + columns.length + leadingControlColumns.length;
 
           return (
@@ -127,13 +125,13 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
               visibleRowIndex={visibleRowIndex}
               colIndex={colIndex}
               columnId={id}
-              popoverContent={popoverContent || DefaultColumnFormatter}
+              popoverContent={DefaultColumnFormatter}
               width={leadingColumn.width}
               renderCellValue={rowCellRender}
               onCellFocus={onCellFocus}
               isFocused={focusedCellPositionInTheRow === colIndex}
               interactiveCellId={interactiveCellId}
-              isExpandable={isExpandable}
+              isExpandable={false}
             />
           );
         })}
