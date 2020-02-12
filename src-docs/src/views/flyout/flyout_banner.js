@@ -22,18 +22,11 @@ export class FlyoutWithBanner extends Component {
 
     this.state = {
       isFlyoutVisible: false,
-      isSwitchChecked: true,
     };
 
     this.closeFlyout = this.closeFlyout.bind(this);
     this.showFlyout = this.showFlyout.bind(this);
   }
-
-  onSwitchChange = () => {
-    this.setState({
-      isSwitchChecked: !this.state.isSwitchChecked,
-    });
-  };
 
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
