@@ -33,6 +33,10 @@ import { FlyoutMaxWidth } from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
+import { FlyoutWithBanner } from './flyout_banner';
+const flyoutWithBannerSource = require('!!raw-loader!./flyout_large');
+const flyoutWithBannerHtml = renderToHtml(FlyoutLarge);
+
 const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
     <EuiTitle size="m">
@@ -94,6 +98,18 @@ const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
+    <!-- Flyout body -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+const flyoutWithBannerSnippet = `<EuiFlyout onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
+    <EuiTitle size="m">
+      <h2 id={flyoutTitle}></h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody banner={callOut}>
     <!-- Flyout body -->
   </EuiFlyoutBody>
 </EuiFlyout>
@@ -246,6 +262,28 @@ export const FlyoutExample = {
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
       props: { EuiFlyout },
+    },
+    {
+      title: 'Flyout with banner',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutWithBannerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: flyoutWithBannerHtml,
+        },
+      ],
+      text: (
+        <p>
+          To highlight some information at the top of a flyout, you can use the
+          <EuiCode>banner</EuiCode> prop available in{' '}
+          <EuiCode>EuiFlyoutBody</EuiCode>.
+        </p>
+      ),
+      snippet: flyoutWithBannerSnippet,
+      demo: <FlyoutWithBanner />,
     },
   ],
 };
