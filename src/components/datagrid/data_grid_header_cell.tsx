@@ -17,7 +17,7 @@ import { EuiDataGridColumn } from './data_grid_types';
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'columns' | 'leadingColumns'
+    'columns' | 'leadingControlColumns'
   > {
   column: EuiDataGridColumn;
   index: number;

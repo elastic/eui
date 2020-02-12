@@ -8,6 +8,7 @@ import {
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
   EuiDataGridPopoverContentProps,
+  EuiDataGridControlColumn,
 } from '../../../../src/components/datagrid/data_grid_types';
 import { EuiDataGridCellValueElementProps } from '../../../../src/components/datagrid/data_grid_cell';
 import { EuiDataGridSchemaDetector } from '../../../../src/components/datagrid/data_grid_schema';
@@ -49,3 +50,7 @@ export const DataGridColumnVisibility: FunctionComponent<
 export const DataGridPopoverContent: FunctionComponent<
   EuiDataGridPopoverContentProps
 > = () => <div />;
+
+export const DataGridControlColumn: FunctionComponent<
+  EuiDataGridControlColumn
+> = ({ isExpandable: _isExpandable = false }) => <div />;

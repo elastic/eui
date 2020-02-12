@@ -5,16 +5,17 @@ import {
   EuiDataGridColumn,
   EuiDataGridSorting,
   EuiDataGridFocusedCell,
-  EuiDataGridActionColumn,
+  EuiDataGridControlColumn,
 } from './data_grid_types';
 import { CommonProps } from '../common';
 import { EuiDataGridSchema } from './data_grid_schema';
 import { EuiDataGridDataRowProps } from './data_grid_data_row';
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
-import { EuiDataGridActionHeaderCell } from './data_grid_action_header_cell';
+import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 
 export interface EuiDataGridHeaderRowPropsSpecificProps {
-  leadingColumns?: EuiDataGridActionColumn[];
+  leadingControlColumns?: EuiDataGridControlColumn[];
+  trailingControlColumns?: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
   columnWidths: EuiDataGridColumnWidths;
   schema: EuiDataGridSchema;
@@ -35,7 +36,8 @@ const EuiDataGridHeaderRow = forwardRef<
   EuiDataGridHeaderRowProps
 >((props, ref) => {
   const {
-    leadingColumns = [],
+    leadingControlColumns = [],
+    trailingControlColumns = [],
     columns,
     schema,
     columnWidths,
@@ -60,11 +62,11 @@ const EuiDataGridHeaderRow = forwardRef<
       className={classes}
       data-test-subj={dataTestSubj}
       {...rest}>
-      {leadingColumns.map((actionColumn, index) => (
-        <EuiDataGridActionHeaderCell
-          key={actionColumn.id}
+      {leadingControlColumns.map((controlColumn, index) => (
+        <EuiDataGridControlHeaderCell
+          key={controlColumn.id}
           index={index}
-          actionColumn={actionColumn}
+          controlColumn={controlColumn}
           focusedCell={focusedCell}
           setFocusedCell={setFocusedCell}
           headerIsInteractive={headerIsInteractive}
@@ -74,7 +76,7 @@ const EuiDataGridHeaderRow = forwardRef<
         <EuiDataGridHeaderCell
           key={column.id}
           column={column}
-          index={index}
+          index={index + leadingControlColumns.length}
           columnWidths={columnWidths}
           focusedCell={focusedCell}
           setFocusedCell={setFocusedCell}
@@ -82,6 +84,16 @@ const EuiDataGridHeaderRow = forwardRef<
           setColumnWidth={setColumnWidth}
           defaultColumnWidth={defaultColumnWidth}
           sorting={sorting}
+          headerIsInteractive={headerIsInteractive}
+        />
+      ))}
+      {trailingControlColumns.map((controlColumn, index) => (
+        <EuiDataGridControlHeaderCell
+          key={controlColumn.id}
+          index={index + leadingControlColumns.length + columns.length}
+          controlColumn={controlColumn}
+          focusedCell={focusedCell}
+          setFocusedCell={setFocusedCell}
           headerIsInteractive={headerIsInteractive}
         />
       ))}

@@ -3,33 +3,33 @@ import classnames from 'classnames';
 import { keyCodes } from '../../services';
 import tabbable from 'tabbable';
 import {
-  EuiDataGridActionColumn,
+  EuiDataGridControlColumn,
   EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { EuiDataGridDataRowProps } from './data_grid_data_row';
 
-export interface EuiDataGridActionHeaderRowProps {
+export interface EuiDataGridControlHeaderRowProps {
   index: number;
-  actionColumn: EuiDataGridActionColumn;
+  controlColumn: EuiDataGridControlColumn;
   focusedCell: EuiDataGridFocusedCell;
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
 }
 
-export const EuiDataGridActionHeaderCell: FunctionComponent<
-  EuiDataGridActionHeaderRowProps
+export const EuiDataGridControlHeaderCell: FunctionComponent<
+  EuiDataGridControlHeaderRowProps
 > = props => {
   const {
-    actionColumn,
+    controlColumn,
     index,
     focusedCell,
     setFocusedCell,
     headerIsInteractive,
   } = props;
 
-  const { headerCellRender: HeaderCellRender, width, id } = actionColumn;
+  const { headerCellRender: HeaderCellRender, width, id } = controlColumn;
 
-  const classes = classnames('euiDataGridActionHeaderCell');
+  const classes = classnames('euiDataGridHeaderCell');
 
   const headerRef = useRef<HTMLDivElement>(null);
   const isFocused = focusedCell[0] === index && focusedCell[1] === -1;

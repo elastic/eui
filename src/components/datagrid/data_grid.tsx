@@ -20,7 +20,7 @@ import {
   EuiDataGridInMemory,
   EuiDataGridPaginationProps,
   EuiDataGridInMemoryValues,
-  EuiDataGridActionColumn,
+  EuiDataGridControlColumn,
   EuiDataGridSorting,
   EuiDataGridStyle,
   EuiDataGridStyleBorders,
@@ -58,7 +58,14 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
-    leadingColumns?: EuiDataGridActionColumn[];
+    /**
+     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the left side of the data grid.
+     */
+    leadingControlColumns?: EuiDataGridControlColumn[];
+    /**
+     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the right side of the data grid.
+     */
+    trailingControlColumns?: EuiDataGridControlColumn[];
     /**
      * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
      */
@@ -210,6 +217,8 @@ function renderPagination(props: EuiDataGridProps) {
 
 function useDefaultColumnWidth(
   container: HTMLElement | null,
+  leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
+  trailingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
   columns: EuiDataGridProps['columns']
 ): number | null {
   const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
@@ -220,20 +229,32 @@ function useDefaultColumnWidth(
     if (container != null) {
       const gridWidth = container.clientWidth;
 
+      const controlColumnWidths = [
+        ...leadingControlColumns,
+        ...trailingControlColumns,
+      ].reduce<number>(
+        (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
+          claimedWidth + controlColumn.width,
+        0
+      );
+
       const columnsWithWidths = columns.filter<
         EuiDataGridColumn & { initialWidth: number }
       >(doesColumnHaveAnInitialWidth);
-      const claimedWidth = columnsWithWidths.reduce(
+
+      const definedColumnsWidth = columnsWithWidths.reduce(
         (claimedWidth, column) => claimedWidth + column.initialWidth,
         0
       );
+
+      const claimedWidth = controlColumnWidths + definedColumnsWidth;
 
       const widthToFill = gridWidth - claimedWidth;
       const unsizedColumnCount = columns.length - columnsWithWidths.length;
       const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
       setDefaultColumnWidth(columnWidth);
     }
-  }, [container, columns]);
+  }, [container, columns, leadingControlColumns, trailingControlColumns]);
 
   return defaultColumnWidth;
 }
@@ -318,13 +339,19 @@ function useInMemoryValues(
 function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
+  leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
+  trailingControlColumns: EuiDataGridProps['trailingControlColumns'] = [],
   focusedCell: EuiDataGridFocusedCell,
   headerIsInteractive: boolean,
   setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void,
   updateFocus: Function
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
-    const colCount = visibleColumns.length - 1;
+    const colCount =
+      visibleColumns.length +
+      leadingControlColumns.length +
+      trailingControlColumns.length -
+      1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
     const { keyCode, ctrlKey } = event;
@@ -493,7 +520,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   };
 
   const {
-    leadingColumns,
+    leadingControlColumns,
+    trailingControlColumns,
     columns,
     columnVisibility,
     schemaDetectors,
@@ -556,6 +584,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
     containerRef,
+    leadingControlColumns,
+    trailingControlColumns,
     orderedVisibleColumns
   );
 
@@ -752,6 +782,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 onKeyDown={createKeyDownHandler(
                   props,
                   orderedVisibleColumns,
+                  leadingControlColumns,
+                  trailingControlColumns,
                   realizedFocusedCell,
                   headerIsInteractive,
                   setFocusedCell,
@@ -789,7 +821,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       {ref => (
                         <EuiDataGridHeaderRow
                           ref={ref}
-                          leadingColumns={leadingColumns}
+                          leadingControlColumns={leadingControlColumns}
+                          trailingControlColumns={trailingControlColumns}
                           columns={orderedVisibleColumns}
                           columnWidths={columnWidths}
                           defaultColumnWidth={defaultColumnWidth}
@@ -807,7 +840,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       defaultColumnWidth={defaultColumnWidth}
                       inMemoryValues={inMemoryValues}
                       inMemory={inMemory}
-                      leadingColumns={leadingColumns}
+                      leadingControlColumns={leadingControlColumns}
+                      trailingControlColumns={trailingControlColumns}
                       columns={orderedVisibleColumns}
                       schema={mergedSchema}
                       schemaDetectors={allSchemaDetectors}

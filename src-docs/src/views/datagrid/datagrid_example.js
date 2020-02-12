@@ -29,6 +29,7 @@ import {
   DataGridToolbarVisibilityOptions,
   DataGridColumnVisibility,
   DataGridPopoverContent,
+  DataGridControlColumn,
 } from './props';
 
 const gridSnippet = `
@@ -46,6 +47,22 @@ const gridSnippet = `
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
+    leadingControlColumns={[
+      {
+        id: 'selection',
+        width: 31,
+        headerCellRender: () => <span>Select a Row</span>,
+        rowCellRender: () => <div><EuiSelectBox ... /></div>,
+      },
+    ]}
+    trailingControlColumns={[
+      {
+        id: 'actions',
+        width: 40,
+        headerCellRender: () => null,
+        rowCellRender: MyGridActionsComponent,
+      },
+    ]}
     // Optional. Customize the content inside the cell. The current example outputs the row and column position.
     // Often used in combination with useEffect() to dynamically change the render.
     renderCellValue={({ rowIndex, columnId }) =>
@@ -307,6 +324,7 @@ export const DataGridExample = {
         EuiDataGrid,
         EuiDataGridColumn: DataGridColumn,
         EuiDataGridColumnVisibility: DataGridColumnVisibility,
+        EuiDataGridControlColumn: DataGridControlColumn,
         EuiDataGridInMemory: DataGridInMemory,
         EuiDataGridPagination: DataGridPagination,
         EuiDataGridSorting: DataGridSorting,

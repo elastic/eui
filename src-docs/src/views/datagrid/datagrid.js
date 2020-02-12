@@ -12,8 +12,9 @@ import {
   EuiLink,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiPopover,
+  EuiButtonIcon,
 } from '../../../../src/components/';
-import { EuiButtonIcon } from '../../../../src/components/button/button_icon';
 
 const columns = [
   {
@@ -82,6 +83,38 @@ for (let i = 1; i < 100; i++) {
   });
 }
 
+const trailingControlColumns = [
+  {
+    id: 'actions',
+    width: 40,
+    headerCellRender: () => null,
+    rowCellRender: function RowCellRender() {
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      return (
+        <div>
+          <EuiPopover
+            isOpen={isPopoverOpen}
+            anchorPosition="upCenter"
+            button={
+              <EuiButtonIcon
+                aria-label="show actions"
+                iconType="boxesHorizontal"
+                color="text"
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+              />
+            }
+            closePopover={() => setIsPopoverOpen(false)}
+            ownFocus={true}>
+            <EuiButtonIcon aria-label="pin this" iconType="pin" color="text" />
+            <EuiButtonIcon aria-label="edit" iconType="pencil" color="text" />
+            <EuiButtonIcon aria-label="delete" iconType="trash" color="text" />
+          </EuiPopover>
+        </div>
+      );
+    },
+  },
+];
+
 export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
@@ -137,6 +170,7 @@ export default () => {
       aria-label="Data grid demo"
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
+      trailingControlColumns={trailingControlColumns}
       rowCount={raw_data.length}
       renderCellValue={renderCellValue}
       inMemory={{ level: 'sorting' }}

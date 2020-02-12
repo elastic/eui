@@ -13,8 +13,8 @@ export { EuiDataGridDataRowProps } from './data_grid_data_row';
 export { EuiDataGridHeaderRowProps } from './data_grid_header_row';
 export { EuiDataGridHeaderCellProps } from './data_grid_header_cell';
 export {
-  EuiDataGridActionHeaderRowProps,
-} from './data_grid_action_header_cell';
+  EuiDataGridControlHeaderRowProps,
+} from './data_grid_control_header_cell';
 export {
   EuiDataGridInMemoryRendererProps,
 } from './data_grid_inmemory_renderer';

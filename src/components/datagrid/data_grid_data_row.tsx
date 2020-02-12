@@ -1,7 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes, memo } from 'react';
 import classnames from 'classnames';
 import {
-  EuiDataGridActionColumn,
+  EuiDataGridControlColumn,
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
   EuiDataGridPopoverContent,
@@ -16,7 +16,8 @@ import { EuiText } from '../text';
 export type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
-    leadingColumns: EuiDataGridActionColumn[];
+    leadingControlColumns: EuiDataGridControlColumn[];
+    trailingControlColumns: EuiDataGridControlColumn[];
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
     popoverContents: EuiDataGridPopoverContents;
@@ -36,7 +37,8 @@ const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
 const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
   props => {
     const {
-      leadingColumns,
+      leadingControlColumns,
+      trailingControlColumns,
       columns,
       schema,
       popoverContents,
@@ -62,13 +64,9 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
         className={classes}
         data-test-subj={dataTestSubj}
         {...rest}>
-        {leadingColumns.map((leadingColumn, i) => {
+        {leadingControlColumns.map((leadingColumn, i) => {
           const { id, rowCellRender, popoverContent } = leadingColumn;
-
-          const isExpandable =
-            leadingColumn.isExpandable !== undefined
-              ? leadingColumn.isExpandable
-              : true;
+          const isExpandable = leadingColumn.isExpandable === true;
 
           return (
             <EuiDataGridCell
@@ -97,20 +95,43 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
             popoverContents[columnType as string] || DefaultColumnFormatter;
 
           const width = columnWidths[id] || defaultColumnWidth;
+          const columnPosition = i + leadingControlColumns.length;
 
           return (
             <EuiDataGridCell
               key={`${id}-${rowIndex}`}
               rowIndex={rowIndex}
               visibleRowIndex={visibleRowIndex}
-              colIndex={i}
+              colIndex={columnPosition}
               columnId={id}
               columnType={columnType}
               popoverContent={popoverContent}
               width={width || undefined}
               renderCellValue={renderCellValue}
               onCellFocus={onCellFocus}
-              isFocused={focusedCellPositionInTheRow === i}
+              isFocused={focusedCellPositionInTheRow === columnPosition}
+              interactiveCellId={interactiveCellId}
+              isExpandable={isExpandable}
+            />
+          );
+        })}
+        {trailingControlColumns.map((leadingColumn, i) => {
+          const { id, rowCellRender, popoverContent } = leadingColumn;
+          const isExpandable = leadingColumn.isExpandable === true;
+          const colIndex = i + columns.length + leadingControlColumns.length;
+
+          return (
+            <EuiDataGridCell
+              key={`${id}-${rowIndex}`}
+              rowIndex={rowIndex}
+              visibleRowIndex={visibleRowIndex}
+              colIndex={colIndex}
+              columnId={id}
+              popoverContent={popoverContent || DefaultColumnFormatter}
+              width={leadingColumn.width}
+              renderCellValue={rowCellRender}
+              onCellFocus={onCellFocus}
+              isFocused={focusedCellPositionInTheRow === colIndex}
               interactiveCellId={interactiveCellId}
               isExpandable={isExpandable}
             />

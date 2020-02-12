@@ -1,12 +1,30 @@
 import { ComponentType, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 
-export interface EuiDataGridActionColumn {
+export interface EuiDataGridControlColumn {
+  /**
+   * Used as the React `key` when rendering content
+   */
   id: string;
+  /**
+   * Component to render in the column header
+   */
   headerCellRender: ComponentType;
+  /**
+   * Component to render for each row in the column
+   */
   rowCellRender: EuiDataGridCellProps['renderCellValue'];
+  /**
+   * Whether or not the column is expandable
+   */
   isExpandable?: boolean;
+  /**
+   * When expanded, Component used for rendering the popover contents
+   */
   popoverContent?: EuiDataGridPopoverContent;
+  /**
+   * Width of the column, uses are unable to change this
+   */
   width: number;
 }
 
