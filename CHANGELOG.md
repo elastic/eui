@@ -4,6 +4,10 @@
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 - Added `paperClip` glyph to `EuiIcon` ([#2845](https://github.com/elastic/eui/pull/2845))
 
+**Bug fixes**
+
+- Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
+
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
 - Added `cheer` glyph to `EuiIcon` ([#2814](https://github.com/elastic/eui/pull/2814))
