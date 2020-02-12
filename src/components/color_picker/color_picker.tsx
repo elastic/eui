@@ -355,6 +355,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             {(alphaLabel: string) => (
               <EuiRange
                 className="euiColorPicker__alphaRange"
+                data-test-subj="colorPickerAlpha"
                 compressed={true}
                 showInput={true}
                 max={100}
