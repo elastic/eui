@@ -17,11 +17,13 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** A unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
+    // onChange?: (files: FileList | null) => void;
   };
 
 export interface MarkdownEditorState {
   editorContent: string;
   viewMarkdownPreview: boolean;
+  files: FileList | null;
 }
 
 export class EuiMarkdownEditor extends Component<
@@ -47,6 +49,7 @@ export class EuiMarkdownEditor extends Component<
     this.state = {
       editorContent: '',
       viewMarkdownPreview: false,
+      files: null,
     };
 
     // If an ID wasn't provided, just generate a rando
@@ -68,6 +71,13 @@ export class EuiMarkdownEditor extends Component<
     this.setState({ viewMarkdownPreview: e.target.checked });
   };
 
+  onAttachFiles = (files: FileList | null) => {
+    console.log('List of attached files -->', files);
+    this.setState({
+      files: files,
+    });
+  };
+
   render() {
     const { className, editorId, ...rest } = this.props;
 
@@ -82,6 +92,7 @@ export class EuiMarkdownEditor extends Component<
           onTogglePreview={this.onTogglePreview}
           viewMarkdownPreview={viewMarkdownPreview}
         />
+
         {this.state.viewMarkdownPreview ? (
           <div className="euiMarkdownEditor__markdownWrapper">
             <div className="euiMarkdownEditor__previewContainer">
@@ -96,14 +107,18 @@ export class EuiMarkdownEditor extends Component<
           </div>
         ) : (
           <div className="euiMarkdownEditor__markdownWrapper">
-            <EuiMarkdownEditorTextArea
-              id={this.editorId}
-              onChange={(e: any) => {
-                this.setState({ editorContent: e.target.value });
-              }}
-              value={this.state.editorContent}
-            />
-            <EuiMarkdownEditorFilePicker />
+            <EuiMarkdownEditorFilePicker
+              onChange={files => {
+                this.onAttachFiles(files);
+              }}>
+              <EuiMarkdownEditorTextArea
+                id={this.editorId}
+                onChange={(e: any) => {
+                  this.setState({ editorContent: e.target.value });
+                }}
+                value={this.state.editorContent}
+              />
+            </EuiMarkdownEditorFilePicker>
           </div>
         )}
       </div>

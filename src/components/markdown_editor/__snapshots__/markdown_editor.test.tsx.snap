@@ -178,35 +178,40 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
   <div
     class="euiMarkdownEditor__markdownWrapper"
   >
-    <textarea
-      class="euiMarkdownEditor__textArea"
-      id="editorId"
-      rows="6"
-    />
     <div
-      class="euiMarkdownEditor__filePicker"
+      draggable="true"
     >
-      <input
-        class="euiMarkdownEditor__filePicker__input"
-        type="file"
+      <textarea
+        class="euiMarkdownEditor__textArea"
+        id="editorId"
+        rows="6"
       />
       <div
-        class="euiMarkdownEditor__filePicker__placeholder"
+        class="euiMarkdownEditor__filePicker"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--small euiIcon-isLoading euiMarkdownEditor__filePicker__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <input
+          class="euiMarkdownEditor__filePicker__input"
+          multiple=""
+          type="file"
         />
         <div
-          class="euiMarkdownEditor__filePicker__text"
+          class="euiMarkdownEditor__filePicker__placeholder"
         >
-          Attach files by dragging & dropping or by clicking this area
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--small euiIcon-isLoading euiMarkdownEditor__filePicker__icon"
+            focusable="false"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <div
+            class="euiMarkdownEditor__filePicker__text"
+          >
+            Attach files by dragging & dropping or by clicking this area
+          </div>
         </div>
       </div>
     </div>
