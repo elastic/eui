@@ -220,6 +220,20 @@ function resolveIdentifierToPropTypes(node, state) {
     return buildPropTypePrimitiveExpression(types, 'func');
   if (identifier.name === 'Function')
     return buildPropTypePrimitiveExpression(types, 'func');
+  if (
+    (identifier.name === 'PropsForAnchor' ||
+      identifier.name === 'PropsForButton') &&
+    node.typeParameters != null
+  ) {
+    return getPropTypesForNode(
+      {
+        type: 'TSIntersectionType',
+        types: node.typeParameters.params,
+      },
+      true,
+      state
+    );
+  }
   if (identifier.name === 'ExclusiveUnion') {
     // We use ExclusiveUnion at the top level to exclusively discriminate between types
     // propTypes itself must be an object so merge the union sets together as an intersection
