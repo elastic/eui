@@ -34,8 +34,8 @@ const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
 import { FlyoutWithBanner } from './flyout_banner';
-const flyoutWithBannerSource = require('!!raw-loader!./flyout_large');
-const flyoutWithBannerHtml = renderToHtml(FlyoutLarge);
+const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
+const flyoutWithBannerHtml = renderToHtml(FlyoutWithBanner);
 
 const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
