@@ -23,6 +23,7 @@
     builders:
       - multijob:
           name: run child jobs
+          execution-type: SEQUENTIALLY
           projects:
             - name: elastic+eui+pull-request-test
               predefined-parameters: branch_specifier=${ghprbActualCommit}
