@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useReducer,
   useState,
+  Fragment,
 } from 'react';
 import { fake } from 'faker';
 
@@ -19,6 +20,14 @@ import {
   EuiFlexItem,
   EuiPopoverTitle,
   EuiSpacer,
+  EuiPortal,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiTitle,
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components/';
 
 import { euiColorHighlight as selectedRowColorLight } from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
@@ -31,6 +40,7 @@ const columns = [
     initialWidth: 38,
     isExpandable: false,
     isResizable: false,
+    headerCellRender: () => null,
   },
   {
     id: 'name',
@@ -189,12 +199,64 @@ const SelectionRowCell = withTheme(({ theme, rowIndex, setCellProps }) => {
   );
 });
 
+const FlyoutRowCell = rowIndex => {
+  let flyout;
+  const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
+  if (isFlyoutOpen) {
+    const rowData = data[rowIndex.rowIndex];
+    console.log(rowData);
+
+    const details = Object.entries(rowData).map(([key, value]) => {
+      return (
+        <Fragment>
+          <EuiDescriptionListTitle>{key}</EuiDescriptionListTitle>
+          <EuiDescriptionListDescription>{value}</EuiDescriptionListDescription>
+        </Fragment>
+      );
+    });
+
+    flyout = (
+      <EuiPortal>
+        <EuiFlyout ownFocus onClose={() => setIsFlyoutOpen(!isFlyoutOpen)}>
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2>{rowData.name}</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiDescriptionList>{details}</EuiDescriptionList>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      </EuiPortal>
+    );
+  }
+
+  return (
+    <Fragment>
+      <EuiButtonIcon
+        color="text"
+        iconType="eye"
+        iconSize="s"
+        aria-label="View details"
+        onClick={() => setIsFlyoutOpen(!isFlyoutOpen)}
+      />
+      {flyout}
+    </Fragment>
+  );
+};
+
 const leadingControlColumns = [
   {
     id: 'selection',
-    width: 31,
+    width: 32,
     headerCellRender: SelectionHeaderCell,
     rowCellRender: SelectionRowCell,
+  },
+  {
+    id: 'View',
+    width: 36,
+    headerCellRender: () => null,
+    rowCellRender: FlyoutRowCell,
   },
 ];
 
