@@ -177,6 +177,8 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
   cellProps?: object | CellPropsCallback<T>;
   columns: Array<EuiBasicTableColumn<T>>;
   error?: string;
+  tableCaption?: string;
+  rowHeader?: string;
   hasActions?: boolean;
   isExpandable?: boolean;
   isSelectable?: boolean;
@@ -439,6 +441,8 @@ export class EuiBasicTable<T = any> extends Component<
       hasActions,
       rowProps,
       cellProps,
+      tableCaption,
+      rowHeader,
       tableLayout,
       ...rest
     } = this.props;
@@ -533,22 +537,38 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTableCaption() {
-    const { items } = this.props;
-
+    const { items, pagination, tableCaption } = this.props;
+    let captionElement;
+    if (tableCaption) {
+      captionElement = tableCaption;
+    } else {
+      if (pagination && pagination.totalItemCount > 0) {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescriptionWithPagination"
+            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            values={{
+              totalItemCount: pagination.totalItemCount,
+              itemCount: items.length,
+            }}
+          />
+        );
+      } else {
+        captionElement = (
+          <EuiI18n
+            token="euiBasicTable.tableDescriptionWithoutPagination"
+            default="This table contains {itemCount} rows."
+            values={{
+              itemCount: items.length,
+            }}
+          />
+        );
+      }
+    }
     return (
       <EuiScreenReaderOnly>
-        <caption
-          className="euiTableCaption"
-          role="status"
-          aria-relevant="text"
-          aria-live="polite">
-          <EuiDelayRender>
-            <EuiI18n
-              token="euiBasicTable.tableDescription"
-              default="Below is a table of {itemCount} items."
-              values={{ itemCount: items.length }}
-            />
-          </EuiDelayRender>
+        <caption className="euiTableCaption">
+          <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
     );
@@ -808,6 +828,7 @@ export class EuiBasicTable<T = any> extends Component<
       selection,
       isSelectable,
       hasActions,
+      rowHeader,
       itemIdToExpandedRowMap = {},
       isExpandable,
     } = this.props;
@@ -843,12 +864,14 @@ export class EuiBasicTable<T = any> extends Component<
         );
         calculatedHasActions = true;
       } else if ((column as EuiTableFieldDataColumnType<T>).field) {
+        const fieldDataColumn = column as EuiTableFieldDataColumnType<T>;
         cells.push(
           this.renderItemFieldDataCell(
             itemId,
             item,
             column as EuiTableFieldDataColumnType<T>,
-            columnIndex
+            columnIndex,
+            fieldDataColumn.field === rowHeader
           )
         );
       } else {
@@ -1033,7 +1056,8 @@ export class EuiBasicTable<T = any> extends Component<
     itemId: ItemId<T>,
     item: T,
     column: EuiTableFieldDataColumnType<T>,
-    columnIndex: number
+    columnIndex: number,
+    setScopeRow: boolean
   ) {
     const { field, render, dataType } = column;
 
@@ -1042,7 +1066,7 @@ export class EuiBasicTable<T = any> extends Component<
     const value = get(item, field as string);
     const content = contentRenderer(value, item);
 
-    return this.renderItemCell(item, column, key, content);
+    return this.renderItemCell(item, column, key, content, setScopeRow);
   }
 
   renderItemComputedCell(
@@ -1057,14 +1081,15 @@ export class EuiBasicTable<T = any> extends Component<
     const contentRenderer = render || this.getRendererForDataType();
     const content = contentRenderer(item);
 
-    return this.renderItemCell(item, column, key, content);
+    return this.renderItemCell(item, column, key, content, false);
   }
 
   renderItemCell(
     item: T,
     column: EuiBasicTableColumn<T>,
     key: string | number,
-    content: ReactNode
+    content: ReactNode,
+    setScopeRow: boolean
   ) {
     const {
       align,
@@ -1094,6 +1119,7 @@ export class EuiBasicTable<T = any> extends Component<
         align={columnAlign}
         isExpander={isExpander}
         textOnly={textOnly || !render}
+        setScopeRow={setScopeRow}
         mobileOptions={{
           ...mobileOptions,
           render:

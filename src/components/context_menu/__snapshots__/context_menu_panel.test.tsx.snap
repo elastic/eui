@@ -8,6 +8,49 @@ exports[`EuiContextMenu is rendered 1`] = `
 />
 `;
 
+exports[`EuiContextMenu panel item can contain JSX 1`] = `
+<div
+  class="euiContextMenu"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <div
+      class="euiPopoverTitle"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        3
+      </span>
+    </div>
+    <div>
+      <div>
+        <button
+          class="euiContextMenuItem"
+          type="button"
+        >
+          <span
+            class="euiContextMenu__itemLayout"
+          >
+            <span
+              class="euiContextMenuItem__text"
+            >
+              <span
+                style="color:tomato"
+              >
+                foo
+              </span>
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 1`] = `
 <div
   class="euiContextMenu"

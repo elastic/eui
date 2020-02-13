@@ -1,5 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
+"<div>
+  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
+    <pre class=\\"euiCodeBlock__pre\\">
+      <code class=\\"euiCodeBlock__code javascript hljs\\">
+        <span class=\\"hljs-keyword\\">const</span>value =
+        <span class=\\"hljs-string\\">'State 1'</span>
+      </code>
+    </pre>
+  </div>
+</div>"
+`;
+
+exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
+"<div>
+  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
+    <pre class=\\"euiCodeBlock__pre\\">
+      <code class=\\"euiCodeBlock__code javascript hljs\\">
+        <span class=\\"hljs-keyword\\">const</span>value =
+        <span class=\\"hljs-string\\">'State 2'</span>
+      </code>
+    </pre>
+  </div>
+</div>"
+`;
+
 exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge"
@@ -104,7 +130,7 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
     class="euiCodeBlock__pre"
   >
     <code
-      class="euiCodeBlock__code html"
+      class="euiCodeBlock__code html hljs xml"
     >
       var some = 'code';
 console.log(some);
@@ -116,11 +142,11 @@ console.log(some);
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls"
-  style="max-height:200px"
+  style="max-height: 200px;"
 >
   <pre
     class="euiCodeBlock__pre"
-    style="max-height:200px"
+    style="max-height: 200px;"
   >
     <code
       class="euiCodeBlock__code"

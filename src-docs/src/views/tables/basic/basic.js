@@ -121,6 +121,7 @@ export const Table = () => {
   return (
     <EuiBasicTable
       items={items}
+      rowHeader="firstName"
       columns={columns}
       rowProps={getRowProps}
       cellProps={getCellProps}

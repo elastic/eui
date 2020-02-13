@@ -1,5 +1,24 @@
 [
   {
+    "version": "19.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tableDescription",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableDescriptionWithPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows out of {totalItemCount} rows."
+      },
+      {
+        "token": "euiBasicTable.tableDescriptionWithoutPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows."
+      }
+    ]
+  },
+  {
     "version": "18.3.0",
     "changes": [
       {

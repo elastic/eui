@@ -9,7 +9,10 @@ const EuiIconTokenBoolean = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M4.936 11.064l6.128-6.128a4.333 4.333 0 10-6.128 6.128zM8 13A5 5 0 118 3a5 5 0 010 10z" />
+    <path
+      fillRule="evenodd"
+      d="M8 13A5 5 0 118 3a5 5 0 010 10zm-2.828-2.172a4 4 0 015.656-5.656c.004.013-5.645 5.674-5.656 5.656z"
+    />
   </svg>
 );
 

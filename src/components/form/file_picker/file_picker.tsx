@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, InputHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
+
+import { CommonProps, keysOf } from '../../common';
 
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonEmpty } from '../../button';
@@ -14,56 +15,62 @@ const displayToClassNameMap = {
   large: 'euiFilePicker--large',
 };
 
-export const DISPLAYS = Object.keys(displayToClassNameMap);
+export const DISPLAYS = keysOf(displayToClassNameMap);
 
-export class EuiFilePicker extends Component {
-  static propTypes = {
-    id: PropTypes.string,
-    name: PropTypes.string,
-    className: PropTypes.string,
-    /**
-     * The content that appears in the dropzone if no file is attached
-     */
-    initialPromptText: PropTypes.node,
-    /**
-     * Use as a callback to access the HTML FileList API
-     */
-    onChange: PropTypes.func,
-    /**
-     * Reduces the size to a typical (compressed) input
-     */
-    compressed: PropTypes.bool,
-    /**
-     * Size or type of display;
-     * `default` for normal height, similar to other controls;
-     * `large` for taller size
-     */
-    display: PropTypes.oneOf(DISPLAYS),
-    fullWidth: PropTypes.bool,
-    isInvalid: PropTypes.bool,
-    isLoading: PropTypes.bool,
-  };
+export type EuiFilePickerDisplay = keyof typeof displayToClassNameMap;
 
+export interface EuiFilePickerProps
+  extends CommonProps,
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  id?: string;
+  name?: string;
+  className?: string;
+  /**
+   * The content that appears in the dropzone if no file is attached
+   */
+  initialPromptText?: ReactNode;
+  /**
+   * Use as a callback to access the HTML FileList API
+   */
+  onChange?: (files: FileList | null) => void;
+  /**
+   * Reduces the size to a typical (compressed) input
+   */
+  compressed?: boolean;
+  /**
+   * Size or type of display;
+   * `default` for normal height, similar to other controls;
+   * `large` for taller size
+   */
+  display?: EuiFilePickerDisplay;
+  fullWidth?: boolean;
+  isInvalid?: boolean;
+  isLoading?: boolean;
+  disabled?: boolean;
+}
+
+export class EuiFilePicker extends Component<EuiFilePickerProps> {
   static defaultProps = {
     initialPromptText: 'Select or drag and drop a file',
     compressed: false,
     display: 'large',
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      promptText: null,
-      isHoveringDrop: false,
-    };
-  }
+  state = {
+    promptText: null,
+    isHoveringDrop: false,
+  };
 
-  handleChange = filesSelected => {
+  fileInput: HTMLInputElement | null = null;
+
+  handleChange = (filesSelected?: string | null) => {
+    if (!this.fileInput) return;
+
     if (this.fileInput.files && this.fileInput.files.length > 1) {
       this.setState({
         promptText: `${this.fileInput.files.length} ${filesSelected}`,
       });
-    } else if (this.fileInput.files.length === 0) {
+    } else if (this.fileInput.files && this.fileInput.files.length === 0) {
       this.setState({ promptText: null });
     } else {
       this.setState({ promptText: this.fileInput.value.split('\\').pop() });
@@ -76,11 +83,14 @@ export class EuiFilePicker extends Component {
     }
   };
 
-  removeFiles = e => {
+  removeFiles = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
-    this.fileInput.value = null;
-    this.handleChange();
+
+    if (!this.fileInput) return;
+
+    this.fileInput.value = '';
+    this.handleChange(null);
   };
 
   showDrop = () => {
@@ -101,7 +111,7 @@ export class EuiFilePicker extends Component {
           'euiFilePicker.filesSelected',
         ]}
         defaults={['Clear selected files', 'files selected']}>
-        {([clearSelectedFiles, filesSelected]) => {
+        {([clearSelectedFiles, filesSelected]: string[]) => {
           const {
             id,
             name,
@@ -123,7 +133,7 @@ export class EuiFilePicker extends Component {
 
           const classes = classNames(
             'euiFilePicker',
-            displayToClassNameMap[display],
+            displayToClassNameMap[display!],
             {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,

@@ -26,7 +26,7 @@ function renderSizes(size, index) {
     code += ' +';
   }
 
-  return `${code}\n`;
+  return <div key={index}>{code}</div>;
 }
 
 export const ResponsiveExample = {

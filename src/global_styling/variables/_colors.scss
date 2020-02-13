@@ -78,6 +78,8 @@ $euiPaletteColorBlind: (
   )
 ) !default;
 
+$euiPaletteColorBlindKeys: map-keys($euiPaletteColorBlind);
+
 $euiColorVis0: map-get(map-get($euiPaletteColorBlind, 'euiColorVis0'), 'graphic') !default;
 $euiColorVis1: map-get(map-get($euiPaletteColorBlind, 'euiColorVis1'), 'graphic') !default;
 $euiColorVis2: map-get(map-get($euiPaletteColorBlind, 'euiColorVis2'), 'graphic') !default;

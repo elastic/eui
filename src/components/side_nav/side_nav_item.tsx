@@ -1,10 +1,60 @@
-import React, { cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  cloneElement,
+  ReactNode,
+  ReactElement,
+  MouseEventHandler,
+} from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../common';
 
 import { EuiIcon } from '../icon';
 
-const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
+type ItemProps = CommonProps & {
+  href?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLElement>;
+  children: ReactNode;
+};
+
+interface SideNavItemProps {
+  isOpen?: boolean;
+  isSelected?: boolean;
+  isParent?: boolean;
+  icon?: ReactElement;
+  items?: ReactNode;
+  depth?: number;
+}
+
+type ExcludeEuiSideNavItemProps<T> = Pick<
+  T,
+  Exclude<keyof T, keyof SideNavItemProps | 'renderItem'>
+>;
+type OmitEuiSideNavItemProps<T> = {
+  [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K]
+};
+
+interface GuaranteedRenderItemProps {
+  href?: string;
+  onClick?: ItemProps['onClick'];
+  className: string;
+  children: ReactNode;
+}
+export type RenderItem<T> = (
+  // argument is the set of extra component props + GuaranteedRenderItemProps
+  props: OmitEuiSideNavItemProps<T> & GuaranteedRenderItemProps
+) => JSX.Element;
+
+export type EuiSideNavItemProps<T> = T extends { renderItem: Function }
+  ? T & { renderItem: RenderItem<T> }
+  : T;
+
+const DefaultRenderItem = ({
+  href,
+  onClick,
+  className,
+  children,
+  ...rest
+}: ItemProps) => {
   if (href) {
     return (
       <a className={className} href={href} onClick={onClick} {...rest}>
@@ -28,7 +78,10 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
   );
 };
 
-export const EuiSideNavItem = ({
+export function EuiSideNavItem<
+  T extends ItemProps &
+    SideNavItemProps & { renderItem?: (props: any) => JSX.Element }
+>({
   isOpen,
   isSelected,
   isParent,
@@ -37,10 +90,10 @@ export const EuiSideNavItem = ({
   href,
   items,
   children,
-  depth,
-  renderItem = defaultRenderItem,
+  renderItem: RenderItem = DefaultRenderItem,
+  depth = 0,
   ...rest
-}) => {
+}: EuiSideNavItemProps<T>) {
   let childItems;
 
   if (items && isOpen) {
@@ -85,29 +138,16 @@ export const EuiSideNavItem = ({
     </span>
   );
 
+  const renderItemProps: GuaranteedRenderItemProps = {
+    href,
+    onClick,
+    className: buttonClasses,
+    children: buttonContent,
+  };
   return (
     <div className={classes}>
-      {renderItem({
-        href,
-        onClick,
-        className: buttonClasses,
-        children: buttonContent,
-        ...rest,
-      })}
+      <RenderItem {...renderItemProps} {...rest} />
       {childItems}
     </div>
   );
-};
-
-EuiSideNavItem.propTypes = {
-  isOpen: PropTypes.bool,
-  isSelected: PropTypes.bool,
-  isParent: PropTypes.bool,
-  icon: PropTypes.node,
-  onClick: PropTypes.func,
-  href: PropTypes.string,
-  items: PropTypes.node,
-  children: PropTypes.node,
-  depth: PropTypes.number,
-  renderItem: PropTypes.func,
-};
+}

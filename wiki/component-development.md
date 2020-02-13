@@ -66,14 +66,13 @@ If a component has subcomponents (`<EuiToolBar>` and `<EuiToolBarSearch>`), tigh
 
 ### Writing CSS
 
-We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-scss].
+Refer to the [SASS page][sass] of our documentation site for a guide to writing styles.
 
 [component-design]: component-design.md
 [docs]: https://elastic.github.io/eui/
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md
-[kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
-[kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
+[sass]: https://elastic.github.io/eui/#/guidelines/sass
 
 ## TypeScript definitions
 
@@ -81,7 +80,7 @@ We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-s
 
 Many of our components use `rest parameters` and the `spread` operator to pass props through to an underlying DOM element. In those instances the component's TypeScript definition needs to properly include the target DOM element's props.
 
-A `Foo` component that passes `...rest` through to a `button` element would have the props interface 
+A `Foo` component that passes `...rest` through to a `button` element would have the props interface
 
 ```
 // passes extra props to a button
