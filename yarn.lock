@@ -986,10 +986,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@elastic/charts@^17.0.2":
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-17.0.2.tgz#0bd2cb7b78bd60255eed2a9b0ce5049a62dc5d8a"
-  integrity sha512-hz31Yma/HSdu9tRS/05xNXY+YuaHOadD9Gd+eh7ankNlJJOFI4IRV6F8BMnloeWYedNXBSTp4susFLwJNQQ+0w==
+"@elastic/charts@^17.0.3":
+  version "17.0.3"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-17.0.3.tgz#4117e18f572b751519a07d3ddfc0763e46f50e95"
+  integrity sha512-rrVSovjvEMh4hkg8pDgNRR493feokSInk0JfErDgCnf3kCZS7wpMh0xGvFYXmIECEiNxtayEkTmuaDBO8R114Q==
   dependencies:
     "@types/d3-shape" "^1.3.1"
     classnames "^2.2.6"
@@ -998,7 +998,6 @@
     d3-color "^1.4.0"
     d3-scale "^1.0.7"
     d3-shape "^1.3.4"
-    fast-deep-equal "^3.1.1"
     konva "^4.0.18"
     newtype-ts "^0.2.4"
     prop-types "^15.7.2"
@@ -5798,11 +5797,6 @@ fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
   integrity sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
-
-fast-deep-equal@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.1.tgz#545145077c501491e33b15ec408c294376e94ae4"
-  integrity sha512-8UEa58QDLauDNfpbrX55Q9jrGHThw2ZMdOky5Gl1CDtVeJDPVrG4Jxx1N8jw2gkWaff5UUuX1KJd+9zGe2B+ZA==
 
 fast-diff@^1.1.2:
   version "1.2.0"

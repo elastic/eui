@@ -79,7 +79,7 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
-    "@elastic/charts": "^17.0.2",
+    "@elastic/charts": "^17.0.3",
     "@elastic/datemath": "^5.0.2",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@svgr/core": "5.0.1",
