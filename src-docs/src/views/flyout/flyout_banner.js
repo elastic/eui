@@ -40,7 +40,7 @@ export class FlyoutWithBanner extends Component {
     let flyout;
 
     const callOut = (
-      <EuiCallOut borderless>
+      <EuiCallOut>
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiIcon type="help" />
