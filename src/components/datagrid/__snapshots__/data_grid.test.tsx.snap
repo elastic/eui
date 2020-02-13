@@ -183,6 +183,9 @@ Array [
         class="euiDataGrid__controls"
         data-test-sub="dataGridControls"
       >
+        <button>
+          Button
+        </button>
         <div
           class="euiPopover euiPopover--anchorDownLeft"
           data-test-subj="dataGridColumnSelectorPopover"
@@ -251,9 +254,6 @@ Array [
             </button>
           </div>
         </div>
-        <button>
-          Button
-        </button>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
           data-test-subj="dataGridFullScrenButton"

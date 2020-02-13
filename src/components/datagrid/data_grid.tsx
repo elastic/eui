@@ -650,6 +650,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     <Fragment>
       {checkOrDefaultToolBarDiplayOptions(
         toolbarVisibility,
+        'additionalControls'
+      ) && typeof toolbarVisibility !== 'boolean'
+        ? toolbarVisibility.additionalControls
+        : null}
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
         'showColumnSelector'
       )
         ? columnSelector
@@ -662,12 +668,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         : null}
       {checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showSortSelector')
         ? columnSorting
-        : null}
-      {checkOrDefaultToolBarDiplayOptions(
-        toolbarVisibility,
-        'additionalControls'
-      ) && typeof toolbarVisibility !== 'boolean'
-        ? toolbarVisibility.additionalControls
         : null}
     </Fragment>
   );

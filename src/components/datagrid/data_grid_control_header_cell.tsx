@@ -14,6 +14,7 @@ export interface EuiDataGridControlHeaderRowProps {
   focusedCell: EuiDataGridFocusedCell;
   setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
+  className?: string;
 }
 
 export const EuiDataGridControlHeaderCell: FunctionComponent<
@@ -25,11 +26,12 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<
     focusedCell,
     setFocusedCell,
     headerIsInteractive,
+    className,
   } = props;
 
   const { headerCellRender: HeaderCellRender, width, id } = controlColumn;
 
-  const classes = classnames('euiDataGridHeaderCell');
+  const classes = classnames('euiDataGridHeaderCell', className);
 
   const headerRef = useRef<HTMLDivElement>(null);
   const isFocused = focusedCell[0] === index && focusedCell[1] === -1;

@@ -21,6 +21,7 @@ export interface EuiDataGridHeaderCellProps
   > {
   column: EuiDataGridColumn;
   index: number;
+  className?: string;
 }
 
 export const EuiDataGridHeaderCell: FunctionComponent<
@@ -37,6 +38,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     focusedCell,
     setFocusedCell,
     headerIsInteractive,
+    className,
   } = props;
   const { id, display } = column;
 
@@ -75,9 +77,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<
 
   const columnType = schema[id] ? schema[id].columnType : null;
 
-  const classes = classnames('euiDataGridHeaderCell', {
-    [`euiDataGridHeaderCell--${columnType}`]: columnType,
-  });
+  const classes = classnames(
+    'euiDataGridHeaderCell',
+    {
+      [`euiDataGridHeaderCell--${columnType}`]: columnType,
+    },
+    className
+  );
 
   const headerRef = useRef<HTMLDivElement>(null);
   const isFocused = focusedCell[0] === index && focusedCell[1] === -1;

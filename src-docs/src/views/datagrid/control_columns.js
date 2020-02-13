@@ -14,6 +14,11 @@ import {
   EuiCheckbox,
   EuiButtonIcon,
   EuiPopover,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPopoverTitle,
+  EuiSpacer,
 } from '../../../../src/components/';
 
 import { euiColorHighlight as selectedRowColorLight } from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
@@ -23,7 +28,9 @@ import { withTheme } from '../../components/with_theme';
 const columns = [
   {
     id: 'avatar',
-    initialWidth: 65,
+    initialWidth: 38,
+    isExpandable: false,
+    isResizable: false,
   },
   {
     id: 'name',
@@ -62,6 +69,65 @@ for (let i = 1; i < 500; i++) {
 }
 
 const SelectionContext = createContext();
+
+const SelectionButton = () => {
+  const [selectedRows] = useContext(SelectionContext);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  if (selectedRows.size > 0) {
+    return (
+      <EuiPopover
+        isOpen={isPopoverOpen}
+        anchorPosition="upCenter"
+        panelPaddingSize="s"
+        button={
+          <EuiButtonEmpty
+            size="xs"
+            iconType="boxesHorizontal"
+            color="primary"
+            className="euiDataGrid__controlBtn"
+            onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+            {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}{' '}
+            selected
+          </EuiButtonEmpty>
+        }
+        closePopover={() => setIsPopoverOpen(false)}
+        ownFocus={true}>
+        <EuiPopoverTitle>
+          {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}
+        </EuiPopoverTitle>
+        <div style={{ width: 150 }}>
+          <button onClick={() => alert('hello')} component="span">
+            <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
+              <EuiFlexItem grow={false}>
+                <EuiButtonIcon
+                  aria-label="Pin selected items"
+                  iconType="pin"
+                  color="text"
+                />
+              </EuiFlexItem>
+              <EuiFlexItem>Pin items</EuiFlexItem>
+            </EuiFlexGroup>
+          </button>
+          <EuiSpacer size="s" />
+          <button onClick={() => alert('hello')}>
+            <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
+              <EuiFlexItem grow={false}>
+                <EuiButtonIcon
+                  aria-label="Delete selected items"
+                  iconType="trash"
+                  color="text"
+                />
+              </EuiFlexItem>
+              <EuiFlexItem>Delete items</EuiFlexItem>
+            </EuiFlexGroup>
+          </button>
+        </div>
+      </EuiPopover>
+    );
+  } else {
+    return null;
+  }
+};
 
 const SelectionHeaderCell = () => {
   const [selectedRows, updateSelectedRows] = useContext(SelectionContext);
@@ -144,6 +210,7 @@ const trailingControlColumns = [
           <EuiPopover
             isOpen={isPopoverOpen}
             anchorPosition="upCenter"
+            panelPaddingSize="s"
             button={
               <EuiButtonIcon
                 aria-label="show actions"
@@ -154,9 +221,40 @@ const trailingControlColumns = [
             }
             closePopover={() => setIsPopoverOpen(false)}
             ownFocus={true}>
-            <EuiButtonIcon aria-label="pin this" iconType="pin" color="text" />
-            <EuiButtonIcon aria-label="edit" iconType="pencil" color="text" />
-            <EuiButtonIcon aria-label="delete" iconType="trash" color="text" />
+            <EuiPopoverTitle>Actions</EuiPopoverTitle>
+            <div style={{ width: 150 }}>
+              <button onClick={() => alert('hello')} component="span">
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Pin selected items"
+                      iconType="pin"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Pin</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+              <EuiSpacer size="s" />
+              <button onClick={() => alert('hello')}>
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Delete selected items"
+                      iconType="trash"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Delete</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+            </div>
           </EuiPopover>
         </div>
       );
@@ -223,6 +321,9 @@ export default function DataGrid() {
             pageSizeOptions: [5, 15, 25],
             onChangeItemsPerPage: setPageSize,
             onChangePage: setPageIndex,
+          }}
+          toolbarVisibility={{
+            additionalControls: <SelectionButton />,
           }}
         />
       </div>

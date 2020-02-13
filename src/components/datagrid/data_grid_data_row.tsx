@@ -81,6 +81,7 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
               isFocused={focusedCellPositionInTheRow === i}
               interactiveCellId={interactiveCellId}
               isExpandable={false}
+              className="euiDataGridRowCell--controlColumn"
             />
           );
         })}
@@ -132,6 +133,7 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
               isFocused={focusedCellPositionInTheRow === colIndex}
               interactiveCellId={interactiveCellId}
               isExpandable={false}
+              className="euiDataGridRowCell--controlColumn"
             />
           );
         })}

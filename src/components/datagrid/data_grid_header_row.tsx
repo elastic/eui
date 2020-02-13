@@ -70,6 +70,7 @@ const EuiDataGridHeaderRow = forwardRef<
           focusedCell={focusedCell}
           setFocusedCell={setFocusedCell}
           headerIsInteractive={headerIsInteractive}
+          className="euiDataGridHeaderCell--controlColumn"
         />
       ))}
       {columns.map((column, index) => (
@@ -95,6 +96,7 @@ const EuiDataGridHeaderRow = forwardRef<
           focusedCell={focusedCell}
           setFocusedCell={setFocusedCell}
           headerIsInteractive={headerIsInteractive}
+          className="euiDataGridHeaderCell--controlColumn"
         />
       ))}
     </div>
