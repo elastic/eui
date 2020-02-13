@@ -748,6 +748,9 @@ Array [
         class="euiDataGrid__controls"
         data-test-sub="dataGridControls"
       >
+        <button>
+          Button
+        </button>
         <div
           class="euiPopover euiPopover--anchorDownLeft"
           data-test-subj="dataGridColumnSelectorPopover"
@@ -816,9 +819,6 @@ Array [
             </button>
           </div>
         </div>
-        <button>
-          Button
-        </button>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
           data-test-subj="dataGridFullScrenButton"
@@ -863,7 +863,7 @@ Array [
               role="row"
             >
               <div
-                class="euiDataGridHeaderCell"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
                 data-test-subj="dataGridHeaderCell-leading"
                 role="columnheader"
                 style="width:50px"
@@ -902,7 +902,7 @@ Array [
                 </div>
               </div>
               <div
-                class="euiDataGridHeaderCell"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
                 data-test-subj="dataGridHeaderCell-trailing"
                 role="columnheader"
                 style="width:50px"
@@ -923,7 +923,7 @@ Array [
               role="row"
             >
               <div
-                class="euiDataGridRowCell"
+                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
@@ -1073,7 +1073,7 @@ Array [
                 </div>
               </div>
               <div
-                class="euiDataGridRowCell"
+                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
@@ -1107,7 +1107,7 @@ Array [
               role="row"
             >
               <div
-                class="euiDataGridRowCell"
+                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
@@ -1257,7 +1257,7 @@ Array [
                 </div>
               </div>
               <div
-                class="euiDataGridRowCell"
+                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
@@ -1291,7 +1291,7 @@ Array [
               role="row"
             >
               <div
-                class="euiDataGridRowCell"
+                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
@@ -1441,7 +1441,7 @@ Array [
                 </div>
               </div>
               <div
-                class="euiDataGridRowCell"
+                class="euiDataGridRowCell euiDataGridRowCell--controlColumn"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
