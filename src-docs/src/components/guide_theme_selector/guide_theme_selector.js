@@ -19,7 +19,7 @@ const GuideThemeSelectorComponent = ({ context }) => {
         options={EUI_THEMES}
         value={context.theme}
         onChange={e => {
-          context.toggleDark(e.target.value);
+          context.changeTheme(e.target.value);
         }}
         aria-label="Switch the theme"
       />

@@ -6,7 +6,7 @@ import { applyTheme } from '../../services';
 const defaultState = {
   theme: EUI_THEMES[0].value,
   themeIsLoading: false,
-  toggleDark: (themeValue: EUI_THEME['value']) => {
+  changeTheme: (themeValue: EUI_THEME['value']) => {
     applyTheme(themeValue);
   },
 };
@@ -31,7 +31,7 @@ export class ThemeProvider extends React.Component<object, State> {
     };
   }
 
-  toggleDark = (themeValue: EUI_THEME['value']) => {
+  changeTheme = (themeValue: EUI_THEME['value']) => {
     this.setState({ theme: themeValue, themeIsLoading: true }, () => {
       localStorage.setItem('theme', themeValue);
       applyTheme(themeValue);
@@ -46,7 +46,7 @@ export class ThemeProvider extends React.Component<object, State> {
         value={{
           theme,
           themeIsLoading,
-          toggleDark: this.toggleDark,
+          changeTheme: this.changeTheme,
         }}>
         {children}
       </ThemeContext.Provider>
