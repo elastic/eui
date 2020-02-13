@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import { withTheme } from '../../components';
+import { ThemeContext } from '../../components';
 import {
   Chart,
   Settings,
@@ -45,7 +45,7 @@ const paletteData = {
 };
 const paletteNames = Object.keys(paletteData);
 
-const _Theming = props => {
+export const Theming = props => {
   /**
    * Create palette select
    */
@@ -157,4 +157,4 @@ const createPalette = function(palette) {
   );
 };
 
-export const Theming = withTheme(_Theming);
+Theming.contextType = ThemeContext;
