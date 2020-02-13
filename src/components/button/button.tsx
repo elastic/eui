@@ -66,7 +66,13 @@ export interface EuiButtonProps extends CommonProps {
   isLoading?: boolean;
   isDisabled?: boolean;
   fullWidth?: boolean;
+  /**
+   * Object of props passed to the <span/> wrapping the button's content
+   */
   contentProps?: HTMLAttributes<HTMLSpanElement>;
+  /**
+   * Object of props passed to the <span/> wrapping the component's {children}
+   */
   textProps?: HTMLAttributes<HTMLSpanElement>;
 }
 
