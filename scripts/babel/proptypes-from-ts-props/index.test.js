@@ -1176,6 +1176,8 @@ const FooComponent = () => {
 };
 
 FooComponent.propTypes = {
+  href: PropTypes.string,
+  onClick: PropTypes.func,
   a: PropTypes.bool.isRequired,
   b: PropTypes.number,
   c: PropTypes.string.isRequired,
