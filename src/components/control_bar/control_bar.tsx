@@ -1,27 +1,28 @@
+import classNames from 'classnames';
 import React, {
+  ButtonHTMLAttributes,
   Component,
   HTMLAttributes,
-  ButtonHTMLAttributes,
   Ref,
 } from 'react';
-import classNames from 'classnames';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
+import {
+  EuiButton,
+  EuiButtonIcon,
+  EuiButtonIconProps,
+  EuiButtonProps,
+} from '../button';
 import {
   CommonProps,
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
 } from '../common';
-// @ts-ignore-next-line
-import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
-import {
-  EuiButton,
-  EuiButtonIcon,
-  EuiButtonProps,
-  EuiButtonIconProps,
-} from '../button';
-import { EuiPortal } from '../portal';
+import { EuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
 import { EuiIconProps } from '../icon/icon';
+import { EuiPortal } from '../portal';
 
 /**
  * Extends EuiButton excluding `size`. Requires `label` as the `children`.
@@ -190,6 +191,11 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
      * Optional class applied to the body used when `position = fixed`
      */
     bodyClassName?: string;
+
+    /**
+     * Customize the screen reader heading that helps users find this control. Default is "Page level controls".
+     */
+    title?: string;
   };
 
 interface EuiControlBarState {
@@ -208,7 +214,7 @@ export class EuiControlBar extends Component<
     showContent: false,
     showOnMobile: false,
   };
-  private bar: HTMLDivElement | null = null;
+  private bar: HTMLElement | null = null;
 
   componentDidMount() {
     if (this.props.position === 'fixed') {
@@ -221,7 +227,7 @@ export class EuiControlBar extends Component<
   }
 
   componentWillUnmount() {
-    document.body.style.paddingBottom = null;
+    document.body.style.paddingBottom = '';
     if (this.props.bodyClassName) {
       document.body.classList.remove(this.props.bodyClassName);
     }
@@ -245,6 +251,7 @@ export class EuiControlBar extends Component<
       style,
       position,
       bodyClassName,
+      title,
       ...rest
     } = this.props;
 
@@ -396,24 +403,55 @@ export class EuiControlBar extends Component<
     };
 
     const controlBar = (
-      <div className={classes} {...rest} style={styles}>
-        <div
-          className="euiControlBar__controls"
-          ref={node => {
-            this.bar = node;
-          }}>
-          {controls.map((control, index) => {
-            return controlItem(control, index);
-          })}
-        </div>
-        {this.props.showContent ? (
-          <div className="euiControlBar__content">{children}</div>
-        ) : null}
-      </div>
+      <EuiI18n
+        token="euiControlBar.screenReaderHeading"
+        default="Page level controls">
+        {(screenReaderHeading: string) => (
+          <section
+            className={classes}
+            {...rest}
+            style={styles}
+            aria-label={title ? title : screenReaderHeading}>
+            <EuiScreenReaderOnly>
+              <h2>{title ? title : screenReaderHeading}</h2>
+            </EuiScreenReaderOnly>
+            <div
+              className="euiControlBar__controls"
+              ref={node => {
+                this.bar = node;
+              }}>
+              {controls.map((control, index) => {
+                return controlItem(control, index);
+              })}
+            </div>
+            {this.props.showContent ? (
+              <div className="euiControlBar__content">{children}</div>
+            ) : null}
+          </section>
+        )}
+      </EuiI18n>
     );
 
     return position === 'fixed' ? (
-      <EuiPortal>{controlBar}</EuiPortal>
+      <EuiPortal>
+        {controlBar}
+        <EuiScreenReaderOnly>
+          <p aria-live="assertive">
+            {title ? (
+              <EuiI18n
+                token="euiControlBar.screenReaderAnnouncement"
+                default="There is a new region landmark called {title} with page level controls at the end of the document."
+                values={{ title }}
+              />
+            ) : (
+              <EuiI18n
+                token="euiControlBar.screenReaderAnnouncement"
+                default="There is a new region landmark with page level controls at the end of the document."
+              />
+            )}
+          </p>
+        </EuiScreenReaderOnly>
+      </EuiPortal>
     ) : (
       controlBar
     );
