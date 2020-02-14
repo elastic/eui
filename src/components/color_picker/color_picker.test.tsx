@@ -93,25 +93,11 @@ test('renders a EuiColorPicker with a prepend and append', () => {
   expect(component).toMatchSnapshot();
 });
 
-test('renders a EuiColorPicker with an alpha value provided', () => {
-  const component = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      alpha={0.5}
-      {...requiredProps}
-    />
-  );
-
-  expect(component).toMatchSnapshot();
-});
-
 test('renders a EuiColorPicker with an alpha range selector', () => {
   const component = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
-      alpha={1}
       showAlpha={true}
       {...requiredProps}
     />
@@ -241,7 +227,6 @@ test('Setting a new alpha value calls onChange', () => {
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
-      alpha={1}
       showAlpha={true}
       {...requiredProps}
     />
@@ -254,13 +239,13 @@ test('Setting a new alpha value calls onChange', () => {
   const range = alpha.first(); // input[type=range]
   range.simulate('change', event1);
   expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith('#ffeedd', [255, 238, 221, 0.5]);
+  expect(onChange).toBeCalledWith('#ffeedd80', [255, 238, 221, 0.5]);
   // Number input
   const event2 = { target: { value: '25' } };
   const input = alpha.at(1); // input[type=number]
   input.simulate('change', event2);
   expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith('#ffeedd', [255, 238, 221, 0.25]);
+  expect(onChange).toBeCalledWith('#ffeedd40', [255, 238, 221, 0.25]);
 });
 
 test('default mode does redners child components', () => {

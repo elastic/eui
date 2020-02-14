@@ -3,8 +3,7 @@ import React, {
   HTMLAttributes,
   ReactElement,
   cloneElement,
-  useCallback,
-  useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -36,10 +35,17 @@ type EuiColorPickerMode = 'default' | 'swatch' | 'picker';
 
 interface HTMLDivElementOverrides {
   /**
-   *  Hex string (3 or 6 character). Empty string will register as 'transparent'
+   * hex (string)
+   * RGB (as comma separated string)
+   * RGBa (as comma separated string)
+   * Empty string will register as 'transparent'
    */
   color?: string | null;
   onBlur?: () => void;
+  /**
+   * hex (8-digit hex if alpha < 1)
+   * RGBa (as array; values of NaN if color is invalid)
+   */
   onChange: (hex: string, rgba?: number[]) => void;
   onFocus?: () => void;
 }
@@ -96,14 +102,53 @@ export interface EuiColorPickerProps
   showAlpha?: boolean;
 }
 
+const HEX_FALLBACK = '';
+const HSV_FALLBACK: ColorSpaces['hsv'] = [0, 0, 0];
+const RGB_FALLBACK: ColorSpaces['rgb'] = [NaN, NaN, NaN];
+
 function isKeyboardEvent(
   event: React.MouseEvent | React.KeyboardEvent
 ): event is React.KeyboardEvent {
   return typeof event === 'object' && 'keyCode' in event;
 }
 
-const chromaValid = (color: string) => {
+const chromaValid = (color: string | number[]) => {
+  if (typeof color === 'object') {
+    return chroma.valid(color, 'rgb') || chroma.valid(color, 'rgba');
+  }
   return chroma.valid(color, 'hex');
+};
+
+const getRgba = (hex?: string | null): number[] =>
+  hex && chromaValid(hex) ? chroma(hex).rgba() : [...RGB_FALLBACK, 1];
+
+const getHsv = (hsv?: number[], fallback: number = 0) => {
+  // Chroma's passthrough (RGB) parsing determines that black/white/gray are hue-less and returns `NaN`
+  // For our purposes we can process `NaN` as `0` if necessary
+  if (!hsv) return HSV_FALLBACK;
+  const hue = isNaN(hsv[0]) ? fallback : hsv[0];
+  return [hue, hsv[1], hsv[2]] as ColorSpaces['hsv'];
+};
+
+const parseColor = (input?: string | null) => {
+  let parsed: string | number[];
+  if (!input) return null;
+  if (input.indexOf(',') > 0) {
+    const rgb = input
+      .trim()
+      .split(',')
+      .filter(n => n !== '')
+      .map(Number);
+    parsed = rgb.length > 2 && rgb.length < 5 ? rgb : HEX_FALLBACK;
+  } else {
+    parsed = input;
+  }
+
+  if (chromaValid(parsed)) {
+    // type guard for the function overload
+    return typeof parsed === 'object' ? chroma(parsed) : chroma(parsed);
+  }
+  return null;
 };
 
 export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
@@ -125,43 +170,33 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   popoverZIndex,
   prepend,
   append,
-  alpha = 1,
   showAlpha = false,
 }) => {
-  const getRgb = (hex?: string | null): ColorSpaces['rgb'] =>
-    hex && chromaValid(hex) ? chroma(hex).rgb() : [NaN, NaN, NaN];
-  const getHsvFromColor = useCallback(
-    (): ColorSpaces['hsv'] =>
-      color && chromaValid(color) ? chroma(color).hsv() : [0, 0, 0],
-    [color]
-  );
-  const getRgbFromColor = useCallback((): ColorSpaces['rgb'] => {
-    return getRgb(color);
-  }, [color]);
+  const chromaColor = useMemo(() => parseColor(color), [color]);
+
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
-  const [colorAsHsv, setColorAsHsv] = useState(getHsvFromColor());
-  const [lastHex, setLastHex] = useState(color);
-  const [lastRgb, setLastRgb] = useState(getRgbFromColor());
   const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
   const [popoverShouldOwnFocus, setPopoverShouldOwnFocus] = useState(false);
+
+  const prevColor = useRef(chromaColor ? chromaColor.hex() : null);
+  const [colorAsHsv, setColorAsHsv] = useState<ColorSpaces['hsv']>(
+    chromaColor ? getHsv(chromaColor.hsv()) : HSV_FALLBACK
+  );
+  const usableHsv: ColorSpaces['hsv'] = useMemo(() => {
+    if (chromaColor && chromaColor.hex() !== prevColor.current) {
+      const [h, s, v] = chromaColor.hsv();
+      const hue = isNaN(h) ? colorAsHsv[0] : h;
+      return [hue, s, v];
+    }
+    return colorAsHsv;
+  }, [chromaColor, colorAsHsv]);
 
   const satruationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
   const updateColorAsHsv = ([h, s, v]: ColorSpaces['hsv']) => {
-    // Chroma's passthrough (RGB) parsing determines that black/white/gray are hue-less and returns `NaN`
-    // For our purposes we can process `NaN` as `0`
-    const hue = isNaN(h) ? 0 : h;
-    setColorAsHsv([hue, s, v]);
+    setColorAsHsv(getHsv([h, s, v], usableHsv[0]));
   };
-
-  useEffect(() => {
-    if (lastHex !== color) {
-      // Only react to outside changes
-      updateColorAsHsv(getHsvFromColor());
-      setLastRgb(getRgbFromColor());
-    }
-  }, [color, lastHex, getHsvFromColor, getRgbFromColor]);
 
   const classes = classNames('euiColorPicker', className);
   const popoverClass = 'euiColorPicker__popoverAnchor';
@@ -177,10 +212,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   });
 
   const handleOnChange = (hex: string) => {
-    setLastHex(hex);
-    const rgb = getRgb(hex);
-    setLastRgb(rgb);
-    onChange(hex, [...rgb, alpha]);
+    const rgba = getRgba(hex);
+    if (chromaValid(hex)) {
+      prevColor.current = hex;
+    }
+    onChange(hex, rgba);
   };
 
   const closeColorSelector = (shouldDelay = false) => {
@@ -263,13 +299,14 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const handleColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleOnChange(e.target.value);
-    if (chromaValid(e.target.value)) {
-      updateColorAsHsv(chroma(e.target.value).hsv());
+    const newColor = parseColor(e.target.value);
+    if (newColor) {
+      updateColorAsHsv(newColor.hsv());
     }
   };
 
   const handleColorSelection = (color: ColorSpaces['hsv']) => {
-    const [h] = colorAsHsv;
+    const [h] = usableHsv;
     const [, s, v] = color;
     const newHsv: ColorSpaces['hsv'] = [h, s, v];
     handleOnChange(chroma.hsv(...newHsv).hex());
@@ -277,7 +314,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleHueSelection = (hue: number) => {
-    const [, s, v] = colorAsHsv;
+    const [, s, v] = usableHsv;
     const newHsv: ColorSpaces['hsv'] = [hue, s, v];
     handleOnChange(chroma.hsv(...newHsv).hex());
     updateColorAsHsv(newHsv);
@@ -290,7 +327,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     handleFinalSelection();
   };
 
-  const handleAlphaChange = (
+  const handleAlphaSelection = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.MouseEvent<HTMLButtonElement>,
@@ -299,8 +336,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     if (isValid) {
       const target = e.target as HTMLInputElement;
       const alpha = parseInt(target.value, 10) / 100;
-      const hex = lastHex || '';
-      onChange(hex, [...lastRgb, alpha]);
+      const hex = chromaColor ? chromaColor.alpha(alpha).hex() : HEX_FALLBACK;
+      const rgb = chromaColor ? chromaColor.rgb() : RGB_FALLBACK;
+      onChange(hex, [...rgb, alpha]);
     }
   };
 
@@ -310,15 +348,15 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         <div onKeyDown={handleOnKeyDown}>
           <EuiSaturation
             id={id}
-            color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
-            hex={color || undefined}
+            color={usableHsv}
+            hex={chromaColor ? chromaColor.hex() : undefined}
             onChange={handleColorSelection}
             ref={satruationRef}
           />
           <EuiHue
             id={id}
-            hue={typeof colorAsHsv === 'object' ? colorAsHsv[0] : undefined}
-            hex={color || undefined}
+            hue={usableHsv[0]}
+            hex={chromaColor ? chromaColor.hex() : undefined}
             onChange={handleHueSelection}
           />
         </div>
@@ -360,9 +398,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 showInput={true}
                 max={100}
                 min={0}
-                value={(alpha * 100).toFixed()}
+                value={(
+                  (chromaColor ? chromaColor.alpha() : 1) * 100
+                ).toFixed()}
                 append="%"
-                onChange={handleAlphaChange}
+                onChange={handleAlphaSelection}
                 aria-label={alphaLabel}
               />
             )}
@@ -381,7 +421,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'data-test-subj': testSubjAnchor,
     });
   } else {
-    const showColor = color && chromaValid(color);
+    const showColor = chromaColor !== null;
+    const rgba = chromaColor ? chromaColor.rgba() : null;
     buttonOrInput = (
       <EuiFormControlLayout
         icon={
@@ -401,10 +442,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         <div
           // Used to pass the chosen color through to form layout SVG using currentColor
           style={{
-            color:
-              showColor && color
-                ? `rgba(${lastRgb[0]},${lastRgb[1]},${lastRgb[2]},${alpha})`
-                : undefined,
+            color: rgba
+              ? `rgba(${rgba[0]},${rgba[1]},${rgba[2]},${rgba[3]})`
+              : undefined,
           }}>
           <EuiI18n
             tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
@@ -417,11 +457,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 className={inputClasses}
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
-                value={color ? color.toUpperCase() : ''}
+                value={color ? color.toUpperCase() : HEX_FALLBACK}
                 placeholder={!color ? 'Transparent' : undefined}
                 id={id}
                 onChange={handleColorInput}
-                maxLength={7}
                 icon={showColor ? 'swatchInput' : 'stopSlash'}
                 inputRef={setInputRef}
                 isInvalid={isInvalid}

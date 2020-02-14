@@ -27,7 +27,6 @@ exports[`renders EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -103,7 +102,6 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFFFFF"
               />
@@ -177,7 +175,6 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 placeholder="Transparent"
                 type="text"
                 value=""
@@ -252,7 +249,6 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 placeholder="Transparent"
                 type="text"
                 value=""
@@ -334,7 +330,6 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiColorPicker__input--inGroup euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -415,83 +410,6 @@ exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
-                type="text"
-                value="#FFEEDD"
-              />
-              <div
-                class="euiFormControlLayoutIcons"
-              >
-                <span
-                  class="euiFormControlLayoutCustomIcon"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
-        >
-          <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <svg
-              aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders a EuiColorPicker with an alpha value provided 1`] = `
-<div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
->
-  <div
-    class="euiPopover__anchor"
-  >
-    <div
-      class="euiFormControlLayout"
-    >
-      <div
-        class="euiFormControlLayout__childrenWrapper"
-      >
-        <div
-          style="color:rgba(255,238,221,0.5)"
-        >
-          <div
-            class="euiFormControlLayout"
-          >
-            <div
-              class="euiFormControlLayout__childrenWrapper"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing color options"
-                autocomplete="off"
-                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
-                data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -567,7 +485,6 @@ exports[`renders compressed EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--compressed"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -644,7 +561,6 @@ exports[`renders disabled EuiColorPicker 1`] = `
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 disabled=""
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -720,7 +636,6 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--fullWidth"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -826,7 +741,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       <input
         class="euiHue__range"
         id="undefined-hue"
-        max="360"
+        max="359"
         min="0"
         step="1"
         type="range"
@@ -979,7 +894,6 @@ exports[`renders readOnly EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 readonly=""
                 type="text"
                 value="#FFEEDD"
