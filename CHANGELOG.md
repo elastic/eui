@@ -8,6 +8,7 @@
 **Bug fixes**
 
 - Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
+- Fixed screen reader discovery issues with `EuiBottomBar` and `EuiControlBar` ([#2861](https://github.com/elastic/eui/pull/2861))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 

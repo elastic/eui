@@ -407,6 +407,8 @@ export class EuiControlBar extends Component<
         token="euiControlBar.screenReaderHeading"
         default="Page level controls">
         {(screenReaderHeading: string) => (
+          // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
+          // A bug in voiceover won't list some landmarks in the rotor without an aria-label
           <section
             className={classes}
             {...rest}
