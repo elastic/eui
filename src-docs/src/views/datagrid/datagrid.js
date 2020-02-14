@@ -13,7 +13,9 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPopover,
+  EuiPopoverTitle,
   EuiButtonIcon,
+  EuiSpacer,
 } from '../../../../src/components/';
 
 const columns = [
@@ -105,9 +107,40 @@ const trailingControlColumns = [
             }
             closePopover={() => setIsPopoverOpen(false)}
             ownFocus={true}>
-            <EuiButtonIcon aria-label="pin this" iconType="pin" color="text" />
-            <EuiButtonIcon aria-label="edit" iconType="pencil" color="text" />
-            <EuiButtonIcon aria-label="delete" iconType="trash" color="text" />
+            <EuiPopoverTitle>Actions</EuiPopoverTitle>
+            <div style={{ width: 150 }}>
+              <button onClick={() => alert('hello')} component="span">
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Pin selected items"
+                      iconType="pin"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Pin</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+              <EuiSpacer size="s" />
+              <button onClick={() => alert('hello')}>
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Delete selected items"
+                      iconType="trash"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Delete</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+            </div>
           </EuiPopover>
         </div>
       );

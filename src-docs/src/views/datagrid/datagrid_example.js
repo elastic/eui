@@ -52,7 +52,7 @@ const gridSnippet = `
         id: 'selection',
         width: 31,
         headerCellRender: () => <span>Select a Row</span>,
-        rowCellRender: () => <div><EuiSelectBox ... /></div>,
+        rowCellRender: () => <div><EuiCheckbox ... /></div>,
       },
     ]}
     trailingControlColumns={[
@@ -175,6 +175,16 @@ const gridConcepts = [
         An array of <EuiCode>EuiDataGridColumnVisibility</EuiCode> objects.
         Defines which columns are visible in the grid and the order they are
         displayed.
+      </span>
+    ),
+  },
+  {
+    title: 'leading and trailing controlColumns',
+    description: (
+      <span>
+        An array of <EuiCode>EuiDataGridControlColumn</EuiCode> objects. Used to
+        define ancillary columns on the left side of the data grid. Useful for
+        adding items like checkboxes and buttons.
       </span>
     ),
   },
@@ -315,6 +325,13 @@ export const DataGridExample = {
               <Link to="/tabular-content/data-grid-styling/">Grid styling</Link>{' '}
               can be controlled by the engineer, but augmented by user
               preference depending upon the features you enable.
+            </li>
+            <li>
+              <Link to="/tabular-content/data-grid-control-collumns/">
+                Control columns
+              </Link>{' '}
+              allow you to add repeatable actions and controls like checkboxes
+              or buttons to your grid.
             </li>
           </ul>
         </Fragment>

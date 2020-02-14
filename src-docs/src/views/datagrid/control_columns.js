@@ -2,7 +2,6 @@ import React, {
   createContext,
   useContext,
   useCallback,
-  useEffect,
   useReducer,
   useState,
   Fragment,
@@ -88,7 +87,7 @@ const SelectionButton = () => {
         button={
           <EuiButtonEmpty
             size="xs"
-            iconType="boxesHorizontal"
+            iconType="downArrow"
             color="primary"
             className="euiDataGrid__controlBtn"
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
