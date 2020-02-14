@@ -867,6 +867,17 @@ export const SassGuidelines = ({ selectedTheme }) => {
               </EuiText>
             </div>
           </EuiPanel>
+          <EuiSpacer size="xl" />
+          <EuiText>
+            <p>
+              If you need to further customize the position or side of the
+              overflow shadow use the <EuiCode>euiOverflowShadow</EuiCode>{' '}
+              <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_shadow.scss">
+                mixin
+              </EuiLink>
+              .
+            </p>
+          </EuiText>
         </EuiFlexItem>
       </EuiFlexGrid>
 

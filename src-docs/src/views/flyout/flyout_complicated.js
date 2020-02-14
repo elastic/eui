@@ -28,7 +28,6 @@ export class FlyoutComplicated extends Component {
 
     this.state = {
       isFlyoutVisible: false,
-      isSwitchChecked: true,
       selectedTabId: '1',
       isPopoverOpen: false,
     };
@@ -47,12 +46,6 @@ export class FlyoutComplicated extends Component {
     this.closeFlyout = this.closeFlyout.bind(this);
     this.showFlyout = this.showFlyout.bind(this);
   }
-
-  onSwitchChange = () => {
-    this.setState({
-      isSwitchChecked: !this.state.isSwitchChecked,
-    });
-  };
 
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
