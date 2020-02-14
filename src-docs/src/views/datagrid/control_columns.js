@@ -30,10 +30,6 @@ import {
   EuiDescriptionListDescription,
 } from '../../../../src/components/';
 
-import { euiColorHighlight as selectedRowColorLight } from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
-import { euiColorHighlight as selectedRowColorDark } from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
-import { withTheme } from '../../components/with_theme';
-
 const columns = [
   {
     id: 'avatar',
@@ -166,21 +162,9 @@ const SelectionHeaderCell = () => {
   );
 };
 
-const SelectionRowCell = withTheme(({ theme, rowIndex, setCellProps }) => {
+const SelectionRowCell = ({ rowIndex }) => {
   const [selectedRows, updateSelectedRows] = useContext(SelectionContext);
   const isChecked = selectedRows.has(rowIndex);
-
-  useEffect(() => {
-    const highlightColor =
-      theme === 'light'
-        ? selectedRowColorLight.rgba
-        : selectedRowColorDark.rgba;
-    setCellProps({
-      style: {
-        backgroundColor: isChecked ? highlightColor : 'transparent',
-      },
-    });
-  }, [isChecked, setCellProps, theme]);
 
   return (
     <div>
@@ -197,7 +181,7 @@ const SelectionRowCell = withTheme(({ theme, rowIndex, setCellProps }) => {
       />
     </div>
   );
-});
+};
 
 const FlyoutRowCell = rowIndex => {
   let flyout;
