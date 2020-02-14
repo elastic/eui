@@ -173,7 +173,7 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
         fullWidth={fullWidth}
         isLoading={isLoading}
         clear={
-          isClearable && this.inputElement && this.inputElement.value && !rest.readOnly && !rest.disabled
+          isClearable && value && !rest.readOnly && !rest.disabled
             ? { onClick: this.onClear }
             : undefined
         }
