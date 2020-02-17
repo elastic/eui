@@ -8,7 +8,7 @@ export const EuiMarkdownEditorDropZone = (props: any) => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
 
-  const { children, height, className } = props;
+  const { children, className } = props;
 
   const classes = classNames('euiMarkdownEditor__dropZone', {
     'euiMarkdownEditor__dropZone--isDragging': isDragging,
@@ -58,10 +58,7 @@ export const EuiMarkdownEditorDropZone = (props: any) => {
   }
 
   return (
-    <div
-      {...getRootProps()}
-      style={{ height: `${height}px` }}
-      className={classes}>
+    <div {...getRootProps()} className={classes}>
       {children}
       <button className="euiMarkdownEditor__dropZone__button" onClick={open}>
         {buttonIcon}

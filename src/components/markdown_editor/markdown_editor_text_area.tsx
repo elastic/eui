@@ -15,6 +15,8 @@ export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
     resize?: keyof typeof resizeToClassNameMap;
 
     inputRef?: Ref<HTMLTextAreaElement>;
+
+    height: number;
   };
 
 const resizeToClassNameMap = {
@@ -38,23 +40,17 @@ export const EuiMarkdownEditorTextArea: FunctionComponent<
   name,
   placeholder,
   rows,
+  height,
   ...rest
 }) => {
-  let definedRows: number;
-
-  if (rows) {
-    definedRows = rows;
-  } else if (compressed) {
-    definedRows = 3;
-  } else {
-    definedRows = 6;
-  }
+  const dropZoneButtonHeight = 32;
 
   return (
     <textarea
+      style={{ height: `calc(${height - dropZoneButtonHeight}px` }}
       className="euiMarkdownEditor__textArea"
       {...rest}
-      rows={definedRows}
+      rows={6}
       name={name}
       id={id}
       ref={inputRef}

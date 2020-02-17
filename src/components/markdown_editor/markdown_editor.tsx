@@ -108,8 +108,9 @@ export class EuiMarkdownEditor extends Component<
             <EuiMarkdownFormat>{this.state.editorContent}</EuiMarkdownFormat>
           </div>
         ) : (
-          <EuiMarkdownEditorDropZone height={height}>
+          <EuiMarkdownEditorDropZone>
             <EuiMarkdownEditorTextArea
+              height={height}
               id={this.editorId}
               onChange={(e: any) => {
                 this.setState({ editorContent: e.target.value });

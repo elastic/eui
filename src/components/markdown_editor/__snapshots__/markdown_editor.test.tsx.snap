@@ -177,12 +177,12 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__dropZone"
-    style="height:150px"
   >
     <textarea
       class="euiMarkdownEditor__textArea"
       id="editorId"
       rows="6"
+      style="height:calc(118px"
     />
     <button
       class="euiMarkdownEditor__dropZone__button"
