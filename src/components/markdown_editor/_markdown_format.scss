@@ -1,0 +1,313 @@
+// Default styles for Markdown element
+//
+// 1. Links
+// 2. Headings
+// 3. Images
+// 4. Blockquotes
+// 5. Horizontal rules
+// 6. Lists
+// 7. Tables
+// 8. Code blocks
+
+// Functions
+// Note: The inlined base font size is set in common/functions/font.js. It should match $euiMdFontSize.
+$euiDefaultFontSize: 14px;
+
+@function canvasToEm($size) {
+  @return #{$size / $euiDefaultFontSize}em;
+}
+
+.euiMarkdownFormat {
+  // Font size variables
+  $euiMarkdownFontSizeS: canvasToEm(12px);
+  $euiMarkdownFontSize: canvasToEm(14px);
+  $euiMarkdownFontSizeL: canvasToEm(20px);
+  $euiMarkdownFontSizeXL: canvasToEm(28px);
+  $euiMarkdownFontSizeXXL: canvasToEm(36px);
+
+  // Spacing variables
+  $euiMarkdownSizeL: canvasToEm(24px);
+  $euiMarkdownSize: canvasToEm(16px);
+  $euiMarkdownSizeS: canvasToEm(12px);
+  $euiMarkdownSizeXS: canvasToEm(8px);
+  $euiMarkdownSizeXXS: canvasToEm(4px);
+
+  // Grayscale variables
+  $euiMarkdownAlphaLightestShade: rgba($euiColorFullShade, .05);
+  $euiMarkdownAlphaLightShade: rgba($euiColorFullShade, .15);
+  $euiMarkdownAlphaDarkShade: rgba($euiColorFullShade, .65);
+
+  // Reverse grayscale for opposite of theme
+  $euiMarkdownAlphaLightestShadeReversed: rgba($euiColorEmptyShade, .05);
+  $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
+  $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
+
+  &--reversed {
+    color: $euiColorLightestShade;
+  }
+
+  > *:first-child {
+    // sass-lint:disable-block no-important
+    margin-top: 0 !important;
+  }
+
+  > *:last-child {
+    // sass-lint:disable-block no-important
+    margin-bottom: 0 !important;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre {
+    margin-top: 0;
+    margin-bottom: $euiMarkdownSize;
+    line-height: 1.5em;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  // 1. Links
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    text-decoration: underline dotted;
+  }
+
+  a:active,
+  a:hover {
+    outline-width: 0;
+  }
+
+  a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  // 2. Headings
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: $euiMarkdownSizeXS;
+  }
+
+  h1 {
+    font-size: $euiMarkdownFontSizeXXL;
+    line-height: 1.333333em;
+    font-weight: 300;
+  }
+
+  h2 {
+    font-size: $euiMarkdownFontSizeXL;
+    line-height: 1.428571em;
+    font-weight: 300;
+  }
+
+  h3 {
+    font-size: $euiMarkdownFontSizeL;
+    line-height: 1.6em;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: $euiMarkdownSize;
+    line-height: 1.5em;
+    font-weight: 600;
+  }
+
+  h5 {
+    font-size: $euiMarkdownFontSize;
+    line-height: 1.142857em;
+    font-weight: 700;
+  }
+
+  h6 {
+    font-size: $euiMarkdownFontSizeS;
+    line-height: 1.333333em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  // 3. Images
+  img {
+    max-width: 100%;
+    box-sizing: content-box;
+    border-style: none;
+  }
+
+  // 4. Blockquotes
+  blockquote {
+    padding: 0 1em;
+    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
+  }
+
+  &--reversed blockquote {
+    border-left-color: $euiMarkdownAlphaLightShadeReversed;
+  }
+
+  // 5. Horizontal rules
+  hr {
+    overflow: hidden;
+    background: transparent;
+    height: 2px;
+    padding: 0;
+    margin: $euiMarkdownSizeL 0;
+    background-color: $euiMarkdownAlphaLightShade;
+    border: none;
+  }
+
+  hr::before {
+    display: table;
+    content: '';
+  }
+
+  hr::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+
+  // 6. Lists
+  ul,
+  ol {
+    padding-left: euiMarkdownSizeL;
+    margin-top: 0;
+    margin-bottom: $euiMarkdownSize;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul ul {
+    list-style-type: circle;
+  }
+
+  ol ol,
+  ul ol {
+    list-style-type: lower-roman;
+  }
+
+  ul ul ol,
+  ul ol ol,
+  ol ul ol,
+  ol ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  ul ul,
+  ul ol,
+  ol ol,
+  ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  li > p {
+    margin-bottom: $euiMarkdownSizeXS;
+  }
+
+  li + li {
+    margin-top: $euiMarkdownSizeXXS;
+  }
+
+  // 7. Tables
+  table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    border-left: 1px solid $euiMarkdownAlphaLightShade;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    padding: 0;
+  }
+
+  table th,
+  table td {
+    padding: $euiMarkdownSizeXXS $euiMarkdownSizeS;
+    border-top: 1px solid $euiMarkdownAlphaLightShade;
+    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
+
+    &:last-child {
+      border-right: 1px solid $euiMarkdownAlphaLightShade;
+    }
+  }
+
+
+  table tr {
+    background-color: transparent;
+    border-top: 1px solid $euiMarkdownAlphaLightShade;
+  }
+
+  // 8. Code blocks
+  code,
+  pre {
+    margin-bottom: $euiMarkdownSizeXS;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-size: $euiMarkdownFontSizeS;
+  }
+
+  code {
+    padding: $euiMarkdownSizeXXS 0;
+    margin: 0;
+    background-color: $euiMarkdownAlphaLightestShade;
+    border-radius: $euiMarkdownSizeXXS;
+  }
+
+  code::before,
+  code::after {
+    letter-spacing: -.2em;
+    content: '\00a0';
+  }
+
+  pre {
+    padding: $euiMarkdownSize;
+    overflow: auto;
+    font-size: $euiMarkdownFontSizeS;
+    line-height: 1.333333em;
+    background-color: $euiMarkdownAlphaLightestShade;
+    border-radius: $euiMarkdownSizeXXS;
+    word-wrap: normal;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    white-space: pre;
+    background-color: transparent;
+    border: none;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+}

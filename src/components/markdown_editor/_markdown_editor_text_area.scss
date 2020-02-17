@@ -1,8 +1,18 @@
 .euiMarkdownEditor__textArea {
   @include euiFormControlText;
   width: 100%;
+  height: 100%;
+  background-color: $euiFormBackgroundColor;
   border: $euiBorderThin;
+  border-bottom: 1px dashed $euiColorLightShade;
   border-color: $euiColorLightShade;
-  border-bottom: none;
   resize: vertical;
+
+  &:focus {
+    background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
+
+    + .euiMarkdownEditor__dropZone__button {
+      background-image: euiFormControlGradient();
+    }
+  }
 }

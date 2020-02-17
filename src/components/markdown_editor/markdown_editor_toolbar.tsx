@@ -119,8 +119,8 @@ export class EuiMarkdownEditorToolbar extends Component<
               label={
                 viewMarkdownPreview ? (
                   <EuiI18n
-                    token="euiMarkdownEditorToolbar.edit"
-                    default="Edit"
+                    token="euiMarkdownEditorToolbar.editor"
+                    default="Editor"
                   />
                 ) : (
                   <EuiI18n
@@ -129,7 +129,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   />
                 )
               }
-              iconType={viewMarkdownPreview ? 'pencil' : 'eye'}
+              iconType={viewMarkdownPreview ? 'editorCodeBlock' : 'eye'}
               onChange={onTogglePreview}
               isSelected={viewMarkdownPreview}
               isEmpty

@@ -1,0 +1,65 @@
+.euiMarkdownEditor__dropZone {
+  @include euiFormControlDefaultShadow;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  min-height: 150px;
+  max-height: 600px;
+
+  &__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:hover:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    height: $euiSizeXL;
+    padding: 0 $euiSizeS;
+    border: $euiBorderThin;
+    border-top: none;
+    align-items: center;
+    background: $euiPageBackgroundColor;
+
+    &:focus {
+      background-color: transparentize($euiColorPrimary, .88);
+    }
+  }
+
+  &__icon {
+    align-self: center;
+    margin-right: $euiSizeXS;
+    width: 12px;
+    height: 12px;
+  }
+
+  &__text {
+    @include euiFontSizeS;
+    @include euiTextTruncate;
+    line-height: $euiSize;
+    display: block;
+  }
+
+  &--isDragging {
+    .euiMarkdownEditor__textArea,
+    .euiMarkdownEditor__dropZone__button {
+      background-color: transparentize($euiColorSecondary, .88);
+    }
+
+    .euiMarkdownEditor__dropZone__button {
+      border-top-color: $euiColorSecondary;
+    }
+  }
+}

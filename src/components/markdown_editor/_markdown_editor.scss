@@ -1,5 +1,7 @@
-.euiMarkdownEditor__markdownWrapper {
-  line-height: 0;
+.euiMarkdownEditor {
+  &:focus-within {
+    @include euiSlightShadowHover;
+  }
 
   .euiMarkdownEditor__textArea,
   .euiMarkdownEditor__previewContainer {
@@ -17,21 +19,4 @@
 
 .euiMarkdownEditor__textArea {
   background: $euiColorEmptyShade;
-}
-
-// Overrides for styles in the "preview" pane
-.euiMarkdownEditor__markdownWrapper .euiMarkdownEditor__displayText {
-  blockquote {
-    @include euiFont;
-    border-left: $euiBorderThick;
-    color: $euiColorDarkShade;
-    font-style: normal;
-    padding: 0 $euiSize;
-    text-align: left;
-
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
 }

@@ -7,17 +7,21 @@ import MarkdownActions from './markdown_actions';
 import showdown from 'showdown';
 // @ts-ignore
 import showdownHtmlEscape from 'showdown-htmlescape';
-import { EuiText } from '../text';
+// import { EuiText } from '../text';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
-import { EuiMarkdownEditorFilePicker } from './markdown_editor_file_picker';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
+import { EuiMarkdownFormat } from './markdown_format';
+import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
 
 export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /** A unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
-    // onChange?: (files: FileList | null) => void;
+    /** A initial markdown content */
+    initialValue?: string;
+    /** The height of the content/preview area */
+    height: number;
   };
 
 export interface MarkdownEditorState {
@@ -34,6 +38,10 @@ export class EuiMarkdownEditor extends Component<
   editorId: string;
   markdownActions: MarkdownActions;
 
+  static defaultProps = {
+    height: 150,
+  };
+
   constructor(props: EuiMarkdownEditorProps) {
     super(props);
 
@@ -47,7 +55,7 @@ export class EuiMarkdownEditor extends Component<
     this.converter.setFlavor('github');
 
     this.state = {
-      editorContent: '',
+      editorContent: this.props.initialValue!,
       viewMarkdownPreview: false,
       files: null,
     };
@@ -79,7 +87,7 @@ export class EuiMarkdownEditor extends Component<
   };
 
   render() {
-    const { className, editorId, ...rest } = this.props;
+    const { className, editorId, initialValue, height, ...rest } = this.props;
 
     const { viewMarkdownPreview } = this.state;
 
@@ -94,32 +102,21 @@ export class EuiMarkdownEditor extends Component<
         />
 
         {this.state.viewMarkdownPreview ? (
-          <div className="euiMarkdownEditor__markdownWrapper">
-            <div className="euiMarkdownEditor__previewContainer">
-              <EuiText
-                className="euiMarkdownEditor__displayText"
-                dangerouslySetInnerHTML={{
-                  __html: this.converter.makeHtml(this.state.editorContent),
-                }}
-                size="s"
-              />
-            </div>
+          <div
+            className="euiMarkdownEditor__previewContainer"
+            style={{ height: `${height}px` }}>
+            <EuiMarkdownFormat>{this.state.editorContent}</EuiMarkdownFormat>
           </div>
         ) : (
-          <div className="euiMarkdownEditor__markdownWrapper">
-            <EuiMarkdownEditorFilePicker
-              onChange={files => {
-                this.onAttachFiles(files);
-              }}>
-              <EuiMarkdownEditorTextArea
-                id={this.editorId}
-                onChange={(e: any) => {
-                  this.setState({ editorContent: e.target.value });
-                }}
-                value={this.state.editorContent}
-              />
-            </EuiMarkdownEditorFilePicker>
-          </div>
+          <EuiMarkdownEditorDropZone height={height}>
+            <EuiMarkdownEditorTextArea
+              id={this.editorId}
+              onChange={(e: any) => {
+                this.setState({ editorContent: e.target.value });
+              }}
+              value={this.state.editorContent}
+            />
+          </EuiMarkdownEditorDropZone>
         )}
       </div>
     );
