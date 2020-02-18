@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { shallow, render, mount } from 'enzyme';
 import sinon from 'sinon';
 import {
@@ -11,7 +11,7 @@ import { comboBoxKeyCodes } from '../../services';
 import { EuiComboBox } from './combo_box';
 
 jest.mock('../portal', () => ({
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
@@ -71,7 +71,7 @@ describe('EuiComboBox', () => {
 describe('props', () => {
   test('options list is rendered', () => {
     const component = mount(
-      <EuiComboBox<TitanOption>
+      <EuiComboBox
         options={options}
         data-test-subj="alsoGetsAppliedToOptionsList"
       />
@@ -83,7 +83,7 @@ describe('props', () => {
 
   test('selectedOptions are rendered', () => {
     const component = shallow(
-      <EuiComboBox<TitanOption>
+      <EuiComboBox
         options={options}
         selectedOptions={[options[2], options[4]]}
       />
@@ -95,7 +95,7 @@ describe('props', () => {
   describe('isClearable=false disallows user from clearing input', () => {
     test('when no options are selected', () => {
       const component = shallow(
-        <EuiComboBox<TitanOption> options={options} isClearable={false} />
+        <EuiComboBox options={options} isClearable={false} />
       );
 
       expect(component).toMatchSnapshot();
@@ -103,7 +103,7 @@ describe('props', () => {
 
     test('when options are selected', () => {
       const component = shallow(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2], options[4]]}
           isClearable={false}
@@ -117,7 +117,7 @@ describe('props', () => {
   describe('singleSelection', () => {
     test('is rendered', () => {
       const component = shallow(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
           singleSelection={true}
@@ -128,7 +128,7 @@ describe('props', () => {
     });
     test('selects existing option when opened', () => {
       const component = shallow(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
           singleSelection={true}
@@ -142,7 +142,7 @@ describe('props', () => {
 
   test('isDisabled is rendered', () => {
     const component = shallow(
-      <EuiComboBox<TitanOption>
+      <EuiComboBox
         options={options}
         selectedOptions={[options[2]]}
         isDisabled={true}
@@ -154,7 +154,7 @@ describe('props', () => {
 
   test('full width is rendered', () => {
     const component = shallow(
-      <EuiComboBox<TitanOption>
+      <EuiComboBox
         options={options}
         selectedOptions={[options[2]]}
         fullWidth={true}
@@ -171,7 +171,7 @@ describe('behavior', () => {
       const onCreateOptionHandler = sinon.spy();
 
       const component = mount(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
           onCreateOption={onCreateOptionHandler}
@@ -190,7 +190,7 @@ describe('behavior', () => {
       const onCreateOptionHandler = sinon.spy();
 
       const component = mount(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
           onCreateOption={onCreateOptionHandler}
@@ -209,10 +209,7 @@ describe('behavior', () => {
       const onKeyDownWrapper = jest.fn();
       const component = mount(
         <div onKeyDown={onKeyDownWrapper}>
-          <EuiComboBox<TitanOption>
-            options={options}
-            selectedOptions={[options[2]]}
-          />
+          <EuiComboBox options={options} selectedOptions={[options[2]]} />
         </div>
       );
 
@@ -236,7 +233,7 @@ describe('behavior', () => {
       const onCreateOptionHandler = sinon.spy();
 
       const component = mount(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
           onCreateOption={onCreateOptionHandler}
@@ -261,10 +258,7 @@ describe('behavior', () => {
       const onKeyDownWrapper = jest.fn();
       const component = mount(
         <div onKeyDown={onKeyDownWrapper}>
-          <EuiComboBox<TitanOption>
-            options={options}
-            selectedOptions={[options[2]]}
-          />
+          <EuiComboBox options={options} selectedOptions={[options[2]]} />
         </div>
       );
 
@@ -292,7 +286,7 @@ describe('behavior', () => {
     test('calls onChange callback with empty array', () => {
       const onChangeHandler = sinon.spy();
       const component = mount(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
           onChange={onChangeHandler}
@@ -306,7 +300,7 @@ describe('behavior', () => {
 
     test('focuses the input', () => {
       const component = mount(
-        <EuiComboBox<TitanOption>
+        <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
           onChange={() => {}}

@@ -1,7 +1,9 @@
 import { ButtonHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 
-export { EuiComboBox } from './combo_box';
+export { EuiComboBox, EuiComboBoxProps } from './combo_box';
+export * from './combo_box_input';
+export * from './combo_box_options_list';
 
 export type EuiComboBoxOptionOption<
   T = string | number | string[] | undefined
@@ -14,3 +16,7 @@ export type EuiComboBoxOptionOption<
   };
 
 export type EuiComboBoxOptionsListPosition = 'top' | 'bottom';
+
+export interface EuiComboBoxSingleSelectionShape {
+  asPlainText?: boolean;
+}

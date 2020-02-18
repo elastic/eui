@@ -1,4 +1,4 @@
-import React, { Component, Ref, FocusEventHandler } from 'react';
+import React, { Component, FocusEventHandler, RefObject } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 
@@ -6,24 +6,19 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFormControlLayout } from '../../form/form_control_layout';
 import { EuiComboBoxPill } from './combo_box_pill';
 import { htmlIdGenerator } from '../../../services';
-import { EuiComboBoxOptionOption } from '..';
-import { EuiFormControlLayoutCustomIconProps } from '../../form/form_control_layout/form_control_layout_custom_icon';
+import { EuiComboBoxOptionOption, EuiComboBoxSingleSelectionShape } from '..';
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
 
 const makeId = htmlIdGenerator();
 
-export interface EuiComboBoxSingleSelectionShape {
-  asPlainText?: boolean;
-}
-
 export interface EuiComboBoxInputProps<T> {
-  autoSizeInputRef?: Ref<HTMLInputElement>;
+  autoSizeInputRef?: RefObject<HTMLInputElement>;
   compressed: boolean;
   focusedOptionId?: string;
   fullWidth?: boolean;
   hasSelectedOptions: boolean;
   id?: string;
-  inputRef?: HTMLInputElement | null;
+  inputRef?: RefObject<HTMLInputElement>;
   isDisabled?: boolean;
   isListOpen: boolean;
   noIcon: boolean;
@@ -37,11 +32,11 @@ export interface EuiComboBoxInputProps<T> {
   onRemoveOption?: (option: EuiComboBoxOptionOption<T>) => void;
   placeholder?: string;
   rootId: ReturnType<typeof htmlIdGenerator>;
-  searchValue?: string;
+  searchValue: string;
   selectedOptions?: Array<EuiComboBoxOptionOption<T>>;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
-  toggleButtonRef?: EuiFormControlLayoutCustomIconProps['iconRef'];
-  updatePosition: () => void;
+  toggleButtonRef?: RefObject<HTMLButtonElement | HTMLSpanElement>;
+  updatePosition: (listElement?: RefObject<HTMLDivElement> | undefined) => void;
   value?: string;
 }
 
@@ -52,7 +47,7 @@ interface EuiComboBoxInputState {
 export class EuiComboBoxInput<T> extends Component<
   EuiComboBoxInputProps<T>,
   EuiComboBoxInputState
-  > {
+> {
   state: EuiComboBoxInputState = {
     hasFocus: false,
   };
@@ -117,28 +112,35 @@ export class EuiComboBoxInput<T> extends Component<
       value,
     } = this.props;
 
-    const pills = selectedOptions.map(option => {
-      const { label, color, onClick, ...rest } = option;
+    const pills = selectedOptions
+      ? selectedOptions.map(option => {
+          const { label, color, onClick, ...rest } = option;
 
-      const asPlainText = singleSelection && singleSelection.asPlainText;
-      const pillOnClose =
-        isDisabled || singleSelection || onClick ? undefined : onRemoveOption;
-      const pillOnClick = onClick || (() => { });
+          const asPlainText =
+            singleSelection &&
+            typeof singleSelection === 'object' &&
+            singleSelection.asPlainText;
+          const pillOnClose =
+            isDisabled || singleSelection || onClick
+              ? undefined
+              : onRemoveOption;
+          const pillOnClick = onClick || (() => {});
 
-      return (
-        <EuiComboBoxPill
-          option={option}
-          onClose={pillOnClose}
-          key={label.toLowerCase()}
-          color={color}
-          onClick={pillOnClick}
-          onClickAriaLabel={onClick ? 'Change' : undefined}
-          asPlainText={asPlainText}
-          {...rest}>
-          {label}
-        </EuiComboBoxPill>
-      );
-    });
+          return (
+            <EuiComboBoxPill
+              option={option}
+              onClose={pillOnClose}
+              key={label.toLowerCase()}
+              color={color}
+              onClick={pillOnClick}
+              onClickAriaLabel={onClick ? 'Change' : undefined}
+              asPlainText={asPlainText}
+              {...rest}>
+              {label}
+            </EuiComboBoxPill>
+          );
+        })
+      : null;
 
     let removeOptionMessage;
     let removeOptionMessageId;
@@ -147,13 +149,13 @@ export class EuiComboBoxInput<T> extends Component<
       const readPlaceholder = placeholder ? `${placeholder}.` : '';
       const removeOptionMessageContent =
         `Combo box. Selected. ${
-        searchValue ? `${searchValue}. Selected. ` : ''
+          searchValue ? `${searchValue}. Selected. ` : ''
         }${
-        selectedOptions && selectedOptions.length > 0
-          ? `${value}. Press Backspace to delete ${
-          selectedOptions[selectedOptions.length - 1].label
-          }. `
-          : ''
+          selectedOptions && selectedOptions.length > 0
+            ? `${value}. Press Backspace to delete ${
+                selectedOptions[selectedOptions.length - 1].label
+              }. `
+            : ''
         }Combo box input. ${readPlaceholder} Type some text or, to display a list of choices, press Down Arrow. ` +
         'To exit the list of choices, press Escape.';
 
@@ -186,7 +188,6 @@ export class EuiComboBoxInput<T> extends Component<
     }
 
     const clickProps: EuiFormControlLayoutIconsProps = {};
-
     if (!isDisabled && onClear && hasSelectedOptions) {
       clickProps.clear = {
         'data-test-subj': 'comboBoxClearButton',
@@ -194,8 +195,17 @@ export class EuiComboBoxInput<T> extends Component<
       };
     }
 
-    let icon: EuiFormControlLayoutIconsProps['icon'] | undefined;
+    let icon: EuiFormControlLayoutIconsProps['icon'];
     if (!noIcon) {
+      /*
+      NOTE_TO_SELF(dimitri): this problem appears to come from an issue with the type of
+      EuiFormControlLayoutCustomIconProps['iconRef']:
+      ```tsx
+      | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
+      ```
+
+      As I understand it, a `RefObject`, which is what `toggleButtonRef` is, should be accepted, as it is with the `ref` property itself.
+      */
       icon = {
         'aria-label': isListOpen
           ? 'Close list of options'

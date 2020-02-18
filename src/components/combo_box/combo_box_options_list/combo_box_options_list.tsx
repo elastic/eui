@@ -1,4 +1,4 @@
-import React, { Component, Ref, ReactNode } from 'react';
+import React, { Component, ReactNode, RefObject, createRef } from 'react';
 import classNames from 'classnames';
 import { List, ListProps } from 'react-virtualized';
 
@@ -12,10 +12,11 @@ import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
-import { EuiPanelProps } from '../../panel/panel';
 import { EuiComboBoxOptionProps } from './combo_box_option';
 import { EuiComboBoxOptionOption, EuiComboBoxOptionsListPosition } from '..';
 import { htmlIdGenerator } from '../../../services';
+import { RefCallback } from '../../common';
+import { EuiComboBoxInputProps } from '../combo_box_input';
 
 const positionToClassNameMap: {
   [position in EuiComboBoxOptionsListPosition]: string
@@ -36,10 +37,10 @@ export interface EuiComboBoxOptionsListProps<T> {
     selectedOptions: any[]
   ) => EuiComboBoxOptionOption<T>;
   isLoading?: boolean;
-  listRef: EuiPanelProps['panelRef'];
-  matchingOptions?: Array<EuiComboBoxOptionOption<T>>;
+  listRef: RefObject<HTMLInputElement>;
+  matchingOptions: Array<EuiComboBoxOptionOption<T>>;
 
-  onCloseList: EuiComboBoxOptionProps<T>['onClick'];
+  onCloseList: EuiComboBoxInputProps<T>['onCloseListClick'];
   onCreateOption?: (
     searchValue: string,
     options: Array<EuiComboBoxOptionOption<T>>
@@ -47,7 +48,7 @@ export interface EuiComboBoxOptionsListProps<T> {
   onOptionClick?: (option: EuiComboBoxOptionOption<T>) => void;
   onOptionEnterKey?: EuiComboBoxOptionProps<T>['onClick'];
   onScroll?: ListProps['onScroll'];
-  optionRef?: EuiComboBoxOptionProps<T>['optionRef'];
+  optionRef?: (index: number, node: RefObject<HTMLDivElement>) => void;
   options: Array<EuiComboBoxOptionOption<T>>;
   position?: EuiComboBoxOptionsListPosition;
   renderOption?: (
@@ -58,16 +59,16 @@ export interface EuiComboBoxOptionsListProps<T> {
   rootId: ReturnType<typeof htmlIdGenerator>;
   rowHeight: number;
   scrollToIndex?: number;
-  searchValue?: string;
+  searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
-  updatePosition: (parameter?: UIEvent | EuiPanelProps['panelRef']) => void;
+  updatePosition: (listElement?: RefObject<HTMLDivElement> | undefined) => void;
   width: number;
 }
 
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
-  > {
-  list: Ref<HTMLDivElement>;
+> {
+  list = createRef<HTMLDivElement>();
 
   static defaultProps = {
     'data-test-subj': '',
@@ -77,7 +78,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
   updatePosition = () => {
     // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
     requestAnimationFrame(() => {
-      this.props.updatePosition(this.list);
+      if (this.list.current) {
+        this.props.updatePosition(this.list);
+      }
     });
   };
 
@@ -118,20 +121,26 @@ export class EuiComboBoxOptionsList<T> extends Component<
     window.removeEventListener('resize', this.updatePosition);
     window.removeEventListener('scroll', this.closeListOnScroll, {
       capture: true,
-      passive: true,
     });
   }
 
   closeListOnScroll = (event: Event) => {
     // Close the list when a scroll event happens, but not if the scroll happened in the options list.
     // This mirrors Firefox's approach of auto-closing `select` elements onscroll.
-    if (this.list && this.list.contains(event.target) === false) {
+    if (
+      this.list.current &&
+      event.target &&
+      this.list.current.contains(event.target) === false
+    ) {
       this.props.onCloseList();
     }
   };
 
-  listRef: Ref<HTMLDivElement> = node => {
+  listRefCallback: RefCallback<HTMLDivElement> = node => {
     this.props.listRef(node);
+    /*
+    NOTE_TO_SELF(dimitri): this is actually fine but the types are written with readonly for pedantic reasons... might need to @ts-ignore, unfortunately
+    */
     this.list = node;
   };
 
@@ -180,8 +189,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
           </EuiFlexItem>
         </EuiFlexGroup>
       );
-    } else if (searchValue && matchingOptions.length === 0) {
-      if (onCreateOption) {
+    } else if (searchValue && matchingOptions && matchingOptions.length === 0) {
+      if (onCreateOption && getSelectedOptionForSearchValue) {
         const selectedOptionForValue = getSelectedOptionForSearchValue(
           searchValue,
           selectedOptions
@@ -249,8 +258,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         {emptyStateContent}
       </EuiText>
     ) : (
-        undefined
-      );
+      undefined
+    );
 
     const numVisibleOptions =
       matchingOptions.length < 7 ? matchingOptions.length : 7;
@@ -283,9 +292,10 @@ export class EuiComboBoxOptionsList<T> extends Component<
               style={style}
               key={option.label.toLowerCase()}
               onClick={() => {
-                onOptionClick(option);
+                if (onOptionClick) {
+                  onOptionClick(option);
+                }
               }}
-              // onEnterKey={onOptionEnterKey}
               ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
               id={rootId(`_option-${index}`)}
@@ -295,12 +305,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
               {renderOption ? (
                 renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)
               ) : (
-                  <EuiHighlight
-                    search={searchValue}
-                    className={OPTION_CONTENT_CLASSNAME}>
-                    {label}
-                  </EuiHighlight>
-                )}
+                <EuiHighlight
+                  search={searchValue}
+                  className={OPTION_CONTENT_CLASSNAME}>
+                  {label}
+                </EuiHighlight>
+              )}
             </EuiFilterSelectItem>
           );
         }}
@@ -324,7 +334,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       <EuiPanel
         paddingSize="none"
         className={classes}
-        panelRef={this.listRef}
+        panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
         {...rest}>
         <div className="euiComboBoxOptionsList__rowWrap">
