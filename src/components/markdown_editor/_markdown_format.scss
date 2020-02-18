@@ -182,7 +182,7 @@ $euiDefaultFontSize: 14px;
   // 6. Lists
   ul,
   ol {
-    padding-left: euiMarkdownSizeL;
+    padding-left: $euiMarkdownSizeL;
     margin-top: 0;
     margin-bottom: $euiMarkdownSize;
   }
