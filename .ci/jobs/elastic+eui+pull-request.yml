@@ -3,6 +3,7 @@
     name: elastic+eui+pull-request
     display-name: "elastic / eui # pull-request"
     description: Jobs to run on EUI pull requests
+    disabled: true
     project-type: multijob
     concurrent: true
     node: master
