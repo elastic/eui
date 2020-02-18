@@ -4,12 +4,6 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 
 import { EuiCodeBlockImpl } from './_code_block';
 
-/**
- * There isn't a specific type for the <code> element, and MDN says that it only supports the HTMLElement interface.
- * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code
- * */
-export type HTMLCodeElement = HTMLElement;
-
 export type FontSize = 's' | 'm' | 'l';
 export type PaddingSize = 'none' | 's' | 'm' | 'l';
 
@@ -32,7 +26,7 @@ export interface EuiCodeProps extends EuiCodeSharedProps {
   inline?: true;
 }
 
-type Props = CommonProps & EuiCodeProps & HTMLAttributes<HTMLCodeElement>;
+type Props = CommonProps & EuiCodeProps & HTMLAttributes<HTMLElement>;
 
 export const EuiCode: FunctionComponent<Props> = ({ inline, ...rest }) => {
   return <EuiCodeBlockImpl inline={true} {...rest} />;
