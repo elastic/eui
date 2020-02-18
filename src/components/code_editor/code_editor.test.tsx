@@ -1,5 +1,4 @@
 import React from 'react';
-import sinon from 'sinon';
 import { mount, ReactWrapper } from 'enzyme';
 import { EuiCodeEditor } from './code_editor';
 import { keyCodes } from '../../services';
@@ -79,11 +78,11 @@ describe('EuiCodeEditor', () => {
 
     describe('interaction', () => {
       test('bluring the ace textbox should call a passed onBlur prop', () => {
-        const blurSpy = sinon.spy();
+        const blurSpy = jest.fn().mockName('blurSpy');
         const el = mount(<EuiCodeEditor onBlur={blurSpy} />);
         // @ts-ignore
         el.instance().onBlurAce();
-        expect(blurSpy.called).toBe(true);
+        expect(blurSpy).toHaveBeenCalled();
       });
 
       test('pressing escape in ace textbox will enable overlay', () => {
