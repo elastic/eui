@@ -4,12 +4,17 @@ import { CommonProps } from '../common';
 import { EuiCodeBlockImpl } from './_code_block';
 import { EuiCodeSharedProps } from './code';
 
-export interface EuiCodeBlockProps extends EuiCodeSharedProps {
+interface OwnProps extends EuiCodeSharedProps {
   inline?: false;
 }
 
-type Props = CommonProps & EuiCodeBlockProps & HTMLAttributes<HTMLElement>;
+export type EuiCodeBlockProps = CommonProps &
+  OwnProps &
+  HTMLAttributes<HTMLElement>;
 
-export const EuiCodeBlock: FunctionComponent<Props> = ({ inline, ...rest }) => {
+export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
+  inline,
+  ...rest
+}) => {
   return <EuiCodeBlockImpl inline={false} {...rest} />;
 };
