@@ -11,6 +11,7 @@
           github-hooks: true
           status-context: eui-ci
           cancel-builds-on-update: true
+          refspec: +refs/pull/*:refs/remotes/origin/pr/*
     builders:
       - shell: |-
           #!/usr/local/bin/runbld

@@ -28,7 +28,6 @@
           branches:
             - ${ghprbActualCommit}
           url: git@github.com:elastic/eui.git
-          refspec: +refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*
           basedir: ''
           wipe-workspace: 'True'
     parameters:
