@@ -36,11 +36,11 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
 // `searchProps` can only be specified when `searchable` is true
 type EuiSelectableSearchableProps = ExclusiveUnion<
   {
-    searchable?: false;
+    searchable: false;
   },
   {
     /**
-     * Hooks up a search box to filter the list
+     * Hooks up a search box to filter the list (boolean)
      */
     searchable: true;
     /**
@@ -49,6 +49,8 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
     searchProps?: {};
   }
 >;
+
+export type EuiSelectableOptionProp = Option;
 
 export type EuiSelectableProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -67,9 +69,9 @@ export type EuiSelectableProps = Omit<
       search: ReactElement<EuiSelectableSearch> | undefined
     ) => ReactNode;
     /**
-     * Array or Option objects, see docs for props
+     * Array of Option objects. See #EuiSelectableOption
      */
-    options: Option[];
+    options: EuiSelectableOptionProp[];
     /**
      * Passes back the altered `options` array with selected options as
      */
@@ -82,7 +84,7 @@ export type EuiSelectableProps = Omit<
      */
     singleSelection?: EuiSelectableSingleOptionProps;
     /**
-     * Allows marking options as checked = 'off' as well as 'on'
+     * Allows marking options as `checked='off'` as well as `'on'`
      */
     allowExclusions?: boolean;
     /**
@@ -96,12 +98,12 @@ export type EuiSelectableProps = Omit<
      */
     height?: number | 'full';
     /**
-     * See `EuiSelectableList`
+     * See #EuiSelectableOptionsList
      */
     listProps?: EuiSelectableOptionsListPropsWithDefaults;
     /**
      * Custom render function for each option.
-     * Returns (option, searchValue)
+     * Returns `(option, searchValue)`
      */
     renderOption?: (option: Option, searchValue: string) => {};
   };
@@ -119,6 +121,7 @@ export class EuiSelectable extends Component<
   static defaultProps = {
     options: [],
     singleSelection: false,
+    searchable: false,
   };
 
   private optionsListRef = createRef<EuiSelectableList>();

@@ -5,40 +5,40 @@ import { CommonProps } from '../../common';
 import { List, AutoSizer, ListProps } from 'react-virtualized';
 import { htmlIdGenerator } from '../../../services';
 import { EuiSelectableListItem } from './selectable_list_item';
-// @ts-ignore
 import { EuiHighlight } from '../../highlight';
 import { Option } from '../types';
 
 export type EuiSelectableSingleOptionProps = 'always' | boolean;
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
-export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    /**
-     * The index of the option to be highlighted as pseudo-focused;
-     * Good for use when only one selection is allowed and needing to open
-     * directly to that option
-     */
-    activeOptionIndex?: number;
-    /**
-     *  The height of each option in pixels. Defaults to `32`
-     */
-    rowHeight: number;
-    /**
-     * Show the check/cross selection indicator icons
-     */
-    showIcons?: boolean;
-    singleSelection?: EuiSelectableSingleOptionProps;
-    /**
-     * Any props to send specifically to the react-virtualized `List`
-     */
-    virtualizedProps?: ListProps;
-    /**
-     * Adds a border around the list to indicate the bounds;
-     * Useful when the list scrolls, otherwise use your own container
-     */
-    bordered?: boolean;
-  };
+export interface EuiSelectableOptionsListProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
+  /**
+   * The index of the option to be highlighted as pseudo-focused;
+   * Good for use when only one selection is allowed and needing to open
+   * directly to that option
+   */
+  activeOptionIndex?: number;
+  /**
+   *  The height of each option in pixels. Defaults to `32`
+   */
+  rowHeight: number;
+  /**
+   * Show the check/cross selection indicator icons
+   */
+  showIcons?: boolean;
+  singleSelection?: EuiSelectableSingleOptionProps;
+  /**
+   * Any props to send specifically to the react-virtualized `List`
+   */
+  virtualizedProps?: ListProps;
+  /**
+   * Adds a border around the list to indicate the bounds;
+   * Useful when the list scrolls, otherwise use your own container
+   */
+  bordered?: boolean;
+}
 
 export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   /**

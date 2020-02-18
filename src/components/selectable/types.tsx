@@ -12,6 +12,7 @@ export interface Option extends CommonProps {
    * Must be unique across items
    */
   key?: string;
+  id?: string;
   /**
    * Leave off to indicate not selected,
    * 'on' to indicate inclusion and
