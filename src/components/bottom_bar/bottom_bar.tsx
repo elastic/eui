@@ -31,7 +31,7 @@ interface Props extends CommonProps {
   /**
    * Customize the screen reader heading that helps users find this control. Default is "Page level controls".
    */
-  title?: string;
+  landmarkHeading?: string;
 }
 
 export class EuiBottomBar extends Component<Props> {
@@ -58,7 +58,7 @@ export class EuiBottomBar extends Component<Props> {
       className,
       paddingSize = 'm',
       bodyClassName,
-      title,
+      landmarkHeading,
       ...rest
     } = this.props;
 
@@ -77,14 +77,18 @@ export class EuiBottomBar extends Component<Props> {
             // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
             // A bug in voiceover won't list some landmarks in the rotor without an aria-label
             <section
-              aria-label={title ? title : screenReaderHeading}
+              aria-label={
+                landmarkHeading ? landmarkHeading : screenReaderHeading
+              }
               className={classes}
               ref={node => {
                 this.bar = node;
               }}
               {...rest}>
               <EuiScreenReaderOnly>
-                <h2>{title ? title : screenReaderHeading}</h2>
+                <h2>
+                  {landmarkHeading ? landmarkHeading : screenReaderHeading}
+                </h2>
               </EuiScreenReaderOnly>
               {children}
             </section>
@@ -92,11 +96,11 @@ export class EuiBottomBar extends Component<Props> {
         </EuiI18n>
         <EuiScreenReaderOnly>
           <p aria-live="assertive">
-            {title ? (
+            {landmarkHeading ? (
               <EuiI18n
-                token="euiBottomBar.screenReaderAnnouncement"
-                default="There is a new region landmark called {title} with page level controls at the end of the document."
-                values={{ title }}
+                token="euiBottomBar.customScreenReaderAnnouncement"
+                default="There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+                values={{ landmarkHeading }}
               />
             ) : (
               <EuiI18n

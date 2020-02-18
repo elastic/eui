@@ -195,7 +195,7 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
     /**
      * Customize the screen reader heading that helps users find this control. Default is "Page level controls".
      */
-    title?: string;
+    landmarkHeading?: string;
   };
 
 interface EuiControlBarState {
@@ -251,7 +251,7 @@ export class EuiControlBar extends Component<
       style,
       position,
       bodyClassName,
-      title,
+      landmarkHeading,
       ...rest
     } = this.props;
 
@@ -411,11 +411,11 @@ export class EuiControlBar extends Component<
           // A bug in voiceover won't list some landmarks in the rotor without an aria-label
           <section
             className={classes}
+            aria-label={landmarkHeading ? landmarkHeading : screenReaderHeading}
             {...rest}
-            style={styles}
-            aria-label={title ? title : screenReaderHeading}>
+            style={styles}>
             <EuiScreenReaderOnly>
-              <h2>{title ? title : screenReaderHeading}</h2>
+              <h2>{landmarkHeading ? landmarkHeading : screenReaderHeading}</h2>
             </EuiScreenReaderOnly>
             <div
               className="euiControlBar__controls"
@@ -439,11 +439,11 @@ export class EuiControlBar extends Component<
         {controlBar}
         <EuiScreenReaderOnly>
           <p aria-live="assertive">
-            {title ? (
+            {landmarkHeading ? (
               <EuiI18n
                 token="euiControlBar.screenReaderAnnouncement"
-                default="There is a new region landmark called {title} with page level controls at the end of the document."
-                values={{ title }}
+                default="There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+                values={{ landmarkHeading }}
               />
             ) : (
               <EuiI18n

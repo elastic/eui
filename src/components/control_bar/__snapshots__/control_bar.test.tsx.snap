@@ -2,7 +2,7 @@
 
 exports[`EuiControlBar is rendered 1`] = `
 <section
-  aria-label="Page level controls"
+  aria-label="aria-label"
   class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--fixed"
   data-test-subj="test subject string"
   style="left: 0px; right: 0px;"
