@@ -87,7 +87,7 @@ const SelectionButton = () => {
         button={
           <EuiButtonEmpty
             size="xs"
-            iconType="downArrow"
+            iconType="arrowDown"
             color="primary"
             className="euiDataGrid__controlBtn"
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
