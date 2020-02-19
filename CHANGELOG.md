@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiCodeEditor` to Typescript ([#2836](https://github.com/elastic/eui/pull/2836))
 - Converted `EuiCode` and `EuiCodeBlock` and to Typescript ([#2835](https://github.com/elastic/eui/pull/2835))
 - Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
