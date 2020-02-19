@@ -75,7 +75,7 @@ export class EuiComboBoxInput<T> extends Component<
     });
   };
 
-  componentDidUpdate<T>(prevProps: EuiComboBoxInputProps<T>) {
+  componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
     const { searchValue } = prevProps;
 
     // We need to update the position of everything if the user enters enough input to change
@@ -107,19 +107,21 @@ export class EuiComboBoxInput<T> extends Component<
       rootId,
       searchValue,
       selectedOptions,
-      singleSelection,
+      singleSelection: singleSelectionProp,
       toggleButtonRef,
       value,
     } = this.props;
 
+    const singleSelection = Boolean(singleSelectionProp);
+    const asPlainText =
+      (singleSelectionProp &&
+        typeof singleSelectionProp === 'object' &&
+        singleSelectionProp.asPlainText) ||
+      false;
+
     const pills = selectedOptions
       ? selectedOptions.map(option => {
           const { label, color, onClick, ...rest } = option;
-
-          const asPlainText =
-            singleSelection &&
-            typeof singleSelection === 'object' &&
-            singleSelection.asPlainText;
           const pillOnClose =
             isDisabled || singleSelection || onClick
               ? undefined

@@ -105,7 +105,7 @@ export class EuiComboBox<T> extends Component<
       this.props.selectedOptions,
       initialSearchValue,
       this.props.async,
-      this.props.singleSelection
+      Boolean(this.props.singleSelection)
     ),
     searchValue: initialSearchValue,
     width: 0,
@@ -259,7 +259,7 @@ export class EuiComboBox<T> extends Component<
       this.props.selectedOptions[this.props.selectedOptions.length - 1]
     );
 
-    if (this.props.singleSelection && !this.state.isListOpen) {
+    if (Boolean(this.props.singleSelection) && !this.state.isListOpen) {
       this.openList();
     }
   };
@@ -308,7 +308,7 @@ export class EuiComboBox<T> extends Component<
 
     if (
       this.isSingleSelectionCustomOption() ||
-      (singleSelection && matchingOptions.length < 1)
+      (Boolean(singleSelection) && matchingOptions.length < 1)
     ) {
       // Adding a custom option to a single select that does not appear in the list of options
       this.closeList();
@@ -344,7 +344,7 @@ export class EuiComboBox<T> extends Component<
     } = this.props;
     // The selected option of a single select is custom and does not appear in the list of options
     return (
-      singleSelection &&
+      Boolean(singleSelection) &&
       onCreateOption &&
       selectedOptions.length > 0 &&
       !options.includes(selectedOptions[0])
@@ -473,8 +473,13 @@ export class EuiComboBox<T> extends Component<
       return;
     }
 
-    const { onChange, selectedOptions, singleSelection } = this.props;
-    const changeOptions = Boolean(singleSelection)
+    const {
+      onChange,
+      selectedOptions,
+      singleSelection: singleSelectionProp,
+    } = this.props;
+    const singleSelection = Boolean(singleSelectionProp);
+    const changeOptions = singleSelection
       ? [addedOption]
       : [...selectedOptions, addedOption];
 
@@ -529,7 +534,10 @@ export class EuiComboBox<T> extends Component<
     }
 
     // If the user does this from a state in which an option has focus, then we need to reset it or clear it.
-    if (this.props.singleSelection && this.props.selectedOptions.length === 1) {
+    if (
+      Boolean(this.props.singleSelection) &&
+      this.props.selectedOptions.length === 1
+    ) {
       this.setState({
         activeOptionIndex: this.state.matchingOptions.indexOf(
           this.props.selectedOptions[0]
@@ -623,7 +631,7 @@ export class EuiComboBox<T> extends Component<
       selectedOptions,
       searchValue,
       Boolean(nextProps.async),
-      singleSelection
+      Boolean(singleSelection)
     );
 
     const stateUpdate: Partial<EuiComboBoxState<T>> = { matchingOptions };
@@ -658,7 +666,7 @@ export class EuiComboBox<T> extends Component<
       this.optionsRefs = [];
       let nextActiveOptionIndex = activeOptionIndex;
       // ensure that the currently selected single option is active if it is in the matchingOptions
-      if (singleSelection && selectedOptions.length === 1) {
+      if (Boolean(singleSelection) && selectedOptions.length === 1) {
         if (newMatchingOptions.includes(selectedOptions[0])) {
           nextActiveOptionIndex = newMatchingOptions.indexOf(
             selectedOptions[0]
@@ -692,7 +700,7 @@ export class EuiComboBox<T> extends Component<
         selectedOptions,
         searchValue,
         this.props.async,
-        singleSelection
+        Boolean(singleSelection)
       )
     );
   }
