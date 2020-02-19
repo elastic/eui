@@ -1,4 +1,5 @@
 import React, {
+  AriaAttributes,
   FunctionComponent,
   HTMLAttributes,
   useEffect,
@@ -45,8 +46,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   const width = columnWidths[id] || defaultColumnWidth;
 
   const ariaProps: {
-    'aria-sort'?: HTMLAttributes<HTMLDivElement>['aria-sort'];
-    'aria-describedby'?: HTMLAttributes<HTMLDivElement>['aria-describedby'];
+    'aria-sort'?: AriaAttributes['aria-sort'];
+    'aria-describedby'?: AriaAttributes['aria-describedby'];
   } = {};
 
   let screenReaderId;
