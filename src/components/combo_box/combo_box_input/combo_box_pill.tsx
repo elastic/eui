@@ -1,18 +1,19 @@
-import React, { AriaAttributes, Component } from 'react';
+import React, { AriaAttributes, Component, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { EuiBadge } from '../../badge';
 import { EuiI18n } from '../../i18n';
 import { EuiComboBoxOptionOption } from '..';
+import { OptionHandler } from '../types';
 
-export interface EuiComboBoxPillProps<T> {
+interface EuiComboBoxPillProps<T> {
   asPlainText?: boolean;
   children?: string;
   className?: string;
   color?: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   onClickAriaLabel?: AriaAttributes['aria-label'];
-  onClose?: (option: EuiComboBoxOptionOption<T>) => void;
+  onClose?: OptionHandler<T>;
   option: EuiComboBoxOptionOption<T>;
 }
 
@@ -47,6 +48,13 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       },
       className
     );
+    const onClickProps =
+      onClick && onClickAriaLabel
+        ? {
+            onClick,
+            onClickAriaLabel,
+          }
+        : {};
 
     if (onClose) {
       return (
@@ -63,9 +71,8 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
               iconOnClickAriaLabel={removeSelection}
               iconSide="right"
               iconType="cross"
-              onClick={onClick}
-              onClickAriaLabel={onClickAriaLabel}
               title={children}
+              {...onClickProps}
               {...rest}>
               {children}
             </EuiBadge>
@@ -88,8 +95,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
         color={color}
         title={children}
         {...rest}
-        onClick={onClick}
-        onClickAriaLabel={onClickAriaLabel}>
+        {...onClickProps}>
         {children}
       </EuiBadge>
     );

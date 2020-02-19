@@ -1,9 +1,10 @@
 import React, { Component, ReactNode, RefObject, createRef } from 'react';
 import classNames from 'classnames';
-import { List, ListProps } from 'react-virtualized';
+import { List, ListProps } from 'react-virtualized'; // eslint-disable-line import/named
 
 // https://github.com/elastic/eui/pull/2835
-import { EuiCode } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
+// @ts-ignore STILL_INVESTIGATING(dimitri)
+import { EuiCode } from '../../../components/code'; // eslint-disable-line import/no-unresolved
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
@@ -12,11 +13,9 @@ import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
-import { EuiComboBoxOptionProps } from './combo_box_option';
 import { EuiComboBoxOptionOption, EuiComboBoxOptionsListPosition } from '..';
 import { htmlIdGenerator } from '../../../services';
-import { RefCallback } from '../../common';
-import { EuiComboBoxInputProps } from '../combo_box_input';
+import { UpdatePositionHandler, OptionHandler, RefCallback } from '../types';
 
 const positionToClassNameMap: {
   [position in EuiComboBoxOptionsListPosition]: string
@@ -39,16 +38,15 @@ export interface EuiComboBoxOptionsListProps<T> {
   isLoading?: boolean;
   listRef: RefObject<HTMLInputElement>;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-
-  onCloseList: EuiComboBoxInputProps<T>['onCloseListClick'];
+  onCloseList: () => void;
   onCreateOption?: (
     searchValue: string,
     options: Array<EuiComboBoxOptionOption<T>>
   ) => boolean;
-  onOptionClick?: (option: EuiComboBoxOptionOption<T>) => void;
-  onOptionEnterKey?: EuiComboBoxOptionProps<T>['onClick'];
+  onOptionClick?: OptionHandler<T>;
+  onOptionEnterKey?: OptionHandler<T>;
   onScroll?: ListProps['onScroll'];
-  optionRef?: (index: number, node: RefObject<HTMLDivElement>) => void;
+  optionRef: (index: number, node: RefObject<EuiFilterSelectItem>) => void;
   options: Array<EuiComboBoxOptionOption<T>>;
   position?: EuiComboBoxOptionsListPosition;
   renderOption?: (
@@ -61,7 +59,7 @@ export interface EuiComboBoxOptionsListProps<T> {
   scrollToIndex?: number;
   searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
-  updatePosition: (listElement?: RefObject<HTMLDivElement> | undefined) => void;
+  updatePosition: UpdatePositionHandler;
   width: number;
 }
 
@@ -130,6 +128,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (
       this.list.current &&
       event.target &&
+      // @ts-ignore STILL_INVESTIGATING(dimitri)
       this.list.current.contains(event.target) === false
     ) {
       this.props.onCloseList();
@@ -137,10 +136,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
   };
 
   listRefCallback: RefCallback<HTMLDivElement> = node => {
+    // @ts-ignore STILL_INVESTIGATING(dimitri)
     this.props.listRef(node);
     /*
     NOTE_TO_SELF(dimitri): this is actually fine but the types are written with readonly for pedantic reasons... might need to @ts-ignore, unfortunately
     */
+    // @ts-ignore STILL_INVESTIGATING(dimitri)
     this.list = node;
   };
 
@@ -296,7 +297,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
                   onOptionClick(option);
                 }
               }}
-              ref={optionRef.bind(this, index)}
+              ref={ref => {
+                if (ref !== null) {
+                  // @ts-ignore STILL_INVESTIGATING(dimitri): what is this even doing?
+                  optionRef(index, ref);
+                }
+              }}
               isFocused={activeOptionIndex === index}
               id={rootId(`_option-${index}`)}
               title={label}

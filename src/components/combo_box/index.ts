@@ -5,6 +5,7 @@ export { EuiComboBox, EuiComboBoxProps } from './combo_box';
 export * from './combo_box_input';
 export * from './combo_box_options_list';
 
+// note similarity to `Option` in `components/selectable/types.tsx`
 export type EuiComboBoxOptionOption<
   T = string | number | string[] | undefined
 > = CommonProps &

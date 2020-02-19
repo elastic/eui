@@ -1,17 +1,17 @@
-import React, { Component, KeyboardEvent, ReactNode } from 'react';
+import React, { Component, ReactNode, KeyboardEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { ENTER, SPACE } from '../../../services/key_codes';
-import { RefCallback } from '../../common';
 import { EuiComboBoxOptionOption } from '../index';
+import { OptionHandler, RefCallback } from '../types';
 
 export interface EuiComboBoxOptionProps<T> {
   children?: ReactNode;
   className?: string;
   disabled?: boolean;
   isFocused: boolean;
-  onClick: (option: EuiComboBoxOptionOption<T>) => void;
-  onEnterKey: (option: EuiComboBoxOptionOption<T>) => void;
+  onClick: OptionHandler<T>;
+  onEnterKey: OptionHandler<T>;
   option: EuiComboBoxOptionOption<T>;
   optionRef?: RefCallback<HTMLButtonElement>;
 }
@@ -27,7 +27,7 @@ export class EuiComboBoxOption<T> extends Component<EuiComboBoxOptionProps<T>> {
     onClick(option);
   };
 
-  onKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+  onKeyDown: KeyboardEventHandler<HTMLButtonElement> = event => {
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       event.preventDefault();
       event.stopPropagation();

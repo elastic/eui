@@ -8,9 +8,9 @@ import React, {
   Component,
   Ref,
   FocusEventHandler,
-  KeyboardEvent,
   createRef,
   RefObject,
+  KeyboardEventHandler,
 } from 'react';
 import classNames from 'classnames';
 
@@ -38,6 +38,8 @@ import {
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
 } from './index';
+import { UpdatePositionHandler, OptionHandler } from './types';
+import { RefCallback } from '../common';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -51,7 +53,7 @@ export interface EuiComboBoxProps<T> extends DrillProps<T> {
   compressed: boolean;
   fullWidth: boolean;
   id?: string;
-  inputRef?: RefObject<HTMLInputElement>;
+  inputRef?: RefCallback<HTMLInputElement>;
   isClearable: boolean;
   isDisabled?: boolean;
   isInvalid?: boolean;
@@ -60,7 +62,7 @@ export interface EuiComboBoxProps<T> extends DrillProps<T> {
   onBlur?: FocusEventHandler<HTMLDivElement>;
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
-  onKeyDown?: (event: KeyboardEvent<HTMLDivElement>) => void;
+  onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
   placeholder?: string;
   rowHeight?: number;
@@ -116,7 +118,7 @@ export class EuiComboBox<T> extends Component<
 
   // Refs
   comboBoxRef = createRef<HTMLDivElement>();
-  autoSizeInput = createRef<HTMLInputElement>();
+  autoSizeInputRef = createRef<HTMLInputElement>();
   searchInputRef = createRef<HTMLInputElement>();
   listRef = createRef<HTMLInputElement>();
   toggleButtonRef = createRef<HTMLButtonElement | HTMLSpanElement>();
@@ -135,8 +137,8 @@ export class EuiComboBox<T> extends Component<
     });
   };
 
-  updateListPosition = (
-    listElement: RefObject<HTMLDivElement> | undefined = this.state.listElement
+  updatePosition: UpdatePositionHandler = (
+    listElement = this.state.listElement
   ) => {
     if (!this._isMounted) {
       return;
@@ -370,7 +372,7 @@ export class EuiComboBox<T> extends Component<
      */
     const relatedTarget = (event.relatedTarget ||
       // @ts-ignore need to add window global override
-      event.explicitOriginalTarget) as (EventTarget | null);
+      event.explicitOriginalTarget) as (Node | null);
 
     const focusedInOptionsList =
       relatedTarget &&
@@ -398,7 +400,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+  onKeyDown: KeyboardEventHandler<HTMLDivElement> = event => {
     switch (event.keyCode) {
       case comboBoxKeyCodes.UP:
         event.preventDefault();
@@ -457,11 +459,11 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onOptionEnterKey = (option: EuiComboBoxOptionOption<T>) => {
+  onOptionEnterKey: OptionHandler<T> = option => {
     this.onAddOption(option);
   };
 
-  onOptionClick = (option: EuiComboBoxOptionOption<T>) => {
+  onOptionClick: OptionHandler<T> = option => {
     this.onAddOption(option);
   };
 
@@ -501,7 +503,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onRemoveOption = (removedOption: EuiComboBoxOptionOption<T>) => {
+  onRemoveOption: OptionHandler<T> = removedOption => {
     const { onChange, selectedOptions } = this.props;
     if (onChange) {
       onChange(selectedOptions.filter(option => option !== removedOption));
@@ -585,6 +587,10 @@ export class EuiComboBox<T> extends Component<
       );
     }
 
+    /*
+    NOTE_TO_SELF(dimitri): this is actually fine but the types are written with readonly for pedantic reasons... might need to @ts-ignore, unfortunately
+    */
+    // @ts-ignore STILL_INVESTIGATING(dimitri)
     this.comboBoxRef.current = node;
 
     if (this.comboBoxRef.current) {
@@ -599,7 +605,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  optionRef = (index: number, node: RefObject<HTMLDivElement>) => {
+  optionRef: EuiComboBoxOptionsListProps<T>['optionRef'] = (index, node) => {
     this.optionsRefs[index] = node;
   };
 
@@ -608,11 +614,9 @@ export class EuiComboBox<T> extends Component<
 
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
-      if (this.autoSizeInput.current) {
-        /*
-        NOTE_TO_SELF(dimitri): this either needs an issue (I couldn't find one) or needs to be removed.
-        */
-        this.autoSizeInputcopyInputStyles() = null;
+      if (this.autoSizeInputRef.current) {
+        // @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/42467
+        this.autoSizeInputRef.current.copyInputStyles();
       }
     }, 100);
   }
@@ -630,7 +634,7 @@ export class EuiComboBox<T> extends Component<
       options,
       selectedOptions,
       searchValue,
-      Boolean(nextProps.async),
+      nextProps.async,
       Boolean(singleSelection)
     );
 
@@ -798,7 +802,7 @@ export class EuiComboBox<T> extends Component<
             scrollToIndex={activeOptionIndex}
             searchValue={searchValue}
             selectedOptions={selectedOptions}
-            updatePosition={this.updateListPosition}
+            updatePosition={this.updatePosition}
             width={width}
           />
         </EuiPortal>
@@ -827,7 +831,7 @@ export class EuiComboBox<T> extends Component<
         ref={this.ownRef}
         role="combobox">
         <EuiComboBoxInput
-          autoSizeInputRef={this.autoSizeInput}
+          autoSizeInputRef={this.autoSizeInputRef}
           compressed={compressed}
           focusedOptionId={
             this.hasActiveOption()
@@ -856,7 +860,7 @@ export class EuiComboBox<T> extends Component<
           selectedOptions={selectedOptions}
           singleSelection={singleSelection}
           toggleButtonRef={this.toggleButtonRef}
-          updatePosition={this.updateListPosition}
+          updatePosition={this.updatePosition}
           value={value}
         />
 

@@ -8,6 +8,7 @@ import { EuiComboBoxPill } from './combo_box_pill';
 import { htmlIdGenerator } from '../../../services';
 import { EuiComboBoxOptionOption, EuiComboBoxSingleSelectionShape } from '..';
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
+import { UpdatePositionHandler, OptionHandler, RefCallback } from '../types';
 
 const makeId = htmlIdGenerator();
 
@@ -18,7 +19,7 @@ export interface EuiComboBoxInputProps<T> {
   fullWidth?: boolean;
   hasSelectedOptions: boolean;
   id?: string;
-  inputRef?: RefObject<HTMLInputElement>;
+  inputRef?: RefCallback<HTMLInputElement>;
   isDisabled?: boolean;
   isListOpen: boolean;
   noIcon: boolean;
@@ -29,14 +30,14 @@ export interface EuiComboBoxInputProps<T> {
   onCloseListClick: () => void;
   onFocus: FocusEventHandler<HTMLInputElement>;
   onOpenListClick: () => void;
-  onRemoveOption?: (option: EuiComboBoxOptionOption<T>) => void;
+  onRemoveOption?: OptionHandler<T>;
   placeholder?: string;
   rootId: ReturnType<typeof htmlIdGenerator>;
   searchValue: string;
   selectedOptions?: Array<EuiComboBoxOptionOption<T>>;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   toggleButtonRef?: RefObject<HTMLButtonElement | HTMLSpanElement>;
-  updatePosition: (listElement?: RefObject<HTMLDivElement> | undefined) => void;
+  updatePosition: UpdatePositionHandler;
   value?: string;
 }
 
@@ -126,15 +127,13 @@ export class EuiComboBoxInput<T> extends Component<
             isDisabled || singleSelection || onClick
               ? undefined
               : onRemoveOption;
-          const pillOnClick = onClick || (() => {});
-
           return (
             <EuiComboBoxPill
               option={option}
               onClose={pillOnClose}
               key={label.toLowerCase()}
               color={color}
-              onClick={pillOnClick}
+              onClick={onClick}
               onClickAriaLabel={onClick ? 'Change' : undefined}
               asPlainText={asPlainText}
               {...rest}>
@@ -208,6 +207,7 @@ export class EuiComboBoxInput<T> extends Component<
 
       As I understand it, a `RefObject`, which is what `toggleButtonRef` is, should be accepted, as it is with the `ref` property itself.
       */
+      // @ts-ignore STILL_INVESTIGATING(dimitri)
       icon = {
         'aria-label': isListOpen
           ? 'Close list of options'
@@ -257,7 +257,13 @@ export class EuiComboBoxInput<T> extends Component<
               }
             }}
             onFocus={this.onFocus}
-            ref={autoSizeInputRef}
+            ref={
+              /*
+              NOTE_TO_SELF(dimitri): If anyone has a better solution to this problem, I'm all ears :)
+              */
+              autoSizeInputRef as (RefObject<AutosizeInput> &
+                RefObject<HTMLInputElement>)
+            }
             role="textbox"
             style={{ fontSize: 14 }}
             value={searchValue}
