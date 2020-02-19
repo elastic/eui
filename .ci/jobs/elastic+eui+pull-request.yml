@@ -23,4 +23,6 @@
             - name: elastic+eui+pull-request-test
               predefined-parameters: branch_specifier=${ghprbActualCommit}
             - name: elastic+eui+pull-request-deploy-docs
-              predefined-parameters: branch_specifier=${ghprbActualCommit}
+              predefined-parameters: |
+                branch_specifier=${ghprbActualCommit}
+                pull_request_id=${ghprbPullId}
