@@ -4,6 +4,8 @@
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 - Added `paperClip` glyph to `EuiIcon` ([#2845](https://github.com/elastic/eui/pull/2845))
 - Added `banner` prop to `EuiFlyoutBody` and updated `euiOverflowShadow` mixin ([#2837](https://github.com/elastic/eui/pull/2837))
+- Exporting TS props from top level `EuiListGroupProps`, `EuiListGroupItemProps`, `EuiSelectableProps`,  `EuiSelectableOptionProp`, `EuiSelectableOptionsListProps` ([#2869](https://github.com/elastic/eui/pull/2869))
+- Added `id` prop to `EuiSelectable[options]` option ([#2869](https://github.com/elastic/eui/pull/2869))
 
 **Bug fixes**
 
