@@ -1,1 +1,1 @@
-export { EuiCodeEditor } from './code_editor';
+export { EuiCodeEditor, EuiCodeEditorProps } from './code_editor';
