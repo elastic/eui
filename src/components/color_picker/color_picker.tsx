@@ -93,10 +93,6 @@ export interface EuiColorPickerProps
    */
   append?: EuiFormControlLayoutProps['append'];
   /**
-   * Alpha channel (opacity) value. Scale of 0-1.
-   */
-  alpha?: number;
-  /**
    * Whether to render the alpha channel (opacity) value range slider.
    */
   showAlpha?: boolean;
@@ -173,6 +169,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   showAlpha = false,
 }) => {
   const chromaColor = useMemo(() => parseColor(color), [color]);
+  const alpha = useMemo(() => (chromaColor ? chromaColor.alpha() : 1), [
+    chromaColor,
+  ]);
 
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
   const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
@@ -305,19 +304,27 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
+  const updateWithHsv = (hsv: ColorSpaces['hsv']) => {
+    handleOnChange(
+      chroma
+        .hsv(...hsv)
+        .alpha(alpha)
+        .hex()
+    );
+    updateColorAsHsv(hsv);
+  };
+
   const handleColorSelection = (color: ColorSpaces['hsv']) => {
     const [h] = usableHsv;
     const [, s, v] = color;
     const newHsv: ColorSpaces['hsv'] = [h, s, v];
-    handleOnChange(chroma.hsv(...newHsv).hex());
-    updateColorAsHsv(newHsv);
+    updateWithHsv(newHsv);
   };
 
   const handleHueSelection = (hue: number) => {
     const [, s, v] = usableHsv;
     const newHsv: ColorSpaces['hsv'] = [hue, s, v];
-    handleOnChange(chroma.hsv(...newHsv).hex());
-    updateColorAsHsv(newHsv);
+    updateWithHsv(newHsv);
   };
 
   const handleSwatchSelection = (color: string) => {

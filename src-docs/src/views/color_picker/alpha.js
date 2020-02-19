@@ -10,6 +10,19 @@ export const Alpha = () => {
     setColor(hex);
   };
 
+  const customSwatches = [
+    '#54B399',
+    '#6092C0',
+    '#D36086',
+    '#9170B8',
+    '#CA8EAE',
+    '#54B39940',
+    '#6092C040',
+    '#D3608640',
+    '#9170B840',
+    '#CA8EAE40',
+  ];
+
   return (
     <EuiFormRow
       label="Pick a color with optional opacity"
@@ -20,6 +33,7 @@ export const Alpha = () => {
         color={color}
         showAlpha={true}
         isInvalid={!!errors}
+        swatches={customSwatches}
       />
     </EuiFormRow>
   );
