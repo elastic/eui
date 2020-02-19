@@ -3,10 +3,6 @@
     name: elastic+eui+pull-request-deploy-docs
     display-name: elastic / eui - pull-request-deploy-docs
     description: Build EUI documentation HTML and deploy to Elastic Bekitzur
-    scm:
-      - git:
-          branches:
-            - $branch_specifier
     triggers: []
     vault:
       # auth/approle/role/kibana-issues/role-id
