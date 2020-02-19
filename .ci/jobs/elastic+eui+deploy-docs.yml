@@ -9,6 +9,10 @@
           branches:
             - $branch_specifier
           url: git@github.com:elastic/eui.git
+          # refspec appears to support space-delimited rules for applying
+          # multiple sets of rules. this refspec is so that this job can be run
+          # on PRs, but also ad-hoc for any tag or commit.
+          refspec: +refs/pull/*:refs/remotes/origin/pr/* +refs/heads/*:refs/remotes/origin/*
           reference-repo: /var/lib/jenkins/.git-references/eui.git
     triggers: []
     vault:
