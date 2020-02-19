@@ -93,6 +93,7 @@ export const iconTypes = [
   'heatmap',
   'help',
   'iInCircle',
+  'image',
   'importAction',
   'indexClose',
   'indexEdit',
