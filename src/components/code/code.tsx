@@ -22,12 +22,15 @@ export interface EuiCodeSharedProps {
   isCopyable?: boolean;
 }
 
-export interface EuiCodeProps extends EuiCodeSharedProps {
+interface Props extends EuiCodeSharedProps {
   inline?: true;
 }
 
-type Props = CommonProps & EuiCodeProps & HTMLAttributes<HTMLElement>;
+export type EuiCodeProps = CommonProps & Props & HTMLAttributes<HTMLElement>;
 
-export const EuiCode: FunctionComponent<Props> = ({ inline, ...rest }) => {
+export const EuiCode: FunctionComponent<EuiCodeProps> = ({
+  inline,
+  ...rest
+}) => {
   return <EuiCodeBlockImpl inline={true} {...rest} />;
 };
