@@ -11,6 +11,10 @@
           github-hooks: true
           status-context: eui-ci
           cancel-builds-on-update: true
+    scm:
+      - git:
+          branches:
+            - ${ghprbActualCommit}
     builders:
       - shell: |-
           #!/usr/local/bin/runbld
