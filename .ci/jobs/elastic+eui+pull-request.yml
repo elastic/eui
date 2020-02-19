@@ -6,11 +6,6 @@
     project-type: multijob
     concurrent: true
     node: master
-    scm:
-      - git:
-          branches:
-            - ${ghprbActualCommit}
-          refspec: +refs/pull/*:refs/remotes/origin/pr/*
     triggers:
       - github-pull-request:
           org-list:
