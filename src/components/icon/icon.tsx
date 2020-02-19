@@ -258,6 +258,7 @@ const typeToPathMap = {
   pageSelect: 'pageSelect',
   pagesSelect: 'pagesSelect',
   partial: 'partial',
+  paperClip: 'paper_clip',
   pause: 'pause',
   pencil: 'pencil',
   pin: 'pin',

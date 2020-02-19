@@ -1,16 +1,8 @@
 ---
 - job:
-    name: elastic-eui-pull-request
-    display-name: 'elastic / eui # pull-request'
+    name: elastic+eui+pull-request-test
+    display-name: 'elastic / eui # pull request test'
     description: Testing of eui pull requests.
-    triggers:
-      - github-pull-request:
-          org-list:
-            - elastic
-          allow-whitelist-orgs-as-admins: true
-          github-hooks: true
-          status-context: eui-ci
-          cancel-builds-on-update: true
     builders:
       - shell: |-
           #!/usr/local/bin/runbld
