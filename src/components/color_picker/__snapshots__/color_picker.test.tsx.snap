@@ -37,15 +37,10 @@ exports[`renders EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -58,15 +53,10 @@ exports[`renders EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -113,15 +103,10 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -134,15 +119,10 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -188,15 +168,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="stopSlash"
                   />
                 </span>
               </div>
@@ -209,15 +184,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -263,15 +233,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="stopSlash"
                   />
                 </span>
               </div>
@@ -284,15 +249,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -344,15 +304,10 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -365,15 +320,10 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -425,15 +375,10 @@ exports[`renders compressed EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -446,15 +391,10 @@ exports[`renders compressed EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -502,15 +442,10 @@ exports[`renders disabled EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -523,15 +458,10 @@ exports[`renders disabled EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -578,15 +508,10 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -599,15 +524,10 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -838,15 +758,10 @@ exports[`renders readOnly EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>

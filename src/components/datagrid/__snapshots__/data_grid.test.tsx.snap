@@ -61,15 +61,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="arrowDown"
             />
             <span
               class="euiButtonEmpty__text"
@@ -94,15 +89,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
         data-test-subj="pagination-button-previous"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowLeft"
         />
       </button>
       <button
@@ -144,15 +134,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
         disabled=""
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowRight"
         />
       </button>
     </div>
@@ -201,15 +186,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="eyeClosed"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -235,15 +215,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -262,15 +237,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -371,15 +341,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -432,15 +397,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -499,15 +459,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -560,15 +515,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -627,15 +577,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -688,15 +633,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -766,15 +706,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="eyeClosed"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -800,15 +735,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -827,15 +757,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -994,15 +919,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1055,15 +975,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1178,15 +1093,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1239,15 +1149,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1362,15 +1267,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1423,15 +1323,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1526,15 +1421,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="eyeClosed"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -1560,15 +1450,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -1587,15 +1472,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -1698,15 +1578,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1759,15 +1634,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1826,15 +1696,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1887,15 +1752,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1954,15 +1814,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2015,15 +1870,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2090,15 +1940,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="eyeClosed"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -2124,15 +1969,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -2151,15 +1991,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -2260,15 +2095,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2321,15 +2151,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2388,15 +2213,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2449,15 +2269,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2516,15 +2331,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2577,15 +2387,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
