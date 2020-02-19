@@ -3,6 +3,10 @@
     name: elastic+eui+pull-request-deploy-docs
     display-name: elastic / eui - pull-request-deploy-docs
     description: Build EUI documentation HTML and deploy to Elastic Bekitzur
+    parameters:
+      - string:
+          name: pull_request_id
+          description: Github pull request ID
     triggers: []
     scm:
       - git:

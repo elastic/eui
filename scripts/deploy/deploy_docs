@@ -50,9 +50,9 @@ post_comment_to_gh()
   if [[ -z "${GITHUB_TOKEN}" ]]; then
     echo "Warning: GITHUB_TOKEN is not set; cannot publish PR docs preview URL to Github."
   else
-    printf '\nAdding comment to GitHub Pull Request: %i\n' "$ghprbPullId"
+    printf '\nAdding comment to GitHub Pull Request: %i\n' "$pull_request_id"
 
-    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_$ghprbPullId/"
+    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_$pull_request_id/"
 
     set +x
     curl \
@@ -61,7 +61,7 @@ post_comment_to_gh()
       --header "Authorization: token ${GITHUB_TOKEN}" \
       --request POST \
       --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
-      "https://api.github.com/repos/elastic/eui/issues/${ghprbPullId}/comments"
+      "https://api.github.com/repos/elastic/eui/issues/${pull_request_id}/comments"
   fi
 }
 
@@ -97,7 +97,7 @@ if [[ "$1" != "nodocker" ]]; then
     --env GCE_ACCOUNT \
     --env GIT_BRANCH \
     --env GPROJECT \
-    --env ghprbPullId \
+    --env pull_request_id \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
     --volume $PWD:/app \
@@ -107,7 +107,7 @@ if [[ "$1" != "nodocker" ]]; then
     /app/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
 
-  if [[ ! -z "${ghprbPullId}" ]]; then
+  if [[ ! -z "${pull_request_id}" ]]; then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -127,8 +127,8 @@ else
 
   max_age="1800"
 
-  if [[ ! -z "${ghprbPullId}" ]]; then
-    full_bucket_path="gs://$BUCKET/pr_$ghprbPullId/"
+  if [[ ! -z "${pull_request_id}" ]]; then
+    full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
     publish_to_bucket
   else
     full_bucket_path="gs://$BUCKET/$BRANCH/"
