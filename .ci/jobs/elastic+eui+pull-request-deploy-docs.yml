@@ -1,16 +1,12 @@
 ---
 - job:
-    name: elastic+eui+deploy-docs
-    display-name: elastic / eui - deploy-docs
+    name: elastic+eui+pull-request-deploy-docs
+    display-name: elastic / eui - pull-request-deploy-docs
     description: Build EUI documentation HTML and deploy to Elastic Bekitzur
     scm:
       - git:
           branches:
             - $branch_specifier
-          # refspec appears to support space-delimited rules for applying
-          # multiple sets of rules. this refspec is so that this job can be run
-          # on PRs, but also ad-hoc for any tag or commit.
-          refspec: +refs/heads/*:refs/remotes/origin/*
     triggers: []
     vault:
       # auth/approle/role/kibana-issues/role-id
