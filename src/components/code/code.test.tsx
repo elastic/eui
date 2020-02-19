@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCode } from './code';
 
-function snapshotCodeBlock(component) {
+function snapshotCodeBlock(component: ReactWrapper) {
   // Get the Portal's sibling and return its html
   const renderedHtml = component.find('Portal + *').html();
   const container = document.createElement('div');
