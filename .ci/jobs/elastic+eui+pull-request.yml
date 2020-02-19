@@ -22,5 +22,5 @@
           projects:
             - name: elastic+eui+pull-request-test
               predefined-parameters: branch_specifier=${ghprbActualCommit}
-            - name: elastic+eui+deploy-docs
+            - name: elastic+eui+pull-request-deploy-docs
               predefined-parameters: branch_specifier=${ghprbActualCommit}
