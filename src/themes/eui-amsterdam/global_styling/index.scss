@@ -5,6 +5,7 @@
 
 // Variables come next, and are used in some mixins
 @import '../../../global_styling/variables/index';
+@import 'variables/index';
 
 // Mixins provide generic code expansion through helpers
 @import '../../../global_styling/mixins/index';
@@ -15,3 +16,9 @@
 
 // The reset file makes use of variables and mixins
 @import '../../../global_styling/reset/index';
+
+// TEMP OPVERRIDES FOR COMPONENT STYLES
+// THESE FILES SHOULD REPLACE COMPONENT
+// STYLES ONCE AMSTERDAM IS THE DEFAULT THEME
+
+@import 'overrides/index';
