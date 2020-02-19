@@ -4,6 +4,9 @@
     display-name: elastic / eui - pull-request-deploy-docs
     description: Build EUI documentation HTML and deploy to Elastic Bekitzur
     triggers: []
+    scm:
+      - git:
+          refspec: +refs/pull/*:refs/remotes/origin/pr/*
     vault:
       # auth/approle/role/kibana-issues/role-id
       role_id: 443f9500-f443-19ba-d698-1a48e104f8ba
