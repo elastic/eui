@@ -45,6 +45,38 @@ if [[ -z "${GIT_BRANCH}" ]]; then
   exit 1
 fi
 
+post_comment_to_gh()
+{
+  if [[ -z "${GITHUB_TOKEN}" ]]; then
+    echo "Warning: GITHUB_TOKEN is not set; cannot publish PR docs preview URL to Github."
+  else
+    printf '\nAdding comment to GitHub Pull Request: %i\n' "$ghprbPullId"
+
+    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_$ghprbPullId/"
+
+    set +x
+    curl \
+      --silent \
+      --location \
+      --header "Authorization: token ${GITHUB_TOKEN}" \
+      --request POST \
+      --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
+      "https://api.github.com/repos/elastic/eui/issues/${ghprbPullId}/comments"
+  fi
+}
+
+publish_to_bucket()
+{
+  echo "Copying $PWD/docs/* to $full_bucket_path"
+  gsutil -m \
+    -h "Cache-Control:public, max-age=$max_age" \
+    cp \
+    -r \
+    -a public-read \
+    -z js,css,html \
+    "$PWD/docs/*" "$full_bucket_path"
+}
+
 if [[ "$1" != "nodocker" ]]; then
   ./scripts/deploy/build_docs
 
@@ -58,13 +90,14 @@ if [[ "$1" != "nodocker" ]]; then
     node:10 \
     bash -c 'git tag | xargs npx semver' | tail -n 1)
 
-  # Run this script from inside the docker container, using google/cloud-sdk
-  # image echo "Deploying to bucket"
+  # Run this script from inside the docker container, using google/cloud-sdk image
+  echo "Deploying to bucket"
   docker run \
     --rm -i \
     --env GCE_ACCOUNT \
     --env GIT_BRANCH \
     --env GPROJECT \
+    --env ghprbPullId \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
     --volume $PWD:/app \
@@ -73,6 +106,11 @@ if [[ "$1" != "nodocker" ]]; then
     'google/cloud-sdk:slim' \
     /app/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
+
+  if [[ ! -z "${ghprbPullId}" ]]; then
+    post_comment_to_gh
+  fi
+  unset GITHUB_TOKEN
 else
   # Copying files to the bucket
   # Login to the cloud with the service account
@@ -87,27 +125,22 @@ else
   EUI_DOCS_PROJECT=eui-docs-live
   BUCKET=${GPROJECT}-${EUI_DOCS_PROJECT}
 
-  # The trailing slash is critical with the branch.
-  # Otherwise, files from subdirs will go to the same destination dir.
-  echo "Copying $PWD/docs/* to gs://$BUCKET/$BRANCH/"
-  gsutil -m \
-    -h "Cache-Control:public, max-age=604800" \
-    cp \
-    -r \
-    -a public-read \
-    -z js,css,html \
-    "$PWD/docs/*" "gs://$BUCKET/$BRANCH/"
+  max_age="1800"
 
-  # if this is the highest release number to date, also publish the docs to the
-  # root directory
-  if [[ "v$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
-    echo "This is the current release. Copying $PWD/docs/* to the root gs://$BUCKET/ directory."
-    gsutil -m \
-      -h "Cache-Control:public, max-age=1800" \
-      cp \
-      -r \
-      -a public-read \
-      -z js,css,html \
-      "$PWD/docs/*" "gs://$BUCKET/"
+  if [[ ! -z "${ghprbPullId}" ]]; then
+    full_bucket_path="gs://$BUCKET/pr_$ghprbPullId/"
+    publish_to_bucket
+  else
+    full_bucket_path="gs://$BUCKET/$BRANCH/"
+    max_age="604800"
+    publish_to_bucket
+
+    # if this is the highest release number to date, also publish the docs to the
+    # root directory
+    if [[ "v$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
+      echo "This is the current release."
+      full_bucket_path="gs://$BUCKET/"
+      publish_to_bucket
+    fi
   fi
 fi

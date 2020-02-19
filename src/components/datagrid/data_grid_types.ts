@@ -1,4 +1,24 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { ComponentType, ReactNode } from 'react';
+import { EuiDataGridCellProps } from './data_grid_cell';
+
+export interface EuiDataGridControlColumn {
+  /**
+   * Used as the React `key` when rendering content
+   */
+  id: string;
+  /**
+   * Component to render in the column header
+   */
+  headerCellRender: ComponentType;
+  /**
+   * Component to render for each row in the column
+   */
+  rowCellRender: EuiDataGridCellProps['renderCellValue'];
+  /**
+   * Width of the column, uses are unable to change this
+   */
+  width: number;
+}
 
 export interface EuiDataGridColumn {
   /**
@@ -170,7 +190,7 @@ export interface EuiDataGridPopoverContentProps {
    */
   cellContentsElement: HTMLDivElement;
 }
-export type EuiDataGridPopoverContent = FunctionComponent<
+export type EuiDataGridPopoverContent = ComponentType<
   EuiDataGridPopoverContentProps
 >;
 export interface EuiDataGridPopoverContents {
