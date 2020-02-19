@@ -65,12 +65,17 @@
   &.euiDataGridRowCell--boolean {
     text-transform: capitalize;
   }
-}
 
-.euiDataGridRowCell__content {
-  @include euiTextTruncate;
-  overflow: hidden;
-  white-space: nowrap;
+  // We only truncate if the cell is not a control column.
+  &:not(.euiDataGridRowCell--controlColumn) {
+    .euiDataGridRowCell__content,
+    .euiDataGridRowCell__truncate,
+    .euiDataGridRowCell__expandContent {
+      @include euiTextTruncate;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
 }
 
 .euiDataGridRowCell__popover {
@@ -92,9 +97,6 @@
 }
 
 .euiDataGridRowCell__expandContent {
-  @include euiTextTruncate;
-  overflow: hidden;
-  white-space: nowrap;
   flex-grow: 1;
 }
 
@@ -127,12 +129,6 @@
     visibility: visible;
     background: $euiColorPrimary;
   }
-}
-
-.euiDataGridRowCell__truncate {
-  @include euiTextTruncate;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 // Row highlights
