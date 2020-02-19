@@ -24,20 +24,13 @@ export class ColorPicker extends Component {
     }
 
     return (
-      <>
-        <button
-          type="button"
-          onClick={() => this.setState({ color: '#DA8B45' })}>
-          change
-        </button>
-        <EuiFormRow label="Pick a color" isInvalid={hasErrors} error={errors}>
-          <EuiColorPicker
-            onChange={this.handleChange}
-            color={this.state.color}
-            isInvalid={hasErrors}
-          />
-        </EuiFormRow>
-      </>
+      <EuiFormRow label="Pick a color" isInvalid={hasErrors} error={errors}>
+        <EuiColorPicker
+          onChange={this.handleChange}
+          color={this.state.color}
+          isInvalid={hasErrors}
+        />
+      </EuiFormRow>
     );
   }
 }

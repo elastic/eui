@@ -1,5 +1,6 @@
+import chroma from 'chroma-js';
 import { getEventPosition } from '../utils';
-import { isValidHex, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
+import { DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
 
 const EUI_THUMB_SIZE = 16; // Same as $euiRangeThumbHeight & $euiRangeThumbWidth
@@ -61,7 +62,7 @@ export const addStop = (
 };
 
 export const isColorInvalid = (color: string) => {
-  return !isValidHex(color) || color === '';
+  return !chroma.valid(color, 'hex') || color === '';
 };
 
 export const isStopInvalid = (stop: ColorStop['stop']) => {

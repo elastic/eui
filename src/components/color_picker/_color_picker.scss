@@ -11,6 +11,11 @@
     &[class*='--compressed'] {
       @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: true);
     }
+
+    + .euiFormControlLayoutIcons {
+      // Override :disabled state, which obscures the selected color
+      color: inherit;
+    }
   }
 }
 

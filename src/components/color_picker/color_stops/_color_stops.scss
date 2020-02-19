@@ -55,6 +55,18 @@
   position: absolute;
   width: 100%;
   height: 100%;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    top: 50%;
+    height: $euiRangeHighlightHeight;
+    margin-top: $euiRangeHighlightHeight * -.5;
+    background: $euiColorEmptyShade;
+  }
 }
 
 .euiColorStopThumb.euiRangeThumb:not(:disabled) {
