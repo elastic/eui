@@ -1,31 +1,30 @@
 import React from 'react';
-
-import { render, configure } from 'enzyme';
-
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import ReactDOM from 'react-dom';
 
 import html from 'html';
 
-configure({ adapter: new EnzymeAdapter() });
-
+const renderTarget = document.createElement('div');
 export function renderToHtml(ComponentReference, props = {}) {
   // If there's a failure, just return an empty string. The actual component itself should
   // trip an error boundary in the UI when it fails.
   try {
     // Create the React element, render it and get its HTML, then format it prettily.
     // the .html() call below renders the contents of the first node, so wrap everything in a div
-    const element = (
-      <div>
-        <ComponentReference {...props} />
-      </div>
-    );
-    const renderedNodes = render(element);
+    const element = <ComponentReference {...props} />;
 
-    const htmlString = renderedNodes.html();
-    return html.prettyPrint(htmlString, {
-      indent_size: 2,
-      unformatted: [], // Expand all tags, including spans
-    });
+    return {
+      render() {
+        ReactDOM.render(element, renderTarget);
+        const htmlString = renderTarget.innerHTML;
+        const result = htmlString;
+        ReactDOM.unmountComponentAtNode(renderTarget);
+
+        return html.prettyPrint(result, {
+          indent_size: 2,
+          unformatted: [], // Expand all tags, including spans
+        });
+      },
+    };
   } catch (e) {
     return '';
   }

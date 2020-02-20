@@ -141,6 +141,7 @@ const typeToPathMap = {
   heatmap: 'heatmap',
   help: 'help',
   iInCircle: 'iInCircle',
+  image: 'image',
   importAction: 'import',
   indexClose: 'index_close',
   indexEdit: 'index_edit',

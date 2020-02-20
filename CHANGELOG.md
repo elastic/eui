@@ -1,15 +1,21 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiCodeEditor` to Typescript ([#2836](https://github.com/elastic/eui/pull/2836))
+- Converted `EuiCode` and `EuiCodeBlock` and to Typescript ([#2835](https://github.com/elastic/eui/pull/2835))
 - Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 - Added `paperClip` glyph to `EuiIcon` ([#2845](https://github.com/elastic/eui/pull/2845))
 - Added `banner` prop to `EuiFlyoutBody` and updated `euiOverflowShadow` mixin ([#2837](https://github.com/elastic/eui/pull/2837))
-- Exported TS props from top level `EuiListGroupProps`, `EuiListGroupItemProps`, `EuiSelectableProps`,  `EuiSelectableOptionProp`, `EuiSelectableOptionsListProps` ([#2869](https://github.com/elastic/eui/pull/2869))
-- Added `id` prop to `EuiSelectable[options]` option ([#2869](https://github.com/elastic/eui/pull/2869))
+- Updated `editorLink` icon ([#2866](https://github.com/elastic/eui/pull/2866))
+- Added control columns to `EuiDataGrid` to support non-data columns like row selection and actions ([#2846](https://github.com/elastic/eui/pull/2846))
+- Added `image` glyph to `EuiIcon` ([#2870](https://github.com/elastic/eui/pull/2870))
+- Exported TS props from top level `EuiListGroupProps`, `EuiListGroupItemProps`, `EuiSelectableProps`,  `EuiSelectableOption`, `EuiSelectableOptionsListProps` ([#2869](https://github.com/elastic/eui/pull/2869))
+- Extending `EuiSelectable[options]` type with correct HTML element ([#2869](https://github.com/elastic/eui/pull/2869))
 
 **Bug fixes**
 
 - Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
+- Fixed a bug in `EuiDataGrid` causing the first cell to autofocus if interactive ([#2872](https://github.com/elastic/eui/pull/2872))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 

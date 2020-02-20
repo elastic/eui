@@ -3,15 +3,9 @@
     name: elastic+eui+pull-request
     display-name: "elastic / eui # pull-request"
     description: Jobs to run on EUI pull requests
-    disabled: true
     project-type: multijob
     concurrent: true
     node: master
-    scm:
-      - git:
-          branches:
-            - ${ghprbActualCommit}
-          refspec: +refs/pull/*:refs/remotes/origin/pr/*
     triggers:
       - github-pull-request:
           org-list:
@@ -24,9 +18,10 @@
     builders:
       - multijob:
           name: run child jobs
-          execution-type: SEQUENTIALLY
           projects:
             - name: elastic+eui+pull-request-test
               predefined-parameters: branch_specifier=${ghprbActualCommit}
-            - name: elastic+eui+deploy-docs
-              predefined-parameters: branch_specifier=${ghprbActualCommit}
+            - name: elastic+eui+pull-request-deploy-docs
+              predefined-parameters: |
+                branch_specifier=${ghprbActualCommit}
+                pull_request_id=${ghprbPullId}

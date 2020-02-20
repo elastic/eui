@@ -524,7 +524,7 @@ var MutationNotifier = /** @class */ (function (_super) {
   __extends(MutationNotifier, _super);
   function MutationNotifier() {
     var _this = _super.call(this) || this;
-    _this.setMaxListeners(150); // bump this as needed - some tests do not perform the unmounting lifecycle
+    _this.setMaxListeners(294); // bump this as needed - some tests do not perform the unmounting lifecycle
     return _this;
   }
   MutationNotifier.getInstance = function () {
