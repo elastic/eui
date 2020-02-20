@@ -760,7 +760,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #54B399 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#54B399"
+        style="background:rgba(84,179,153,1)"
         type="button"
       />
     </div>
@@ -771,7 +771,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #6092C0 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#6092C0"
+        style="background:rgba(96,146,192,1)"
         type="button"
       />
     </div>
@@ -782,7 +782,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #D36086 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#D36086"
+        style="background:rgba(211,96,134,1)"
         type="button"
       />
     </div>
@@ -793,7 +793,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #9170B8 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#9170B8"
+        style="background:rgba(145,112,184,1)"
         type="button"
       />
     </div>
@@ -804,7 +804,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #CA8EAE as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#CA8EAE"
+        style="background:rgba(202,142,174,1)"
         type="button"
       />
     </div>
@@ -815,7 +815,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #D6BF57 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#D6BF57"
+        style="background:rgba(214,191,87,1)"
         type="button"
       />
     </div>
@@ -826,7 +826,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #B9A888 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#B9A888"
+        style="background:rgba(185,168,136,1)"
         type="button"
       />
     </div>
@@ -837,7 +837,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #DA8B45 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#DA8B45"
+        style="background:rgba(218,139,69,1)"
         type="button"
       />
     </div>
@@ -848,7 +848,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #AA6556 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#AA6556"
+        style="background:rgba(170,101,86,1)"
         type="button"
       />
     </div>
@@ -859,7 +859,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #E7664C as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#E7664C"
+        style="background:rgba(231,102,76,1)"
         type="button"
       />
     </div>

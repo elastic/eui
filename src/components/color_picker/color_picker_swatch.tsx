@@ -1,5 +1,6 @@
-import React, { ButtonHTMLAttributes, forwardRef } from 'react';
+import React, { ButtonHTMLAttributes, forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
+import chroma from 'chroma-js';
 
 import { CommonProps } from '../common';
 
@@ -13,12 +14,19 @@ export const EuiColorPickerSwatch = forwardRef<
   EuiColorPickerSwatchProps
 >(({ className, color, style, ...rest }, ref) => {
   const classes = classNames('euiColorPickerSwatch', className);
+  const rgba = useMemo(
+    () => (color && chroma.valid(color) ? chroma(color).rgba() : null),
+    [color]
+  );
 
   return (
     <button
       type="button"
       className={classes}
-      style={{ background: color ? color : 'transparent', ...style }}
+      style={{
+        background: rgba ? `rgba(${rgba.join(',')})` : 'transparent',
+        ...style,
+      }}
       ref={ref}
       {...rest}
     />

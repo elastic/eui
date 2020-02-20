@@ -405,9 +405,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 showInput={true}
                 max={100}
                 min={0}
-                value={(
-                  (chromaColor ? chromaColor.alpha() : 1) * 100
-                ).toFixed()}
+                value={(alpha * 100).toFixed()}
                 append="%"
                 onChange={handleAlphaSelection}
                 aria-label={alphaLabel}
@@ -449,9 +447,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         <div
           // Used to pass the chosen color through to form layout SVG using currentColor
           style={{
-            color: rgba
-              ? `rgba(${rgba[0]},${rgba[1]},${rgba[2]},${rgba[3]})`
-              : undefined,
+            color: rgba ? `rgba(${rgba.join(',')})` : undefined,
           }}>
           <EuiI18n
             tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
