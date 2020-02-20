@@ -1,4 +1,4 @@
-import React, { Component, FocusEventHandler, RefObject } from 'react';
+import React, { Component, FocusEventHandler } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 
@@ -13,7 +13,7 @@ import { UpdatePositionHandler, OptionHandler, RefCallback } from '../types';
 const makeId = htmlIdGenerator();
 
 export interface EuiComboBoxInputProps<T> {
-  autoSizeInputRef?: RefObject<HTMLInputElement>;
+  autoSizeInputRef?: RefCallback<AutosizeInput & HTMLInputElement>;
   compressed: boolean;
   focusedOptionId?: string;
   fullWidth?: boolean;
@@ -36,7 +36,7 @@ export interface EuiComboBoxInputProps<T> {
   searchValue: string;
   selectedOptions?: Array<EuiComboBoxOptionOption<T>>;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
-  toggleButtonRef?: RefObject<HTMLButtonElement | HTMLSpanElement>;
+  toggleButtonRef?: RefCallback<HTMLButtonElement | HTMLSpanElement>;
   updatePosition: UpdatePositionHandler;
   value?: string;
 }
@@ -198,16 +198,6 @@ export class EuiComboBoxInput<T> extends Component<
 
     let icon: EuiFormControlLayoutIconsProps['icon'];
     if (!noIcon) {
-      /*
-      NOTE_TO_SELF(dimitri): this problem appears to come from an issue with the type of
-      EuiFormControlLayoutCustomIconProps['iconRef']:
-      ```tsx
-      | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
-      ```
-
-      As I understand it, a `RefObject`, which is what `toggleButtonRef` is, should be accepted, as it is with the `ref` property itself.
-      */
-      // @ts-ignore STILL_INVESTIGATING(dimitri)
       icon = {
         'aria-label': isListOpen
           ? 'Close list of options'
@@ -257,13 +247,11 @@ export class EuiComboBoxInput<T> extends Component<
               }
             }}
             onFocus={this.onFocus}
-            ref={
-              /*
-              NOTE_TO_SELF(dimitri): If anyone has a better solution to this problem, I'm all ears :)
-              */
-              autoSizeInputRef as (RefObject<AutosizeInput> &
-                RefObject<HTMLInputElement>)
-            }
+            ref={(ref: HTMLInputElement & AutosizeInput) => {
+              if (autoSizeInputRef) {
+                autoSizeInputRef(ref);
+              }
+            }}
             role="textbox"
             style={{ fontSize: 14 }}
             value={searchValue}

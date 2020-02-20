@@ -1,8 +1,7 @@
-import { RefObject } from 'react';
 import { EuiComboBoxOptionOption } from '.';
 
 export type UpdatePositionHandler = (
-  listElement?: RefObject<HTMLDivElement>
+  listElement?: RefInstance<HTMLDivElement>
 ) => void;
 export type OptionHandler<T> = (option: EuiComboBoxOptionOption<T>) => void;
 
@@ -10,3 +9,5 @@ export type OptionHandler<T> = (option: EuiComboBoxOptionOption<T>) => void;
 export type RefCallback<T> = {
   bivarianceHack(instance: T | null): void;
 }['bivarianceHack'];
+
+export type RefInstance<T> = T | null;

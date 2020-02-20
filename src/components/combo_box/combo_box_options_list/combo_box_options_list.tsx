@@ -1,10 +1,8 @@
-import React, { Component, ReactNode, RefObject, createRef } from 'react';
+import React, { Component, ReactNode } from 'react';
 import classNames from 'classnames';
 import { List, ListProps } from 'react-virtualized'; // eslint-disable-line import/named
 
-// https://github.com/elastic/eui/pull/2835
-// @ts-ignore STILL_INVESTIGATING(dimitri)
-import { EuiCode } from '../../../components/code'; // eslint-disable-line import/no-unresolved
+import { EuiCode } from '../../../components/code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
@@ -15,7 +13,12 @@ import { EuiI18n } from '../../i18n';
 import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
 import { EuiComboBoxOptionOption, EuiComboBoxOptionsListPosition } from '..';
 import { htmlIdGenerator } from '../../../services';
-import { UpdatePositionHandler, OptionHandler, RefCallback } from '../types';
+import {
+  UpdatePositionHandler,
+  OptionHandler,
+  RefCallback,
+  RefInstance,
+} from '../types';
 
 const positionToClassNameMap: {
   [position in EuiComboBoxOptionsListPosition]: string
@@ -36,7 +39,7 @@ export interface EuiComboBoxOptionsListProps<T> {
     selectedOptions: any[]
   ) => EuiComboBoxOptionOption<T>;
   isLoading?: boolean;
-  listRef: RefObject<HTMLInputElement>;
+  listRef: RefCallback<HTMLDivElement>;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   onCloseList: () => void;
   onCreateOption?: (
@@ -46,7 +49,7 @@ export interface EuiComboBoxOptionsListProps<T> {
   onOptionClick?: OptionHandler<T>;
   onOptionEnterKey?: OptionHandler<T>;
   onScroll?: ListProps['onScroll'];
-  optionRef: (index: number, node: RefObject<EuiFilterSelectItem>) => void;
+  optionRef: (index: number, node: RefInstance<EuiFilterSelectItem>) => void;
   options: Array<EuiComboBoxOptionOption<T>>;
   position?: EuiComboBoxOptionsListPosition;
   renderOption?: (
@@ -66,7 +69,7 @@ export interface EuiComboBoxOptionsListProps<T> {
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
 > {
-  list = createRef<HTMLDivElement>();
+  listRefInstance: RefInstance<HTMLDivElement> = null;
 
   static defaultProps = {
     'data-test-subj': '',
@@ -76,9 +79,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
   updatePosition = () => {
     // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
     requestAnimationFrame(() => {
-      if (this.list.current) {
-        this.props.updatePosition(this.list);
-      }
+      this.props.updatePosition(this.listRefInstance);
     });
   };
 
@@ -126,23 +127,17 @@ export class EuiComboBoxOptionsList<T> extends Component<
     // Close the list when a scroll event happens, but not if the scroll happened in the options list.
     // This mirrors Firefox's approach of auto-closing `select` elements onscroll.
     if (
-      this.list.current &&
+      this.listRefInstance &&
       event.target &&
-      // @ts-ignore STILL_INVESTIGATING(dimitri)
-      this.list.current.contains(event.target) === false
+      this.listRefInstance.contains(event.target as Node) === false
     ) {
       this.props.onCloseList();
     }
   };
 
   listRefCallback: RefCallback<HTMLDivElement> = node => {
-    // @ts-ignore STILL_INVESTIGATING(dimitri)
     this.props.listRef(node);
-    /*
-    NOTE_TO_SELF(dimitri): this is actually fine but the types are written with readonly for pedantic reasons... might need to @ts-ignore, unfortunately
-    */
-    // @ts-ignore STILL_INVESTIGATING(dimitri)
-    this.list = node;
+    this.listRefInstance = node;
   };
 
   render() {
@@ -298,10 +293,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
                 }
               }}
               ref={ref => {
-                if (ref !== null) {
-                  // @ts-ignore STILL_INVESTIGATING(dimitri): what is this even doing?
-                  optionRef(index, ref);
-                }
+                optionRef(index, ref);
               }}
               isFocused={activeOptionIndex === index}
               id={rootId(`_option-${index}`)}
