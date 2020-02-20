@@ -6,7 +6,7 @@ import { EuiI18n } from '../../i18n';
 import { EuiComboBoxOptionOption } from '..';
 import { OptionHandler } from '../types';
 
-interface EuiComboBoxPillProps<T> {
+export interface EuiComboBoxPillProps<T> {
   asPlainText?: boolean;
   children?: string;
   className?: string;

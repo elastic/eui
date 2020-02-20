@@ -7,7 +7,6 @@
 import React, {
   Component,
   FocusEventHandler,
-  createRef,
   KeyboardEventHandler,
 } from 'react';
 import classNames from 'classnames';
@@ -369,13 +368,14 @@ export class EuiComboBox<T> extends Component<
     this.setState({ hasFocus: true });
   };
 
-  onContainerBlur = (event: FocusEvent) => {
+  onContainerBlur: EventListener = event => {
     // close the options list, unless the use clicked on an option
 
     /**
      * FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`.
      * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/explicitOriginalTarget
      */
+    // @ts-ignore
     const relatedTarget = (event.relatedTarget ||
       // @ts-ignore need to add window global override
       event.explicitOriginalTarget) as (Node | null);
