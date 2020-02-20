@@ -178,6 +178,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -331,7 +333,7 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__content"
@@ -743,6 +745,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -927,7 +931,7 @@ Array [
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__expandFlex"
@@ -1506,6 +1510,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -1658,7 +1664,7 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__content"
@@ -2070,6 +2076,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -2220,7 +2228,7 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__content"

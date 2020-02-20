@@ -31,7 +31,7 @@ export interface EuiDataGridBodyProps {
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
   popoverContents?: EuiDataGridPopoverContents;
-  focusedCell: EuiDataGridFocusedCell;
+  focusedCell?: EuiDataGridFocusedCell;
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
@@ -186,7 +186,7 @@ export const EuiDataGridBody: FunctionComponent<
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
           focusedCellPositionInTheRow={
-            i === focusedCell[1] ? focusedCell[0] : null
+            focusedCell != null && i === focusedCell[1] ? focusedCell[0] : null
           }
           onCellFocus={onCellFocus}
           renderCellValue={renderCellValue}

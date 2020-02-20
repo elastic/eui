@@ -6,11 +6,14 @@
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 - Added `paperClip` glyph to `EuiIcon` ([#2845](https://github.com/elastic/eui/pull/2845))
 - Added `banner` prop to `EuiFlyoutBody` and updated `euiOverflowShadow` mixin ([#2837](https://github.com/elastic/eui/pull/2837))
+- Updated `editorLink` icon ([#2866](https://github.com/elastic/eui/pull/2866))
 - Added control columns to `EuiDataGrid` to support non-data columns like row selection and actions ([#2846](https://github.com/elastic/eui/pull/2846))
+- Added `image` glyph to `EuiIcon` ([#2870](https://github.com/elastic/eui/pull/2870))
 
 **Bug fixes**
 
 - Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
+- Fixed a bug in `EuiDataGrid` causing the first cell to autofocus if interactive ([#2872](https://github.com/elastic/eui/pull/2872))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
