@@ -1,27 +1,20 @@
-@mixin euiButton {
-  @include euiFont;
-  @include euiFontSize;
-
+@mixin euiButtonBase {
   display: inline-block;
   appearance: none;
   cursor: pointer;
   height: $euiButtonHeight;
   line-height: $euiButtonHeight; // prevents descenders from getting cut off
-  text-decoration: none;
-  border: solid 1px transparent;
   text-align: center;
-  transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
   white-space: nowrap;
   max-width: 100%;
   vertical-align: middle;
+}
+
+@mixin euiButtonFocus {
+  transition: all $euiAnimSpeedNormal ease-in-out;
 
   &:hover:not(:disabled) {
     transform: translateY(-1px);
-  }
-
-  &:hover:not(:disabled),
-  &:focus {
-    text-decoration: underline;
   }
 
   &:focus {
@@ -30,6 +23,24 @@
 
   &:active:not(:disabled) {
     transform: translateY(1px);
+  }
+}
+
+@mixin euiButton {
+  @include euiButtonBase;
+  @include euiFont;
+  @include euiFontSize;
+
+  text-decoration: none;
+  border: solid 1px transparent;
+
+  // sass-lint:disable mixins-before-declarations
+  // focus states should come after all default styles
+  @include euiButtonFocus;
+
+  &:hover:not(:disabled),
+  &:focus {
+    text-decoration: underline;
   }
 }
 

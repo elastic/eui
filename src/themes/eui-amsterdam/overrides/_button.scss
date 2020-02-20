@@ -1,0 +1,47 @@
+.euiButton {
+  // sass-lint:disable no-important
+  // remove for all states
+  box-shadow: none !important;
+
+  // I wouldn't alter the base radius here only.
+  // Instead, consider the greater goal and determine if you
+  // will be wanting to change the default radius for the whole theme
+  // border-radius: $euiBorderRadius + 2;
+
+  &:disabled {
+    // Make sure to continue to use the variables used for these specific purposes
+    // and just change the value of them, not the style
+    // color: $euiColorMediumShade;
+    background-color: transparentize($euiButtonColorDisabled, .8);
+  }
+}
+
+// Change the hollow (bordered) buttons to have a transparent background
+// and no border
+@each $name, $color in $euiButtonTypes {
+  .euiButton--#{$name} {
+    // This variable simulates the possibly darkest background the button could be on
+    // Simulates the 20% opaque color on top of the page background color
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $color, 80%);
+
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      $backgroundColorSimulated: mix($euiColorDarkestShade, $color, 80%);
+      color: makeHighContrastColor($color, $backgroundColorSimulated);
+    } @else {
+      // Then we can calculate the darkest text color needed
+      color: makeHighContrastColor($color, $backgroundColorSimulated);
+    }
+
+    // But still use transparency
+    background-color: transparentize($color, .8);
+
+    &:enabled {
+      &:hover,
+      &:focus {
+        // Makes the background lighter?
+        background-color: transparentize($color, .9);
+      }
+    }
+  }
+}
