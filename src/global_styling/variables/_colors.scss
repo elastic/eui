@@ -30,6 +30,12 @@ $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
 $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
+// Constrasty text variants
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary, $euiColorEmptyShade);
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary, $euiColorEmptyShade);
+$euiColorAccentText: makeHighContrastColor($euiColorAccent, $euiColorEmptyShade);
+$euiColorWarningText: makeHighContrastColor($euiColorWarning, $euiColorEmptyShade);
+
 // Visualization colors
 
 // Maps allow for easier JSON usage

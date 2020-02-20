@@ -1,4 +1,0 @@
-@mixin euiText {
-  color: makeHighContrastColor($euiTextColor, $euiPageBackgroundColor);
-  font-weight: $euiFontWeightRegular;
-}

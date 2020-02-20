@@ -238,6 +238,14 @@ export default class extends Component {
             combination that is <EuiBadge color="#333">AA</EuiBadge> or above
             with the exception of using large text.
           </p>
+          <p>
+            The Amsterdam theme introduces a more vibrant core color palette. In
+            order to maintain a WCAG contrast of at least 4.5 you should use the
+            text variants of the core color variables such as&nbsp;
+            <EuiCode>$euiColorSecondaryText</EuiCode>. Components that render
+            text such as <EuiCode>EuiText</EuiCode> will do so on their own
+            without any extra configuration.
+          </p>
           <h3>Rating definitions</h3>
           <ul>
             <li>
