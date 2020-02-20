@@ -3,9 +3,9 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiSelectable } from './selectable';
-import { Option } from './types';
+import { EuiSelectableOption } from './selectable_option';
 
-const options: Option[] = [
+const options: EuiSelectableOption[] = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -77,7 +77,7 @@ describe('EuiSelectable', () => {
       const component = render(
         <EuiSelectable
           options={options}
-          renderOption={(option: Option, searchValue?: string) => {
+          renderOption={(option: EuiSelectableOption, searchValue?: string) => {
             return (
               <span>
                 {searchValue} =&gt; {option.label}
