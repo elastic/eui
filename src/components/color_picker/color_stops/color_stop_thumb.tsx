@@ -2,10 +2,12 @@ import React, {
   FunctionComponent,
   ReactChild,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
+import chroma from 'chroma-js';
 
 import { CommonProps } from '../../common';
 import {
@@ -85,6 +87,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
 }) => {
+  const colorAsRgba = useMemo(
+    () => (color && !isColorInvalid(color) ? chroma(color).rgba() : null),
+    [color]
+  );
   const [hasFocus, setHasFocus] = useState(isPopoverOpen);
   const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
@@ -280,7 +286,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 className="euiColorStopThumb"
                 tabIndex={-1}
                 style={{
-                  background: color,
+                  background: colorAsRgba
+                    ? `rgba(${colorAsRgba.join(',')})`
+                    : undefined,
                 }}
                 disabled={disabled}
               />
