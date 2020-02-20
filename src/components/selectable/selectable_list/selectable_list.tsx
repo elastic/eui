@@ -4,7 +4,10 @@ import { CommonProps } from '../../common';
 // eslint-disable-next-line import/named
 import { List, AutoSizer, ListProps } from 'react-virtualized';
 import { htmlIdGenerator } from '../../../services';
-import { EuiSelectableListItem } from './selectable_list_item';
+import {
+  EuiSelectableListItem,
+  EuiSelectableListItemProps,
+} from './selectable_list_item';
 import { EuiHighlight } from '../../highlight';
 import { Option } from '../types';
 
@@ -172,7 +175,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                       className="euiSelectableList__groupLabel"
                       key={rowKey}
                       style={style}
-                      {...optionRest}>
+                      {...optionRest as HTMLAttributes<HTMLDivElement>}>
                       {prepend}
                       {label}
                       {append}
@@ -193,7 +196,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                     disabled={disabled}
                     prepend={prepend}
                     append={append}
-                    {...optionRest}>
+                    {...optionRest as EuiSelectableListItemProps}>
                     {renderOption ? (
                       renderOption(option, searchValue)
                     ) : (
