@@ -54,7 +54,7 @@
     }
 
     &.euiButton--fill {
-      color: $euiColorGhost;
+      color: lightOrDarkTheme($euiColorGhost, $euiColorLightShade);
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
 
@@ -85,7 +85,7 @@
       color: $euiTextColor;
     } @else {
       // Other colors need to check their contrast against the page background color.
-      color: makeHighContrastColor($color, $euiColorEmptyShade);
+      color: makeHighContrastColor($color, $euiPageBackgroundColor);
     }
 
     border-color: $color;
@@ -133,13 +133,31 @@
         }
       }
     }
+  }
+}
 
-    &:disabled,
-    &:disabled:hover,
-    &:disabled:focus {
-      @if ($name == 'ghost') {
-        @include euiSlightShadow($euiColorInk);
-      }
+// Fix ghost/disabled look specifically
+.euiButton:disabled.euiButton--ghost {
+  @include euiSlightShadow($euiColorInk);
+
+  &,
+  &:hover,
+  &:focus {
+    @include euiSlightShadow($euiColorInk);
+    color: $euiButtonColorGhostDisabled;
+    border-color: $euiButtonColorGhostDisabled;
+  }
+
+  .euiButton__spinner {
+    border-color: euiLoadingSpinnerBorderColors(transparentize($euiButtonColorGhostDisabled, .3));
+  }
+
+  &.euiButton--fill {
+    background-color: $euiButtonColorGhostDisabled;
+    color: $euiColorInk;
+
+    .euiButton__spinner {
+      border-color: euiLoadingSpinnerBorderColors(transparentize($euiColorInk, .3));
     }
   }
 }

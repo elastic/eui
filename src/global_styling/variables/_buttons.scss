@@ -2,6 +2,7 @@ $euiButtonHeight: $euiSizeXXL !default;
 $euiButtonHeightSmall: $euiSizeXL !default;
 
 $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 70%) !default;
+$euiButtonColorGhostDisabled: lightOrDarkTheme($euiColorDarkShade, $euiColorLightShade);
 $euiButtonToggleBorderColor: $euiColorLightShade !default;
 
 // Modifier naming and colors.

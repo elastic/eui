@@ -12,7 +12,7 @@
     // Make sure to continue to use the variables used for these specific purposes
     // and just change the value of them, not the style
     // color: $euiColorMediumShade;
-    background-color: transparentize($euiButtonColorDisabled, .8);
+    background-color: transparentize($euiButtonColorDisabled, .9);
   }
 }
 
@@ -26,7 +26,7 @@
 
     @if ($name == 'ghost') {
       // Ghost is unique and ALWAYS sits against a dark background.
-      $backgroundColorSimulated: mix($euiColorDarkestShade, $color, 80%);
+      $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
       color: makeHighContrastColor($color, $backgroundColorSimulated);
     } @else {
       // Then we can calculate the darkest text color needed
