@@ -1,31 +1,17 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiSelectable } from '../../../../src/components/selectable';
-import { Option } from '../../../../src/components/selectable/types';
 import { Options } from './data';
 
-export default class extends Component<{}, { options: Option[] }> {
-  constructor(props: any) {
-    super(props);
+export default () => {
+  const [options, setOptions] = useState(Options);
 
-    this.state = {
-      options: Options as Option[],
-    };
-  }
-
-  onChange = (options: Option[]) => {
-    this.setState({
-      options,
-    });
-  };
-
-  render() {
-    const { options } = this.state;
-
-    return (
-      <EuiSelectable allowExclusions options={options} onChange={this.onChange}>
-        {list => list}
-      </EuiSelectable>
-    );
-  }
-}
+  return (
+    <EuiSelectable
+      allowExclusions
+      options={options}
+      onChange={newOptions => setOptions(newOptions)}>
+      {list => list}
+    </EuiSelectable>
+  );
+};

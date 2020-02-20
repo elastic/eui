@@ -9,7 +9,7 @@ import {
   EuiSelectableListItemProps,
 } from './selectable_list_item';
 import { EuiHighlight } from '../../highlight';
-import { Option } from '../types';
+import { EuiSelectableOption } from '../selectable_option';
 
 export type EuiSelectableSingleOptionProps = 'always' | boolean;
 
@@ -46,11 +46,11 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   /**
    * All possible options
    */
-  options: Option[];
+  options: EuiSelectableOption[];
   /**
    * Filtered options list (if applicable)
    */
-  visibleOptions?: Option[];
+  visibleOptions?: EuiSelectableOption[];
   /**
    * Search value to highlight on the option render
    */
@@ -58,12 +58,15 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   /**
    * Returns the array of options with altered checked state
    */
-  onOptionClick: (options: Option[]) => void;
+  onOptionClick: (options: EuiSelectableOption[]) => void;
   /**
    * Custom render for the label portion of the option;
    * Takes (option, searchValue), returns ReactNode
    */
-  renderOption?: (option: Option, searchValue: string) => ReactNode;
+  renderOption?: (
+    option: EuiSelectableOption,
+    searchValue: string
+  ) => ReactNode;
   /**
    * Sets the max height in pixels or pass `full` to allow
    * the whole group to fill the height of its container and
@@ -212,7 +215,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     );
   }
 
-  onAddOrRemoveOption = (option: Option) => {
+  onAddOrRemoveOption = (option: EuiSelectableOption) => {
     if (option.disabled) {
       return;
     }
@@ -228,7 +231,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     }
   };
 
-  private onAddOption = (addedOption: Option) => {
+  private onAddOption = (addedOption: EuiSelectableOption) => {
     const { onOptionClick, options, singleSelection } = this.props;
 
     const updatedOptions = options.map(option => {
@@ -249,7 +252,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onRemoveOption = (removedOption: Option) => {
+  private onRemoveOption = (removedOption: EuiSelectableOption) => {
     const { onOptionClick, singleSelection, options } = this.props;
 
     const updatedOptions = options.map(option => {
@@ -265,7 +268,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onExcludeOption = (excludedOption: Option) => {
+  private onExcludeOption = (excludedOption: EuiSelectableOption) => {
     const { onOptionClick, options } = this.props;
     excludedOption.checked = 'off';
 

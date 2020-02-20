@@ -16,7 +16,7 @@ import { getMatchingOptions } from './matching_options';
 import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
 import { EuiI18n } from '../i18n';
-import { Option } from './types';
+import { EuiSelectableOption } from './selectable_option';
 import {
   EuiSelectableOptionsListProps,
   EuiSelectableSingleOptionProps,
@@ -50,8 +50,6 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
   }
 >;
 
-export type EuiSelectableOptionProp = Option;
-
 export type EuiSelectableProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   'children' | 'onChange'
@@ -69,13 +67,13 @@ export type EuiSelectableProps = Omit<
       search: ReactElement<EuiSelectableSearch> | undefined
     ) => ReactNode;
     /**
-     * Array of Option objects. See #EuiSelectableOption
+     * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
      */
-    options: EuiSelectableOptionProp[];
+    options: EuiSelectableOption[];
     /**
      * Passes back the altered `options` array with selected options as
      */
-    onChange?: (options: Option[]) => void;
+    onChange?: (options: EuiSelectableOption[]) => void;
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
@@ -105,13 +103,13 @@ export type EuiSelectableProps = Omit<
      * Custom render function for each option.
      * Returns `(option, searchValue)`
      */
-    renderOption?: (option: Option, searchValue: string) => {};
+    renderOption?: (option: EuiSelectableOption, searchValue: string) => {};
   };
 
 export interface EuiSelectableState {
   activeOptionIndex?: number;
   searchValue: string;
-  visibleOptions: Option[];
+  visibleOptions: EuiSelectableOption[];
 }
 
 export class EuiSelectable extends Component<
@@ -264,7 +262,10 @@ export class EuiSelectable extends Component<
     });
   };
 
-  onSearchChange = (visibleOptions: Option[], searchValue: string) => {
+  onSearchChange = (
+    visibleOptions: EuiSelectableOption[],
+    searchValue: string
+  ) => {
     this.setState({
       visibleOptions,
       searchValue,
@@ -275,7 +276,7 @@ export class EuiSelectable extends Component<
     this.clearActiveOption();
   };
 
-  onOptionClick = (options: Option[]) => {
+  onOptionClick = (options: EuiSelectableOption[]) => {
     this.setState(state => ({
       visibleOptions: getMatchingOptions(options, state.searchValue),
     }));

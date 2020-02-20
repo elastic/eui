@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import {
-  EuiSelectableOptionProp,
+  EuiSelectableOption,
   EuiSelectableOptionsListProps,
 } from '../../../../src/components/selectable';
 
-export const EuiSelectableOption: FunctionComponent<
-  EuiSelectableOptionProp
+export const EuiSelectableOptionProps: FunctionComponent<
+  EuiSelectableOption
 > = () => <div />;
 
 export const EuiSelectableOptionsList: FunctionComponent<

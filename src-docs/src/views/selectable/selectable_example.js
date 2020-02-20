@@ -13,7 +13,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { EuiSelectableOption, EuiSelectableOptionsList } from './props';
+import { EuiSelectableOptionProps, EuiSelectableOptionsList } from './props';
 
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
@@ -92,7 +92,7 @@ export const SelectableExample = {
       ),
       props: {
         EuiSelectable,
-        EuiSelectableOption,
+        EuiSelectableOptionProps,
         EuiSelectableOptionsList,
       },
       demo: <Selectable />,
