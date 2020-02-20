@@ -13,6 +13,7 @@
 **Bug fixes**
 
 - Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
+- Fixed a bug in `EuiDataGrid` causing the first cell to autofocus if interactive ([#2872](https://github.com/elastic/eui/pull/2872))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
