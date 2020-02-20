@@ -1,8 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiCodeEditor` to Typescript ([#2836](https://github.com/elastic/eui/pull/2836))
+- Converted `EuiCode` and `EuiCodeBlock` and to Typescript ([#2835](https://github.com/elastic/eui/pull/2835))
 - Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 - Added `paperClip` glyph to `EuiIcon` ([#2845](https://github.com/elastic/eui/pull/2845))
+- Added `banner` prop to `EuiFlyoutBody` and updated `euiOverflowShadow` mixin ([#2837](https://github.com/elastic/eui/pull/2837))
+- Updated `editorLink` icon ([#2866](https://github.com/elastic/eui/pull/2866))
+- Added control columns to `EuiDataGrid` to support non-data columns like row selection and actions ([#2846](https://github.com/elastic/eui/pull/2846))
+- Added `image` glyph to `EuiIcon` ([#2870](https://github.com/elastic/eui/pull/2870))
 
 **Bug fixes**
 

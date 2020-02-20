@@ -62,6 +62,7 @@ export interface EuiDataGridCellProps {
   onCellFocus: Function;
   interactiveCellId: string;
   isExpandable: boolean;
+  className?: string;
   popoverContent: EuiDataGridPopoverContent;
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
@@ -190,13 +191,18 @@ export class EuiDataGridCell extends Component<
       interactiveCellId,
       columnType,
       onCellFocus,
+      className,
       ...rest
     } = this.props;
     const { colIndex, rowIndex, visibleRowIndex } = rest;
 
-    const className = classNames('euiDataGridRowCell', {
-      [`euiDataGridRowCell--${columnType}`]: columnType,
-    });
+    const cellClasses = classNames(
+      'euiDataGridRowCell',
+      {
+        [`euiDataGridRowCell--${columnType}`]: columnType,
+      },
+      className
+    );
 
     const cellProps = {
       ...this.state.cellProps,
@@ -204,7 +210,7 @@ export class EuiDataGridCell extends Component<
         'dataGridRowCell',
         this.state.cellProps['data-test-subj']
       ),
-      className: classNames(className, this.state.cellProps.className),
+      className: classNames(cellClasses, this.state.cellProps.className),
     };
 
     const widthStyle = width != null ? { width: `${width}px` } : {};

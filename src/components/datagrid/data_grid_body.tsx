@@ -2,6 +2,7 @@ import React, { Fragment, FunctionComponent, useMemo } from 'react';
 // @ts-ignore-next-line
 import { EuiCodeBlock } from '../code';
 import {
+  EuiDataGridControlColumn,
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
   EuiDataGridPopoverContents,
@@ -24,6 +25,8 @@ import {
 export interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
+  leadingControlColumns?: EuiDataGridControlColumn[];
+  trailingControlColumns?: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
@@ -74,6 +77,8 @@ export const EuiDataGridBody: FunctionComponent<
   const {
     columnWidths,
     defaultColumnWidth,
+    leadingControlColumns = [],
+    trailingControlColumns = [],
     columns,
     schema,
     schemaDetectors,
@@ -173,6 +178,8 @@ export const EuiDataGridBody: FunctionComponent<
       return (
         <EuiDataGridDataRow
           key={rowIndex}
+          leadingControlColumns={leadingControlColumns}
+          trailingControlColumns={trailingControlColumns}
           columns={columns}
           schema={schema}
           popoverContents={mergedPopoverContents}
@@ -192,6 +199,8 @@ export const EuiDataGridBody: FunctionComponent<
   }, [
     visibleRowIndices,
     rowMap,
+    leadingControlColumns,
+    trailingControlColumns,
     columns,
     schema,
     mergedPopoverContents,
