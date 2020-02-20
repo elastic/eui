@@ -4,6 +4,7 @@ import React, {
   useState,
   useCallback,
   CSSProperties,
+  FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -21,32 +22,47 @@ const containerDirections = {
 export interface Props extends CommonProps {
   /**
    * Specify the container direction
-   *
-   * @default "horizontal"
    */
   direction?: keyof typeof containerDirections;
+  /**
+   * Pure function which accepts Panel and Resizer components in arguments
+   * and returns a component tree
+   */
   children: (
     Panel: React.ComponentType<PanelProps>,
     Resizer: React.ComponentType<CommonProps>
   ) => ReactNode;
-  onPanelWidthChange?: (arrayOfPanelWidths: number[]) => any;
+  /**
+   * Pure function which accepts an object where keys are IDs of panels, which sizes were changed,
+   * and values are actual sizes in percents
+   */
+  onPanelWidthChange?: ({  }: { [key: string]: number }) => any;
   style?: CSSProperties;
 }
 
 export interface State {
   isDragging: boolean;
   currentResizerPos: number;
+  previousPanelId: string | null;
+  nextPanelId: string | null;
+  resizersSize: number;
 }
 
-const initialState: State = { isDragging: false, currentResizerPos: -1 };
+const initialState: State = {
+  isDragging: false,
+  currentResizerPos: -1,
+  previousPanelId: null,
+  nextPanelId: null,
+  resizersSize: 0,
+};
 
-export function EuiResizableContainer({
+export const EuiResizableContainer: FunctionComponent<Props> = ({
   direction = 'horizontal',
   children,
   className,
   onPanelWidthChange,
   ...rest
-}: Props) {
+}) => {
   const registryRef = useRef(new PanelRegistry());
   const containerRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<State>(initialState);
@@ -86,18 +102,20 @@ export function EuiResizableContainer({
     [isHorizontal]
   );
 
+  const onMouseUp = useCallback(() => {
+    setState(initialState);
+  }, []);
+
   return (
     <PanelContextProvider registry={registryRef.current}>
       <div
         className={classes}
         ref={containerRef}
         onMouseMove={onMouseMove}
-        onMouseUp={() => {
-          setState(initialState);
-        }}
+        onMouseUp={onMouseUp}
         {...rest}>
         {children(Panel, Resizer)}
       </div>
     </PanelContextProvider>
   );
-}
+};

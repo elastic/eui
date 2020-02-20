@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -14,7 +14,11 @@ interface Controls {
   isHorizontal: boolean;
 }
 
-function Resizer({ isHorizontal, className, ...rest }: CommonProps & Controls) {
+export const Resizer: FunctionComponent<CommonProps & Controls> = ({
+  isHorizontal,
+  className,
+  ...rest
+}) => {
   const classes = classNames(
     'euiResizer',
     {
@@ -47,7 +51,7 @@ function Resizer({ isHorizontal, className, ...rest }: CommonProps & Controls) {
       )}
     </EuiI18n>
   );
-}
+};
 
 export function resizerWithControls(controls: Controls) {
   return (props: CommonProps) => <Resizer {...controls} {...props} />;

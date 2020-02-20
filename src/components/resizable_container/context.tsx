@@ -20,24 +20,20 @@
 import React, { createContext, useContext } from 'react';
 
 export interface PanelController {
-  setSize: (percent: number) => void;
-  getSize: () => number;
-  size: number;
+  id: string;
+  setSize: (panelSize: number) => void;
+  getSizePx: () => number;
 }
 
 export class PanelRegistry {
-  private panels: PanelController[] = [];
+  private panels: { [key: string]: PanelController } = {};
 
   registerPanel(panel: PanelController) {
-    this.panels.push(panel);
+    this.panels[panel.id] = panel;
   }
 
-  getResizerNeighbours(idx: number) {
-    return [this.panels[idx], this.panels[idx + 1]];
-  }
-
-  getPanels() {
-    return this.panels;
+  getResizerSiblings(prevPanelId: string, nextPanelId: string) {
+    return [this.panels[prevPanelId], this.panels[nextPanelId]];
   }
 }
 

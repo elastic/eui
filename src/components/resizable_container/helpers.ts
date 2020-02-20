@@ -11,7 +11,7 @@ interface Params {
   setState: React.Dispatch<React.SetStateAction<State>>;
   containerRef: React.RefObject<HTMLDivElement>;
   registryRef: React.MutableRefObject<PanelRegistry>;
-  onPanelWidthChange?: (arrayOfPanelWidths: number[]) => any;
+  onPanelWidthChange?: ({  }: { [key: string]: number }) => any;
 }
 
 type onMouseMove = (event: MouseEvent) => void;
@@ -27,82 +27,133 @@ export const useContainerCallbacks = ({
   registryRef,
   onPanelWidthChange,
 }: Params) => {
-  const getContainerWidth = useCallback(() => {
+  const getContainerSize = useCallback(() => {
     return isHorizontal
       ? containerRef.current!.getBoundingClientRect().width
       : containerRef.current!.getBoundingClientRect().height;
   }, [containerRef, isHorizontal]);
 
+  const getResizerButtonsSize = useCallback(() => {
+    // get sum of all of resizer button sizes to proper calculate panels ratio
+    const allResizers = containerRef.current!.getElementsByClassName(
+      'euiResizer'
+    ) as HTMLCollectionOf<HTMLButtonElement>;
+    const size = isHorizontal
+      ? allResizers[0].offsetWidth
+      : allResizers[0].offsetHeight;
+
+    return size * allResizers.length;
+  }, [containerRef, isHorizontal]);
+
   const onMouseDown = useCallback(
-    ({ clientY, clientX }: ResizerMouseEvent) => {
+    ({ clientY, clientX, currentTarget }: ResizerMouseEvent) => {
       setState(prevState => ({
         ...prevState,
         isDragging: true,
         currentResizerPos: isHorizontal ? clientX : clientY,
+        previousPanelId: currentTarget.previousElementSibling!.id,
+        nextPanelId: currentTarget.nextElementSibling!.id,
+        resizersSize: getResizerButtonsSize(),
       }));
     },
-    [isHorizontal, setState]
+    [getResizerButtonsSize, isHorizontal, setState]
   );
 
   const onKeyDown = useCallback(
     (ev: ResizerKeyDownEvent) => {
-      const { keyCode } = ev;
+      const { keyCode, currentTarget } = ev;
       const shouldResizeHorizontalPanel =
         isHorizontal &&
         (keyCode === keyCodes.LEFT || keyCode === keyCodes.RIGHT);
       const shouldResizeVerticalPanel =
         !isHorizontal && (keyCode === keyCodes.UP || keyCode === keyCodes.DOWN);
+      const prevPanelId = currentTarget.previousElementSibling!.id;
+      const nextPanelId = currentTarget.nextElementSibling!.id;
 
-      if (shouldResizeHorizontalPanel || shouldResizeVerticalPanel) {
+      if (
+        (shouldResizeHorizontalPanel || shouldResizeVerticalPanel) &&
+        prevPanelId &&
+        nextPanelId
+      ) {
         ev.preventDefault();
 
         const { current: registry } = registryRef;
-        const [first, second] = registry.getPanels();
+        const [prevPanel, nextPanel] = registry.getResizerSiblings(
+          prevPanelId,
+          nextPanelId
+        );
+        const resizersSize = getResizerButtonsSize();
+        const containerSize = getContainerSize();
 
-        const firstPercent =
-          first.size -
-          (keyCode === keyCodes.UP || keyCode === keyCodes.LEFT ? 1 : -1);
-        const secondPercent =
-          second.size -
-          (keyCode === keyCodes.DOWN || keyCode === keyCodes.RIGHT ? 1 : -1);
-
-        first.setSize(firstPercent);
-        second.setSize(secondPercent);
+        const prevPanelSize = pxToPercent(
+          prevPanel.getSizePx() -
+            (keyCode === keyCodes.UP || keyCode === keyCodes.LEFT ? 10 : -10),
+          containerSize - resizersSize
+        );
+        const nextPanelSize = pxToPercent(
+          nextPanel.getSizePx() -
+            (keyCode === keyCodes.DOWN || keyCode === keyCodes.RIGHT
+              ? 10
+              : -10),
+          containerSize - resizersSize
+        );
 
         if (onPanelWidthChange) {
-          onPanelWidthChange([firstPercent, secondPercent]);
+          onPanelWidthChange({
+            [prevPanelId]: prevPanelSize,
+            [nextPanelId]: nextPanelSize,
+          });
+        } else {
+          prevPanel.setSize(prevPanelSize);
+          nextPanel.setSize(nextPanelSize);
         }
       }
     },
-    [isHorizontal, onPanelWidthChange, registryRef]
+    [
+      getContainerSize,
+      getResizerButtonsSize,
+      isHorizontal,
+      onPanelWidthChange,
+      registryRef,
+    ]
   );
 
   const onMouseMove: onMouseMove = useCallback(
     event => {
-      if (state.isDragging) {
+      if (state.isDragging && state.previousPanelId && state.nextPanelId) {
         const { clientX, clientY } = event;
         const x = isHorizontal ? clientX : clientY;
         const { current: registry } = registryRef;
-        const [left, right] = registry.getPanels();
-        const delta = x - state.currentResizerPos;
-        const containerWidth = getContainerWidth();
-        const leftPercent = pxToPercent(left.getSize() + delta, containerWidth);
-        const rightPercent = pxToPercent(
-          right.getSize() - delta,
-          containerWidth
+        const [prevPanel, nextPanel] = registry.getResizerSiblings(
+          state.previousPanelId,
+          state.nextPanelId
         );
-        left.setSize(leftPercent);
-        right.setSize(rightPercent);
+        const delta = x - state.currentResizerPos;
+        const containerSize = getContainerSize();
+        const prevPanelSize = pxToPercent(
+          prevPanel.getSizePx() + delta,
+          containerSize - state.resizersSize
+        );
+        const nextPanelSize = pxToPercent(
+          nextPanel.getSizePx() - delta,
+          containerSize - state.resizersSize
+        );
 
         if (onPanelWidthChange) {
-          onPanelWidthChange([leftPercent, rightPercent]);
+          onPanelWidthChange({
+            [state.previousPanelId]: prevPanelSize,
+            [state.nextPanelId]: nextPanelSize,
+          });
+        } else {
+          prevPanel.setSize(prevPanelSize);
+          nextPanel.setSize(nextPanelSize);
         }
 
         setState({ ...state, currentResizerPos: x });
       }
     },
     [
-      getContainerWidth,
+      getContainerSize,
       isHorizontal,
       onPanelWidthChange,
       registryRef,
