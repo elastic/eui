@@ -1,30 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { EuiColorPicker } from '../../../../src/components';
-import { isValidHex } from '../../../../src/services';
+import { useColorPicker } from './utils';
 
-export class Inline extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: '',
-    };
-  }
-
-  handleChange = value => {
-    this.setState({ color: value });
-  };
-
-  render() {
-    const hasErrors = !isValidHex(this.state.color) && this.state.color !== '';
-
-    return (
-      <EuiColorPicker
-        onChange={this.handleChange}
-        color={this.state.color}
-        isInvalid={hasErrors}
-        display="inline"
-      />
-    );
-  }
-}
+export const Inline = () => {
+  const [color, setColor, errors] = useColorPicker('#D36086');
+  return (
+    <EuiColorPicker
+      onChange={setColor}
+      color={color}
+      isInvalid={!!errors}
+      display="inline"
+    />
+  );
+};
