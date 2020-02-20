@@ -1,9 +1,9 @@
-import React from 'react';
-import { CommonProps } from '../common';
+import React, { ButtonHTMLAttributes, HTMLAttributes } from 'react';
+import { CommonProps, ExclusiveUnion } from '../common';
 
 export type OptionCheckedType = 'on' | 'off' | undefined;
 
-export interface Option extends CommonProps {
+export interface BaseOption extends CommonProps {
   /**
    * Visible label of option. Must be unique across items if `key` is not supplied
    */
@@ -21,9 +21,9 @@ export interface Option extends CommonProps {
   checked?: OptionCheckedType;
   disabled?: boolean;
   /**
-   * Set to true to indicate object is just a grouping label, not a selectable item
+   * Optional boolean. Set to true to indicate object is just a grouping label, not a selectable item
    */
-  isGroupLabel?: boolean;
+  isGroupLabel?: false;
   /**
    * Node to add between the selection icon and the label
    */
@@ -34,3 +34,15 @@ export interface Option extends CommonProps {
   append?: React.ReactNode;
   ref?: (optionIndex: number) => void;
 }
+
+export interface GroupLabelOption
+  extends Omit<BaseOption, 'isGroupLabel'>,
+    HTMLAttributes<HTMLDivElement> {
+  isGroupLabel: true;
+}
+
+export interface SelectableOption
+  extends BaseOption,
+    ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export type Option = ExclusiveUnion<GroupLabelOption, SelectableOption>;
