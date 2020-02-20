@@ -3,6 +3,7 @@
     name: elastic-eui-pull-request
     display-name: 'elastic / eui # pull-request'
     description: Testing of eui pull requests.
+    disabled: true
     triggers:
       - github-pull-request:
           org-list:
