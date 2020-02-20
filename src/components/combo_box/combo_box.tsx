@@ -153,7 +153,7 @@ export class EuiComboBox<T> extends Component<
       return;
     }
 
-    if (!listElement || !listElement) {
+    if (!listElement) {
       return;
     }
 
@@ -489,7 +489,7 @@ export class EuiComboBox<T> extends Component<
     const singleSelection = Boolean(singleSelectionProp);
     const changeOptions = singleSelection
       ? [addedOption]
-      : [...selectedOptions, addedOption];
+      : selectedOptions.concat(addedOption);
 
     if (onChange) {
       onChange(changeOptions);

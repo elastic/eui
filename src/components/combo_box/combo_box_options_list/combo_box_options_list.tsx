@@ -229,7 +229,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
           </p>
         );
       }
-    } else if (!options || options.length === 0) {
+    } else if (!options.length) {
       emptyStateContent = (
         <p>
           <EuiI18n
