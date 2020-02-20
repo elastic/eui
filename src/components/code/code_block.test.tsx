@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import html from 'html';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCodeBlock } from './code_block';
 import { FONT_SIZES, PADDING_SIZES } from './_code_block';
 
-function snapshotCodeBlock(component) {
+function snapshotCodeBlock(component: ReactWrapper) {
   // Get the Portal's sibling and return its html
   const renderedHtml = component.find('Portal + *').html();
   const container = document.createElement('div');
