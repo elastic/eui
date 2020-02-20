@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, KeyboardEvent, CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import hljs from 'highlight.js';
 
@@ -15,6 +14,8 @@ import { EuiFocusTrap } from '../focus_trap';
 import { keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
+import { keysOf } from '../common';
+import { FontSize, PaddingSize } from './code';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
@@ -22,25 +23,57 @@ const fontSizeToClassNameMap = {
   l: 'euiCodeBlock--fontLarge',
 };
 
-export const FONT_SIZES = Object.keys(fontSizeToClassNameMap);
+export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
 
-const paddingSizeToClassNameMap = {
+const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
   none: '',
   s: 'euiCodeBlock--paddingSmall',
   m: 'euiCodeBlock--paddingMedium',
   l: 'euiCodeBlock--paddingLarge',
 };
 
-export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+
+interface Props {
+  className?: string;
+  fontSize: FontSize;
+
+  /**
+   * Displays the passed code in an inline format. Also removes any margins set.
+   */
+  inline?: boolean;
+
+  /**
+   * Displays an icon button to copy the code snippet to the clipboard.
+   */
+  isCopyable: boolean;
+
+  /**
+   * Sets the syntax highlighting for a specific language
+   */
+  language?: string;
+  overflowHeight?: number;
+  paddingSize: PaddingSize;
+  transparentBackground: boolean;
+}
+
+interface State {
+  isFullScreen: boolean;
+}
 
 /**
- * This is the base component extended by EuiCode and EuiCodeBlock. These components
- * share the same propTypes definition with EuiCodeBlockImpl.
+ * This is the base component extended by EuiCode and EuiCodeBlock.
+ * These components share the same propTypes definition with EuiCodeBlockImpl.
  */
-export class EuiCodeBlockImpl extends Component {
-  codeTarget = document.createElement('div');
+export class EuiCodeBlockImpl extends Component<Props, State> {
+  static defaultProps = {
+    transparentBackground: false,
+    paddingSize: 'l',
+    fontSize: 's',
+    isCopyable: false,
+  };
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -48,12 +81,18 @@ export class EuiCodeBlockImpl extends Component {
     };
   }
 
+  codeTarget = document.createElement('div');
+  code: HTMLElement | null = null;
+  codeFullScreen: HTMLElement | null = null;
+
   highlight = () => {
-    // because React maintains a mapping between its Virtual DOM representation and the actual
-    // DOM elements (including text nodes), and hljs modifies the DOM structure which leads
-    // to React updating detached nodes, we render to a document fragment and
-    // copy from that fragment into the target elements
-    // (https://github.com/elastic/eui/issues/2322)
+    /**
+     * because React maintains a mapping between its Virtual DOM representation and the actual
+     * DOM elements (including text nodes), and hljs modifies the DOM structure which leads
+     * to React updating detached nodes, we render to a document fragment and
+     * copy from that fragment into the target elements
+     * (https://github.com/elastic/eui/issues/2322)
+     */
     const html = this.codeTarget.innerHTML;
 
     if (this.code) {
@@ -64,7 +103,9 @@ export class EuiCodeBlockImpl extends Component {
     }
 
     if (this.props.language) {
-      hljs.highlightBlock(this.code);
+      if (this.code) {
+        hljs.highlightBlock(this.code);
+      }
 
       if (this.codeFullScreen) {
         hljs.highlightBlock(this.codeFullScreen);
@@ -72,7 +113,7 @@ export class EuiCodeBlockImpl extends Component {
     }
   };
 
-  onKeyDown = event => {
+  onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.keyCode === keyCodes.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
@@ -128,7 +169,7 @@ export class EuiCodeBlockImpl extends Component {
 
     const codeClasses = classNames('euiCodeBlock__code', language);
 
-    const optionalStyles = {};
+    const optionalStyles: CSSProperties = {};
 
     if (overflowHeight) {
       optionalStyles.maxHeight = overflowHeight;
@@ -158,14 +199,14 @@ export class EuiCodeBlockImpl extends Component {
       );
     }
 
-    function getCopyButton(textToCopy) {
-      let copyButton;
+    const getCopyButton = (textToCopy?: string) => {
+      let copyButton: JSX.Element | undefined;
 
-      if (isCopyable) {
+      if (isCopyable && textToCopy) {
         copyButton = (
           <div className="euiCodeBlock__copyButton">
             <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
-              {copyButton => (
+              {(copyButton: string) => (
                 <EuiCopy textToCopy={textToCopy}>
                   {copy => (
                     <EuiButtonIcon
@@ -184,9 +225,9 @@ export class EuiCodeBlockImpl extends Component {
       }
 
       return copyButton;
-    }
+    };
 
-    let fullScreenButton;
+    let fullScreenButton: JSX.Element | undefined;
 
     if (!inline && overflowHeight) {
       fullScreenButton = (
@@ -196,7 +237,7 @@ export class EuiCodeBlockImpl extends Component {
             'euiCodeBlock.fullscreenExpand',
           ]}
           defaults={['Collapse', 'Expand']}>
-          {([fullscreenCollapse, fullscreenExpand]) => (
+          {([fullscreenCollapse, fullscreenExpand]: string[]) => (
             <EuiButtonIcon
               className="euiCodeBlock__fullScreenButton"
               size="s"
@@ -212,7 +253,7 @@ export class EuiCodeBlockImpl extends Component {
       );
     }
 
-    function getCodeBlockControls(textToCopy) {
+    const getCodeBlockControls = (textToCopy?: string) => {
       let codeBlockControls;
       const copyButton = getCopyButton(textToCopy);
 
@@ -226,17 +267,13 @@ export class EuiCodeBlockImpl extends Component {
       }
 
       return codeBlockControls;
-    }
+    };
 
-    const getFullScreenDisplay = codeBlockControls => {
+    const getFullScreenDisplay = (codeBlockControls?: JSX.Element) => {
       let fullScreenDisplay;
 
       if (this.state.isFullScreen) {
-        {
-          /*
-          Force fullscreen to use large font and padding.
-        */
-        }
+        // Force fullscreen to use large font and padding.
         const fullScreenClasses = classNames(
           'euiCodeBlock',
           fontSizeToClassNameMap[fontSize],
@@ -299,34 +336,3 @@ export class EuiCodeBlockImpl extends Component {
     );
   }
 }
-
-EuiCodeBlockImpl.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  paddingSize: PropTypes.oneOf(PADDING_SIZES),
-
-  /**
-   * Sets the syntax highlighting for a specific language
-   */
-  language: PropTypes.string,
-  overflowHeight: PropTypes.number,
-  fontSize: PropTypes.oneOf(FONT_SIZES),
-  transparentBackground: PropTypes.bool,
-
-  /**
-   * Displays the passed code in an inline format. Also removes any margins set.
-   */
-  inline: PropTypes.bool,
-
-  /**
-   * Displays an icon button to copy the code snippet to the clipboard.
-   */
-  isCopyable: PropTypes.bool,
-};
-
-EuiCodeBlockImpl.defaultProps = {
-  transparentBackground: false,
-  paddingSize: 'l',
-  fontSize: 's',
-  isCopyable: false,
-};

@@ -87,7 +87,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   );
 
   const headerRef = useRef<HTMLDivElement>(null);
-  const isFocused = focusedCell[0] === index && focusedCell[1] === -1;
+  const isFocused =
+    focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
 
   useEffect(() => {

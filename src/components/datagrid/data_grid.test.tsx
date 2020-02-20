@@ -544,7 +544,7 @@ Array [
       "color": "red",
       "width": "100px",
     },
-    "tabIndex": 0,
+    "tabIndex": -1,
   },
   Object {
     "className": "euiDataGridRowCell customClass",
@@ -1795,6 +1795,14 @@ Array [
         />
       );
 
+      // enable the grid to accept focus
+      act(() =>
+        component
+          .find('div [data-test-subj="dataGridWrapper"][onFocus]')
+          .props().onFocus!({} as React.FocusEvent)
+      );
+      component.update();
+
       let focusableCell = getFocusableCell(component);
       // focus should begin at the first cell
       expect(focusableCell.length).toEqual(1);
@@ -1980,6 +1988,14 @@ Array [
           }
         />
       );
+
+      // enable the grid to accept focus
+      act(() =>
+        component
+          .find('div [data-test-subj="dataGridWrapper"][onFocus]')
+          .props().onFocus!({} as React.FocusEvent)
+      );
+      component.update();
 
       let focusableCell = getFocusableCell(component);
       expect(
