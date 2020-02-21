@@ -24,6 +24,7 @@ import {
   EuiFormRow,
   EuiCode,
   EuiSwitch,
+  EuiCallOut,
 } from '../../../../src/components';
 
 const allowedColors = [
@@ -156,14 +157,19 @@ export default class extends Component {
     const { selectedTheme } = this.props;
 
     let palette;
-    if (selectedTheme === 'amsterdam-dark') {
-      palette = darkAmsterdamColors;
-    } else if (selectedTheme === 'amsterdam-light') {
-      palette = { ...lightColors, ...lightAmsterdamColors };
-    } else if (selectedTheme === 'dark') {
-      palette = darkColors;
-    } else {
-      palette = lightColors;
+    switch (selectedTheme) {
+      case 'amsterdam-dark':
+        palette = darkAmsterdamColors;
+        break;
+      case 'amsterdam-light':
+        palette = { ...lightColors, ...lightAmsterdamColors };
+        break;
+      case 'dark':
+        palette = darkColors;
+        break;
+      default:
+        palette = lightColors;
+        break;
     }
 
     // Vis colors are the same for all palettes
@@ -238,14 +244,22 @@ export default class extends Component {
             combination that is <EuiBadge color="#333">AA</EuiBadge> or above
             with the exception of using large text.
           </p>
-          <p>
-            The Amsterdam theme introduces a more vibrant core color palette. In
-            order to maintain a WCAG contrast of at least 4.5 you should use the
-            text variants of the core color variables such as&nbsp;
-            <EuiCode>$euiColorSecondaryText</EuiCode>. Components that render
-            text such as <EuiCode>EuiText</EuiCode> will do so on their own
-            without any extra configuration.
-          </p>
+          {selectedTheme === 'amsterdam-light' && (
+            <EuiCallOut
+              color="warning"
+              iconType="accessibility"
+              title="Amsterdam changes in contrast levels">
+              <p>
+                The Amsterdam theme introduces a more vibrant core color
+                palette. In order to maintain a WCAG contrast of at least 4.5
+                you should use the text variants of the core color variables
+                such as&nbsp;
+                <EuiCode>$euiColorSecondaryText</EuiCode>. Components that
+                render text such as <EuiCode>EuiText</EuiCode> will do so on
+                their own without any extra configuration.
+              </p>
+            </EuiCallOut>
+          )}
           <h3>Rating definitions</h3>
           <ul>
             <li>

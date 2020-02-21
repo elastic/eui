@@ -23,7 +23,6 @@ $euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
 
 // Every color below must be based mathmatically on the set above.
-
 $euiTextColor: $euiColorDarkestShade !default;
 $euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
@@ -31,11 +30,12 @@ $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
 $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
 // Constrasty text variants
-$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary, $euiPageBackgroundColor);
-$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary, $euiPageBackgroundColor);
-$euiColorAccentText: makeHighContrastColor($euiColorAccent, $euiPageBackgroundColor);
-$euiColorWarningText: makeHighContrastColor($euiColorWarning, $euiPageBackgroundColor);
-$euiColorDangerText: makeHighContrastColor($euiColorDanger, $euiPageBackgroundColor);
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
+$euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
+$euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
+$euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
+$euiColorSuccessText: $euiColorSecondaryText !default;
 
 // Visualization colors
 

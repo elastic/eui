@@ -85,10 +85,11 @@
 
 // Given a $foreground and a $background, make the $foreground AA accessibility by slightly
 // adjusting it till the contrast is high enough
+// By default it will compare against the page background color
 
 // ex: makeContrastColor($lightPink, #FFF) would continually shade the pink until
 //     it had higher than 4.5 contrast on a white background.
-@function makeHighContrastColor($foreground, $background) {
+@function makeHighContrastColor($foreground, $background: $euiPageBackgroundColor, $ratio: 4.5) {
   $contrast: contrastRatio($foreground, $background);
 
   // Determine the lightness factor of the background color first to
@@ -97,7 +98,7 @@
 
   $highContrastTextColor: $foreground;
 
-  @while ($contrast < 4.5) {
+  @while ($contrast < $ratio) {
     @if ($brightness > 50) {
       $highContrastTextColor: shade($highContrastTextColor, 5%);
     } @else {
@@ -119,3 +120,9 @@
 
   @return $highContrastTextColor;
 }
+
+// Non-textual elements only need a contrast ration of 3:1
+@function makeGraphicColor($color, $background: $euiPageBackgroundColor) {
+  @return makeHighContrastColor($color, $background, 3);
+}
+
