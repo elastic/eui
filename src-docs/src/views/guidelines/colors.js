@@ -41,12 +41,6 @@ const allowedColors = [
   'euiColorAccent',
 ];
 
-const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
-
-const ratingAA = <EuiBadge color="#333">AA</EuiBadge>;
-
-const ratingAA18 = <EuiBadge color="#666">AA18</EuiBadge>;
-
 function renderPaletteColor(palette, color, index, key) {
   const hex = key ? palette[color][key] : palette[color];
   const name = key && key !== 'graphic' ? `${color}_${key}` : color;
@@ -95,44 +89,6 @@ function renderPaletteColor(palette, color, index, key) {
 export default class extends Component {
   constructor(props) {
     super(props);
-
-    this.levels = [
-      {
-        min: 0,
-        max: 2.8,
-        color: 'danger',
-      },
-      {
-        min: 2.8,
-        max: 4.3,
-        color: 'warning',
-      },
-      {
-        min: 4.3,
-        max: 7,
-        color: 'success',
-      },
-    ];
-
-    this.ticks = [
-      {
-        value: 0,
-        label: <EuiBadge color="#eee">ALL</EuiBadge>,
-      },
-      {
-        value: 3,
-        label: ratingAA18,
-      },
-      {
-        value: 4.5,
-        label: ratingAA,
-      },
-      {
-        value: 7,
-        label: ratingAAA,
-      },
-    ];
-
     this.state = {
       value: '3',
       behindTextVariant: false,
@@ -154,6 +110,64 @@ export default class extends Component {
   render() {
     const { value, behindTextVariant } = this.state;
     const { selectedTheme } = this.props;
+
+    const ratingAAA = (
+      <EuiBadge color={selectedTheme.includes('dark') ? '#EEE' : '#000'}>
+        AAA
+      </EuiBadge>
+    );
+    const ratingAA = (
+      <EuiBadge color={selectedTheme.includes('dark') ? '#666' : '#333'}>
+        AA
+      </EuiBadge>
+    );
+    const ratingAA18 = (
+      <EuiBadge color={selectedTheme.includes('dark') ? '#333' : '#666'}>
+        AA18
+      </EuiBadge>
+    );
+    const ratingAll = (
+      <EuiBadge color={selectedTheme.includes('dark') ? '#000' : '#EEE'}>
+        ALL
+      </EuiBadge>
+    );
+
+    const levels = [
+      {
+        min: 0,
+        max: 2.8,
+        color: 'danger',
+      },
+      {
+        min: 2.8,
+        max: 4.3,
+        color: 'warning',
+      },
+      {
+        min: 4.3,
+        max: 7,
+        color: 'success',
+      },
+    ];
+
+    const ticks = [
+      {
+        value: 0,
+        label: ratingAll,
+      },
+      {
+        value: 3,
+        label: ratingAA18,
+      },
+      {
+        value: 4.5,
+        label: ratingAA,
+      },
+      {
+        value: 7,
+        label: ratingAAA,
+      },
+    ];
 
     let palette;
     if (selectedTheme === 'amsterdam-dark') {
@@ -271,8 +285,8 @@ export default class extends Component {
                 onChange={this.onChange}
                 showTicks
                 showValue
-                levels={this.levels}
-                ticks={this.ticks}
+                levels={levels}
+                ticks={ticks}
                 valueAppend="+"
               />
             </EuiFormRow>
