@@ -376,10 +376,11 @@ export class EuiComboBox<T> extends Component<
      * FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`.
      * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/explicitOriginalTarget
      */
-    // @ts-ignore
-    const relatedTarget = (event.relatedTarget ||
-      // @ts-ignore need to add window global override
-      event.explicitOriginalTarget) as (Node | null);
+    const focusEvent = event as FocusEvent & {
+      explicitOriginalTarget: EventTarget;
+    };
+    const relatedTarget = (focusEvent.relatedTarget ||
+      focusEvent.explicitOriginalTarget) as Node | null;
 
     const focusedInOptionsList =
       relatedTarget &&
