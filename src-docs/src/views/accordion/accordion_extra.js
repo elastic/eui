@@ -5,6 +5,7 @@ import { EuiAccordion, EuiButton } from '../../../../src/components';
 export default () => (
   <EuiAccordion
     id="accordionExtra"
+    arrowDisplay="right"
     buttonContent="Click to open"
     extraAction={<EuiButton size="s">Extra action!</EuiButton>}
     paddingSize="l">
