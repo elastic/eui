@@ -8,6 +8,7 @@ import React, {
   Component,
   FocusEventHandler,
   KeyboardEventHandler,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
@@ -47,7 +48,9 @@ type DrillProps<T> = Pick<
   'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
 >;
 
-export interface EuiComboBoxProps<T> extends DrillProps<T> {
+export interface EuiComboBoxProps<T>
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
+    DrillProps<T> {
   'data-test-subj'?: string;
   async: boolean;
   className?: string;
