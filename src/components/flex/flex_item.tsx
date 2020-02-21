@@ -2,7 +2,7 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export type FlexItemGrowSize =
+export type FlexItemGrowShrinkSize =
   | 1
   | 2
   | 3
@@ -18,11 +18,31 @@ export type FlexItemGrowSize =
   | null;
 
 export interface EuiFlexItemProps {
-  grow?: FlexItemGrowSize;
+  /**
+   * Set to a `number` to match the CSS property of `flex-grow`,
+   * or `true` for `1` and `false`/`null` for `0`.
+   */
+  grow?: FlexItemGrowShrinkSize;
+  /**
+   * Set to a `number` to match the CSS property of `flex-shrink`,
+   * or `true` for `1` and `false`/`null` for `0`.
+   */
+  shrink?: FlexItemGrowShrinkSize;
   component?: keyof JSX.IntrinsicElements;
 }
 
-export const GROW_SIZES: FlexItemGrowSize[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export const GROW_SHRINK_SIZES: FlexItemGrowShrinkSize[] = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+];
 
 export const EuiFlexItem: FunctionComponent<
   CommonProps &
@@ -32,6 +52,7 @@ export const EuiFlexItem: FunctionComponent<
   children,
   className,
   grow = true,
+  shrink = true,
   component: Component = 'div',
   ...rest
 }) => {
@@ -42,7 +63,14 @@ export const EuiFlexItem: FunctionComponent<
     {
       'euiFlexItem--flexGrowZero': !grow,
       [`euiFlexItem--flexGrow${grow}`]:
-        typeof grow === 'number' ? GROW_SIZES.indexOf(grow) >= 0 : undefined,
+        typeof grow === 'number'
+          ? GROW_SHRINK_SIZES.indexOf(grow) >= 0
+          : undefined,
+      'euiFlexItem--flexShrinkZero': !shrink,
+      [`euiFlexItem--flexShrink${grow}`]:
+        typeof shrink === 'number'
+          ? GROW_SHRINK_SIZES.indexOf(shrink) >= 0
+          : undefined,
     },
     className
   );
@@ -56,7 +84,7 @@ export const EuiFlexItem: FunctionComponent<
 };
 
 function validateGrowValue(value: EuiFlexItemProps['grow']) {
-  const validValues = [null, undefined, true, false, ...GROW_SIZES];
+  const validValues = [null, undefined, true, false, ...GROW_SHRINK_SIZES];
 
   if (validValues.indexOf(value) === -1) {
     throw new Error(

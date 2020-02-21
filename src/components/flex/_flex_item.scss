@@ -25,6 +25,16 @@
       flex-grow: $i;
     }
   }
+
+  &.euiFlexItem--flexShrinkZero { /* 1 */
+    flex-shrink: 0; /* 2 */
+  }
+
+  @for $i from 1 through 10 {
+    &.euiFlexItem--flexShrink#{$i} {
+      flex-shrink: $i;
+    }
+  }
 }
 
 // On mobile we force them to stack and act the same.
