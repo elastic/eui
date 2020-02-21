@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import chroma from 'chroma-js';
+import { chromaValid } from '../../../../src/components/color_picker/utils';
 
 const generateRandomColor = () =>
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
@@ -34,8 +34,8 @@ export const useColorStop = (useRandomColor = false) => {
 export const useColorPicker = (initialColor = '') => {
   const [color, setColor] = useState(initialColor);
   const errors = useMemo(() => {
-    const hasErrors = !chroma.valid(color, 'hex') && color !== '';
-    return hasErrors ? ['Provide a valid hex value'] : null;
+    const hasErrors = !chromaValid(color) && color !== '';
+    return hasErrors ? ['Provide a valid color value'] : null;
   }, [color]);
 
   return [color, setColor, errors];

@@ -1,4 +1,5 @@
 import { MouseEvent as ReactMouseEvent, TouchEvent, useEffect } from 'react';
+import chroma, { ColorSpaces } from 'chroma-js';
 
 export const getEventPosition = (
   location: { x: number; y: number },
@@ -80,3 +81,46 @@ export function useMouseMove<T = HTMLDivElement>(
 
   return [handleMouseDown, handleInteraction];
 }
+
+export const HEX_FALLBACK = '';
+export const HSV_FALLBACK: ColorSpaces['hsv'] = [0, 0, 0];
+export const RGB_FALLBACK: ColorSpaces['rgb'] = [NaN, NaN, NaN];
+
+export const chromaValid = (color: string | number[]) => {
+  let parsed: string | number[] | null = color;
+  if (typeof color === 'string') {
+    parsed = parseColor(color);
+  }
+
+  if (!parsed) return false;
+
+  if (typeof parsed === 'object') {
+    return chroma.valid(parsed, 'rgb') || chroma.valid(parsed, 'rgba');
+  }
+  return chroma.valid(color, 'hex');
+};
+
+export const parseColor = (input?: string | null) => {
+  let parsed: string | number[];
+  if (!input) return null;
+  if (input.indexOf(',') > 0) {
+    const rgb = input
+      .trim()
+      .split(',')
+      .filter(n => n !== '')
+      .map(Number);
+    parsed = rgb.length > 2 && rgb.length < 5 ? rgb : HEX_FALLBACK;
+  } else {
+    parsed = input;
+  }
+  return parsed;
+};
+
+export const getChromaColor = (input?: string | null) => {
+  const parsed = parseColor(input);
+  if (parsed && chromaValid(parsed)) {
+    // type guard for the function overload
+    return typeof parsed === 'object' ? chroma(parsed) : chroma(parsed);
+  }
+  return null;
+};

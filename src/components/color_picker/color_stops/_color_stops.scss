@@ -60,11 +60,11 @@
     content: '';
     display: block;
     position: absolute;
-    left: 1px;
-    right: 1px;
-    top: 50%;
-    height: $euiRangeHighlightHeight;
-    margin-top: $euiRangeHighlightHeight * -.5;
+    left: 0;
+    top: 0;
+    height: $euiRangeThumbHeight;
+    width: $euiRangeThumbHeight;
+    border-radius: $euiRangeThumbHeight;
     background: $euiColorEmptyShade;
   }
 }

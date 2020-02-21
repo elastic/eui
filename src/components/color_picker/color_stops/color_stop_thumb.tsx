@@ -87,8 +87,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
 }) => {
-  const colorAsRgba = useMemo(
-    () => (color && !isColorInvalid(color) ? chroma(color).rgba() : null),
+  const background = useMemo(
+    () => (color && !isColorInvalid(color) ? chroma(color).css() : undefined),
     [color]
   );
   const [hasFocus, setHasFocus] = useState(isPopoverOpen);
@@ -286,9 +286,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 className="euiColorStopThumb"
                 tabIndex={-1}
                 style={{
-                  background: colorAsRgba
-                    ? `rgba(${colorAsRgba.join(',')})`
-                    : undefined,
+                  background,
                 }}
                 disabled={disabled}
               />

@@ -5,9 +5,15 @@ import { useColorPicker } from './utils';
 
 export const Alpha = () => {
   const [color, setColor, errors] = useColorPicker('#D36086');
+  const [color2, setColor2, errors2] = useColorPicker('211, 96, 134');
 
   const handleChange = hex => {
     setColor(hex);
+  };
+
+  const handleChange2 = rgba => {
+    // console.log(rgba);
+    setColor2(rgba);
   };
 
   const customSwatches = [
@@ -23,18 +29,40 @@ export const Alpha = () => {
     '#CA8EAE40',
   ];
 
+  const customSwatches2 = [
+    '211, 96, 134, 0.25',
+    '211, 96, 134, 0.5',
+    '211, 96, 134, 0.75',
+    '211, 96, 134',
+  ];
+
   return (
-    <EuiFormRow
-      label="Pick a color with optional opacity"
-      isInvalid={!!errors}
-      error={errors}>
-      <EuiColorPicker
-        onChange={handleChange}
-        color={color}
-        showAlpha={true}
+    <>
+      <EuiFormRow
+        label="Pick a color with optional opacity"
         isInvalid={!!errors}
-        swatches={customSwatches}
-      />
-    </EuiFormRow>
+        error={errors}>
+        <EuiColorPicker
+          onChange={handleChange}
+          color={color}
+          showAlpha={true}
+          isInvalid={!!errors}
+          swatches={customSwatches}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow
+        label="Using RGBa format"
+        isInvalid={!!errors2}
+        error={errors2}>
+        <EuiColorPicker
+          onChange={handleChange2}
+          color={color2}
+          showAlpha={true}
+          isInvalid={!!errors2}
+          swatches={customSwatches2}
+        />
+      </EuiFormRow>
+    </>
   );
 };

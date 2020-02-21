@@ -14,7 +14,7 @@ exports[`renders EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,238,221,1)"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout"
@@ -89,7 +89,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,255,255,1)"
+          style="color:rgb(255,255,255)"
         >
           <div
             class="euiFormControlLayout"
@@ -317,7 +317,7 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,238,221,1)"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout"
@@ -397,7 +397,7 @@ exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,238,221,1)"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout"
@@ -472,7 +472,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,238,221,1)"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -547,7 +547,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,238,221,1)"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout"
@@ -623,7 +623,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,238,221,1)"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -760,7 +760,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #54B399 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(84,179,153,1)"
+        style="background:rgb(84,179,153)"
         type="button"
       />
     </div>
@@ -771,7 +771,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #6092C0 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(96,146,192,1)"
+        style="background:rgb(96,146,192)"
         type="button"
       />
     </div>
@@ -782,7 +782,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #D36086 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(211,96,134,1)"
+        style="background:rgb(211,96,134)"
         type="button"
       />
     </div>
@@ -793,7 +793,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #9170B8 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(145,112,184,1)"
+        style="background:rgb(145,112,184)"
         type="button"
       />
     </div>
@@ -804,7 +804,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #CA8EAE as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(202,142,174,1)"
+        style="background:rgb(202,142,174)"
         type="button"
       />
     </div>
@@ -815,7 +815,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #D6BF57 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(214,191,87,1)"
+        style="background:rgb(214,191,87)"
         type="button"
       />
     </div>
@@ -826,7 +826,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #B9A888 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(185,168,136,1)"
+        style="background:rgb(185,168,136)"
         type="button"
       />
     </div>
@@ -837,7 +837,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #DA8B45 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(218,139,69,1)"
+        style="background:rgb(218,139,69)"
         type="button"
       />
     </div>
@@ -848,7 +848,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #AA6556 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(170,101,86,1)"
+        style="background:rgb(170,101,86)"
         type="button"
       />
     </div>
@@ -859,7 +859,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #E7664C as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:rgba(231,102,76,1)"
+        style="background:rgb(231,102,76)"
         type="button"
       />
     </div>
@@ -881,7 +881,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:rgba(255,238,221,1)"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout euiFormControlLayout--readOnly"
