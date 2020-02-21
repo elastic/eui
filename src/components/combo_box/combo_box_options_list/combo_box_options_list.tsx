@@ -136,9 +136,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
     }
   };
 
-  listRefCallback: RefCallback<HTMLDivElement> = node => {
-    this.props.listRef(node);
-    this.listRefInstance = node;
+  listRefCallback: RefCallback<HTMLDivElement> = ref => {
+    this.props.listRef(ref);
+    this.listRefInstance = ref;
   };
 
   render() {
@@ -293,9 +293,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
                   onOptionClick(option);
                 }
               }}
-              ref={ref => {
-                optionRef(index, ref);
-              }}
+              ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
               id={rootId(`_option-${index}`)}
               title={label}

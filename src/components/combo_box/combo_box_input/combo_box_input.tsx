@@ -1,4 +1,4 @@
-import React, { Component, FocusEventHandler } from 'react';
+import React, { Component, FocusEventHandler, ChangeEventHandler } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 
@@ -91,9 +91,22 @@ export class EuiComboBoxInput<T> extends Component<
     }
   }
 
+  inputOnChange: ChangeEventHandler<HTMLInputElement> = event => {
+    const { onChange, searchValue } = this.props;
+    if (onChange) {
+      onChange(event.target.value as typeof searchValue);
+    }
+  };
+
+  inputRefCallback = (ref: HTMLInputElement & AutosizeInput) => {
+    const { autoSizeInputRef } = this.props;
+    if (autoSizeInputRef) {
+      autoSizeInputRef(ref);
+    }
+  };
+
   render() {
     const {
-      autoSizeInputRef,
       compressed,
       focusedOptionId,
       fullWidth,
@@ -103,7 +116,6 @@ export class EuiComboBoxInput<T> extends Component<
       isDisabled,
       isListOpen,
       noIcon,
-      onChange,
       onClear,
       onClick,
       onCloseListClick,
@@ -246,17 +258,9 @@ export class EuiComboBoxInput<T> extends Component<
             id={id}
             inputRef={inputRef}
             onBlur={this.onBlur}
-            onChange={event => {
-              if (onChange) {
-                onChange(event.target.value as typeof searchValue);
-              }
-            }}
+            onChange={this.inputOnChange}
             onFocus={this.onFocus}
-            ref={(ref: HTMLInputElement & AutosizeInput) => {
-              if (autoSizeInputRef) {
-                autoSizeInputRef(ref);
-              }
-            }}
+            ref={this.inputRefCallback}
             role="textbox"
             style={{ fontSize: 14 }}
             value={searchValue}

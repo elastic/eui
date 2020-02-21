@@ -122,13 +122,62 @@ export class EuiComboBox<T> extends Component<
 
   // Refs
   comboBoxRefInstance: RefInstance<HTMLDivElement> = null;
+  comboBoxRefCallback: RefCallback<HTMLDivElement> = ref => {
+    // IE11 doesn't support the `relatedTarget` event property for blur events
+    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
+    if (this.comboBoxRefInstance) {
+      this.comboBoxRefInstance.removeEventListener(
+        'focusout',
+        this.onContainerBlur
+      );
+    }
+
+    this.comboBoxRefInstance = ref;
+
+    if (this.comboBoxRefInstance) {
+      this.comboBoxRefInstance.addEventListener(
+        'focusout',
+        this.onContainerBlur
+      );
+      const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
+      this.setState({
+        width: comboBoxBounds.width,
+      });
+    }
+  };
   autoSizeInputRefInstance: RefInstance<AutosizeInput & HTMLDivElement> = null;
+  autoSizeInputRefCallback: RefCallback<
+    AutosizeInput & HTMLDivElement
+  > = ref => {
+    this.autoSizeInputRefInstance = ref;
+  };
+
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
+  searchInputRefCallback: RefCallback<HTMLInputElement> = ref => {
+    this.searchInputRefInstance = ref;
+  };
+
   listRefInstance: RefInstance<HTMLDivElement> = null;
+  listRefCallback: RefCallback<HTMLDivElement> = ref => {
+    this.listRefInstance = ref;
+  };
+
   toggleButtonRefInstance: RefInstance<
     HTMLButtonElement | HTMLSpanElement
   > = null;
+  toggleButtonRefCallback: RefCallback<
+    HTMLButtonElement | HTMLSpanElement
+  > = ref => {
+    this.toggleButtonRefInstance = ref;
+  };
+
   optionsRefInstances: Array<RefInstance<EuiFilterSelectItem>> = [];
+  optionRefCallback: EuiComboBoxOptionsListProps<T>['optionRef'] = (
+    index,
+    ref
+  ) => {
+    this.optionsRefInstances[index] = ref;
+  };
 
   openList = () => {
     this.setState({
@@ -567,6 +616,12 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
+  onOptionListScroll = () => {
+    if (this.searchInputRefInstance) {
+      this.searchInputRefInstance.focus();
+    }
+  };
+
   onCloseListClick = () => {
     this.closeList();
   };
@@ -583,34 +638,6 @@ export class EuiComboBox<T> extends Component<
     this.setState({ searchValue }, () => {
       if (searchValue && this.state.isListOpen === false) this.openList();
     });
-  };
-
-  ownRef: RefCallback<HTMLDivElement> = node => {
-    // IE11 doesn't support the `relatedTarget` event property for blur events
-    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
-    if (this.comboBoxRefInstance) {
-      this.comboBoxRefInstance.removeEventListener(
-        'focusout',
-        this.onContainerBlur
-      );
-    }
-
-    this.comboBoxRefInstance = node;
-
-    if (this.comboBoxRefInstance) {
-      this.comboBoxRefInstance.addEventListener(
-        'focusout',
-        this.onContainerBlur
-      );
-      const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
-      this.setState({
-        width: comboBoxBounds.width,
-      });
-    }
-  };
-
-  optionRef: EuiComboBoxOptionsListProps<T>['optionRef'] = (index, node) => {
-    this.optionsRefInstances[index] = node;
   };
 
   componentDidMount() {
@@ -786,20 +813,14 @@ export class EuiComboBox<T> extends Component<
             data-test-subj={optionsListDataTestSubj}
             fullWidth={fullWidth}
             isLoading={isLoading}
-            listRef={ref => {
-              this.listRefInstance = ref;
-            }}
+            listRef={this.listRefCallback}
             matchingOptions={this.state.matchingOptions}
             onCloseList={this.closeList}
             onCreateOption={onCreateOption}
             onOptionClick={this.onOptionClick}
             onOptionEnterKey={this.onOptionEnterKey}
-            onScroll={() => {
-              if (this.searchInputRefInstance) {
-                this.searchInputRefInstance.focus();
-              }
-            }}
-            optionRef={this.optionRef}
+            onScroll={this.onOptionListScroll}
+            optionRef={this.optionRefCallback}
             options={options}
             position={listPosition}
             renderOption={renderOption}
@@ -834,12 +855,10 @@ export class EuiComboBox<T> extends Component<
         className={classes}
         data-test-subj={dataTestSubj}
         onKeyDown={this.onKeyDown}
-        ref={this.ownRef}
+        ref={this.comboBoxRefCallback}
         role="combobox">
         <EuiComboBoxInput
-          autoSizeInputRef={ref => {
-            this.autoSizeInputRefInstance = ref;
-          }}
+          autoSizeInputRef={this.autoSizeInputRefCallback}
           compressed={compressed}
           focusedOptionId={
             this.hasActiveOption()
@@ -849,9 +868,7 @@ export class EuiComboBox<T> extends Component<
           fullWidth={fullWidth}
           hasSelectedOptions={selectedOptions.length > 0}
           id={id}
-          inputRef={ref => {
-            this.searchInputRefInstance = ref;
-          }}
+          inputRef={this.searchInputRefCallback}
           isDisabled={isDisabled}
           isListOpen={isListOpen}
           noIcon={!!noSuggestions}
@@ -869,9 +886,7 @@ export class EuiComboBox<T> extends Component<
           searchValue={searchValue}
           selectedOptions={selectedOptions}
           singleSelection={singleSelection}
-          toggleButtonRef={ref => {
-            this.toggleButtonRefInstance = ref;
-          }}
+          toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
         />
