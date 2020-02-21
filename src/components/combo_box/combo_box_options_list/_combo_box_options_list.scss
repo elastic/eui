@@ -26,6 +26,10 @@
       0 -2px 4px -1px transparentize($euiShadowColor, .8),
       0 0 2px 0 transparentize($euiShadowColor, .8);
   }
+
+  .euiFilterSelectItem__crossIcon {
+    visibility: hidden; // hiding cross icon in single selection combo box
+  }
 }
 
 .euiComboBoxOptionsList--bottom {

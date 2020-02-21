@@ -133,6 +133,7 @@ export class EuiComboBoxOptionsList extends Component {
       listRef,
       updatePosition,
       width,
+      singleSelection,
       scrollToIndex,
       onScroll,
       rowHeight,
@@ -271,9 +272,10 @@ export class EuiComboBoxOptionsList extends Component {
               // onEnterKey={onOptionEnterKey}
               ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
+              checked={activeOptionIndex === index ? 'on' : 'off'}
               id={rootId(`_option-${index}`)}
               title={label}
-              showIcons={false}
+              showIcons={singleSelection}
               {...rest}>
               {renderOption ? (
                 renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)

@@ -716,6 +716,7 @@ export class EuiComboBox extends Component {
             getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
             updatePosition={this.updateListPosition}
             position={listPosition}
+            singleSelection={singleSelection}
             renderOption={renderOption}
             width={width}
             scrollToIndex={activeOptionIndex}
