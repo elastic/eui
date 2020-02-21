@@ -264,6 +264,14 @@ export class EuiComboBoxOptionsList extends Component {
             );
           }
 
+          let checked;
+          if (singleSelection) {
+            checked =
+              selectedOptions.length && selectedOptions[0].label === label
+                ? 'on'
+                : null;
+          }
+
           return (
             <EuiFilterSelectItem
               style={style}
@@ -272,10 +280,9 @@ export class EuiComboBoxOptionsList extends Component {
               // onEnterKey={onOptionEnterKey}
               ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
-              checked={activeOptionIndex === index ? 'on' : null}
+              checked={checked}
               id={rootId(`_option-${index}`)}
               title={label}
-              showIcons={singleSelection}
               {...rest}>
               {renderOption ? (
                 renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)
