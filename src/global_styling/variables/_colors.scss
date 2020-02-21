@@ -1,3 +1,6 @@
+// This extra import allows any variables that are created via functions to work when loaded into JS
+@import '../functions/index';
+
 // Core
 $euiColorPrimary: #006BB4 !default;
 $euiColorSecondary: #017D73 !default;

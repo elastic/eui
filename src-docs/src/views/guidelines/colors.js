@@ -42,6 +42,21 @@ const allowedColors = [
   'euiColorAccent',
 ];
 
+const textVariants = [
+  'euiColorEmptyShade',
+  'euiColorLightestShade',
+  'euiColorLightShade',
+  'euiColorMediumShade',
+  'euiColorDarkShade',
+  'euiColorDarkestShade',
+  'euiColorFullShade',
+  'euiColorPrimaryText',
+  'euiColorSecondaryText',
+  'euiColorWarningText',
+  'euiColorDangerText',
+  'euiColorAccentText',
+];
+
 const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
 
 const ratingAA = <EuiBadge color="#333">AA</EuiBadge>;
@@ -137,6 +152,7 @@ export default class extends Component {
     this.state = {
       value: '3',
       behindTextVariant: false,
+      showTextVariants: true,
     };
   }
 
@@ -152,8 +168,14 @@ export default class extends Component {
     });
   };
 
+  onTextVariantChange = e => {
+    this.setState({
+      showTextVariants: e.target.checked,
+    });
+  };
+
   render() {
-    const { value, behindTextVariant } = this.state;
+    const { value, behindTextVariant, showTextVariants } = this.state;
     const { selectedTheme } = this.props;
 
     let palette;
@@ -175,6 +197,10 @@ export default class extends Component {
     // Vis colors are the same for all palettes
     const visColors = lightColors.euiPaletteColorBlind;
     const visColorKeys = Object.keys(lightColors.euiPaletteColorBlind);
+    const colorsForContrast =
+      showTextVariants && selectedTheme === 'amsterdam-light'
+        ? textVariants
+        : allowedColors;
 
     function getContrastRatings(color1, color2) {
       if (color1.indexOf('Shade') === -1 && color2.indexOf('Shade') === -1) {
@@ -258,6 +284,11 @@ export default class extends Component {
                 render text such as <EuiCode>EuiText</EuiCode> will do so on
                 their own without any extra configuration.
               </p>
+              <EuiSwitch
+                label="Show text variant"
+                checked={showTextVariants}
+                onChange={this.onTextVariantChange}
+              />
             </EuiCallOut>
           )}
           <h3>Rating definitions</h3>
@@ -281,7 +312,7 @@ export default class extends Component {
         <EuiSpacer size="xxl" />
 
         <EuiFlexGroup className="eui-textCenter" justifyContent="center">
-          <EuiFlexItem grow={false}>
+          <EuiFlexItem style={{ maxWidth: 400 }}>
             <EuiFormRow
               id="ratingsRange"
               label="Minimum color contrast combinations to show">
@@ -309,7 +340,7 @@ export default class extends Component {
               <EuiFlexItem key={index}>
                 <EuiText size="xs">
                   <h3>{color}</h3>
-                  {allowedColors.map(function(color2, index) {
+                  {colorsForContrast.map(function(color2, index) {
                     const contrastRatings = getContrastRatings(color, color2);
 
                     if (!contrastRatings || contrastRatings.contrast < value) {
