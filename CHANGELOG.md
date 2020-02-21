@@ -9,6 +9,7 @@
 - Updated `editorLink` icon ([#2866](https://github.com/elastic/eui/pull/2866))
 - Added control columns to `EuiDataGrid` to support non-data columns like row selection and actions ([#2846](https://github.com/elastic/eui/pull/2846))
 - Added `image` glyph to `EuiIcon` ([#2870](https://github.com/elastic/eui/pull/2870))
+- Added check mark to single selection `EuiComboBox` ([#2890](https://github.com/elastic/eui/pull/2890))
 
 **Bug fixes**
 
