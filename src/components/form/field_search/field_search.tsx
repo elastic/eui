@@ -4,7 +4,10 @@ import { Browser } from '../../../services/browser';
 import { ENTER } from '../../../services/key_codes';
 import { CommonProps } from '../../common';
 
-import { EuiFormControlLayout } from '../form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
 
@@ -37,6 +40,15 @@ export interface EuiFieldSearchProps
    * Shows a button that quickly clears any input
    */
   isClearable?: boolean;
+  /**
+   * Creates an input group with element(s) coming before input
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+
+  /**
+   * Creates an input group with element(s) coming after input
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
@@ -154,6 +166,8 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
       compressed,
       onSearch,
       isClearable,
+      append,
+      prepend,
       ...rest
     } = this.props;
 
@@ -163,6 +177,7 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
         'euiFieldSearch--fullWidth': fullWidth,
         'euiFieldSearch--compressed': compressed,
         'euiFieldSearch-isLoading': isLoading,
+        'euiFieldText--inGroup': prepend || append,
       },
       className
     );
@@ -177,7 +192,9 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
             ? { onClick: this.onClear }
             : undefined
         }
-        compressed={compressed}>
+        compressed={compressed}
+        append={append}
+        prepend={prepend}>
         <EuiValidatableControl isInvalid={isInvalid}>
           <input
             type="search"
