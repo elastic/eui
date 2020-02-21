@@ -1,4 +1,4 @@
-import { EuiComboBoxOptionOption } from './index';
+import { EuiComboBoxOptionOption } from './types';
 
 export const flattenOptionGroups = <T>(
   optionsOrGroups: Array<EuiComboBoxOptionOption<T>>

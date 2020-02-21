@@ -6,9 +6,14 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFormControlLayout } from '../../form/form_control_layout';
 import { EuiComboBoxPill } from './combo_box_pill';
 import { htmlIdGenerator } from '../../../services';
-import { EuiComboBoxOptionOption, EuiComboBoxSingleSelectionShape } from '..';
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
-import { UpdatePositionHandler, OptionHandler, RefCallback } from '../types';
+import {
+  EuiComboBoxOptionOption,
+  EuiComboBoxSingleSelectionShape,
+  OptionHandler,
+  RefCallback,
+  UpdatePositionHandler,
+} from '../types';
 
 const makeId = htmlIdGenerator();
 

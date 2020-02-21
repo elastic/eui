@@ -2,8 +2,7 @@ import React, { Component, ReactNode, KeyboardEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { ENTER, SPACE } from '../../../services/key_codes';
-import { EuiComboBoxOptionOption } from '../index';
-import { OptionHandler, RefCallback } from '../types';
+import { EuiComboBoxOptionOption, OptionHandler, RefCallback } from '../types';
 
 export interface EuiComboBoxOptionProps<T> {
   children?: ReactNode;

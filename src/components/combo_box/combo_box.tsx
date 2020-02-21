@@ -31,15 +31,13 @@ import {
 } from './combo_box_input/combo_box_input';
 import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_options_list';
 import {
-  EuiComboBoxOptionOption,
-  EuiComboBoxOptionsListPosition,
-  EuiComboBoxSingleSelectionShape,
-} from './index';
-import {
   UpdatePositionHandler,
   OptionHandler,
   RefCallback,
   RefInstance,
+  EuiComboBoxOptionOption,
+  EuiComboBoxOptionsListPosition,
+  EuiComboBoxSingleSelectionShape,
 } from './types';
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';

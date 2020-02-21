@@ -11,13 +11,14 @@ import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
-import { EuiComboBoxOptionOption, EuiComboBoxOptionsListPosition } from '..';
 import { htmlIdGenerator } from '../../../services';
 import {
-  UpdatePositionHandler,
+  EuiComboBoxOptionOption,
+  EuiComboBoxOptionsListPosition,
   OptionHandler,
   RefCallback,
   RefInstance,
+  UpdatePositionHandler,
 } from '../types';
 
 const positionToClassNameMap: {

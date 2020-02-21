@@ -3,8 +3,7 @@ import classNames from 'classnames';
 
 import { EuiBadge } from '../../badge';
 import { EuiI18n } from '../../i18n';
-import { EuiComboBoxOptionOption } from '..';
-import { OptionHandler } from '../types';
+import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 
 export interface EuiComboBoxPillProps<T> {
   asPlainText?: boolean;

@@ -1,4 +1,4 @@
-import { EuiComboBoxOptionOption } from './index';
+import { EuiComboBoxOptionOption } from './types';
 import {
   flattenOptionGroups,
   getMatchingOptions,
