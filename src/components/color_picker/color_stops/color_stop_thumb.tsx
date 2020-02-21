@@ -20,10 +20,13 @@ import { keyCodes } from '../../../services';
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-// @ts-ignore
-import { EuiFieldNumber, EuiFieldText, EuiFormRow } from '../../form';
+import {
+  EuiFieldNumber,
+  EuiFieldText,
+  EuiFormRow,
+  EuiRangeThumb,
+} from '../../form';
 import { EuiI18n } from '../../i18n';
-import { EuiRangeThumb } from '../../form/range/range_thumb';
 import { EuiPopover } from '../../popover';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiSpacer } from '../../spacer';
@@ -310,15 +313,14 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 <EuiFormRow
                   label={stopLabel}
                   display="rowCompressed"
-                  readOnly={readOnly}
                   isInvalid={stopIsInvalid}
                   error={stopIsInvalid ? stopErrorMessage : null}>
                   <EuiFieldNumber
                     inputRef={setNumberInputRef}
                     compressed={true}
                     readOnly={readOnly}
-                    min={isRangeMin || min == null ? null : localMin}
-                    max={isRangeMax || max == null ? null : localMax}
+                    min={isRangeMin || min === undefined ? undefined : localMin}
+                    max={isRangeMax || max === undefined ? undefined : localMax}
                     value={isStopInvalid(stop) ? '' : stop}
                     isInvalid={stopIsInvalid}
                     onChange={handleStopInputChange}
@@ -328,10 +330,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
             </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiFormRow
-              grow="false"
-              display="rowCompressed"
-              hasEmptyLabelSpace={true}>
+            <EuiFormRow display="rowCompressed" hasEmptyLabelSpace={true}>
               <EuiI18n
                 token="euiColorStopThumb.removeLabel"
                 default="Remove this stop">
@@ -374,7 +373,6 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 <EuiFormRow
                   label={hexLabel}
                   display="rowCompressed"
-                  readOnly={readOnly}
                   isInvalid={colorIsInvalid}
                   error={colorIsInvalid ? hexErrorMessage : null}>
                   <EuiFieldText
