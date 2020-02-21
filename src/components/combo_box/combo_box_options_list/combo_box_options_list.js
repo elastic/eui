@@ -272,7 +272,7 @@ export class EuiComboBoxOptionsList extends Component {
               // onEnterKey={onOptionEnterKey}
               ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
-              checked={activeOptionIndex === index ? 'on' : 'off'}
+              checked={activeOptionIndex === index ? 'on' : null}
               id={rootId(`_option-${index}`)}
               title={label}
               showIcons={singleSelection}

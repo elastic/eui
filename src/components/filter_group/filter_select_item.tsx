@@ -24,12 +24,10 @@ const resolveIconAndColor = (checked?: FilterChecked) => {
     ? {
         icon: 'check',
         color: 'text',
-        className: 'euiFilterSelectItem__checkIcon',
       }
     : {
         icon: 'cross',
         color: 'text',
-        className: 'euiFilterSelectItem__crossIcon',
       };
 };
 
@@ -74,10 +72,10 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
 
     let iconNode;
     if (showIcons) {
-      const { icon, color, className } = resolveIconAndColor(checked);
+      const { icon, color } = resolveIconAndColor(checked);
       iconNode = (
         <EuiFlexItem grow={false}>
-          <EuiIcon className={className} color={color} type={icon} />
+          <EuiIcon color={color} type={icon} />
         </EuiFlexItem>
       );
     }
