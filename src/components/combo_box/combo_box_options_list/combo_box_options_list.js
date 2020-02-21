@@ -281,6 +281,7 @@ export class EuiComboBoxOptionsList extends Component {
               ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
               checked={checked}
+              showIcons={singleSelection ? true : false}
               id={rootId(`_option-${index}`)}
               title={label}
               {...rest}>
