@@ -8,7 +8,6 @@ import {
   EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiTitle,
-  EuiNotificationBadge,
   EuiLink,
   EuiFlyoutFooter,
   EuiFlexGroup,
@@ -122,14 +121,9 @@ export default class extends Component {
         aria-expanded={this.state.isFlyoutVisible}
         aria-haspopup="true"
         aria-label="News feed"
-        onClick={this.showFlyout}>
+        onClick={this.showFlyout}
+        notification={this.state.showBadge && '•'}>
         <EuiIcon type="email" size="m" />
-
-        {this.state.showBadge ? (
-          <EuiNotificationBadge className="euiHeaderNotification">
-            &#9642;
-          </EuiNotificationBadge>
-        ) : null}
       </EuiHeaderSectionItemButton>
     );
 

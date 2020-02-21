@@ -21,6 +21,25 @@ describe('EuiHeaderSectionItemButton', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('renders notification', () => {
+    test('children', () => {
+      const component = render(<EuiHeaderSectionItemButton notification="1" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('color', () => {
+      const component = render(
+        <EuiHeaderSectionItemButton
+          notification="1"
+          notificationColor="subdued"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('onClick', () => {
     test("isn't called upon instantiation", () => {
       const onClickHandler = jest.fn();
