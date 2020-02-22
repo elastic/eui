@@ -223,13 +223,23 @@ export const EuiPagination: FunctionComponent<Props> = ({
     );
   }
 
+  if (pages.length > 1) {
+    return (
+      <div className={classes} role="group" {...rest}>
+        {previousButton}
+        {firstPageButtons}
+        {selectablePages}
+        {lastPageButtons}
+        {nextButton}
+      </div>
+    );
+  }
+
   return (
     <div className={classes} role="group" {...rest}>
-      {previousButton}
       {firstPageButtons}
       {selectablePages}
       {lastPageButtons}
-      {nextButton}
     </div>
   );
 };

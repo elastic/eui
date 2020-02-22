@@ -2819,3 +2819,4 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 ## [`0.0.1`](https://github.com/elastic/eui/tree/v0.0.1) Initial Release
 
 - Initial public release
+- Improved `EuiPagination` so that it does not appear unnecessarily ([pr](link))
