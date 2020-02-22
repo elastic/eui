@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Improved `EuiPagination` so that it does not appear unnecessarily ([#2905](https://github.com/elastic/eui/pull/2905/files))
 - Converted `EuiCodeEditor` to Typescript ([#2836](https://github.com/elastic/eui/pull/2836))
 - Converted `EuiCode` and `EuiCodeBlock` and to Typescript ([#2835](https://github.com/elastic/eui/pull/2835))
 - Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
@@ -2819,4 +2820,3 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 ## [`0.0.1`](https://github.com/elastic/eui/tree/v0.0.1) Initial Release
 
 - Initial public release
-- Improved `EuiPagination` so that it does not appear unnecessarily ([pr](link))
