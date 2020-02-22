@@ -14,10 +14,11 @@ import {
   RefCallback,
   UpdatePositionHandler,
 } from '../types';
+import { CommonProps } from '../../common';
 
 const makeId = htmlIdGenerator();
 
-export interface EuiComboBoxInputProps<T> {
+export interface EuiComboBoxInputProps<T> extends CommonProps {
   autoSizeInputRef?: RefCallback<AutosizeInput & HTMLInputElement>;
   compressed: boolean;
   focusedOptionId?: string;

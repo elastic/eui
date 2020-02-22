@@ -42,6 +42,7 @@ import {
 } from './types';
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
+import { CommonProps } from '../common';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -49,7 +50,8 @@ type DrillProps<T> = Pick<
 >;
 
 export interface EuiComboBoxProps<T>
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
+  extends CommonProps,
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
   'data-test-subj'?: string;
   async: boolean;

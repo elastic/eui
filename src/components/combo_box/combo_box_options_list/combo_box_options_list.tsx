@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component, ReactNode, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { List, ListProps } from 'react-virtualized'; // eslint-disable-line import/named
 
@@ -20,6 +20,7 @@ import {
   RefInstance,
   UpdatePositionHandler,
 } from '../types';
+import { CommonProps } from '../../common';
 
 const positionToClassNameMap: {
   [position in EuiComboBoxOptionsListPosition]: string
@@ -30,42 +31,43 @@ const positionToClassNameMap: {
 
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
-export interface EuiComboBoxOptionsListProps<T> {
-  'data-test-subj': string;
-  activeOptionIndex?: number;
-  areAllOptionsSelected?: boolean;
-  fullWidth?: boolean;
-  getSelectedOptionForSearchValue?: (
-    searchValue: string,
-    selectedOptions: any[]
-  ) => EuiComboBoxOptionOption<T>;
-  isLoading?: boolean;
-  listRef: RefCallback<HTMLDivElement>;
-  matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-  onCloseList: () => void;
-  onCreateOption?: (
-    searchValue: string,
-    options: Array<EuiComboBoxOptionOption<T>>
-  ) => boolean;
-  onOptionClick?: OptionHandler<T>;
-  onOptionEnterKey?: OptionHandler<T>;
-  onScroll?: ListProps['onScroll'];
-  optionRef: (index: number, node: RefInstance<EuiFilterSelectItem>) => void;
-  options: Array<EuiComboBoxOptionOption<T>>;
-  position?: EuiComboBoxOptionsListPosition;
-  renderOption?: (
-    option: EuiComboBoxOptionOption<T>,
-    searchValue: string,
-    OPTION_CONTENT_CLASSNAME: string
-  ) => ReactNode;
-  rootId: ReturnType<typeof htmlIdGenerator>;
-  rowHeight: number;
-  scrollToIndex?: number;
-  searchValue: string;
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
-  updatePosition: UpdatePositionHandler;
-  width: number;
-}
+export type EuiComboBoxOptionsListProps<T> = CommonProps &
+  ComponentProps<typeof EuiPanel> & {
+    'data-test-subj': string;
+    activeOptionIndex?: number;
+    areAllOptionsSelected?: boolean;
+    fullWidth?: boolean;
+    getSelectedOptionForSearchValue?: (
+      searchValue: string,
+      selectedOptions: any[]
+    ) => EuiComboBoxOptionOption<T>;
+    isLoading?: boolean;
+    listRef: RefCallback<HTMLDivElement>;
+    matchingOptions: Array<EuiComboBoxOptionOption<T>>;
+    onCloseList: () => void;
+    onCreateOption?: (
+      searchValue: string,
+      options: Array<EuiComboBoxOptionOption<T>>
+    ) => boolean;
+    onOptionClick?: OptionHandler<T>;
+    onOptionEnterKey?: OptionHandler<T>;
+    onScroll?: ListProps['onScroll'];
+    optionRef: (index: number, node: RefInstance<EuiFilterSelectItem>) => void;
+    options: Array<EuiComboBoxOptionOption<T>>;
+    position?: EuiComboBoxOptionsListPosition;
+    renderOption?: (
+      option: EuiComboBoxOptionOption<T>,
+      searchValue: string,
+      OPTION_CONTENT_CLASSNAME: string
+    ) => ReactNode;
+    rootId: ReturnType<typeof htmlIdGenerator>;
+    rowHeight: number;
+    scrollToIndex?: number;
+    searchValue: string;
+    selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+    updatePosition: UpdatePositionHandler;
+    width: number;
+  };
 
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>

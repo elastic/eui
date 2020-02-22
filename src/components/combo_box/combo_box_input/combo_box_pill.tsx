@@ -4,8 +4,9 @@ import classNames from 'classnames';
 import { EuiBadge } from '../../badge';
 import { EuiI18n } from '../../i18n';
 import { EuiComboBoxOptionOption, OptionHandler } from '../types';
+import { CommonProps } from '../../common';
 
-export interface EuiComboBoxPillProps<T> {
+export interface EuiComboBoxPillProps<T> extends CommonProps {
   asPlainText?: boolean;
   children?: string;
   className?: string;

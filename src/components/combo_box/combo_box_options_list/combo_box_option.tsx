@@ -1,10 +1,18 @@
-import React, { Component, ReactNode, KeyboardEventHandler } from 'react';
+import React, {
+  Component,
+  ReactNode,
+  KeyboardEventHandler,
+  HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 
 import { ENTER, SPACE } from '../../../services/key_codes';
 import { EuiComboBoxOptionOption, OptionHandler, RefCallback } from '../types';
+import { CommonProps } from '../../common';
 
-export interface EuiComboBoxOptionProps<T> {
+export interface EuiComboBoxOptionProps<T>
+  extends CommonProps,
+    Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   children?: ReactNode;
   className?: string;
   disabled?: boolean;
