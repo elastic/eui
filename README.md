@@ -3,7 +3,7 @@
 > The Elastic UI Framework is a collection of React UI components for quickly building user interfaces
 > at Elastic. Not using React? No problem! You can still use the CSS behind each component.
 
-You should check out our [living style guide][docs], which contains many examples on how components in the EUI framework aesthetic, and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions.
+You should check out our [living style guide][docs], which contains many examples of how components in the EUI framework aesthetic, and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions.
 
 ## Installation
 
@@ -13,7 +13,7 @@ To install the Elastic UI Framework into an existing project, use the `yarn` CLI
 yarn add @elastic/eui
 ```
 
-Note that EUI itself has some dependencies itself mostly around management of dates and times. If you are installing it into a blank project you will need to install the following with it. You can read more about other ways to [consume EUI][consuming].
+Note that EUI itself has some dependencies itself mostly around the management of dates and times. If you are installing it into a blank project you will need to install the following with it. You can read more about other ways to [consume EUI][consuming].
 
 ```
 yarn add @elastic/eui @elastic/datemath moment
@@ -24,7 +24,7 @@ yarn add @elastic/eui @elastic/datemath moment
 
 ### Node
 
-We depend upon the version of node defined in [.nvmrc](.nvmrc).
+We depend upon the version of the node defined in [.nvmrc](.nvmrc).
 
 You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
 
