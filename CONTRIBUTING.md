@@ -16,7 +16,7 @@ If you have a preference, let us know when you make your PR, but never feel guil
 
 ### Adding icons
 
-EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the label of *icons*. A designer from the EUI team will respond to discuss your needs.
+EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
 
 If you are willing and able to design the icon yourself, then please refer to the [Creating icons][creating-icons] section of the wiki for design guidelines and instructions on creating your pull request.
 
