@@ -512,6 +512,18 @@ export class EuiBasicTable<T = any> extends Component<
 
     columns.forEach((column: EuiBasicTableColumn<T>, index: number) => {
       if (
+        (column as EuiTableFieldDataColumnType<T>).field &&
+        sorting.sort &&
+        !!sorting.enableAllColumns &&
+        (column as EuiTableFieldDataColumnType<T>).sortable == null
+      ) {
+        column = {
+          ...(column as EuiTableFieldDataColumnType<T>),
+          sortable: true,
+        };
+      }
+
+      if (
         !(column as EuiTableFieldDataColumnType<T>).sortable ||
         (column as EuiTableFieldDataColumnType<T>).hideForMobile
       ) {
@@ -690,14 +702,29 @@ export class EuiBasicTable<T = any> extends Component<
 
       // field data column
       const sorting: SortOptions = {};
-      if (this.props.sorting && sortable) {
-        const sortDirection = this.resolveColumnSortDirection(column);
-        sorting.isSorted = !!sortDirection;
-        sorting.isSortAscending = sortDirection
-          ? SortDirection.isAsc(sortDirection)
-          : undefined;
-        sorting.onSort = this.resolveColumnOnSort(column);
-        sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
+      if (this.props.sorting) {
+        if (
+          this.props.sorting.sort &&
+          !!this.props.sorting.enableAllColumns &&
+          (column as EuiTableFieldDataColumnType<T>).sortable == null
+        ) {
+          column = {
+            ...(column as EuiTableFieldDataColumnType<T>),
+            sortable: true,
+          };
+        }
+
+        const { sortable } = column as EuiTableFieldDataColumnType<T>;
+
+        if (sortable) {
+          const sortDirection = this.resolveColumnSortDirection(column);
+          sorting.isSorted = !!sortDirection;
+          sorting.isSortAscending = sortDirection
+            ? SortDirection.isAsc(sortDirection)
+            : undefined;
+          sorting.onSort = this.resolveColumnOnSort(column);
+          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
+        }
       }
       headers.push(
         <EuiTableHeaderCell
