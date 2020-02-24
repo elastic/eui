@@ -111,7 +111,7 @@ exports[`EuiTableFooterCell width and style accepts width attribute as number 1`
 </td>
 `;
 
-exports[`EuiTableFooterCell width and style resolves overlapping attributes in style vs width 1`] = `
+exports[`EuiTableFooterCell width and style resolves style and width attribute 1`] = `
 <td
   class="euiTableFooterCell"
   style="width:10%"

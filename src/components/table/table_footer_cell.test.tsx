@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { requiredProps } from '../../test/required_props';
 
 import { EuiTableFooterCell } from './table_footer_cell';
 
@@ -60,31 +60,14 @@ describe('EuiTableFooterCell', () => {
       expect(render(component)).toMatchSnapshot();
     });
 
-    describe('resolves overlapping attributes', () => {
-      let consoleWarn: Console['warn'];
+    test('resolves style and width attribute', () => {
+      const component = (
+        <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
+          Test
+        </EuiTableFooterCell>
+      );
 
-      beforeEach(() => {
-        consoleWarn = console.warn;
-        console.warn = jest.fn();
-      });
-
-      afterEach(() => {
-        console.warn = consoleWarn;
-      });
-
-      test('in style vs width', () => {
-        const component = (
-          <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
-            Test
-          </EuiTableFooterCell>
-        );
-
-        expect(render(component)).toMatchSnapshot();
-
-        expect(console.warn).toBeCalledWith(
-          'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
-        );
-      });
+      expect(render(component)).toMatchSnapshot();
     });
   });
 });

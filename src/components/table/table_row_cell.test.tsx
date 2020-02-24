@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { requiredProps } from '../../test/required_props';
 
 import { EuiTableRowCell } from './table_row_cell';
 
-import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
+import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services/alignment';
 
 test('renders EuiTableRowCell', () => {
   const component = (
@@ -95,30 +95,13 @@ describe('width and style', () => {
     expect(render(component)).toMatchSnapshot();
   });
 
-  describe('resolves overlapping attributes', () => {
-    let consoleWarn: Console['warn'];
+  test('resolves style and width attribute', () => {
+    const component = (
+      <EuiTableRowCell width="10%" style={{ width: '20%' }}>
+        Test
+      </EuiTableRowCell>
+    );
 
-    beforeEach(() => {
-      consoleWarn = console.warn;
-      console.warn = jest.fn();
-    });
-
-    afterEach(() => {
-      console.warn = consoleWarn;
-    });
-
-    test('in style vs width', () => {
-      const component = (
-        <EuiTableRowCell width="10%" style={{ width: '20%' }}>
-          Test
-        </EuiTableRowCell>
-      );
-
-      expect(render(component)).toMatchSnapshot();
-
-      expect(console.warn).toBeCalledWith(
-        'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
-      );
-    });
+    expect(render(component)).toMatchSnapshot();
   });
 });
