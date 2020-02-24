@@ -38,6 +38,7 @@ const iconTypes = [
   'logoGithub',
   'logoGmail',
   'logoGolang',
+  'logoGoogleG',
   'logoHAproxy',
   'logoIBM',
   'logoIBMMono',

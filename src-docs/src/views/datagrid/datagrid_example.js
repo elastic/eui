@@ -316,18 +316,20 @@ export const DataGridExample = {
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <Link to="/tabular-content/data-grid-schemas-and-popvers/">
+              <Link to="/tabular-content/data-grid-schemas-and-popovers/">
                 popovers
               </Link>{' '}
               to display more content and actions into popovers.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-styling/">Grid styling</Link>{' '}
+              <Link to="/tabular-content/data-grid-styling-and-toolbar/">
+                Grid styling
+              </Link>{' '}
               can be controlled by the engineer, but augmented by user
               preference depending upon the features you enable.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-control-collumns/">
+              <Link to="/tabular-content/data-grid-control-columns/">
                 Control columns
               </Link>{' '}
               allow you to add repeatable actions and controls like checkboxes
