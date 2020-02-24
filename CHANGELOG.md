@@ -11,11 +11,15 @@
 - Added `image` glyph to `EuiIcon` ([#2870](https://github.com/elastic/eui/pull/2870))
 - Exported TS props from top level `EuiListGroupProps`, `EuiListGroupItemProps`, `EuiSelectableProps`,  `EuiSelectableOption`, `EuiSelectableOptionsListProps` ([#2869](https://github.com/elastic/eui/pull/2869))
 - Extending `EuiSelectable[options]` type with correct HTML element ([#2869](https://github.com/elastic/eui/pull/2869))
+- Added `arrowDisplay` prop to `EuiAccordion` for changing side or hiding completely ([#2914](https://github.com/elastic/eui/pull/2914))
+- Added `prepend` and `append` ability to `EuiFieldSearch` ([#2914](https://github.com/elastic/eui/pull/2914))
+- Added `notification` and `notificationColor` props to `EuiHeaderSectionItemButton` ([#2914](https://github.com/elastic/eui/pull/2914))
 
 **Bug fixes**
 
 - Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
 - Fixed a bug in `EuiDataGrid` causing the first cell to autofocus if interactive ([#2872](https://github.com/elastic/eui/pull/2872))
+- Extended `div` element in `EuiFlyout` type ([#2914](https://github.com/elastic/eui/pull/2914))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
