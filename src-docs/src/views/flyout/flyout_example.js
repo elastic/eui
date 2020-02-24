@@ -7,6 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiFlyout,
+  EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiFlyoutFooter,
   EuiCallOut,
@@ -31,6 +32,10 @@ const flyoutLargeHtml = renderToHtml(FlyoutLarge);
 import { FlyoutMaxWidth } from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
+
+import { FlyoutWithBanner } from './flyout_banner';
+const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
+const flyoutWithBannerHtml = renderToHtml(FlyoutWithBanner);
 
 const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
@@ -98,6 +103,18 @@ const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
 </EuiFlyout>
 `;
 
+const flyoutWithBannerSnippet = `<EuiFlyout onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
+    <EuiTitle size="m">
+      <h2 id={flyoutTitle}></h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody banner={callOut}>
+    <!-- Flyout body -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
 export const FlyoutExample = {
   title: 'Flyout',
   sections: [
@@ -144,7 +161,7 @@ export const FlyoutExample = {
           </p>
         </div>
       ),
-      props: { EuiFlyout, EuiFlyoutHeader },
+      props: { EuiFlyout, EuiFlyoutHeader, EuiFlyoutBody },
       snippet: flyOutSnippet,
       demo: <Flyout />,
     },
@@ -245,6 +262,28 @@ export const FlyoutExample = {
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
       props: { EuiFlyout },
+    },
+    {
+      title: 'Flyout with banner',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutWithBannerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: flyoutWithBannerHtml,
+        },
+      ],
+      text: (
+        <p>
+          To highlight some information at the top of a flyout, you can use the
+          <EuiCode>banner</EuiCode> prop available in{' '}
+          <EuiCode>EuiFlyoutBody</EuiCode>.
+        </p>
+      ),
+      snippet: flyoutWithBannerSnippet,
+      demo: <FlyoutWithBanner />,
     },
   ],
 };

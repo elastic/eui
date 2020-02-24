@@ -85,6 +85,11 @@ const humanizeType = type => {
   return humanizedType;
 };
 
+const nameToCodeClassMap = {
+  javascript: 'javascript',
+  html: 'html',
+};
+
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
@@ -133,13 +138,40 @@ export class GuideSection extends Component {
 
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
+      renderedCode: null,
     };
   }
 
   onSelectedTabChanged = selectedTab => {
-    this.setState({
-      selectedTab,
-    });
+    const { name } = selectedTab;
+    let renderedCode = null;
+
+    if (name === 'html' || name === 'javascript') {
+      const { code } = this.props.source.find(
+        sourceObject => sourceObject.type === name
+      );
+      renderedCode = code;
+
+      if (name === 'javascript') {
+        renderedCode = renderedCode
+          .replace(
+            /(from )'(..\/)+src\/components(\/?';)/,
+            "from '@elastic/eui';"
+          )
+          .replace(
+            /(from )'(..\/)+src\/services(\/?';)/,
+            "from '@elastic/eui/lib/services';"
+          )
+          .replace(
+            /(from )'(..\/)+src\/components\/.*?';/,
+            "from '@elastic/eui';"
+          );
+      } else if (name === 'html') {
+        renderedCode = code.render();
+      }
+    }
+
+    this.setState({ selectedTab, renderedCode });
   };
 
   renderTabs() {
@@ -367,27 +399,10 @@ export class GuideSection extends Component {
   }
 
   renderCode(name) {
-    const nameToCodeClassMap = {
-      javascript: 'javascript',
-      html: 'html',
-    };
-
-    const codeClass = nameToCodeClassMap[name];
-    const { code } = this.props.source.find(
-      sourceObject => sourceObject.type === name
-    );
-    const npmImports = code
-      .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
-      .replace(
-        /(from )'(..\/)+src\/services(\/?';)/,
-        "from '@elastic/eui/lib/services';"
-      )
-      .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';");
-
     return (
       <div key={name} ref={name}>
-        <EuiCodeBlock language={codeClass} overflowHeight={400}>
-          {npmImports}
+        <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
+          {this.state.renderedCode}
         </EuiCodeBlock>
       </div>
     );

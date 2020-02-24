@@ -79,6 +79,7 @@ import { DataGridExample } from './views/datagrid/datagrid_example';
 import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
 import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
+import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -341,6 +342,7 @@ const navigation = [
       DataGridMemoryExample,
       DataGridSchemaExample,
       DataGridStylingExample,
+      DataGridControlColumnsExample,
       TableExample,
     ].map(example => createExample(example)),
   },

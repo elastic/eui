@@ -12,8 +12,11 @@ import {
   EuiLink,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiPopover,
+  EuiPopoverTitle,
+  EuiButtonIcon,
+  EuiSpacer,
 } from '../../../../src/components/';
-import { EuiButtonIcon } from '../../../../src/components/button/button_icon';
 
 const columns = [
   {
@@ -82,6 +85,69 @@ for (let i = 1; i < 100; i++) {
   });
 }
 
+const trailingControlColumns = [
+  {
+    id: 'actions',
+    width: 40,
+    headerCellRender: () => null,
+    rowCellRender: function RowCellRender() {
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      return (
+        <div>
+          <EuiPopover
+            isOpen={isPopoverOpen}
+            anchorPosition="upCenter"
+            button={
+              <EuiButtonIcon
+                aria-label="show actions"
+                iconType="boxesHorizontal"
+                color="text"
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+              />
+            }
+            closePopover={() => setIsPopoverOpen(false)}
+            ownFocus={true}>
+            <EuiPopoverTitle>Actions</EuiPopoverTitle>
+            <div style={{ width: 150 }}>
+              <button onClick={() => alert('hello')} component="span">
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Pin selected items"
+                      iconType="pin"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Pin</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+              <EuiSpacer size="s" />
+              <button onClick={() => alert('hello')}>
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Delete selected items"
+                      iconType="trash"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Delete</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+            </div>
+          </EuiPopover>
+        </div>
+      );
+    },
+  },
+];
+
 export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
@@ -137,6 +203,7 @@ export default () => {
       aria-label="Data grid demo"
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
+      trailingControlColumns={trailingControlColumns}
       rowCount={raw_data.length}
       renderCellValue={renderCellValue}
       inMemory={{ level: 'sorting' }}

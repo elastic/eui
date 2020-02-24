@@ -1,8 +1,8 @@
-import { Option } from './types';
+import { EuiSelectableOption } from './selectable_option';
 
 const getSelectedOptionForSearchValue = (
   searchValue: string,
-  selectedOptions: Option[]
+  selectedOptions: EuiSelectableOption[]
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
@@ -11,11 +11,11 @@ const getSelectedOptionForSearchValue = (
 };
 
 const collectMatchingOption = (
-  accumulator: Option[],
-  option: Option,
+  accumulator: EuiSelectableOption[],
+  option: EuiSelectableOption,
   normalizedSearchValue: string,
   isPreFiltered?: boolean,
-  selectedOptions?: Option[]
+  selectedOptions?: EuiSelectableOption[]
 ) => {
   // Don't show options that have already been requested if
   // the selectedOptions list exists
@@ -51,7 +51,7 @@ export const getMatchingOptions = (
   /**
    * All available options to match against
    */
-  options: Option[],
+  options: EuiSelectableOption[],
   /**
    * String to match option.label against
    */
@@ -64,10 +64,10 @@ export const getMatchingOptions = (
    * To exclude selected options from the search list,
    * pass the array of selected options
    */
-  selectedOptions?: Option[]
+  selectedOptions?: EuiSelectableOption[]
 ) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
-  const matchingOptions: Option[] = [];
+  const matchingOptions: EuiSelectableOption[] = [];
 
   options.forEach(option => {
     collectMatchingOption(

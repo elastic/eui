@@ -18,12 +18,6 @@
     width: 100%;
   }
 
-  .euiDataGridHeaderCell__content {
-    @include euiTextTruncate;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
   &.euiDataGridHeaderCell--numeric {
     text-align: right;
   }
@@ -38,6 +32,15 @@
     border-radius: 1px;
     // Needed so it sits above the other rows
     z-index: 2;
+  }
+
+  // We only truncate if the cell is not a control column.
+  &:not(.euiDataGridHeaderCell--controlColumn) {
+    .euiDataGridHeaderCell__content {
+      @include euiTextTruncate;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 }
 

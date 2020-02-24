@@ -10,7 +10,7 @@ import { getDurationAndPerformOnFrame } from '../../services';
 const MUTATION_ATTRIBUTE_FILTER = ['style'];
 
 const paddingSizeToClassNameMap = {
-  none: null,
+  none: '',
   xs: 'euiAccordion__padding--xs',
   s: 'euiAccordion__padding--s',
   m: 'euiAccordion__padding--m',
@@ -51,7 +51,7 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
     /**
      * The padding around the exposed accordion content.
      */
-    paddingSize: EuiAccordionSize;
+    paddingSize?: EuiAccordionSize;
   };
 
 export class EuiAccordion extends Component<
@@ -139,7 +139,9 @@ export class EuiAccordion extends Component<
       className
     );
 
-    const paddingClass = classNames(paddingSizeToClassNameMap[paddingSize]);
+    const paddingClass = paddingSize
+      ? classNames(paddingSizeToClassNameMap[paddingSize])
+      : undefined;
 
     const buttonClasses = classNames('euiAccordion__button', buttonClassName);
 
