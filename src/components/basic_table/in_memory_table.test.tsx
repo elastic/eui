@@ -2,13 +2,10 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import {
-  EuiInMemoryTable,
-  EuiInMemoryTableProps,
-  FilterConfig,
-} from './in_memory_table';
+import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { ENTER } from '../../services/key_codes';
 import { SortDirection } from '../../services';
+import { FilterConfig } from '../search_bar/filters';
 
 interface BasicItem {
   id: number | string;
