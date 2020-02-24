@@ -4,16 +4,18 @@ import { CommonProps } from '../../common';
 // eslint-disable-next-line import/named
 import { List, AutoSizer, ListProps } from 'react-virtualized';
 import { htmlIdGenerator } from '../../../services';
-import { EuiSelectableListItem } from './selectable_list_item';
-// @ts-ignore
+import {
+  EuiSelectableListItem,
+  EuiSelectableListItemProps,
+} from './selectable_list_item';
 import { EuiHighlight } from '../../highlight';
-import { Option } from '../types';
+import { EuiSelectableOption } from '../selectable_option';
 
 export type EuiSelectableSingleOptionProps = 'always' | boolean;
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
-export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
+export type EuiSelectableOptionsListProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
     /**
      * The index of the option to be highlighted as pseudo-focused;
      * Good for use when only one selection is allowed and needing to open
@@ -44,11 +46,11 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   /**
    * All possible options
    */
-  options: Option[];
+  options: EuiSelectableOption[];
   /**
    * Filtered options list (if applicable)
    */
-  visibleOptions?: Option[];
+  visibleOptions?: EuiSelectableOption[];
   /**
    * Search value to highlight on the option render
    */
@@ -56,12 +58,15 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   /**
    * Returns the array of options with altered checked state
    */
-  onOptionClick: (options: Option[]) => void;
+  onOptionClick: (options: EuiSelectableOption[]) => void;
   /**
    * Custom render for the label portion of the option;
    * Takes (option, searchValue), returns ReactNode
    */
-  renderOption?: (option: Option, searchValue: string) => ReactNode;
+  renderOption?: (
+    option: EuiSelectableOption,
+    searchValue: string
+  ) => ReactNode;
   /**
    * Sets the max height in pixels or pass `full` to allow
    * the whole group to fill the height of its container and
@@ -173,7 +178,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                       className="euiSelectableList__groupLabel"
                       key={rowKey}
                       style={style}
-                      {...optionRest}>
+                      {...optionRest as HTMLAttributes<HTMLDivElement>}>
                       {prepend}
                       {label}
                       {append}
@@ -194,7 +199,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                     disabled={disabled}
                     prepend={prepend}
                     append={append}
-                    {...optionRest}>
+                    {...optionRest as EuiSelectableListItemProps}>
                     {renderOption ? (
                       renderOption(option, searchValue)
                     ) : (
@@ -210,7 +215,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     );
   }
 
-  onAddOrRemoveOption = (option: Option) => {
+  onAddOrRemoveOption = (option: EuiSelectableOption) => {
     if (option.disabled) {
       return;
     }
@@ -226,7 +231,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     }
   };
 
-  private onAddOption = (addedOption: Option) => {
+  private onAddOption = (addedOption: EuiSelectableOption) => {
     const { onOptionClick, options, singleSelection } = this.props;
 
     const updatedOptions = options.map(option => {
@@ -247,7 +252,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onRemoveOption = (removedOption: Option) => {
+  private onRemoveOption = (removedOption: EuiSelectableOption) => {
     const { onOptionClick, singleSelection, options } = this.props;
 
     const updatedOptions = options.map(option => {
@@ -263,7 +268,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     onOptionClick(updatedOptions);
   };
 
-  private onExcludeOption = (excludedOption: Option) => {
+  private onExcludeOption = (excludedOption: EuiSelectableOption) => {
     const { onOptionClick, options } = this.props;
     excludedOption.checked = 'off';
 

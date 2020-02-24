@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
 
-type EuiListGroupProps = CommonProps &
+export type EuiListGroupProps = CommonProps &
   HTMLAttributes<HTMLUListElement> & {
     /**
      * Add a border to the list container
@@ -17,7 +17,7 @@ type EuiListGroupProps = CommonProps &
     flush?: boolean;
 
     /**
-     * Items to display in this group
+     * Items to display in this group. See #EuiListGroupItem
      */
     listItems?: EuiListGroupItemProps[];
 

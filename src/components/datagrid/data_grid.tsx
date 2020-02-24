@@ -8,6 +8,8 @@ import React, {
   Fragment,
   ReactChild,
   useMemo,
+  Dispatch,
+  SetStateAction,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -341,12 +343,14 @@ function createKeyDownHandler(
   visibleColumns: EuiDataGridProps['columns'],
   leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
   trailingControlColumns: EuiDataGridProps['trailingControlColumns'] = [],
-  focusedCell: EuiDataGridFocusedCell,
+  focusedCell: EuiDataGridFocusedCell | undefined,
   headerIsInteractive: boolean,
   setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void,
   updateFocus: Function
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
+    if (focusedCell == null) return;
+
     const colCount =
       visibleColumns.length +
       leadingControlColumns.length +
@@ -452,16 +456,46 @@ function useAfterRender(fn: Function): Function {
   };
 }
 
+type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
+const useFocus = (
+  headerIsInteractive: boolean
+): [
+  FocusProps,
+  EuiDataGridFocusedCell | undefined,
+  Dispatch<SetStateAction<EuiDataGridFocusedCell | undefined>>
+] => {
+  const [focusedCell, setFocusedCell] = useState<
+    EuiDataGridFocusedCell | undefined
+  >(undefined);
+
+  const canCellsBeFocused = useMemo(() => focusedCell != null, [focusedCell]);
+
+  const focusProps = useMemo<FocusProps>(
+    () =>
+      canCellsBeFocused
+        ? {}
+        : {
+            tabIndex: 0,
+            onFocus: () =>
+              setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]),
+          },
+    [canCellsBeFocused, setFocusedCell, headerIsInteractive]
+  );
+
+  return [focusProps, focusedCell, setFocusedCell];
+};
+
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<EuiDataGridFocusedCell | null>(
-    null
-  );
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
-
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
+
+  const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
+    headerIsInteractive
+  );
+
   const handleHeaderChange = useCallback<MutationCallback>(
     records => {
       const [{ target }] = records;
@@ -693,9 +727,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     delete rest['aria-labelledby'];
   }
 
-  const realizedFocusedCell: EuiDataGridFocusedCell =
-    focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
-
   const fullScreenSelector = (
     <EuiI18n
       tokens={[
@@ -760,6 +791,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     <DataGridContext.Provider value={datagridContext}>
       <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
         <div
+          data-test-subj="dataGridWrapper"
+          {...wrappingDivFocusProps}
           className={classes}
           onKeyDown={handleGridKeyDown}
           ref={setContainerRef}>
@@ -784,7 +817,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   orderedVisibleColumns,
                   leadingControlColumns,
                   trailingControlColumns,
-                  realizedFocusedCell,
+                  focusedCell,
                   headerIsInteractive,
                   setFocusedCell,
                   focusAfterRender
@@ -830,7 +863,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                           schema={mergedSchema}
                           sorting={sorting}
                           headerIsInteractive={headerIsInteractive}
-                          focusedCell={realizedFocusedCell}
+                          focusedCell={focusedCell}
                           setFocusedCell={setFocusedCell}
                         />
                       )}
@@ -846,7 +879,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       schema={mergedSchema}
                       schemaDetectors={allSchemaDetectors}
                       popoverContents={popoverContents}
-                      focusedCell={realizedFocusedCell}
+                      focusedCell={focusedCell}
                       onCellFocus={setFocusedCell}
                       pagination={pagination}
                       sorting={sorting}

@@ -2,10 +2,10 @@ import React, { Component, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, IconType, IconColor } from '../../icon';
-import { OptionCheckedType } from '../types';
+import { EuiSelectableOptionCheckedType } from '../selectable_option';
 
 function resolveIconAndColor(
-  checked: OptionCheckedType
+  checked: EuiSelectableOptionCheckedType
 ): { icon: IconType; color?: IconColor } {
   if (!checked) {
     return { icon: 'empty' };
@@ -23,7 +23,7 @@ export type EuiSelectableListItemProps = ButtonHTMLAttributes<
     /**
      * Applies an icon and visual styling to activated items
      */
-    checked?: OptionCheckedType;
+    checked?: EuiSelectableOptionCheckedType;
     /**
      * Shows icons based on `checked` type
      */
