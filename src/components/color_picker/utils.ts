@@ -85,6 +85,7 @@ export function useMouseMove<T = HTMLDivElement>(
 export const HEX_FALLBACK = '';
 export const HSV_FALLBACK: ColorSpaces['hsv'] = [0, 0, 0];
 export const RGB_FALLBACK: ColorSpaces['rgb'] = [NaN, NaN, NaN];
+export const RGB_JOIN = ', ';
 
 export const chromaValid = (color: string | number[]) => {
   let parsed: string | number[] | null = color;

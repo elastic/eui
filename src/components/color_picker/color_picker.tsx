@@ -35,6 +35,7 @@ import {
   HEX_FALLBACK,
   HSV_FALLBACK,
   RGB_FALLBACK,
+  RGB_JOIN,
 } from './utils';
 
 type EuiColorPickerDisplay = 'default' | 'inline';
@@ -308,9 +309,16 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const updateWithHsv = (hsv: ColorSpaces['hsv']) => {
     const color = chroma.hsv(...hsv).alpha(alphaChannel.decimal);
-    handleOnChange(
-      preferredFormat === 'rgba' ? color.rgba().join(', ') : color.hex()
-    );
+    let formatted;
+    if (preferredFormat === 'rgba') {
+      formatted =
+        alphaChannel.decimal < 1
+          ? color.rgba().join(RGB_JOIN)
+          : color.rgb().join(RGB_JOIN);
+    } else {
+      formatted = color.hex();
+    }
+    handleOnChange(formatted);
     updateColorAsHsv(hsv);
   };
 
@@ -349,7 +357,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       const newColor = chromaColor ? chromaColor.alpha(alpha) : null;
       const hex = newColor ? newColor.hex() : HEX_FALLBACK;
       const rgba = newColor ? newColor.rgba() : RGB_FALLBACK;
-      const text = preferredFormat === 'rgba' ? rgba.join(', ') : hex;
+      let text;
+      if (preferredFormat === 'rgba') {
+        text =
+          alpha < 1 ? rgba.join(RGB_JOIN) : rgba.splice(0, 3).join(RGB_JOIN);
+      } else {
+        text = hex;
+      }
       onChange(text, { hex, rgba, isValid: !!newColor });
     }
   };
