@@ -1,7 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Converted `EuiCodeEditor` to Typescript ([#2836](https://github.com/elastic/eui/pull/2836))
-- Converted `EuiCode` and `EuiCodeBlock` and to Typescript ([#2835](https://github.com/elastic/eui/pull/2835))
+- Converted `EuiComboBox`, `EuiComboBoxInput`, `EuiComboBoxPill`, `EuiComboBoxOptionsList`, `EuiComboBoxOption`, and `EuiComboBoxTitle` to TypeScript ([#2838](https://github.com/elastic/eui/pull/2838))
+- Converted `EuiCodeEditor` to TypeScript ([#2836](https://github.com/elastic/eui/pull/2836))
+- Converted `EuiCode` and `EuiCodeBlock` and to TypeScript ([#2835](https://github.com/elastic/eui/pull/2835))
 - Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 - Added `paperClip` glyph to `EuiIcon` ([#2845](https://github.com/elastic/eui/pull/2845))
@@ -11,6 +12,8 @@
 - Added `image` glyph to `EuiIcon` ([#2870](https://github.com/elastic/eui/pull/2870))
 - Exported TS props from top level `EuiListGroupProps`, `EuiListGroupItemProps`, `EuiSelectableProps`,  `EuiSelectableOption`, `EuiSelectableOptionsListProps` ([#2869](https://github.com/elastic/eui/pull/2869))
 - Extending `EuiSelectable[options]` type with correct HTML element ([#2869](https://github.com/elastic/eui/pull/2869))
+- Added check mark to single selection `EuiComboBox` ([#2890](https://github.com/elastic/eui/pull/2890))
+- Added `logoGoogleG` third-party logo to `EuiIcon` ([#2853](https://github.com/elastic/eui/pull/2853))
 - Added `arrowDisplay` prop to `EuiAccordion` for changing side or hiding completely ([#2914](https://github.com/elastic/eui/pull/2914))
 - Added `prepend` and `append` ability to `EuiFieldSearch` ([#2914](https://github.com/elastic/eui/pull/2914))
 - Added `notification` and `notificationColor` props to `EuiHeaderSectionItemButton` ([#2914](https://github.com/elastic/eui/pull/2914))
@@ -20,6 +23,10 @@
 - Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
 - Fixed a bug in `EuiDataGrid` causing the first cell to autofocus if interactive ([#2872](https://github.com/elastic/eui/pull/2872))
 - Extended `div` element in `EuiFlyout` type ([#2914](https://github.com/elastic/eui/pull/2914))
+
+**Breaking changes**
+
+- Removed `visControls` and `visHeatmap` duplicate icons from docs ([#2908](https://github.com/elastic/eui/pull/2908))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
 
