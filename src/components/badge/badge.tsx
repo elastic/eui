@@ -1,7 +1,8 @@
 import React, {
+  AriaAttributes,
   FunctionComponent,
-  MouseEventHandler,
   HTMLAttributes,
+  MouseEventHandler,
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
@@ -22,7 +23,7 @@ type WithButtonProps = {
   /**
    * Aria label applied to the onClick button
    */
-  onClickAriaLabel: string;
+  onClickAriaLabel: AriaAttributes['aria-label'];
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick' | 'color'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
@@ -36,7 +37,7 @@ interface WithIconOnClick {
   /**
    * Aria label applied to the iconOnClick button
    */
-  iconOnClickAriaLabel: string;
+  iconOnClickAriaLabel: AriaAttributes['aria-label'];
 }
 
 export type EuiBadgeProps = {
