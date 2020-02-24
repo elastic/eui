@@ -197,6 +197,7 @@ const typeToPathMap = {
   logoGithub: 'logo_github',
   logoGmail: 'logo_gmail',
   logoGolang: 'logo_golang',
+  logoGoogleG: 'logo_google_g',
   logoHAproxy: 'logo_haproxy',
   logoIBM: 'logo_ibm',
   logoIBMMono: 'logo_ibm_mono',
