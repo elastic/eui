@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
 import { EuiI18n } from '../i18n';
 import { CommonProps } from '../common';
-import makeId from './form_row/make_id';
 
 export type EuiFormProps = CommonProps &
   FormHTMLAttributes<HTMLFormElement> & {
@@ -26,8 +25,8 @@ export const EuiForm: FC<EuiFormProps> = ({
     const errorTexts = Array.isArray(error) ? error : [error];
     optionalErrors = (
       <ul>
-        {errorTexts.map(error => (
-          <li className="euiForm__error" key={makeId()}>
+        {errorTexts.map((error, index) => (
+          <li className="euiForm__error" key={index}>
             {error}
           </li>
         ))}
