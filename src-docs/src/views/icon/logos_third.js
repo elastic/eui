@@ -43,6 +43,7 @@ const iconTypes = [
   'logoIBM',
   'logoIBMMono',
   'logoKafka',
+  'logoFacebookF',
   'logoKubernetes',
   'logoMemcached',
   'logoMongodb',

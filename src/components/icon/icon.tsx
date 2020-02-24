@@ -200,6 +200,7 @@ const typeToPathMap = {
   logoGoogleG: 'logo_google_g',
   logoHAproxy: 'logo_haproxy',
   logoIBM: 'logo_ibm',
+  logoFacebookF: 'logo_facebook_f',
   logoIBMMono: 'logo_ibm_mono',
   logoKafka: 'logo_kafka',
   logoKibana: 'logo_kibana',
