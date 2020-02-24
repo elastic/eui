@@ -825,6 +825,7 @@ export class EuiComboBox<T> extends Component<
             optionRef={this.optionRefCallback}
             options={options}
             position={listPosition}
+            singleSelection={singleSelection}
             renderOption={renderOption}
             rootId={this.rootId}
             rowHeight={rowHeight}

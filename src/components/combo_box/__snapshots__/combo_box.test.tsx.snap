@@ -510,6 +510,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
           },
         ]
       }
+      singleSelection={true}
       updatePosition={[Function]}
       width={0}
     />
