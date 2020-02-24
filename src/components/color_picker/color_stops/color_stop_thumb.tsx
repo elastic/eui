@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import chroma from 'chroma-js';
 
 import { CommonProps } from '../../common';
 import {
@@ -16,7 +15,7 @@ import {
   isColorInvalid,
   isStopInvalid,
 } from './utils';
-import { useMouseMove } from '../utils';
+import { useMouseMove, getChromaColor } from '../utils';
 import { keyCodes } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
@@ -87,10 +86,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
 }) => {
-  const background = useMemo(
-    () => (color && !isColorInvalid(color) ? chroma(color).css() : undefined),
-    [color]
-  );
+  const background = useMemo(() => {
+    const chromaColor = getChromaColor(color);
+    return chromaColor ? chromaColor.css() : undefined;
+  }, [color]);
   const [hasFocus, setHasFocus] = useState(isPopoverOpen);
   const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
@@ -372,7 +371,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 'euiColorStopThumb.hexLabel',
                 'euiColorStopThumb.hexErrorMessage',
               ]}
-              defaults={['Hex color', 'Invalid hex value']}>
+              defaults={['Color', 'Invalid color value']}>
               {([hexLabel, hexErrorMessage]: React.ReactChild[]) => (
                 <EuiFormRow
                   label={hexLabel}

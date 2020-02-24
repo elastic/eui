@@ -1,5 +1,4 @@
-import chroma from 'chroma-js';
-import { getEventPosition } from '../utils';
+import { getEventPosition, chromaValid } from '../utils';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
 
@@ -62,7 +61,7 @@ export const addStop = (
 };
 
 export const isColorInvalid = (color: string) => {
-  return !chroma.valid(color, 'hex') || color === '';
+  return !chromaValid(color) || color === '';
 };
 
 export const isStopInvalid = (stop: ColorStop['stop']) => {

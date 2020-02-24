@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import chroma from 'chroma-js';
 
 import { CommonProps } from '../../common';
 import { keyCodes, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
@@ -21,6 +20,7 @@ import {
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
+import { getChromaColor } from '../utils';
 import { EuiI18n } from '../../i18n';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
@@ -397,10 +397,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     ? sortedStops.map(({ stop }) => getPositionFromStopFn(stop))
     : [];
   const gradientStop = (colorStop: ColorStop, index: number) => {
-    const color = chroma.valid(colorStop.color)
-      ? chroma(colorStop.color).rgba()
-      : null;
-    const rgba = color ? `rgba(${color.join(',')})` : 'currentColor';
+    const color = getChromaColor(colorStop.color);
+    const rgba = color ? color.css() : 'currentColor';
     if (index === 0) {
       return `currentColor, currentColor ${positions[index]}%, ${rgba} ${
         positions[index]
