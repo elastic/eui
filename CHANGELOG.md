@@ -1,8 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Removed Duplicate Icons from docs ([#2836](https://github.com/elastic/eui/pull/2836))
-- Converted `EuiCodeEditor` to Typescript ([#2836](https://github.com/elastic/eui/pull/2836))
-- Converted `EuiCode` and `EuiCodeBlock` and to Typescript ([#2835](https://github.com/elastic/eui/pull/2835))
+- Converted `EuiComboBox`, `EuiComboBoxInput`, `EuiComboBoxPill`, `EuiComboBoxOptionsList`, `EuiComboBoxOption`, and `EuiComboBoxTitle` to TypeScript ([#2838](https://github.com/elastic/eui/pull/2838))
+- Converted `EuiCodeEditor` to TypeScript ([#2836](https://github.com/elastic/eui/pull/2836))
+- Converted `EuiCode` and `EuiCodeBlock` and to TypeScript ([#2835](https://github.com/elastic/eui/pull/2835))
 - Converted `EuiFilePicker` to TypeScript ([#2832](https://github.com/elastic/eui/issues/2832))
 - Exported `EuiSelectOptionProps` type ([#2830](https://github.com/elastic/eui/pull/2830))
 - Added `paperClip` glyph to `EuiIcon` ([#2845](https://github.com/elastic/eui/pull/2845))
@@ -46,6 +46,7 @@
 
 **Breaking changes**
 
+- Removed `visControls` and `visHeatmap` duplicate icons from docs ([#2908](https://github.com/elastic/eui/pull/2908))
 - Removed `idAria` prop from `EuiDescribedFormGroup` ([#2783](https://github.com/elastic/eui/pull/2783))
 - Removed `EuiToken`'s `hideBorder` and `displayOptions` prop for applying `color`, `shape`, and `fill` props directly. Changed `fill` prop type from `boolean` to `light | dark | none`. ([#2758](https://github.com/elastic/eui/pull/2758))
 

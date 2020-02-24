@@ -1307,6 +1307,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-input-autosize@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-input-autosize/-/react-input-autosize-2.0.1.tgz#04ac4b532128c98532352042b6c7af8b5d3f52ca"
+  integrity sha512-vsmqA6Pp5IyMZv3C7x7mNM8lqikfWQ4lCWsoVk/w+HZ2Y3KOdFk6ad4jsQeltXn/UaO+YUZLtWdMIjLLIeCxBA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-is@^16.7.1":
   version "16.7.1"
   resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-16.7.1.tgz#d3f1c68c358c00ce116b55ef5410cf486dd08539"
@@ -1334,6 +1341,11 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@types/resize-observer-browser/-/resize-observer-browser-0.1.1.tgz#9b7cdae9cdc8b1a7020ca7588018dac64c770866"
   integrity sha512-5/bJS/uGB5kmpRrrAWXQnmyKlv+4TlPn4f+A2NBa93p+mt6Ht+YcNGkQKf8HMx28a9hox49ZXShtbGqZkk41Sw==
+
+"@types/sinon@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-7.5.1.tgz#d27b81af0d1cfe1f9b24eebe7a24f74ae40f5b7c"
+  integrity sha512-EZQUP3hSZQyTQRfiLqelC9NMWd1kqLcmQE0dMiklxBkgi84T+cHOhnKpgk4NnOWpGX863yE6+IaGnOXUNFqDnQ==
 
 "@types/tabbable@^3.1.0":
   version "3.1.0"
