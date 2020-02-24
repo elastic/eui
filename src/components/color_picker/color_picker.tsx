@@ -50,8 +50,10 @@ interface HTMLDivElementOverrides {
   color?: string | null;
   onBlur?: () => void;
   /**
+   * text (string, as entered or selected)
    * hex (8-digit hex if alpha < 1)
    * RGBa (as array; values of NaN if color is invalid)
+   * isValid (boolean signifying if the input text is a valid color)
    */
   onChange: (
     text: string,

@@ -59,6 +59,7 @@ export const Alpha = () => {
           onChange={handleChange2}
           color={color2}
           showAlpha={true}
+          format="rgba"
           isInvalid={!!errors2}
           swatches={customSwatches2}
         />

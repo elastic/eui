@@ -70,15 +70,18 @@ const alphaSnippet = `<EuiColorPicker
   id={colorPickerId}
   onChange={handleChange}
   color={chosenColor}
-  alpha={0.25}
+  showAlpha={true}
   isInvalid={hasErrors}
 />`;
-const alphaSnippetShow = `<EuiColorPicker
+
+import { Formats } from './formats';
+const formatsSource = require('!!raw-loader!./formats');
+const formatsHtml = renderToHtml(Formats);
+const formatsSnippet = `<EuiColorPicker
+  format="hex"
   id={colorPickerId}
   onChange={handleChange}
   color={chosenColor}
-  alpha={1}
-  showAlpha={true}
   isInvalid={hasErrors}
 />`;
 
@@ -262,13 +265,13 @@ export const ColorPickerExample = {
               selection.
             </p>
             <p>
-              Direct text entry will only match hexadecimal (hex) colors, and
-              output values only return hex values. Spatial selection involves
-              HSV manipulaton, which is converted to hex.
+              Direct text entry will match hexadecimal (hex) and RGB(a) colors,
+              and output will return both hex and RGBa values. Spatial selection
+              involves HSV manipulaton, which is converted to hex.
             </p>
             <p>
               Swatches allow consumers to predefine preferred or suggested
-              choices. The swatches must also be entered in hex format.
+              choices. The swatches must also be entered in hex or RGBa format.
             </p>
           </EuiText>
         </React.Fragment>
@@ -349,6 +352,36 @@ export const ColorPickerExample = {
       demo: <ColorStopsRange />,
     },
     {
+      title: 'Format selection',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formatsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: formatsHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Format selection does <em>not</em> limit the format of text input
+            the picker will allow, but instead attempts to keep consistency
+            during HSV selection. By default, the color picker will
+            automatically use the last input value format. Notice in following
+            the examples how hue and saturation selection behave differently.
+          </p>
+          <p>
+            Swatches will always show the &quot;as-authored&quot; color value,
+            as will the value provided via the <EuiCode>color</EuiCode> prop.
+          </p>
+        </>
+      ),
+      snippet: formatsSnippet,
+      demo: <Formats />,
+    },
+    {
       title: 'Alpha channel (opacity) selection',
       source: [
         {
@@ -362,12 +395,12 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          Set the <EuiCode>alpha</EuiCode> prop to designate a starting opacity
-          value (decimal range, 0 to 1). To allow user updates to the color
-          opacity, set the <EuiCode>showAlpha</EuiCode> prop to `true`.
+          The color picker will always allow opacity via text input, but to
+          allow user updates to the color opacity, set the{' '}
+          <EuiCode>showAlpha</EuiCode> prop to `true`.
         </p>
       ),
-      snippet: [alphaSnippet, alphaSnippetShow],
+      snippet: alphaSnippet,
       demo: <Alpha />,
     },
     {
