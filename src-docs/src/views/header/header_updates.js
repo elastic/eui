@@ -120,7 +120,9 @@ export default class extends Component {
         aria-controls="headerNewsFeed"
         aria-expanded={this.state.isFlyoutVisible}
         aria-haspopup="true"
-        aria-label="News feed"
+        aria-label={`News feed: ${
+          this.state.showBadge ? 'Updates available' : 'No updates'
+        }`}
         onClick={this.showFlyout}
         notification={this.state.showBadge && '•'}>
         <EuiIcon type="email" size="m" />
