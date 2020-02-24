@@ -60,23 +60,6 @@ exports[`EuiTableFooterCell is rendered 1`] = `
 </td>
 `;
 
-exports[`EuiTableFooterCell width and style Overlapping attributes resolves style and width attribute 1`] = `
-<td
-  class="euiTableFooterCell"
-  style="width:10%"
->
-  <div
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-  </div>
-</td>
-`;
-
 exports[`EuiTableFooterCell width and style accepts style attribute 1`] = `
 <td
   class="euiTableFooterCell"
@@ -115,6 +98,23 @@ exports[`EuiTableFooterCell width and style accepts width attribute as number 1`
 <td
   class="euiTableFooterCell"
   style="width:100px"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    >
+      Test
+    </span>
+  </div>
+</td>
+`;
+
+exports[`EuiTableFooterCell width and style resolves overlapping attributes in style vs width 1`] = `
+<td
+  class="euiTableFooterCell"
+  style="width:10%"
 >
   <div
     class="euiTableCellContent"

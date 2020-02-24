@@ -13,6 +13,7 @@ export interface SearchBoxConfigProps extends CommonProps {
   incremental?: boolean;
   // Boolean values are not meaningful to this component, but are allowed so that other
   // components can use e.g. a true value to mean "auto-derive a schema". See EuiInMemoryTable.
+  // Admittedly, this is a bit of a hack.
   schema?: SchemaType | boolean;
 }
 

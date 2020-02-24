@@ -4,6 +4,7 @@ import {
   dateGranularity,
   GranularityType,
 } from './date_format';
+// ESLint doesn't realise that we can import Moment directly.
 // eslint-disable-next-line import/named
 import moment, { MomentInput } from 'moment';
 

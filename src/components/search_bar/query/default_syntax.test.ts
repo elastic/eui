@@ -34,33 +34,33 @@ describe('defaultSyntax', () => {
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('term-1');
 
-    clause = ast.getTermClause('term-2')!!;
+    clause = ast.getTermClause('term-2')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.value).toBe('term-2');
 
-    clause = ast.getTermClause('-term-3')!!;
+    clause = ast.getTermClause('-term-3')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('-term-3');
 
-    clause = ast.getSimpleFieldClause('name-1', 'dash-1')!!;
+    clause = ast.getSimpleFieldClause('name-1', 'dash-1')!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name-1');
     expect(clause.value).toBe('dash-1');
 
-    clause = ast.getSimpleFieldClause('name-2', 'dash-2')!!;
+    clause = ast.getSimpleFieldClause('name-2', 'dash-2')!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.field).toBe('name-2');
     expect(clause.value).toBe('dash-2');
 
-    clause = ast.getSimpleFieldClause('-name-3', 'dash-3')!!;
+    clause = ast.getSimpleFieldClause('-name-3', 'dash-3')!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
@@ -83,7 +83,7 @@ describe('defaultSyntax', () => {
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('👸Queen_Elizabeth');
 
-    clause = ast.getTermClause('🤴King_Henry')!!;
+    clause = ast.getTermClause('🤴King_Henry')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
@@ -104,19 +104,19 @@ describe('defaultSyntax', () => {
     expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.value).toBe(':');
 
-    clause = ast.getTermClause('\\')!!;
+    clause = ast.getTermClause('\\')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('\\');
 
-    clause = ast.getTermClause('(')!!;
+    clause = ast.getTermClause('(')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('(');
 
-    clause = ast.getTermClause(')')!!;
+    clause = ast.getTermClause(')')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
@@ -214,7 +214,7 @@ describe('defaultSyntax', () => {
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
 
-    clause = ast.getSimpleFieldClause('age', 6)!!;
+    clause = ast.getSimpleFieldClause('age', 6)!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
@@ -239,14 +239,14 @@ describe('defaultSyntax', () => {
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
 
-    clause = ast.getSimpleFieldClause('age', 6)!!;
+    clause = ast.getSimpleFieldClause('age', 6)!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe(6);
 
-    clause = ast.getSimpleFieldClause('age', 5)!!;
+    clause = ast.getSimpleFieldClause('age', 5)!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
@@ -271,14 +271,14 @@ describe('defaultSyntax', () => {
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
 
-    clause = ast.getSimpleFieldClause('age', 6)!!;
+    clause = ast.getSimpleFieldClause('age', 6)!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe(6);
 
-    clause = ast.getSimpleFieldClause('age', 5)!!;
+    clause = ast.getSimpleFieldClause('age', 5)!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(false);
@@ -302,7 +302,7 @@ describe('defaultSyntax', () => {
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('foo');
 
-    clause = ast.getTermClause('bar')!!;
+    clause = ast.getTermClause('bar')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
@@ -325,7 +325,7 @@ describe('defaultSyntax', () => {
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('foo');
 
-    clause = ast.getTermClause('bar')!!;
+    clause = ast.getTermClause('bar')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(false);
@@ -348,20 +348,20 @@ describe('defaultSyntax', () => {
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('foo');
 
-    clause = ast.getSimpleFieldClause('name', 'john')!!;
+    clause = ast.getSimpleFieldClause('name', 'john')!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
 
-    clause = ast.getTermClause('bar')!!;
+    clause = ast.getTermClause('bar')!;
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.value).toBe('bar');
 
-    clause = ast.getSimpleFieldClause('age', 5)!!;
+    clause = ast.getSimpleFieldClause('age', 5)!;
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);

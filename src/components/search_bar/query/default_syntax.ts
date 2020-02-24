@@ -2,7 +2,7 @@ import { _AST, AST, Clause, OperatorType, Value } from './ast';
 import { isArray, isString, isDateLike } from '../../../services/predicate';
 import { dateFormat as defaultDateFormat } from './date_format';
 import { DateValue, dateValueParser, isDateValue } from './date_value';
-// @ts-ignore
+// @ts-ignore This is a Babel plugin that parses inline PEG grammars.
 import peg from 'pegjs-inline-precompile'; // eslint-disable-line import/no-unresolved
 
 const parser = peg`
@@ -331,7 +331,8 @@ const resolveFieldValue = (
 ): Value | Value[] => {
   const { schema, error, parseDate } = ctx;
   if (isArray(valueExpression)) {
-    // FIXME: I don't know if this cast is valid
+    // I don't know if this cast is valid. This function is called recursively and
+    // doesn't apply any kind of flat-map.
     return valueExpression.map(
       exp => resolveFieldValue(field, exp, ctx) as Value
     );
@@ -396,6 +397,8 @@ const resolveFieldValue = (
       return number;
 
     case 'boolean':
+      // FIXME This would also match 'lion'. It should really anchor the match
+      // and the start and end of the input.
       const boolean = !!expression.match(/true|yes|on/i);
       validateFieldValue(
         field,
@@ -420,7 +423,7 @@ const resolveFieldValue = (
   }
 };
 
-const printValue = (value: any, options: Options) => {
+const printValue = (value: Value, options: Options) => {
   if (isDateValue(value)) {
     return `'${value.text}'`;
   }

@@ -1,4 +1,5 @@
 import { dateFormatAliases } from '../../../services/format';
+// ESLint doesn't realise that we can import Moment directly.
 // eslint-disable-next-line import/named
 import moment, { Moment, MomentInput } from 'moment';
 

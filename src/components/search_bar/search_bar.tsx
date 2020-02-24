@@ -1,7 +1,7 @@
 import React, { Component, ReactElement } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSearchBox, SearchBoxConfigProps } from './search_box';
+import { EuiSearchBox, SchemaType, SearchBoxConfigProps } from './search_box';
 import { EuiSearchFilters, SearchFiltersFiltersType } from './search_filters';
 import { Query } from './query';
 import { CommonProps } from '../common';
@@ -61,7 +61,10 @@ const parseQuery = (
   query: QueryType | undefined,
   props: EuiSearchBarProps
 ): Query => {
-  const schema = props.box ? props.box.schema : undefined;
+  let schema: SchemaType | undefined = undefined;
+  if (props.box && props.box.schema && typeof props.box.schema === 'object') {
+    schema = props.box.schema;
+  }
   const dateFormat = props.dateFormat;
   const parseOptions = { schema, dateFormat };
   if (!query) {
@@ -76,6 +79,8 @@ interface State {
   error: null | Error;
 }
 
+// `state.query` is never null, but can be passed as `null` to `notifyControllingParent`
+// when `error` is not null.
 type StateWithOptionalQuery = Omit<State, 'query'> & { query: Query | null };
 
 export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
@@ -160,9 +165,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     if (Array.isArray(tools)) {
       return tools.map(tool => (
-        // There's a mismatch somewhere around how the key attribute /
-        // property is defined, such that `null` is not allowed
-        <EuiFlexItem grow={false} key={tool.key!}>
+        <EuiFlexItem grow={false} key={tool.key == null ? undefined : tool.key}>
           {tool}
         </EuiFlexItem>
       ));

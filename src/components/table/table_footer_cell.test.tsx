@@ -60,7 +60,7 @@ describe('EuiTableFooterCell', () => {
       expect(render(component)).toMatchSnapshot();
     });
 
-    describe('Overlapping attributes', () => {
+    describe('resolves overlapping attributes', () => {
       let consoleWarn: Console['warn'];
 
       beforeEach(() => {
@@ -72,7 +72,7 @@ describe('EuiTableFooterCell', () => {
         console.warn = consoleWarn;
       });
 
-      test('resolves style and width attribute', () => {
+      test('in style vs width', () => {
         const component = (
           <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
             Test

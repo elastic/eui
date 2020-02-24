@@ -22,9 +22,11 @@ export const createFilter = (
 ) => {
   const props = { index, query, onChange };
 
-  // We don't put config in `props` above because TS will give it a wider
-  // type that we want. Once we've checked `config.type` below, its type
-  // is narrowed correctly.
+  // We don't put `config` into `props` above because until we check
+  // `config.type`, TS only knows that it's a `FilterConfig`, and that type
+  // is used to define `props` as well. Once we've checked `config.type`
+  // below, its type is narrowed correctly, hence we pass down `config`
+  // separately.
   switch (config.type) {
     case 'is':
       return <IsFilter {...props} config={config} />;
@@ -39,7 +41,7 @@ export const createFilter = (
       return <FieldValueToggleGroupFilter {...props} config={config} />;
 
     default:
-      // @ts-ignore TS knows that we can't get here
+      // @ts-ignore TS knows that we've checked `config.type` exhaustively
       throw new Error(`Unknown search filter type [${config.type}]`);
   }
 };

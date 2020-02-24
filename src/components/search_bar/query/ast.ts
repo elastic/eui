@@ -353,7 +353,7 @@ export class _AST {
       return false;
     }
 
-    // We can apply this type cast due to the filter above
+    // We can apply this type cast due to the `isArray` filter above
     return isNil(value) || arrayIncludesValue(clause.value as Value[], value);
   }
 

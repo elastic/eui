@@ -11,14 +11,54 @@ import {
 } from './ast';
 import { isArray, isDateLike, isString } from '../../../services/predicate';
 
-interface Options {
-  defaultFields?: string[];
-  extraMustQueries?: any[]; // FIXME
-  extraMustNotQueries?: any[]; // FIXME
-  termValuesToQuery?: (terms: Value[], options: {}) => any;
-  fieldValuesToQuery?: (terms: string, options: {}) => any;
-  isFlagToQuery?: (flag: string, on: boolean) => any;
+export interface QueryContainer {
+  bool?: BoolQuery;
+  match_all?: {};
+  match?: object;
+  match_phrase?: object;
+  range?: object;
+  term?: object;
+  simple_query_string?: object;
 }
+
+interface TermsQuery {
+  must: Value[];
+  mustNot: Value[];
+}
+
+interface BoolQuery {
+  must?: QueryContainer[];
+  must_not?: QueryContainer[];
+  should?: QueryContainer[];
+}
+
+interface FieldsQuery {
+  must: {
+    and: {
+      [field: string]: any;
+    };
+    or: {
+      [field: string]: any;
+    };
+  };
+  mustNot: {
+    and: {
+      [field: string]: any;
+    };
+    or: {
+      [field: string]: any;
+    };
+  };
+}
+
+type Options = Partial<{
+  defaultFields: string[];
+  extraMustQueries: QueryContainer[];
+  extraMustNotQueries: QueryContainer[];
+  termValuesToQuery: (terms: Value[], options: {}) => QueryContainer;
+  fieldValuesToQuery: (terms: string, options: {}) => QueryContainer;
+  isFlagToQuery: (flag: string, on: boolean) => QueryContainer;
+}>;
 
 const processDateOperation = (value: DateValue, operator?: OperatorType) => {
   const { granularity, resolve } = value;
@@ -167,15 +207,17 @@ export const _isFlagToQuery = (flag: string, on: boolean) => {
 };
 
 const collectTerms = (clauses: TermClause[]) => {
-  const initialVar: TermsQuery = { must: [], mustNot: [] };
-  return clauses.reduce((values, clause) => {
+  const values: TermsQuery = { must: [], mustNot: [] };
+
+  for (const clause of clauses) {
     if (AST.Match.isMustClause(clause)) {
       values.must.push(clause.value);
     } else {
       values.mustNot.push(clause.value);
     }
-    return values;
-  }, initialVar);
+  }
+
+  return values;
 };
 
 const collectFields = (clauses: FieldClause[]) => {
@@ -252,7 +294,7 @@ const clausesToEsQueryDsl = (
     must.push(isFlagToQuery(clause.flag, AST.Match.isMustClause(clause)));
   });
 
-  const mustNot = [];
+  const mustNot: QueryContainer[] = [];
   mustNot.push(...extraMustNotQueries);
   const termMustNotQuery = termValuesToQuery(terms.mustNot, options);
   if (termMustNotQuery) {
@@ -275,44 +317,6 @@ const clausesToEsQueryDsl = (
 
   return bool;
 };
-
-interface TermsQuery {
-  must: Value[];
-  mustNot: Value[];
-}
-
-export interface QueryContainer {
-  bool?: BoolQuery;
-  match_all?: {};
-  match?: object;
-  match_phrase?: object;
-  range?: object;
-}
-
-interface BoolQuery {
-  must?: QueryContainer[];
-  must_not?: QueryContainer[];
-  should?: QueryContainer[];
-}
-
-interface FieldsQuery {
-  must: {
-    and: {
-      [field: string]: any;
-    };
-    or: {
-      [field: string]: any;
-    };
-  };
-  mustNot: {
-    and: {
-      [field: string]: any;
-    };
-    or: {
-      [field: string]: any;
-    };
-  };
-}
 
 const EMPTY_TERMS: TermsQuery = { must: [], mustNot: [] };
 const EMPTY_FIELDS: FieldsQuery = {

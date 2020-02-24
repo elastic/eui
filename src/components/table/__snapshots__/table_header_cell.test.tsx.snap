@@ -68,25 +68,6 @@ exports[`renders EuiTableHeaderCell 1`] = `
 </th>
 `;
 
-exports[`width and style Overlapping attributes resolves style and width attribute 1`] = `
-<th
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
-  style="width:10%"
->
-  <div
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-  </div>
-</th>
-`;
-
 exports[`width and style accepts style attribute 1`] = `
 <th
   class="euiTableHeaderCell"
@@ -131,6 +112,25 @@ exports[`width and style accepts width attribute as number 1`] = `
   role="columnheader"
   scope="col"
   style="width:100px"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    >
+      Test
+    </span>
+  </div>
+</th>
+`;
+
+exports[`width and style resolves overlapping attributes in style vs width 1`] = `
+<th
+  class="euiTableHeaderCell"
+  role="columnheader"
+  scope="col"
+  style="width:10%"
 >
   <div
     class="euiTableCellContent"

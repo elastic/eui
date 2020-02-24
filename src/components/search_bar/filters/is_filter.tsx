@@ -33,8 +33,7 @@ export class IsFilter extends Component<IsFilterProps> {
         };
   }
 
-  // FIXME
-  valueChanged(field: any, checked: boolean) {
+  valueChanged(field: string, checked: boolean) {
     const query = checked
       ? this.props.query.removeIsClause(field)
       : this.props.query.addMustIsClause(field);

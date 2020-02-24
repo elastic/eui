@@ -6,10 +6,12 @@ import { Granularity } from './date_format';
 
 const random = new Random();
 
+type TimeUnits = 'hours' | 'days' | 'weeks' | 'months' | 'years';
+
 const laterMoment = (
   date: moment.MomentInput,
   count: number,
-  units: 'hours' | 'days' | 'weeks' | 'months' | 'years'
+  units: TimeUnits
 ) => {
   const later = moment(date);
   later.add(count, units);
@@ -19,7 +21,7 @@ const laterMoment = (
 const earlierMoment = (
   date: moment.MomentInput,
   count: number,
-  units: 'hours' | 'days' | 'weeks' | 'months' | 'years'
+  units: TimeUnits
 ) => {
   const later = moment(date);
   later.subtract(count, units);

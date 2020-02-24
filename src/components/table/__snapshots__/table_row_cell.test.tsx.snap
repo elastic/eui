@@ -126,23 +126,6 @@ exports[`truncateText is rendered when specified 1`] = `
 </td>
 `;
 
-exports[`width and style Overlapping attributes resolves style and width attribute 1`] = `
-<td
-  class="euiTableRowCell"
-  style="width:10%"
->
-  <div
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-  </div>
-</td>
-`;
-
 exports[`width and style accepts style attribute 1`] = `
 <td
   class="euiTableRowCell"
@@ -181,6 +164,23 @@ exports[`width and style accepts width attribute as number 1`] = `
 <td
   class="euiTableRowCell"
   style="width:100px"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    >
+      Test
+    </span>
+  </div>
+</td>
+`;
+
+exports[`width and style resolves overlapping attributes in style vs width 1`] = `
+<td
+  class="euiTableRowCell"
+  style="width:10%"
 >
   <div
     class="euiTableCellContent"

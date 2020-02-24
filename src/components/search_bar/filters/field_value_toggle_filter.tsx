@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
 import { Query } from '../query';
+import { Clause, Value } from '../query/ast';
 
 export interface FieldValueToggleFilterConfigType {
   type: 'field_value_toggle';
   field: string;
-  value: string | number | boolean;
+  value: Value;
   name: string;
   negatedName?: string;
   available?: () => boolean;
@@ -23,8 +24,7 @@ export interface FieldValueToggleFilterProps {
 export class FieldValueToggleFilter extends Component<
   FieldValueToggleFilterProps
 > {
-  // FIXME
-  resolveDisplay(clause: any) {
+  resolveDisplay(clause: Clause | undefined) {
     const { name, negatedName } = this.props.config;
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };

@@ -8,10 +8,11 @@ import { EuiLoadingChart } from '../../loading';
 import { EuiSpacer } from '../../spacer';
 import { EuiIcon } from '../../icon';
 import { Query } from '../query';
+import { Clause, Value } from '../query/ast';
 
 interface FieldValueOptionType {
   field?: string;
-  value: any;
+  value: Value;
   name?: string;
   view?: ReactNode;
 }
@@ -44,7 +45,7 @@ export interface FieldValueSelectionFilterProps {
   index: number;
   config: FieldValueSelectionFilterConfigType;
   query: Query;
-  onChange: (value: any) => void;
+  onChange: (query: Query) => void;
   autoClose?: boolean;
 }
 
@@ -205,7 +206,11 @@ export class FieldValueSelectionFilter extends Component<
     return option.name || option.value.toString();
   }
 
-  onOptionClick(field: string, value: any, checked: 'on' | 'off' | undefined) {
+  onOptionClick(
+    field: string,
+    value: Value,
+    checked: 'on' | 'off' | undefined
+  ) {
     const multiSelect = this.resolveMultiSelect();
     const { autoClose } = this.props;
 
@@ -421,8 +426,7 @@ export class FieldValueSelectionFilter extends Component<
     );
   }
 
-  // FIXME
-  resolveChecked(clause: any): 'on' | 'off' | undefined {
+  resolveChecked(clause: Clause | undefined): 'on' | 'off' | undefined {
     if (clause) {
       return Query.isMust(clause) ? 'on' : 'off';
     }

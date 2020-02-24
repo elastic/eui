@@ -39,11 +39,11 @@ interface Explain {
   value?: Value | Value[];
   flag?: string;
   match?: MatchType;
-  operator?: any; // FIXME can't be bothered typing this right now
+  operator?: any; // It's not really worth specifying this at the moment
 }
 
-const defaultIsClauseMatcher = (
-  item: any,
+const defaultIsClauseMatcher = <T>(
+  item: T,
   clause: IsClause,
   explain?: Explain[]
 ) => {
@@ -57,8 +57,8 @@ const defaultIsClauseMatcher = (
   return hit;
 };
 
-const fieldClauseMatcher = (
-  item: any,
+const fieldClauseMatcher = <T>(
+  item: T,
   field: string,
   clauses: FieldClause[] = [],
   explain?: Explain[]
@@ -85,6 +85,8 @@ const fieldClauseMatcher = (
   });
 };
 
+// You might think that we could specify `item: T` here and do something
+// with `keyof`, but that wouldn't work with `nested.field.name`
 const extractStringFieldsFromItem = (item: any) => {
   return Object.keys(item).reduce(
     (fields, key) => {
@@ -97,9 +99,9 @@ const extractStringFieldsFromItem = (item: any) => {
   );
 };
 
-const termClauseMatcher = (
-  item: any,
-  fields: string[],
+const termClauseMatcher = <T>(
+  item: T,
+  fields: string[] | undefined,
   clauses: TermClause[] = [],
   explain?: Explain[]
 ) => {
@@ -136,18 +138,20 @@ const termClauseMatcher = (
   });
 };
 
-export const createFilter = (
+export const createFilter = <T extends {}>(
   ast: _AST,
-  defaultFields: string[],
+  defaultFields: string[] | undefined,
   isClauseMatcher = defaultIsClauseMatcher,
   explain = false
 ) => {
   // Return items which pass ALL conditions: matches the terms entered, the specified field values,
   // and the specified "is" clauses.
-  return (item: any) => {
+  return (item: T) => {
     const explainLines = explain ? ([] as Explain[]) : undefined;
 
     if (explainLines) {
+      // @ts-ignore technically, we could require T to extend `{ __explain?: Explain[] }` but that seems
+      // like a ridiculous requirement on the caller.
       item[EXPLAIN_FIELD] = explainLines;
     }
 
@@ -200,7 +204,17 @@ export const createFilter = (
   };
 };
 
-export function executeAst<T>(ast: _AST, items: T[], options: any = {}): T[] {
+interface Options {
+  isClauseMatcher?: typeof defaultIsClauseMatcher;
+  defaultFields?: string[];
+  explain?: boolean;
+}
+
+export function executeAst<T>(
+  ast: _AST,
+  items: T[],
+  options: Options = {}
+): T[] {
   const { isClauseMatcher, defaultFields, explain } = options;
   const filter = createFilter(ast, defaultFields, isClauseMatcher, explain);
   return items.filter(filter);
