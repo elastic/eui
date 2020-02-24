@@ -22,15 +22,15 @@ If you are willing and able to design the icon yourself, then please refer to th
 
 ## Documentation
 
-Always remember to update [documentation site][docs] via the `src-docs` folder and the [`CHANGELOG.md`](CHANGELOG.md) in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no different than how you would treat tests.
+Always remember to update [documentation site][docs] via the `src-docs` folder and the [`CHANGELOG.md`](CHANGELOG.md) in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no differently than how you would treat tests.
 
 Here are our guidelines for updating the `CHANGELOG.md` file:
 
 * Append your changes to the `master` sub-heading of [`CHANGELOG.md`](CHANGELOG.md).
 * Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API
 * In the list item, always link to any relevant pull requests
-* Add a short summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
-* Avoid documenting internal implementation changes that don't have an effect on the public interface
+* Add a summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
+* Avoid documenting internal implementation changes that don't affect the public interface
 * Write your entry in the past tense, starting with a verb (e.g. Added... , Fixed...)
 
 ## Releases
