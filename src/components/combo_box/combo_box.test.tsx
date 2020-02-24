@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { shallow, render, mount } from 'enzyme';
 import sinon from 'sinon';
 import {
@@ -11,20 +11,24 @@ import { comboBoxKeyCodes } from '../../services';
 import { EuiComboBox } from './combo_box';
 
 jest.mock('../portal', () => ({
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../services/accessibility/html_id_generator', () => ({
   htmlIdGenerator: () => {
-    return suffix => `htmlid_${suffix}`;
+    return (suffix: string) => `htmlid_${suffix}`;
   },
 }));
 
-const options = [
+interface TitanOption {
+  'data-test-subj'?: 'titanOption';
+  label: string;
+}
+const options: TitanOption[] = [
   {
-    label: 'Titan',
     'data-test-subj': 'titanOption',
+    label: 'Titan',
   },
   {
     label: 'Enceladus',
