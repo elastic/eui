@@ -10,7 +10,10 @@ import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
-import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
+import {
+  EuiFilterSelectItem,
+  FilterChecked,
+} from '../../filter_group/filter_select_item';
 import { htmlIdGenerator } from '../../../services';
 import {
   EuiComboBoxOptionOption,
@@ -284,7 +287,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
             );
           }
 
-          let checked: 'on' | 'off' = 'off';
+          let checked: FilterChecked | undefined = undefined;
           if (
             singleSelection &&
             selectedOptions.length &&
