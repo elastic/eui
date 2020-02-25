@@ -14,6 +14,7 @@
 - Extending `EuiSelectable[options]` type with correct HTML element ([#2869](https://github.com/elastic/eui/pull/2869))
 - Added check mark to single selection `EuiComboBox` ([#2890](https://github.com/elastic/eui/pull/2890))
 - Added `logoGoogleG` third-party logo to `EuiIcon` ([#2853](https://github.com/elastic/eui/pull/2853))
+- Added Jest `modulesNameMapper` alias for `EuiIcon` using test environment mock ([#2878](https://github.com/elastic/eui/pull/2878))
 
 **Bug fixes**
 
