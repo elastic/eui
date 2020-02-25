@@ -1,11 +1,11 @@
-import React, { FunctionComponent, FormHTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
 import { EuiI18n } from '../i18n';
 import { CommonProps } from '../common';
 
 export type EuiFormProps = CommonProps &
-  FormHTMLAttributes<HTMLFormElement> & {
+  HTMLAttributes<HTMLDivElement> & {
     isInvalid?: boolean;
     error?: ReactNode | ReactNode[];
   };
@@ -54,9 +54,9 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   }
 
   return (
-    <form className={classes} {...rest}>
+    <div className={classes} {...rest}>
       {optionalErrorAlert}
       {children}
-    </form>
+    </div>
   );
 };
