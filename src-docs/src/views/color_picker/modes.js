@@ -7,11 +7,11 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { useColorPicker, useColorStop } from './utils';
+import { useColorPickerState, useColorStopState } from '../../services/utils';
 
 export const Modes = () => {
-  const [color, setColor, errors] = useColorPicker('#D36086');
-  const [colorStops, setColorStops] = useColorStop();
+  const [color, setColor, errors] = useColorPickerState('#D36086');
+  const [colorStops, setColorStops] = useColorStopState();
 
   return (
     <React.Fragment>

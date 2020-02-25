@@ -14,11 +14,11 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { useColorPicker, useColorStop } from './utils';
+import { useColorPickerState, useColorStopState } from '../../services/utils';
 
 export default () => {
-  const [color, setColor] = useColorPicker('#FFF');
-  const [colorStops, setColorStops] = useColorStop();
+  const [color, setColor] = useColorPickerState('#FFF');
+  const [colorStops, setColorStops] = useColorStopState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
