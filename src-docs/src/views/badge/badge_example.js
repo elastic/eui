@@ -11,8 +11,20 @@ import {
   EuiCode,
   EuiBetaBadge,
   EuiNotificationBadge,
+  EuiBadgeGroup,
+  EuiFlexItem,
   EuiCallOut,
 } from '../../../../src/components';
+
+const badges = [
+  'default',
+  'hollow',
+  'primary',
+  'secondary',
+  'accent',
+  'warning',
+  'danger',
+];
 
 import Badge from './badge';
 const badgeSource = require('!!raw-loader!./badge');
@@ -90,6 +102,10 @@ const notificationBadgeSource = require('!!raw-loader!./notification_badge');
 const notificationBadgeHtml = renderToHtml(NotificationBadge);
 const notificationBadgeSnippet = `<EuiNotificationBadge>3</EuiNotificationBadge>
 `;
+
+import BadgeGroup from './badge_group';
+const badgeGroupSource = require('!!raw-loader!./badge_group');
+const badgeGroupHtml = renderToHtml(BadgeGroup);
 
 export const BadgeExample = {
   title: 'Badge',
@@ -260,6 +276,30 @@ export const BadgeExample = {
       props: { EuiNotificationBadge },
       snippet: notificationBadgeSnippet,
       demo: <NotificationBadge />,
+    },
+    {
+      title: 'Badge Group',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeGroupSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeGroupHtml,
+        },
+      ],
+      text: <p>Used to group Badges together </p>,
+      props: { EuiBadgeGroup },
+      demo: (
+        <EuiBadgeGroup wrap responsive={false} gutterSize="xs">
+          {badges.map(badge => (
+            <EuiFlexItem grow={false} key={badge}>
+              <EuiBadge color={badge}>{badge}</EuiBadge>
+            </EuiFlexItem>
+          ))}
+        </EuiBadgeGroup>
+      ),
     },
   ],
 };

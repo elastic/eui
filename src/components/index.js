@@ -6,7 +6,12 @@ export { EuiAvatar } from './avatar';
 
 export { EuiKeyboardAccessible, EuiScreenReaderOnly } from './accessibility';
 
-export { EuiBadge, EuiBetaBadge, EuiNotificationBadge } from './badge';
+export {
+  EuiBadge,
+  EuiBetaBadge,
+  EuiNotificationBadge,
+  EuiBadgeGroup,
+} from './badge';
 
 export { EuiBottomBar } from './bottom_bar';
 
