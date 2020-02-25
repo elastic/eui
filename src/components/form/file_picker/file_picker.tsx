@@ -130,7 +130,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             ...rest
           } = this.props;
 
-          let UniqueId: string = htmlIdGenerator().toString();
+          let UniqueId: string = htmlIdGenerator()();
 
           if (aUniqueId) {
             UniqueId = `${aUniqueId}-filePicker__prompt`;
