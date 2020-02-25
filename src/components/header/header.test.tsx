@@ -20,4 +20,18 @@ describe('EuiHeader', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('renders sections', () => {
+    const component = render(
+      <EuiHeader
+        sections={{
+          left: [{ children: 'Left' }],
+          center: [{ children: 'Center' }],
+          right: [{ children: 'Right' }],
+        }}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

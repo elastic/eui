@@ -3,17 +3,51 @@
 exports[`EuiHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeader testClass1 testClass2"
+  class="euiHeader euiHeader--static testClass1 testClass2 testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiHeader renders children 1`] = `
 <div
-  class="euiHeader"
+  class="euiHeader euiHeader--static undefined"
 >
   <span>
     Hello!
   </span>
+</div>
+`;
+
+exports[`EuiHeader renders sections 1`] = `
+<div
+  class="euiHeader euiHeader--static undefined"
+>
+  <div
+    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+  >
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+    >
+      Left
+    </div>
+  </div>
+  <div
+    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+  >
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+    >
+      Center
+    </div>
+  </div>
+  <div
+    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--right"
+  >
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+    >
+      Right
+    </div>
+  </div>
 </div>
 `;

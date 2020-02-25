@@ -2,6 +2,8 @@
 
 .euiHeaderSectionItem {
   position: relative;
+  display: flex;
+  align-items: center;
 
   &:hover {
     background: $euiColorLightestShade;
