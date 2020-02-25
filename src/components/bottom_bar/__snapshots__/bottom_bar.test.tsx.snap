@@ -2,74 +2,107 @@
 
 exports[`EuiBottomBar is rendered 1`] = `
 Array [
-  <p
-    aria-live="assertive"
-    class="euiScreenReaderOnly"
-  >
-    There is a new menu opening with page level controls at the end of the document.
-  </p>,
-  <div
+  <section
     aria-label="aria-label"
     class="euiBottomBar euiBottomBar--paddingMedium testClass1 testClass2"
     data-test-subj="test subject string"
   >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
     Content
-  </div>,
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
 ]
 `;
 
 exports[`EuiBottomBar props paddingSize l is rendered 1`] = `
 Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--paddingLarge"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
   <p
     aria-live="assertive"
     class="euiScreenReaderOnly"
   >
-    There is a new menu opening with page level controls at the end of the document.
+    There is a new region landmark with page level controls at the end of the document.
   </p>,
-  <div
-    class="euiBottomBar euiBottomBar--paddingLarge"
-  />,
 ]
 `;
 
 exports[`EuiBottomBar props paddingSize m is rendered 1`] = `
 Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--paddingMedium"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
   <p
     aria-live="assertive"
     class="euiScreenReaderOnly"
   >
-    There is a new menu opening with page level controls at the end of the document.
+    There is a new region landmark with page level controls at the end of the document.
   </p>,
-  <div
-    class="euiBottomBar euiBottomBar--paddingMedium"
-  />,
 ]
 `;
 
 exports[`EuiBottomBar props paddingSize none is rendered 1`] = `
 Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
   <p
     aria-live="assertive"
     class="euiScreenReaderOnly"
   >
-    There is a new menu opening with page level controls at the end of the document.
+    There is a new region landmark with page level controls at the end of the document.
   </p>,
-  <div
-    class="euiBottomBar"
-  />,
 ]
 `;
 
 exports[`EuiBottomBar props paddingSize s is rendered 1`] = `
 Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--paddingSmall"
+  >
+    <h2
+      class="euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+  </section>,
   <p
     aria-live="assertive"
     class="euiScreenReaderOnly"
   >
-    There is a new menu opening with page level controls at the end of the document.
+    There is a new region landmark with page level controls at the end of the document.
   </p>,
-  <div
-    class="euiBottomBar euiBottomBar--paddingSmall"
-  />,
 ]
 `;

@@ -1,5 +1,40 @@
 [
   {
+    "version": "20.0.0",
+    "changes": [
+      {
+        "token": "euiBottomBar.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "There is a new region landmark with page level controls at the end of the document."
+      },
+      {
+        "token": "euiBottomBar.screenReaderHeading",
+        "changeType": "added",
+        "value": "Page level controls"
+      },
+      {
+        "token": "euiBottomBar.customScreenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+      },
+      {
+        "token": "euiControlBar.screenReaderHeading",
+        "changeType": "added",
+        "value": "Page level controls"
+      },
+      {
+        "token": "euiControlBar.customScreenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+      },
+      {
+        "token": "euiControlBar.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark with page level controls at the end of the document."
+      }
+    ]
+  },
+  {
     "version": "19.0.0",
     "changes": [
       {
