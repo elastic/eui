@@ -117,11 +117,16 @@ export const parseColor = (input?: string | null) => {
   return parsed;
 };
 
-export const getChromaColor = (input?: string | null) => {
+export const getChromaColor = (input?: string | null, allowOpacity = false) => {
   const parsed = parseColor(input);
   if (parsed && chromaValid(parsed)) {
     // type guard for the function overload
-    return typeof parsed === 'object' ? chroma(parsed) : chroma(parsed);
+    let chromaColor =
+      typeof parsed === 'object' ? chroma(parsed) : chroma(parsed);
+    if (!allowOpacity) {
+      chromaColor = chromaColor.alpha(1);
+    }
+    return chromaColor;
   }
   return null;
 };

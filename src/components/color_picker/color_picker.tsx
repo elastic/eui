@@ -119,14 +119,20 @@ function isKeyboardEvent(
 }
 
 const getOutput = (
-  hex?: string | null
+  text: string | null,
+  showAlpha: boolean = false
 ): { rgba: number[]; hex: string; isValid: boolean } => {
-  const color = getChromaColor(hex);
+  let color = getChromaColor(text, true);
+  let isValid = true;
+  if (!showAlpha && color !== null) {
+    isValid = color.alpha() === 1;
+    color = color.alpha(1);
+  }
   return color
     ? {
         rgba: color.rgba(),
         hex: color.hex(),
-        isValid: true,
+        isValid,
       }
     : {
         rgba: [...RGB_FALLBACK, 1],
@@ -170,7 +176,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     const parsed = parseColor(color);
     return typeof parsed === 'object' ? 'rgba' : 'hex';
   }, [color, format]);
-  const chromaColor = useMemo(() => getChromaColor(color), [color]);
+  const chromaColor = useMemo(() => getChromaColor(color, showAlpha), [
+    color,
+    showAlpha,
+  ]);
   const alphaChannel = useMemo(() => {
     const a = chromaColor ? chromaColor.alpha() : 1;
     return { decimal: a, percent: (a * 100).toFixed() };
@@ -214,7 +223,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   });
 
   const handleOnChange = (text: string) => {
-    const output = getOutput(text);
+    const output = getOutput(text, showAlpha);
     if (output.isValid) {
       prevColor.current = output.rgba.join();
     }
@@ -301,7 +310,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const handleColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleOnChange(e.target.value);
-    const newColor = getChromaColor(e.target.value);
+    const newColor = getChromaColor(e.target.value, showAlpha);
     if (newColor) {
       updateColorAsHsv(newColor.hsv());
     }
@@ -336,7 +345,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleSwatchSelection = (color: string) => {
-    const newColor = getChromaColor(color);
+    const newColor = getChromaColor(color, showAlpha);
     handleOnChange(color);
     if (newColor) {
       updateColorAsHsv(newColor.hsv());
