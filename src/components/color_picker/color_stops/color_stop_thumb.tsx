@@ -319,8 +319,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     inputRef={setNumberInputRef}
                     compressed={true}
                     readOnly={readOnly}
-                    min={isRangeMin || min === undefined ? undefined : localMin}
-                    max={isRangeMax || max === undefined ? undefined : localMax}
+                    min={isRangeMin || min == null ? undefined : localMin}
+                    max={isRangeMax || max == null ? undefined : localMax}
                     value={isStopInvalid(stop) ? '' : stop}
                     isInvalid={stopIsInvalid}
                     onChange={handleStopInputChange}
