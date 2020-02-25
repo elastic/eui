@@ -32,7 +32,7 @@ $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
 $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%);
 
-// Constrasty text variants
+// Contrasty text variants
 // These colors are just straight dups of the basic colors for now
 // because we know they pass contrast needs and makeHighContrastColor is broken in dark mode
 $euiColorPrimaryText: $euiColorPrimary;

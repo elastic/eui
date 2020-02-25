@@ -32,7 +32,7 @@ $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
 $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
-// Constrasty text variants
+// Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
 $euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
 $euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
