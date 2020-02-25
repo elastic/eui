@@ -3,13 +3,13 @@ $euiIconLoadingOpacity: .05;
 // Modifier naming and colors.
 $euiIconColors: (
   text: $euiTextColor,
-  subdued: makeGraphicColor($euiColorMediumShade),
-  primary: makeGraphicColor($euiColorPrimary),
-  secondary: makeGraphicColor($euiColorSecondary),
-  success: makeGraphicColor($euiColorSuccess),
-  accent: makeGraphicColor($euiColorAccent),
-  warning: makeGraphicColor($euiColorWarning),
-  danger: makeGraphicColor($euiColorDanger),
+  subdued: $euiColorDarkShade,
+  primary: $euiColorPrimaryText,
+  secondary: $euiColorSecondaryText,
+  success: $euiColorSuccessText,
+  accent: $euiColorAccentText,
+  warning: $euiColorWarningText,
+  danger: $euiColorDangerText,
   ghost: $euiColorGhost,
 );
 

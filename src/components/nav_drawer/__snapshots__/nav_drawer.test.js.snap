@@ -28,15 +28,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-test-subj="navDrawerExpandButton-isCollapsed"
                 type="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="menuRight"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -63,15 +57,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-name="Recently viewed"
                 type="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="clock"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -94,15 +82,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-name="Favorites"
                 type="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="starEmpty"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -128,15 +110,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-name="Canvas"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="canvasApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -158,15 +134,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-name="Discover"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="discoverApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -188,15 +158,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-name="Visualize"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="visualizeApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -218,15 +182,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-name="Dashboard"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="dashboardApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -248,15 +206,9 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 data-name="Machine learning"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="machineLearningApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -337,15 +289,9 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 data-test-subj="navDrawerExpandButton-isCollapsed"
                 type="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="menuRight"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -371,15 +317,9 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 data-name="Canvas"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="canvasApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -401,15 +341,9 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 data-name="Discover"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="discoverApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -431,15 +365,9 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 data-name="Visualize"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="visualizeApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -461,15 +389,9 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 data-name="Dashboard"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="dashboardApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -491,15 +413,9 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 data-name="Machine learning"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="machineLearningApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -580,15 +496,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-test-subj="navDrawerExpandButton-isCollapsed"
                 type="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="menuRight"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -615,15 +525,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-name="Recently viewed"
                 type="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="clock"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -646,15 +550,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-name="Favorites"
                 type="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="starEmpty"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -680,15 +578,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-name="Canvas"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="canvasApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -710,15 +602,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-name="Discover"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="discoverApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -740,15 +626,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-name="Visualize"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="visualizeApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -770,15 +650,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-name="Dashboard"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="dashboardApp"
                 />
                 <span
                   class="euiListGroupItem__label"
@@ -800,15 +674,9 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 data-name="Machine learning"
                 href="#"
               >
-                <svg
-                  aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading euiListGroupItem__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="euiListGroupItem__icon"
+                  data-euiicon-type="machineLearningApp"
                 />
                 <span
                   class="euiListGroupItem__label"
