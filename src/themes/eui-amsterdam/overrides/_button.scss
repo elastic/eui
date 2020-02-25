@@ -1,19 +1,36 @@
+// This file has lots of modifiers and is somewhat nesty by nature
+//sass-lint:disable nesting-depth
+
 .euiButton {
   // sass-lint:disable no-important
   // remove for all states
   box-shadow: none !important;
 
-  // I wouldn't alter the base radius here only.
-  // Instead, consider the greater goal and determine if you
-  // will be wanting to change the default radius for the whole theme
-  // border-radius: $euiBorderRadius + 2;
-
   &:disabled {
-    // Make sure to continue to use the variables used for these specific purposes
-    // and just change the value of them, not the style
-    // color: $euiColorMediumShade;
-    background-color: transparentize($euiButtonColorDisabled, .9);
+    background-color: $euiButtonColorDisabled;
+    color: transparentize(makeHighContrastColor($euiColorMediumShade, $euiButtonColorDisabled), .5);
+
+    &.euiButton--fill {
+      $euiButtonColorDisabledFill: mix($euiButtonColorDisabled, $euiColorInk, 80%);
+      background-color: $euiButtonColorDisabledFill;
+      color: transparentize(makeHighContrastColor($euiColorEmptyShade, $euiButtonColorDisabledFill), .5);
+
+      &:hover {
+        background-color: mix($euiButtonColorDisabled, $euiColorInk, 80%);
+      }
+
+      .euiButton__spinner {
+        border-color: euiLoadingSpinnerBorderColors(transparentize($euiColorInk, .8));
+      }
+    }
   }
+}
+
+.euiButton--small {
+  // Use a moderately smaller radius on
+  // small buttons so that they don't appear
+  // completely rounded
+  border-radius: $euiBorderRadius - 2;
 }
 
 // Change the hollow (bordered) buttons to have a transparent background

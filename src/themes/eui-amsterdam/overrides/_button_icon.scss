@@ -1,0 +1,36 @@
+.euiButtonIcon {
+
+  &:disabled {
+    color: $euiColorMediumShade;
+  }
+}
+
+// Modifier naming and colors.
+$euiButtonIconTypes: (
+  danger: $euiColorDanger,
+  disabled: $euiColorLightShade,
+  ghost: $euiColorGhost,
+  primary: $euiColorPrimary,
+  subdued: $euiColorDarkShade,
+  success: $euiColorSuccess,
+  text: $euiTextColor,
+  warning: $euiColorWarning,
+);
+
+// Create button modifiders based upon the map.
+@each $name, $color in $euiButtonIconTypes {
+  .euiButtonIcon--#{$name} {
+    color: $color;
+
+    &:focus {
+      background-color: transparentize($color, .9);
+    }
+
+    &:hover,
+    &:focus {
+      @if ($name == 'disabled') {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

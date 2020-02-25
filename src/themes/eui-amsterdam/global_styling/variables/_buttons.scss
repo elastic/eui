@@ -1,17 +1,3 @@
-$euiButtonHeight: $euiSizeXXL !default;
-$euiButtonHeightSmall: $euiSizeXL !default;
-
-$euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 70%) !default;
+$euiButtonColorDisabled: tintOrShade($euiTextColor, 95%, 70%);
 $euiButtonColorGhostDisabled: lightOrDarkTheme($euiColorDarkShade, $euiColorLightShade);
 $euiButtonToggleBorderColor: $euiColorLightShade !default;
-
-// Modifier naming and colors.
-$euiButtonTypes: (
-  primary: $euiColorPrimary,
-  secondary: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-  disabled: $euiColorDarkShade,
-  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
-  text: $euiColorDarkShade, // Reserved for special use cases
-);
