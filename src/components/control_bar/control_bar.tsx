@@ -441,7 +441,7 @@ export class EuiControlBar extends Component<
           <p aria-live="assertive">
             {landmarkHeading ? (
               <EuiI18n
-                token="euiControlBar.screenReaderAnnouncement"
+                token="euiControlBar.customScreenReaderAnnouncement"
                 default="There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
                 values={{ landmarkHeading }}
               />
