@@ -15,7 +15,7 @@ import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../popover';
 import { EuiI18n } from '../i18n';
 import { EuiButtonEmpty } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSwitch, EuiFieldText, EuiSwitchEvent } from '../form';
+import { EuiSwitch, EuiFieldText } from '../form';
 import {
   EuiDragDropContext,
   EuiDraggable,
@@ -147,7 +147,7 @@ export const useColumnSelector = (
                             checked={visibleColumnIds.has(id)}
                             compressed
                             className="euiSwitch--mini"
-                            onChange={(event: EuiSwitchEvent) => {
+                            onChange={event => {
                               const {
                                 target: { checked },
                               } = event;

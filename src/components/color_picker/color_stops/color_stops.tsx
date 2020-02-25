@@ -21,8 +21,10 @@ import {
 
 import { EuiColorPickerProps } from '../';
 import { EuiI18n } from '../../i18n';
-import { EuiRangeHighlight, EuiRangeTrack, EuiRangeWrapper } from '../../form';
 import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiRangeHighlight } from '../../form/range/range_highlight';
+import { EuiRangeTrack } from '../../form/range/range_track';
+import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];

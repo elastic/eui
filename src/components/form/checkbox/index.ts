@@ -1,7 +1,2 @@
-export { EuiCheckbox, EuiCheckboxProps, EuiCheckboxType } from './checkbox';
-export {
-  EuiCheckboxGroup,
-  EuiCheckboxGroupProps,
-  EuiCheckboxGroupOption,
-  EuiCheckboxGroupIdToSelectedMap,
-} from './checkbox_group';
+export { EuiCheckbox, EuiCheckboxProps } from './checkbox';
+export { EuiCheckboxGroup, EuiCheckboxGroupProps } from './checkbox_group';
