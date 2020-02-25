@@ -4,6 +4,9 @@ import {
   EuiButton,
   EuiConfirmModal,
   EuiOverlayMask,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export class ConfirmModal extends Component {
@@ -11,6 +14,7 @@ export class ConfirmModal extends Component {
     isModalVisible: false,
     isDestroyModalVisible: false,
     isEmptyModalVisible: false,
+    isButtonDisabledModalVisible: false,
   };
 
   closeModal = () => {
@@ -37,6 +41,14 @@ export class ConfirmModal extends Component {
     this.setState({ isEmptyModalVisible: true });
   };
 
+  closeButtonDisabledModal = () => {
+    this.setState({ isButtonDisabledModalVisible: false });
+  };
+
+  showButtonDisabledModal = () => {
+    this.setState({ isButtonDisabledModalVisible: true });
+  };
+
   render() {
     let modal;
 
@@ -49,7 +61,8 @@ export class ConfirmModal extends Component {
             onConfirm={this.closeModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton="confirm">
+            defaultFocusedButton="confirm"
+            confirmButtonDisabled={false}>
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -69,7 +82,8 @@ export class ConfirmModal extends Component {
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
             buttonColor="danger"
-            defaultFocusedButton="confirm">
+            defaultFocusedButton="confirm"
+            confirmButtonDisabled={false}>
             <p>You&rsquo;re about to destroy something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -89,6 +103,25 @@ export class ConfirmModal extends Component {
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
             defaultFocusedButton="confirm"
+            confirmButtonDisabled={false}
+          />
+        </EuiOverlayMask>
+      );
+    }
+
+    let buttonDisabledModal;
+
+    if (this.state.isButtonDisabledModalVisible) {
+      buttonDisabledModal = (
+        <EuiOverlayMask>
+          <EuiConfirmModal
+            title="My button is disabled"
+            onCancel={this.closeButtonDisabledModal}
+            onConfirm={this.closeButtonDisabledModal}
+            cancelButtonText="No, don't do it"
+            confirmButtonText="Yes, do it"
+            defaultFocusedButton="confirm"
+            confirmButtonDisabled={true}
           />
         </EuiOverlayMask>
       );
@@ -96,18 +129,30 @@ export class ConfirmModal extends Component {
 
     return (
       <div>
-        <EuiButton onClick={this.showModal}>Show ConfirmModal</EuiButton>
-        &nbsp;
-        <EuiButton onClick={this.showDestroyModal}>
-          Show dangerous ConfirmModal
-        </EuiButton>
-        &nbsp;
-        <EuiButton onClick={this.showEmptyModal}>
-          Show title-only ConfirmModal
-        </EuiButton>
+        <EuiFlexGroup wrap gutterSize="xs">
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showModal}>Show ConfirmModal</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showDestroyModal}>
+              Show dangerous ConfirmModal
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showEmptyModal}>
+              Show title-only ConfirmModal
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showButtonDisabledModal}>
+              Show button-disabled ConfirmModal
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
         {modal}
         {destroyModal}
         {emptyModal}
+        {buttonDisabledModal}
       </div>
     );
   }
