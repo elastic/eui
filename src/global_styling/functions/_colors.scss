@@ -85,10 +85,11 @@
 
 // Given a $foreground and a $background, make the $foreground AA accessibility by slightly
 // adjusting it till the contrast is high enough
+// By default it will compare against the page background color
 
 // ex: makeContrastColor($lightPink, #FFF) would continually shade the pink until
 //     it had higher than 4.5 contrast on a white background.
-@function makeHighContrastColor($foreground, $background) {
+@function makeHighContrastColor($foreground, $background: $euiPageBackgroundColor, $ratio: 4.5) {
   $contrast: contrastRatio($foreground, $background);
 
   // Determine the lightness factor of the background color first to
@@ -97,7 +98,7 @@
 
   $highContrastTextColor: $foreground;
 
-  @while ($contrast < 4.5) {
+  @while ($contrast < $ratio) {
     @if ($brightness > 50) {
       $highContrastTextColor: shade($highContrastTextColor, 5%);
     } @else {
@@ -119,3 +120,12 @@
 
   @return $highContrastTextColor;
 }
+
+// Graphics such as stand alone icons and pieces of a graph only need a minimum ratio of 3:1 with its background.
+// Therefore, we can reuse the `makeHighContrastColor()` function but only attain a min contrast of 3.0.
+// It is still recommended to use `makeHighContrastColor()` to attain a 4.5:1 ratio if the graphic is small or thinly stroked.
+// https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/Informational_Graphic_Contrast_(Minimum)
+@function makeGraphicContrastColor($color, $background: $euiPageBackgroundColor) {
+  @return makeHighContrastColor($color, $background, 3);
+}
+
