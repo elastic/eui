@@ -16,15 +16,10 @@ exports[`EuiSideNav is rendered 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
@@ -48,15 +43,10 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
@@ -80,15 +70,10 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
@@ -112,15 +97,10 @@ exports[`EuiSideNav props items is rendered 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
@@ -177,15 +157,9 @@ exports[`EuiSideNav props items is rendered 1`] = `
               >
                 C
               </span>
-              <svg
-                aria-hidden="true"
-                class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
-                focusable="false"
-                height="16"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                color="subdued"
+                data-euiicon-type="arrowDown"
               />
             </span>
           </div>
@@ -210,15 +184,10 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
@@ -340,15 +309,10 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
@@ -414,15 +378,10 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
@@ -480,15 +439,9 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
               >
                 C
               </span>
-              <svg
-                aria-hidden="true"
-                class="euiIcon euiIcon--small euiIcon--subdued euiIcon-isLoading"
-                focusable="false"
-                height="16"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                color="subdued"
+                data-euiicon-type="arrowDown"
               />
             </span>
           </div>
@@ -513,15 +466,10 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
       <span
         class="euiSideNav__mobileTitle"
       />
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiSideNav__mobileIcon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiSideNav__mobileIcon"
+        data-euiicon-type="apps"
       />
     </span>
   </button>
