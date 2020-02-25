@@ -64,7 +64,6 @@ export class FilePicker extends Component {
               ]}>
               <EuiFilePicker
                 id="asdf2"
-                aUniqueId="xzst21343"
                 multiple
                 initialPromptText="Select or drag and drop multiple files"
                 onChange={files => {
