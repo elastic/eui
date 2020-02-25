@@ -113,11 +113,11 @@ $euiColorVis7_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis7')
 $euiColorVis8_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis8'), 'behindText') !default;
 $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9'), 'behindText') !default;
 
+// Charts
 $euiColorChartLines: #EFF1F4 !default;
 $euiColorChartBand: #F5F7FA !default;
 
 // Code
-
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;
 $euiCodeBlockColor: $euiTextColor !default;
 $euiCodeBlockSelectedBackgroundColor: inherit !default;
