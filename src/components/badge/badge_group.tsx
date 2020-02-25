@@ -32,7 +32,7 @@ const EuiBadgeGroup = React.forwardRef<
     {
       children,
       className,
-      gutterSize = 'l',
+      gutterSize = 'xs',
       responsive = true,
       wrap = false,
       ...rest
