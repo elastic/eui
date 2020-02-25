@@ -1,8 +1,8 @@
-import { EuiComboBoxOptionProps } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
+import { EuiComboBoxOptionOption } from './types';
 import {
   flattenOptionGroups,
-  getSelectedOptionForSearchValue,
   getMatchingOptions,
+  getSelectedOptionForSearchValue,
 } from './matching_options';
 
 const options = [
@@ -82,18 +82,16 @@ describe('getSelectedOptionForSearchValue', () => {
   });
 });
 
-interface GetMatchingOptionsTestCase<T> {
-  options: Array<EuiComboBoxOptionProps<T>>;
-  selectedOptions: Array<EuiComboBoxOptionProps<T>>;
-  searchValue: string;
+interface GetMatchingOptionsTestCase {
+  expected: EuiComboBoxOptionOption[];
   isPreFiltered: boolean;
+  options: EuiComboBoxOptionOption[];
+  searchValue: string;
+  selectedOptions: EuiComboBoxOptionOption[];
   showPrevSelected: boolean;
-  expected: Array<EuiComboBoxOptionProps<T>>;
 }
 
-const testCases: Array<
-  GetMatchingOptionsTestCase<{ [key: string]: string }>
-> = [
+const testCases: GetMatchingOptionsTestCase[] = [
   {
     options,
     selectedOptions: [

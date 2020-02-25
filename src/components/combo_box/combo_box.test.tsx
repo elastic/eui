@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { shallow, render, mount } from 'enzyme';
-import sinon from 'sinon';
 import {
   requiredProps,
   findTestSubject,
@@ -11,20 +10,24 @@ import { comboBoxKeyCodes } from '../../services';
 import { EuiComboBox } from './combo_box';
 
 jest.mock('../portal', () => ({
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: ReactNode }) => children,
 }));
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../services/accessibility/html_id_generator', () => ({
   htmlIdGenerator: () => {
-    return suffix => `htmlid_${suffix}`;
+    return (suffix: string) => `htmlid_${suffix}`;
   },
 }));
 
-const options = [
+interface TitanOption {
+  'data-test-subj'?: 'titanOption';
+  label: string;
+}
+const options: TitanOption[] = [
   {
-    label: 'Titan',
     'data-test-subj': 'titanOption',
+    label: 'Titan',
   },
   {
     label: 'Enceladus',
@@ -164,7 +167,7 @@ describe('props', () => {
 describe('behavior', () => {
   describe('hitting "Enter"', () => {
     test('calls the onCreateOption callback when there is input', () => {
-      const onCreateOptionHandler = sinon.spy();
+      const onCreateOptionHandler = jest.fn();
 
       const component = mount(
         <EuiComboBox
@@ -178,12 +181,12 @@ describe('behavior', () => {
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
       searchInput.simulate('focus');
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
-      sinon.assert.calledOnce(onCreateOptionHandler);
-      sinon.assert.calledWith(onCreateOptionHandler, 'foo');
+      expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
+      expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);
     });
 
     test("doesn't the onCreateOption callback when there is no input", () => {
-      const onCreateOptionHandler = sinon.spy();
+      const onCreateOptionHandler = jest.fn();
 
       const component = mount(
         <EuiComboBox
@@ -196,7 +199,7 @@ describe('behavior', () => {
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
       searchInput.simulate('focus');
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
-      sinon.assert.notCalled(onCreateOptionHandler);
+      expect(onCreateOptionHandler).not.toHaveBeenCalled();
     });
   });
 
@@ -222,11 +225,11 @@ describe('behavior', () => {
       });
 
       // If the TAB keydown propagated to the wrapper, then a browser DOM would shift the focus
-      expect(onKeyDownWrapper.mock.calls.length).toBe(1);
+      expect(onKeyDownWrapper).toHaveBeenCalledTimes(1);
     });
 
     test('off the search input calls onCreateOption', () => {
-      const onCreateOptionHandler = sinon.spy();
+      const onCreateOptionHandler = jest.fn();
 
       const component = mount(
         <EuiComboBox
@@ -246,8 +249,8 @@ describe('behavior', () => {
         new FocusEvent('focusout', { bubbles: true })
       );
 
-      sinon.assert.calledOnce(onCreateOptionHandler);
-      sinon.assert.calledWith(onCreateOptionHandler, 'foo');
+      expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
+      expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);
     });
 
     test('off the search input does nothing if the user is navigating the options', () => {
@@ -280,7 +283,7 @@ describe('behavior', () => {
 
   describe('clear button', () => {
     test('calls onChange callback with empty array', () => {
-      const onChangeHandler = sinon.spy();
+      const onChangeHandler = jest.fn();
       const component = mount(
         <EuiComboBox
           options={options}
@@ -290,8 +293,8 @@ describe('behavior', () => {
       );
 
       findTestSubject(component, 'comboBoxClearButton').simulate('click');
-      sinon.assert.calledOnce(onChangeHandler);
-      sinon.assert.calledWith(onChangeHandler, []);
+      expect(onChangeHandler).toHaveBeenCalledTimes(1);
+      expect(onChangeHandler).toHaveBeenNthCalledWith(1, []);
     });
 
     test('focuses the input', () => {

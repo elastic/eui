@@ -6,6 +6,10 @@ import cheerio from 'cheerio';
 import { EuiIcon, SIZES, TYPES, COLORS } from './icon';
 import { PropsOf } from '../common';
 
+jest.mock('./icon', () => {
+  return require.requireActual('./icon');
+});
+
 const prettyHtml = cheerio.load('');
 
 function testIcon(props: PropsOf<EuiIcon>) {

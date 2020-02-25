@@ -31,15 +31,10 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       class="euiToastHeader euiToastHeader--withBody"
       data-test-subj="euiToastHeader"
     >
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiToastHeader__icon"
+        data-euiicon-type="check"
       />
       <span
         class="euiToastHeader__title"
@@ -53,15 +48,9 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       data-test-subj="toastCloseButton"
       type="button"
     >
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        data-euiicon-type="cross"
       />
     </button>
     <div
@@ -85,15 +74,10 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       class="euiToastHeader euiToastHeader--withBody"
       data-test-subj="euiToastHeader"
     >
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiToastHeader__icon"
+        data-euiicon-type="alert"
       />
       <span
         class="euiToastHeader__title"
@@ -107,15 +91,9 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       data-test-subj="toastCloseButton"
       type="button"
     >
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        data-euiicon-type="cross"
       />
     </button>
     <div

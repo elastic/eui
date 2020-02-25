@@ -149,15 +149,10 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
   <span
     class="euiButtonEmpty__content"
   >
-    <svg
+    <div
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+      class="euiButtonEmpty__icon"
+      data-euiicon-type="user"
     />
     <span
       class="euiButtonEmpty__text"
@@ -176,15 +171,10 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
   <span
     class="euiButtonEmpty__content"
   >
-    <svg
+    <div
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+      class="euiButtonEmpty__icon"
+      data-euiicon-type="user"
     />
     <span
       class="euiButtonEmpty__text"
@@ -203,15 +193,10 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
   <span
     class="euiButtonEmpty__content"
   >
-    <svg
+    <div
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+      class="euiButtonEmpty__icon"
+      data-euiicon-type="user"
     />
     <span
       class="euiButtonEmpty__text"

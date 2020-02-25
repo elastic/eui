@@ -27,25 +27,11 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             size="m"
             type="arrowRight"
           >
-            <EuiIconEmpty
-              aria-hidden={true}
-              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-              focusable="false"
-              role="img"
-              style={null}
-            >
-              <svg
-                aria-hidden={true}
-                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-                focusable="false"
-                height={16}
-                role="img"
-                style={null}
-                viewBox="0 0 16 16"
-                width={16}
-                xmlns="http://www.w3.org/2000/svg"
-              />
-            </EuiIconEmpty>
+            <div
+              className="euiAccordion__icon"
+              data-euiicon-type="arrowRight"
+              size="m"
+            />
           </EuiIcon>
         </span>
         <span />
@@ -105,25 +91,11 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             size="m"
             type="arrowRight"
           >
-            <EuiIconEmpty
-              aria-hidden={true}
-              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
-              focusable="false"
-              role="img"
-              style={null}
-            >
-              <svg
-                aria-hidden={true}
-                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
-                focusable="false"
-                height={16}
-                role="img"
-                style={null}
-                viewBox="0 0 16 16"
-                width={16}
-                xmlns="http://www.w3.org/2000/svg"
-              />
-            </EuiIconEmpty>
+            <div
+              className="euiAccordion__icon euiAccordion__icon-isOpen"
+              data-euiicon-type="arrowRight"
+              size="m"
+            />
           </EuiIcon>
         </span>
         <span />
@@ -174,15 +146,9 @@ exports[`EuiAccordion is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span />
@@ -217,15 +183,9 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span>
@@ -264,15 +224,9 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span
@@ -309,15 +263,9 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span />
@@ -359,15 +307,9 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon euiAccordion__icon-isOpen"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span />
