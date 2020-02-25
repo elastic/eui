@@ -47,6 +47,7 @@ export interface EuiFilePickerProps
   isInvalid?: boolean;
   isLoading?: boolean;
   disabled?: boolean;
+  aUniqueId?: string;
 }
 
 export class EuiFilePicker extends Component<EuiFilePickerProps> {
@@ -118,6 +119,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             initialPromptText,
             className,
             disabled,
+            aUniqueId,
             compressed,
             onChange,
             isInvalid,
@@ -199,6 +201,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                     onDrop={this.hideDrop}
                     disabled={disabled}
                     {...rest}
+                    aria-describedby={aUniqueId}
                   />
                 </EuiValidatableControl>
                 <div className="euiFilePicker__prompt">
