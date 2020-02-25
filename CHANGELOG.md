@@ -24,7 +24,7 @@
 - Fixed a bug in `EuiDataGrid` causing the first cell to autofocus if interactive ([#2872](https://github.com/elastic/eui/pull/2872))
 
 **Breaking changes**
-- Added `@types/sinon` as dependency  ([#2908](https://github.com/elastic/eui/pull/2908))
+- Added `@types/sinon` as dependency  ([#2924](https://github.com/elastic/eui/pull/2924))
 - Removed `visControls` and `visHeatmap` duplicate icons from docs ([#2908](https://github.com/elastic/eui/pull/2908))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
