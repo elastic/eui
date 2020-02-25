@@ -8,11 +8,12 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiSelectable,
-  EuiSelectableList,
   EuiSelectableMessage,
   EuiText,
   EuiSpacer,
 } from '../../../../src/components';
+
+import { EuiSelectableOptionProps, EuiSelectableOptionsList } from './props';
 
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
@@ -83,46 +84,17 @@ export const SelectableExample = {
             At its simplest, EuiSelectable requires an array of{' '}
             <EuiCode>options</EuiCode> and an <EuiCode>onChange</EuiCode>{' '}
             handler which passes back the altered{' '}
-            <EuiCode>selectedOptions</EuiCode> array.
+            <EuiCode>selectedOptions</EuiCode> array. The{' '}
+            <EuiCode>children</EuiCode> is a function that return the{' '}
+            <EuiCode>list</EuiCode> and <EuiCode>search</EuiCode> nodes.
           </p>
-          <h4>
-            The <EuiCode>Option</EuiCode> props
-          </h4>
-          <ul>
-            <li>
-              <EuiCode>label: string</EuiCode> <strong>required</strong> Must be
-              unique across items if <EuiCode>key</EuiCode> is not passed
-            </li>
-            <li>
-              <EuiCode>key?: string</EuiCode> Must be unique across items
-            </li>
-            <li>
-              <EuiCode>checked?: &apos;on&apos; | &apos;off&apos;</EuiCode>{' '}
-              Leave off to indicate not selected, &apos;on&apos; to indicate
-              inclusion and &apos;off&apos; to indicate exclusion
-            </li>
-            <li>
-              <EuiCode>disabled?: boolean</EuiCode>
-            </li>
-            <li>
-              <EuiCode>isGroupLabel?: boolean</EuiCode> Set to true to indicate
-              object is just a grouping label, not a selectable item
-            </li>
-            <li>
-              <EuiCode>prepend?: React.ReactNode</EuiCode> Node to add between
-              the selection icon and the label
-            </li>
-            <li>
-              <EuiCode>append?: React.ReactNode</EuiCode> Node to add to the far
-              right of the item
-            </li>
-            <li>
-              <EuiCode>ref?: () =&gt; void</EuiCode>
-            </li>
-          </ul>
         </Fragment>
       ),
-      props: { EuiSelectable, EuiSelectableList },
+      props: {
+        EuiSelectable,
+        EuiSelectableOptionProps,
+        EuiSelectableOptionsList,
+      },
       demo: <Selectable />,
       snippet: `<EuiSelectable
   options={[{ label: '' }, { label: '' }]}

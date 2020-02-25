@@ -3,14 +3,14 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableList } from './selectable_list';
-import { Option } from '../types';
+import { EuiSelectableOption } from '../selectable_option';
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../../services/accessibility/html_id_generator', () => ({
   htmlIdGenerator: () => () => 'htmlId',
 }));
 
-const options: Option[] = [
+const options: EuiSelectableOption[] = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -87,7 +87,7 @@ describe('EuiSelectableListItem', () => {
       const component = render(
         <EuiSelectableList
           options={options}
-          renderOption={(option: Option, searchValue?: string) => {
+          renderOption={(option: EuiSelectableOption, searchValue?: string) => {
             return (
               <span>
                 {searchValue} =&gt; {option.label}

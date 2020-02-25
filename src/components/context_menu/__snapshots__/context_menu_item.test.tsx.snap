@@ -46,15 +46,9 @@ exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
     <span
       class="euiContextMenuItem__text"
     />
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiContextMenu__arrow"
+      data-euiicon-type="arrowRight"
     />
   </span>
 </button>
