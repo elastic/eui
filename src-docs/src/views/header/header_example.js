@@ -21,6 +21,10 @@ import Header from './header';
 const headerSource = require('!!raw-loader!./header');
 const headerHtml = renderToHtml(Header);
 
+import HeaderSections from './header_sections';
+const headerSectionsSource = require('!!raw-loader!./header_sections');
+const headerSectionsHtml = renderToHtml(HeaderSections);
+
 import HeaderAlert from './header_alert';
 const headerAlertSource = require('!!raw-loader!./header_alert');
 const headerAlertHtml = renderToHtml(HeaderAlert);
@@ -45,10 +49,28 @@ const headerSnippet = `<EuiHeader>
   </EuiHeaderSection>
 </EuiHeader>`;
 
+const headerSectionsSnippet = `<EuiHeader
+  sections={{
+    left: [
+      {
+        children: this.renderLogo(),
+        border: 'none',
+      },
+      { children: this.renderBreadcrumbs() },
+    ],
+    center: [
+      { children: this.renderSearch() },
+    ],
+    right: [
+      { children: this.renderUser() },
+    ],
+  }}
+/>`;
+
 const headerLinksSnippet = `<EuiHeader>
   <EuiHeaderSectionItem border="right">
     <EuiHeaderLogo
-      iconType="iconName" 
+      iconType="iconName"
       href="#"
     />
   </EuiHeaderSectionItem>
@@ -78,7 +100,11 @@ export const HeaderExample = {
           code: headerHtml,
         },
       ],
-      text: <p>The header is made up of several individual components.</p>,
+      text: (
+        <p>
+          The header is made up of <strong>many</strong> individual components.
+        </p>
+      ),
       props: {
         EuiHeader,
         EuiHeaderBreadcrumbs,
@@ -89,6 +115,42 @@ export const HeaderExample = {
       },
       snippet: headerSnippet,
       demo: <Header />,
+    },
+    {
+      title: 'Sections',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerSectionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerSectionsHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Alternatively, you can add a <EuiCode>sections</EuiCode> object for{' '}
+            <EuiCode>left</EuiCode>, <EuiCode>center</EuiCode>, and{' '}
+            <EuiCode>right</EuiCode> EuiHeaderSections which accepts an array of
+            EuiHeaderSectionItem props.
+          </p>
+          <p>
+            <strong>Note:</strong> Passing <EuiCode>sections</EuiCode> and{' '}
+            <EuiCode>children</EuiCode> will disregard the{' '}
+            <EuiCode>children</EuiCode> as it is not easily interpreted at what
+            location the children should be placed.
+          </p>
+        </>
+      ),
+      props: {
+        EuiHeader,
+        EuiHeaderSection,
+        EuiHeaderSectionItem,
+      },
+      snippet: headerSectionsSnippet,
+      demo: <HeaderSections />,
     },
     {
       title: 'Links',

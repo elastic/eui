@@ -294,7 +294,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
 </li>
 `;
 
-exports[`EuiListGroupItem throws an warning if both iconType and icon are provided but still renders 1`] = `
+exports[`EuiListGroupItem throws a warning if both iconType and icon are provided but still renders 1`] = `
 <li
   class="euiListGroupItem euiListGroupItem--medium"
 >

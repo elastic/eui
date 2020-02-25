@@ -5,10 +5,6 @@
   display: flex;
   align-items: center;
 
-  &:hover {
-    background: $euiColorLightestShade;
-  }
-
   &:after {
     position: absolute;
     content: '';
@@ -24,6 +20,10 @@
   min-width: $euiHeaderChildSize;
   text-align: center;
   font-size: 0; // aligns icons better vertically
+
+  &:hover {
+    background: $euiColorLightestShade;
+  }
 
   &:focus {
     background: $euiFocusBackgroundColor;

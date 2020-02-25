@@ -55,8 +55,14 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   }, [position]);
 
   let contents;
-
   if (sections) {
+    if (children) {
+      // In case both children and sections are passed, warn in the console that the children will be disregarded
+      console.warn(
+        'EuiHeader cannot accept both `children` and `sections`. It will disregard the `children`.'
+      );
+    }
+
     contents = [
       sections.left && (
         <EuiHeaderSection key="left" grow={sections.center ? false : undefined}>
