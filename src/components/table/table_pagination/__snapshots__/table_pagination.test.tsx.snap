@@ -21,15 +21,10 @@ exports[`EuiTablePagination is rendered 1`] = `
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="arrowDown"
             />
             <span
               class="euiButtonEmpty__text"
@@ -54,15 +49,10 @@ exports[`EuiTablePagination is rendered 1`] = `
         data-test-subj="pagination-button-previous"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowLeft"
         />
       </button>
       <button
@@ -151,15 +141,10 @@ exports[`EuiTablePagination is rendered 1`] = `
         data-test-subj="pagination-button-next"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowRight"
         />
       </button>
     </div>
@@ -187,15 +172,10 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         data-test-subj="pagination-button-previous"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowLeft"
         />
       </button>
       <button
@@ -284,15 +264,10 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         data-test-subj="pagination-button-next"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowRight"
         />
       </button>
     </div>
