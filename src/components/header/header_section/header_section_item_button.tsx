@@ -10,7 +10,7 @@ import {
 type Props = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     /**
-     * Inserts the node into a EuiBadgeNotification and places it appropriatesly against the button
+     * Inserts the node into a EuiBadgeNotification and places it appropriately against the button
      */
     notification?: EuiNotificationBadgeProps['children'];
     /**

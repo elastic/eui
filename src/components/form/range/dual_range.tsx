@@ -67,16 +67,15 @@ export interface EuiDualRangeProps
    */
   ticks?: EuiRangeTick[];
   /**
-   * Creates an input group with element(s) coming before input. Will only show if `showInput = inputWithPopver`.
-   * `string` | `ReactElement` or an array of these
-   */
-  append?: EuiFormControlLayoutProps['append'];
-  /**
-   * Creates an input group with element(s) coming after input.  Will only show if `showInput = inputWithPopver`.
+   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopver`.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
-
+  /**
+   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopver`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
   /**
    *  Intended to be uses with aria attributes. Some attributes may be overwritten.
    */
