@@ -3,14 +3,14 @@
 exports[`EuiHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeader euiHeader--static testClass1 testClass2 testClass1 testClass2"
+  class="euiHeader euiHeader--static testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiHeader renders children 1`] = `
 <div
-  class="euiHeader euiHeader--static undefined"
+  class="euiHeader euiHeader--static"
 >
   <span>
     Hello!
@@ -20,7 +20,7 @@ exports[`EuiHeader renders children 1`] = `
 
 exports[`EuiHeader renders sections 1`] = `
 <div
-  class="euiHeader euiHeader--static undefined"
+  class="euiHeader euiHeader--static"
 >
   <div
     class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
@@ -54,7 +54,7 @@ exports[`EuiHeader renders sections 1`] = `
 
 exports[`EuiHeader throws a warning if both children and sections were passed 1`] = `
 <div
-  class="euiHeader euiHeader--static undefined"
+  class="euiHeader euiHeader--static"
 >
   <div
     class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"

@@ -96,9 +96,8 @@ export default class extends Component {
             { children: <HeaderUserMenu /> },
             { children: <HeaderAppMenu /> },
           ],
-        }}>
-        Child here
-      </EuiHeader>
+        }}
+      />
     );
   }
 }

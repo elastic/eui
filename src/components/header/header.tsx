@@ -39,11 +39,7 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   position = 'static',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiHeader',
-    `euiHeader--${position} ${className}`,
-    className
-  );
+  const classes = classNames('euiHeader', `euiHeader--${position}`, className);
 
   useEffect(() => {
     if (position === 'fixed') {

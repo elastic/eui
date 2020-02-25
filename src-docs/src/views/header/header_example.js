@@ -25,6 +25,10 @@ import HeaderSections from './header_sections';
 const headerSectionsSource = require('!!raw-loader!./header_sections');
 const headerSectionsHtml = renderToHtml(HeaderSections);
 
+import HeaderPosition from './header_position';
+const headerPositionSource = require('!!raw-loader!./header_position');
+const headerPositionHtml = renderToHtml(HeaderPosition);
+
 import HeaderAlert from './header_alert';
 const headerAlertSource = require('!!raw-loader!./header_alert');
 const headerAlertHtml = renderToHtml(HeaderAlert);
@@ -151,6 +155,32 @@ export const HeaderExample = {
       },
       snippet: headerSectionsSnippet,
       demo: <HeaderSections />,
+    },
+    {
+      title: 'Position',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerPositionSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerPositionHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Most consumer need a header that does not scroll way with the page
+            contents. You can apply this display by changing{' '}
+            <EuiCode>position</EuiCode> to <EuiCode>fixed</EuiCode>. It will
+            also add the appropriate padding to the window body by applying a
+            class.
+          </p>
+        </>
+      ),
+      snippet: '<EuiHeader position="fixed" />',
+      demo: <HeaderPosition />,
     },
     {
       title: 'Links',
