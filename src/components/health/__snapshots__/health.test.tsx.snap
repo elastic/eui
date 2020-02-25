@@ -12,15 +12,8 @@ exports[`EuiHealth is rendered 1`] = `
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
-      <svg
-        aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        data-euiicon-type="dot"
       />
     </div>
     <div

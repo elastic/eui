@@ -105,15 +105,10 @@ console.log(some);
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="copy"
           />
         </button>
       </span>
@@ -163,15 +158,10 @@ console.log(some);
       class="euiButtonIcon euiButtonIcon--text euiCodeBlock__fullScreenButton"
       type="button"
     >
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="fullScreen"
       />
     </button>
   </div>
