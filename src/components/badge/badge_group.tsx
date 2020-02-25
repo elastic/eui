@@ -2,7 +2,7 @@ import React, { HTMLAttributes, Ref } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
-export type BadgeGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
+type BadgeGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
 
 export interface EuiBadgeGroupProps {
   gutterSize?: BadgeGroupGutterSize;
