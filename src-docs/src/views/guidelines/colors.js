@@ -197,14 +197,7 @@ export default class extends Component {
     // Vis colors are the same for all palettes
     const visColors = lightColors.euiPaletteColorBlind;
     const visColorKeys = Object.keys(lightColors.euiPaletteColorBlind);
-<<<<<<< HEAD
-    const colorsForContrast =
-      showTextVariants && selectedTheme === 'amsterdam-light'
-        ? textVariants
-        : allowedColors;
-=======
     const colorsForContrast = showTextVariants ? textVariants : allowedColors;
->>>>>>> upstream/master
 
     function getContrastRatings(color1, color2) {
       if (color1.indexOf('Shade') === -1 && color2.indexOf('Shade') === -1) {
@@ -274,29 +267,6 @@ export default class extends Component {
             combination that is <EuiBadge color="#333">AA</EuiBadge> or above
             with the exception of using large text.
           </p>
-<<<<<<< HEAD
-          {selectedTheme === 'amsterdam-light' && (
-            <EuiCallOut
-              color="warning"
-              iconType="accessibility"
-              title="Amsterdam changes in contrast levels">
-              <p>
-                The Amsterdam theme introduces a more vibrant core color
-                palette. In order to maintain a WCAG contrast of at least 4.5
-                you should use the text variants of the core color variables
-                such as&nbsp;
-                <EuiCode>$euiColorSecondaryText</EuiCode>. Components that
-                render text such as <EuiCode>EuiText</EuiCode> will do so on
-                their own without any extra configuration.
-              </p>
-              <EuiSwitch
-                label="Show text variant"
-                checked={showTextVariants}
-                onChange={this.onTextVariantChange}
-              />
-            </EuiCallOut>
-          )}
-=======
           <EuiCallOut
             color="warning"
             iconType="accessibility"
@@ -315,7 +285,6 @@ export default class extends Component {
               onChange={this.onTextVariantChange}
             />
           </EuiCallOut>
->>>>>>> upstream/master
           <h3>Rating definitions</h3>
           <ul>
             <li>
