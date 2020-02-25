@@ -6,7 +6,6 @@ import {
   EuiOverlayMask,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSpacer,
 } from '../../../../src/components';
 
 export class ConfirmModal extends Component {
@@ -61,8 +60,7 @@ export class ConfirmModal extends Component {
             onConfirm={this.closeModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton="confirm"
-            confirmButtonDisabled={false}>
+            defaultFocusedButton="confirm">
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -82,8 +80,7 @@ export class ConfirmModal extends Component {
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
             buttonColor="danger"
-            defaultFocusedButton="confirm"
-            confirmButtonDisabled={false}>
+            defaultFocusedButton="confirm">
             <p>You&rsquo;re about to destroy something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -103,7 +100,6 @@ export class ConfirmModal extends Component {
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
             defaultFocusedButton="confirm"
-            confirmButtonDisabled={false}
           />
         </EuiOverlayMask>
       );
@@ -120,7 +116,7 @@ export class ConfirmModal extends Component {
             onConfirm={this.closeButtonDisabledModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton="confirm"
+            defaultFocusedButton="cancel"
             confirmButtonDisabled={true}
           />
         </EuiOverlayMask>
@@ -145,7 +141,7 @@ export class ConfirmModal extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton onClick={this.showButtonDisabledModal}>
-              Show button-disabled ConfirmModal
+              Show confirm disabled ConfirmModal
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>

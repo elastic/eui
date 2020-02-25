@@ -44,8 +44,7 @@ const confirmModalSnippet = [
   onConfirm={this.closeModal}
   cancelButtonText={cancelText}
   confirmButtonText={confirmText}
-  defaultFocusedButton="confirm"
-  confirmButtonDisabled={false}>
+  defaultFocusedButton="confirm">
   <!-- ConfirmModal content -->
 </EuiConfirmModal>`,
   `<EuiConfirmModal
@@ -55,8 +54,7 @@ const confirmModalSnippet = [
   cancelButtonText={cancelText}
   confirmButtonText={confirmText}
   buttonColor="danger"
-  defaultFocusedButton="confirm"
-  confirmButtonDisabled={false}>
+  defaultFocusedButton="confirm">
   <!-- Dangerous ConfirmModal content -->
 </EuiConfirmModal>`,
 ];
