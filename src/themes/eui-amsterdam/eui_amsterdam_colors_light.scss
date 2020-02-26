@@ -1,1 +1,11 @@
-$euiColorPrimary: #006DE4;
+// This extra import allows any variables that are created via functions to work when loaded into JS
+@import '../../global_styling/variables/colors';
+
+$euiColorPrimary:     #006DE4;
+$euiColorSecondary:   #00BFB3;
+$euiColorAccent:      #FC358E;
+
+// Contrasty text variants
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
+$euiColorAccentText: makeHighContrastColor($euiColorAccent);

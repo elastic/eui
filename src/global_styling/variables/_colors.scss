@@ -1,3 +1,6 @@
+// This extra import allows any variables that are created via functions to work when loaded into JS
+@import '../functions/index';
+
 // Core
 $euiColorPrimary: #006BB4 !default;
 $euiColorSecondary: #017D73 !default;
@@ -23,12 +26,19 @@ $euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
 
 // Every color below must be based mathmatically on the set above.
-
 $euiTextColor: $euiColorDarkestShade !default;
 $euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
 $euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
+
+// Contrasty text variants
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
+$euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
+$euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
+$euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
+$euiColorSuccessText: $euiColorSecondaryText !default;
 
 // Visualization colors
 
@@ -103,11 +113,11 @@ $euiColorVis7_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis7')
 $euiColorVis8_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis8'), 'behindText') !default;
 $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9'), 'behindText') !default;
 
+// Charts
 $euiColorChartLines: #EFF1F4 !default;
 $euiColorChartBand: #F5F7FA !default;
 
 // Code
-
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;
 $euiCodeBlockColor: $euiTextColor !default;
 $euiCodeBlockSelectedBackgroundColor: inherit !default;
