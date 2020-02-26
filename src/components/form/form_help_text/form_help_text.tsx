@@ -3,9 +3,13 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-export const EuiFormHelpText: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement>
-> = ({ children, className, ...rest }) => {
+export type EuiFormHelpTextProps = CommonProps & HTMLAttributes<HTMLDivElement>;
+
+export const EuiFormHelpText: FunctionComponent<EuiFormHelpTextProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames('euiFormHelpText', className);
 
   return (
