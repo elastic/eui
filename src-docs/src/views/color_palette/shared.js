@@ -25,7 +25,7 @@ export const ColorPaletteCopyCode = ({ textToCopy, code }) => {
     <span>
       <EuiCopy
         beforeMessage="Click to copy palette config"
-        textToCopy={textToCopy}>
+        textToCopy={textToCopy || code}>
         {copy => (
           <EuiLink onClick={copy}>
             <EuiCode>{code}</EuiCode>

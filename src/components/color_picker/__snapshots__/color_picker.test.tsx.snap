@@ -2,7 +2,7 @@
 
 exports[`renders EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -37,15 +37,10 @@ exports[`renders EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -58,15 +53,10 @@ exports[`renders EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -78,7 +68,7 @@ exports[`renders EuiColorPicker 1`] = `
 
 exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -113,15 +103,10 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -134,15 +119,10 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -154,7 +134,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
 
 exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -188,15 +168,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="stopSlash"
                   />
                 </span>
               </div>
@@ -209,15 +184,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -229,7 +199,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 
 exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -263,15 +233,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="stopSlash"
                   />
                 </span>
               </div>
@@ -284,15 +249,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -302,9 +262,85 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 </div>
 `;
 
+exports[`renders a EuiColorPicker with a prepend and append 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div
+      class="euiFormControlLayout euiFormControlLayout--group"
+    >
+      <label
+        class="euiFormLabel euiFormControlLayout__prepend"
+      >
+        prepend
+      </label>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          style="color:#ffeedd"
+        >
+          <div
+            class="euiFormControlLayout"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiColorPicker__input euiColorPicker__input--inGroup euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                type="text"
+                value="#FFEEDD"
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <div
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <div
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </div>
+      </div>
+      <label
+        class="euiFormLabel euiFormControlLayout__append"
+      >
+        append
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders compressed EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -339,15 +375,10 @@ exports[`renders compressed EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -360,15 +391,10 @@ exports[`renders compressed EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -380,7 +406,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
 
 exports[`renders disabled EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -416,15 +442,10 @@ exports[`renders disabled EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -437,15 +458,10 @@ exports[`renders disabled EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -457,7 +473,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
 
 exports[`renders fullWidth EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -492,15 +508,10 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>
@@ -513,15 +524,10 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
           <span
             class="euiFormControlLayoutCustomIcon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
           </span>
         </div>
@@ -604,10 +610,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #5BBAA0 as the color"
+        aria-label="Select #54B399 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#5BBAA0"
+        style="background:#54B399"
         type="button"
       />
     </div>
@@ -648,10 +654,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #EEAFCF as the color"
+        aria-label="Select #CA8EAE as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#EEAFCF"
+        style="background:#CA8EAE"
         type="button"
       />
     </div>
@@ -659,10 +665,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #FAE181 as the color"
+        aria-label="Select #D6BF57 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#FAE181"
+        style="background:#D6BF57"
         type="button"
       />
     </div>
@@ -670,10 +676,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #CDBD9D as the color"
+        aria-label="Select #B9A888 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#CDBD9D"
+        style="background:#B9A888"
         type="button"
       />
     </div>
@@ -681,10 +687,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #F19F58 as the color"
+        aria-label="Select #DA8B45 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#F19F58"
+        style="background:#DA8B45"
         type="button"
       />
     </div>
@@ -692,10 +698,10 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <button
-        aria-label="Select #B46F5F as the color"
+        aria-label="Select #AA6556 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#B46F5F"
+        style="background:#AA6556"
         type="button"
       />
     </div>
@@ -716,7 +722,7 @@ exports[`renders inline EuiColorPicker 1`] = `
 
 exports[`renders readOnly EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
 >
   <div
     class="euiPopover__anchor"
@@ -752,15 +758,10 @@ exports[`renders readOnly EuiColorPicker 1`] = `
                 <span
                   class="euiFormControlLayoutCustomIcon"
                 >
-                  <svg
+                  <div
                     aria-hidden="true"
-                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                    focusable="false"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
                   />
                 </span>
               </div>

@@ -56,7 +56,7 @@ function handleJSXPath(path) {
 function traverseFile(filepath) {
   const source = fs.readFileSync(filepath);
   const ast = babel.parse(
-    source,
+    source.toString(),
     {
       ...babelOptions,
       filename: basename(filepath),

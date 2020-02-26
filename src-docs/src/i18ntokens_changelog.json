@@ -1,5 +1,74 @@
 [
   {
+    "version": "20.0.0",
+    "changes": [
+      {
+        "token": "euiBottomBar.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "There is a new region landmark with page level controls at the end of the document."
+      },
+      {
+        "token": "euiBottomBar.screenReaderHeading",
+        "changeType": "added",
+        "value": "Page level controls"
+      },
+      {
+        "token": "euiBottomBar.customScreenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+      },
+      {
+        "token": "euiControlBar.screenReaderHeading",
+        "changeType": "added",
+        "value": "Page level controls"
+      },
+      {
+        "token": "euiControlBar.customScreenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+      },
+      {
+        "token": "euiControlBar.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark with page level controls at the end of the document."
+      }
+    ]
+  },
+  {
+    "version": "19.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tableDescription",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableDescriptionWithPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows out of {totalItemCount} rows."
+      },
+      {
+        "token": "euiBasicTable.tableDescriptionWithoutPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows."
+      }
+    ]
+  },
+  {
+    "version": "18.3.0",
+    "changes": [
+      {
+        "token": "euiFilterButton.filterBadge",
+        "changeType": "modified",
+        "value": "{count} {hasActiveFilters} filters"
+      },
+      {
+        "token": "euiPagination.pageOfTotalCompressed",
+        "changeType": "added",
+        "value": "{page} of {total}"
+      }
+    ]
+  },
+  {
     "version": "16.1.0",
     "changes": [
       {

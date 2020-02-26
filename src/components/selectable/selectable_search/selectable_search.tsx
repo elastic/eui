@@ -1,13 +1,9 @@
 import React, { Component, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-// @ts-ignore
-import { EuiFieldSearch } from '../../form/field_search';
+import { EuiFieldSearch, EuiFieldSearchProps } from '../../form/field_search';
 import { getMatchingOptions } from '../matching_options';
-import { Option } from '../types';
-
-/// <reference path="../../form/field_search/index.d.ts" />
-import { EuiFieldSearchProps } from '@elastic/eui'; // eslint-disable-line
+import { EuiSelectableOption } from '../selectable_option';
 
 export type EuiSelectableSearchProps = Omit<
   InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps,
@@ -17,8 +13,11 @@ export type EuiSelectableSearchProps = Omit<
     /**
      * Passes back (matchingOptions, searchValue)
      */
-    onChange?: (matchingOptions: Option[], searchValue: string) => void;
-    options: Option[];
+    onChange?: (
+      matchingOptions: EuiSelectableOption[],
+      searchValue: string
+    ) => void;
+    options: EuiSelectableOption[];
     defaultValue: string;
   };
 
@@ -56,7 +55,7 @@ export class EuiSelectableSearch extends Component<
     this.passUpMatches(matchingOptions, value);
   };
 
-  passUpMatches = (matches: Option[], searchValue: string) => {
+  passUpMatches = (matches: EuiSelectableOption[], searchValue: string) => {
     if (this.props.onChange) {
       this.props.onChange(matches, searchValue);
     }

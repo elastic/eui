@@ -6,6 +6,10 @@ import cheerio from 'cheerio';
 import { EuiIcon, SIZES, TYPES, COLORS } from './icon';
 import { PropsOf } from '../common';
 
+jest.mock('./icon', () => {
+  return require.requireActual('./icon');
+});
+
 const prettyHtml = cheerio.load('');
 
 function testIcon(props: PropsOf<EuiIcon>) {
@@ -33,6 +37,17 @@ describe('EuiIcon', () => {
           type: 'search',
           'aria-label': 'A Search Icon',
           title: 'Search',
+        })
+      );
+    });
+
+    describe('title and titleId', () => {
+      test(
+        'are passed and generate an aria-labelledby',
+        testIcon({
+          type: 'search',
+          title: 'Search icon',
+          titleId: 'id-test',
         })
       );
     });

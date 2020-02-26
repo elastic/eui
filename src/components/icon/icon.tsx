@@ -4,7 +4,6 @@ import React, {
   ReactElement,
   SVGAttributes,
 } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
@@ -16,6 +15,8 @@ import { CommonProps, keysOf } from '../common';
 // to generate & git track a TS module definition for each icon component
 import { icon as empty } from './assets/empty.js';
 import { enqueueStateChange } from '../../services/react';
+
+import { htmlIdGenerator } from '../../services';
 
 const typeToPathMap = {
   accessibility: 'accessibility',
@@ -49,6 +50,7 @@ const typeToPathMap = {
   codeApp: 'app_code',
   check: 'check',
   checkInCircleFilled: 'checkInCircleFilled',
+  cheer: 'cheer',
   clock: 'clock',
   cloudDrizzle: 'cloudDrizzle',
   cloudStormy: 'cloudStormy',
@@ -139,6 +141,7 @@ const typeToPathMap = {
   heatmap: 'heatmap',
   help: 'help',
   iInCircle: 'iInCircle',
+  image: 'image',
   importAction: 'import',
   indexClose: 'index_close',
   indexEdit: 'index_edit',
@@ -194,6 +197,7 @@ const typeToPathMap = {
   logoGithub: 'logo_github',
   logoGmail: 'logo_gmail',
   logoGolang: 'logo_golang',
+  logoGoogleG: 'logo_google_g',
   logoHAproxy: 'logo_haproxy',
   logoIBM: 'logo_ibm',
   logoIBMMono: 'logo_ibm_mono',
@@ -208,6 +212,7 @@ const typeToPathMap = {
   logoMongodb: 'logo_mongodb',
   logoMySQL: 'logo_mysql',
   logoNginx: 'logo_nginx',
+  logoObservability: 'logo_observability',
   logoOsquery: 'logo_osquery',
   logoPhp: 'logo_php',
   logoPostgres: 'logo_postgres',
@@ -221,6 +226,7 @@ const typeToPathMap = {
   logoUptime: 'logo_uptime',
   logoWebhook: 'logo_webhook',
   logoWindows: 'logo_windows',
+  logoWorkplaceSearch: 'logo_workplace_search',
   logstashFilter: 'logstash_filter',
   logstashIf: 'logstash_if',
   logstashInput: 'logstash_input',
@@ -254,6 +260,7 @@ const typeToPathMap = {
   pageSelect: 'pageSelect',
   pagesSelect: 'pagesSelect',
   partial: 'partial',
+  paperClip: 'paper_clip',
   pause: 'pause',
   pencil: 'pencil',
   pin: 'pin',
@@ -264,6 +271,7 @@ const typeToPathMap = {
   plusInCircleFilled: 'plus_in_circle_filled',
   popout: 'popout',
   questionInCircle: 'question_in_circle',
+  recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
   reportingApp: 'app_reporting',
   save: 'save',
@@ -326,10 +334,8 @@ const typeToPathMap = {
   visBarHorizontalStacked: 'vis_bar_horizontal_stacked',
   visBarVertical: 'vis_bar_vertical',
   visBarVerticalStacked: 'vis_bar_vertical_stacked',
-  visControls: 'vis_controls',
   visGauge: 'vis_gauge',
   visGoal: 'vis_goal',
-  visHeatmap: 'vis_heatmap',
   visLine: 'vis_line',
   visMapCoordinate: 'vis_map_coordinate',
   visMapRegion: 'vis_map_region',
@@ -375,6 +381,13 @@ const typeToPathMap = {
   tokenFile: 'tokens/tokenFile',
   tokenModule: 'tokens/tokenModule',
   tokenNamespace: 'tokens/tokenNamespace',
+  tokenDate: 'tokens/tokenDate',
+  tokenIP: 'tokens/tokenIP',
+  tokenNested: 'tokens/tokenNested',
+  tokenAlias: 'tokens/tokenAlias',
+  tokenShape: 'tokens/tokenShape',
+  tokenGeo: 'tokens/tokenGeo',
+  tokenRange: 'tokens/tokenRange',
 };
 
 export const TYPES = keysOf(typeToPathMap);
@@ -382,11 +395,6 @@ export const TYPES = keysOf(typeToPathMap);
 export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ReactElement;
-
-export const IconPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.node,
-]);
 
 const colorToClassMap = {
   default: null,
@@ -445,6 +453,10 @@ export type EuiIconProps = CommonProps &
      */
     title?: string;
     /**
+     * A unique identifier for the title element
+     */
+    titleId?: string;
+    /**
      * Its value should be one or more element IDs
      */
     'aria-labelledby'?: string;
@@ -474,6 +486,8 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 
   return icon;
 }
+
+const generateId = htmlIdGenerator();
 
 export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
@@ -623,15 +637,17 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
         );
       const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
 
-      let ariaLabel: any;
+      let titleId: any;
 
-      // If no aria-label or aria-labelledby is provided the title will be default
+      // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
+      //  The svg aria-labelledby attribute gets this titleId
+      //  The svg title element gets this titleId as an id
       if (
         !this.props['aria-label'] &&
         !this.props['aria-labelledby'] &&
         title
       ) {
-        ariaLabel = { 'aria-label': title };
+        titleId = { titleId: generateId() };
       }
 
       return (
@@ -642,9 +658,9 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           focusable={focusable}
           role="img"
           title={title}
+          {...titleId}
           {...rest}
           {...hideIconEmpty}
-          {...ariaLabel}
         />
       );
     }

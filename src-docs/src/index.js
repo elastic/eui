@@ -1,3 +1,6 @@
+// specifically polyfill Object.entries for IE11 support (used by @elastic/charts)
+import 'core-js/modules/es7.object.entries';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

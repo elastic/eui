@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconMlCreatePopulationJob = ({ title, ...props }) => (
+const EuiIconMlCreatePopulationJob = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path d="M16 21.706c-5.718 0-10.353-4.635-10.353-10.353S10.282 1 16 1s10.353 4.635 10.353 10.353S21.718 21.706 16 21.706zm0-18.824a8.47 8.47 0 100 16.942 8.47 8.47 0 000-16.942z" />
     <path
       className="euiIcon__fillSecondary"

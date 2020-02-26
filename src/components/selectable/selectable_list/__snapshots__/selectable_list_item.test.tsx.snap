@@ -11,15 +11,9 @@ exports[`EuiSelectableListItem is rendered 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
     />
     <span
       class="euiSelectableListItem__text"
@@ -37,15 +31,9 @@ exports[`EuiSelectableListItem props append 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
     />
     <span
       class="euiSelectableListItem__text"
@@ -68,15 +56,10 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon--text euiIcon-isLoading euiSelectableListItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiSelectableListItem__icon"
+      color="text"
+      data-euiicon-type="cross"
     />
     <span
       class="euiSelectableListItem__text"
@@ -94,15 +77,10 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon--text euiIcon-isLoading euiSelectableListItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiSelectableListItem__icon"
+      color="text"
+      data-euiicon-type="check"
     />
     <span
       class="euiSelectableListItem__text"
@@ -122,15 +100,9 @@ exports[`EuiSelectableListItem props disabled 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
     />
     <span
       class="euiSelectableListItem__text"
@@ -149,15 +121,9 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
     />
     <span
       class="euiSelectableListItem__text"
@@ -175,15 +141,9 @@ exports[`EuiSelectableListItem props prepend 1`] = `
   <span
     class="euiSelectableListItem__content"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiSelectableListItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
     />
     <span
       class="euiSelectableListItem__prepend"

@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconLogoElastic = ({ title, ...props }) => (
+const EuiIconLogoElastic = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <g fill="none">
       <path
         fill="#FDD009"

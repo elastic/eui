@@ -32,20 +32,16 @@ const tokensSource = require('!!raw-loader!./tokens');
 const tokensSnippet = [
   '<EuiToken type="tokenAnnotation" />',
   `<EuiToken
-  iconType="visMapCoordinate"
-  displayOptions={{
-    color: 'tokenTint05',
-    shape: 'circle',
-  }}
+  iconType="tokenElement"
+  color="euiColorVis07"
+  shape="circle"
 />`,
   `<EuiToken
-  iconType="tokenElement"
+  iconType="visMapCoordinate"
   size="l"
-  displayOptions={{
-    color: 'tokenTint07',
-    shape: 'rectangle',
-    hideBorder: true
-  }}
+  color="#FF0000"
+  shape="rectangle"
+  fill="dark"
 />`,
 ];
 
@@ -77,7 +73,7 @@ import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
 const iconColorsSnippet = [
   '<EuiIcon type="brush" color="primary" />',
-  '<EuiIcon type="brush" color="#F19F58" />',
+  '<EuiIcon type="brush" color="#DA8B45" />',
 ];
 
 import Accessibility from './accessibility';
@@ -119,8 +115,8 @@ export const IconExample = {
         }
         color="warning">
         <p>
-          If the icon is purely decorative, pass{' '}
-          <EuiCode>aria-hidden=true</EuiCode>.
+          If no title is provided the icon is going to be purely decorative and
+          it will get by default an <EuiCode>aria-hidden=true</EuiCode>.
         </p>
       </EuiCallOut>
       <EuiSpacer />
@@ -210,23 +206,12 @@ export const IconExample = {
       text: (
         <div>
           <p>
-            Tokens are most commonly used in search to help visually classify
-            results. The tokens included in EUI can be used to identify a number
-            of code-based search results.
-          </p>
-
-          <p>
-            An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
+            Tokens are most commonly used to visually signify field or code
+            types. An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
             <EuiCode>EuiIcon</EuiCode> as its
             <EuiCode>iconType</EuiCode> property. However, icons designed
             specifically for use in the <EuiCode>EuiToken</EuiCode> are prefixed
-            with &quot;token&quot; in their name.
-          </p>
-
-          <p>
-            Multiple variants are available including: <EuiCode>shape</EuiCode>,{' '}
-            <EuiCode>size</EuiCode>,<EuiCode>color</EuiCode>,{' '}
-            <EuiCode>hideBorder</EuiCode>, and <EuiCode>fill</EuiCode>.
+            with &quot;token&quot; in their name and have pre-defined styles.
           </p>
         </div>
       ),

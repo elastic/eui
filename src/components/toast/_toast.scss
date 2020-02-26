@@ -48,15 +48,15 @@
 }
 
 // Modifier naming and colors.
-$toastTypes: (
-  primary: $euiColorPrimary,
-  success: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
+$euiToastTypes: (
+  primary: makeGraphicContrastColor($euiColorPrimary, $euiColorEmptyShade),
+  success: makeGraphicContrastColor($euiColorSecondary, $euiColorEmptyShade),
+  warning: makeGraphicContrastColor($euiColorWarning, $euiColorEmptyShade),
+  danger: makeGraphicContrastColor($euiColorDanger, $euiColorEmptyShade),
 );
 
 // Create button modifiders based upon the map.
-@each $name, $color in $toastTypes {
+@each $name, $color in $euiToastTypes {
   .euiToast--#{$name} {
     border-top: 2px solid $color;
   }

@@ -1,22 +1,24 @@
+import { flatten } from 'lodash';
+import chroma from 'chroma-js';
 import { HEX } from './color_types';
 import { colorPalette } from './color_palette';
-import { flatten } from 'lodash';
 
 export type EuiPalette = string[];
 
 const euiPalette = function(
   colors: string[],
   steps: number,
-  diverge: boolean = false
+  diverge: boolean = false,
+  categorical: boolean = true
 ): EuiPalette {
-  // This function also trims the lightest color so white is never a color
+  // This function also trims the first color so white/black is never a color
   if (!diverge && steps > 1) {
     const palette = colorPalette(colors, steps + 1);
     palette.shift();
     return palette;
   }
 
-  return colorPalette(colors, steps, diverge);
+  return colorPalette(colors, steps, diverge, categorical);
 };
 
 export const euiPaletteColorBlind = function(
@@ -27,27 +29,44 @@ export const euiPaletteColorBlind = function(
   /**
    * Order similar colors as `group`s or just `append` each variation
    */
-  order: 'append' | 'group' = 'append'
+  order: 'append' | 'group' = 'append',
+  /**
+   * Specifies if the direction of the color variations
+   */
+  direction: 'lighter' | 'darker' | 'both' = 'lighter'
 ): EuiPalette {
   let colors: string[] = [];
 
   const base = [
-    '#5BBAA0', // 0 green
+    '#54B399', // 0 green
     '#6092C0', // 1 blue
     '#D36086', // 2 dark pink
     '#9170B8', // 3 purple
-    '#EEAFCF', // 4 light pink
-    '#FAE181', // 5 yellow
-    '#CDBD9D', // 6 tan
-    '#F19F58', // 7 orange
-    '#B46F5F', // 8 brown
+    '#CA8EAE', // 4 light pink
+    '#D6BF57', // 5 yellow
+    '#B9A888', // 6 tan
+    '#DA8B45', // 7 orange
+    '#AA6556', // 8 brown
     '#E7664C', // 9 red
   ];
 
   if (rotations > 1) {
-    const palettes = base.map(color =>
-      euiPalette(['white', color], rotations).reverse()
-    );
+    const palettes = base.map(color => {
+      // Create the darkest and lightest versions of each color using black and white
+      const palette = colorPalette(['black', color, 'white'], 5, false, true);
+      // Then removing the extremes
+      palette.pop();
+      palette.shift();
+
+      switch (direction) {
+        case 'lighter':
+          return colorPalette([palette[1], palette[2]], rotations, false, true);
+        case 'darker':
+          return colorPalette([palette[1], palette[0]], rotations, false, true);
+        case 'both':
+          return colorPalette(palette, rotations, false, true);
+      }
+    });
 
     if (order === 'group') {
       colors = flatten(palettes);
@@ -62,6 +81,20 @@ export const euiPaletteColorBlind = function(
   }
 
   return colors;
+};
+
+/**
+ * Color blind palette with text is meant for use when text is applied on top of the color.
+ * It increases the brightness of the color to give the text more contrast.
+ */
+export const euiPaletteColorBlindBehindText = function(): EuiPalette {
+  const originalPalette = euiPaletteColorBlind();
+  const newPalette = originalPalette.map(color =>
+    chroma(color)
+      .brighten(0.5)
+      .hex()
+  );
+  return newPalette;
 };
 
 export const euiPaletteForLightBackground = function(): EuiPalette {

@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconAppCode = ({ title, ...props }) => (
+const EuiIconAppCode = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path d="M11.276 29l.594 2H0l7.621-14.29.811 2.73L3.333 29h7.943zM28.92 31l-4.987-16.598A16 16 0 008.688 3l1.8 6H8.4L6 1h2.607a18 18 0 0117.241 12.828L31 31h-2.08z" />
     <path
       className="euiIcon__fillSecondary"

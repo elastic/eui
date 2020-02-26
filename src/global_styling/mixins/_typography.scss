@@ -116,11 +116,11 @@
 
 @mixin euiTextTruncate {
   // sass-lint:disable-block no-important
-  max-width: 100%; /* 1 */
+  max-width: 100%; // 1
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  word-wrap: normal !important; /* 2 */
+  word-wrap: normal !important; // 2
 }
 
 @mixin euiNumberFormat {

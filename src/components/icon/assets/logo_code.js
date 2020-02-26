@@ -1,13 +1,14 @@
 import React from 'react';
 
-const EuiIconLogoCode = ({ title, ...props }) => (
+const EuiIconLogoCode = ({ title, titleId, ...props }) => (
   <svg
     width={32}
     height={32}
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby={titleId}
     {...props}>
-    <title>{title}</title>
+    {title ? <title id={titleId}>{title}</title> : null}
     <path
       className="euiIcon__fillNegative"
       d="M9.75 12L16 32h10l-3.4-10.88A13 13 0 0010.19 12h-.44z"

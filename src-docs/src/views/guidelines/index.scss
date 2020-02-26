@@ -305,6 +305,11 @@
   padding: $euiSize;
   border-left: $euiBorderThick;
   border-color: $euiColorWarning;
+
+  .square {
+    fill: makeGraphicContrastColor($euiColorWarning, $backgroundColor);
+    vertical-align: bottom;
+  }
 }
 
 @include euiBreakpoint('xl') {

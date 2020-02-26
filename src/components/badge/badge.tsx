@@ -1,15 +1,15 @@
 import React, {
+  AriaAttributes,
   FunctionComponent,
-  MouseEventHandler,
   HTMLAttributes,
+  MouseEventHandler,
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
-
-import { isColorDark, hexToRgb } from '../../services/color';
+import chroma from 'chroma-js';
+import { euiPaletteColorBlindBehindText, isValidHex } from '../../services';
 import { EuiInnerText } from '../inner_text';
-
 import { EuiIcon, IconColor, IconType } from '../icon';
 
 type IconSide = 'left' | 'right';
@@ -21,9 +21,9 @@ type WithButtonProps = {
   onClick: MouseEventHandler<HTMLButtonElement>;
 
   /**
-   * Aria label applied to the iconOnClick button
+   * Aria label applied to the onClick button
    */
-  onClickAriaLabel: string;
+  onClickAriaLabel: AriaAttributes['aria-label'];
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick' | 'color'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
@@ -37,7 +37,7 @@ interface WithIconOnClick {
   /**
    * Aria label applied to the iconOnClick button
    */
-  iconOnClickAriaLabel: string;
+  iconOnClickAriaLabel: AriaAttributes['aria-label'];
 }
 
 export type EuiBadgeProps = {
@@ -68,17 +68,26 @@ export type EuiBadgeProps = {
   ExclusiveUnion<WithIconOnClick, {}> &
   ExclusiveUnion<WithSpanProps, WithButtonProps>;
 
-const colorToClassNameMap: { [color in IconColor]: string } = {
-  default: 'euiBadge--default',
-  primary: 'euiBadge--primary',
-  secondary: 'euiBadge--secondary',
-  accent: 'euiBadge--accent',
-  warning: 'euiBadge--warning',
-  danger: 'euiBadge--danger',
-  hollow: 'euiBadge--hollow',
+// TODO - replace with variables once https://github.com/elastic/eui/issues/2731 is closed
+const colorInk = '#000';
+const colorGhost = '#fff';
+
+// The color blind palette has some stricter accessibility needs with regards to
+// charts and contrast. We use the euiPaletteColorBlindBehindText variant here since our
+// accessibility concerns pertain to foreground (text) and background contrast
+const visColors = euiPaletteColorBlindBehindText();
+
+const colorToHexMap: { [color in IconColor]: string } = {
+  // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
+  default: '#d3dae6',
+  primary: visColors[1],
+  secondary: visColors[0],
+  accent: visColors[2],
+  warning: visColors[5],
+  danger: visColors[9],
 };
 
-export const COLORS = keysOf(colorToClassNameMap);
+export const COLORS = keysOf(colorToHexMap);
 
 const iconSideToClassNameMap: { [side in IconSide]: string } = {
   left: 'euiBadge--iconLeft',
@@ -103,17 +112,46 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 }) => {
   checkValidColor(color);
 
-  let optionalColorClass = null;
   let optionalCustomStyles: object | undefined = undefined;
   let textColor = null;
+  // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
+  const wcagContrastBase = 4.5; // WCAG AA contrast level
+  let wcagContrast = null;
+  let colorHex = null;
 
+  // Check if a valid color name was provided
   if (COLORS.indexOf(color) > -1) {
-    optionalColorClass = colorToClassNameMap[color];
-  } else {
-    if (isColorDark(...hexToRgb(color))) {
-      textColor = '#FFFFFF';
-    } else {
-      textColor = '#000000';
+    // Get the hex equivalent for the provided color name
+    colorHex = colorToHexMap[color];
+
+    // Set dark or light text color based upon best contrast
+    textColor = setTextColor(colorHex);
+
+    optionalCustomStyles = {
+      backgroundColor: colorHex,
+      color: textColor,
+    };
+  } else if (color !== 'hollow') {
+    // This is a custom color that is neither from the base palette nor hollow
+    // Let's do our best to ensure that it provides sufficient contrast
+
+    // Set dark or light text color based upon best contrast
+    textColor = setTextColor(color);
+
+    // Check the contrast
+    wcagContrast = getColorContrast(textColor, color);
+
+    if (wcagContrast < wcagContrastBase) {
+      // It's low contrast, so lets show a warning in the console
+      console.warn(
+        'Warning: ',
+        color,
+        ' badge has low contrast of ',
+        wcagContrast.toFixed(2),
+        '. Should be above ',
+        wcagContrastBase,
+        '.'
+      );
     }
 
     optionalCustomStyles = { backgroundColor: color, color: textColor };
@@ -124,9 +162,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     {
       'euiBadge-isClickable': onClick && !iconOnClick,
       'euiBadge-isDisabled': isDisabled,
+      'euiBadge--hollow': color === 'hollow',
     },
     iconSideToClassNameMap[iconSide],
-    optionalColorClass,
     className
   );
 
@@ -235,13 +273,30 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   }
 };
 
-function checkValidColor(color: null | IconColor | string) {
-  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
+function getColorContrast(textColor: string, color: string) {
+  const contrastValue = chroma.contrast(textColor, color);
+  return contrastValue;
+}
 
-  if (color != null && !validHex.test(color) && !COLORS.includes(color)) {
+function setTextColor(bgColor: string) {
+  const textColor =
+    getColorContrast(colorInk, bgColor) > getColorContrast(colorGhost, bgColor)
+      ? colorInk
+      : colorGhost;
+
+  return textColor;
+}
+
+function checkValidColor(color: null | IconColor | string) {
+  if (
+    color != null &&
+    !isValidHex(color) &&
+    !COLORS.includes(color) &&
+    color !== 'hollow'
+  ) {
     console.warn(
-      'EuiBadge expects a valid color. This can either be a three ' +
-        `or six character hex value or one of the following: ${COLORS}`
+      'EuiBadge expects a valid color. This can either be a three or six ' +
+        `character hex value, hollow, or one of the following: ${COLORS}`
     );
   }
 }

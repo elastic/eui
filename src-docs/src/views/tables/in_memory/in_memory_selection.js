@@ -95,7 +95,7 @@ export class Table extends Component {
   }
 
   renderToolsLeft() {
-    const selection = this.state.selection;
+    const selection = this.state.control_columns;
 
     if (selection.length === 0) {
       return;

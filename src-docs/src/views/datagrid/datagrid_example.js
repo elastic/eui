@@ -29,6 +29,7 @@ import {
   DataGridToolbarVisibilityOptions,
   DataGridColumnVisibility,
   DataGridPopoverContent,
+  DataGridControlColumn,
 } from './props';
 
 const gridSnippet = `
@@ -39,13 +40,29 @@ const gridSnippet = `
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
     // The second column B won't allow clicking in to see the content in a popup.
-    // The first column defines an starting width of 150px and prevents the user from resizing it 
+    // The first column defines a starting width of 150px and prevents the user from resizing it
     columns={[{ id: 'A', initialWidth: 150, isResizable: false }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
+    leadingControlColumns={[
+      {
+        id: 'selection',
+        width: 31,
+        headerCellRender: () => <span>Select a Row</span>,
+        rowCellRender: () => <div><EuiCheckbox ... /></div>,
+      },
+    ]}
+    trailingControlColumns={[
+      {
+        id: 'actions',
+        width: 40,
+        headerCellRender: () => null,
+        rowCellRender: MyGridActionsComponent,
+      },
+    ]}
     // Optional. Customize the content inside the cell. The current example outputs the row and column position.
     // Often used in combination with useEffect() to dynamically change the render.
     renderCellValue={({ rowIndex, columnId }) =>
@@ -105,9 +122,9 @@ const gridSnippet = `
         sortTextAsc: 'Star Wars-Star Trek',
         // Text for what the DESC sort does.
         sortTextDesc: 'Star Trek-Star Wars',
-        // EuiIcon to signify this schema.
+        // EuiIcon or Token to signify this schema.
         icon: 'star',
-        // The color to use for the icon.
+        // The color to use for the icon token.
         color: '#000000',
       },
     ]}
@@ -158,6 +175,16 @@ const gridConcepts = [
         An array of <EuiCode>EuiDataGridColumnVisibility</EuiCode> objects.
         Defines which columns are visible in the grid and the order they are
         displayed.
+      </span>
+    ),
+  },
+  {
+    title: 'leading and trailing controlColumns',
+    description: (
+      <span>
+        An array of <EuiCode>EuiDataGridControlColumn</EuiCode> objects. Used to
+        define ancillary columns on the left side of the data grid. Useful for
+        adding items like checkboxes and buttons.
       </span>
     ),
   },
@@ -289,15 +316,24 @@ export const DataGridExample = {
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <Link to="/tabular-content/data-grid-schemas-and-popvers/">
+              <Link to="/tabular-content/data-grid-schemas-and-popovers/">
                 popovers
               </Link>{' '}
               to display more content and actions into popovers.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-styling/">Grid styling</Link>{' '}
+              <Link to="/tabular-content/data-grid-styling-and-toolbar/">
+                Grid styling
+              </Link>{' '}
               can be controlled by the engineer, but augmented by user
               preference depending upon the features you enable.
+            </li>
+            <li>
+              <Link to="/tabular-content/data-grid-control-columns/">
+                Control columns
+              </Link>{' '}
+              allow you to add repeatable actions and controls like checkboxes
+              or buttons to your grid.
             </li>
           </ul>
         </Fragment>
@@ -307,6 +343,7 @@ export const DataGridExample = {
         EuiDataGrid,
         EuiDataGridColumn: DataGridColumn,
         EuiDataGridColumnVisibility: DataGridColumnVisibility,
+        EuiDataGridControlColumn: DataGridControlColumn,
         EuiDataGridInMemory: DataGridInMemory,
         EuiDataGridPagination: DataGridPagination,
         EuiDataGridSorting: DataGridSorting,

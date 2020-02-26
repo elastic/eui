@@ -138,12 +138,13 @@ containsValue
 
 phrase
   = '"' space? phrase:(
-  	phraseWord? (space phraseWord)* { return unescapeValue(text()); }
+  	(phraseWord+)? (space phraseWord+)* { return unescapeValue(text()); }
   ) space? '"' { return Exp.string(phrase, location()); }
 
 phraseWord
   = orWord
   / word
+  / [()] // adding parens directly to "wordChar" makes it too aggresive as it consumes the closing paren 
 
 word
   = wordChar+ {
@@ -175,7 +176,7 @@ escapedChar
   = "\\\\" reservedChar
 
 reservedChar
-  = [\-:\\\\]
+  = [\-:\\\\()]
 
 orWord
   = ([oO][rR])
@@ -214,11 +215,11 @@ space "whitespace"
 `;
 
 const unescapeValue = value => {
-  return value.replace(/\\([:\-\\])/g, '$1');
+  return value.replace(/\\([:\-\\()])/g, '$1');
 };
 
 const escapeValue = value => {
-  return value.replace(/([:\-\\])/g, '\\$1');
+  return value.replace(/([:\-\\()])/g, '\\$1');
 };
 
 const escapeFieldValue = value => {

@@ -28,6 +28,7 @@ const gutterSizeToClassNameMap = {
 };
 
 export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
+export type EuiFlexGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
 
 const alignItemsToClassNameMap = {
   stretch: null,
