@@ -5,6 +5,7 @@
 
 **Theme: Amsterdam**
 
+- Buttons have a new visual style ([#2874](https://github.com/elastic/eui/pull/2874))
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
 
 
