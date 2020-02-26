@@ -2,6 +2,8 @@
 
 - Added SASS variables for text variants of the primary palette `$euiColorPrimaryText`, `$euiColorSecondaryText`, etc... Updated components to use these new variables. ([#2873](https://github.com/elastic/eui/pull/2873))
 - Updated SASS mixin `makeHighContrastColor()` to default `$background: $euiPageBackgroundColor` and `$ratio: 4.5`. Created `makeGraphicContrastColor()` for graphic specific contrast levels of 3.0. ([#2873](https://github.com/elastic/eui/pull/2873))
+- Added `folderCheck`, `folderExclamation`, `push`, `quote`, `reporter` and `users` icons ([#2935](https://github.com/elastic/eui/pull/2935))
+- Updated `folderClosed` and `folderOpen` to match new additions and sit better on the pixel grid ([#2935](https://github.com/elastic/eui/pull/2935))
 
 **Theme: Amsterdam**
 
