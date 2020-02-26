@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
 - Converted `EuiComboBox`, `EuiComboBoxInput`, `EuiComboBoxPill`, `EuiComboBoxOptionsList`, `EuiComboBoxOption`, and `EuiComboBoxTitle` to TypeScript ([#2838](https://github.com/elastic/eui/pull/2838))
 - Converted `EuiCodeEditor` to TypeScript ([#2836](https://github.com/elastic/eui/pull/2836))
 - Converted `EuiCode` and `EuiCodeBlock` and to TypeScript ([#2835](https://github.com/elastic/eui/pull/2835))
@@ -22,7 +23,6 @@
 
 **Breaking changes**
 
-- Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
 - Removed `visControls` and `visHeatmap` duplicate icons from docs ([#2908](https://github.com/elastic/eui/pull/2908))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)

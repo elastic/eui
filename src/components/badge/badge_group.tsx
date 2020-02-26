@@ -5,8 +5,17 @@ import { CommonProps, keysOf } from '../common';
 type BadgeGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
 
 export interface EuiBadgeGroupProps {
+  /**
+   * Space between badges
+   */
   gutterSize?: BadgeGroupGutterSize;
+  /**
+   * Force each badges to be display block on smaller screens
+   */
   responsive?: boolean;
+  /**
+   * Force each badge to wrap if necessary
+   */
   wrap?: boolean;
 }
 
@@ -14,19 +23,13 @@ const gutterSizeToClassNameMap = {
   none: null,
   xs: 'euiBadgeGroup--gutterExtraSmall',
   s: 'euiBadgeGroup--gutterSmall',
-  m: 'euiBadgeGroup--gutterMedium',
-  l: 'euiBadgeGroup--gutterLarge',
-  xl: 'euiBadgeGroup--gutterExtraLarge',
 };
 
 export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
-export type EuiBadgeGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
 
-const EuiBadgeGroup = React.forwardRef<
-  HTMLDivElement | HTMLSpanElement,
-  CommonProps &
-    HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
-    EuiBadgeGroupProps
+export const EuiBadgeGroup = React.forwardRef<
+  HTMLDivElement,
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiBadgeGroupProps
 >(
   (
     {
@@ -34,10 +37,10 @@ const EuiBadgeGroup = React.forwardRef<
       className,
       gutterSize = 'xs',
       responsive = true,
-      wrap = false,
+      wrap = true,
       ...rest
     },
-    ref: Ref<HTMLDivElement> | Ref<HTMLSpanElement>
+    ref: Ref<HTMLDivElement>
   ) => {
     const classes = classNames(
       'euiBadgeGroup',
@@ -50,15 +53,10 @@ const EuiBadgeGroup = React.forwardRef<
     );
 
     return (
-      <div
-        className={classes}
-        ref={ref as Ref<HTMLDivElement>}
-        {...rest as HTMLAttributes<HTMLDivElement>}>
+      <div className={classes} ref={ref} {...rest}>
         {children}
       </div>
     );
   }
 );
 EuiBadgeGroup.displayName = 'EuiBadgeGroup';
-
-export { EuiBadgeGroup };
