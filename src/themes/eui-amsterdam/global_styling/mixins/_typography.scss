@@ -4,17 +4,17 @@
   @if $size == 'xxxs' {
     @include euiFontSizeXS;
     @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightSemiBold;
+    font-weight: $euiFontWeightBold;
     letter-spacing: 0;
   } @else if $size == 'xxs' {
     @include euiFontSizeS;
     @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightSemiBold;
+    font-weight: $euiFontWeightBold;
     letter-spacing: 0;
   } @else if $size == 'xs' {
     @include euiFontSize;
     @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightSemiBold;
+    font-weight: $euiFontWeightBold;
     letter-spacing: 0;
   } @else if $size == 's' {
     @include euiFontSizeL;
