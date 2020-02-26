@@ -12,21 +12,11 @@ import {
   EuiBetaBadge,
   EuiNotificationBadge,
   EuiBadgeGroup,
-  EuiFlexItem,
   EuiCallOut,
 } from '../../../../src/components';
 
-const badges = [
-  'default',
-  'hollow',
-  'primary',
-  'secondary',
-  'accent',
-  'warning',
-  'danger',
-];
-
 import Badge from './badge';
+
 const badgeSource = require('!!raw-loader!./badge');
 const badgeHtml = renderToHtml(Badge);
 const badgeSnippet = [
@@ -289,17 +279,14 @@ export const BadgeExample = {
           code: badgeGroupHtml,
         },
       ],
-      text: <p>Used to group Badges together </p>,
-      props: { EuiBadgeGroup },
-      demo: (
-        <EuiBadgeGroup wrap responsive={false} gutterSize="xs">
-          {badges.map(badge => (
-            <EuiFlexItem grow={false} key={badge}>
-              <EuiBadge color={badge}>{badge}</EuiBadge>
-            </EuiFlexItem>
-          ))}
-        </EuiBadgeGroup>
+      text: (
+        <p>
+          Grouping badges with EuiBadgeGroup, ensures they wrap and truncate
+          properly.
+        </p>
       ),
+      props: { EuiBadgeGroup },
+      demo: <BadgeGroup />,
     },
   ],
 };

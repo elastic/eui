@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiBadgeGroup is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBadgeGroup euiBadgeGroup--gutterExtraSmall euiBadgeGroup--responsive euiBadgeGroup--wrap testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <span
+    aria-label="aria-label"
+    class="euiBadge euiBadge-isDisabled euiBadge--iconLeft testClass1 testClass2"
+    data-test-subj="test subject string"
+    style="background-color:#d3dae6;color:#000"
+  >
+    <span
+      class="euiBadge__content"
+    >
+      <span
+        class="euiBadge__text"
+      >
+        Content
+      </span>
+    </span>
+  </span>
+</div>
+`;

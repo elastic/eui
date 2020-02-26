@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
+
 **Bug Fixes**
 
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
@@ -76,7 +78,6 @@
 
 **Breaking changes**
 
-- Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
 - Removed `visControls` and `visHeatmap` duplicate icons from docs ([#2908](https://github.com/elastic/eui/pull/2908))
 
 ## [`19.0.0`](https://github.com/elastic/eui/tree/v19.0.0)
