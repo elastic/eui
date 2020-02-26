@@ -146,16 +146,26 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
     );
   }
 
+  if (children) {
+    return (
+      <th
+        className={classes}
+        scope={scope}
+        role="columnheader"
+        style={styleObj}
+        {...rest}>
+        <div className={contentClasses}>
+          <span className="euiTableCellContent__text">{children}</span>
+        </div>
+      </th>
+    );
+  }
+
   return (
-    <th
-      className={classes}
-      scope={scope}
-      role="columnheader"
-      style={styleObj}
-      {...rest}>
+    <td className={classes} style={styleObj} {...rest}>
       <div className={contentClasses}>
         <span className="euiTableCellContent__text">{children}</span>
       </div>
-    </th>
+    </td>
   );
 };
