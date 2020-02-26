@@ -45,15 +45,10 @@ exports[`EuiComboBox is rendered 1`] = `
           data-test-subj="comboBoxToggleListButton"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </button>
       </div>
@@ -261,15 +256,10 @@ exports[`props options list is rendered 1`] = `
           data-test-subj="comboBoxToggleListButton"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </button>
       </div>
