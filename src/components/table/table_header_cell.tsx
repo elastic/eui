@@ -91,6 +91,8 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
 
   const styleObj = resolveWidthAsStyle(style, width);
 
+  const CellComponent = children ? 'th' : 'td';
+
   if (onSort) {
     const buttonClasses = classNames('euiTableHeaderButton', {
       'euiTableHeaderButton-isSorted': isSorted,
@@ -114,7 +116,7 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
     }
 
     return (
-      <th
+      <CellComponent
         className={classes}
         scope={scope}
         role="columnheader"
@@ -142,30 +144,20 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
             </EuiScreenReaderOnly>
           </span>
         </button>
-      </th>
-    );
-  }
-
-  if (children) {
-    return (
-      <th
-        className={classes}
-        scope={scope}
-        role="columnheader"
-        style={styleObj}
-        {...rest}>
-        <div className={contentClasses}>
-          <span className="euiTableCellContent__text">{children}</span>
-        </div>
-      </th>
+      </CellComponent>
     );
   }
 
   return (
-    <td className={classes} style={styleObj} {...rest}>
+    <CellComponent
+      className={classes}
+      scope={scope}
+      role="columnheader"
+      style={styleObj}
+      {...rest}>
       <div className={contentClasses}>
         <span className="euiTableCellContent__text">{children}</span>
       </div>
-    </td>
+    </CellComponent>
   );
 };

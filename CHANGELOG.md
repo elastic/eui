@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Empty table th elements replaced with td in `EuiTable`. ([#2873](https://github.com/elastic/eui/pull/2873))
+- Empty table th elements replaced with td in `EuiTable`. ([#2934](https://github.com/elastic/eui/pull/2934))
 - Added SASS variables for text variants of the primary palette `$euiColorPrimaryText`, `$euiColorSecondaryText`, etc... Updated components to use these new variables. ([#2873](https://github.com/elastic/eui/pull/2873))
 - Updated SASS mixin `makeHighContrastColor()` to default `$background: $euiPageBackgroundColor` and `$ratio: 4.5`. Created `makeGraphicContrastColor()` for graphic specific contrast levels of 3.0. ([#2873](https://github.com/elastic/eui/pull/2873))
 

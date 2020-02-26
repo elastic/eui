@@ -12,3 +12,13 @@ Array [
   "children",
 ]
 `;
+
+exports[`EuiTableHeader renders td when children is null/undefined 1`] = `
+<thead
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <tr />
+</thead>
+`;
