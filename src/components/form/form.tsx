@@ -1,4 +1,4 @@
-import React, { FC, FormHTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent, FormHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
 import { EuiI18n } from '../i18n';
@@ -10,7 +10,7 @@ export type EuiFormProps = CommonProps &
     error?: ReactNode | ReactNode[];
   };
 
-export const EuiForm: FC<EuiFormProps> = ({
+export const EuiForm: FunctionComponent<EuiFormProps> = ({
   children,
   className,
   isInvalid,

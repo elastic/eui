@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
@@ -6,7 +6,7 @@ import { CommonProps } from '../../common';
 export type EuiFormErrorTextProps = CommonProps &
   HTMLAttributes<HTMLDivElement>;
 
-export const EuiFormErrorText: FC<EuiFormErrorTextProps> = ({
+export const EuiFormErrorText: FunctionComponent<EuiFormErrorTextProps> = ({
   children,
   className,
   ...rest
