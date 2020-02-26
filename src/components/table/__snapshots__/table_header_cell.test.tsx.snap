@@ -68,6 +68,24 @@ exports[`renders EuiTableHeaderCell 1`] = `
 </th>
 `;
 
+exports[`renders td when children is null/undefined 1`] = `
+<td
+  aria-label="aria-label"
+  class="euiTableHeaderCell testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="columnheader"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent testClass1 testClass2"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
 exports[`width and style accepts style attribute 1`] = `
 <th
   class="euiTableHeaderCell"

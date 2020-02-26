@@ -12,10 +12,4 @@ describe('EuiTableHeader', () => {
 
     expect(component).toMatchSnapshot();
   });
-
-  test('renders td when children is null/undefined', () => {
-    const component = render(<EuiTableHeader {...requiredProps} />);
-
-    expect(component).toMatchSnapshot();
-  });
 });
