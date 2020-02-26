@@ -96,7 +96,7 @@ const webpackConfig = {
 
   devServer: {
     contentBase: 'src-docs/build',
-    host: '0.0.0.0',
+    host: 'localhost',
     allowedHosts: ['*'],
     port: 8030,
     disableHostCheck: true,
