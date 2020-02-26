@@ -1,4 +1,6 @@
 .euiButtonEmpty {
+  border-radius: $euiBorderRadius;
+
   &:disabled {
     color: $euiColorMediumShade;
   }

@@ -30,7 +30,7 @@
   // Use a moderately smaller radius on
   // small buttons so that they don't appear
   // completely rounded
-  border-radius: $euiBorderRadius - 2;
+  border-radius: $euiBorderRadius * .667;
 }
 
 // Change the hollow (bordered) buttons to have a transparent background
@@ -58,6 +58,15 @@
       &:focus {
         // Makes the background lighter?
         background-color: transparentize($color, .9);
+      }
+    }
+
+    &.euiButton--fill {
+      &:enabled {
+        &:hover,
+        &:focus {
+          background-color: darken($color, 10%);
+        }
       }
     }
   }
