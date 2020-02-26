@@ -1,4 +1,9 @@
-import React, { Component, ReactNode, ComponentProps } from 'react';
+import React, {
+  Component,
+  ComponentProps,
+  ReactNode,
+  RefCallback,
+} from 'react';
 import classNames from 'classnames';
 import { List, ListProps } from 'react-virtualized'; // eslint-disable-line import/named
 
@@ -20,7 +25,6 @@ import {
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
-  RefCallback,
   RefInstance,
   UpdatePositionHandler,
 } from '../types';
