@@ -6,6 +6,10 @@
 - Added `folderCheck`, `folderExclamation`, `push`, `quote`, `reporter` and `users` icons ([#2935](https://github.com/elastic/eui/pull/2935))
 - Updated `folderClosed` and `folderOpen` to match new additions and sit better on the pixel grid ([#2935](https://github.com/elastic/eui/pull/2935))
 
+**Bug fixes**
+
+- Fixed `EuiTitle` not rendering child classes ([#2926](https://github.com/elastic/eui/pull/2926))
+
 **Theme: Amsterdam**
 
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
@@ -32,7 +36,6 @@
 
 **Bug fixes**
 
-- Fixed `EuiTitle` not rendering child classes ([#2926](https://github.com/elastic/eui/pull/2926))
 - Fixed building dev & docs on Windows ([#2847](https://github.com/elastic/eui/pull/2847))
 - Fixed screen reader discovery issues with `EuiBottomBar` and `EuiControlBar` ([#2861](https://github.com/elastic/eui/pull/2861))
 - Fixed a bug in `EuiDataGrid` causing the first cell to autofocus if interactive ([#2872](https://github.com/elastic/eui/pull/2872))
