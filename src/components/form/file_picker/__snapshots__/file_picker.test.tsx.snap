@@ -8,6 +8,7 @@ exports[`EuiFilePicker is rendered 1`] = `
     class="euiFilePicker__wrap"
   >
     <input
+      aria-describedby="htmlId"
       aria-label="aria-label"
       class="euiFilePicker__input"
       data-test-subj="test subject string"
@@ -15,6 +16,7 @@ exports[`EuiFilePicker is rendered 1`] = `
     />
     <div
       class="euiFilePicker__prompt"
+      id="htmlId"
     >
       <div
         aria-hidden="true"
