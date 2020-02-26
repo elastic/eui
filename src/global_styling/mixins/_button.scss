@@ -1,3 +1,5 @@
+// Provides a solid reset and base for handling sizing layout
+// Does not include any visual styles
 @mixin euiButtonBase {
   display: inline-block;
   appearance: none;
@@ -10,6 +12,7 @@
   vertical-align: middle;
 }
 
+// Adds the focus (and hover) animation for translating up 1px
 @mixin euiButtonFocus {
   transition: all $euiAnimSpeedNormal ease-in-out;
 
@@ -26,6 +29,8 @@
   }
 }
 
+// All of the button base styles including the base, focus, font, and initial styles
+// Does not include individual alterations like color or sizes
 @mixin euiButton {
   @include euiButtonBase;
   @include euiFont;
@@ -44,9 +49,15 @@
   }
 }
 
+// Correctly lays out the contents of a button when using the proper dom elements of:
+// <button>
+//   <span className="__content">
+//     {icon/spinner}
+//     {child}
+//   </span>
+// </button>
 // 1. Apply margin to all but last item in the flex.
 // 2. Margin gets flipped because of the row-reverse.
-
 @mixin euiButtonContent($isReverse: false) {
   height: 100%;
   width: 100%;

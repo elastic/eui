@@ -1,15 +1,1 @@
-$euiButtonColorDisabled: tintOrShade($euiTextColor, 95%, 70%);
-$euiButtonColorGhostDisabled: lightOrDarkTheme($euiColorDarkShade, $euiColorLightShade);
-$euiButtonToggleBorderColor: $euiColorLightShade;
-
-// Modifier naming and colors.
-$euiButtonIconTypes: (
-  danger: $euiColorDanger,
-  disabled: $euiColorLightShade,
-  ghost: $euiColorGhost,
-  primary: $euiColorPrimary,
-  subdued: $euiColorDarkShade,
-  success: $euiColorSuccess,
-  text: $euiTextColor,
-  warning: $euiColorWarning,
-);
+$euiButtonColorDisabled: tintOrShade($euiTextColor, 75%, 70%);

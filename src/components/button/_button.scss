@@ -44,7 +44,7 @@
   }
 
   &:disabled {
-    color: $euiButtonColorDisabled;
+    color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
     pointer-events: none;
 
@@ -53,8 +53,13 @@
       cursor: not-allowed;
     }
 
+    .euiButton__spinner {
+      border-color: euiLoadingSpinnerBorderColors(currentColor);
+    }
+
     &.euiButton--fill {
-      color: lightOrDarkTheme($euiColorGhost, $euiColorLightShade);
+      // Only increase the contrast of background color to text to 2.0 for disabled
+      color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
 
@@ -106,10 +111,6 @@
           border-color: darken($color, 5%);
         }
       }
-
-      &:disabled .euiButton__spinner {
-        border-color: euiLoadingSpinnerBorderColors(transparentize($fillTextColor, .3));
-      }
     }
 
     &:enabled {
@@ -138,8 +139,6 @@
 
 // Fix ghost/disabled look specifically
 .euiButton:disabled.euiButton--ghost {
-  @include euiSlightShadow($euiColorInk);
-
   &,
   &:hover,
   &:focus {
@@ -148,17 +147,9 @@
     border-color: $euiButtonColorGhostDisabled;
   }
 
-  .euiButton__spinner {
-    border-color: euiLoadingSpinnerBorderColors(transparentize($euiButtonColorGhostDisabled, .3));
-  }
-
   &.euiButton--fill {
     background-color: $euiButtonColorGhostDisabled;
     color: $euiColorInk;
-
-    .euiButton__spinner {
-      border-color: euiLoadingSpinnerBorderColors(transparentize($euiColorInk, .3));
-    }
   }
 }
 

@@ -2,7 +2,9 @@ $euiButtonHeight: $euiSizeXXL !default;
 $euiButtonHeightSmall: $euiSizeXL !default;
 
 $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 70%) !default;
-$euiButtonColorGhostDisabled: lightOrDarkTheme($euiColorDarkShade, $euiColorLightShade);
+// Only increase the contrast of background color to text to 2.0 for disabled
+$euiButtonColorDisabledText: makeHighContrastColor($euiButtonColorDisabled, $euiPageBackgroundColor, 2) !default;
+$euiButtonColorGhostDisabled: lightOrDarkTheme($euiColorDarkShade, $euiColorLightShade) !default;
 $euiButtonToggleBorderColor: $euiColorLightShade !default;
 
 // Modifier naming and colors.
@@ -13,16 +15,4 @@ $euiButtonTypes: (
   danger: $euiColorDanger,
   ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
   text: $euiColorDarkShade, // Reserved for special use cases
-) !default;
-
-// Modifier naming and colors.
-$euiButtonIconTypes: (
-  danger: $euiColorDanger,
-  disabled: $euiButtonColorDisabled,
-  ghost: $euiColorGhost,
-  primary: $euiColorPrimary,
-  subdued: $euiColorDarkShade,
-  success: $euiColorSuccess,
-  text: $euiTextColor,
-  warning: $euiColorWarning,
 ) !default;
