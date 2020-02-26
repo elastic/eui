@@ -54,6 +54,7 @@ const iconTypes = [
   'logoPrometheus',
   'logoRabbitmq',
   'logoRedis',
+  'logoServicenow',
   'logoSketch',
   'logoSlack',
   'logoWebhook',
