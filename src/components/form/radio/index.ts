@@ -1,2 +1,6 @@
 export { EuiRadio, EuiRadioProps } from './radio';
-export { EuiRadioGroup, EuiRadioGroupProps } from './radio_group';
+export {
+  EuiRadioGroup,
+  EuiRadioGroupProps,
+  EuiRadioGroupOption,
+} from './radio_group';
