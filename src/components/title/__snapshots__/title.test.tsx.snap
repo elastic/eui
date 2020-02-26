@@ -10,7 +10,7 @@ exports[`EuiTitle is rendered 1`] = `
 </h1>
 `;
 
-exports[`EuiTitle rendereds class of child too 1`] = `
+exports[`EuiTitle renders children element className 1`] = `
 <h1
   aria-label="aria-label"
   class="euiTitle euiTitle--medium testClass1 testClass2 test"
