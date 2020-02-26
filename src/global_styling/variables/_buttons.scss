@@ -14,3 +14,15 @@ $euiButtonTypes: (
   ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
   text: $euiColorDarkShade, // Reserved for special use cases
 ) !default;
+
+// Modifier naming and colors.
+$euiButtonIconTypes: (
+  danger: $euiColorDanger,
+  disabled: $euiButtonColorDisabled,
+  ghost: $euiColorGhost,
+  primary: $euiColorPrimary,
+  subdued: $euiColorDarkShade,
+  success: $euiColorSuccess,
+  text: $euiTextColor,
+  warning: $euiColorWarning,
+) !default;

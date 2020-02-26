@@ -34,18 +34,6 @@
   }
 }
 
-// Modifier naming and colors.
-$euiButtonIconTypes: (
-  danger: $euiColorDanger,
-  disabled: $euiButtonColorDisabled,
-  ghost: $euiColorGhost,
-  primary: $euiColorPrimary,
-  subdued: $euiColorDarkShade,
-  success: $euiColorSuccess,
-  text: $euiTextColor,
-  warning: $euiColorWarning,
-);
-
 // Create button modifiders based upon the map.
 @each $name, $color in $euiButtonIconTypes {
   .euiButtonIcon--#{$name} {
