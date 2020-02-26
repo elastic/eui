@@ -128,10 +128,10 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             ...rest
           } = this.props;
 
-          let UniqueId: string = htmlIdGenerator()();
+          let promptId: string = htmlIdGenerator()();
 
           if (id) {
-            UniqueId = `${id}-filePicker__prompt`;
+            promptId = `${id}-filePicker__prompt`;
           }
 
           const isOverridingInitialPrompt = this.state.promptText != null;
@@ -205,11 +205,11 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                     onDragLeave={this.hideDrop}
                     onDrop={this.hideDrop}
                     disabled={disabled}
-                    aria-describedby={UniqueId}
+                    aria-describedby={promptId}
                     {...rest}
                   />
                 </EuiValidatableControl>
-                <div className="euiFilePicker__prompt" id={UniqueId}>
+                <div className="euiFilePicker__prompt" id={promptId}>
                   <EuiIcon
                     className="euiFilePicker__icon"
                     type="importAction"

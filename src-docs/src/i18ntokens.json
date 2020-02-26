@@ -96,17 +96,49 @@
     "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
-    "token": "euiBottomBar.screenReaderAnnouncement",
-    "defString": "There is a new menu opening with page level controls at the end of the document.",
+    "token": "euiBottomBar.screenReaderHeading",
+    "defString": "Page level controls",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 70,
-        "column": 12
+        "line": 73,
+        "column": 8
       },
       "end": {
-        "line": 73,
+        "line": 75,
+        "column": 40
+      }
+    },
+    "filepath": "src/components/bottom_bar/bottom_bar.tsx"
+  },
+  {
+    "token": "euiBottomBar.customScreenReaderAnnouncement",
+    "defString": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 100,
         "column": 14
+      },
+      "end": {
+        "line": 104,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/bottom_bar/bottom_bar.tsx"
+  },
+  {
+    "token": "euiBottomBar.screenReaderAnnouncement",
+    "defString": "There is a new region landmark with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 106,
+        "column": 14
+      },
+      "end": {
+        "line": 109,
+        "column": 16
       }
     },
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"
@@ -181,15 +213,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 171,
+        "line": 216,
         "column": 12
       },
       "end": {
-        "line": 174,
+        "line": 219,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeEditor.startEditing",
@@ -197,15 +229,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 176,
+        "line": 221,
         "column": 12
       },
       "end": {
-        "line": 179,
+        "line": 224,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeEditor.stopInteracting",
@@ -213,15 +245,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 230,
         "column": 12
       },
       "end": {
-        "line": 188,
+        "line": 233,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeEditor.stopEditing",
@@ -229,15 +261,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 190,
+        "line": 235,
         "column": 12
       },
       "end": {
-        "line": 193,
+        "line": 238,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeBlock.copyButton",
@@ -245,15 +277,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 167,
+        "line": 208,
         "column": 12
       },
       "end": {
-        "line": 167,
+        "line": 208,
         "column": 68
       }
     },
-    "filepath": "src/components/code/_code_block.js"
+    "filepath": "src/components/code/_code_block.tsx"
   },
   {
     "token": "euiColorPicker.swatchAriaLabel",
@@ -389,15 +421,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 51,
+        "line": 61,
         "column": 8
       },
       "end": {
-        "line": 54,
+        "line": 64,
         "column": 32
       }
     },
-    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.js"
+    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.loadingOptions",
@@ -405,15 +437,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 156,
+        "line": 190,
         "column": 12
       },
       "end": {
-        "line": 159,
+        "line": 193,
         "column": 14
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.alreadyAdded",
@@ -421,15 +453,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 173,
+        "line": 207,
         "column": 14
       },
       "end": {
-        "line": 179,
+        "line": 213,
         "column": 16
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.createCustomOption",
@@ -437,15 +469,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 219,
         "column": 14
       },
       "end": {
-        "line": 192,
+        "line": 226,
         "column": 16
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.noMatchingOptions",
@@ -453,15 +485,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
+        "line": 233,
         "column": 12
       },
       "end": {
-        "line": 203,
+        "line": 237,
         "column": 14
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.noAvailableOptions",
@@ -469,15 +501,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 210,
+        "line": 244,
         "column": 10
       },
       "end": {
-        "line": 213,
+        "line": 247,
         "column": 12
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.allOptionsSelected",
@@ -485,15 +517,63 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 219,
+        "line": 253,
         "column": 10
       },
       "end": {
-        "line": 222,
+        "line": 256,
         "column": 12
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
+  },
+  {
+    "token": "euiControlBar.screenReaderHeading",
+    "defString": "Page level controls",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 406,
+        "column": 6
+      },
+      "end": {
+        "line": 408,
+        "column": 38
+      }
+    },
+    "filepath": "src/components/control_bar/control_bar.tsx"
+  },
+  {
+    "token": "euiControlBar.customScreenReaderAnnouncement",
+    "defString": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 443,
+        "column": 14
+      },
+      "end": {
+        "line": 447,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/control_bar/control_bar.tsx"
+  },
+  {
+    "token": "euiControlBar.screenReaderAnnouncement",
+    "defString": "There is a new region landmark with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 449,
+        "column": 14
+      },
+      "end": {
+        "line": 452,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/control_bar/control_bar.tsx"
   },
   {
     "token": "euiColumnSelector.selectAll",
@@ -677,11 +757,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 260,
         "column": 6
       },
       "end": {
-        "line": 256,
+        "line": 262,
         "column": 67
       }
     },
@@ -853,11 +933,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 829,
+        "line": 898,
         "column": 12
       },
       "end": {
-        "line": 832,
+        "line": 901,
         "column": 14
       }
     },
@@ -1589,11 +1669,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 312,
+        "line": 316,
         "column": 12
       },
       "end": {
-        "line": 315,
+        "line": 319,
         "column": 14
       }
     },
@@ -1605,11 +1685,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 322,
+        "line": 326,
         "column": 10
       },
       "end": {
-        "line": 326,
+        "line": 330,
         "column": 12
       }
     },
@@ -1621,11 +1701,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 332,
+        "line": 336,
         "column": 10
       },
       "end": {
-        "line": 335,
+        "line": 339,
         "column": 12
       }
     },

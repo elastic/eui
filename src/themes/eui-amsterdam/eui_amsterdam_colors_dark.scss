@@ -1,3 +1,5 @@
+@import '../../global_styling/functions/index';
+
 // Core
 $euiColorPrimary: #238CFF;
 $euiColorSecondary: #7DE2D1;
@@ -28,12 +30,23 @@ $euiLinkColor: $euiColorPrimary;
 $euiFocusBackgroundColor: #232635;
 $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
+$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%);
 
+// Contrasty text variants
+// These colors are just straight dups of the basic colors for now
+// because we know they pass contrast needs and makeHighContrastColor is broken in dark mode
+$euiColorPrimaryText: $euiColorPrimary;
+$euiColorSecondaryText: $euiColorSecondary;
+$euiColorAccentText: $euiColorAccent;
+$euiColorWarningText: $euiColorWarning;
+$euiColorDangerText: $euiColorDanger;
+$euiColorSuccessText: $euiColorSecondaryText;
+
+// Charts
 $euiColorChartLines: #343741;
 $euiColorChartBand: #2A2C35;
 
 // Code
-
 $euiCodeBlockCommentColor: #656565;
 $euiCodeBlockSelectorTagColor: #C792EA;
 $euiCodeBlockStringColor: #C3E88D;
