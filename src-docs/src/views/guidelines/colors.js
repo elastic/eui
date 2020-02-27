@@ -5,9 +5,10 @@ import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
 import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
-import { calculateContrast, rgbToHex } from '../../../../src/services';
+import { rgbToHex } from '../../../../src/services';
 
 import { GuidePage } from '../../components';
+import { scrollToSelector } from '../../components/guide_page/guide_page_chrome';
 
 import {
   EuiText,
@@ -25,9 +26,16 @@ import {
   EuiCode,
   EuiSwitch,
   EuiCallOut,
+  EuiToolTip,
 } from '../../../../src/components';
+import { ColorsContrastItem } from './_colors_contrast_item';
 
 const allowedColors = [
+  'euiColorPrimary',
+  'euiColorSecondary',
+  'euiColorAccent',
+  'euiColorWarning',
+  'euiColorDanger',
   'euiColorEmptyShade',
   'euiColorLightestShade',
   'euiColorLightShade',
@@ -35,35 +43,74 @@ const allowedColors = [
   'euiColorDarkShade',
   'euiColorDarkestShade',
   'euiColorFullShade',
-  'euiColorPrimary',
-  'euiColorSecondary',
-  'euiColorWarning',
-  'euiColorDanger',
-  'euiColorAccent',
 ];
 
 const textVariants = [
-  'euiColorEmptyShade',
-  'euiColorLightestShade',
-  'euiColorLightShade',
-  'euiColorMediumShade',
-  'euiColorDarkShade',
-  'euiColorDarkestShade',
-  'euiColorFullShade',
   'euiColorPrimaryText',
   'euiColorSecondaryText',
   'euiColorWarningText',
   'euiColorDangerText',
   'euiColorAccentText',
+  'euiColorEmptyShade',
+  'euiColorLightestShade',
+  'euiColorLightShade',
+  'euiColorMediumShade',
+  'euiColorDarkShade',
+  'euiColorDarkestShade',
+  'euiColorFullShade',
 ];
 
-const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
-
-const ratingAA = <EuiBadge color="#333">AA</EuiBadge>;
-
-const ratingAA18 = <EuiBadge color="#666">AA18</EuiBadge>;
+export const ratingAAA = (
+  <EuiBadge iconType="checkInCircleFilled" color="#000">
+    AAA
+  </EuiBadge>
+);
+export const ratingAA = (
+  <EuiBadge iconType="checkInCircleFilled" color="#333">
+    AA
+  </EuiBadge>
+);
+export const ratingAA18 = (
+  <EuiBadge iconType="invert" color="#666">
+    AA18
+  </EuiBadge>
+);
+export const ratingAll = <EuiBadge color="#eee">ALL</EuiBadge>;
 
 function renderPaletteColor(palette, color, index, key) {
+  const hex = key ? palette[color][key] : palette[color];
+  const name = key && key !== 'graphic' ? `${color}_${key}` : color;
+
+  return (
+    <EuiFlexItem key={index} grow={false}>
+      <EuiCopy
+        title={`$${color}:
+        ${rgbToHex(hex.rgba).toUpperCase()}`}
+        beforeMessage={
+          <small>
+            <kbd>Click</kbd> to copy color name
+            <br />
+            <kbd>Shift + Click</kbd> to scroll to section
+          </small>
+        }
+        afterMessage={<small>Copied!</small>}
+        textToCopy={name}>
+        {copy => (
+          <EuiIcon
+            onClick={e => {
+              e.shiftKey ? scrollToSelector(`#${color}`) : copy();
+            }}
+            size="xxl"
+            type="stopFilled"
+            color={rgbToHex(hex.rgba)}
+          />
+        )}
+      </EuiCopy>
+    </EuiFlexItem>
+  );
+}
+
+function renderVizPaletteColor(palette, color, index, key) {
   const hex = key ? palette[color][key] : palette[color];
   const name = key && key !== 'graphic' ? `${color}_${key}` : color;
 
@@ -82,7 +129,7 @@ function renderPaletteColor(palette, color, index, key) {
             )}
           </EuiCopy>
         </EuiFlexItem>
-        <EuiFlexItem>
+        <EuiFlexItem grow={false}>
           <EuiTitle size="xxs">
             <h3>{name}</h3>
           </EuiTitle>
@@ -94,20 +141,15 @@ function renderPaletteColor(palette, color, index, key) {
             </p>
           </EuiText>
         </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiText size="s" color="subdued">
-            <p>
-              <code>
-                rgb({hex.r}, {hex.g}, {hex.b})
-              </code>
-            </p>
-          </EuiText>
-        </EuiFlexItem>
       </EuiFlexGroup>
     </EuiFlexItem>
   );
 }
 
+function getHexValueFromColorName(palette, colorName, key) {
+  const hex = key ? palette[colorName][key] : palette[colorName];
+  return rgbToHex(hex.rgba).toUpperCase();
+}
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -133,19 +175,68 @@ export default class extends Component {
     this.ticks = [
       {
         value: 0,
-        label: <EuiBadge color="#eee">ALL</EuiBadge>,
+        label: (
+          <EuiToolTip
+            position="bottom"
+            content={
+              <ul>
+                <li>
+                  <EuiIcon type="minusInCircle" /> Contrast is between 2 and 3.
+                  Use only for disabled or inconsequential content.
+                </li>
+                <li>
+                  <EuiIcon type="cross" /> Contrast is less than 2. Do not use.
+                </li>
+              </ul>
+            }>
+            {ratingAll}
+          </EuiToolTip>
+        ),
       },
       {
         value: 3,
-        label: ratingAA18,
+        label: (
+          <EuiToolTip
+            position="bottom"
+            content={
+              <p>
+                <EuiIcon type="invert" /> Passes with a contrast of 3+, but only
+                for graphics or if the text is at least 18px, or 14px and bold
+              </p>
+            }>
+            {ratingAA18}
+          </EuiToolTip>
+        ),
       },
       {
         value: 4.5,
-        label: ratingAA,
+        label: (
+          <EuiToolTip
+            position="bottom"
+            content={
+              <p>
+                <EuiIcon type="checkInCircleFilled" /> Passes with a contrast of
+                4.5+
+              </p>
+            }>
+            {ratingAA}
+          </EuiToolTip>
+        ),
       },
       {
         value: 7,
-        label: ratingAAA,
+        label: (
+          <EuiToolTip
+            position="bottom"
+            content={
+              <p>
+                <EuiIcon type="checkInCircleFilled" /> Passes with a contrast of
+                7+
+              </p>
+            }>
+            {ratingAAA}
+          </EuiToolTip>
+        ),
       },
     ];
 
@@ -175,7 +266,7 @@ export default class extends Component {
   };
 
   render() {
-    const { value, behindTextVariant, showTextVariants } = this.state;
+    const { value, showTextVariants } = this.state;
     const { selectedTheme } = this.props;
 
     let palette;
@@ -194,60 +285,27 @@ export default class extends Component {
         break;
     }
 
+    const colorsForContrast = showTextVariants ? textVariants : allowedColors;
+
     // Vis colors are the same for all palettes
     const visColors = lightColors.euiPaletteColorBlind;
     const visColorKeys = Object.keys(lightColors.euiPaletteColorBlind);
-    const colorsForContrast = showTextVariants ? textVariants : allowedColors;
-
-    function getContrastRatings(color1, color2) {
-      if (color1.indexOf('Shade') === -1 && color2.indexOf('Shade') === -1) {
-        // Exit out, i.e. don't render, if non-shade top of non-shade
-        return;
-      }
-
-      const contrast = calculateContrast(
-        [palette[color1].r, palette[color1].g, palette[color1].b],
-        [palette[color2].r, palette[color2].g, palette[color2].b]
-      );
-
-      let contrastRating;
-      let contrastRatingBadge;
-      if (contrast >= 7) {
-        contrastRating = <EuiIcon type="checkInCircleFilled" />;
-        contrastRatingBadge = ratingAAA;
-      } else if (contrast >= 4.5) {
-        contrastRating = <EuiIcon type="checkInCircleFilled" />;
-        contrastRatingBadge = ratingAA;
-      } else if (contrast >= 3) {
-        contrastRating = <EuiIcon type="editorBold" />;
-        contrastRatingBadge = ratingAA18;
-      } else if (color2.includes('Shade') && contrast >= 2) {
-        contrastRating = <EuiIcon type="minusInCircle" />;
-      } else {
-        contrastRating = <EuiIcon type="cross" />;
-      }
-
-      return { contrast, contrastRating, contrastRatingBadge };
-    }
 
     return (
       <GuidePage title="Color guidelines">
-        <EuiSpacer size="xl" />
-
         <EuiText grow={false} className="guideSection__text">
-          <h2>Core palette</h2>
+          <h2>Elastic UI builds with a very limited palette.</h2>
           <p>
-            Elastic UI builds with a very limited palette. We use a core set of
-            three colors, combined with a green / orange / red qualitative set
-            of three, and finally combine those against a six-color grayscale.
-            Variation beyond these colors is minimal and always done with math
-            manipulation against the original set.
+            We use a core set of three colors, combined with a green / orange /
+            red qualitative set of three, and finally combine those against a
+            six-color grayscale. Variation beyond these colors is minimal and
+            always done with math manipulation against the original set.
           </p>
         </EuiText>
 
         <EuiSpacer />
 
-        <EuiFlexGroup direction="column" gutterSize="s">
+        <EuiFlexGroup className="guideSection__shadedBox" gutterSize="s" wrap>
           {allowedColors.map(function(color, index) {
             return renderPaletteColor(palette, color, index);
           })}
@@ -262,50 +320,39 @@ export default class extends Component {
               WCAG specifications
             </EuiLink>{' '}
             defines specific contrast ratios between foreground text and a
-            background color. The grid below displays which color combinations
+            background color. The grids below display which color combinations
             pass that rating. In general you should try to use a color
-            combination that is <EuiBadge color="#333">AA</EuiBadge> or above
-            with the exception of using large text.
+            combination that is {ratingAA} or above with the exception of using
+            large text.
           </p>
-          <EuiCallOut
-            color="warning"
-            iconType="accessibility"
-            title="Amsterdam changes in contrast levels">
-            <p>
-              The Amsterdam theme introduces a more vibrant core color palette.
-              In order to maintain a WCAG contrast of at least 4.5 you should
-              use the text variants of the core color variables such as&nbsp;
-              <EuiCode>$euiColorSecondaryText</EuiCode>. These new variables
-              have also been added to the default EUI theme and can be used in
-              components that render text.
-            </p>
-            <EuiSwitch
-              label="Show text variant"
-              checked={showTextVariants}
-              onChange={this.onTextVariantChange}
-            />
-          </EuiCallOut>
-          <h3>Rating definitions</h3>
-          <ul>
-            <li>
-              <EuiIcon type="checkInCircleFilled" /> : {ratingAA} {ratingAAA}{' '}
-              Passes with a contrast of 4.5+ (7+ for AAA)
-            </li>
-            <li>
-              <EuiIcon type="editorBold" />: {ratingAA18} Passes with a contrast
-              of 3+, but only for graphics or if the text is at least 18px, or
-              14px and bold
-            </li>
-            <li>
-              <EuiIcon type="minusInCircle" /> : Use only for disabled or
-              inconsequential content
-            </li>
-          </ul>
         </EuiText>
+
+        <EuiSpacer size="m" />
+
+        <EuiCallOut
+          color="warning"
+          iconType="accessibility"
+          title="Amsterdam changes in contrast levels">
+          <p>
+            The Amsterdam theme introduces a more vibrant core color palette. In
+            order to maintain a WCAG contrast of at least 4.5 you should use the
+            text variants of the core color variables such as&nbsp;
+            <EuiCode>$euiColorSecondaryText</EuiCode>. These new variables have
+            also been added to the default EUI theme and can be used in
+            components that render text.
+          </p>
+          <EuiSwitch
+            label="Show text variant"
+            checked={showTextVariants}
+            onChange={this.onTextVariantChange}
+          />
+        </EuiCallOut>
 
         <EuiSpacer size="xxl" />
 
-        <EuiFlexGroup className="eui-textCenter" justifyContent="center">
+        <EuiFlexGroup
+          className="guideSection__shadedBox"
+          justifyContent="center">
           <EuiFlexItem style={{ maxWidth: 400 }}>
             <EuiFormRow
               id="ratingsRange"
@@ -328,62 +375,77 @@ export default class extends Component {
 
         <EuiSpacer size="xxl" />
 
-        <EuiFlexGrid columns={3}>
-          {allowedColors.map(function(color, index) {
-            return (
-              <EuiFlexItem key={index}>
-                <EuiText size="xs">
-                  <h3>{color}</h3>
-                  {colorsForContrast.map(function(color2, index) {
-                    const contrastRatings = getContrastRatings(color, color2);
+        {allowedColors.map(function(color) {
+          const hex = getHexValueFromColorName(palette, color);
+          return (
+            <React.Fragment key={color}>
+              <EuiSpacer size="xxl" />
 
-                    if (!contrastRatings || contrastRatings.contrast < value) {
+              <EuiTitle size="xs">
+                <h3 id={color}>
+                  <EuiIcon
+                    aria-hidden="true"
+                    type="stopFilled"
+                    size="xxl"
+                    color={hex}
+                  />{' '}
+                  &ensp;
+                  {color}: <EuiCode>{hex}</EuiCode>
+                </h3>
+              </EuiTitle>
+
+              <EuiSpacer />
+
+              <EuiText grow={false}>
+                <p>
+                  Used as the background color of primary page content. While
+                  full white in light mode, it is not full black in dark mode.
+                </p>
+                <p>
+                  If you need a color that is full white in both light and dark
+                  modes, use <EuiCode>euiColorGhost</EuiCode>.
+                </p>
+              </EuiText>
+
+              <EuiSpacer />
+
+              <EuiText size="xs">
+                <EuiFlexGrid
+                  columns={2}
+                  className="guideSection__shadedBox"
+                  direction="column"
+                  gutterSize="s">
+                  {showTextVariants && color.indexOf('Shade') === -1 && (
+                    <ColorsContrastItem
+                      foreground={`${color}Text`}
+                      background={'euiPageBackgroundColor'}
+                      minimumContrast={value}
+                    />
+                  )}
+
+                  {colorsForContrast.map(color2 => {
+                    if (
+                      color2.indexOf('Shade') === -1 &&
+                      color.indexOf('Shade') === -1
+                    ) {
+                      // i.e. don't render, if non-shade top of non-shade
                       return;
                     }
-
-                    const {
-                      contrast,
-                      contrastRating,
-                      contrastRatingBadge,
-                    } = getContrastRatings(color, color2);
-
-                    const tooltipContent = (
-                      <div>
-                        {contrastRatingBadge} Contrast is {contrast.toFixed(1)}
-                      </div>
-                    );
-                    const textToCopy = `background-color: $${color};
-color: $${color2};`;
-
                     return (
-                      <EuiCopy
-                        key={index}
-                        anchorClassName="eui-displayBlock"
-                        beforeMessage={tooltipContent}
-                        textToCopy={textToCopy}>
-                        {copy => (
-                          <button
-                            type="button"
-                            onClick={copy}
-                            className="eui-fullWidth eui-textLeft"
-                            style={{
-                              backgroundColor: palette[color].rgba,
-                              color: palette[color2].rgba,
-                              padding: 6,
-                              marginBottom: 2,
-                              borderRadius: 4,
-                            }}>
-                            {contrastRating} &ensp; {color2}
-                          </button>
-                        )}
-                      </EuiCopy>
+                      <ColorsContrastItem
+                        foreground={color2}
+                        background={color}
+                        key={color2}
+                        minimumContrast={value}
+                      />
                     );
                   })}
-                </EuiText>
-              </EuiFlexItem>
-            );
-          })}
-        </EuiFlexGrid>
+                </EuiFlexGrid>
+              </EuiText>
+              <EuiSpacer size="xxl" />
+            </React.Fragment>
+          );
+        })}
 
         <EuiSpacer size="xxl" />
 
@@ -409,28 +471,34 @@ color: $${color2};`;
 
         <EuiSpacer />
 
-        <EuiSwitch
-          label={
-            <span>
-              Show <EuiCode>_behindText</EuiCode> variant
-            </span>
-          }
-          checked={behindTextVariant}
-          onChange={this.onBehindTextVariantChange}
-        />
-
         <EuiSpacer />
 
-        <EuiFlexGroup direction="column" gutterSize="s">
-          {visColorKeys.map(function(color, index) {
-            return renderPaletteColor(
-              visColors,
-              color,
-              index,
-              behindTextVariant ? 'behindText' : 'graphic'
-            );
-          })}
-        </EuiFlexGroup>
+        <EuiFlexGrid columns={2}>
+          <EuiFlexItem>
+            <EuiFlexGroup direction="column" gutterSize="s">
+              {visColorKeys.map(function(color, index) {
+                return renderVizPaletteColor(
+                  visColors,
+                  color,
+                  index,
+                  'graphic'
+                );
+              })}
+            </EuiFlexGroup>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiFlexGroup direction="column" gutterSize="s">
+              {visColorKeys.map(function(color, index) {
+                return renderVizPaletteColor(
+                  visColors,
+                  color,
+                  index,
+                  'behindText'
+                );
+              })}
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGrid>
       </GuidePage>
     );
   }

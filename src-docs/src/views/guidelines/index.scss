@@ -290,8 +290,8 @@
   color: #333;
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__themedBox--dark {
+  // sass-lint:disable no-color-literals
   border-color: #4DA1C0;
   background: shade(#4DA1C0, 70%);
   color: #FFF;
@@ -310,6 +310,12 @@
     fill: makeGraphicContrastColor($euiColorWarning, $backgroundColor);
     vertical-align: bottom;
   }
+}
+
+.guideSection__shadedBox {
+  background-color: $euiPageBackgroundColor;
+  padding: $euiSize;
+  border-radius: $euiBorderRadius;
 }
 
 @include euiBreakpoint('xl') {
