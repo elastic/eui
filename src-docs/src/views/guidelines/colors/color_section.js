@@ -21,12 +21,17 @@ export const ColorSection = ({
 }) => {
   const palette = getSassVars(theme);
   const hex = getHexValueFromColorName(palette, color);
+  const iconClass =
+    color === 'euiColorLightestShade' || color === 'euiColorEmptyShade'
+      ? 'colorGuidelines_colorPreviewTooLight'
+      : undefined;
 
   return (
     <>
       <EuiTitle size="xs">
         <h3 id={color}>
           <EuiIcon
+            className={iconClass}
             aria-hidden="true"
             type="stopFilled"
             size="xxl"

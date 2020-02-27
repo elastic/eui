@@ -15,7 +15,10 @@ export const CorePalette = ({ theme, colors }) => {
 
   function renderPaletteColor(palette, color, index) {
     const hex = palette[color];
-    const name = color;
+    const iconClass =
+      color === 'euiColorLightestShade' || color === 'euiColorEmptyShade'
+        ? 'colorGuidelines_colorPreviewTooLight'
+        : undefined;
 
     return (
       <EuiFlexItem key={index} grow={false}>
@@ -30,16 +33,19 @@ export const CorePalette = ({ theme, colors }) => {
             </small>
           }
           afterMessage={<small>Copied!</small>}
-          textToCopy={name}>
+          textToCopy={color}>
           {copy => (
-            <EuiIcon
+            <button
               onClick={e => {
                 e.shiftKey ? scrollToSelector(`#${color}`) : copy();
-              }}
-              size="xxl"
-              type="stopFilled"
-              color={rgbToHex(hex.rgba)}
-            />
+              }}>
+              <EuiIcon
+                className={iconClass}
+                size="xxl"
+                type="stopFilled"
+                color={rgbToHex(hex.rgba)}
+              />
+            </button>
           )}
         </EuiCopy>
       </EuiFlexItem>

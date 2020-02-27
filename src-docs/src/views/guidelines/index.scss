@@ -152,6 +152,11 @@
   }
 }
 
+.colorGuidelines_colorPreviewTooLight rect {
+  stroke: transparentize($euiColorLightShade, lightOrDarkTheme(.5, 0));
+  stroke-width: .25px;
+}
+
 .guideSass__shadow--euiSlightShadow { @include euiSlightShadow; }
 .guideSass__shadow--euiBottomShadowSmall { @include euiBottomShadowSmall; }
 .guideSass__shadow--euiBottomShadowMedium { @include euiBottomShadowMedium; }
