@@ -17,6 +17,7 @@ export const ColorSection = ({
   colorsForContrast,
   minimumContrast,
   showTextVariants,
+  children,
 }) => {
   const palette = getSassVars(theme);
   const hex = getHexValueFromColorName(palette, color);
@@ -38,16 +39,7 @@ export const ColorSection = ({
 
       <EuiSpacer />
 
-      <EuiText grow={false}>
-        <p>
-          Used as the background color of primary page content. While full white
-          in light mode, it is not full black in dark mode.
-        </p>
-        <p>
-          If you need a color that is full white in both light and dark modes,
-          use <EuiCode>euiColorGhost</EuiCode>.
-        </p>
-      </EuiText>
+      <EuiText grow={false}>{children}</EuiText>
 
       <EuiSpacer />
 

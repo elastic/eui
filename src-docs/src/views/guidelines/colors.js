@@ -114,25 +114,101 @@ export default ({ selectedTheme }) => {
       />
 
       <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      {allowedColors.map(function(color) {
-        return (
-          <React.Fragment key={color}>
-            <EuiSpacer size="xxl" />
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiColorPrimary'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
+        <p>
+          Main brand color and used for most call to actions like buttons and
+          links. Reserve usages to elements with interactions like clickable
+          items not for plain text.
+        </p>
+      </ColorSection>
 
-            <ColorSection
-              theme={selectedTheme}
-              color={color}
-              colorsForContrast={colorsForContrast}
-              minimumContrast={contrastValue}
-              showTextVariants={showTextVariants}
-            />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-            <EuiSpacer size="xxl" />
-          </React.Fragment>
-        );
-      })}
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiColorSecondary'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
+        <p>
+          Also known as <EuiCode>euiColorSuccess</EuiCode>. Use this for success
+          graphics and <strong>additive</strong> actions.
+        </p>
+      </ColorSection>
 
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiColorAccent'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
+        <p>
+          Pulls attention to key indicators like notifications or number of
+          selections. Don&apos;t use on elements with interactions.
+        </p>
+      </ColorSection>
+
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiColorDanger'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
+        <p>
+          Use this for negative graphics like errors and{' '}
+          <strong>destructive</strong> actions.
+        </p>
+      </ColorSection>
+
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiColorWarning'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
+        <p>
+          Use this for warnings and actions that have a{' '}
+          <strong>potential</strong> to be destructive.
+        </p>
+      </ColorSection>
+
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiColorEmptyShade'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
+        <p>
+          Used as the background color of primary page content. While full white
+          in light mode, it is not full black in dark mode.
+        </p>
+        <p>
+          If you need a color that is full white in both light and dark modes,
+          use <EuiCode>euiColorGhost</EuiCode>.
+        </p>
+      </ColorSection>
+
+      <EuiSpacer size="xxl" />
       <EuiSpacer size="xxl" />
 
       <EuiText grow={false} className="guideSection__text">
