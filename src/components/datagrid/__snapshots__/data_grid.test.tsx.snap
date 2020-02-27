@@ -253,6 +253,36 @@ Array [
         </button>
       </div>
       <div
+        class="euiDataGridHeader"
+        data-test-subj="dataGridHeader"
+        role="row"
+      >
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-A"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            A
+          </div>
+        </div>
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-B"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            B
+          </div>
+        </div>
+      </div>
+      <div
         class="euiDataGrid__verticalScroll"
         data-test-subj="test subject string"
       >
@@ -264,36 +294,6 @@ Array [
             class="euiDataGrid__content"
             role="grid"
           >
-            <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
-            >
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  A
-                </div>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  B
-                </div>
-              </div>
-            </div>
             <div
               class="euiDataGridRow"
               data-test-subj="dataGridRow"
@@ -775,6 +775,66 @@ Array [
         </button>
       </div>
       <div
+        class="euiDataGridHeader"
+        data-test-subj="dataGridHeader"
+        role="row"
+      >
+        <div
+          class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
+          data-test-subj="dataGridHeaderCell-leading"
+          role="columnheader"
+          style="width:50px"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            <span>
+              leading heading
+            </span>
+          </div>
+        </div>
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-A"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            A
+          </div>
+        </div>
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-B"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            B
+          </div>
+        </div>
+        <div
+          class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
+          data-test-subj="dataGridHeaderCell-trailing"
+          role="columnheader"
+          style="width:50px"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            <span>
+              trailing heading
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
         class="euiDataGrid__verticalScroll"
         data-test-subj="test subject string"
       >
@@ -786,66 +846,6 @@ Array [
             class="euiDataGrid__content"
             role="grid"
           >
-            <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
-            >
-              <div
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
-                data-test-subj="dataGridHeaderCell-leading"
-                role="columnheader"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  <span>
-                    leading heading
-                  </span>
-                </div>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  A
-                </div>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  B
-                </div>
-              </div>
-              <div
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
-                data-test-subj="dataGridHeaderCell-trailing"
-                role="columnheader"
-                style="width:50px"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  <span>
-                    trailing heading
-                  </span>
-                </div>
-              </div>
-            </div>
             <div
               class="euiDataGridRow"
               data-test-subj="dataGridRow"
@@ -1492,6 +1492,38 @@ Array [
         </button>
       </div>
       <div
+        class="euiDataGridHeader"
+        data-test-subj="dataGridHeader"
+        role="row"
+      >
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-A"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            Column A
+          </div>
+        </div>
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-B"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            <div>
+              More Elements
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         class="euiDataGrid__verticalScroll"
         data-test-subj="test subject string"
       >
@@ -1503,38 +1535,6 @@ Array [
             class="euiDataGrid__content"
             role="grid"
           >
-            <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
-            >
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  Column A
-                </div>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  <div>
-                    More Elements
-                  </div>
-                </div>
-              </div>
-            </div>
             <div
               class="euiDataGridRow"
               data-test-subj="dataGridRow"
@@ -2013,6 +2013,36 @@ Array [
         </button>
       </div>
       <div
+        class="euiDataGridHeader"
+        data-test-subj="dataGridHeader"
+        role="row"
+      >
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-A"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            A
+          </div>
+        </div>
+        <div
+          class="euiDataGridHeaderCell"
+          data-test-subj="dataGridHeaderCell-B"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridHeaderCell__content"
+          >
+            B
+          </div>
+        </div>
+      </div>
+      <div
         class="euiDataGrid__verticalScroll"
         data-test-subj="test subject string"
       >
@@ -2024,36 +2054,6 @@ Array [
             class="euiDataGrid__content"
             role="grid"
           >
-            <div
-              class="euiDataGridHeader"
-              data-test-subj="dataGridHeader"
-              role="row"
-            >
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-A"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  A
-                </div>
-              </div>
-              <div
-                class="euiDataGridHeaderCell"
-                data-test-subj="dataGridHeaderCell-B"
-                role="columnheader"
-                tabindex="-1"
-              >
-                <div
-                  class="euiDataGridHeaderCell__content"
-                >
-                  B
-                </div>
-              </div>
-            </div>
             <div
               class="euiDataGridRow"
               data-test-subj="dataGridRow"
