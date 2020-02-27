@@ -29,7 +29,8 @@ class Rows extends Component {
 
   render() {
     const rows = [];
-    for (let i = 1; i <= this.state.counter; i++) {
+    const { counter } = this.state;
+    for (let i = 1; i <= counter; i++) {
       rows.push(<p key={i}>Row {i}</p>);
     }
     return (
@@ -37,10 +38,12 @@ class Rows extends Component {
         <EuiSpacer size="s" />
         <p>
           <EuiButton onClick={() => this.onIncrease()}>
-            Increase height
+            Increase height to {counter + 1} items
           </EuiButton>{' '}
-          <EuiButton onClick={() => this.onDecrease()}>
-            Decrease height
+          <EuiButton
+            onClick={() => this.onDecrease()}
+            isDisabled={counter === 1}>
+            Decrease height to {counter - 1} item{counter > 2 && 's'}
           </EuiButton>
         </p>
         {rows}
