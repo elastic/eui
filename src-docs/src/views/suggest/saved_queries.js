@@ -62,7 +62,8 @@ export default class extends Component {
       },
       {
         id: 'filter1',
-        field: '@tags.keyword',
+        field:
+          'Filter with a very long title to test if the badge will properly get truncated in the separate set of filter badges that are not quite as long but man does it really need to be long',
         operator: 'IS',
         value: 'value',
         isDisabled: true,
