@@ -186,15 +186,16 @@ export class GuideSection extends Component {
             ','
           );
           for (let i = 1; i < linesWithImport.length - 1; linesWithImport++) {
-            linesWithImport[i] = linesWithImport[i].replace('import {', ',');
+            linesWithImport[i] = linesWithImport[i]
+              .replace('import {', '')
+              .replace(" } from '@elastic/eui';", ',');
           }
           linesWithImport[linesWithImport.length - 1] = linesWithImport[
             linesWithImport.length - 1
           ].replace('import {', '');
-
-          const newImport = linesWithImport.join('');
-          renderedCode.unshift(newImport);
         }
+        const newImport = linesWithImport.join('');
+        renderedCode.unshift(newImport);
         renderedCode = renderedCode.join('\n');
         let len = renderedCode.replace('\n\n\n', '\n\n').length;
         while (len < renderedCode.length) {
