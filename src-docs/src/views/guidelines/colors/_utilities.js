@@ -1,18 +1,14 @@
 import React from 'react';
-import { withTheme } from '../../components';
-import { calculateContrast } from '../../../../src/services';
-
-import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
-import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
-import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
-import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
+import { withTheme } from '../../../components';
+import { calculateContrast, rgbToHex } from '../../../../../src/services';
+import { getSassVars } from '../_get_sass_vars';
 
 import {
   EuiBadge,
   EuiIcon,
   EuiCopy,
   EuiFlexItem,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
 export const ratingAAA = (
   <EuiBadge iconType="checkInCircleFilled" color="#000">
@@ -57,27 +53,13 @@ function getContrastRatings(background, foreground, palette) {
   return { contrast, contrastRating, contrastRatingBadge };
 }
 
-const _ColorsContrastItem = ({
+export const _ColorsContrastItem = ({
   theme,
   foreground,
   background,
   minimumContrast,
 }) => {
-  let palette;
-  switch (theme) {
-    case 'amsterdam-dark':
-      palette = darkAmsterdamColors;
-      break;
-    case 'amsterdam-light':
-      palette = { ...lightColors, ...lightAmsterdamColors };
-      break;
-    case 'dark':
-      palette = darkColors;
-      break;
-    default:
-      palette = lightColors;
-      break;
-  }
+  const palette = getSassVars(theme);
 
   const contrastRatings = getContrastRatings(background, foreground, palette);
 
@@ -133,3 +115,8 @@ color: $${foreground};`;
 };
 
 export const ColorsContrastItem = withTheme(_ColorsContrastItem);
+
+export function getHexValueFromColorName(palette, colorName, key) {
+  const hex = key ? palette[colorName][key] : palette[colorName];
+  return rgbToHex(hex.rgba).toUpperCase();
+}
