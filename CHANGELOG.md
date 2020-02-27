@@ -7,10 +7,12 @@
 - Updated SASS mixin `makeHighContrastColor()` to default `$background: $euiPageBackgroundColor` and `$ratio: 4.5`. Created `makeGraphicContrastColor()` for graphic specific contrast levels of 3.0. ([#2873](https://github.com/elastic/eui/pull/2873))
 - Added `folderCheck`, `folderExclamation`, `push`, `quote`, `reporter` and `users` icons ([#2935](https://github.com/elastic/eui/pull/2935))
 - Updated `folderClosed` and `folderOpen` to match new additions and sit better on the pixel grid ([#2935](https://github.com/elastic/eui/pull/2935))
+- Adjusted the header on `EuiDataGrid` to fix within constrained containers and full screen mode  ([#2938](https://github.com/elastic/eui/pull/2938))
 
 **Bug fixes**
 
 - Fixed `EuiTitle` not rendering child classes ([#2926](https://github.com/elastic/eui/pull/2926))
+- Fixed z-index conflict with cell popovers in `EuiDataGrid` while in full screen mode ([#2938](https://github.com/elastic/eui/pull/2938))
 
 **Theme: Amsterdam**
 
