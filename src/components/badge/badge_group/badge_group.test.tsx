@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { requiredProps } from '../../../test/required_props';
 
-import { EuiBadge } from './badge';
+import { EuiBadge } from '../badge';
 import { EuiBadgeGroup } from './badge_group';
 
 describe('EuiBadgeGroup', () => {

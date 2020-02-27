@@ -1,7 +1,14 @@
 import React, { HTMLAttributes, Ref } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, keysOf } from '../../common';
 
+const gutterSizeToClassNameMap = {
+  none: null,
+  xs: 'euiBadgeGroup--gutterExtraSmall',
+  s: 'euiBadgeGroup--gutterSmall',
+};
+
+export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
 type BadgeGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
 
 export interface EuiBadgeGroupProps {
@@ -18,15 +25,6 @@ export interface EuiBadgeGroupProps {
    */
   wrap?: boolean;
 }
-
-const gutterSizeToClassNameMap = {
-  none: null,
-  xs: 'euiBadgeGroup--gutterExtraSmall',
-  s: 'euiBadgeGroup--gutterSmall',
-};
-
-export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
-
 export const EuiBadgeGroup = React.forwardRef<
   HTMLDivElement,
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiBadgeGroupProps
@@ -59,4 +57,3 @@ export const EuiBadgeGroup = React.forwardRef<
     );
   }
 );
-EuiBadgeGroup.displayName = 'EuiBadgeGroup';
