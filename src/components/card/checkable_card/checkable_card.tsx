@@ -1,8 +1,12 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { EuiRadio, EuiRadioProps } from '../../form/radio';
-import { EuiCheckbox, EuiCheckboxProps } from '../../form/checkbox';
+import {
+  EuiRadio,
+  EuiRadioProps,
+  EuiCheckbox,
+  EuiCheckboxProps,
+} from '../../form';
 
 interface EuiCheckableCardBaseProps {
   id: string;

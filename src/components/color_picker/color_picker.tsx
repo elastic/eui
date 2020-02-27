@@ -17,11 +17,11 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiFieldText } from '../form/field_text';
 import {
+  EuiFieldText,
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
-} from '../form/form_control_layout';
+} from '../form';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
