@@ -31,7 +31,7 @@ class Rows extends Component {
     const rows = [];
     const { counter } = this.state;
     for (let i = 1; i <= counter; i++) {
-      rows.push(<p key={i}>Row {i}</p>);
+      rows.push(<li key={i}>Row {i}</li>);
     }
     return (
       <EuiText>
