@@ -46,7 +46,8 @@ class Rows extends Component {
             Decrease height to {counter - 1} item{counter > 2 && 's'}
           </EuiButton>
         </p>
-        {rows}
+		// TODO generate the listId
+        <ul id={listId}>{rows}</ul>
       </EuiText>
     );
   }
