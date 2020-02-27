@@ -35,6 +35,8 @@ class Rows extends Component {
     }
     return (
       <EuiText>
+		// TODO generate growingAccordianDescriptionId
+		<EuiScreenReaderOnly><p id={growingAccordianDescriptionId}>Currently height is set to {counter} items</p></EuiScreenReaderOnly>
         <EuiSpacer size="s" />
         <p>
           <EuiButton onClick={() => this.onIncrease()} aria-controls={listId} aria-describedby={growingAccordianDescriptionId}>
