@@ -41,6 +41,8 @@ class Rows extends Component {
             Increase height to {counter + 1} items
           </EuiButton>{' '}
           <EuiButton
+          	 aria-controls={listId} 
+          	 aria-describedby={growingAccordianDescriptionId}
             onClick={() => this.onDecrease()}
             isDisabled={counter === 1}>
             Decrease height to {counter - 1} item{counter > 2 && 's'}
