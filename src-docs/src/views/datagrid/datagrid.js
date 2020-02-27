@@ -26,7 +26,7 @@ const columns = [
     id: 'email',
     display: (
       // This is an example of an icon next to a title that still respects text truncate
-      <EuiFlexGroup gutterSize="xs">
+      <EuiFlexGroup gutterSize="xs" responsive={false}>
         <EuiFlexItem className="eui-textTruncate">
           <div className="eui-textTruncate">email</div>
         </EuiFlexItem>

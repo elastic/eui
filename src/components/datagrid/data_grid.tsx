@@ -811,7 +811,18 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
           ) : null}
           <EuiResizeObserver onResize={onResize}>
             {resizeRef => (
-              <Fragment>
+              <div
+                className="euiDataGrid__keyWrap"
+                onKeyDown={createKeyDownHandler(
+                  props,
+                  orderedVisibleColumns,
+                  leadingControlColumns,
+                  trailingControlColumns,
+                  focusedCell,
+                  headerIsInteractive,
+                  setFocusedCell,
+                  focusAfterRender
+                )}>
                 <EuiMutationObserver
                   observerOptions={{
                     subtree: true,
@@ -836,16 +847,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   )}
                 </EuiMutationObserver>
                 <div
-                  onKeyDown={createKeyDownHandler(
-                    props,
-                    orderedVisibleColumns,
-                    leadingControlColumns,
-                    trailingControlColumns,
-                    focusedCell,
-                    headerIsInteractive,
-                    setFocusedCell,
-                    focusAfterRender
-                  )}
                   className="euiDataGrid__verticalScroll"
                   ref={resizeRef}
                   {...rest}>
@@ -891,7 +892,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     </div>
                   </div>
                 </div>
-              </Fragment>
+              </div>
             )}
           </EuiResizeObserver>
 

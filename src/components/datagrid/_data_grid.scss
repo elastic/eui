@@ -23,6 +23,13 @@
   }
 }
 
+.euiDataGrid__keyWrap {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  flex-direction: column;
+}
+
 .euiDataGrid__content {
   @include euiScrollBar;
   @include euiScrollBar;
