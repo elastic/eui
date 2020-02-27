@@ -4,27 +4,17 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiButtonEmpty,
-  EuiCode,
-  EuiPopover,
-  EuiTour,
-} from '../../../../src/components';
+import { EuiCode, EuiTourStep } from '../../../../src/components';
 
 import Tour from './tour';
+import Managed from './managed';
 
 const tourSource = require('!!raw-loader!./tour');
 const tourHtml = renderToHtml(Tour);
 const tourSnippet = '<EuiTour size="xs" />';
-
-// TODO update this whenever localStorage changes
-const tourData = JSON.parse(localStorage.getItem('tourDemo'));
-
-const handleClick = () => {
-  window.alert('button clicked');
-  // TODO update localStorage object; increment the step in particular
-  // localStorage.setItem('tourDemo', JSON.stringify(xxx));
-};
+const managedSource = require('!!raw-loader!./managed');
+const managedHtml = renderToHtml(Managed);
+const managedSnippet = '<EuiTour size="xs" />';
 
 export const TourExample = {
   title: 'Tour',
@@ -36,6 +26,7 @@ export const TourExample = {
   ),
   sections: [
     {
+      title: 'Standalone steps',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -47,32 +38,34 @@ export const TourExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            The <EuiCode>Tour</EuiCode> component is a...
-          </p>
-          <EuiTour
-            closePopover={() => {
-              return undefined;
-            }}
-            content={<p>Read this.</p>}
-            isStepOpen={tourData.currentTourStep === 3 ? true : false}
-            isTourActive={tourData.isTourActive}
-            minWidth={tourData.tourPopoverWidth}
-            skipOnClick={() => window.alert('skip')}
-            step={3}
-            stepsTotal={tourData.tourSteps}
-            subtitle={tourData.tourSubtitle}
-            title="Jump outside the demo area">
-            <EuiButtonEmpty flush="left" iconType="check" onClick={handleClick}>
-              Finish tour
-            </EuiButtonEmpty>
-          </EuiTour>
-        </div>
+        <p>
+          The <EuiCode>EuiTourStep</EuiCode> component is not documented yet.
+        </p>
       ),
-      props: { EuiPopover },
+      props: { EuiTourStep },
       snippet: tourSnippet,
       demo: <Tour />,
+    },
+    {
+      title: 'Managed state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: managedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: managedHtml,
+        },
+      ],
+      text: (
+        <p>
+          Using the <EuiCode>useEuiTour</EuiCode> hook for state management
+        </p>
+      ),
+      props: { EuiTourStep },
+      snippet: managedSnippet,
+      demo: <Managed />,
     },
   ],
 };
