@@ -43,8 +43,8 @@ $euiColorDangerText: $euiColorDanger;
 $euiColorSuccessText: $euiColorSecondaryText;
 
 // Charts
-$euiColorChartLines: #343741;
-$euiColorChartBand: #2A2C35;
+$euiColorChartLines: $euiColorLightShade;
+$euiColorChartBand: tint($euiColorLightestShade, 2.5%);
 
 // Code
 $euiCodeBlockCommentColor: #656565;

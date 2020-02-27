@@ -7,7 +7,7 @@ export const getSassVars = theme => {
   let palette;
   switch (theme) {
     case 'amsterdam-dark':
-      palette = darkAmsterdamColors;
+      palette = { ...darkColors, ...darkAmsterdamColors };
       break;
     case 'amsterdam-light':
       palette = { ...lightColors, ...lightAmsterdamColors };
