@@ -8,7 +8,9 @@ import {
   EuiButton,
   EuiSpacer,
   EuiText,
+  EuiScreenReaderOnly,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services/accessibility/html_id_generator';
 
 class Rows extends Component {
   state = {
@@ -33,24 +35,31 @@ class Rows extends Component {
     for (let i = 1; i <= counter; i++) {
       rows.push(<li key={i}>Row {i}</li>);
     }
+    const growingAccordianDescriptionId = htmlIdGenerator()();
+    const listId = htmlIdGenerator()();
     return (
       <EuiText>
-		// TODO generate growingAccordianDescriptionId
-		<EuiScreenReaderOnly><p id={growingAccordianDescriptionId}>Currently height is set to {counter} items</p></EuiScreenReaderOnly>
+        <EuiScreenReaderOnly>
+          <p id={growingAccordianDescriptionId}>
+            Currently height is set to {counter} items
+          </p>
+        </EuiScreenReaderOnly>
         <EuiSpacer size="s" />
         <p>
-          <EuiButton onClick={() => this.onIncrease()} aria-controls={listId} aria-describedby={growingAccordianDescriptionId}>
+          <EuiButton
+            onClick={() => this.onIncrease()}
+            aria-controls={listId}
+            aria-describedby={growingAccordianDescriptionId}>
             Increase height to {counter + 1} items
           </EuiButton>{' '}
           <EuiButton
-          	 aria-controls={listId} 
-          	 aria-describedby={growingAccordianDescriptionId}
+            aria-controls={listId}
+            aria-describedby={growingAccordianDescriptionId}
             onClick={() => this.onDecrease()}
             isDisabled={counter === 1}>
             Decrease height to {counter - 1} item{counter > 2 && 's'}
           </EuiButton>
         </p>
-		// TODO generate the listId
         <ul id={listId}>{rows}</ul>
       </EuiText>
     );
