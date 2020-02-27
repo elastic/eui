@@ -37,7 +37,7 @@ class Rows extends Component {
       <EuiText>
         <EuiSpacer size="s" />
         <p>
-          <EuiButton onClick={() => this.onIncrease()}>
+          <EuiButton onClick={() => this.onIncrease()} aria-controls={listId} aria-describedby={growingAccordianDescriptionId}>
             Increase height to {counter + 1} items
           </EuiButton>{' '}
           <EuiButton
