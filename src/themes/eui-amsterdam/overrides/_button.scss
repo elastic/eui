@@ -45,8 +45,7 @@
     &:enabled {
       &:hover,
       &:focus {
-        // Makes the background lighter
-        background-color: lightOrDarkTheme(transparentize($color, .9), mix($color, $euiColorInk, 50%));
+        background-color: transparentize($color, lightOrDarkTheme(.9, .65));
       }
 
       &.euiButton--fill {
