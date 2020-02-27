@@ -16,6 +16,9 @@
 
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
 
+**Breaking changes**
+
+- Updated `@types/react` and `@types/react-dom` to utilize React.RefCallback type instead of custom implementation ([#2929](https://github.com/elastic/eui/pull/2929))
 
 ## [`20.0.0`](https://github.com/elastic/eui/tree/v20.0.0)
 
