@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, Ref } from 'react';
+import React, { HTMLAttributes, Ref, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 
@@ -17,42 +17,30 @@ export interface EuiBadgeGroupProps {
    */
   gutterSize?: BadgeGroupGutterSize;
   /**
-   * Force each badges to be display block on smaller screens
+   * Should be a list of EuiBadge's but can also be any other element
+   * Will apply an extra class to add spacing
    */
-  responsive?: boolean;
-  /**
-   * Force each badge to wrap if necessary
-   */
-  wrap?: boolean;
+  children?: ReactNode;
 }
 export const EuiBadgeGroup = React.forwardRef<
   HTMLDivElement,
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiBadgeGroupProps
 >(
   (
-    {
-      children,
-      className,
-      gutterSize = 'xs',
-      responsive = true,
-      wrap = true,
-      ...rest
-    },
+    { children, className, gutterSize = 'xs', ...rest },
     ref: Ref<HTMLDivElement>
   ) => {
     const classes = classNames(
       'euiBadgeGroup',
       gutterSizeToClassNameMap[gutterSize as BadgeGroupGutterSize],
-      {
-        'euiBadgeGroup--responsive': responsive,
-        'euiBadgeGroup--wrap': wrap,
-      },
       className
     );
 
     return (
       <div className={classes} ref={ref} {...rest}>
-        {children}
+        {React.Children.map(children, (child: ReactNode) => (
+          <span className="euiBadgeGroup__item">{child}</span>
+        ))}
       </div>
     );
   }
