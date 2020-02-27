@@ -17,6 +17,7 @@ $gutterTypes: (
 
     & > .euiBadgeGroup__item {
       margin: $halfGutterSize;
+      max-width: calc(100% - #{$gutterSize});
     }
   }
 }
