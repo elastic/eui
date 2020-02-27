@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EuiFieldSearch } from '../form/field_search/field_search';
+import { EuiFieldSearch } from '../form';
 import PropTypes from 'prop-types';
 
 export const SchemaType = PropTypes.shape({

@@ -5,7 +5,7 @@ import { keyCodes } from '../../../services';
 import { EuiPropTypes } from '../../../utils/prop_types';
 import { EuiPopover } from '../../popover/popover';
 import { EuiPopoverTitle } from '../../popover/popover_title';
-import { EuiFieldSearch } from '../../form/field_search/field_search';
+import { EuiFieldSearch } from '../../form';
 import { EuiFilterSelectItem, EuiFilterButton } from '../../filter_group';
 import { EuiLoadingChart } from '../../loading/loading_chart';
 import { EuiSpacer } from '../../spacer/spacer';

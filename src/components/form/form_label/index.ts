@@ -1,1 +1,1 @@
-export { EuiFormLabel } from './form_label';
+export { EuiFormLabel, EuiFormLabelProps } from './form_label';

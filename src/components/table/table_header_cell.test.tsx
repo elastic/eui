@@ -14,6 +14,12 @@ test('renders EuiTableHeaderCell', () => {
   expect(render(component)).toMatchSnapshot();
 });
 
+test('renders td when children is null/undefined', () => {
+  const component = render(<EuiTableHeaderCell {...requiredProps} />);
+
+  expect(component).toMatchSnapshot();
+});
+
 describe('align', () => {
   test('defaults to left', () => {
     const component = <EuiTableHeaderCell />;
