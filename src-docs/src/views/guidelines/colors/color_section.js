@@ -22,9 +22,15 @@ export const ColorSection = ({
   const palette = getSassVars(theme);
   const hex = getHexValueFromColorName(palette, color);
   const iconClass =
-    color === 'euiColorLightestShade' || color === 'euiColorEmptyShade'
+    color.includes('Lightest') ||
+    color.includes('Empty') ||
+    color.includes('Page')
       ? 'colorGuidelines_colorPreviewTooLight'
       : undefined;
+
+  function colorIsCore(color) {
+    return !color.includes('Shade') && !color.includes('Page');
+  }
 
   return (
     <>
@@ -54,7 +60,7 @@ export const ColorSection = ({
           className="guideSection__shadedBox"
           direction="column"
           gutterSize="s">
-          {showTextVariants && color.indexOf('Shade') === -1 && (
+          {showTextVariants && colorIsCore(color) && (
             <ColorsContrastItem
               foreground={`${color}Text`}
               background={'euiPageBackgroundColor'}
@@ -63,11 +69,8 @@ export const ColorSection = ({
           )}
 
           {colorsForContrast.map(color2 => {
-            if (
-              color2.indexOf('Shade') === -1 &&
-              color.indexOf('Shade') === -1
-            ) {
-              // i.e. don't render, if non-shade top of non-shade
+            if (colorIsCore(color) && colorIsCore(color2)) {
+              // i.e. don't render if both are core colors
               return;
             }
             return (

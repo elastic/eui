@@ -53,6 +53,7 @@ export default ({ selectedTheme }) => {
   const [showTextVariants, setShowTextVariants] = useState(true);
   const [contrastValue, setContrastValue] = useState(3);
   const colorsForContrast = showTextVariants ? textVariants : allowedColors;
+  const selectedThemeIsDark = selectedTheme.includes('dark');
 
   return (
     <GuidePage title="Color guidelines">
@@ -199,12 +200,54 @@ export default ({ selectedTheme }) => {
         minimumContrast={contrastValue}
         showTextVariants={showTextVariants}>
         <p>
-          Used as the background color of primary page content. While full white
-          in light mode, it is not full black in dark mode.
+          Used as the background color of primary page content and panels
+          including modals and flyouts. Place your main content on top of this
+          color, or a panel-style component, to{' '}
+          <strong>ensure proper contrast</strong>.
         </p>
+        {selectedThemeIsDark ? (
+          <p>
+            If you need a color that is full black in both light and dark modes,
+            use <EuiCode>euiColorInk</EuiCode>.
+          </p>
+        ) : (
+          <p>
+            If you need a color that is full white in both light and dark modes,
+            use <EuiCode>euiColorGhost</EuiCode>.
+          </p>
+        )}
+      </ColorSection>
+
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiColorLightestShade'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
         <p>
-          If you need a color that is full white in both light and dark modes,
-          use <EuiCode>euiColorGhost</EuiCode>.
+          Used to lightly shade areas that contain secondary content or containt
+          panel-like components. Proper contrast of text on this color cannot be
+          guaranteed.
+        </p>
+      </ColorSection>
+
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+
+      <ColorSection
+        theme={selectedTheme}
+        color={'euiPageBackgroundColor'}
+        colorsForContrast={colorsForContrast}
+        minimumContrast={contrastValue}
+        showTextVariants={showTextVariants}>
+        <p>
+          The background color for the whole window (body) is a slightly altered
+          version of <EuiCode>euiColorLightestShade</EuiCode> that{' '}
+          <strong>does</strong> provide proper contrast for the text variant
+          colors.
         </p>
       </ColorSection>
 
