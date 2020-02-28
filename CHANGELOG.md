@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `20.0.0`.
+**Bug fixes**
+
+- Added TypeScript definition for `EuiCodeEditor`'s accepting `react-ace` props ([#2926](https://github.com/elastic/eui/pull/2926))
+
 
 ## [`20.0.0`](https://github.com/elastic/eui/tree/v20.0.0)
 
