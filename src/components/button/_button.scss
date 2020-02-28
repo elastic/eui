@@ -149,7 +149,7 @@
 
   &.euiButton--fill {
     background-color: $euiButtonColorGhostDisabled;
-    color: $euiColorInk;
+    color: makeHighContrastColor($euiButtonColorGhostDisabled, $euiButtonColorGhostDisabled, 2);
   }
 }
 
