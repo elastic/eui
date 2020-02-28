@@ -3,7 +3,7 @@
 **Bug fixes**
 
 - Added TypeScript definition for `EuiCodeEditor`'s accepting `react-ace` props ([#2926](https://github.com/elastic/eui/pull/2926))
-
+- Added `@types/react-input-autosize` to project's `dependencies` ([#2930](https://github.com/elastic/eui/pull/2930))
 
 ## [`20.0.0`](https://github.com/elastic/eui/tree/v20.0.0)
 
