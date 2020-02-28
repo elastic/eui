@@ -138,6 +138,8 @@ import { ListGroupExample } from './views/list_group/list_group_example';
 
 import { LoadingExample } from './views/loading/loading_example';
 
+import { MarkExample } from './views/mark/mark_example';
+
 import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
@@ -418,6 +420,7 @@ const navigation = [
       I18nExample,
       IsColorDarkExample,
       PrettyDurationExample,
+      MarkExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
       PortalExample,
