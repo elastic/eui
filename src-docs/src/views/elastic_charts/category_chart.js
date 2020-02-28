@@ -74,7 +74,6 @@ export class CategoryChart extends Component {
   };
 
   render() {
-    console.log(this.props.theme);
     const isDarkTheme = this.context.theme.includes('dark');
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme

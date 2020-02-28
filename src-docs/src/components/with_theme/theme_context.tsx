@@ -5,7 +5,6 @@ import { applyTheme } from '../../services';
 
 const defaultState = {
   theme: EUI_THEMES[0].value,
-  themeIsLoading: false,
   changeTheme: (themeValue: EUI_THEME['value']) => {
     applyTheme(themeValue);
   },
@@ -13,7 +12,6 @@ const defaultState = {
 
 interface State {
   theme: EUI_THEME['value'];
-  themeIsLoading: boolean;
 }
 
 export const ThemeContext = React.createContext(defaultState);
@@ -27,12 +25,11 @@ export class ThemeProvider extends React.Component<object, State> {
 
     this.state = {
       theme,
-      themeIsLoading: false,
     };
   }
 
   changeTheme = (themeValue: EUI_THEME['value']) => {
-    this.setState({ theme: themeValue, themeIsLoading: true }, () => {
+    this.setState({ theme: themeValue }, () => {
       localStorage.setItem('theme', themeValue);
       applyTheme(themeValue);
     });
@@ -40,12 +37,11 @@ export class ThemeProvider extends React.Component<object, State> {
 
   render() {
     const { children } = this.props;
-    const { theme, themeIsLoading } = this.state;
+    const { theme } = this.state;
     return (
       <ThemeContext.Provider
         value={{
           theme,
-          themeIsLoading,
           changeTheme: this.changeTheme,
         }}>
         {children}
