@@ -1,6 +1,10 @@
 .euiDataGridHeader {
   display: inline-flex;
   min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+  position: sticky; // In IE11 this does not work, but doesn't cause a break.
+  z-index: 3; // Needs to sit above the content and focused cells
+  top: 0;
+  background: $euiColorLightestShade;
 }
 
 @include euiDataGridHeaderCell {
@@ -46,6 +50,12 @@
 
 // Header alternates
 // Often these need extra specificity because they need to gracefully clash with the border settings
+
+@include euiDataGridStyles(bordersNone, bordersHorizontal) {
+  .euiDataGridHeader {
+    background: $euiColorEmptyShade;
+  }
+}
 
 @include euiDataGridStyles(headerUnderline) {
   @include euiDataGridHeaderCell {
