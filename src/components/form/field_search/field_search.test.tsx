@@ -45,5 +45,17 @@ describe('EuiFieldSearch', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('prepend is rendered', () => {
+      const component = render(<EuiFieldSearch prepend="Prepend" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('append is rendered', () => {
+      const component = render(<EuiFieldSearch prepend="Append" />);
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

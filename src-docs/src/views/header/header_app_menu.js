@@ -35,7 +35,8 @@ export default class extends Component {
         aria-controls="keyPadMenu"
         aria-expanded={this.state.isOpen}
         aria-haspopup="true"
-        aria-label="Apps menu"
+        aria-label="Apps menu with 1 new app"
+        notification="1"
         onClick={this.onMenuButtonClick}>
         <EuiIcon type="apps" size="m" />
       </EuiHeaderSectionItemButton>
@@ -74,7 +75,7 @@ export default class extends Component {
             <EuiIcon type="visualizeApp" size="l" />
           </EuiKeyPadMenuItem>
 
-          <EuiKeyPadMenuItem label="Timelion" href="#">
+          <EuiKeyPadMenuItem label="Timelion" href="#" betaBadgeLabel="Beta">
             <EuiIcon type="timelionApp" size="l" />
           </EuiKeyPadMenuItem>
         </EuiKeyPadMenu>

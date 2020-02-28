@@ -46,6 +46,12 @@ describe('EuiFlyout', () => {
         expect(label).toBe('Closes specific flyout');
       });
     });
+
+    test('accepts div props', () => {
+      const component = render(<EuiFlyout onClose={() => {}} id="imaflyout" />);
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('size', () => {

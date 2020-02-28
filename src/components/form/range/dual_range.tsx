@@ -45,14 +45,37 @@ export interface EuiDualRangeProps
   ) => void;
   fullWidth?: boolean;
   isInvalid?: boolean;
+  /**
+   * Create colored indicators for certain intervals
+   */
   levels?: EuiRangeLevel[];
+  /**
+   * Shows static min/max labels on the sides of the range slider
+   */
   showLabels?: boolean;
+  /**
+   * Pass `true` to displays an extra input control for direct manipulation.
+   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
+   */
   showInput?: EuiRangeProps['showInput'];
+  /**
+   * Modifies the number of tick marks and at what interval
+   */
   tickInterval?: number;
+  /**
+   * Specified ticks at specified values
+   */
   ticks?: EuiRangeTick[];
-  append?: EuiFormControlLayoutProps['append'];
+  /**
+   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopver`.
+   * `string` | `ReactElement` or an array of these
+   */
   prepend?: EuiFormControlLayoutProps['prepend'];
-
+  /**
+   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopver`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
   /**
    *  Intended to be uses with aria attributes. Some attributes may be overwritten.
    */
