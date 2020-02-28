@@ -5,9 +5,6 @@ export default keyMirror({
   REGISTER_SECTION: null,
   UNREGISTER_SECTION: null,
 
-  // Theme actions
-  TOGGLE_THEME: null,
-
   // Locale actions
   TOGGLE_LOCALE: null,
 });
