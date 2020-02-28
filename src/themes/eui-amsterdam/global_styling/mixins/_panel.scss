@@ -6,7 +6,7 @@
 
       @include euiBottomShadowSmall;
       background-color: $euiColorEmptyShade;
-      border: 1px solid transparent; // Hack for now to ensure popovers still work
+      border: none;
       border-radius: $euiBorderRadius;
       flex-grow: 1;
 
