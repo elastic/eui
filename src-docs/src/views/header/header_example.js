@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -16,6 +17,8 @@ import {
   EuiHeaderLinks,
   EuiHeaderLink,
 } from '../../../../src/components';
+
+import { EuiHeaderSectionsProp } from './props';
 
 import Header from './header';
 const headerSource = require('!!raw-loader!./header');
@@ -54,21 +57,20 @@ const headerSnippet = `<EuiHeader>
 </EuiHeader>`;
 
 const headerSectionsSnippet = `<EuiHeader
-  sections={{
-    left: [
-      {
-        children: this.renderLogo(),
-        border: 'none',
-      },
-      { children: this.renderBreadcrumbs() },
-    ],
-    center: [
-      { children: this.renderSearch() },
-    ],
-    right: [
-      { children: this.renderUser() },
-    ],
-  }}
+  sections={[
+    {
+      items: [...],
+      borders: 'right',
+      breadcrumbs: [...],
+    },
+    {
+      items: [...],
+      borders: 'none',
+    },
+    {
+      items: [...],
+    },
+  ]}
 />`;
 
 const headerLinksSnippet = `<EuiHeader>
@@ -116,6 +118,7 @@ export const HeaderExample = {
         EuiHeaderSectionItem,
         EuiHeaderSectionItemButton,
         EuiHeaderLogo,
+        EuiHeaderSectionsProp,
       },
       snippet: headerSnippet,
       demo: <Header />,
@@ -135,10 +138,14 @@ export const HeaderExample = {
       text: (
         <>
           <p>
-            Alternatively, you can add a <EuiCode>sections</EuiCode> object for{' '}
-            <EuiCode>left</EuiCode>, <EuiCode>center</EuiCode>, and{' '}
-            <EuiCode>right</EuiCode> EuiHeaderSections which accepts an array of
-            EuiHeaderSectionItem props.
+            Alternatively, you can pass an array objects to the{' '}
+            <EuiCode>sections</EuiCode> props that takes a key of{' '}
+            <EuiCode>items</EuiCode> (array of children to wrap in an{' '}
+            <strong>EuiHeaderSectionItem</strong>) and/or{' '}
+            <EuiCode>breadcrumbs</EuiCode> (array of{' '}
+            <Link to="/navigation/breadcrumbs">breadcrumb</Link> objects). Each
+            item in the array will be wrapped in an{' '}
+            <strong>EuiHeaderSection</strong>.
           </p>
           <p>
             <strong>Note:</strong> Passing <EuiCode>sections</EuiCode> and{' '}
@@ -150,6 +157,7 @@ export const HeaderExample = {
       ),
       props: {
         EuiHeader,
+        EuiHeaderSectionsProp,
         EuiHeaderSection,
         EuiHeaderSectionItem,
       },
@@ -157,7 +165,7 @@ export const HeaderExample = {
       demo: <HeaderSections />,
     },
     {
-      title: 'Position',
+      title: 'Fixed header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -183,7 +191,7 @@ export const HeaderExample = {
       demo: <HeaderPosition />,
     },
     {
-      title: 'Links',
+      title: 'Header links',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -209,7 +217,7 @@ export const HeaderExample = {
       demo: <HeaderLinks />,
     },
     {
-      title: 'Display header alerts',
+      title: 'Alerts in the header',
       source: [
         {
           type: GuideSectionTypes.JS,

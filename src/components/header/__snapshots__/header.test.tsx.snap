@@ -18,7 +18,35 @@ exports[`EuiHeader renders children 1`] = `
 </div>
 `;
 
-exports[`EuiHeader renders sections 1`] = `
+exports[`EuiHeader renders in fixed position 1`] = `
+<div
+  class="euiHeader euiHeader--fixed"
+>
+  <span>
+    Hello!
+  </span>
+</div>
+`;
+
+exports[`EuiHeader sections render breadcrumbs and props 1`] = `
+<div
+  class="euiHeader euiHeader--static"
+>
+  <nav
+    aria-label="breadcrumb"
+    class="euiBreadcrumbs euiHeaderBreadcrumbs euiBreadcrumbs--truncate"
+  >
+    <span
+      aria-current="page"
+      class="euiBreadcrumb euiBreadcrumb--last"
+    >
+      Breadcrumb
+    </span>
+  </nav>
+</div>
+`;
+
+exports[`EuiHeader sections render simple items and borders 1`] = `
 <div
   class="euiHeader euiHeader--static"
 >
@@ -26,9 +54,14 @@ exports[`EuiHeader renders sections 1`] = `
     class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
   >
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
     >
-      Left
+      Item 1
+    </div>
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
+    >
+      Item 2
     </div>
   </div>
   <div
@@ -37,16 +70,12 @@ exports[`EuiHeader renders sections 1`] = `
     <div
       class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
     >
-      Center
+      Item A
     </div>
-  </div>
-  <div
-    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--right"
-  >
     <div
       class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
     >
-      Right
+      Item B
     </div>
   </div>
 </div>
@@ -62,25 +91,12 @@ exports[`EuiHeader throws a warning if both children and sections were passed 1`
     <div
       class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
     >
-      Left
+      Item 1
     </div>
-  </div>
-  <div
-    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
-  >
     <div
       class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
     >
-      Center
-    </div>
-  </div>
-  <div
-    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--right"
-  >
-    <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
-    >
-      Right
+      Item 2
     </div>
   </div>
 </div>

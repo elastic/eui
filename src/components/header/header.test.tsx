@@ -21,18 +21,49 @@ describe('EuiHeader', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('renders sections', () => {
+  test('renders in fixed position', () => {
     const component = render(
-      <EuiHeader
-        sections={{
-          left: [{ children: 'Left' }],
-          center: [{ children: 'Center' }],
-          right: [{ children: 'Right' }],
-        }}
-      />
+      <EuiHeader position="fixed">
+        <span>Hello!</span>
+      </EuiHeader>
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('sections', () => {
+    test('render simple items and borders', () => {
+      const component = render(
+        <EuiHeader
+          sections={[
+            {
+              items: ['Item 1', 'Item 2'],
+              borders: 'right',
+            },
+            {
+              items: ['Item A', 'Item B'],
+            },
+          ]}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('render breadcrumbs and props', () => {
+      const component = render(
+        <EuiHeader
+          sections={[
+            {
+              breadcrumbs: [{ text: 'Breadcrumb' }],
+              breadcrumbProps: { responsive: false },
+            },
+          ]}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('throws a warning', () => {
@@ -53,11 +84,11 @@ describe('EuiHeader', () => {
     test('if both children and sections were passed', () => {
       const component = render(
         <EuiHeader
-          sections={{
-            left: [{ children: 'Left' }],
-            center: [{ children: 'Center' }],
-            right: [{ children: 'Right' }],
-          }}>
+          sections={[
+            {
+              items: ['Item 1', 'Item 2'],
+            },
+          ]}>
           Child
         </EuiHeader>
       );
