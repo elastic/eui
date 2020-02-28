@@ -17,15 +17,10 @@ exports[`CollapsedItemActions render 1`] = `
         data-test-subj="euiCollapsedItemActionsButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="boxesHorizontal"
         />
       </button>
     </span>

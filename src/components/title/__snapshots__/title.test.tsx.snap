@@ -9,3 +9,13 @@ exports[`EuiTitle is rendered 1`] = `
   Title
 </h1>
 `;
+
+exports[`EuiTitle renders children element className 1`] = `
+<h1
+  aria-label="aria-label"
+  class="euiTitle euiTitle--medium testClass1 testClass2 test"
+  data-test-subj="test subject string"
+>
+  Title
+</h1>
+`;

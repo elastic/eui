@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EuiFieldSearch } from '../form/field_search';
+import { EuiFieldSearch } from '../form';
 import { CommonProps } from '../common';
 
 export interface SchemaType {

@@ -10,11 +10,15 @@ import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
-import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
+import {
+  EuiFilterSelectItem,
+  FilterChecked,
+} from '../../filter_group/filter_select_item';
 import { htmlIdGenerator } from '../../../services';
 import {
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
+  EuiComboBoxSingleSelectionShape,
   OptionHandler,
   RefCallback,
   RefInstance,
@@ -67,6 +71,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     selectedOptions: Array<EuiComboBoxOptionOption<T>>;
     updatePosition: UpdatePositionHandler;
     width: number;
+    singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   };
 
 export class EuiComboBoxOptionsList<T> extends Component<
@@ -167,6 +172,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       scrollToIndex,
       searchValue,
       selectedOptions,
+      singleSelection,
       updatePosition,
       width,
       ...rest
@@ -271,12 +277,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         onScroll={onScroll}
         rowRenderer={({ key, index, style }) => {
           const option = matchingOptions[index];
-          const {
-            isGroupLabelOption,
-            label,
-            value, // eslint-disable-line no-unused-vars
-            ...rest
-          } = option;
+          const { isGroupLabelOption, label, value, ...rest } = option;
 
           if (isGroupLabelOption) {
             return (
@@ -284,6 +285,15 @@ export class EuiComboBoxOptionsList<T> extends Component<
                 <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
               </div>
             );
+          }
+
+          let checked: FilterChecked | undefined = undefined;
+          if (
+            singleSelection &&
+            selectedOptions.length &&
+            selectedOptions[0].label === label
+          ) {
+            checked = 'on';
           }
 
           return (
@@ -297,9 +307,10 @@ export class EuiComboBoxOptionsList<T> extends Component<
               }}
               ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
+              checked={checked}
+              showIcons={singleSelection ? true : false}
               id={rootId(`_option-${index}`)}
               title={label}
-              showIcons={false}
               {...rest}>
               {renderOption ? (
                 renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)

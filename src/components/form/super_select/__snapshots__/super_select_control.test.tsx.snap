@@ -34,15 +34,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>
@@ -83,15 +78,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>
@@ -132,15 +122,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>
@@ -181,15 +166,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>
@@ -230,15 +210,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>
@@ -279,15 +254,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>
@@ -331,15 +301,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>
@@ -382,15 +347,10 @@ Array [
         <span
           class="euiFormControlLayoutCustomIcon"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
           />
         </span>
       </div>

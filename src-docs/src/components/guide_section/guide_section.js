@@ -155,17 +155,53 @@ export class GuideSection extends Component {
       if (name === 'javascript') {
         renderedCode = renderedCode
           .replace(
-            /(from )'(..\/)+src\/components(\/?';)/,
+            /(from )'(..\/)+src\/components(\/?';)/g,
             "from '@elastic/eui';"
           )
           .replace(
-            /(from )'(..\/)+src\/services(\/?';)/,
+            /(from )'(..\/)+src\/services(\/?';)/g,
             "from '@elastic/eui/lib/services';"
           )
           .replace(
-            /(from )'(..\/)+src\/components\/.*?';/,
+            /(from )'(..\/)+src\/components\/.*?';/g,
             "from '@elastic/eui';"
           );
+        renderedCode = renderedCode.split('\n');
+        let linesWithImport = [];
+        // eslint-disable-next-line guard-for-in
+        for (const idx in renderedCode) {
+          const line = renderedCode[idx];
+          if (
+            line.includes('import') &&
+            line.includes("from '@elastic/eui';")
+          ) {
+            linesWithImport.push(line);
+            renderedCode[idx] = '';
+          }
+        }
+
+        if (linesWithImport.length > 1) {
+          linesWithImport[0] = linesWithImport[0].replace(
+            " } from '@elastic/eui';",
+            ','
+          );
+          for (let i = 1; i < linesWithImport.length - 1; linesWithImport++) {
+            linesWithImport[i] = linesWithImport[i]
+              .replace('import {', '')
+              .replace(" } from '@elastic/eui';", ',');
+          }
+          linesWithImport[linesWithImport.length - 1] = linesWithImport[
+            linesWithImport.length - 1
+          ].replace('import {', '');
+        }
+        const newImport = linesWithImport.join('');
+        renderedCode.unshift(newImport);
+        renderedCode = renderedCode.join('\n');
+        let len = renderedCode.replace('\n\n\n', '\n\n').length;
+        while (len < renderedCode.length) {
+          renderedCode = renderedCode.replace('\n\n\n', '\n\n');
+          len = renderedCode.replace('\n\n\n', '\n\n').length;
+        }
       } else if (name === 'html') {
         renderedCode = code.render();
       }

@@ -356,6 +356,11 @@ const contrastExample = `// Make sure text passes a contrast check
   padding: $euiSize;
   border-left: $euiBorderThick;
   border-color: $euiColorWarning;
+
+  // Graphics can have a lower minimum contrast level of 3.0
+  .square {
+    fill: makeGraphicContrastColor($euiColorWarning, $backgroundColor);
+  }
 }
 `;
 
@@ -575,6 +580,21 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiSpacer />
 
           <div className="guideSass__contrastExample">
+            <svg
+              className="square"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16">
+              <rect
+                width="12"
+                height="12"
+                x="2"
+                y="2"
+                rx="2"
+                fillRule="evenodd"
+              />
+            </svg>{' '}
             This orange text now passes a contrast check!
           </div>
 
