@@ -648,7 +648,6 @@ export class EuiComboBox<T> extends Component<
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
       if (this.autoSizeInputRefInstance) {
-        // @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/42467
         this.autoSizeInputRefInstance.copyInputStyles();
       }
     }, 100);

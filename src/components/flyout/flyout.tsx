@@ -1,4 +1,9 @@
-import React, { Component, CSSProperties, Fragment } from 'react';
+import React, {
+  Component,
+  CSSProperties,
+  Fragment,
+  HTMLAttributes,
+} from 'react';
 import classnames from 'classnames';
 
 import { keyCodes, EuiWindowEvent } from '../../services';
@@ -16,7 +21,9 @@ const sizeToClassNameMap: { [size in EuiFlyoutSize]: string } = {
   l: 'euiFlyout--large',
 };
 
-export interface EuiFlyoutProps extends CommonProps {
+export interface EuiFlyoutProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
   size?: EuiFlyoutSize;
   /**
