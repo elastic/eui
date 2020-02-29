@@ -201,55 +201,53 @@ export const useColumnSorting = (
                       <div
                         className="euiDataGridColumnSorting__fieldList"
                         role="listbox">
-                        {inactiveSortableColumns.map(({ id }) => {
-                          return (
-                            <button
-                              key={id}
-                              className="euiDataGridColumnSorting__field"
-                              aria-label={`${sortFieldAriaLabel} ${id}`}
-                              role="option"
-                              aria-selected="false"
-                              data-test-subj={`dataGridColumnSortingPopoverColumnSelection-${id}`}
-                              onClick={() => {
-                                const nextColumns = [...sorting.columns];
-                                nextColumns.push({ id, direction: 'asc' });
-                                sorting.onSort(nextColumns);
-                              }}>
-                              <EuiFlexGroup
-                                alignItems="center"
-                                gutterSize="s"
-                                component="span">
-                                <EuiFlexItem grow={false}>
-                                  <EuiToken
-                                    iconType={
-                                      schema.hasOwnProperty(id) &&
-                                      schema[id].columnType != null
-                                        ? getDetailsForSchema(
-                                            schemaDetectors,
-                                            schema[id].columnType
-                                          ).icon
-                                        : 'tokenString'
-                                    }
-                                    color={
-                                      schema.hasOwnProperty(id) &&
-                                      schema[id].columnType != null
-                                        ? getDetailsForSchema(
-                                            schemaDetectors,
-                                            schema[id].columnType
-                                          ).color
-                                        : undefined
-                                    }
-                                  />
-                                </EuiFlexItem>
-                                <EuiFlexItem grow={false}>
-                                  <EuiText size="xs">
-                                    <span>{id}</span>
-                                  </EuiText>
-                                </EuiFlexItem>
-                              </EuiFlexGroup>
-                            </button>
-                          );
-                        })}
+                        {inactiveSortableColumns.map(({ id }) => (
+                          <button
+                            key={id}
+                            className="euiDataGridColumnSorting__field"
+                            aria-label={`${sortFieldAriaLabel} ${id}`}
+                            role="option"
+                            aria-selected="false"
+                            data-test-subj={`dataGridColumnSortingPopoverColumnSelection-${id}`}
+                            onClick={() => {
+                              const nextColumns = [...sorting.columns];
+                              nextColumns.push({ id, direction: 'asc' });
+                              sorting.onSort(nextColumns);
+                            }}>
+                            <EuiFlexGroup
+                              alignItems="center"
+                              gutterSize="s"
+                              component="span">
+                              <EuiFlexItem grow={false}>
+                                <EuiToken
+                                  iconType={
+                                    schema.hasOwnProperty(id) &&
+                                    schema[id].columnType != null
+                                      ? getDetailsForSchema(
+                                          schemaDetectors,
+                                          schema[id].columnType
+                                        ).icon
+                                      : 'tokenString'
+                                  }
+                                  color={
+                                    schema.hasOwnProperty(id) &&
+                                    schema[id].columnType != null
+                                      ? getDetailsForSchema(
+                                          schemaDetectors,
+                                          schema[id].columnType
+                                        ).color
+                                      : undefined
+                                  }
+                                />
+                              </EuiFlexItem>
+                              <EuiFlexItem grow={false}>
+                                <EuiText size="xs">
+                                  <span>{id}</span>
+                                </EuiText>
+                              </EuiFlexItem>
+                            </EuiFlexGroup>
+                          </button>
+                        ))}
                       </div>
                     )}
                   </EuiI18n>
