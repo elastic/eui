@@ -164,7 +164,7 @@ export const useColumnSorting = (
           </p>
         </EuiText>
       )}
-      {(inactiveColumns.length > 0 || sorting.columns.length > 0) && (
+      {(inactiveSortableColumns.length > 0 || sorting.columns.length > 0) && (
         <EuiPopoverFooter>
           <EuiFlexGroup
             gutterSize="m"
