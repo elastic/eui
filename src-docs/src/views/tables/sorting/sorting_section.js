@@ -24,9 +24,9 @@ export const section = {
       The following example shows how to configure column sorting via the{' '}
       <EuiCode>sorting</EuiCode>
       property and flagging the sortable columns as{' '}
-      <EuiCode>sortable: true</EuiCode>.To enable the default sorting ability to
-      <strong>every</strong> column, pass
-      <EuiCode>enableAllColumns: true</EuiCode> to the
+      <EuiCode>sortable: true</EuiCode>.To enable the default sorting ability
+      for <strong>every</strong> column, pass{' '}
+      <EuiCode>enableAllColumns: true</EuiCode> to the{' '}
       <EuiCode>sorting</EuiCode>
       prop.
     </p>
