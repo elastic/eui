@@ -1,9 +1,8 @@
 import React, {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
   FunctionComponent,
   HTMLAttributes,
   Ref,
+  ButtonHTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
@@ -165,33 +164,24 @@ export const EuiButton: FunctionComponent<Props> = ({
     </span>
   );
 
-  // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
+  // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
-  if (href && !isDisabled) {
-    const secureRel = getSecureRelForTarget({ href, target, rel });
+  const Element = href && !isDisabled ? 'a' : 'button';
 
-    return (
-      <a
-        className={classes}
-        href={href}
-        target={target}
-        rel={secureRel}
-        ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
-        {innerNode}
-      </a>
-    );
-  }
-
+  const secureRel = getSecureRelForTarget({ href, target, rel });
   let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+
   return (
-    <button
-      disabled={isDisabled}
+    <Element
       className={classes}
+      disabled={isDisabled}
+      href={href}
+      target={target}
+      rel={secureRel}
+      ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
       type={type as typeof buttonType}
-      ref={buttonRef as Ref<HTMLButtonElement>}
-      {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+      {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}>
       {innerNode}
-    </button>
+    </Element>
   );
 };
