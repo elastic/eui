@@ -195,9 +195,17 @@ export const useColumnSorting = (
                       <div
                         className="euiDataGridColumnSorting__fieldList"
                         role="listbox">
-                        {inactiveColumns.map(
-                          ({ id, isSortable }) =>
-                            isSortable !== false && (
+                        {inactiveColumns.map(({ id, isSortable }) => {
+                          const sortable =
+                            schema.hasOwnProperty(id) &&
+                            schema[id].columnType != null
+                              ? getDetailsForSchema(
+                                  schemaDetectors,
+                                  schema[id].columnType
+                                ).isSortable
+                              : isSortable !== false;
+                          return (
+                            sortable && (
                               <button
                                 key={id}
                                 className="euiDataGridColumnSorting__field"
@@ -244,7 +252,8 @@ export const useColumnSorting = (
                                 </EuiFlexGroup>
                               </button>
                             )
-                        )}
+                          );
+                        })}
                       </div>
                     )}
                   </EuiI18n>
