@@ -69,11 +69,13 @@ interface State {
   cachedOptions?: FieldValueOptionType[] | null;
 }
 
+type DefaultProps = Pick<FieldValueSelectionFilterProps, 'autoClose'>;
+
 export class FieldValueSelectionFilter extends Component<
   FieldValueSelectionFilterProps,
   State
 > {
-  static defaultProps: Partial<FieldValueSelectionFilterProps> = {
+  static defaultProps: DefaultProps = {
     autoClose: true,
   };
 

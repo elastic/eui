@@ -11,8 +11,10 @@ interface EuiSearchFiltersProps {
   filters: SearchFiltersFiltersType;
 }
 
+type DefaultProps = Pick<EuiSearchFiltersProps, 'filters'>;
+
 export class EuiSearchFilters extends Component<EuiSearchFiltersProps> {
-  static defaultProps: Partial<EuiSearchFiltersProps> = {
+  static defaultProps: DefaultProps = {
     filters: [],
   };
 
