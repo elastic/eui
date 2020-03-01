@@ -3,8 +3,8 @@ import { EuiFieldSearch } from '../form';
 import { CommonProps } from '../common';
 
 export interface SchemaType {
-  strict: boolean;
-  fields: any;
+  strict?: boolean;
+  fields?: any;
   flags?: string[];
 }
 
@@ -24,8 +24,10 @@ export interface EuiSearchBoxProps extends SearchBoxConfigProps {
   title?: string;
 }
 
+type DefaultProps = Pick<EuiSearchBoxProps, 'placeholder' | 'incremental'>;
+
 export class EuiSearchBox extends Component<EuiSearchBoxProps> {
-  static defaultProps: Partial<EuiSearchBoxProps> = {
+  static defaultProps: DefaultProps = {
     placeholder: 'Search...',
     incremental: false,
   };

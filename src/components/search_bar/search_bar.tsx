@@ -13,11 +13,11 @@ export type QueryType = Query | string;
 type Tools = ReactElement | ReactElement[];
 
 export interface EuiSearchBarProps extends CommonProps {
-  onChange?: (args: {
+  onChange: (args: {
     query: Query | null;
     queryText: string;
     error: Error | null;
-  }) => void;
+  }) => void | boolean;
 
   /**
    The initial query the bar will hold when first mounted

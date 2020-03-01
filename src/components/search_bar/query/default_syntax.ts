@@ -245,7 +245,7 @@ interface ValueExpression {
   location: Location;
 }
 
-export interface Options {
+export interface ParseOptions {
   dateFormat?: any;
   schema?: any;
   escapeValue?: (value: any) => string;
@@ -423,7 +423,7 @@ const resolveFieldValue = (
   }
 };
 
-const printValue = (value: Value, options: Options) => {
+const printValue = (value: Value, options: ParseOptions) => {
   if (isDateValue(value)) {
     return `'${value.text}'`;
   }
@@ -462,7 +462,7 @@ const resolveOperator = (operator: OperatorType) => {
 };
 
 export const defaultSyntax = Object.freeze({
-  parse: (query: string, options: Options = {}) => {
+  parse: (query: string, options: ParseOptions = {}) => {
     const dateFormat = options.dateFormat || defaultDateFormat;
     const parseDate = dateValueParser(dateFormat);
     const schema = options.schema || {};

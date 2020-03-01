@@ -32,7 +32,7 @@ const resolveValueAsDate = (value: FieldValue) => {
   if (moment.isDate(value) || isNumber(value)) {
     return moment(value);
   }
-  return dateFormat.parse((value || '').toString());
+  return dateFormat.parse(String(value));
 };
 
 type Options = Partial<{
@@ -147,7 +147,7 @@ const greaterThen = (
   }
 
   if (isString(fieldValue)) {
-    const str = clauseValue ? clauseValue.toString() : '';
+    const str = String(clauseValue);
     return inclusive ? fieldValue >= str : fieldValue > str;
   }
 

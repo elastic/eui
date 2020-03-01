@@ -649,6 +649,7 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       search: {
+        onChange: () => {},
         defaultQuery: 'name:name1',
         box: {
           incremental: true,
@@ -699,7 +700,9 @@ describe('EuiInMemoryTable', () => {
             name: 'Name',
           },
         ],
-        search: {},
+        search: {
+          onChange: () => true,
+        },
         className: 'testTable',
       };
 
@@ -765,7 +768,10 @@ describe('EuiInMemoryTable', () => {
             name: 'Name',
           },
         ],
-        search: { defaultQuery: 'No' },
+        search: {
+          onChange: () => {},
+          defaultQuery: 'No',
+        },
         className: 'testTable',
         message: <span className="customMessage">No items found!</span>,
       };
@@ -807,6 +813,7 @@ describe('EuiInMemoryTable', () => {
           },
         ],
         search: {
+          onChange: () => {},
           defaultQuery: 'No',
         },
         className: 'testTable',

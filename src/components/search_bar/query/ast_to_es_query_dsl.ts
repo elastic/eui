@@ -10,6 +10,7 @@ import {
   Value,
 } from './ast';
 import { isArray, isDateLike, isString } from '../../../services/predicate';
+import { keysOf } from '../../common';
 
 export interface QueryContainer {
   bool?: BoolQuery;
@@ -111,11 +112,11 @@ export const _fieldValuesToQuery = (
 ) => {
   const queries: QueryContainer[] = [];
 
-  (Object.keys(operations) as OperatorType[]).forEach(operator => {
+  keysOf(operations).forEach(operator => {
     const values = operations[operator];
     switch (operator) {
       case AST.Operator.EQ:
-        const terms: any[] = [];
+        const terms: Value[] = [];
         const phrases: string[] = [];
         const dates: DateValue[] = [];
 
