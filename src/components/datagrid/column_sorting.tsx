@@ -104,8 +104,12 @@ export const useColumnSorting = (
   const inactiveSortableColumns = inactiveColumns.filter(
     ({ id, isSortable }) => {
       const schemaDetail = schemaDetails(id);
-      const sortable =
-        schemaDetail != null ? schemaDetail.isSortable : isSortable !== false;
+      let sortable = true;
+      if (isSortable != null) {
+        sortable = isSortable;
+      } else if (schemaDetail != null) {
+        sortable = schemaDetail.isSortable;
+      }
       return sortable;
     }
   );
