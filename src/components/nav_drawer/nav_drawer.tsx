@@ -11,7 +11,7 @@ import { EuiNavDrawerGroup, ATTR_SELECTOR, EuiNavDrawerGroupProps } from './nav_
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
-import { throttle } from '../../services/throttle';
+import { throttle } from '../../services';
 import { CommonProps } from '../common';
 
 const MENU_ELEMENT_ID = 'navDrawerMenu';

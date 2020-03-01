@@ -75,6 +75,10 @@ export {
   Comparators,
 } from './sort';
 
+export {
+  throttle
+} from './throttle';
+
 export { calculatePopoverPosition, findPopoverPosition } from './popover';
 
 export {

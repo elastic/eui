@@ -1,5 +1,5 @@
 import { MouseEvent as ReactMouseEvent, TouchEvent, useEffect } from 'react';
-import { throttle } from '../../services/throttle'
+import { throttle } from '../../services'
 
 export const getEventPosition = (
   location: { x: number; y: number },
