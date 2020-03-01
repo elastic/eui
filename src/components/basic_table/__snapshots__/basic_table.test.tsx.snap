@@ -3607,7 +3607,21 @@ exports[`EuiBasicTable with sorting enabled and enable all columns for sorting 1
         />
         <EuiFlexItem
           grow={false}
-        />
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
