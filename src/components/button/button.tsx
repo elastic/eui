@@ -167,8 +167,10 @@ export const EuiButton: FunctionComponent<Props> = ({
   // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
   const Element = href && !isDisabled ? 'a' : 'button';
+  const relObj: { rel?: string } = {};
+  if (href && !isDisabled)
+    relObj.rel = getSecureRelForTarget({ href, target, rel });
 
-  const secureRel = getSecureRelForTarget({ href, target, rel });
   let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
 
   return (
@@ -177,7 +179,7 @@ export const EuiButton: FunctionComponent<Props> = ({
       disabled={isDisabled}
       href={href}
       target={target}
-      rel={secureRel}
+      {...relObj}
       ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
       type={type as typeof buttonType}
       {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}>
