@@ -96,6 +96,12 @@ export const useColumnSorting = (
 
   const numberOfSortedFields = sorting.columns.length;
 
+  const inactiveSortableColumns = inactiveColumns.filter(({ id, isSortable }) =>
+    schema.hasOwnProperty(id) && schema[id].columnType != null
+      ? getDetailsForSchema(schemaDetectors, schema[id].columnType).isSortable
+      : isSortable !== false
+  );
+
   const columnSorting = (
     <EuiPopover
       data-test-subj="dataGridColumnSortingPopover"
@@ -158,14 +164,14 @@ export const useColumnSorting = (
           </p>
         </EuiText>
       )}
-      {(inactiveColumns.length > 0 || sorting.columns.length > 0) && (
+      {(inactiveSortableColumns.length > 0 || sorting.columns.length > 0) && (
         <EuiPopoverFooter>
           <EuiFlexGroup
             gutterSize="m"
             justifyContent="spaceBetween"
             responsive={false}>
             <EuiFlexItem grow={false}>
-              {inactiveColumns.length > 0 && (
+              {inactiveSortableColumns.length > 0 && (
                 <EuiPopover
                   data-test-subj="dataGridColumnSortingPopoverColumnSelection"
                   isOpen={avilableColumnsisOpen}
@@ -195,7 +201,7 @@ export const useColumnSorting = (
                       <div
                         className="euiDataGridColumnSorting__fieldList"
                         role="listbox">
-                        {inactiveColumns.map(({ id }) => (
+                        {inactiveSortableColumns.map(({ id }) => (
                           <button
                             key={id}
                             className="euiDataGridColumnSorting__field"

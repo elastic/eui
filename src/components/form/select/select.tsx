@@ -37,11 +37,13 @@ export type EuiSelectProps = SelectHTMLAttributes<HTMLSelectElement> &
     compressed?: boolean;
 
     /**
-     * Creates an input group with element(s) coming before select
+     * Creates an input group with element(s) coming before select.
+     * `string` | `ReactElement` or an array of these
      */
     prepend?: EuiFormControlLayoutProps['prepend'];
     /**
-     * Creates an input group with element(s) coming after select
+     * Creates an input group with element(s) coming after select.
+     * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
   };

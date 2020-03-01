@@ -65,6 +65,28 @@ describe('EuiAccordion', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('arrowDisplay', () => {
+      it('right is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} arrowDisplay="right">
+            <p>You can see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('none is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} arrowDisplay="none">
+            <p>You can see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   describe('behavior', () => {

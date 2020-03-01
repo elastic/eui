@@ -77,11 +77,13 @@ export interface EuiColorPickerProps
 
   /**
    * Creates an input group with element(s) coming before input. It only shows when the `display` is set to `default`.
+   * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
 
   /**
    * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
+   * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
 }

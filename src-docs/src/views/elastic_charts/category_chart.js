@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { orderBy, round } from 'lodash';
 
-import { withTheme } from '../../components';
+import { ThemeContext } from '../../components';
 import { Chart, Settings, Axis } from '@elastic/charts';
 
 import {
@@ -28,7 +28,7 @@ import {
   ChartCard,
 } from './shared';
 
-class _CategoryChart extends Component {
+export class CategoryChart extends Component {
   constructor(props) {
     super(props);
 
@@ -74,7 +74,7 @@ class _CategoryChart extends Component {
   };
 
   render() {
-    const isDarkTheme = this.props.theme.includes('dark');
+    const isDarkTheme = this.context.theme.includes('dark');
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
@@ -236,4 +236,4 @@ class _CategoryChart extends Component {
   }
 }
 
-export const CategoryChart = withTheme(_CategoryChart);
+CategoryChart.contextType = ThemeContext;

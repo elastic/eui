@@ -55,6 +55,7 @@ const columns = [
   },
   {
     id: 'phone',
+    isSortable: false,
   },
   {
     id: 'version',
