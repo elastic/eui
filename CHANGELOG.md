@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- `EuiButton` now has a single return statement ([#2954](https://github.com/elastic/eui/pull/2954))
+- Added `isSortable` props to `EuiDataGridColumn` and `EuiDataGridSchemaDetector` to mark them as un-sortable ([#2952](https://github.com/elastic/eui/pull/2952))
 - Converted `EuiForm` to TypeScript, added many missing `/form` Prop types ([#2896](https://github.com/elastic/eui/pull/2896))
 - Empty table th elements replaced with td in `EuiTable`. ([#2934](https://github.com/elastic/eui/pull/2934))
 - Added default prompt text to `aria-describedby` for `EuiFilePicker` ([#2919](https://github.com/elastic/eui/pull/2919))
@@ -14,9 +16,11 @@
 
 **Bug fixes**
 
+- Fixed `EuiDataGrid` breaking if invalid schema passed ([#2955](https://github.com/elastic/eui/pull/2955))
 - Fixed `EuiTitle` not rendering child classes ([#2925](https://github.com/elastic/eui/pull/2925))
 - Extended `div` element in `EuiFlyout` type ([#2914](https://github.com/elastic/eui/pull/2914))
-Fixed z-index conflict with cell popovers in `EuiDataGrid` while in full screen mode ([#2959](https://github.com/elastic/eui/pull/2959))
+- Fixed z-index conflict with cell popovers in `EuiDataGrid` while in full screen mode ([#2959](https://github.com/elastic/eui/pull/2959))
+- Fixed popover positioning service to be more lenient when positioning 0-width or 0-height content ([#2948](https://github.com/elastic/eui/pull/2948))
 
 **Theme: Amsterdam**
 
