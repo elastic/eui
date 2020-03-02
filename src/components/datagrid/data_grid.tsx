@@ -624,21 +624,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     orderedVisibleColumns
   );
 
-  const hasStickyHeader = false;
-
   const contentRef = useRef<HTMLDivElement | null>(null);
 
+  // Because of a weird bug with position:sticky css items and focus, we force scrolling to the top
+  // if the item is in the first row. This prevents the cell from ever being under the sticky header.
   if (focusedCell !== undefined && focusedCell[1] === 0) {
     if (contentRef.current != null) {
       contentRef.current.scrollTop = 0;
     }
   }
-
-  /* if (focusedCell !== undefined) { */
-  /*   if (contentRef.current != null) { */
-  /*     console.log(contentRef.current.scrollTop); */
-  /*   } */
-  /* } */
 
   const classes = classNames(
     'euiDataGrid',
@@ -655,9 +649,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     },
     {
       'euiDataGrid--noControls': !toolbarVisibility,
-    },
-    {
-      'euiDataGrid-hasStickyHeader': hasStickyHeader,
     },
     className
   );
