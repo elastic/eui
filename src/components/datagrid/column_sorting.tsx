@@ -96,10 +96,22 @@ export const useColumnSorting = (
 
   const numberOfSortedFields = sorting.columns.length;
 
-  const inactiveSortableColumns = inactiveColumns.filter(({ id, isSortable }) =>
+  const schemaDetails = (id: string | number) =>
     schema.hasOwnProperty(id) && schema[id].columnType != null
-      ? getDetailsForSchema(schemaDetectors, schema[id].columnType).isSortable
-      : isSortable !== false
+      ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
+      : null;
+
+  const inactiveSortableColumns = inactiveColumns.filter(
+    ({ id, isSortable }) => {
+      const schemaDetail = schemaDetails(id);
+      let sortable = true;
+      if (isSortable != null) {
+        sortable = isSortable;
+      } else if (schemaDetail != null) {
+        sortable = schemaDetail.isSortable;
+      }
+      return sortable;
+    }
   );
 
   const columnSorting = (
@@ -221,8 +233,7 @@ export const useColumnSorting = (
                               <EuiFlexItem grow={false}>
                                 <EuiToken
                                   iconType={
-                                    schema.hasOwnProperty(id) &&
-                                    schema[id].columnType != null
+                                    schemaDetails(id) != null
                                       ? getDetailsForSchema(
                                           schemaDetectors,
                                           schema[id].columnType
@@ -230,8 +241,7 @@ export const useColumnSorting = (
                                       : 'tokenString'
                                   }
                                   color={
-                                    schema.hasOwnProperty(id) &&
-                                    schema[id].columnType != null
+                                    schemaDetails(id) != null
                                       ? getDetailsForSchema(
                                           schemaDetectors,
                                           schema[id].columnType
