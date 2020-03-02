@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- `EuiButton` now has a single return statement ([#2954](https://github.com/elastic/eui/pull/2954))
 - Added `isSortable` props to `EuiDataGridColumn` and `EuiDataGridSchemaDetector` to mark them as un-sortable ([#2952](https://github.com/elastic/eui/pull/2952))
 - Converted `EuiForm` to TypeScript, added many missing `/form` Prop types ([#2896](https://github.com/elastic/eui/pull/2896))
 - Empty table th elements replaced with td in `EuiTable`. ([#2934](https://github.com/elastic/eui/pull/2934))
