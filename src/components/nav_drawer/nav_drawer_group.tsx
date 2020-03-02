@@ -5,6 +5,7 @@ import { toInitials } from '../../services';
 import { CommonProps } from '../common';
 import { EuiListGroup } from '../list_group';
 import { FlyoutLink } from './nav_drawer';
+import { EuiListGroupProps } from '../list_group';
 
 export const ATTR_SELECTOR = 'data-name';
 
@@ -16,12 +17,14 @@ export interface EuiNavDrawerGroupProps
      * While not normally required, it is required to pass a function for handling
      * of the flyout menu button click
      */
-    flyoutMenuButtonClick: (items: Array<FlyoutLink>, title: string, item: FlyoutLink) => MouseEventHandler<HTMLButtonElement>,
+    flyoutMenuButtonClick?: (items: Array<FlyoutLink>, title: string, item: FlyoutLink) => MouseEventHandler<HTMLButtonElement>,
     /**
      * Passthrough function to be called when the flyout is closing
      * See ./nav_drawer.js
      */
     onClose: () => void,
+    ariaLabelledby?: string;
+    wrapText: EuiListGroupProps["wrapText"],
   }
 
 export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({

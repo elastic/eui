@@ -19,6 +19,7 @@ const MENU_ELEMENT_ID = 'navDrawerMenu';
 export type FlyoutLink =
   EuiListGroupItemProps
   & {
+    "data-name"?: ReactNode,
     flyoutMenu?: {
       title: string,
       listItems: EuiListGroupProps["listItems"]
@@ -26,7 +27,7 @@ export type FlyoutLink =
   };
 
 export interface EuiNavDrawerProps
-  extends CommonProps, HTMLAttributes<HTMLDivElement> {
+  extends CommonProps, HTMLAttributes<HTMLElement> {
     /**
      * Keep drawer locked open by default
      */
@@ -342,7 +343,7 @@ export class EuiNavDrawer extends Component<EuiNavDrawerProps, EuiNavDrawerState
               sideNavLockAriaLabel,
               sideNavLockExpanded,
               sideNavLockCollapsed,
-            ]) => (
+            ]: string[]) => (
               <EuiListGroupItem
                 buttonRef={node => (this.expandButtonRef = node)}
                 label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}

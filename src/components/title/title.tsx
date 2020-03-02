@@ -26,6 +26,7 @@ export type EuiTitleProps = CommonProps & {
   size?: EuiTitleSize;
   textTransform?: EuiTitleTextTransform;
   id?: string;
+  tabIndex?: string;
 };
 
 export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
