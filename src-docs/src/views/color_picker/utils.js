@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-// import { chromaValid } from '../../../../src/components/color_picker/utils';
 
 const generateRandomColor = () =>
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
