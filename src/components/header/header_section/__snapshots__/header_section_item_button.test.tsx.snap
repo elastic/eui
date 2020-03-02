@@ -19,3 +19,29 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
   </span>
 </button>
 `;
+
+exports[`EuiHeaderSectionItemButton renders notification children 1`] = `
+<button
+  class="euiHeaderSectionItem__button"
+  type="button"
+>
+  <span
+    class="euiNotificationBadge euiHeaderSectionItemButton__notification"
+  >
+    1
+  </span>
+</button>
+`;
+
+exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
+<button
+  class="euiHeaderSectionItem__button"
+  type="button"
+>
+  <span
+    class="euiNotificationBadge euiNotificationBadge--subdued euiHeaderSectionItemButton__notification"
+  >
+    1
+  </span>
+</button>
+`;

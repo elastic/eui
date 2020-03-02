@@ -3,9 +3,14 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-export const EuiFormErrorText: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement>
-> = ({ children, className, ...rest }) => {
+export type EuiFormErrorTextProps = CommonProps &
+  HTMLAttributes<HTMLDivElement>;
+
+export const EuiFormErrorText: FunctionComponent<EuiFormErrorTextProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames('euiFormErrorText', className);
 
   return (

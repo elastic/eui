@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
-import { withTheme } from '../../components';
+import { ThemeContext } from '../../components';
 import {
   Chart,
   Settings,
@@ -38,7 +38,7 @@ import { MultiChartCard, ChartCard } from './shared';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 
-class _Sizes extends Component {
+export class Sizes extends Component {
   constructor(props) {
     super(props);
 
@@ -168,7 +168,7 @@ class _Sizes extends Component {
       changeDescription,
     } = this.state;
 
-    const isDarkTheme = this.props.theme.includes('dark');
+    const isDarkTheme = this.context.theme.includes('dark');
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
@@ -365,4 +365,4 @@ class _Sizes extends Component {
   }
 }
 
-export const Sizes = withTheme(_Sizes);
+Sizes.contextType = ThemeContext;

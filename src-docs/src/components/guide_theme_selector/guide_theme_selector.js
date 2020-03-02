@@ -1,59 +1,28 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
+import { ThemeContext } from '../with_theme';
 import { EuiSelect, EuiFormRow } from '../../../../src/components';
+import { EUI_THEMES } from '../../../../src/themes';
 
-export class GuideThemeSelector extends Component {
-  constructor(props) {
-    super(props);
+export const GuideThemeSelector = () => {
+  return (
+    <ThemeContext.Consumer>
+      {context => <GuideThemeSelectorComponent context={context} />}
+    </ThemeContext.Consumer>
+  );
+};
 
-    this.themeOptions = [
-      {
-        text: 'Light',
-        value: 'light',
-      },
-      {
-        text: 'Dark',
-        value: 'dark',
-      },
-      {
-        text: 'Amsterdam: Light',
-        value: 'amsterdam-light',
-      },
-      {
-        text: 'Amsterdam: Dark',
-        value: 'amsterdam-dark',
-      },
-    ];
-
-    this.state = {
-      value: this.themeOptions[0].value,
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
-  };
-
-  render() {
-    return (
-      <EuiFormRow label="Theme">
-        <EuiSelect
-          options={this.themeOptions}
-          value={this.props.selectedTheme}
-          onChange={e => {
-            this.props.onToggleTheme(e.target.value);
-          }}
-          aria-label="Switch the theme"
-        />
-      </EuiFormRow>
-    );
-  }
-}
-
-GuideThemeSelector.propTypes = {
-  onToggleTheme: PropTypes.func.isRequired,
-  selectedTheme: PropTypes.string.isRequired,
+const GuideThemeSelectorComponent = ({ context }) => {
+  return (
+    <EuiFormRow label="Theme">
+      <EuiSelect
+        options={EUI_THEMES}
+        value={context.theme}
+        onChange={e => {
+          context.changeTheme(e.target.value);
+        }}
+        aria-label="Switch the theme"
+      />
+    </EuiFormRow>
+  );
 };

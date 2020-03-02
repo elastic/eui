@@ -1,7 +1,7 @@
 import React, { Component, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { EuiFieldSearch, EuiFieldSearchProps } from '../../form/field_search';
+import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
 import { getMatchingOptions } from '../matching_options';
 import { EuiSelectableOption } from '../selectable_option';
 

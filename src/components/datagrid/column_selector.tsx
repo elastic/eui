@@ -11,13 +11,10 @@ import {
   EuiDataGridColumn,
   EuiDataGridColumnVisibility,
 } from './data_grid_types';
-// @ts-ignore-next-line
 import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../popover';
 import { EuiI18n } from '../i18n';
-// @ts-ignore-next-line
 import { EuiButtonEmpty } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-// @ts-ignore-next-line
 import { EuiSwitch, EuiFieldText } from '../form';
 import {
   EuiDragDropContext,
@@ -150,9 +147,10 @@ export const useColumnSelector = (
                             checked={visibleColumnIds.has(id)}
                             compressed
                             className="euiSwitch--mini"
-                            onChange={({
-                              currentTarget: { checked },
-                            }: React.FormEvent<HTMLInputElement>) => {
+                            onChange={event => {
+                              const {
+                                target: { checked },
+                              } = event;
                               const nextVisibleColumns = sortedColumns.filter(
                                 columnId =>
                                   checked
