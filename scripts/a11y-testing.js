@@ -26,7 +26,7 @@ const printResult = result =>
   let page;
 
   try {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     page = await browser.newPage();
 
     await page.setBypassCSP(true);
