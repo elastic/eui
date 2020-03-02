@@ -200,3 +200,12 @@ export type EuiDataGridPopoverContent = ComponentType<
 export interface EuiDataGridPopoverContents {
   [key: string]: EuiDataGridPopoverContent;
 }
+
+export interface EuiDataGridColumnResizeEventData {
+  columnId: string;
+  width: number;
+}
+
+export type EuiDataGridOnColumnResizeEvent = (
+  eventData: EuiDataGridColumnResizeEventData
+) => void;
