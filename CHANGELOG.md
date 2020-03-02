@@ -10,11 +10,13 @@
 - Added `notification` and `notificationColor` props to `EuiHeaderSectionItemButton` ([#2914](https://github.com/elastic/eui/pull/2914))
 - Added `folderCheck`, `folderExclamation`, `push`, `quote`, `reporter` and `users` icons ([#2935](https://github.com/elastic/eui/pull/2935))
 - Updated `folderClosed` and `folderOpen` to match new additions and sit better on the pixel grid ([#2935](https://github.com/elastic/eui/pull/2935))
+- Adjusted the header on `EuiDataGrid` to fix within constrained containers and full screen mode  ([#2959](https://github.com/elastic/eui/pull/2959))
 
 **Bug fixes**
 
 - Fixed `EuiTitle` not rendering child classes ([#2925](https://github.com/elastic/eui/pull/2925))
 - Extended `div` element in `EuiFlyout` type ([#2914](https://github.com/elastic/eui/pull/2914))
+Fixed z-index conflict with cell popovers in `EuiDataGrid` while in full screen mode ([#2959](https://github.com/elastic/eui/pull/2959))
 
 **Theme: Amsterdam**
 
