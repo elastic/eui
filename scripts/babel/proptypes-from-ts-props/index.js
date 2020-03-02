@@ -167,6 +167,24 @@ function resolveIdentifierToPropTypes(node, state) {
   const types = state.get('types');
   const inflightResolves = state.get('inflightResolves') || new Set();
 
+  // Used to inject `href` and `onClick` props for `PropsForAnchor` and `PropsForButton` utility types
+  const hrefPropertySignature = types.tsPropertySignature(
+    types.Identifier('href'),
+    types.TSTypeAnnotation(types.tsStringKeyword())
+  );
+  const onClickPropertySignature = types.tsPropertySignature(
+    types.Identifier('onClick'),
+    types.tsTypeAnnotation(
+      types.tsTypeReference(
+        types.Identifier('MouseEventHandler'),
+        types.tsTypeParameterInstantiation([
+          types.tsTypeReference(types.Identifier('HTMLAnchorElement')),
+        ])
+      )
+    )
+  );
+  hrefPropertySignature.optional = onClickPropertySignature.optional = true;
+
   let identifier;
   switch (node.type) {
     case 'TSTypeReference':
@@ -220,6 +238,35 @@ function resolveIdentifierToPropTypes(node, state) {
     return buildPropTypePrimitiveExpression(types, 'func');
   if (identifier.name === 'Function')
     return buildPropTypePrimitiveExpression(types, 'func');
+  if (identifier.name === 'PropsForAnchor' && node.typeParameters != null) {
+    return getPropTypesForNode(
+      {
+        type: 'TSIntersectionType',
+        types: [
+          types.tsTypeLiteral([
+            hrefPropertySignature,
+            onClickPropertySignature,
+          ]),
+          ...node.typeParameters.params,
+        ],
+      },
+      true,
+      state
+    );
+  }
+  if (identifier.name === 'PropsForButton' && node.typeParameters != null) {
+    return getPropTypesForNode(
+      {
+        type: 'TSIntersectionType',
+        types: [
+          types.tsTypeLiteral([onClickPropertySignature]),
+          ...node.typeParameters.params,
+        ],
+      },
+      true,
+      state
+    );
+  }
   if (identifier.name === 'ExclusiveUnion') {
     // We use ExclusiveUnion at the top level to exclusively discriminate between types
     // propTypes itself must be an object so merge the union sets together as an intersection

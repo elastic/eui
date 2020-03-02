@@ -1153,6 +1153,38 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('parses PropsForAnchor and PropsForButton arguments', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface PropsA { a: boolean }
+interface PropsB { b?: number }
+interface PropsC { c: string }
+interface PropsD { d?: null }
+type Props = PropsForAnchor<PropsA, PropsB> & PropsForButton<PropsC, PropsD>
+const FooComponent: React.SFC<Props> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  href: PropTypes.string,
+  onClick: PropTypes.func,
+  a: PropTypes.bool.isRequired,
+  b: PropTypes.number,
+  c: PropTypes.string.isRequired,
+  d: PropTypes.oneOf([null])
+};`);
+      });
+
       it('intersects overlapping string enums in ExclusiveUnion', () => {
         const result = transform(
           `

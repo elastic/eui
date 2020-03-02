@@ -2,20 +2,12 @@ import { connect } from 'react-redux';
 
 import { GuideSection } from './guide_section';
 
-import { getTheme, getRoutes } from '../../store';
-
-import { toggleTheme } from '../../actions';
+import { getRoutes } from '../../store';
 
 function mapStateToProps(state) {
   return {
-    theme: getTheme(state),
     routes: getRoutes(state),
   };
 }
 
-export const GuideSectionContainer = connect(
-  mapStateToProps,
-  {
-    toggleTheme,
-  }
-)(GuideSection);
+export const GuideSectionContainer = connect(mapStateToProps)(GuideSection);

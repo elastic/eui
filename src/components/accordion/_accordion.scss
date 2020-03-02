@@ -24,6 +24,12 @@
   }
 }
 
+.euiAccordion__buttonReverse {
+  // Puts the arrow on the right
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
 .euiAccordion__iconWrapper {
   @include size($euiSize);
   border-radius: $euiBorderRadius;

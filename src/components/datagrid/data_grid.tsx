@@ -8,6 +8,8 @@ import React, {
   Fragment,
   ReactChild,
   useMemo,
+  Dispatch,
+  SetStateAction,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -20,6 +22,7 @@ import {
   EuiDataGridInMemory,
   EuiDataGridPaginationProps,
   EuiDataGridInMemoryValues,
+  EuiDataGridControlColumn,
   EuiDataGridSorting,
   EuiDataGridStyle,
   EuiDataGridStyleBorders,
@@ -33,15 +36,12 @@ import {
   EuiDataGridFocusedCell,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
-// @ts-ignore-next-line
 import { EuiButtonEmpty } from '../button';
 import { keyCodes, htmlIdGenerator } from '../../services';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
 import { useStyleSelector, startingStyles } from './style_selector';
-// @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
-// @ts-ignore-next-line
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
@@ -60,6 +60,14 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
+    /**
+     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the left side of the data grid.
+     */
+    leadingControlColumns?: EuiDataGridControlColumn[];
+    /**
+     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the right side of the data grid.
+     */
+    trailingControlColumns?: EuiDataGridControlColumn[];
     /**
      * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
      */
@@ -211,6 +219,8 @@ function renderPagination(props: EuiDataGridProps) {
 
 function useDefaultColumnWidth(
   container: HTMLElement | null,
+  leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
+  trailingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
   columns: EuiDataGridProps['columns']
 ): number | null {
   const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
@@ -221,20 +231,32 @@ function useDefaultColumnWidth(
     if (container != null) {
       const gridWidth = container.clientWidth;
 
+      const controlColumnWidths = [
+        ...leadingControlColumns,
+        ...trailingControlColumns,
+      ].reduce<number>(
+        (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
+          claimedWidth + controlColumn.width,
+        0
+      );
+
       const columnsWithWidths = columns.filter<
         EuiDataGridColumn & { initialWidth: number }
       >(doesColumnHaveAnInitialWidth);
-      const claimedWidth = columnsWithWidths.reduce(
+
+      const definedColumnsWidth = columnsWithWidths.reduce(
         (claimedWidth, column) => claimedWidth + column.initialWidth,
         0
       );
+
+      const claimedWidth = controlColumnWidths + definedColumnsWidth;
 
       const widthToFill = gridWidth - claimedWidth;
       const unsizedColumnCount = columns.length - columnsWithWidths.length;
       const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
       setDefaultColumnWidth(columnWidth);
     }
-  }, [container, columns]);
+  }, [container, columns, leadingControlColumns, trailingControlColumns]);
 
   return defaultColumnWidth;
 }
@@ -319,13 +341,21 @@ function useInMemoryValues(
 function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
-  focusedCell: EuiDataGridFocusedCell,
+  leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
+  trailingControlColumns: EuiDataGridProps['trailingControlColumns'] = [],
+  focusedCell: EuiDataGridFocusedCell | undefined,
   headerIsInteractive: boolean,
   setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void,
   updateFocus: Function
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
-    const colCount = visibleColumns.length - 1;
+    if (focusedCell == null) return;
+
+    const colCount =
+      visibleColumns.length +
+      leadingControlColumns.length +
+      trailingControlColumns.length -
+      1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
     const { keyCode, ctrlKey } = event;
@@ -426,16 +456,46 @@ function useAfterRender(fn: Function): Function {
   };
 }
 
+type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
+const useFocus = (
+  headerIsInteractive: boolean
+): [
+  FocusProps,
+  EuiDataGridFocusedCell | undefined,
+  Dispatch<SetStateAction<EuiDataGridFocusedCell | undefined>>
+] => {
+  const [focusedCell, setFocusedCell] = useState<
+    EuiDataGridFocusedCell | undefined
+  >(undefined);
+
+  const canCellsBeFocused = useMemo(() => focusedCell != null, [focusedCell]);
+
+  const focusProps = useMemo<FocusProps>(
+    () =>
+      canCellsBeFocused
+        ? {}
+        : {
+            tabIndex: 0,
+            onFocus: () =>
+              setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]),
+          },
+    [canCellsBeFocused, setFocusedCell, headerIsInteractive]
+  );
+
+  return [focusProps, focusedCell, setFocusedCell];
+};
+
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<EuiDataGridFocusedCell | null>(
-    null
-  );
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
-
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
+
+  const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
+    headerIsInteractive
+  );
+
   const handleHeaderChange = useCallback<MutationCallback>(
     records => {
       const [{ target }] = records;
@@ -494,6 +554,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   };
 
   const {
+    leadingControlColumns,
+    trailingControlColumns,
     columns,
     columnVisibility,
     schemaDetectors,
@@ -556,6 +618,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
     containerRef,
+    leadingControlColumns,
+    trailingControlColumns,
     orderedVisibleColumns
   );
 
@@ -620,6 +684,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     <Fragment>
       {checkOrDefaultToolBarDiplayOptions(
         toolbarVisibility,
+        'additionalControls'
+      ) && typeof toolbarVisibility !== 'boolean'
+        ? toolbarVisibility.additionalControls
+        : null}
+      {checkOrDefaultToolBarDiplayOptions(
+        toolbarVisibility,
         'showColumnSelector'
       )
         ? columnSelector
@@ -632,12 +702,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         : null}
       {checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showSortSelector')
         ? columnSorting
-        : null}
-      {checkOrDefaultToolBarDiplayOptions(
-        toolbarVisibility,
-        'additionalControls'
-      ) && typeof toolbarVisibility !== 'boolean'
-        ? toolbarVisibility.additionalControls
         : null}
     </Fragment>
   );
@@ -662,9 +726,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     gridAriaProps['aria-labelledby'] = rest['aria-labelledby'];
     delete rest['aria-labelledby'];
   }
-
-  const realizedFocusedCell: EuiDataGridFocusedCell =
-    focusedCell || (headerIsInteractive ? [0, -1] : [0, 0]);
 
   const fullScreenSelector = (
     <EuiI18n
@@ -730,6 +791,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     <DataGridContext.Provider value={datagridContext}>
       <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
         <div
+          data-test-subj="dataGridWrapper"
+          {...wrappingDivFocusProps}
           className={classes}
           onKeyDown={handleGridKeyDown}
           ref={setContainerRef}>
@@ -752,7 +815,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 onKeyDown={createKeyDownHandler(
                   props,
                   orderedVisibleColumns,
-                  realizedFocusedCell,
+                  leadingControlColumns,
+                  trailingControlColumns,
+                  focusedCell,
                   headerIsInteractive,
                   setFocusedCell,
                   focusAfterRender
@@ -789,6 +854,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       {ref => (
                         <EuiDataGridHeaderRow
                           ref={ref}
+                          leadingControlColumns={leadingControlColumns}
+                          trailingControlColumns={trailingControlColumns}
                           columns={orderedVisibleColumns}
                           columnWidths={columnWidths}
                           defaultColumnWidth={defaultColumnWidth}
@@ -796,7 +863,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                           schema={mergedSchema}
                           sorting={sorting}
                           headerIsInteractive={headerIsInteractive}
-                          focusedCell={realizedFocusedCell}
+                          focusedCell={focusedCell}
                           setFocusedCell={setFocusedCell}
                         />
                       )}
@@ -806,11 +873,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       defaultColumnWidth={defaultColumnWidth}
                       inMemoryValues={inMemoryValues}
                       inMemory={inMemory}
+                      leadingControlColumns={leadingControlColumns}
+                      trailingControlColumns={trailingControlColumns}
                       columns={orderedVisibleColumns}
                       schema={mergedSchema}
                       schemaDetectors={allSchemaDetectors}
                       popoverContents={popoverContents}
-                      focusedCell={realizedFocusedCell}
+                      focusedCell={focusedCell}
                       onCellFocus={setFocusedCell}
                       pagination={pagination}
                       sorting={sorting}

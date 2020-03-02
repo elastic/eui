@@ -5,6 +5,19 @@
 
   .euiFlyoutBody__overflow {
     @include euiYScrollWithShadows;
+
+    &.euiFlyoutBody__overflow--hasBanner {
+      @include euiOverflowShadow('y', 'end');
+
+    }
+  }
+
+  .euiFlyoutBody__banner .euiCallOut {
+    border: none; // Remove border from callout when it is a flyout banner
+  }
+
+  .euiFlyoutBody__overflowContent {
     padding: $euiSizeL;
   }
+
 }

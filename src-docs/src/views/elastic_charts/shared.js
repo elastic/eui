@@ -11,6 +11,11 @@ import {
 } from '../../../../src/components';
 import { find } from 'lodash';
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
+import { devDependencies } from '../../../../package';
+
+const chartsVersion = devDependencies['@elastic/charts'].match(
+  /\d+\.\d+\.\d+/
+)[0];
 
 export const CHART_COMPONENTS = {
   BarSeries: BarSeries,
@@ -25,9 +30,11 @@ export const ExternalBadge = () => {
       iconSide="right"
       onClickAriaLabel="Go to elastic-charts docs"
       onClick={() =>
-        window.open('https://github.com/elastic/elastic-charts/tree/v17.0.2')
+        window.open(
+          `https://github.com/elastic/elastic-charts/tree/v${chartsVersion}`
+        )
       }>
-      External library: elastic-charts v17.0.2
+      External library: elastic-charts v{chartsVersion}
     </EuiBadge>
   );
 };
