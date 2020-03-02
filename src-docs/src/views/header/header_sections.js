@@ -19,7 +19,7 @@ export default () => {
     />
   );
 
-  const breadcrumbs2 = [
+  const breadcrumbs = [
     {
       text: 'Management',
       href: '#',
@@ -67,7 +67,7 @@ export default () => {
     {
       items: [renderLogo, <HeaderSpacesMenu />],
       borders: 'right',
-      breadcrumbs: breadcrumbs2,
+      breadcrumbs: breadcrumbs,
     },
     {
       items: [renderSearch, <div style={{ width: 8 }} />],
