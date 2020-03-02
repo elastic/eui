@@ -2,7 +2,8 @@
 
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
-  id="6"
+  arrowDisplay="left"
+  id="8"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -13,7 +14,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="6"
+        aria-controls="8"
         aria-expanded={false}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -39,7 +40,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="6"
+      id="8"
     >
       <EuiMutationObserver
         observerOptions={
@@ -66,7 +67,8 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
-  id="5"
+  arrowDisplay="left"
+  id="7"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -77,7 +79,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="5"
+        aria-controls="7"
         aria-expanded={true}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -103,7 +105,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="5"
+      id="7"
     >
       <EuiMutationObserver
         observerOptions={
@@ -162,6 +164,80 @@ exports[`EuiAccordion is rendered 1`] = `
       <div
         class=""
       />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="6"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="6"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="5"
+      aria-expanded="false"
+      class="euiAccordion__button euiAccordion__buttonReverse"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="5"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
     </div>
   </div>
 </div>

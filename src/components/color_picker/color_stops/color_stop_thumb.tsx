@@ -21,14 +21,12 @@ import { keyCodes } from '../../../services';
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiFieldNumber } from '../../form/field_number';
-import { EuiFieldText } from '../../form/field_text';
-import { EuiFormRow } from '../../form/form_row';
+import { EuiFieldNumber, EuiFieldText, EuiFormRow } from '../../form';
 import { EuiI18n } from '../../i18n';
-import { EuiRangeThumb } from '../../form/range/range_thumb';
 import { EuiPopover } from '../../popover';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiSpacer } from '../../spacer';
+import { EuiRangeThumb } from '../../form/range/range_thumb';
 
 export interface ColorStop {
   stop: number;

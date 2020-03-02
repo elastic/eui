@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`align defaults to left 1`] = `
-<th
+<td
   class="euiTableHeaderCell"
   role="columnheader"
   scope="col"
@@ -13,11 +13,11 @@ exports[`align defaults to left 1`] = `
       class="euiTableCellContent__text"
     />
   </div>
-</th>
+</td>
 `;
 
 exports[`align renders center when specified 1`] = `
-<th
+<td
   class="euiTableHeaderCell"
   role="columnheader"
   scope="col"
@@ -29,11 +29,11 @@ exports[`align renders center when specified 1`] = `
       class="euiTableCellContent__text"
     />
   </div>
-</th>
+</td>
 `;
 
 exports[`align renders right when specified 1`] = `
-<th
+<td
   class="euiTableHeaderCell"
   role="columnheader"
   scope="col"
@@ -45,7 +45,7 @@ exports[`align renders right when specified 1`] = `
       class="euiTableCellContent__text"
     />
   </div>
-</th>
+</td>
 `;
 
 exports[`renders EuiTableHeaderCell 1`] = `
@@ -66,6 +66,24 @@ exports[`renders EuiTableHeaderCell 1`] = `
     </span>
   </div>
 </th>
+`;
+
+exports[`renders td when children is null/undefined 1`] = `
+<td
+  aria-label="aria-label"
+  class="euiTableHeaderCell testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="columnheader"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent testClass1 testClass2"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
 `;
 
 exports[`width and style accepts style attribute 1`] = `

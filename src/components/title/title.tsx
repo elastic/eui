@@ -39,7 +39,8 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
     'euiTitle',
     titleSizeToClassNameMap[size],
     textTransform ? textTransformToClassNameMap[textTransform] : undefined,
-    className
+    className,
+    children.props.className
   );
 
   const props = {
