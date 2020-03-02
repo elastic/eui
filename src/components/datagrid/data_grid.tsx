@@ -8,6 +8,7 @@ import React, {
   Fragment,
   ReactChild,
   useMemo,
+  useRef,
   Dispatch,
   SetStateAction,
 } from 'react';
@@ -623,6 +624,22 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     orderedVisibleColumns
   );
 
+  const hasStickyHeader = false;
+
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
+  if (focusedCell !== undefined && focusedCell[1] === 0) {
+    if (contentRef.current != null) {
+      contentRef.current.scrollTop = 0;
+    }
+  }
+
+  /* if (focusedCell !== undefined) { */
+  /*   if (contentRef.current != null) { */
+  /*     console.log(contentRef.current.scrollTop); */
+  /*   } */
+  /* } */
+
   const classes = classNames(
     'euiDataGrid',
     fontSizesToClassMap[gridStyles.fontSize!],
@@ -638,6 +655,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     },
     {
       'euiDataGrid--noControls': !toolbarVisibility,
+    },
+    {
+      'euiDataGrid-hasStickyHeader': hasStickyHeader,
     },
     className
   );
@@ -842,6 +862,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     />
                   ) : null}
                   <div
+                    ref={contentRef}
                     className="euiDataGrid__content"
                     role="grid"
                     {...gridAriaProps}>
