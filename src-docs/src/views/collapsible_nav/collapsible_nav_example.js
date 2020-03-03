@@ -1,20 +1,38 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCollapsibleNav } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiCollapsibleNav,
+  EuiText,
+  EuiSpacer,
+} from '../../../../src/components';
 
 import CollapsibleNav from './collapsible_nav';
 const collapsibleNavSource = require('!!raw-loader!./collapsible_nav');
 const collapsibleNavHtml = renderToHtml(CollapsibleNav);
 
 export const CollapsibleNavExample = {
-  title: 'CollapsibleNav',
+  title: 'Collapsible nav',
+  intro: (
+    <EuiText>
+      <p>
+        This is a high level component that creates a flyout-style navigational
+        pane. It is the next evolution of{' '}
+        <Link to="/layout/nav-drawer">
+          <strong>EuiNavDrawer</strong>
+        </Link>{' '}
+        which will be deprecated in the coming months.
+      </p>
+      <EuiSpacer size="m" />
+    </EuiText>
+  ),
   sections: [
     {
-      title: 'CollapsibleNav',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -27,8 +45,14 @@ export const CollapsibleNavExample = {
       ],
       text: (
         <p>
-          Description needed: how to use the{' '}
-          <EuiCode>EuiCollapsibleNav</EuiCode> component.
+          <strong>EuiCollapsibleNav</strong> is simply a custom wrapper around{' '}
+          <Link to="/layout/flyout">
+            <strong>EuiFlyout</strong>
+          </Link>{' '}
+          the visibility of which must be maintained by the consuming
+          application. An extra feature that it provides is the ability to{' '}
+          <EuiCode>dock</EuiCode> the flyout. This affixes the flyout to the
+          window and pushes the body content by adding left side padding.
         </p>
       ),
       props: { EuiCollapsibleNav },
