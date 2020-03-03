@@ -10,6 +10,7 @@ import {
   EuiCollapsibleNav,
   EuiText,
   EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import CollapsibleNav from './collapsible_nav';
@@ -44,16 +45,25 @@ export const CollapsibleNavExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiCollapsibleNav</strong> is simply a custom wrapper around{' '}
-          <Link to="/layout/flyout">
-            <strong>EuiFlyout</strong>
-          </Link>{' '}
-          the visibility of which must be maintained by the consuming
-          application. An extra feature that it provides is the ability to{' '}
-          <EuiCode>dock</EuiCode> the flyout. This affixes the flyout to the
-          window and pushes the body content by adding left side padding.
-        </p>
+        <>
+          <p>
+            <strong>EuiCollapsibleNav</strong> is simply a custom wrapper around{' '}
+            <Link to="/layout/flyout">
+              <strong>EuiFlyout</strong>
+            </Link>{' '}
+            the visibility of which must be maintained by the consuming
+            application. An extra feature that it provides is the ability to{' '}
+            <EuiCode>dock</EuiCode> the flyout. This affixes the flyout to the
+            window and pushes the body content by adding left side padding.
+          </p>
+          <EuiCallOut title="Smaller screen sizes don't allow for docking">
+            <p>
+              There is not enough room to push the body content on smaller
+              screens, so <strong>EuiCollapsibleNav</strong> makes docking
+              conditional on window width.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
