@@ -1,0 +1,18 @@
+.euiSkipLink {
+  @include euiSlightShadow;
+  display: block;
+  z-index: $euiZHeader + 1;
+  background-color: $euiColorPrimary;
+  color: $euiColorGhost;
+  font-size: $euiFontSizeS;
+  padding: $euiSizeM $euiSize;
+
+  &:focus,
+  &:hover {
+    position: fixed;
+    top: 0;
+    left: $euiSizeS;
+    border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+    text-decoration: underline;
+  }
+}
