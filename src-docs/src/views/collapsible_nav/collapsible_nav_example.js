@@ -22,6 +22,10 @@ import CollapsibleNavGroup from './collapsible_nav_group';
 const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
 const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
 
+import CollapsibleNavGroupList from './collapsible_nav_group_list';
+const collapsibleNavGroupListSource = require('!!raw-loader!./collapsible_nav_group_list');
+const collapsibleNavGroupListHtml = renderToHtml(CollapsibleNavGroupList);
+
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
   intro: (
@@ -118,6 +122,27 @@ export const CollapsibleNavExample = {
   initialIsOpen={true}
   background="none"
 />`,
+    },
+    {
+      title: 'Nav group list',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: collapsibleNavGroupListSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: collapsibleNavGroupListHtml,
+        },
+      ],
+      text: (
+        <p>
+          Description needed: how to use the{' '}
+          <EuiCode>EuiCollapsibleNavGroupList</EuiCode> component.
+        </p>
+      ),
+      props: { EuiCollapsibleNav },
+      demo: <CollapsibleNavGroupList />,
     },
   ],
 };
