@@ -13,7 +13,7 @@ export type EuiCollapsibleNavProps = EuiFlyoutProps & {
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   children,
   className,
-  docked,
+  docked = false,
   onClose,
   ...rest
 }) => {

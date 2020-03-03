@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCollapsibleNav } from './collapsible_nav';
 
-jest.mock('../portal', () => ({
-  EuiPortal: ({ children }: { children: ReactNode }) => children,
+jest.mock('../overlay_mask', () => ({
+  EuiOverlayMask: (props: any) => <div {...props} />,
 }));
 
 describe('EuiCollapsibleNav', () => {
