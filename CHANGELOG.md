@@ -24,6 +24,12 @@
 
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
 
+## [`20.0.2`](https://github.com/elastic/eui/tree/v20.0.2)
+
+**Bug fixes**
+
+- Fixed type definitions for `EuiComboBox` ([#2971](https://github.com/elastic/eui/pull/2971))
+
 ## [`20.0.1`](https://github.com/elastic/eui/tree/v20.0.1)
 
 **Bug fixes**
