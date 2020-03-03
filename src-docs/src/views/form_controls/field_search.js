@@ -23,6 +23,8 @@ export default class extends Component {
     return (
       /* DisplayToggles wrapper for Docs only */
       <DisplayToggles
+        canPrepend
+        canAppend
         extras={[
           <EuiSwitch
             compressed

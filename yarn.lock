@@ -1271,10 +1271,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-input-autosize@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@types/react-input-autosize/-/react-input-autosize-2.0.1.tgz#04ac4b532128c98532352042b6c7af8b5d3f52ca"
-  integrity sha512-vsmqA6Pp5IyMZv3C7x7mNM8lqikfWQ4lCWsoVk/w+HZ2Y3KOdFk6ad4jsQeltXn/UaO+YUZLtWdMIjLLIeCxBA==
+"@types/react-input-autosize@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-input-autosize/-/react-input-autosize-2.0.2.tgz#6ccdfb100c21b6096c1a04c3c3fac196b0ce61c1"
+  integrity sha512-QzewaD5kog7c6w5e3dretb+50oM8RDdDvVumQKCtPjI6VHyR8lA/HxCiTrv5l9Vgbi4NCitYuix/NorOevlrng==
   dependencies:
     "@types/react" "*"
 
