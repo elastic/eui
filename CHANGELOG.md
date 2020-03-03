@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `20.1.0`.
+
+## [`20.1.0`](https://github.com/elastic/eui/tree/v20.1.0)
+
 - Added `theme` prop to `EuiCodeEditor` in support of `AceEditor` themes ([#2970](https://github.com/elastic/eui/pull/2970))
 - `EuiButton` now has a single return statement ([#2954](https://github.com/elastic/eui/pull/2954))
 - Added `isSortable` props to `EuiDataGridColumn` and `EuiDataGridSchemaDetector` to mark them as un-sortable ([#2952](https://github.com/elastic/eui/pull/2952))
