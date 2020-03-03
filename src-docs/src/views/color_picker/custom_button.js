@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   EuiColorPicker,
@@ -12,15 +12,20 @@ import { useColorPicker } from './utils';
 
 export const CustomButton = () => {
   const [color, setColor, errors] = useColorPicker('');
+  const [selectedColor, setSelectedColor] = useState(color);
+  const handleColorChange = (text, { hex, isValid }) => {
+    setColor(text, { hex, isValid });
+    setSelectedColor(hex);
+  };
   return (
     <Fragment>
       <EuiFormRow label="Pick a color" error={errors}>
         <EuiColorPicker
-          onChange={setColor}
+          onChange={handleColorChange}
           color={color}
           button={
             <EuiColorPickerSwatch
-              color={color}
+              color={selectedColor}
               aria-label="Select a new color"
             />
           }
@@ -28,12 +33,12 @@ export const CustomButton = () => {
       </EuiFormRow>
       <EuiSpacer />
       <EuiColorPicker
-        onChange={setColor}
+        onChange={handleColorChange}
         color={color}
         isInvalid={!!errors}
         button={
           <EuiBadge
-            color={color ? color : 'hollow'}
+            color={selectedColor ? selectedColor : 'hollow'}
             onClickAriaLabel="Select a new color">
             Color this badge
           </EuiBadge>
