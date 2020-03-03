@@ -37,19 +37,10 @@ export interface EuiCodeEditorProps
   cursorStart?: number;
   'data-test-subj'?: string;
   /**
-   * Select an AceEditor provided theme
+   * Select the `brace` theme
+   * The matching theme file must also be imported from `brace` (e.g., `import 'brace/theme/github';`)
    */
-  theme?:
-    | 'monokai'
-    | 'tomorrow'
-    | 'github'
-    | 'kuroir'
-    | 'twilight'
-    | 'xcode'
-    | 'solarized_light'
-    | 'solarized_dark'
-    | 'terminal'
-    | 'textmate';
+  theme?: IAceEditorProps['theme'];
 
   /**
    * Use string for a built-in mode or object for a custom mode
