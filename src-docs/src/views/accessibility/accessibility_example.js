@@ -8,7 +8,6 @@ import {
   EuiCode,
   EuiLink,
   EuiKeyboardAccessible,
-  EuiScreenReaderOnly,
 } from '../../../../src/components';
 
 import KeyboardAccessible from './keyboard_accessible';
@@ -19,6 +18,8 @@ const keyboardAccessibleHtml = renderToHtml(KeyboardAccessible);
 
 const screenReaderOnlyHtml = renderToHtml(ScreenReaderOnly);
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
+
+import { ScreenReaderOnlyDocsComponent } from './props';
 
 export const AccessibilityExample = {
   title: 'Accessibility',
@@ -71,13 +72,9 @@ export const AccessibilityExample = {
             }{' '}
             for more information.
           </p>
-          <p>
-            Use a screenreader to verify that there is a second paragraph in
-            this example:
-          </p>
         </div>
       ),
-      props: { EuiScreenReaderOnly },
+      props: { EuiScreenReaderOnly: ScreenReaderOnlyDocsComponent },
       demo: <ScreenReaderOnly />,
     },
   ],
