@@ -1,3 +1,33 @@
-.euiCollapsibleNav {
-  z-index: 1;
+// Is a EuiFlyout component but shifted to the left side
+// Using flyout class for specificity
+
+.euiFlyout.euiCollapsibleNav {
+  right: auto;
+  left: 0;
+  // Needs both to override vw units
+  min-width: $euiNavDrawerWidthExpanded;
+  max-width: $euiNavDrawerWidthExpanded;
+  animation: euiCollapsibleNav $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  &--isDocked {
+    @include euiBottomShadowMedium;
+  }
+}
+
+.euiBody--collapsibleNavIsDocked {
+  // Shrink the content from the left so it's no longer overlapped by the nav drawer (ALWAYS)
+  padding-left: $euiNavDrawerWidthExpanded !important; // sass-lint:disable-line no-important
+  transition: padding $euiAnimSpeedFast $euiAnimSlightResistance;
+}
+
+@keyframes euiCollapsibleNav {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
