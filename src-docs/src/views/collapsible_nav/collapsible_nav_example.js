@@ -11,8 +11,10 @@ import {
   EuiText,
   EuiSpacer,
   EuiCallOut,
+  EuiCollapsibleNavList,
   EuiCollapsibleNavGroup,
 } from '../../../../src/components';
+import { EuiCollapsibleNavListItem } from './props';
 
 import CollapsibleNav from './collapsible_nav';
 const collapsibleNavSource = require('!!raw-loader!./collapsible_nav');
@@ -22,8 +24,8 @@ import CollapsibleNavGroup from './collapsible_nav_group';
 const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
 const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
 
-import CollapsibleNavGroupList from './collapsible_nav_group_list';
-const collapsibleNavGroupListSource = require('!!raw-loader!./collapsible_nav_group_list');
+import CollapsibleNavGroupList from './collapsible_nav_list';
+const collapsibleNavGroupListSource = require('!!raw-loader!./collapsible_nav_list');
 const collapsibleNavGroupListHtml = renderToHtml(CollapsibleNavGroupList);
 
 export const CollapsibleNavExample = {
@@ -138,10 +140,10 @@ export const CollapsibleNavExample = {
       text: (
         <p>
           Description needed: how to use the{' '}
-          <EuiCode>EuiCollapsibleNavGroupList</EuiCode> component.
+          <EuiCode>EuiCollapsibleNavList</EuiCode> component.
         </p>
       ),
-      props: { EuiCollapsibleNav },
+      props: { EuiCollapsibleNavList, EuiCollapsibleNavListItem },
       demo: <CollapsibleNavGroupList />,
     },
   ],

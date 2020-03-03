@@ -1,0 +1,16 @@
+.euiCollapsibleNavList__item {
+  // Override euiListGroupItem
+  // TODO: Allow EuiListGroupItem to take gutterSize
+  margin-top: 0 !important; // sass-lint:disable-line no-important
+  color: $euiColorDarkShade; // make the text subtle
+}
+
+.euiCollapsibleNavList__itemExtraAction {
+  svg {
+    transform: rotate(45deg);
+  }
+}
+
+.euiCollapsibleNavList__itemExtraAction-pinned:not(:hover):not(:focus) {
+  color: makeGraphicContrastColor($euiColorLightShade);
+}

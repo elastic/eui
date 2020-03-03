@@ -38,7 +38,7 @@ export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 export { EuiCodeEditor } from './code_editor';
 
 export {
-  EuiCollapsibleNavGroupList,
+  EuiCollapsibleNavList,
   EuiCollapsibleNavGroup,
   EuiCollapsibleNav,
 } from './collapsible_nav';
