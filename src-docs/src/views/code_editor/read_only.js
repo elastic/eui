@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
-// import 'brace/mode/less';
-// import 'brace/theme/github';
+import 'ace-builds/src-noconflict/mode-less';
+import 'ace-builds/src-noconflict/theme-github';
 
 import { EuiCodeEditor } from '../../../../src/components';
 
