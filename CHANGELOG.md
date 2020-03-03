@@ -19,11 +19,16 @@
 - Fixed `EuiTitle` not rendering child classes ([#2925](https://github.com/elastic/eui/pull/2925))
 - Extended `div` element in `EuiFlyout` type ([#2914](https://github.com/elastic/eui/pull/2914))
 - Fixed popover positioning service to be more lenient when positioning 0-width or 0-height content ([#2948](https://github.com/elastic/eui/pull/2948))
-- Fixed type definitions for `EuiComboBox` ([#2971](https://github.com/elastic/eui/pull/2971))
 
 **Theme: Amsterdam**
 
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
+
+## [`20.0.2`](https://github.com/elastic/eui/tree/v20.0.2)
+
+**Bug fixes**
+
+- Fixed type definitions for `EuiComboBox` ([#2971](https://github.com/elastic/eui/pull/2971))
 
 ## [`20.0.1`](https://github.com/elastic/eui/tree/v20.0.1)
 
