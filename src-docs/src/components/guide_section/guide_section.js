@@ -497,7 +497,6 @@ GuideSection.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
   children: PropTypes.any,
-  theme: PropTypes.string.isRequired,
   routes: PropTypes.object.isRequired,
   props: PropTypes.object,
 };
