@@ -15,7 +15,7 @@ export const EuiColorPickerSwatch = forwardRef<
   EuiColorPickerSwatchProps
 >(({ className, color, style, ...rest }, ref) => {
   const classes = classNames('euiColorPickerSwatch', className);
-  const chromaColor = useMemo(() => getChromaColor(color), [color]);
+  const chromaColor = useMemo(() => getChromaColor(color, true), [color]);
   const background = useMemo(
     () => (chromaColor ? chromaColor.css() : 'transparent'),
     [chromaColor]

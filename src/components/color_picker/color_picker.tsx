@@ -124,12 +124,13 @@ const getOutput = (
   text: string | null,
   showAlpha: boolean = false
 ): { rgba: number[]; hex: string; isValid: boolean } => {
-  let color = getChromaColor(text, true);
+  const color = getChromaColor(text, true);
   let isValid = true;
   if (!showAlpha && color !== null) {
     isValid = color.alpha() === 1;
-    color = color.alpha(1);
   }
+  // Note that if a consumer has disallowed opacity,
+  // we still return the color with an alpha channel, but mark it as invalid
   return color
     ? {
         rgba: color.rgba(),

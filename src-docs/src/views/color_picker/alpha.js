@@ -7,15 +7,6 @@ export const Alpha = () => {
   const [color, setColor, errors] = useColorPicker('#D36086');
   const [color2, setColor2, errors2] = useColorPicker('211, 96, 134');
 
-  const handleChange = hex => {
-    setColor(hex);
-  };
-
-  const handleChange2 = rgba => {
-    // console.log(rgba);
-    setColor2(rgba);
-  };
-
   const customSwatches = [
     '#54B399',
     '#6092C0',
@@ -43,7 +34,7 @@ export const Alpha = () => {
         isInvalid={!!errors}
         error={errors}>
         <EuiColorPicker
-          onChange={handleChange}
+          onChange={setColor}
           color={color}
           showAlpha={true}
           isInvalid={!!errors}
@@ -56,7 +47,7 @@ export const Alpha = () => {
         isInvalid={!!errors2}
         error={errors2}>
         <EuiColorPicker
-          onChange={handleChange2}
+          onChange={setColor2}
           color={color2}
           showAlpha={true}
           format="rgba"
