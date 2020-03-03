@@ -1,7 +1,2 @@
-@import '../header/variables';
-
-// Themable colors
-$euiNavDrawerBackgroundColor: $euiHeaderBackgroundColor;
-
-// Drawer variables
-$euiNavDrawerWidthExpanded: 315px;
+// Sizing
+$euiCollapsibleNavWidth: $euiSize * 20; // ~ 320px
