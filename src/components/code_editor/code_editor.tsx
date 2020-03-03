@@ -36,6 +36,20 @@ export interface EuiCodeEditorProps
   setOptions: IAceEditorProps['setOptions'];
   cursorStart?: number;
   'data-test-subj'?: string;
+  /**
+   * Select theme for code-editor
+   */
+  theme?:
+    | 'monokai'
+    | 'tomorrow'
+    | 'github'
+    | 'kuroir'
+    | 'twilight'
+    | 'xcode'
+    | 'solarized_light'
+    | 'solarized_dark'
+    | 'terminal'
+    | 'textmate';
 
   /**
    * Use string for a built-in mode or object for a custom mode
@@ -171,6 +185,7 @@ export class EuiCodeEditor extends Component<
       cursorStart,
       mode = DEFAULT_MODE,
       'data-test-subj': dataTestSubj = 'codeEditorContainer',
+      theme = 'github',
       ...rest
     } = this.props;
 
@@ -255,6 +270,7 @@ export class EuiCodeEditor extends Component<
           // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
           mode={this.isCustomMode() ? DEFAULT_MODE : (mode as string)} // https://github.com/securingsincity/react-ace/pull/771
           name={this.idGenerator()}
+          theme={theme}
           ref={this.aceEditorRef}
           width={width}
           height={height}
