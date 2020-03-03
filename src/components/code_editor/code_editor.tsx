@@ -37,7 +37,7 @@ export interface EuiCodeEditorProps
   cursorStart?: number;
   'data-test-subj'?: string;
   /**
-   * Select theme for code-editor
+   * Select an AceEditor provided theme
    */
   theme?:
     | 'monokai'
