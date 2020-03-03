@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `20.0.2`.
+
+## [`20.0.2`](https://github.com/elastic/eui/tree/v20.0.2)
+
 **Bug fixes**
 
 - Fixed type definitions for `EuiComboBox` ([#2971](https://github.com/elastic/eui/pull/2971))
