@@ -166,7 +166,7 @@ export class EuiCodeEditor extends Component<
       width,
       height,
       onBlur, // eslint-disable-line no-unused-vars
-      isReadOnly,
+      isReadOnly = false,
       setOptions,
       cursorStart,
       mode = DEFAULT_MODE,

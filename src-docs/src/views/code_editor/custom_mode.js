@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'brace/mode/text';
+// import 'brace/mode/text';
 
 import { EuiCodeEditor } from '../../../../src/components';
 

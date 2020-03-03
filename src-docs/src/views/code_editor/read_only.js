@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import 'brace/mode/less';
-import 'brace/theme/github';
+// import 'brace/mode/less';
+// import 'brace/theme/github';
 
 import { EuiCodeEditor } from '../../../../src/components';
 
@@ -18,7 +18,7 @@ export default class extends Component {
         width="100%"
         value={this.state.value}
         setOptions={{ fontSize: '14px' }}
-        isReadOnly
+        isReadOnly={true}
         aria-label="Read only code editor"
       />
     );

@@ -203,7 +203,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
     </p>
   </div>
   <div
-    class=" ace_editor ace-tm"
+    class=" ace_editor ace_hidpi ace-tm"
     id="htmlId"
     style="width: 500px; height: 500px;"
   >
@@ -213,7 +213,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
       autocorrect="off"
       class="ace_text-input"
       spellcheck="false"
-      style="opacity: 0;"
+      style="opacity: 0; font-size: 1px;"
       tabindex="-1"
       wrap="off"
     />
@@ -223,13 +223,12 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
     >
       <div
         class="ace_layer ace_gutter-layer ace_folding-enabled"
-      />
-      <div
-        class="ace_gutter-active-line"
+        style="height: 1000000px;"
       />
     </div>
     <div
       class="ace_scroller"
+      style="line-height: 0px;"
     >
       <div
         class="ace_content"
@@ -247,7 +246,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
         />
         <div
           class="ace_layer ace_text-layer"
-          style="padding: 0px 4px;"
+          style="height: 1000000px; margin: 0px 4px;"
         />
         <div
           class="ace_layer ace_marker-layer"
@@ -268,7 +267,9 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
       <div
         class="ace_scrollbar-inner"
         style="width: 20px;"
-      />
+      >
+         
+      </div>
     </div>
     <div
       class="ace_scrollbar ace_scrollbar-h"
@@ -277,7 +278,9 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
       <div
         class="ace_scrollbar-inner"
         style="height: 20px;"
-      />
+      >
+         
+      </div>
     </div>
     <div
       style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: hidden;"
@@ -288,7 +291,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
       <div
         style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: visible;"
       >
-        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       </div>
     </div>
   </div>
@@ -319,7 +322,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
     </p>
   </div>
   <div
-    class=" ace_editor ace-tm"
+    class=" ace_editor ace_hidpi ace-tm"
     id="htmlId"
     style="width: 500px; height: 500px;"
   >
@@ -329,7 +332,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
       autocorrect="off"
       class="ace_text-input"
       spellcheck="false"
-      style="opacity: 0;"
+      style="opacity: 0; font-size: 1px;"
       tabindex="-1"
       wrap="off"
     />
@@ -339,13 +342,12 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
     >
       <div
         class="ace_layer ace_gutter-layer ace_folding-enabled"
-      />
-      <div
-        class="ace_gutter-active-line"
+        style="height: 1000000px;"
       />
     </div>
     <div
       class="ace_scroller"
+      style="line-height: 0px;"
     >
       <div
         class="ace_content"
@@ -363,7 +365,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
         />
         <div
           class="ace_layer ace_text-layer"
-          style="padding: 0px 4px;"
+          style="height: 1000000px; margin: 0px 4px;"
         />
         <div
           class="ace_layer ace_marker-layer"
@@ -384,7 +386,9 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
       <div
         class="ace_scrollbar-inner"
         style="width: 20px;"
-      />
+      >
+         
+      </div>
     </div>
     <div
       class="ace_scrollbar ace_scrollbar-h"
@@ -393,7 +397,9 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
       <div
         class="ace_scrollbar-inner"
         style="height: 20px;"
-      />
+      >
+         
+      </div>
     </div>
     <div
       style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: hidden;"
@@ -404,7 +410,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
       <div
         style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: visible;"
       >
-        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       </div>
     </div>
   </div>
@@ -435,7 +441,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
     </p>
   </div>
   <div
-    class=" ace_editor ace-tm"
+    class=" ace_editor ace_hidpi ace-tm"
     id="htmlId"
     style="width: 500px; height: 500px;"
   >
@@ -443,8 +449,9 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
       autocapitalize="off"
       autocorrect="off"
       class="ace_text-input"
+      readonly=""
       spellcheck="false"
-      style="opacity: 0;"
+      style="opacity: 0; font-size: 1px;"
       tabindex="-1"
       wrap="off"
     />
@@ -454,14 +461,12 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
     >
       <div
         class="ace_layer ace_gutter-layer ace_folding-enabled"
-      />
-      <div
-        class="ace_gutter-active-line"
-        style="display: none;"
+        style="height: 1000000px;"
       />
     </div>
     <div
       class="ace_scroller"
+      style="line-height: 0px;"
     >
       <div
         class="ace_content"
@@ -479,7 +484,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
         />
         <div
           class="ace_layer ace_text-layer"
-          style="padding: 0px 4px;"
+          style="height: 1000000px; margin: 0px 4px;"
         />
         <div
           class="ace_layer ace_marker-layer"
@@ -500,7 +505,9 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
       <div
         class="ace_scrollbar-inner"
         style="width: 20px;"
-      />
+      >
+         
+      </div>
     </div>
     <div
       class="ace_scrollbar ace_scrollbar-h"
@@ -509,7 +516,9 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
       <div
         class="ace_scrollbar-inner"
         style="height: 20px;"
-      />
+      >
+         
+      </div>
     </div>
     <div
       style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: hidden;"
@@ -520,7 +529,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
       <div
         style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: visible;"
       >
-        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       </div>
     </div>
   </div>

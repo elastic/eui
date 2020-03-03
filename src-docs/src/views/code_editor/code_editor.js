@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import 'brace/theme/github';
-import 'brace/mode/javascript';
-import 'brace/snippets/javascript';
-import 'brace/ext/language_tools';
+// import 'brace/theme/github';
+// import 'brace/mode/javascript';
+// import 'brace/snippets/javascript';
+// import 'brace/ext/language_tools';
 
 import { EuiCodeEditor } from '../../../../src/components';
 
