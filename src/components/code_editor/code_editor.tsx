@@ -192,7 +192,6 @@ export class EuiCodeEditor extends Component<
       filteredCursorStart = -1;
 
       Object.assign(options, {
-        readOnly: true,
         highlightActiveLine: false,
         highlightGutterLine: false,
       });
@@ -265,6 +264,7 @@ export class EuiCodeEditor extends Component<
             $blockScrolling: Infinity,
           }}
           cursorStart={filteredCursorStart}
+          readOnly={isReadOnly}
           {...rest}
         />
       </div>
