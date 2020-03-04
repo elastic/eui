@@ -2,7 +2,7 @@
 
 No public interface changes since `20.1.0`.
 
-- Fixed `EuiDataGrid` to render page sizes which are less than current number of rows ([#2970](https://github.com/elastic/eui/pull/2970))
+- Fixed `EuiDataGrid` to render page sizes which are less than current number of rows ([#2978](https://github.com/elastic/eui/pull/2978))
 
 ## [`20.1.0`](https://github.com/elastic/eui/tree/v20.1.0)
 
