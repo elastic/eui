@@ -1,6 +1,7 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { EuiButton } from '../button/button';
 import { EuiScreenReaderOnly } from '../accessibility/screen_reader';
 
 export interface EuiSkipLinkProps extends CommonProps {
@@ -36,13 +37,15 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
 
   return (
     <EuiScreenReaderOnly showOnFocus>
-      <a
+      <EuiButton
         className={classes}
         href={`#${destinationId}`}
         tabIndex={tabIndex}
-        {...rest as HTMLAttributes<HTMLAnchorElement>}>
+        size="s"
+        fill
+        {...rest}>
         {label}
-      </a>
+      </EuiButton>
     </EuiScreenReaderOnly>
   );
 };
