@@ -1,4 +1,4 @@
-$gutterTypes: (
+$euiBadgeGroupGutterTypes: (
   gutterExtraSmall: $euiSizeXS,
   gutterSmall: $euiSizeS,
 );
@@ -9,7 +9,7 @@ $gutterTypes: (
 }
 
 // Gutter Sizes
-@each $gutterName, $gutterSize in $gutterTypes {
+@each $gutterName, $gutterSize in $euiBadgeGroupGutterTypes {
   $halfGutterSize: $gutterSize * .5;
 
   .euiBadgeGroup--#{$gutterName} {
