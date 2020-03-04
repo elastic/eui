@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `20.1.0`.
+**Bug Fixes**
+
+- Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
 
 ## [`20.1.0`](https://github.com/elastic/eui/tree/v20.1.0)
 
