@@ -42,14 +42,14 @@
   }
 
   &:disabled {
-    color: $euiButtonColorDisabled;
+    color: $euiButtonColorDisabledText;
     cursor: not-allowed;
 
     .euiKeyPadMenuItem__icon  {
       filter: grayscale(100%);
 
       svg * { // sass-lint:disable-line nesting-depth
-        fill: $euiButtonColorDisabled;
+        fill: $euiButtonColorDisabledText;
       }
     }
 
