@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `20.1.0`.
+- Made `DataGrid` sort popover non-responsive ([#2970](https://github.com/elastic/eui/pull/2970))
 
 ## [`20.1.0`](https://github.com/elastic/eui/tree/v20.1.0)
 

@@ -229,7 +229,10 @@ export const useColumnSorting = (
                             <EuiFlexGroup
                               alignItems="center"
                               gutterSize="s"
-                              component="span">
+                              component="span"
+                              direction="row"
+                              responsive={false}
+                              wrap={false}>
                               <EuiFlexItem grow={false}>
                                 <EuiToken
                                   iconType={
@@ -251,9 +254,7 @@ export const useColumnSorting = (
                                 />
                               </EuiFlexItem>
                               <EuiFlexItem grow={false}>
-                                <EuiText size="xs">
-                                  <span>{id}</span>
-                                </EuiText>
+                                <EuiText size="xs">{id}</EuiText>
                               </EuiFlexItem>
                             </EuiFlexGroup>
                           </button>
