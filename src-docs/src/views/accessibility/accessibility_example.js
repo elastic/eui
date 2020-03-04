@@ -81,8 +81,10 @@ export const AccessibilityExample = {
               functionality or interactivity) is important enough to provide to
               screen reader users, it should probably be made available to all
               users.{' '}
-              <EuiLink href="http://webaim.org/techniques/css/invisiblecontent/">
-                Learn more
+              <EuiLink
+                href="http://webaim.org/techniques/css/invisiblecontent/"
+                external>
+                Learn more about invisible content
               </EuiLink>
             </p>
           </EuiCallOut>
