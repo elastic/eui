@@ -4,6 +4,16 @@ import classNames from 'classnames';
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
 
+type GutterSize = 'none' | 's' | 'm';
+const gutterSizeToClassNameMap: { [size in GutterSize]: string } = {
+  none: '',
+  s: 'euiListGroup--gutterS',
+  m: 'euiListGroup--gutterM',
+};
+export const GUTTER_SIZES = Object.keys(
+  gutterSizeToClassNameMap
+) as GutterSize[];
+
 export type EuiListGroupProps = CommonProps &
   HTMLAttributes<HTMLUListElement> & {
     /**
@@ -15,6 +25,11 @@ export type EuiListGroupProps = CommonProps &
      * Remove container padding, stretching list items to the edges
      */
     flush?: boolean;
+
+    /**
+     * Spacing between list items
+     */
+    gutterSize?: GutterSize;
 
     /**
      * Items to display in this group. See #EuiListGroupItem
@@ -36,7 +51,7 @@ export type EuiListGroupProps = CommonProps &
     showToolTips?: boolean;
 
     /**
-     * Allow link text to wrap
+     * Allow link text to wrap vs truncated
      */
     wrapText?: boolean;
     ariaLabelledby?: string;
@@ -49,6 +64,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   style,
   flush = false,
   bordered = false,
+  gutterSize = 's',
   wrapText = false,
   maxWidth = true,
   showToolTips = false,
@@ -76,6 +92,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
       'euiListGroup-flush': flush,
       'euiListGroup-bordered': bordered,
     },
+    gutterSizeToClassNameMap[gutterSize],
     widthClassName,
     className
   );
