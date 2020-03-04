@@ -183,9 +183,12 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     color,
     showAlpha,
   ]);
+  const [alphaRangeValue, setAlphaRangeValue] = useState('100');
   const alphaChannel = useMemo(() => {
     const a = chromaColor ? chromaColor.alpha() : 1;
-    return { decimal: a, percent: (a * 100).toFixed() };
+    const percent = (a * 100).toFixed();
+    setAlphaRangeValue(percent);
+    return a;
   }, [chromaColor]);
 
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
@@ -320,11 +323,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const updateWithHsv = (hsv: ColorSpaces['hsv']) => {
-    const color = chroma.hsv(...hsv).alpha(alphaChannel.decimal);
+    const color = chroma.hsv(...hsv).alpha(alphaChannel);
     let formatted;
     if (preferredFormat === 'rgba') {
       formatted =
-        alphaChannel.decimal < 1
+        alphaChannel < 1
           ? color.rgba().join(RGB_JOIN)
           : color.rgb().join(RGB_JOIN);
     } else {
@@ -363,8 +366,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       | React.MouseEvent<HTMLButtonElement>,
     isValid: boolean
   ) => {
+    const target = e.target as HTMLInputElement;
+    setAlphaRangeValue(target.value || '');
     if (isValid) {
-      const target = e.target as HTMLInputElement;
       const alpha = parseInt(target.value, 10) / 100;
       const newColor = chromaColor ? chromaColor.alpha(alpha) : null;
       const hex = newColor ? newColor.hex() : HEX_FALLBACK;
@@ -372,7 +376,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       let text;
       if (preferredFormat === 'rgba') {
         text =
-          alpha < 1 ? rgba.join(RGB_JOIN) : rgba.splice(0, 3).join(RGB_JOIN);
+          alpha < 1
+            ? [...rgba].join(RGB_JOIN)
+            : [...rgba].splice(0, 3).join(RGB_JOIN);
       } else {
         text = hex;
       }
@@ -436,7 +442,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 showInput={true}
                 max={100}
                 min={0}
-                value={alphaChannel.percent}
+                value={alphaRangeValue}
                 append="%"
                 onChange={handleAlphaSelection}
                 aria-label={alphaLabel}
