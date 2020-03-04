@@ -79,10 +79,10 @@ export const AccessibilityExample = {
             iconType="accessibility"
             title="WebAIM recommendation for screen reader-only content">
             <p>
-              In most cases, if content (particularly content that provides
-              functionality or interactivity) is important enough to provide to
-              screen reader users, it should probably be made available to all
-              users.{' '}
+              &quot;In most cases, if content (particularly content that
+              provides functionality or interactivity) is important enough to
+              provide to screen reader users, it should probably be made
+              available to all users.&quot;{' '}
               <EuiLink
                 href="http://webaim.org/techniques/css/invisiblecontent/"
                 external>

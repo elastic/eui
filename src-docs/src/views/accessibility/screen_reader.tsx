@@ -4,6 +4,7 @@ import { EuiScreenReaderOnly } from '../../../../src/components/accessibility/sc
 import { EuiCallOut } from '../../../../src/components/call_out';
 import { EuiText } from '../../../../src/components/text';
 import { EuiTitle } from '../../../../src/components/title';
+import { EuiLink } from '../../../../src/components/link';
 
 export default () => (
   <div>
@@ -37,7 +38,7 @@ export default () => (
       <p>
         This link is visible to all on focus:{' '}
         <EuiScreenReaderOnly showOnFocus>
-          <a href="#">Skip navigation</a>
+          <EuiLink href="#">Skip navigation</EuiLink>
         </EuiScreenReaderOnly>
       </p>
       <EuiCallOut

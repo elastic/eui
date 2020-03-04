@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSkipLink is rendered 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static testClass1 testClass2 euiButton--fill"
+  data-test-subj="test subject string"
+  href="#somewhere"
+  rel="noreferrer"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</a>
+`;
+
+exports[`EuiSkipLink position absolute is rendered 1`] = `
+<a
+  class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--absolute euiButton--fill"
+  href="#somewhere"
+  rel="noreferrer"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</a>
+`;
+
+exports[`EuiSkipLink position fixed is rendered 1`] = `
+<a
+  class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--fixed euiButton--fill"
+  href="#somewhere"
+  rel="noreferrer"
+  tabindex="0"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</a>
+`;
+
+exports[`EuiSkipLink position static is rendered 1`] = `
+<a
+  class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static euiButton--fill"
+  href="#somewhere"
+  rel="noreferrer"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</a>
+`;
