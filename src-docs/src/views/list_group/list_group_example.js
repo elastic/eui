@@ -31,7 +31,7 @@ const listGroupItemColorSource = require('!!raw-loader!./list_group_item_color')
 const listGroupItemColorHtml = renderToHtml(ListGroupItemColor);
 
 export const ListGroupExample = {
-  title: 'List Group',
+  title: 'List group',
   sections: [
     {
       source: [
@@ -45,15 +45,24 @@ export const ListGroupExample = {
         },
       ],
       text: (
-        <p>
-          The <EuiCode>ListGroup</EuiCode> component is used to present &nbsp;
-          <EuiCode>ListGroupItems</EuiCode> in a neatly formatted list. Use the
-          &nbsp;<EuiCode>flush</EuiCode> and <EuiCode>bordered</EuiCode>{' '}
-          properties for full-width and bordered presentations, respectively.
-        </p>
+        <>
+          <p>
+            The <strong>EuiListGroup</strong> component is used to present{' '}
+            <strong>EuiListGroupItems</strong> in a neatly formatted list. Use
+            the <EuiCode>flush</EuiCode> and <EuiCode>bordered</EuiCode>{' '}
+            properties for full-width and bordered presentations, respectively.
+          </p>
+          <p>
+            Adjust the <EuiCode>gutterSize</EuiCode> prop to increase or
+            decrease the spacing between items.
+          </p>
+        </>
       ),
       props: { EuiListGroup, EuiListGroupItem },
       demo: <ListGroup />,
+      snippet: `<EuiListGroup flush={true} bordered={true}>
+  <EuiListGroupItem onClick={handleOnClick} label="Item" />
+</EuiListGroup>`,
     },
     {
       title: 'List of links',
@@ -68,16 +77,36 @@ export const ListGroupExample = {
         },
       ],
       text: (
-        <p>
-          Present <EuiCode>ListGroupItems</EuiCode> as links by providing an
-          &nbsp;<EuiCode>href</EuiCode> value and change their appearance with
-          the <EuiCode>size</EuiCode>, <EuiCode>isActive</EuiCode>, and
-          <EuiCode>isDisabled</EuiCode> properties. As done in this example, the
-          &nbsp;<EuiCode>ListGroup</EuiCode> component can also accept an array
-          of items via the <EuiCode>listItems</EuiCode> property.
-        </p>
+        <>
+          <p>
+            Display <strong>EuiListGroupItems</strong> as links by providing an{' '}
+            <EuiCode>href</EuiCode> value and change their state with the{' '}
+            <EuiCode>isActive</EuiCode> and <EuiCode>isDisabled</EuiCode>{' '}
+            properties.
+          </p>
+          <p>
+            As is done in this example, the <strong>EuiListGroup</strong>{' '}
+            component can also accept an array of items via the{' '}
+            <EuiCode>listItems</EuiCode> property.
+          </p>
+        </>
       ),
       demo: <ListGroupLinks />,
+      snippet: `<EuiListGroup
+  listItems={[
+    {
+      label: 'First link',
+      href: '#',
+      iconType: 'calendar',
+    },
+    {
+      label: 'Second link',
+      href: '#,
+      isActive: true,
+      iconType: 'clock',
+    }]
+  }
+/>`,
     },
     {
       title: 'Secondary link actions',
@@ -95,13 +124,24 @@ export const ListGroupExample = {
         <p>
           The <EuiCode>extraAction</EuiCode> property adds a secondary icon
           button to any list item. It accepts several properties of its own,
-          including <EuiCode>color</EuiCode>, <EuiCode>onClick</EuiCode>, &nbsp;
+          including <EuiCode>color</EuiCode>, <EuiCode>onClick</EuiCode>,{' '}
           <EuiCode>iconType</EuiCode>, and <EuiCode>alwaysShow</EuiCode>, and
           can be used for actions such as pinning, favoriting, or deleting an
           item.
         </p>
       ),
       demo: <ListGroupLinkActions />,
+      snippet: `<EuiListGroupItem
+  label="EUI button link"
+  extraAction={{
+    color: 'primary',
+    onClick: this.clicked,
+    iconType: 'pin',
+    iconSize: 's',
+    'aria-label': 'Pin link',
+    alwaysShow: pinned,
+  }}
+/>`,
     },
     {
       title: 'Text wrapping and tooltips',
@@ -124,6 +164,12 @@ export const ListGroupExample = {
         </p>
       ),
       demo: <ListGroupExtra />,
+      snippet: `<EuiListGroup showToolTips>
+  <EuiListGroupItem
+    wrapText
+    label="A very long label"
+  />
+</EuiListGroup>`,
     },
     {
       title: 'List item color and size',
@@ -154,6 +200,11 @@ export const ListGroupExample = {
         </>
       ),
       demo: <ListGroupItemColor />,
+      snippet: `<EuiListGroupItem
+  label="Primary"
+  color="primary"
+  size="s"
+/>`,
     },
   ],
 };
