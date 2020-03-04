@@ -177,7 +177,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const preferredFormat = useMemo(() => {
     if (format) return format;
     const parsed = parseColor(color);
-    return typeof parsed === 'object' ? 'rgba' : 'hex';
+    return parsed != null && typeof parsed === 'object' ? 'rgba' : 'hex';
   }, [color, format]);
   const chromaColor = useMemo(() => getChromaColor(color, showAlpha), [
     color,
