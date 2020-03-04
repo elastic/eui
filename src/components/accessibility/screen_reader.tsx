@@ -5,7 +5,7 @@ export interface EuiScreenReaderOnlyProps {
   children: ReactElement<any>;
 
   /**
-   * For keyboard navigaiton, force content to display visually upon focus.
+   * For keyboard navigation, force content to display visually upon focus.
    */
   showOnFocus?: boolean;
 }
@@ -13,9 +13,13 @@ export interface EuiScreenReaderOnlyProps {
 export const EuiScreenReaderOnly: FunctionComponent<
   EuiScreenReaderOnlyProps
 > = ({ children, showOnFocus }) => {
-  const classes = classNames('euiScreenReaderOnly', children.props.className, {
-    'euiScreenReaderOnly--showOnFocus': showOnFocus,
-  });
+  const classes = classNames(
+    {
+      euiScreenReaderOnly: !showOnFocus,
+      'euiScreenReaderOnly--showOnFocus': showOnFocus,
+    },
+    children.props.className
+  );
 
   const props = {
     ...children.props,

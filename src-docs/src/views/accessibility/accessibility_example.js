@@ -70,7 +70,9 @@ export const AccessibilityExample = {
           <p>
             Use the <EuiCode>EuiScreenReaderOnly</EuiCode> component to visually
             hide elements while still allowing them to be read by screen
-            readers.
+            readers. In certain cases, you may want to use the{' '}
+            <EuiCode>showOnFocus</EuiCode> prop to display screen reader-only
+            content when in focus.
           </p>
           <EuiCallOut
             color="warning"
@@ -96,7 +98,7 @@ export const AccessibilityExample = {
       demo: <ScreenReaderOnly />,
     },
     {
-      title: 'Skip to main content',
+      title: 'Skip link',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -110,7 +112,8 @@ export const AccessibilityExample = {
       text: (
         <p>
           The <EuiCode>EuiSkipLink</EuiCode> component allows users to bypass
-          navigation and quickly reach the main content of the page.
+          navigation, or ornamental elements, and quickly reach the main content
+          of the page.
         </p>
       ),
       props: { EuiSkipLink },

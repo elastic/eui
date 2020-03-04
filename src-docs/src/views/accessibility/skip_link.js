@@ -41,8 +41,8 @@ export default () => {
         <Fragment>
           <EuiPortal>
             <EuiSkipLink
-              destination="/#/utilities/accessibility"
-              label="Skip to content"
+              destinationId="/utilities/accessibility"
+              label="Skip to main content"
               fixedToTop
               // TODO this tabIndex value won't be necessary once a real skip to content link is added to the EUI docs site.
               // Adding the link is blocked until the new static site system (and non-hashed URL) is in place.
@@ -58,11 +58,9 @@ export default () => {
         </Fragment>
       ) : (
         <EuiSkipLink
-          destination="/#/utilities/accessibility"
+          destinationId="/utilities/accessibility"
           label="Skip to content"
-          // TODO this tabIndex value won't be necessary once a real skip to content link is added to the EUI docs site.
-          // Adding the link is blocked until the new static site system (and non-hashed URL) is in place.
-          // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+          data-test-subj="skip-link-demo-subj"
         />
       )}
     </Fragment>

@@ -1,11 +1,4 @@
-.euiScreenReaderOnly {
+.euiScreenReaderOnly,
+.euiScreenReaderOnly--showOnFocus:not(:focus) {
   @include euiScreenReaderOnly;
-}
-
-.euiScreenReaderOnly--showOnFocus:focus {
-  position: static;
-  left: auto;
-  width: auto;
-  height: auto;
-  overflow: visible;
 }
