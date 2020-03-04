@@ -395,9 +395,9 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          The color picker will always allow opacity via text input, but to
-          allow user updates to the color opacity, set the{' '}
-          <EuiCode>showAlpha</EuiCode> prop to `true`.
+          To allow color opacity via alpha channel, set the{' '}
+          <EuiCode>showAlpha</EuiCode> prop to `true`. This will also display a
+          range slider allowing manual opacity updates.
         </p>
       ),
       snippet: alphaSnippet,
