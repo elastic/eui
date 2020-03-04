@@ -1,1 +1,1 @@
-export { EuiBadgeGroup } from './badge_group';
+export { EuiBadgeGroup, EuiBadgeGroupProps } from './badge_group';
