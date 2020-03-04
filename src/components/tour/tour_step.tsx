@@ -1,4 +1,5 @@
 import React, {
+  CSSProperties,
   Fragment,
   FunctionComponent,
   ReactElement,
@@ -64,6 +65,8 @@ export interface EuiTourStepProps
    * The total number of steps in the tour
    */
   stepsTotal: number;
+
+  style?: CSSProperties;
 
   /**
    * Smaller title text that appears atop each step in the tour

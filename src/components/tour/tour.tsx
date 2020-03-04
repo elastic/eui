@@ -9,7 +9,7 @@ export interface EuiTourProps {
     actions: { [key: string]: () => void },
     state: EuiTourState
   ) => ReactElement;
-  steps: EuiTourStepProps[];
+  steps: Array<Partial<EuiTourStepProps>>; // TODO: children may not yet exist
   initialState: EuiTourState;
 }
 
@@ -18,6 +18,9 @@ export const EuiTour: FunctionComponent<EuiTourProps> = ({
   steps,
   initialState,
 }) => {
-  const [stepComponents, actions, state] = useEuiTour(steps, initialState);
+  const [stepComponents, actions, state] = useEuiTour(
+    steps as EuiTourStepProps[],
+    initialState
+  );
   return children(stepComponents, actions, state);
 };

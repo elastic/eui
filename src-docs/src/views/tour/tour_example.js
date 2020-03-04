@@ -8,6 +8,7 @@ import { EuiCode, EuiTourStep } from '../../../../src/components';
 
 import Tour from './tour';
 import Managed from './managed';
+import Managedv2 from './managed-v2';
 
 const tourSource = require('!!raw-loader!./tour');
 const tourHtml = renderToHtml(Tour);
@@ -15,6 +16,9 @@ const tourSnippet = '<EuiTour size="xs" />';
 const managedSource = require('!!raw-loader!./managed');
 const managedHtml = renderToHtml(Managed);
 const managedSnippet = '<EuiTour size="xs" />';
+const managedv2Source = require('!!raw-loader!./managed-v2');
+const managedv2Html = renderToHtml(Managedv2);
+const managedv2Snippet = '<EuiTour size="xs" />';
 
 export const TourExample = {
   title: 'Tour',
@@ -66,6 +70,27 @@ export const TourExample = {
       props: { EuiTourStep },
       snippet: managedSnippet,
       demo: <Managed />,
+    },
+    {
+      title: 'Managed state via render prop component',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: managedv2Source,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: managedv2Html,
+        },
+      ],
+      text: (
+        <p>
+          Using the <EuiCode>EuiTour</EuiCode> render prop component for state
+          management
+        </p>
+      ),
+      snippet: managedv2Snippet,
+      demo: <Managedv2 />,
     },
   ],
 };
