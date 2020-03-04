@@ -42,11 +42,7 @@ export default () => {
           <EuiPortal>
             <EuiSkipLink
               destinationId="/utilities/accessibility"
-              position="fixed"
-              // TODO this tabIndex value won't be necessary once a real skip to content link is added to the EUI docs site.
-              // Adding the link is blocked until the new static site system (and non-hashed URL) is in place.
-              // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-              tabIndex={1}>
+              position="fixed">
               Skip to main content
             </EuiSkipLink>
           </EuiPortal>
