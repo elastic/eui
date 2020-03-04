@@ -328,7 +328,7 @@ export default class DataGrid extends Component {
 
   setPageSize = pageSize =>
     this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageSize },
+      pagination: { ...pagination, pageSize, pageIndex: 0 },
     }));
 
   setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
