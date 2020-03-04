@@ -106,6 +106,7 @@ export const parseColor = (input?: string | null) => {
   if (!input) return null;
   if (input.indexOf(',') > 0) {
     const rgb = input
+      .replace('#', '')
       .trim()
       .split(',')
       .filter(n => n !== '')
