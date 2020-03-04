@@ -230,9 +230,7 @@ export const useColumnSorting = (
                               alignItems="center"
                               gutterSize="s"
                               component="span"
-                              direction="row"
-                              responsive={false}
-                              wrap={false}>
+                              responsive={false}>
                               <EuiFlexItem grow={false}>
                                 <EuiToken
                                   iconType={
