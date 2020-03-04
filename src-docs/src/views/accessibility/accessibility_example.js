@@ -18,12 +18,35 @@ import SkipLink from './skip_link';
 
 const keyboardAccessibleSource = require('!!raw-loader!./keyboard_accessible');
 const keyboardAccessibleHtml = renderToHtml(KeyboardAccessible);
+const keyboardAccessibleSnippet = `<EuiKeyboardAccessible>
+  <!-- interactive child element -->
+</EuiKeyboardAccessible>`;
 
 const screenReaderOnlyHtml = renderToHtml(ScreenReaderOnly);
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
+const screenReaderOnlySnippet = [
+  `<EuiScreenReaderOnly>
+  <!-- visually hidden content -->
+</EuiScreenReaderOnly>
+`,
+  `<EuiScreenReaderOnly showOnFocus>
+  <!-- visually hidden content, displayed on focus -->
+</EuiScreenReaderOnly>
+`,
+];
 
 const skipLinkHtml = renderToHtml(SkipLink);
 const skipLinkSource = require('!!raw-loader!./skip_link');
+const skipLinkSnippet = [
+  `<EuiSkipLink destinationId="myAnchorId">
+  Skip to content
+</EuiSkipLink>
+`,
+  `<EuiSkipLink destinationId="myAnchorId" position="fixed">
+  Skip to main content
+</EuiSkipLink>
+`,
+];
 
 import { ScreenReaderOnlyDocsComponent } from './props';
 
@@ -51,6 +74,7 @@ export const AccessibilityExample = {
         </p>
       ),
       props: { EuiKeyboardAccessible },
+      snippet: keyboardAccessibleSnippet,
       demo: <KeyboardAccessible />,
     },
     {
@@ -95,6 +119,7 @@ export const AccessibilityExample = {
       props: {
         EuiScreenReaderOnly: ScreenReaderOnlyDocsComponent,
       },
+      snippet: screenReaderOnlySnippet,
       demo: <ScreenReaderOnly />,
     },
     {
@@ -117,6 +142,7 @@ export const AccessibilityExample = {
         </p>
       ),
       props: { EuiSkipLink },
+      snippet: skipLinkSnippet,
       demo: <SkipLink />,
     },
   ],
