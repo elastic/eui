@@ -27,6 +27,13 @@ describe('EuiCodeEditor', () => {
       });
     });
 
+    describe('theme', () => {
+      test('renders terminal theme', () => {
+        const component = mount(<EuiCodeEditor theme="terminal" />);
+        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      });
+    });
+
     describe('aria attributes', () => {
       test('allows setting aria-labelledby on textbox', () => {
         const component = mount(

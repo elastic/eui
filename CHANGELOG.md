@@ -1,5 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug Fixes**
+
+- Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
+- Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
+
+**Theme: Amsterdam**
+
+- Buttons have a new visual style ([#2874](https://github.com/elastic/eui/pull/2874))
+
+## [`20.1.0`](https://github.com/elastic/eui/tree/v20.1.0)
+
+- Added `theme` prop to `EuiCodeEditor` in support of `AceEditor` themes ([#2970](https://github.com/elastic/eui/pull/2970))
+- `EuiButton` now has a single return statement ([#2954](https://github.com/elastic/eui/pull/2954))
+- Added `isSortable` props to `EuiDataGridColumn` and `EuiDataGridSchemaDetector` to mark them as un-sortable ([#2952](https://github.com/elastic/eui/pull/2952))
 - Converted `EuiForm` to TypeScript, added many missing `/form` Prop types ([#2896](https://github.com/elastic/eui/pull/2896))
 - Empty table th elements replaced with td in `EuiTable`. ([#2934](https://github.com/elastic/eui/pull/2934))
 - Added default prompt text to `aria-describedby` for `EuiFilePicker` ([#2919](https://github.com/elastic/eui/pull/2919))
@@ -13,14 +27,20 @@
 
 **Bug fixes**
 
-- Fixed `EuiTitle` not rendering child classes ([#2926](https://github.com/elastic/eui/pull/2926))
-- Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
+- Fixed `EuiDataGrid` breaking if invalid schema passed ([#2955](https://github.com/elastic/eui/pull/2955))
+- Fixed `EuiTitle` not rendering child classes ([#2925](https://github.com/elastic/eui/pull/2925))
 - Extended `div` element in `EuiFlyout` type ([#2914](https://github.com/elastic/eui/pull/2914))
+- Fixed popover positioning service to be more lenient when positioning 0-width or 0-height content ([#2948](https://github.com/elastic/eui/pull/2948))
 
 **Theme: Amsterdam**
 
-- Buttons have a new visual style ([#2874](https://github.com/elastic/eui/pull/2874))
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
+
+## [`20.0.2`](https://github.com/elastic/eui/tree/v20.0.2)
+
+**Bug fixes**
+
+- Fixed type definitions for `EuiComboBox` ([#2971](https://github.com/elastic/eui/pull/2971))
 
 ## [`20.0.1`](https://github.com/elastic/eui/tree/v20.0.1)
 

@@ -52,7 +52,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     onCreateOption?: (
       searchValue: string,
       options: Array<EuiComboBoxOptionOption<T>>
-    ) => boolean;
+    ) => boolean | void;
     onOptionClick?: OptionHandler<T>;
     onOptionEnterKey?: OptionHandler<T>;
     onScroll?: ListProps['onScroll'];

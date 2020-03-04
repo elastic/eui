@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { applyTheme, translateUsingPseudoLocale } from '../services';
-
-import { GuidePageChrome } from '../components';
+import { GuidePageChrome, ThemeProvider, ThemeContext } from '../components';
+import { translateUsingPseudoLocale } from '../services';
 
 import {
   EuiErrorBoundary,
@@ -15,21 +14,13 @@ import {
 import { keyCodes } from '../../../src/services';
 
 export class AppView extends Component {
-  updateTheme = () => {
-    applyTheme(this.props.theme);
-  };
-
   componentDidUpdate(prevProps) {
-    this.updateTheme();
-
     if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
       window.scrollTo(0, 0);
     }
   }
 
   componentDidMount() {
-    this.updateTheme();
-
     document.addEventListener('keydown', this.onKeydown);
   }
 
@@ -38,15 +29,7 @@ export class AppView extends Component {
   }
 
   renderContent() {
-    const {
-      children,
-      currentRoute,
-      toggleTheme,
-      theme,
-      toggleLocale,
-      locale,
-      routes,
-    } = this.props;
+    const { children, currentRoute, toggleLocale, locale, routes } = this.props;
 
     const { navigation } = routes;
 
@@ -66,8 +49,6 @@ export class AppView extends Component {
           <EuiErrorBoundary>
             <GuidePageChrome
               currentRoute={currentRoute}
-              onToggleTheme={toggleTheme}
-              selectedTheme={theme}
               onToggleLocale={toggleLocale}
               selectedLocale={locale}
               navigation={navigation}
@@ -76,7 +57,11 @@ export class AppView extends Component {
 
           <div className="guidePageContent">
             <EuiContext i18n={i18n}>
-              {React.cloneElement(children, { selectedTheme: theme })}
+              <ThemeContext.Consumer>
+                {context =>
+                  React.cloneElement(children, { selectedTheme: context.theme })
+                }
+              </ThemeContext.Consumer>
             </EuiContext>
           </div>
         </EuiPageBody>
@@ -85,7 +70,11 @@ export class AppView extends Component {
   }
 
   render() {
-    return <div className="guide">{this.renderContent()}</div>;
+    return (
+      <ThemeProvider>
+        <div className="guide">{this.renderContent()}</div>
+      </ThemeProvider>
+    );
   }
 
   onKeydown = e => {
@@ -121,8 +110,6 @@ export class AppView extends Component {
 AppView.propTypes = {
   children: PropTypes.any,
   currentRoute: PropTypes.object.isRequired,
-  theme: PropTypes.string.isRequired,
-  toggleTheme: PropTypes.func.isRequired,
   locale: PropTypes.string.isRequired,
   toggleLocale: PropTypes.func.isRequired,
   routes: PropTypes.object.isRequired,
