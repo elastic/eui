@@ -1,4 +1,4 @@
-import { getEventPosition, chromaValid } from '../utils';
+import { getEventPosition, getChromaColor } from '../utils';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
 
@@ -60,17 +60,23 @@ export const addStop = (
   ];
 };
 
-export const isColorInvalid = (color: string) => {
-  return !chromaValid(color) || color === '';
+export const isColorInvalid = (color: string, showAlpha: boolean = false) => {
+  return getChromaColor(color, showAlpha) == null || color === '';
 };
 
 export const isStopInvalid = (stop: ColorStop['stop']) => {
   return stop == null || isNaN(stop);
 };
 
-export const isInvalid = (colorStops: ColorStop[]) => {
+export const isInvalid = (
+  colorStops: ColorStop[],
+  showAlpha: boolean = false
+) => {
   return colorStops.some(colorStop => {
-    return isColorInvalid(colorStop.color) || isStopInvalid(colorStop.stop);
+    return (
+      isColorInvalid(colorStop.color, showAlpha) ||
+      isStopInvalid(colorStop.stop)
+    );
   });
 };
 
