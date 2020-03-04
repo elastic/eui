@@ -186,7 +186,7 @@ export class GuideSection extends Component {
           );
           for (let i = 1; i < linesWithImport.length - 1; i++) {
             linesWithImport[i] = linesWithImport[i]
-              .replace('import {', '')  
+              .replace('import {', '')
               .replace(" } from '@elastic/eui';", ',');
           }
           linesWithImport[linesWithImport.length - 1] = linesWithImport[
