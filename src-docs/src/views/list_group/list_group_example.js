@@ -26,6 +26,10 @@ import ListGroupExtra from './list_group_extra';
 const listGroupExtraSource = require('!!raw-loader!./list_group_extra');
 const listGroupExtraHtml = renderToHtml(ListGroupExtra);
 
+import ListGroupItemColor from './list_group_item_color';
+const listGroupItemColorSource = require('!!raw-loader!./list_group_item_color');
+const listGroupItemColorHtml = renderToHtml(ListGroupItemColor);
+
 export const ListGroupExample = {
   title: 'List Group',
   sections: [
@@ -120,6 +124,36 @@ export const ListGroupExample = {
         </p>
       ),
       demo: <ListGroupExtra />,
+    },
+    {
+      title: 'List item color and size',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: listGroupItemColorSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: listGroupItemColorHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiListGroupItem</strong>s will inherit the color from their
+            element type whether it is a <EuiCode>button</EuiCode>,{' '}
+            <EuiCode>anchor</EuiCode>, or <EuiCode>span</EuiCode>. You can
+            enforce a different color of <EuiCode>primary</EuiCode>,{' '}
+            <EuiCode>text</EuiCode>, or <EuiCode>subdued</EuiCode> with the{' '}
+            <EuiCode>color</EuiCode> prop.
+          </p>
+          <p>
+            They also accept options for text size;{' '}
+            <EuiCode>xs | s | m | l</EuiCode>.
+          </p>
+        </>
+      ),
+      demo: <ListGroupItemColor />,
     },
   ],
 };

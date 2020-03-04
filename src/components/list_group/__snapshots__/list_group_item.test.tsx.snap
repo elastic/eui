@@ -17,6 +17,74 @@ exports[`EuiListGroupItem is rendered 1`] = `
 </li>
 `;
 
+exports[`EuiListGroupItem props color inherit is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props color primary is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props color subdued is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--subdued"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props color text is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--text"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
   class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction"
