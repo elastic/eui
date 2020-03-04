@@ -1,9 +1,12 @@
-$euiFontSize:       $euiSize - 2; // 5th position in scale
+// Font sizes -- scale is loosely based on Major Third (1.250) with a base of 14px
+// The 4th item in the scale is not being used and therefore, we "skip" it without breaking it
+$euiTextScale:    2.429, 1.929, 1.571, 1.285, 1.143, 1, .857;
 
-// These variables are unchanged, but the calculated values are smaller
-$euiFontSizeXS:     $euiFontSize * nth($euiTextScale, 7); // 11px
-$euiFontSizeS:      $euiFontSize * nth($euiTextScale, 6); // 12px
-$euiFontSizeM:      $euiFontSize * nth($euiTextScale, 4); // 16px
-$euiFontSizeL:      $euiFontSize * nth($euiTextScale, 3); // 18px
-$euiFontSizeXL:     $euiFontSize * nth($euiTextScale, 2); // 25px
-$euiFontSizeXXL:    $euiFontSize * nth($euiTextScale, 1); // 32px
+$euiFontSize:     $euiSize - 2; // 14px
+
+$euiFontSizeXS:    ceil($euiFontSize * nth($euiTextScale, 7)); // 12px // h6
+$euiFontSizeS:    floor($euiFontSize * nth($euiTextScale, 6)); // 14px // h5 --> Now the same as the base $euiFontSize
+$euiFontSizeM:    floor($euiFontSize * nth($euiTextScale, 5)); // 16px // h4
+$euiFontSizeL:     ceil($euiFontSize * nth($euiTextScale, 3)); // 22px // h3
+$euiFontSizeXL:   floor($euiFontSize * nth($euiTextScale, 2)); // 27px // h2
+$euiFontSizeXXL:  floor($euiFontSize * nth($euiTextScale, 1)); // 34px // h1
