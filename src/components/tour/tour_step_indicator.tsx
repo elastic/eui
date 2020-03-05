@@ -1,10 +1,10 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { EuiIcon } from '../icon';
-
-import { EuiI18n } from '../i18n';
 import { CommonProps, keysOf } from '../common';
+
+import { EuiIcon } from '../icon';
+import { EuiI18n } from '../i18n';
 
 const statusToClassNameMap = {
   complete: 'euiTourStepIndicator--complete',
@@ -14,29 +14,25 @@ const statusToClassNameMap = {
 
 export const STATUS = keysOf(statusToClassNameMap);
 
-export type EuiTourStepStatus = 'complete' | 'incomplete' | 'active';
+export type EuiTourStepStatus = keyof typeof statusToClassNameMap;
 
-export interface EuiTourStepIndicatorProps {
-  // TODO this was carried over from steps component, need to remove and clear warning
-  indicatorIcon?: ReactNode;
-  number?: number;
-  /**
-   * May replace the number provided in props.number with alternate styling
-   */
-  status?: EuiTourStepStatus;
+export interface EuiTourStepIndicatorProps
+  extends CommonProps,
+    HTMLAttributes<HTMLLIElement> {
+  number: number;
+  status: EuiTourStepStatus;
 }
 
 export const EuiTourStepIndicator: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiTourStepIndicatorProps
-  // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
-  // tslint:disable-next-line:variable-name
-> = ({ className, indicatorIcon, number, status }) => {
+  EuiTourStepIndicatorProps
+> = ({ className, number, status, ...rest }) => {
   const classes = classNames(
     'euiTourStepIndicator',
     status ? statusToClassNameMap[status] : undefined,
     className
   );
 
+  let indicatorIcon: ReactNode;
   if (status === 'complete' || status === 'active') {
     indicatorIcon = (
       <EuiI18n token="euiTourStepIndicator.isComplete" default="complete">
@@ -66,15 +62,14 @@ export const EuiTourStepIndicator: FunctionComponent<
   }
 
   return (
-    // TODO since this is not interactive, is the aria-label useful/readable?
     <EuiI18n
       token="euiTourStepIndicator.ariaLabel"
-      default={({ status }: { status?: EuiTourStepStatus }) => {
+      default={({ status }: { status: EuiTourStepStatus }) => {
         return `Step ${number} ${status}`;
       }}
       values={{ status }}>
       {(ariaLabel: string) => (
-        <li className={classes} aria-label={ariaLabel}>
+        <li className={classes} aria-label={ariaLabel} {...rest}>
           {indicatorIcon}
         </li>
       )}

@@ -35,14 +35,9 @@ const demoTourSteps = [
 ];
 
 const tourConfig = {
-  // TODO demo this in a global scope, pull from localStorage?
   currentTourStep: 1,
   isTourActive: true,
-  isTourPopoverOpen: true,
   tourPopoverWidth: 360,
-  // TODO This probably needs hard-coded since steps can live in other views
-  // tourSteps: demoTourSteps.length,
-  tourSteps: 3,
   tourSubtitle: 'Demo tour',
 };
 
@@ -66,7 +61,6 @@ export default () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [state]);
 
-  // TODO could this be built-in? e.g. do any time an EuiTour child is clicked
   const incrementStep = () => {
     setState({
       ...state,
@@ -115,9 +109,10 @@ export default () => {
             isStepOpen={state.currentTourStep === 1}
             isTourActive={state.isTourActive}
             minWidth={state.tourPopoverWidth}
-            skipOnClick={skipTour}
+            onSkip={skipTour}
+            onEnd={skipTour}
             step={1}
-            stepsTotal={state.tourSteps}
+            stepsTotal={demoTourSteps.length}
             subtitle={state.tourSubtitle}
             title={demoTourSteps[0].title}>
             <EuiTextArea
@@ -137,11 +132,12 @@ export default () => {
           content={demoTourSteps[1].content}
           isStepOpen={state.currentTourStep === 2}
           isTourActive={state.isTourActive}
-          minWidth={state.tourPopoverWidth} //
-          skipOnClick={skipTour}
+          minWidth={state.tourPopoverWidth}
+          onSkip={skipTour}
+          onEnd={skipTour}
           step={2}
-          stepsTotal={state.tourSteps} //
-          subtitle={state.tourSubtitle} //
+          stepsTotal={demoTourSteps.length}
+          subtitle={state.tourSubtitle}
           title={demoTourSteps[1].title}>
           <EuiButton onClick={handleClick}>Save query</EuiButton>
         </EuiTourStep>

@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import { CSSProperties, ReactElement, ReactNode } from 'react';
 import { NoArgCallback } from '../common';
 
 export interface EuiTourStepInterface {
@@ -25,9 +25,14 @@ export interface EuiTourStepInterface {
   minWidth?: boolean | number | string;
 
   /**
-   * OnClick function for the 'Skip tour' footer link
+   * Function to call for 'skip tour' actions
    */
-  skipOnClick: NoArgCallback<void>;
+  onSkip: NoArgCallback<void>;
+
+  /**
+   * Function to call for 'end tour' actions
+   */
+  onEnd: NoArgCallback<void>;
 
   /**
    * The number of the step within the parent tour
@@ -38,6 +43,8 @@ export interface EuiTourStepInterface {
    * The total number of steps in the tour
    */
   stepsTotal: number;
+
+  style?: CSSProperties;
 
   /**
    * Smaller title text that appears atop each step in the tour
@@ -51,7 +58,15 @@ export interface EuiTourStepInterface {
 export interface EuiTourState {
   currentTourStep: number;
   isTourActive: boolean;
-  isTourPopoverOpen: boolean;
   tourPopoverWidth: number;
   tourSubtitle: string;
+}
+
+export interface EuiTourAction {
+  type: string;
+  payload?: { [key: string]: any };
+}
+
+export interface EuiTourActions {
+  [key: string]: (action: EuiTourAction) => void;
 }

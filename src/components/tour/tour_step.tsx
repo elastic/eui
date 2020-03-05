@@ -1,81 +1,32 @@
-import React, {
-  CSSProperties,
-  Fragment,
-  FunctionComponent,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import React, { Fragment, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, NoArgCallback } from '../common';
+import { CommonProps } from '../common';
 
-import { EuiButtonEmpty } from '../button';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiI18n } from '../i18n';
 import {
   EuiPopover,
   EuiPopoverFooter,
   EuiPopoverProps,
   EuiPopoverTitle,
 } from '../popover';
-import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiTitle } from '../title';
+
 import { EuiTourStepIndicator } from './tour_step_indicator';
+import { EuiTourStepInterface } from './types';
 
-type popoverOverrides = 'button' | 'closePopover';
+type PopoverOverrides = 'button' | 'closePopover';
 
-type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, popoverOverrides>>;
+type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, PopoverOverrides>>;
 
 export interface EuiTourStepProps
   extends CommonProps,
-    Omit<EuiPopoverProps, popoverOverrides>,
-    EuiPopoverPartials {
-  children: ReactElement;
-  content: ReactNode;
-
-  /**
-   * Set to `true`, step will display if parent tour is active
-   */
-  isStepOpen?: boolean;
-
-  /**
-   * State of the parent tour
-   */
-  isTourActive: boolean;
-
-  /**
-   * Sets the min-width of the tour popover,
-   * set to `true` to use the default size,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
-   */
-  minWidth?: boolean | number | string;
-
-  /**
-   * OnClick function for the 'Skip tour' footer link
-   */
-  skipOnClick: NoArgCallback<void>;
-
-  /**
-   * The number of the step within the parent tour
-   */
-  step: number;
-
-  /**
-   * The total number of steps in the tour
-   */
-  stepsTotal: number;
-
-  style?: CSSProperties;
-
-  /**
-   * Smaller title text that appears atop each step in the tour
-   */
-  subtitle: string;
-
-  // Larger title text specific to this step
-  title: string;
-}
+    Omit<EuiPopoverProps, PopoverOverrides>,
+    EuiPopoverPartials,
+    EuiTourStepInterface {}
 
 export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   anchorPosition = 'leftUp',
@@ -86,7 +37,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   isStepOpen = false,
   isTourActive = false,
   minWidth = true,
-  skipOnClick,
+  onEnd,
+  onSkip,
   step = 1,
   stepsTotal,
   style,
@@ -106,38 +58,59 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
 
   const classes = classNames('euiTour', widthClassName, className);
 
-  const stepIndicators = [];
-  for (let i = 1; i <= stepsTotal; i++) {
-    stepIndicators.push(
-      <EuiTourStepIndicator
-        key={i}
-        number={i}
-        status={step === i ? 'active' : 'incomplete'}
-      />
-    );
-  }
+  const finishButtonProps: EuiButtonEmptyProps = {
+    color: 'text',
+    flush: 'right',
+    size: 'xs',
+  };
 
   const footer = (
     <EuiFlexGroup responsive={false} justifyContent="spaceBetween">
       <EuiFlexItem grow={false} aria-labelledby="stepProgress">
-        <EuiScreenReaderOnly>
-          <h6 id="stepProgress">
-            Step {step} of {stepsTotal} // TODO: i18n
-          </h6>
-        </EuiScreenReaderOnly>
-        {/* // TODO use loop based upon length of steps array; also make this ul a component? */}
-        {/* Would the total steps be stored in a wrapper component? */}
-        <ul className="euiTourFooter__stepList">{stepIndicators}</ul>
+        <EuiI18n
+          token="euiTourStep.stepProgress"
+          values={{ step, stepsTotal }}
+          default={({
+            step,
+            stepsTotal,
+          }: {
+            step: number;
+            stepsTotal: number;
+          }) => `Step ${step} of ${stepsTotal}`}>
+          {(stepProgress: string) => (
+            <EuiScreenReaderOnly>
+              <h6 id="stepProgress">{stepProgress}</h6>
+            </EuiScreenReaderOnly>
+          )}
+        </EuiI18n>
+        <ul className="euiTourFooter__stepList">
+          {[...Array(stepsTotal).keys()].map((_, i) => (
+            <EuiTourStepIndicator
+              key={i}
+              number={i + 1}
+              status={step === i + 1 ? 'active' : 'incomplete'}
+            />
+          ))}
+        </ul>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        {/* // TODO if final step, change this to a done button */}
-        <EuiButtonEmpty
-          onClick={skipOnClick}
-          color="text"
-          flush="right"
-          size="xs">
-          Skip tour
-        </EuiButtonEmpty>
+        {stepsTotal === step ? (
+          <EuiI18n token="euiTourStep.endTour" default="End tour">
+            {(endTour: string) => (
+              <EuiButtonEmpty onClick={onEnd} {...finishButtonProps}>
+                {endTour}
+              </EuiButtonEmpty>
+            )}
+          </EuiI18n>
+        ) : (
+          <EuiI18n token="euiTourStep.skipTour" default="Skip tour">
+            {(skipTour: string) => (
+              <EuiButtonEmpty onClick={onSkip} {...finishButtonProps}>
+                {skipTour}
+              </EuiButtonEmpty>
+            )}
+          </EuiI18n>
+        )}
       </EuiFlexItem>
     </EuiFlexGroup>
   );

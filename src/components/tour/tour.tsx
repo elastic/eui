@@ -1,15 +1,15 @@
 import { FunctionComponent, ReactElement } from 'react';
-import { useEuiTour } from './useEuiTour';
+import { useEuiTour, EuiStatelessTourStep } from './useEuiTour';
 import { EuiTourStepProps } from './tour_step';
-import { EuiTourState } from './types';
+import { EuiTourActions, EuiTourState } from './types';
 
 export interface EuiTourProps {
   children: (
     steps: Array<(props: EuiTourStepProps) => ReactElement>,
-    actions: { [key: string]: () => void },
+    actions: EuiTourActions,
     state: EuiTourState
   ) => ReactElement;
-  steps: Array<Partial<EuiTourStepProps>>; // TODO: children may not yet exist
+  steps: EuiStatelessTourStep[];
   initialState: EuiTourState;
 }
 
@@ -18,9 +18,6 @@ export const EuiTour: FunctionComponent<EuiTourProps> = ({
   steps,
   initialState,
 }) => {
-  const [stepComponents, actions, state] = useEuiTour(
-    steps as EuiTourStepProps[],
-    initialState
-  );
+  const [stepComponents, actions, state] = useEuiTour(steps, initialState);
   return children(stepComponents, actions, state);
 };

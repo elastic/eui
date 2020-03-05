@@ -10,7 +10,7 @@ import {
   EuiTextArea,
 } from '../../../../src/components';
 
-import { useEuiTour } from '../../../../src/components/tour';
+import { EuiTour } from '../../../../src/components/tour';
 
 const demoTourSteps = [
   {
@@ -37,12 +37,11 @@ const demoTourSteps = [
 const tourConfig = {
   currentTourStep: 1,
   isTourActive: true,
-  isTourPopoverOpen: true,
   tourPopoverWidth: 360,
   tourSubtitle: 'Demo tour',
 };
 
-const STORAGE_KEY = 'tourDemo_Managed';
+const STORAGE_KEY = 'tourDemo_Managed_v2';
 
 export default () => {
   const [queryValue, setQueryValue] = useState('');
@@ -54,60 +53,66 @@ export default () => {
     state = tourConfig;
   }
 
-  const [[EuiTourStepOne, EuiTourStepTwo], actions, reducerState] = useEuiTour(
-    demoTourSteps,
-    state
-  );
-
-  useEffect(() => {
-    console.log('Updating localStorage', STORAGE_KEY, reducerState);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
-  }, [reducerState]);
-
-  const handleClick = () => {
-    actions.incrementStep();
-  };
-
-  const resetTour = () => {
-    actions.resetTour();
-    setQueryValue('');
-  };
-
-  const onChange = e => {
-    setQueryValue(e.target.value);
-
-    if (reducerState.currentTourStep < 2) {
-      actions.incrementStep();
-    } else {
-      // TODO: fire end action?
-    }
-  };
+  // TODO: Find some other update mechanism
+  // useEffect(() => {
+  //   console.log('Updating localStorage', reducerState);
+  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
+  // }, []);
 
   return (
-    <div>
-      <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
-        Reset tour
-      </EuiButtonEmpty>
-      <EuiSpacer />
-      <EuiForm>
-        <EuiFormRow label="Enter an ES SQL query">
-          <EuiTourStepOne>
-            <EuiTextArea
-              placeholder="Placeholder text"
-              aria-label="Enter ES SQL query"
-              value={queryValue}
-              onChange={onChange}
-              style={{ width: 400 }}
-            />
-          </EuiTourStepOne>
-        </EuiFormRow>
+    <EuiTour steps={demoTourSteps} initialState={state}>
+      {([EuiTourStepOne, EuiTourStepTwo], actions, reducerState) => {
+        useEffect(() => {
+          console.log('Updating localStorage', STORAGE_KEY, reducerState);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
+        }, [reducerState]);
 
-        <EuiSpacer />
+        const handleClick = () => {
+          actions.incrementStep();
+        };
 
-        <EuiTourStepTwo>
-          <EuiButton onClick={handleClick}>Save query</EuiButton>
-        </EuiTourStepTwo>
-      </EuiForm>
-    </div>
+        const resetTour = () => {
+          actions.resetTour();
+          setQueryValue('');
+        };
+
+        const onChange = e => {
+          setQueryValue(e.target.value);
+
+          if (reducerState.currentTourStep < 2) {
+            actions.incrementStep();
+          } else {
+            actions.endTour();
+          }
+        };
+        return (
+          <React.Fragment>
+            <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
+              Reset tour
+            </EuiButtonEmpty>
+            <EuiSpacer />
+            <EuiForm>
+              <EuiFormRow label="Enter an ES SQL query">
+                <EuiTourStepOne>
+                  <EuiTextArea
+                    placeholder="Placeholder text"
+                    aria-label="Enter ES SQL query"
+                    value={queryValue}
+                    onChange={onChange}
+                    style={{ width: 400 }}
+                  />
+                </EuiTourStepOne>
+              </EuiFormRow>
+
+              <EuiSpacer />
+
+              <EuiTourStepTwo>
+                <EuiButton onClick={handleClick}>Save query</EuiButton>
+              </EuiTourStepTwo>
+            </EuiForm>
+          </React.Fragment>
+        );
+      }}
+    </EuiTour>
   );
 };

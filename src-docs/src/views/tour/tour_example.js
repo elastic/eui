@@ -4,29 +4,29 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiTourStep } from '../../../../src/components';
+import { EuiCode, EuiSpacer, EuiTourStep } from '../../../../src/components';
 
 import Tour from './tour';
 import Managed from './managed';
-import Managedv2 from './managed-v2';
+import ManagedHook from './managed_hook';
 
 const tourSource = require('!!raw-loader!./tour');
 const tourHtml = renderToHtml(Tour);
-const tourSnippet = '<EuiTour size="xs" />';
 const managedSource = require('!!raw-loader!./managed');
 const managedHtml = renderToHtml(Managed);
-const managedSnippet = '<EuiTour size="xs" />';
-const managedv2Source = require('!!raw-loader!./managed-v2');
-const managedv2Html = renderToHtml(Managedv2);
-const managedv2Snippet = '<EuiTour size="xs" />';
+const managedHookSource = require('!!raw-loader!./managed_hook');
+const managedHookHtml = renderToHtml(ManagedHook);
 
 export const TourExample = {
   title: 'Tour',
   intro: (
-    <p>
-      The example(s) will demonstrate how the tour component attaches to/wraps
-      around existing elements on the page.
-    </p>
+    <>
+      <p>
+        The example(s) will demonstrate how the tour component attaches to/wraps
+        around existing elements on the page.
+      </p>
+      <EuiSpacer />
+    </>
   ),
   sections: [
     {
@@ -47,11 +47,30 @@ export const TourExample = {
         </p>
       ),
       props: { EuiTourStep },
-      snippet: tourSnippet,
       demo: <Tour />,
     },
     {
-      title: 'Managed state',
+      title: 'Managed state with custom hook',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: managedHookSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: managedHookHtml,
+        },
+      ],
+      text: (
+        <p>
+          Using the <EuiCode>useEuiTour</EuiCode> hook for state management
+        </p>
+      ),
+      props: { EuiTourStep },
+      demo: <ManagedHook />,
+    },
+    {
+      title: 'Managed state via render prop component',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -64,33 +83,11 @@ export const TourExample = {
       ],
       text: (
         <p>
-          Using the <EuiCode>useEuiTour</EuiCode> hook for state management
-        </p>
-      ),
-      props: { EuiTourStep },
-      snippet: managedSnippet,
-      demo: <Managed />,
-    },
-    {
-      title: 'Managed state via render prop component',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: managedv2Source,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: managedv2Html,
-        },
-      ],
-      text: (
-        <p>
           Using the <EuiCode>EuiTour</EuiCode> render prop component for state
           management
         </p>
       ),
-      snippet: managedv2Snippet,
-      demo: <Managedv2 />,
+      demo: <Managed />,
     },
   ],
 };
