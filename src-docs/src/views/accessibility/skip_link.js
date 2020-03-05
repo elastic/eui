@@ -3,7 +3,6 @@ import React, { Fragment, useState } from 'react';
 import { EuiSkipLink } from '../../../../src/components/accessibility/skip_link';
 import { EuiCallOut } from '../../../../src/components/call_out';
 import { EuiText } from '../../../../src/components/text';
-import { EuiPortal } from '../../../../src/components/portal';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiSwitch } from '../../../../src/components/form/switch';
 
@@ -16,8 +15,8 @@ export default () => {
         {isFixed ? (
           <p>
             <em>
-              Tab out of the browser&apos;s address bar and a fixed{' '}
-              <strong>Skip to main content</strong> link will appear atop this
+              Tab through this section and a fixed{' '}
+              <strong>Skip to main content </strong> link will appear atop this
               page.
             </em>
           </p>
@@ -39,13 +38,11 @@ export default () => {
       <EuiSpacer />
       {isFixed ? (
         <Fragment>
-          <EuiPortal>
-            <EuiSkipLink
-              destinationId="/utilities/accessibility"
-              position="fixed">
-              Skip to main content
-            </EuiSkipLink>
-          </EuiPortal>
+          <EuiSkipLink
+            destinationId="/utilities/accessibility"
+            position="fixed">
+            Skip to main content
+          </EuiSkipLink>
           <EuiCallOut
             size="s"
             title="A functional &lsquo;Skip to main content&rsquo; link will be added to the EUI docs site once our URL format is updated."
