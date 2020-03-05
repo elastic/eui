@@ -86,10 +86,14 @@ const getHightlightWords = (
   isStrict: boolean
 ) => {
   const regex = new RegExp(searchValue, isStrict ? 'g' : 'gi');
-  const matches = Array.from(searchSubject.matchAll(regex), (match: any) => ({
-    start: match.index,
-    end: (match.index || 0) + match[0].length,
-  }));
+  const matches = [];
+  let match;
+  while ((match = regex.exec(searchSubject)) !== null) {
+    matches.push({
+      start: match.index,
+      end: (match.index || 0) + match[0].length,
+    });
+  }
   return fillInChunks(matches, searchSubject.length);
 };
 

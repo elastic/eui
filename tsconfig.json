@@ -42,9 +42,7 @@
       // ESNext auto includes previous versions all the way back to es5
       "esnext",
       // includes support for browser APIs
-      "dom",
-      // includes support for es2020 specification
-      "es2020"
+      "dom"
     ],
 
     // Specifies where to find library definitions. When this is explicitly set,
