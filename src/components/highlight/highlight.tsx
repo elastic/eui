@@ -1,6 +1,21 @@
 import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 
+interface EuiHighlightChunk {
+  /**
+   * Start of the chunk
+   */
+  start: number;
+  /**
+   * End of the chunk
+   */
+  end: number;
+  /**
+   * Whether to highlight chunk or not
+   */
+  highlight?: boolean;
+}
+
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
     children: string;
@@ -97,12 +112,11 @@ const getHightlightWords = (
   return fillInChunks(matches, searchSubject.length);
 };
 
-export const fillInChunks = (chunksToHighlight: any[], totalLength: any) => {
-  const allChunks: Array<{
-    start: number;
-    end: number;
-    highlight: boolean;
-  }> = [];
+export const fillInChunks = (
+  chunksToHighlight: EuiHighlightChunk[],
+  totalLength: number
+) => {
+  const allChunks: EuiHighlightChunk[] = [];
   const append = (start: number, end: number, highlight: boolean) => {
     if (end - start > 0) {
       allChunks.push({
