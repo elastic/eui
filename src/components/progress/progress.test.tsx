@@ -10,4 +10,12 @@ describe('EuiProgress', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('is rendered meter element', () => {
+    const component = render(
+      <EuiProgress {...requiredProps} Element="meter" />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -2,6 +2,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ProgressHTMLAttributes,
+  MeterHTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -44,11 +45,14 @@ export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
   color?: EuiProgressColor;
   position?: EuiProgressPosition;
+  /** Describe the type of element to render */
+  Element?: 'progress' | 'meter';
 };
 
 type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
+  MeterHTMLAttributes<HTMLProgressElement> &
   ProgressHTMLAttributes<HTMLProgressElement> & {
     max: number;
   };
@@ -61,6 +65,7 @@ export const EuiProgress: FunctionComponent<
   size = 'm',
   position = 'static',
   max,
+  Element = 'progress',
   value,
   ...rest
 }) => {
@@ -81,11 +86,13 @@ export const EuiProgress: FunctionComponent<
   // See https://css-tricks.com/html5-progress-element/
   if (determinate) {
     return (
-      <progress
+      <Element
         className={classes}
         max={max}
         value={value}
-        {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
+        {...rest as
+          | ProgressHTMLAttributes<HTMLProgressElement>
+          | MeterHTMLAttributes<HTMLProgressElement>}
       />
     );
   } else {
