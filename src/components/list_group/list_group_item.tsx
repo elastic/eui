@@ -17,15 +17,22 @@ import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
 
 type ItemSize = 'xs' | 's' | 'm' | 'l';
-
 const sizeToClassNameMap: { [size in ItemSize]: string } = {
   xs: 'euiListGroupItem--xSmall',
   s: 'euiListGroupItem--small',
   m: 'euiListGroupItem--medium',
   l: 'euiListGroupItem--large',
 };
-
 export const SIZES = Object.keys(sizeToClassNameMap) as ItemSize[];
+
+type Color = 'inherit' | 'primary' | 'text' | 'subdued';
+const colorToClassNameMap: { [color in Color]: string } = {
+  inherit: '',
+  primary: 'euiListGroupItem--primary',
+  text: 'euiListGroupItem--text',
+  subdued: 'euiListGroupItem--subdued',
+};
+export const COLORS = Object.keys(colorToClassNameMap) as Color[];
 
 export type EuiListGroupItemProps = CommonProps &
   ExclusiveUnion<
@@ -39,6 +46,11 @@ export type EuiListGroupItemProps = CommonProps &
      * Size of the label text
      */
     size?: ItemSize;
+    /**
+     * By default the item will inherit the color of its wrapper (button/link/span),
+     * otherwise pass on of the acceptable options
+     */
+    color?: Color;
 
     /**
      * Content to be displayed in the list item
@@ -114,6 +126,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   extraAction,
   onClick,
   size = 'm',
+  color = 'inherit',
   showToolTip = false,
   wrapText,
   buttonRef,
@@ -122,6 +135,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const classes = classNames(
     'euiListGroupItem',
     sizeToClassNameMap[size],
+    colorToClassNameMap[color],
     {
       'euiListGroupItem-isActive': isActive,
       'euiListGroupItem-isDisabled': isDisabled,
@@ -192,9 +206,9 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   if (href && !isDisabled) {
     itemContent = (
       <a
+        className="euiListGroupItem__button"
         href={href}
         onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
-        className="euiListGroupItem__button"
         {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {iconNode}
         {labelContent}

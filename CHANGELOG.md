@@ -4,6 +4,8 @@
 - Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
 - Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
 - Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
+- Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
+- Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
 
 **Bug Fixes**
 

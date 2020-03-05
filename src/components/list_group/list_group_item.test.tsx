@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { EuiListGroupItem, SIZES } from './list_group_item';
+import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
 describe('EuiListGroupItem', () => {
   test('is rendered', () => {
@@ -16,6 +16,18 @@ describe('EuiListGroupItem', () => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiListGroupItem label="Label" size={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('color', () => {
+      COLORS.forEach(color => {
+        test(`${color} is rendered`, () => {
+          const component = render(
+            <EuiListGroupItem label="Label" color={color} />
           );
 
           expect(component).toMatchSnapshot();
