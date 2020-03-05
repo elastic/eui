@@ -34,8 +34,7 @@
     border: 1px solid transparent;
     box-shadow: 0 0 0 2px $euiFocusRingColor;
     border-radius: 1px;
-    // Needed so it sits above the other rows
-    z-index: 2;
+    z-index: 2; // Needed so the focus ring sits above the other row below it.
   }
 
   // We only truncate if the cell is not a control column.
