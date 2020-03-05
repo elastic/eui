@@ -6,6 +6,7 @@
 - Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
 - Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
+- Improved `EuiDescribedFormGroup` a11y by allowing the `EuiTitle` to be visible to accessibility tools ([#2989](https://github.com/elastic/eui/pull/2989))
 
 **Bug Fixes**
 
