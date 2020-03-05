@@ -3,6 +3,7 @@
 - Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
 - Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
 - Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
+- Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
 
 **Bug Fixes**
 

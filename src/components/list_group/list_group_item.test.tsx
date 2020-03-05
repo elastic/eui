@@ -140,7 +140,7 @@ describe('EuiListGroupItem', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('throws an warning', () => {
+  describe('throws a warning', () => {
     const oldConsoleError = console.warn;
     let consoleStub: jest.Mock;
 

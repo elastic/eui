@@ -3,17 +3,101 @@
 exports[`EuiHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeader testClass1 testClass2"
+  class="euiHeader euiHeader--static testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiHeader renders children 1`] = `
 <div
-  class="euiHeader"
+  class="euiHeader euiHeader--static"
 >
   <span>
     Hello!
   </span>
+</div>
+`;
+
+exports[`EuiHeader renders in fixed position 1`] = `
+<div
+  class="euiHeader euiHeader--fixed"
+>
+  <span>
+    Hello!
+  </span>
+</div>
+`;
+
+exports[`EuiHeader sections render breadcrumbs and props 1`] = `
+<div
+  class="euiHeader euiHeader--static"
+>
+  <nav
+    aria-label="breadcrumb"
+    class="euiBreadcrumbs euiHeaderBreadcrumbs euiBreadcrumbs--truncate"
+  >
+    <span
+      aria-current="page"
+      class="euiBreadcrumb euiBreadcrumb--last"
+    >
+      Breadcrumb
+    </span>
+  </nav>
+</div>
+`;
+
+exports[`EuiHeader sections render simple items and borders 1`] = `
+<div
+  class="euiHeader euiHeader--static"
+>
+  <div
+    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+  >
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
+    >
+      Item 1
+    </div>
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
+    >
+      Item 2
+    </div>
+  </div>
+  <div
+    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+  >
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+    >
+      Item A
+    </div>
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+    >
+      Item B
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiHeader throws a warning if both children and sections were passed 1`] = `
+<div
+  class="euiHeader euiHeader--static"
+>
+  <div
+    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+  >
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+    >
+      Item 1
+    </div>
+    <div
+      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+    >
+      Item 2
+    </div>
+  </div>
 </div>
 `;
