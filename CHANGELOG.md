@@ -8,6 +8,10 @@
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
 - Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
 
+**Breaking changes**
+
+- Updated `@types/react` and `@types/react-dom` to utilize React.RefCallback type instead of custom implementation ([#2929](https://github.com/elastic/eui/pull/2929))
+
 **Theme: Amsterdam**
 
 - Buttons have a new visual style ([#2874](https://github.com/elastic/eui/pull/2874))
