@@ -1,5 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
+- Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
+
 **Bug Fixes**
 
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
