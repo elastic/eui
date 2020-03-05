@@ -2,7 +2,7 @@
 
 **Bug Fixes**
 
--`EuiProgress` always render a progress element ([#2979](https://github.com/elastic/eui/pull/2979))
+-`EuiProgress` always render a progress element ([#2985](https://github.com/elastic/eui/pull/2985))
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
 - Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
 
