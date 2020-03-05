@@ -1,4 +1,9 @@
-import React, { Component, FocusEventHandler, ChangeEventHandler } from 'react';
+import React, {
+  ChangeEventHandler,
+  Component,
+  FocusEventHandler,
+  RefCallback,
+} from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 
@@ -11,7 +16,6 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
-  RefCallback,
   UpdatePositionHandler,
 } from '../types';
 import { CommonProps } from '../../common';

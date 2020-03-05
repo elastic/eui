@@ -161,10 +161,7 @@ export class GuidePageChrome extends Component {
             closePopover={this.closePopover.bind(this)}>
             <EuiPopoverTitle>Docs options</EuiPopoverTitle>
             <div className="guideOptionsPopover">
-              <GuideThemeSelector
-                onToggleTheme={this.props.onToggleTheme}
-                selectedTheme={this.props.selectedTheme}
-              />
+              <GuideThemeSelector />
               {location.host === 'localhost:8030' ? ( // eslint-disable-line no-restricted-globals
                 <GuideLocaleSelector
                   onToggleLocale={this.props.onToggleLocale}
@@ -332,8 +329,6 @@ export class GuidePageChrome extends Component {
 
 GuidePageChrome.propTypes = {
   currentRoute: PropTypes.object.isRequired,
-  onToggleTheme: PropTypes.func.isRequired,
-  selectedTheme: PropTypes.string.isRequired,
   onToggleLocale: PropTypes.func.isRequired,
   selectedLocale: PropTypes.string.isRequired,
   navigation: PropTypes.array.isRequired,

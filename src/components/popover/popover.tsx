@@ -4,11 +4,12 @@ import React, {
   HTMLAttributes,
   ReactNode,
   Ref,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { CommonProps, NoArgCallback, RefCallback } from '../common';
+import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap } from '../focus_trap';
 import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 
@@ -66,7 +67,7 @@ export interface EuiPopoverProps {
 
   button: NonNullable<ReactNode>;
 
-  buttonRef?: RefCallback<HTMLDivElement | null>;
+  buttonRef?: RefCallback<HTMLDivElement>;
 
   closePopover: NoArgCallback<void>;
 

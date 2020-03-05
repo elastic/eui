@@ -1,4 +1,9 @@
-import React, { Component, ReactNode, ComponentProps } from 'react';
+import React, {
+  Component,
+  ComponentProps,
+  ReactNode,
+  RefCallback,
+} from 'react';
 import classNames from 'classnames';
 import { List, ListProps } from 'react-virtualized'; // eslint-disable-line import/named
 
@@ -20,7 +25,6 @@ import {
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
-  RefCallback,
   RefInstance,
   UpdatePositionHandler,
 } from '../types';
@@ -52,7 +56,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     onCreateOption?: (
       searchValue: string,
       options: Array<EuiComboBoxOptionOption<T>>
-    ) => boolean;
+    ) => boolean | void;
     onOptionClick?: OptionHandler<T>;
     onOptionEnterKey?: OptionHandler<T>;
     onScroll?: ListProps['onScroll'];

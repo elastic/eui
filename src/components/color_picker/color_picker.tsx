@@ -17,11 +17,11 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiFieldText } from '../form/field_text';
 import {
+  EuiFieldText,
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
-} from '../form/form_control_layout';
+} from '../form';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
@@ -77,11 +77,13 @@ export interface EuiColorPickerProps
 
   /**
    * Creates an input group with element(s) coming before input. It only shows when the `display` is set to `default`.
+   * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
 
   /**
    * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
+   * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
 }
