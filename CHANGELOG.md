@@ -1,11 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
+- Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
 - Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
 
 **Bug Fixes**
 
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
 - Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
+
+**Breaking changes**
+
+- Updated `@types/react` and `@types/react-dom` to utilize React.RefCallback type instead of custom implementation ([#2929](https://github.com/elastic/eui/pull/2929))
 
 **Theme: Amsterdam**
 
