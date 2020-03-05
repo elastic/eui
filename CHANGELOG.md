@@ -2,7 +2,7 @@
 
 **Bug Fixes**
 
-- Allow `EuiProgress` to render meter component ([#2986](https://github.com/elastic/eui/pull/2986))
+- Added `element` prop to `EuiProgress` to render meter or progress component ([#2986](https://github.com/elastic/eui/pull/2986))
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
 - Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
 
