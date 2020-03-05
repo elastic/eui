@@ -3,3 +3,14 @@
   @include fontSize($euiFontSizeM);
   @include euiScaleText($euiFontSizeM);
 }
+
+// Need all 3 because of cascade, but nothing is changed from the ones below
+.euiText--small {
+  @include fontSize($euiFontSizeS);
+  @include euiScaleText($euiFontSizeS);
+}
+
+.euiText--extraSmall {
+  @include fontSize($euiFontSizeXS);
+  @include euiScaleText($euiFontSizeXS);
+}
