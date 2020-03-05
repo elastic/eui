@@ -3,18 +3,26 @@ import React, {
   ReactNode,
   useEffect,
   useState,
+  Fragment,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
-import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { throttle } from '../color_picker/utils';
+import { EuiWindowEvent, keyCodes } from '../../services';
+import { EuiFocusTrap } from '../focus_trap';
+import { EuiOverlayMask } from '../overlay_mask';
+import { CommonProps } from '../common';
+import { EuiButtonEmpty } from '../button';
 
-export type EuiCollapsibleNavProps = EuiFlyoutProps & {
-  children?: ReactNode;
-  /**
-   * Keep navigation flyout visible and push `<body>` content via padding
-   */
-  docked?: boolean;
-};
+export type EuiCollapsibleNavProps = CommonProps &
+  HTMLAttributes<HTMLElement> & {
+    children?: ReactNode;
+    /**
+     * Keep navigation flyout visible and push `<body>` content via padding
+     */
+    docked?: boolean;
+    onClose: () => void;
+  };
 
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   children,
@@ -49,6 +57,13 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
     };
   }, [docked, functionToCallOnWindowResize]);
 
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (event.keyCode === keyCodes.ESCAPE) {
+      event.preventDefault();
+      collapse();
+    }
+  };
+
   const collapse = () => {
     if (!isDocked) {
       onClose();
@@ -61,15 +76,29 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
     className
   );
 
+  let optionalOverlay;
+  if (!isDocked) {
+    optionalOverlay = <EuiOverlayMask onClick={collapse} />;
+  }
+
   return (
-    <EuiFlyout
-      ownFocus={!isDocked}
-      onClose={collapse}
-      size="s"
-      className={classes}
-      hideCloseButton={true}
-      {...rest}>
-      {children}
-    </EuiFlyout>
+    <Fragment>
+      <EuiWindowEvent event="keydown" handler={onKeyDown} />
+      {optionalOverlay}
+      {/* Trap focus only when isDocked={false} */}
+      <EuiFocusTrap disabled={isDocked} clickOutsideDisables={true}>
+        <nav className={classes} {...rest}>
+          {children}
+
+          <EuiButtonEmpty
+            onClick={collapse}
+            size="xs"
+            iconType="cross"
+            className="euiCollapsibleNav__closeButton">
+            close
+          </EuiButtonEmpty>
+        </nav>
+      </EuiFocusTrap>
+    </Fragment>
   );
 };

@@ -47,22 +47,19 @@ export const CollapsibleNavExample = {
       text: (
         <>
           <p>
-            <strong>EuiCollapsibleNav</strong> is simply a custom wrapper around{' '}
+            <strong>EuiCollapsibleNav</strong> is a similar implementation to{' '}
             <Link to="/layout/flyout">
               <strong>EuiFlyout</strong>
-            </Link>{' '}
-            the visibility of which must be maintained by the consuming
+            </Link>
+            ; the visibility of which must be maintained by the consuming
             application. An extra feature that it provides is the ability to{' '}
             <EuiCode>dock</EuiCode> the flyout. This affixes the flyout to the
             window and pushes the body content by adding left side padding.
           </p>
-          <EuiCallOut title="Smaller screen sizes don't allow for docking">
-            <p>
-              There is not enough room to push the body content on smaller
-              screens, so <strong>EuiCollapsibleNav</strong> makes docking
-              conditional on window width.
-            </p>
-          </EuiCallOut>
+          <EuiCallOut
+            iconType="tableOfContents"
+            title="Docking is not possible on small screens because it would force less real estate for the page content."
+          />
         </>
       ),
       props: { EuiCollapsibleNav },

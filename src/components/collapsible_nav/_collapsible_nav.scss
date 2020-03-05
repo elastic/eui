@@ -1,13 +1,23 @@
-// It's an EuiFlyout component but shifted to the left side
-// Needs flyout class for specificity
+// Extends euiFlyout
+@use '../flyout/flyout';
 
-.euiFlyout.euiCollapsibleNav {
+.euiCollapsibleNav {
+  @extend %eui-flyout;
   right: auto;
   left: 0;
-  // Needs both to override vw units
-  min-width: $euiCollapsibleNavWidth;
-  max-width: $euiCollapsibleNavWidth;
-  animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
+  width: $euiCollapsibleNavWidth;
+  max-width: 80vw;
+
+  &:not(.euiCollapsibleNav--isDocked) {
+    animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
+  }
+}
+
+.euiCollapsibleNav__closeButton {
+  position: absolute;
+  right: 0;
+  top: $euiSize;
+  margin-right: -25%;
 }
 
 @include euiBreakpoint('l', 'xl') {
@@ -15,6 +25,10 @@
   // but adding under the breakpoint mixin is an additional fail-safe
   .euiCollapsibleNav.euiCollapsibleNav--isDocked {
     @include euiBottomShadowMedium;
+
+    .euiCollapsibleNav__closeButton {
+      display: none;
+    }
   }
 
   .euiBody--collapsibleNavIsDocked {
