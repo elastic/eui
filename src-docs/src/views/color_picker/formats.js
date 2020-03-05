@@ -24,12 +24,13 @@ export const Formats = () => {
           isInvalid={!!errors2}
         />
       </EuiFormRow>
-      <EuiFormRow label="RGBa format" isInvalid={!!errors3} error={errors3}>
+      <EuiFormRow label="RGB(a) format" isInvalid={!!errors3} error={errors3}>
         <EuiColorPicker
           format="rgba"
           onChange={setColor3}
           color={color3}
           isInvalid={!!errors3}
+          showAlpha={true}
         />
       </EuiFormRow>
     </>

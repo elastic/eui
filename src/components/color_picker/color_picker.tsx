@@ -41,6 +41,12 @@ import {
 type EuiColorPickerDisplay = 'default' | 'inline';
 type EuiColorPickerMode = 'default' | 'swatch' | 'picker';
 
+export interface EuiColorPickerOutput {
+  rgba: ColorSpaces['rgba'];
+  hex: string;
+  isValid: boolean;
+}
+
 interface HTMLDivElementOverrides {
   /**
    * hex (string)
@@ -52,14 +58,11 @@ interface HTMLDivElementOverrides {
   onBlur?: () => void;
   /**
    * text (string, as entered or selected)
-   * hex (8-digit hex if alpha < 1)
+   * hex (8-digit hex if alpha < 1, otherwise 6-digit hex)
    * RGBa (as array; values of NaN if color is invalid)
    * isValid (boolean signifying if the input text is a valid color)
    */
-  onChange: (
-    text: string,
-    output: { rgba: number[]; hex: string; isValid: boolean }
-  ) => void;
+  onChange: (text: string, output: EuiColorPickerOutput) => void;
   onFocus?: () => void;
 }
 export interface EuiColorPickerProps
@@ -111,6 +114,11 @@ export interface EuiColorPickerProps
    * Whether to render the alpha channel (opacity) value range slider.
    */
   showAlpha?: boolean;
+  /**
+   * Will format the text input in the provided format when possible (hue and saturation selection)
+   * Exceptions: Manual text input and swatches will display as-authored
+   * Fallback is to display the last format entered by the user
+   */
   format?: 'hex' | 'rgba';
 }
 
@@ -123,7 +131,7 @@ function isKeyboardEvent(
 const getOutput = (
   text: string | null,
   showAlpha: boolean = false
-): { rgba: number[]; hex: string; isValid: boolean } => {
+): EuiColorPickerOutput => {
   const color = getChromaColor(text, true);
   let isValid = true;
   if (!showAlpha && color !== null) {
@@ -138,7 +146,7 @@ const getOutput = (
         isValid,
       }
     : {
-        rgba: [...RGB_FALLBACK, 1],
+        rgba: RGB_FALLBACK,
         hex: HEX_FALLBACK,
         isValid: false,
       };
