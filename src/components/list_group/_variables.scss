@@ -1,0 +1,17 @@
+$euiListGroupGutterTypes: (
+  gutterS: $euiSizeS,
+  gutterM: $euiSize,
+);
+
+$euiListGroupItemColorTypes: (
+  primary: $euiColorPrimary,
+  text: $euiTextColor,
+  subdued: $euiColorDarkShade,
+);
+
+$euiListGroupItemSizeTypes: (
+  xSmall: $euiFontSizeXS,
+  small: $euiFontSizeS,
+  medium: $euiFontSize,
+  large: $euiFontSizeL,
+);

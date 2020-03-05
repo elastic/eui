@@ -388,7 +388,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
         <EuiFlexItem>
           <div>
             <EuiTitle size="s">
-              <h4>Sizing</h4>
+              <h3>Sizing</h3>
             </EuiTitle>
 
             <EuiSpacer />
@@ -400,7 +400,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
             <EuiSpacer />
 
             <EuiTitle size="s">
-              <h4>Z-index</h4>
+              <h3>Z-index</h3>
             </EuiTitle>
 
             <EuiSpacer />
@@ -412,7 +412,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Color</h4>
+            <h3>Color</h3>
           </EuiTitle>
 
           <EuiSpacer />
@@ -432,7 +432,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Theming patterns</h4>
+            <h3>Theming patterns</h3>
           </EuiTitle>
 
           <EuiSpacer />
@@ -554,7 +554,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Color contrast patterns</h4>
+            <h3>Color contrast patterns</h3>
           </EuiTitle>
 
           <EuiSpacer />
@@ -601,7 +601,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiSpacer />
 
           <EuiTitle size="s">
-            <h4>More on color contrast</h4>
+            <h3>More on color contrast</h3>
           </EuiTitle>
 
           <EuiSpacer />
@@ -654,7 +654,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Text sizes</h4>
+            <h3>Text sizes</h3>
           </EuiTitle>
 
           <EuiSpacer />
@@ -665,7 +665,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
         <EuiFlexItem>
           <div>
             <EuiTitle size="s">
-              <h4>Text colors</h4>
+              <h3>Text colors</h3>
             </EuiTitle>
 
             <EuiSpacer />
@@ -677,7 +677,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
             <EuiSpacer />
 
             <EuiTitle>
-              <h4>Font families</h4>
+              <h3>Font families</h3>
             </EuiTitle>
 
             <EuiSpacer />
@@ -752,7 +752,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Use mixins for shadows</h4>
+            <h3>Use mixins for shadows</h3>
           </EuiTitle>
 
           <EuiText>
@@ -773,7 +773,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiSpacer />
 
           <EuiTitle size="s">
-            <h4>Adding color to shadows</h4>
+            <h3>Adding color to shadows</h3>
           </EuiTitle>
 
           <EuiText>
@@ -793,7 +793,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Shadows to create graceful overflows</h4>
+            <h3>Shadows to create graceful overflows</h3>
           </EuiTitle>
 
           <EuiText>
@@ -806,9 +806,9 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiSpacer />
 
           <EuiTitle size="xs">
-            <h5>
+            <h4>
               Vertical scrolling with <EuiCode>euiYScrollWithShadows</EuiCode>
-            </h5>
+            </h4>
           </EuiTitle>
 
           <EuiSpacer size="s" />
@@ -859,9 +859,9 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiSpacer />
 
           <EuiTitle size="xs">
-            <h5>
+            <h4>
               Horizontal scrolling with <EuiCode>euiXScrollWithShadows</EuiCode>
-            </h5>
+            </h4>
           </EuiTitle>
 
           <EuiSpacer size="s" />
@@ -927,7 +927,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
         <EuiFlexItem>
           <div>
             <EuiTitle size="s">
-              <h4>Breakpoint sizing</h4>
+              <h3>Breakpoint sizing</h3>
             </EuiTitle>
 
             <EuiSpacer />
@@ -939,7 +939,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Mixin usage</h4>
+            <h3>Mixin usage</h3>
           </EuiTitle>
 
           <EuiSpacer />
@@ -1004,7 +1004,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Speed</h4>
+            <h3>Speed</h3>
           </EuiTitle>
 
           <EuiSpacer />
@@ -1015,7 +1015,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Timing</h4>
+            <h3>Timing</h3>
           </EuiTitle>
 
           <EuiSpacer />
