@@ -1,7 +1,22 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
+- Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
 - Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
+
+**Bug Fixes**
+
+- Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
+- Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
+
+**Breaking changes**
+
+- Updated `@types/react` and `@types/react-dom` to utilize React.RefCallback type instead of custom implementation ([#2929](https://github.com/elastic/eui/pull/2929))
+
+**Theme: Amsterdam**
+
+- Buttons have a new visual style ([#2874](https://github.com/elastic/eui/pull/2874))
 
 ## [`20.1.0`](https://github.com/elastic/eui/tree/v20.1.0)
 

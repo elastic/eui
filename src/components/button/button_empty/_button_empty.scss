@@ -41,7 +41,7 @@
   }
 
   &:disabled {
-    color: $euiButtonColorDisabled;
+    color: $euiButtonColorDisabledText;
     pointer-events: none;
 
     .euiButtonEmpty__content {
@@ -50,7 +50,7 @@
     }
 
     .euiButtonEmpty__icon {
-      fill: $euiButtonColorDisabled;
+      fill: currentColor;
     }
 
     &:focus {
@@ -68,7 +68,7 @@
 $euiButtonEmptyTypes: (
   primary: $euiColorPrimary,
   danger: $euiColorDanger,
-  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  disabled: $euiButtonColorDisabledText,
   ghost: $euiColorGhost,
   text: $euiTextColor,
 );
