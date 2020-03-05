@@ -7,3 +7,13 @@ exports[`EuiProgress is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiProgress renderes meter element 1`] = `
+<meter
+  aria-label="aria-label"
+  class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
+  data-test-subj="test subject string"
+  max="100"
+  value="0"
+/>
+`;
