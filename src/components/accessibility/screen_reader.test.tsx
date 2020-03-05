@@ -30,4 +30,14 @@ describe('EuiScreenReaderOnly', () => {
       expect($paragraph).toMatchSnapshot();
     });
   });
+
+  test('will show on focus', () => {
+    const component = render(
+      <EuiScreenReaderOnly showOnFocus>
+        <a href="#">Link</a>
+      </EuiScreenReaderOnly>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

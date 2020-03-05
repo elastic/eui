@@ -2,10 +2,8 @@
 
 .euiHeaderSectionItem {
   position: relative;
-
-  &:hover {
-    background: $euiColorLightestShade;
-  }
+  display: flex;
+  align-items: center;
 
   &:after {
     position: absolute;
@@ -22,6 +20,10 @@
   min-width: $euiHeaderChildSize;
   text-align: center;
   font-size: 0; // aligns icons better vertically
+
+  &:hover {
+    background: $euiColorLightestShade;
+  }
 
   &:focus {
     background: $euiFocusBackgroundColor;

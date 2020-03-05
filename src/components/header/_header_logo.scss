@@ -12,6 +12,10 @@
   vertical-align: middle;
   white-space: nowrap;
 
+  &:hover {
+    background: $euiColorLightestShade;
+  }
+
   &:focus,
   &:hover {
     text-decoration: none;
