@@ -49,6 +49,12 @@ $euiProgressSizes: (
  * See https://css-tricks.com/html5-progress-element/ for more info.
  */
 .euiProgress--indeterminate {
+  width: 100%;
+
+  &::-webkit-progress-bar {
+    background-color: $euiColorLightShade;
+  }
+
   &:before {
     position: absolute;
     content: '';

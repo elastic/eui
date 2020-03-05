@@ -77,20 +77,23 @@ export const EuiProgress: FunctionComponent<
     className
   );
 
+  const rel: {
+    max?: number;
+    value?: string | number | string[];
+  } = {};
+
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
   if (determinate) {
-    return (
-      <progress
-        className={classes}
-        max={max}
-        value={value}
-        {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
-      />
-    );
-  } else {
-    return (
-      <div className={classes} {...rest as HTMLAttributes<HTMLDivElement>} />
-    );
+    rel.max = max;
+    rel.value = value;
   }
+
+  return (
+    <progress
+      className={classes}
+      {...rel}
+      {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
+    />
+  );
 };
