@@ -48,6 +48,8 @@ fully-tested the code is, located at `reports/jest-coverage`.
 
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
+Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for info more info on those.
+
 ### Testing the component with Kibana
 
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
