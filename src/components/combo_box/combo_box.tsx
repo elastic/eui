@@ -7,8 +7,9 @@
 import React, {
   Component,
   FocusEventHandler,
-  KeyboardEventHandler,
   HTMLAttributes,
+  KeyboardEventHandler,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -34,7 +35,6 @@ import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_
 import {
   UpdatePositionHandler,
   OptionHandler,
-  RefCallback,
   RefInstance,
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
