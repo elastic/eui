@@ -49,7 +49,7 @@ type DrillProps<T> = Pick<
   'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
 >;
 
-export interface EuiComboBoxProps<T>
+interface _EuiComboBoxProps<T>
   extends CommonProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
@@ -75,6 +75,27 @@ export interface EuiComboBoxProps<T>
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
 }
 
+/**
+ * Because of how TypeScript's LibraryManagedAttributes is designed to handle defaultProps (https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#support-for-defaultprops-in-jsx)
+ * we can't directly export the above Props definitions, as the defaulted values are not made optional
+ * as it isn't processed by LibraryManagedAttributes. To get around this, we:
+ * - remove the props which have default values applied
+ *   - additionally re-define `options` and `selectedOptions` defaults, necessary as static members can't access generics and become never[]
+ * - export (Props - Defaults) & Partial<Defaults>
+ */
+type DefaultProps<T> = Omit<
+  typeof EuiComboBox['defaultProps'],
+  'options' | 'selectedOptions'
+> & {
+  options: Array<EuiComboBoxOptionOption<T>>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+};
+export type EuiComboBoxProps<T> = Omit<
+  _EuiComboBoxProps<T>,
+  keyof DefaultProps<T>
+> &
+  Partial<DefaultProps<T>>;
+
 interface EuiComboBoxState<T> {
   activeOptionIndex: number;
   hasFocus: boolean;
@@ -89,7 +110,7 @@ interface EuiComboBoxState<T> {
 const initialSearchValue = '';
 
 export class EuiComboBox<T> extends Component<
-  EuiComboBoxProps<T>,
+  _EuiComboBoxProps<T>,
   EuiComboBoxState<T>
 > {
   static defaultProps = {
@@ -654,7 +675,7 @@ export class EuiComboBox<T> extends Component<
   }
 
   static getDerivedStateFromProps<T>(
-    nextProps: EuiComboBoxProps<T>,
+    nextProps: _EuiComboBoxProps<T>,
     prevState: EuiComboBoxState<T>
   ) {
     const { options, selectedOptions, singleSelection } = nextProps;
