@@ -99,11 +99,18 @@ export interface EuiDataGridStyle {
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
+export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
+  allowHide?: boolean;
+  allowReorder?: boolean;
+}
+
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns
    */
-  showColumnSelector?: boolean;
+  showColumnSelector?:
+    | boolean
+    | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
    * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
    */
