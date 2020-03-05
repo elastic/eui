@@ -67,6 +67,8 @@ import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
 
+import { CommentExample } from './views/comment/comment_example';
+
 import { ContextExample } from './views/context/context_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
@@ -380,6 +382,7 @@ const navigation = [
       FormValidationExample,
       SuperSelectExample,
       ComboBoxExample,
+      CommentExample,
       ColorPickerExample,
       CodeEditorExample,
       DatePickerExample,

@@ -38,6 +38,8 @@ export {
 
 export { EuiComboBox } from './combo_box';
 
+export { EuiComment } from './comment';
+
 export { EuiContext, EuiI18nConsumer } from './context';
 
 export {

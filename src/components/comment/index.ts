@@ -1,0 +1,3 @@
+export {
+  EuiComment,
+} from './comment';
