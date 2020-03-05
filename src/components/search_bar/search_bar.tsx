@@ -12,12 +12,20 @@ export type QueryType = Query | string;
 
 type Tools = ReactElement | ReactElement[];
 
+interface ArgsWithQuery {
+  query: Query;
+  queryText: string;
+  error: null;
+}
+
+interface ArgsWithError {
+  query: null;
+  queryText: string;
+  error: Error;
+}
+
 export interface EuiSearchBarProps extends CommonProps {
-  onChange: (args: {
-    query: Query | null;
-    queryText: string;
-    error: Error | null;
-  }) => void | boolean;
+  onChange?: (args: ArgsWithQuery | ArgsWithError) => void | boolean;
 
   /**
    The initial query the bar will hold when first mounted
@@ -133,7 +141,11 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     const isErrorDifferent = oldError !== newError;
 
     if (isQueryDifferent || isErrorDifferent) {
-      onChange({ query, queryText, error });
+      if (error == null) {
+        onChange({ query: query!, queryText, error });
+      } else {
+        onChange({ query: null, queryText, error });
+      }
     }
   }
 

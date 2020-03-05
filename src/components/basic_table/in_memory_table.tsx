@@ -331,11 +331,18 @@ export class EuiInMemoryTable<T> extends Component<
     const { search } = this.props;
     if (isEuiSearchBarProps(search)) {
       if (search.onChange) {
-        const shouldQueryInMemory = search.onChange({
-          query,
-          queryText,
-          error,
-        });
+        const shouldQueryInMemory =
+          error == null
+            ? search.onChange({
+                query: query!,
+                queryText,
+                error: null,
+              })
+            : search.onChange({
+                query: null,
+                queryText,
+                error,
+              });
         if (!shouldQueryInMemory) {
           return;
         }
