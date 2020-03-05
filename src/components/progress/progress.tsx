@@ -45,8 +45,8 @@ export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
   color?: EuiProgressColor;
   position?: EuiProgressPosition;
-  /** Describe the type of element to render */
-  Element?: 'progress' | 'meter';
+  /** Which HTML element to render */
+  element?: 'progress' | 'meter';
 };
 
 type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
