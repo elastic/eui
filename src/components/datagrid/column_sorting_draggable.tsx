@@ -26,16 +26,21 @@ export interface EuiDataGridColumnSortingDraggableProps {
 export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   EuiDataGridColumnSortingDraggableProps
 > = ({ id, direction, index, sorting, schema, schemaDetectors, ...rest }) => {
+  const schemaDetails =
+    schema.hasOwnProperty(id) && schema[id].columnType != null
+      ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
+      : null;
+
   const textSortAsc =
-    schema.hasOwnProperty(id) && schema[id].columnType != null ? (
-      getDetailsForSchema(schemaDetectors, schema[id].columnType).sortTextAsc
+    schemaDetails != null ? (
+      schemaDetails.sortTextAsc
     ) : (
       <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
     );
 
   const textSortDesc =
-    schema.hasOwnProperty(id) && schema[id].columnType != null ? (
-      getDetailsForSchema(schemaDetectors, schema[id].columnType).sortTextDesc
+    schemaDetails != null ? (
+      schemaDetails.sortTextDesc
     ) : (
       <EuiI18n
         token="euiColumnSortingDraggable.defaultSortDesc"
@@ -108,21 +113,9 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
 
             <EuiFlexItem grow={false}>
               <EuiToken
-                color={
-                  schema.hasOwnProperty(id) && schema[id].columnType != null
-                    ? getDetailsForSchema(
-                        schemaDetectors,
-                        schema[id].columnType
-                      ).color
-                    : undefined
-                }
+                color={schemaDetails != null ? schemaDetails.color : undefined}
                 iconType={
-                  schema.hasOwnProperty(id) && schema[id].columnType != null
-                    ? getDetailsForSchema(
-                        schemaDetectors,
-                        schema[id].columnType
-                      ).icon
-                    : 'tokenString'
+                  schemaDetails != null ? schemaDetails.icon : 'tokenString'
                 }
               />
             </EuiFlexItem>

@@ -36,6 +36,11 @@ export interface EuiCodeEditorProps
   setOptions: IAceEditorProps['setOptions'];
   cursorStart?: number;
   'data-test-subj'?: string;
+  /**
+   * Select the `brace` theme
+   * The matching theme file must also be imported from `brace` (e.g., `import 'brace/theme/github';`)
+   */
+  theme?: IAceEditorProps['theme'];
 
   /**
    * Use string for a built-in mode or object for a custom mode
@@ -171,6 +176,7 @@ export class EuiCodeEditor extends Component<
       cursorStart,
       mode = DEFAULT_MODE,
       'data-test-subj': dataTestSubj = 'codeEditorContainer',
+      theme = 'github',
       ...rest
     } = this.props;
 
@@ -255,6 +261,7 @@ export class EuiCodeEditor extends Component<
           // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
           mode={this.isCustomMode() ? DEFAULT_MODE : (mode as string)} // https://github.com/securingsincity/react-ace/pull/771
           name={this.idGenerator()}
+          theme={theme}
           ref={this.aceEditorRef}
           width={width}
           height={height}
