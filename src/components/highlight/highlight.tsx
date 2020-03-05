@@ -24,8 +24,8 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
 const highlight = (
   searchSubject: string,
   searchValue: string,
-  isStrict: boolean = false,
-  highlightAll: boolean = false
+  isStrict: boolean,
+  highlightAll: boolean
 ) => {
   if (!searchValue) {
     return searchSubject;
@@ -130,8 +130,8 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   children,
   className,
   search,
-  strict,
-  highlightAll,
+  strict = false,
+  highlightAll = false,
   ...rest
 }) => {
   return (

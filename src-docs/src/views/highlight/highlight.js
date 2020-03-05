@@ -42,7 +42,7 @@ export class Highlight extends Component {
         />
         <EuiSpacer size="m" />
         {isHighlightAll ? (
-          <EuiHighlight search={searchValue} highlightAll={true}>
+          <EuiHighlight search={searchValue} highlightAll>
             The quick brown fox jumped over the lazy dog
           </EuiHighlight>
         ) : (
