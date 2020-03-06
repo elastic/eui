@@ -43,6 +43,10 @@ export interface EuiDataGridSchemaDetector {
    * Whether this column is sortable
    */
   isSortable: boolean;
+  /**
+   * Default sort direction of the column
+   */
+  defaultSortDirection?: 'asc' | 'desc';
 }
 
 const numericChars = new Set([
