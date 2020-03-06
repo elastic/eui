@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `highlightAll` prop to `EuiHighlight` to highlight all matches ([#2957](https://github.com/elastic/eui/pull/2957))
 - Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
 - Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
 - Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
