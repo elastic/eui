@@ -153,8 +153,7 @@ export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
-    pageSize =>
-      setPagination(pagination => ({ ...pagination, pageSize, pageIndex: 0 })),
+    pageSize => setPagination(pagination => ({ ...pagination, pageSize })),
     [setPagination]
   );
   const onChangePage = useCallback(

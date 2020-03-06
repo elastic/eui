@@ -190,7 +190,6 @@ function renderPagination(props: EuiDataGridProps) {
   if (pagination == null) {
     return null;
   }
-
   const {
     pageIndex,
     pageSize,
@@ -203,6 +202,15 @@ function renderPagination(props: EuiDataGridProps) {
 
   if (props.rowCount < pageSizeOptions[0]) {
     return null;
+  }
+
+  if (pageIndex * pageSize > props.rowCount) {
+    if (
+      // eslint-disable-next-line no-restricted-globals
+      confirm('Table is out of index Would you like to reset to index 0')
+    ) {
+      onChangePage(0);
+    }
   }
 
   return (
