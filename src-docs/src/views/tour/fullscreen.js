@@ -89,12 +89,12 @@ export default () => {
 
   const onSelectColor = color => {
     setColor(color);
-    actions.incrementStep();
+    actions.goToStep(3);
   };
 
   const onTabClick = id => {
     if (id === 'stat') {
-      actions.incrementStep();
+      actions.goToStep(4);
     }
     setSelectedTabId(id);
   };

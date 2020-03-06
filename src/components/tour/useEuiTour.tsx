@@ -42,6 +42,15 @@ export const useEuiTour = (
           ...state,
           currentTourStep: state.currentTourStep - 1,
         };
+      case 'EUI_TOUR_GOTO': {
+        const step = action.payload
+          ? action.payload.step
+          : state.currentTourStep;
+        return {
+          ...state,
+          currentTourStep: step,
+        };
+      }
       default:
         return state;
     }
@@ -77,6 +86,8 @@ export const useEuiTour = (
     resetTour: () => dispatch({ type: 'EUI_TOUR_RESET' }),
     decrementStep: () => dispatch({ type: 'EUI_TOUR_PREVIOUS' }),
     incrementStep: () => dispatch({ type: 'EUI_TOUR_NEXT' }),
+    goToStep: (step: number) =>
+      dispatch({ type: 'EUI_TOUR_NEXT', payload: { step } }),
   };
 
   return [steps, actions, state];

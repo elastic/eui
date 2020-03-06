@@ -68,5 +68,5 @@ export interface EuiTourAction {
 }
 
 export interface EuiTourActions {
-  [key: string]: (action: EuiTourAction) => void;
+  [key: string]: (params: any) => void; // TODO: check this
 }
