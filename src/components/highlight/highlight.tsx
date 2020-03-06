@@ -112,7 +112,7 @@ const getHightlightWords = (
   return fillInChunks(matches, searchSubject.length);
 };
 
-export const fillInChunks = (
+const fillInChunks = (
   chunksToHighlight: EuiHighlightChunk[],
   totalLength: number
 ) => {
