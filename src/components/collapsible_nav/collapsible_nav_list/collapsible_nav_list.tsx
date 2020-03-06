@@ -46,7 +46,7 @@ export interface EuiCollapsibleNavListProps
 
 export const EuiCollapsibleNavList: FunctionComponent<
   EuiCollapsibleNavListProps
-> = ({ className, listItems, onPinClick, ...rest }) => {
+> = ({ className, listItems, color = 'subdued', onPinClick, ...rest }) => {
   const classes = classNames('euiCollapsibleNavList', className);
 
   // Alter listItems object with extra props
@@ -58,7 +58,6 @@ export const EuiCollapsibleNavList: FunctionComponent<
       item.className
     );
     itemProps.size = item.size || 's';
-    itemProps.color = item.color || 'subdued';
 
     // Add the pinning action unless the item has it's own extra action
     if (onPinClick && !itemProps.extraAction) {
@@ -80,6 +79,7 @@ export const EuiCollapsibleNavList: FunctionComponent<
       className={classes}
       listItems={newListItems}
       gutterSize="none"
+      color={color}
       {...rest}
     />
   );
