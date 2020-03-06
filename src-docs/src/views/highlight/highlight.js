@@ -41,15 +41,9 @@ export class Highlight extends Component {
           onChange={e => this.setHighlightAll(e)}
         />
         <EuiSpacer size="m" />
-        {isHighlightAll ? (
-          <EuiHighlight search={searchValue} highlightAll>
-            The quick brown fox jumped over the lazy dog
-          </EuiHighlight>
-        ) : (
-          <EuiHighlight search={searchValue}>
-            The quick brown fox jumped over the lazy dog
-          </EuiHighlight>
-        )}
+        <EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
+          The quick brown fox jumped over the lazy dog
+        </EuiHighlight>
       </Fragment>
     );
   }
