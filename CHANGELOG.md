@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- `EuiDataGrid`' creates an alert when out of index on table ([#2978](https://github.com/elastic/eui/pull/2978))
+- `EuiDataGrid`' creates an alert when out of index on table ([#2997](https://github.com/elastic/eui/pull/2997))
 - Fixed `EuiDataGrid`'s pagination visibility when changing rows per page ([#2978](https://github.com/elastic/eui/pull/2978))
 - Added `highlightAll` prop to `EuiHighlight` to highlight all matches ([#2957](https://github.com/elastic/eui/pull/2957))
 - Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
