@@ -461,7 +461,13 @@ const resolveOperator = (operator: OperatorType) => {
   }
 };
 
-export const defaultSyntax = Object.freeze({
+export type Syntax = Readonly<{
+  printClause: (clause: Clause, text: string, options: any) => string;
+  print: (ast: _AST, options?: {}) => string;
+  parse: (query: string, options?: ParseOptions) => _AST;
+}>;
+
+export const defaultSyntax: Syntax = Object.freeze({
   parse: (query: string, options: ParseOptions = {}) => {
     const dateFormat = options.dateFormat || defaultDateFormat;
     const parseDate = dateValueParser(dateFormat);

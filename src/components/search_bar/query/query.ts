@@ -1,4 +1,4 @@
-import { defaultSyntax, ParseOptions } from './default_syntax';
+import { defaultSyntax, ParseOptions, Syntax } from './default_syntax';
 import { executeAst } from './execute_ast';
 import { isNil, isString } from '../../../services/predicate';
 import { astToEsQueryDsl } from './ast_to_es_query_dsl';
@@ -11,7 +11,11 @@ import { _AST, AST, Clause, Operator, OperatorType, Value } from './ast';
  * It is immutable - all mutating operations return a new (mutated) query instance.
  */
 export class Query {
-  static parse(text: string, options?: ParseOptions, syntax = defaultSyntax) {
+  static parse(
+    text: string,
+    options?: ParseOptions,
+    syntax: Syntax = defaultSyntax
+  ) {
     return new Query(syntax.parse(text, options), syntax, text);
   }
 
@@ -33,11 +37,12 @@ export class Query {
     return AST.Field.isInstance(clause);
   }
 
-  private ast: _AST;
+  // This ought to be `private`, but Kibana has some customizations that rely on access to this field
+  public ast: _AST;
   public text: string;
-  private syntax: any;
+  private syntax: Syntax;
 
-  constructor(ast: _AST, syntax = defaultSyntax, text?: string) {
+  constructor(ast: _AST, syntax: Syntax = defaultSyntax, text?: string) {
     this.ast = ast;
     this.text = text || syntax.print(ast);
     this.syntax = syntax;
