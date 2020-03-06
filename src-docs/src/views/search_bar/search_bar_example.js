@@ -37,9 +37,9 @@ export const SearchBarExample = {
       text: (
         <div>
           <p>
-            A <EuiCode>EuiSearchBar</EuiCode> is a toolbar that enables the user
-            to create/define a search query. This can be done either by entering
-            the query syntax in a search box or by clicking any of the
+            An <EuiCode>EuiSearchBar</EuiCode> is a toolbar that enables the
+            user to create/define a search query. This can be done either by
+            entering the query syntax in a search box or by clicking any of the
             configured filters. The query language is not meant to be full blown
             search language for arbitrary data (e.g. as required in the Discover
             App in Kibana), yet it does provide some useful features:
@@ -231,8 +231,8 @@ export const SearchBarExample = {
       text: (
         <div>
           <p>
-            A <EuiCode>EuiSearchBar</EuiCode> can have its query controlled by a
-            parent component by passing the <EuiCode>query</EuiCode> prop.
+            An <EuiCode>EuiSearchBar</EuiCode> can have its query controlled by
+            a parent component by passing the <EuiCode>query</EuiCode> prop.
             Changes to the query will be passed back up through the{' '}
             <EuiCode>onChange</EuiCode> callback where the new query must be
             stored in state and passed back into the search bar.
@@ -256,7 +256,7 @@ export const SearchBarExample = {
       text: (
         <div>
           <p>
-            A <EuiCode>EuiSearchBar</EuiCode> can have custom filter dropdowns
+            An <EuiCode>EuiSearchBar</EuiCode> can have custom filter dropdowns
             that control how a user can search.
           </p>
         </div>
