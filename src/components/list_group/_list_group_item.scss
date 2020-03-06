@@ -46,7 +46,7 @@
   }
 
   @each $colorName, $color in $euiListGroupItemColorTypes {
-    .euiListGroupItem--#{$colorName} & {
+    .euiListGroupItem--#{$colorName} &:not(:disabled) {
       color: $color;
     }
   }

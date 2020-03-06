@@ -37,6 +37,11 @@ export type EuiListGroupProps = CommonProps &
     listItems?: EuiListGroupItemProps[];
 
     /**
+     * Change the colors of all `listItems` at once
+     */
+    color?: EuiListGroupItemProps['color'];
+
+    /**
      * Sets the max-width of the page,
      * set to `true` to use the default size,
      * set to `false` to not restrict the width,
@@ -68,6 +73,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   wrapText = false,
   maxWidth = true,
   showToolTips = false,
+  color,
   ariaLabelledby,
   ...rest
 }) => {
@@ -105,6 +111,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           key={`title-${index}`}
           showToolTip={showToolTips}
           wrapText={wrapText}
+          color={color}
           {...item}
         />,
       ];
