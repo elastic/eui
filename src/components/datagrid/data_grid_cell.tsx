@@ -114,10 +114,19 @@ export class EuiDataGridCell extends Component<
 
   updateFocus = () => {
     const cell = this.cellRef.current;
+    const tabbingRef = this.tabbingRef;
     const { isFocused } = this.props;
 
-    if (cell && isFocused) {
-      cell.focus();
+    if (cell && tabbingRef && isFocused) {
+      const interactables = tabbingRef.querySelectorAll<HTMLElement>(
+        '[data-datagrid-interactable=true]'
+      );
+      if (this.props.isExpandable === false && interactables.length === 1) {
+        // Only one element can be interacted with
+        interactables[0].focus();
+      } else {
+        cell.focus();
+      }
     }
   };
 
@@ -178,7 +187,9 @@ export class EuiDataGridCell extends Component<
     if (this.tabbingRef) {
       const tabbables = tabbable(this.tabbingRef);
       for (let i = 0; i < tabbables.length; i++) {
-        tabbables[i].setAttribute('tabIndex', '-1');
+        const element = tabbables[i];
+        element.setAttribute('tabIndex', '-1');
+        element.setAttribute('data-datagrid-interactable', 'true');
       }
     }
   };

@@ -76,6 +76,7 @@ import { CopyExample } from './views/copy/copy_example';
 import { DataGridExample } from './views/datagrid/datagrid_example';
 import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
 import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
+import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 
@@ -339,6 +340,7 @@ const navigation = [
       DataGridExample,
       DataGridMemoryExample,
       DataGridSchemaExample,
+      DataGridFocusExample,
       DataGridStylingExample,
       DataGridControlColumnsExample,
       TableExample,
