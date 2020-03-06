@@ -2,13 +2,10 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import {
-  EuiInMemoryTable,
-  EuiInMemoryTableProps,
-  FilterConfig,
-} from './in_memory_table';
+import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { ENTER } from '../../services/key_codes';
 import { SortDirection } from '../../services';
+import { FilterConfig } from '../search_bar/filters';
 
 interface BasicItem {
   id: number | string;
@@ -652,6 +649,7 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       search: {
+        onChange: () => {},
         defaultQuery: 'name:name1',
         box: {
           incremental: true,
@@ -702,7 +700,9 @@ describe('EuiInMemoryTable', () => {
             name: 'Name',
           },
         ],
-        search: {},
+        search: {
+          onChange: () => true,
+        },
         className: 'testTable',
       };
 
@@ -768,7 +768,10 @@ describe('EuiInMemoryTable', () => {
             name: 'Name',
           },
         ],
-        search: { defaultQuery: 'No' },
+        search: {
+          onChange: () => {},
+          defaultQuery: 'No',
+        },
         className: 'testTable',
         message: <span className="customMessage">No items found!</span>,
       };
@@ -810,6 +813,7 @@ describe('EuiInMemoryTable', () => {
           },
         ],
         search: {
+          onChange: () => {},
           defaultQuery: 'No',
         },
         className: 'testTable',
