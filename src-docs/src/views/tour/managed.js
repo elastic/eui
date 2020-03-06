@@ -8,9 +8,8 @@ import {
   EuiFormRow,
   EuiSpacer,
   EuiTextArea,
+  EuiTour,
 } from '../../../../src/components';
-
-import { EuiTour } from '../../../../src/components/tour';
 
 const demoTourSteps = [
   {
@@ -52,12 +51,6 @@ export default () => {
   } else {
     state = tourConfig;
   }
-
-  // TODO: Find some other update mechanism
-  // useEffect(() => {
-  //   console.log('Updating localStorage', reducerState);
-  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
-  // }, []);
 
   return (
     <EuiTour steps={demoTourSteps} initialState={state}>

@@ -8,9 +8,8 @@ import {
   EuiFormRow,
   EuiSpacer,
   EuiTextArea,
+  useEuiTour,
 } from '../../../../src/components';
-
-import { useEuiTour } from '../../../../src/components/tour';
 
 const demoTourSteps = [
   {

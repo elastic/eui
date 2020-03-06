@@ -9,6 +9,7 @@ import { EuiCode, EuiSpacer, EuiTourStep } from '../../../../src/components';
 import Tour from './tour';
 import Managed from './managed';
 import ManagedHook from './managed_hook';
+import FullScreen from './fullscreen';
 
 const tourSource = require('!!raw-loader!./tour');
 const tourHtml = renderToHtml(Tour);
@@ -16,6 +17,9 @@ const managedSource = require('!!raw-loader!./managed');
 const managedHtml = renderToHtml(Managed);
 const managedHookSource = require('!!raw-loader!./managed_hook');
 const managedHookHtml = renderToHtml(ManagedHook);
+
+const fullSource = require('!!raw-loader!./fullscreen');
+const fullHtml = renderToHtml(FullScreen);
 
 export const TourExample = {
   title: 'Tour',
@@ -88,6 +92,21 @@ export const TourExample = {
         </p>
       ),
       demo: <Managed />,
+    },
+    {
+      title: 'Immersive',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fullSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fullHtml,
+        },
+      ],
+      text: <p />,
+      demo: <FullScreen />,
     },
   ],
 };
