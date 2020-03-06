@@ -34,7 +34,6 @@ export const useColumnSorting = (
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
-
   // prune any non-existant/hidden columns from sorting
   useEffect(() => {
     if (sorting) {
@@ -227,7 +226,12 @@ export const useColumnSorting = (
                                   const nextColumns = [...sorting.columns];
                                   nextColumns.push({
                                     id,
-                                    direction: defaultSortDirection || 'asc',
+                                    direction:
+                                      defaultSortDirection ||
+                                      (schemaDetails(id) &&
+                                        schemaDetails(id)!
+                                          .defaultSortDirection) ||
+                                      'asc',
                                   });
                                   sorting.onSort(nextColumns);
                                 }}>
