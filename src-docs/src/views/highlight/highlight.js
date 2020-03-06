@@ -4,6 +4,7 @@ import {
   EuiHighlight,
   EuiFieldSearch,
   EuiSpacer,
+  EuiSwitch,
 } from '../../../../src/components';
 
 export class Highlight extends Component {
@@ -12,6 +13,7 @@ export class Highlight extends Component {
 
     this.state = {
       searchValue: 'jumped over',
+      isHighlightAll: false,
     };
   }
 
@@ -22,15 +24,24 @@ export class Highlight extends Component {
     });
   };
 
+  setHighlightAll = e => {
+    this.setState({ isHighlightAll: e.target.checked });
+  };
+
   render() {
-    const { searchValue } = this.state;
+    const { searchValue, isHighlightAll } = this.state;
     return (
       <Fragment>
         <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
 
         <EuiSpacer size="m" />
-
-        <EuiHighlight search={searchValue}>
+        <EuiSwitch
+          label="Highlight all"
+          checked={isHighlightAll}
+          onChange={e => this.setHighlightAll(e)}
+        />
+        <EuiSpacer size="m" />
+        <EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
           The quick brown fox jumped over the lazy dog
         </EuiHighlight>
       </Fragment>
