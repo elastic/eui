@@ -200,7 +200,7 @@ function renderPagination(props: EuiDataGridProps) {
 
   const pageCount = Math.ceil(props.rowCount / pageSize);
 
-  if (props.rowCount === 0) {
+  if (props.rowCount < pageSizeOptions[0]) {
     return null;
   }
 
