@@ -7,7 +7,7 @@ exports[`EuiCollapsibleNavList is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiListGroupItem--small euiCollapsibleNavList__item"
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiCollapsibleNavList__item"
   >
     <span
       class="euiListGroupItem__text"
@@ -25,7 +25,7 @@ exports[`EuiCollapsibleNavList is rendered 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-hasExtraAction euiCollapsibleNavList__item"
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-hasExtraAction euiCollapsibleNavList__item"
   >
     <span
       class="euiListGroupItem__text"
@@ -49,7 +49,7 @@ exports[`EuiCollapsibleNavList is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiCollapsibleNavList__item"
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-isClickable euiCollapsibleNavList__item"
   >
     <button
       class="euiListGroupItem__button"
@@ -64,7 +64,7 @@ exports[`EuiCollapsibleNavList is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiCollapsibleNavList__item"
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-isClickable euiCollapsibleNavList__item"
   >
     <a
       class="euiListGroupItem__button"
@@ -77,6 +77,121 @@ exports[`EuiCollapsibleNavList is rendered 1`] = `
         Link with href
       </span>
     </a>
+  </li>
+</ul>
+`;
+
+exports[`EuiCollapsibleNavList renders pinning options only if onPinClick is provided 1`] = `
+<ul
+  class="euiListGroup euiListGroup-maxWidthDefault euiCollapsibleNavList"
+>
+  <li
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-hasExtraAction euiCollapsibleNavList__item"
+  >
+    <span
+      class="euiListGroupItem__text"
+    >
+      <div
+        class="euiListGroupItem__icon"
+        data-euiicon-type="stop"
+      />
+      <span
+        class="euiListGroupItem__label"
+        title="Label with iconType"
+      >
+        Label with iconType
+      </span>
+    </span>
+    <button
+      aria-label="Pin to top"
+      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiCollapsibleNavList__itemExtraAction"
+      title="Pin to top"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="pinFilled"
+      />
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-hasExtraAction euiCollapsibleNavList__item"
+  >
+    <span
+      class="euiListGroupItem__text"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Custom extra action"
+      >
+        Custom extra action
+      </span>
+    </span>
+    <button
+      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="bell"
+      />
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiCollapsibleNavList__item"
+  >
+    <button
+      class="euiListGroupItem__button"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Button with onClick"
+      >
+        Button with onClick
+      </span>
+    </button>
+    <button
+      aria-label="Unpin item"
+      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiCollapsibleNavList__itemExtraAction euiCollapsibleNavList__itemExtraAction-pinned"
+      title="Unpin item"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="pinFilled"
+      />
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiCollapsibleNavList__item"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Link with href"
+      >
+        Link with href
+      </span>
+    </a>
+    <button
+      aria-label="Pin to top"
+      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiCollapsibleNavList__itemExtraAction"
+      title="Pin to top"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="pinFilled"
+      />
+    </button>
   </li>
 </ul>
 `;

@@ -58,6 +58,7 @@ export const EuiCollapsibleNavList: FunctionComponent<
       item.className
     );
     itemProps.size = item.size || 's';
+    itemProps.color = item.color || 'subdued';
 
     // Add the pinning action unless the item has it's own extra action
     if (onPinClick && !itemProps.extraAction) {
@@ -75,6 +76,11 @@ export const EuiCollapsibleNavList: FunctionComponent<
   });
 
   return (
-    <EuiListGroup className={classes} listItems={newListItems} {...rest} />
+    <EuiListGroup
+      className={classes}
+      listItems={newListItems}
+      gutterSize="none"
+      {...rest}
+    />
   );
 };

@@ -40,4 +40,12 @@ describe('EuiCollapsibleNavList', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('renders pinning options only if onPinClick is provided', () => {
+    const component = render(
+      <EuiCollapsibleNavList listItems={someListItems} onPinClick={() => {}} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
