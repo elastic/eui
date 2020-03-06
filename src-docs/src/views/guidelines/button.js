@@ -49,7 +49,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiText className="guideSection__text">
-          <h4>Filled buttons are for the primary action</h4>
+          <h3>Filled buttons are for the primary action</h3>
           <p>
             This button has the heaviest visual weight to draw users&apos;
             attention.
@@ -67,7 +67,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiText className="guideSection__text">
-          <h4>Standard buttons are for secondary actions</h4>
+          <h3>Standard buttons are for secondary actions</h3>
           <p>
             Such actions include Add and Apply. This button type works well for
             multiple actions of equal weight.
@@ -85,7 +85,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiText className="guideSection__text">
-          <h4>Empty buttons are for complementary, UI-specific actions</h4>
+          <h3>Empty buttons are for complementary, UI-specific actions</h3>
           <p>
             Close, cancel, filter, refresh, and other actions that reconfigure
             the UI are appropriate for empty buttons.
@@ -111,7 +111,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiText className="guideSection__text">
-          <h4>Icon buttons are for saving space</h4>
+          <h3>Icon buttons are for saving space</h3>
           <p>
             The icon must be immediately understood, for example, a trash can
             for delete. Use these buttons sparingly, and never for the primary

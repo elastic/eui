@@ -1,4 +1,4 @@
-export { EuiHeader, EuiHeaderProps } from './header';
+export { EuiHeader, EuiHeaderProps, EuiHeaderSections } from './header';
 
 export { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
 
