@@ -15,7 +15,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
         id="navDrawerMenu"
       >
         <ul
-          class="euiListGroup euiListGroup-flush euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
+          class="euiListGroup euiListGroup-flush euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction navDrawerExpandButton-isCollapsed"
@@ -42,7 +42,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
           </li>
         </ul>
         <ul
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+          class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawerGroup"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiNavDrawerGroup__item"
@@ -96,7 +96,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
           </li>
         </ul>
         <ul
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+          class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawerGroup"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
@@ -276,7 +276,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
         id="navDrawerMenu"
       >
         <ul
-          class="euiListGroup euiListGroup-flush euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
+          class="euiListGroup euiListGroup-flush euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction navDrawerExpandButton-isCollapsed"
@@ -303,7 +303,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
           </li>
         </ul>
         <ul
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+          class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawerGroup"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"
@@ -483,7 +483,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
         id="navDrawerMenu"
       >
         <ul
-          class="euiListGroup euiListGroup-flush euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
+          class="euiListGroup euiListGroup-flush euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawer__expandButton"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction navDrawerExpandButton-isCollapsed"
@@ -510,7 +510,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
           </li>
         </ul>
         <ul
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+          class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawerGroup"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiNavDrawerGroup__item"
@@ -564,7 +564,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
           </li>
         </ul>
         <ul
-          class="euiListGroup euiListGroup-maxWidthDefault euiNavDrawerGroup"
+          class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault euiNavDrawerGroup"
         >
           <li
             class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiNavDrawerGroup__item"

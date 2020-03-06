@@ -15,3 +15,12 @@ exports[`EuiScreenReaderOnly adds an accessibility class to a child element when
   This paragraph is not visibile to sighted users but will be read by screenreaders.
 </p>
 `;
+
+exports[`EuiScreenReaderOnly will show on focus 1`] = `
+<a
+  class="euiScreenReaderOnly--showOnFocus"
+  href="#"
+>
+  Link
+</a>
+`;

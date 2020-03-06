@@ -8,6 +8,7 @@ import React, {
   Fragment,
   ReactChild,
   useMemo,
+  useRef,
   Dispatch,
   SetStateAction,
 } from 'react';
@@ -624,6 +625,18 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     orderedVisibleColumns
   );
 
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Because of a weird Chrome bug with position:sticky css items and focus, we force scrolling to the top
+  // if the item is in the first row. This prevents the cell from ever being under the sticky header.
+  useEffect(() => {
+    if (focusedCell !== undefined && focusedCell[1] === 0) {
+      if (contentRef.current != null) {
+        contentRef.current.scrollTop = 0;
+      }
+    }
+  }, [focusedCell]);
+
   const classes = classNames(
     'euiDataGrid',
     fontSizesToClassMap[gridStyles.fontSize!],
@@ -843,6 +856,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     />
                   ) : null}
                   <div
+                    ref={contentRef}
                     className="euiDataGrid__content"
                     role="grid"
                     {...gridAriaProps}>
