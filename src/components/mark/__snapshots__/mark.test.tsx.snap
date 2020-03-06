@@ -1,36 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiMark behavior loose matching matches strings with different casing 1`] = `
-<span>
-  different 
-  <mark>
-    case
-  </mark>
-   match
-</span>
-`;
-
-exports[`EuiMark behavior matching only applies to first match 1`] = `
-<span>
-  <mark>
-    match
-  </mark>
-   match match
-</span>
-`;
-
-exports[`EuiMark behavior strict matching doesn't match strings with different casing 1`] = `
-<span>
-  different case match
-</span>
-`;
-
 exports[`EuiMark is rendered 1`] = `
-<span
-  aria-label="aria-label"
-  class="testClass1 testClass2"
-  data-test-subj="test subject string"
+<mark
+  class="euiMark"
 >
-  value
-</span>
+  Marked
+</mark>
 `;

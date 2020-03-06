@@ -27,8 +27,7 @@ export const MarkExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiMark</EuiCode> to mark substrings within a string,
-          typically in response to user input.
+          Use <EuiCode>EuiMark</EuiCode> to mark substrings within a string.
         </p>
       ),
       components: { EuiMark },
