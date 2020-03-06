@@ -21,6 +21,7 @@ import {
 const columns = [
   {
     id: 'name',
+    defaultSortDirection: 'asc',
   },
   {
     id: 'email',
@@ -49,6 +50,7 @@ const columns = [
   },
   {
     id: 'date',
+    defaultSortDirection: 'desc',
   },
   {
     id: 'amount',
@@ -59,6 +61,7 @@ const columns = [
   },
   {
     id: 'version',
+    defaultSortDirection: 'desc',
     initialWidth: 65,
     isResizable: false,
   },
