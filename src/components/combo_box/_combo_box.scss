@@ -187,11 +187,11 @@
       cursor: default !important; // pointer cursor on some form labels but not others is confusing
       }
 
-      //
-      // BORDERS on buttons only
+    //
+    // BORDERS on buttons only
 
-      .euiButtonEmpty {
-        border-right: $euiFormInputGroupBorder;
-      }
+    .euiButtonEmpty {
+      border-right: $euiFormInputGroupBorder;
+    }
   }
 }
