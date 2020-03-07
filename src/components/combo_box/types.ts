@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactElement } from 'react';
 import { CommonProps } from '../common';
 
 // note similarity to `Option` in `components/selectable/types.tsx`
@@ -24,3 +24,9 @@ export type EuiComboBoxOptionsListPosition = 'top' | 'bottom';
 export interface EuiComboBoxSingleSelectionShape {
   asPlainText?: boolean;
 }
+
+type StringOrReactElement = string | ReactElement;
+
+export type EuiComboBoxAppendPrepend =
+  | StringOrReactElement
+  | StringOrReactElement[];

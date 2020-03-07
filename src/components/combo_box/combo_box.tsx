@@ -41,19 +41,17 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
+  EuiComboBoxAppendPrepend,
 } from './types';
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
-import { EuiFormControlLayoutProps, EuiFormLabel } from '../form';
+import { EuiFormLabel } from '../form';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
   'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
 >;
-
-type StringOrReactElement = string | ReactElement;
-type PrependAppendType = StringOrReactElement | StringOrReactElement[];
 
 interface _EuiComboBoxProps<T>
   extends CommonProps,
@@ -79,8 +77,8 @@ interface _EuiComboBoxProps<T>
   placeholder?: string;
   rowHeight?: number;
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
-  prepend?: EuiFormControlLayoutProps['prepend'];
-  append?: EuiFormControlLayoutProps['append'];
+  prepend?: EuiComboBoxAppendPrepend;
+  append?: EuiComboBoxAppendPrepend;
 }
 
 /**
@@ -937,7 +935,7 @@ export class EuiComboBox<T> extends Component<
   }
   renderSideNode(
     side: 'append' | 'prepend',
-    nodes?: PrependAppendType,
+    nodes?: EuiComboBoxAppendPrepend,
     inputId?: string
   ) {
     if (!nodes) {
