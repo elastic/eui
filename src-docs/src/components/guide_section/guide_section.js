@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
+import { LiveProvider, LivePreview, LiveEditor, LiveError } from 'react-live';
 import PropTypes from 'prop-types';
 
+import scope from './scope';
 import {
   EuiCode,
   EuiCodeBlock,
@@ -85,10 +87,10 @@ const humanizeType = type => {
   return humanizedType;
 };
 
-const nameToCodeClassMap = {
-  javascript: 'javascript',
-  html: 'html',
-};
+// const nameToCodeClassMap = {
+//   javascript: 'javascript',
+//   html: 'html',
+// };
 
 export class GuideSection extends Component {
   constructor(props) {
@@ -167,34 +169,34 @@ export class GuideSection extends Component {
             "from '@elastic/eui';"
           );
         renderedCode = renderedCode.split('\n');
-        const linesWithImport = [];
+        let from = false,
+          noInline = false;
         // eslint-disable-next-line guard-for-in
         for (const idx in renderedCode) {
           const line = renderedCode[idx];
-          if (
-            line.includes('import') &&
-            line.includes("from '@elastic/eui';")
-          ) {
-            linesWithImport.push(line);
-            renderedCode[idx] = '';
+          if (line.includes('import ')) {
+            renderedCode[idx] = `// ${line}`;
+            from = true;
           }
-        }
-        if (linesWithImport.length > 1) {
-          linesWithImport[0] = linesWithImport[0].replace(
-            " } from '@elastic/eui';",
-            ','
-          );
-          for (let i = 1; i < linesWithImport.length - 1; i++) {
-            linesWithImport[i] = linesWithImport[i]
-              .replace('import {', '')
-              .replace(" } from '@elastic/eui';", ',');
+          if (line.includes(' from ')) {
+            renderedCode[idx] = `// ${line}`;
+            from = false;
           }
-          linesWithImport[linesWithImport.length - 1] = linesWithImport[
-            linesWithImport.length - 1
-          ].replace('import {', '');
+          if (from) renderedCode[idx] = `// ${line}`;
+          if (line.includes('export default')) {
+            renderedCode[idx] = renderedCode[idx].replace('export default', '');
+          }
+          if (line.includes('render ')) {
+            noInline = true;
+          }
+          // if (line.includes('class extends ')) {
+          //   renderedCode[idx] = renderedCode[idx].replace(
+          //     'class extends ',
+          //     'class Demo extends '
+          //   );
+          // }
         }
-        const newImport = linesWithImport.join('');
-        renderedCode.unshift(newImport);
+
         renderedCode = renderedCode.join('\n');
         let len = renderedCode.replace('\n\n\n', '\n\n').length;
         while (len < renderedCode.length) {
@@ -436,9 +438,13 @@ export class GuideSection extends Component {
   renderCode(name) {
     return (
       <div key={name} ref={name}>
-        <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
-          {this.state.renderedCode}
-        </EuiCodeBlock>
+        {/* <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}> */}
+        <LiveProvider code={this.state.renderedCode} scope={scope}>
+          <LivePreview />
+          <LiveEditor />
+          <LiveError />
+        </LiveProvider>
+        {/* </EuiCodeBlock> */}
       </div>
     );
   }
