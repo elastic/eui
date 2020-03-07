@@ -23,7 +23,7 @@
     // sass-lint:disable-block no-important
     // Using !important to override inline styles
     background-color: $euiButtonColorDisabled !important;
-    color: $euiColorEmptyShade !important;
+    color: $euiButtonColorDisabledText !important;
   }
 
   &:focus-within {
