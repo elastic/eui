@@ -111,8 +111,8 @@ export const ContrastSlider = ({ contrastValue, onChange }) => {
             step={0.5}
             value={value}
             onChange={e => {
-              setValue(e.target.value);
-              onChange(e.target.value);
+              setValue(e.currentTarget.value);
+              onChange(e.currentTarget.value);
             }}
             showTicks
             showValue

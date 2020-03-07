@@ -43,12 +43,12 @@ export default ({ selectedTheme }) => {
       <EuiSpacer size="xxl" />
 
       <EuiText grow={false} className="guideSection__text">
-        <h2>Understanding the naming</h2>
+        <h2>Variable naming</h2>
         <p>
           We use the same variable names of each color in all themes. That means
           that our gray color names are opposite of their values in dark mode.
           By just changing the values of the color, and not the usages of the
-          variables, we make it easier for development multiple themes.
+          variables, we make it easier for the development multiple themes.
         </p>
       </EuiText>
 
@@ -92,7 +92,9 @@ export default ({ selectedTheme }) => {
 
       <ContrastSlider
         contrastValue={contrastValue}
-        onChange={value => setContrastValue(value)}
+        onChange={value => {
+          setContrastValue(value);
+        }}
       />
 
       <EuiSpacer size="xxl" />
