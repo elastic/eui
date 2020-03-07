@@ -136,9 +136,12 @@ export class GuideSection extends Component {
       });
     }
 
+    //Finding existing sandbox content.
     const sandBox = this.props.source.find(sourceObject =>
       sourceObject.type === 'sandbox' ? true : false
     );
+
+    //Adding Sandbox Tab if sandbox content exists.
     if (sandBox) {
       this.tabs.push({
         name: 'sandbox',
@@ -433,6 +436,7 @@ export class GuideSection extends Component {
       return <EuiErrorBoundary>{this.renderSnippet()}</EuiErrorBoundary>;
     }
     if (this.state.selectedTab.name === 'sandbox') {
+      //Rendering the integration of sandbox
       return (
         <iframe
           title="codesandbox"

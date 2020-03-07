@@ -28,6 +28,7 @@ export const AvatarExample = {
           code: avatarHtml,
         },
         {
+          //Including CodeSandBox type constant and respective sandbox url.
           type: GuideSectionTypes.CodeSandBox,
           code:
             'https://codesandbox.io/embed/eui-avatar1-z4074?fontsize=14&hidenavigation=1&theme=dark',
