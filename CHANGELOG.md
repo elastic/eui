@@ -9,7 +9,7 @@
 - Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
 - Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
-
+- Added `EuiMark` to mark the text ([#2805](https://github.com/elastic/eui/pull/2947))
 **Bug Fixes**
 
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
@@ -80,6 +80,7 @@
 - Added `image` glyph to `EuiIcon` ([#2870](https://github.com/elastic/eui/pull/2870))
 - Exported TS props from top level `EuiListGroupProps`, `EuiListGroupItemProps`, `EuiSelectableProps`,  `EuiSelectableOption`, `EuiSelectableOptionsListProps` ([#2869](https://github.com/elastic/eui/pull/2869))
 - Extending `EuiSelectable[options]` type with correct HTML element ([#2869](https://github.com/elastic/eui/pull/2869))
+<<<<<<< HEAD
 - Added check mark to single selection `EuiComboBox` ([#2890](https://github.com/elastic/eui/pull/2890))
 - Added `logoGoogleG` third-party logo to `EuiIcon` ([#2853](https://github.com/elastic/eui/pull/2853))
 - Added Jest `modulesNameMapper` alias for `EuiIcon` using test environment mock ([#2878](https://github.com/elastic/eui/pull/2878))
