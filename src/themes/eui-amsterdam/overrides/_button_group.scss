@@ -1,0 +1,14 @@
+.euiButtonGroup--compressed {
+  .euiButtonGroup__button {
+    &:not(.euiButtonGroup__button--selected):not(:disabled) {
+      background-color: transparentize($euiColorLightShade, .6);
+    }
+  }
+
+  .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button,
+  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button,
+  .euiButtonGroup__button--selected {
+    background-color: $euiColorDarkShade;
+    color: $euiColorLightestShade;
+  }
+}

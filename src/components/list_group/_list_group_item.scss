@@ -1,16 +1,12 @@
 .euiListGroupItem {
   padding: 0;
-  margin-top: $euiSizeS;
   border-radius: $euiBorderRadius;
   overflow: hidden;
   display: flex;
   align-items: center;
   transition: background-color $euiAnimSpeedFast;
   position: relative;
-
-  &:first-child {
-    margin-top: 0;
-  }
+  line-height: $euiSize;
 
   &.euiListGroupItem-isActive,
   &.euiListGroupItem-isClickable:hover {
@@ -43,9 +39,16 @@
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
   text-align: left;
   max-width: 100%;
+  font-weight: inherit;
 
   .euiListGroupItem-hasExtraAction & {
     max-width: calc(100% - #{$euiSizeXL});
+  }
+
+  @each $colorName, $color in $euiListGroupItemColorTypes {
+    .euiListGroupItem--#{$colorName} & {
+      color: $color;
+    }
   }
 }
 
@@ -74,19 +77,21 @@
   flex-shrink: 0;
 }
 
-.euiListGroupItem--xSmall {
-  font-size: $euiFontSizeXS;
-  line-height: $euiSizeM;
+// Font sizes
+@each $sizeName, $fontSize in $euiListGroupItemSizeTypes {
+  .euiListGroupItem--#{$sizeName} {
+    font-size: $fontSize;
+  }
 }
 
+.euiListGroupItem--xSmall,
 .euiListGroupItem--small {
-  font-size: $euiFontSizeS;
-  line-height: $euiSize;
+  font-weight: $euiFontWeightMedium;
+  letter-spacing: 0;
 }
 
-.euiListGroupItem--large {
-  font-size: $euiFontSizeL;
-  line-height: $euiSize;
+.euiListGroupItem--xSmall {
+  line-height: $euiSizeM;
 }
 
 .euiListGroupItem--wrapText {

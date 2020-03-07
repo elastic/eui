@@ -2,7 +2,8 @@
 
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
-  id="6"
+  arrowDisplay="left"
+  id="8"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -13,7 +14,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="6"
+        aria-controls="8"
         aria-expanded={false}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -27,25 +28,11 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             size="m"
             type="arrowRight"
           >
-            <EuiIconEmpty
-              aria-hidden={true}
-              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-              focusable="false"
-              role="img"
-              style={null}
-            >
-              <svg
-                aria-hidden={true}
-                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-                focusable="false"
-                height={16}
-                role="img"
-                style={null}
-                viewBox="0 0 16 16"
-                width={16}
-                xmlns="http://www.w3.org/2000/svg"
-              />
-            </EuiIconEmpty>
+            <div
+              className="euiAccordion__icon"
+              data-euiicon-type="arrowRight"
+              size="m"
+            />
           </EuiIcon>
         </span>
         <span />
@@ -53,7 +40,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="6"
+      id="8"
     >
       <EuiMutationObserver
         observerOptions={
@@ -80,7 +67,8 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
-  id="5"
+  arrowDisplay="left"
+  id="7"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -91,7 +79,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="5"
+        aria-controls="7"
         aria-expanded={true}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -105,25 +93,11 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             size="m"
             type="arrowRight"
           >
-            <EuiIconEmpty
-              aria-hidden={true}
-              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
-              focusable="false"
-              role="img"
-              style={null}
-            >
-              <svg
-                aria-hidden={true}
-                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
-                focusable="false"
-                height={16}
-                role="img"
-                style={null}
-                viewBox="0 0 16 16"
-                width={16}
-                xmlns="http://www.w3.org/2000/svg"
-              />
-            </EuiIconEmpty>
+            <div
+              className="euiAccordion__icon euiAccordion__icon-isOpen"
+              data-euiicon-type="arrowRight"
+              size="m"
+            />
           </EuiIcon>
         </span>
         <span />
@@ -131,7 +105,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="5"
+      id="7"
     >
       <EuiMutationObserver
         observerOptions={
@@ -174,15 +148,9 @@ exports[`EuiAccordion is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span />
@@ -196,6 +164,80 @@ exports[`EuiAccordion is rendered 1`] = `
       <div
         class=""
       />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="6"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="6"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="5"
+      aria-expanded="false"
+      class="euiAccordion__button euiAccordion__buttonReverse"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="5"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -217,15 +259,9 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span>
@@ -264,15 +300,9 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span
@@ -309,15 +339,9 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span />
@@ -359,15 +383,9 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
       <span
         class="euiAccordion__iconWrapper"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon euiAccordion__icon-isOpen"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiAccordion__icon euiAccordion__icon-isOpen"
+          data-euiicon-type="arrowRight"
         />
       </span>
       <span />

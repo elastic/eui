@@ -109,7 +109,7 @@ and space to read it properly. Alternatively just link to a full page.
 
           <EuiFlexItem>
             <EuiText className="guideSection__text">
-              <h4>Success toasts indicate that everything worked out</h4>
+              <h3>Success toasts indicate that everything worked out</h3>
               <p>They are the most-commonly used toasts.</p>
             </EuiText>
           </EuiFlexItem>
@@ -128,9 +128,9 @@ and space to read it properly. Alternatively just link to a full page.
 
           <EuiFlexItem>
             <EuiText className="guideSection__text">
-              <h4>
+              <h3>
                 Warning toasts direct user attention to a potential problem
-              </h4>
+              </h3>
               <p>
                 These toasts work well in monitoring apps when something
                 significant requires action.
@@ -152,7 +152,7 @@ and space to read it properly. Alternatively just link to a full page.
 
           <EuiFlexItem>
             <EuiText className="guideSection__text">
-              <h4>Error toasts report a problem</h4>
+              <h3>Error toasts report a problem</h3>
               <p>
                 An error toast might let users know an action didn&apos;t
                 complete or that a form has errors.
@@ -176,7 +176,7 @@ and space to read it properly. Alternatively just link to a full page.
 
           <EuiFlexItem>
             <EuiText className="guideSection__text">
-              <h4>Info toasts relay neutral information</h4>
+              <h3>Info toasts relay neutral information</h3>
               <p>
                 The default toast, an info toast might notify users about an
                 ongoing action.

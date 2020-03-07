@@ -1,0 +1,16 @@
+.euiButtonEmpty {
+  border-radius: $euiBorderRadius;
+
+  &.euiButtonEmpty--small,
+  &.euiButtonEmpty--xSmall {
+    // Use a moderately smaller radius on small buttons
+    // so that they don't appear completely rounded
+    border-radius: $euiBorderRadius * .667;
+  }
+}
+
+@each $name, $color in $euiButtonTypes {
+  .euiButtonEmpty--#{$name}:enabled:focus {
+    background-color: transparentize($color, lightOrDarkTheme(.9, .8));
+  }
+}

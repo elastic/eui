@@ -15,10 +15,6 @@ export interface CommonProps {
 
 export type NoArgCallback<T> = () => T;
 
-export type RefCallback<Element extends HTMLElement | null> = (
-  element: Element
-) => void;
-
 // utility types:
 
 /**

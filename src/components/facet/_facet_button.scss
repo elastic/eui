@@ -31,7 +31,7 @@
   }
 
   &:disabled {
-    color: $euiButtonColorDisabled;
+    color: $euiButtonColorDisabledText;
     pointer-events: none;
 
     .euiFacetButton__content {
