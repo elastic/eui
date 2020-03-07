@@ -870,8 +870,8 @@ export class EuiComboBox<T> extends Component<
       );
     }
 
-    const prependNodes = this.renderSideNode('prepend', prepend);
-    const appendNodes = this.renderSideNode('append', append);
+    const prependNodes = this.renderSideNode('prepend', prepend, id);
+    const appendNodes = this.renderSideNode('append', append, id);
 
     return (
       /**
