@@ -30,7 +30,9 @@ $euiLinkColor: $euiColorPrimary;
 $euiFocusBackgroundColor: #232635;
 $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
-$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%);
+$euiPageBackgroundColor: shade($euiColorLightestShade, 30%);
+$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade);
+$euiTitleColor: $euiTextColor;
 
 // Contrasty text variants
 // These colors are just straight dups of the basic colors for now

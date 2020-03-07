@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../../components';
 import { getSassVars } from '../_get_sass_vars';
 
 import {
@@ -9,17 +10,24 @@ import {
   EuiText,
   EuiFlexGrid,
 } from '../../../../../src/components';
-import { getHexValueFromColorName, ColorsContrastItem } from './_utilities';
+import {
+  getHexValueFromColorName,
+  ColorsContrastItem,
+  allowedColors,
+  textVariants,
+  coreColors,
+  coreTextVariants,
+} from './_utilities';
 
 export const ColorSection = ({
-  theme,
   color,
-  colorsForContrast,
   minimumContrast,
   showTextVariants,
   children,
 }) => {
+  const theme = useContext(ThemeContext).theme;
   const palette = getSassVars(theme);
+  const colorsForContrast = showTextVariants ? textVariants : allowedColors;
   const hex = getHexValueFromColorName(palette, color);
   const iconClass =
     color.includes('Lightest') ||
@@ -29,7 +37,7 @@ export const ColorSection = ({
       : undefined;
 
   function colorIsCore(color) {
-    return !color.includes('Shade') && !color.includes('Page');
+    return coreColors.includes(color) || coreTextVariants.includes(color);
   }
 
   return (

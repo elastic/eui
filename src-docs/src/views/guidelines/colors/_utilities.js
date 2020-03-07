@@ -1,5 +1,5 @@
-import React from 'react';
-import { withTheme } from '../../../components';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../../components';
 import { calculateContrast, rgbToHex } from '../../../../../src/services';
 import { getSassVars } from '../_get_sass_vars';
 
@@ -9,6 +9,44 @@ import {
   EuiCopy,
   EuiFlexItem,
 } from '../../../../../src/components';
+
+export const coreColors = [
+  'euiColorPrimary',
+  'euiColorSecondary',
+  'euiColorAccent',
+  'euiColorWarning',
+  'euiColorDanger',
+];
+
+export const coreTextVariants = [
+  'euiColorPrimaryText',
+  'euiColorSecondaryText',
+  'euiColorAccentText',
+  'euiColorWarningText',
+  'euiColorDangerText',
+];
+
+export const grayColors = [
+  'euiColorEmptyShade',
+  'euiColorLightestShade',
+  'euiColorLightShade',
+  'euiColorMediumShade',
+  'euiColorDarkShade',
+  'euiColorDarkestShade',
+  'euiColorFullShade',
+];
+
+export const textColors = [
+  'euiTextSubduedColor',
+  'euiTextColor',
+  'euiTitleColor',
+  'euiColorGhost',
+  'euiColorInk',
+];
+
+export const allowedColors = [...coreColors, ...grayColors];
+
+export const textVariants = [...coreTextVariants, ...textColors];
 
 export const ratingAAA = (
   <EuiBadge iconType="checkInCircleFilled" color="#000">
@@ -53,13 +91,13 @@ function getContrastRatings(background, foreground, palette) {
   return { contrast, contrastRating, contrastRatingBadge };
 }
 
-export const _ColorsContrastItem = ({
-  theme,
+export const ColorsContrastItem = ({
   foreground,
   background,
   minimumContrast,
 }) => {
-  const palette = getSassVars(theme);
+  const themeContext = useContext(ThemeContext);
+  const palette = getSassVars(themeContext.theme);
 
   const contrastRatings = getContrastRatings(background, foreground, palette);
 
@@ -86,7 +124,7 @@ color: $${foreground};`;
         }
         beforeMessage={
           <small>
-            <kbd>Click</kbd> to copy SCSS configuration
+            <kbd>Click</kbd> to copy SASS configuration
           </small>
         }
         afterMessage={<small>Copied!</small>}
@@ -113,8 +151,6 @@ color: $${foreground};`;
     </EuiFlexItem>
   );
 };
-
-export const ColorsContrastItem = withTheme(_ColorsContrastItem);
 
 export function getHexValueFromColorName(palette, colorName, key) {
   const hex = key ? palette[colorName][key] : palette[colorName];
