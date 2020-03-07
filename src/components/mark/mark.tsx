@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-export type EuiMarkProps = HTMLAttributes<HTMLSpanElement> &
+export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
     children: string;
   };

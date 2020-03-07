@@ -177,7 +177,6 @@ export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
 
-// export { EuiMark } from './mark';
 export { EuiMark } from './mark';
 
 export {

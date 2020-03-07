@@ -118,7 +118,7 @@ import { HeaderExample } from './views/header/header_example';
 
 import { HealthExample } from './views/health/health_example';
 
-import { HighlightExample } from './views/highlight/highlight_example';
+import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_and_mark_example';
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
 
@@ -137,8 +137,6 @@ import { LinkExample } from './views/link/link_example';
 import { ListGroupExample } from './views/list_group/list_group_example';
 
 import { LoadingExample } from './views/loading/loading_example';
-
-import { MarkExample } from './views/mark/mark_example';
 
 import { ModalExample } from './views/modal/modal_example';
 
@@ -415,12 +413,11 @@ const navigation = [
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
-      HighlightExample,
+      HighlightAndMarkExample,
       InnerTextExample,
       I18nExample,
       IsColorDarkExample,
       PrettyDurationExample,
-      MarkExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
       PortalExample,
