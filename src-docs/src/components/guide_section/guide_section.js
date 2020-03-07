@@ -136,6 +136,16 @@ export class GuideSection extends Component {
       });
     }
 
+    const sandBox = this.props.source.find(sourceObject =>
+      sourceObject.type === 'sandbox' ? true : false
+    );
+    if (sandBox) {
+      this.tabs.push({
+        name: 'sandbox',
+        displayName: 'CodeSandbox',
+      });
+    }
+
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
@@ -145,6 +155,12 @@ export class GuideSection extends Component {
   onSelectedTabChanged = selectedTab => {
     const { name } = selectedTab;
     let renderedCode = null;
+    if (name === 'sandbox') {
+      const { code } = this.props.source.find(
+        sourceObject => sourceObject.type === name
+      );
+      renderedCode = code;
+    }
 
     if (name === 'html' || name === 'javascript') {
       const { code } = this.props.source.find(
@@ -415,6 +431,24 @@ export class GuideSection extends Component {
 
     if (this.state.selectedTab.name === 'snippet') {
       return <EuiErrorBoundary>{this.renderSnippet()}</EuiErrorBoundary>;
+    }
+    if (this.state.selectedTab.name === 'sandbox') {
+      return (
+        <iframe
+          title="codesandbox"
+          src={this.state.renderedCode}
+          style={{
+            width: '100%',
+            height: '500px',
+            border: 0,
+            borderRadius: '4px',
+            overflow: 'hidden',
+            margin: '5px 20px 5px 5px',
+          }}
+          allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+          sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+        />
+      );
     }
 
     if (this.state.selectedTab.isCode) {

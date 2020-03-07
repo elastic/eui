@@ -27,6 +27,11 @@ export const AvatarExample = {
           type: GuideSectionTypes.HTML,
           code: avatarHtml,
         },
+        {
+          type: GuideSectionTypes.CodeSandBox,
+          code:
+            'https://codesandbox.io/embed/eui-avatar1-z4074?fontsize=14&hidenavigation=1&theme=dark',
+        },
       ],
       text: (
         <div>
@@ -53,6 +58,11 @@ export const AvatarExample = {
         {
           type: GuideSectionTypes.HTML,
           code: avatarInitialsHtml,
+        },
+        {
+          type: GuideSectionTypes.CodeSandBox,
+          code:
+            'https://codesandbox.io/embed/eui-avatar2-p05tj?fontsize=14&hidenavigation=1&theme=dark',
         },
       ],
       text: (
