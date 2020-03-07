@@ -6,6 +6,7 @@ import {
   EuiFlexItem,
   EuiIcon,
   EuiCopy,
+  EuiScreenReaderOnly,
 } from '../../../../../src/components';
 import { rgbToHex } from '../../../../../src/services';
 import { scrollToSelector } from '../../../components/guide_page/guide_page_chrome';
@@ -45,6 +46,9 @@ export const CorePalette = ({ theme, colors }) => {
                 type="stopFilled"
                 color={rgbToHex(hex.rgba)}
               />
+              <EuiScreenReaderOnly>
+                <span>{color}</span>
+              </EuiScreenReaderOnly>
             </button>
           )}
         </EuiCopy>
