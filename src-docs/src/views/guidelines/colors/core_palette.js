@@ -37,6 +37,7 @@ export const CorePalette = ({ theme, colors }) => {
           textToCopy={color}>
           {copy => (
             <button
+              className="eui-isFocusable"
               onClick={e => {
                 e.shiftKey ? scrollToSelector(`#${color}`) : copy();
               }}>
