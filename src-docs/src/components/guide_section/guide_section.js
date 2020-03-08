@@ -19,6 +19,8 @@ import {
   EuiTitle,
   EuiLink,
 } from '../../../../src/components';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+// import * as liveDemoSope from '../../../../src/components';
 
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -121,7 +123,7 @@ export class GuideSection extends Component {
         {
           name: 'live_demo',
           displayName: 'Live Demo',
-          isCode: true,
+          isCode: false,
         }
       );
     }
@@ -144,68 +146,24 @@ export class GuideSection extends Component {
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
+      liveDemoScope: null,
     };
   }
 
   onSelectedTabChanged = selectedTab => {
     const { name } = selectedTab;
     let renderedCode = null;
-
+    let liveDemoScope = null;
     if (name === 'html' || name === 'javascript' || name === 'live_demo') {
       const { code } = this.props.source.find(
         sourceObject => sourceObject.type === name
       );
       renderedCode = code;
-
       if (name === 'live_demo') {
-        renderedCode = renderedCode
-          .replace(
-            /(from )'(..\/)+src\/components(\/?';)/g,
-            "from '@elastic/eui';"
-          )
-          .replace(
-            /(from )'(..\/)+src\/services(\/?';)/g,
-            "from '@elastic/eui/lib/services';"
-          )
-          .replace(
-            /(from )'(..\/)+src\/components\/.*?';/g,
-            "from '@elastic/eui';"
-          );
-        renderedCode = renderedCode.split('\n');
-        const linesWithImport = [];
-        // eslint-disable-next-line guard-for-in
-        for (const idx in renderedCode) {
-          const line = renderedCode[idx];
-          if (
-            line.includes('import') &&
-            line.includes("from '@elastic/eui';")
-          ) {
-            linesWithImport.push(line);
-            renderedCode[idx] = '';
-          }
-        }
-        if (linesWithImport.length > 1) {
-          linesWithImport[0] = linesWithImport[0].replace(
-            " } from '@elastic/eui';",
-            ','
-          );
-          for (let i = 1; i < linesWithImport.length - 1; i++) {
-            linesWithImport[i] = linesWithImport[i]
-              .replace('import {', '')
-              .replace(" } from '@elastic/eui';", ',');
-          }
-          linesWithImport[linesWithImport.length - 1] = linesWithImport[
-            linesWithImport.length - 1
-          ].replace('import {', '');
-        }
-        const newImport = linesWithImport.join('');
-        renderedCode.unshift(newImport);
-        renderedCode = renderedCode.join('\n');
-        let len = renderedCode.replace('\n\n\n', '\n\n').length;
-        while (len < renderedCode.length) {
-          renderedCode = renderedCode.replace('\n\n\n', '\n\n');
-          len = renderedCode.replace('\n\n\n', '\n\n').length;
-        }
+        const { scope } = this.props.source.find(
+          sourceObject => sourceObject.type === name
+        );
+        liveDemoScope = scope;
       } else if (name === 'javascript') {
         renderedCode = renderedCode
           .replace(
@@ -260,7 +218,7 @@ export class GuideSection extends Component {
       }
     }
 
-    this.setState({ selectedTab, renderedCode });
+    this.setState({ selectedTab, renderedCode, liveDemoScope });
   };
 
   renderTabs() {
@@ -516,6 +474,19 @@ export class GuideSection extends Component {
 
     if (this.state.selectedTab.name === 'props') {
       return <EuiErrorBoundary>{this.renderProps()}</EuiErrorBoundary>;
+    }
+    if (this.state.selectedTab.name === 'live_demo') {
+      return (
+        <EuiErrorBoundary>
+          <LiveProvider
+            code={this.state.renderedCode}
+            scope={this.state.liveDemoScope}>
+            <LiveEditor />
+            <LiveError />
+            <LivePreview />
+          </LiveProvider>
+        </EuiErrorBoundary>
+      );
     }
 
     return (
