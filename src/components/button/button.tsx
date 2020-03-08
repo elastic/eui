@@ -80,6 +80,7 @@ export interface EuiButtonProps extends CommonProps {
    * Object of props passed to the <span/> wrapping the component's {children}
    */
   textProps?: HTMLAttributes<HTMLSpanElement>;
+  onClick?: (prop?: any) => void;
 }
 
 type EuiButtonPropsForAnchor = PropsForAnchor<
@@ -119,6 +120,7 @@ export const EuiButton: FunctionComponent<Props> = ({
   contentProps,
   textProps,
   fullWidth,
+  onClick,
   ...rest
 }) => {
   // If in the loading state, force disabled to true
@@ -180,6 +182,7 @@ export const EuiButton: FunctionComponent<Props> = ({
     href?: string;
     type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
     target?: string;
+    onClick?: () => void;
   } = {};
 
   if (href && !isDisabled) {
@@ -187,6 +190,7 @@ export const EuiButton: FunctionComponent<Props> = ({
     relObj.rel = getSecureRelForTarget({ href, target, rel });
     relObj.target = target;
   } else {
+    relObj.onClick = onClick;
     relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
   }
 

@@ -19,16 +19,16 @@ export default class extends Component {
     };
   }
 
-  onToggle0Change = e => {
-    this.setState({ toggle0On: e.target.checked });
+  onToggle0Change = () => {
+    this.setState({ toggle0On: !this.state.toggle0On });
   };
 
-  onToggle1Change = e => {
-    this.setState({ toggle1On: e.target.checked });
+  onToggle1Change = () => {
+    this.setState({ toggle1On: !this.state.toggle1On });
   };
 
-  onToggle4Change = e => {
-    this.setState({ toggle4On: e.target.checked });
+  onToggle4Change = () => {
+    this.setState({ toggle4On: !this.state.toggle4On });
   };
 
   render() {
@@ -37,7 +37,7 @@ export default class extends Component {
         <EuiButtonToggle
           label="Toggle Me"
           iconType={this.state.toggle0On ? 'starPlusEmpty' : 'starFilledSpace'}
-          onChange={this.onToggle0Change}
+          onChange={() => this.onToggle0Change()}
           isSelected={this.state.toggle0On}
         />
         &emsp;
@@ -48,14 +48,14 @@ export default class extends Component {
               : "I'm a primary toggle"
           }
           fill={this.state.toggle1On}
-          onChange={this.onToggle1Change}
+          onChange={() => this.onToggle1Change()}
           isSelected={this.state.toggle1On}
         />
         &emsp;
         <EuiButtonToggle
           label="Toggle Me"
           iconType={this.state.toggle4On ? 'eye' : 'eyeClosed'}
-          onChange={this.onToggle4Change}
+          onChange={() => this.onToggle4Change()}
           isSelected={this.state.toggle4On}
           isEmpty
           isIconOnly

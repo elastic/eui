@@ -1,7 +1,6 @@
 import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  ChangeEventHandler,
   FunctionComponent,
   MouseEventHandler,
   ReactNode,
@@ -9,9 +8,8 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { EuiToggle, ToggleType } from '../../toggle';
+import { ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
-import { useRenderToText } from '../../inner_text/render_to_text';
 
 export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
   /**
@@ -45,7 +43,9 @@ export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
    */
   type?: ToggleType;
 
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?: () => void;
+  ariaOn?: string;
+  ariaOff?: string;
 }
 
 type EuiButtonTogglePropsForAnchor = EuiButtonToggleProps &
@@ -76,11 +76,13 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
   isSelected,
   label,
   name,
-  onChange,
+  onChange = () => {},
   toggleClassName,
   type,
   value,
   'data-test-subj': dataTestSubj,
+  ariaOff,
+  ariaOn,
   ...rest
 }) => {
   const classes = classNames(
@@ -92,45 +94,21 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
     className
   );
 
-  const wrapperClasses = classNames(
-    'euiButtonToggle__wrapper',
-    {
-      'euiButtonToggle--isDisabled': isDisabled,
-    },
-    toggleClassName
-  );
-
   const buttonContent = isIconOnly ? '' : label;
-  const labelText = useRenderToText(
-    label,
-    typeof label === 'string' ? label : ''
-  );
 
   return (
-    <EuiToggle
-      className={wrapperClasses}
-      inputClassName="euiButtonToggle__input"
-      checked={isSelected}
-      isDisabled={isDisabled}
-      label={labelText}
-      name={name}
-      onChange={onChange}
-      type={type}
-      title={labelText}
-      value={value}
-      data-test-subj={dataTestSubj}>
-      <EuiButton
-        tabIndex={-1} // prevents double focus from input to button
-        className={classes}
-        color={color}
-        disabled={isDisabled}
-        size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
-        {...rest as Extract<
-          EuiButtonTogglePropsForAnchor,
-          EuiButtonTogglePropsForButtonToggle
-        >}>
-        {buttonContent}
-      </EuiButton>
-    </EuiToggle>
+    <EuiButton
+      tabIndex={-1} // prevents double focus from input to button
+      className={classes}
+      color={color}
+      onClick={onChange}
+      disabled={isDisabled}
+      size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
+      {...rest as Extract<
+        EuiButtonTogglePropsForAnchor,
+        EuiButtonTogglePropsForButtonToggle
+      >}>
+      {buttonContent}
+    </EuiButton>
   );
 };

@@ -19,6 +19,7 @@
 
 **Breaking changes**
 
+- Switched `EuiToggleButton` to button ([#2929](https://github.com/elastic/eui/pull/2929))
 - Updated `@types/react` and `@types/react-dom` to utilize React.RefCallback type instead of custom implementation ([#2929](https://github.com/elastic/eui/pull/2929))
 
 **Theme: Amsterdam**
