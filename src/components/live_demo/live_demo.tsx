@@ -1,6 +1,14 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-
+import {
+  LiveProvider,
+  LiveError,
+  LivePreview,
+  // withLive,
+} from 'react-live';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiSpacer } from '../spacer';
+// import { EuiCodeEditor } from '../code_editor';
+import { LiveEditor } from './live_demo_editor';
 import { CommonProps } from '../common';
 
 export type EuiLiveDemoProps = CommonProps &
@@ -25,9 +33,17 @@ export const EuiLiveDemo: FunctionComponent<EuiLiveDemoProps> = ({
       code={code}
       scope={scope}
       noInline={noInlin}>
-      <LiveEditor />
-      <LiveError />
-      <LivePreview />
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <LiveEditor />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <LivePreview />
+          <EuiSpacer />
+          <LiveError />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </LiveProvider>
   );
 };
+
