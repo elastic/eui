@@ -12,6 +12,7 @@ import {
 } from '../../../../src/components';
 
 import Accordion from './accordion';
+import { accordianLiveDemoCode, accordianScope } from './accordian_live_demo';
 const accordionSource = require('!!raw-loader!./accordion');
 const accordionHtml = renderToHtml(Accordion);
 const accordionSnippet = `<EuiAccordion
@@ -128,6 +129,11 @@ export const AccordionExample = {
         {
           type: GuideSectionTypes.HTML,
           code: accordionHtml,
+        },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianLiveDemoCode,
+          scope: accordianScope,
         },
       ],
       text: (
