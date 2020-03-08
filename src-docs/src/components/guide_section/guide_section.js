@@ -118,11 +118,6 @@ export class GuideSection extends Component {
           name: 'html',
           displayName: 'Demo HTML',
           isCode: true,
-        },
-        {
-          name: 'live_demo',
-          displayName: 'Live Demo',
-          isCode: false,
         }
       );
     }
@@ -141,7 +136,16 @@ export class GuideSection extends Component {
         displayName: 'Props',
       });
     }
-
+    const scopeExists = this.props.source.find(
+      sourceObject => sourceObject.scope
+    );
+    if (scopeExists) {
+      this.tabs.push({
+        name: 'live_demo',
+        displayName: 'Live Demo',
+        isCode: false,
+      });
+    }
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
