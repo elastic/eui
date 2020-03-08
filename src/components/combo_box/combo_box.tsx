@@ -54,24 +54,57 @@ interface _EuiComboBoxProps<T>
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
   'data-test-subj'?: string;
+  /**
+   * Defines wether manner of search is asynchronous or not
+   */
   async: boolean;
   className?: string;
+  /**
+   * when true creates a shorter height box
+   */
   compressed: boolean;
+  /**
+   * when true occupies the entire width available
+   */
   fullWidth: boolean;
   id?: string;
   inputRef?: RefCallback<HTMLInputElement>;
+  /**
+   * Shows a button that quickly clears any input
+   */
   isClearable: boolean;
+  /**
+   * Disables the combo box
+   */
   isDisabled?: boolean;
   isInvalid?: boolean;
+  /**
+   * Adds/swaps for loading spinner & disables
+   */
   isLoading?: boolean;
+  /**
+   * hides the suggestions list
+   */
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the query in the combo box is parsed.
+   */
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the text query in the search box is parsed.
+   */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
+  /**
+   * Sets the placeholder of the combo box
+   */
   placeholder?: string;
   rowHeight?: number;
+  /**
+   * when true allows the user to select a single option
+   */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
 }
 
