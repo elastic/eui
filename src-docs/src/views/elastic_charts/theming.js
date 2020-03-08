@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from 'react';
-import { withTheme } from '../../components';
+import React, { useState, Fragment, useContext } from 'react';
+import { ThemeContext } from '../../components';
 import {
   Chart,
   Settings,
@@ -45,7 +45,9 @@ const paletteData = {
 };
 const paletteNames = Object.keys(paletteData);
 
-const _Theming = props => {
+export const Theming = () => {
+  const themeContext = useContext(ThemeContext);
+
   /**
    * Create palette select
    */
@@ -68,7 +70,7 @@ const _Theming = props => {
   /**
    * Setup theme based on current light/dark theme
    */
-  const isDarkTheme = props.theme.includes('dark');
+  const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
@@ -156,5 +158,3 @@ const createPalette = function(palette) {
     </EuiFlexGroup>
   );
 };
-
-export const Theming = withTheme(_Theming);

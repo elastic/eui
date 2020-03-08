@@ -2,7 +2,7 @@
 @import 'saved_queries';
 
 .globalFilterGroup__filterBar {
-  margin-top: $euiSizeM;
+  margin-top: $euiSizeXS;
 }
 
 // sass-lint:disable quotes
@@ -20,7 +20,7 @@
 
 .globalFilterGroup__filterFlexItem {
   overflow: hidden;
-  padding-bottom: 2px; // Allow the shadows of the pills to show
+  padding: $euiSizeS;
 }
 
 .globalFilterBar__flexItem {

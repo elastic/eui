@@ -22,11 +22,13 @@ type PrependAppendType = StringOrReactElement | StringOrReactElement[];
 export type EuiFormControlLayoutProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * Creates an input group with element(s) coming before children
+     * Creates an input group with element(s) coming before children.
+     * `string` | `ReactElement` or an array of these
      */
     prepend?: PrependAppendType;
     /**
-     * Creates an input group with element(s) coming after children
+     * Creates an input group with element(s) coming after children.
+     * `string` | `ReactElement` or an array of these
      */
     append?: PrependAppendType;
     children?: ReactNode;
