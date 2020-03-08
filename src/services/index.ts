@@ -47,6 +47,8 @@ export {
 
 export { copyToClipboard } from './copy_to_clipboard';
 
+export { flattenPanelTree } from './flatten_tree_panel';
+
 export {
   formatAuto,
   formatBoolean,
