@@ -169,6 +169,8 @@ export { useInnerText, EuiInnerText, useRenderToText } from './inner_text';
 
 export { EuiI18n, EuiI18nNumber } from './i18n';
 
+export { EuiLiveDemo } from './live_demo';
+
 export {
   EuiLoadingKibana,
   EuiLoadingChart,

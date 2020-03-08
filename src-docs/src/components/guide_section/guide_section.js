@@ -18,9 +18,8 @@ import {
   EuiTextColor,
   EuiTitle,
   EuiLink,
+  EuiLiveDemo,
 } from '../../../../src/components';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-// import * as liveDemoSope from '../../../../src/components';
 
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -478,13 +477,10 @@ export class GuideSection extends Component {
     if (this.state.selectedTab.name === 'live_demo') {
       return (
         <EuiErrorBoundary>
-          <LiveProvider
+          <EuiLiveDemo
             code={this.state.renderedCode}
-            scope={this.state.liveDemoScope}>
-            <LiveEditor />
-            <LiveError />
-            <LivePreview />
-          </LiveProvider>
+            scope={this.state.liveDemoScope}
+          />
         </EuiErrorBoundary>
       );
     }
