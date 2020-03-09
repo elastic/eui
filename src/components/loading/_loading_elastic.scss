@@ -21,7 +21,7 @@
   animation-fill-mode: forwards;
   animation-direction: alternate;
   transform-style: preserve-3d;
-  animation-duration: .95s;
+  animation-duration: 1s;
   animation-timing-function: cubic-bezier(0, .63, .49, 1);
   animation-iteration-count: infinite;
   transform-origin: 50% 50%;
@@ -59,20 +59,20 @@
   }
 
   40% {
-    transform: scale3d(1.1, 1.1, 2);
+    transform: scale3d(1, 1, 2);
     opacity: 1;
   }
 
   50% {
-    transform: scale3d(1.05, 1.05, 2);
+    transform: scale3d(.99, .99, 2);
   }
 
   70% {
-    transform: scale3d(.98, .98, -2.5);
+    transform: scale3d(.96, .96, -2.5);
   }
 
   100% {
-    transform: scale3d(1, 1, 2);
+    transform: scale3d(.98, .98, 2);
   }
 
 }
