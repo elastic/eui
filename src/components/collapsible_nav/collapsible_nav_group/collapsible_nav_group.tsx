@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
-import { htmlIdGenerator, slugify } from '../../../services';
+import { htmlIdGenerator } from '../../../services';
 
 import { EuiAccordion, EuiAccordionProps } from '../../accordion';
 import { EuiIcon, IconType, IconSize } from '../../icon';
@@ -117,9 +117,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   );
 
   if (collapsible && title) {
-    const generateID = htmlIdGenerator(
-      title && typeof title === 'string' ? slugify(title) : ''
-    );
+    const generateID = htmlIdGenerator();
 
     return (
       <EuiAccordion
