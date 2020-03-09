@@ -34,7 +34,7 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
 
 interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLElement> {
   alt: string;
-  size?: ImageSize;
+  size?: ImageSize | number;
   fullScreenIconColor?: FullScreenIconColor;
   url: string;
   caption?: string;
@@ -86,15 +86,23 @@ export class EuiImage extends Component<EuiImageProps, State> {
 
     const { isFullScreenActive } = this.state;
 
-    const classes = classNames(
+    let newStyle: React.CSSProperties | undefined;
+
+    let classes = classNames(
       'euiImage',
-      sizeToClassNameMap[size],
       {
         'euiImage--hasShadow': hasShadow,
         'euiImage--allowFullScreen': allowFullScreen,
       },
       className
     );
+
+    if (typeof size === 'string') {
+      classes = `${classes} ${sizeToClassNameMap[size]}`;
+    } else {
+      classes = `${classes} euiImage--restrictHeight-custom`;
+      newStyle = { maxHeight: size };
+    }
 
     let optionalCaption;
     if (caption) {
@@ -162,7 +170,13 @@ export class EuiImage extends Component<EuiImageProps, State> {
                 aria-label={openImage}
                 className="euiImage__button"
                 onClick={this.openFullScreen}>
-                <img src={url} alt={alt} className="euiImage__img" {...rest} />
+                <img
+                  src={url}
+                  alt={alt}
+                  className="euiImage__img"
+                  style={newStyle}
+                  {...rest}
+                />
                 {allowFullScreenIcon}
                 {isFullScreenActive && fullScreenDisplay}
               </button>
@@ -174,7 +188,13 @@ export class EuiImage extends Component<EuiImageProps, State> {
     } else {
       return (
         <figure className={classes} role="figure" aria-label={caption}>
-          <img src={url} className="euiImage__img" alt={alt} {...rest} />
+          <img
+            style={newStyle}
+            src={url}
+            className="euiImage__img"
+            alt={alt}
+            {...rest}
+          />
           {optionalCaption}
         </figure>
       );

@@ -124,6 +124,15 @@
   }
 }
 
+.euiImage--restrictHeight-custom{
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  img{
+    width: auto;
+  }
+}
+
 @keyframes euiImageFullScreen {
   0% {
     opacity: 0;
@@ -135,3 +144,4 @@
     transform: translateY(0);
   }
 }
+
