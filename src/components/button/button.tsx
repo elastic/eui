@@ -3,6 +3,7 @@ import React, {
   HTMLAttributes,
   Ref,
   ButtonHTMLAttributes,
+  MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
 
@@ -80,7 +81,11 @@ export interface EuiButtonProps extends CommonProps {
    * Object of props passed to the <span/> wrapping the component's {children}
    */
   textProps?: HTMLAttributes<HTMLSpanElement>;
-  onClick?: (prop?: any) => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  // | ((event: React.MouseEvent<HTMLElement>) => void)
+  // | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+  // | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void)
+  // | undefined;
 }
 
 type EuiButtonPropsForAnchor = PropsForAnchor<
@@ -182,7 +187,11 @@ export const EuiButton: FunctionComponent<Props> = ({
     href?: string;
     type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
     target?: string;
-    onClick?: () => void;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    // | ((event: React.MouseEvent<HTMLElement, MouseEvent>) => void)
+    // | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    // | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void)
+    // | undefined;
   } = {};
 
   if (href && !isDisabled) {

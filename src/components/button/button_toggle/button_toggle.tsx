@@ -11,7 +11,9 @@ import { CommonProps, ExclusiveUnion } from '../../common';
 import { ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
 
-export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
+export interface EuiButtonToggleProps
+  extends EuiButtonProps,
+    Omit<CommonProps, 'label' | ('labelOn' & 'lableOff')> {
   /**
    * Simulates a `EuiButtonEmpty`
    */
@@ -26,12 +28,10 @@ export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
    * Initial state of the toggle
    */
   isSelected?: boolean;
-
   /**
    * Button label, which is also passed to `EuiToggle` as the input's label
    */
-  label: ReactNode;
-
+  label?: ReactNode;
   /**
    * Classnames to add to `EuiToggle` instead of the `EuiButton`
    */
@@ -43,9 +43,12 @@ export interface EuiButtonToggleProps extends EuiButtonProps, CommonProps {
    */
   type?: ToggleType;
 
-  onChange?: () => void;
-  ariaOn?: string;
-  ariaOff?: string;
+  onChange?: MouseEventHandler<HTMLButtonElement>;
+  // | ((event: React.MouseEvent<HTMLElement>) => void)
+  // | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+  // | undefined;
+  labelOn?: string;
+  labelOff?: string;
 }
 
 type EuiButtonTogglePropsForAnchor = EuiButtonToggleProps &
@@ -76,13 +79,13 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
   isSelected,
   label,
   name,
-  onChange = () => {},
+  onChange,
   toggleClassName,
   type,
   value,
   'data-test-subj': dataTestSubj,
-  ariaOff,
-  ariaOn,
+  labelOn,
+  labelOff,
   ...rest
 }) => {
   const classes = classNames(
@@ -95,14 +98,23 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
   );
 
   const buttonContent = isIconOnly ? '' : label;
+  const relObj: {
+    'aria-pressed'?: string | ReactNode;
+  } = {};
 
+  if (label) {
+    relObj['aria-pressed'] = label;
+  }
+  if (labelOn && labelOff) {
+    relObj['aria-pressed'] = undefined;
+  }
   return (
     <EuiButton
-      tabIndex={-1} // prevents double focus from input to button
       className={classes}
       color={color}
       onClick={onChange}
       disabled={isDisabled}
+      {...relObj}
       size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
       {...rest as Extract<
         EuiButtonTogglePropsForAnchor,
