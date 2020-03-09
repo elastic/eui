@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  useContext,
-} from 'react';
+import React, { useState, useCallback, useMemo, useContext } from 'react';
 import { LiveContext } from 'react-live';
 // import { EuiFlexGroup, EuiFlexItem } from '../flex';
 // import { EuiSpacer } from '../spacer';
@@ -11,8 +6,8 @@ import { EuiCodeEditor } from '../code_editor';
 // import { CommonProps } from '../common';
 
 import 'brace/theme/github';
-import 'brace/mode/javascript';
-import 'brace/snippets/javascript';
+import 'brace/mode/jsx';
+import 'react-brace/snippets/javascript';
 import 'brace/ext/language_tools';
 
 const CodeEditor = ({
@@ -40,10 +35,16 @@ const CodeEditor = ({
       onChange={updateContent}
       style={style}
       name="blah"
-      fontSize='20px'
       theme="github"
       height="300px"
+      mode="jsx"
       showGutter={true}
+      setOptions={{
+        fontSize: '14px',
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true,
+      }}
     />
   );
 };

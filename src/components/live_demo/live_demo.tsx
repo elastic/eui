@@ -11,19 +11,19 @@ import { EuiSpacer } from '../spacer';
 import { LiveEditor } from './live_demo_editor';
 import { CommonProps } from '../common';
 
-export type EuiLiveDemoProps = CommonProps &
+type EuiLiveDemoProps = CommonProps &
   HTMLAttributes<HTMLUListElement> & {
     /**
      * For multiple components
      */
-    noInlin?: boolean;
+    noInline?: boolean;
     code?: string;
     scope?: object;
   };
 
 export const EuiLiveDemo: FunctionComponent<EuiLiveDemoProps> = ({
   className,
-  noInlin,
+  noInline,
   code,
   scope,
 }) => {
@@ -32,7 +32,7 @@ export const EuiLiveDemo: FunctionComponent<EuiLiveDemoProps> = ({
       className={className}
       code={code}
       scope={scope}
-      noInline={noInlin}>
+      noInline={noInline}>
       <EuiFlexGroup>
         <EuiFlexItem>
           <LiveEditor />
@@ -46,4 +46,3 @@ export const EuiLiveDemo: FunctionComponent<EuiLiveDemoProps> = ({
     </LiveProvider>
   );
 };
-

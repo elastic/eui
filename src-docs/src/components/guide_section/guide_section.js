@@ -484,6 +484,7 @@ export class GuideSection extends Component {
           <EuiLiveDemo
             code={this.state.renderedCode}
             scope={this.state.liveDemoScope}
+            noInline={true}
           />
         </EuiErrorBoundary>
       );
