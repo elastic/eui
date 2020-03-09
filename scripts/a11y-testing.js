@@ -9,7 +9,12 @@ const docsPages = async (root, page) => {
   ];
 
   // links = links.splice(0, 14);
-  links = [`${root}#/forms/form-layouts`, `${root}#/forms/range-sliders`];
+  links = [
+    `${root}#/forms/form-layouts`,
+    `${root}#/forms/range-sliders`,
+    `${root}#/display/progress`,
+    `${root}#/display/loading`,
+  ];
 
   return links;
 };
