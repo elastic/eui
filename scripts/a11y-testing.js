@@ -8,7 +8,7 @@ const docsPages = async (root, page) => {
     ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
   ];
 
-  links = links.splice(0, 9);
+  links = links.splice(0, 14);
 
   return links;
 };
