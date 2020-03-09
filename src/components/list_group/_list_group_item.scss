@@ -106,6 +106,10 @@
   line-height: $euiSizeM;
 }
 
+.euiListGroupItem--large {
+  line-height: $euiSizeL;
+}
+
 .euiListGroupItem--wrapText {
   .euiListGroupItem__button,
   .euiListGroupItem__text {
