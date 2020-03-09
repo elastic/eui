@@ -16,7 +16,7 @@ export type EuiFormProps = CommonProps &
     /**
      * Renders From element
      */
-    renderForm?: boolean;
+    component?: 'form' | 'div';
     error?: ReactNode | ReactNode[];
   };
 
@@ -25,7 +25,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   className,
   isInvalid,
   error,
-  renderForm = false,
+  component = 'div',
   onSubmit,
   ...rest
 }) => {
@@ -65,7 +65,6 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
     );
   }
 
-  const Element = renderForm ? 'form' : 'div';
   const relObj: {
     onSubmit?:
       | (((event: FormEvent<HTMLFormElement>) => void) &
@@ -73,9 +72,10 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
       | undefined;
   } = {};
 
-  if (renderForm) {
+  if (component === 'form') {
     relObj.onSubmit = onSubmit;
   }
+  const Element = component;
 
   return (
     <Element className={classes} {...relObj} {...rest}>

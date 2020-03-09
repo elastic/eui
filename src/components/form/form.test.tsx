@@ -12,7 +12,7 @@ describe('EuiForm', () => {
   });
 
   test('renders <form >', () => {
-    const component = render(<EuiForm {...requiredProps} renderForm />);
+    const component = render(<EuiForm {...requiredProps} component="form" />);
 
     expect(component).toMatchSnapshot();
   });
