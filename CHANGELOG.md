@@ -16,6 +16,7 @@
 - Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
 - Fixed z-index conflict with cell popovers in `EuiDataGrid` while in full screen mode ([#2959](https://github.com/elastic/eui/pull/2959))
 - Adjusted the header on `EuiDataGrid` to fix to the top within constrained containers and full screen mode  ([#2959](https://github.com/elastic/eui/pull/2959))
+- Fixed ContrastRatio function in src/global_styling/function/_colors.scss. ([#3013], (https://github.com/elastic/eui/pull/3013))
 
 **Breaking changes**
 
