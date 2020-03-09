@@ -9,7 +9,7 @@ const docsPages = async (root, page) => {
   ];
 
   links = links.splice(0, 14);
-  let reflinks = [
+  const reflinks = [
     `${root}#/forms/form-layouts`,
     `${root}#/forms/range-sliders`,
     `${root}#/display/progress`,
