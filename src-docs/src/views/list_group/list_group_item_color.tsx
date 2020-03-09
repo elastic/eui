@@ -18,6 +18,13 @@ export default () => (
 
     <EuiListGroupItem href="#" label="Text (m)" color="text" />
 
-    <EuiListGroupItem href="#" label="Subdued (l)" color="ghost" size="l" />
+    <EuiListGroupItem href="#" label="Subdued (l)" color="subdued" size="l" />
+
+    <EuiListGroupItem
+      href="#"
+      label="Ghost"
+      color="ghost"
+      style={{ background: 'black' }}
+    />
   </EuiListGroup>
 );
