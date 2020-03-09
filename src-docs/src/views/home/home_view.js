@@ -82,7 +82,7 @@ export const HomeView = () => (
                 counterparts.">
               <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
                 <EuiScreenReaderOnly>
-                  <span>Elastic UI Library on Sketch</span>
+                  <span>Elastic UI Library for Sketch</span>
                 </EuiScreenReaderOnly>
                 <EuiIcon type="logoSketch" aria-hidden="true" />
               </EuiLink>
