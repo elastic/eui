@@ -10,12 +10,20 @@
 
   &.euiListGroupItem-isActive,
   &.euiListGroupItem-isClickable:hover {
-    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+    background-color: $euiListGroupItemHoverBackground;
   }
 
   &.euiListGroupItem-isClickable .euiListGroupItem__button:focus {
-    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+    background-color: $euiListGroupItemHoverBackground;
     text-decoration: underline;
+  }
+
+  &.euiListGroupItem--ghost {
+    &.euiListGroupItem-isActive,
+    &.euiListGroupItem-isClickable:hover,
+    &.euiListGroupItem-isClickable .euiListGroupItem__button:focus {
+      background-color: $euiListGroupItemHoverBackgroundGhost;
+    }
   }
 
   // Style all disabled list items whether or not they are links or buttons
@@ -49,6 +57,10 @@
     .euiListGroupItem--#{$colorName} &:not(:disabled) {
       color: $color;
     }
+  }
+
+  .euiListGroupItem-isActive:not(.euiListGroupItem--ghost) & {
+    color: $euiTextColor;
   }
 }
 

@@ -1,10 +1,13 @@
+$euiListGroupItemHoverBackground: transparentize($euiColorLightShade, .75);
+$euiListGroupItemHoverBackgroundGhost: transparentize($euiColorGhost, .9);
+
 $euiListGroupGutterTypes: (
   gutterSmall: $euiSizeS,
   gutterMedium: $euiSize,
 );
 
 $euiListGroupItemColorTypes: (
-  primary: $euiColorPrimary,
+  primary: $euiColorPrimaryText,
   text: $euiTextColor,
   subdued: $euiColorDarkShade,
   ghost: $euiColorGhost,
