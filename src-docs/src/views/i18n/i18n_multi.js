@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { EuiCard, EuiCode, EuiI18n } from '../../../../src/components';
+import { EuiCard, EuiI18n } from '../../../../src/components';
 
 export default () => {
   return (
     <div>
       <p>
         Both title and description for the card are looked up in one call to{' '}
-        <EuiCode>EuiI18n</EuiCode>
+        <strong>EuiI18n</strong>
       </p>
       <EuiI18n
         tokens={['euiI18nMulti.title', 'euiI18nMulti.description']}

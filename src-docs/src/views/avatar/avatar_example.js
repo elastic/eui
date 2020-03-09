@@ -31,8 +31,8 @@ export const AvatarExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>Avatar</EuiCode> component creates a user icon. It will
-            accept <EuiCode>name</EuiCode> (required) and{' '}
+            The <strong>EuiAvatar</strong> component creates a user icon. It
+            will accept <EuiCode>name</EuiCode> (required) and{' '}
             <EuiCode>image</EuiCode> props and will configure the display and
             accessibility as needed. By default, the background colors come from
             the set of colors used for visualizations. Otherwise you can pass a

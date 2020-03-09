@@ -58,9 +58,9 @@ const search = {
 };
 
 export const I18nTokens = {
-  name: 'I18n Tokens',
+  name: 'I18n tokens',
   component: () => (
-    <GuidePage title="I18n Tokens">
+    <GuidePage title="I18n tokens">
       <EuiTitle size="m">
         <span>Token changelog</span>
       </EuiTitle>

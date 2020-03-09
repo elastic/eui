@@ -48,7 +48,7 @@ export const ResponsiveExample = {
         <div>
           <p>
             Pass an array of named breakpoints to either the{' '}
-            <EuiCode>EuiShowFor</EuiCode> or <EuiCode>EuiHideFor</EuiCode>{' '}
+            <strong>EuiShowFor</strong> or <strong>EuiHideFor</strong>{' '}
             components to make them responsive.
           </p>
 

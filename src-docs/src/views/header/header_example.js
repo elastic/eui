@@ -205,8 +205,8 @@ export const HeaderExample = {
       text: (
         <p>
           If you&rsquo;re using EUI in a one-off site or page, you can use{' '}
-          <EuiCode>EuiHeaderLinks</EuiCode>, &nbsp;
-          <EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
+          <strong>EuiHeaderLinks</strong>, &nbsp;
+          <strong>EuiHeaderLink</strong>s instead of breadcrumbs.
         </p>
       ),
       props: {
@@ -230,11 +230,11 @@ export const HeaderExample = {
       ],
       text: (
         <p>
-          Use an <EuiCode>EuiHeaderSectionItemButton</EuiCode> to display
-          additional information in an <EuiCode>EuiPopover</EuiCode> or{' '}
-          <EuiCode>EuiFlyout</EuiCode>, such as a user profile or news feed. In
+          Use an <strong>EuiHeaderSectionItemButton</strong> to display
+          additional information in an <strong>EuiPopover</strong> or{' '}
+          <strong>EuiFlyout</strong>, such as a user profile or news feed. In
           the latter example, this additional content can be presented in a list
-          style format using <EuiCode>EuiHeaderAlert</EuiCode> components, as
+          style format using <strong>EuiHeaderAlert</strong> components, as
           shown below.
         </p>
       ),

@@ -85,7 +85,7 @@ export const StatExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiStat</EuiCode> can be used to display prominent text or
+          <strong>EuiStat</strong> can be used to display prominent text or
           number values. It consists of <EuiCode>title</EuiCode>
           and <EuiCode>description</EuiCode> elements with several visual
           styling properties (examples below).
@@ -132,7 +132,7 @@ export const StatExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiStat</EuiCode> also offers alignment options. By default,
+          <strong>EuiStat</strong> also offers alignment options. By default,
           text will be left aligned.
         </p>
       ),
@@ -153,13 +153,12 @@ export const StatExample = {
       ],
       text: (
         <p>
-          <EuiCode>title</EuiCode> uses the <EuiCode>EuiTitle</EuiCode>{' '}
-          component and thus its sizing properites. Although all{' '}
-          <EuiCode>EuiTitle</EuiCode> sizes are available, suggested sizes
-          include <EuiCode>`l`, `m`, and `s`</EuiCode>. By default, the size is
-          set to Large (<EuiCode>`l`</EuiCode>). The{' '}
-          <EuiCode>description</EuiCode> label cannot be re-sized via component
-          properties.
+          <EuiCode>title</EuiCode> uses the <strong>EuiTitle</strong> component
+          and thus its sizing properites. Although all <strong>EuiTitle</strong>{' '}
+          sizes are available, suggested sizes include{' '}
+          <EuiCode>`l`, `m`, and `s`</EuiCode>. By default, the size is set to
+          Large (<EuiCode>`l`</EuiCode>). The <EuiCode>description</EuiCode>{' '}
+          label cannot be re-sized via component properties.
         </p>
       ),
       snippet: statSizeSnippet,
@@ -225,7 +224,7 @@ export const StatExample = {
       text: (
         <p>
           Following are samples demonstrating how you might assemble and display{' '}
-          <EuiCode>EuiStat</EuiCode> components.
+          <strong>EuiStat</strong> components.
         </p>
       ),
       demo: <StatCombos />,

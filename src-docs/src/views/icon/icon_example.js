@@ -94,7 +94,7 @@ export const IconExample = {
     <div>
       <EuiText>
         <p>
-          <EuiCode>EuiIcon</EuiCode> is a handy component for using our custom
+          <strong>EuiIcon</strong> is a handy component for using our custom
           glyphs and logos. The <EuiCode>type</EuiCode> prop accepts either an
           enumerated name from one of the sets below, a location to a custom SVG
           asset, or a React Element.
@@ -164,7 +164,7 @@ export const IconExample = {
       text: (
         <p>
           Editor icons relate to the visual styling of elements and are commonly
-          used within <EuiCode>EuiButtonGroup</EuiCode> components.
+          used within <strong>EuiButtonGroup</strong> components.
         </p>
       ),
       snippet: editorSnippet,
@@ -207,10 +207,10 @@ export const IconExample = {
         <div>
           <p>
             Tokens are most commonly used to visually signify field or code
-            types. An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
-            <EuiCode>EuiIcon</EuiCode> as its
+            types. An <strong>EuiToken</strong> accepts any valid{' '}
+            <strong>EuiIcon</strong> as its
             <EuiCode>iconType</EuiCode> property. However, icons designed
-            specifically for use in the <EuiCode>EuiToken</EuiCode> are prefixed
+            specifically for use in the <strong>EuiToken</strong> are prefixed
             with &quot;token&quot; in their name and have pre-defined styles.
           </p>
         </div>
@@ -261,21 +261,6 @@ export const IconExample = {
       ),
       snippet: logosSnippet,
       demo: <Logos />,
-    },
-    {
-      title: 'Third party logos',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: logosThirdSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
-      snippet: logosThirdSnippet,
-      demo: <LogosThird />,
     },
     {
       title: 'Sizes',
@@ -355,6 +340,27 @@ export const IconExample = {
       props: { EuiIcon },
       snippet: iconTypesSnippet,
       demo: <IconTypes />,
+    },
+    {
+      title: 'Third party logos',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: logosThirdSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: iconsHtml,
+        },
+      ],
+      text: (
+        <p>
+          EUI's library of third party logos are mostly maintained for legacy usages.{' '}
+          <strong>EuiIcon</strong> now accepts custom SVG and image content which is how we recommend displaying external logos.
+        </p>
+      ),
+      snippet: logosThirdSnippet,
+      demo: <LogosThird />,
     },
   ],
 };

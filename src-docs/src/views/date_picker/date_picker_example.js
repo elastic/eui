@@ -56,7 +56,7 @@ const utcSource = require('!!raw-loader!./utc');
 const utcHtml = renderToHtml(Utc);
 
 export const DatePickerExample = {
-  title: 'Date Picker',
+  title: 'Date picker',
   sections: [
     {
       source: [
@@ -71,7 +71,7 @@ export const DatePickerExample = {
       ],
       text: (
         <p>
-          At its most bare the <EuiCode>EuiDatePicker</EuiCode> only requires
+          At its most bare the <strong>EuiDatePicker</strong> only requires
           props for <EuiCode>selected</EuiCode> and <EuiCode>onChange</EuiCode>.
           It depends on{' '}
           <EuiLink href="https://momentjs.com/docs/">moment</EuiLink> for all of
@@ -169,8 +169,8 @@ export const DatePickerExample = {
           By passing <EuiCode>startDate</EuiCode> and <EuiCode>endDate</EuiCode>{' '}
           props you can provide styling the range in between two dates. To
           further style the group as a single control, use{' '}
-          <EuiCode>EuiDatePickerRange</EuiCode> and pass the date picker
-          controls into the <EuiCode>startDateControl</EuiCode> and{' '}
+          <strong>EuiDatePickerRange</strong> and pass the date picker controls
+          into the <EuiCode>startDateControl</EuiCode> and{' '}
           <EuiCode>endDateControl</EuiCode> props.
         </p>
       ),

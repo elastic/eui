@@ -84,7 +84,12 @@ export const StepsExample = {
           code: stepsHtml,
         },
       ],
-      text: <p>Numbered steps</p>,
+      text: (
+        <p>
+          <strong>EuiSteps</strong> presents procedural content in a numbered
+          outline format.
+        </p>
+      ),
       props: { EuiSteps, EuiStep },
       snippet: stepsSnippet,
       demo: <Steps />,

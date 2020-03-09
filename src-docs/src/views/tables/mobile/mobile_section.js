@@ -47,8 +47,8 @@ export const section = {
       <h4>
         To make your table work responsively, please make sure you add the
         following <EuiTextColor color="danger">additional</EuiTextColor> props
-        to the top level table component (<EuiCode>EuiBasicTable</EuiCode> or{' '}
-        <EuiCode>EuiInMemoryTable</EuiCode>):
+        to the top level table component (<strong>EuiBasicTable</strong> or{' '}
+        <strong>EuiInMemoryTable</strong>):
       </h4>
       <ul>
         <li>
@@ -65,8 +65,8 @@ export const section = {
       </ul>
       <h4>
         The <EuiCode>mobileOptions</EuiCode> object can be passed to the{' '}
-        <EuiCode>EuiTableRowCell</EuiCode> directly or with each column item
-        provided to <EuiCode>EuiBasicTable</EuiCode>.
+        <strong>EuiTableRowCell</strong> directly or with each column item
+        provided to <strong>EuiBasicTable</strong>.
       </h4>
       <EuiCodeBlock lang="javascript">{exampleItem}</EuiCodeBlock>
       <h4>Note:</h4>

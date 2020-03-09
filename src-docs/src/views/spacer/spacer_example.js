@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -50,10 +51,13 @@ export const SpacerExample = {
       ],
       text: (
         <p>
-          The <EuiCode>Spacer</EuiCode> component is a fancy break tag. Use it
+          The <strong>EuiSpacer</strong> component is a fancy break tag. Use it
           to add vertical space between items. Please do not stack them. If
           passed without a <EuiCode>size</EuiCode> prop, it will default to the
-          large size, which matches the margins of <EuiCode>EuiFlex</EuiCode>{' '}
+          large size, which matches the margins of{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>{' '}
           elements.
         </p>
       ),

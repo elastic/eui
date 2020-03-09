@@ -15,7 +15,7 @@ const outsideClickDetectorSource = require('!!raw-loader!./outside_click_detecto
 const outsideClickDetectorHtml = renderToHtml(OutsideClickDetector);
 
 export const OutsideClickDetectorExample = {
-  title: 'Outside Click Detector',
+  title: 'Outside click detector',
   sections: [
     {
       source: [
@@ -31,14 +31,14 @@ export const OutsideClickDetectorExample = {
       text: (
         <React.Fragment>
           <p>
-            Use <EuiCode>EuiOutsideClickDetector</EuiCode> to trigger a handler
+            Use <strong>EuiOutsideClickDetector</strong> to trigger a handler
             when the user clicks outside of the child element.
           </p>
           <EuiCallOut title="Use with EuiSelect" color="warning">
             <p>
-              <EuiCode>EuiSelect</EuiCode> normalizes browser event
+              <strong>EuiSelect</strong> normalizes browser event
               inconsistencies with <EuiCode>select</EuiCode> elements and as a
-              result may not trigger <EuiCode>EuiOutsideClickDetector</EuiCode>{' '}
+              result may not trigger <strong>EuiOutsideClickDetector</strong>{' '}
               when targeted with mouse events.
             </p>
           </EuiCallOut>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -10,6 +11,8 @@ import {
   EuiToast,
   EuiGlobalToastList,
   EuiGlobalToastListItem,
+  EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import ToastList, { addToast } from './toast_list';
@@ -38,9 +41,18 @@ const dangerHtml = renderToHtml(Danger);
 
 export const ToastExample = {
   title: 'Toast',
+  intro: (
+    <EuiText>
+      <p>
+        Be sure to read the full{' '}
+        <Link to="/guidelines/toasts">toast usage guidelines</Link>.
+      </p>
+      <EuiSpacer />
+    </EuiText>
+  ),
   sections: [
     {
-      title: 'ToastList',
+      title: 'Toast list',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -81,9 +93,9 @@ export const ToastExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiToast</EuiCode> allows for small notes that appear in
-            the bottom right of the screen. They should be used for ephemeral,
-            live actions (think <strong>save complete</strong> or{' '}
+            <strong>EuiToast</strong> allows for small notes that appear in the
+            bottom right of the screen. They should be used for ephemeral, live
+            actions (think <strong>save complete</strong> or{' '}
             <strong>something just finished right now</strong>).
           </p>
           <p>

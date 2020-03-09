@@ -48,7 +48,7 @@ export const TabsExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiTabs</EuiCode> allow a <EuiCode>size</EuiCode> prop. In
+          <strong>EuiTabs</strong> allow a <EuiCode>size</EuiCode> prop. In
           general you should always use the default size, but in rare cases
           (like putting tabs within a popover of other small menu) it is OK to
           use the smaller sizing.
@@ -78,7 +78,7 @@ export const TabsExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiTabs</EuiCode> allow a <EuiCode>display</EuiCode> prop. In
+          <strong>EuiTabs</strong> allow a <EuiCode>display</EuiCode> prop. In
           general you should always use the default display. However, it is
           acceptable to use the alternative <EuiCode>condensed</EuiCode> display
           in situations where it is desirable to display a bolder, more compact
@@ -109,7 +109,7 @@ export const TabsExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiTabbedContent</EuiCode> makes it easier to associate tabs
+          <strong>EuiTabbedContent</strong> makes it easier to associate tabs
           with content based on the selected tab. Use the{' '}
           <EuiCode>initialSelectedTab</EuiCode> prop to specify which tab to
           initially select.

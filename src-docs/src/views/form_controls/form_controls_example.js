@@ -179,13 +179,18 @@ export const FormControlsExample = {
       ],
       text: (
         <p>
-          This component renders a basic HTML <code>&lt;select&gt;</code>{' '}
+          This component renders a basic HTML <EuiCode>&lt;select&gt;</EuiCode>{' '}
           element. If you need more customization for how the options and/or
           selected values render, use the{' '}
-          <Link to="/forms/superselect">EuiSuperSelect</Link>. Another option is
-          to use the <Link to="/forms/combo-box">EuiComboBox</Link>, which has
-          search and multi-select capabilities, but also has restrictions on how
-          items are rendered.
+          <Link to="/forms/super-select">
+            <strong>EuiSuperSelect</strong>
+          </Link>
+          . Another option is to use the{' '}
+          <Link to="/forms/combo-box">
+            <strong>EuiComboBox</strong>
+          </Link>
+          , which has search and multi-select capabilities, but also has
+          restrictions on how items are rendered.
         </p>
       ),
       props: {
@@ -224,7 +229,7 @@ export const FormControlsExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiFilePicker</EuiCode> is a stylized, but generic HTML{' '}
+          <strong>EuiFilePicker</strong> is a stylized, but generic HTML{' '}
           <EuiCode>&lt;input type=&quot;file&quot;&gt;</EuiCode> tag. It
           supports drag and drop as well as on click style selection of files.
           The example below shows how to grab the files using the{' '}
@@ -234,7 +239,7 @@ export const FormControlsExample = {
             FileList API
           </EuiLink>
           . Like other form elements, you can wrap it in a{' '}
-          <EuiCode>EuiFormRow</EuiCode> to apply a label.
+          <strong>EuiFormRow</strong> to apply a label.
         </p>
       ),
       components: { EuiFilePicker },
@@ -392,7 +397,7 @@ export const FormControlsExample = {
           />
           <EuiSpacer />
           <p>
-            <EuiCode>EuiFormFieldset</EuiCode> simply wraps its children in a{' '}
+            <strong>EuiFormFieldset</strong> simply wraps its children in a{' '}
             <EuiCode>&lt;fieldset&gt;</EuiCode> with the option to add a{' '}
             <EuiCode>&lt;legend&gt;</EuiCode> via the <EuiCode>legend</EuiCode>{' '}
             object prop.
@@ -485,7 +490,7 @@ export const FormControlsExample = {
           </p>
 
           <p>
-            <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally
+            <strong>EuiFormControlLayout</strong> is generally used internally
             to consistently style form controls, but it&rsquo;s published in
             case you want to create your own form control which matches those of
             EUI. The examples below demonstrate its various states.
@@ -495,8 +500,8 @@ export const FormControlsExample = {
             <p>
               The padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t
               take into account the presence of the various icons supported by{' '}
-              <EuiCode>EuiFormControlLayout</EuiCode>. Any input component
-              provided to <EuiCode>EuiFormControlLayout</EuiCode> is responsible
+              <strong>EuiFormControlLayout</strong>. Any input component
+              provided to <strong>EuiFormControlLayout</strong> is responsible
               for its own padding.
             </p>
           </EuiCallOut>
@@ -526,14 +531,14 @@ export const FormControlsExample = {
           </p>
 
           <p>
-            Like <EuiCode>EuiFormControlLayout</EuiCode>,{' '}
-            <EuiCode>EuiFormControlLayoutDelimited</EuiCode> is generally used
+            Like <strong>EuiFormControlLayout</strong>,{' '}
+            <strong>EuiFormControlLayoutDelimited</strong> is generally used
             internally to consistently style form controls. This component
             specifically lays out two form controls with center text or icon.
           </p>
           <p>
             It takes all of the same props as{' '}
-            <EuiCode>EuiFormControlLayout</EuiCode> except for{' '}
+            <strong>EuiFormControlLayout</strong> except for{' '}
             <EuiCode>children</EuiCode>. Instead it requires both a{' '}
             <strong>single</strong> <EuiCode>startControl</EuiCode> and a{' '}
             <strong>single</strong> <EuiCode>endControl</EuiCode>. You can

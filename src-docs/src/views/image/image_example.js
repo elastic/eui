@@ -52,8 +52,8 @@ export const ImageExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiImage</EuiCode> when you need to place a static
-            image into a page with an optional caption.
+            Use <strong>EuiImage</strong> when you need to place a static image
+            into a page with an optional caption.
           </p>
         </div>
       ),

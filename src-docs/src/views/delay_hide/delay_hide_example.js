@@ -1,14 +1,14 @@
 import React from 'react';
 import DelayHide from './delay_hide';
 import { GuideSectionTypes } from '../../components';
-import { EuiCode, EuiDelayHide } from '../../../../src/components';
+import { EuiDelayHide } from '../../../../src/components';
 import { renderToHtml } from '../../services';
 
 const delayHideSource = require('!!raw-loader!./delay_hide');
 const delayHideHtml = renderToHtml(DelayHide);
 
 export const DelayHideExample = {
-  title: 'Delay Hide',
+  title: 'Delay hide',
   sections: [
     {
       source: [
@@ -23,7 +23,7 @@ export const DelayHideExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiDelayHide</EuiCode> is a component for conditionally
+          <strong>EuiDelayHide</strong> is a component for conditionally
           toggling the visibility of a child component. It will ensure that the
           child is visible for at least 1000ms (default). This avoids UI
           glitches that are common with loading spinners and other elements that

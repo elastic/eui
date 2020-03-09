@@ -8,7 +8,7 @@ const source = require('!!raw-loader!./sorting');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Adding sorting to a BasicTable',
+  title: 'Adding sorting to a table',
   source: [
     {
       type: GuideSectionTypes.JS,

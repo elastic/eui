@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCopy } from '../../../../src/components';
+import { EuiCopy } from '../../../../src/components';
 
 import Copy from './copy';
 const copySource = require('!!raw-loader!./copy');
@@ -26,7 +26,7 @@ export const CopyExample = {
       ],
       text: (
         <p>
-          The <EuiCode>EuiCopy</EuiCode> component is a utility for copying text
+          The <strong>EuiCopy</strong> component is a utility for copying text
           to clipboard. Wrap a function that returns a Component. The first
           argument will be a `copy` function.
         </p>

@@ -15,7 +15,7 @@ const bottomBarSnippet = `<EuiBottomBar paddingSize="s">
 </EuiBottomBar>`;
 
 export const BottomBarExample = {
-  title: 'Bottom Bar',
+  title: 'Bottom bar',
   sections: [
     {
       source: [
@@ -31,15 +31,15 @@ export const BottomBarExample = {
       text: (
         <div>
           <p>
-            <EuiCode>BottomBar</EuiCode> is a simple wrapper component that does
-            nothing but fix a bottom bar (usually filled with buttons) to the
-            bottom of the page. Use it when you have really long pages or
+            <strong>EuiBottomBar</strong> is a simple wrapper component that
+            does nothing but fix a bottom bar (usually filled with buttons) to
+            the bottom of the page. Use it when you have really long pages or
             complicated, multi-page forms. In the case of forms, only invoke it
             if a form is in a savable state.
           </p>
           <p>
             Like many of our other wrapper components,{' '}
-            <EuiCode>BottomBar</EuiCode> accepts a{' '}
+            <strong>EuiBottomBar</strong> accepts a{' '}
             <EuiCode>paddingSize</EuiCode> prop, which can be set to{' '}
             <EuiCode>s / m / l / none</EuiCode>.
           </p>

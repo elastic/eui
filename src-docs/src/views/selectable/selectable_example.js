@@ -49,10 +49,17 @@ export const SelectableExample = {
   intro: (
     <EuiText>
       <p>
-        EuiSelectable aims to make the pattern of a selectable list (with or
-        without search) consistent across implementations. It is the same
-        concept used in <Link to="/forms/combo-box">EuiComboBox</Link> and{' '}
-        <Link to="/forms/filter-group">EuiFilterGroup</Link>.{' '}
+        <strong>EuiSelectable</strong> aims to make the pattern of a selectable
+        list (with or without search) consistent across implementations. It is
+        the same concept used in{' '}
+        <Link to="/forms/combo-box">
+          <strong>EuiComboBox</strong>
+        </Link>{' '}
+        and{' '}
+        <Link to="/forms/filter-group">
+          <strong>EuiFilterGroup</strong>
+        </Link>
+        .{' '}
         <strong>
           This is not intended for{' '}
           <Link to="/display/list-group">primary navigation</Link>
@@ -81,7 +88,7 @@ export const SelectableExample = {
       text: (
         <Fragment>
           <p>
-            At its simplest, EuiSelectable requires an array of{' '}
+            At its simplest, <strong>EuiSelectable</strong> requires an array of{' '}
             <EuiCode>options</EuiCode> and an <EuiCode>onChange</EuiCode>{' '}
             handler which passes back the altered{' '}
             <EuiCode>selectedOptions</EuiCode> array. The{' '}
@@ -121,7 +128,7 @@ export const SelectableExample = {
             To add a search component to the list, simply add the{' '}
             <EuiCode>searchable</EuiCode> prop. You can optionally pass in a{' '}
             <EuiCode>searchProps</EuiCode> object which will get passed down to
-            the actual EuiFieldSearch used.
+            the actual <strong>EuiFieldSearch</strong> used.
           </p>
           <p>
             <strong>
@@ -149,7 +156,7 @@ export const SelectableExample = {
 </EuiSelectable>`,
     },
     {
-      title: 'Single Selection',
+      title: 'Single selection',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -166,9 +173,9 @@ export const SelectableExample = {
             Selection can be restricted to a single option at a time with the{' '}
             <EuiCode>singleSelection</EuiCode> prop. Passing{' '}
             <EuiCode>true</EuiCode> allows for 0 or 1 option to be selected,
-            while
-            <EuiCode>`always`</EuiCode> requires 1 option to be selected at all
-            times. The default value is <EuiCode>false</EuiCode>.
+            while <EuiCode>&apos;always&apos;</EuiCode> requires 1 option to be
+            selected at all times. The default value is <EuiCode>false</EuiCode>
+            .
           </p>
         </Fragment>
       ),
@@ -270,8 +277,8 @@ export const SelectableExample = {
         <Fragment>
           <p>
             The component comes with some pre-composed messages for empty and
-            loading states. To pass in your own message you can use the
-            EuiSelectableMessage component and replace the{' '}
+            loading states. To pass in your own message you can use the{' '}
+            <strong>EuiSelectableMessage</strong> component and replace the{' '}
             <EuiCode>list</EuiCode> child with your message.
           </p>
         </Fragment>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCode, EuiSpacer, EuiCallOut } from '../../../../src/components';
+import { EuiSpacer, EuiCallOut } from '../../../../src/components';
 
 import { section as basicSection } from './basic';
 import { section as autoSection } from './auto';
@@ -28,10 +28,10 @@ export const TableExample = {
         <p>
           Tables can get complicated very fast. If you&apos;re just looking for
           a basic table with pagination, sorting, checkbox selection, and
-          actions then you should use <EuiCode>EuiBasicTable</EuiCode>.
-          It&apos;s a <strong>high level component</strong> that removes the
-          need to worry about constructing individual components together. You
-          simply arrange your data in the format it asks for.
+          actions then you should use <strong>EuiBasicTable</strong>. It&apos;s
+          a <strong>high level component</strong> that removes the need to worry
+          about constructing individual components together. You simply arrange
+          your data in the format it asks for.
         </p>
         <p>
           However if your table is more complicated, you can still use the

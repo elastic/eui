@@ -209,9 +209,8 @@ export const DataGridStylingExample = {
           the left of the full screen button. It will respect the{' '}
           <EuiCode>toolbarVisibility={'{false}'}</EuiCode> setting and hide when
           appropriate. Although any node can fit in this space, the
-          recommendation is to use
-          <EuiCode>EuiButtonEmpty</EuiCode> components with the configuration
-          shown in the snippet.
+          recommendation is to use <strong>EuiButtonEmpty</strong> components
+          with the configuration shown in the snippet.
         </p>
       ),
       components: { DataGridControls },
@@ -236,9 +235,9 @@ export const DataGridStylingExample = {
             By default, visible columns are given equal widths to fill up
             available space in the grid and can be resized by the user to any
             desired width. There are two parameters on{' '}
-            <EuiCode>EuiDataGridColumn</EuiCode> to change this default
-            behavior. <EuiCode>initialWidth</EuiCode> is a numeric value
-            providing the starting width of a column, in pixels. Second, the{' '}
+            <strong>EuiDataGridColumn</strong> to change this default behavior.{' '}
+            <EuiCode>initialWidth</EuiCode> is a numeric value providing the
+            starting width of a column, in pixels. Second, the{' '}
             <EuiCode>isResizable</EuiCode> value can be set to{' '}
             <EuiCode>false</EuiCode> to remove the user&apos;s ability to resize
             column.

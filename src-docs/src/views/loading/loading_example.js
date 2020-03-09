@@ -50,8 +50,8 @@ export const LoadingExample = {
       ],
       text: (
         <p>
-          Logo based load. Should only be used in very large panels, like bootup
-          screens.
+          Logo based loader. Should only be used in very large panels, like
+          bootup screens.
         </p>
       ),
       props: { EuiLoadingKibana },
@@ -122,7 +122,7 @@ export const LoadingExample = {
       snippet: '<EuiLoadingSpinner size="m" />',
     },
     {
-      title: 'Text Content',
+      title: 'Text content',
       source: [
         {
           type: GuideSectionTypes.JS,

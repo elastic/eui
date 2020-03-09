@@ -132,7 +132,7 @@ export const FlyoutExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiFlyout</EuiCode> is a fixed position panel that pops in
+            <strong>EuiFlyout</strong> is a fixed position panel that pops in
             from the right side of the screen. It should be used any time you
             need to perform quick, individual actions to a larger page or list.
           </p>
@@ -179,10 +179,10 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          In this example we use <EuiCode>EuiFlyoutHeader</EuiCode> and
-          <EuiCode>EuiFlyoutFooter</EuiCode> to allow for fixed position
+          In this example we use <strong>EuiFlyoutHeader</strong> and{' '}
+          <strong>EuiFlyoutFooter</strong> to allow for fixed position
           navigation and actions within a flyout. Note that any content within{' '}
-          <EuiCode>EuiContentBody</EuiCode> will automatically overflow.
+          <strong>EuiFlyoutBody</strong> will automatically overflow.
         </p>
       ),
       props: { EuiFlyoutFooter },
@@ -279,7 +279,7 @@ export const FlyoutExample = {
         <p>
           To highlight some information at the top of a flyout, you can use the
           <EuiCode>banner</EuiCode> prop available in{' '}
-          <EuiCode>EuiFlyoutBody</EuiCode>.
+          <strong>EuiFlyoutBody</strong>.
         </p>
       ),
       snippet: flyoutWithBannerSnippet,

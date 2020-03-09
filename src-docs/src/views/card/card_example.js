@@ -49,7 +49,7 @@ export const CardExample = {
   title: 'Card',
   sections: [
     {
-      title: 'Basic Card',
+      title: 'Basic card',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -63,7 +63,7 @@ export const CardExample = {
       text: (
         <div>
           <p>
-            At its core an <EuiCode>EuiCard</EuiCode> should contain a{' '}
+            At its core an <strong>EuiCard</strong> should contain a{' '}
             <EuiCode>title</EuiCode>,<EuiCode>description</EuiCode>, and an{' '}
             <EuiCode>icon</EuiCode>. You can make the whole card clickable by
             giving it an <EuiCode>onClick</EuiCode> handler or{' '}
@@ -185,7 +185,7 @@ export const CardExample = {
           <p>
             Footers can contain any number of elements and will always align to
             the bottom of the card. However, if you supply a footer containing a{' '}
-            <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
+            <strong>EuiButton</strong> you <strong>must not</strong> also give
             it an <EuiCode>onClick</EuiCode>.
           </p>
           <EuiCallOut
@@ -237,8 +237,8 @@ export const CardExample = {
           If the card links to or references a module that is not GA (beta, lab,
           etc), you can add a <EuiCode>betaBadgeLabel</EuiCode> and{' '}
           <EuiCode>betaBadgeTooltipContent</EuiCode> to the card and it will
-          properly create and position an <EuiCode>EuiBetaBadge</EuiCode>. If
-          you want to change the title of the tooltip, supply a{' '}
+          properly create and position an <strong>EuiBetaBadge</strong>. If you
+          want to change the title of the tooltip, supply a{' '}
           <EuiCode>betaBadgeTitle</EuiCode> prop.
         </p>
       ),
@@ -271,8 +271,8 @@ export const CardExample = {
             When you have a list of cards that can be selected but{' '}
             <strong>do not navigate anywhere</strong>, you can add the{' '}
             <EuiCode>selectable</EuiCode> prop. The prop is an object that
-            extends <EuiCode>EuiButtonEmpty</EuiCode>. It will apply the button
-            as seen below, and passing{' '}
+            extends <strong>EuiButtonEmpty</strong>. It will apply the button as
+            seen below, and passing{' '}
             <EuiCode>selectable.isSelected = true</EuiCode> will alter the
             styles of the card and button to look selected.
           </p>
@@ -307,11 +307,12 @@ export const CardExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>EuiCheckableCard</EuiCode> wraps an{' '}
-            <EuiCode>EuiRadio</EuiCode> or <EuiCode>EuiCheckbox</EuiCode> with a
-            more-prominent panel, allowing for children to be displayed.
+            <strong>EuiCheckableCard</strong> wraps an <strong>EuiRadio</strong>{' '}
+            or <strong>EuiCheckbox</strong> with a more-prominent panel,
+            allowing for children to be displayed.
           </p>
           <EuiCallOut
+            iconType="accessibility"
             color="warning"
             title={
               <span>
