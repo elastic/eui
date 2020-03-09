@@ -109,7 +109,9 @@ class UiKitPopover extends React.Component {
                   </EuiToolTip>
                 </EuiFlexItem>
                 <EuiFlexItem grow={false}>
-                  <EuiIcon type="logoSketch" />
+                  <EuiIcon
+                    type={require('../../../../docs/misc_logo/figma-1.svg')}
+                  />
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiButton>{' '}
