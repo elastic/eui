@@ -45,6 +45,7 @@ export default class extends Component {
           showInput
           minInputProps={{ 'aria-label': 'Min value' }}
           maxInputProps={{ 'aria-label': 'Max value' }}
+          aria-label="An example of EuiDualRangeInputs"
         />
       </Fragment>
     );

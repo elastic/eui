@@ -75,6 +75,7 @@ export default class extends Component {
           showTicks
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
           showInput
+          aria-label="An example of EuiCustomEuiTicks"
         />
       </Fragment>
     );

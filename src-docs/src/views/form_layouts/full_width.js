@@ -15,7 +15,11 @@ export default () => (
   <Fragment>
     <EuiFlexGroup>
       <EuiFlexItem>
-        <EuiFieldSearch placeholder="Search..." fullWidth />
+        <EuiFieldSearch
+          placeholder="Search..."
+          fullWidth
+          aria-label="An example of searchbar with full width"
+        />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButton>Search</EuiButton>
