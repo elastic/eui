@@ -34,6 +34,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           showInput
+          aria-label="An example of EuiRange"
         />
 
         <EuiSpacer size="xl" />
