@@ -28,12 +28,18 @@
   // Puts the arrow on the right
   flex-direction: row-reverse;
   justify-content: space-between;
+
+  .euiAccordion__iconWrapper {
+    margin-left: $euiSizeS;
+    margin-right: $euiSizeXS;
+  }
 }
 
 .euiAccordion__iconWrapper {
   @include size($euiSize);
   border-radius: $euiBorderRadius;
   margin-right: $euiSizeS;
+  margin-left: $euiSizeXS;
   flex-shrink: 0;
 
   // Nested to override EuiIcon

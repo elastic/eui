@@ -191,7 +191,8 @@ export const ListGroupExample = {
             <EuiCode>anchor</EuiCode>, or <EuiCode>span</EuiCode>. You can
             enforce a different color of <EuiCode>primary</EuiCode>,{' '}
             <EuiCode>text</EuiCode>, or <EuiCode>subdued</EuiCode> with the{' '}
-            <EuiCode>color</EuiCode> prop.
+            <EuiCode>color</EuiCode> prop. Or provide the prop directly to{' '}
+            <strong>EuiListGroup</strong>.
           </p>
           <p>
             They also accept options for text size;{' '}
