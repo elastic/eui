@@ -42,6 +42,14 @@ describe('EuiListGroup', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is rendered with listItems and color', () => {
+    const component = render(
+      <EuiListGroup color="primary" listItems={someListItems} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('props', () => {
     test('bordered is rendered', () => {
       const component = render(<EuiListGroup bordered />);
