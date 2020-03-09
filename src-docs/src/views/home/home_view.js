@@ -8,6 +8,7 @@ import imageTables from '../../images/tables.svg';
 import imageForms from '../../images/forms.svg';
 import imageFlexgrid from '../../images/flexgrid.svg';
 import imageCards from '../../images/cards.svg';
+import logoFigma from '../../images/logo-figma.svg';
 
 import {
   EuiCard,
@@ -57,6 +58,17 @@ export const HomeView = () => (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
+            <p>Libraries:</p>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiLink href="https://www.figma.com/community/file/809845546262698150">
+              <EuiScreenReaderOnly>
+                <span>Elastic UI Library on Figma</span>
+              </EuiScreenReaderOnly>
+              <EuiIcon type={logoFigma} aria-hidden="true" />
+            </EuiLink>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
             <EuiToolTip
               title="Download zip"
               postiion="down"
@@ -64,12 +76,9 @@ export const HomeView = () => (
                 This will provide symbols that match against their EUI component
                 counterparts.">
               <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-                <strong>Sketch libraries</strong>
+                <EuiIcon type="logoSketch" />
               </EuiLink>
             </EuiToolTip>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiIcon type="logoSketch" />
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
