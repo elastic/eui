@@ -1,27 +1,18 @@
-import React, { useState, useCallback, useMemo, useContext } from 'react';
-import { LiveContext } from 'react-live';
-// import { EuiFlexGroup, EuiFlexItem } from '../flex';
-// import { EuiSpacer } from '../spacer';
+import React, { useState, useCallback, useMemo } from 'react';
+import { withLive } from 'react-live';
 import { EuiCodeEditor } from '../code_editor';
-// import { CommonProps } from '../common';
 
 import 'brace/theme/github';
 import 'brace/mode/jsx';
-import 'react-brace/snippets/javascript';
+import 'brace/snippets/javascript';
 import 'brace/ext/language_tools';
 
-const CodeEditor = ({
-  code,
-  disabled,
-  language,
-  onChange,
-  style,
-  theme,
-}: any) => {
+const CodeEditor = ({ ...props }: any) => {
+  const { code, onChange, style } = props;
   const getCode = useMemo(() => code, [code]);
   const [editorCode, setEditorCode] = useState(getCode);
   const updateContent = useCallback(
-    code => {
+    ({ code }) => {
       setEditorCode(code);
       onChange(code);
     },
@@ -49,16 +40,14 @@ const CodeEditor = ({
   );
 };
 
-export const LiveEditor = ({ ...props }: any) => {
-  const { code, language, theme, disabled, onChange } = useContext(LiveContext);
+export const LiveEditor = withLive(({ live }: any) => {
+  const { code, language, onChange, theme } = live;
   return (
     <CodeEditor
-      {...props}
-      theme={theme}
       code={code}
       language={language}
-      disabled={disabled}
       onChange={onChange}
+      theme={theme}
     />
   );
-};
+});

@@ -13,9 +13,6 @@ import { CommonProps } from '../common';
 
 type EuiLiveDemoProps = CommonProps &
   HTMLAttributes<HTMLUListElement> & {
-    /**
-     * For multiple components
-     */
     noInline?: boolean;
     code?: string;
     scope?: object;
