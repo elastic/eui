@@ -319,13 +319,16 @@ export default () => (
       <GuideRuleExample
         type="do"
         text="Do. Remove the ellipsis from Search fields.">
-        <EuiFieldSearch defaultValue="Search" />
+        <EuiFieldSearch defaultValue="Search" aria-label="Search example" />
       </GuideRuleExample>
 
       <GuideRuleExample
         type="do"
         text="Do. Use an ellipsis for truncated text or situations that require waiting.">
-        <EuiFieldSearch defaultValue="Loading..." />
+        <EuiFieldSearch
+          defaultValue="Loading..."
+          aria-label="Search loading example"
+        />
       </GuideRuleExample>
     </GuideRule>
 
