@@ -76,6 +76,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   if (renderForm) {
     relObj.onSubmit = onSubmit;
   }
+
   return (
     <Element className={classes} {...relObj} {...rest}>
       {optionalErrorAlert}
