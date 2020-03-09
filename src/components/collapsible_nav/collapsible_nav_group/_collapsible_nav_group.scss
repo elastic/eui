@@ -1,6 +1,6 @@
 $euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
   $euiColorDarkestShade,
-  $euiColorLightestShade
+  shade($euiColorLightestShade, 30%),
 );
 
 .euiCollapsibleNavGroup {
