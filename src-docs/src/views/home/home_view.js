@@ -81,7 +81,10 @@ export const HomeView = () => (
                 This will provide symbols that match against their EUI component
                 counterparts.">
               <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-                <EuiIcon type="logoSketch" />
+                <EuiScreenReaderOnly>
+                  <span>Elastic UI Library on Sketch</span>
+                </EuiScreenReaderOnly>
+                <EuiIcon type="logoSketch" aria-hidden="true" />
               </EuiLink>
             </EuiToolTip>
           </EuiFlexItem>
