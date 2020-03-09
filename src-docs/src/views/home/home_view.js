@@ -21,9 +21,104 @@ import {
   EuiTitle,
   EuiToolTip,
   EuiScreenReaderOnly,
+  EuiButton,
+  EuiPopover,
 } from '../../../../src/components';
 
 const pkg = require('../../../../package.json');
+
+class UiKitPopover extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPopoverOpen: false,
+    };
+  }
+
+  onButtonClick() {
+    this.setState({
+      isPopoverOpen: !this.state.isPopoverOpen,
+    });
+  }
+
+  closePopover() {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  }
+
+  render() {
+    const button = (
+      <EuiButton
+        iconType="arrowDown"
+        iconSide="right"
+        onClick={this.onButtonClick.bind(this)}>
+        UI Kit
+      </EuiButton>
+    );
+
+    return (
+      <EuiPopover
+        id="popover"
+        button={button}
+        isOpen={this.state.isPopoverOpen}
+        closePopover={this.closePopover.bind(this)}>
+        <EuiFlexGroup direction="column" gutterSize="xs">
+          <EuiFlexItem grow={true}>
+            <EuiButton
+              fullWidth
+              href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
+              <EuiFlexGroup
+                alignItems="center"
+                gutterSize="s"
+                responsive={false}>
+                <EuiFlexItem grow={true}>
+                  <EuiToolTip
+                    title="Download zip"
+                    postiion="down"
+                    content="Import these sketch files into a new project as libraries.
+                This will provide symbols that match against their EUI component
+                counterparts.">
+                    <strong>Sketch libraries</strong>
+                  </EuiToolTip>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiIcon type="logoSketch" />
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiButton>{' '}
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={true}>
+            <EuiButton
+              fullWidth
+              href="https://www.figma.com/community/file/809845546262698150">
+              <EuiFlexGroup
+                alignItems="center"
+                gutterSize="s"
+                responsive={false}>
+                <EuiFlexItem grow={true}>
+                  <EuiToolTip
+                    title="Download zip"
+                    postiion="down"
+                    content="Import these sketch files into a new project as libraries.
+                This will provide symbols that match against their EUI component
+                counterparts.">
+                    <strong>Figma UI Kit</strong>
+                  </EuiToolTip>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiIcon type="logoSketch" />
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiButton>{' '}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPopover>
+    );
+  }
+}
 
 export const HomeView = () => (
   <div className="guideSection__text">
@@ -55,23 +150,7 @@ export const HomeView = () => (
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <EuiToolTip
-              title="Download zip"
-              postiion="down"
-              content="Import these sketch files into a new project as libraries.
-                This will provide symbols that match against their EUI component
-                counterparts.">
-              <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-                <strong>Sketch libraries</strong>
-              </EuiLink>
-            </EuiToolTip>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiIcon type="logoSketch" />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <UiKitPopover />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
