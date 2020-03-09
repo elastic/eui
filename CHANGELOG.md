@@ -6,6 +6,7 @@
 - Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
 - Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
+- Added a `link` to EUI Figma UI Kit to the docs home page ([#3016](https://github.com/elastic/eui/pull/3016))
 
 **Bug Fixes**
 
