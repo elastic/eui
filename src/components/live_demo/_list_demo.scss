@@ -1,0 +1,33 @@
+
+.euiLiveDemoFlexItem{
+  border:2px solid $euiColorPrimary;
+  min-width:300px ;
+  height: 400px !important;
+  // padding-top: 10px;
+  // margin: 0 -10px;
+  background-color: $euiColorPrimary;
+}
+.euiLiveDemoFlexGroup{
+  margin-top: 0px !important;
+}
+.euiLiveDemoPreview{
+  width:fit-content;
+  height: fit-content;
+}
+
+.euiLiveDemoPreviewWrapper{
+  @include euiScrollBar;
+  height:100%;
+  width:100%;
+  overflow: scroll;
+  padding: 10px;
+  background-color: white;
+  scrollbar-width: thin !important;
+
+}
+.euiLiveDemoEditor >  .ace_scrollbar-v{
+  right:4px;
+}
+.euiLiveDemoEditor > .ace_scrollbar-h{
+  bottom: 4px;
+}

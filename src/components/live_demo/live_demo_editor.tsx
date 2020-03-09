@@ -27,11 +27,12 @@ const CodeEditor = ({ ...props }: any) => {
       style={style}
       name="blah"
       theme="github"
-      height="300px"
+      height="100%"
+      className="euiLiveDemoEditor"
       mode="jsx"
       showGutter={true}
       setOptions={{
-        fontSize: '14px',
+        fontSize: '18px',
         enableBasicAutocompletion: true,
         enableSnippets: true,
         enableLiveAutocompletion: true,

@@ -30,15 +30,17 @@ export const EuiLiveDemo: FunctionComponent<EuiLiveDemoProps> = ({
       code={code}
       scope={scope}
       noInline={noInline}>
-      <EuiFlexGroup>
-        <EuiFlexItem>
+      <EuiFlexGroup className="euiLiveDemoFlexGroup" gutterSize="none">
+        <EuiFlexItem className="euiLiveDemoFlexItem">
           <LiveEditor />
         </EuiFlexItem>
-        <EuiFlexItem>
-          <LivePreview />
-          <EuiSpacer />
-          <LiveError />
+        <EuiFlexItem className="euiLiveDemoFlexItem">
+          <div className="euiLiveDemoPreviewWrapper">
+            <LivePreview className="euiLiveDemoPreview" />
+          </div>
         </EuiFlexItem>
+        <EuiSpacer />
+        <LiveError />
       </EuiFlexGroup>
     </LiveProvider>
   );
