@@ -63,6 +63,8 @@ import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
+import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
+
 import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
@@ -323,6 +325,7 @@ const navigation = [
     items: [
       BreadcrumbsExample,
       ButtonExample,
+      CollapsibleNavExample,
       ContextMenuExample,
       ControlBarExample,
       FacetExample,
