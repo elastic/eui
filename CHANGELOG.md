@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added a renderForm prop to `EuiForm` to render a `<form>`([#2987](https://github.com/elastic/eui/pull/2987))
+- Added a renderForm prop to `EuiForm` to render a `<form>`([#3010](https://github.com/elastic/eui/pull/3010))
 - Added `EuiDataGrid`'s default sort order property ([#2987](https://github.com/elastic/eui/pull/2987))
 - Fixed `EuiDataGrid`'s pagination visibility when changing rows per page ([#2978](https://github.com/elastic/eui/pull/2978))
 - Added `highlightAll` prop to `EuiHighlight` to highlight all matches ([#2957](https://github.com/elastic/eui/pull/2957))
