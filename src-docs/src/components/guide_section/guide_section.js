@@ -136,7 +136,7 @@ export class GuideSection extends Component {
         displayName: 'Props',
       });
     }
-    const scopeExists = this.props.source.find(
+    const scopeExists = this.props.source && this.props.source.find(
       sourceObject => sourceObject.scope
     );
     if (scopeExists) {
