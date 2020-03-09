@@ -10,9 +10,26 @@ import {
   EuiCallOut,
   EuiSpacer,
 } from '../../../../src/components';
+import {
+  accordianUnstyledLiveDemoCode,
+  accordianUnstyledScope,
+  accordianArrowScope,
+  accordianArrowLiveDemoCode,
+  accordianMultipleScope,
+  accordianMultipleLiveDemoCode,
+  accordianExtraScope,
+  accordianExtraLiveDemoCode,
+  accordianOpenScope,
+  accordianOpenLiveDemoCode,
+  accordianCallbackScope,
+  accordianCallbackLiveDemoCode,
+  accordianGrowScope,
+  accordianGrowLiveDemoCode,
+  accordianFormScope,
+  accordianFormLiveDemoCode,
+} from './accordian_live_demo';
 
 import Accordion from './accordion';
-import { accordianLiveDemoCode, accordianScope } from './accordian_live_demo';
 const accordionSource = require('!!raw-loader!./accordion');
 const accordionHtml = renderToHtml(Accordion);
 const accordionSnippet = `<EuiAccordion
@@ -132,8 +149,8 @@ export const AccordionExample = {
         },
         {
           type: GuideSectionTypes.LIVE_DEMO,
-          code: accordianLiveDemoCode,
-          scope: accordianScope,
+          code: accordianUnstyledLiveDemoCode,
+          scope: accordianUnstyledScope,
         },
       ],
       text: (
@@ -171,6 +188,11 @@ export const AccordionExample = {
           type: GuideSectionTypes.HTML,
           code: accordionArrowHtml,
         },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianArrowLiveDemoCode,
+          scope: accordianArrowScope,
+        },
       ],
       text: (
         <div>
@@ -196,6 +218,11 @@ export const AccordionExample = {
         {
           type: GuideSectionTypes.HTML,
           code: accordionMultipleHtml,
+        },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianMultipleLiveDemoCode,
+          scope: accordianMultipleScope,
         },
       ],
       text: (
@@ -226,6 +253,11 @@ export const AccordionExample = {
           type: GuideSectionTypes.HTML,
           code: accordionExtraHtml,
         },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianExtraLiveDemoCode,
+          scope: accordianExtraScope,
+        },
       ],
       text: (
         <p>
@@ -250,6 +282,11 @@ export const AccordionExample = {
           type: GuideSectionTypes.HTML,
           code: accordionOpenHtml,
         },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianOpenLiveDemoCode,
+          scope: accordianOpenScope,
+        },
       ],
       text: (
         <p>
@@ -270,6 +307,11 @@ export const AccordionExample = {
         {
           type: GuideSectionTypes.HTML,
           code: accordionCallbackHtml,
+        },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianCallbackLiveDemoCode,
+          scope: accordianCallbackScope,
         },
       ],
       text: (
@@ -292,6 +334,11 @@ export const AccordionExample = {
           type: GuideSectionTypes.HTML,
           code: accordionGrowHtml,
         },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianGrowLiveDemoCode,
+          scope: accordianGrowScope,
+        },
       ],
       text: (
         <p>
@@ -311,6 +358,11 @@ export const AccordionExample = {
         {
           type: GuideSectionTypes.HTML,
           code: accordionFormHtml,
+        },
+        {
+          type: GuideSectionTypes.LIVE_DEMO,
+          code: accordianFormLiveDemoCode,
+          scope: accordianFormScope,
         },
       ],
       text: (
