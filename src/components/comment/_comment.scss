@@ -1,20 +1,61 @@
-.euiComment {
+.euiComment__panel {
   @include euiPanel($selector: '.euiComment__panel');
   font-size: $euiFontSizeS;
   display: flex;
+  margin: -($euiSize * .5);
+  padding-bottom: $euiSize;
 
   .euiComment__panel {
     overflow: hidden;
+    flex-grow: 1;
+  }
+
+  .euiComment__avatar {
+    position: relative;
+    flex-grow: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: $euiSizeXL / 2;
+      top: $euiSizeXXL;
+      width: $euiSizeXS / 2;
+      background-color: $euiColorLightShade;
+      height: calc(100% - (#{$euiSizeXL}));
+    }
+  }
+
+  .euiComment__avatar, .euiComment__panel {
+    flex-basis: auto;
+    margin: $euiSize * .5;
   }
 
   .euiComment__panelHeader {
-    border-bottom: $euiBorderThin;
     padding: $euiSizeM;
-    background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
+    background-color: $euiColorLightestShade;
+
+    &.euiComment__panelHeader--hasBody {
+      border-bottom: $euiBorderThin;
+    }
   }
 
   .euiComment__panelBody {
     padding: $euiSizeS;
     line-height: $euiSize * 1.2;
+  }
+}
+
+.euiComment:last-child {
+  .euiComment__avatar {
+    &::before {
+      content: '';
+      background: none;
+    }
+  }
+}
+
+.euiComment__avatar-noBody {
+  .euiComment__panelHeader {
+    border: none;
   }
 }

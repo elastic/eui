@@ -3,31 +3,51 @@ import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { EuiAvatar } from '../avatar';
 
-export type EuiCommentProps = HTMLAttributes<HTMLDivElement> & CommonProps & {};
+export type EuiCommentProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    body?: string;
+  };
 
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   // children,
   className,
+  body,
   ...rest
 }) => {
-  const classes = classNames('euiComment', className);
+  const classes = classNames(
+    'euiComment',
+    // { 'euiComment--hasBody': body },
+    className
+  );
+
+  const headerClasses = classNames('euiComment__panelHeader', {
+    'euiComment__panelHeader--hasBody': body,
+  });
+
+  const contentClasses = classNames('euiComment__content', {
+    euiComment__panel: body,
+  });
+
+  // let commentBody;
+  // if (body) {
+  //   commentBody = body;
+  // }
 
   return (
     <div className={classes} {...rest}>
-      <EuiAvatar name="username" />
-      <div className="euiComment__panel">
-        <div className="euiComment__panelHeader">
+      <div className="euiComment__avatar">
+        <EuiAvatar name="username" />
+      </div>
+      <div className={contentClasses}>
+        <div className={headerClasses}>
           mmarcialis added description on Jan 1, 2020 @ 22:30:00
         </div>
-        <div className="euiComment__panelBody">
-          Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna
-          mollis euismod. Donec sed odio dui. Fusce dapibus, tellus ac cursus
-          commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit
-          amet risus. Cras mattis consectetur purus sit amet fermentum. Praesent
-          commodo cursus magna, vel scelerisque nisl consectetur et. Fusce
-          dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-          fermentum massa justo sit amet risus.
-        </div>
+        {body ? (
+          <div className="euiComment__panelBody">
+            Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna
+            {body}
+          </div>
+        ) : null}
       </div>
     </div>
   );
