@@ -81,7 +81,12 @@ export default class extends Component {
               <Fragment>
                 <EuiFormRow label={question}>
                   <EuiI18n token="euiContext.placeholder" default="John Doe">
-                    {placeholder => <EuiFieldText placeholder={placeholder} />}
+                    {placeholder => (
+                      <EuiFieldText
+                        placeholder={placeholder}
+                        aria-label="Enter text to highlight"
+                      />
+                    )}
                   </EuiI18n>
                 </EuiFormRow>
 

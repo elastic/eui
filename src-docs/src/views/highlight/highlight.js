@@ -32,7 +32,12 @@ export class Highlight extends Component {
     const { searchValue, isHighlightAll } = this.state;
     return (
       <Fragment>
-        <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
+        <EuiFieldSearch
+          value={searchValue}
+          onChange={this.onSearchChange}
+          aria-label="Enter text to highlight substrings within a string."
+          placeholder="Search"
+        />
 
         <EuiSpacer size="m" />
         <EuiSwitch

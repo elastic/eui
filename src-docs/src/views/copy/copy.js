@@ -25,6 +25,7 @@ export default class extends Component {
           placeholder="Enter text that will be copied to clipboard"
           value={this.state.copyText}
           onChange={this.onChange}
+          aria-label="Enter text that will be copied to clipboard"
         />
 
         <EuiSpacer size="m" />

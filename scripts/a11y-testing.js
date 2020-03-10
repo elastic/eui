@@ -14,6 +14,12 @@ const docsPages = async (root, page) => {
     `${root}#/forms/range-sliders`,
     `${root}#/display/progress`,
     `${root}#/display/loading`,
+    `${root}#/utilities/accessibility`,
+    `${root}#/utilities/context`,
+    `${root}#/utilities/copy`,
+    `${root}#/utilities/delay-hide`,
+    `${root}#/utilities/delay-render`,
+    `${root}#/utilities/highlight`,
   ];
 
   links = [...links, ...reflinks];
