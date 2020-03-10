@@ -1,7 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 
-- Exported `EuiText`'s props([#2987](https://github.com/elastic/eui/pull/2987))
+- Exported `EuiText`'s props([#3039](https://github.com/elastic/eui/pull/3039))
+
+**Bug Fixes**
+
+- Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
