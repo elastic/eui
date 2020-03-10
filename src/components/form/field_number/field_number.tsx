@@ -13,7 +13,6 @@ import { IconType } from '../../icon';
 
 export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
-    value?: InputHTMLAttributes<HTMLInputElement>['value'];
     icon?: IconType;
     isInvalid?: boolean;
     fullWidth?: boolean;
