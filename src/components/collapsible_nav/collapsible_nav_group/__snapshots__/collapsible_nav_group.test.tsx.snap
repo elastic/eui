@@ -3,220 +3,157 @@
 exports[`EuiCollapsibleNavGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2"
+  class="euiCollapsibleNavGroup testClass1 testClass2"
   data-test-subj="test subject string"
+  id="id"
 >
   <div
-    class="euiAccordion__triggerWrapper"
-  >
-    <button
-      aria-controls="id"
-      aria-expanded="false"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__button"
-      type="button"
-    >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <div
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span>
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
-        >
-          <div
-            class="euiFlexItem"
-          >
-            <h3>
-              Title
-            </h3>
-          </div>
-        </div>
-      </span>
-    </button>
-  </div>
-  <div
-    class="euiAccordion__childWrapper"
-    id="id"
-  >
-    <div>
-      <div
-        class=""
-      >
-        <div
-          class="euiCollapsibleNavGroup__children"
-        />
-      </div>
-    </div>
-  </div>
+    class="euiCollapsibleNavGroup__children"
+  />
 </div>
 `;
 
 exports[`EuiCollapsibleNavGroup props background dark is rendered 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--dark"
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--dark"
+  id="id"
 >
   <div
-    class="euiAccordion__triggerWrapper"
-  >
-    <button
-      aria-controls="id"
-      aria-expanded="false"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__button"
-      type="button"
-    >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <div
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span>
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
-        >
-          <div
-            class="euiFlexItem"
-          >
-            <h3>
-              Title
-            </h3>
-          </div>
-        </div>
-      </span>
-    </button>
-  </div>
-  <div
-    class="euiAccordion__childWrapper"
-    id="id"
-  >
-    <div>
-      <div
-        class=""
-      >
-        <div
-          class="euiCollapsibleNavGroup__children"
-        />
-      </div>
-    </div>
-  </div>
+    class="euiCollapsibleNavGroup__children"
+  />
 </div>
 `;
 
 exports[`EuiCollapsibleNavGroup props background light is rendered 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--light"
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--light"
+  id="id"
 >
   <div
-    class="euiAccordion__triggerWrapper"
-  >
-    <button
-      aria-controls="id"
-      aria-expanded="false"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__button"
-      type="button"
-    >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <div
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span>
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
-        >
-          <div
-            class="euiFlexItem"
-          >
-            <h3>
-              Title
-            </h3>
-          </div>
-        </div>
-      </span>
-    </button>
-  </div>
-  <div
-    class="euiAccordion__childWrapper"
-    id="id"
-  >
-    <div>
-      <div
-        class=""
-      >
-        <div
-          class="euiCollapsibleNavGroup__children"
-        />
-      </div>
-    </div>
-  </div>
+    class="euiCollapsibleNavGroup__children"
+  />
 </div>
 `;
 
 exports[`EuiCollapsibleNavGroup props background none is rendered 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup"
+  class="euiCollapsibleNavGroup"
+  id="id"
 >
   <div
-    class="euiAccordion__triggerWrapper"
-  >
-    <button
-      aria-controls="id"
-      aria-expanded="false"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__button"
-      type="button"
-    >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <div
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span>
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
-        >
-          <div
-            class="euiFlexItem"
-          >
-            <h3>
-              Title
-            </h3>
-          </div>
-        </div>
-      </span>
-    </button>
-  </div>
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withTitle"
+  id="id"
+>
   <div
-    class="euiAccordion__childWrapper"
-    id="id"
+    class="euiCollapsibleNavGroup__button"
   >
-    <div>
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
       <div
-        class=""
+        class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiCollapsibleNavGroup__children"
+          aria-hidden="true"
+          data-euiicon-type="bolt"
         />
+      </div>
+      <div
+        class="euiFlexItem"
+      >
+        <h3>
+          Title
+        </h3>
       </div>
     </div>
   </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
 </div>
 `;
 
 exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup"
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withTitle"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__button"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <div
+          aria-hidden="true"
+          data-euiicon-type="bolt"
+        />
+      </div>
+      <div
+        class="euiFlexItem"
+      >
+        <h3>
+          Title
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withTitle"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__button"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem"
+      >
+        <h3>
+          Title
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a title 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup when collapsible is true will render an accordion 1`] = `
+<div
+  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withTitle"
 >
   <div
     class="euiAccordion__triggerWrapper"
@@ -239,14 +176,6 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
         <div
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
-          >
-            <div
-              aria-hidden="true"
-              data-euiicon-type="bolt"
-            />
-          </div>
           <div
             class="euiFlexItem"
           >

@@ -1,6 +1,7 @@
+$euiCollapsibleNavGroupLightBackgroundColor: $euiPageBackgroundColor;
 $euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
-  $euiColorDarkestShade,
-  shade($euiColorLightestShade, 30%),
+  shade($euiColorDarkestShade, 20%),
+  shade($euiColorLightestShade, 50%),
 );
 
 .euiCollapsibleNavGroup {
@@ -15,15 +16,19 @@ $euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
   }
 
   &--light {
-    background-color: $euiPageBackgroundColor;
+    background-color: $euiCollapsibleNavGroupLightBackgroundColor;
   }
 
   &--dark {
-    background-color: shade($euiCollapsibleNavGroupDarkBackgroundColor, 20%);
+    background-color: $euiCollapsibleNavGroupDarkBackgroundColor;
     color: $euiColorGhost;
   }
 }
 
 .euiCollapsibleNavGroup__children {
-  padding: 0 $euiSizeS $euiSizeS;
+  padding: $euiSizeS;
+}
+
+.euiCollapsibleNavGroup--withTitle .euiCollapsibleNavGroup__children {
+  padding-top: 0;
 }
