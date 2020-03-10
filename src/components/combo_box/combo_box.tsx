@@ -60,7 +60,7 @@ interface _EuiComboBoxProps<T>
   async: boolean;
   className?: string;
   /**
-   * when true creates a shorter height box
+   * When `true` creates a shorter height input
    */
   compressed: boolean;
   /**
