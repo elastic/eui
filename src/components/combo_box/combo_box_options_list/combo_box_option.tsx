@@ -1,13 +1,14 @@
 import React, {
   Component,
-  ReactNode,
-  KeyboardEventHandler,
   HTMLAttributes,
+  KeyboardEventHandler,
+  ReactNode,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 
 import { ENTER, SPACE } from '../../../services/key_codes';
-import { EuiComboBoxOptionOption, OptionHandler, RefCallback } from '../types';
+import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 import { CommonProps } from '../../common';
 
 export interface EuiComboBoxOptionProps<T>

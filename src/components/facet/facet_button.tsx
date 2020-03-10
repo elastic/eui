@@ -3,10 +3,11 @@ import React, {
   HTMLAttributes,
   MouseEventHandler,
   ReactNode,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, RefCallback } from '../common';
+import { CommonProps } from '../common';
 
 import { EuiNotificationBadge } from '../badge';
 

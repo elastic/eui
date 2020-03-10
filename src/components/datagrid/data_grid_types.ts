@@ -45,6 +45,14 @@ export interface EuiDataGridColumn {
    * Initial width (in pixels) of the column
    */
   initialWidth?: number;
+  /**
+   * Whether this column is sortable
+   */
+  isSortable?: boolean;
+  /**
+   * Default sort direction of the column
+   */
+  defaultSortDirection?: 'asc' | 'desc';
 }
 
 export interface EuiDataGridColumnVisibility {

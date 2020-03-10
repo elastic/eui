@@ -34,8 +34,7 @@
     margin-top: -1px;
     box-shadow: 0 0 0 2px $euiFocusRingColor;
     border-radius: 1px;
-    // Needed so it sits above potential striping in the next row
-    z-index: 2;
+    z-index: 2; // Needed so it sits above potential striping in the next row
 
     .euiDataGridRowCell__expandButton {
       margin-left: $euiDataGridCellPaddingM;

@@ -1,3 +1,4 @@
-.euiScreenReaderOnly {
+.euiScreenReaderOnly,
+.euiScreenReaderOnly--showOnFocus:not(:focus) {
   @include euiScreenReaderOnly;
 }

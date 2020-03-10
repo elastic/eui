@@ -21,12 +21,13 @@ import {
 const columns = [
   {
     id: 'name',
+    defaultSortDirection: 'asc',
   },
   {
     id: 'email',
     display: (
       // This is an example of an icon next to a title that still respects text truncate
-      <EuiFlexGroup gutterSize="xs">
+      <EuiFlexGroup gutterSize="xs" responsive={false}>
         <EuiFlexItem className="eui-textTruncate">
           <div className="eui-textTruncate">email</div>
         </EuiFlexItem>
@@ -49,15 +50,18 @@ const columns = [
   },
   {
     id: 'date',
+    defaultSortDirection: 'desc',
   },
   {
     id: 'amount',
   },
   {
     id: 'phone',
+    isSortable: false,
   },
   {
     id: 'version',
+    defaultSortDirection: 'desc',
     initialWidth: 65,
     isResizable: false,
   },
@@ -152,7 +156,8 @@ export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
-    pageSize => setPagination(pagination => ({ ...pagination, pageSize })),
+    pageSize =>
+      setPagination(pagination => ({ ...pagination, pageSize, pageIndex: 0 })),
     [setPagination]
   );
   const onChangePage = useCallback(
