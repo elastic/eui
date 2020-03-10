@@ -2,6 +2,10 @@
 
 - Added a `component` prop to `EuiForm` to render a `<form>`([#3010](https://github.com/elastic/eui/pull/3010))
 
+**Bug Fixes**
+
+- Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
+
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
 - Added `EuiDataGrid`'s default sort order property ([#2987](https://github.com/elastic/eui/pull/2987))
