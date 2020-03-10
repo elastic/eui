@@ -199,7 +199,7 @@ export class Sizes extends Component {
               overflow: 'hidden',
             }}>
             <EuiTitle size="xxs">
-              <h3>Chart title {multi && ' by type'}</h3>
+              <h2>Chart title {multi && ' by type'}</h2>
             </EuiTitle>
 
             <EuiSpacer size="s" />
