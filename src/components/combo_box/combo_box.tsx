@@ -83,7 +83,7 @@ interface _EuiComboBoxProps<T>
    */
   isLoading?: boolean;
   /**
-   * hides the suggestions list
+   * Doesn't who the suggestions list/dropdown
    */
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
