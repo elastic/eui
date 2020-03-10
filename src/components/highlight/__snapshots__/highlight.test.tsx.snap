@@ -10,6 +10,22 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 </span>
 `;
 
+exports[`EuiHighlight behavior matching applies to all matches 1`] = `
+<span>
+  <strong>
+    match
+  </strong>
+   
+  <strong>
+    match
+  </strong>
+   
+  <strong>
+    match
+  </strong>
+</span>
+`;
+
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
 <span>
   <strong>
