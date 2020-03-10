@@ -1,17 +1,14 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  HTMLAttributes,
-  FormEvent,
-} from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
 import { EuiI18n } from '../i18n';
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 
 export type EuiFormProps = CommonProps &
-  HTMLAttributes<HTMLFormElement> &
-  HTMLAttributes<HTMLDivElement> & {
+  ExclusiveUnion<
+    HTMLAttributes<HTMLFormElement>,
+    HTMLAttributes<HTMLDivElement>
+  > & {
     isInvalid?: boolean;
     /**
      * Which HTML element to render
@@ -26,7 +23,6 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   isInvalid,
   error,
   component = 'div',
-  onSubmit,
   ...rest
 }) => {
   const classes = classNames('euiForm', className);
@@ -65,20 +61,10 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
     );
   }
 
-  const relObj: {
-    onSubmit?:
-      | (((event: FormEvent<HTMLFormElement>) => void) &
-          ((event: FormEvent<HTMLDivElement>) => void))
-      | undefined;
-  } = {};
-
-  if (component === 'form') {
-    relObj.onSubmit = onSubmit;
-  }
   const Element = component;
 
   return (
-    <Element className={classes} {...relObj} {...rest}>
+    <Element className={classes} {...rest}>
       {optionalErrorAlert}
       {children}
     </Element>
