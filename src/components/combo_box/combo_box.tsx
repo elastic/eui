@@ -64,7 +64,7 @@ interface _EuiComboBoxProps<T>
    */
   compressed: boolean;
   /**
-   * when true occupies the entire width available
+   * When `true` expands to the entire width available
    */
   fullWidth: boolean;
   id?: string;
