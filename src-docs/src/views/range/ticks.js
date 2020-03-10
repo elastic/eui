@@ -40,7 +40,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           showTicks
-          aria-label="An example of EuiCustomEuiTicks"
+          aria-label="An example of EuiRange with ticks"
         />
 
         <EuiSpacer size="xl" />
