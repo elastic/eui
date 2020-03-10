@@ -18,7 +18,7 @@ export default () => (
         <EuiFieldSearch
           placeholder="Search..."
           fullWidth
-          aria-label="An example of searchbar with full width"
+          aria-label="An example of search with fullWidth"
         />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
