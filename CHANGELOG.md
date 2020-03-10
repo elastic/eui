@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `21.0.0`.
+
+- Exported `EuiText`'s props([#2987](https://github.com/elastic/eui/pull/2987))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
