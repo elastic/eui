@@ -59,7 +59,7 @@ export default class extends Component {
           showRange
           showTicks
           tickInterval={20}
-          aria-label="An example of EuiCustomEuiTicks with Custom tick interval"
+          aria-label="An example of EuiRange with custom tickInterval"
         />
 
         <EuiSpacer size="xl" />
