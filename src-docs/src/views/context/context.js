@@ -84,7 +84,7 @@ export default class extends Component {
                     {placeholder => (
                       <EuiFieldText
                         placeholder={placeholder}
-                        aria-label="Enter text to highlight"
+                        aria-label={question}
                       />
                     )}
                   </EuiI18n>
