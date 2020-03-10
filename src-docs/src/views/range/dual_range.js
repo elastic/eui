@@ -29,6 +29,7 @@ export default class extends Component {
         value={this.state.value}
         onChange={this.onChange}
         showLabels
+        aria-label="An example of EuiDualRange"
       />
     );
   }

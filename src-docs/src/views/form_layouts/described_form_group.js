@@ -122,6 +122,7 @@ export default class extends Component {
                 { value: 'option_two', text: 'Option two' },
                 { value: 'option_three', text: 'Option three' },
               ]}
+              aria-label="An example of a form element without a visible label"
             />
           </EuiFormRow>
 
@@ -159,7 +160,11 @@ export default class extends Component {
           </EuiFormRow>
 
           <EuiFormRow fullWidth>
-            <EuiFieldText name="second" fullWidth />
+            <EuiFieldText
+              name="second"
+              fullWidth
+              aria-label="An example of EuiTextField with fullWidth"
+            />
           </EuiFormRow>
         </EuiDescribedFormGroup>
       </EuiForm>
