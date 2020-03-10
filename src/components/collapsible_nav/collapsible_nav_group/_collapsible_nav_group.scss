@@ -1,3 +1,8 @@
+$euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
+  $euiColorDarkestShade,
+  $euiColorLightestShade
+);
+
 .euiCollapsibleNavGroup {
   &:not(:first-child) {
     border-top: $euiBorderThin;
@@ -7,6 +12,15 @@
     padding: $euiSize;
     font-size: $euiFontSizeS;
     font-weight: $euiFontWeightSemiBold;
+  }
+
+  &--light {
+    background-color: $euiPageBackgroundColor;
+  }
+
+  &--dark {
+    background-color: shade($euiCollapsibleNavGroupDarkBackgroundColor, 20%);
+    color: $euiColorGhost;
   }
 }
 
