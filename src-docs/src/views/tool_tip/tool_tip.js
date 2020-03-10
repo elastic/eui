@@ -57,10 +57,9 @@ export default () => (
     <EuiSpacer />
 
     <EuiToolTip position="right" content="Works on anything">
-      <EuiFieldText
-        placeholder="Hover over me"
-        aria-label="ToolTip appears on hover"
-      />
+	<EuiFormRow label="Tooltip demo input">
+      <EuiFieldText placeholder="Hover or focus on me" />
+    </EuiFormRow>
     </EuiToolTip>
 
     <EuiSpacer />
