@@ -55,7 +55,7 @@ interface _EuiComboBoxProps<T>
     DrillProps<T> {
   'data-test-subj'?: string;
   /**
-   * Defines wether manner of search is asynchronous or not
+   * Updates the list of options asynchronously
    */
   async: boolean;
   className?: string;
