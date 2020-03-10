@@ -51,9 +51,9 @@ type GroupAsAccordion = EuiCollapsibleNavGroupProps &
   Omit<EuiAccordionProps, 'id'> & {
     /**
      * If `true`, wraps children in the body of an accordion,
-     * using the `title` (required for use with `collapsible`) as the button
+     * requiring the prop `title` to be used as the button
      */
-    collapsible: true;
+    isCollapsible: true;
     /**
      * The title gets wrapped in the appropriate heading level
      * with the option to add an iconType
@@ -65,7 +65,7 @@ type GroupAsDiv = EuiCollapsibleNavGroupProps & {
   /**
    * When `false`, simply renders a div without any accordion functionality
    */
-  collapsible?: false;
+  isCollapsible?: false;
   /**
    * The title gets wrapped in the appropriate heading level
    * with the option to add an iconType
@@ -83,7 +83,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   iconType,
   iconSize = 'l',
   background = 'none',
-  collapsible = false,
+  isCollapsible = false,
   titleElement = 'h3',
   titleSize = 'xxs',
   ...rest
@@ -131,7 +131,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     undefined
   );
 
-  if (collapsible && title) {
+  if (isCollapsible && title) {
     const generateID = htmlIdGenerator();
 
     return (

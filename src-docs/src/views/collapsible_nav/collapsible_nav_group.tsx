@@ -22,7 +22,7 @@ export default () => (
     <EuiCollapsibleNavGroup
       background="light"
       title="Nav group"
-      collapsible={true}
+      isCollapsible={true}
       iconType="logoElastic"
       initialIsOpen={true}>
       <EuiText size="s" color="subdued">
@@ -39,7 +39,7 @@ export default () => (
       iconType="logoGCPMono"
       iconSize="xxl"
       titleSize="s"
-      collapsible={true}
+      isCollapsible={true}
       initialIsOpen={false}
       background="dark">
       <EuiText size="s">

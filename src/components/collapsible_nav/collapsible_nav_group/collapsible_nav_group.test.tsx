@@ -72,11 +72,11 @@ describe('EuiCollapsibleNavGroup', () => {
     });
   });
 
-  describe('when collapsible is true', () => {
+  describe('when isCollapsible is true', () => {
     test('will render an accordion', () => {
       const component = render(
         <EuiCollapsibleNavGroup
-          collapsible={true}
+          isCollapsible={true}
           initialIsOpen={false}
           title="Title"
           id="id"

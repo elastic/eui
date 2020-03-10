@@ -196,7 +196,7 @@ exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a
 </div>
 `;
 
-exports[`EuiCollapsibleNavGroup when collapsible is true will render an accordion 1`] = `
+exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
 <div
   class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
 >

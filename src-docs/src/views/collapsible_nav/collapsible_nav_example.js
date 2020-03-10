@@ -98,10 +98,10 @@ export const CollapsibleNavExample = {
             seaction a heading by providing an optional <EuiCode>title</EuiCode>{' '}
             and <EuiCode>iconType</EuiCode>. Make the section collapsible (
             <Link to="/layout/accordion">accordion style</Link>) with{' '}
-            <EuiCode language="js">collapsible=true</EuiCode>.
+            <EuiCode language="js">isCollapsible=true</EuiCode>.
           </p>
           <p>
-            When in <EuiCode>collapsible</EuiCode> mode, a{' '}
+            When in <EuiCode>isCollapsible</EuiCode> mode, a{' '}
             <EuiCode>title</EuiCode> and{' '}
             <EuiCode language="ts">initialIsOpen:boolean</EuiCode> is required.
           </p>
@@ -114,7 +114,7 @@ export const CollapsibleNavExample = {
       snippet: `<EuiCollapsibleNavGroup
   title="Nav group"
   iconType="logo"
-  collapsible={true}
+  isCollapsible={true}
   initialIsOpen={true}
   background="none"
 />`,
