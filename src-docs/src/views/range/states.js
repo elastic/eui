@@ -74,7 +74,7 @@ export default class extends Component {
               { label: '100kb', value: 100 },
             ]}
             levels={this.levels}
-            aria-label="An exapmle of EuiRange with disabled props"
+            aria-label="An example of EuiRange"
           />
         </DisplayToggles>
       </Fragment>
