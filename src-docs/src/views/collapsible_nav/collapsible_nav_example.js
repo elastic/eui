@@ -69,6 +69,13 @@ export const CollapsibleNavExample = {
       ),
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
+      snippet: `<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>
+{navIsOpen && (
+  <EuiCollapsibleNav
+    docked={navIsDocked}
+    onClose={() => setNavIsOpen(false)}
+  />
+)}`,
     },
     {
       title: 'Collapsible nav group',
@@ -92,12 +99,12 @@ export const CollapsibleNavExample = {
             <EuiCode>iconType</EuiCode> to give each seaction a heading. Make
             the section collapsible (
             <Link to="/layout/accordion">accordion style</Link>) with{' '}
-            <EuiCode>collapsible=true</EuiCode>.
+            <EuiCode language="js">collapsible=true</EuiCode>.
           </p>
           <p>
             When in <EuiCode>collapsible</EuiCode> mode, a{' '}
             <EuiCode>title</EuiCode> and{' '}
-            <EuiCode>initialIsOpen: boolean</EuiCode> is required.
+            <EuiCode language="ts">initialIsOpen:boolean</EuiCode> is required.
           </p>
         </>
       ),
@@ -105,6 +112,13 @@ export const CollapsibleNavExample = {
         EuiCollapsibleNavGroup,
       },
       demo: <CollapsibleNavGroup />,
+      snippet: `<EuiCollapsibleNavGroup
+  title="Nav group"
+  iconType="logo"
+  collapsible={true}
+  initialIsOpen={true}
+  background="none"
+/>`,
     },
   ],
 };

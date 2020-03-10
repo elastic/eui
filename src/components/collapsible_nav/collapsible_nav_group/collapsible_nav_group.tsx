@@ -87,10 +87,10 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
 > = ({
   className,
   children,
+  id,
   title,
   iconType,
   iconSize = 'l',
-  id,
   background = 'none',
   collapsible = false,
   titleElement = 'h3',
