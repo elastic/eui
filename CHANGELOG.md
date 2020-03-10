@@ -10,7 +10,7 @@
 - Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `enableAllColumns` to `EuiBasicTable` component ([#2906](https://github.com/elastic/eui/pull/2906))
-
+- Added `EuiMark` component.
 **Bug Fixes**
 
 - Fixed `EuiDataGrid`'s sort popover to behave properly on mobile screens ([#2979](https://github.com/elastic/eui/pull/2979))
