@@ -10,8 +10,6 @@ import React, {
   HTMLAttributes,
   KeyboardEventHandler,
   RefCallback,
-  ReactElement,
-  cloneElement,
 } from 'react';
 import classNames from 'classnames';
 
@@ -41,12 +39,11 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
-  EuiComboBoxAppendPrepend,
 } from './types';
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
-import { EuiFormLabel } from '../form';
+import { EuiFormControlLayoutProps } from '../form';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -77,8 +74,8 @@ interface _EuiComboBoxProps<T>
   placeholder?: string;
   rowHeight?: number;
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
-  prepend?: EuiComboBoxAppendPrepend;
-  append?: EuiComboBoxAppendPrepend;
+  prepend?: EuiFormControlLayoutProps['prepend'];
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 /**
@@ -821,7 +818,6 @@ export class EuiComboBox<T> extends Component<
     const classes = classNames('euiComboBox', className, {
       'euiComboBox--compressed': compressed,
       'euiComboBox--fullWidth': fullWidth,
-      'euiComboBox--group': prepend || append,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox-isInvalid': markAsInvalid,
       'euiComboBox-isOpen': isListOpen,
@@ -870,9 +866,6 @@ export class EuiComboBox<T> extends Component<
       );
     }
 
-    const prependNodes = this.renderSideNode('prepend', prepend, id);
-    const appendNodes = this.renderSideNode('append', append, id);
-
     return (
       /**
        * Re: jsx-a11y/interactive-supports-focus
@@ -894,7 +887,6 @@ export class EuiComboBox<T> extends Component<
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRefCallback}
         role="combobox">
-        {singleSelection && prependNodes}
         <EuiComboBoxInput
           autoSizeInputRef={this.autoSizeInputRefCallback}
           compressed={compressed}
@@ -927,52 +919,11 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
+          append={singleSelection ? append : undefined}
+          prepend={singleSelection ? prepend : undefined}
         />
-        {singleSelection && appendNodes}
         {optionsList}
       </div>
     );
-  }
-  renderSideNode(
-    side: 'append' | 'prepend',
-    nodes?: EuiComboBoxAppendPrepend,
-    inputId?: string
-  ) {
-    if (!nodes) {
-      return;
-    }
-
-    if (typeof nodes === 'string') {
-      return this.createFormLabel(side, nodes, inputId);
-    }
-
-    const appendNodes = React.Children.map(nodes, (item, index) =>
-      typeof item === 'string'
-        ? this.createFormLabel(side, item, inputId)
-        : this.createSideNode(side, item, index)
-    );
-
-    return appendNodes;
-  }
-  createFormLabel(
-    side: 'append' | 'prepend',
-    string: string,
-    inputId?: string
-  ) {
-    return (
-      <EuiFormLabel htmlFor={inputId} className={`euiComboBox__${side}`}>
-        {string}
-      </EuiFormLabel>
-    );
-  }
-  createSideNode(
-    side: 'append' | 'prepend',
-    node: ReactElement,
-    key: React.Key
-  ) {
-    return cloneElement(node, {
-      className: classNames(`euiComboBox__${side}`, node.props.className),
-      key: key,
-    });
   }
 }
