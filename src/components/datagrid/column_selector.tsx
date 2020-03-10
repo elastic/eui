@@ -2,7 +2,6 @@ import React, {
   Fragment,
   useState,
   useMemo,
-  ReactChild,
   ReactElement,
   ChangeEvent,
 } from 'react';
@@ -93,6 +92,26 @@ export const useColumnSelector = (
   );
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
 
+  let buttonText = (
+    <EuiI18n token="euiColumnSelector.button" default="Columns" />
+  );
+
+  if (numberOfHiddenFields === 1) {
+    buttonText = (
+      <EuiI18n
+        token="euiColumnSelector.buttonActiveSingular"
+        default="column hidden"
+      />
+    );
+  } else if (numberOfHiddenFields > 1) {
+    buttonText = (
+      <EuiI18n
+        token="euiColumnSelector.buttonActivePlural"
+        default="columns hidden"
+      />
+    );
+  }
+
   const columnSelector = (
     <EuiPopover
       data-test-subj="dataGridColumnSelectorPopover"
@@ -103,26 +122,15 @@ export const useColumnSelector = (
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
-        <EuiI18n
-          tokens={[
-            'euiColumnSelector.button',
-            'euiColumnSelector.buttonActive',
-          ]}
-          defaults={['Columns', 'columns hidden']}>
-          {([button, buttonActive]: ReactChild[]) => (
-            <EuiButtonEmpty
-              size="xs"
-              iconType="eyeClosed"
-              color="text"
-              className={controlBtnClasses}
-              data-test-subj="dataGridColumnSelectorButton"
-              onClick={() => setIsOpen(!isOpen)}>
-              {numberOfHiddenFields > 0
-                ? `${numberOfHiddenFields} ${buttonActive}`
-                : button}
-            </EuiButtonEmpty>
-          )}
-        </EuiI18n>
+        <EuiButtonEmpty
+          size="xs"
+          iconType={allowColumnHiding ? 'listAdd' : 'list'}
+          color="text"
+          className={controlBtnClasses}
+          data-test-subj="dataGridColumnSelectorButton"
+          onClick={() => setIsOpen(!isOpen)}>
+          {numberOfHiddenFields > 0 ? numberOfHiddenFields : null} {buttonText}
+        </EuiButtonEmpty>
       }>
       <div>
         {allowColumnHiding && (
@@ -188,7 +196,9 @@ export const useColumnSelector = (
                               }}
                             />
                           ) : (
-                            id
+                            <span className="euiDataGridColumnSelector__itemLabel">
+                              {id}
+                            </span>
                           )}
                         </EuiFlexItem>
                         {isDragEnabled && (
