@@ -1,0 +1,642 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiComboBox is rendered 1`] = `
+<div
+  aria-expanded="false"
+  aria-haspopup="listbox"
+  aria-label="aria-label"
+  class="euiComboBox testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="combobox"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiComboBox__inputWrap euiComboBox__inputWrap-isClearable"
+        data-test-subj="comboBoxInput"
+        tabindex="-1"
+      >
+        <div
+          class="euiComboBox__input"
+          style="font-size:14px;display:inline-block"
+        >
+          <input
+            aria-controls=""
+            data-test-subj="comboBoxSearchInput"
+            role="textbox"
+            style="box-sizing:content-box;width:1px"
+            value=""
+          />
+          <div
+            style="position:absolute;top:0;left:0;visibility:hidden;height:0;overflow:scroll;white-space:pre"
+          />
+        </div>
+      </div>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <button
+          aria-label="Open list of options"
+          class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+          data-test-subj="comboBoxToggleListButton"
+          type="button"
+        >
+          <div
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`props full width is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox euiComboBox--fullWidth"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={true}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+</div>
+`;
+
+exports[`props isClearable=false disallows user from clearing input when no options are selected 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={false}
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value=""
+  />
+</div>
+`;
+
+exports[`props isClearable=false disallows user from clearing input when options are selected 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+        Object {
+          "label": "Iapetus",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas, Iapetus"
+  />
+</div>
+`;
+
+exports[`props isDisabled is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox euiComboBox-isDisabled"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isDisabled={true}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+</div>
+`;
+
+exports[`props options list is rendered 1`] = `
+<div
+  aria-expanded="true"
+  aria-haspopup="listbox"
+  class="euiComboBox euiComboBox-isOpen"
+  data-test-subj="alsoGetsAppliedToOptionsList"
+  role="combobox"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiComboBox__inputWrap euiComboBox__inputWrap-isClearable"
+        data-test-subj="comboBoxInput"
+        tabindex="-1"
+      >
+        <div
+          class="euiComboBox__input"
+          style="font-size: 14px; display: inline-block;"
+        >
+          <input
+            aria-controls="htmlid_listbox"
+            data-test-subj="comboBoxSearchInput"
+            role="textbox"
+            style="box-sizing: content-box; width: 2px;"
+            value=""
+          />
+          <div
+            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+          />
+        </div>
+      </div>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <button
+          aria-label="Close list of options"
+          class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+          data-test-subj="comboBoxToggleListButton"
+          type="button"
+        >
+          <div
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiPanel euiComboBoxOptionsList euiComboBoxOptionsList--bottom"
+    data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
+  >
+    <div
+      class="euiComboBoxOptionsList__rowWrap"
+    >
+      <div
+        aria-label="grid"
+        aria-readonly="true"
+        class="ReactVirtualized__Grid ReactVirtualized__List"
+        id="htmlid_listbox"
+        role="listbox"
+        style="box-sizing: border-box; direction: ltr; height: 189px; position: relative; width: 0px; overflow-x: hidden; overflow-y: auto;"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`props selectedOptions are rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+        Object {
+          "label": "Iapetus",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas, Iapetus"
+  />
+</div>
+`;
+
+exports[`props singleSelection is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    append={null}
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    prepend={null}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={true}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+</div>
+`;
+
+exports[`props singleSelection prepend and append is rendered 1`] = `
+<div
+  aria-expanded={true}
+  aria-haspopup="listbox"
+  className="euiComboBox euiComboBox-isOpen"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    append="String"
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={false}
+    inputRef={[Function]}
+    isListOpen={true}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    prepend="String"
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={true}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value=""
+  />
+  <EuiPortal>
+    <EuiComboBoxOptionsList
+      activeOptionIndex={-1}
+      areAllOptionsSelected={false}
+      data-test-subj=""
+      fullWidth={false}
+      listRef={[Function]}
+      matchingOptions={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      onCloseList={[Function]}
+      onOptionClick={[Function]}
+      onOptionEnterKey={[Function]}
+      onScroll={[Function]}
+      optionRef={[Function]}
+      options={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      position="bottom"
+      rootId={[Function]}
+      rowHeight={27}
+      scrollToIndex={-1}
+      searchValue=""
+      selectedOptions={Array []}
+      singleSelection={true}
+      updatePosition={[Function]}
+      width={0}
+    />
+  </EuiPortal>
+</div>
+`;
+
+exports[`props singleSelection selects existing option when opened 1`] = `
+<div
+  aria-expanded={true}
+  aria-haspopup="listbox"
+  className="euiComboBox euiComboBox-isOpen"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    append={null}
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={true}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    prepend={null}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={true}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+  <EuiPortal>
+    <EuiComboBoxOptionsList
+      activeOptionIndex={-1}
+      areAllOptionsSelected={false}
+      data-test-subj=""
+      fullWidth={false}
+      listRef={[Function]}
+      matchingOptions={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      onCloseList={[Function]}
+      onOptionClick={[Function]}
+      onOptionEnterKey={[Function]}
+      onScroll={[Function]}
+      optionRef={[Function]}
+      options={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      position="bottom"
+      rootId={[Function]}
+      rowHeight={27}
+      scrollToIndex={-1}
+      searchValue=""
+      selectedOptions={
+        Array [
+          Object {
+            "label": "Mimas",
+          },
+        ]
+      }
+      singleSelection={true}
+      updatePosition={[Function]}
+      width={0}
+    />
+  </EuiPortal>
+</div>
+`;
