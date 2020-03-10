@@ -5,4 +5,16 @@ $euiCollapsibleNavGroupTitleSizes: (
   small: $euiFontSizeS,
   medium: $euiFontSizeM,
   large: $euiFontSizeL,
-)
+);
+
+$euiCollapsibleNavGroupLightBackgroundColor: $euiPageBackgroundColor;
+
+$euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
+  shade($euiColorDarkestShade, 20%),
+  shade($euiColorLightestShade, 50%),
+);
+
+$euiCollapsibleNavGroupDarkHighContrastColor: makeGraphicContrastColor(
+  $euiColorPrimary,
+  $euiCollapsibleNavGroupDarkBackgroundColor
+);

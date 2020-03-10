@@ -1,6 +1,8 @@
 // Colors
 $euiFocusRingColor: rgba($euiColorPrimary, .3) !default;
 $euiFocusRingAnimStartColor: rgba($euiColorPrimary, 0) !default;
+$euiFocusRingAnimStartSize: 6px !default;
+$euiFocusRingAnimStartSizeLarge: 10px !default;
 
 // Sizing
 $euiFocusRingSizeLarge: $euiSizeXS !default;
