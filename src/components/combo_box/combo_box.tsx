@@ -103,7 +103,7 @@ interface _EuiComboBoxProps<T>
   placeholder?: string;
   rowHeight?: number;
   /**
-   * when true allows the user to select a single option
+   * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
    */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
 }
