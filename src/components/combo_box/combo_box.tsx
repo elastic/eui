@@ -98,7 +98,7 @@ interface _EuiComboBoxProps<T>
    */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
   /**
-   * Sets the placeholder of the combo box
+   * Sets the placeholder of the input
    */
   placeholder?: string;
   rowHeight?: number;
