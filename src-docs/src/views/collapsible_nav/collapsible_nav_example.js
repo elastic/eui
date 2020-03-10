@@ -11,11 +11,16 @@ import {
   EuiText,
   EuiSpacer,
   EuiCallOut,
+  EuiCollapsibleNavGroup,
 } from '../../../../src/components';
 
 import CollapsibleNav from './collapsible_nav';
 const collapsibleNavSource = require('!!raw-loader!./collapsible_nav');
 const collapsibleNavHtml = renderToHtml(CollapsibleNav);
+
+import CollapsibleNavGroup from './collapsible_nav_group';
+const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
+const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
 
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
@@ -64,6 +69,42 @@ export const CollapsibleNavExample = {
       ),
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
+    },
+    {
+      title: 'Collapsible nav group',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: collapsibleNavGroupSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: collapsibleNavGroupHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            An <strong>EuiCollapsibleNavGroup</strong> adds some basic borders
+            and <EuiCode>background</EuiCode> color of <EuiCode>none</EuiCode>,{' '}
+            <EuiCode>light</EuiCode>, or <EuiCode>dark</EuiCode>. You can
+            provide an optional <EuiCode>title</EuiCode> and{' '}
+            <EuiCode>iconType</EuiCode> to give each seaction a heading. Make
+            the section collapsible (
+            <Link to="/layout/accordion">accordion style</Link>) with{' '}
+            <EuiCode>collapsible=true</EuiCode>.
+          </p>
+          <p>
+            When in <EuiCode>collapsible</EuiCode> mode, a{' '}
+            <EuiCode>title</EuiCode> and{' '}
+            <EuiCode>initialIsOpen: boolean</EuiCode> is required.
+          </p>
+        </>
+      ),
+      props: {
+        EuiCollapsibleNavGroup,
+      },
+      demo: <CollapsibleNavGroup />,
     },
   ],
 };

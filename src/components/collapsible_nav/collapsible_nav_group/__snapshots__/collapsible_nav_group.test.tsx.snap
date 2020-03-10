@@ -52,7 +52,7 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
   id="id"
 >
   <div
-    class="euiCollapsibleNavGroup__title"
+    class="euiCollapsibleNavGroup__title euiCollapsibleNavGroup__title--small"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -86,7 +86,7 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
   id="id"
 >
   <div
-    class="euiCollapsibleNavGroup__title"
+    class="euiCollapsibleNavGroup__title euiCollapsibleNavGroup__title--small"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -120,7 +120,7 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
   id="id"
 >
   <div
-    class="euiCollapsibleNavGroup__title"
+    class="euiCollapsibleNavGroup__title euiCollapsibleNavGroup__title--small"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -134,6 +134,76 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
       </div>
     </div>
   </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props titleElement can change the rendere element to h2 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withTitle"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__title euiCollapsibleNavGroup__title--small"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem"
+      >
+        <h2>
+          Title
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props titleSize inherit is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props titleSize large is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props titleSize medium is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props titleSize small is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
   <div
     class="euiCollapsibleNavGroup__children"
   />
@@ -161,7 +231,7 @@ exports[`EuiCollapsibleNavGroup when collapsible is true will render an accordio
     <button
       aria-controls="id"
       aria-expanded="false"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__title"
+      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__title euiCollapsibleNavGroup__title--small"
       type="button"
     >
       <span

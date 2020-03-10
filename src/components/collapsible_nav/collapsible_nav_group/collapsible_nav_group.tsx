@@ -17,6 +17,15 @@ export const BACKGROUNDS = Object.keys(
   backgroundToClassNameMap
 ) as Background[];
 
+type TitleSize = 'small' | 'medium' | 'inherit' | 'large';
+const titleSizeToClassNameMap: { [size in TitleSize]: string } = {
+  small: 'euiCollapsibleNavGroup__title--small',
+  medium: 'euiCollapsibleNavGroup__title--medium',
+  inherit: '',
+  large: 'euiCollapsibleNavGroup__title--large',
+};
+export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap) as TitleSize[];
+
 export interface EuiCollapsibleNavGroupProps extends CommonProps {
   // TODO: paddingSize should be optional on EuiAccordion
   children?: ReactNode;
@@ -37,6 +46,14 @@ export interface EuiCollapsibleNavGroupProps extends CommonProps {
    * applying the correct text color to the title only
    */
   background?: Background;
+  /**
+   * Determines the title's heading element
+   */
+  titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+  /**
+   * Title sizing based on the SASS variable equivelant
+   */
+  titleSize?: TitleSize;
 }
 
 type GroupAsAccordion = EuiCollapsibleNavGroupProps &
@@ -76,6 +93,8 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   id,
   background = 'none',
   collapsible = false,
+  titleElement = 'h3',
+  titleSize = 'small',
   ...rest
 }) => {
   const classes = classNames(
@@ -98,7 +117,11 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     <div className="euiCollapsibleNavGroup__children">{children}</div>
   );
 
-  const titleClasses = 'euiCollapsibleNavGroup__title';
+  const titleClasses = classNames(
+    'euiCollapsibleNavGroup__title',
+    titleSizeToClassNameMap[titleSize]
+  );
+  const TitleElement = titleElement;
 
   const titleContent = title ? (
     <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
@@ -109,7 +132,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
       )}
 
       <EuiFlexItem>
-        <h3>{title}</h3>
+        <TitleElement>{title}</TitleElement>
       </EuiFlexItem>
     </EuiFlexGroup>
   ) : (
