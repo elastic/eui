@@ -93,7 +93,7 @@ describe('EuiCollapsibleNavGroup', () => {
 
       expect(consoleStub).toBeCalled();
       expect(consoleStub.mock.calls[0][0]).toMatch(
-        'icon without also passing a `title`'
+        'not render an icon without `title`'
       );
       expect(component).toMatchSnapshot();
     });

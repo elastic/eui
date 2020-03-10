@@ -52,7 +52,7 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
   id="id"
 >
   <div
-    class="euiCollapsibleNavGroup__button"
+    class="euiCollapsibleNavGroup__title"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -86,7 +86,7 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
   id="id"
 >
   <div
-    class="euiCollapsibleNavGroup__button"
+    class="euiCollapsibleNavGroup__title"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -120,7 +120,7 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
   id="id"
 >
   <div
-    class="euiCollapsibleNavGroup__button"
+    class="euiCollapsibleNavGroup__title"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -161,7 +161,7 @@ exports[`EuiCollapsibleNavGroup when collapsible is true will render an accordio
     <button
       aria-controls="id"
       aria-expanded="false"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__button"
+      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__title"
       type="button"
     >
       <span

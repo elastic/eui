@@ -90,7 +90,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   // Warn if consumer passes an iconType without a title
   if (iconType && !title) {
     console.warn(
-      'EuiCollapsibleNavGroup will not render an icon without also passing a `title`.'
+      'EuiCollapsibleNavGroup will not render an icon without `title`.'
     );
   }
 
@@ -98,7 +98,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     <div className="euiCollapsibleNavGroup__children">{children}</div>
   );
 
-  const titleClasses = classNames('euiCollapsibleNavGroup__button');
+  const titleClasses = 'euiCollapsibleNavGroup__title';
 
   const titleContent = title ? (
     <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>

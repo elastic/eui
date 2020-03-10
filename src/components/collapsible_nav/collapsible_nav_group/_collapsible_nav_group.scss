@@ -9,12 +9,6 @@ $euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
     border-top: $euiBorderThin;
   }
 
-  &__button {
-    padding: $euiSize;
-    font-size: $euiFontSizeS;
-    font-weight: $euiFontWeightSemiBold;
-  }
-
   &--light {
     background-color: $euiCollapsibleNavGroupLightBackgroundColor;
   }
@@ -23,6 +17,12 @@ $euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
     background-color: $euiCollapsibleNavGroupDarkBackgroundColor;
     color: $euiColorGhost;
   }
+}
+
+.euiCollapsibleNavGroup__title {
+  padding: $euiSize;
+  font-size: $euiFontSizeS;
+  font-weight: $euiFontWeightSemiBold;
 }
 
 .euiCollapsibleNavGroup__children {
