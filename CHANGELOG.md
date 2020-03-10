@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Allow value of type string in `EuiFieldNumber` component ([#3020](https://github.com/elastic/eui/pull/3020))
+**Bug Fixes**
+
+- Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
