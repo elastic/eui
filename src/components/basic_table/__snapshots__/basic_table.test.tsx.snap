@@ -3590,3 +3590,134 @@ exports[`EuiBasicTable with sorting 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiBasicTable with sorting enabled and enable all columns for sorting 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        justifyContent="spaceBetween"
+        responsive={false}
+      >
+        <EuiFlexItem
+          grow={false}
+        />
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+      tableLayout="fixed"
+    >
+      <EuiScreenReaderOnly>
+        <caption
+          className="euiTableCaption"
+        >
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
+              }
+            />
+          </EuiDelayRender>
+        </caption>
+      </EuiScreenReaderOnly>
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          data-test-subj="tableHeaderCell_name_0"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_name_0"
+          onSort={[Function]}
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
