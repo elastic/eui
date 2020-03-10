@@ -79,7 +79,7 @@ interface _EuiComboBoxProps<T>
   isDisabled?: boolean;
   isInvalid?: boolean;
   /**
-   * Adds/swaps for loading spinner & disables
+   * Swaps the dropdown options for a loading spinner
    */
   isLoading?: boolean;
   /**
