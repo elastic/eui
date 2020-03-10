@@ -1,3 +1,15 @@
 .euiCollapsibleNavGroup {
-  color: $euiTextColor;
+  &:not(:first-child) {
+    border-top: $euiBorderThin;
+  }
+
+  &__button {
+    padding: $euiSize;
+    font-size: $euiFontSizeS;
+    font-weight: $euiFontWeightSemiBold;
+  }
+}
+
+.euiCollapsibleNavGroup__children {
+  padding: 0 $euiSizeS $euiSizeS;
 }

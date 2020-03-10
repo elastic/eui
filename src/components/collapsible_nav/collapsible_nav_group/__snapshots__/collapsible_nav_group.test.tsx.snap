@@ -3,7 +3,110 @@
 exports[`EuiCollapsibleNavGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiCollapsibleNavGroup testClass1 testClass2"
+  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2"
   data-test-subj="test subject string"
-/>
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="id"
+      aria-expanded="false"
+      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span>
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        >
+          <div
+            class="euiFlexItem"
+          >
+            Title
+          </div>
+        </div>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="id"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <div
+          class="euiCollapsibleNavGroup__children"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
+<div
+  class="euiAccordion euiCollapsibleNavGroup"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="id"
+      aria-expanded="false"
+      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span>
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        >
+          <div
+            class="euiFlexItem euiFlexItem--flexGrowZero"
+          >
+            <div
+              data-euiicon-type="bolt"
+            />
+          </div>
+          <div
+            class="euiFlexItem"
+          >
+            Title
+          </div>
+        </div>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="id"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <div
+          class="euiCollapsibleNavGroup__children"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
