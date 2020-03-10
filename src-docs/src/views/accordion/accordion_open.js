@@ -5,7 +5,7 @@ import { EuiAccordion, EuiText, EuiCode } from '../../../../src/components';
 export default () => (
   <div>
     <EuiAccordion
-      id="accordion1"
+      id="accordion2"
       buttonContent="I am opened by default. Click me to toggle close / open"
       initialIsOpen={true}
       paddingSize="l">

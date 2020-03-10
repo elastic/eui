@@ -40,6 +40,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           showTicks
+          aria-label="An example of EuiRange with ticks"
         />
 
         <EuiSpacer size="xl" />
@@ -58,6 +59,7 @@ export default class extends Component {
           showRange
           showTicks
           tickInterval={20}
+          aria-label="An example of EuiRange with custom tickInterval"
         />
 
         <EuiSpacer size="xl" />
@@ -75,6 +77,7 @@ export default class extends Component {
           showTicks
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
           showInput
+          aria-label="An example of EuiDualRange with ticks"
         />
       </Fragment>
     );
