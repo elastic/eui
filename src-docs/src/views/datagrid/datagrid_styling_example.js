@@ -37,10 +37,11 @@ const gridSnippet = `<EuiDataGrid
   ]}
   // This can work as a shape.
   toolbarVisibility={{
-    showColumnSelector: false
     showStyleSelector: false
     showSortSelector: false
     showFullScreenSelector: false
+    // showColumnSelector also takes an object, check the prop docs.
+    showColumnSelector: false
     additionalControls: (
       <Fragment>
         <EuiButtonEmpty

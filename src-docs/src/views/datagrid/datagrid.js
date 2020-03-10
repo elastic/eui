@@ -202,11 +202,6 @@ export default () => {
   return (
     <EuiDataGrid
       aria-label="Data grid demo"
-      toolbarVisibility={{
-        showColumnSelector: {
-          allowHide: false,
-        },
-      }}
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       trailingControlColumns={trailingControlColumns}

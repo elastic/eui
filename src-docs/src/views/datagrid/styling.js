@@ -167,6 +167,17 @@ export default class DataGrid extends Component {
       },
     ];
 
+    this.allowHideColumnsOptions = [
+      {
+        id: 'true',
+        label: 'True',
+      },
+      {
+        id: 'false',
+        label: 'False',
+      },
+    ];
+
     this.showFullScreenSelectorOptions = [
       {
         id: 'true',
@@ -212,6 +223,7 @@ export default class DataGrid extends Component {
       showSortSelector: true,
       showStyleSelector: true,
       showColumnSelector: true,
+      allowHideColumns: true,
       showFullScreenSelector: true,
       showToolbar: true,
       toolbarPropTypeIsBoolean: true,
@@ -276,6 +288,12 @@ export default class DataGrid extends Component {
   onShowColumnSelectorChange = optionId => {
     this.setState({
       showColumnSelector: optionId === 'true',
+    });
+  };
+
+  onAllowHideColumnsChange = optionId => {
+    this.setState({
+      allowHideColumns: optionId === 'true',
     });
   };
 
@@ -356,8 +374,18 @@ export default class DataGrid extends Component {
       </EuiButton>
     );
 
+    let showColumnSelector = this.state.showColumnSelector;
+    if (
+      this.state.showColumnSelector === true &&
+      this.state.allowHideColumns === false
+    ) {
+      showColumnSelector = {
+        allowHide: false,
+      };
+    }
+
     const toolbarVisibilityOptions = {
-      showColumnSelector: this.state.showColumnSelector,
+      showColumnSelector: showColumnSelector,
       showStyleSelector: this.state.showStyleSelector,
       showSortSelector: this.state.showSortSelector,
       showFullScreenSelector: this.state.showFullScreenSelector,
@@ -459,7 +487,7 @@ export default class DataGrid extends Component {
               anchorPosition="rightUp"
               zIndex={2}
               closePopover={this.closeToolbarPopover.bind(this)}>
-              <div style={{ width: 300 }}>
+              <div style={{ width: 400 }}>
                 <EuiFormRow
                   display="columnCompressed"
                   label="toolbarVisibility prop">
@@ -474,19 +502,6 @@ export default class DataGrid extends Component {
                 </EuiFormRow>
                 {this.state.toolbarPropTypeIsBoolean === false ? (
                   <Fragment>
-                    <EuiFormRow
-                      display="columnCompressed"
-                      label="Show column selector">
-                      <EuiButtonGroup
-                        isFullWidth
-                        buttonSize="compressed"
-                        legend="Border"
-                        options={this.showColumnSelectorOptions}
-                        idSelected={this.state.showColumnSelector.toString()}
-                        onChange={this.onShowColumnSelectorChange}
-                      />
-                    </EuiFormRow>
-
                     <EuiFormRow
                       display="columnCompressed"
                       label="Show style selector">
@@ -525,6 +540,34 @@ export default class DataGrid extends Component {
                         onChange={this.onShowFullScreenSelectorChange}
                       />
                     </EuiFormRow>
+
+                    <EuiFormRow
+                      display="columnCompressed"
+                      label="Show column selector">
+                      <EuiButtonGroup
+                        isFullWidth
+                        buttonSize="compressed"
+                        legend="Border"
+                        options={this.showColumnSelectorOptions}
+                        idSelected={this.state.showColumnSelector.toString()}
+                        onChange={this.onShowColumnSelectorChange}
+                      />
+                    </EuiFormRow>
+                    {this.state.showColumnSelector && (
+                      <EuiFormRow
+                        display="columnCompressed"
+                        label="Allow hiding columns"
+                        style={{ marginLeft: 32 }}>
+                        <EuiButtonGroup
+                          isFullWidth
+                          buttonSize="compressed"
+                          legend="Border"
+                          options={this.allowHideColumnsOptions}
+                          idSelected={this.state.allowHideColumns.toString()}
+                          onChange={this.onAllowHideColumnsChange}
+                        />
+                      </EuiFormRow>
+                    )}
                   </Fragment>
                 ) : (
                   <EuiFormRow display="columnCompressed" label="Show toolbar">
