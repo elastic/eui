@@ -2,11 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import {
-  EuiCollapsibleNavGroup,
-  BACKGROUNDS,
-  TITLE_SIZES,
-} from './collapsible_nav_group';
+import { EuiCollapsibleNavGroup, BACKGROUNDS } from './collapsible_nav_group';
 
 describe('EuiCollapsibleNavGroup', () => {
   test('is rendered', () => {
@@ -67,16 +63,12 @@ describe('EuiCollapsibleNavGroup', () => {
       expect(component).toMatchSnapshot();
     });
 
-    describe('titleSize', () => {
-      TITLE_SIZES.forEach(size => {
-        test(`${size} is rendered`, () => {
-          const component = render(
-            <EuiCollapsibleNavGroup id="id" titleSize={size} />
-          );
+    test('titleSize can be larger', () => {
+      const component = render(
+        <EuiCollapsibleNavGroup id="id" titleSize="s" />
+      );
 
-          expect(component).toMatchSnapshot();
-        });
-      });
+      expect(component).toMatchSnapshot();
     });
   });
 

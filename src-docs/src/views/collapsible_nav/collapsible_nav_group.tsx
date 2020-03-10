@@ -38,7 +38,7 @@ export default () => (
       title="Nav group"
       iconType="logoGCPMono"
       iconSize="xxl"
-      titleSize="large"
+      titleSize="s"
       collapsible={true}
       initialIsOpen={false}
       background="dark">
@@ -47,7 +47,7 @@ export default () => (
           This is a <EuiCode>dark</EuiCode> <EuiCode>collapsible</EuiCode> group
           that is initally set to closed,{' '}
           <EuiCode>iconSize=&quot;xxl&quot;</EuiCode> and{' '}
-          <EuiCode>titleSize=&quot;large&quot;</EuiCode>.
+          <EuiCode>titleSize=&quot;s&quot;</EuiCode>.
         </p>
       </EuiText>
     </EuiCollapsibleNavGroup>

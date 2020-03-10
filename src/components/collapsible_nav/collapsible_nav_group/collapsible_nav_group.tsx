@@ -6,6 +6,7 @@ import { htmlIdGenerator } from '../../../services';
 import { EuiAccordion, EuiAccordionProps } from '../../accordion';
 import { EuiIcon, IconType, IconSize } from '../../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../../title';
 
 type Background = 'none' | 'light' | 'dark';
 const backgroundToClassNameMap: { [color in Background]: string } = {
@@ -17,17 +18,7 @@ export const BACKGROUNDS = Object.keys(
   backgroundToClassNameMap
 ) as Background[];
 
-type TitleSize = 'small' | 'medium' | 'inherit' | 'large';
-const titleSizeToClassNameMap: { [size in TitleSize]: string } = {
-  small: 'euiCollapsibleNavGroup__title--small',
-  medium: 'euiCollapsibleNavGroup__title--medium',
-  inherit: '',
-  large: 'euiCollapsibleNavGroup__title--large',
-};
-export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap) as TitleSize[];
-
 export interface EuiCollapsibleNavGroupProps extends CommonProps {
-  // TODO: paddingSize should be optional on EuiAccordion
   children?: ReactNode;
   /**
    * Sits left of the `title` and only when `title` is present
@@ -38,12 +29,12 @@ export interface EuiCollapsibleNavGroupProps extends CommonProps {
    */
   iconSize?: IconSize;
   /**
-   * Optionally provide an id, othewise one will be created
+   * Optionally provide an id, otherwise one will be created
    */
   id?: string;
   /**
    * Adds a background color to the entire group,
-   * applying the correct text color to the title only
+   * applying the correct text color to the `title` only
    */
   background?: Background;
   /**
@@ -51,9 +42,9 @@ export interface EuiCollapsibleNavGroupProps extends CommonProps {
    */
   titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
   /**
-   * Title sizing based on the SASS variable equivelant
+   * Title sizing equivelant to EuiTitle, but only `s` and smaller
    */
-  titleSize?: TitleSize;
+  titleSize?: Omit<EuiTitleProps['size'], 'l' | 'm'>;
 }
 
 type GroupAsAccordion = EuiCollapsibleNavGroupProps &
@@ -94,14 +85,14 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   background = 'none',
   collapsible = false,
   titleElement = 'h3',
-  titleSize = 'small',
+  titleSize = 'xxs',
   ...rest
 }) => {
   const classes = classNames(
     'euiCollapsibleNavGroup',
     backgroundToClassNameMap[background],
     {
-      'euiCollapsibleNavGroup--withTitle': title,
+      'euiCollapsibleNavGroup--withHeading': title,
     },
     className
   );
@@ -117,14 +108,11 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     <div className="euiCollapsibleNavGroup__children">{children}</div>
   );
 
-  const titleClasses = classNames(
-    'euiCollapsibleNavGroup__title',
-    titleSizeToClassNameMap[titleSize]
-  );
-  const TitleElement = titleElement;
+  const headingClasses = 'euiCollapsibleNavGroup__heading';
 
+  const TitleElement = titleElement;
   const titleContent = title ? (
-    <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
+    <EuiFlexGroup gutterSize="m" alignItems="center" responsive={false}>
       {iconType && (
         <EuiFlexItem grow={false}>
           <EuiIcon type={iconType} size={iconSize} aria-hidden="true" />
@@ -132,7 +120,11 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
       )}
 
       <EuiFlexItem>
-        <TitleElement>{title}</TitleElement>
+        <EuiTitle size={titleSize as EuiTitleSize}>
+          <TitleElement className="euiCollapsibleNavGroup__title">
+            {title}
+          </TitleElement>
+        </EuiTitle>
       </EuiFlexItem>
     </EuiFlexGroup>
   ) : (
@@ -146,7 +138,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
       <EuiAccordion
         id={id || generateID()}
         className={classes}
-        buttonClassName={titleClasses}
+        buttonClassName={headingClasses}
         buttonContent={titleContent}
         initialIsOpen={true}
         arrowDisplay="right"
@@ -157,7 +149,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   } else {
     return (
       <div id={id} className={classes} {...rest}>
-        {titleContent && <div className={titleClasses}>{titleContent}</div>}
+        {titleContent && <div className={headingClasses}>{titleContent}</div>}
         {content}
       </div>
     );

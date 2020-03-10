@@ -1,12 +1,6 @@
 // Sizing
 $euiCollapsibleNavWidth: $euiSize * 20; // ~ 320px
 
-$euiCollapsibleNavGroupTitleSizes: (
-  small: $euiFontSizeS,
-  medium: $euiFontSizeM,
-  large: $euiFontSizeL,
-);
-
 $euiCollapsibleNavGroupLightBackgroundColor: $euiPageBackgroundColor;
 
 $euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
