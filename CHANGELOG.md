@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added a renderForm prop to `EuiForm` to render a `<form>`([#3010](https://github.com/elastic/eui/pull/3010))
+- Added a `component` prop to `EuiForm` to render a `<form>`([#3010](https://github.com/elastic/eui/pull/3010))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
