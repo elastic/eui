@@ -9,6 +9,7 @@
 - Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
 - Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
+- Added `enableAllColumns` to `EuiBasicTable` component ([#2906](https://github.com/elastic/eui/pull/2906))
 
 **Bug Fixes**
 
