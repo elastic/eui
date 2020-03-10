@@ -74,7 +74,7 @@ interface _EuiComboBoxProps<T>
    */
   isClearable: boolean;
   /**
-   * Disables the combo box
+   * Disables the input
    */
   isDisabled?: boolean;
   isInvalid?: boolean;
