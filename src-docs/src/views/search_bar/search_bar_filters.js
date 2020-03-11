@@ -122,6 +122,9 @@ export class SearchBarFilters extends Component {
     const schema = {
       strict: true,
       fields: {
+        type: {
+          type: 'string',
+        },
         active: {
           type: 'boolean',
         },

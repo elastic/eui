@@ -2,13 +2,9 @@
  * The List Group component provides neatly styled lists containing plain text
  * or links. The outer container can be bordered, with padding, or borderless
  * with links flush to the sides.
- *(
- * List items can be displayed with active and disabled states.
  */
 
 .euiListGroup {
-  padding: $euiSizeS;
-
   &.euiListGroup-flush {
     padding: 0;
     border: none;
@@ -22,4 +18,15 @@
 
 .euiListGroup-maxWidthDefault {
   max-width: $euiFormMaxWidth;
+}
+
+// Gutter Sizes
+@each $gutterName, $gutterSize in $euiListGroupGutterTypes {
+  .euiListGroup--#{$gutterName} {
+    padding: $gutterSize;
+
+    .euiListGroupItem:not(:first-of-type) {
+      margin-top: $gutterSize;
+    }
+  }
 }

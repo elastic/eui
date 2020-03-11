@@ -7,9 +7,10 @@ const { NODE_ENV, CI } = process.env;
 
 const isDevelopment = NODE_ENV !== 'production' && CI == null;
 const isProduction = NODE_ENV === 'production';
+const bypassCache = NODE_ENV === 'puppeteer';
 
 function useCache(loaders) {
-  if (isDevelopment) {
+  if (isDevelopment && !bypassCache) {
     return ['cache-loader'].concat(loaders);
   }
 

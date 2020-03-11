@@ -54,6 +54,7 @@ export default class extends Component {
           showTicks
           tickInterval={20}
           levels={this.levels}
+          aria-label="An example of EuiRange with levels prop"
           aria-describedby="levelsHelp2"
         />
         <EuiFormHelpText id="levelsHelp2">
@@ -70,6 +71,7 @@ export default class extends Component {
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
           showInput
           levels={this.levels}
+          aria-label="An example of EuiDualRange with levels prop"
           aria-describedby="levelsHelp3"
         />
         <EuiFormHelpText id="levelsHelp3">

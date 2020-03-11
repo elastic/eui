@@ -3,7 +3,6 @@
 exports[`EuiImage is rendered 1`] = `
 <figure
   class="euiImage euiImage--large testClass1 testClass2"
-  role="figure"
 >
   <img
     alt="alt"
@@ -18,7 +17,6 @@ exports[`EuiImage is rendered 1`] = `
 exports[`EuiImage is rendered and allows full screen 1`] = `
 <figure
   class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
-  role="figure"
 >
   <button
     aria-label="Open full screen alt image"

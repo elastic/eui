@@ -1,9 +1,17 @@
-import React, { Component, FocusEventHandler, ChangeEventHandler } from 'react';
+import React, {
+  ChangeEventHandler,
+  Component,
+  FocusEventHandler,
+  RefCallback,
+} from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiFormControlLayout } from '../../form/form_control_layout';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../../form/form_control_layout';
 import { EuiComboBoxPill } from './combo_box_pill';
 import { htmlIdGenerator } from '../../../services';
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
@@ -11,7 +19,6 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
-  RefCallback,
   UpdatePositionHandler,
 } from '../types';
 import { CommonProps } from '../../common';
@@ -45,6 +52,8 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   toggleButtonRef?: RefCallback<HTMLButtonElement | HTMLSpanElement>;
   updatePosition: UpdatePositionHandler;
   value?: string;
+  prepend?: EuiFormControlLayoutProps['prepend'];
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 interface EuiComboBoxInputState {
@@ -129,6 +138,8 @@ export class EuiComboBoxInput<T> extends Component<
       singleSelection: singleSelectionProp,
       toggleButtonRef,
       value,
+      prepend,
+      append,
     } = this.props;
 
     const singleSelection = Boolean(singleSelectionProp);
@@ -234,6 +245,7 @@ export class EuiComboBoxInput<T> extends Component<
       'euiComboBox__inputWrap--fullWidth': fullWidth,
       'euiComboBox__inputWrap--noWrap': singleSelection,
       'euiComboBox__inputWrap-isClearable': onClear,
+      'euiComboBox__inputWrap--inGroup': prepend || append,
     });
 
     return (
@@ -241,7 +253,9 @@ export class EuiComboBoxInput<T> extends Component<
         icon={icon}
         {...clickProps}
         compressed={compressed}
-        fullWidth={fullWidth}>
+        fullWidth={fullWidth}
+        prepend={prepend}
+        append={append}>
         <div
           className={wrapClasses}
           data-test-subj="comboBoxInput"

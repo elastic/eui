@@ -71,7 +71,6 @@ export default class extends Component {
       <EuiFlexGroup wrap={true}>
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="titleWithSmallPadding"
             ownFocus
             button={
               <EuiButton
@@ -96,7 +95,6 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="titleWithDefaultPadding"
             ownFocus
             button={
               <EuiButton
@@ -120,7 +118,6 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="titleWithLargePadding"
             ownFocus
             button={
               <EuiButton
@@ -145,7 +142,6 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="titleWithNoPadding"
             ownFocus
             button={
               <EuiButton

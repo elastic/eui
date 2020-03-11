@@ -261,12 +261,22 @@ export const ComboBoxExample = {
         },
       ],
       text: (
-        <p>
-          To only allow the user to select a single option, provide the{' '}
-          <EuiCode>singleSelection</EuiCode> prop. You may want to render the
-          selected option as plain text instead of pill form. To do this, pass{' '}
-          <EuiCode>{'singleSelection={{ asPlainText: true }}'}</EuiCode>
-        </p>
+        <Fragment>
+          <p>
+            To only allow the user to select a single option, provide the{' '}
+            <EuiCode>singleSelection</EuiCode> prop. You may want to render the
+            selected option as plain text instead of pill form. To do this, pass{' '}
+            <EuiCode>{'singleSelection={{ asPlainText: true }}'}</EuiCode>
+          </p>
+          <p>
+            <strong>Note:</strong> <EuiCode>append</EuiCode> and{' '}
+            <EuiCode>prepend</EuiCode> props only work if
+            <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
+            <EuiCode>false</EuiCode> to avoid multilines that makes combobox
+            height greater than that of <EuiCode>append</EuiCode> and{' '}
+            <EuiCode>prepend</EuiCode>.
+          </p>
+        </Fragment>
       ),
       props: { EuiComboBox },
       demo: <SingleSelection />,

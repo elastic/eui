@@ -1,6 +1,21 @@
 import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 
+interface EuiHighlightChunk {
+  /**
+   * Start of the chunk
+   */
+  start: number;
+  /**
+   * End of the chunk
+   */
+  end: number;
+  /**
+   * Whether to highlight chunk or not
+   */
+  highlight?: boolean;
+}
+
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
     children: string;
@@ -14,12 +29,18 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
      * Should the search be strict or not
      */
     strict?: boolean;
+
+    /**
+     * Should highlight all matches
+     */
+    highlightAll?: boolean;
   };
 
 const highlight = (
   searchSubject: string,
   searchValue: string,
-  isStrict: boolean = false
+  isStrict: boolean,
+  highlightAll: boolean
 ) => {
   if (!searchValue) {
     return searchSubject;
@@ -27,6 +48,22 @@ const highlight = (
 
   if (!searchSubject) {
     return null;
+  }
+
+  if (highlightAll) {
+    const chunks = getHightlightWords(searchSubject, searchValue, isStrict);
+    return (
+      <Fragment>
+        {chunks.map(chunk => {
+          const { end, highlight, start } = chunk;
+          const value = searchSubject.substr(start, end - start);
+          if (highlight) {
+            return <strong key={start}>{value}</strong>;
+          }
+          return value;
+        })}
+      </Fragment>
+    );
   }
 
   const normalizedSearchSubject: string = isStrict
@@ -58,16 +95,62 @@ const highlight = (
   );
 };
 
+const getHightlightWords = (
+  searchSubject: string,
+  searchValue: string,
+  isStrict: boolean
+) => {
+  const regex = new RegExp(searchValue, isStrict ? 'g' : 'gi');
+  const matches = [];
+  let match;
+  while ((match = regex.exec(searchSubject)) !== null) {
+    matches.push({
+      start: match.index,
+      end: (match.index || 0) + match[0].length,
+    });
+  }
+  return fillInChunks(matches, searchSubject.length);
+};
+
+const fillInChunks = (
+  chunksToHighlight: EuiHighlightChunk[],
+  totalLength: number
+) => {
+  const allChunks: EuiHighlightChunk[] = [];
+  const append = (start: number, end: number, highlight: boolean) => {
+    if (end - start > 0) {
+      allChunks.push({
+        start,
+        end,
+        highlight,
+      });
+    }
+  };
+  if (chunksToHighlight.length === 0) {
+    append(0, totalLength, false);
+  } else {
+    let lastIndex = 0;
+    chunksToHighlight.forEach(chunk => {
+      append(lastIndex, chunk.start, false);
+      append(chunk.start, chunk.end, true);
+      lastIndex = chunk.end;
+    });
+    append(lastIndex, totalLength, false);
+  }
+  return allChunks;
+};
+
 export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   children,
   className,
   search,
-  strict,
+  strict = false,
+  highlightAll = false,
   ...rest
 }) => {
   return (
     <span className={className} {...rest}>
-      {highlight(children, search, strict)}
+      {highlight(children, search, strict, highlightAll)}
     </span>
   );
 };

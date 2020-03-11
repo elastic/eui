@@ -3,7 +3,9 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiHighlight,
   EuiFieldSearch,
+  EuiFormRow,
   EuiSpacer,
+  EuiSwitch,
 } from '../../../../src/components';
 
 export class Highlight extends Component {
@@ -12,6 +14,7 @@ export class Highlight extends Component {
 
     this.state = {
       searchValue: 'jumped over',
+      isHighlightAll: false,
     };
   }
 
@@ -22,15 +25,26 @@ export class Highlight extends Component {
     });
   };
 
+  setHighlightAll = e => {
+    this.setState({ isHighlightAll: e.target.checked });
+  };
+
   render() {
-    const { searchValue } = this.state;
+    const { searchValue, isHighlightAll } = this.state;
     return (
       <Fragment>
-        <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
+        <EuiFormRow label="Enter text to highlight substrings within a string">
+          <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
+        </EuiFormRow>
 
         <EuiSpacer size="m" />
-
-        <EuiHighlight search={searchValue}>
+        <EuiSwitch
+          label="Highlight all"
+          checked={isHighlightAll}
+          onChange={e => this.setHighlightAll(e)}
+        />
+        <EuiSpacer size="m" />
+        <EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
           The quick brown fox jumped over the lazy dog
         </EuiHighlight>
       </Fragment>

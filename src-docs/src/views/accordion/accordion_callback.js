@@ -5,7 +5,7 @@ import { EuiAccordion, EuiText, EuiCode } from '../../../../src/components';
 export default () => (
   <div>
     <EuiAccordion
-      id="accordion1"
+      id="accordion8"
       buttonContent="I have an `onToggle` callback"
       onToggle={isOpen =>
         console.log(`EuiAccordion is now ${isOpen ? 'open' : 'closed'}`)

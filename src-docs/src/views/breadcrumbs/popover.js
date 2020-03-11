@@ -129,6 +129,7 @@ export default () => {
         truncate={false}
         max={5}
         showMaxPopover
+        aria-label="An example of EuiBreadcrumbs with popover"
       />
     </Fragment>
   );

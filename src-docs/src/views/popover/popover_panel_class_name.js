@@ -26,7 +26,6 @@ export default class extends Component {
   render() {
     return (
       <EuiPopover
-        id="popoverPanelClassName"
         ownFocus
         button={
           <EuiButton

@@ -33,7 +33,7 @@ export default class extends Component {
           <EuiButton
             color="ghost"
             onClick={() => window.alert('Button clicked')}>
-            Primary
+            Ghost
           </EuiButton>
         </EuiFlexItem>
 

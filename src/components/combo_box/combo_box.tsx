@@ -7,8 +7,9 @@
 import React, {
   Component,
   FocusEventHandler,
-  KeyboardEventHandler,
   HTMLAttributes,
+  KeyboardEventHandler,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -34,7 +35,6 @@ import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_
 import {
   UpdatePositionHandler,
   OptionHandler,
-  RefCallback,
   RefInstance,
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
@@ -43,13 +43,14 @@ import {
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
+import { EuiFormControlLayoutProps } from '../form';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
   'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
 >;
 
-export interface EuiComboBoxProps<T>
+interface _EuiComboBoxProps<T>
   extends CommonProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
@@ -73,7 +74,38 @@ export interface EuiComboBoxProps<T>
   placeholder?: string;
   rowHeight?: number;
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
+  /**
+   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+  /**
+   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
+
+/**
+ * Because of how TypeScript's LibraryManagedAttributes is designed to handle defaultProps (https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#support-for-defaultprops-in-jsx)
+ * we can't directly export the above Props definitions, as the defaulted values are not made optional
+ * as it isn't processed by LibraryManagedAttributes. To get around this, we:
+ * - remove the props which have default values applied
+ *   - additionally re-define `options` and `selectedOptions` defaults, necessary as static members can't access generics and become never[]
+ * - export (Props - Defaults) & Partial<Defaults>
+ */
+type DefaultProps<T> = Omit<
+  typeof EuiComboBox['defaultProps'],
+  'options' | 'selectedOptions'
+> & {
+  options: Array<EuiComboBoxOptionOption<T>>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+};
+export type EuiComboBoxProps<T> = Omit<
+  _EuiComboBoxProps<T>,
+  keyof DefaultProps<T>
+> &
+  Partial<DefaultProps<T>>;
 
 interface EuiComboBoxState<T> {
   activeOptionIndex: number;
@@ -89,7 +121,7 @@ interface EuiComboBoxState<T> {
 const initialSearchValue = '';
 
 export class EuiComboBox<T> extends Component<
-  EuiComboBoxProps<T>,
+  _EuiComboBoxProps<T>,
   EuiComboBoxState<T>
 > {
   static defaultProps = {
@@ -100,6 +132,8 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
+    prepend: null,
+    append: null,
   };
 
   state: EuiComboBoxState<T> = {
@@ -654,7 +688,7 @@ export class EuiComboBox<T> extends Component<
   }
 
   static getDerivedStateFromProps<T>(
-    nextProps: EuiComboBoxProps<T>,
+    nextProps: _EuiComboBoxProps<T>,
     prevState: EuiComboBoxState<T>
   ) {
     const { options, selectedOptions, singleSelection } = nextProps;
@@ -769,6 +803,8 @@ export class EuiComboBox<T> extends Component<
       rowHeight,
       selectedOptions,
       singleSelection,
+      prepend,
+      append,
       ...rest
     } = this.props;
     const {
@@ -891,8 +927,9 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
+          append={singleSelection ? append : undefined}
+          prepend={singleSelection ? prepend : undefined}
         />
-
         {optionsList}
       </div>
     );
