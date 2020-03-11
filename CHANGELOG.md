@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
 - Allow `EuiImage` to set custom width ([#3012](https://github.com/elastic/eui/pull/3012))
+-  Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
+
+**Bug Fixes**
+
+- Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
