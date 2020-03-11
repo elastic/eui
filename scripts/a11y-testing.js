@@ -10,6 +10,14 @@ const docsPages = async (root, page) => {
 
   links = links.splice(0, 14);
   const reflinks = [
+    `${root}#/layout/horizontal-rule`,
+    `${root}#/layout/modal`,
+    `${root}#/layout/nav-drawer`,
+    `${root}#/layout/panel`,
+    `${root}#/layout/popover`,
+    `${root}#/layout/spacer`,
+    `${root}#/navigation/breadcrumbs`,
+    `${root}#/navigation/context-menu`,
     `${root}#/navigation/control-bar`,
     `${root}#/navigation/link`,
     `${root}#/navigation/pagination`,

@@ -33,7 +33,7 @@ class PopoverApp extends Component {
   render() {
     return (
       <EuiWrappingPopover
-        id="popover"
+        id="popover--HTMLElement"
         button={this.props.anchor}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}>

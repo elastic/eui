@@ -35,7 +35,7 @@ export default class extends Component {
 
     return (
       <EuiPopover
-        id="popover"
+        id="popover--popover"
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}>

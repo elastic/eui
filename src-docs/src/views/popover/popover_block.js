@@ -35,6 +35,7 @@ export default class PopoverContainer extends Component {
     return (
       <EuiPopover
         button={button}
+        id="popover--block"
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         display="block">

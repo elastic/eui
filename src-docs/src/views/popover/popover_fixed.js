@@ -47,6 +47,7 @@ export default class PopoverContainer extends Component {
         <EuiButton onClick={this.toggleExample}>Toggle Example</EuiButton>
         {this.state.isExampleShown && (
           <EuiPopover
+            id="popover--Toggle"
             button={button}
             isOpen={this.state.isPopoverOpen}
             closePopover={this.closePopover}
