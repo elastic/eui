@@ -45,7 +45,6 @@ import { useStyleSelector, startingStyles } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { Observer } from '../observer/observer';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   useMergedSchema,
@@ -56,6 +55,7 @@ import {
 import { useColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
+import { useResizeObserver } from '../observer/resize_observer/resize_observer';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -220,88 +220,46 @@ function renderPagination(props: EuiDataGridProps) {
   );
 }
 
-const hasResizeObserver =
-  typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
-const makeResizeObserver = (node: HTMLElement, callback: () => void) => {
-  let observerOptions;
-  let observer: Observer | undefined;
-  if (hasResizeObserver) {
-    observer = new window.ResizeObserver(callback);
-  } else {
-    // MutationObserver fallback
-    observerOptions = {
-      // [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
-      attributes: true, // Account for style changes from `className` or `style`
-      characterData: true, // Account for text content size differences
-      childList: true, // Account for adding/removing child nodes
-      subtree: true, // Account for deep child nodes
-    };
-    observer = new MutationObserver(callback);
-  }
-  observer.observe(node, observerOptions);
-  return observer;
-};
-
 function useDefaultColumnWidth(
   container: HTMLElement | null,
   leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
   trailingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
   columns: EuiDataGridProps['columns']
 ): number | null {
-  const [resizePasses, setResizePasses] = useState(0);
-  useEffect(() => {
-    if (container == null) return;
-
-    let _resizePasses = resizePasses;
-    const observer = makeResizeObserver(container, () =>
-      setResizePasses(++_resizePasses)
-    );
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [container]); // eslint-disable-line react-hooks/exhaustive-deps, intentionally re-execute only by `container`
+  const containerSize = useResizeObserver(container);
 
   const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
     null
   );
 
   useEffect(() => {
-    if (container != null) {
-      const gridWidth = container.clientWidth;
+    const gridWidth = containerSize.width;
 
-      const controlColumnWidths = [
-        ...leadingControlColumns,
-        ...trailingControlColumns,
-      ].reduce<number>(
-        (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
-          claimedWidth + controlColumn.width,
-        0
-      );
+    const controlColumnWidths = [
+      ...leadingControlColumns,
+      ...trailingControlColumns,
+    ].reduce<number>(
+      (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
+        claimedWidth + controlColumn.width,
+      0
+    );
 
-      const columnsWithWidths = columns.filter<
-        EuiDataGridColumn & { initialWidth: number }
-      >(doesColumnHaveAnInitialWidth);
+    const columnsWithWidths = columns.filter<
+      EuiDataGridColumn & { initialWidth: number }
+    >(doesColumnHaveAnInitialWidth);
 
-      const definedColumnsWidth = columnsWithWidths.reduce(
-        (claimedWidth, column) => claimedWidth + column.initialWidth,
-        0
-      );
+    const definedColumnsWidth = columnsWithWidths.reduce(
+      (claimedWidth, column) => claimedWidth + column.initialWidth,
+      0
+    );
 
-      const claimedWidth = controlColumnWidths + definedColumnsWidth;
+    const claimedWidth = controlColumnWidths + definedColumnsWidth;
 
-      const widthToFill = gridWidth - claimedWidth;
-      const unsizedColumnCount = columns.length - columnsWithWidths.length;
-      const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
-      setDefaultColumnWidth(columnWidth);
-    }
-  }, [
-    container,
-    columns,
-    leadingControlColumns,
-    trailingControlColumns,
-    resizePasses, // not used by the useEffect function, but is used to purposefully re-execute it
-  ]);
+    const widthToFill = gridWidth - claimedWidth;
+    const unsizedColumnCount = columns.length - columnsWithWidths.length;
+    const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
+    setDefaultColumnWidth(columnWidth);
+  }, [containerSize, columns, leadingControlColumns, trailingControlColumns]);
 
   return defaultColumnWidth;
 }

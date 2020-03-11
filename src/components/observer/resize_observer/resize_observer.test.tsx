@@ -10,7 +10,7 @@ export async function waitforResizeObserver(period = 30) {
 
 describe('EuiResizeObserver', () => {
   it('watches for a resize', async () => {
-    expect.assertions(1);
+    expect.assertions(2);
     const onResize = jest.fn();
 
     const Wrapper: FunctionComponent<{}> = ({ children }) => {
@@ -24,6 +24,10 @@ describe('EuiResizeObserver', () => {
     };
 
     const component = mount(<Wrapper children={<div>Hello World</div>} />);
+
+    // Resize observer is expected to fire once on mount
+    await waitforResizeObserver();
+    expect(onResize).toHaveBeenCalledTimes(1);
 
     component.setProps({
       children: (
