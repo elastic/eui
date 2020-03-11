@@ -24,6 +24,6 @@ export const isDate = (value: any): value is Date => {
   return moment.isDate(value);
 };
 
-export const isDateLike = (value: any) => {
+export const isDateLike = (value: any): value is moment.Moment | Date => {
   return isMoment(value) || isDate(value);
 };

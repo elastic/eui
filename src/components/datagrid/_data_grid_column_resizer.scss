@@ -7,7 +7,7 @@
   width: $euiSize;
   cursor: ew-resize;
   opacity: 0;
-  z-index: 2;
+  z-index: 2; // Needs to be a level above the cells themselves in case of overlaps
 
   // Center a vertical line within the button above
   &:after {

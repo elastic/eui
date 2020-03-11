@@ -167,7 +167,7 @@ export class GuideSection extends Component {
             "from '@elastic/eui';"
           );
         renderedCode = renderedCode.split('\n');
-        let linesWithImport = [];
+        const linesWithImport = [];
         // eslint-disable-next-line guard-for-in
         for (const idx in renderedCode) {
           const line = renderedCode[idx];
@@ -179,13 +179,12 @@ export class GuideSection extends Component {
             renderedCode[idx] = '';
           }
         }
-
         if (linesWithImport.length > 1) {
           linesWithImport[0] = linesWithImport[0].replace(
             " } from '@elastic/eui';",
             ','
           );
-          for (let i = 1; i < linesWithImport.length - 1; linesWithImport++) {
+          for (let i = 1; i < linesWithImport.length - 1; i++) {
             linesWithImport[i] = linesWithImport[i]
               .replace('import {', '')
               .replace(" } from '@elastic/eui';", ',');
