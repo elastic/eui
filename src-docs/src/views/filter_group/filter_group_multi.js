@@ -71,7 +71,7 @@ export default class extends Component {
     return (
       <EuiFilterGroup>
         <EuiPopover
-          id="popover--multiSelect"
+          id="popoverExampleMultiSelect"
           ownFocus
           button={button}
           isOpen={this.state.isPopoverOpen}
