@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default class extends Component {
   constructor(props) {
@@ -56,14 +57,21 @@ export default class extends Component {
   render() {
     const { selectedOptions } = this.state;
     return (
-      <EuiComboBox
-        placeholder="Select a single option"
-        singleSelection={{ asPlainText: true }}
-        options={this.options}
-        selectedOptions={selectedOptions}
-        onChange={this.onChange}
-        isClearable={false}
-      />
+      <DisplayToggles
+        canDisabled={false}
+        canReadOnly={false}
+        canLoading={false}
+        canPrepend
+        canAppend>
+        <EuiComboBox
+          placeholder="Select a single option"
+          singleSelection={{ asPlainText: true }}
+          options={this.options}
+          selectedOptions={selectedOptions}
+          onChange={this.onChange}
+          isClearable={false}
+        />
+      </DisplayToggles>
     );
   }
 }

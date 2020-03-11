@@ -245,6 +245,7 @@ export class EuiComboBoxInput<T> extends Component<
       'euiComboBox__inputWrap--fullWidth': fullWidth,
       'euiComboBox__inputWrap--noWrap': singleSelection,
       'euiComboBox__inputWrap-isClearable': onClear,
+      'euiComboBox__inputWrap--inGroup': prepend || append,
     });
 
     return (
