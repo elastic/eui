@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import tabbable from 'tabbable';
 import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
-import { CommonProps } from '../common';
+import { CommonProps, PropsAXorB } from '../common';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
@@ -59,8 +59,10 @@ import { DataGridContext } from './data_grid_context';
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
-type CommonGridProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+type CommonGridProps = CommonProps & {
+  // redundant because of HTMLAttributes<HTMLDivElement>, but including this improves the docs
+  'aria-labelledby'?: string;
+} & HTMLAttributes<HTMLDivElement> & {
     /**
      * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the left side of the data grid.
      */
@@ -119,23 +121,21 @@ type CommonGridProps = CommonProps &
 
 // This structure forces either aria-label or aria-labelledby to be defined
 // making some type of label a requirement
-export type EuiDataGridProps = Omit<
+export type EuiDataGridProps = PropsAXorB<
   CommonGridProps,
-  'aria-label' | 'aria-labelledby'
-> &
-  (
-    | {
-        /**
-         * must provide either aria-label OR aria-labelledby as a title for the grid
-         */
-        'aria-label': string;
-      }
-    | {
-        /**
-         * must provide either aria-label OR aria-labelledby as a title for the grid
-         */
-        'aria-labelledby': string;
-      });
+  {
+    /**
+     * must provide either aria-label OR aria-labelledby as a title for the grid
+     */
+    'aria-label': string;
+  },
+  {
+    /**
+     * must provide either aria-label OR aria-labelledby as a title for the grid
+     */
+    'aria-labelledby': string;
+  }
+>;
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {

@@ -156,6 +156,7 @@ function resolveArrayTypeToPropTypes(node, state) {
  *    - Arrays
  *    - MouseEventHandler is interpretted as functions
  *    - ExclusiveUnion custom type
+ *    - PropsAXorB custom type
  *    - defined types/interfaces (found during initial program body parsing)
  * Returns `null` for unresolvable types
  * @param node
@@ -334,6 +335,20 @@ function resolveIdentifierToPropTypes(node, state) {
     }
 
     return propTypes;
+  }
+
+  if (identifier.name === 'PropsAXorB') {
+    // PropTypes for PropsAXorB remove from Base the keys in A and B
+    // then keys in A and B are made optional and unioned together
+    // Which is how TSIntersectionType is processed
+    return getPropTypesForNode(
+      {
+        type: 'TSIntersectionType',
+        types: node.typeParameters.params,
+      },
+      true,
+      state
+    );
   }
 
   // Lookup this identifier from types/interfaces defined in code

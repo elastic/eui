@@ -134,3 +134,17 @@ export type PropsForButton<T, P = {}> = T &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
   } & P;
+
+/**
+ * We have a common pattern of requiring `aria-label` XOR `aria-labelledby`
+ * where one is required, but the other cannot be present
+ * This utility extracts that functionality into a call like
+ *
+ * type AccessibleDivProps = PropsAXorB<HTMLAttributes<HTMLDivElement>, { 'aria-label': string }, { 'aria-labelledby': string }>
+ *
+ * This can also be used to make multiple properties required when unioned together:
+ *
+ * PropsAXorB<ButtonLink, { 'aria-label': string; role: string }, { 'aria-labelledby': string }>
+ */
+export type PropsAXorB<Base, A, B> = Omit<Base, keyof A | keyof B> &
+  ((A & { [key in keyof B]?: never }) | (B & { [key in keyof A]?: never }));

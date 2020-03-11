@@ -1153,6 +1153,63 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('parses PropsAXorB arguments', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface BaseProps {
+  /**
+   * Toggle something on or off
+   */
+  isOn: boolean;
+  'aria-label'?: string;
+}
+type Props = PropsAXorB<
+  BaseProps,
+  {
+    /**
+     * aria-label or aria-labelledby must be provided
+     */
+    'aria-label': string
+  },
+  {
+    /**
+     * aria-label or aria-labelledby must be provided
+     */
+    'aria-labelledby': string
+  }
+>;
+const FooComponent: React.SFC<Props> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  /**
+     * Toggle something on or off
+     */
+  isOn: PropTypes.bool.isRequired,
+
+  /**
+       * aria-label or aria-labelledby must be provided
+       */
+  "aria-label": PropTypes.oneOfType([PropTypes.string, PropTypes.string.isRequired]),
+
+  /**
+       * aria-label or aria-labelledby must be provided
+       */
+  "aria-labelledby": PropTypes.string.isRequired
+};`);
+      });
+
       it('parses PropsForAnchor and PropsForButton arguments', () => {
         const result = transform(
           `
