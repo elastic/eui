@@ -1,56 +1,6 @@
 // Just changes font weights and letter-spacing,
 // the font sizing and baselines are still all calcuated from the variables
-@mixin euiTitle($size: 'm') {
-  color: $euiTitleColor;
-
-  @if $size == 'xxxs' {
-    @include euiFontSizeXS;
-    @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightBold;
-    letter-spacing: 0;
-  } @else if $size == 'xxs' {
-    @include euiFontSizeS;
-    @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightBold;
-    letter-spacing: 0;
-  } @else if $size == 'xs' {
-    @include euiFontSize;
-    @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightBold;
-    letter-spacing: 0;
-  } @else if $size == 's' {
-    @include euiFontSizeL;
-    @include lineHeightFromBaseline(4);
-    font-weight: $euiFontWeightBold;
-    letter-spacing: 0;
-  } @else if $size == 'm' {
-    @include euiFontSizeXL;
-    @include lineHeightFromBaseline(5);
-    font-weight: $euiFontWeightBold;
-    letter-spacing: 0;
-  } @else if $size == 'l' {
-    @include euiFontSizeXXL;
-    @include lineHeightFromBaseline(6);
-    font-weight: $euiFontWeightBold;
-    letter-spacing: -.0625rem;
-  } @else {
-    @include fontSize($size);
-    @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightBold;
-    letter-spacing: 0;
-  }
-}
-
-@mixin euiFontSizeXL {
-  @include fontSize($euiFontSizeXL);
-  line-height: 1.25;
-  font-weight: inherit; // Don't force a weight anymore
-  letter-spacing: inherit;
-}
-
-@mixin euiFontSizeXXL {
-  @include fontSize($euiFontSizeXXL);
-  line-height: 1.25;
-  font-weight: inherit; // Don't force a weight anymore
-  letter-spacing: inherit;
+@mixin euiFontSize {
+  @include fontSize($euiFontSizeM);
+  line-height: $euiLineHeight;
 }
