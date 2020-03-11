@@ -3,6 +3,7 @@ import React, {
   HTMLAttributes,
   ReactElement,
   cloneElement,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -117,7 +118,7 @@ export interface EuiColorPickerProps
   /**
    * Will format the text input in the provided format when possible (hue and saturation selection)
    * Exceptions: Manual text input and swatches will display as-authored
-   * Fallback is to display the last format entered by the user
+   * Default is to display the last format entered by the user
    */
   format?: 'hex' | 'rgba';
 }
@@ -193,11 +194,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   ]);
   const [alphaRangeValue, setAlphaRangeValue] = useState('100');
   const alphaChannel = useMemo(() => {
-    const a = chromaColor ? chromaColor.alpha() : 1;
-    const percent = (a * 100).toFixed();
-    setAlphaRangeValue(percent);
-    return a;
+    return chromaColor ? chromaColor.alpha() : 1;
   }, [chromaColor]);
+
+  useEffect(() => {
+    const percent = (alphaChannel * 100).toFixed();
+    setAlphaRangeValue(percent);
+  }, [alphaChannel]);
 
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
   const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
@@ -384,9 +387,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       let text;
       if (preferredFormat === 'rgba') {
         text =
-          alpha < 1
-            ? [...rgba].join(RGB_JOIN)
-            : [...rgba].splice(0, 3).join(RGB_JOIN);
+          alpha < 1 ? rgba.join(RGB_JOIN) : rgba.slice(0, 3).join(RGB_JOIN);
       } else {
         text = hex;
       }
