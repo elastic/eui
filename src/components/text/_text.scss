@@ -228,11 +228,6 @@
   }
 }
 
-.euiText--medium {
-  @include fontSize($euiFontSize);
-  @include euiScaleText($euiFontSize);
-}
-
 .euiText--small {
   @include fontSize($euiFontSizeS);
   @include euiScaleText($euiFontSizeS);

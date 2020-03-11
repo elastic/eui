@@ -2,16 +2,20 @@
 $euiFontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
 // Font sizes -- scale is loosely based on Major Third (1.250) with a base of 14px
-$euiTextScale:    2.429, 1.929, 1.571, 1.285, 1.143, 1, .857;
+// Base list is an altered scale based on 16px to match the resulted values below
+$euiTextScale:    2.125, 1.6875, 1.375, 1.125, 1, .875, .75;
+// This is a new list because changing the base list messes with EuiText
+// So it's only being used to calculate the font size variables
+$amsTextScale:    2.429, 1.929, 1.571, 1.285, 1.143, 1, .857;
 
 $euiFontSize:     $euiSize - 2; // 14px
 
-$euiFontSizeXS:    ceil($euiFontSize * nth($euiTextScale, 7)); // 12px // h6
-$euiFontSizeS:    floor($euiFontSize * nth($euiTextScale, 6)); // 14px // h5 --> Now the same as the base $euiFontSize
-$euiFontSizeM:    floor($euiFontSize * nth($euiTextScale, 5)); // 16px // h4
-$euiFontSizeL:     ceil($euiFontSize * nth($euiTextScale, 3)); // 22px // h3
-$euiFontSizeXL:   floor($euiFontSize * nth($euiTextScale, 2)); // 27px // h2
-$euiFontSizeXXL:  floor($euiFontSize * nth($euiTextScale, 1)); // 34px // h1
+$euiFontSizeXS:    ceil($euiFontSize * nth($amsTextScale, 7)); // 12px // h6
+$euiFontSizeS:    floor($euiFontSize * nth($amsTextScale, 6)); // 14px // h5 --> Now the same as the base $euiFontSize
+$euiFontSizeM:    floor($euiFontSize * nth($amsTextScale, 5)); // 16px // h4
+$euiFontSizeL:     ceil($euiFontSize * nth($amsTextScale, 3)); // 22px // h3
+$euiFontSizeXL:   floor($euiFontSize * nth($amsTextScale, 2)); // 27px // h2
+$euiFontSizeXXL:  floor($euiFontSize * nth($amsTextScale, 1)); // 34px // h1
 
 $euiTitles: (
   'xxxs': (

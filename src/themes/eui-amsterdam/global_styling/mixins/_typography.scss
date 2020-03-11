@@ -1,6 +1,0 @@
-// Just changes font weights and letter-spacing,
-// the font sizing and baselines are still all calcuated from the variables
-@mixin euiFontSize {
-  @include fontSize($euiFontSizeM);
-  line-height: $euiLineHeight;
-}
