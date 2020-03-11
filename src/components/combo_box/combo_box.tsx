@@ -75,12 +75,12 @@ interface _EuiComboBoxProps<T>
   rowHeight?: number;
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
   /**
-   * Creates an input group with element(s) coming before input. It only shows when the `singleSelection` is set to `true`.
+   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
   /**
-   * Creates an input group with element(s) coming after input. It only shows when the `singleSelection` is set to `true`.
+   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
