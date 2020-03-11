@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Removed role attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
+- Removed `role` attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
+-  Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
+
+**Bug Fixes**
+
+- Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
