@@ -270,11 +270,11 @@ export const ComboBoxExample = {
           </p>
           <p>
             <strong>Note:</strong> <EuiCode>append</EuiCode> and{' '}
-            <EuiCode>prepend</EuiCode> props only works if
-            <EuiCode>singleSelection</EuiCode> prop is set to{' '}
-            <EuiCode>true</EuiCode> to avoid multilines that makes combobox
+            <EuiCode>prepend</EuiCode> props only work if
+            <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
+            <EuiCode>false</EuiCode> to avoid multilines that makes combobox
             height greater than that of <EuiCode>append</EuiCode> and{' '}
-            <EuiCode>prepend</EuiCode>
+            <EuiCode>prepend</EuiCode>.
           </p>
         </Fragment>
       ),
