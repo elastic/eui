@@ -78,10 +78,10 @@ export class TimeChart extends Component {
     return (
       <Fragment>
         <EuiTitle size="xxs">
-          <h3>
+          <h2>
             Number of {!this.state.multi && 'financial '}robo-calls
             {this.state.multi && ' by type'}
-          </h3>
+          </h2>
         </EuiTitle>
 
         <EuiSpacer size="s" />
