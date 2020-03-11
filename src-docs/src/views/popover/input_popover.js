@@ -38,7 +38,6 @@ export default () => {
   return (
     <React.Fragment>
       <EuiInputPopover
-        id="popover--input"
         input={input}
         isOpen={isPopoverOpen}
         closePopover={() => {
@@ -50,7 +49,6 @@ export default () => {
       <EuiSpacer />
 
       <EuiInputPopover
-        id="popover--adjustableSizedInput"
         input={inputTwo}
         isOpen={isPopoverOpenTwo}
         closePopover={() => {
