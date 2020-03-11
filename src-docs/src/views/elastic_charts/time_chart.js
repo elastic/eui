@@ -24,10 +24,7 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
+import { formatDate, dateFormatAliases } from '../../../../src/services';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 import {
@@ -81,10 +78,10 @@ export class TimeChart extends Component {
     return (
       <Fragment>
         <EuiTitle size="xxs">
-          <h3>
+          <h2>
             Number of {!this.state.multi && 'financial '}robo-calls
             {this.state.multi && ' by type'}
-          </h3>
+          </h2>
         </EuiTitle>
 
         <EuiSpacer size="s" />

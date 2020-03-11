@@ -338,6 +338,7 @@ exports[`props singleSelection is rendered 1`] = `
   role="combobox"
 >
   <EuiComboBoxInput
+    append={null}
     autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
@@ -352,6 +353,7 @@ exports[`props singleSelection is rendered 1`] = `
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
+    prepend={null}
     rootId={[Function]}
     searchValue=""
     selectedOptions={
@@ -369,6 +371,135 @@ exports[`props singleSelection is rendered 1`] = `
 </div>
 `;
 
+exports[`props singleSelection prepend and append is rendered 1`] = `
+<div
+  aria-expanded={true}
+  aria-haspopup="listbox"
+  className="euiComboBox euiComboBox-isOpen"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    append="String"
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={false}
+    inputRef={[Function]}
+    isListOpen={true}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    prepend="String"
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={true}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value=""
+  />
+  <EuiPortal>
+    <EuiComboBoxOptionsList
+      activeOptionIndex={-1}
+      areAllOptionsSelected={false}
+      data-test-subj=""
+      fullWidth={false}
+      listRef={[Function]}
+      matchingOptions={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      onCloseList={[Function]}
+      onOptionClick={[Function]}
+      onOptionEnterKey={[Function]}
+      onScroll={[Function]}
+      optionRef={[Function]}
+      options={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      position="bottom"
+      rootId={[Function]}
+      rowHeight={27}
+      scrollToIndex={-1}
+      searchValue=""
+      selectedOptions={Array []}
+      singleSelection={true}
+      updatePosition={[Function]}
+      width={0}
+    />
+  </EuiPortal>
+</div>
+`;
+
 exports[`props singleSelection selects existing option when opened 1`] = `
 <div
   aria-expanded={true}
@@ -378,6 +509,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   role="combobox"
 >
   <EuiComboBoxInput
+    append={null}
     autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
@@ -392,6 +524,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
+    prepend={null}
     rootId={[Function]}
     searchValue=""
     selectedOptions={

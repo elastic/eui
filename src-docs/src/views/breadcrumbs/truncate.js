@@ -54,6 +54,7 @@ export default () => {
         responsive={false}
         truncate={false}
         breadcrumbs={breadcrumbs}
+        aria-label="An example of EuiBreadcrumbs without truncate prop"
       />
       <EuiSpacer />
       <EuiTitle size="xs">
@@ -64,6 +65,7 @@ export default () => {
         responsive={false}
         truncate={true}
         breadcrumbs={breadcrumbs}
+        aria-label="An example of EuiBreadcrumbs with truncate prop"
       />
     </div>
   );

@@ -55,6 +55,7 @@ export default class extends Component {
             showRange
             tickInterval={20}
             levels={this.levels}
+            aria-label="An example of EuiRange"
           />
         </DisplayToggles>
 
@@ -73,6 +74,7 @@ export default class extends Component {
               { label: '100kb', value: 100 },
             ]}
             levels={this.levels}
+            aria-label="An example of EuiRange"
           />
         </DisplayToggles>
       </Fragment>
