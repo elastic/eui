@@ -1,0 +1,39 @@
+@include euiPanel($selector: '.euiCommentEvent');
+
+.euiCommentEvent {
+  font-size: $euiFontSizeS;
+  overflow: hidden;
+
+  .euiCommentEvent__header {
+    padding: $euiSizeM;
+    background-color: $euiColorLightestShade;
+    border-bottom: $euiBorderThin;
+    display: flex;
+    align-items: center;
+  }
+
+  .euiCommentEvent__headerUser {
+    display: flex;
+    align-items: center;
+    padding-right: $euiSizeXS;
+  }
+
+
+  // .euiCommentEvent__headerEvent,
+  // .euiCommentEvent__headerActions {
+  //   // margin-right: $euiSizeXS;
+  //   flex-grow: 0;
+  // }
+
+  .euiCommentEvent__headerTimeStamp {
+    // margin-left: $euiSizeS;
+    // margin-right: $euiSizeS;
+    flex-grow: 1;
+  }
+
+
+  .euiCommentEvent__body {
+    padding: $euiSizeS;
+    line-height: $euiSize * 1.2;
+  }
+}

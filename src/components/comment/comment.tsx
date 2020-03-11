@@ -1,17 +1,36 @@
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { EuiAvatar } from '../avatar';
 
-export type EuiCommentProps = HTMLAttributes<HTMLDivElement> &
+import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
+import {
+  EuiCommentTimeline,
+  EuiCommentTimelineProps,
+} from './comment_timeline';
+
+export type EuiCommentProps = EuiCommentEventProps &
+  EuiCommentTimelineProps &
   CommonProps & {
-    body?: string;
+    // body?: ReactNode;
+    // user?: ReactNode;
+    // headerText?: ReactNode;
+    // timeStamp?: ReactNode;
+    // event?: ReactNode;
+    // commentStyle?: 'regular' | 'update';
+    // actions?: ReactNode;
   };
 
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
-  // children,
+  children,
   className,
-  body,
+  // body,
+  user,
+  event,
+  actions,
+  timelineIcon,
+  commentStyle = 'regular',
+  // headerText,
+  timeStamp,
   ...rest
 }) => {
   const classes = classNames(
@@ -21,34 +40,20 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   );
 
   const headerClasses = classNames('euiComment__panelHeader', {
-    'euiComment__panelHeader--hasBody': body,
+    // 'euiComment__panelHeader--hasBody': body,
   });
-
-  const contentClasses = classNames('euiComment__content', {
-    euiComment__panel: body,
-  });
-
-  // let commentBody;
-  // if (body) {
-  //   commentBody = body;
-  // }
 
   return (
     <div className={classes} {...rest}>
-      <div className="euiComment__avatar">
-        <EuiAvatar name="username" />
-      </div>
-      <div className={contentClasses}>
-        <div className={headerClasses}>
-          mmarcialis added description on Jan 1, 2020 @ 22:30:00
-        </div>
-        {body ? (
-          <div className="euiComment__panelBody">
-            Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna
-            {body}
-          </div>
-        ) : null}
-      </div>
+      <EuiCommentTimeline timelineIcon={timelineIcon} />
+      <EuiCommentEvent
+        user={user}
+        actions={actions}
+        event={event}
+        timeStamp={timeStamp}
+        commentStyle={commentStyle}>
+        {children}
+      </EuiCommentEvent>
     </div>
   );
 };
