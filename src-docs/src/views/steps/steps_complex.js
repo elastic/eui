@@ -60,7 +60,7 @@ const steps = [
   {
     title: 'The last step has two options',
     children: (
-      <EuiText>
+      <EuiText size="s">
         <h3>
           <strong>Option 1:</strong> If you have this type of instance
         </h3>
