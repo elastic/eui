@@ -8,6 +8,7 @@ import {
   EuiFieldText,
   EuiSpacer,
   EuiButton,
+  EuiFormRow,
 } from '../../../../src/components';
 
 export default () => (
@@ -57,9 +58,9 @@ export default () => (
     <EuiSpacer />
 
     <EuiToolTip position="right" content="Works on anything">
-	<EuiFormRow label="Tooltip demo input">
-      <EuiFieldText placeholder="Hover or focus on me" />
-    </EuiFormRow>
+      <EuiFormRow label="Tooltip demo input">
+        <EuiFieldText placeholder="Hover or focus on me" />
+      </EuiFormRow>
     </EuiToolTip>
 
     <EuiSpacer />
