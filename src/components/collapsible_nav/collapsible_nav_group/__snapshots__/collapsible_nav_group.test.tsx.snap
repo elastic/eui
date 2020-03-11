@@ -146,7 +146,7 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCollapsibleNavGroup props titleElement can change the rendere element to h2 1`] = `
+exports[`EuiCollapsibleNavGroup props titleElement can change the rendered element to h2 1`] = `
 <div
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
   id="id"

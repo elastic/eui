@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, useState } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
 import { htmlIdGenerator } from '../../../services';
@@ -18,7 +18,7 @@ export const BACKGROUNDS = Object.keys(
   backgroundToClassNameMap
 ) as Background[];
 
-export interface EuiCollapsibleNavGroupProps extends CommonProps {
+export interface EuiCollapsibleNavGroupInterface extends CommonProps {
   children?: ReactNode;
   /**
    * Sits left of the `title` and only when `title` is present
@@ -47,7 +47,7 @@ export interface EuiCollapsibleNavGroupProps extends CommonProps {
   titleSize?: Omit<EuiTitleProps['size'], 'l' | 'm'>;
 }
 
-type GroupAsAccordion = EuiCollapsibleNavGroupProps &
+type GroupAsAccordion = EuiCollapsibleNavGroupInterface &
   Omit<EuiAccordionProps, 'id'> & {
     /**
      * If `true`, wraps children in the body of an accordion,
@@ -61,7 +61,7 @@ type GroupAsAccordion = EuiCollapsibleNavGroupProps &
     title: ReactNode;
   };
 
-type GroupAsDiv = EuiCollapsibleNavGroupProps & {
+type GroupAsDiv = EuiCollapsibleNavGroupInterface & {
   /**
    * When `false`, simply renders a div without any accordion functionality
    */
@@ -73,8 +73,13 @@ type GroupAsDiv = EuiCollapsibleNavGroupProps & {
   title?: ReactNode;
 };
 
+export type EuiCollapsibleNavGroupProps = ExclusiveUnion<
+  GroupAsAccordion,
+  GroupAsDiv
+>;
+
 export const EuiCollapsibleNavGroup: FunctionComponent<
-  ExclusiveUnion<GroupAsAccordion, GroupAsDiv>
+  EuiCollapsibleNavGroupProps
 > = ({
   className,
   children,
@@ -88,6 +93,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   titleSize = 'xxs',
   ...rest
 }) => {
+  const [groupID] = useState(id || htmlIdGenerator()());
   const classes = classNames(
     'euiCollapsibleNavGroup',
     backgroundToClassNameMap[background],
@@ -132,11 +138,9 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   );
 
   if (isCollapsible && title) {
-    const generateID = htmlIdGenerator();
-
     return (
       <EuiAccordion
-        id={id || generateID()}
+        id={groupID}
         className={classes}
         buttonClassName={headingClasses}
         buttonContent={titleContent}
@@ -148,7 +152,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     );
   } else {
     return (
-      <div id={id} className={classes} {...rest}>
+      <div id={groupID} className={classes} {...rest}>
         {titleContent && <div className={headingClasses}>{titleContent}</div>}
         {content}
       </div>

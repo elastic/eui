@@ -55,7 +55,7 @@ describe('EuiCollapsibleNavGroup', () => {
       });
     });
 
-    test('titleElement can change the rendere element to h2', () => {
+    test('titleElement can change the rendered element to h2', () => {
       const component = render(
         <EuiCollapsibleNavGroup title="Title" titleElement="h2" id="id" />
       );

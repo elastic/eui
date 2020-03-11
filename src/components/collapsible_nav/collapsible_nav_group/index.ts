@@ -1,1 +1,4 @@
-export { EuiCollapsibleNavGroup } from './collapsible_nav_group';
+export {
+  EuiCollapsibleNavGroup,
+  EuiCollapsibleNavGroupProps,
+} from './collapsible_nav_group';
