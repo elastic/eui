@@ -29,10 +29,7 @@ import {
   EuiCopy,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
+import { formatDate, dateFormatAliases } from '../../../../src/services';
 
 import { MultiChartCard, ChartCard } from './shared';
 

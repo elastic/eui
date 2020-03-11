@@ -10,7 +10,7 @@ import {
   EuiText,
   EuiScreenReaderOnly,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services/accessibility/html_id_generator';
+import { htmlIdGenerator } from '../../../../src/services';
 
 class Rows extends Component {
   state = {

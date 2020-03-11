@@ -24,10 +24,7 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
+import { formatDate, dateFormatAliases } from '../../../../src/services';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 import {
