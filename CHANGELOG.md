@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
 -  Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
 
 **Bug Fixes**
