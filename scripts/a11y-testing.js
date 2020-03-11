@@ -61,6 +61,12 @@ const docsPages = async (root, page) => {
     `${root}#/utilities/toggle`,
     `${root}#/utilities/window-events`,
     `${root}#/package/i18n-tokens`,
+    `${root}#/utilities/accessibility`,
+    `${root}#/utilities/context`,
+    `${root}#/utilities/copy`,
+    `${root}#/utilities/delay-hide`,
+    `${root}#/utilities/delay-render`,
+    `${root}#/utilities/highlight`,
   ];
 
   links = [...links, ...reflinks];

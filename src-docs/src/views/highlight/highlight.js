@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiHighlight,
   EuiFieldSearch,
+  EuiFormRow,
   EuiSpacer,
   EuiSwitch,
 } from '../../../../src/components';
@@ -32,7 +33,9 @@ export class Highlight extends Component {
     const { searchValue, isHighlightAll } = this.state;
     return (
       <Fragment>
-        <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
+        <EuiFormRow label="Enter text to highlight substrings within a string">
+          <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
+        </EuiFormRow>
 
         <EuiSpacer size="m" />
         <EuiSwitch
