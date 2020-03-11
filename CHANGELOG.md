@@ -1,7 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-
-- Exported `EuiText`'s props([#3039](https://github.com/elastic/eui/pull/3039))
+- Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
 
 **Bug Fixes**
 
