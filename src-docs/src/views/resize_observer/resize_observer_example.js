@@ -4,15 +4,15 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiCode,
-  EuiLink,
-  EuiResizeObserver,
-} from '../../../../src/components';
+import { EuiCode, EuiLink } from '../../../../src/components';
 
 import { ResizeObserverExample as ResizeObserver } from './resize_observer';
 const resizeObserverSource = require('!!raw-loader!./resize_observer');
 const resizeObserverHtml = renderToHtml(ResizeObserver);
+
+import { ResizeObserverHookExample as ResizeObserverHook } from './resize_observer_hook';
+const resizeObserverHookSource = require('!!raw-loader!./resize_observer_hook');
+const resizeObserverHookHtml = renderToHtml(ResizeObserverHook);
 
 export const ResizeObserverExample = {
   title: 'ResizeObserver',
@@ -57,8 +57,29 @@ export const ResizeObserverExample = {
           </p>
         </React.Fragment>
       ),
-      components: { EuiResizeObserver },
       demo: <ResizeObserver />,
+    },
+    {
+      title: 'useResizeObserver hook',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: resizeObserverHookSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: resizeObserverHookHtml,
+        },
+      ],
+      text: (
+        <React.Fragment>
+          <p>
+            There is also a React hook, <EuiCode>useResizeObserver</EuiCode>,
+            which provides the same observation functionality.
+          </p>
+        </React.Fragment>
+      ),
+      demo: <ResizeObserverHook />,
     },
   ],
 };

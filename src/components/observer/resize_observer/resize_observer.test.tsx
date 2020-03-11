@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { mount } from 'enzyme';
-import { EuiResizeObserver } from './resize_observer';
+import { EuiResizeObserver, useResizeObserver } from './resize_observer';
 import { sleep } from '../../../test';
+import { act } from 'react-dom/test-utils';
 
 export async function waitforResizeObserver(period = 30) {
   // `period` defaults to 30 because its the delay used by the ResizeObserver polyfill
@@ -42,5 +43,37 @@ describe('EuiResizeObserver', () => {
 
     // Expect 2 calls because it's called once on mount
     expect(onResize).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('useResizeObserver', () => {
+  it('watches for a resize', async () => {
+    expect.assertions(2);
+
+    const Wrapper: FunctionComponent<{}> = jest.fn(({ children }) => {
+      const [ref, setRef] = useState();
+      useResizeObserver(ref);
+      return <div ref={setRef}>{children}</div>;
+    });
+
+    const component = mount(<Wrapper children={<div>Hello World</div>} />);
+
+    // Expect the initial render, re-render when the ref is created, and a 3rd for the onresize callback
+    await act(() => waitforResizeObserver());
+    expect(Wrapper).toHaveBeenCalledTimes(3);
+
+    component.setProps({
+      children: (
+        <div>
+          <div>Hello World</div>
+          <div>Hello Again</div>
+        </div>
+      ),
+    });
+
+    await waitforResizeObserver();
+
+    // Expect two more calls because children changed (re-render) & resize observer rected
+    expect(Wrapper).toHaveBeenCalledTimes(5);
   });
 });
