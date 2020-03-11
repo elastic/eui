@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+
+- Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
 - Removed `role` attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
 -  Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
 
