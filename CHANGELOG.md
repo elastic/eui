@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `21.0.0`.
+- Removed role attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
