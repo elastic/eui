@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 -  Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
+- Added `PropsAXorB` utility type for creating exclusive subclass combinations ([#3045](https://github.com/elastic/eui/pull/3045))
 
 **Bug Fixes**
 
