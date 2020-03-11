@@ -201,11 +201,11 @@ export interface EuiDataGridPopoverContents {
   [key: string]: EuiDataGridPopoverContent;
 }
 
-export interface EuiDataGridColumnResizeEventData {
+export interface EuiDataGridOnColumnResizeData {
   columnId: string;
   width: number;
 }
 
-export type EuiDataGridOnColumnResizeEvent = (
-  eventData: EuiDataGridColumnResizeEventData
+export type EuiDataGridOnColumnResizeHandler = (
+  data: EuiDataGridOnColumnResizeData
 ) => void;

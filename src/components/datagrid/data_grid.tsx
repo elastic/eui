@@ -34,7 +34,7 @@ import {
   EuiDataGridColumnVisibility,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridFocusedCell,
-  EuiDataGridOnColumnResizeEvent,
+  EuiDataGridOnColumnResizeHandler,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -118,7 +118,7 @@ type CommonGridProps = CommonProps &
     /**
      * A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`.
      */
-    onColumnResize?: EuiDataGridOnColumnResizeEvent;
+    onColumnResize?: EuiDataGridOnColumnResizeHandler;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -274,7 +274,7 @@ function doesColumnHaveAnInitialWidth(
 
 function useColumnWidths(
   columns: EuiDataGridColumn[],
-  onColumnResize?: EuiDataGridOnColumnResizeEvent
+  onColumnResize?: EuiDataGridOnColumnResizeHandler
 ): [EuiDataGridColumnWidths, (columnId: string, width: number) => void] {
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
 
@@ -291,20 +291,13 @@ function useColumnWidths(
     );
   }, [setColumnWidths, columns]);
 
-  const setColumnWidth = useCallback(
-    (columnId: string, width: number): void => {
-      setColumnWidths(columnWidths => {
-        const newColumnWidths = { ...columnWidths, [columnId]: width };
+  const setColumnWidth = (columnId: string, width: number) => {
+    setColumnWidths({ ...columnWidths, [columnId]: width });
 
-        if (onColumnResize instanceof Function) {
-          onColumnResize({ columnId, width });
-        }
-
-        return newColumnWidths;
-      });
-    },
-    [setColumnWidths, onColumnResize]
-  );
+    if (onColumnResize) {
+      onColumnResize({ columnId, width });
+    }
+  };
 
   return [columnWidths, setColumnWidth];
 }
