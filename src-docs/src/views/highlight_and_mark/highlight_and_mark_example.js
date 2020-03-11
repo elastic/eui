@@ -54,7 +54,7 @@ export const HighlightAndMarkExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiMark</EuiCode> to mark substrings within a string.
+          Use <EuiCode>EuiMark</EuiCode> to wrap a string in an <EuiCode>mark<EuiCode> element.
         </p>
       ),
       components: { EuiMark },
