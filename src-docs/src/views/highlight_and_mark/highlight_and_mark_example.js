@@ -16,7 +16,7 @@ const markSource = require('!!raw-loader!./mark');
 const markHtml = renderToHtml(Mark);
 
 export const HighlightAndMarkExample = {
-  title: 'Highlight and Mark',
+  title: 'Highlight and mark',
   sections: [
     {
       title: 'Highlight',
