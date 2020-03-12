@@ -55,24 +55,60 @@ interface _EuiComboBoxProps<T>
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
   'data-test-subj'?: string;
+  /**
+   * Updates the list of options asynchronously
+   */
   async: boolean;
   className?: string;
+  /**
+   * When `true` creates a shorter height input
+   */
   compressed: boolean;
+  /**
+   * When `true` expands to the entire width available
+   */
   fullWidth: boolean;
   id?: string;
   inputRef?: RefCallback<HTMLInputElement>;
+  /**
+   * Shows a button that quickly clears any input
+   */
   isClearable: boolean;
+  /**
+   * Disables the input
+   */
   isDisabled?: boolean;
   isInvalid?: boolean;
+  /**
+   * Swaps the dropdown options for a loading spinner
+   */
   isLoading?: boolean;
+  /**
+   * Doesn't show the suggestions list/dropdown
+   */
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the query in the combo box is parsed
+   */
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the text query in the search box is parsed
+   */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
+  /**
+   * Sets the placeholder of the input
+   */
   placeholder?: string;
+  /**
+   * Every option must be the same height and must be explicitly set if using a custom render
+   */
   rowHeight?: number;
+  /**
+   * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
+   */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
   /**
    * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
