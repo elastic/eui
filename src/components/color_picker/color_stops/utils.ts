@@ -1,5 +1,5 @@
-import { getEventPosition } from '../utils';
-import { isValidHex, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
+import { getEventPosition, getChromaColor } from '../utils';
+import { DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
 
 const EUI_THUMB_SIZE = 16; // Same as $euiRangeThumbHeight & $euiRangeThumbWidth
@@ -60,17 +60,23 @@ export const addStop = (
   ];
 };
 
-export const isColorInvalid = (color: string) => {
-  return !isValidHex(color) || color === '';
+export const isColorInvalid = (color: string, showAlpha: boolean = false) => {
+  return getChromaColor(color, showAlpha) == null || color === '';
 };
 
 export const isStopInvalid = (stop: ColorStop['stop']) => {
   return stop == null || isNaN(stop);
 };
 
-export const isInvalid = (colorStops: ColorStop[]) => {
+export const isInvalid = (
+  colorStops: ColorStop[],
+  showAlpha: boolean = false
+) => {
   return colorStops.some(colorStop => {
-    return isColorInvalid(colorStop.color) || isStopInvalid(colorStop.stop);
+    return (
+      isColorInvalid(colorStop.color, showAlpha) ||
+      isStopInvalid(colorStop.stop)
+    );
   });
 };
 

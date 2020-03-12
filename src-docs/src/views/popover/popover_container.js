@@ -45,7 +45,6 @@ export default class PopoverContainer extends Component {
     return (
       <EuiPanel panelRef={this.setPanelRef}>
         <EuiPopover
-          id="popover"
           button={button}
           isOpen={this.state.isPopoverOpen}
           closePopover={this.closePopover}
