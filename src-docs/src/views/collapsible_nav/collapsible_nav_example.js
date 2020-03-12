@@ -11,11 +11,16 @@ import {
   EuiText,
   EuiSpacer,
   EuiCallOut,
+  EuiCollapsibleNavGroup,
 } from '../../../../src/components';
 
 import CollapsibleNav from './collapsible_nav';
 const collapsibleNavSource = require('!!raw-loader!./collapsible_nav');
 const collapsibleNavHtml = renderToHtml(CollapsibleNav);
+
+import CollapsibleNavGroup from './collapsible_nav_group';
+const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
+const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
 
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
@@ -64,6 +69,55 @@ export const CollapsibleNavExample = {
       ),
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
+      snippet: `<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>
+{navIsOpen && (
+  <EuiCollapsibleNav
+    docked={navIsDocked}
+    onClose={() => setNavIsOpen(false)}
+  />
+)}`,
+    },
+    {
+      title: 'Collapsible nav group',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: collapsibleNavGroupSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: collapsibleNavGroupHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            An <strong>EuiCollapsibleNavGroup</strong> adds some basic borders
+            and <EuiCode>background</EuiCode> color of <EuiCode>none</EuiCode>,{' '}
+            <EuiCode>light</EuiCode>, or <EuiCode>dark</EuiCode>. Give each
+            seaction a heading by providing an optional <EuiCode>title</EuiCode>{' '}
+            and <EuiCode>iconType</EuiCode>. Make the section collapsible (
+            <Link to="/layout/accordion">accordion style</Link>) with{' '}
+            <EuiCode language="js">isCollapsible=true</EuiCode>.
+          </p>
+          <p>
+            When in <EuiCode>isCollapsible</EuiCode> mode, a{' '}
+            <EuiCode>title</EuiCode> and{' '}
+            <EuiCode language="ts">initialIsOpen:boolean</EuiCode> is required.
+          </p>
+        </>
+      ),
+      props: {
+        EuiCollapsibleNavGroup,
+      },
+      demo: <CollapsibleNavGroup />,
+      snippet: `<EuiCollapsibleNavGroup
+  title="Nav group"
+  iconType="logo"
+  isCollapsible={true}
+  initialIsOpen={true}
+  background="none"
+/>`,
     },
   ],
 };
