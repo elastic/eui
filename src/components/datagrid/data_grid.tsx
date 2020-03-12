@@ -35,6 +35,7 @@ import {
   EuiDataGridColumnVisibility,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridFocusedCell,
+  EuiDataGridOnColumnResizeHandler,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -115,6 +116,10 @@ type CommonGridProps = CommonProps &
      * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
+    /**
+     * A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`.
+     */
+    onColumnResize?: EuiDataGridOnColumnResizeHandler;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -270,7 +275,8 @@ function doesColumnHaveAnInitialWidth(
 }
 
 function useColumnWidths(
-  columns: EuiDataGridColumn[]
+  columns: EuiDataGridColumn[],
+  onColumnResize?: EuiDataGridOnColumnResizeHandler
 ): [EuiDataGridColumnWidths, (columnId: string, width: number) => void] {
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
 
@@ -289,6 +295,10 @@ function useColumnWidths(
 
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
+
+    if (onColumnResize) {
+      onColumnResize({ columnId, width });
+    }
   };
 
   return [columnWidths, setColumnWidth];
@@ -570,10 +580,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     sorting,
     inMemory,
     popoverContents,
+    onColumnResize,
     ...rest
   } = props;
 
-  const [columnWidths, setColumnWidth] = useColumnWidths(columns);
+  const [columnWidths, setColumnWidth] = useColumnWidths(
+    columns,
+    onColumnResize
+  );
 
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };

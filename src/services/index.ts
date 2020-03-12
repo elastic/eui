@@ -53,6 +53,7 @@ export {
   formatDate,
   formatNumber,
   formatText,
+  dateFormatAliases,
 } from './format';
 
 export { isEvenlyDivisibleBy, isWithinRange } from './number';
