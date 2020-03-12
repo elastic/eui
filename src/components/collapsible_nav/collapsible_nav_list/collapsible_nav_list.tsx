@@ -39,7 +39,7 @@ export interface EuiCollapsibleNavListProps
    */
   listItems: EuiCollapsibleNavListItemProps[];
   /**
-   * Allows the pinnin icon to show and calls this function on click
+   * Shows the pin icon and calls this function on click
    */
   onPinClick?: (item: EuiCollapsibleNavListItemProps) => void;
 }

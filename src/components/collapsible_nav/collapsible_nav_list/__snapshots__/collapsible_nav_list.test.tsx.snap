@@ -38,6 +38,7 @@ exports[`EuiCollapsibleNavList is rendered 1`] = `
       </span>
     </span>
     <button
+      aria-label="bell"
       class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
@@ -47,6 +48,21 @@ exports[`EuiCollapsibleNavList is rendered 1`] = `
         data-euiicon-type="bell"
       />
     </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-isActive euiListGroupItem-isClickable euiCollapsibleNavList__item"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Active link"
+      >
+        Active link
+      </span>
+    </a>
   </li>
   <li
     class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-isClickable euiCollapsibleNavList__item"
@@ -129,6 +145,7 @@ exports[`EuiCollapsibleNavList renders pinning options only if onPinClick is pro
       </span>
     </span>
     <button
+      aria-label="bell"
       class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
@@ -136,6 +153,33 @@ exports[`EuiCollapsibleNavList renders pinning options only if onPinClick is pro
         aria-hidden="true"
         class="euiButtonIcon__icon"
         data-euiicon-type="bell"
+      />
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--small euiListGroupItem--subdued euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiCollapsibleNavList__item"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Active link"
+      >
+        Active link
+      </span>
+    </a>
+    <button
+      aria-label="Pin to top"
+      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiCollapsibleNavList__itemExtraAction"
+      title="Pin to top"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="pinFilled"
       />
     </button>
   </li>

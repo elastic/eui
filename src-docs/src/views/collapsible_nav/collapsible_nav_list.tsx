@@ -31,6 +31,7 @@ const someListItems: EuiCollapsibleNavListItemProps[] = [
     extraAction: {
       iconType: 'bell',
       alwaysShow: true,
+      'aria-label': 'bell',
     },
   },
 ];

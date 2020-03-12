@@ -17,7 +17,13 @@ const someListItems: EuiCollapsibleNavListItemProps[] = [
     extraAction: {
       iconType: 'bell',
       alwaysShow: true,
+      'aria-label': 'bell',
     },
+  },
+  {
+    label: 'Active link',
+    isActive: true,
+    href: '#',
   },
   {
     label: 'Button with onClick',

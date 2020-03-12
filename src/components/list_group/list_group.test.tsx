@@ -24,6 +24,11 @@ const someListItems: EuiListGroupItemProps[] = [
     },
   },
   {
+    label: 'Active link',
+    isActive: true,
+    href: '#',
+  },
+  {
     label: 'Link with href',
     href: '#',
   },

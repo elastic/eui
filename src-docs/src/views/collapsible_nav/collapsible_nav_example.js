@@ -126,7 +126,7 @@ export const CollapsibleNavExample = {
 />`,
     },
     {
-      title: 'Nav group list',
+      title: 'Collapsible nav list',
       source: [
         {
           type: GuideSectionTypes.JS,
