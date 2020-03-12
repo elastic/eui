@@ -124,7 +124,7 @@ export default class extends Component {
 
     this.state = {
       toggleIdSelected: `${idPrefix}1`,
-      toggleIdDisabled: `${idPrefix}3`,
+      toggleIdDisabled: `${idPrefix}4`,
       toggleIdToSelectedMap: {
         [`${idPrefix2}1`]: true,
       },
