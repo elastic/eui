@@ -104,13 +104,19 @@ export interface EuiDataGridStyle {
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
+  /**
+   * When `false`, removes the ability to show & hide columns through the UI
+   */
   allowHide?: boolean;
+  /**
+   * When `false`, removes the ability to re-order columns through the UI
+   */
   allowReorder?: boolean;
 }
 
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
-   * Allows the ability for the user to hide fields and sort columns
+   * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
    */
   showColumnSelector?:
     | boolean

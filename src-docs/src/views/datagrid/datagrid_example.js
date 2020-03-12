@@ -30,6 +30,7 @@ import {
   DataGridColumnVisibility,
   DataGridPopoverContent,
   DataGridControlColumn,
+  DataGridToolBarVisibilityColumnSelectorOptions,
 } from './props';
 
 const gridSnippet = `
@@ -351,6 +352,7 @@ export const DataGridExample = {
         EuiDataGridSchemaDetector: DataGridSchemaDetector,
         EuiDataGridStyle: DataGridStyle,
         EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
+        EuiDataGridToolBarVisibilityColumnSelectorOptions: DataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridPopoverContent: DataGridPopoverContent,
       },
       demo: (
