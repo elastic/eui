@@ -10,8 +10,7 @@ import {
   EuiFlexItem,
   EuiLink,
   EuiCode,
-  EuiSwitch,
-  EuiCallOut,
+  EuiTitle,
 } from '../../../../src/components';
 import { ratingAA, allowedColors } from './colors/_utilities';
 import { CorePalette } from './colors/core_palette';
@@ -69,226 +68,218 @@ export default ({ selectedTheme }) => {
 
       <EuiSpacer size="m" />
 
-      <EuiCallOut
-        color="warning"
-        iconType="accessibility"
-        title="Amsterdam changes in contrast levels">
-        <p>
-          The Amsterdam theme introduces a more vibrant core color palette. In
-          order to maintain a WCAG contrast of at least 4.5 you should use the
-          text variants of the core color variables such as&nbsp;
-          <EuiCode>$euiColorSecondaryText</EuiCode>. These new variables have
-          also been added to the default EUI theme and can be used in components
-          that render text.
-        </p>
-        <EuiSwitch
-          label="Show text variant"
-          checked={showTextVariants}
-          onChange={e => setShowTextVariants(e.target.checked)}
+      <EuiTitle size="xs">
+        <h3>
+          Use the slider and toggle to adjust the color combinations shown in
+          the sections below.
+        </h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+
+      {/* This wrapping div for the sticky positioning */}
+      <div>
+        <ContrastSlider
+          contrastValue={contrastValue}
+          showTextVariants={showTextVariants}
+          onChange={(sliderValue, toggleChecked) => {
+            setContrastValue(sliderValue);
+            setShowTextVariants(toggleChecked);
+          }}
         />
-      </EuiCallOut>
 
-      <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
 
-      <ContrastSlider
-        contrastValue={contrastValue}
-        onChange={value => {
-          setContrastValue(value);
-        }}
-      />
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorPrimary'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Main brand color and used for most call to actions like{' '}
-          <Link to="/navigation/button">buttons</Link> and{' '}
-          <Link to="/navigation/link">links</Link>. Reserve usages to elements
-          with interactions like clickable items not for plain text.
-        </p>
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorSecondary'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Also known as <EuiCode>euiColorSuccess</EuiCode>. Use this for success
-          graphics and <strong>additive</strong> actions.
-        </p>
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorAccent'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Pulls attention to key indicators like{' '}
-          <Link to="/display/badge">notifications</Link> or{' '}
-          <Link to="/navigation/facet">number of selections</Link>. Don&apos;t
-          use on elements with interactions.
-        </p>
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorDanger'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Use this for negative graphics like errors and{' '}
-          <strong>destructive</strong> actions.
-        </p>
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorWarning'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Use this for warnings and actions that have a{' '}
-          <strong>potential</strong> to be destructive.
-        </p>
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorEmptyShade'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Used as the background color of primary{' '}
-          <Link to="/layout/page">page content</Link> and{' '}
-          <Link to="/layout/panel">panels</Link> including{' '}
-          <Link to="/layout/modal">modals</Link> and{' '}
-          <Link to="/layout/flyout">flyouts</Link>. Place your main content on
-          top of this color, or a panel-style component, to{' '}
-          <strong>ensure proper contrast</strong>.
-        </p>
-        {selectedThemeIsDark ? (
+        <ColorSection
+          color={'euiColorPrimary'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
           <p>
-            If you need a color that is full black in{' '}
-            <strong>both light and dark modes</strong>, use{' '}
-            <EuiCode>euiColorInk</EuiCode>.
+            Main brand color and used for most call to actions like{' '}
+            <Link to="/navigation/button">buttons</Link> and{' '}
+            <Link to="/navigation/link">links</Link>. Reserve usages to elements
+            with interactions like clickable items not for plain text.
           </p>
-        ) : (
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiColorSecondary'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
           <p>
-            If you need a color that is full white in{' '}
-            <strong>both light and dark modes</strong>, use{' '}
-            <EuiCode>euiColorGhost</EuiCode>.
+            Also known as <EuiCode>euiColorSuccess</EuiCode>. Use this for
+            success graphics and <strong>additive</strong> actions.
           </p>
-        )}
-      </ColorSection>
+        </ColorSection>
 
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
 
-      <ColorSection
-        color={'euiColorLightestShade'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Used to lightly shade areas that contain secondary content or{' '}
-          <strong>contain</strong>
-          panel-like components. Proper contrast of text on this color cannot be
-          guaranteed.
-        </p>
-      </ColorSection>
+        <ColorSection
+          color={'euiColorAccent'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            Pulls attention to key indicators like{' '}
+            <Link to="/display/badge">notifications</Link> or{' '}
+            <Link to="/navigation/facet">number of selections</Link>. Don&apos;t
+            use on elements with interactions.
+          </p>
+        </ColorSection>
 
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
 
-      <ColorSection
-        color={'euiPageBackgroundColor'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          The background color for the whole window (body) is a slightly altered
-          version of <EuiCode>euiColorLightestShade</EuiCode> that{' '}
-          <strong>does</strong> provide proper contrast for the text variant
-          colors.
-        </p>
-      </ColorSection>
+        <ColorSection
+          color={'euiColorDanger'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            Use this for negative graphics like errors and{' '}
+            <strong>destructive</strong> actions.
+          </p>
+        </ColorSection>
 
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
 
-      <ColorSection
-        color={'euiColorLightShade'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          Used for most borders and dividers (
-          <Link to="/layout/horizontal-rule">horizontal rules</Link>).
-        </p>
-      </ColorSection>
+        <ColorSection
+          color={'euiColorWarning'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            Use this for warnings and actions that have a{' '}
+            <strong>potential</strong> to be destructive.
+          </p>
+        </ColorSection>
 
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
 
-      <ColorSection
-        color={'euiColorMediumShade'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          The middle gray for all themes; this is the base for{' '}
-          <EuiCode>euiTextSubduedColor</EuiCode>. Use subdued text for hint or
-          inconsequential text.
-        </p>
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorDarkShade'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          A slightly less subtle shade for text, yet more subtle than the
-          default text color.
-        </p>
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorDarkestShade'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
-        <p>
-          The default <Link to="/display/text">text</Link> color and the
-          background color for inverted backgrounds like{' '}
-          <Link to="/display/tooltip">tooltips</Link> and the{' '}
-          <Link to="/navigation/control-bar">control bar</Link>.{' '}
-          {!selectedThemeIsDark && (
-            <>
-              <Link to="/display/title">Titles</Link> are shaded slightly darker
-              than normal text.
-            </>
+        <ColorSection
+          color={'euiColorEmptyShade'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            Used as the background color of primary{' '}
+            <Link to="/layout/page">page content</Link> and{' '}
+            <Link to="/layout/panel">panels</Link> including{' '}
+            <Link to="/layout/modal">modals</Link> and{' '}
+            <Link to="/layout/flyout">flyouts</Link>. Place your main content on
+            top of this color, or a panel-style component, to{' '}
+            <strong>ensure proper contrast</strong>.
+          </p>
+          {selectedThemeIsDark ? (
+            <p>
+              If you need a color that is full black in{' '}
+              <strong>both light and dark modes</strong>, use{' '}
+              <EuiCode>euiColorInk</EuiCode>.
+            </p>
+          ) : (
+            <p>
+              If you need a color that is full white in{' '}
+              <strong>both light and dark modes</strong>, use{' '}
+              <EuiCode>euiColorGhost</EuiCode>.
+            </p>
           )}
-        </p>
-      </ColorSection>
+        </ColorSection>
 
-      <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiColorLightestShade'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            Used to lightly shade areas that contain secondary content or{' '}
+            <strong>contain</strong> panel-like components. Proper contrast of
+            text on this color cannot be guaranteed.
+          </p>
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiPageBackgroundColor'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            The background color for the whole window (body) is a slightly
+            altered version of <EuiCode>euiColorLightestShade</EuiCode> that{' '}
+            <strong>does</strong> provide proper contrast for the text variant
+            colors.
+          </p>
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiColorLightShade'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            Used for most borders and dividers (
+            <Link to="/layout/horizontal-rule">horizontal rules</Link>).
+          </p>
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiColorMediumShade'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            The middle gray for all themes; this is the base for{' '}
+            <EuiCode>euiTextSubduedColor</EuiCode>. Use subdued text for hint or
+            inconsequential text.
+          </p>
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiColorDarkShade'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            A slightly less subtle shade for text, yet more subtle than the
+            default text color.
+          </p>
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <ColorSection
+          color={'euiColorDarkestShade'}
+          minimumContrast={contrastValue}
+          showTextVariants={showTextVariants}>
+          <p>
+            The default <Link to="/display/text">text</Link> color and the
+            background color for inverted backgrounds like{' '}
+            <Link to="/display/tooltip">tooltips</Link> and the{' '}
+            <Link to="/navigation/control-bar">control bar</Link>.{' '}
+            {!selectedThemeIsDark && (
+              <>
+                <Link to="/display/title">Titles</Link> are shaded slightly
+                darker than normal text.
+              </>
+            )}
+          </p>
+        </ColorSection>
+
+        <EuiSpacer size="xxl" />
+      </div>
+
       <EuiSpacer size="xxl" />
 
       <ColorSection

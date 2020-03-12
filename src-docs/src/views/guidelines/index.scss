@@ -323,6 +323,12 @@
   border-radius: $euiBorderRadius;
 }
 
+.guideSection__emptyBox {
+  background-color: $euiColorEmptyShade;
+}
+
+@import 'colors/color_section';
+
 @include euiBreakpoint('xl') {
   .guideSass__breakpointExample {
     background: $euiColorPrimary;

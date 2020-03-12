@@ -7,30 +7,19 @@ import {
   EuiRange,
   EuiToolTip,
   EuiIcon,
+  EuiSwitch,
+  EuiSpacer,
 } from '../../../../../src/components';
 import { ratingAAA, ratingAA18, ratingAA, ratingAll } from './_utilities';
 
-export const ContrastSlider = ({ contrastValue, onChange }) => {
+export const ContrastSlider = ({
+  contrastValue,
+  showTextVariants,
+  onChange,
+  ...rest
+}) => {
   const [value, setValue] = useState(contrastValue);
-
-  const levels = [
-    {
-      min: 0,
-      max: 2.8,
-      color: 'danger',
-    },
-    {
-      min: 2.8,
-      max: 4.3,
-      color: 'warning',
-    },
-    {
-      min: 4.3,
-      max: 7,
-      color: 'success',
-    },
-  ];
-
+  const [checked, setChecked] = useState(showTextVariants);
   const ticks = [
     {
       value: 0,
@@ -59,8 +48,9 @@ export const ContrastSlider = ({ contrastValue, onChange }) => {
           position="bottom"
           content={
             <p>
-              <EuiIcon type="invert" /> Passes with a contrast of 3+, but only
-              for graphics or if the text is at least 18px, or 14px and bold
+              <EuiIcon type="partial" /> Partially passes with a contrast of 3+,
+              but only for graphics or if the text is at least 18px, or 14px and
+              bold
             </p>
           }>
           {ratingAA18}
@@ -100,8 +90,13 @@ export const ContrastSlider = ({ contrastValue, onChange }) => {
   ];
 
   return (
-    <EuiFlexGroup className="guideSection__shadedBox" justifyContent="center">
-      <EuiFlexItem style={{ maxWidth: 400 }}>
+    <EuiFlexGroup
+      className="guideSection__emptyBox guideColorsPage__stickySlider"
+      justifyContent="center"
+      {...rest}>
+      <EuiFlexItem
+        className="guideSection__shadedBox"
+        style={{ maxWidth: 400 }}>
         <EuiFormRow
           id="ratingsRange"
           label="Minimum color contrast combinations to show">
@@ -112,14 +107,31 @@ export const ContrastSlider = ({ contrastValue, onChange }) => {
             value={value}
             onChange={e => {
               setValue(e.currentTarget.value);
-              onChange(e.currentTarget.value);
+              onChange(e.currentTarget.value, checked);
             }}
             showTicks
             showValue
-            levels={levels}
             ticks={ticks}
             valueAppend="+"
           />
+        </EuiFormRow>
+      </EuiFlexItem>
+      <EuiFlexItem className="guideSection__shadedBox">
+        <EuiFormRow
+          labelType="legend"
+          label="Use text variant variables of core colors for better text contrast"
+          hasChildLabel={false}>
+          <div>
+            <EuiSpacer size="s" />
+            <EuiSwitch
+              label="Show text variant"
+              checked={showTextVariants}
+              onChange={e => {
+                setChecked(e.target.checked);
+                onChange(value, e.target.checked);
+              }}
+            />
+          </div>
         </EuiFormRow>
       </EuiFlexItem>
     </EuiFlexGroup>

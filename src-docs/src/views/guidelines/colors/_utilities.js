@@ -3,12 +3,8 @@ import { ThemeContext } from '../../../components';
 import { calculateContrast, rgbToHex } from '../../../../../src/services';
 import { getSassVars } from '../_get_sass_vars';
 
-import {
-  EuiBadge,
-  EuiIcon,
-  EuiCopy,
-  EuiFlexItem,
-} from '../../../../../src/components';
+import { EuiBadge, EuiCopy, EuiFlexItem } from '../../../../../src/components';
+import { EuiIcon } from '../../../../../src/components/icon';
 
 export const coreColors = [
   'euiColorPrimary',
@@ -59,7 +55,7 @@ export const ratingAA = (
   </EuiBadge>
 );
 export const ratingAA18 = (
-  <EuiBadge iconType="invert" color="#666">
+  <EuiBadge iconType="partial" color="#666">
     AA18
   </EuiBadge>
 );
@@ -74,18 +70,20 @@ function getContrastRatings(background, foreground, palette) {
   let contrastRating;
   let contrastRatingBadge;
   if (contrast >= 7) {
-    contrastRating = <EuiIcon type="checkInCircleFilled" />;
+    contrastRating = 'checkInCircleFilled';
     contrastRatingBadge = ratingAAA;
   } else if (contrast >= 4.5) {
-    contrastRating = <EuiIcon type="checkInCircleFilled" />;
+    contrastRating = 'checkInCircleFilled';
     contrastRatingBadge = ratingAA;
   } else if (contrast >= 3) {
-    contrastRating = <EuiIcon type="invert" />;
+    contrastRating = 'partial';
     contrastRatingBadge = ratingAA18;
   } else if (foreground.includes('Shade') && contrast >= 2) {
-    contrastRating = <EuiIcon type="minusInCircle" />;
+    contrastRating = 'minusInCircle';
+    contrastRatingBadge = <EuiIcon type="minusInCircle" />;
   } else {
-    contrastRating = <EuiIcon type="cross" />;
+    contrastRating = 'cross';
+    contrastRatingBadge = <EuiIcon type="cross" />;
   }
 
   return { contrast, contrastRating, contrastRatingBadge };
@@ -98,7 +96,6 @@ export const ColorsContrastItem = ({
 }) => {
   const themeContext = useContext(ThemeContext);
   const palette = getSassVars(themeContext.theme);
-
   const contrastRatings = getContrastRatings(background, foreground, palette);
 
   if (!contrastRatings || contrastRatings.contrast < minimumContrast) {
@@ -110,8 +107,18 @@ export const ColorsContrastItem = ({
     foreground,
     palette
   );
+  const contastIsAcceptableToCopy = contrast >= 3;
   const textToCopy = `background-color: $${background};
 color: $${foreground};`;
+  const beforeMessage = contastIsAcceptableToCopy ? (
+    <small>
+      <kbd>Click</kbd> to copy SASS configuration
+    </small>
+  ) : (
+    <small>
+      Cannot copy configuration because the contrast is not acceptable
+    </small>
+  );
 
   return (
     <EuiFlexItem className="eui-textCenter">
@@ -122,30 +129,22 @@ color: $${foreground};`;
             {contrastRatingBadge} Contrast is {contrast.toFixed(1)}
           </span>
         }
-        beforeMessage={
-          <small>
-            <kbd>Click</kbd> to copy SASS configuration
-          </small>
-        }
+        beforeMessage={beforeMessage}
         afterMessage={<small>Copied!</small>}
         textToCopy={textToCopy}>
         {copy => (
-          <button
-            type="button"
+          <EuiBadge
+            className="guideColorSection__button"
+            iconType={contrastRating}
             onClick={copy}
-            className="eui-textLeft"
+            onClickAriaLabel="Click to copy SASS configurations"
+            disabled={!contastIsAcceptableToCopy}
             style={{
               backgroundColor: palette[background].rgba,
               color: palette[foreground].rgba,
-              padding: 6,
-              marginBottom: 2,
-              borderRadius: 4,
-              whiteSpace: 'nowrap',
-              width: '100%',
-              maxWidth: 300,
             }}>
-            {contrastRating} &ensp; {foreground}
-          </button>
+            {foreground}
+          </EuiBadge>
         )}
       </EuiCopy>
     </EuiFlexItem>
