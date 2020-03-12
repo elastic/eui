@@ -124,7 +124,6 @@ export class EuiImage extends Component<EuiImageProps, State> {
         <EuiFocusTrap clickOutsideDisables={true}>
           <figure
             className="euiImage euiImage-isFullScreen"
-            role="figure"
             aria-label={caption}>
             <EuiI18n
               token="euiImage.closeImage"
@@ -159,7 +158,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
 
     if (allowFullScreen) {
       return (
-        <figure className={classes} role="figure" aria-label={caption}>
+        <figure className={classes} aria-label={caption}>
           <EuiI18n
             token="euiImage.openImage"
             values={{ alt }}
@@ -187,7 +186,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
       );
     } else {
       return (
-        <figure className={classes} role="figure" aria-label={caption}>
+        <figure className={classes} aria-label={caption}>
           <img
             style={newStyle}
             src={url}

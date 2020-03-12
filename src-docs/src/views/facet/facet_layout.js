@@ -9,7 +9,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { VISUALIZATION_COLORS } from '../../../../src/services/color/visualization_colors';
+import { VISUALIZATION_COLORS } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {

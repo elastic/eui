@@ -155,7 +155,7 @@ export class GuidePageChrome extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="popover"
+            id="guidePageChromeThemePopover"
             button={button}
             isOpen={this.state.isPopoverOpen}
             closePopover={this.closePopover.bind(this)}>
