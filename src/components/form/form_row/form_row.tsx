@@ -88,6 +88,10 @@ type LabelProps = {
   HTMLAttributes<HTMLDivElement>;
 
 type LegendProps = {
+  /**
+   * Defaults to rendering a `<label>` but if passed `'legend'` for labelType,
+   * will render both a `<legend>` and the surrounding container as a `<fieldset>`
+   */
   labelType?: 'legend';
 } & EuiFormRowCommonProps &
   HTMLAttributes<HTMLFieldSetElement>;
