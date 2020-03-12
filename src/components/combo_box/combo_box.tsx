@@ -55,16 +55,16 @@ interface _EuiComboBoxProps<T>
     DrillProps<T> {
   'data-test-subj'?: string;
   /**
-   * Defines wether manner of search is asynchronous or not
+   * Updates the list of options asynchronously
    */
   async: boolean;
   className?: string;
   /**
-   * when true creates a shorter height box
+   * When `true` creates a shorter height input
    */
   compressed: boolean;
   /**
-   * when true occupies the entire width available
+   * When `true` expands to the entire width available
    */
   fullWidth: boolean;
   id?: string;
@@ -74,36 +74,39 @@ interface _EuiComboBoxProps<T>
    */
   isClearable: boolean;
   /**
-   * Disables the combo box
+   * Disables the input
    */
   isDisabled?: boolean;
   isInvalid?: boolean;
   /**
-   * Adds/swaps for loading spinner & disables
+   * Swaps the dropdown options for a loading spinner
    */
   isLoading?: boolean;
   /**
-   * hides the suggestions list
+   * Doesn't show the suggestions list/dropdown
    */
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
   /**
-   * Called every time the query in the combo box is parsed.
+   * Called every time the query in the combo box is parsed
    */
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   /**
-   * Called every time the text query in the search box is parsed.
+   * Called every time the text query in the search box is parsed
    */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
   /**
-   * Sets the placeholder of the combo box
+   * Sets the placeholder of the input
    */
   placeholder?: string;
+  /**
+   * Every option must be the same height and must be explicitly set if using a custom render
+   */
   rowHeight?: number;
   /**
-   * when true allows the user to select a single option
+   * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
    */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
 }
