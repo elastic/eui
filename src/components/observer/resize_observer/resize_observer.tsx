@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { EuiObserver, Observer } from '../observer';
 
 interface Props {
@@ -54,10 +54,31 @@ const makeResizeObserver = (node: Element, callback: () => void) => {
 };
 
 export const useResizeObserver = (container: Element | null) => {
-  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [size, _setSize] = useState({ width: 0, height: 0 });
+
+  // _currentDimensions and _setSize are used to only store the
+  // new state (and trigger a re-render) when the new dimensions actually differ
+  const _currentDimensions = useRef(size);
+  const setSize = useCallback(dimensions => {
+    if (
+      _currentDimensions.current.width !== dimensions.width ||
+      _currentDimensions.current.height !== dimensions.height
+    ) {
+      _currentDimensions.current = dimensions;
+      _setSize(dimensions);
+    }
+  }, []);
 
   useEffect(() => {
     if (container != null) {
+      // ResizeObserver's first call to the observation callback is scheduled in the future
+      // so find the container's initial dimensions now
+      const boundingRect = container.getBoundingClientRect();
+      setSize({
+        width: boundingRect.width,
+        height: boundingRect.height,
+      });
+
       const observer = makeResizeObserver(container, () => {
         const boundingRect = container.getBoundingClientRect();
         setSize({

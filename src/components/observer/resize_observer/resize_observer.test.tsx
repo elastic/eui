@@ -46,7 +46,24 @@ describe('EuiResizeObserver', () => {
   });
 });
 
+type GetBoundingClientRect = typeof HTMLElement['prototype']['getBoundingClientRect'];
 describe('useResizeObserver', () => {
+  let _originalgetBoundingClientRect: undefined | GetBoundingClientRect;
+  beforeAll(() => {
+    _originalgetBoundingClientRect =
+      HTMLElement.prototype.getBoundingClientRect;
+    HTMLElement.prototype.getBoundingClientRect = function() {
+      // use the length of the element's HTML to represent its height
+      // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
+      return { width: 100, height: this.innerHTML.length } as ReturnType<
+        GetBoundingClientRect
+      >;
+    };
+  });
+  afterAll(() => {
+    HTMLElement.prototype.getBoundingClientRect = _originalgetBoundingClientRect!;
+  });
+
   it('watches for a resize', async () => {
     expect.assertions(2);
 
@@ -73,7 +90,7 @@ describe('useResizeObserver', () => {
 
     await waitforResizeObserver();
 
-    // Expect two more calls because children changed (re-render) & resize observer rected
+    // Expect two more calls because children changed (re-render) & resize observer reacted
     expect(Wrapper).toHaveBeenCalledTimes(5);
   });
 });
