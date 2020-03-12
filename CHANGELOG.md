@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- `EuiFilterSelect` now retains order of filters ([#3007](https://github.com/elastic/eui/pull/3007))
+- `EuiFilterSelect` now retains order of filters ([#3063](https://github.com/elastic/eui/pull/3063))
 - Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
