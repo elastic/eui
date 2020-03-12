@@ -90,6 +90,10 @@ export class EuiRefreshInterval extends Component {
     );
   };
 
+  handelKeyDown = ({ key }) => {
+    if (key === 'Enter') this.toogleRefresh();
+  };
+
   applyRefreshInterval = () => {
     if (this.state.value === '') {
       return;
@@ -123,7 +127,7 @@ export class EuiRefreshInterval extends Component {
     }
 
     return (
-      <fieldset>
+      <div onKeyDown={this.handelKeyDown}>
         <EuiTitle size="xxxs">
           <legend id={legendId}>
             <EuiI18n
@@ -186,7 +190,7 @@ export class EuiRefreshInterval extends Component {
             />
           </p>
         </EuiScreenReaderOnly>
-      </fieldset>
+      </div>
     );
   }
 }

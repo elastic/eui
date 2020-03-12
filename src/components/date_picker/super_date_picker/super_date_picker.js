@@ -312,7 +312,6 @@ export class EuiSuperDatePicker extends Component {
           isCustom
           startDateControl={<div />}
           endDateControl={<div />}
-          onKeyPress={this.handleKeyPress}
           readOnly>
           <span className="euiSuperDatePicker__prettyFormat">
             {prettyInterval(this.props.isPaused, this.props.refreshInterval)}
@@ -413,12 +412,6 @@ export class EuiSuperDatePicker extends Component {
     }
   };
 
-  handleKeyPress = event => {
-    if (event.key === 'Enter') {
-      this.handleClickUpdateButton();
-    }
-  };
-
   renderUpdateButton = () => {
     if (!this.props.showUpdateButton || this.props.isAutoRefreshOnly) {
       return;
@@ -468,7 +461,6 @@ export class EuiSuperDatePicker extends Component {
       <EuiFlexGroup
         gutterSize="s"
         responsive={false}
-        onKeyPress={this.handleKeyPress}
         className={flexWrapperClasses}>
         <EuiFlexItem>
           <EuiFormControlLayout
@@ -478,7 +470,6 @@ export class EuiSuperDatePicker extends Component {
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>
         </EuiFlexItem>
-
         {this.renderUpdateButton()}
       </EuiFlexGroup>
     );

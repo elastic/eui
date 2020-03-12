@@ -57,6 +57,10 @@ export class EuiQuickSelect extends Component {
     });
   };
 
+  handelKeyDown = ({ key }) => {
+    if (key === 'Enter') this.applyQuickSelect();
+  };
+
   applyQuickSelect = () => {
     const { timeTense, timeValue, timeUnits } = this.state;
 
@@ -122,7 +126,7 @@ export class EuiQuickSelect extends Component {
     const legendId = this.generateId();
 
     return (
-      <fieldset>
+      <div onKeyDown={this.handelKeyDown}>
         <EuiI18n
           token="euiQuickSelect.legendText"
           default="Quick select a time range">
@@ -257,7 +261,7 @@ export class EuiQuickSelect extends Component {
             />
           </p>
         </EuiScreenReaderOnly>
-      </fieldset>
+      </div>
     );
   }
 }
