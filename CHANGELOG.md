@@ -1,11 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
-- Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
 - `EuiBadge` allows for `href` ([#3009](https://github.com/elastic/eui/pull/3009))
-- Removed `role` attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
-- Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
-- Added `onColumnResize` prop to `EuiDataGrid` of type `EuiDataGridOnColumnResizeHandler` that gets called when column changes it's size ([#2963](https://github.com/elastic/eui/pull/2963))
+- Added `EuiDataGrid`'s default sort order property ([#2987](https://github.com/elastic/eui/pull/2987))
+- Fixed `EuiDataGrid`'s pagination visibility when changing rows per page ([#2978](https://github.com/elastic/eui/pull/2978))
+- Added `highlightAll` prop to `EuiHighlight` to highlight all matches ([#2957](https://github.com/elastic/eui/pull/2957))
+- Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
+- Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
+- Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
+- Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
+- Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
+- Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
 
 **Bug Fixes**
 
