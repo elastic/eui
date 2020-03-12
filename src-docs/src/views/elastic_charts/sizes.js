@@ -29,10 +29,7 @@ import {
   EuiCopy,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
+import { formatDate, dateFormatAliases } from '../../../../src/services';
 
 import { MultiChartCard, ChartCard } from './shared';
 
@@ -199,7 +196,7 @@ export class Sizes extends Component {
               overflow: 'hidden',
             }}>
             <EuiTitle size="xxs">
-              <h3>Chart title {multi && ' by type'}</h3>
+              <h2>Chart title {multi && ' by type'}</h2>
             </EuiTitle>
 
             <EuiSpacer size="s" />
