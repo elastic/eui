@@ -54,7 +54,8 @@ export const HighlightAndMarkExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiMark</EuiCode> to wrap a string in an <EuiCode>mark<EuiCode> element.
+          Use <EuiCode>EuiMark</EuiCode> to wrap a string in an
+          <EuiCode>mark</EuiCode> element.
         </p>
       ),
       components: { EuiMark },
