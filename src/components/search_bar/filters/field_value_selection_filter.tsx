@@ -84,7 +84,6 @@ export class FieldValueSelectionFilter extends Component<
 
   constructor(props: FieldValueSelectionFilterProps) {
     super(props);
-
     const { options } = props.config;
 
     const preloadedOptions = isArray(options)
@@ -370,15 +369,7 @@ export class FieldValueSelectionFilter extends Component<
       return;
     }
 
-    const items: {
-      on: ReactElement[];
-      off: ReactElement[];
-      rest: ReactElement[];
-    } = {
-      on: [],
-      off: [],
-      rest: [],
-    };
+    const items: ReactElement[] = [];
 
     this.state.options.shown.forEach((option, index) => {
       const optionField = option.field || field;
@@ -411,21 +402,10 @@ export class FieldValueSelectionFilter extends Component<
         </EuiFilterSelectItem>
       );
 
-      if (!checked) {
-        items.rest.push(item);
-      } else if (checked === 'on') {
-        items.on.push(item);
-      } else {
-        items.off.push(item);
-      }
-      return items;
+      items.push(item);
     });
 
-    return (
-      <div className="euiFilterSelect__items">
-        {[...items.on, ...items.off, ...items.rest]}
-      </div>
-    );
+    return <div className="euiFilterSelect__items">{items}</div>;
   }
 
   resolveChecked(clause: Clause | undefined): 'on' | 'off' | undefined {
