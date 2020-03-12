@@ -56,6 +56,7 @@ import {
 import { useColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
+import { useResizeObserver } from '../observer/resize_observer/resize_observer';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -230,40 +231,40 @@ function useDefaultColumnWidth(
   trailingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
   columns: EuiDataGridProps['columns']
 ): number | null {
+  const containerSize = useResizeObserver(container);
+
   const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
     null
   );
 
   useEffect(() => {
-    if (container != null) {
-      const gridWidth = container.clientWidth;
+    const gridWidth = containerSize.width;
 
-      const controlColumnWidths = [
-        ...leadingControlColumns,
-        ...trailingControlColumns,
-      ].reduce<number>(
-        (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
-          claimedWidth + controlColumn.width,
-        0
-      );
+    const controlColumnWidths = [
+      ...leadingControlColumns,
+      ...trailingControlColumns,
+    ].reduce<number>(
+      (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
+        claimedWidth + controlColumn.width,
+      0
+    );
 
-      const columnsWithWidths = columns.filter<
-        EuiDataGridColumn & { initialWidth: number }
-      >(doesColumnHaveAnInitialWidth);
+    const columnsWithWidths = columns.filter<
+      EuiDataGridColumn & { initialWidth: number }
+    >(doesColumnHaveAnInitialWidth);
 
-      const definedColumnsWidth = columnsWithWidths.reduce(
-        (claimedWidth, column) => claimedWidth + column.initialWidth,
-        0
-      );
+    const definedColumnsWidth = columnsWithWidths.reduce(
+      (claimedWidth, column) => claimedWidth + column.initialWidth,
+      0
+    );
 
-      const claimedWidth = controlColumnWidths + definedColumnsWidth;
+    const claimedWidth = controlColumnWidths + definedColumnsWidth;
 
-      const widthToFill = gridWidth - claimedWidth;
-      const unsizedColumnCount = columns.length - columnsWithWidths.length;
-      const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
-      setDefaultColumnWidth(columnWidth);
-    }
-  }, [container, columns, leadingControlColumns, trailingControlColumns]);
+    const widthToFill = gridWidth - claimedWidth;
+    const unsizedColumnCount = columns.length - columnsWithWidths.length;
+    const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
+    setDefaultColumnWidth(columnWidth);
+  }, [containerSize, columns, leadingControlColumns, trailingControlColumns]);
 
   return defaultColumnWidth;
 }
