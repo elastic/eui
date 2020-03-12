@@ -58,7 +58,11 @@ export const CorePalette = ({ theme, colors }) => {
   }
 
   return (
-    <EuiFlexGroup className="guideSection__shadedBox" gutterSize="s" wrap>
+    <EuiFlexGroup
+      className="guideSection__shadedBox"
+      gutterSize="s"
+      wrap
+      responsive={false}>
       {colors.map(function(color, index) {
         return renderPaletteColor(palette, color, index);
       })}

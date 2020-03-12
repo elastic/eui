@@ -1,7 +1,9 @@
-.guideColorsPage__stickySlider {
-  position: sticky;
-  top: 0;
-  z-index: $euiZLevel1;
+@include euiBreakpoint('m', 'l', 'xl') {
+  .guideColorsPage__stickySlider {
+    position: sticky;
+    top: 0;
+    z-index: $euiZLevel1;
+  }
 }
 
 .guideColorSection__button {

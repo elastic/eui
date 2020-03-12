@@ -94,9 +94,7 @@ export const ContrastSlider = ({
       className="guideSection__emptyBox guideColorsPage__stickySlider"
       justifyContent="center"
       {...rest}>
-      <EuiFlexItem
-        className="guideSection__shadedBox"
-        style={{ maxWidth: 400 }}>
+      <EuiFlexItem className="guideSection__shadedBox">
         <EuiFormRow
           id="ratingsRange"
           label="Minimum color contrast combinations to show">
