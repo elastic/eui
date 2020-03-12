@@ -101,6 +101,9 @@ interface _EuiComboBoxProps<T>
    * Sets the placeholder of the input
    */
   placeholder?: string;
+  /**
+   * Every option must be the same height and must be explicitly set if using a custom render
+   */
   rowHeight?: number;
   /**
    * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
