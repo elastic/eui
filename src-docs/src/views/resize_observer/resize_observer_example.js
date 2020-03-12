@@ -49,9 +49,9 @@ export const ResizeObserverExample = {
             callback which you must put on the element you wish to observe.
           </p>
           <p>
-            Due to limited browser support (currently supported in Chrome and
-            Opera), <EuiCode>EuiResizeObserver</EuiCode> will fallback to using
-            the <EuiCode>MutationObserver</EuiCode> API with a default set of
+            Due to limited browser support (currently not in Safari and IE11),{' '}
+            <EuiCode>EuiResizeObserver</EuiCode> will fallback to using the{' '}
+            <EuiCode>MutationObserver</EuiCode> API with a default set of
             parameters that approximate the results of{' '}
             <EuiCode>MutationObserver</EuiCode>.
           </p>
