@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
 - Removed `role` attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))

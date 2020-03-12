@@ -4,6 +4,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
 <EuiFlexGroup
   className="euiSuperDatePicker__flexWrapper"
   gutterSize="s"
+  onKeyPress={[Function]}
   responsive={false}
 >
   <EuiFlexItem>
