@@ -9,6 +9,7 @@
 **Bug Fixes**
 
 - Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
+- Fixed SASS `contrastRatio()` function in dark mode by fixing the `pow()` math function ([#3013], (https://github.com/elastic/eui/pull/3013))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
