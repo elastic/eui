@@ -100,14 +100,16 @@ export const useColumnSelector = (
     buttonText = (
       <EuiI18n
         token="euiColumnSelector.buttonActiveSingular"
-        default="column hidden"
+        default="{numberOfHiddenFields} column hidden"
+        values={{ numberOfHiddenFields }}
       />
     );
   } else if (numberOfHiddenFields > 1) {
     buttonText = (
       <EuiI18n
         token="euiColumnSelector.buttonActivePlural"
-        default="columns hidden"
+        default="{numberOfHiddenFields} columns hidden"
+        values={{ numberOfHiddenFields }}
       />
     );
   }
@@ -129,7 +131,7 @@ export const useColumnSelector = (
           className={controlBtnClasses}
           data-test-subj="dataGridColumnSelectorButton"
           onClick={() => setIsOpen(!isOpen)}>
-          {numberOfHiddenFields > 0 ? numberOfHiddenFields : null} {buttonText}
+          {buttonText}
         </EuiButtonEmpty>
       }>
       <div>

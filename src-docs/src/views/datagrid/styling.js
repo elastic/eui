@@ -178,6 +178,17 @@ export default class DataGrid extends Component {
       },
     ];
 
+    this.allowOrderingColumnsOptions = [
+      {
+        id: 'true',
+        label: 'True',
+      },
+      {
+        id: 'false',
+        label: 'False',
+      },
+    ];
+
     this.showFullScreenSelectorOptions = [
       {
         id: 'true',
@@ -224,6 +235,7 @@ export default class DataGrid extends Component {
       showStyleSelector: true,
       showColumnSelector: true,
       allowHideColumns: true,
+      allowOrderingColumns: true,
       showFullScreenSelector: true,
       showToolbar: true,
       toolbarPropTypeIsBoolean: true,
@@ -294,6 +306,12 @@ export default class DataGrid extends Component {
   onAllowHideColumnsChange = optionId => {
     this.setState({
       allowHideColumns: optionId === 'true',
+    });
+  };
+
+  onAllowOrderingColumnsChange = optionId => {
+    this.setState({
+      allowOrderingColumns: optionId === 'true',
     });
   };
 
@@ -377,10 +395,12 @@ export default class DataGrid extends Component {
     let showColumnSelector = this.state.showColumnSelector;
     if (
       this.state.showColumnSelector === true &&
-      this.state.allowHideColumns === false
+      (this.state.allowHideColumns === false ||
+        this.state.allowOrderingColumns === false)
     ) {
       showColumnSelector = {
-        allowHide: false,
+        allowHide: this.state.allowHideColumns,
+        allowReorder: this.state.allowOrderingColumns,
       };
     }
 
@@ -554,19 +574,34 @@ export default class DataGrid extends Component {
                       />
                     </EuiFormRow>
                     {this.state.showColumnSelector && (
-                      <EuiFormRow
-                        display="columnCompressed"
-                        label="Allow hiding columns"
-                        style={{ marginLeft: 32 }}>
-                        <EuiButtonGroup
-                          isFullWidth
-                          buttonSize="compressed"
-                          legend="Border"
-                          options={this.allowHideColumnsOptions}
-                          idSelected={this.state.allowHideColumns.toString()}
-                          onChange={this.onAllowHideColumnsChange}
-                        />
-                      </EuiFormRow>
+                      <>
+                        <EuiFormRow
+                          display="columnCompressed"
+                          label="Allow hiding columns"
+                          style={{ marginLeft: 32 }}>
+                          <EuiButtonGroup
+                            isFullWidth
+                            buttonSize="compressed"
+                            legend="Border"
+                            options={this.allowHideColumnsOptions}
+                            idSelected={this.state.allowHideColumns.toString()}
+                            onChange={this.onAllowHideColumnsChange}
+                          />
+                        </EuiFormRow>
+                        <EuiFormRow
+                          display="columnCompressed"
+                          label="Allow ordering columns"
+                          style={{ marginLeft: 32 }}>
+                          <EuiButtonGroup
+                            isFullWidth
+                            buttonSize="compressed"
+                            legend="Border"
+                            options={this.allowOrderingColumnsOptions}
+                            idSelected={this.state.allowOrderingColumns.toString()}
+                            onChange={this.onAllowOrderingColumnsChange}
+                          />
+                        </EuiFormRow>
+                      </>
                     )}
                   </Fragment>
                 ) : (
