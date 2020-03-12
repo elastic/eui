@@ -150,6 +150,7 @@ export class EuiDataGridCell extends Component<
     if (nextProps.visibleRowIndex !== this.props.visibleRowIndex) return true;
     if (nextProps.colIndex !== this.props.colIndex) return true;
     if (nextProps.columnId !== this.props.columnId) return true;
+    if (nextProps.columnType !== this.props.columnType) return true;
     if (nextProps.width !== this.props.width) return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
     if (nextProps.onCellFocus !== this.props.onCellFocus) return true;

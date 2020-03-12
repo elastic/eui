@@ -239,7 +239,10 @@ export { EuiProgress } from './progress';
 
 export { EuiTreeView } from './tree_view';
 
-export { EuiResizeObserver } from './observer/resize_observer';
+export {
+  EuiResizeObserver,
+  useResizeObserver,
+} from './observer/resize_observer';
 
 export { EuiSearchBar, Query, Ast } from './search_bar';
 
