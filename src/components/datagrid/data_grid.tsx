@@ -8,6 +8,7 @@ import React, {
   Fragment,
   ReactChild,
   useMemo,
+  useRef,
   Dispatch,
   SetStateAction,
 } from 'react';
@@ -34,6 +35,7 @@ import {
   EuiDataGridColumnVisibility,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridFocusedCell,
+  EuiDataGridOnColumnResizeHandler,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -114,6 +116,10 @@ type CommonGridProps = CommonProps &
      * A #EuiDataGridSorting oject that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
+    /**
+     * A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`.
+     */
+    onColumnResize?: EuiDataGridOnColumnResizeHandler;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -197,9 +203,10 @@ function renderPagination(props: EuiDataGridProps) {
     onChangePage,
     onChangeItemsPerPage,
   } = pagination;
+
   const pageCount = Math.ceil(props.rowCount / pageSize);
 
-  if (pageCount === 1) {
+  if (props.rowCount < pageSizeOptions[0]) {
     return null;
   }
 
@@ -268,7 +275,8 @@ function doesColumnHaveAnInitialWidth(
 }
 
 function useColumnWidths(
-  columns: EuiDataGridColumn[]
+  columns: EuiDataGridColumn[],
+  onColumnResize?: EuiDataGridOnColumnResizeHandler
 ): [EuiDataGridColumnWidths, (columnId: string, width: number) => void] {
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
 
@@ -287,6 +295,10 @@ function useColumnWidths(
 
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
+
+    if (onColumnResize) {
+      onColumnResize({ columnId, width });
+    }
   };
 
   return [columnWidths, setColumnWidth];
@@ -593,10 +605,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     sorting,
     inMemory,
     popoverContents,
+    onColumnResize,
     ...rest
   } = props;
 
-  const [columnWidths, setColumnWidth] = useColumnWidths(columns);
+  const [columnWidths, setColumnWidth] = useColumnWidths(
+    columns,
+    onColumnResize
+  );
 
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
@@ -648,6 +664,18 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     trailingControlColumns,
     orderedVisibleColumns
   );
+
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Because of a weird Chrome bug with position:sticky css items and focus, we force scrolling to the top
+  // if the item is in the first row. This prevents the cell from ever being under the sticky header.
+  useEffect(() => {
+    if (focusedCell !== undefined && focusedCell[1] === 0) {
+      if (contentRef.current != null) {
+        contentRef.current.scrollTop = 0;
+      }
+    }
+  }, [focusedCell]);
 
   const classes = classNames(
     'euiDataGrid',
@@ -843,6 +871,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     />
                   ) : null}
                   <div
+                    ref={contentRef}
                     className="euiDataGrid__content"
                     role="grid"
                     {...gridAriaProps}>

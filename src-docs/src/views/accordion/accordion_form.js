@@ -52,7 +52,7 @@ const buttonContent = (
 
       <EuiFlexItem>
         <EuiTitle size="s" className="euiAccordionForm__title">
-          <h6>Webhook</h6>
+          <h3>Webhook</h3>
         </EuiTitle>
       </EuiFlexItem>
     </EuiFlexGroup>

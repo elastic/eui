@@ -5,7 +5,7 @@ import { EuiAccordion, EuiText, EuiSpacer } from '../../../../src/components';
 export default () => (
   <div>
     <EuiAccordion
-      id="accordion1"
+      id="accordion3"
       buttonContent="An accordion with padding applied through props"
       paddingSize="l">
       <EuiText>
@@ -18,7 +18,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiAccordion
-      id="accordion2"
+      id="accordion4"
       buttonContent="A second accordion with padding and a very long title that should truncate because of eui-textTruncate"
       buttonContentClassName="eui-textTruncate"
       paddingSize="l">
@@ -35,7 +35,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiAccordion
-      id="accordion3"
+      id="accordion5"
       buttonContent="A third accordion with a nested accordion"
       paddingSize="m">
       <EuiText>
@@ -45,7 +45,7 @@ export default () => (
         </p>
       </EuiText>
       <EuiSpacer />
-      <EuiAccordion id="accordion4" buttonContent="A fourth nested accordion">
+      <EuiAccordion id="accordion6" buttonContent="A fourth nested accordion">
         <EuiText>
           <p>The content inside can be of any height.</p>
           <p>The content inside can be of any height.</p>

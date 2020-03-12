@@ -7,3 +7,11 @@ exports[`EuiForm is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiForm renders a form element 1`] = `
+<form
+  aria-label="aria-label"
+  class="euiForm testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;

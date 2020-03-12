@@ -49,6 +49,10 @@ export interface EuiDataGridColumn {
    * Whether this column is sortable
    */
   isSortable?: boolean;
+  /**
+   * Default sort direction of the column
+   */
+  defaultSortDirection?: 'asc' | 'desc';
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -207,3 +211,12 @@ export type EuiDataGridPopoverContent = ComponentType<
 export interface EuiDataGridPopoverContents {
   [key: string]: EuiDataGridPopoverContent;
 }
+
+export interface EuiDataGridOnColumnResizeData {
+  columnId: string;
+  width: number;
+}
+
+export type EuiDataGridOnColumnResizeHandler = (
+  data: EuiDataGridOnColumnResizeData
+) => void;

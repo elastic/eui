@@ -2,6 +2,7 @@ import React, {
   FunctionComponent,
   ReactChild,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -14,7 +15,7 @@ import {
   isColorInvalid,
   isStopInvalid,
 } from './utils';
-import { useMouseMove } from '../utils';
+import { useMouseMove, getChromaColor } from '../utils';
 import { keyCodes } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
@@ -47,6 +48,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   isRangeMax?: boolean;
   parentRef?: HTMLDivElement | null;
   colorPickerMode: EuiColorPickerProps['mode'];
+  colorPickerShowAlpha?: EuiColorPickerProps['showAlpha'];
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
   disabled?: boolean;
   readOnly?: boolean;
@@ -74,6 +76,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   isRangeMax = false,
   parentRef,
   colorPickerMode,
+  colorPickerShowAlpha,
   colorPickerSwatches,
   disabled,
   readOnly,
@@ -83,8 +86,14 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
 }) => {
+  const background = useMemo(() => {
+    const chromaColor = getChromaColor(color, colorPickerShowAlpha);
+    return chromaColor ? chromaColor.css() : undefined;
+  }, [color, colorPickerShowAlpha]);
   const [hasFocus, setHasFocus] = useState(isPopoverOpen);
-  const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
+  const [colorIsInvalid, setColorIsInvalid] = useState(
+    isColorInvalid(color, colorPickerShowAlpha)
+  );
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
   const [numberInputRef, setNumberInputRef] = useState();
   const popoverRef = useRef<EuiPopover>(null);
@@ -123,7 +132,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   const setHasFocusFalse = () => setHasFocus(false);
 
   const handleColorChange = (value: ColorStop['color']) => {
-    setColorIsInvalid(isColorInvalid(value));
+    setColorIsInvalid(isColorInvalid(value, colorPickerShowAlpha));
     onChange({ stop, color: value });
   };
 
@@ -278,7 +287,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 className="euiColorStopThumb"
                 tabIndex={-1}
                 style={{
-                  background: color,
+                  background,
                 }}
                 disabled={disabled}
               />
@@ -353,6 +362,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               mode={colorPickerMode}
               swatches={colorPickerSwatches}
               display="inline"
+              showAlpha={colorPickerShowAlpha}
             />
           </React.Fragment>
         )}
@@ -364,7 +374,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 'euiColorStopThumb.hexLabel',
                 'euiColorStopThumb.hexErrorMessage',
               ]}
-              defaults={['Hex color', 'Invalid hex value']}>
+              defaults={['Color', 'Invalid color value']}>
               {([hexLabel, hexErrorMessage]: React.ReactChild[]) => (
                 <EuiFormRow
                   label={hexLabel}

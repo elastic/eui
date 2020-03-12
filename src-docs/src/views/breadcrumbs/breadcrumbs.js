@@ -44,7 +44,11 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiBreadcrumbs breadcrumbs={breadcrumbs} truncate={false} />
+      <EuiBreadcrumbs
+        breadcrumbs={breadcrumbs}
+        truncate={false}
+        aria-label="An example of EuiBreadcrumbs"
+      />
       <EuiSpacer size="xs" />
 
       <EuiPageContentHeader>

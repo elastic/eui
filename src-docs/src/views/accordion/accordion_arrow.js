@@ -10,7 +10,7 @@ import {
 export default () => (
   <div>
     <EuiAccordion
-      id="accordion10"
+      id="accordion9"
       buttonContent="Arrows default to the left"
       paddingSize="s">
       <EuiText>
@@ -22,7 +22,7 @@ export default () => (
     </EuiAccordion>
     <EuiSpacer />
     <EuiAccordion
-      id="accordion11"
+      id="accordion10"
       arrowDisplay="right"
       buttonContent="This one has it on the right"
       paddingSize="s">
@@ -35,7 +35,7 @@ export default () => (
     </EuiAccordion>
     <EuiSpacer />
     <EuiAccordion
-      id="accordion12"
+      id="accordion11"
       arrowDisplay="none"
       buttonContent="This one has it removed entirely"
       paddingSize="s">
