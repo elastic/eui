@@ -11,6 +11,7 @@
 - Added alpha channel (opacity) support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
 - Added `useResizeObserver` hook ([#2991](https://github.com/elastic/eui/pull/2991))
 - Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993))
+- Added `EuiMark` component ([#3054](https://github.com/elastic/eui/pull/3054))
 
 **Bug Fixes**
 
