@@ -94,7 +94,7 @@ interface _EuiComboBoxProps<T>
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   /**
-   * Called every time the text query in the search box is parsed.
+   * Called every time the text query in the search box is parsed
    */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
   /**
