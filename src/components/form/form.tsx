@@ -16,7 +16,7 @@ export type EuiFormProps = CommonProps &
   > & {
     isInvalid?: boolean;
     /**
-     * Which HTML element to render
+     * Which HTML element to render `div` or `form`
      */
     component?: 'form' | 'div';
     error?: ReactNode | ReactNode[];
