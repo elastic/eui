@@ -498,6 +498,31 @@ const useFocus = (
   return [focusProps, focusedCell, setFocusedCell];
 };
 
+// Typeguards to see if toolbarVisibility has a certain boolean property assigned
+// If not, just set it to true and assume it's OK to show
+function objectHasKey<O extends Record<string, any>, ObjectKey extends keyof O>(
+  object: O,
+  key: ObjectKey
+): object is Required<O> {
+  return object.hasOwnProperty(key);
+}
+function checkOrDefaultToolBarDiplayOptions<
+  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
+>(
+  arg: EuiDataGridProps['toolbarVisibility'],
+  option: OptionKey
+): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
+  if (arg === undefined) {
+    return true;
+  } else if (typeof arg === 'boolean') {
+    return arg as boolean;
+  } else if (objectHasKey(arg, option)) {
+    return arg[option];
+  } else {
+    return true;
+  }
+}
+
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
@@ -622,7 +647,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [columnSelector, orderedVisibleColumns] = useColumnSelector(
     columns,
-    columnVisibility
+    columnVisibility,
+    checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector')
   );
   const columnSorting = useColumnSorting(
     orderedVisibleColumns,
@@ -681,31 +707,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   // By default the toolbar appears
   const showToolbar = !!toolbarVisibility;
-
-  // Typeguards to see if toolbarVisibility has a certain boolean property assigned
-  // If not, just set it to true and assume it's OK to show
-  function objectHasKey<
-    O extends Record<string, any>,
-    ObjectKey extends keyof O
-  >(object: O, key: ObjectKey): object is Required<O> {
-    return object.hasOwnProperty(key);
-  }
-  function checkOrDefaultToolBarDiplayOptions<
-    OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
-  >(
-    arg: EuiDataGridProps['toolbarVisibility'],
-    option: OptionKey
-  ): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
-    if (arg === undefined) {
-      return true;
-    } else if (typeof arg === 'boolean') {
-      return arg as boolean;
-    } else if (objectHasKey(arg, option)) {
-      return arg[option];
-    } else {
-      return true;
-    }
-  }
 
   // These grid controls will only show when there is room. Check the resize observer callback
   // They can also be optionally turned off individually by using toolbarVisibility
