@@ -28,6 +28,11 @@ const someListItems: EuiCollapsibleNavListItemProps[] = [
     label: 'Link with href',
     href: '#',
   },
+  {
+    label: 'Active link',
+    isActive: true,
+    href: '#',
+  },
 ];
 
 export default () => (
