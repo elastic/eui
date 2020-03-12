@@ -20,6 +20,7 @@ import {
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
+import { getChromaColor } from '../utils';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
@@ -42,6 +43,7 @@ export interface EuiColorStopsProps extends CommonProps {
   stopType?: 'fixed' | 'gradient';
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
+  showAlpha?: EuiColorPickerProps['showAlpha'];
 }
 
 // Because of how the thumbs are rendered in the popover, using ref results in an infinite loop.
@@ -116,6 +118,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   label,
   stopType = 'gradient',
   swatches,
+  showAlpha = false,
 }) => {
   const sortedStops = useMemo(() => sortStops(colorStops), [colorStops]);
   const rangeMax: number = useMemo(() => {
@@ -172,9 +175,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   const handleOnChange = useCallback(
     (colorStops: ColorStop[]) => {
-      onChange(colorStops, isInvalid(colorStops));
+      onChange(colorStops, isInvalid(colorStops, showAlpha));
     },
-    [onChange]
+    [onChange, showAlpha]
   );
 
   const onFocusStop = useCallback(
@@ -360,6 +363,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         onFocus={() => setFocusedStopIndex(index)}
         parentRef={wrapperRef}
         colorPickerMode={mode}
+        colorPickerShowAlpha={showAlpha}
         colorPickerSwatches={swatches}
         disabled={disabled}
         readOnly={readOnly}
@@ -387,6 +391,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     rangeMax,
     rangeMin,
     readOnly,
+    showAlpha,
     sortedStops,
     swatches,
     wrapperRef,
@@ -396,12 +401,14 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     ? sortedStops.map(({ stop }) => getPositionFromStopFn(stop))
     : [];
   const gradientStop = (colorStop: ColorStop, index: number) => {
+    const color = getChromaColor(colorStop.color, showAlpha);
+    const rgba = color ? color.css() : 'currentColor';
     if (index === 0) {
-      return `currentColor, currentColor ${positions[index]}%, ${
-        colorStop.color
-      } ${positions[index]}%`;
+      return `currentColor, currentColor ${positions[index]}%, ${rgba} ${
+        positions[index]
+      }%`;
     }
-    return `${colorStop.color} ${positions[index]}%`;
+    return `${rgba} ${positions[index]}%`;
   };
   const fixedStop = (colorStop: ColorStop, index: number) => {
     if (index === sortedStops.length - 1) {

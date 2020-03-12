@@ -1,6 +1,8 @@
 /*
  * 1. There's no way to target the layout of the extra input, so we must
  *    use the descendant selector to allow the width to shrink.
+ *
+ * 2. Prevent the prepend/append label from extending outside the parent element
  */
 
 .euiRangeWrapper {
@@ -10,5 +12,9 @@
 
   > .euiFormControlLayout { /* 1 */
     width: auto;
+
+    &.euiFormControlLayout--group {
+      flex-shrink: 0;  /* 2 */
+    }
   }
 }
