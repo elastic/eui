@@ -87,20 +87,7 @@ export const HSV_FALLBACK: ColorSpaces['hsv'] = [0, 0, 0];
 export const RGB_FALLBACK: ColorSpaces['rgba'] = [NaN, NaN, NaN, 1];
 export const RGB_JOIN = ', ';
 
-export const chromaValid = (color: string | number[]) => {
-  let parsed: string | number[] | null = color;
-  if (typeof color === 'string') {
-    parsed = parseColor(color);
-  }
-
-  if (!parsed) return false;
-
-  if (typeof parsed === 'object') {
-    return chroma.valid(parsed, 'rgb') || chroma.valid(parsed, 'rgba');
-  }
-  return chroma.valid(color, 'hex');
-};
-
+// Given a string, this attempts to return a format that can be consumed by chroma-js
 export const parseColor = (input?: string | null) => {
   let parsed: string | number[];
   if (!input) return null;
@@ -120,6 +107,23 @@ export const parseColor = (input?: string | null) => {
   return parsed;
 };
 
+// Returns whether the given input will return a valid chroma-js object when designated as one of
+// the acceptable formats: hex, rgb, rgba
+export const chromaValid = (color: string | number[]) => {
+  let parsed: string | number[] | null = color;
+  if (typeof color === 'string') {
+    parsed = parseColor(color);
+  }
+
+  if (!parsed) return false;
+
+  if (typeof parsed === 'object') {
+    return chroma.valid(parsed, 'rgb') || chroma.valid(parsed, 'rgba');
+  }
+  return chroma.valid(color, 'hex');
+};
+
+// Given an input and opacity configuration, this returns a valid chroma-js object
 export const getChromaColor = (input?: string | null, allowOpacity = false) => {
   const parsed = parseColor(input);
   if (parsed && chromaValid(parsed)) {
