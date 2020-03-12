@@ -86,10 +86,10 @@ export class CategoryChart extends Component {
     return (
       <Fragment>
         <EuiTitle size="xxs">
-          <h3>
+          <h2>
             Number of GitHub issues per visualization type
             {this.state.multi && ' by type of issue'}
-          </h3>
+          </h2>
         </EuiTitle>
 
         <EuiSpacer size="s" />

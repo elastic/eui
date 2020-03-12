@@ -181,7 +181,6 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="downLeft"
               ownFocus
               button={
                 <EuiButton
@@ -200,7 +199,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="downCenter"
               ownFocus
               button={
                 <EuiButton
@@ -219,7 +217,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="downRight"
               ownFocus
               button={
                 <EuiButton
@@ -242,7 +239,6 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="upLeft"
               ownFocus
               button={
                 <EuiButton
@@ -261,7 +257,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="upCenter"
               ownFocus
               button={
                 <EuiButton
@@ -280,7 +275,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="upRight"
               ownFocus
               button={
                 <EuiButton
@@ -303,7 +297,6 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="leftUp"
               ownFocus
               button={
                 <EuiButton
@@ -322,7 +315,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="leftCenter"
               ownFocus
               button={
                 <EuiButton
@@ -341,7 +333,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="leftDown"
               ownFocus
               button={
                 <EuiButton
@@ -364,7 +355,6 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="rightUp"
               ownFocus
               button={
                 <EuiButton
@@ -383,7 +373,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="rightCenter"
               ownFocus
               button={
                 <EuiButton
@@ -402,7 +391,6 @@ export default class extends Component {
 
           <EuiFlexItem grow={false}>
             <EuiPopover
-              id="rightDown"
               ownFocus
               button={
                 <EuiButton

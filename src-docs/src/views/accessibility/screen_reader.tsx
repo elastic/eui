@@ -10,7 +10,7 @@ export default () => (
   <div>
     <EuiText>
       <EuiTitle size="xxs">
-        <h4>Visually hide content</h4>
+        <h3>Visually hide content</h3>
       </EuiTitle>
       <p>
         <em>

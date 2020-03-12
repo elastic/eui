@@ -1,11 +1,32 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
+- Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
+- Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
+- Added a `component` prop to `EuiForm` to render a `<form>`([#3010](https://github.com/elastic/eui/pull/3010))
+- Removed `role` attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
+- Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
+- Added `onColumnResize` prop to `EuiDataGrid` of type `EuiDataGridOnColumnResizeHandler` that gets called when column changes it's size ([#2963](https://github.com/elastic/eui/pull/2963))
+- Added RGB format support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
+- Added alpha channel (opacity) support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
+
+**Bug Fixes**
+
+- Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
+- Fixed SASS `contrastRatio()` function in dark mode by fixing the `pow()` math function ([#3013], (https://github.com/elastic/eui/pull/3013))
+
+## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
+
+- Added `EuiDataGrid`'s default sort order property ([#2987](https://github.com/elastic/eui/pull/2987))
+- Fixed `EuiDataGrid`'s pagination visibility when changing rows per page ([#2978](https://github.com/elastic/eui/pull/2978))
+- Added `highlightAll` prop to `EuiHighlight` to highlight all matches ([#2957](https://github.com/elastic/eui/pull/2957))
 - Added `showOnFocus` prop to `EuiScreenReaderOnly` to force display on keyboard focus ([#2976](https://github.com/elastic/eui/pull/2976))
 - Added `EuiSkipLink` component ([#2976](https://github.com/elastic/eui/pull/2976))
 - Created `EuiBadgeGroup` component ([#2921](https://github.com/elastic/eui/pull/2921))
 - Added `sections` and `position` props to `EuiHeader` ([#2928](https://github.com/elastic/eui/pull/2928))
 - Added `gutterSize` prop to `EuiListGroup` ([#2980](https://github.com/elastic/eui/pull/2980))
 - Added `color` prop to `EuiListGroupItem` and updated size style ([#2980](https://github.com/elastic/eui/pull/2980))
+- Added `enableAllColumns` to `EuiBasicTable` component ([#2906](https://github.com/elastic/eui/pull/2906))
 
 **Bug Fixes**
 
@@ -13,6 +34,7 @@
 - Fixed `EuiButton` and other textual components' disabled contrast ([#2874](https://github.com/elastic/eui/pull/2874))
 - Fixed z-index conflict with cell popovers in `EuiDataGrid` while in full screen mode ([#2959](https://github.com/elastic/eui/pull/2959))
 - Adjusted the header on `EuiDataGrid` to fix to the top within constrained containers and full screen mode  ([#2959](https://github.com/elastic/eui/pull/2959))
+- Refactored `EuiDescribedFormGroup` to allow the content inside the `EuiTitle` to be accessible to screen reader users ([#2989](https://github.com/elastic/eui/pull/2989))
 
 **Breaking changes**
 

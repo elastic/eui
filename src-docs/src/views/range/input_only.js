@@ -51,6 +51,7 @@ export default class extends Component {
             onChange={this.onChange}
             showInput="inputWithPopover"
             showLabels
+            aria-label="An example of EuiRange with showInput prop"
           />
         </DisplayToggles>
 
@@ -64,6 +65,7 @@ export default class extends Component {
             showInput="inputWithPopover"
             showLabels
             levels={this.levels}
+            aria-label="An example of EuiDualRange with showInput prop"
           />
         </DisplayToggles>
       </Fragment>

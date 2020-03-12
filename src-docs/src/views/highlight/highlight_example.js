@@ -31,6 +31,7 @@ export const HighlightExample = {
           string, typically in response to user input.
         </p>
       ),
+      props: { EuiHighlight },
       components: { EuiHighlight },
       demo: <Highlight />,
     },

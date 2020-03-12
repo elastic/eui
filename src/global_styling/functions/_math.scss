@@ -1,35 +1,54 @@
-// Greatest common devisor
-// From: http://rosettacode.org/wiki/Greatest_common_divisor#JavaScript
-@function gcd($a, $b) {
-  @if ($b != 0) {
-    @return gcd($b, $a % $b);
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow
+@function pow($number, $power) {
+  @if ($power != $power or ($power != 0 and $power == $power / 2)) {
+    @return $power;
+  }
+  @if ($power == 1) {
+    @return $number;
+  }
+  @if ($power == 0) {
+    @return 1;
+  }
+  @if ($power < 0) {
+    @return 1 / pow($number, -$power);
+  }
+  @if (0 < $power and $power < 2) {
+    $hasLeadingOne: false;
+    @if (floor($power) == 1) {
+      $power: $power - 1;
+      $hasLeadingOne: true;
+    } @else {
+      $hasLeadingOne: false;
+    }
+    $doublePower: pow($number, $power * 2);
+    $fullPower: nthRoot($doublePower, 2);
+    @if ($hasLeadingOne) {
+      $fullPower: $fullPower * $number;
+    }
+    @return $fullPower;
+  } @else if (getDecimal($power) != 0) {
+    $wholePower: floor($power);
+    $decimalPower: getDecimal($power);
+    @return pow($number, $wholePower) * pow($number, $decimalPower);
   } @else {
-    @return abs($a);
+    $hasTrailingOne: $power % 2 == 1;
+    @if ($hasTrailingOne) {
+      $power: $power - 1;
+    }
+    $halfPower: pow($number, floor($power / 2));
+    $fullPower: $halfPower * $halfPower;
+    @if ($hasTrailingOne) {
+      $fullPower: $fullPower * $number;
+    }
+    @return $fullPower;
   }
 }
 
-// Handles decimal exponents by trying to convert them into a fraction and then
-// use a nthRoot-algorithm for parts of the calculation
-@function pow($base, $exponent, $prec: 12) {
-  @if (floor($exponent) != $exponent) {
-    $prec2: pow(10, $prec);
-    $exponent: round($exponent * $prec2);
-    $denominator: gcd($exponent, $prec2);
-    @return nthRoot(pow($base, $exponent / $denominator), $prec2 / $denominator, $prec);
+@function getDecimal($number) {
+  @if ($number < 0) {
+    $number: -$number;
   }
-
-  $value: $base;
-  @if $exponent > 1 {
-    @for $i from 2 through $exponent {
-      $value: $value * $base;
-    }
-  } @else if $exponent < 1 {
-    @for $i from 0 through -$exponent {
-      $value: $value / $base;
-    }
-  }
-
-  @return $value;
+  @return $number % 1;
 }
 
 // From: http://rosettacode.org/wiki/Nth_root#JavaScript

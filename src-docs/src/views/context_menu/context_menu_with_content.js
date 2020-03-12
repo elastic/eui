@@ -125,7 +125,7 @@ export default class extends Component {
     return (
       <React.Fragment>
         <EuiPopover
-          id="contextMenu"
+          id="contextMenuNormal"
           button={button}
           isOpen={this.state.isPopoverOpen}
           closePopover={this.closePopover}

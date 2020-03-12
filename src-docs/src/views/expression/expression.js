@@ -7,9 +7,8 @@ import {
   EuiPopover,
   EuiSelect,
   EuiFieldNumber,
+  EuiExpression,
 } from '../../../../src/components';
-
-import { EuiExpression } from '../../../../src/components/expression';
 
 // Rise the popovers above GuidePageSideNav
 const POPOVER_STYLE = { zIndex: '200' };

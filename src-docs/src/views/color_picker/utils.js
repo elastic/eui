@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { isValidHex } from '../../../../src/services';
 
 const generateRandomColor = () =>
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
@@ -32,11 +31,16 @@ export const useColorStop = (useRandomColor = false) => {
 };
 
 export const useColorPicker = (initialColor = '') => {
-  const [color, setColor] = useState(initialColor);
+  const [color, setColorValue] = useState(initialColor);
+  const [isValid, setIsValid] = useState(true);
+  const setColor = (text, { isValid }) => {
+    setColorValue(text);
+    setIsValid(isValid);
+  };
   const errors = useMemo(() => {
-    const hasErrors = !isValidHex(color) && color !== '';
-    return hasErrors ? ['Provide a valid hex value'] : null;
-  }, [color]);
+    const hasErrors = !isValid;
+    return hasErrors ? ['Provide a valid color value'] : null;
+  }, [isValid]);
 
   return [color, setColor, errors];
 };
