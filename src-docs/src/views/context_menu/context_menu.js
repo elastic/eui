@@ -165,7 +165,7 @@ export default class extends Component {
 
     return (
       <EuiPopover
-        id="contextMenu"
+        id="contextMenuExample"
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}

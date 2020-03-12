@@ -16,7 +16,7 @@ export type TextSize = keyof typeof textSizeToClassNameMap;
 
 export const TEXT_SIZES = keysOf(textSizeToClassNameMap);
 
-type Props = CommonProps &
+export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     textAlign?: TextAlignment;
     size?: TextSize;
@@ -24,7 +24,7 @@ type Props = CommonProps &
     grow?: boolean;
   };
 
-export const EuiText: FunctionComponent<Props> = ({
+export const EuiText: FunctionComponent<EuiTextProps> = ({
   size = 'm',
   color,
   grow = true,
