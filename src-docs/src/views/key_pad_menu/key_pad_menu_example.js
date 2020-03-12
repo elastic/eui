@@ -27,11 +27,11 @@ const keyPadMenuSnippet = `<EuiKeyPadMenu>
 import KeyPadMenuItemButton from './key_pad_menu_item_button';
 const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_button');
 const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
-const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItemButton
+const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItem
   label={label}
   onClick={this.handleClick}>
   <EuiIcon type={icon} size="l" />
-</EuiKeyPadMenuItemButton>
+</EuiKeyPadMenuItem>
 `;
 
 import KeyPadBeta from './key_pad_beta';

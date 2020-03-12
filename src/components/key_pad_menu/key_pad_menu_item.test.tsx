@@ -2,10 +2,7 @@ import React from 'react';
 import { render, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import {
-  EuiKeyPadMenuItem,
-  EuiKeyPadMenuItemButton,
-} from './key_pad_menu_item';
+import { EuiKeyPadMenuItem } from './key_pad_menu_item';
 
 describe('EuiKeyPadMenuItem', () => {
   test('is rendered', () => {
@@ -32,9 +29,9 @@ describe('EuiKeyPadMenuItem', () => {
 describe('EuiKeyPadMenuItemButton', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiKeyPadMenuItemButton label="Label" {...requiredProps}>
+      <EuiKeyPadMenuItem label="Label" {...requiredProps}>
         Icon
-      </EuiKeyPadMenuItemButton>
+      </EuiKeyPadMenuItem>
     );
 
     expect(component).toMatchSnapshot();
@@ -45,9 +42,9 @@ describe('EuiKeyPadMenuItemButton', () => {
       const onClickHandler = jest.fn();
 
       shallow(
-        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
+        <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
           Icon
-        </EuiKeyPadMenuItemButton>
+        </EuiKeyPadMenuItem>
       );
 
       expect(onClickHandler).not.toBeCalled();
@@ -57,9 +54,9 @@ describe('EuiKeyPadMenuItemButton', () => {
       const onClickHandler = jest.fn();
 
       const $button = shallow(
-        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
+        <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
           Icon
-        </EuiKeyPadMenuItemButton>
+        </EuiKeyPadMenuItem>
       );
 
       $button.simulate('click');
