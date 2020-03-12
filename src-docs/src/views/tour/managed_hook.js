@@ -8,6 +8,7 @@ import {
   EuiFormRow,
   EuiSpacer,
   EuiTextArea,
+  EuiTourStep,
   useEuiTour,
 } from '../../../../src/components';
 
@@ -52,7 +53,7 @@ export default () => {
     state = tourConfig;
   }
 
-  const [[EuiTourStepOne, EuiTourStepTwo], actions, reducerState] = useEuiTour(
+  const [[euiTourStepOne, euiTourStepTwo], actions, reducerState] = useEuiTour(
     demoTourSteps,
     state
   );
@@ -89,7 +90,7 @@ export default () => {
       <EuiSpacer />
       <EuiForm>
         <EuiFormRow label="Enter an ES SQL query">
-          <EuiTourStepOne>
+          <EuiTourStep {...euiTourStepOne}>
             <EuiTextArea
               placeholder="Placeholder text"
               aria-label="Enter ES SQL query"
@@ -97,14 +98,14 @@ export default () => {
               onChange={onChange}
               style={{ width: 400 }}
             />
-          </EuiTourStepOne>
+          </EuiTourStep>
         </EuiFormRow>
 
         <EuiSpacer />
 
-        <EuiTourStepTwo>
+        <EuiTourStep {...euiTourStepTwo}>
           <EuiButton onClick={handleClick}>Save query</EuiButton>
-        </EuiTourStepTwo>
+        </EuiTourStep>
       </EuiForm>
     </div>
   );

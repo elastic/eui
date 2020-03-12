@@ -1,5 +1,5 @@
-import React, { ReactElement, useReducer } from 'react';
-import { EuiTourStep, EuiTourStepProps } from './tour_step';
+import { useReducer } from 'react';
+import { EuiTourStepProps } from './tour_step';
 import { EuiTourAction, EuiTourActions, EuiTourState } from './types';
 
 export type EuiStatelessTourStep = Omit<EuiTourStepProps, keyof EuiTourState> &
@@ -8,11 +8,7 @@ export type EuiStatelessTourStep = Omit<EuiTourStepProps, keyof EuiTourState> &
 export const useEuiTour = (
   stepsArray: EuiStatelessTourStep[],
   initialState: EuiTourState
-): [
-  Array<(props: EuiTourStepProps) => ReactElement>,
-  EuiTourActions,
-  EuiTourState
-] => {
+): [EuiTourStepProps[], EuiTourActions, EuiTourState] => {
   function reducer(state: EuiTourState, action: EuiTourAction): EuiTourState {
     switch (action.type) {
       case 'EUI_TOUR_SKIP':
@@ -57,38 +53,26 @@ export const useEuiTour = (
   }
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const endTour = () => dispatch({ type: 'EUI_TOUR_END' });
-  const skipTour = () => dispatch({ type: 'EUI_TOUR_SKIP' });
-
-  const steps = stepsArray.map(step => {
-    return ({ children, ...rest }: EuiTourStepProps) => (
-      <EuiTourStep
-        step={step.step}
-        title={step.title}
-        content={step.content}
-        anchorPosition={step.anchorPosition}
-        isStepOpen={state.currentTourStep === step.step}
-        isTourActive={state.isTourActive}
-        minWidth={state.tourPopoverWidth}
-        onEnd={endTour}
-        onSkip={skipTour}
-        stepsTotal={stepsArray.length}
-        subtitle={state.tourSubtitle}
-        {...rest}>
-        {children}
-      </EuiTourStep>
-    );
-  });
-
   const actions: EuiTourActions = {
-    endTour,
-    skipTour,
+    endTour: () => dispatch({ type: 'EUI_TOUR_END' }),
+    skipTour: () => dispatch({ type: 'EUI_TOUR_SKIP' }),
     resetTour: () => dispatch({ type: 'EUI_TOUR_RESET' }),
     decrementStep: () => dispatch({ type: 'EUI_TOUR_PREVIOUS' }),
     incrementStep: () => dispatch({ type: 'EUI_TOUR_NEXT' }),
     goToStep: (step: number) =>
-      dispatch({ type: 'EUI_TOUR_NEXT', payload: { step } }),
+      dispatch({ type: 'EUI_TOUR_GOTO', payload: { step } }),
   };
+
+  const steps = stepsArray.map(step => ({
+    ...step,
+    isStepOpen: state.currentTourStep === step.step,
+    isTourActive: state.isTourActive,
+    minWidth: state.tourPopoverWidth,
+    onEnd: actions.endTour,
+    onSkip: actions.skipTour,
+    stepsTotal: stepsArray.length,
+    subtitle: state.tourSubtitle,
+  }));
 
   return [steps, actions, state];
 };

@@ -19,6 +19,7 @@ import {
   EuiTabs,
   EuiTextArea,
   EuiTitle,
+  EuiTourStep,
   useEuiTour,
 } from '../../../../src/components';
 
@@ -62,7 +63,7 @@ export default () => {
   const [selectedTabId, setSelectedTabId] = useState('query');
   const [state] = useState(tourConfig);
   const [
-    [EuiTourStepOne, EuiTourStepTwo, EuiTourStepThree, EuiTourStepFour],
+    [euiTourStepOne, euiTourStepTwo, euiTourStepThree, euiTourStepFour],
     actions,
     reducerState,
   ] = useEuiTour(demoTourSteps, state);
@@ -111,7 +112,8 @@ export default () => {
       disabled: false,
       content: (
         <div>
-          <EuiTourStepOne
+          <EuiTourStep
+            {...euiTourStepOne}
             content={
               <div>
                 <p>This is a neat thing. You enter queries here.</p>
@@ -127,11 +129,11 @@ export default () => {
               defaultValue="{queryValue}"
               style={{ width: 400 }}
             />
-          </EuiTourStepOne>
+          </EuiTourStep>
 
           <EuiSpacer />
 
-          <EuiTourStepTwo>
+          <EuiTourStep {...euiTourStepTwo}>
             <EuiColorPicker
               onChange={onSelectColor}
               color={color}
@@ -143,21 +145,22 @@ export default () => {
                 />
               }
             />
-          </EuiTourStepTwo>
+          </EuiTourStep>
         </div>
       ),
     },
     {
       id: 'stat',
       name: (
-        <EuiTourStepThree>
+        <EuiTourStep {...euiTourStepThree}>
           <span>Stats</span>
-        </EuiTourStepThree>
+        </EuiTourStep>
       ),
       disabled: false,
       content: (
         <div>
-          <EuiTourStepFour
+          <EuiTourStep
+            {...euiTourStepFour}
             content={
               <div>
                 <p>That about does it.</p>
@@ -170,7 +173,7 @@ export default () => {
             <div>
               <EuiStat title="22,123" description="Queries" />
             </div>
-          </EuiTourStepFour>
+          </EuiTourStep>
         </div>
       ),
     },

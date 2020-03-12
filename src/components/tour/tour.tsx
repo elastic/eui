@@ -5,7 +5,7 @@ import { EuiTourActions, EuiTourState } from './types';
 
 export interface EuiTourProps {
   children: (
-    steps: Array<(props: EuiTourStepProps) => ReactElement>,
+    steps: EuiTourStepProps[],
     actions: EuiTourActions,
     state: EuiTourState
   ) => ReactElement;
@@ -18,6 +18,6 @@ export const EuiTour: FunctionComponent<EuiTourProps> = ({
   steps,
   initialState,
 }) => {
-  const [stepComponents, actions, state] = useEuiTour(steps, initialState);
-  return children(stepComponents, actions, state);
+  const [stepProps, actions, state] = useEuiTour(steps, initialState);
+  return children(stepProps, actions, state);
 };

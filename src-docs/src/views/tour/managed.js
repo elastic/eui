@@ -9,6 +9,7 @@ import {
   EuiSpacer,
   EuiTextArea,
   EuiTour,
+  EuiTourStep,
 } from '../../../../src/components';
 
 const demoTourSteps = [
@@ -54,7 +55,7 @@ export default () => {
 
   return (
     <EuiTour steps={demoTourSteps} initialState={state}>
-      {([EuiTourStepOne, EuiTourStepTwo], actions, reducerState) => {
+      {([euiTourStepOne, euiTourStepTwo], actions, reducerState) => {
         useEffect(() => {
           console.log('Updating localStorage', STORAGE_KEY, reducerState);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
@@ -86,7 +87,7 @@ export default () => {
             <EuiSpacer />
             <EuiForm>
               <EuiFormRow label="Enter an ES SQL query">
-                <EuiTourStepOne>
+                <EuiTourStep {...euiTourStepOne}>
                   <EuiTextArea
                     placeholder="Placeholder text"
                     aria-label="Enter ES SQL query"
@@ -94,14 +95,14 @@ export default () => {
                     onChange={onChange}
                     style={{ width: 400 }}
                   />
-                </EuiTourStepOne>
+                </EuiTourStep>
               </EuiFormRow>
 
               <EuiSpacer />
 
-              <EuiTourStepTwo>
+              <EuiTourStep {...euiTourStepTwo}>
                 <EuiButton onClick={handleClick}>Save query</EuiButton>
-              </EuiTourStepTwo>
+              </EuiTourStep>
             </EuiForm>
           </React.Fragment>
         );
