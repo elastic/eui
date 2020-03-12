@@ -9,7 +9,7 @@ import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-const HUE_RANGE = 360;
+const HUE_RANGE = 359;
 
 export type EuiHueProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

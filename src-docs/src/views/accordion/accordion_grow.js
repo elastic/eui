@@ -10,7 +10,7 @@ import {
   EuiText,
   EuiScreenReaderOnly,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services/accessibility/html_id_generator';
+import { htmlIdGenerator } from '../../../../src/services';
 
 class Rows extends Component {
   state = {
@@ -70,7 +70,7 @@ class AccordionGrow extends Component {
   render() {
     return (
       <EuiAccordion
-        id="accordion1"
+        id="accordion7"
         buttonContent="Click me to toggle close / open"
         initialIsOpen={true}
         paddingSize="l">

@@ -43,6 +43,7 @@ import {
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
+import { EuiFormControlLayoutProps } from '../form';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -109,6 +110,16 @@ interface _EuiComboBoxProps<T>
    * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
    */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
+  /**
+   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+  /**
+   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 /**
@@ -157,6 +168,8 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
+    prepend: null,
+    append: null,
   };
 
   state: EuiComboBoxState<T> = {
@@ -826,6 +839,8 @@ export class EuiComboBox<T> extends Component<
       rowHeight,
       selectedOptions,
       singleSelection,
+      prepend,
+      append,
       ...rest
     } = this.props;
     const {
@@ -948,8 +963,9 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
+          append={singleSelection ? append : undefined}
+          prepend={singleSelection ? prepend : undefined}
         />
-
         {optionsList}
       </div>
     );

@@ -11,10 +11,13 @@
     &[class*='--compressed'] {
       @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: true);
     }
+
+    + .euiFormControlLayoutIcons {
+      // Override :disabled state, which obscures the selected color
+      color: inherit;
+    }
   }
 }
-
-
 
 // Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
 .euiSwatchInput__stroke {
@@ -37,5 +40,11 @@
   &.euiFieldText--compressed {
     height: $euiFormControlLayoutGroupInputCompressedHeight !important;
     border-radius: 0;
+  }
+}
+
+.euiColorPicker__alphaRange {
+  .euiRangeInput {
+    min-width: 0;
   }
 }

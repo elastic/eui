@@ -1245,6 +1245,36 @@ Array [
         });
       });
 
+      it('should listen for column resize', () => {
+        const onColumnResizeCallback = jest.fn();
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'Column 1' }, { id: 'Column 2', initialWidth: 75 }]}
+            columnVisibility={{
+              visibleColumns: ['Column 1', 'Column 2'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={3}
+            renderCellValue={() => 'value'}
+            onColumnResize={args => onColumnResizeCallback(args)}
+          />
+        );
+
+        resizeColumn(component, 'Column 1', 150);
+        resizeColumn(component, 'Column 2', 100);
+
+        expect(onColumnResizeCallback.mock.calls.length).toBe(2);
+        expect(onColumnResizeCallback.mock.calls[0][0]).toEqual({
+          columnId: 'Column 1',
+          width: 150,
+        });
+        expect(onColumnResizeCallback.mock.calls[1][0]).toEqual({
+          columnId: 'Column 2',
+          width: 100,
+        });
+      });
+
       it('is prevented by isResizable:false', () => {
         const component = mount(
           <EuiDataGrid
