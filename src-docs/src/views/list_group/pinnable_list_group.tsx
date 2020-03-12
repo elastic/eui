@@ -1,20 +1,20 @@
 import React from 'react';
 
 import {
-  EuiCollapsibleNavList,
-  EuiCollapsibleNavListItemProps,
-} from '../../../../src/components/collapsible_nav';
+  EuiPinnableListGroup,
+  EuiPinnableListGroupItemProps,
+} from '../../../../src/components/list_group';
 
-const someListItems: EuiCollapsibleNavListItemProps[] = [
+const someListItems: EuiPinnableListGroupItemProps[] = [
   {
     label: 'Label with iconType',
     iconType: 'stop',
   },
   {
-    label: 'Pinnned button with onClick',
+    label: 'Pinned button with onClick',
     pinned: true,
     onClick: e => {
-      console.log('Pinnned button clicked', e);
+      console.log('Pinned button clicked', e);
     },
   },
   {
@@ -38,7 +38,7 @@ const someListItems: EuiCollapsibleNavListItemProps[] = [
 
 export default () => (
   <>
-    <EuiCollapsibleNavList
+    <EuiPinnableListGroup
       listItems={someListItems}
       onPinClick={item => {
         console.warn('Clicked: ', item);

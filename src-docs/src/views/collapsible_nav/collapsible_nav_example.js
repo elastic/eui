@@ -11,10 +11,8 @@ import {
   EuiText,
   EuiSpacer,
   EuiCallOut,
-  EuiCollapsibleNavList,
   EuiCollapsibleNavGroup,
 } from '../../../../src/components';
-import { EuiCollapsibleNavListItem } from './props';
 
 import CollapsibleNav from './collapsible_nav';
 const collapsibleNavSource = require('!!raw-loader!./collapsible_nav');
@@ -23,10 +21,6 @@ const collapsibleNavHtml = renderToHtml(CollapsibleNav);
 import CollapsibleNavGroup from './collapsible_nav_group';
 const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
 const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
-
-import CollapsibleNavGroupList from './collapsible_nav_list';
-const collapsibleNavGroupListSource = require('!!raw-loader!./collapsible_nav_list');
-const collapsibleNavGroupListHtml = renderToHtml(CollapsibleNavGroupList);
 
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
@@ -123,61 +117,6 @@ export const CollapsibleNavExample = {
   isCollapsible={true}
   initialIsOpen={true}
   background="none"
-/>`,
-    },
-    {
-      title: 'Collapsible nav list',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: collapsibleNavGroupListSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: collapsibleNavGroupListHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            <strong>EuiCollapsibleNavList</strong> is simply an extra wrapper
-            around an{' '}
-            <Link to="/display/list-group">
-              <strong>EuiListGroup</strong>
-            </Link>{' '}
-            with some added defaults like{' '}
-            <EuiCode language="js">gutterSize=&quot;none&quot;&#10;</EuiCode>{' '}
-            and <EuiCode language="js">color=&quot;subdued&quot;</EuiCode>. It
-            also provides the visual indicators for <strong>pinning</strong>.
-          </p>
-          <p>
-            Pinning is the concept that users can click a pin icon and add it to
-            a subset of links (most likely shown in different nav group). By
-            providing an <EuiCode>onPinClick</EuiCode> handler, the component
-            will automatically add the pin action to the item. However, the
-            consuming application must manage the <EuiCode>listItem</EuiCode>s
-            and their <EuiCode>pinned</EuiCode> state.
-          </p>
-          <p>
-            In order to get the full benefit of using{' '}
-            <strong>EuiCollapsibleNavList</strong>, the component only supports
-            providing list items via the <EuiCode>listItem</EuiCode> prop and
-            does not support <EuiCode>children</EuiCode>.
-          </p>
-        </>
-      ),
-      props: { EuiCollapsibleNavList, EuiCollapsibleNavListItem },
-      demo: <CollapsibleNavGroupList />,
-      snippet: `<EuiCollapsibleNavList
-  onPinClick={item => {}}
-  listItems={[
-    {
-      label: 'A link',
-      href: '#',
-      pinned: true,
-      isActive: true,
-    },
-  ]}
 />`,
     },
   ],

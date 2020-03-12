@@ -2,15 +2,14 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-import { EuiListGroup } from '../../list_group';
-import { EuiListGroupProps } from '../../list_group/list_group';
-import { EuiListGroupItemProps } from '../../list_group/list_group_item';
+import { EuiListGroup, EuiListGroupProps } from '../list_group';
+import { EuiListGroupItemProps } from '../list_group_item';
 
 const pinExtraAction: EuiListGroupItemProps['extraAction'] = {
   color: 'primary',
   iconType: 'pinFilled',
   iconSize: 's',
-  className: 'euiCollapsibleNavList__itemExtraAction',
+  className: 'euiPinnableListGroup__itemExtraAction',
   'aria-label': 'Pin to top',
   title: 'Pin to top',
 };
@@ -20,41 +19,42 @@ const pinnedExtraAction: EuiListGroupItemProps['extraAction'] = {
   iconType: 'pinFilled',
   iconSize: 's',
   className:
-    'euiCollapsibleNavList__itemExtraAction euiCollapsibleNavList__itemExtraAction-pinned',
+    'euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned',
   'aria-label': 'Unpin item',
   title: 'Unpin item',
   alwaysShow: true,
 };
 
-export type EuiCollapsibleNavListItemProps = EuiListGroupItemProps & {
+export type EuiPinnableListGroupItemProps = EuiListGroupItemProps & {
   pinned?: boolean;
 };
 
-export interface EuiCollapsibleNavListProps
+export interface EuiPinnableListGroupProps
   extends CommonProps,
     EuiListGroupProps {
   /**
    * Extends `EuiListGroupItemProps`, at the very least, expecting a `label`.
-   * See #EuiCollapsibleNavListItem
+   * See #EuiPinnableListGroupItem
    */
-  listItems: EuiCollapsibleNavListItemProps[];
+  listItems: EuiPinnableListGroupItemProps[];
   /**
-   * Shows the pin icon and calls this function on click
+   * Shows the pin icon and calls this function on click.
+   * Returns `item: EuiPinnableListGroupItemProps`
    */
-  onPinClick?: (item: EuiCollapsibleNavListItemProps) => void;
+  onPinClick: (item: EuiPinnableListGroupItemProps) => void;
 }
 
-export const EuiCollapsibleNavList: FunctionComponent<
-  EuiCollapsibleNavListProps
-> = ({ className, listItems, color = 'subdued', onPinClick, ...rest }) => {
-  const classes = classNames('euiCollapsibleNavList', className);
+export const EuiPinnableListGroup: FunctionComponent<
+  EuiPinnableListGroupProps
+> = ({ className, listItems, onPinClick, ...rest }) => {
+  const classes = classNames('euiPinnableListGroup', className);
 
   // Alter listItems object with extra props
   const newListItems = listItems.map(item => {
     const { pinned, ...itemProps } = item;
     // Make some declarations of props for the nav implementation
     itemProps.className = classNames(
-      'euiCollapsibleNavList__item',
+      'euiPinnableListGroup__item',
       item.className
     );
     itemProps.size = item.size || 's';
@@ -75,12 +75,6 @@ export const EuiCollapsibleNavList: FunctionComponent<
   });
 
   return (
-    <EuiListGroup
-      className={classes}
-      listItems={newListItems}
-      gutterSize="none"
-      color={color}
-      {...rest}
-    />
+    <EuiListGroup className={classes} listItems={newListItems} {...rest} />
   );
 };

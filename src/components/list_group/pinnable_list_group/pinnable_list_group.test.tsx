@@ -3,11 +3,11 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import {
-  EuiCollapsibleNavList,
-  EuiCollapsibleNavListItemProps,
-} from './collapsible_nav_list';
+  EuiPinnableListGroup,
+  EuiPinnableListGroupItemProps,
+} from './pinnable_list_group';
 
-const someListItems: EuiCollapsibleNavListItemProps[] = [
+const someListItems: EuiPinnableListGroupItemProps[] = [
   {
     label: 'Label with iconType',
     iconType: 'stop',
@@ -38,18 +38,14 @@ const someListItems: EuiCollapsibleNavListItemProps[] = [
   },
 ];
 
-describe('EuiCollapsibleNavList', () => {
+describe('EuiPinnableListGroup', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCollapsibleNavList listItems={someListItems} {...requiredProps} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('renders pinning options only if onPinClick is provided', () => {
-    const component = render(
-      <EuiCollapsibleNavList listItems={someListItems} onPinClick={() => {}} />
+      <EuiPinnableListGroup
+        {...requiredProps}
+        listItems={someListItems}
+        onPinClick={() => {}}
+      />
     );
 
     expect(component).toMatchSnapshot();

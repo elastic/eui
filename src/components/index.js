@@ -37,11 +37,7 @@ export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
 export { EuiCodeEditor } from './code_editor';
 
-export {
-  EuiCollapsibleNavList,
-  EuiCollapsibleNavGroup,
-  EuiCollapsibleNav,
-} from './collapsible_nav';
+export { EuiCollapsibleNavGroup, EuiCollapsibleNav } from './collapsible_nav';
 
 export {
   EuiColorPicker,
@@ -190,7 +186,11 @@ export {
 
 export { EuiLink } from './link';
 
-export { EuiListGroup, EuiListGroupItem } from './list_group';
+export {
+  EuiListGroup,
+  EuiListGroupItem,
+  EuiPinnableListGroup,
+} from './list_group';
 
 export {
   EUI_MODAL_CANCEL_BUTTON,
