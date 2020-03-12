@@ -88,7 +88,7 @@ interface _EuiComboBoxProps<T>
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
   /**
-   * Called every time the query in the combo box is parsed.
+   * Called every time the query in the combo box is parsed
    */
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
