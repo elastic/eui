@@ -6,7 +6,7 @@ interface Props {
   onResize: (dimensions: { height: number; width: number }) => void;
 }
 
-// Only Chrome and Opera support the `ResizeObserver` API at the time of writing
+// IE11 and Safari don't support the `ResizeObserver` API at the time of writing
 const hasResizeObserver =
   typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
 
