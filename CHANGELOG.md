@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `21.0.1`.
+
+## [`21.0.1`](https://github.com/elastic/eui/tree/v21.0.1)
+
 **Bug Fixes**
 
 - Made `EuiDataGrid`'s `schema.isSortable` value optional ([#2991](https://github.com/elastic/eui/pull/2991))
