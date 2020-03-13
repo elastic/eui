@@ -4018,7 +4018,6 @@ exports[`EuiIcon props type logoEnterpriseSearch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
-  fill="none"
   focusable="false"
   height="32"
   role="img"
@@ -4041,7 +4040,7 @@ exports[`EuiIcon props type logoEnterpriseSearch is rendered 1`] = `
   <path
     clip-rule="evenodd"
     d="M16 8h-2.152A15.877 15.877 0 0116 16c0 2.918-.786 5.647-2.152 8H16a8 8 0 000-16z"
-    fill="#000"
+    fill="#343741"
     fill-rule="evenodd"
   />
 </svg>
