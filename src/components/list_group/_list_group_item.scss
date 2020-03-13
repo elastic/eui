@@ -13,17 +13,26 @@
     background-color: $euiListGroupItemHoverBackground;
   }
 
-  &.euiListGroupItem-isClickable .euiListGroupItem__button:focus {
+  // Can't be grouped with above or else IE will ignore the whole group
+  &.euiListGroupItem-isClickable:focus-within {
     background-color: $euiListGroupItemHoverBackground;
-    text-decoration: underline;
   }
 
   &.euiListGroupItem--ghost {
-    &.euiListGroupItem-isActive,
-    &.euiListGroupItem-isClickable:hover,
-    &.euiListGroupItem-isClickable .euiListGroupItem__button:focus {
+    &.euiListGroupItem-isClickable:hover {
       background-color: $euiListGroupItemHoverBackgroundGhost;
     }
+
+    // Can't be grouped with above or else IE will ignore the whole group
+    &.euiListGroupItem-isClickable:focus-within {
+      background-color: $euiListGroupItemHoverBackgroundGhost;
+    }
+  }
+
+  &.euiListGroupItem-isClickable:hover .euiListGroupItem__button,
+  .euiListGroupItem__button:hover,
+  .euiListGroupItem__button:focus {
+    text-decoration: underline;
   }
 
   // Style all disabled list items whether or not they are links or buttons
@@ -33,9 +42,23 @@
   &.euiListGroupItem-isDisabled .euiListGroupItem__button:hover,
   &.euiListGroupItem-isDisabled .euiListGroupItem__button:focus {
     color: $euiButtonColorDisabled;
-    text-decoration: none;
     cursor: not-allowed;
     background-color: transparent;
+    text-decoration: none;
+  }
+}
+
+// IE doesn't support :focus-within
+@include internetExplorerOnly {
+  .euiListGroupItem__button:hover,
+  .euiListGroupItem__button:focus {
+    background-color: $euiListGroupItemHoverBackground;
+    border-radius: $euiBorderRadius;
+
+    .euiListGroupItem--ghost .euiListGroupItem__button:hover,
+    .euiListGroupItem--ghost .euiListGroupItem__button:focus {
+      background-color: $euiListGroupItemHoverBackgroundGhost;
+    }
   }
 }
 
