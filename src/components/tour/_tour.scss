@@ -20,3 +20,42 @@
   margin-top: $euiSizeL !important; // sass-lint:disable-line no-important
   background-color: $euiColorLightestShade;
 }
+
+.euiTour {
+  .euiTour__beacon {
+    pointer-events: none;
+    position: absolute;
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--right {
+    .euiTour__beacon {
+      top: 6px;
+      left: -24px;
+    }
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--left {
+    .euiTour__beacon {
+      top: 6px;
+      left: 12px;
+    }
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--top {
+    &:after {
+      border-top-color: $euiColorLightestShade;
+    }
+
+    .euiTour__beacon {
+      top: 12px;
+      left: 6px;
+    }
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--bottom {
+    .euiTour__beacon {
+      top: -24px;
+      left: 6px;
+    }
+  }
+}

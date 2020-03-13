@@ -47,6 +47,7 @@ const demoTourSteps = [
     step: 4,
     title: 'Step 4',
     anchorPosition: 'downLeft',
+    hasBeacon: false,
   },
 ];
 
@@ -61,12 +62,11 @@ export default () => {
   const [color, setColor] = useState('#000');
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('query');
-  const [state] = useState(tourConfig);
   const [
     [euiTourStepOne, euiTourStepTwo, euiTourStepThree, euiTourStepFour],
     actions,
     reducerState,
-  ] = useEuiTour(demoTourSteps, state);
+  ] = useEuiTour(demoTourSteps, tourConfig);
 
   useEffect(() => {
     console.log('Update', reducerState);

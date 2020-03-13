@@ -53,6 +53,7 @@ export interface EuiTourStepInterface {
 
   // Larger title text specific to this step
   title: string;
+  hasBeacon?: boolean;
 }
 
 export interface EuiTourState {

@@ -119,6 +119,8 @@ export interface EuiPopoverProps {
   onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
 
   style?: CSSProperties;
+  offset?: number;
+  arrowChildren?: ReactNode;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -479,7 +481,10 @@ export class EuiPopover extends Component<Props, State> {
       align: getPopoverAlignFromAnchorPosition(anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: !this.props.attachToAnchor && this.props.hasArrow ? 16 : 8,
+      offset:
+        !this.props.attachToAnchor && this.props.hasArrow
+          ? 16 + (this.props.offset || 0)
+          : 8 + (this.props.offset || 0),
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
@@ -570,6 +575,7 @@ export class EuiPopover extends Component<Props, State> {
       panelRef,
       popoverRef,
       hasArrow,
+      arrowChildren,
       repositionOnScroll,
       zIndex,
       initialFocus,
@@ -657,7 +663,9 @@ export class EuiPopover extends Component<Props, State> {
               aria-modal="true"
               aria-describedby={descriptionId}
               style={this.state.popoverStyles}>
-              <div className={arrowClassNames} style={this.state.arrowStyles} />
+              <div className={arrowClassNames} style={this.state.arrowStyles}>
+                {arrowChildren}
+              </div>
               {focusTrapScreenReaderText}
               <EuiMutationObserver
                 observerOptions={{

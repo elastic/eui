@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiBeacon } from '../beacon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiI18n } from '../i18n';
@@ -44,6 +45,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   style,
   subtitle,
   title,
+  hasBeacon = true,
   ...rest
 }) => {
   let newStyle;
@@ -123,6 +125,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       isOpen={isStepOpen}
       panelClassName={classes}
       style={newStyle || style}
+      offset={hasBeacon ? 10 : 0}
+      arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
       withTitle
       {...rest}>
       <EuiPopoverTitle className="euiTourHeader">
