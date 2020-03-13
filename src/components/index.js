@@ -17,6 +17,8 @@ export {
   EuiBadgeGroup,
 } from './badge';
 
+export { EuiBeacon } from './beacon';
+
 export { EuiBottomBar } from './bottom_bar';
 
 export { EuiBreadcrumbs } from './breadcrumbs';

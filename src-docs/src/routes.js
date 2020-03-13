@@ -49,6 +49,8 @@ import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
 
+import { BeaconExample } from './views/beacon/beacon_example';
+
 import { BottomBarExample } from './views/bottom_bar/bottom_bar_example';
 
 import { BreadcrumbsExample } from './views/breadcrumbs/breadcrumbs_example';
@@ -354,6 +356,7 @@ const navigation = [
       AspectRatioExample,
       AvatarExample,
       BadgeExample,
+      BeaconExample,
       CallOutExample,
       CardExample,
       CodeExample,
