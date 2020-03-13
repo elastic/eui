@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSelectableListItem is rendered 1`] = `
-<button
+<li
   aria-label="aria-label"
+  aria-selected="false"
   class="euiSelectableListItem testClass1 testClass2"
   data-test-subj="test subject string"
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -19,14 +19,14 @@ exports[`EuiSelectableListItem is rendered 1`] = `
       class="euiSelectableListItem__text"
     />
   </span>
-</button>
+</li>
 `;
 
 exports[`EuiSelectableListItem props append 1`] = `
-<button
+<li
+  aria-selected="false"
   class="euiSelectableListItem"
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -44,14 +44,14 @@ exports[`EuiSelectableListItem props append 1`] = `
       <span />
     </span>
   </span>
-</button>
+</li>
 `;
 
 exports[`EuiSelectableListItem props checked is off 1`] = `
-<button
+<li
+  aria-selected="false"
   class="euiSelectableListItem"
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -65,14 +65,14 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
       class="euiSelectableListItem__text"
     />
   </span>
-</button>
+</li>
 `;
 
 exports[`EuiSelectableListItem props checked is on 1`] = `
-<button
+<li
+  aria-selected="true"
   class="euiSelectableListItem"
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -86,16 +86,15 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
       class="euiSelectableListItem__text"
     />
   </span>
-</button>
+</li>
 `;
 
 exports[`EuiSelectableListItem props disabled 1`] = `
-<button
+<li
   aria-disabled="true"
+  aria-selected="false"
   class="euiSelectableListItem"
-  disabled=""
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -108,15 +107,14 @@ exports[`EuiSelectableListItem props disabled 1`] = `
       class="euiSelectableListItem__text"
     />
   </span>
-</button>
+</li>
 `;
 
 exports[`EuiSelectableListItem props isFocused 1`] = `
-<button
-  aria-selected="true"
+<li
+  aria-selected="false"
   class="euiSelectableListItem euiSelectableListItem-isFocused"
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -129,14 +127,14 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
       class="euiSelectableListItem__text"
     />
   </span>
-</button>
+</li>
 `;
 
 exports[`EuiSelectableListItem props prepend 1`] = `
-<button
+<li
+  aria-selected="false"
   class="euiSelectableListItem"
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -154,14 +152,14 @@ exports[`EuiSelectableListItem props prepend 1`] = `
       class="euiSelectableListItem__text"
     />
   </span>
-</button>
+</li>
 `;
 
 exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
-<button
+<li
+  aria-selected="false"
   class="euiSelectableListItem"
   role="option"
-  type="button"
 >
   <span
     class="euiSelectableListItem__content"
@@ -170,5 +168,5 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
       class="euiSelectableListItem__text"
     />
   </span>
-</button>
+</li>
 `;

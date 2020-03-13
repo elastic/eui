@@ -5,6 +5,7 @@ import React, {
   createRef,
   Fragment,
   ReactElement,
+  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -14,13 +15,9 @@ import { EuiSelectableList } from './selectable_list';
 import { EuiLoadingChart } from '../loading';
 import { getMatchingOptions } from './matching_options';
 import { comboBoxKeyCodes } from '../../services';
-import { TAB } from '../../services/key_codes';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
-import {
-  EuiSelectableOptionsListProps,
-  EuiSelectableSingleOptionProps,
-} from './selectable_list/selectable_list';
+import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
@@ -80,7 +77,7 @@ export type EuiSelectableProps = Omit<
      * `true`: only allows one selection
      * `always`: can and must have only one selection
      */
-    singleSelection?: EuiSelectableSingleOptionProps;
+    singleSelection?: EuiSelectableOptionsListProps['singleSelection'];
     /**
      * Allows marking options as `checked='off'` as well as `'on'`
      */
@@ -174,7 +171,19 @@ export class EuiSelectable extends Component<
     return this.state.activeOptionIndex != null;
   };
 
-  onKeyDown = (e: any) => {
+  onFocus = () => {
+    const firstSelected = this.state.visibleOptions.findIndex(
+      option => option.checked && !option.disabled
+    );
+
+    if (firstSelected > -1) {
+      this.setState({ activeOptionIndex: firstSelected });
+    } else {
+      this.incrementActiveOptionIndex(1);
+    }
+  };
+
+  onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const optionsList = this.optionsListRef.current;
 
     switch (e.keyCode) {
@@ -196,15 +205,6 @@ export class EuiSelectable extends Component<
           optionsList.onAddOrRemoveOption(
             this.state.visibleOptions[this.state.activeOptionIndex]
           );
-        }
-        break;
-
-      case TAB:
-        // Disallow tabbing when the user is navigating the options.
-        // TODO: Can we force the tab to the next sibling element?
-        if (this.hasActiveOption()) {
-          e.preventDefault();
-          e.stopPropagation();
         }
         break;
 
@@ -239,10 +239,12 @@ export class EuiSelectable extends Component<
         }
       }
 
-      // Group titles are included in option list but are not selectable
-      // Skip group title options
+      // Group titles and disabled options are included in option list but are not selectable
       const direction = amount > 0 ? 1 : -1;
-      while (visibleOptions[nextActiveOptionIndex].isGroupLabel) {
+      while (
+        visibleOptions[nextActiveOptionIndex].isGroupLabel ||
+        visibleOptions[nextActiveOptionIndex].disabled
+      ) {
         nextActiveOptionIndex = nextActiveOptionIndex + direction;
 
         if (nextActiveOptionIndex < 0) {
@@ -377,6 +379,7 @@ export class EuiSelectable extends Component<
         renderOption={renderOption}
         height={height}
         allowExclusions={allowExclusions}
+        searchable={searchable}
         {...listProps}
       />
     );
@@ -386,6 +389,7 @@ export class EuiSelectable extends Component<
         className={classes}
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
+        onFocus={this.onFocus}
         {...rest}>
         {children && children(list, search)}
       </div>
