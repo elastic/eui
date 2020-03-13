@@ -171,7 +171,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const classes = classNames(
     'euiBadge',
     {
-      'euiBadge-isClickable': onClick && !iconOnClick,
+      'euiBadge-isClickable': (onClick || href) && !iconOnClick,
       'euiBadge-isDisabled': isDisabled,
       'euiBadge--hollow': color === 'hollow',
     },

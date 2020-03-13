@@ -74,12 +74,7 @@ const badgeButtonSnippet = [
 import BadgeHref from './badge_href';
 const badgeHrefSource = require('!!raw-loader!./badge_href');
 const badgeHrefHtml = renderToHtml(BadgeHref);
-const badgeHrefSnippet = [
-  `<EuiBadgeGroup gutterSize="s">
-  <EuiBadge href="https://elastic.github.io/" />
-  <EuiBadge href="https://elastic.github.io/" target="blank/>
-</EuiBadgeGroup>`,
-];
+const badgeHrefSnippet = ['<EuiBadge href="#" />'];
 
 import BadgeTruncate from './badge_truncate';
 const badgeTruncateSource = require('!!raw-loader!./badge_truncate');
@@ -201,7 +196,10 @@ export const BadgeExample = {
       ],
       text: (
         <div>
-          <p>Badges can have href attributes also the target attribute.</p>
+          <p>
+            Badges can also be made to render anchor tags by passing an{' '}
+            <EuiCode>href</EuiCode>.
+          </p>
         </div>
       ),
       snippet: badgeHrefSnippet,
