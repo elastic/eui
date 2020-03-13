@@ -10,12 +10,12 @@ $amsTextScale:    2.429, 1.929, 1.571, 1.285, 1.143, 1, .857;
 
 $euiFontSize:     $euiSize - 2; // 14px
 
-$euiFontSizeXS:    ceil($euiFontSize * nth($amsTextScale, 7)); // 12px // h6
-$euiFontSizeS:    floor($euiFontSize * nth($amsTextScale, 6)); // 14px // h5 --> Now the same as the base $euiFontSize
-$euiFontSizeM:    floor($euiFontSize * nth($amsTextScale, 5)); // 16px // h4
-$euiFontSizeL:     ceil($euiFontSize * nth($amsTextScale, 3)); // 22px // h3
-$euiFontSizeXL:   floor($euiFontSize * nth($amsTextScale, 2)); // 27px // h2
-$euiFontSizeXXL:  floor($euiFontSize * nth($amsTextScale, 1)); // 34px // h1
+$euiFontSizeXS:    floor($euiFontSize * .86);  // 12px // h6
+$euiFontSizeS:    floor($euiFontSize * 1);    // 14px // h5 --> Now the same as the base $euiFontSize
+$euiFontSizeM:     ceil($euiFontSize * 1.14); // 16px // h4
+$euiFontSizeL:     ceil($euiFontSize * 1.57); // 22px // h3
+$euiFontSizeXL:   floor($euiFontSize * 1.93); // 27px // h2
+$euiFontSizeXXL:  floor($euiFontSize * 2.43); // 34px // h1
 
 $euiTitles: (
   'xxxs': (
