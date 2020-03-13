@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiQuickSelect is rendered 1`] = `
-<fieldset>
+<fieldset
+  onKeyDown={[Function]}
+>
   <EuiI18n
     default="Quick select a time range"
     token="euiQuickSelect.legendText"
@@ -127,7 +129,9 @@ exports[`EuiQuickSelect is rendered 1`] = `
 `;
 
 exports[`EuiQuickSelect prevQuickSelect 1`] = `
-<fieldset>
+<fieldset
+  onKeyDown={[Function]}
+>
   <EuiI18n
     default="Quick select a time range"
     token="euiQuickSelect.legendText"

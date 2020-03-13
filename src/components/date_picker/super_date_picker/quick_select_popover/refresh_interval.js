@@ -90,8 +90,8 @@ export class EuiRefreshInterval extends Component {
     );
   };
 
-  handelKeyDown = ({ key }) => {
-    if (key === 'Enter') this.toogleRefresh();
+  handleKeyDown = ({ key }) => {
+    if (key === 'Enter') this.applyRefreshInterval();
   };
 
   applyRefreshInterval = () => {
@@ -110,7 +110,7 @@ export class EuiRefreshInterval extends Component {
     });
   };
 
-  toogleRefresh = () => {
+  toggleRefresh = () => {
     this.props.applyRefreshInterval({
       refreshInterval: toMilliseconds(this.state.units, this.state.value),
       isPaused: !this.props.isPaused,
@@ -127,7 +127,8 @@ export class EuiRefreshInterval extends Component {
     }
 
     return (
-      <div onKeyDown={this.handelKeyDown}>
+      //   eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+      <fieldset onKeyDown={this.handleKeyDown}>
         <EuiTitle size="xxxs">
           <legend id={legendId}>
             <EuiI18n
@@ -164,7 +165,7 @@ export class EuiRefreshInterval extends Component {
               className="euiRefreshInterval__startButton"
               iconType={this.props.isPaused ? 'play' : 'stop'}
               size="s"
-              onClick={this.toogleRefresh}
+              onClick={this.toggleRefresh}
               disabled={value === '' || value <= 0}
               data-test-subj="superDatePickerToggleRefreshButton"
               aria-describedby={`${refreshSelectionId} ${legendId}`}>
@@ -190,7 +191,7 @@ export class EuiRefreshInterval extends Component {
             />
           </p>
         </EuiScreenReaderOnly>
-      </div>
+      </fieldset>
     );
   }
 }
