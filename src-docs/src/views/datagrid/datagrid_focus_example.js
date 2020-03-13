@@ -38,7 +38,10 @@ export const DataGridFocusExample = {
             ✅ Only one focusable element (the expansion button): outline cell, focus on expansion button
           </p>
           <p>
-            ✅ 2+ focusable elements (not expandable): focus cell, enter/f2 enters focus trap
+            ⛔ 2+ focusable elements (not expandable): focus cell, enter/f2 enters focus trap
+          </p>
+          <p>
+            ✅️ 1+ focusable elements (element + expandable): focus cell, enter/f2 opens popover
           </p>
         </Fragment>
       ),
