@@ -7,10 +7,10 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { useColorPicker, useColorStop } from './utils';
+import { useColorPickerState, useColorStop } from '../../../../src/services';
 
 export const Modes = () => {
-  const [color, setColor, errors] = useColorPicker('#D36086');
+  const [color, setColor, errors] = useColorPickerState('#D36086');
   const [colorStops, setColorStops] = useColorStop();
 
   return (

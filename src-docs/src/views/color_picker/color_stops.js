@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiColorStops, EuiFormRow } from '../../../../src/components';
 
-import { useColorStop } from './utils';
+import { useColorStop } from '../../../../src/services';
 
 export const ColorStops = () => {
   const [colorStops, setColorStops, addColor] = useColorStop(true);

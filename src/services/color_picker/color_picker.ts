@@ -4,7 +4,7 @@ const generateRandomColor = () =>
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
   `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
-export const useColorStop = (useRandomColor = false) => {
+export const useColorStop = (useRandomColor: boolean = false) => {
   const [addColor, setAddColor] = useState(generateRandomColor());
   const [colorStops, setColorStops] = useState([
     {
@@ -21,7 +21,7 @@ export const useColorStop = (useRandomColor = false) => {
     },
   ]);
 
-  const updateColorStops = colorStops => {
+  const updateColorStops = (colorStops: any) => {
     setColorStops(colorStops);
     if (useRandomColor) {
       setAddColor(generateRandomColor());
@@ -30,10 +30,10 @@ export const useColorStop = (useRandomColor = false) => {
   return [colorStops, updateColorStops, addColor];
 };
 
-export const useColorPicker = (initialColor = '') => {
+export const useColorPickerState = (initialColor = '') => {
   const [color, setColorValue] = useState(initialColor);
   const [isValid, setIsValid] = useState(true);
-  const setColor = (text, { isValid }) => {
+  const setColor = (text: string, { isValid }: { isValid: boolean }) => {
     setColorValue(text);
     setIsValid(isValid);
   };
