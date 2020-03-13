@@ -27,10 +27,10 @@ type WithButtonProps = {
   onClickAriaLabel: AriaAttributes['aria-label'];
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick' | 'color'>;
 
-interface WithAnchorProps {
+type WithAnchorProps = {
   href: string;
   target?: string;
-}
+} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
 
@@ -187,7 +187,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const relObj: {
     href?: string;
     target?: string;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
+    onClick?:
+      | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+      | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void);
   } = {};
 
   if (href && !isDisabled) {
