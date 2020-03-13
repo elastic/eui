@@ -126,11 +126,46 @@ export class FieldValueSelectionFilter extends Component<
     this.setState({ options: null, error: null });
     loader()
       .then(options => {
+        const items: {
+          on: FieldValueOptionType[];
+          off: FieldValueOptionType[];
+          rest: FieldValueOptionType[];
+        } = {
+          on: [],
+          off: [],
+          rest: [],
+        };
+
+        const { query, config } = this.props;
+
+        const multiSelect = this.resolveMultiSelect();
+
+        if (options) {
+          options.forEach(op => {
+            const optionField = op.field || config.field;
+            if (optionField) {
+              const clause =
+                multiSelect === 'or'
+                  ? query.getOrFieldClause(optionField, op.value)
+                  : query.getSimpleFieldClause(optionField, op.value);
+              const checked = this.resolveChecked(clause);
+              if (!checked) {
+                items.rest.push(op);
+              } else if (checked === 'on') {
+                items.on.push(op);
+              } else {
+                items.off.push(op);
+              }
+            }
+            return;
+          });
+        }
+
         this.setState({
           error: null,
           options: {
             all: options,
-            shown: options,
+            shown: [...items.on, ...items.off, ...items.rest],
           },
         });
       })
