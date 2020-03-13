@@ -186,6 +186,8 @@ export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
 
+export { EuiMark } from './mark';
+
 export {
   EUI_MODAL_CANCEL_BUTTON,
   EUI_MODAL_CONFIRM_BUTTON,
@@ -239,7 +241,10 @@ export { EuiProgress } from './progress';
 
 export { EuiTreeView } from './tree_view';
 
-export { EuiResizeObserver } from './observer/resize_observer';
+export {
+  EuiResizeObserver,
+  useResizeObserver,
+} from './observer/resize_observer';
 
 export { EuiSearchBar, Query, Ast } from './search_bar';
 

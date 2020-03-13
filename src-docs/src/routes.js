@@ -118,7 +118,7 @@ import { HeaderExample } from './views/header/header_example';
 
 import { HealthExample } from './views/health/health_example';
 
-import { HighlightExample } from './views/highlight/highlight_example';
+import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_and_mark_example';
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
 
@@ -413,7 +413,7 @@ const navigation = [
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
-      HighlightExample,
+      HighlightAndMarkExample,
       InnerTextExample,
       I18nExample,
       IsColorDarkExample,

@@ -21,7 +21,10 @@ export const KitchenSink = () => {
       </DisplayToggles>
       <EuiSpacer />
       {/* DisplayToggles wrapper for Docs only */}
-      <DisplayToggles canLoading={false}>
+      <DisplayToggles
+        canLoading={false}
+        canInvalid={false}
+        canCompressed={false}>
         <EuiColorStops
           label="Kitchen sink"
           colorStops={colorStops}

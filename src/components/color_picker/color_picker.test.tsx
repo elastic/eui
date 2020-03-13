@@ -93,6 +93,19 @@ test('renders a EuiColorPicker with a prepend and append', () => {
   expect(component).toMatchSnapshot();
 });
 
+test('renders a EuiColorPicker with an alpha range selector', () => {
+  const component = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      showAlpha={true}
+      {...requiredProps}
+    />
+  );
+
+  expect(component).toMatchSnapshot();
+});
+
 test('renders EuiColorPicker with an empty swatch when color is null', () => {
   const colorPicker = render(
     <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
@@ -193,7 +206,11 @@ test('Setting a new color calls onChange', () => {
   expect(inputs.length).toBe(1);
   inputs.simulate('change', event);
   expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith('#000000');
+  expect(onChange).toBeCalledWith('#000000', {
+    hex: '#000000',
+    isValid: true,
+    rgba: [0, 0, 0, 1],
+  });
 });
 
 test('Clicking a swatch calls onChange', () => {
@@ -206,7 +223,45 @@ test('Clicking a swatch calls onChange', () => {
   expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
   swatches.first().simulate('click');
   expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith(VISUALIZATION_COLORS[0]);
+  expect(onChange).toBeCalledWith(VISUALIZATION_COLORS[0], {
+    hex: '#54b399',
+    isValid: true,
+    rgba: [84, 179, 153, 1],
+  });
+});
+
+test('Setting a new alpha value calls onChange', () => {
+  const colorPicker = mount(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      showAlpha={true}
+      {...requiredProps}
+    />
+  );
+
+  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  // Slider
+  const alpha = findTestSubject(colorPicker, 'colorPickerAlpha');
+  const event1 = { target: { value: '50' } };
+  const range = alpha.first(); // input[type=range]
+  range.simulate('change', event1);
+  expect(onChange).toBeCalled();
+  expect(onChange).toBeCalledWith('#ffeedd80', {
+    hex: '#ffeedd80',
+    isValid: true,
+    rgba: [255, 238, 221, 0.5],
+  });
+  // Number input
+  const event2 = { target: { value: '25' } };
+  const input = alpha.at(1); // input[type=number]
+  input.simulate('change', event2);
+  expect(onChange).toBeCalled();
+  expect(onChange).toBeCalledWith('#ffeedd40', {
+    hex: '#ffeedd40',
+    isValid: true,
+    rgba: [255, 238, 221, 0.25],
+  });
 });
 
 test('default mode does redners child components', () => {

@@ -56,6 +56,7 @@ import {
 import { useColumnSorting } from './column_sorting';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
+import { useResizeObserver } from '../observer/resize_observer/resize_observer';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -230,40 +231,40 @@ function useDefaultColumnWidth(
   trailingControlColumns: EuiDataGridProps['leadingControlColumns'] = [],
   columns: EuiDataGridProps['columns']
 ): number | null {
+  const containerSize = useResizeObserver(container);
+
   const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
     null
   );
 
   useEffect(() => {
-    if (container != null) {
-      const gridWidth = container.clientWidth;
+    const gridWidth = containerSize.width;
 
-      const controlColumnWidths = [
-        ...leadingControlColumns,
-        ...trailingControlColumns,
-      ].reduce<number>(
-        (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
-          claimedWidth + controlColumn.width,
-        0
-      );
+    const controlColumnWidths = [
+      ...leadingControlColumns,
+      ...trailingControlColumns,
+    ].reduce<number>(
+      (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
+        claimedWidth + controlColumn.width,
+      0
+    );
 
-      const columnsWithWidths = columns.filter<
-        EuiDataGridColumn & { initialWidth: number }
-      >(doesColumnHaveAnInitialWidth);
+    const columnsWithWidths = columns.filter<
+      EuiDataGridColumn & { initialWidth: number }
+    >(doesColumnHaveAnInitialWidth);
 
-      const definedColumnsWidth = columnsWithWidths.reduce(
-        (claimedWidth, column) => claimedWidth + column.initialWidth,
-        0
-      );
+    const definedColumnsWidth = columnsWithWidths.reduce(
+      (claimedWidth, column) => claimedWidth + column.initialWidth,
+      0
+    );
 
-      const claimedWidth = controlColumnWidths + definedColumnsWidth;
+    const claimedWidth = controlColumnWidths + definedColumnsWidth;
 
-      const widthToFill = gridWidth - claimedWidth;
-      const unsizedColumnCount = columns.length - columnsWithWidths.length;
-      const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
-      setDefaultColumnWidth(columnWidth);
-    }
-  }, [container, columns, leadingControlColumns, trailingControlColumns]);
+    const widthToFill = gridWidth - claimedWidth;
+    const unsizedColumnCount = columns.length - columnsWithWidths.length;
+    const columnWidth = Math.max(widthToFill / unsizedColumnCount, 100);
+    setDefaultColumnWidth(columnWidth);
+  }, [containerSize, columns, leadingControlColumns, trailingControlColumns]);
 
   return defaultColumnWidth;
 }
@@ -497,6 +498,31 @@ const useFocus = (
   return [focusProps, focusedCell, setFocusedCell];
 };
 
+// Typeguards to see if toolbarVisibility has a certain boolean property assigned
+// If not, just set it to true and assume it's OK to show
+function objectHasKey<O extends Record<string, any>, ObjectKey extends keyof O>(
+  object: O,
+  key: ObjectKey
+): object is Required<O> {
+  return object.hasOwnProperty(key);
+}
+function checkOrDefaultToolBarDiplayOptions<
+  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
+>(
+  arg: EuiDataGridProps['toolbarVisibility'],
+  option: OptionKey
+): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
+  if (arg === undefined) {
+    return true;
+  } else if (typeof arg === 'boolean') {
+    return arg as boolean;
+  } else if (objectHasKey(arg, option)) {
+    return arg[option];
+  } else {
+    return true;
+  }
+}
+
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
@@ -621,7 +647,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [columnSelector, orderedVisibleColumns] = useColumnSelector(
     columns,
-    columnVisibility
+    columnVisibility,
+    checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector')
   );
   const columnSorting = useColumnSorting(
     orderedVisibleColumns,
@@ -680,31 +707,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   // By default the toolbar appears
   const showToolbar = !!toolbarVisibility;
-
-  // Typeguards to see if toolbarVisibility has a certain boolean property assigned
-  // If not, just set it to true and assume it's OK to show
-  function objectHasKey<
-    O extends Record<string, any>,
-    ObjectKey extends keyof O
-  >(object: O, key: ObjectKey): object is Required<O> {
-    return object.hasOwnProperty(key);
-  }
-  function checkOrDefaultToolBarDiplayOptions<
-    OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
-  >(
-    arg: EuiDataGridProps['toolbarVisibility'],
-    option: OptionKey
-  ): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
-    if (arg === undefined) {
-      return true;
-    } else if (typeof arg === 'boolean') {
-      return arg as boolean;
-    } else if (objectHasKey(arg, option)) {
-      return arg[option];
-    } else {
-      return true;
-    }
-  }
 
   // These grid controls will only show when there is room. Check the resize observer callback
   // They can also be optionally turned off individually by using toolbarVisibility
