@@ -17,6 +17,7 @@
 - Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 - Fixed SASS `contrastRatio()` function in dark mode by fixing the `pow()` math function ([#3013], (https://github.com/elastic/eui/pull/3013))
 - Fixed bug preventing `EuiDataGrid` from re-evaluating the default column width on resize ([#2991](https://github.com/elastic/eui/pull/2991))
+- Made `EuiDataGrid`'s `schema.isSortable` value optional ([#2991](https://github.com/elastic/eui/pull/2991))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
