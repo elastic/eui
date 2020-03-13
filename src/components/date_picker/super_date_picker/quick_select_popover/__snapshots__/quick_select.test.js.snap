@@ -3,6 +3,7 @@
 exports[`EuiQuickSelect is rendered 1`] = `
 <fieldset
   onKeyDown={[Function]}
+  role="presentation"
 >
   <EuiI18n
     default="Quick select a time range"
@@ -131,6 +132,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
 exports[`EuiQuickSelect prevQuickSelect 1`] = `
 <fieldset
   onKeyDown={[Function]}
+  role="presentation"
 >
   <EuiI18n
     default="Quick select a time range"

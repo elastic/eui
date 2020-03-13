@@ -127,8 +127,7 @@ export class EuiRefreshInterval extends Component {
     }
 
     return (
-      //   eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-      <fieldset onKeyDown={this.handleKeyDown}>
+      <fieldset role="presentation" onKeyDown={this.handleKeyDown}>
         <EuiTitle size="xxxs">
           <legend id={legendId}>
             <EuiI18n

@@ -126,8 +126,7 @@ export class EuiQuickSelect extends Component {
     const legendId = this.generateId();
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-      <fieldset onKeyDown={this.handleKeyDown}>
+      <fieldset role="presentation" onKeyDown={this.handleKeyDown}>
         <EuiI18n
           token="euiQuickSelect.legendText"
           default="Quick select a time range">
