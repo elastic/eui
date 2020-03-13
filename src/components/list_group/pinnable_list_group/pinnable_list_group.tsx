@@ -39,11 +39,23 @@ export interface EuiPinnableListGroupProps
    * Returns `item: EuiPinnableListGroupItemProps`
    */
   onPinClick: (item: EuiPinnableListGroupItemProps) => void;
+  /**
+   * The pin icon needs a title/aria-label for accessibility.
+   * It is a function that passes the item back and must return a string `(item) => string`.
+   * Default is `"Pin item"`
+   */
+  pinTitle?: (item: EuiPinnableListGroupItemProps) => string;
+  /**
+   * The unpin icon needs a title/aria-label for accessibility.
+   * It is a function that passes the item back and must return a string `(item) => string`.
+   * Default is `"Unpin item"`
+   */
+  unpinTitle?: (item: EuiPinnableListGroupItemProps) => string;
 }
 
 export const EuiPinnableListGroup: FunctionComponent<
   EuiPinnableListGroupProps
-> = ({ className, listItems, onPinClick, ...rest }) => {
+> = ({ className, listItems, pinTitle, unpinTitle, onPinClick, ...rest }) => {
   const classes = classNames('euiPinnableListGroup', className);
 
   // Alter listItems object with extra props
@@ -66,14 +78,16 @@ export const EuiPinnableListGroup: FunctionComponent<
         if (pinned) {
           itemProps.extraAction = {
             ...pinnedExtraAction,
-            title: pinnedExtraActionLabel,
-            'aria-label': pinnedExtraActionLabel,
+            title: unpinTitle ? unpinTitle(item) : pinnedExtraActionLabel,
+            'aria-label': unpinTitle
+              ? unpinTitle(item)
+              : pinnedExtraActionLabel,
           };
         } else {
           itemProps.extraAction = {
             ...pinExtraAction,
-            title: pinExtraActionLabel,
-            'aria-label': pinExtraActionLabel,
+            title: pinTitle ? pinTitle(item) : pinnedExtraActionLabel,
+            'aria-label': pinTitle ? pinTitle(item) : pinnedExtraActionLabel,
           };
         }
         // Return the item on click
@@ -89,7 +103,7 @@ export const EuiPinnableListGroup: FunctionComponent<
         'euiPinnableListGroup.pinExtraActionLabel',
         'euiPinnableListGroup.pinnedExtraActionLabel',
       ]}
-      defaults={['Pin to top', 'Unpin item']}>
+      defaults={['Pin item', 'Unpin item']}>
       {([pinExtraActionLabel, pinnedExtraActionLabel]: string[]) => {
         const newListItems = getNewListItems(
           pinExtraActionLabel,

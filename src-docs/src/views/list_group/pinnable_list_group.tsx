@@ -18,7 +18,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
     },
   },
   {
-    label: 'Link with href',
+    label: 'Link with href and custom pin titles',
     href: '/#',
   },
   {
@@ -44,6 +44,10 @@ export default () => (
         console.warn('Clicked: ', item);
       }}
       maxWidth="none"
+      pinTitle={(item: EuiPinnableListGroupItemProps) => `Pin ${item.label}`}
+      unpinTitle={(item: EuiPinnableListGroupItemProps) =>
+        `Unpin ${item.label}`
+      }
     />
   </>
 );

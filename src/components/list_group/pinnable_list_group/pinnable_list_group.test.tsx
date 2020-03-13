@@ -50,4 +50,22 @@ describe('EuiPinnableListGroup', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('can have custom pin icon titles', () => {
+    const component = render(
+      <EuiPinnableListGroup
+        {...requiredProps}
+        listItems={someListItems}
+        onPinClick={() => {}}
+        pinTitle={(item: EuiPinnableListGroupItemProps) =>
+          `Pin ${item.label} to the top`
+        }
+        unpinTitle={(item: EuiPinnableListGroupItemProps) =>
+          `Unpin ${item.label} to the top`
+        }
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
