@@ -4,13 +4,10 @@ $euiFontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetic
 // Font sizes -- scale is loosely based on Major Third (1.250) with a base of 14px
 // Base list is an altered scale based on 16px to match the resulted values below
 $euiTextScale:    2.125, 1.6875, 1.375, 1.125, 1, .875, .75;
-// This is a new list because changing the base list messes with EuiText
-// So it's only being used to calculate the font size variables
-$amsTextScale:    2.429, 1.929, 1.571, 1.285, 1.143, 1, .857;
 
 $euiFontSize:     $euiSize - 2; // 14px
 
-$euiFontSizeXS:    floor($euiFontSize * .86);  // 12px // h6
+$euiFontSizeXS:   floor($euiFontSize * .86);  // 12px // h6
 $euiFontSizeS:    floor($euiFontSize * 1);    // 14px // h5 --> Now the same as the base $euiFontSize
 $euiFontSizeM:     ceil($euiFontSize * 1.14); // 16px // h4
 $euiFontSizeL:     ceil($euiFontSize * 1.57); // 22px // h3
