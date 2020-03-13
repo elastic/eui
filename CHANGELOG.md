@@ -79,6 +79,7 @@
 
 **Theme: Amsterdam**
 
+- Text sizes are now based on a 14px base font size. Headings are now bold. ([#2936](https://github.com/elastic/eui/pull/2936))
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
 
 ## [`20.0.2`](https://github.com/elastic/eui/tree/v20.0.2)
