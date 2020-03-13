@@ -1,5 +1,4 @@
 import React from "react";
-import range from "lodash/range";
 import MonthDropdown from "../src/month_dropdown.jsx";
 import MonthDropdownOptions from "../src/month_dropdown_options.jsx";
 import { mount } from "enzyme";
@@ -9,10 +8,12 @@ import {
   getDefaultLocaleData
 } from "../src/date_utils";
 
+const range = length => Array.from({ length }, (_, i) => i);
+
 describe("MonthDropdown", () => {
   let monthDropdown;
   let handleChangeResult;
-  const mockHandleChange = function(changeInput) {
+  const mockHandleChange = function (changeInput) {
     handleChangeResult = changeInput;
   };
   let sandbox;
@@ -40,7 +41,7 @@ describe("MonthDropdown", () => {
   });
 
   describe("scroll mode", () => {
-    beforeEach(function() {
+    beforeEach(function () {
       monthDropdown = getMonthDropdown();
     });
 
