@@ -10,14 +10,14 @@ exports[`EuiHealth is rendered 1`] = `
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <div
         data-euiicon-type="dot"
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     />
   </div>
 </div>

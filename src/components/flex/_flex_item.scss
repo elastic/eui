@@ -9,7 +9,6 @@
   }
 
   display: flex; /* 1 */
-  flex-direction: column; /* 1 */
 
   /*
    * 1. We need the extra specificity here to override the FlexGroup > FlexItem styles.
@@ -25,6 +24,61 @@
       flex-grow: $i;
     }
   }
+}
+
+// Justify the item
+.euiFlexItem--justifyContentSpaceEvenly {
+  justify-content: space-evenly;
+}
+
+.euiFlexItem--justifyContentSpaceBetween {
+  justify-content: space-between;
+}
+
+.euiFlexItem--justifyContentSpaceAround {
+  justify-content: space-around;
+}
+
+.euiFlexItem--justifyContentCenter {
+  justify-content: center;
+}
+
+.euiFlexItem--justifyContentFlexEnd {
+  justify-content: flex-end;
+}
+
+// Align Items
+.euiFlexItem--alignItemsFlexStart {
+  align-items: flex-start;
+}
+
+.euiFlexItem--alignItemsCenter {
+  align-items: center;
+}
+
+.euiFlexItem--alignItemsFlexEnd {
+  align-items: flex-end;
+}
+
+.euiFlexItem--alignItemsBaseline {
+  align-items: baseline;
+}
+
+// Direction
+.euiFlexItem--directionRow {
+  flex-direction: row;
+}
+
+.euiFlexItem--directionRowReverse {
+  flex-direction: row-reverse;
+}
+
+.euiFlexItem--directionColumn {
+  flex-direction: column;
+}
+
+.euiFlexItem--directionColumnReverse {
+  flex-direction: column-reverse;
 }
 
 // On mobile we force them to stack and act the same.

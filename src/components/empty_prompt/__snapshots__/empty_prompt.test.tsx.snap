@@ -66,12 +66,12 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
     class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--directionColumn euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       action1
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       action2
     </div>

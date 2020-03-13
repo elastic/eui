@@ -664,7 +664,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     role="listbox"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #54B399 as the color"
@@ -675,7 +675,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #6092C0 as the color"
@@ -686,7 +686,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #D36086 as the color"
@@ -697,7 +697,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #9170B8 as the color"
@@ -708,7 +708,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #CA8EAE as the color"
@@ -719,7 +719,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #D6BF57 as the color"
@@ -730,7 +730,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #B9A888 as the color"
@@ -741,7 +741,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #DA8B45 as the color"
@@ -752,7 +752,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #AA6556 as the color"
@@ -763,7 +763,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <button
         aria-label="Select #E7664C as the color"

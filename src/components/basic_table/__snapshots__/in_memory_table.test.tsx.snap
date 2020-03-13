@@ -111,14 +111,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   grow={false}
                 >
                   <div
-                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                    className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
                   />
                 </EuiFlexItem>
                 <EuiFlexItem
                   grow={false}
                 >
                   <div
-                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                    className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
                   />
                 </EuiFlexItem>
               </div>
@@ -322,7 +322,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   grow={false}
                 >
                   <div
-                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                    className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
                   >
                     <EuiPopover
                       anchorPosition="upRight"
@@ -421,7 +421,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   grow={false}
                 >
                   <div
-                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                    className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
                   >
                     <EuiPagination
                       activePage={1}

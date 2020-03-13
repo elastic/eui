@@ -8,7 +8,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
     class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <div
         class="euiNavDrawerMenu euiNavDrawerMenu-hasFooter"
@@ -269,7 +269,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
     class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <div
         class="euiNavDrawerMenu euiNavDrawerMenu-hasFooter"
@@ -476,7 +476,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
     class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <div
         class="euiNavDrawerMenu euiNavDrawerMenu-hasFooter"

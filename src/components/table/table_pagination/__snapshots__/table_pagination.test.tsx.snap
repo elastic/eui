@@ -5,7 +5,7 @@ exports[`EuiTablePagination is rendered 1`] = `
   class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
 >
   <div
-    class="euiFlexItem euiFlexItem--flexGrowZero"
+    class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
   >
     <div
       class="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
@@ -37,7 +37,7 @@ exports[`EuiTablePagination is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiFlexItem euiFlexItem--flexGrowZero"
+    class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
   >
     <div
       class="euiPagination"
@@ -157,10 +157,10 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
   class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
 >
   <div
-    class="euiFlexItem euiFlexItem--flexGrowZero"
+    class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
   />
   <div
-    class="euiFlexItem euiFlexItem--flexGrowZero"
+    class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
   >
     <div
       class="euiPagination"

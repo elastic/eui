@@ -12,14 +12,14 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
     class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFlexItem--flexGrowZero"
     >
       <div
         data-euiicon-type="empty"
       />
     </div>
     <div
-      class="euiFlexItem euiFilterSelectItem__content"
+      class="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiFilterSelectItem__content"
     />
   </span>
 </button>

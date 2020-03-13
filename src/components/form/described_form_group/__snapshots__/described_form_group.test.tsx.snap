@@ -26,7 +26,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
       >
         <EuiFlexItem>
           <div
-            className="euiFlexItem"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow"
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
@@ -64,7 +64,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -122,7 +122,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
       >
         <EuiFlexItem>
           <div
-            className="euiFlexItem"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow"
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
@@ -140,7 +140,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -200,7 +200,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
       >
         <EuiFlexItem>
           <div
-            className="euiFlexItem"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow"
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
@@ -238,7 +238,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -298,7 +298,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
       >
         <EuiFlexItem>
           <div
-            className="euiFlexItem"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow"
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
@@ -336,7 +336,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -396,7 +396,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
       >
         <EuiFlexItem>
           <div
-            className="euiFlexItem"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow"
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
@@ -434,7 +434,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -493,7 +493,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
       >
         <EuiFlexItem>
           <div
-            className="euiFlexItem"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow"
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
@@ -531,7 +531,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiFlexItem--alignItemsCenter euiFlexItem--justifyContentCenter euiFlexItem--directionRow euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
             <EuiFormRow
               describedByIds={Array []}
