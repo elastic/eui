@@ -15,6 +15,10 @@
   margin: 0 (-$euiSizeS);
 }
 
+.euiDataGridColumnSelector__itemLabel {
+  @include euiFontSizeXS;
+}
+
 .euiDataGridColumnSelectorPopover {
   // Hack because the fixed positions of drag and drop don't work inside of transformed elements
   // sass-lint:disable-block no-important

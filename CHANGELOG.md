@@ -1,16 +1,29 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
+- Added a `component` prop to `EuiForm` to render a `<form>`([#3010](https://github.com/elastic/eui/pull/3010))
 - Removed `role` attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
 - Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
 - Added `onColumnResize` prop to `EuiDataGrid` of type `EuiDataGridOnColumnResizeHandler` that gets called when column changes it's size ([#2963](https://github.com/elastic/eui/pull/2963))
 - Added `logoEnterpriseSearch` to `EuiIcon` ([#3066](https://github.com/elastic/eui/pull/3066))
+- Added RGB format support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
+- Added alpha channel (opacity) support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
+- Added `useResizeObserver` hook ([#2991](https://github.com/elastic/eui/pull/2991))
+- Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993))
 
 **Bug Fixes**
 
 - Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 - Fixed SASS `contrastRatio()` function in dark mode by fixing the `pow()` math function ([#3013], (https://github.com/elastic/eui/pull/3013))
+- Fixed bug preventing `EuiDataGrid` from re-evaluating the default column width on resize ([#2991](https://github.com/elastic/eui/pull/2991))
+
+## [`21.0.1`](https://github.com/elastic/eui/tree/v21.0.1)
+
+**Bug Fixes**
+
+- Made `EuiDataGrid`'s `schema.isSortable` value optional ([#2991](https://github.com/elastic/eui/pull/2991))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
 
