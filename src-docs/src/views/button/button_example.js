@@ -123,6 +123,15 @@ export const ButtonExample = {
       props: { EuiButton },
       snippet: buttonSnippet,
       demo: <Button />,
+      live: {
+        snippet: [
+          '<EuiButton> Hello </EuiButton>',
+          '<EuiButton size="s"> Hello </EuiButton>',
+          '<EuiButton fill> Hello </EuiButton>',
+          '<EuiButton size="s" fill> Hello </EuiButton>',
+        ],
+        dependency: { EuiButton },
+      },
     },
     {
       title: 'Buttons can also be links',
@@ -144,6 +153,10 @@ export const ButtonExample = {
       ),
       snippet: buttonAsLinkSnippet,
       demo: <ButtonAsLink />,
+      live: {
+        snippet: ['<EuiButton href="#"> Button With Link </EuiButton>'],
+        dependency: { EuiButton },
+      },
     },
     {
       title: 'Button with Icon',
@@ -170,6 +183,10 @@ export const ButtonExample = {
       ),
       snippet: buttonWithIconSnippet,
       demo: <ButtonWithIcon />,
+      live: {
+        snippet: ['<EuiButton iconType="arrowUp">Button With Icon</EuiButton>'],
+        dependency: { EuiButton },
+      },
     },
     {
       title: 'Loading state',
@@ -193,6 +210,10 @@ export const ButtonExample = {
       ),
       snippet: buttonLoadingSnippet,
       demo: <ButtonLoading />,
+      live: {
+        snippet: ['<EuiButton isLoading={true}>Loading</EuiButton>'],
+        dependency: { EuiButton },
+      },
     },
     {
       title: 'ButtonEmpty',
@@ -216,6 +237,10 @@ export const ButtonExample = {
       props: { EuiButtonEmpty },
       snippet: buttonOptionSnippet,
       demo: <ButtonOption />,
+      live: {
+        snippet: ['<EuiButtonEmpty>Empty Button</EuiButtonEmpty>'],
+        dependency: { EuiButtonEmpty },
+      },
     },
     {
       title: 'Flush ButtonEmpty',
@@ -239,6 +264,13 @@ export const ButtonExample = {
       ),
       snippet: buttonOptionFlushSnippet,
       demo: <ButtonOptionFlush />,
+      live: {
+        snippet: [
+          '<EuiButtonEmpty flush="left">Flush Left</EuiButtonEmpty>',
+          '<EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>',
+        ],
+        dependency: { EuiButtonEmpty },
+      },
     },
     {
       title: 'Button Icon',
@@ -258,6 +290,10 @@ export const ButtonExample = {
       props: { EuiButtonIcon },
       snippet: buttonIconSnippet,
       demo: <ButtonIcon />,
+      live: {
+        snippet: ['<EuiButtonIcon iconType="arrowRight" />'],
+        dependency: { EuiButtonIcon },
+      },
     },
     {
       title: 'Toggle buttons',
@@ -292,6 +328,24 @@ export const ButtonExample = {
       demo: <ButtonToggle />,
       snippet: buttonToggleSnippet,
       props: { EuiButtonToggle },
+      live: {
+        code: `function App() {
+            const [toggle0On, changeToggle0] = React.useState(false);
+            const toggleChange = () => {
+              changeToggle0(!toggle0On);
+            };
+            return (
+              <EuiButtonToggle
+                label="Toggle me"
+                iconType={toggle0On ? 'starPlusEmpty' : 'starFilledSpace'}
+                onChange={toggleChange}
+                isSelected={toggle0On}
+              />
+            );
+          }
+        `,
+        dependency: { EuiButtonToggle },
+      },
     },
     {
       title: 'Groups',
@@ -339,6 +393,35 @@ export const ButtonExample = {
       demo: <ButtonGroup />,
       snippet: buttonGroupSnippet,
       props: { EuiButtonGroup },
+      live: {
+        code: `() => {
+          const [select, changeSelected] = React.useState(1);
+
+          const buttons = [
+            {
+              id: 1,
+              label: 'Option one',
+            },
+            {
+              id: 2,
+              label: 'Option two',
+            },
+            {
+              id: 3,
+              label: 'Option three',
+            }
+          ];
+          return (
+            <EuiButtonGroup
+              legend="This is basic group"
+              options={buttons}
+              idSelected={select}
+              onChange={(optionId) => { changeSelected(optionId); }}
+            />
+          )
+        }`,
+        dependency: { EuiButtonGroup },
+      },
     },
     {
       title: 'Ghost',
@@ -364,6 +447,18 @@ export const ButtonExample = {
       ),
       snippet: buttonGhostSnippet,
       demo: <ButtonGhost />,
+      live: {
+        code: `() => (
+          <div style={{ background: "#343741" }}>
+            <EuiButton color="ghost">Ghost Button</EuiButton>
+            <EuiButton color="ghost" fill>Filled Ghost</EuiButton>
+            <EuiButtonEmpty color="ghost">Empty Ghost</EuiButtonEmpty>
+            <EuiButtonIcon color="ghost" iconType="user">Icon Ghost</EuiButtonIcon>
+            <EuiButton color="ghost" isLoading={true}>Loading Ghost</EuiButton>
+          </div>
+        )`,
+        dependency: { EuiButton, EuiButtonEmpty, EuiButtonIcon },
+      },
     },
   ],
 };
