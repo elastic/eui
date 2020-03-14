@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 
 import {
   EuiCode,
@@ -18,6 +19,8 @@ import {
   EuiTextColor,
   EuiTitle,
   EuiLink,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 function markup(text) {
@@ -98,6 +101,13 @@ export class GuideSection extends Component {
     const hasSnippet = 'snippet' in props;
 
     this.tabs = [];
+
+    if (props.live) {
+      this.tabs.push({
+        name: 'live',
+        displayName: 'Live',
+      });
+    }
 
     if (props.demo) {
       this.tabs.push({
@@ -408,6 +418,50 @@ export class GuideSection extends Component {
     );
   }
 
+  renderLive() {
+    let code = '<p>No code defined</p>';
+    const dependency = this.props.live.dependency;
+
+    if (this.props.live.snippet) {
+      code = '<>\n';
+      const snippet = this.props.live.snippet;
+      if (typeof snippet === 'object') {
+        code += snippet.join('\n');
+        code += '\n</>';
+      } else if (typeof snippet === 'string') code = snippet;
+      else code = '<p> Snippet not defined. </p>';
+    }
+
+    if (this.props.live.code) {
+      code = this.props.live.code;
+    }
+
+    const scope = dependency;
+
+    return (
+      <Fragment>
+        <EuiFlexGroup
+          style={{ marginTop: '10px' }}
+          direction={this.props.live.snippet ? 'row' : 'column'}>
+          <LiveProvider code={code} scope={scope}>
+            <EuiFlexItem>
+              <LiveEditor
+                style={{
+                  border: '1px solid rgba(0, 0, 0, 0.2)',
+                  fontSize: '14px',
+                }}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <LivePreview />
+              <LiveError />
+            </EuiFlexItem>
+          </LiveProvider>
+        </EuiFlexGroup>
+      </Fragment>
+    );
+  }
+
   renderContent() {
     if (typeof this.state.selectedTab === 'undefined') {
       return;
@@ -427,6 +481,10 @@ export class GuideSection extends Component {
 
     if (this.state.selectedTab.name === 'props') {
       return <EuiErrorBoundary>{this.renderProps()}</EuiErrorBoundary>;
+    }
+
+    if (this.state.selectedTab.name === 'live') {
+      return <EuiErrorBoundary> {this.renderLive()} </EuiErrorBoundary>;
     }
 
     return (
