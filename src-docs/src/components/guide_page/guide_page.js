@@ -41,9 +41,9 @@ export const GuidePage = ({
           </EuiFlexItem>
           {componentLinkTo && (
             <EuiFlexItem grow={false}>
-              <Link to={componentLinkTo}>
-                <EuiButton>View component code</EuiButton>
-              </Link>
+              <EuiButton>
+                <Link to={componentLinkTo}>View component code</Link>
+              </EuiButton>
             </EuiFlexItem>
           )}
         </EuiFlexGroup>
