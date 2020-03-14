@@ -1,4 +1,4 @@
-import React, { Component, HTMLAttributes } from 'react';
+import React, { Component, HTMLAttributes, RefObject } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -44,11 +44,39 @@ interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLElement> {
 
 interface State {
   isFullScreenActive: boolean;
+  customStyle?: {
+    width?: number | 'auto';
+    height?: number | 'auto';
+  };
 }
 
 export class EuiImage extends Component<EuiImageProps, State> {
   state: State = {
     isFullScreenActive: false,
+    customStyle: {},
+  };
+
+  containerRef: RefObject<HTMLElement> = React.createRef();
+
+  componentDidMount = () => {
+    if (this.props.size && typeof this.props.size !== 'string') {
+      if (!this.containerRef.current) return;
+      let width:
+        | 'auto'
+        | number = this.containerRef.current!.getBoundingClientRect().width;
+      let height:
+        | 'auto'
+        | number = this.containerRef.current!.getBoundingClientRect().height;
+
+      if (width > height) {
+        width = this.props.size;
+        height = 'auto';
+      } else {
+        height = this.props.size;
+        width = 'auto';
+      }
+      this.setState({ customStyle: { width, height } });
+    }
   };
 
   onKeyDown = (event: React.KeyboardEvent) => {
@@ -84,9 +112,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
       ...rest
     } = this.props;
 
-    const { isFullScreenActive } = this.state;
-
-    let newStyle: React.CSSProperties | undefined;
+    const { isFullScreenActive, customStyle } = this.state;
 
     let classes = classNames(
       'euiImage',
@@ -101,7 +127,6 @@ export class EuiImage extends Component<EuiImageProps, State> {
       classes = `${classes} ${sizeToClassNameMap[size]}`;
     } else {
       classes = `${classes} euiImage--restrictHeight-custom`;
-      newStyle = { maxHeight: size };
     }
 
     let optionalCaption;
@@ -158,7 +183,10 @@ export class EuiImage extends Component<EuiImageProps, State> {
 
     if (allowFullScreen) {
       return (
-        <figure className={classes} aria-label={caption}>
+        <figure
+          className={classes}
+          aria-label={caption}
+          ref={allowFullScreen && this.containerRef}>
           <EuiI18n
             token="euiImage.openImage"
             values={{ alt }}
@@ -173,7 +201,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
                   src={url}
                   alt={alt}
                   className="euiImage__img"
-                  style={newStyle}
+                  style={customStyle as React.CSSProperties}
                   {...rest}
                 />
                 {allowFullScreenIcon}
@@ -186,9 +214,12 @@ export class EuiImage extends Component<EuiImageProps, State> {
       );
     } else {
       return (
-        <figure className={classes} aria-label={caption}>
+        <figure
+          className={classes}
+          aria-label={caption}
+          ref={!allowFullScreen && this.containerRef}>
           <img
-            style={newStyle}
+            style={customStyle as React.CSSProperties}
             src={url}
             className="euiImage__img"
             alt={alt}

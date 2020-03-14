@@ -8,7 +8,7 @@ export default () => (
       hasShadow
       allowFullScreen
       size={50}
-      caption="Custom Height( 50px )"
+      caption="Custom size( 50px )"
       alt="Accessible image alt goes here"
       url="https://source.unsplash.com/1000x1000/?Nature"
     />

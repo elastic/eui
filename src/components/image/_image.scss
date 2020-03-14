@@ -124,12 +124,15 @@
   }
 }
 
-.euiImage--restrictHeight-custom{
+.euiImage--restrictHeight-custom {
   width: auto;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
-  img{
+
+  img {
     width: auto;
+    height: auto;
   }
 }
 
