@@ -71,6 +71,7 @@ export interface EuiTableSortingType<T> {
     direction: Direction;
   };
   allowNeutralSort?: boolean;
+  enableAllColumns?: boolean;
 }
 
 export interface EuiTableSelectionType<T> {

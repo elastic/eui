@@ -55,7 +55,9 @@ export const FormLayoutsExample = {
           Use the <EuiCode>EuiFormRow</EuiCode> component to easily associate
           form components with labels, help text, and error text. Use the{' '}
           <EuiCode>EuiForm</EuiCode> component to group{' '}
-          <EuiCode>EuiFormRow</EuiCode>s.
+          <EuiCode>EuiFormRow</EuiCode>s. By default EuiForm will render as a
+          simple div unless you pass{' '}
+          <EuiCode>component=&quot;form&quot;</EuiCode>.
         </p>
       ),
       props: {

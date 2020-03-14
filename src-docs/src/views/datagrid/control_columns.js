@@ -317,7 +317,7 @@ export default function DataGrid() {
     [pagination, setPagination]
   );
   const setPageSize = useCallback(
-    pageSize => setPagination({ ...pagination, pageSize }),
+    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
     [pagination, setPagination]
   );
 

@@ -45,6 +45,14 @@ export interface EuiDataGridColumn {
    * Initial width (in pixels) of the column
    */
   initialWidth?: number;
+  /**
+   * Whether this column is sortable
+   */
+  isSortable?: boolean;
+  /**
+   * Default sort direction of the column
+   */
+  defaultSortDirection?: 'asc' | 'desc';
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -95,11 +103,24 @@ export interface EuiDataGridStyle {
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
+export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
+  /**
+   * When `false`, removes the ability to show & hide columns through the UI
+   */
+  allowHide?: boolean;
+  /**
+   * When `false`, removes the ability to re-order columns through the UI
+   */
+  allowReorder?: boolean;
+}
+
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
-   * Allows the ability for the user to hide fields and sort columns
+   * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
    */
-  showColumnSelector?: boolean;
+  showColumnSelector?:
+    | boolean
+    | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
    * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
    */
@@ -196,3 +217,12 @@ export type EuiDataGridPopoverContent = ComponentType<
 export interface EuiDataGridPopoverContents {
   [key: string]: EuiDataGridPopoverContent;
 }
+
+export interface EuiDataGridOnColumnResizeData {
+  columnId: string;
+  width: number;
+}
+
+export type EuiDataGridOnColumnResizeHandler = (
+  data: EuiDataGridOnColumnResizeData
+) => void;

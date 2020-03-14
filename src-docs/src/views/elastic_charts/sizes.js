@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
-import { withTheme } from '../../components';
+import { ThemeContext } from '../../components';
 import {
   Chart,
   Settings,
@@ -29,16 +29,13 @@ import {
   EuiCopy,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
+import { formatDate, dateFormatAliases } from '../../../../src/services';
 
 import { MultiChartCard, ChartCard } from './shared';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 
-class _Sizes extends Component {
+export class Sizes extends Component {
   constructor(props) {
     super(props);
 
@@ -168,7 +165,7 @@ class _Sizes extends Component {
       changeDescription,
     } = this.state;
 
-    const isDarkTheme = this.props.theme.includes('dark');
+    const isDarkTheme = this.context.theme.includes('dark');
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
@@ -199,7 +196,7 @@ class _Sizes extends Component {
               overflow: 'hidden',
             }}>
             <EuiTitle size="xxs">
-              <h3>Chart title {multi && ' by type'}</h3>
+              <h2>Chart title {multi && ' by type'}</h2>
             </EuiTitle>
 
             <EuiSpacer size="s" />
@@ -365,4 +362,4 @@ class _Sizes extends Component {
   }
 }
 
-export const Sizes = withTheme(_Sizes);
+Sizes.contextType = ThemeContext;

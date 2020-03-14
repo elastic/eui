@@ -75,14 +75,16 @@ export default class extends Component {
           <EuiSpacer size="m" />
 
           <EuiI18n
-            tokens={['euiContext.question', 'euiContext.action']}
-            defaults={['What is your name?', 'Submit']}>
-            {([question, action]) => (
+            tokens={[
+              'euiContext.question',
+              'euiContext.action',
+              'euiContext.placeholder',
+            ]}
+            defaults={['What is your name?', 'Submit', 'John Doe']}>
+            {([question, action, placeholder]) => (
               <Fragment>
                 <EuiFormRow label={question}>
-                  <EuiI18n token="euiContext.placeholder" default="John Doe">
-                    {placeholder => <EuiFieldText placeholder={placeholder} />}
-                  </EuiI18n>
+                  <EuiFieldText placeholder={placeholder} />
                 </EuiFormRow>
 
                 <EuiSpacer />

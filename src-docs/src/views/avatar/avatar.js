@@ -13,7 +13,7 @@ export default () => (
     <EuiAvatar size="xl" name="Michelangelo" />
     <EuiSpacer />
     <EuiTitle size="xs">
-      <h3>With image</h3>
+      <h2>With image</h2>
     </EuiTitle>
     <EuiSpacer />
     <EuiAvatar

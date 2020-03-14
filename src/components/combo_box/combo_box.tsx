@@ -7,8 +7,9 @@
 import React, {
   Component,
   FocusEventHandler,
-  KeyboardEventHandler,
   HTMLAttributes,
+  KeyboardEventHandler,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -34,7 +35,6 @@ import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_
 import {
   UpdatePositionHandler,
   OptionHandler,
-  RefCallback,
   RefInstance,
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
@@ -43,37 +43,105 @@ import {
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
+import { EuiFormControlLayoutProps } from '../form';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
   'onCreateOption' | 'options' | 'renderOption' | 'selectedOptions'
 >;
 
-export interface EuiComboBoxProps<T>
+interface _EuiComboBoxProps<T>
   extends CommonProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
   'data-test-subj'?: string;
+  /**
+   * Updates the list of options asynchronously
+   */
   async: boolean;
   className?: string;
+  /**
+   * When `true` creates a shorter height input
+   */
   compressed: boolean;
+  /**
+   * When `true` expands to the entire width available
+   */
   fullWidth: boolean;
   id?: string;
   inputRef?: RefCallback<HTMLInputElement>;
+  /**
+   * Shows a button that quickly clears any input
+   */
   isClearable: boolean;
+  /**
+   * Disables the input
+   */
   isDisabled?: boolean;
   isInvalid?: boolean;
+  /**
+   * Swaps the dropdown options for a loading spinner
+   */
   isLoading?: boolean;
+  /**
+   * Doesn't show the suggestions list/dropdown
+   */
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the query in the combo box is parsed
+   */
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the text query in the search box is parsed
+   */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
+  /**
+   * Sets the placeholder of the input
+   */
   placeholder?: string;
+  /**
+   * Every option must be the same height and must be explicitly set if using a custom render
+   */
   rowHeight?: number;
+  /**
+   * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
+   */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
+  /**
+   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+  /**
+   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
+
+/**
+ * Because of how TypeScript's LibraryManagedAttributes is designed to handle defaultProps (https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#support-for-defaultprops-in-jsx)
+ * we can't directly export the above Props definitions, as the defaulted values are not made optional
+ * as it isn't processed by LibraryManagedAttributes. To get around this, we:
+ * - remove the props which have default values applied
+ *   - additionally re-define `options` and `selectedOptions` defaults, necessary as static members can't access generics and become never[]
+ * - export (Props - Defaults) & Partial<Defaults>
+ */
+type DefaultProps<T> = Omit<
+  typeof EuiComboBox['defaultProps'],
+  'options' | 'selectedOptions'
+> & {
+  options: Array<EuiComboBoxOptionOption<T>>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+};
+export type EuiComboBoxProps<T> = Omit<
+  _EuiComboBoxProps<T>,
+  keyof DefaultProps<T>
+> &
+  Partial<DefaultProps<T>>;
 
 interface EuiComboBoxState<T> {
   activeOptionIndex: number;
@@ -89,7 +157,7 @@ interface EuiComboBoxState<T> {
 const initialSearchValue = '';
 
 export class EuiComboBox<T> extends Component<
-  EuiComboBoxProps<T>,
+  _EuiComboBoxProps<T>,
   EuiComboBoxState<T>
 > {
   static defaultProps = {
@@ -100,6 +168,8 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
+    prepend: null,
+    append: null,
   };
 
   state: EuiComboBoxState<T> = {
@@ -648,14 +718,13 @@ export class EuiComboBox<T> extends Component<
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
       if (this.autoSizeInputRefInstance) {
-        // @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/42467
         this.autoSizeInputRefInstance.copyInputStyles();
       }
     }, 100);
   }
 
   static getDerivedStateFromProps<T>(
-    nextProps: EuiComboBoxProps<T>,
+    nextProps: _EuiComboBoxProps<T>,
     prevState: EuiComboBoxState<T>
   ) {
     const { options, selectedOptions, singleSelection } = nextProps;
@@ -770,6 +839,8 @@ export class EuiComboBox<T> extends Component<
       rowHeight,
       selectedOptions,
       singleSelection,
+      prepend,
+      append,
       ...rest
     } = this.props;
     const {
@@ -892,8 +963,9 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
+          append={singleSelection ? append : undefined}
+          prepend={singleSelection ? prepend : undefined}
         />
-
         {optionsList}
       </div>
     );

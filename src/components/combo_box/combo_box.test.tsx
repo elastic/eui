@@ -137,6 +137,19 @@ describe('props', () => {
       component.setState({ isListOpen: true });
       expect(component).toMatchSnapshot();
     });
+    test('prepend and append is rendered', () => {
+      const component = shallow(
+        <EuiComboBox
+          options={options}
+          singleSelection={true}
+          prepend="String"
+          append="String"
+        />
+      );
+
+      component.setState({ isListOpen: true });
+      expect(component).toMatchSnapshot();
+    });
   });
 
   test('isDisabled is rendered', () => {

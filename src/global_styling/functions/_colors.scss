@@ -128,4 +128,3 @@
 @function makeGraphicContrastColor($color, $background: $euiPageBackgroundColor) {
   @return makeHighContrastColor($color, $background, 3);
 }
-

@@ -39,6 +39,14 @@ export interface EuiDataGridSchemaDetector {
    * Text for how to represent a descending sort of this data type, e.g. 'Z -> A'
    */
   sortTextDesc: ReactNode;
+  /**
+   * Whether this column is sortable (defaults to true)
+   */
+  isSortable?: boolean;
+  /**
+   * Default sort direction of the column
+   */
+  defaultSortDirection?: 'asc' | 'desc';
 }
 
 const numericChars = new Set([

@@ -22,6 +22,18 @@ const accordionSnippet = `<EuiAccordion
 </EuiAccordion>
 `;
 
+import AccordionArrow from './accordion_arrow';
+const accordionArrowSource = require('!!raw-loader!./accordion_arrow');
+const accordionArrowHtml = renderToHtml(AccordionArrow);
+const accordionArrowSnippet = `<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title"
+  arrowDisplay="right"
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
+
 import AccordionMultiple from './accordion_multiple';
 const accordionMultipleSource = require('!!raw-loader!./accordion_multiple');
 const accordionMultipleHtml = renderToHtml(AccordionMultiple);
@@ -141,6 +153,32 @@ export const AccordionExample = {
       props: { EuiAccordion },
       snippet: accordionSnippet,
       demo: <Accordion />,
+    },
+    {
+      title: 'Arrow display',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionArrowSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: accordionArrowHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            The arrow helps indicate the current state of the accordion (open or
+            not) and points to the main triggering button text. If you must hide
+            or change the side in which the arrow appears, use{' '}
+            <EuiCode>arrowDisplay: &apos;right&apos;</EuiCode> or{' '}
+            <EuiCode>&apos;none&apos;</EuiCode>
+          </p>
+        </div>
+      ),
+      snippet: accordionArrowSnippet,
+      demo: <AccordionArrow />,
     },
     {
       title: 'Multiple accordions',
