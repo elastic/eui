@@ -23,6 +23,11 @@ const docsPages = async (root, page) => {
     `${root}#/navigation/pagination`,
     `${root}#/navigation/steps`,
     `${root}#/navigation/tabs`,
+    `${root}#/tabular-content/data-grid`,
+    `${root}#/tabular-content/data-grid-in-memory-settings`,
+    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
+    `${root}#/tabular-content/data-grid-styling-and-toolbar`,
+    `${root}#/tabular-content/data-grid-control-columns`,
     `${root}#/display/avatar`,
     `${root}#/display/badge`,
     `${root}#/display/callout`,
@@ -112,44 +117,48 @@ const printResult = result =>
       process.exit(1);
     }
   }
+  try {
+    const links = await docsPages(root, page);
 
-  const links = await docsPages(root, page);
+    for (const link of links) {
+      await page.goto(link);
 
-  for (const link of links) {
-    await page.goto(link);
+      const { violations } = await new AxePuppeteer(page)
+        .disableRules('color-contrast')
+        .exclude(['figure[role="figure"']) // excluding figure[role="figure"] the duplicatory role is there for ie11 support
+        .analyze();
 
-    const { violations } = await new AxePuppeteer(page)
-      .disableRules('color-contrast')
-      .exclude(['figure[role="figure"']) // excluding figure[role="figure"] the duplicatory role is there for ie11 support
-      .analyze();
+      if (violations.length > 0) {
+        totalViolationsCount += violations.length;
 
-    if (violations.length > 0) {
-      totalViolationsCount += violations.length;
+        const pageName = link.length > 24 ? link.substr(2) : 'the home page';
+        console.log(chalk.red(`Errors on ${pageName}`));
+      }
 
-      const pageName = link.length > 24 ? link.substr(2) : 'the home page';
-      console.log(chalk.red(`Errors on ${pageName}`));
+      violations.forEach(result => {
+        printResult(result);
+      });
     }
 
-    violations.forEach(result => {
-      printResult(result);
-    });
-  }
+    await page.close();
+    await browser.close();
 
-  await page.close();
-  await browser.close();
+    if (totalViolationsCount > 0) {
+      const errorsCount = chalk.red(
+        `${totalViolationsCount} accessibility errors`
+      );
 
-  if (totalViolationsCount > 0) {
-    const errorsCount = chalk.red(
-      `${totalViolationsCount} accessibility errors`
-    );
-
-    console.log(`${errorsCount}
+      console.log(`${errorsCount}
 
 Install axe for Chrome or Firefox to debug:
 Chrome: https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdoppojpmngadmnindnejefpokejbdd
 Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
+      process.exit(1);
+    } else {
+      console.log(chalk.green('axe found no accessibility errors!'));
+    }
+  } catch (e) {
+    console.log(e);
     process.exit(1);
-  } else {
-    console.log(chalk.green('axe found no accessibility errors!'));
   }
 })();

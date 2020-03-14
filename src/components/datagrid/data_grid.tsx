@@ -747,6 +747,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const gridAriaProps: {
     'aria-label'?: string;
     'aria-labelledby'?: string;
+    tabIndex?: number;
   } = {};
   if ('aria-label' in rest) {
     gridAriaProps['aria-label'] = rest['aria-label'];
@@ -755,6 +756,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   if ('aria-labelledby' in rest) {
     gridAriaProps['aria-labelledby'] = rest['aria-labelledby'];
     delete rest['aria-labelledby'];
+  }
+  if ('tabIndex' in rest) {
+    gridAriaProps.tabIndex = rest.tabIndex;
+    delete rest.tabIndex;
   }
 
   const fullScreenSelector = (
