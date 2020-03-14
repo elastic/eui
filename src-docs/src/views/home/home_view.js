@@ -40,7 +40,9 @@ export const HomeView = () => (
             <p>
               Version:{' '}
               <Link to="/package/changelog">
-                <strong>v{pkg.version}</strong>
+                <span aria-label={`Version ${pkg.version}, View on GitHub`}>
+                  <strong>v{pkg.version}</strong>
+                </span>
               </Link>
             </p>
           </EuiFlexItem>
