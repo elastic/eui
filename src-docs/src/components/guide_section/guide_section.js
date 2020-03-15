@@ -140,6 +140,8 @@ export class GuideSection extends Component {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
     };
+
+    this.memoScroll = 0;
   }
 
   onSelectedTabChanged = selectedTab => {
@@ -433,9 +435,21 @@ export class GuideSection extends Component {
     );
   }
 
+  componentDidUpdate() {
+    if (this.state.selectedTab.name === 'javascript') {
+      this.refs.javascript.childNodes[0].children[0].scrollTop = this.memoScroll;
+    }
+  }
+
   renderCode(name) {
     return (
-      <div key={name} ref={name}>
+      <div
+        key={name}
+        ref={name}
+        onScroll={() => {
+          if (name === 'javascript')
+            this.memoScroll = this.refs.javascript.childNodes[0].children[0].scrollTop;
+        }}>
         <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
           {this.state.renderedCode}
         </EuiCodeBlock>
