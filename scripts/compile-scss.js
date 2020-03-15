@@ -25,6 +25,7 @@ const postcssConfigurationWithMinification = {
 
 async function compileScssFiles(
   sourcePattern,
+  sourcePatternColor,
   destinationDirectory,
   packageName
 ) {
@@ -66,7 +67,37 @@ async function compileScssFiles(
       }
     })
   );
+  const inputFilenamesColor = await glob(sourcePatternColor, undefined);
+
+  await Promise.all(
+    inputFilenamesColor.map(async inputFilenameColor => {
+      console.log(chalk`{cyan …} Compiling color file {gray ${inputFilenameColor}}`);
+
+      try {
+        const outputFilenamesColor = await compileScssFile(
+          inputFilenameColor,
+          path.join(destinationDirectory, `eui_colors.css`),
+          path.join(destinationDirectory, `eui_colors.json`),
+          path.join(destinationDirectory, `eui_colors.json.d.ts`),
+          packageName
+        );
+
+        console.log(
+          chalk`{green ✔} Finished compiling {gray ${inputFilenameColor}} to ${outputFilenamesColor
+            .map(filename => chalk.gray(filename))
+            .join(', ')}`
+        );
+      } catch (error) {
+        console.log(
+          chalk`{red ✗} Failed to compile {gray ${inputFilenameColor}} with ${
+            error.stack
+          }`
+        );
+      }
+    })
+  );
 }
+
 
 async function compileScssFile(
   inputFilename,
@@ -111,6 +142,8 @@ async function compileScssFile(
     to: outputCssMinifiedFilename,
   });
 
+
+  console.log(chalk.green('this is it'), chalk.red(':'), extractedVars);
   await Promise.all([
     writeFile(outputCssFilename, postprocessedCss),
     writeFile(outputCssMinifiedFilename, postprocessedMinifiedCss),
@@ -134,5 +167,5 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  compileScssFiles(path.join('src', 'theme_*.scss'), 'dist', euiPackageName);
+  compileScssFiles(path.join('src', 'theme_*.scss'), path.join('src', 'global_styling', 'variables', '_colors.scss'), 'dist', euiPackageName);
 }
