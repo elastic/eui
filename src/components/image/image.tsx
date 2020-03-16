@@ -1,4 +1,4 @@
-import React, { Component, HTMLAttributes, RefObject } from 'react';
+import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -56,28 +56,32 @@ export class EuiImage extends Component<EuiImageProps, State> {
     customStyle: {},
   };
 
-  containerRef: RefObject<HTMLElement> = React.createRef();
+  containerRef: React.RefObject<HTMLImageElement> = React.createRef();
+  getRectsInterval?: NodeJS.Timer = undefined;
 
   componentDidMount = () => {
     if (this.props.size && typeof this.props.size !== 'string') {
-      if (!this.containerRef.current) return;
-      let width:
-        | 'auto'
-        | number = this.containerRef.current!.getBoundingClientRect().width;
-      let height:
-        | 'auto'
-        | number = this.containerRef.current!.getBoundingClientRect().height;
+      if (!this.containerRef || !this.containerRef.current) return;
 
-      if (width > height) {
-        width = this.props.size;
-        height = 'auto';
-      } else {
-        height = this.props.size;
-        width = 'auto';
-      }
-      this.setState({ customStyle: { width, height } });
+      this.getRectsInterval = setInterval(() => {
+        let width: 'auto' | number = this.containerRef.current!.width;
+        let height: 'auto' | number = this.containerRef.current!.height;
+
+        if (width > height) {
+          width = this.props.size as number;
+          height = 'auto';
+        } else {
+          height = this.props.size as number;
+          width = 'auto';
+        }
+        this.setState({ customStyle: { width, height } });
+      }, 10);
     }
   };
+
+  componentWillUnmount() {
+    if (this.getRectsInterval) clearInterval(this.getRectsInterval);
+  }
 
   onKeyDown = (event: React.KeyboardEvent) => {
     if (event.keyCode === keyCodes.ESCAPE) {
@@ -183,10 +187,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
 
     if (allowFullScreen) {
       return (
-        <figure
-          className={classes}
-          aria-label={caption}
-          ref={allowFullScreen && this.containerRef}>
+        <figure className={classes} aria-label={caption}>
           <EuiI18n
             token="euiImage.openImage"
             values={{ alt }}
@@ -198,6 +199,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
                 className="euiImage__button"
                 onClick={this.openFullScreen}>
                 <img
+                  ref={this.containerRef}
                   src={url}
                   alt={alt}
                   className="euiImage__img"
@@ -214,10 +216,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
       );
     } else {
       return (
-        <figure
-          className={classes}
-          aria-label={caption}
-          ref={!allowFullScreen && this.containerRef}>
+        <figure className={classes} aria-label={caption}>
           <img
             style={customStyle as React.CSSProperties}
             src={url}
