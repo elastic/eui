@@ -71,6 +71,11 @@ const badgeButtonSnippet = [
 </EuiBadge>`,
 ];
 
+import BadgeHref from './badge_href';
+const badgeHrefSource = require('!!raw-loader!./badge_href');
+const badgeHrefHtml = renderToHtml(BadgeHref);
+const badgeHrefSnippet = ['<EuiBadge href="#" />'];
+
 import BadgeTruncate from './badge_truncate';
 const badgeTruncateSource = require('!!raw-loader!./badge_truncate');
 const badgeTruncateHtml = renderToHtml(BadgeTruncate);
@@ -176,6 +181,29 @@ export const BadgeExample = {
       ),
       snippet: badgeButtonSnippet,
       demo: <BadgeButton />,
+    },
+    {
+      title: 'Badge with href',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeHrefSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeHrefHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Badges can also be made to render anchor tags by passing an{' '}
+            <EuiCode>href</EuiCode>.
+          </p>
+        </div>
+      ),
+      snippet: badgeHrefSnippet,
+      demo: <BadgeHref />,
     },
     {
       title: 'Badge groups and truncation',

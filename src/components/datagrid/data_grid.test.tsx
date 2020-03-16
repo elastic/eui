@@ -916,7 +916,6 @@ Array [
                 color: 'primary',
                 sortTextAsc: 'a-z',
                 sortTextDesc: 'z-a',
-                isSortable: true,
               },
             ]}
             inMemory={{ level: 'pagination' }}
