@@ -18,6 +18,7 @@ exports[`renders EuiTable 1`] = `
         >
           <span
             class="euiTableCellContent__text"
+            title="Hi Title"
           >
             Hi Title
           </span>
@@ -33,6 +34,7 @@ exports[`renders EuiTable 1`] = `
         >
           <span
             class="euiTableCellContent__text"
+            title="Bye Title"
           >
             Bye Title
           </span>

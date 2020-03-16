@@ -61,6 +61,7 @@ exports[`renders EuiTableHeaderCell 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="children"
     >
       children
     </span>
@@ -98,6 +99,7 @@ exports[`width and style accepts style attribute 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -117,6 +119,7 @@ exports[`width and style accepts width attribute 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -136,6 +139,7 @@ exports[`width and style accepts width attribute as number 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -155,6 +159,7 @@ exports[`width and style resolves style and width attribute 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>

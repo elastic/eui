@@ -130,7 +130,11 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
           onClick={onSort}
           data-test-subj="tableHeaderSortButton">
           <span className={contentClasses}>
-            <span className="euiTableCellContent__text">{children}</span>
+            <span
+              className="euiTableCellContent__text"
+              title={children as string}>
+              {children}
+            </span>
             {isSorted && (
               <EuiIcon
                 className="euiTableSortIcon"
@@ -156,7 +160,9 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
       style={styleObj}
       {...rest}>
       <div className={contentClasses}>
-        <span className="euiTableCellContent__text">{children}</span>
+        <span className="euiTableCellContent__text" title={children as string}>
+          {children}
+        </span>
       </div>
     </CellComponent>
   );
