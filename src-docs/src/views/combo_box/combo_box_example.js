@@ -59,6 +59,10 @@ import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
 const disabledHtml = renderToHtml(Disabled);
 
+import StartingWith from './startingWith';
+const startingWithSource = require('!!raw-loader!./startingWith');
+const startingWithHtml = renderToHtml(StartingWith);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -346,6 +350,28 @@ export const ComboBoxExample = {
       ),
       props: { EuiComboBox },
       demo: <Async />,
+    },
+    {
+      title: 'Starting With',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: startingWithSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: startingWithHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use the
+          <EuiCode>startingWith</EuiCode> prop to let the options that start
+          with the query be displayed on the top of the list.
+        </p>
+      ),
+      props: { EuiComboBox },
+      demo: <StartingWith />,
     },
   ],
 };

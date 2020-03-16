@@ -111,6 +111,10 @@ interface _EuiComboBoxProps<T>
    */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
   /**
+   * Display matching options that start with search value on top of the list
+   */
+  startingWith?: boolean;
+  /**
    * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
    */
@@ -170,6 +174,7 @@ export class EuiComboBox<T> extends Component<
     singleSelection: false,
     prepend: null,
     append: null,
+    startingWith: false,
   };
 
   state: EuiComboBoxState<T> = {
@@ -779,6 +784,7 @@ export class EuiComboBox<T> extends Component<
           );
         }
       }
+
       this.setState({
         matchingOptions: newMatchingOptions,
         activeOptionIndex: nextActiveOptionIndex,
@@ -841,6 +847,7 @@ export class EuiComboBox<T> extends Component<
       singleSelection,
       prepend,
       append,
+      startingWith,
       ...rest
     } = this.props;
     const {
@@ -850,8 +857,30 @@ export class EuiComboBox<T> extends Component<
       listPosition,
       searchValue,
       width,
+      matchingOptions,
     } = this.state;
 
+    let newMatchingOptions = matchingOptions;
+
+    if (startingWith) {
+      const refObj: {
+        startWith: Array<EuiComboBoxOptionOption<T>>;
+        others: Array<EuiComboBoxOptionOption<T>>;
+      } = { startWith: [], others: [] };
+
+      newMatchingOptions.forEach(object => {
+        if (
+          object.label
+            .toLowerCase()
+            .startsWith(searchValue.trim().toLowerCase())
+        ) {
+          refObj.startWith.push(object);
+        } else {
+          refObj.others.push(object);
+        }
+      });
+      newMatchingOptions = [...refObj.startWith, ...refObj.others];
+    }
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
@@ -887,7 +916,7 @@ export class EuiComboBox<T> extends Component<
             fullWidth={fullWidth}
             isLoading={isLoading}
             listRef={this.listRefCallback}
-            matchingOptions={this.state.matchingOptions}
+            matchingOptions={newMatchingOptions}
             onCloseList={this.closeList}
             onCreateOption={onCreateOption}
             onOptionClick={this.onOptionClick}
