@@ -111,9 +111,11 @@ interface _EuiComboBoxProps<T>
    */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
   /**
-   * Display matching options that start with search value on top of the list
+   * Display matching options by:
+   * `startsWith`: moves items that start with search value to top of the list;
+   * `none`: don't change the sort order of initial object
    */
-  startingWith?: boolean;
+  sortMatchesBy?: 'none' | 'startsWith';
   /**
    * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
