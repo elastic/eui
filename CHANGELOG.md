@@ -1,6 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Removed `EuiKeyPadMenuItemButton` in favor of just `EuiKeyPadMenuItem` that can also accept an `onClick` ([#3062](https://github.com/elastic/eui/pull/3062))
 - Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
@@ -12,6 +11,10 @@
 - Added alpha channel (opacity) support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
 - Added `useResizeObserver` hook ([#2991](https://github.com/elastic/eui/pull/2991))
 - Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993))
+
+**Breaking changes**
+
+- Removed `EuiKeyPadMenuItemButton` in favor of just `EuiKeyPadMenuItem` that can also accept an `onClick` ([#3062](https://github.com/elastic/eui/pull/3062))
 
 **Bug Fixes**
 
