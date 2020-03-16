@@ -1,5 +1,7 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
+import initStoryshots from '@storybook/addon-storyshots';
+import { createSerializer } from 'enzyme-to-json';
 
 // import { findTestSubject } from '../../test';
 import { requiredProps } from '../../test/required_props';
@@ -15,6 +17,12 @@ function snapshotDragDropContext(component: ReactWrapper) {
 }
 
 describe('EuiDraggable', () => {
+  //@ts-ignore
+  initStoryshots({
+    renderer: mount,
+    snapshotSerializers: [createSerializer({ mode: 'deep' })],
+  });
+
   test('is rendered', () => {
     const handler = jest.fn();
     jest.mock('react', () => {
