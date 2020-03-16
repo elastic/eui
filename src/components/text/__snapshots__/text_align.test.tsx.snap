@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiTextAlign in center direction 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiTextAlign euiTextAlign--center testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiTextAlign in left direction 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiTextAlign euiTextAlign--left testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiTextAlign in right direction 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiTextAlign euiTextAlign--right testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
 exports[`EuiTextAlign is rendered 1`] = `
 <div
   aria-label="aria-label"
