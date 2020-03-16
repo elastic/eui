@@ -176,7 +176,7 @@ export class EuiComboBox<T> extends Component<
     singleSelection: false,
     prepend: null,
     append: null,
-    startingWith: false,
+    sortMatchesBy: 'none',
   };
 
   state: EuiComboBoxState<T> = {
@@ -849,7 +849,7 @@ export class EuiComboBox<T> extends Component<
       singleSelection,
       prepend,
       append,
-      startingWith,
+      sortMatchesBy,
       ...rest
     } = this.props;
     const {
@@ -864,7 +864,7 @@ export class EuiComboBox<T> extends Component<
 
     let newMatchingOptions = matchingOptions;
 
-    if (startingWith) {
+    if (sortMatchesBy === 'startsWith') {
       const refObj: {
         startWith: Array<EuiComboBoxOptionOption<T>>;
         others: Array<EuiComboBoxOptionOption<T>>;

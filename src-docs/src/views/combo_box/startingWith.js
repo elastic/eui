@@ -83,7 +83,7 @@ export default class extends Component {
     const { selectedOptions } = this.state;
     return (
       <EuiComboBox
-        startingWith={true}
+        sortMatchesBy="startsWith"
         placeholder="Select or create options"
         options={this.options}
         selectedOptions={selectedOptions}
