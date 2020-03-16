@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Included tabIndex prop for `EuiDataGrid` ([#3007](https://github.com/elastic/eui/pull/3007))
+- Included tabIndex prop for `EuiDataGrid` ([#3077](https://github.com/elastic/eui/pull/3077))
 - Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
