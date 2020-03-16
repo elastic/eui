@@ -11,6 +11,9 @@ import classnames from 'classnames';
 import { EuiDataGridHeaderRowPropsSpecificProps } from './data_grid_header_row';
 import { keyCodes } from '../../services';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { EuiPopover } from '../popover/popover';
+import { EuiListGroup } from '../list_group/list_group';
+import { EuiIcon } from '../icon/icon';
 import { EuiScreenReaderOnly } from '../accessibility';
 import tabbable from 'tabbable';
 import { EuiDataGridColumn } from './data_grid_types';
@@ -90,6 +93,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   const isFocused =
     focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   useEffect(() => {
     if (headerRef.current) {
@@ -213,6 +217,47 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     }
   }, [headerIsInteractive, isFocused, setIsCellEntered, setFocusedCell, index]);
 
+  console.log(schema);
+
+  const columnOptions = [
+    {
+      label: 'Hide column',
+      href: '#/display/list-group',
+      iconType: 'eyeClosed',
+      size: 'xs',
+      color: 'text',
+    },
+    {
+      label: 'Sort schema asc',
+      href: '#/display/list-group',
+      isActive: true,
+      iconType: 'sortUp',
+      size: 'xs',
+      color: 'text',
+    },
+    {
+      label: 'Sort schema desc',
+      href: '#/display/list-group',
+      iconType: 'sortDown',
+      size: 'xs',
+      color: 'text',
+    },
+    {
+      label: 'Move left',
+      href: '#/display/list-group',
+      iconType: 'sortLeft',
+      size: 'xs',
+      color: 'text',
+    },
+    {
+      label: 'Move right',
+      href: '#/display/list-group',
+      iconType: 'sortRight',
+      size: 'xs',
+      color: 'text',
+    },
+  ];
+
   return (
     <div
       role="columnheader"
@@ -236,6 +281,22 @@ export const EuiDataGridHeaderCell: FunctionComponent<
           <div id={screenReaderId}>{sortString}</div>
         </EuiScreenReaderOnly>
       )}
+      <EuiPopover
+        id={`${screenReaderId}_popover`}
+        className="euiDataGridHeaderCell__popover"
+        panelPaddingSize="none"
+        anchorPosition="downRight"
+        button={
+          <button onClick={() => setIsPopoverOpen(true)}>
+            <EuiIcon type="arrowDown" size="s" />
+          </button>
+        }
+        isOpen={isPopoverOpen}
+        closePopover={() => setIsPopoverOpen(false)}>
+        <div>
+          <EuiListGroup listItems={columnOptions} gutterSize="none" />
+        </div>
+      </EuiPopover>
     </div>
   );
 };
