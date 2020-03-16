@@ -44,5 +44,13 @@ describe('EuiTab', () => {
         expect(onClickHandler).toBeCalled();
       });
     });
+
+    describe('href', () => {
+      test('has href assigned to it', () => {
+        const component = render(<EuiTab href="/test">Click Me</EuiTab>);
+
+        expect(component[0].attribs.href).toBe('/test');
+      });
+    });
   });
 });
