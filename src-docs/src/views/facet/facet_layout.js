@@ -16,12 +16,24 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      icon: false,
-      disabled: false,
-      avatars: false,
-      loading: false,
-      selectedOptionId: undefined,
-      layout: 'vertical',
+      facet: [
+        {
+          icon: false,
+          disabled: false,
+          avatars: false,
+          loading: false,
+          selectedOptionId: undefined,
+          layout: 'vertical',
+        },
+        {
+          icon: false,
+          disabled: false,
+          avatars: false,
+          loading: false,
+          selectedOptionId: undefined,
+          layout: 'vertical',
+        },
+      ],
     };
 
     this.list = [
@@ -69,106 +81,160 @@ export default class extends Component {
     ];
   }
 
-  facet0Clicked = id => {
+  facet0Clicked = (id, type) => {
     this.setState(prevState => {
-      return {
+      const newFacets = [...prevState.facet];
+      newFacets[type] = {
         icon: false,
         disabled: false,
         avatars: false,
         loading: false,
-        selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
+        selectedOptionId:
+          prevState.facet[type].selectedOptionId === id ? undefined : id,
+      };
+      return {
+        facet: newFacets,
       };
     });
   };
 
-  facet1Clicked = id => {
+  facet1Clicked = (id, type) => {
     this.setState(prevState => {
-      return {
+      const newFacets = [...prevState.facet];
+      newFacets[type] = {
         icon: true,
         disabled: false,
         avatars: false,
         loading: false,
-        selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
+        selectedOptionId:
+          prevState.facet[type].selectedOptionId === id ? undefined : id,
+      };
+      return {
+        facet: newFacets,
       };
     });
   };
 
-  facet2Clicked = id => {
+  facet2Clicked = (id, type) => {
     this.setState(prevState => {
+      const newFacets = [...prevState.facet];
+      newFacets[type] = {
+        ...prevState.facet[type],
+        disabled: prevState.facet[type].selectedOptionId === id ? false : true,
+        selectedOptionId:
+          prevState.facet[type].selectedOptionId === id ? undefined : id,
+      };
       return {
-        disabled: prevState.selectedOptionId === id ? false : true,
-        selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
+        facet: newFacets,
       };
     });
   };
 
-  facet3Clicked = id => {
+  facet3Clicked = (id, type) => {
     this.setState(prevState => {
-      return {
+      const newFacets = [...prevState.facet];
+      newFacets[type] = {
         icon: false,
         disabled: false,
         avatars: true,
         loading: false,
-        selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
+        selectedOptionId:
+          prevState.facet[type].selectedOptionId === id ? undefined : id,
+      };
+      return {
+        facet: newFacets,
       };
     });
   };
 
-  facet4Clicked = id => {
-    this.setState(prevState => ({
-      loading: true,
-      selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
-    }));
+  facet4Clicked = (id, type) => {
+    this.setState(prevState => {
+      const newFacets = [...prevState.facet];
+      newFacets[type] = {
+        ...prevState.facet[type],
+        loading: true,
+        selectedOptionId:
+          prevState.facet[type].selectedOptionId === id ? undefined : id,
+      };
+      return {
+        facet: newFacets,
+      };
+    });
 
     clearTimeout(this.searchTimeout);
 
     this.searchTimeout = setTimeout(() => {
       // Simulate a remotely-executed search.
-      this.setState({
-        loading: false,
+      this.setState(prevState => {
+        const newFacets = [...prevState.facet];
+        newFacets[type] = {
+          ...prevState.facet[type],
+          loading: false,
+          selectedOptionId:
+            prevState.facet[type].selectedOptionId === id ? undefined : id,
+        };
+        return {
+          facet: newFacets,
+        };
       });
     }, 1200);
   };
 
+  facets = id => {
+    const {
+      selectedOptionId,
+      icon,
+      disabled,
+      avatars,
+      loading,
+    } = this.state.facet[id];
+
+    return (
+      <>
+        {this.list.map(facet => {
+          let iconNode;
+          if (icon) {
+            iconNode = <EuiIcon type="dot" color={facet.iconColor} />;
+          } else if (avatars) {
+            iconNode = <EuiAvatar size="s" name={facet.label} />;
+          }
+          const facetId = `${facet.id}_${id}`;
+          return (
+            <EuiFacetButton
+              key={facetId}
+              id={facetId}
+              quantity={facet.quantity}
+              icon={iconNode}
+              isSelected={selectedOptionId === facetId}
+              isDisabled={disabled && facetId !== `facet2_${id}`}
+              isLoading={loading}
+              onClick={
+                facet.onClick ? () => facet.onClick(facetId, id) : undefined
+              }>
+              {facet.label}
+            </EuiFacetButton>
+          );
+        })}
+      </>
+    );
+  };
+
   render() {
-    const { selectedOptionId, icon, disabled, avatars, loading } = this.state;
-
-    const facets = this.list.map(facet => {
-      let iconNode;
-      if (icon) {
-        iconNode = <EuiIcon type="dot" color={facet.iconColor} />;
-      } else if (avatars) {
-        iconNode = <EuiAvatar size="s" name={facet.label} />;
-      }
-
-      return (
-        <EuiFacetButton
-          key={facet.id}
-          id={facet.id}
-          quantity={facet.quantity}
-          icon={iconNode}
-          isSelected={selectedOptionId === facet.id}
-          isDisabled={disabled && facet.id !== 'facet2'}
-          isLoading={loading}
-          onClick={facet.onClick ? () => facet.onClick(facet.id) : undefined}>
-          {facet.label}
-        </EuiFacetButton>
-      );
-    });
-
     return (
       <div>
         <EuiTitle size="s">
           <h3>Vertical</h3>
         </EuiTitle>
-        <EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>
+        <EuiFacetGroup style={{ maxWidth: 200 }}>
+          {this.facets(0)}
+        </EuiFacetGroup>
 
         <EuiSpacer />
 
         <EuiTitle size="s">
           <h3>Horizontal</h3>
         </EuiTitle>
-        <EuiFacetGroup layout="horizontal">{facets}</EuiFacetGroup>
+        <EuiFacetGroup layout="horizontal">{this.facets(1)}</EuiFacetGroup>
       </div>
     );
   }
