@@ -40,14 +40,30 @@ export class EuiResizeObserver extends EuiObserver<Props> {
   };
 }
 
+const makeCompatibleObserver = (node: Element, callback: () => void) => {
+  const observer = new MutationObserver(callback);
+  observer.observe(node, mutationObserverOptions);
+
+  window.addEventListener('resize', callback);
+  node.addEventListener('resize', callback);
+
+  observer.disconnect = () => {
+    observer.disconnect();
+
+    window.removeEventListener('resize', callback);
+    node.removeEventListener('resize', callback);
+  };
+
+  return observer;
+};
+
 const makeResizeObserver = (node: Element, callback: () => void) => {
   let observer: Observer | undefined;
   if (hasResizeObserver) {
     observer = new window.ResizeObserver(callback);
     observer.observe(node);
   } else {
-    observer = new MutationObserver(callback);
-    observer.observe(node, mutationObserverOptions);
+    observer = makeCompatibleObserver(node, callback);
     requestAnimationFrame(callback); // Mimic ResizeObserver behavior of triggering a resize event on init
   }
   return observer;
