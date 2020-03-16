@@ -30,6 +30,7 @@ const iconTypes = [
   'logoElastic',
   'logoElasticStack',
   'logoElasticsearch',
+  'logoEnterpriseSearch',
   'logoKibana',
   'logoLogging',
   'logoLogstash',

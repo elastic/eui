@@ -25,31 +25,14 @@
 @mixin euiTitle($size: 'm') {
   color: $euiTitleColor;
 
-  @if $size == 'xxxs' {
-    @include euiFontSizeXS;
-    @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightBold;
-  } @else if $size == 'xxs' {
-    @include euiFontSizeS;
-    @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightBold;
-  } @else if $size == 'xs' {
-    @include euiFontSize;
-    @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightSemiBold;
-    letter-spacing: -.02em;
-  } @else if $size == 's' {
-    @include euiFontSizeL;
-    @include lineHeightFromBaseline(4);
-    font-weight: $euiFontWeightMedium;
-    letter-spacing: -.025em;
-  } @else if $size == 'm' {
-    @include euiFontSizeXL;
-    @include lineHeightFromBaseline(5);
-    letter-spacing: -.04em;
-  } @else if $size == 'l' {
-    @include euiFontSizeXXL;
-    @include lineHeightFromBaseline(6);
+  @if (map-has-key($euiTitles, $size)) {
+    @each $property, $value in map-get($euiTitles, $size) {
+      @if ($property == 'font-size') {
+        @include fontSize($value);
+      } @else {
+        #{$property}: $value;
+      }
+    }
   } @else {
     @include fontSize($size);
     @include lineHeightFromBaseline(3);
@@ -84,17 +67,25 @@
 }
 
 @mixin euiFontSizeXL {
-  @include fontSize($euiFontSizeXL);
+  @each $property, $value in map-get($euiTitles, 'm') {
+    @if ($property == 'font-size') {
+      @include fontSize($value);
+    } @else {
+      #{$property}: $value;
+    }
+  }
   line-height: 1.25;
-  font-weight: $euiFontWeightLight; // always apply light weight to x-large type
-  letter-spacing: -.05em;
 }
 
 @mixin euiFontSizeXXL {
-  @include fontSize($euiFontSizeXXL);
+  @each $property, $value in map-get($euiTitles, 'l') {
+    @if ($property == 'font-size') {
+      @include fontSize($value);
+    } @else {
+      #{$property}: $value;
+    }
+  }
   line-height: 1.25;
-  font-weight: $euiFontWeightLight; // always apply light weight to xx-large type
-  letter-spacing: -.03em;
 }
 
 @mixin euiTextBreakWord {
