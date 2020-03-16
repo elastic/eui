@@ -44,6 +44,7 @@ exports[`EuiListGroup is rendered with listItems 1`] = `
       </span>
     </span>
     <button
+      aria-label="bell"
       class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
@@ -68,6 +69,21 @@ exports[`EuiListGroup is rendered with listItems 1`] = `
         Button with onClick
       </span>
     </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive euiListGroupItem-isClickable"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Active link"
+      >
+        Active link
+      </span>
+    </a>
   </li>
   <li
     class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
@@ -123,6 +139,7 @@ exports[`EuiListGroup is rendered with listItems and color 1`] = `
       </span>
     </span>
     <button
+      aria-label="bell"
       class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
@@ -147,6 +164,21 @@ exports[`EuiListGroup is rendered with listItems and color 1`] = `
         Button with onClick
       </span>
     </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isActive euiListGroupItem-isClickable"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Active link"
+      >
+        Active link
+      </span>
+    </a>
   </li>
   <li
     class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isClickable"

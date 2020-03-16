@@ -186,7 +186,11 @@ export {
 
 export { EuiLink } from './link';
 
-export { EuiListGroup, EuiListGroupItem } from './list_group';
+export {
+  EuiListGroup,
+  EuiListGroupItem,
+  EuiPinnableListGroup,
+} from './list_group';
 
 export { EuiMark } from './mark';
 

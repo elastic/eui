@@ -15,6 +15,7 @@ const someListItems: EuiListGroupItemProps[] = [
     extraAction: {
       iconType: 'bell',
       alwaysShow: true,
+      'aria-label': 'bell',
     },
   },
   {
@@ -22,6 +23,11 @@ const someListItems: EuiListGroupItemProps[] = [
     onClick: e => {
       console.log('Visualize clicked', e);
     },
+  },
+  {
+    label: 'Active link',
+    isActive: true,
+    href: '#',
   },
   {
     label: 'Link with href',
