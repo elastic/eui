@@ -22,6 +22,10 @@ import CollapsibleNavGroup from './collapsible_nav_group';
 const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
 const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
 
+import CollapsibleNavList from './collapsible_nav_list';
+const collapsibleNavListSource = require('!!raw-loader!./collapsible_nav_list');
+const collapsibleNavListHtml = renderToHtml(CollapsibleNavList);
+
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
   intro: (
@@ -118,6 +122,37 @@ export const CollapsibleNavExample = {
   initialIsOpen={true}
   background="none"
 />`,
+    },
+    {
+      title: 'Nav groups with lists and other content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: collapsibleNavListSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: collapsibleNavListHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiCollapsibleNavGroups</strong> can contain any children.
+            They work well with{' '}
+            <Link to="/display/list-group">
+              <strong>EuiListGroup, EuiPinnableListGroup</strong>
+            </Link>{' '}
+            and simple{' '}
+            <Link to="/navigation/link">
+              <strong>EuiText</strong>
+            </Link>
+            .
+          </p>
+          <p>Below are a few established patterns to use.</p>
+        </>
+      ),
+      demo: <CollapsibleNavList />,
     },
   ],
 };
