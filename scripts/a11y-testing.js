@@ -23,6 +23,9 @@ const docsPages = async (root, page) => {
     `${root}#/navigation/pagination`,
     `${root}#/navigation/steps`,
     `${root}#/navigation/tabs`,
+    `${root}#/tabular-content/data-grid`,
+    `${root}#/tabular-content/data-grid-in-memory-settings`,
+    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
     `${root}#/display/avatar`,
     `${root}#/display/badge`,
     `${root}#/display/callout`,
@@ -40,6 +43,7 @@ const docsPages = async (root, page) => {
     `${root}#/display/title`,
     `${root}#/display/toast`,
     `${root}#/display/tooltip`,
+    `${root}#/forms/form-controls`,
     `${root}#/forms/form-layouts`,
     `${root}#/forms/form-validation`,
     `${root}#/forms/code-editor`,
@@ -67,6 +71,8 @@ const docsPages = async (root, page) => {
     `${root}#/utilities/delay-hide`,
     `${root}#/utilities/delay-render`,
     `${root}#/utilities/highlight`,
+    `${root}#/utilities/error-boundary`,
+    `${root}#/utilities/inner-text`,
   ];
 
   links = [...links, ...reflinks];
