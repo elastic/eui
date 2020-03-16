@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added title to headers of `EuiTable` when truncated ([#3094](https://github.com/elastic/eui/pull/3094))
+- Added `href` prop to `EuiBadge` ([#3009](https://github.com/elastic/eui/pull/3009))
 - Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
