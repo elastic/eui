@@ -13,3 +13,47 @@ exports[`EuiToggle is rendered 1`] = `
   />
 </div>
 `;
+
+exports[`EuiToggle props is checked 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiToggle euiToggle--checked testClass1 testClass2"
+>
+  <input
+    aria-label="Is toggle on?"
+    checked=""
+    class="euiToggle__input"
+    data-test-subj="test subject string"
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`EuiToggle props is disabled 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiToggle testClass1 testClass2"
+>
+  <input
+    aria-label="Is toggle on?"
+    class="euiToggle__input"
+    data-test-subj="test subject string"
+    disabled=""
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`EuiToggle props is rendered with onChange provided 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiToggle testClass1 testClass2"
+>
+  <input
+    aria-label="Is toggle on?"
+    class="euiToggle__input"
+    data-test-subj="test subject string"
+    type="checkbox"
+  />
+</div>
+`;
