@@ -9,6 +9,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { resolveWidthAsStyle } from './utils';
+import { EuiInnerText } from '../inner_text';
 
 import {
   HorizontalAlignment,
@@ -130,11 +131,17 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
           onClick={onSort}
           data-test-subj="tableHeaderSortButton">
           <span className={contentClasses}>
-            <span
-              className="euiTableCellContent__text"
-              title={children as string}>
-              {children}
-            </span>
+            <EuiInnerText>
+              {(ref, innerText) => (
+                <span
+                  title={innerText}
+                  ref={ref}
+                  className="euiTableCellContent__text">
+                  {children}
+                </span>
+              )}
+            </EuiInnerText>
+
             {isSorted && (
               <EuiIcon
                 className="euiTableSortIcon"
@@ -160,9 +167,16 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
       style={styleObj}
       {...rest}>
       <div className={contentClasses}>
-        <span className="euiTableCellContent__text" title={children as string}>
-          {children}
-        </span>
+        <EuiInnerText>
+          {(ref, innerText) => (
+            <span
+              title={innerText}
+              ref={ref}
+              className="euiTableCellContent__text">
+              {children}
+            </span>
+          )}
+        </EuiInnerText>
       </div>
     </CellComponent>
   );
