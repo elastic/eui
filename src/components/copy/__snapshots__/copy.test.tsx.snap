@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCopy is rendered 1`] = `
+<EuiToolTip
+  delay="regular"
+  onMouseOut={[Function]}
+  position="top"
+>
+  <button
+    onClick={[Function]}
+  >
+    Click to copy input text
+  </button>
+</EuiToolTip>
+`;
