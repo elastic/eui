@@ -90,8 +90,21 @@ export class EuiRefreshInterval extends Component {
     );
   };
 
+  startRefresh = () => {
+    const { value, units } = this.state;
+    const isValid = value === '' || value <= 0;
+    if (isValid) {
+      this.props.applyRefreshInterval({
+        refreshInterval: toMilliseconds(units, value),
+        isPaused: false,
+      });
+    }
+  };
+
   handleKeyDown = ({ key }) => {
-    if (key === 'Enter') this.applyRefreshInterval();
+    if (key === 'Enter') {
+      this.startRefresh();
+    }
   };
 
   applyRefreshInterval = () => {
