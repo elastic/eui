@@ -13,6 +13,7 @@ const docsPages = async (root, page) => {
     `${root}#/layout/horizontal-rule`,
     `${root}#/layout/modal`,
     `${root}#/layout/nav-drawer`,
+    `${root}#/layout/page`,
     `${root}#/layout/panel`,
     `${root}#/layout/popover`,
     `${root}#/layout/spacer`,
