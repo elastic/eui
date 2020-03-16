@@ -9,20 +9,20 @@
     flex-grow: 1;
   }
 
-  // .euiComment__avatar {
-  //   position: relative;
-  //   flex-grow: 0;
+  .euiCommentTimeline {
+    position: relative;
+    flex-grow: 0;
 
-  //   &::before {
-  //     content: '';
-  //     position: absolute;
-  //     left: $euiSizeXL / 2;
-  //     top: $euiSizeXXL;
-  //     width: $euiSizeXS / 2;
-  //     background-color: $euiColorLightShade;
-  //     height: calc(100% - (#{$euiSizeXL}));
-  //   }
-  // }
+    &::before {
+      content: '';
+      position: absolute;
+      left: $euiSizeXL / 2;
+      top: $euiSizeXXL;
+      width: $euiSizeXS / 2;
+      background-color: $euiColorLightShade;
+      height: calc(100% - (#{$euiSizeL}));
+    }
+  }
 
   .euiCommentTimeline, .euiCommentEvent {
     flex-basis: auto;

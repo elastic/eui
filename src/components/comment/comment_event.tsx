@@ -12,12 +12,18 @@ export type EuiCommentEventProps = CommonProps &
     commentStyle?: 'regular' | 'update';
   };
 
+const commentStyleToClassMap: { [commentStyle: string]: string | null } = {
+  regular: 'euiCommentEvent--regular',
+  update: 'euiCommentEvent--update',
+};
+
 export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   children,
   className,
   body,
   user,
   timeStamp,
+  commentStyle = 'regular',
   event,
   actions,
   ...rest
@@ -25,6 +31,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const classes = classNames(
     'euiCommentEvent',
     // { 'euiComment--hasBody': body },
+    commentStyleToClassMap[commentStyle],
     className
   );
 

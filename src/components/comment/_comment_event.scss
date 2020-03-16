@@ -1,13 +1,13 @@
-@include euiPanel($selector: '.euiCommentEvent');
+@include euiPanel($selector: '.euiCommentEvent--regular');
 
 .euiCommentEvent {
   font-size: $euiFontSizeS;
   overflow: hidden;
 
   .euiCommentEvent__header {
-    padding: $euiSizeM;
-    background-color: $euiColorLightestShade;
-    border-bottom: $euiBorderThin;
+    // padding: $euiSizeM;
+    // background-color: $euiColorLightestShade;
+    // border-bottom: $euiBorderThin;
     display: flex;
     align-items: center;
   }
@@ -16,24 +16,37 @@
     display: flex;
     align-items: center;
     padding-right: $euiSizeXS;
+    font-weight: 600;
   }
 
-
-  // .euiCommentEvent__headerEvent,
-  // .euiCommentEvent__headerActions {
-  //   // margin-right: $euiSizeXS;
-  //   flex-grow: 0;
+  // .euiCommentEvent__headerTimeStamp {
+  //   flex-grow: 1;
   // }
-
-  .euiCommentEvent__headerTimeStamp {
-    // margin-left: $euiSizeS;
-    // margin-right: $euiSizeS;
-    flex-grow: 1;
-  }
-
 
   .euiCommentEvent__body {
     padding: $euiSizeS;
     line-height: $euiSize * 1.2;
+  }
+}
+
+.euiCommentEvent--regular {
+  .euiCommentEvent__header {
+    background-color: $euiColorLightestShade;
+    border-bottom: $euiBorderThin;
+    padding: $euiSizeM;
+
+    .euiCommentEvent__headerTimeStamp {
+      flex-grow: 1;
+    }
+  }
+}
+
+.euiCommentEvent--update {
+  .euiCommentEvent__header {
+    padding-top: $euiSizeS;
+  }
+
+  .euiCommentEvent__headerTimeStamp {
+    padding-right: $euiSizeL;
   }
 }
