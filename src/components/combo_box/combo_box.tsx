@@ -120,6 +120,7 @@ interface _EuiComboBoxProps<T>
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
+  delimiter?: string;
 }
 
 /**
@@ -393,7 +394,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  addCustomOption = (isContainerBlur: boolean) => {
+  addCustomOption = (isContainerBlur: boolean, searchValue: string) => {
     const {
       onCreateOption,
       options,
@@ -401,7 +402,7 @@ export class EuiComboBox<T> extends Component<
       singleSelection,
     } = this.props;
 
-    const { searchValue, matchingOptions } = this.state;
+    const { matchingOptions } = this.state;
 
     if (this.doesSearchMatchOnlyOption()) {
       this.onAddOption(matchingOptions[0], isContainerBlur);
@@ -524,7 +525,15 @@ export class EuiComboBox<T> extends Component<
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
       if (!this.hasActiveOption()) {
-        this.addCustomOption(true);
+        const { searchValue } = this.state;
+        const { delimiter } = this.props;
+        if (delimiter) {
+          searchValue
+            .split(delimiter)
+            .forEach((option: string) => this.addCustomOption(true, option));
+        } else {
+          this.addCustomOption(true, searchValue);
+        }
       }
     }
   };
@@ -565,11 +574,20 @@ export class EuiComboBox<T> extends Component<
         event.preventDefault();
         event.stopPropagation();
         if (this.hasActiveOption()) {
+          console.log(this.state.matchingOptions[this.state.activeOptionIndex]);
           this.onAddOption(
             this.state.matchingOptions[this.state.activeOptionIndex]
           );
         } else {
-          this.addCustomOption(false);
+          const { searchValue } = this.state;
+          const { delimiter } = this.props;
+          if (delimiter) {
+            searchValue
+              .split(delimiter)
+              .forEach((option: string) => this.addCustomOption(false, option));
+          } else {
+            this.addCustomOption(false, searchValue);
+          }
         }
         break;
 
@@ -702,6 +720,7 @@ export class EuiComboBox<T> extends Component<
     EuiComboBoxInputProps<T>['onChange']
   > = searchValue => {
     const { onSearchChange } = this.props;
+
     if (onSearchChange) {
       const hasMatchingOptions = this.state.matchingOptions.length > 0;
       onSearchChange(searchValue, hasMatchingOptions);

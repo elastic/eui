@@ -88,6 +88,7 @@ export default class extends Component {
         <EuiComboBox
           placeholder="Select or create options"
           options={this.options}
+          delimiter=","
           selectedOptions={selectedOptions}
           onChange={this.onChange}
           onCreateOption={this.onCreateOption}
