@@ -15,7 +15,7 @@
 - Added `useResizeObserver` hook ([#2991](https://github.com/elastic/eui/pull/2991))
 - Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993))
 - Added `EuiMark` component ([#3060](https://github.com/elastic/eui/pull/3060))
-- Add support for node `name` prop in `EuiTabbedContent`, to bring it on par with `EuiTab` ([#3100](https://github.com/elastic/eui/pull/3100))
+- Changed `tabs.name` prop shape in `EuiTabbedContent` to accept a `node`, which aligns it with `EuiTab` ([#3100](https://github.com/elastic/eui/pull/3100))
 
 **Bug Fixes**
 
