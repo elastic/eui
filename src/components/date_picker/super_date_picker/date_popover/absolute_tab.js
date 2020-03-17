@@ -38,7 +38,26 @@ export class EuiAbsoluteTab extends Component {
   };
 
   handleTextChange = evt => {
-    const date = moment(evt.target.value, this.props.dateFormat, true);
+    const { dateFormat } = this.props;
+
+    let newVal = evt.target.value.split('');
+    const letterNumber = /^[0-9a-zA-Z]/;
+
+    // eslint-disable-next-line guard-for-in
+    for (let i = 0; i < dateFormat.length; i++) {
+      const ch = dateFormat[i];
+      if (i >= newVal.length - 1 && ch !== 'M') {
+        if (ch.match(letterNumber)) {
+          newVal.push(0);
+        } else {
+          newVal.push(ch);
+        }
+      }
+    }
+
+    newVal = newVal.join('');
+    const date = moment(newVal, dateFormat, true);
+
     const updatedState = {
       textInputValue: evt.target.value,
       isTextInvalid: !date.isValid(),
