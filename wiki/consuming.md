@@ -4,6 +4,10 @@
 
 EUI publishes React UI components, JavaScript helpers called services, and utilities for writing Jest tests. Please refer to the [Elastic UI Framework website](https://elastic.github.io/eui) for comprehensive info on what's available.
 
+EUI is published through [NPM](https://www.npmjs.com/package/@elastic/eui) as a dependency. We also provide a starter projects for:
+- [GatsbyJS](https://github.com/elastic/gatsby-eui-starter)
+- [NextJS](https://github.com/elastic/next-eui-starter)
+
 ### Components
 
 You can import React components from the top-level EUI module.
