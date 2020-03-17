@@ -29,7 +29,7 @@ export const useColorStopState = (
   const [addColor, setAddColor] = useState(generateRandomColor());
   const [colorStops, setColorStops] = useState(initialColorStops);
 
-  const updateColorStops = (colorStops: any) => {
+  const updateColorStops = (colorStops: colorStopsType[]) => {
     setColorStops(colorStops);
     if (useRandomColor) {
       setAddColor(generateRandomColor());
