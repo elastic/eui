@@ -40,7 +40,6 @@ export function parseRelativeParts(value) {
       break;
     }
   }
-  console.log(results);
   return results;
 }
 
