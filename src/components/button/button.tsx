@@ -35,7 +35,7 @@ export type ButtonColor =
 
 export type ButtonSize = 's' | 'm';
 
-const colorToClassNameMap: { [color in ButtonColor]: string } = {
+export const colorToClassNameMap: { [color in ButtonColor]: string } = {
   primary: 'euiButton--primary',
   secondary: 'euiButton--secondary',
   warning: 'euiButton--warning',

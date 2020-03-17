@@ -4,9 +4,14 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { CommonProps } from '../../common';
 import { IconType } from '../../icon';
 import { ToggleType } from '../../toggle';
-import { ButtonColor, ButtonIconSide, EuiButton } from '../button';
+import {
+  ButtonColor,
+  ButtonIconSide,
+  EuiButton,
+  colorToClassNameMap,
+} from '../button';
 import { EuiButtonIcon } from '../button_icon';
-import { EuiButtonToggle } from '../button_toggle';
+import { EuiIcon } from '../../icon/icon';
 
 export interface EuiButtonGroupIdToSelectedMap {
   [id: string]: boolean;
@@ -91,6 +96,8 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             label,
             isDisabled: optionDisabled,
             className,
+            iconType,
+            iconSide,
             ...rest
           } = option;
 
@@ -115,25 +122,19 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 
           if (type === 'multi') {
             if (isIconOnly) {
-              if (color === 'secondary') {
-                console.warn(
-                  'Secondary is not a support color for EuiButtonIcon. Falling back to Primary;'
-                );
-                color = 'primary';
-              }
-
               return (
                 <EuiButtonIcon
                   className={buttonClasses}
                   id={id}
-                  color={color}
-                  isDisabled={isDisabled}
+                  color={color === 'secondary' ? 'success' : color}
+                  isDisabled={optionDisabled || isDisabled}
                   aria-selected={isSelectedState}
                   size={buttonSize === 'compressed' ? 's' : buttonSize}
                   onClick={() => onChange(id, value)}
                   data-test-subj={dataTestSubj}
                   label={label}
                   key={index}
+                  iconType={iconType}
                   {...rest}
                 />
               );
@@ -145,38 +146,73 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                 id={id}
                 color={color}
                 fill={fill}
-                isDisabled={isDisabled}
+                isDisabled={optionDisabled || isDisabled}
                 aria-selected={isSelectedState}
                 size={buttonSize === 'compressed' ? 's' : buttonSize}
                 onClick={() => onChange(id, value)}
                 data-test-subj={dataTestSubj}
                 key={index}
+                iconSide={iconSide}
+                iconType={iconType}
                 {...rest}>
                 {label}
               </EuiButton>
             );
           }
 
-          return (
-            <EuiButtonToggle
-              className={buttonClasses}
-              toggleClassName="euiButtonGroup__toggle"
-              id={id}
-              key={index}
-              value={value}
+          const wrapperClasses = classNames(
+            'euiButtonToggle',
+            'euiToggle',
+            'euiButtonGroup__toggle',
+            'euiButtonToggle__wrapper',
+            color ? colorToClassNameMap[color] : null,
+            {
+              'euiButtonToggle--isDisabled': isDisabled,
+              'euiButtonToggle--isIconOnly': isIconOnly,
+              'euiButton--fill': fill,
+            },
+            buttonClasses
+          );
+
+          const icon = iconType && (
+            <EuiIcon
+              type={iconType}
               color={color}
-              fill={fill}
-              isDisabled={optionDisabled || isDisabled}
-              isIconOnly={isIconOnly}
-              isSelected={isSelectedState}
-              name={optionName || name}
-              onChange={() => onChange(id, value)}
               size={buttonSize === 'compressed' ? 's' : buttonSize}
-              type={type}
-              data-test-subj={dataTestSubj}
-              label={label}
-              {...rest}
             />
+          );
+
+          return (
+            <div className={wrapperClasses} key={index} {...rest}>
+              <label htmlFor={id}>
+                {isIconOnly ? (
+                  <>
+                    <EuiScreenReaderOnly>
+                      <span>{label}</span>
+                    </EuiScreenReaderOnly>
+                    {icon}
+                  </>
+                ) : (
+                  <>
+                    {iconSide === 'left' && icon}
+                    {label}
+                    {iconSide === 'right' && icon}
+                  </>
+                )}
+              </label>
+              <input
+                id={id}
+                className="euiToggle__input"
+                name={optionName || name}
+                onChange={() => onChange(id, value)}
+                checked={isSelectedState}
+                data-test-subj={dataTestSubj}
+                disabled={optionDisabled || isDisabled}
+                value={value}
+                type="radio"
+                {...rest}
+              />
+            </div>
           );
         })}
       </div>

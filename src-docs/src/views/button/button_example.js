@@ -88,7 +88,6 @@ const buttonToggleSnippet = [
 </EuiButton>
 `,
   `<EuiButton
-  iconType={this.state.toggleOn ? onIcon : offIcon}
   aria-pressed={this.state.toggleOn}
   onChange={this.onToggleChange}
 >
@@ -288,32 +287,16 @@ export const ButtonExample = {
             color="warning"
             title={
               <span>
-                Looking for <EuiCode>EuiButtonToggle</EuiCode>? It&apos;s been
-                deprecated so docs around it have been removed (though it will
-                still be exported until Oct 2020).
+                <EuiCode>EuiButtonToggle</EuiCode> has been deprecated. See the
+                example below for correct usage of similar behavior.
               </span>
             }
           />
           <EuiSpacer size="s" />
-          <div>
-            <p>
-              If your button has a on and off state, consider adding{' '}
-              <EuiCode>aria-pressed</EuiCode> to your button. (
-              <EuiCode>aria-pressed</EuiCode> can be added to any EUI button
-              component.)
-            </p>
-            <p>
-              There&apos;s one simple rule to figure out if you should do that:
-              does your button change text between the two states or is it
-              visual only?
-            </p>
-            <p>
-              If you answered &quot;yes, my button text changes between
-              states&quot;, don&apos;t add <EuiCode>aria-pressed</EuiCode>. If
-              you answered &quot;no, my button always has the same text&quot;,
-              add <EuiCode>aria-pressed</EuiCode>.
-            </p>
-          </div>
+          <p>
+            Pass in <EuiCode>aria-pressed</EuiCode> if your button does not
+            change its label for each state.
+          </p>
         </>
       ),
       demo: <ButtonToggle />,
