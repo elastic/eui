@@ -25,7 +25,7 @@ export default () => (
         <EuiButtonIcon
           href="http://www.elastic.co"
           iconType="link"
-          aria-label="This is a link"
+          label="This is a link"
         />
       </EuiFlexItem>
     </EuiFlexGroup>
@@ -47,7 +47,7 @@ export default () => (
         <EuiButtonIcon
           href="http://www.elastic.co"
           iconType="link"
-          aria-label="This is a link"
+          label="This is a link"
           isDisabled
         />
       </EuiFlexItem>

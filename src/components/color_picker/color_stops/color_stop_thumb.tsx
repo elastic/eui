@@ -334,7 +334,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                   <EuiButtonIcon
                     iconType="trash"
                     color="danger"
-                    aria-label={removeLabel}
+                    label={removeLabel}
                     title={removeLabel}
                     disabled={!onRemove || readOnly}
                     onClick={handleOnRemove}

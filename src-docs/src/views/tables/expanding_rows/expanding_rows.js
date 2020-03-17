@@ -186,7 +186,7 @@ export class Table extends Component {
         render: item => (
           <EuiButtonIcon
             onClick={() => this.toggleDetails(item)}
-            aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
+            label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
             iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
           />
         ),

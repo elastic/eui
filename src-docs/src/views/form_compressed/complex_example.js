@@ -261,7 +261,7 @@ export default class extends Component {
             prepend={[
               <EuiButtonIcon
                 iconType="magnet"
-                aria-label="Dynamic toggle"
+                label="Dynamic toggle"
                 title="Make dynamic"
               />,
               'kibana_sample_ecommerce_data',

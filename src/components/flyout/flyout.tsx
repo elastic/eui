@@ -103,7 +103,7 @@ export class EuiFlyout extends Component<EuiFlyoutProps> {
           className="euiFlyout__closeButton"
           iconType="cross"
           color="text"
-          aria-label={closeButtonAriaLabel}
+          label={closeButtonAriaLabel}
           onClick={onClose}
           data-test-subj="euiFlyoutCloseButton"
         />

@@ -320,7 +320,20 @@ export class EuiControlBar extends Component<
             href,
             ...rest
           } = control;
-          return onClick || href ? (
+
+          if (!onClick && !href) {
+            return (
+              <EuiIcon
+                key={id + index}
+                className={classNames('euiControlBar__icon', className)}
+                type={iconType}
+                color={color}
+                {...rest}
+              />
+            );
+          }
+
+          return (
             <EuiButtonIcon
               key={id + index}
               className={classNames('euiControlBar__buttonIcon', className)}
@@ -328,16 +341,8 @@ export class EuiControlBar extends Component<
               onClick={onClick}
               href={href}
               color={color as EuiButtonIconProps['color']}
-              {...rest as IconButtonControlType}
-              size="s"
-            />
-          ) : (
-            <EuiIcon
-              key={id + index}
-              className={classNames('euiControlBar__icon', className)}
-              type={iconType}
-              color={color}
               {...rest}
+              size="s"
             />
           );
         }

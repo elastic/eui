@@ -93,7 +93,7 @@ export default () => {
       <EuiFieldText
         placeholder="Icon & button icon"
         prepend={<EuiIcon type="vector" />}
-        append={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
+        append={<EuiButtonIcon iconType="gear" label="Gear this" />}
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
@@ -103,11 +103,11 @@ export default () => {
         placeholder="Icons in buttons and popovers and tooltips"
         prepend={[
           <EuiIcon type="vector" />,
-          <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
+          <EuiButtonIcon iconType="gear" label="Gear this" />,
         ]}
         append={[
           <EuiPopover
-            button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
+            button={<EuiButtonIcon iconType="gear" label="Gear this" />}
             closePopover={() => {}}
           />,
           <EuiIconTip content="content" />,
@@ -121,13 +121,13 @@ export default () => {
         placeholder="Icon button in popover & tooltip"
         append={
           <EuiPopover
-            button={<EuiButtonIcon iconType="arrowDown" aria-label="Popover" />}
+            button={<EuiButtonIcon iconType="arrowDown" label="Popover" />}
             closePopover={() => {}}
           />
         }
         prepend={
           <EuiToolTip content="content">
-            <EuiButtonIcon iconType="gear" aria-label="Gear this" />
+            <EuiButtonIcon iconType="gear" label="Gear this" />
           </EuiToolTip>
         }
         compressed={isCompressed}
@@ -138,10 +138,7 @@ export default () => {
       <EuiFieldText
         placeholder="Icon and string & string and icon button"
         prepend={[<EuiIcon type="vector" />, 'String']}
-        append={[
-          'String',
-          <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
-        ]}
+        append={['String', <EuiButtonIcon iconType="gear" label="Gear this" />]}
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
@@ -152,12 +149,12 @@ export default () => {
         prepend={[
           'String',
           <EuiToolTip content="content">
-            <EuiButtonIcon iconType="gear" aria-label="Gear this" />
+            <EuiButtonIcon iconType="gear" label="Gear this" />
           </EuiToolTip>,
         ]}
         append={[
           <EuiPopover
-            button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
+            button={<EuiButtonIcon iconType="gear" label="Gear this" />}
             closePopover={() => {}}
           />,
           'String',

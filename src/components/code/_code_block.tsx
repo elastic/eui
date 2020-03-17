@@ -214,7 +214,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
                       onClick={copy}
                       iconType="copy"
                       color="text"
-                      aria-label={copyButton}
+                      label={copyButton}
                     />
                   )}
                 </EuiCopy>
@@ -244,7 +244,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
               onClick={this.toggleFullScreen}
               iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
               color="text"
-              aria-label={
+              label={
                 this.state.isFullScreen ? fullscreenCollapse : fullscreenExpand
               }
             />

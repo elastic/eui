@@ -123,7 +123,7 @@ export class GuidePageChrome extends Component {
       <EuiButtonIcon
         iconType="gear"
         onClick={this.onButtonClick.bind(this)}
-        aria-label="Open EUI options menu"
+        label="Open EUI options menu"
         color="text"
       />
     );

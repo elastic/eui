@@ -75,7 +75,7 @@ export default () => {
               <EuiPanel paddingSize="s">
                 <EuiButtonIcon
                   iconType="grab"
-                  aria-label="Drag Handle"
+                  label="Drag Handle"
                   {...provided.dragHandleProps}
                 />
                 <EuiDroppable

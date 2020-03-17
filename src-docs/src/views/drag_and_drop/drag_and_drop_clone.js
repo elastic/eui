@@ -103,7 +103,7 @@ export default () => {
                         ) : (
                           <EuiButtonIcon
                             iconType="cross"
-                            aria-label="Remove"
+                            label="Remove"
                             onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
                           />
                         )}

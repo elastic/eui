@@ -527,7 +527,7 @@ export default class extends Component {
                 id={`${item.id}-actions`}
                 button={
                   <EuiButtonIcon
-                    aria-label="Actions"
+                    label="Actions"
                     iconType="gear"
                     size="s"
                     color="text"

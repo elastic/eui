@@ -106,7 +106,7 @@ export default class GlobalFilterOptions extends Component {
             onClick={this.togglePopover}
             color="text"
             iconType="filter"
-            aria-label="Change all filters"
+            label="Change all filters"
             title="Change all filters"
           />
         }

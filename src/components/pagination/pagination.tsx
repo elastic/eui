@@ -86,7 +86,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
           iconType="arrowLeft"
           disabled={activePage === 0}
           color="text"
-          aria-label={previousPage}
+          label={previousPage}
           data-test-subj="pagination-button-previous"
         />
       )}
@@ -165,7 +165,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
         <EuiButtonIcon
           onClick={onPageClick.bind(null, activePage + 1)}
           iconType="arrowRight"
-          aria-label={nextPage}
+          label={nextPage}
           disabled={activePage === pageCount - 1}
           color="text"
           data-test-subj="pagination-button-next"
