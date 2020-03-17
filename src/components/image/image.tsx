@@ -130,7 +130,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
     if (typeof size === 'string') {
       classes = `${classes} ${sizeToClassNameMap[size]}`;
     } else {
-      classes = `${classes} euiImage--restrictHeight-custom`;
+      classes = `${classes}`;
     }
 
     let optionalCaption;
