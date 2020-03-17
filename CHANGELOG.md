@@ -21,6 +21,7 @@
 - Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 - Fixed SASS `contrastRatio()` function in dark mode by fixing the `pow()` math function ([#3013], (https://github.com/elastic/eui/pull/3013))
 - Fixed bug preventing `EuiDataGrid` from re-evaluating the default column width on resize ([#2991](https://github.com/elastic/eui/pull/2991))
+- Fixed padding in `EuiCallOut` when used as a `banner` for `EuiFlyout` ([#3098](https://github.com/elastic/eui/pull/3098))
 
 ## [`21.0.1`](https://github.com/elastic/eui/tree/v21.0.1)
 
