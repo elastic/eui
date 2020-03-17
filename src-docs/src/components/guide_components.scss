@@ -182,6 +182,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: 1px;
 }
 
+.guideFullScreenOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
 @import '../views/guidelines/index';
 @import 'guide_section/index';
 @import 'guide_rule/index';
