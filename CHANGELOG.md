@@ -11,7 +11,7 @@
 - Added RGB format support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
 - Added alpha channel (opacity) support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
 - Added `useResizeObserver` hook ([#2991](https://github.com/elastic/eui/pull/2991))
-- Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993)) 
+- Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993))
 - Added `EuiMark` component ([#3060](https://github.com/elastic/eui/pull/3060))
 - Moved and renamed `useColorPicker and useColorStops` from src-docs/src/views/color_picker/utils to `useColorPickerState and useColorStops` src/services ([#3067](https://github.com/elastic/eui/pull/3067))
 
