@@ -33,7 +33,7 @@ export const CorePalette = ({ theme, colors }) => {
               <kbd>Shift + Click</kbd> to scroll to section
             </small>
           }
-          afterMessage={<small>Copied!</small>}
+          afterMessage={<small>Color name copied!</small>}
           textToCopy={color}>
           {copy => (
             <button
