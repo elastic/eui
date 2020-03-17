@@ -7,11 +7,14 @@ import {
 } from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-import { useColorPickerState, useColorStop } from '../../../../src/services';
+import {
+  useColorPickerState,
+  useColorStopState,
+} from '../../../../src/services';
 
 export const KitchenSink = () => {
   const [color, setColor] = useColorPickerState('#D36086');
-  const [colorStops, setColorStops, addStop] = useColorStop(true);
+  const [colorStops, setColorStops, addStop] = useColorStopState(true);
 
   return (
     <React.Fragment>

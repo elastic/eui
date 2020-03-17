@@ -7,11 +7,14 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { useColorPickerState, useColorStop } from '../../../../src/services';
+import {
+  useColorPickerState,
+  useColorStopState,
+} from '../../../../src/services';
 
 export const CustomSwatches = () => {
   const [color, setColor, errors] = useColorPickerState();
-  const [colorStops, setColorStops] = useColorStop();
+  const [colorStops, setColorStops] = useColorStopState();
 
   const customSwatches = ['#333', '#666', '#999', '#CCC'];
 
