@@ -97,6 +97,17 @@
 /**
   * Overflow scrolling
   */
+.eui-yScroll {
+  @include euiYScroll;
+}
+
+.eui-xScroll {
+  @include euiXScroll;
+}
+
+/**
+  * Overflow scrolling with shadows
+  */
 .eui-yScrollWithShadows {
   @include euiYScrollWithShadows;
 }
