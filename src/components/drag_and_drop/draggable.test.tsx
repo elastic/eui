@@ -28,7 +28,7 @@ describe('EuiDraggable', () => {
     document.body.removeChild(appDiv);
   });
 
-  test('is rendered', async () => {
+  test('is rendered', () => {
     const handler = jest.fn();
 
     ReactDOM.render(
