@@ -10,7 +10,7 @@ const EuiIconMenu = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <path clipRule="evenodd" d="M0 2h16v2H0V2zm0 5h16v2H0V7zm16 5H0v2h16v-2z" />
+    <path d="M0 2h16v2H0V2zm0 5h16v2H0V7zm16 5H0v2h16v-2z" />
   </svg>
 );
 

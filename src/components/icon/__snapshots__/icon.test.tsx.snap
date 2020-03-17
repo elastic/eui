@@ -5962,7 +5962,6 @@ exports[`EuiIcon props type menu is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    clip-rule="evenodd"
     d="M0 2h16v2H0V2zm0 5h16v2H0V7zm16 5H0v2h16v-2z"
   />
 </svg>
