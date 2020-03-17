@@ -67,7 +67,6 @@ export default class DataGridContainer extends Component {
       <EuiPanel style={{ width: 400, paddingBottom: 4 }} paddingSize="none">
         <div style={{ height: 300 }}>
           <EuiDataGrid
-            tabIndex={0}
             aria-label="Top EUI contributors"
             columns={columns}
             columnVisibility={{
