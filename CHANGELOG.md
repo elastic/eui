@@ -3,6 +3,9 @@
 - Upgraded `react-beautiful-dnd` to version 13 ([#3064](https://github.com/elastic/eui/pull/3064))
 - Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
 - Updated `EuiFilterSelect` to retain the order of its filters ([#3063](https://github.com/elastic/eui/pull/3063))
+
+## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)
+
 - Added `href` prop to `EuiBadge` ([#3009](https://github.com/elastic/eui/pull/3009))
 - Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
