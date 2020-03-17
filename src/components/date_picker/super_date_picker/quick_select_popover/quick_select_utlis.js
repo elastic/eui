@@ -4,7 +4,6 @@ const LAST = 'last';
 const NEXT = 'next';
 
 export const parseTimeParts = value => {
-  console.log(value);
   const matches =
     isString(value) &&
     value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
