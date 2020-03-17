@@ -20,6 +20,7 @@ const docsPages = async (root, page) => {
     `${root}#/navigation/breadcrumbs`,
     `${root}#/navigation/context-menu`,
     `${root}#/navigation/control-bar`,
+    `${root}#/navigation/facet`,
     `${root}#/navigation/link`,
     `${root}#/navigation/pagination`,
     `${root}#/navigation/steps`,
