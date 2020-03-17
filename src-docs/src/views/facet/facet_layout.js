@@ -130,45 +130,57 @@ export default class extends Component {
     }, 1200);
   };
 
-  render() {
+  facets = align => {
     const { selectedOptionId, icon, disabled, avatars, loading } = this.state;
 
-    const facets = this.list.map(facet => {
-      let iconNode;
-      if (icon) {
-        iconNode = <EuiIcon type="dot" color={facet.iconColor} />;
-      } else if (avatars) {
-        iconNode = <EuiAvatar size="s" name={facet.label} />;
-      }
+    return (
+      <>
+        {this.list.map(facet => {
+          let iconNode;
+          if (icon) {
+            iconNode = <EuiIcon type="dot" color={facet.iconColor} />;
+          } else if (avatars) {
+            iconNode = <EuiAvatar size="s" name={facet.label} />;
+          }
 
-      return (
-        <EuiFacetButton
-          key={facet.id}
-          id={facet.id}
-          quantity={facet.quantity}
-          icon={iconNode}
-          isSelected={selectedOptionId === facet.id}
-          isDisabled={disabled && facet.id !== 'facet2'}
-          isLoading={loading}
-          onClick={facet.onClick ? () => facet.onClick(facet.id) : undefined}>
-          {facet.label}
-        </EuiFacetButton>
-      );
-    });
+          return (
+            <EuiFacetButton
+              key={facet.id}
+              id={`${facet.id}_${align}`}
+              quantity={facet.quantity}
+              icon={iconNode}
+              isSelected={selectedOptionId === facet.id}
+              isDisabled={disabled && facet.id !== 'facet2'}
+              isLoading={loading}
+              onClick={
+                facet.onClick ? () => facet.onClick(facet.id) : undefined
+              }>
+              {facet.label}
+            </EuiFacetButton>
+          );
+        })}
+      </>
+    );
+  };
 
+  render() {
     return (
       <div>
         <EuiTitle size="s">
           <h3>Vertical</h3>
         </EuiTitle>
-        <EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>
+        <EuiFacetGroup style={{ maxWidth: 200 }}>
+          {this.facets('Vertical')}
+        </EuiFacetGroup>
 
         <EuiSpacer />
 
         <EuiTitle size="s">
           <h3>Horizontal</h3>
         </EuiTitle>
-        <EuiFacetGroup layout="horizontal">{facets}</EuiFacetGroup>
+        <EuiFacetGroup layout="horizontal">
+          {this.facets('Horizontal')}
+        </EuiFacetGroup>
       </div>
     );
   }
