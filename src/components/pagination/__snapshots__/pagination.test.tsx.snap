@@ -8,7 +8,6 @@ exports[`EuiPagination is rendered 1`] = `
   role="group"
 >
   <button
-    aria-label="Previous page"
     class="euiButtonIcon euiButtonIcon--text"
     data-test-subj="pagination-button-previous"
     type="button"
@@ -18,6 +17,11 @@ exports[`EuiPagination is rendered 1`] = `
       class="euiButtonIcon__icon"
       data-euiicon-type="arrowLeft"
     />
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Previous page
+    </span>
   </button>
   <button
     aria-label="Page 1 of 1"
@@ -36,7 +40,6 @@ exports[`EuiPagination is rendered 1`] = `
     </span>
   </button>
   <button
-    aria-label="Next page"
     class="euiButtonIcon euiButtonIcon--text"
     data-test-subj="pagination-button-next"
     type="button"
@@ -46,6 +49,11 @@ exports[`EuiPagination is rendered 1`] = `
       class="euiButtonIcon__icon"
       data-euiicon-type="arrowRight"
     />
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Next page
+    </span>
   </button>
 </div>
 `;

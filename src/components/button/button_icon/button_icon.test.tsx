@@ -6,7 +6,9 @@ import { EuiButtonIcon, COLORS } from './button_icon';
 
 describe('EuiButtonIcon', () => {
   test('is rendered', () => {
-    const component = render(<EuiButtonIcon {...requiredProps} />);
+    const component = render(
+      <EuiButtonIcon label="button" {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });
@@ -14,16 +16,14 @@ describe('EuiButtonIcon', () => {
   describe('props', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiButtonIcon aria-label="button" isDisabled />
-        );
+        const component = render(<EuiButtonIcon label="button" isDisabled />);
 
         expect(component).toMatchSnapshot();
       });
 
       it('renders a button even when href is defined', () => {
         const component = render(
-          <EuiButtonIcon aria-label="button" href="#" isDisabled />
+          <EuiButtonIcon label="button" href="#" isDisabled />
         );
 
         expect(component).toMatchSnapshot();
@@ -33,7 +33,7 @@ describe('EuiButtonIcon', () => {
     describe('iconType', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonIcon aria-label="button" iconType="user" />
+          <EuiButtonIcon label="button" iconType="user" />
         );
 
         expect(component).toMatchSnapshot();
@@ -44,7 +44,7 @@ describe('EuiButtonIcon', () => {
       COLORS.forEach(color => {
         test(`${color} is rendered`, () => {
           const component = render(
-            <EuiButtonIcon aria-label="button" color={color} />
+            <EuiButtonIcon label="button" color={color} />
           );
 
           expect(component).toMatchSnapshot();
@@ -55,7 +55,7 @@ describe('EuiButtonIcon', () => {
     describe('href', () => {
       it('secures the rel attribute when the target is _blank', () => {
         const component = render(
-          <EuiButtonIcon aria-label="button" href="#" target="_blank" />
+          <EuiButtonIcon label="button" href="#" target="_blank" />
         );
 
         expect(component).toMatchSnapshot();
@@ -66,7 +66,7 @@ describe('EuiButtonIcon', () => {
       it('supports onClick and href', () => {
         const handler = jest.fn();
         const component = mount(
-          <EuiButtonIcon aria-label="hoi" href="#" onClick={handler} />
+          <EuiButtonIcon label="hoi" href="#" onClick={handler} />
         );
         component.find('a').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
@@ -75,7 +75,7 @@ describe('EuiButtonIcon', () => {
       it('supports onClick as a button', () => {
         const handler = jest.fn();
         const component = mount(
-          <EuiButtonIcon aria-label="hoi" onClick={handler} />
+          <EuiButtonIcon label="hoi" onClick={handler} />
         );
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);

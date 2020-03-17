@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DefaultItemAction render - default button 1`] = `
+exports[`DefaultItemAction render - button 1`] = `
 <EuiToolTip
   content="action 1"
   delay="long"
@@ -18,7 +18,7 @@ exports[`DefaultItemAction render - default button 1`] = `
 </EuiToolTip>
 `;
 
-exports[`DefaultItemAction render - button 1`] = `
+exports[`DefaultItemAction render - default button 1`] = `
 <EuiToolTip
   content="action 1"
   delay="long"
@@ -43,10 +43,10 @@ exports[`DefaultItemAction render - icon 1`] = `
   position="top"
 >
   <EuiButtonIcon
-    aria-label="action1"
     color="primary"
     iconType="trash"
     isDisabled={false}
+    label="action1"
     onClick={[Function]}
   />
 </EuiToolTip>

@@ -90,7 +90,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   label,
   ...rest
 }) => {
-  const tabIndex = rest['aria-hidden'] === true ? -1 : undefined;
   const classes = classNames(
     'euiButtonIcon',
     colorToClassNameMap[color],
@@ -118,7 +117,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
     return (
       <a
-        tabIndex={tabIndex}
         className={classes}
         href={href}
         target={target}
@@ -138,7 +136,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   return (
     <button
-      tabIndex={tabIndex}
       disabled={isDisabled}
       className={classes}
       type={type as typeof buttonType}

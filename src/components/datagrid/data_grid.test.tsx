@@ -159,10 +159,9 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter
-    .find('button[className*="euiButtonGroup__button--selected"]')
-    .closest('EuiToggle')
-    .find('input[className*="euiButtonToggle__input"]');
+  const activeSort = columnSorter.find(
+    '[className*="euiButtonGroup__button--selected"] input'
+  );
 
   const sortDirection = (activeSort.props() as {
     'data-test-subj': string;

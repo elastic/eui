@@ -22,7 +22,6 @@ Array [
       tabindex="0"
     >
       <button
-        aria-label="Closes this modal window"
         class="euiButtonIcon euiButtonIcon--text euiModal__closeIcon"
         type="button"
       >
@@ -31,6 +30,11 @@ Array [
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
         />
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Closes this modal window
+        </span>
       </button>
       <div
         class="euiModal__flex"
@@ -128,7 +132,6 @@ Array [
       tabindex="0"
     >
       <button
-        aria-label="Closes this modal window"
         class="euiButtonIcon euiButtonIcon--text euiModal__closeIcon"
         type="button"
       >
@@ -137,6 +140,11 @@ Array [
           class="euiButtonIcon__icon"
           data-euiicon-type="cross"
         />
+        <span
+          class="euiScreenReaderOnly"
+        >
+          Closes this modal window
+        </span>
       </button>
       <div
         class="euiModal__flex"

@@ -12,7 +12,6 @@ exports[`CollapsedItemActions render 1`] = `
       class="euiToolTipAnchor"
     >
       <button
-        aria-label="All actions"
         class="euiButtonIcon euiButtonIcon--text"
         data-test-subj="euiCollapsedItemActionsButton"
         type="button"
@@ -22,6 +21,11 @@ exports[`CollapsedItemActions render 1`] = `
           class="euiButtonIcon__icon"
           data-euiicon-type="boxesHorizontal"
         />
+        <span
+          class="euiScreenReaderOnly"
+        >
+          All actions
+        </span>
       </button>
     </span>
   </div>

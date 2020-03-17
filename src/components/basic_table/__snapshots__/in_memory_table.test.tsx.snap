@@ -437,15 +437,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           token="euiPagination.previousPage"
                         >
                           <EuiButtonIcon
-                            aria-label="Previous page"
                             color="text"
                             data-test-subj="pagination-button-previous"
                             disabled={false}
                             iconType="arrowLeft"
+                            label="Previous page"
                             onClick={[Function]}
                           >
                             <button
-                              aria-label="Previous page"
                               className="euiButtonIcon euiButtonIcon--text"
                               data-test-subj="pagination-button-previous"
                               disabled={false}
@@ -465,6 +464,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   size="m"
                                 />
                               </EuiIcon>
+                              <EuiScreenReaderOnly>
+                                <span
+                                  className="euiScreenReaderOnly"
+                                >
+                                  Previous page
+                                </span>
+                              </EuiScreenReaderOnly>
                             </button>
                           </EuiButtonIcon>
                         </EuiI18n>
@@ -565,15 +571,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           token="euiPagination.nextPage"
                         >
                           <EuiButtonIcon
-                            aria-label="Next page"
                             color="text"
                             data-test-subj="pagination-button-next"
                             disabled={true}
                             iconType="arrowRight"
+                            label="Next page"
                             onClick={[Function]}
                           >
                             <button
-                              aria-label="Next page"
                               className="euiButtonIcon euiButtonIcon--text"
                               data-test-subj="pagination-button-next"
                               disabled={true}
@@ -593,6 +598,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   size="m"
                                 />
                               </EuiIcon>
+                              <EuiScreenReaderOnly>
+                                <span
+                                  className="euiScreenReaderOnly"
+                                >
+                                  Next page
+                                </span>
+                              </EuiScreenReaderOnly>
                             </button>
                           </EuiButtonIcon>
                         </EuiI18n>

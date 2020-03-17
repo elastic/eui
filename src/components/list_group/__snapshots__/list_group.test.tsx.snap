@@ -52,6 +52,11 @@ exports[`EuiListGroup is rendered with listItems 1`] = `
         class="euiButtonIcon__icon"
         data-euiicon-type="bell"
       />
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Notification
+      </span>
     </button>
   </li>
   <li
