@@ -92,7 +92,7 @@ export class EuiRefreshInterval extends Component {
 
   startRefresh = () => {
     const { value, units } = this.state;
-    const isValid = value !== '' || value > 0;
+    const isValid = value !== '' && value > 0;
     if (isValid) {
       this.props.applyRefreshInterval({
         refreshInterval: toMilliseconds(units, value),
