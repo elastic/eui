@@ -719,7 +719,7 @@ export class EuiComboBox<T> extends Component<
   onSearchChange: NonNullable<
     EuiComboBoxInputProps<T>['onChange']
   > = searchValue => {
-    const { onSearchChange } = this.props;
+    const { onSearchChange, delimiter } = this.props;
 
     if (onSearchChange) {
       const hasMatchingOptions = this.state.matchingOptions.length > 0;
@@ -729,6 +729,9 @@ export class EuiComboBox<T> extends Component<
     this.setState({ searchValue }, () => {
       if (searchValue && this.state.isListOpen === false) this.openList();
     });
+    if (delimiter && searchValue.endsWith(delimiter)) {
+      this.addCustomOption(false, searchValue.split(delimiter)[0]);
+    }
   };
 
   componentDidMount() {
