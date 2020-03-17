@@ -1,61 +1,64 @@
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-// import { findTestSubject } from '../../test';
+import ReactDOM from 'react-dom';
+import { resetServerContext } from 'react-beautiful-dnd';
+import html from 'html';
 import { requiredProps } from '../../test/required_props';
-
 import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
 
-function snapshotDragDropContext(component: ReactWrapper) {
-  // Get the Portal's sibling and return its html
-  const renderedHtml = component.html();
-  const container = document.createElement('div');
-  container.innerHTML = renderedHtml;
-  return container.firstChild;
+function takeSnapshot(element: HTMLElement) {
+  expect(
+    html.prettyPrint(element.innerHTML, {
+      indent_size: 2,
+      unformatted: [], // Expand all tags, including spans
+    })
+  ).toMatchSnapshot();
 }
 
 describe('EuiDraggable', () => {
-  test('is rendered', () => {
-    const handler = jest.fn();
-    jest.mock('react', () => {
-      const react = jest.requireActual('react');
-      return {
-        ...react,
-        useLayoutEffect: react.useEffect,
-      };
-    });
+  let appDiv: HTMLElement;
 
-    const component = mount(
+  beforeEach(() => {
+    resetServerContext(); // resets react-beautiful-dnd's internal instance counter which affects snapshots
+    appDiv = document.createElement('div');
+    document.body.appendChild(appDiv);
+  });
+
+  afterEach(() => {
+    ReactDOM.unmountComponentAtNode(appDiv);
+    document.body.removeChild(appDiv);
+  });
+
+  test('is rendered', async () => {
+    const handler = jest.fn();
+
+    ReactDOM.render(
       <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
         <EuiDroppable droppableId="testDroppable">
           <EuiDraggable draggableId="testDraggable" index={0}>
             {() => <div>Hello</div>}
           </EuiDraggable>
         </EuiDroppable>
-      </EuiDragDropContext>
+      </EuiDragDropContext>,
+      appDiv
     );
 
-    expect(snapshotDragDropContext(component)).toMatchSnapshot();
+    expect(takeSnapshot(appDiv)).toMatchSnapshot();
   });
 
   test('can be given ReactElement children', () => {
     const handler = jest.fn();
-    jest.mock('react', () => {
-      const react = jest.requireActual('react');
-      return {
-        ...react,
-        useLayoutEffect: react.useEffect,
-      };
-    });
-    const component = mount(
+
+    ReactDOM.render(
       <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
         <EuiDroppable droppableId="testDroppable">
           <EuiDraggable draggableId="testDraggable" index={0}>
             <div>Hello</div>
           </EuiDraggable>
         </EuiDroppable>
-      </EuiDragDropContext>
+      </EuiDragDropContext>,
+      appDiv
     );
 
-    expect(snapshotDragDropContext(component)).toMatchSnapshot();
+    expect(takeSnapshot(appDiv)).toMatchSnapshot();
   });
 });
