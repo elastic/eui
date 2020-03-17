@@ -7,16 +7,24 @@
 - Removed `role` attribute from `EuiImage`([#3036](https://github.com/elastic/eui/pull/3036))
 - Added `prepend` and `append` ability to `EuiComboBox` single selection only ([#3003](https://github.com/elastic/eui/pull/3003))
 - Added `onColumnResize` prop to `EuiDataGrid` of type `EuiDataGridOnColumnResizeHandler` that gets called when column changes it's size ([#2963](https://github.com/elastic/eui/pull/2963))
+- Added `logoEnterpriseSearch` to `EuiIcon` ([#3066](https://github.com/elastic/eui/pull/3066))
 - Added RGB format support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
 - Added alpha channel (opacity) support to `EuiColorPicker` and `EuiColorStops` ([#2850](https://github.com/elastic/eui/pull/2850))
 - Added `useResizeObserver` hook ([#2991](https://github.com/elastic/eui/pull/2991))
-- Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993))
-- Moved and renamed `useColorPicker and useColorStops` from src-docs/src/views/color_picker/utils to `useColorPickerState and useColorStops` src/services ([#3067](https://github.com/elastic/eui/pull/3067)) 
+- Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993)) 
+- Added `EuiMark` component ([#3060](https://github.com/elastic/eui/pull/3060))
+- Moved and renamed `useColorPicker and useColorStops` from src-docs/src/views/color_picker/utils to `useColorPickerState and useColorStops` src/services ([#3067](https://github.com/elastic/eui/pull/3067))
+
 **Bug Fixes**
 
 - Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 - Fixed SASS `contrastRatio()` function in dark mode by fixing the `pow()` math function ([#3013], (https://github.com/elastic/eui/pull/3013))
 - Fixed bug preventing `EuiDataGrid` from re-evaluating the default column width on resize ([#2991](https://github.com/elastic/eui/pull/2991))
+
+## [`21.0.1`](https://github.com/elastic/eui/tree/v21.0.1)
+
+**Bug Fixes**
+
 - Made `EuiDataGrid`'s `schema.isSortable` value optional ([#2991](https://github.com/elastic/eui/pull/2991))
 
 ## [`21.0.0`](https://github.com/elastic/eui/tree/v21.0.0)
@@ -74,6 +82,7 @@
 
 **Theme: Amsterdam**
 
+- Text sizes are now based on a 14px base font size. Headings are now bold. ([#2936](https://github.com/elastic/eui/pull/2936))
 - Altered `secondary`, `accent` colors to be more saturated ([#2873](https://github.com/elastic/eui/pull/2873))
 
 ## [`20.0.2`](https://github.com/elastic/eui/tree/v20.0.2)
