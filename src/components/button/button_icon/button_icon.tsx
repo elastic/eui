@@ -30,6 +30,11 @@ export type EuiButtonIconColor =
   | 'text'
   | 'warning';
 
+export type HideOrLabel = ExclusiveUnion<
+  { 'aria-hidden': true },
+  ExclusiveUnion<{ label: ReactNode }, { 'aria-labelledby': string }>
+>;
+
 export type EuiButtonIconProps = {
   iconType?: IconType;
   color?: EuiButtonIconColor;
@@ -37,10 +42,7 @@ export type EuiButtonIconProps = {
   size?: ButtonSize;
   iconSize?: IconSize;
 } & CommonProps &
-  ExclusiveUnion<
-    { 'aria-hidden': true },
-    ExclusiveUnion<{ label: ReactNode }, { 'aria-labelledby': string }>
-  >;
+  HideOrLabel;
 
 type EuiButtonIconPropsForAnchor = PropsForAnchor<
   EuiButtonIconProps,
