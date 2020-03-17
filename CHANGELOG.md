@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
+
+## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)
+
 - Updated `EuiFilterSelect` to retain the order of its filters ([#3063](https://github.com/elastic/eui/pull/3063))
 - Added `href` prop to `EuiBadge` ([#3009](https://github.com/elastic/eui/pull/3009))
 - Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
@@ -22,6 +25,7 @@
 - Fixed `EuiFieldNumber` so values of type `number` are now allowed ([#3020](https://github.com/elastic/eui/pull/3020))
 - Fixed SASS `contrastRatio()` function in dark mode by fixing the `pow()` math function ([#3013], (https://github.com/elastic/eui/pull/3013))
 - Fixed bug preventing `EuiDataGrid` from re-evaluating the default column width on resize ([#2991](https://github.com/elastic/eui/pull/2991))
+- Fixed padding in `EuiCallOut` when used as a `banner` for `EuiFlyout` ([#3098](https://github.com/elastic/eui/pull/3098))
 
 ## [`21.0.1`](https://github.com/elastic/eui/tree/v21.0.1)
 
