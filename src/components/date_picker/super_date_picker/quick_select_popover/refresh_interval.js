@@ -90,6 +90,23 @@ export class EuiRefreshInterval extends Component {
     );
   };
 
+  startRefresh = () => {
+    const { value, units } = this.state;
+    const isValid = value !== '' || value > 0;
+    if (isValid) {
+      this.props.applyRefreshInterval({
+        refreshInterval: toMilliseconds(units, value),
+        isPaused: false,
+      });
+    }
+  };
+
+  handleKeyDown = ({ key }) => {
+    if (key === 'Enter') {
+      this.startRefresh();
+    }
+  };
+
   applyRefreshInterval = () => {
     if (this.state.value === '') {
       return;
@@ -106,7 +123,7 @@ export class EuiRefreshInterval extends Component {
     });
   };
 
-  toogleRefresh = () => {
+  toggleRefresh = () => {
     this.props.applyRefreshInterval({
       refreshInterval: toMilliseconds(this.state.units, this.state.value),
       isPaused: !this.props.isPaused,
@@ -139,6 +156,7 @@ export class EuiRefreshInterval extends Component {
               compressed
               value={value}
               onChange={this.onValueChange}
+              onKeyDown={this.handleKeyDown}
               aria-label="Refresh interval value"
               aria-describedby={`${refreshSelectionId} ${legendId}`}
               data-test-subj="superDatePickerRefreshIntervalInput"
@@ -152,6 +170,7 @@ export class EuiRefreshInterval extends Component {
               value={units}
               options={refreshUnitsOptions}
               onChange={this.onUnitsChange}
+              onKeyDown={this.handleKeyDown}
               data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
             />
           </EuiFlexItem>
@@ -160,7 +179,7 @@ export class EuiRefreshInterval extends Component {
               className="euiRefreshInterval__startButton"
               iconType={this.props.isPaused ? 'play' : 'stop'}
               size="s"
-              onClick={this.toogleRefresh}
+              onClick={this.toggleRefresh}
               disabled={value === '' || value <= 0}
               data-test-subj="superDatePickerToggleRefreshButton"
               aria-describedby={`${refreshSelectionId} ${legendId}`}>

@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `21.1.0`.
+- Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
 
 ## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)
 
