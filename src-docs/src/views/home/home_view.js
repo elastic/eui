@@ -48,7 +48,7 @@ export const HomeView = () => (
             <p>
               Version:{' '}
               <Link
-                aria-label={`Version ${pkg.version}, View on GitHub`}
+                aria-label={`Version ${pkg.version}, View changelog`}
                 to="/package/changelog">
                 <strong>v{pkg.version}</strong>
               </Link>
