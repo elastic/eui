@@ -186,6 +186,8 @@ export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
 
+export { EuiMark } from './mark';
+
 export {
   EUI_MODAL_CANCEL_BUTTON,
   EUI_MODAL_CONFIRM_BUTTON,
