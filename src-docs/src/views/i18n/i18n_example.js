@@ -26,7 +26,6 @@ import Context from './context';
 const contextSource = require('!!raw-loader!./context');
 const contextHtml = renderToHtml(Context);
 
-
 export const I18nExample = {
   title: 'I18n',
   sections: [
@@ -122,7 +121,7 @@ export const I18nExample = {
       demo: <I18nNumber />,
     },
     {
-      title: "Context",
+      title: 'Context',
       source: [
         {
           type: GuideSectionTypes.JS,
