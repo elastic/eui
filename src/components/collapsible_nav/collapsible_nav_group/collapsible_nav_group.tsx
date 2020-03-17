@@ -48,7 +48,8 @@ export interface EuiCollapsibleNavGroupInterface extends CommonProps {
 }
 
 type GroupAsAccordion = EuiCollapsibleNavGroupInterface &
-  Omit<EuiAccordionProps, 'id'> & {
+  // The HTML `title` prop conflicts in type with our `title` prop
+  Omit<EuiAccordionProps, 'id' | 'title'> & {
     /**
      * If `true`, wraps children in the body of an accordion,
      * requiring the prop `title` to be used as the button
