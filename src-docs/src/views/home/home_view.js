@@ -37,6 +37,14 @@ export const HomeView = () => (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
+            <EuiLink href="https://github.com/elastic/eui">
+              <EuiScreenReaderOnly>
+                <span>Elastic repo on GitHub</span>
+              </EuiScreenReaderOnly>
+              <EuiIcon type="logoGithub" aria-hidden="true" />
+            </EuiLink>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
             <p>
               Version:{' '}
               <Link
@@ -45,14 +53,6 @@ export const HomeView = () => (
                 <strong>v{pkg.version}</strong>
               </Link>
             </p>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiLink href="https://github.com/elastic/eui">
-              <EuiScreenReaderOnly>
-                <span>Elastic repo on GitHub</span>
-              </EuiScreenReaderOnly>
-              <EuiIcon type="logoGithub" aria-hidden="true" />
-            </EuiLink>
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
