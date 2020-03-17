@@ -140,7 +140,7 @@ export class EuiRefreshInterval extends Component {
     }
 
     return (
-      <fieldset role="presentation" onKeyDown={this.handleKeyDown}>
+      <fieldset>
         <EuiTitle size="xxxs">
           <legend id={legendId}>
             <EuiI18n
@@ -156,6 +156,7 @@ export class EuiRefreshInterval extends Component {
               compressed
               value={value}
               onChange={this.onValueChange}
+              onKeyDown={this.handleKeyDown}
               aria-label="Refresh interval value"
               aria-describedby={`${refreshSelectionId} ${legendId}`}
               data-test-subj="superDatePickerRefreshIntervalInput"
@@ -169,6 +170,7 @@ export class EuiRefreshInterval extends Component {
               value={units}
               options={refreshUnitsOptions}
               onChange={this.onUnitsChange}
+              onKeyDown={this.handleKeyDown}
               data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
             />
           </EuiFlexItem>
@@ -178,6 +180,7 @@ export class EuiRefreshInterval extends Component {
               iconType={this.props.isPaused ? 'play' : 'stop'}
               size="s"
               onClick={this.toggleRefresh}
+              onKeyDown={this.handleKeyDown}
               disabled={value === '' || value <= 0}
               data-test-subj="superDatePickerToggleRefreshButton"
               aria-describedby={`${refreshSelectionId} ${legendId}`}>

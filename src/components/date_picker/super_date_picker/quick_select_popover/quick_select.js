@@ -126,7 +126,7 @@ export class EuiQuickSelect extends Component {
     const legendId = this.generateId();
 
     return (
-      <fieldset role="presentation" onKeyDown={this.handleKeyDown}>
+      <fieldset>
         <EuiI18n
           token="euiQuickSelect.legendText"
           default="Quick select a time range">
@@ -198,6 +198,7 @@ export class EuiQuickSelect extends Component {
               {tenseLabel => (
                 <EuiSelect
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-label={tenseLabel}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   value={timeTense}
@@ -212,6 +213,7 @@ export class EuiQuickSelect extends Component {
               {valueLabel => (
                 <EuiFieldNumber
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   aria-label={valueLabel}
                   value={timeValue}
@@ -225,6 +227,7 @@ export class EuiQuickSelect extends Component {
               {unitLabel => (
                 <EuiSelect
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-label={unitLabel}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   value={timeUnits}
@@ -237,6 +240,7 @@ export class EuiQuickSelect extends Component {
           <EuiFlexItem grow={false}>
             <EuiButton
               aria-describedby={`${timeSelectionId} ${legendId}`}
+              onKeyDown={this.handleKeyDown}
               className="euiQuickSelect__applyButton"
               size="s"
               onClick={this.applyQuickSelect}
