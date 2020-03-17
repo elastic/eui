@@ -3,9 +3,10 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   Ref,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
-
+import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
 import { getSecureRelForTarget } from '../../../services';
 import {
   CommonProps,
@@ -34,6 +35,7 @@ export interface EuiButtonIconProps extends CommonProps {
   color?: EuiButtonIconColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
+  label?: ReactNode;
   isDisabled?: boolean;
   size?: ButtonSize;
   iconSize?: IconSize;
@@ -82,12 +84,18 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   target,
   rel,
   buttonRef,
+  label,
   ...rest
 }) => {
   const ariaHidden = rest['aria-hidden'];
   const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
 
-  if (!rest['aria-label'] && !rest['aria-labelledby'] && !isAriaHidden) {
+  if (
+    !label &&
+    !rest['aria-label'] &&
+    !rest['aria-labelledby'] &&
+    !isAriaHidden
+  ) {
     console.warn(
       `EuiButtonIcon requires aria-label or aria-labelledby to be specified because icon-only
       buttons are screen-reader-inaccessible without them.`
@@ -128,6 +136,11 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         ref={buttonRef as Ref<HTMLAnchorElement>}
         {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {buttonIcon}
+        {label && (
+          <EuiScreenReaderOnly>
+            <span>{label}</span>
+          </EuiScreenReaderOnly>
+        )}
       </a>
     );
   }
@@ -142,6 +155,11 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       ref={buttonRef as Ref<HTMLButtonElement>}
       {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
       {buttonIcon}
+      {label && (
+        <EuiScreenReaderOnly>
+          <span>{label}</span>
+        </EuiScreenReaderOnly>
+      )}
     </button>
   );
 };

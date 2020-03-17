@@ -194,7 +194,7 @@ import { ToastExample } from './views/toast/toast_example';
 
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
-import { ToggleExample } from './views/toggle/toggle_example';
+// import { ToggleExample } from './views/toggle/toggle_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
@@ -423,7 +423,7 @@ const navigation = [
       PortalExample,
       ResizeObserverExample,
       ResponsiveExample,
-      ToggleExample,
+      // ToggleExample,
       WindowEventExample,
     ].map(example => createExample(example)),
   },

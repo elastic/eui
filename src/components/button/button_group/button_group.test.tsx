@@ -25,7 +25,7 @@ const options = [
 describe('EuiButtonGroup', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiButtonGroup onChange={() => {}} {...requiredProps} />
+      <EuiButtonGroup onChange={() => {}} legend="test" {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();
@@ -35,7 +35,7 @@ describe('EuiButtonGroup', () => {
     describe('options', () => {
       it('are rendered', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} options={options} />
+          <EuiButtonGroup onChange={() => {}} legend="test" options={options} />
         );
 
         expect(component).toMatchSnapshot();
@@ -51,7 +51,11 @@ describe('EuiButtonGroup', () => {
         ];
 
         const component = render(
-          <EuiButtonGroup onChange={() => {}} options={options2} />
+          <EuiButtonGroup
+            onChange={() => {}}
+            legend="test"
+            options={options2}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -63,6 +67,7 @@ describe('EuiButtonGroup', () => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiButtonGroup
+              legend="test"
               onChange={() => {}}
               buttonSize={size}
               options={options}
@@ -77,7 +82,12 @@ describe('EuiButtonGroup', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} isDisabled options={options} />
+          <EuiButtonGroup
+            onChange={() => {}}
+            legend="test"
+            isDisabled
+            options={options}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -87,7 +97,12 @@ describe('EuiButtonGroup', () => {
     describe('isFullWidth', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} isFullWidth options={options} />
+          <EuiButtonGroup
+            onChange={() => {}}
+            legend="test"
+            isFullWidth
+            options={options}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -97,7 +112,12 @@ describe('EuiButtonGroup', () => {
     describe('isIconOnly', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} isIconOnly options={options} />
+          <EuiButtonGroup
+            onChange={() => {}}
+            legend="test"
+            isIconOnly
+            options={options}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -110,6 +130,7 @@ describe('EuiButtonGroup', () => {
           const component = render(
             <EuiButtonGroup
               onChange={() => {}}
+              legend="test"
               color={color}
               options={options}
             />
@@ -123,11 +144,7 @@ describe('EuiButtonGroup', () => {
     describe('legend', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonGroup
-            onChange={() => {}}
-            legend="legend"
-            options={options}
-          />
+          <EuiButtonGroup onChange={() => {}} legend="test" options={options} />
         );
 
         expect(component).toMatchSnapshot();
@@ -137,7 +154,12 @@ describe('EuiButtonGroup', () => {
     describe('name', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} name="name" options={options} />
+          <EuiButtonGroup
+            onChange={() => {}}
+            legend="test"
+            name="name"
+            options={options}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -149,6 +171,7 @@ describe('EuiButtonGroup', () => {
         const component = render(
           <EuiButtonGroup
             onChange={() => {}}
+            legend="test"
             idSelected="button00"
             options={options}
           />
@@ -161,7 +184,12 @@ describe('EuiButtonGroup', () => {
     describe('type of multi', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonGroup onChange={() => {}} type="multi" options={options} />
+          <EuiButtonGroup
+            onChange={() => {}}
+            legend="test"
+            type="multi"
+            options={options}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -171,6 +199,7 @@ describe('EuiButtonGroup', () => {
         const component = render(
           <EuiButtonGroup
             onChange={() => {}}
+            legend="test"
             type="multi"
             idToSelectedMap={{ button00: true, button01: true }}
             options={options}

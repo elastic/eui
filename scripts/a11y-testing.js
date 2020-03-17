@@ -58,7 +58,6 @@ const docsPages = async (root, page) => {
     `${root}#/utilities/portal`,
     `${root}#/utilities/resizeobserver`,
     `${root}#/utilities/responsive`,
-    `${root}#/utilities/toggle`,
     `${root}#/utilities/window-events`,
     `${root}#/package/i18n-tokens`,
     `${root}#/utilities/accessibility`,

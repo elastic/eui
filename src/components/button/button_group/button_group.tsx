@@ -1,14 +1,12 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { ToggleType } from '../../toggle';
-
-import { EuiButtonToggle } from '../button_toggle';
 import { CommonProps } from '../../common';
-
-import { ButtonColor, ButtonIconSide } from '../button';
 import { IconType } from '../../icon';
+import { ToggleType } from '../../toggle';
+import { ButtonColor, ButtonIconSide, EuiButton } from '../button';
+import { EuiButtonIcon } from '../button_icon';
+import { EuiButtonToggle } from '../button_toggle';
 
 export interface EuiButtonGroupIdToSelectedMap {
   [id: string]: boolean;
@@ -38,7 +36,7 @@ export interface EuiButtonGroupProps extends CommonProps {
   isFullWidth?: boolean;
   isIconOnly?: boolean;
   idSelected?: string;
-  legend?: string;
+  legend: string;
   color?: ButtonColor;
   name?: string;
   type?: ToggleType;
@@ -78,18 +76,11 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
     'euiButtonGroup__fieldset--fullWidth': isFullWidth,
   });
 
-  let legendNode;
-  if (legend) {
-    legendNode = (
+  return (
+    <fieldset className={fieldsetClasses}>
       <EuiScreenReaderOnly>
         <legend>{legend}</legend>
       </EuiScreenReaderOnly>
-    );
-  }
-
-  return (
-    <fieldset className={fieldsetClasses}>
-      {legendNode}
 
       <div className={classes} {...rest}>
         {options.map((option, index) => {
@@ -97,6 +88,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             id,
             name: optionName,
             value,
+            label,
             isDisabled: optionDisabled,
             className,
             ...rest
@@ -121,6 +113,50 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             className
           );
 
+          if (type === 'multi') {
+            if (isIconOnly) {
+              if (color === 'secondary') {
+                console.warn(
+                  'Secondary is not a support color for EuiButtonIcon. Falling back to Primary;'
+                );
+                color = 'primary';
+              }
+
+              return (
+                <EuiButtonIcon
+                  className={buttonClasses}
+                  id={id}
+                  color={color}
+                  isDisabled={isDisabled}
+                  aria-selected={isSelectedState}
+                  size={buttonSize === 'compressed' ? 's' : buttonSize}
+                  onClick={() => onChange(id, value)}
+                  data-test-subj={dataTestSubj}
+                  label={label}
+                  key={index}
+                  {...rest}
+                />
+              );
+            }
+
+            return (
+              <EuiButton
+                className={buttonClasses}
+                id={id}
+                color={color}
+                fill={fill}
+                isDisabled={isDisabled}
+                aria-selected={isSelectedState}
+                size={buttonSize === 'compressed' ? 's' : buttonSize}
+                onClick={() => onChange(id, value)}
+                data-test-subj={dataTestSubj}
+                key={index}
+                {...rest}>
+                {label}
+              </EuiButton>
+            );
+          }
+
           return (
             <EuiButtonToggle
               className={buttonClasses}
@@ -138,6 +174,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               size={buttonSize === 'compressed' ? 's' : buttonSize}
               type={type}
               data-test-subj={dataTestSubj}
+              label={label}
               {...rest}
             />
           );

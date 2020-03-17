@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
-import {
-  EuiButtonToggle,
-  EuiSpacer,
-  EuiTitle,
-} from '../../../../src/components';
+import { EuiButton, EuiButtonIcon } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -14,69 +10,54 @@ export default class extends Component {
       toggle0On: false,
       toggle1On: false,
       toggle2On: false,
-      toggle3On: true,
-      toggle4On: true,
+      toggle3On: false,
     };
   }
 
-  onToggle0Change = e => {
-    this.setState({ toggle0On: e.target.checked });
+  onToggle0Change = () => {
+    this.setState({ toggle0On: !this.state.toggle0On });
   };
 
-  onToggle1Change = e => {
-    this.setState({ toggle1On: e.target.checked });
+  onToggle1Change = () => {
+    this.setState({ toggle1On: !this.state.toggle1On });
   };
 
-  onToggle4Change = e => {
-    this.setState({ toggle4On: e.target.checked });
+  onToggle2Change = () => {
+    this.setState({ toggle2On: !this.state.toggle2On });
+  };
+
+  onToggle3Change = () => {
+    this.setState({ toggle3On: !this.state.toggle3On });
   };
 
   render() {
     return (
       <div>
-        <EuiButtonToggle
-          label="Toggle Me"
+        <EuiButton
+          fill={this.state.toggle0On}
+          aria-pressed={this.state.toggle0On}
           iconType={this.state.toggle0On ? 'starPlusEmpty' : 'starFilledSpace'}
-          onChange={this.onToggle0Change}
-          isSelected={this.state.toggle0On}
+          onClick={this.onToggle0Change}>
+          Toggle Me
+        </EuiButton>
+        &emsp;
+        <EuiButton fill={this.state.toggle1On} onClick={this.onToggle1Change}>
+          {this.state.toggle1On
+            ? 'I am a primary toggle'
+            : 'I am a filled toggle'}
+        </EuiButton>
+        &emsp;
+        <EuiButtonIcon
+          aria-label={this.state.toggle2On ? 'Play' : 'Pause'}
+          iconType={this.state.toggle2On ? 'play' : 'pause'}
+          onClick={this.onToggle2Change}
         />
         &emsp;
-        <EuiButtonToggle
-          label={
-            this.state.toggle1On
-              ? "I'm a filled toggle"
-              : "I'm a primary toggle"
-          }
-          fill={this.state.toggle1On}
-          onChange={this.onToggle1Change}
-          isSelected={this.state.toggle1On}
-        />
-        &emsp;
-        <EuiButtonToggle
-          label="Toggle Me"
-          iconType={this.state.toggle4On ? 'eye' : 'eyeClosed'}
-          onChange={this.onToggle4Change}
-          isSelected={this.state.toggle4On}
-          isEmpty
-          isIconOnly
-        />
-        <EuiSpacer size="m" />
-        <EuiTitle size="xxs">
-          <h3>Disabled</h3>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiButtonToggle
-          isDisabled
-          label="Can't toggle this"
-          fill={this.state.toggle2On}
-          isSelected={this.state.toggle2On}
-        />
-        &emsp;
-        <EuiButtonToggle
-          isDisabled
-          label="Can't toggle this either"
-          fill={this.state.toggle3On}
-          isSelected={this.state.toggle3On}
+        <EuiButtonIcon
+          aria-label="Autosave"
+          iconType="save"
+          aria-pressed={this.state.onToggle3Change}
+          onClick={this.onToggle3Change}
         />
       </div>
     );

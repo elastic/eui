@@ -12,8 +12,8 @@ import {
   EuiButtonIcon,
   EuiCode,
   EuiButtonGroup,
-  EuiButtonToggle,
   EuiCallOut,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import Button from './button';
@@ -79,12 +79,22 @@ const buttonLoadingSnippet = `<EuiButton isLoading={true}>
 import ButtonToggle from './button_toggle';
 const buttonToggleSource = require('!!raw-loader!./button_toggle');
 const buttonToggleHtml = renderToHtml(ButtonToggle);
-const buttonToggleSnippet = `<EuiButtonToggle
-  label={label}
+const buttonToggleSnippet = [
+  `<EuiButton
   iconType={this.state.toggleOn ? onIcon : offIcon}
+  onClick={this.onToggleChange}
+>
+  {this.state.toggleOn ? onLabel : offLabel}
+</EuiButton>
+`,
+  `<EuiButton
+  iconType={this.state.toggleOn ? onIcon : offIcon}
+  aria-pressed={this.state.toggleOn}
   onChange={this.onToggleChange}
-  isSelected={this.state.toggleOn}
-/>`;
+>
+  {buttonText}
+</EuiButton>`,
+];
 
 import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
@@ -232,9 +242,9 @@ export const ButtonExample = {
       text: (
         <p>
           When aligning <EuiCode>EuiButtonEmpty</EuiCode> components to the left
-          or the right, you should make sure they&rsquo;re flush with the edge
-          of their container, so that they&rsquo;re horizontally aligned with
-          the other content in the container.
+          or the right, you should make sure they&apos;re flush with the edge of
+          their container, so that they&apos;re horizontally aligned with the
+          other content in the container.
         </p>
       ),
       snippet: buttonOptionFlushSnippet,
@@ -272,26 +282,42 @@ export const ButtonExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            This is a specialized component that combines{' '}
-            <EuiCode>EuiButton</EuiCode> and <EuiCode>EuiToggle</EuiCode> to
-            create a button with an on/off state. You can pass all the same
-            parameters to it as you can to <EuiCode>EuiButton</EuiCode>. The
-            main difference is that, it does not accept any children, but a{' '}
-            <EuiCode>label</EuiCode> prop instead. This is for the handling of
-            accessibility with the <EuiCode>EuiToggle</EuiCode>.
-          </p>
-          <p>
-            The <EuiCode>EuiButtonToggle</EuiCode> does not have any inherit
-            visual state differences. These you must apply in your
-            implementation.
-          </p>
-        </div>
+        <>
+          <EuiCallOut
+            iconType="trash"
+            color="warning"
+            title={
+              <span>
+                Looking for <EuiCode>EuiButtonToggle</EuiCode>? It&apos;s been
+                deprecated so docs around it have been removed (though it will
+                still be exported until Oct 2020).
+              </span>
+            }
+          />
+          <EuiSpacer size="s" />
+          <div>
+            <p>
+              If your button has a on and off state, consider adding{' '}
+              <EuiCode>aria-pressed</EuiCode> to your button. (
+              <EuiCode>aria-pressed</EuiCode> can be added to any EUI button
+              component.)
+            </p>
+            <p>
+              There&apos;s one simple rule to figure out if you should do that:
+              does your button change text between the two states or is it
+              visual only?
+            </p>
+            <p>
+              If you answered &quot;yes, my button text changes between
+              states&quot;, don&apos;t add <EuiCode>aria-pressed</EuiCode>. If
+              you answered &quot;no, my button always has the same text&quot;,
+              add <EuiCode>aria-pressed</EuiCode>.
+            </p>
+          </div>
+        </>
       ),
       demo: <ButtonToggle />,
       snippet: buttonToggleSnippet,
-      props: { EuiButtonToggle },
     },
     {
       title: 'Groups',

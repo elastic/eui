@@ -6,7 +6,6 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonToggle,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -77,15 +76,6 @@ export default class extends Component {
           <EuiButton color="ghost" isLoading>
             Loading&hellip;
           </EuiButton>
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiButtonToggle
-            color="ghost"
-            label="Toggle Me"
-            fill={this.state.toggle0On}
-            onChange={this.onToggle0Change}
-          />
         </EuiFlexItem>
       </EuiFlexGroup>
     );
