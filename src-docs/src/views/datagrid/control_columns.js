@@ -141,6 +141,7 @@ const SelectionHeaderCell = () => {
   return (
     <EuiCheckbox
       id="selection-toggle"
+      aria-label="Select all rows"
       indeterminate={isIndeterminate}
       checked={selectedRows.size > 0}
       onChange={e => {
@@ -168,7 +169,8 @@ const SelectionRowCell = ({ rowIndex }) => {
   return (
     <div>
       <EuiCheckbox
-        id={`selection-checkbox-${rowIndex}`}
+        id={`${rowIndex}`}
+        aria-label={`Select row ${rowIndex}`}
         checked={isChecked}
         onChange={e => {
           if (e.target.checked) {
