@@ -747,7 +747,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const gridAriaProps: {
     'aria-label'?: string;
     'aria-labelledby'?: string;
-    tabIndex?: number;
   } = {};
   if ('aria-label' in rest) {
     gridAriaProps['aria-label'] = rest['aria-label'];

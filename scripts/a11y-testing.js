@@ -125,17 +125,17 @@ const printResult = result =>
     for (const link of links) {
       await page.goto(link);
 
-    const { violations } = await new AxePuppeteer(page)
-      .configure({
-        rules: [
-          { id: 'color-contrast', enabled: false },
-          {
-            id: 'scrollable-region-focusable',
-            matches: '[role="grid"]',
-          },
-        ],
-      })
-      .analyze();
+      const { violations } = await new AxePuppeteer(page)
+        .configure({
+          rules: [
+            { id: 'color-contrast', enabled: false },
+            {
+              id: 'scrollable-region-focusable',
+              matches: '[role="grid"]',
+            },
+          ],
+        })
+        .analyze();
 
       if (violations.length > 0) {
         totalViolationsCount += violations.length;
