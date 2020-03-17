@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDraggable can be given ReactElement children 1`] = `
+"<div data-rbd-droppable-id=\\"testDroppable\\" data-rbd-droppable-context-id=\\"0\\"
+data-test-subj=\\"droppable\\" class=\\"euiDroppable euiDroppable--noGrow\\">
+  <div data-rbd-draggable-context-id=\\"0\\" data-rbd-draggable-id=\\"testDraggable\\"
+  tabindex=\\"0\\" data-rbd-drag-handle-draggable-id=\\"testDraggable\\" data-rbd-drag-handle-context-id=\\"0\\"
+  aria-labelledby=\\"rbd-lift-instruction-0\\" draggable=\\"false\\" data-test-subj=\\"draggable\\"
+  class=\\"euiDraggable\\">
+    <div class=\\"euiDraggable__item\\">Hello</div>
+  </div>
+  <div class=\\"euiDroppable__placeholder\\"></div>
+</div>"
+`;
+
+exports[`EuiDraggable can be given ReactElement children 2`] = `undefined`;
+
+exports[`EuiDraggable is rendered 1`] = `
+"<div data-rbd-droppable-id=\\"testDroppable\\" data-rbd-droppable-context-id=\\"0\\"
+data-test-subj=\\"droppable\\" class=\\"euiDroppable euiDroppable--noGrow\\">
+  <div data-rbd-draggable-context-id=\\"0\\" data-rbd-draggable-id=\\"testDraggable\\"
+  tabindex=\\"0\\" data-rbd-drag-handle-draggable-id=\\"testDraggable\\" data-rbd-drag-handle-context-id=\\"0\\"
+  aria-labelledby=\\"rbd-lift-instruction-0\\" draggable=\\"false\\" data-test-subj=\\"draggable\\"
+  class=\\"euiDraggable\\">
+    <div class=\\"euiDraggable__item\\">Hello</div>
+  </div>
+  <div class=\\"euiDroppable__placeholder\\"></div>
+</div>"
+`;
+
+exports[`EuiDraggable is rendered 2`] = `undefined`;
