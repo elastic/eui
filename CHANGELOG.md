@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Upgraded `react-beautiful-dnd` to version 13 ([#3064](https://github.com/elastic/eui/pull/3064))
 - Added props descriptions for `EuiComboBox` ([#3007](https://github.com/elastic/eui/pull/3007))
 - Exported `dateFormatAliases` as a part of the public API ([#3043](https://github.com/elastic/eui/pull/3043))
 - Exported `EuiTextProps` type definition ([#3039](https://github.com/elastic/eui/pull/3039))
