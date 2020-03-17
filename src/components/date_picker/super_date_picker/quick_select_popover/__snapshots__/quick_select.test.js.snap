@@ -94,7 +94,6 @@ exports[`EuiQuickSelect is rendered 1`] = `
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
-        onKeyDown={[Function]}
         size="s"
       >
         <EuiI18n
@@ -221,7 +220,6 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         className="euiQuickSelect__applyButton"
         disabled={false}
         onClick={[Function]}
-        onKeyDown={[Function]}
         size="s"
       >
         <EuiI18n

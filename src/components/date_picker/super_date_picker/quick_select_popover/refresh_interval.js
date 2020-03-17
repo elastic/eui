@@ -180,7 +180,6 @@ export class EuiRefreshInterval extends Component {
               iconType={this.props.isPaused ? 'play' : 'stop'}
               size="s"
               onClick={this.toggleRefresh}
-              onKeyDown={this.handleKeyDown}
               disabled={value === '' || value <= 0}
               data-test-subj="superDatePickerToggleRefreshButton"
               aria-describedby={`${refreshSelectionId} ${legendId}`}>

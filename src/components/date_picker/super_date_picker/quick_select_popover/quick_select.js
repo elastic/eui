@@ -240,7 +240,6 @@ export class EuiQuickSelect extends Component {
           <EuiFlexItem grow={false}>
             <EuiButton
               aria-describedby={`${timeSelectionId} ${legendId}`}
-              onKeyDown={this.handleKeyDown}
               className="euiQuickSelect__applyButton"
               size="s"
               onClick={this.applyQuickSelect}
