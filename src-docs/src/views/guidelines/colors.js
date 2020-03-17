@@ -66,7 +66,7 @@ export default ({ selectedTheme }) => {
         </p>
       </EuiText>
 
-      <EuiSpacer size="m" />
+      <EuiSpacer size="xl" />
 
       <EuiTitle size="xs">
         <h3>
