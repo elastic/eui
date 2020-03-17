@@ -124,10 +124,17 @@ const printResult = result =>
     for (const link of links) {
       await page.goto(link);
 
-      const { violations } = await new AxePuppeteer(page)
-        .disableRules('color-contrast')
-        .exclude(['figure[role="figure"']) // excluding figure[role="figure"] the duplicatory role is there for ie11 support
-        .analyze();
+    const { violations } = await new AxePuppeteer(page)
+      .configure({
+        rules: [
+          { id: 'color-contrast', enabled: false },
+          {
+            id: 'scrollable-region-focusable',
+            matches: '[role="grid"]',
+          },
+        ],
+      })
+      .analyze();
 
       if (violations.length > 0) {
         totalViolationsCount += violations.length;
