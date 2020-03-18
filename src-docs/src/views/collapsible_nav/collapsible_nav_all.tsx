@@ -49,7 +49,6 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 ];
 
 export default () => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const [navIsOpen, setNavIsOpen] = useState(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
   );
@@ -137,118 +136,126 @@ export default () => {
   ];
 
   return (
-    <GuideFullScreen isFullScreen={isFullScreen}>
-      <EuiHeader
-        position="fixed"
-        sections={[
-          {
-            items: leftSectionItems,
-            borders: 'right',
-          },
-          {
-            items: [
-              <EuiButtonEmpty
-                iconType="minimize"
-                onClick={() => setIsFullScreen(false)}>
-                Exit full screen
-              </EuiButtonEmpty>,
-            ],
-          },
-        ]}
-      />
+    <GuideFullScreen>
+      {setIsFullScreen => (
+        <React.Fragment>
+          <EuiHeader
+            position="fixed"
+            sections={[
+              {
+                items: leftSectionItems,
+                borders: 'right',
+              },
+              {
+                items: [
+                  <EuiButtonEmpty
+                    iconType="minimize"
+                    onClick={() => setIsFullScreen(false)}>
+                    Exit full screen
+                  </EuiButtonEmpty>,
+                ],
+              },
+            ]}
+          />
 
-      {navIsOpen && (
-        <EuiCollapsibleNav
-          docked={navIsDocked}
-          onClose={() => setNavIsOpen(false)}>
-          {/* Dark deployments section */}
-          <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-            {DeploymentsGroup}
-          </EuiFlexItem>
+          {navIsOpen && (
+            <EuiCollapsibleNav
+              docked={navIsDocked}
+              onClose={() => setNavIsOpen(false)}>
+              {/* Dark deployments section */}
+              <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+                {DeploymentsGroup}
+              </EuiFlexItem>
 
-          {/* Shaded pinned section always with a home item */}
-          <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-            <EuiCollapsibleNavGroup
-              background="light"
-              className="eui-yScroll"
-              style={{ maxHeight: '40vh' }}>
-              <EuiPinnableListGroup
-                listItems={alterLinksWithCurrentState(TopLinks).concat(
-                  alterLinksWithCurrentState(pinnedItems, true)
-                )}
-                onPinClick={removePin}
-                maxWidth="none"
-                color="subdued"
-                gutterSize="none"
-                size="s"
-              />
-            </EuiCollapsibleNavGroup>
-          </EuiFlexItem>
+              {/* Shaded pinned section always with a home item */}
+              <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+                <EuiCollapsibleNavGroup
+                  background="light"
+                  className="eui-yScroll"
+                  style={{ maxHeight: '40vh' }}>
+                  <EuiPinnableListGroup
+                    listItems={alterLinksWithCurrentState(TopLinks).concat(
+                      alterLinksWithCurrentState(pinnedItems, true)
+                    )}
+                    onPinClick={removePin}
+                    maxWidth="none"
+                    color="subdued"
+                    gutterSize="none"
+                    size="s"
+                  />
+                </EuiCollapsibleNavGroup>
+              </EuiFlexItem>
 
-          <EuiHorizontalRule margin="none" />
+              <EuiHorizontalRule margin="none" />
 
-          {/* BOTTOM */}
-          <EuiFlexItem className="eui-yScroll">
-            {/* Kibana section */}
-            <EuiCollapsibleNavGroup
-              title="Kibana"
-              iconType="logoKibana"
-              isCollapsible={true}
-              initialIsOpen={openGroups.includes('Kibana')}
-              onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}>
-              <EuiPinnableListGroup
-                listItems={alterLinksWithCurrentState(KibanaLinks)}
-                onPinClick={addPin}
-                maxWidth="none"
-                color="subdued"
-                gutterSize="none"
-                size="s"
-              />
-            </EuiCollapsibleNavGroup>
+              {/* BOTTOM */}
+              <EuiFlexItem className="eui-yScroll">
+                {/* Kibana section */}
+                <EuiCollapsibleNavGroup
+                  title="Kibana"
+                  iconType="logoKibana"
+                  isCollapsible={true}
+                  initialIsOpen={openGroups.includes('Kibana')}
+                  onToggle={(isOpen: boolean) =>
+                    toggleAccordion(isOpen, 'Kibana')
+                  }>
+                  <EuiPinnableListGroup
+                    listItems={alterLinksWithCurrentState(KibanaLinks)}
+                    onPinClick={addPin}
+                    maxWidth="none"
+                    color="subdued"
+                    gutterSize="none"
+                    size="s"
+                  />
+                </EuiCollapsibleNavGroup>
 
-            {/* Security callout */}
-            {SecurityGroup}
+                {/* Security callout */}
+                {SecurityGroup}
 
-            {/* Learn section */}
-            <EuiCollapsibleNavGroup
-              title="Learn"
-              iconType="training"
-              isCollapsible={true}
-              initialIsOpen={openGroups.includes('Learn')}
-              onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}>
-              <EuiPinnableListGroup
-                listItems={alterLinksWithCurrentState(LearnLinks)}
-                onPinClick={addPin}
-                maxWidth="none"
-                color="subdued"
-                gutterSize="none"
-                size="s"
-              />
-            </EuiCollapsibleNavGroup>
+                {/* Learn section */}
+                <EuiCollapsibleNavGroup
+                  title="Learn"
+                  iconType="training"
+                  isCollapsible={true}
+                  initialIsOpen={openGroups.includes('Learn')}
+                  onToggle={(isOpen: boolean) =>
+                    toggleAccordion(isOpen, 'Learn')
+                  }>
+                  <EuiPinnableListGroup
+                    listItems={alterLinksWithCurrentState(LearnLinks)}
+                    onPinClick={addPin}
+                    maxWidth="none"
+                    color="subdued"
+                    gutterSize="none"
+                    size="s"
+                  />
+                </EuiCollapsibleNavGroup>
 
-            {/* Docking button only for larger screens that can support it*/}
-            <EuiShowFor sizes={['l', 'xl']}>
-              <EuiCollapsibleNavGroup>
-                <EuiListGroupItem
-                  size="xs"
-                  color="subdued"
-                  label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
-                  onClick={() => {
-                    setNavIsDocked(!navIsDocked);
-                    localStorage.setItem(
-                      'navIsDocked',
-                      JSON.stringify(!navIsDocked)
-                    );
-                  }}
-                  iconType={navIsDocked ? 'lock' : 'lockOpen'}
-                />
-              </EuiCollapsibleNavGroup>
-            </EuiShowFor>
-          </EuiFlexItem>
-        </EuiCollapsibleNav>
+                {/* Docking button only for larger screens that can support it*/}
+                <EuiShowFor sizes={['l', 'xl']}>
+                  <EuiCollapsibleNavGroup>
+                    <EuiListGroupItem
+                      size="xs"
+                      color="subdued"
+                      label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
+                      onClick={() => {
+                        setNavIsDocked(!navIsDocked);
+                        localStorage.setItem(
+                          'navIsDocked',
+                          JSON.stringify(!navIsDocked)
+                        );
+                      }}
+                      iconType={navIsDocked ? 'lock' : 'lockOpen'}
+                    />
+                  </EuiCollapsibleNavGroup>
+                </EuiShowFor>
+              </EuiFlexItem>
+            </EuiCollapsibleNav>
+          )}
+
+          <EuiPage className="guideFullScreenOverlay" />
+        </React.Fragment>
       )}
-
-      <EuiPage className="guideFullScreenOverlay" />
     </GuideFullScreen>
   );
 };
