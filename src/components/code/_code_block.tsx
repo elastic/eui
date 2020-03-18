@@ -56,9 +56,9 @@ interface Props {
   paddingSize: PaddingSize;
   transparentBackground: boolean;
   /**
-   * specify how white-space inside the element is handled
-   * pre respects line breaks/white space but doesn't force them (doesn't wrap the line)
-   * pre-wrap respects respects line breaks/white space but does force them (wrap the line)
+   * Specify how `white-space` inside the element is handled.
+   * `pre` respects line breaks/white space but doesn't force them to wrap the line
+   * `pre-wrap` respects line breaks/white space but does force them to wrap the line when necessary.
    */
   whiteSpace?: 'pre' | 'pre-wrap';
 }
@@ -178,8 +178,8 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     const codeClasses = classNames('euiCodeBlock__code', language);
 
     const preClasses = classNames('euiCodeBlock__pre', {
-      euiCodeBlock__pre_whiteSpacePre: whiteSpace === 'pre',
-      euiCodeBlock__pre_whiteSpacePreWrap: whiteSpace === 'pre-wrap',
+      'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre',
+      'euiCodeBlock__pre--whiteSpacePreWrap': whiteSpace === 'pre-wrap',
     });
 
     const optionalStyles: CSSProperties = {};
