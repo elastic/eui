@@ -67,8 +67,6 @@ import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
 
-import { ContextExample } from './views/context/context_example';
-
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
 import { ControlBarExample } from './views/control_bar/control_bar_example';
@@ -79,6 +77,7 @@ import { DataGridExample } from './views/datagrid/datagrid_example';
 import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
 import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
+import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -117,7 +116,7 @@ import { HeaderExample } from './views/header/header_example';
 
 import { HealthExample } from './views/health/health_example';
 
-import { HighlightExample } from './views/highlight/highlight_example';
+import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_and_mark_example';
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
 
@@ -229,7 +228,7 @@ const slugify = str => {
   return parts.join('-');
 };
 
-const createExample = example => {
+const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
       'One of your example pages is undefined. This usually happens when you export or import it with the wrong name.'
@@ -257,7 +256,7 @@ const createExample = example => {
   );
 
   return {
-    name: title,
+    name: customTitle || title,
     component,
     sections,
   };
@@ -267,7 +266,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createExample(AccessibilityGuidelines),
+      createExample(AccessibilityGuidelines, 'Accesibility'),
       {
         name: 'Buttons',
         component: ButtonGuidelines,
@@ -343,6 +342,7 @@ const navigation = [
       DataGridMemoryExample,
       DataGridSchemaExample,
       DataGridStylingExample,
+      DataGridControlColumnsExample,
       TableExample,
     ].map(example => createExample(example)),
   },
@@ -407,14 +407,13 @@ const navigation = [
     items: [
       AccessibilityExample,
       ColorPaletteExample,
-      ContextExample,
       CopyExample,
       UtilityClassesExample,
       DelayHideExample,
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
-      HighlightExample,
+      HighlightAndMarkExample,
       InnerTextExample,
       I18nExample,
       IsColorDarkExample,

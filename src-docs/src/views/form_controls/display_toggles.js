@@ -84,7 +84,11 @@ export class DisplayToggles extends Component {
             </EuiButtonEmpty>
           }>
           <div>
-            <EuiFlexGroup wrap={true} direction="column" gutterSize="s">
+            <EuiFlexGroup
+              wrap={true}
+              direction="column"
+              gutterSize="s"
+              responsive={false}>
               {(canDisabled || canIsDisabled) && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch

@@ -96,7 +96,7 @@ $euiProgressColors: (
   warning: $euiColorWarning,
   danger: $euiColorDanger,
   accent: $euiColorAccent,
-  subdued: $euiColorMediumShade,
+  subdued: $euiTextSubduedColor,
 );
 
 @each $name, $color in $euiProgressColors {

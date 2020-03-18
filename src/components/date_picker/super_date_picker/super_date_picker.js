@@ -470,7 +470,6 @@ export class EuiSuperDatePicker extends Component {
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>
         </EuiFlexItem>
-
         {this.renderUpdateButton()}
       </EuiFlexGroup>
     );

@@ -1,3 +1,5 @@
+@import '../../global_styling/functions/index';
+
 // Core
 $euiColorPrimary: #1BA9F5;
 $euiColorSecondary: #7DE2D1;
@@ -28,12 +30,23 @@ $euiLinkColor: $euiColorPrimary;
 $euiFocusBackgroundColor: #232635;
 $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
+$euiPageBackgroundColor: shade($euiColorLightestShade, 30%);
+$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade);
+$euiTitleColor: $euiTextColor;
 
-$euiColorChartLines: #343741;
-$euiColorChartBand: #2A2C35;
+// Contrasty text variants
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
+$euiColorAccentText: makeHighContrastColor($euiColorAccent);
+$euiColorWarningText: makeHighContrastColor($euiColorWarning);
+$euiColorDangerText: makeHighContrastColor($euiColorDanger, $euiColorLightShade);
+$euiColorSuccessText: $euiColorSecondaryText;
+
+// Charts
+$euiColorChartLines: $euiColorLightShade;
+$euiColorChartBand: tint($euiColorLightestShade, 2.5%);
 
 // Code
-
 $euiCodeBlockCommentColor: #656565;
 $euiCodeBlockSelectorTagColor: #C792EA;
 $euiCodeBlockStringColor: #C3E88D;

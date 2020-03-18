@@ -4,6 +4,8 @@ import {
   EuiButton,
   EuiConfirmModal,
   EuiOverlayMask,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export class ConfirmModal extends Component {
@@ -11,6 +13,7 @@ export class ConfirmModal extends Component {
     isModalVisible: false,
     isDestroyModalVisible: false,
     isEmptyModalVisible: false,
+    isButtonDisabledModalVisible: false,
   };
 
   closeModal = () => {
@@ -35,6 +38,14 @@ export class ConfirmModal extends Component {
 
   showEmptyModal = () => {
     this.setState({ isEmptyModalVisible: true });
+  };
+
+  closeButtonDisabledModal = () => {
+    this.setState({ isButtonDisabledModalVisible: false });
+  };
+
+  showButtonDisabledModal = () => {
+    this.setState({ isButtonDisabledModalVisible: true });
   };
 
   render() {
@@ -94,20 +105,50 @@ export class ConfirmModal extends Component {
       );
     }
 
+    let buttonDisabledModal;
+
+    if (this.state.isButtonDisabledModalVisible) {
+      buttonDisabledModal = (
+        <EuiOverlayMask>
+          <EuiConfirmModal
+            title="My button is disabled"
+            onCancel={this.closeButtonDisabledModal}
+            onConfirm={this.closeButtonDisabledModal}
+            cancelButtonText="No, don't do it"
+            confirmButtonText="Yes, do it"
+            defaultFocusedButton="cancel"
+            confirmButtonDisabled={true}
+          />
+        </EuiOverlayMask>
+      );
+    }
+
     return (
       <div>
-        <EuiButton onClick={this.showModal}>Show ConfirmModal</EuiButton>
-        &nbsp;
-        <EuiButton onClick={this.showDestroyModal}>
-          Show dangerous ConfirmModal
-        </EuiButton>
-        &nbsp;
-        <EuiButton onClick={this.showEmptyModal}>
-          Show title-only ConfirmModal
-        </EuiButton>
+        <EuiFlexGroup wrap gutterSize="xs">
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showModal}>Show ConfirmModal</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showDestroyModal}>
+              Show dangerous ConfirmModal
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showEmptyModal}>
+              Show title-only ConfirmModal
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.showButtonDisabledModal}>
+              Show confirm disabled ConfirmModal
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
         {modal}
         {destroyModal}
         {emptyModal}
+        {buttonDisabledModal}
       </div>
     );
   }

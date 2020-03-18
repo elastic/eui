@@ -1,0 +1,18 @@
+@mixin euiButton {
+  @include euiButtonBase;
+  @include euiFont;
+  @include euiFontSize;
+
+  font-weight: $euiFontWeightMedium;
+  text-decoration: none;
+  transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
+
+  // sass-lint:disable mixins-before-declarations
+  // focus states should come after all default styles
+  @include euiButtonFocus;
+
+  &:hover:not(:disabled),
+  &:focus {
+    text-decoration: underline;
+  }
+}

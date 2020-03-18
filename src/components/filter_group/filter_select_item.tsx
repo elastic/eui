@@ -21,8 +21,14 @@ const resolveIconAndColor = (checked?: FilterChecked) => {
     return { icon: 'empty' };
   }
   return checked === 'on'
-    ? { icon: 'check', color: 'text' }
-    : { icon: 'cross', color: 'text' };
+    ? {
+        icon: 'check',
+        color: 'text',
+      }
+    : {
+        icon: 'cross',
+        color: 'text',
+      };
 };
 
 export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {

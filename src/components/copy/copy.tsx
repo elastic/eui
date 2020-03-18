@@ -18,7 +18,7 @@ interface EuiCopyProps
    * Tooltip message displayed after copy function is called that lets the user know that
    * 'textToCopy' has been copied to the clipboard.
    */
-  afterMessage?: string;
+  afterMessage?: ReactNode;
   /**
    * Function that must return a component. First argument is 'copy' function.
    * Use your own logic to create the component that users interact with when triggering copy.

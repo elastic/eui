@@ -1,1 +1,1 @@
-export { EuiSelect, EuiSelectProps, EuiSelectOptionProps } from './select';
+export { EuiSelect, EuiSelectProps, EuiSelectOption } from './select';

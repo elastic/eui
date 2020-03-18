@@ -14,4 +14,14 @@ describe('EuiTitle', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('renders children element className', () => {
+    const component = render(
+      <EuiTitle {...requiredProps}>
+        <h1 className="test">Title</h1>
+      </EuiTitle>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

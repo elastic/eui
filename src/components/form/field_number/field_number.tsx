@@ -13,7 +13,6 @@ import { IconType } from '../../icon';
 
 export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
-    value?: number | '';
     icon?: IconType;
     isInvalid?: boolean;
     fullWidth?: boolean;
@@ -25,12 +24,14 @@ export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
     inputRef?: Ref<HTMLInputElement>;
 
     /**
-     * Creates an input group with element(s) coming before input
+     * Creates an input group with element(s) coming before input.
+     * `string` | `ReactElement` or an array of these
      */
     prepend?: EuiFormControlLayoutProps['prepend'];
 
     /**
-     * Creates an input group with element(s) coming after input
+     * Creates an input group with element(s) coming after input.
+     * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
 

@@ -24,6 +24,16 @@ describe('EuiHighlight', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('applies to all matches', () => {
+        const component = render(
+          <EuiHighlight search="match" highlightAll>
+            match match match
+          </EuiHighlight>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('loose matching', () => {

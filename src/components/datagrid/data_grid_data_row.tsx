@@ -1,6 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes, memo } from 'react';
 import classnames from 'classnames';
 import {
+  EuiDataGridControlColumn,
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
   EuiDataGridPopoverContent,
@@ -15,6 +16,8 @@ import { EuiText } from '../text';
 export type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
+    leadingControlColumns: EuiDataGridControlColumn[];
+    trailingControlColumns: EuiDataGridControlColumn[];
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
     popoverContents: EuiDataGridPopoverContents;
@@ -34,6 +37,8 @@ const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
 const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
   props => {
     const {
+      leadingControlColumns,
+      trailingControlColumns,
       columns,
       schema,
       popoverContents,
@@ -59,6 +64,27 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
         className={classes}
         data-test-subj={dataTestSubj}
         {...rest}>
+        {leadingControlColumns.map((leadingColumn, i) => {
+          const { id, rowCellRender } = leadingColumn;
+
+          return (
+            <EuiDataGridCell
+              key={`${id}-${rowIndex}`}
+              rowIndex={rowIndex}
+              visibleRowIndex={visibleRowIndex}
+              colIndex={i}
+              columnId={id}
+              popoverContent={DefaultColumnFormatter}
+              width={leadingColumn.width}
+              renderCellValue={rowCellRender}
+              onCellFocus={onCellFocus}
+              isFocused={focusedCellPositionInTheRow === i}
+              interactiveCellId={interactiveCellId}
+              isExpandable={false}
+              className="euiDataGridRowCell--controlColumn"
+            />
+          );
+        })}
         {columns.map((props, i) => {
           const { id } = props;
           const columnType = schema[id] ? schema[id].columnType : null;
@@ -69,22 +95,45 @@ const EuiDataGridDataRow: FunctionComponent<EuiDataGridDataRowProps> = memo(
             popoverContents[columnType as string] || DefaultColumnFormatter;
 
           const width = columnWidths[id] || defaultColumnWidth;
+          const columnPosition = i + leadingControlColumns.length;
 
           return (
             <EuiDataGridCell
               key={`${id}-${rowIndex}`}
               rowIndex={rowIndex}
               visibleRowIndex={visibleRowIndex}
-              colIndex={i}
+              colIndex={columnPosition}
               columnId={id}
               columnType={columnType}
               popoverContent={popoverContent}
               width={width || undefined}
               renderCellValue={renderCellValue}
               onCellFocus={onCellFocus}
-              isFocused={focusedCellPositionInTheRow === i}
+              isFocused={focusedCellPositionInTheRow === columnPosition}
               interactiveCellId={interactiveCellId}
               isExpandable={isExpandable}
+            />
+          );
+        })}
+        {trailingControlColumns.map((leadingColumn, i) => {
+          const { id, rowCellRender } = leadingColumn;
+          const colIndex = i + columns.length + leadingControlColumns.length;
+
+          return (
+            <EuiDataGridCell
+              key={`${id}-${rowIndex}`}
+              rowIndex={rowIndex}
+              visibleRowIndex={visibleRowIndex}
+              colIndex={colIndex}
+              columnId={id}
+              popoverContent={DefaultColumnFormatter}
+              width={leadingColumn.width}
+              renderCellValue={rowCellRender}
+              onCellFocus={onCellFocus}
+              isFocused={focusedCellPositionInTheRow === colIndex}
+              interactiveCellId={interactiveCellId}
+              isExpandable={false}
+              className="euiDataGridRowCell--controlColumn"
             />
           );
         })}
