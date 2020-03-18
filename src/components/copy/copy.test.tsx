@@ -24,12 +24,12 @@ describe('EuiCopy', () => {
     });
 
     test('afterMessage', () => {
-      const component = shallow(
+      const component = shallow<EuiCopy>(
         <EuiCopy textToCopy="some text" afterMessage="successfuly copied">
           {copy => <button onClick={copy}>Click to copy input text</button>}
         </EuiCopy>
       );
-      const instance = component.instance() as EuiCopy;
+      const instance = component.instance();
       expect(instance.props.afterMessage).toBe('successfuly copied');
     });
   });

@@ -77,8 +77,10 @@ describe('EuiTreeView', () => {
   });
 
   test('length of open items', () => {
-    const component = shallow(<EuiTreeView items={items} {...requiredProps} />);
-    const instance = component.instance() as EuiTreeView;
+    const component = shallow<EuiTreeView>(
+      <EuiTreeView items={items} {...requiredProps} />
+    );
+    const instance = component.instance();
 
     expect(component.state('openItems')).toHaveLength(1);
 
@@ -87,8 +89,10 @@ describe('EuiTreeView', () => {
   });
 
   test('activeItem changes', () => {
-    const component = shallow(<EuiTreeView items={items} {...requiredProps} />);
-    const instance = component.instance() as EuiTreeView;
+    const component = shallow<EuiTreeView>(
+      <EuiTreeView items={items} {...requiredProps} />
+    );
+    const instance = component.instance();
 
     expect(component.state('activeItem')).toBe('');
 
@@ -97,8 +101,10 @@ describe('EuiTreeView', () => {
   });
 
   test('open node changes', () => {
-    const component = shallow(<EuiTreeView items={items} {...requiredProps} />);
-    const instance = component.instance() as EuiTreeView;
+    const component = shallow<EuiTreeView>(
+      <EuiTreeView items={items} {...requiredProps} />
+    );
+    const instance = component.instance();
 
     expect(instance.isNodeOpen(items[1])).toBe(false);
 
