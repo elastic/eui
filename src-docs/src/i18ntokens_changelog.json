@@ -1,5 +1,30 @@
 [
   {
+    "version": "21.1.0",
+    "changes": [
+      {
+        "token": "euiColorPicker.alphaLabel",
+        "changeType": "added",
+        "value": "Alpha channel (opacity) value"
+      },
+      {
+        "token": "euiColumnSelector.button",
+        "changeType": "added",
+        "value": "Columns"
+      },
+      {
+        "token": "euiColumnSelector.buttonActiveSingular",
+        "changeType": "added",
+        "value": "{numberOfHiddenFields} column hidden"
+      },
+      {
+        "token": "euiColumnSelector.buttonActivePlural",
+        "changeType": "added",
+        "value": "{numberOfHiddenFields} columns hidden"
+      }
+    ]
+  },
+  {
     "version": "20.0.0",
     "changes": [
       {

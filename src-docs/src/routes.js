@@ -228,7 +228,7 @@ const slugify = str => {
   return parts.join('-');
 };
 
-const createExample = example => {
+const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
       'One of your example pages is undefined. This usually happens when you export or import it with the wrong name.'
@@ -256,7 +256,7 @@ const createExample = example => {
   );
 
   return {
-    name: title,
+    name: customTitle || title,
     component,
     sections,
   };
@@ -266,7 +266,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createExample(AccessibilityGuidelines),
+      createExample(AccessibilityGuidelines, 'Accesibility'),
       {
         name: 'Buttons',
         component: ButtonGuidelines,
