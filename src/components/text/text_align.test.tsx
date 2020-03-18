@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiTextAlign, TextAlignment } from './text_align';
+import { EuiTextAlign, TextAlignment, ALIGNMENTS } from './text_align';
 
 describe('EuiTextAlign', () => {
   test('is rendered', () => {
@@ -11,16 +11,15 @@ describe('EuiTextAlign', () => {
     expect(component).toMatchSnapshot();
   });
 
-  ['left', 'right', 'center'].forEach(direction => {
-    test(`${direction} is rendered`, () => {
-      const component = render(
-        <EuiTextAlign
-          {...requiredProps}
-          textAlign={direction as TextAlignment}
-        />
-      );
+  describe('direction prop', () => {
+    ALIGNMENTS.forEach(direction => {
+      test(`${direction} is rendered`, () => {
+        const component = render(
+          <EuiTextAlign textAlign={direction as TextAlignment} />
+        );
 
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 });

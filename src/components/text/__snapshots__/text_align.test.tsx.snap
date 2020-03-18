@@ -1,26 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTextAlign in center direction 1`] = `
+exports[`EuiTextAlign direction prop center is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiTextAlign euiTextAlign--center testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiTextAlign euiTextAlign--center"
 />
 `;
 
-exports[`EuiTextAlign in left direction 1`] = `
+exports[`EuiTextAlign direction prop left is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiTextAlign euiTextAlign--left testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiTextAlign euiTextAlign--left"
 />
 `;
 
-exports[`EuiTextAlign in right direction 1`] = `
+exports[`EuiTextAlign direction prop right is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiTextAlign euiTextAlign--right testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiTextAlign euiTextAlign--right"
 />
 `;
 

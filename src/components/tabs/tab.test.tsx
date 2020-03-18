@@ -45,12 +45,10 @@ describe('EuiTab', () => {
       });
     });
 
-    describe('href', () => {
-      test('has href assigned to it', () => {
-        const component = render(<EuiTab href="/test">Click Me</EuiTab>);
+    test('is disabled', () => {
+      const component = render(<EuiTab disabled>Click Me</EuiTab>);
 
-        expect(component[0].attribs.href).toBe('/test');
-      });
+      expect(component).toMatchSnapshot();
     });
   });
 });

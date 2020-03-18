@@ -15,9 +15,7 @@ describe('EuiToggle', () => {
 
   describe('props', () => {
     test('isDisabled is rendered', () => {
-      const component = render(
-        <EuiToggle label="Is toggle on?" isDisabled />
-      );
+      const component = render(<EuiToggle label="Is toggle on?" isDisabled />);
 
       expect(component).toMatchSnapshot();
     });
@@ -34,12 +32,21 @@ describe('EuiToggle', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('type is rendered', () => {
+      const component = render(
+        <EuiToggle label="Is toggle on?" type="multi" {...requiredProps} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('checked is rendered', () => {
       const component = render(
         <EuiToggle
           label="Is toggle on?"
           checked
           {...requiredProps}
+          onChange={jest.fn()}
         />
       );
 
