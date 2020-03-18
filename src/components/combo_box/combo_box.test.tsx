@@ -8,7 +8,6 @@ import {
 import { comboBoxKeyCodes } from '../../services';
 
 import { EuiComboBox } from './combo_box';
-import T from 'tabbable';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
