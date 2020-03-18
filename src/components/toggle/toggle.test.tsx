@@ -34,7 +34,7 @@ describe('EuiToggle', () => {
 
     test('type is rendered', () => {
       const component = render(
-        <EuiToggle label="Is toggle on?" type="multi" {...requiredProps} />
+        <EuiToggle label="Is toggle on?" type="single" {...requiredProps} />
       );
 
       expect(component).toMatchSnapshot();

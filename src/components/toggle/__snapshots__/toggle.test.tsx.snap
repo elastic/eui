@@ -65,7 +65,7 @@ exports[`EuiToggle props type is rendered 1`] = `
     aria-label="Is toggle on?"
     class="euiToggle__input"
     data-test-subj="test subject string"
-    type="checkbox"
+    type="radio"
   />
 </div>
 `;
