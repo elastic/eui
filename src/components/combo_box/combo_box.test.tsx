@@ -8,6 +8,7 @@ import {
 import { comboBoxKeyCodes } from '../../services';
 
 import { EuiComboBox } from './combo_box';
+import T from 'tabbable';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
@@ -323,6 +324,22 @@ describe('behavior', () => {
       expect(
         findTestSubject(component, 'comboBoxSearchInput').getDOMNode()
       ).toBe(document.activeElement);
+    });
+  });
+
+  describe('sortMatchesBy', () => {
+    test('options startsWith', () => {
+      const component = mount(
+        <EuiComboBox options={options} sortMatchesBy="startsWith" />
+      ) as EuiComboBox;
+
+      findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
+        target: { value: 'e' },
+      });
+      const instance = component.instance();
+
+      expect(instance.state.matchingOptions[0].label).toBe('Enceladus');
+      expect(component.state('matchingOptions')[0].label).toBe('Enceladus');
     });
   });
 });
