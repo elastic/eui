@@ -34,7 +34,7 @@ describe('EuiToggle', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('is checked', () => {
+    test('checked is rendered', () => {
       const component = render(
         <EuiToggle
           label="Is toggle on?"
