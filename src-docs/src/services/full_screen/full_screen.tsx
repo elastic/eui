@@ -2,14 +2,15 @@ import React, {
   useState,
   Fragment,
   FunctionComponent,
+  ReactElement,
   ReactNode,
-  useEffect,
 } from 'react';
 
 import { EuiFocusTrap } from '../../../../src/components/focus_trap';
 import { EuiButton } from '../../../../src/components/button';
 
 export const GuideFullScreen: FunctionComponent<{
+  children: (setFullScreen: (isFullScreen: boolean) => void) => ReactElement;
   buttonText?: ReactNode;
   isFullScreen?: boolean;
 }> = ({
@@ -19,17 +20,13 @@ export const GuideFullScreen: FunctionComponent<{
 }) => {
   const [fullScreen, setFullScreen] = useState(isFullScreen);
 
-  useEffect(() => {
-    setFullScreen(isFullScreen);
-  }, [isFullScreen]);
-
   return (
     <Fragment>
       <EuiButton onClick={() => setFullScreen(true)} iconType="fullScreen">
         {buttonText}
       </EuiButton>
 
-      {fullScreen && <EuiFocusTrap>{children}</EuiFocusTrap>}
+      {fullScreen && <EuiFocusTrap>{children(setFullScreen)}</EuiFocusTrap>}
     </Fragment>
   );
 };
