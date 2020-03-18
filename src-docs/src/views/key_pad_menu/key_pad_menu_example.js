@@ -85,9 +85,9 @@ export const KeyPadMenuExample = {
       ],
       text: (
         <p>
-          The KeyPadMenuItem component is a link by default, but you can swap it
-          out for a KeyPadMenuItemButton if you want <EuiCode>onClick</EuiCode>{' '}
-          behavior.
+          The KeyPadMenuItem component can act both as an anchor as well as a
+          button by specifying <EuiCode>href</EuiCode> or
+          <EuiCode>onClick</EuiCode> attribute respectively.
         </p>
       ),
       snippet: keyPadMenuItemButtonSnippet,
