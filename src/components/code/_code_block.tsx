@@ -58,7 +58,7 @@ interface Props {
   /**
    * specify how white-space inside the element is handled
    */
-  wrapLines?: 'nowrap' | 'normal' | 'pre';
+  whiteSpace?: 'nowrap' | 'normal' | 'pre';
 }
 
 interface State {
@@ -156,7 +156,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
       paddingSize,
       transparentBackground,
       isCopyable,
-      wrapLines,
+      whiteSpace,
       ...otherProps
     } = this.props;
 
@@ -180,8 +180,8 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
       optionalStyles.maxHeight = overflowHeight;
     }
 
-    if (wrapLines) {
-      optionalStyles.whiteSpace = wrapLines;
+    if (whiteSpace) {
+      optionalStyles.whiteSpace = whiteSpace;
     }
 
     const codeSnippet = (
