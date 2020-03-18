@@ -109,3 +109,10 @@
 .euiYScrollWithShadows {
   @include euiYScrollWithShadows;
 }
+
+/**
+  * Forcing focus ring on non-EUI elements
+  */
+.eui-isFocusable:focus {
+  @include euiFocusRing('large');
+}
