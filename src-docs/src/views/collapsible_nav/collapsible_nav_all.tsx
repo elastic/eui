@@ -31,7 +31,14 @@ import {
 const TopLinks = [
   { label: 'Home', iconType: 'home', isActive: true, 'aria-current': true },
 ];
-const KibanaLinks = [...KibanaNavLinks];
+const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
+  link => {
+    return {
+      ...link,
+      href: '#',
+    };
+  }
+);
 const LearnLinks: EuiPinnableListGroupItemProps[] = [
   { label: 'Docs', href: '#/navigation/collapsible-nav' },
   { label: 'Blogs', href: '#/navigation/collapsible-nav' },
