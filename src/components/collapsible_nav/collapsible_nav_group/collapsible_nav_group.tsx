@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useState,
+  HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
 import { htmlIdGenerator } from '../../../services';
@@ -72,7 +77,7 @@ type GroupAsDiv = EuiCollapsibleNavGroupInterface & {
    * with the option to add an iconType
    */
   title?: ReactNode;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 export type EuiCollapsibleNavGroupProps = ExclusiveUnion<
   GroupAsAccordion,
