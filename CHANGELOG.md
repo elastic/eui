@@ -2,6 +2,10 @@
 
 - Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
 
+**Bug Fixes**
+
+- Fixed race condition in `EuiIcon` when switching from dynamically fetched components ([#3118](https://github.com/elastic/eui/pull/3118))
+
 ## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)
 
 - Updated `EuiFilterSelect` to retain the order of its filters ([#3063](https://github.com/elastic/eui/pull/3063))
