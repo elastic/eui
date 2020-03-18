@@ -39,7 +39,6 @@ describe('EuiToggle', () => {
         <EuiToggle
           label="Is toggle on?"
           checked
-          onChange={jest.fn()}
           {...requiredProps}
         />
       );
