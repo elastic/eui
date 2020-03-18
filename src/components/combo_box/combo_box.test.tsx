@@ -328,9 +328,11 @@ describe('behavior', () => {
 
   describe('sortMatchesBy', () => {
     test('options startsWith', () => {
-      const component = mount(
-        <EuiComboBox options={options} sortMatchesBy="startsWith" />
-      ) as EuiComboBox;
+const component = mount<
+        EuiComboBox<TitanOption>,
+        EuiComboBoxProps<TitanOption>,
+        { matchingOptions: TitanOption[] }
+>(<EuiComboBox options={options} sortMatchesBy="startsWith" />);
 
       findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
         target: { value: 'e' },
