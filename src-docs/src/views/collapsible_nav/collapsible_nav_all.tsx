@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import {
   EuiCollapsibleNav,
+  EuiCollapsibleNavToggle,
   EuiCollapsibleNavGroup,
 } from '../../../../src/components/collapsible_nav';
 import {
@@ -27,6 +28,7 @@ import {
   KibanaNavLinks,
   SecurityGroup,
 } from './collapsible_nav_list';
+import { EuiShowFor } from '../../../../src/components/responsive';
 
 const TopLinks = [
   { label: 'Home', iconType: 'home', isActive: true, 'aria-current': true },
@@ -123,23 +125,16 @@ export default () => {
     });
   }
 
-  const renderMenuTrigger = () => {
-    return (
+  const leftSectionItems = [
+    <EuiCollapsibleNavToggle navIsDocked={navIsDocked}>
       <EuiHeaderSectionItemButton
         aria-label="Open nav"
         onClick={() => setNavIsOpen(!navIsOpen)}>
         <EuiIcon type={'menu'} size="m" />
       </EuiHeaderSectionItemButton>
-    );
-  };
-
-  const leftSectionItems = [
+    </EuiCollapsibleNavToggle>,
     <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
   ];
-
-  if (!navIsDocked) {
-    leftSectionItems.unshift(renderMenuTrigger());
-  }
 
   return (
     <GuideFullScreen isFullScreen={isFullScreen}>
@@ -231,22 +226,24 @@ export default () => {
               />
             </EuiCollapsibleNavGroup>
 
-            {/* Docking button */}
-            <EuiCollapsibleNavGroup>
-              <EuiListGroupItem
-                size="xs"
-                color="subdued"
-                label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
-                onClick={() => {
-                  setNavIsDocked(!navIsDocked);
-                  localStorage.setItem(
-                    'navIsDocked',
-                    JSON.stringify(!navIsDocked)
-                  );
-                }}
-                iconType={navIsDocked ? 'lock' : 'lockOpen'}
-              />
-            </EuiCollapsibleNavGroup>
+            {/* Docking button only for larger screens that can support it*/}
+            <EuiShowFor sizes={['l', 'xl']}>
+              <EuiCollapsibleNavGroup>
+                <EuiListGroupItem
+                  size="xs"
+                  color="subdued"
+                  label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
+                  onClick={() => {
+                    setNavIsDocked(!navIsDocked);
+                    localStorage.setItem(
+                      'navIsDocked',
+                      JSON.stringify(!navIsDocked)
+                    );
+                  }}
+                  iconType={navIsDocked ? 'lock' : 'lockOpen'}
+                />
+              </EuiCollapsibleNavGroup>
+            </EuiShowFor>
           </EuiFlexItem>
         </EuiCollapsibleNav>
       )}

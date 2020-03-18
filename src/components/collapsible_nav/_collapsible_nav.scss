@@ -31,6 +31,10 @@
     }
   }
 
+  .euiCollapsibleNavToggle--navIsDocked {
+    display: none;
+  }
+
   .euiBody--collapsibleNavIsDocked {
     // Shrink the content from the left so it's no longer overlapped by the nav drawer (ALWAYS)
     padding-left: $euiCollapsibleNavWidth !important; // sass-lint:disable-line no-important
@@ -50,3 +54,4 @@
     transform: translateX(0%);
   }
 }
+

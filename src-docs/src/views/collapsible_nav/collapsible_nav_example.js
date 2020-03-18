@@ -206,6 +206,13 @@ export const CollapsibleNavExample = {
             their context and save the states as is appropriate to their data
             store.
           </p>
+          <h3>EuiCollapsibleNavToggle</h3>
+          <p>
+            This example also introduces the{' '}
+            <strong>EuiCollapsibleNavToggle</strong> component, which is used to
+            simply wrap around your external nav trigger to show/hide in certain
+            docked and mobile states.
+          </p>
         </>
       ),
       demo: <CollapsibleNavAll />,
