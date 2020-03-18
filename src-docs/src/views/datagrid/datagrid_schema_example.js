@@ -53,7 +53,7 @@ export const DataGridSchemaExample = {
             auto-detection when you have that knowledge of your data available
             during ingestion.
           </p>
-          <h4>Defining custom schemas</h4>
+          <h2>Defining custom schemas</h2>
           <p>
             Custom schemas are passed as an array to{' '}
             <EuiCode>schemaDetectors</EuiCode> and are constructed against the{' '}
@@ -66,7 +66,7 @@ export const DataGridSchemaExample = {
             </EuiCode>{' '}
             to each matching cell.
           </p>
-          <h4>Defining expansion</h4>
+          <h2>Defining expansion</h2>
           <p>
             Likewise, you can inject custom content into any of the popovers a
             cell expands into. Add <EuiCode>popoverContents</EuiCode> functions
@@ -74,7 +74,7 @@ export const DataGridSchemaExample = {
             You can see an example of this by clicking into one of the cells in
             the last column below.
           </p>
-          <h4>Disabling expansion popovers</h4>
+          <h2>Disabling expansion popovers</h2>
           <p>
             Often the popovers are unnecessary for short form content. In the
             example below we&apos;ve turned them off by setting{' '}

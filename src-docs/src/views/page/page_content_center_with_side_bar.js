@@ -16,7 +16,8 @@ import {
 export default () => (
   <EuiPage>
     <EuiPageSideBar>SideBar nav</EuiPageSideBar>
-    <EuiPageBody>
+    {/* The EUI docs site  already has a wrapping <main> tag, so we've changed this example to a <div> for accessibility. You likely don't need to copy the `component` prop for your own usage. */}
+    <EuiPageBody component="div">
       <EuiPageHeader>
         <EuiPageHeaderSection>
           <EuiTitle size="l">
