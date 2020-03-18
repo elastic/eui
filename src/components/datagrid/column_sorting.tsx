@@ -107,7 +107,9 @@ export const useColumnSorting = (
       if (isSortable != null) {
         sortable = isSortable;
       } else if (schemaDetail != null) {
-        sortable = schemaDetail.isSortable;
+        sortable = schemaDetail.hasOwnProperty('isSortable')
+          ? schemaDetail.isSortable!
+          : true;
       }
       return sortable;
     }

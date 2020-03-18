@@ -30,7 +30,7 @@ const scrollTo = position => {
   );
 };
 
-function scrollToSelector(selector, attempts = 5) {
+export function scrollToSelector(selector, attempts = 5) {
   const element = $(selector);
 
   if (element.length) {

@@ -4,7 +4,7 @@ interface BaseProps {
   children: (ref: any) => ReactNode;
 }
 
-interface Observer {
+export interface Observer {
   disconnect: () => void;
   observe: (element: Element, options?: { [key: string]: any }) => void;
 }
