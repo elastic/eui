@@ -81,3 +81,22 @@ exports[`EuiCodeBlockImpl inline renders with transparent background 1`] = `
   />
 </span>
 `;
+
+exports[`EuiCodeBlockImpl props whiteSpace 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+>
+  <pre
+    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePre"
+  >
+    <code
+      aria-label="aria-label"
+      class="euiCodeBlock__code"
+      data-test-subj="test subject string"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;

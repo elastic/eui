@@ -69,4 +69,16 @@ describe('EuiCodeBlockImpl', () => {
       expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
   });
+
+  describe('props', () => {
+    test('whiteSpace', () => {
+      const component = mount(
+        <EuiCodeBlockImpl whiteSpace="pre" {...requiredProps}>
+          {code}
+        </EuiCodeBlockImpl>
+      );
+
+      expect(snapshotCodeBlock(component)).toMatchSnapshot();
+    });
+  });
 });

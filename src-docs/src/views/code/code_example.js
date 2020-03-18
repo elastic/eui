@@ -15,9 +15,13 @@ import CodeBlock from './code_block';
 const codeBlockSource = require('!!raw-loader!./code_block');
 const codeBlockHtml = renderToHtml(CodeBlock);
 const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyable>
-  { \`<h1>Title</h1>\` }
+{ \`<h1>Title</h1>\` }
 </EuiCodeBlock>
 `;
+
+import CodeBlockPre from './code_block_pre';
+const codeBlockPreSource = require('!!raw-loader!./code_block_pre');
+const codeBlockPreHtml = renderToHtml(CodeBlockPre);
 
 export const CodeExample = {
   title: 'Code',
@@ -66,6 +70,27 @@ export const CodeExample = {
       snippet: codeBlockSnippet,
       props: { EuiCodeBlockImpl },
       demo: <CodeBlock />,
+    },
+    {
+      title: 'CodeBlock with pre white space',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockPreSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: codeBlockPreHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>EuiCodeBlock</EuiCode> allows whiteSpace property to be set
+          allowing user to breaks/white space forcefuly or not.
+        </p>
+      ),
+      props: { EuiCodeBlockImpl },
+      demo: <CodeBlockPre />,
     },
   ],
 };
