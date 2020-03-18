@@ -33,6 +33,11 @@
 
 .euiCollapsibleNavGroup__heading {
   font-weight: $euiFontWeightSemiBold;
+
+  // If the heading is not in an accordion, it needs the padding
+  &:not(.euiAccordion__button) {
+    padding: $euiSize;
+  }
 }
 
 .euiCollapsibleNavGroup__children {
