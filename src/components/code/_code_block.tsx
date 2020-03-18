@@ -58,7 +58,7 @@ interface Props {
   /**
    * specify how white-space inside the element is handled
    */
-  whiteSpace?: 'nowrap' | 'normal' | 'pre';
+  whiteSpace?: 'pre' | 'pre-wrap';
 }
 
 interface State {
