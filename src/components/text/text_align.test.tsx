@@ -12,7 +12,7 @@ describe('EuiTextAlign', () => {
   });
 
   ['left', 'right', 'center'].forEach(direction => {
-    test(`in ${direction} direction`, () => {
+    test(`${direction} is rendered`, () => {
       const component = render(
         <EuiTextAlign
           {...requiredProps}
