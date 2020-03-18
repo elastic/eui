@@ -5,7 +5,7 @@ import { EuiCopy } from './copy';
 describe('EuiCopy', () => {
   test('is rendered', () => {
     const component = shallow(
-      <EuiCopy textToCopy="some text">
+      <EuiCopy textToCopy="some text" {...requiredProps}>
         {copy => <button onClick={copy}>Click to copy input text</button>}
       </EuiCopy>
     );
