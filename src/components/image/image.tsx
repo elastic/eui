@@ -44,44 +44,12 @@ interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLElement> {
 
 interface State {
   isFullScreenActive: boolean;
-  customStyle?: {
-    width?: number | 'auto';
-    height?: number | 'auto';
-  };
 }
 
 export class EuiImage extends Component<EuiImageProps, State> {
   state: State = {
     isFullScreenActive: false,
-    customStyle: {},
   };
-
-  containerRef: React.RefObject<HTMLImageElement> = React.createRef();
-  getRectsInterval?: NodeJS.Timer = undefined;
-
-  componentDidMount = () => {
-    if (this.props.size && typeof this.props.size !== 'string') {
-      if (!this.containerRef || !this.containerRef.current) return;
-
-      this.getRectsInterval = setInterval(() => {
-        let width: 'auto' | number = this.containerRef.current!.width;
-        let height: 'auto' | number = this.containerRef.current!.height;
-
-        if (width > height) {
-          width = this.props.size as number;
-          height = 'auto';
-        } else {
-          height = this.props.size as number;
-          width = 'auto';
-        }
-        this.setState({ customStyle: { width, height } });
-      }, 10);
-    }
-  };
-
-  componentWillUnmount() {
-    if (this.getRectsInterval) clearInterval(this.getRectsInterval);
-  }
 
   onKeyDown = (event: React.KeyboardEvent) => {
     if (event.keyCode === keyCodes.ESCAPE) {
@@ -116,7 +84,8 @@ export class EuiImage extends Component<EuiImageProps, State> {
       ...rest
     } = this.props;
 
-    const { isFullScreenActive, customStyle } = this.state;
+    const { isFullScreenActive } = this.state;
+    let customStyle = {};
 
     let classes = classNames(
       'euiImage',
@@ -131,6 +100,14 @@ export class EuiImage extends Component<EuiImageProps, State> {
       classes = `${classes} ${sizeToClassNameMap[size]}`;
     } else {
       classes = `${classes}`;
+      customStyle = {
+        maxWidth: size,
+        maxHeight: size,
+        minWidth: 0,
+        minHeight: 0,
+        width: 'auto',
+        height: 'auto',
+      };
     }
 
     let optionalCaption;
@@ -199,7 +176,6 @@ export class EuiImage extends Component<EuiImageProps, State> {
                 className="euiImage__button"
                 onClick={this.openFullScreen}>
                 <img
-                  ref={this.containerRef}
                   src={url}
                   alt={alt}
                   className="euiImage__img"
