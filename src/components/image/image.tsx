@@ -125,6 +125,8 @@ export class EuiImage extends Component<EuiImageProps, State> {
       classes = `${classes}`;
       customStyle.maxWidth = size;
       customStyle.maxHeight = size;
+      customStyle.height = 'auto';
+      customStyle.width = 'auto';
     }
 
     let optionalCaption;

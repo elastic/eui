@@ -49,7 +49,7 @@ exports[`EuiImage is rendered with custom size 1`] = `
     class="euiImage__img"
     data-test-subj="test subject string"
     src="/cat.jpg"
-    style="max-width:50px;max-height:50px"
+    style="max-width:50px;max-height:50px;height:auto;width:auto"
   />
 </figure>
 `;
