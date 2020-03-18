@@ -365,9 +365,10 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          Use the
-          <EuiCode>startingWith</EuiCode> prop to let the options that start
-          with the query be displayed on the top of the list.
+          By default, the matched options will keep their original sort order. If you would like
+          to prioritize those options that <strong>start with</strong> the searched string,
+          pass <EuiCode language="js">sortMatchesBy=&quot;startsWith&quot;</EuiCode>
+          to display those options at the top of the list.
         </p>
       ),
       props: { EuiComboBox },
