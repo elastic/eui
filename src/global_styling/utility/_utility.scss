@@ -89,9 +89,11 @@
   * https://github.com/philipwalton/flexbugs/issues/104
   */
 .euiIEFlexWrapFix {
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0%;
+  @include internetExplorerOnly {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+  }
 }
 
 /**

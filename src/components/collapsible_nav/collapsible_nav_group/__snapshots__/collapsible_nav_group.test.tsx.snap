@@ -217,7 +217,9 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span>
+      <span
+        class="euiIEFlexWrapFix"
+      >
         <div
           class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >

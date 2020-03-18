@@ -172,7 +172,7 @@ export default () => {
           </EuiFlexItem>
 
           {/* Shaded pinned section always with a home item */}
-          <EuiFlexItem grow={false}>
+          <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
             <EuiCollapsibleNavGroup
               background="light"
               className="eui-yScroll"
