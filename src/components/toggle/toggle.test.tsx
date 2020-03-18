@@ -22,7 +22,7 @@ describe('EuiToggle', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('is rendered with onChange provided', () => {
+    test('onChange is rendered', () => {
       const component = render(
         <EuiToggle
           label="Is toggle on?"
