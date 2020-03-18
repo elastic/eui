@@ -3,7 +3,6 @@
   position: relative;
   background: $euiCodeBlockBackgroundColor;
   color: $euiCodeBlockColor;
-  white-space: nowrap;
 
   .euiCodeBlock__pre {
     @include euiScrollBar;
