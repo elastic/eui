@@ -26,6 +26,7 @@ import Context from './context';
 const contextSource = require('!!raw-loader!./context');
 const contextHtml = renderToHtml(Context);
 
+import { I18nShapeProps } from './props';
 export const I18nExample = {
   title: 'I18n',
   sections: [
@@ -142,7 +143,7 @@ export const I18nExample = {
       ),
       components: { EuiContext },
       demo: <Context />,
-      props: { EuiContext, EuiI18n },
+      props: { EuiContext, EuiI18n, i18n: I18nShapeProps },
     },
   ],
 };
