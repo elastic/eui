@@ -442,19 +442,30 @@ export class GuideSection extends Component {
   }
 
   renderCode(name) {
-    return (
-      <div
-        key={name}
-        ref={name}
-        onScroll={() => {
-          if (name === 'javascript')
-            this.memoScroll = this.refs.javascript.childNodes[0].children[0].scrollTop;
-        }}>
-        <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
-          {this.state.renderedCode}
-        </EuiCodeBlock>
-      </div>
+    const euiCodeBlock = (
+      <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
+        {this.state.renderedCode}
+      </EuiCodeBlock>
     );
+
+    const divProps = {
+      key: name,
+      ref: name,
+    };
+
+    const memoScrollUtility = () => {
+      this.memoScroll = this.refs.javascript.childNodes[0].children[0].scrollTop;
+    };
+
+    if (name === 'javascript') {
+      return (
+        <div {...divProps} onScroll={() => memoScrollUtility()}>
+          {euiCodeBlock}
+        </div>
+      );
+    }
+
+    return <div {...divProps}> {euiCodeBlock} </div>;
   }
 
   renderContent() {
