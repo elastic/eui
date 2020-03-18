@@ -365,9 +365,10 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          By default, the matched options will keep their original sort order. If you would like
-          to prioritize those options that <strong>start with</strong> the searched string,
-          pass <EuiCode language="js">sortMatchesBy=&quot;startsWith&quot;</EuiCode>
+          By default, the matched options will keep their original sort order.
+          If you would like to prioritize those options that{' '}
+          <strong>start with</strong> the searched string, pass{' '}
+          <EuiCode language="js">sortMatchesBy=&quot;startsWith&quot;</EuiCode>
           to display those options at the top of the list.
         </p>
       ),
