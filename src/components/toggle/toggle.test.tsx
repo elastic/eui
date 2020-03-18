@@ -14,7 +14,7 @@ describe('EuiToggle', () => {
   });
 
   describe('props', () => {
-    test('is disabled', () => {
+    test('isDisabled is rendered', () => {
       const component = render(
         <EuiToggle label="Is toggle on?" isDisabled {...requiredProps} />
       );
