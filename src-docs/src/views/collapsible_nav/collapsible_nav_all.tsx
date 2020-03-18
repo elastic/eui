@@ -35,7 +35,7 @@ const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
   link => {
     return {
       ...link,
-      href: '#',
+      href: '#/navigation/collapsible-nav',
     };
   }
 );
@@ -54,6 +54,10 @@ export default () => {
   const [navIsDocked, setNavIsDocked] = useState(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
   );
+
+  /**
+   * Accordion toggling
+   */
   const [openGroups, setOpenGroups] = useState(
     JSON.parse(String(localStorage.getItem('openNavGroups'))) || [
       'Kibana',
@@ -78,7 +82,9 @@ export default () => {
     localStorage.setItem('openNavGroups', JSON.stringify(openGroups));
   };
 
-  // Pinning
+  /**
+   * Pinning
+   */
   const [pinnedItems, setPinnedItems] = useState<
     EuiPinnableListGroupItemProps[]
   >(JSON.parse(String(localStorage.getItem('pinnedItems'))) || []);
