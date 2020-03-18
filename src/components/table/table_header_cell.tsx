@@ -134,7 +134,11 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
             <EuiInnerText>
               {(ref, innerText) => (
                 <span
-                  title={innerText}
+                  title={
+                    isSorted
+                      ? `${innerText} sorted in ${ariaSortValue} order`
+                      : innerText
+                  }
                   ref={ref}
                   className="euiTableCellContent__text">
                   {children}
