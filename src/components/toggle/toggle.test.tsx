@@ -16,7 +16,7 @@ describe('EuiToggle', () => {
   describe('props', () => {
     test('isDisabled is rendered', () => {
       const component = render(
-        <EuiToggle label="Is toggle on?" isDisabled {...requiredProps} />
+        <EuiToggle label="Is toggle on?" isDisabled />
       );
 
       expect(component).toMatchSnapshot();
