@@ -352,7 +352,7 @@ export const ComboBoxExample = {
       demo: <Async />,
     },
     {
-      title: 'Starting With',
+      title: 'Sorting matches',
       source: [
         {
           type: GuideSectionTypes.JS,
