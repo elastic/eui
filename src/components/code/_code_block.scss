@@ -12,6 +12,14 @@
     white-space: pre-wrap;
   }
 
+  .euiCodeBlock__pre_whiteSpacePre {
+    white-space: pre;
+  }
+
+  .euiCodeBlock__pre_whiteSpacePreWrap {
+    white-space: pre-wrap;
+  }
+
   .euiCodeBlock__code {
     @include euiCodeFont;
     display: block;

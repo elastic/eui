@@ -57,6 +57,8 @@ interface Props {
   transparentBackground: boolean;
   /**
    * specify how white-space inside the element is handled
+   * pre respects line breaks/white space but doesn't force them (doesn't wrap the line)
+   * pre-wrap respects respects line breaks/white space but does force them (wrap the line)
    */
   whiteSpace?: 'pre' | 'pre-wrap';
 }
@@ -75,6 +77,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     paddingSize: 'l',
     fontSize: 's',
     isCopyable: false,
+    whiteSpace: 'pre-wrap',
   };
 
   constructor(props: Props) {
@@ -174,14 +177,15 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
 
     const codeClasses = classNames('euiCodeBlock__code', language);
 
+    const preClasses = classNames('euiCodeBlock__pre', {
+      euiCodeBlock__pre_whiteSpacePre: whiteSpace === 'pre',
+      euiCodeBlock__pre_whiteSpacePreWrap: whiteSpace === 'pre-wrap',
+    });
+
     const optionalStyles: CSSProperties = {};
 
     if (overflowHeight) {
       optionalStyles.maxHeight = overflowHeight;
-    }
-
-    if (whiteSpace) {
-      optionalStyles.whiteSpace = whiteSpace;
     }
 
     const codeSnippet = (
@@ -295,7 +299,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
           <EuiOverlayMask>
             <EuiFocusTrap clickOutsideDisables={true}>
               <div className={fullScreenClasses}>
-                <pre className="euiCodeBlock__pre">
+                <pre className={preClasses}>
                   <code
                     ref={ref => {
                       this.codeFullScreen = ref;
@@ -327,7 +331,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
                 <pre
                   ref={innerTextRef}
                   style={optionalStyles}
-                  className="euiCodeBlock__pre">
+                  className={preClasses}>
                   {codeSnippet}
                 </pre>
 
