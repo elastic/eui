@@ -62,7 +62,9 @@ export const DeploymentsGroup = (
     <div className="kibanaNavDeployment__content">
       <EuiListGroup listItems={deploymentsList} flush />
       <EuiSpacer size="s" />
-      <EuiButton fullWidth>Manage deployments</EuiButton>
+      <EuiButton color="ghost" fullWidth>
+        Manage deployments
+      </EuiButton>
     </div>
   </EuiCollapsibleNavGroup>
 );
