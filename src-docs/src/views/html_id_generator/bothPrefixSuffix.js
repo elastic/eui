@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 
 import {
-  EuiFieldSearch,
+  EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  EuiButton,
   EuiCode,
+  EuiFormRow,
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -23,21 +23,20 @@ export class PrefixSufix extends Component {
 
   onPrefixChange = e => {
     const prefix = e.target.value;
+    const { suffix } = this.state;
+
     this.setState({
       prefix,
+      id1: htmlIdGenerator(prefix)(suffix),
     });
   };
 
   onSuffixChange = e => {
     const suffix = e.target.value;
+    const { prefix } = this.state;
+
     this.setState({
       suffix,
-    });
-  };
-
-  reGenerate = () => {
-    const { prefix, suffix } = this.state;
-    this.setState({
       id1: htmlIdGenerator(prefix)(suffix),
     });
   };
@@ -51,21 +50,22 @@ export class PrefixSufix extends Component {
           gutterSize="m"
           alignItems="center">
           <EuiFlexItem grow={false}>
-            <EuiFieldSearch
-              value={prefix}
-              onChange={this.onPrefixChange}
-              placeholder="Prefix"
-            />
+            <EuiFormRow label="Prefix">
+              <EuiFieldText
+                value={prefix}
+                onChange={this.onPrefixChange}
+                placeholder="Enter prefix"
+              />
+            </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiFieldSearch
-              value={suffix}
-              onChange={this.onSuffixChange}
-              placeholder="Suffix"
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButton onClick={this.reGenerate}>Generate</EuiButton>
+            <EuiFormRow label="Suffix">
+              <EuiFieldText
+                value={suffix}
+                onChange={this.onSuffixChange}
+                placeholder="Enter suffix"
+              />
+            </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="m" />

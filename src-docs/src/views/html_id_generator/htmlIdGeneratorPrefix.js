@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 
 import {
-  EuiFieldSearch,
+  EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  EuiButton,
   EuiCode,
+  EuiFormRow,
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -15,10 +15,10 @@ export class HtmlIdGeneratorPrefix extends Component {
     super(props);
 
     this.state = {
-      prefix: '',
-      id1: htmlIdGenerator('')(),
-      id2: htmlIdGenerator('')(),
-      id3: htmlIdGenerator('')(),
+      prefix: 'Id',
+      id1: htmlIdGenerator('Id')(),
+      id2: htmlIdGenerator('Id')(),
+      id3: htmlIdGenerator('Id')(),
     };
   }
 
@@ -26,12 +26,6 @@ export class HtmlIdGeneratorPrefix extends Component {
     const prefix = e.target.value;
     this.setState({
       prefix,
-    });
-  };
-
-  reGenerate = () => {
-    const { prefix } = this.state;
-    this.setState({
       id1: htmlIdGenerator(prefix)(),
       id2: htmlIdGenerator(prefix)(),
       id3: htmlIdGenerator(prefix)(),
@@ -47,10 +41,13 @@ export class HtmlIdGeneratorPrefix extends Component {
           gutterSize="m"
           alignItems="center">
           <EuiFlexItem grow={false}>
-            <EuiFieldSearch value={prefix} onChange={this.onSearchChange} />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButton onClick={this.reGenerate}>Generate</EuiButton>
+            <EuiFormRow label="Prefix">
+              <EuiFieldText
+                value={prefix}
+                onChange={this.onSearchChange}
+                placeholder="Enter prefix"
+              />
+            </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="m" />

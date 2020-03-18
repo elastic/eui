@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 
 import {
-  EuiFieldSearch,
+  EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  EuiButton,
   EuiCode,
+  EuiFormRow,
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -15,9 +15,9 @@ export class HtmlIdGeneratorSuffix extends Component {
     super(props);
 
     this.state = {
-      suffix: '',
-      id1: htmlIdGenerator()(''),
-      id2: htmlIdGenerator()(''),
+      suffix: 'Id',
+      id1: htmlIdGenerator()('Id'),
+      id2: htmlIdGenerator()('Id'),
     };
   }
 
@@ -25,12 +25,6 @@ export class HtmlIdGeneratorSuffix extends Component {
     const suffix = e.target.value;
     this.setState({
       suffix,
-    });
-  };
-
-  reGenerate = () => {
-    const { suffix } = this.state;
-    this.setState({
       id1: htmlIdGenerator()(suffix),
       id2: htmlIdGenerator()(suffix),
     });
@@ -45,14 +39,13 @@ export class HtmlIdGeneratorSuffix extends Component {
           gutterSize="m"
           alignItems="center">
           <EuiFlexItem grow={false}>
-            <EuiFieldSearch
-              value={suffix}
-              onChange={this.onSuffixChange}
-              placeholder="Suffix"
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButton onClick={this.reGenerate}>Generate</EuiButton>
+            <EuiFormRow label="Suffix">
+              <EuiFieldText
+                value={suffix}
+                onChange={this.onSuffixChange}
+                placeholder="Enter suffix"
+              />
+            </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="m" />
