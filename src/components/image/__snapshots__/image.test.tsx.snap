@@ -38,3 +38,18 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
   </button>
 </figure>
 `;
+
+exports[`EuiImage is rendered with custom size 1`] = `
+<figure
+  class="euiImage testClass1 testClass2"
+>
+  <img
+    alt="alt"
+    aria-label="aria-label"
+    class="euiImage__img"
+    data-test-subj="test subject string"
+    src="/cat.jpg"
+    style="max-width:50px;max-height:50px;min-width:0;min-height:0;width:auto;height:auto"
+  />
+</figure>
+`;
