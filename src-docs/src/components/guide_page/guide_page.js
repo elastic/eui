@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import { Link } from 'react-router';
-
 import {
   EuiTitle,
   EuiSpacer,
@@ -41,8 +39,8 @@ export const GuidePage = ({
           </EuiFlexItem>
           {componentLinkTo && (
             <EuiFlexItem grow={false}>
-              <EuiButton>
-                <Link to={componentLinkTo}>View component code</Link>
+              <EuiButton href={`#${componentLinkTo}`}>
+                View component code
               </EuiButton>
             </EuiFlexItem>
           )}
