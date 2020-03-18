@@ -170,7 +170,7 @@ const SelectionRowCell = ({ rowIndex }) => {
     <div>
       <EuiCheckbox
         id={`${rowIndex}`}
-        aria-label={`Select row ${rowIndex}`}
+        aria-label={`Select row ${rowIndex}, ${data[rowIndex].name}`}
         checked={isChecked}
         onChange={e => {
           if (e.target.checked) {

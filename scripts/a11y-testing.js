@@ -119,55 +119,50 @@ const printResult = result =>
       process.exit(1);
     }
   }
-  try {
-    const links = await docsPages(root, page);
+  const links = await docsPages(root, page);
 
-    for (const link of links) {
-      await page.goto(link);
+  for (const link of links) {
+    await page.goto(link);
 
-      const { violations } = await new AxePuppeteer(page)
-        .configure({
-          rules: [
-            { id: 'color-contrast', enabled: false },
-            {
-              id: 'scrollable-region-focusable',
-              matches: '[role="grid"]',
-            },
-          ],
-        })
-        .analyze();
+    const { violations } = await new AxePuppeteer(page)
+      .configure({
+        rules: [
+          { id: 'color-contrast', enabled: false },
+          {
+            id: 'scrollable-region-focusable',
+            matches: '[role="grid"]',
+          },
+        ],
+      })
+      .analyze();
 
-      if (violations.length > 0) {
-        totalViolationsCount += violations.length;
+    if (violations.length > 0) {
+      totalViolationsCount += violations.length;
 
-        const pageName = link.length > 24 ? link.substr(2) : 'the home page';
-        console.log(chalk.red(`Errors on ${pageName}`));
-      }
-
-      violations.forEach(result => {
-        printResult(result);
-      });
+      const pageName = link.length > 24 ? link.substr(2) : 'the home page';
+      console.log(chalk.red(`Errors on ${pageName}`));
     }
 
-    await page.close();
-    await browser.close();
+    violations.forEach(result => {
+      printResult(result);
+    });
+  }
 
-    if (totalViolationsCount > 0) {
-      const errorsCount = chalk.red(
-        `${totalViolationsCount} accessibility errors`
-      );
+  await page.close();
+  await browser.close();
 
-      console.log(`${errorsCount}
+  if (totalViolationsCount > 0) {
+    const errorsCount = chalk.red(
+      `${totalViolationsCount} accessibility errors`
+    );
+
+    console.log(`${errorsCount}
 
 Install axe for Chrome or Firefox to debug:
 Chrome: https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdoppojpmngadmnindnejefpokejbdd
 Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
-      process.exit(1);
-    } else {
-      console.log(chalk.green('axe found no accessibility errors!'));
-    }
-  } catch (e) {
-    console.log(e);
     process.exit(1);
+  } else {
+    console.log(chalk.green('axe found no accessibility errors!'));
   }
-})();
+})().catch(e => console.error(e));
