@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { EuiTabs, EuiTab } from '../../../../src/components';
+import { EuiIcon, EuiTabs, EuiTab } from '../../../../src/components';
 
 class EuiTabsExample extends Component {
   constructor(props) {
@@ -19,7 +19,12 @@ class EuiTabsExample extends Component {
       },
       {
         id: 'hydrogen',
-        name: 'Hydrogen',
+        name: (
+          <span>
+            <EuiIcon type="heatmap" />
+            &nbsp;Hydrogen
+          </span>
+        ),
         disabled: true,
       },
       {

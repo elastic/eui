@@ -19,7 +19,7 @@ To help the maintainers of EUI better respond to your pull requests please try t
 3. Fill out the checklist, using ~strikethroughs~ to mark any items that are not applicable
 4. Make sure your changes are documented on the demo site and include liberal code comments
 
-Generally you can expect feedback and a review of your pull request from our team within a week. Sometimes it is unclear who has the next step in getting a pull request over the line and the review can lag as a result. If this is the case, feel free to leave a new comment and ask for guidance.
+Generally you can expect feedback and a review of your pull request from our team within a week. Contributors should limit themselves to three or less active PRs at any one time, which helps us focus review time towards PRs that are close to a merge event. Sometimes it is unclear who has the next step in getting a pull request over the line and the review can lag as a result. If this is the case, feel free to leave a new comment and ask for guidance.
 
 ### Feel free to submit pull requests in draft stages
 
