@@ -43,19 +43,31 @@ for (let i = 1; i < 5; i++) {
     <span>{fake('{{name.firstName}}')}</span>,
 
     <span>
-      <EuiLink href="#/tabular-content/data-grid-focus">{fake('{{internet.email}}')}</EuiLink>
+      <EuiLink href="#/tabular-content/data-grid-focus">
+        {fake('{{internet.email}}')}
+      </EuiLink>
     </span>,
     <span>
-      <EuiLink href="#/tabular-content/data-grid-focus">{fake('{{internet.email}}')}</EuiLink>
+      <EuiLink href="#/tabular-content/data-grid-focus">
+        {fake('{{internet.email}}')}
+      </EuiLink>
     </span>,
 
     <span>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>Yes</EuiButtonEmpty>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>No</EuiButtonEmpty>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+        Yes
+      </EuiButtonEmpty>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+        No
+      </EuiButtonEmpty>
     </span>,
     <span>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>Yes</EuiButtonEmpty>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>No</EuiButtonEmpty>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+        Yes
+      </EuiButtonEmpty>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+        No
+      </EuiButtonEmpty>
     </span>,
   ]);
 }

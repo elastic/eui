@@ -29,14 +29,23 @@ export const DataGridFocusExample = {
             <h3>Initial focus</h3>
           </EuiTitle>
           <p>
-            ✅ Datagrid does not auto-focus on mount / page load
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            Datagrid does not auto-focus on mount / page load
           </p>
           <p>
-            ✅ When tabbing to the grid before it has received focus, the first
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            When tabbing to the grid before it has received focus, the first
             cell of [either header or first content row] is focused
           </p>
           <p>
-            ✅ When tabbing to the grid after it has received focus, the last
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            When tabbing to the grid after it has received focus, the last
             focused cell remains focused
           </p>
 
@@ -44,31 +53,56 @@ export const DataGridFocusExample = {
             <h3>Clicking</h3>
           </EuiTitle>
           <p>
-            ✅ Clicking on any interactive cell appropriately focuses that cell
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            Clicking on any interactive cell appropriately focuses that cell
             and/or its content
           </p>
           <p>
-            ✅️ Clicking on an interactive element, focus remains on that
-            element
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            Clicking on an interactive element, focus remains on that element
           </p>
 
           <EuiTitle>
             <h3>Cell focus states</h3>
           </EuiTitle>
           <p>
-            ✅ No focusable elements (+ is not expandable): focus cell, no interaction
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            No focusable elements (+ is not expandable): focus cell, no
+            interaction
           </p>
           <p>
-            ✅ Only one focusable element (not expandable): shift focus to the element
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            Only one focusable element (not expandable): shift focus to the
+            element
           </p>
           <p>
-            ✅ Only one focusable element (the expansion button): outline cell, focus on expansion button
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            Only one focusable element (the expansion button): outline cell,
+            focus on expansion button
           </p>
           <p>
-            ✅ 2+ focusable elements (not expandable): focus cell, enter/f2 enters focus trap
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            2+ focusable elements (not expandable): focus cell, enter/f2 enters
+            focus trap
           </p>
           <p>
-            ✅️ 1+ focusable elements (element + expandable): focus cell, enter/f2 opens popover
+            <span role="img" aria-label="working">
+              ✅
+            </span>{' '}
+            1+ focusable elements (element + expandable): focus cell, enter/f2
+            opens popover
           </p>
         </Fragment>
       ),
