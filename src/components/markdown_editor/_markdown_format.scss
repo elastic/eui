@@ -1,13 +1,13 @@
 // Default styles for Markdown element
 //
-// 1. Links
+// 1. Links (EuiLink)
 // 2. Headings
 // 3. Images
 // 4. Blockquotes
 // 5. Horizontal rules
 // 6. Lists
 // 7. Tables
-// 8. Code blocks
+// 8. Code
 
 // Functions
 // Note: The inlined base font size is set in common/functions/font.js. It should match $euiMdFontSize.
@@ -76,26 +76,6 @@ $euiDefaultFontSize: 14px;
     font-weight: 600;
   }
 
-  // 1. Links
-  a {
-    color: inherit;
-    text-decoration: underline;
-  }
-
-  a:hover {
-    text-decoration: underline dotted;
-  }
-
-  a:active,
-  a:hover {
-    outline-width: 0;
-  }
-
-  a:not([href]) {
-    color: inherit;
-    text-decoration: none;
-  }
-
   // 2. Headings
   h1,
   h2,
@@ -142,6 +122,12 @@ $euiDefaultFontSize: 14px;
     line-height: 1.333333em;
     font-weight: 700;
     text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    padding-bottom: .3em;
+    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
   }
 
   // 3. Images
@@ -235,6 +221,19 @@ $euiDefaultFontSize: 14px;
     margin-top: $euiMarkdownSizeXXS;
   }
 
+  .task-list-item {
+    list-style-type: none;
+  }
+
+  .task-list-item + .task-list-item {
+    margin-top: $euiMarkdownSizeXXS;
+  }
+
+  .task-list-item input {
+    margin: 0 .2em .25em -1.6em;
+    vertical-align: middle;
+  }
+
   // 7. Tables
   table {
     display: block;
@@ -266,39 +265,25 @@ $euiDefaultFontSize: 14px;
     border-top: 1px solid $euiMarkdownAlphaLightShade;
   }
 
-  // 8. Code blocks
-  code,
-  pre {
-    margin-bottom: $euiMarkdownSizeXS;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro',
-      monospace;
+  // 8. Code
+  .euiMarkdownFormat__code {
+    @include euiCodeFont;
+    color: $euiCodeBlockColor;
     font-size: $euiMarkdownFontSizeS;
-  }
-
-  code {
     padding: $euiMarkdownSizeXXS 0;
     margin: 0;
-    background-color: $euiMarkdownAlphaLightestShade;
+    margin-bottom: $euiMarkdownSizeXS;
+    background: $euiCodeBlockBackgroundColor;
     border-radius: $euiMarkdownSizeXXS;
   }
 
-  code::before,
-  code::after {
+  .euiMarkdownFormat__code::before,
+  .euiMarkdownFormat__code::after {
     letter-spacing: -.2em;
     content: '\00a0';
   }
 
-  pre {
-    padding: $euiMarkdownSize;
-    overflow: auto;
-    font-size: $euiMarkdownFontSizeS;
-    line-height: 1.333333em;
-    background-color: $euiMarkdownAlphaLightestShade;
-    border-radius: $euiMarkdownSizeXXS;
-    word-wrap: normal;
-  }
-
-  pre code {
+  pre .euiMarkdownFormat__code {
     display: inline;
     max-width: auto;
     padding: 0;
@@ -310,8 +295,8 @@ $euiDefaultFontSize: 14px;
     border: none;
   }
 
-  pre code::before,
-  pre code::after {
+  pre .euiMarkdownFormat__code::before,
+  pre .euiMarkdownFormat__code::after {
     content: normal;
   }
 }

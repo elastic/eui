@@ -11,6 +11,8 @@ import highlight from 'remark-highlight.js';
 import rehype2react from 'rehype-react';
 // @ts-ignore
 import row from 'rehype-raw';
+import { EuiCodeBlock } from '../code/code_block';
+import { EuiLink } from '../link/link';
 
 const processor = unified()
   .use(markdown)
@@ -20,6 +22,16 @@ const processor = unified()
   .use(row)
   .use(rehype2react, {
     createElement: createElement,
+    components: {
+      a: EuiLink,
+      code: (props: any) =>
+        // if has classNames is a codeBlock using highlight js
+        props.className ? (
+          <EuiCodeBlock {...props} />
+        ) : (
+          <code className="euiMarkdownFormat__code" {...props} />
+        ),
+    },
   });
 
 interface EuiMarkdownFormatProps {

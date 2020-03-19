@@ -6,7 +6,7 @@
 ###### h6 Heading
 
 
-## Emphasis
+### Emphasis
 
 **This is bold text**
 
@@ -19,7 +19,7 @@ _This is italic text_
 ~~Strikethrough~~
 
 
-## Horizontal Rules
+### Horizontal Rules
 
 ___
 
