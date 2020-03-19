@@ -57,6 +57,8 @@ interface EuiKeyPadMenuItemCommonProps {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
+
+  href?: string;
 }
 
 export type EuiKeyPadMenuItemProps = CommonProps &
@@ -74,6 +76,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeIconType,
+  href,
   ...rest
 }) => {
   const classes = classNames(
@@ -84,15 +87,18 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     className
   );
 
-  const Element = !isDisabled ? 'a' : 'button';
+  const Element = href && !isDisabled ? 'a' : 'button';
   const relObj: {
     role?: string;
     disabled?: boolean;
     type?: string;
+    href?: string;
   } = {};
 
-  if (!isDisabled) relObj.role = 'menuitem';
-  else {
+  if (href && !isDisabled) {
+    relObj.role = 'menuitem';
+    relObj.href = href;
+  } else {
     relObj.type = 'button';
     relObj.disabled = isDisabled;
   }

@@ -7,7 +7,7 @@ import { EuiKeyPadMenuItem } from './key_pad_menu_item';
 describe('EuiKeyPadMenuItem', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiKeyPadMenuItem label="Label" {...requiredProps}>
+      <EuiKeyPadMenuItem label="Label" {...requiredProps} href="#">
         Icon
       </EuiKeyPadMenuItem>
     );
