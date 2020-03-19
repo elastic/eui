@@ -40,7 +40,7 @@ export class EuiSuperUpdateButton extends Component {
 
   componentDidUpdate() {
     if (
-      this.props.needsUpdate &&
+      this.props.isPopoverClosed &&
       !this.props.isDisabled &&
       !this.props.isLoading
     ) {
