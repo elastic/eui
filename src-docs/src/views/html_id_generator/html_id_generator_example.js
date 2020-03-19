@@ -65,7 +65,7 @@ export const HtmlIdGeneratorExample = {
       demo: <HtmlIdGeneratorPrefix />,
     },
     {
-      title: 'Id Generator with suffix',
+      title: 'ID generator with suffix',
       source: [
         {
           type: GuideSectionTypes.JS,
