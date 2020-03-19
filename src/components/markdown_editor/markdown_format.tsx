@@ -9,8 +9,7 @@ import remark2rehype from 'remark-rehype';
 import highlight from 'remark-highlight.js';
 // @ts-ignore
 import rehype2react from 'rehype-react';
-// @ts-ignore
-import row from 'rehype-raw';
+
 import { EuiCodeBlock } from '../code/code_block';
 import { EuiLink } from '../link/link';
 
@@ -19,7 +18,7 @@ const processor = unified()
   .use(highlight)
   .use(emoji, { emoticon: true })
   .use(remark2rehype, { allowDangerousHTML: true })
-  .use(row)
+  // .use(row)
   .use(rehype2react, {
     createElement: createElement,
     components: {

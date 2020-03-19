@@ -273,8 +273,12 @@ $euiDefaultFontSize: 14px;
     padding: $euiMarkdownSizeXXS 0;
     margin: 0;
     margin-bottom: $euiMarkdownSizeXS;
-    background: $euiCodeBlockBackgroundColor;
     border-radius: $euiMarkdownSizeXXS;
+  }
+
+  pre,
+  .euiMarkdownFormat__code {
+    background: $euiCodeBlockBackgroundColor;
   }
 
   .euiMarkdownFormat__code::before,
@@ -291,8 +295,6 @@ $euiDefaultFontSize: 14px;
     line-height: inherit;
     word-wrap: normal;
     white-space: pre;
-    background-color: transparent;
-    border: none;
   }
 
   pre .euiMarkdownFormat__code::before,

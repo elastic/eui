@@ -3,7 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -26,6 +26,10 @@ const plugins = [
     maxChunks: 1,
   }),
 ];
+
+const terserPlugin = new TerserPlugin({
+  sourceMap: true,
+});
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -80,16 +84,7 @@ module.exports = {
   },
 
   plugins,
+  optimization: {
+    minimizer: isProduction ? [terserPlugin] : [],
+  },
 };
-
-if (isProduction) {
-  const optimization = (module.exports.optimization =
-    module.exports.optimization || {});
-  optimization.minimizer = [
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        sourceMap: true,
-      },
-    }),
-  ];
-}

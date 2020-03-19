@@ -2,7 +2,6 @@ import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import MarkdownActions from './markdown_actions';
-// import { EuiText } from '../text';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 import { EuiMarkdownFormat } from './markdown_format';
