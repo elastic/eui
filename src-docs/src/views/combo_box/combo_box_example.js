@@ -63,6 +63,10 @@ import Delimiter from './combo_box_delimiter';
 const delimiterSource = require('!!raw-loader!./combo_box_delimiter');
 const delimiterHtml = renderToHtml(Delimiter);
 
+import StartingWith from './startingWith';
+const startingWithSource = require('!!raw-loader!./startingWith');
+const startingWithHtml = renderToHtml(StartingWith);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -360,17 +364,37 @@ export const ComboBoxExample = {
         },
         {
           type: GuideSectionTypes.HTML,
-          code: delimiterHtml,
-        },
-      ],
-      text: (
-        <p>
-          Use the <EuiCode>delimiter</EuiCode> prop to trigger an entry creation
+          code: delimiterHtml, },
+      ], text: (
+        <p> Use the <EuiCode>delimiter</EuiCode> prop to trigger an entry creation
           in <EuiCode>EuiComboBox</EuiCode> .
         </p>
       ),
       props: { EuiComboBox },
-      demo: <Delimiter />,
+      demo: <Delimiter />,},
+    {
+      title: 'Sorting matches',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: startingWithSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: startingWithHtml,
+        },
+      ],
+      text: (
+        <p>
+          By default, the matched options will keep their original sort order.
+          If you would like to prioritize those options that{' '}
+          <strong>start with</strong> the searched string, pass{' '}
+          <EuiCode language="js">sortMatchesBy=&quot;startsWith&quot;</EuiCode>
+          to display those options at the top of the list.
+        </p>
+      ),
+      props: { EuiComboBox },
+      demo: <StartingWith />,
     },
   ],
 };
