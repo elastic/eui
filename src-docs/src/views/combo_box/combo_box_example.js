@@ -59,6 +59,10 @@ import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
 const disabledHtml = renderToHtml(Disabled);
 
+import Delimiter from './combo_box_delimiter';
+const delimiterSource = require('!!raw-loader!./combo_box_delimiter');
+const delimiterHtml = renderToHtml(Delimiter);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -346,6 +350,27 @@ export const ComboBoxExample = {
       ),
       props: { EuiComboBox },
       demo: <Async />,
+    },
+    {
+      title: 'With delimiter',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: delimiterSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: delimiterHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use the <EuiCode>delimiter</EuiCode> prop to trigger an entry creation
+          in <EuiCode>EuiComboBox</EuiCode> .
+        </p>
+      ),
+      props: { EuiComboBox },
+      demo: <Delimiter />,
     },
   ],
 };
