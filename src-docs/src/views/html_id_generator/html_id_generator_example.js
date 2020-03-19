@@ -58,8 +58,8 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          Provide <EuiCode>prefix</EuiCode> to generator to get ID with a
-          specific prefix.
+          Provide a <EuiCode>prefix</EuiCode> to the generator to get an ID that starts with the
+          specified prefix.
         </p>
       ),
       demo: <HtmlIdGeneratorPrefix />,
