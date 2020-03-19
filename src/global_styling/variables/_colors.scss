@@ -25,12 +25,13 @@ $euiColorDarkShade: #69707D !default;
 $euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
 
-// Every color below must be based mathmatically on the set above.
+// Every color below must be based mathmatically on the set above and in a particular order.
 $euiTextColor: $euiColorDarkestShade !default;
+$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
+$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade) !default;
 $euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
-$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
@@ -114,8 +115,8 @@ $euiColorVis8_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis8')
 $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9'), 'behindText') !default;
 
 // Charts
-$euiColorChartLines: #EFF1F4 !default;
-$euiColorChartBand: #F5F7FA !default;
+$euiColorChartLines: shade($euiColorLightestShade, 3%) !default;
+$euiColorChartBand: $euiColorLightestShade !default;
 
 // Code
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;

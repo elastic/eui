@@ -57,6 +57,10 @@ export class EuiQuickSelect extends Component {
     });
   };
 
+  handleKeyDown = ({ key }) => {
+    if (key === 'Enter') this.applyQuickSelect();
+  };
+
   applyQuickSelect = () => {
     const { timeTense, timeValue, timeUnits } = this.state;
 
@@ -194,6 +198,7 @@ export class EuiQuickSelect extends Component {
               {tenseLabel => (
                 <EuiSelect
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-label={tenseLabel}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   value={timeTense}
@@ -208,6 +213,7 @@ export class EuiQuickSelect extends Component {
               {valueLabel => (
                 <EuiFieldNumber
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   aria-label={valueLabel}
                   value={timeValue}
@@ -221,6 +227,7 @@ export class EuiQuickSelect extends Component {
               {unitLabel => (
                 <EuiSelect
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-label={unitLabel}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   value={timeUnits}
