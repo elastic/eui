@@ -45,7 +45,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   style,
   subtitle,
   title,
-  hasBeacon = true,
+  decoration = 'beacon',
   ...rest
 }) => {
   let newStyle;
@@ -116,6 +116,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       </EuiFlexItem>
     </EuiFlexGroup>
   );
+
+  const hasBeacon = decoration === 'beacon';
 
   return isTourActive ? (
     <EuiPopover

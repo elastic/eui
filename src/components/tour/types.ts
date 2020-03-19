@@ -51,9 +51,15 @@ export interface EuiTourStepInterface {
    */
   subtitle: string;
 
-  // Larger title text specific to this step
+  /**
+   * Larger title text specific to this step
+   */
   title: string;
-  hasBeacon?: boolean;
+
+  /**
+   * Extra visual indication of step location
+   */
+  decoration?: 'none' | 'beacon';
 }
 
 export interface EuiTourState {

@@ -47,7 +47,7 @@ const demoTourSteps = [
     step: 4,
     title: 'Step 4',
     anchorPosition: 'downLeft',
-    hasBeacon: false,
+    decoration: 'none',
   },
 ];
 
