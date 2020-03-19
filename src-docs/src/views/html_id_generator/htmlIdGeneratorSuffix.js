@@ -17,7 +17,6 @@ export class HtmlIdGeneratorSuffix extends Component {
     this.state = {
       suffix: 'Id',
       id1: htmlIdGenerator()('Id'),
-      id2: htmlIdGenerator()('Id'),
     };
   }
 
@@ -26,12 +25,11 @@ export class HtmlIdGeneratorSuffix extends Component {
     this.setState({
       suffix,
       id1: htmlIdGenerator()(suffix),
-      id2: htmlIdGenerator()(suffix),
     });
   };
 
   render() {
-    const { suffix, id1, id2 } = this.state;
+    const { suffix, id1 } = this.state;
     return (
       <Fragment>
         <EuiFlexGroup
@@ -51,9 +49,6 @@ export class HtmlIdGeneratorSuffix extends Component {
         <EuiSpacer size="m" />
         <EuiSpacer size="m" />
         <EuiCode>{id1} </EuiCode>
-        <EuiSpacer size="m" />
-        <EuiSpacer size="m" />
-        <EuiCode>{id2} </EuiCode>
       </Fragment>
     );
   }

@@ -15,9 +15,9 @@ export class PrefixSufix extends Component {
     super(props);
 
     this.state = {
-      prefix: '',
-      suffix: '',
-      id1: htmlIdGenerator('')(''),
+      prefix: 'Some',
+      suffix: 'Id',
+      id1: htmlIdGenerator('Some')('Id'),
     };
   }
 

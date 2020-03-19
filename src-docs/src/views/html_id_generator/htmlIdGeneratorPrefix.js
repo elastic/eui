@@ -17,8 +17,6 @@ export class HtmlIdGeneratorPrefix extends Component {
     this.state = {
       prefix: 'Id',
       id1: htmlIdGenerator('Id')(),
-      id2: htmlIdGenerator('Id')(),
-      id3: htmlIdGenerator('Id')(),
     };
   }
 
@@ -27,13 +25,11 @@ export class HtmlIdGeneratorPrefix extends Component {
     this.setState({
       prefix,
       id1: htmlIdGenerator(prefix)(),
-      id2: htmlIdGenerator(prefix)(),
-      id3: htmlIdGenerator(prefix)(),
     });
   };
 
   render() {
-    const { prefix, id1, id2, id3 } = this.state;
+    const { prefix, id1 } = this.state;
     return (
       <Fragment>
         <EuiFlexGroup
@@ -53,12 +49,6 @@ export class HtmlIdGeneratorPrefix extends Component {
         <EuiSpacer size="m" />
         <EuiSpacer size="m" />
         <EuiCode>{id1} </EuiCode>
-        <EuiSpacer size="m" />
-        <EuiSpacer size="m" />
-        <EuiCode>{id2} </EuiCode>
-        <EuiSpacer size="m" />
-        <EuiSpacer size="m" />
-        <EuiCode>{id3} </EuiCode>
       </Fragment>
     );
   }
