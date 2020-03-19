@@ -46,8 +46,7 @@ export class HtmlIdGeneratorSuffix extends Component {
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer size="m" />
-        <EuiSpacer size="m" />
+        <EuiSpacer size="xl" />
         <EuiCode>{id1} </EuiCode>
       </Fragment>
     );
