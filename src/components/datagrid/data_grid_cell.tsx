@@ -16,7 +16,6 @@ import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
-import { keyCodes } from '../../services';
 import { EuiDataGridPopoverContent } from './data_grid_types';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
@@ -104,8 +103,9 @@ export class EuiDataGridCell extends Component<
   EuiDataGridCellState
 > {
   cellRef = createRef<HTMLDivElement>();
-  cellContentsRef = createRef<HTMLDivElement>();
-  tabbingRef: HTMLDivElement | null = null;
+  // cellContentsRef = createRef<HTMLDivElement>();
+  // tabbingRef: HTMLDivElement | null = null;
+  cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
     cellProps: {},
     popoverIsOpen: false,
@@ -116,7 +116,7 @@ export class EuiDataGridCell extends Component<
   static contextType = DataGridContext;
 
   getInteractables = () => {
-    const tabbingRef = this.tabbingRef;
+    const tabbingRef = this.cellContentsRef;
 
     if (tabbingRef) {
       return tabbingRef.querySelectorAll<HTMLElement>(
@@ -132,12 +132,21 @@ export class EuiDataGridCell extends Component<
     const { isFocused } = this.props;
 
     if (cell && isFocused) {
-      const interactables = this.getInteractables();
-      if (this.props.isExpandable === false && interactables.length === 1) {
-        // Only one element can be interacted with
-        interactables[0].focus();
-      } else {
-        cell.focus();
+      // only update focus if we are not already focused on something in this cell
+      let element: Element | null = document.activeElement;
+      while (element != null && element !== cell) {
+        element = element.parentElement;
+      }
+      const doFocusUpdate = element !== cell;
+
+      if (doFocusUpdate) {
+        const interactables = this.getInteractables();
+        if (this.props.isExpandable === false && interactables.length === 1) {
+          // Only one element can be interacted with
+          interactables[0].focus();
+        } else {
+          cell.focus();
+        }
       }
     }
   };
@@ -191,14 +200,14 @@ export class EuiDataGridCell extends Component<
     this.setState({ cellProps });
   };
 
-  setTabbingRef = (ref: HTMLDivElement | null) => {
-    this.tabbingRef = ref;
+  setCellContentsRef = (ref: HTMLDivElement | null) => {
+    this.cellContentsRef = ref;
     this.preventTabbing();
   };
 
   preventTabbing = () => {
-    if (this.tabbingRef) {
-      const tabbables = tabbable(this.tabbingRef);
+    if (this.cellContentsRef) {
+      const tabbables = tabbable(this.cellContentsRef);
       for (let i = 0; i < tabbables.length; i++) {
         const element = tabbables[i];
         element.setAttribute('tabIndex', '-1');
@@ -208,7 +217,7 @@ export class EuiDataGridCell extends Component<
   };
 
   enableTabbing = () => {
-    if (this.tabbingRef) {
+    if (this.cellContentsRef) {
       const interactables = this.getInteractables();
       for (let i = 0; i < interactables.length; i++) {
         const element = interactables[i];
@@ -362,23 +371,23 @@ export class EuiDataGridCell extends Component<
     let anchorContent = (
       <EuiFocusTrap
         disabled={!this.state.isEntered}
-        autoFocus={false}
-      >
+        autoFocus={true}
+        onDeactivation={() => {
+          this.setState({ isEntered: false }, this.preventTabbing);
+        }}
+        clickOutsideDisables={true}>
         <div className="euiDataGridRowCell__expandFlex">
           <EuiMutationObserver
             observerOptions={{ subtree: true, childList: true }}
             onMutation={this.preventTabbing}>
             {mutationRef => {
-              const onRef = (ref: HTMLDivElement | null) => {
-                mutationRef(ref);
-                this.setTabbingRef(ref);
-              };
-
               return (
-                <div ref={onRef} className="euiDataGridRowCell__expandContent">
+                <div
+                  ref={mutationRef}
+                  className="euiDataGridRowCell__expandContent">
                   {screenReaderPosition}
                   <div
-                    ref={this.cellContentsRef}
+                    ref={this.setCellContentsRef}
                     className="euiDataGridRowCell__truncate">
                     <EuiDataGridCellContent {...cellContentProps} />
                   </div>
@@ -397,16 +406,13 @@ export class EuiDataGridCell extends Component<
             observerOptions={{ subtree: true, childList: true }}
             onMutation={this.preventTabbing}>
             {mutationRef => {
-              const onRef = (ref: HTMLDivElement | null) => {
-                mutationRef(ref);
-                this.setTabbingRef(ref);
-              };
-
               return (
-                <div ref={onRef} className="euiDataGridRowCell__expandContent">
+                <div
+                  ref={mutationRef}
+                  className="euiDataGridRowCell__expandContent">
                   {screenReaderPosition}
                   <div
-                    ref={this.cellContentsRef}
+                    ref={this.setCellContentsRef}
                     className="euiDataGridRowCell__truncate">
                     <EuiDataGridCellContent {...cellContentProps} />
                   </div>
@@ -425,7 +431,7 @@ export class EuiDataGridCell extends Component<
         EuiDataGridCellValueElementProps
       >;
       const popoverContent = (
-        <PopoverContent cellContentsElement={this.cellContentsRef.current!}>
+        <PopoverContent cellContentsElement={this.cellContentsRef!}>
           <CellElement {...cellContentProps} isDetails={true} />
         </PopoverContent>
       );

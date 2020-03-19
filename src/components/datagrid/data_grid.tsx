@@ -481,19 +481,27 @@ const useFocus = (
     EuiDataGridFocusedCell | undefined
   >(undefined);
 
-  const canCellsBeFocused = useMemo(() => focusedCell != null, [focusedCell]);
+  const hasHadFocus = useMemo(() => focusedCell != null, [focusedCell]);
 
   const focusProps = useMemo<FocusProps>(
     () =>
-      canCellsBeFocused
+      hasHadFocus
         ? {}
         : {
             tabIndex: 0,
-            onFocus: () =>
-              setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]),
+            onFocus: e => {
+              // if e.target (the source element of the `focus event`
+              // matches e.currentTarget (always the div with this onFocus listener)
+              // then the user has focused directly on the data grid wrapper (almost definitely by tabbing)
+              // so shift focus to the first interactive cell within the grid
+              if (e.target === e.currentTarget) {
+                setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]);
+              }
+            },
           },
-    [canCellsBeFocused, setFocusedCell, headerIsInteractive]
+    [hasHadFocus, setFocusedCell, headerIsInteractive]
   );
+  // const focusProps = useMemo(() => ({}), []);
 
   return [focusProps, focusedCell, setFocusedCell];
 };
