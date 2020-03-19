@@ -2,11 +2,6 @@ import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import MarkdownActions from './markdown_actions';
-
-// @ts-ignore
-import showdown from 'showdown';
-// @ts-ignore
-import showdownHtmlEscape from 'showdown-htmlescape';
 // import { EuiText } from '../text';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
@@ -34,7 +29,6 @@ export class EuiMarkdownEditor extends Component<
   EuiMarkdownEditorProps,
   MarkdownEditorState
 > {
-  converter: showdown.Converter;
   editorId: string;
   markdownActions: MarkdownActions;
 
@@ -44,15 +38,6 @@ export class EuiMarkdownEditor extends Component<
 
   constructor(props: EuiMarkdownEditorProps) {
     super(props);
-
-    // Instantiate Showdown (for converting markdown -> html) with options
-    this.converter = new showdown.Converter({
-      openLinksInNewWindow: true,
-      ghMentions: false,
-      backslashEscapesHTMLTags: true,
-      extensions: [showdownHtmlEscape],
-    });
-    this.converter.setFlavor('github');
 
     this.state = {
       editorContent: this.props.initialValue!,

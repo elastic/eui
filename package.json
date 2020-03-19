@@ -73,8 +73,6 @@
     "remark-react": "^6.0.0",
     "remark-slug": "^5.1.2",
     "resize-observer-polyfill": "^1.5.0",
-    "showdown": "^1.9.1",
-    "showdown-htmlescape": "^0.1.9",
     "tabbable": "^3.0.0",
     "uuid": "^3.1.0"
   },
