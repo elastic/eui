@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { EuiInnerText } from '../inner_text';
 
 import { IconType, EuiIcon } from '../icon';
 
@@ -33,7 +34,14 @@ export const EuiTableHeaderButton: FunctionComponent<Props> = ({
 
   return (
     <button type="button" className={classes} {...rest}>
-      <span>{children}</span>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span title={innerText} ref={ref}>
+            {children}
+          </span>
+        )}
+      </EuiInnerText>
+
       {buttonIcon}
     </button>
   );

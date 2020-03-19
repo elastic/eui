@@ -3,10 +3,11 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   ReactNode,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
 
@@ -56,14 +57,18 @@ interface EuiKeyPadMenuItemCommonProps {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
+  onClick?: () => void;
+  href?: string;
 }
 
 export type EuiKeyPadMenuItemProps = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> &
+  ExclusiveUnion<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    ButtonHTMLAttributes<HTMLButtonElement>
+  > &
   EuiKeyPadMenuItemCommonProps;
 
 export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
-  href,
   isDisabled,
   label,
   children,
@@ -71,6 +76,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeIconType,
+  href,
   ...rest
 }) => {
   const classes = classNames(
@@ -81,27 +87,27 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     className
   );
 
-  if (!isDisabled) {
-    return (
-      <a href={href} className={classes} role="menuitem" {...rest}>
-        {renderContent(
-          children,
-          label,
-          betaBadgeLabel,
-          betaBadgeTooltipContent,
-          betaBadgeIconType
-        )}
-      </a>
-    );
+  const Element = href && !isDisabled ? 'a' : 'button';
+  const relObj: {
+    role?: string;
+    disabled?: boolean;
+    type?: string;
+    href?: string;
+  } = {};
+
+  if (href && !isDisabled) {
+    relObj.role = 'menuitem';
+    relObj.href = href;
+  } else {
+    relObj.type = 'button';
+    relObj.disabled = isDisabled;
   }
 
   return (
-    <button
-      type="button"
-      disabled={isDisabled}
+    <Element
       className={classes}
-      // Type case needed due to how the props are defined
-      {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+      {...relObj as HTMLAttributes<HTMLElement>}
+      {...rest as HTMLAttributes<HTMLElement>}>
       {renderContent(
         children,
         label,
@@ -109,49 +115,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         betaBadgeTooltipContent,
         betaBadgeIconType
       )}
-    </button>
-  );
-};
-
-export type EuiKeyPadMenuItemButtonProps = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> &
-  EuiKeyPadMenuItemCommonProps;
-
-export const EuiKeyPadMenuItemButton: FunctionComponent<
-  EuiKeyPadMenuItemButtonProps
-> = ({
-  onClick,
-  label,
-  children,
-  className,
-  betaBadgeLabel,
-  betaBadgeTooltipContent,
-  betaBadgeIconType,
-  isDisabled,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiKeyPadMenuItem',
-    {
-      'euiKeyPadMenuItem--hasBetaBadge': betaBadgeLabel,
-    },
-    className
-  );
-
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={isDisabled}
-      className={classes}
-      {...rest}>
-      {renderContent(
-        children,
-        label,
-        betaBadgeLabel,
-        betaBadgeTooltipContent,
-        betaBadgeIconType
-      )}
-    </button>
+    </Element>
   );
 };
