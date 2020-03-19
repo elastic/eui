@@ -12,10 +12,16 @@ export class EuiSuperUpdateButton extends Component {
     isLoading: PropTypes.bool,
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
+
     /**
      * Passes props to `EuiToolTip`
      */
     toolTipProps: PropTypes.object,
+
+    /**
+     * Check if the popover is closed to display toggle
+     */
+    isPopoverClosed: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -69,6 +75,7 @@ export class EuiSuperUpdateButton extends Component {
       isDisabled,
       onClick,
       toolTipProps,
+      isPopoverClosed,
       ...rest
     } = this.props;
 
@@ -111,7 +118,7 @@ export class EuiSuperUpdateButton extends Component {
       );
     }
 
-    return (
+    return isPopoverClosed ? (
       <EuiToolTip
         ref={this.setTootipRef}
         content={tooltipContent}
@@ -130,6 +137,19 @@ export class EuiSuperUpdateButton extends Component {
           {buttonText}
         </EuiButton>
       </EuiToolTip>
+    ) : (
+      <EuiButton
+        className={classes}
+        color={needsUpdate || isLoading ? 'secondary' : 'primary'}
+        fill
+        iconType={needsUpdate || isLoading ? 'kqlFunction' : 'refresh'}
+        textProps={{ className: 'euiSuperUpdateButton__text' }}
+        isDisabled={isDisabled}
+        onClick={onClick}
+        isLoading={isLoading}
+        {...rest}>
+        {buttonText}
+      </EuiButton>
     );
   }
 }
