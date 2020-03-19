@@ -57,7 +57,7 @@ interface EuiKeyPadMenuItemCommonProps {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
-
+  onClick?: () => void;
   href?: string;
 }
 
