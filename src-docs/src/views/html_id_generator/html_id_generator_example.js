@@ -26,7 +26,6 @@ export const HtmlIdGeneratorExample = {
   title: 'Html Id Generator',
   sections: [
     {
-      title: 'Id Generator',
       source: [
         {
           type: GuideSectionTypes.JS,
