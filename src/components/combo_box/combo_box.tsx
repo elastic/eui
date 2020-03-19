@@ -44,6 +44,8 @@ import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
 import { EuiFormControlLayoutProps } from '../form';
+import { EuiIcon } from '../icon';
+import { EuiCopy } from '../copy';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -844,6 +846,17 @@ export class EuiComboBox<T> extends Component<
     this._isMounted = false;
   }
 
+  renderCopyIcon = () => {
+    const { delimiter, selectedOptions } = this.props;
+    const text = selectedOptions.map(object => object.label).join(delimiter);
+
+    return (
+      <EuiCopy textToCopy={text}>
+        {copy => <EuiIcon type="copy" onClick={copy} />}
+      </EuiCopy>
+    );
+  };
+
   render() {
     const {
       'data-test-subj': dataTestSubj,
@@ -869,8 +882,8 @@ export class EuiComboBox<T> extends Component<
       selectedOptions,
       singleSelection,
       prepend,
-      append,
       sortMatchesBy,
+      delimiter,
       ...rest
     } = this.props;
     const {
@@ -922,6 +935,9 @@ export class EuiComboBox<T> extends Component<
     const value = selectedOptions
       .map(selectedOption => selectedOption.label)
       .join(', ');
+
+    let append = singleSelection ? this.props.append : undefined;
+    if (delimiter) append = this.renderCopyIcon();
 
     let optionsList;
 
@@ -1015,7 +1031,7 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
-          append={singleSelection ? append : undefined}
+          append={append as EuiFormControlLayoutProps['append']}
           prepend={singleSelection ? prepend : undefined}
         />
         {optionsList}

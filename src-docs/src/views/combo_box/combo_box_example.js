@@ -369,7 +369,6 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          {' '}
           Use the <EuiCode>delimiter</EuiCode> prop to trigger an entry creation
           in <EuiCode>EuiComboBox</EuiCode> .
         </p>
