@@ -12,15 +12,19 @@ import { PrefixSufix } from './bothPrefixSuffix';
 
 const htmlIdGeneratorSource = require('!!raw-loader!./htmlIdGenerator');
 const htmlIdGeneratorHtml = renderToHtml(IdGenerator);
+const htmlIdGeneratorSnippet = ' htmlIdGenerator()()';
 
 const htmlIdGeneratorPrefixSource = require('!!raw-loader!./htmlIdGeneratorPrefix');
 const htmlIdGeneratorPrefixHtml = renderToHtml(HtmlIdGeneratorPrefix);
+const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('Id')()";
 
 const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./htmlIdGeneratorSuffix');
 const HtmlIdGeneratorSuffixHtml = renderToHtml(HtmlIdGeneratorSuffix);
+const suffixSnippet = " htmlIdGenerator()('Id')";
 
 const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
 const PrefixSufixHtml = renderToHtml(PrefixSufix);
+const prefixSuffixSnippet = " htmlIdGenerator('Some')('Id')";
 
 export const HtmlIdGeneratorExample = {
   title: 'Html Id Generator',
@@ -42,6 +46,7 @@ export const HtmlIdGeneratorExample = {
           accessibility issues.
         </p>
       ),
+      snippet: htmlIdGeneratorSnippet,
       demo: <IdGenerator />,
     },
     {
@@ -58,10 +63,11 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          Provide a <EuiCode>prefix</EuiCode> to the generator to get an ID that starts with the
-          specified prefix.
+          Provide a <EuiCode>prefix</EuiCode> to the generator to get an ID that
+          starts with the specified prefix.
         </p>
       ),
+      snippet: htmlIdGeneratorPrefixSnippet,
       demo: <HtmlIdGeneratorPrefix />,
     },
     {
@@ -78,10 +84,11 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          Provide a <EuiCode>suffix</EuiCode> to the generator to get an ID that starts with the
-          specified suffix.
+          Provide a <EuiCode>suffix</EuiCode> to the generator to get an ID that
+          starts with the specified suffix.
         </p>
       ),
+      snippet: suffixSnippet,
       demo: <HtmlIdGeneratorSuffix />,
     },
     {
@@ -98,10 +105,12 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          The <strong>HtmlIdGenerator</strong> is capable of generating an ID with both a specified prefix <strong>and</strong>
+          The <strong>HtmlIdGenerator</strong> is capable of generating an ID
+          with both a specified prefix <strong>and</strong>
           suffix.
         </p>
       ),
+      snippet: prefixSuffixSnippet,
       demo: <PrefixSufix />,
     },
   ],
