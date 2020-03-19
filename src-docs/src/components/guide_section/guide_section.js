@@ -437,7 +437,8 @@ export class GuideSection extends Component {
 
   componentDidUpdate() {
     if (this.state.selectedTab.name === 'javascript') {
-      this.refs.javascript.childNodes[0].children[0].scrollTop = this.memoScroll;
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      pre.scrollTop = this.memoScroll;
     }
   }
 
@@ -454,12 +455,13 @@ export class GuideSection extends Component {
     };
 
     const memoScrollUtility = () => {
-      this.memoScroll = this.refs.javascript.childNodes[0].children[0].scrollTop;
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      this.memoScroll = pre.scrollTop;
     };
 
     if (name === 'javascript') {
       return (
-        <div {...divProps} onScroll={() => memoScrollUtility()}>
+        <div {...divProps} onScroll={memoScrollUtility}>
           {euiCodeBlock}
         </div>
       );
