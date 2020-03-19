@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
-- Allow `EuiImage` to set custom width ([#3012](https://github.com/elastic/eui/pull/3012))
+- Added `number` and `string` to `size` type of `EuiImage` for setting custom sizes ([#3012](https://github.com/elastic/eui/pull/3012))
 
 ## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)
 
