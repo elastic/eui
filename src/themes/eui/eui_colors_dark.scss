@@ -30,21 +30,21 @@ $euiLinkColor: $euiColorPrimary;
 $euiFocusBackgroundColor: #232635;
 $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
-$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%);
+$euiPageBackgroundColor: shade($euiColorLightestShade, 30%);
+$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade);
+$euiTitleColor: $euiTextColor;
 
 // Contrasty text variants
-// These colors are just straight dups of the basic colors for now
-// because we know they pass contrast needs and makeHighContrastColor is broken in dark mode
-$euiColorPrimaryText: $euiColorPrimary;
-$euiColorSecondaryText: $euiColorSecondary;
-$euiColorAccentText: $euiColorAccent;
-$euiColorWarningText: $euiColorWarning;
-$euiColorDangerText: $euiColorDanger;
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
+$euiColorAccentText: makeHighContrastColor($euiColorAccent);
+$euiColorWarningText: makeHighContrastColor($euiColorWarning);
+$euiColorDangerText: makeHighContrastColor($euiColorDanger, $euiColorLightShade);
 $euiColorSuccessText: $euiColorSecondaryText;
 
 // Charts
-$euiColorChartLines: #343741;
-$euiColorChartBand: #2A2C35;
+$euiColorChartLines: $euiColorLightShade;
+$euiColorChartBand: tint($euiColorLightestShade, 2.5%);
 
 // Code
 $euiCodeBlockCommentColor: #656565;
