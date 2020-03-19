@@ -28,23 +28,35 @@ export const useEuiTour = (
           currentTourStep: 1,
           isTourActive: true,
         };
-      case 'EUI_TOUR_NEXT':
+      case 'EUI_TOUR_NEXT': {
+        const nextStep =
+          state.currentTourStep === stepsArray.length
+            ? state.currentTourStep
+            : state.currentTourStep + 1;
         return {
           ...state,
-          currentTourStep: state.currentTourStep + 1,
+          currentTourStep: nextStep,
         };
-      case 'EUI_TOUR_PREVIOUS':
+      }
+      case 'EUI_TOUR_PREVIOUS': {
+        const prevStep =
+          state.currentTourStep === 1
+            ? state.currentTourStep
+            : state.currentTourStep - 1;
         return {
           ...state,
-          currentTourStep: state.currentTourStep - 1,
+          currentTourStep: prevStep,
         };
+      }
       case 'EUI_TOUR_GOTO': {
         const step = action.payload
           ? action.payload.step
           : state.currentTourStep;
+        const goTo =
+          step <= stepsArray.length && step > 0 ? step : state.currentTourStep;
         return {
           ...state,
-          currentTourStep: step,
+          currentTourStep: goTo,
         };
       }
       default:
