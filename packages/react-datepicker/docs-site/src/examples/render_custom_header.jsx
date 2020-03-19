@@ -1,7 +1,9 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import range from 'lodash/range';
+
+const range = (start, end, step = 1) =>
+  Array.from({ length: (end - start) / step }, (_, i) => i * step + start);
 
 const years = range(1990, moment().year() + 1, 1);
 const months = moment.months();

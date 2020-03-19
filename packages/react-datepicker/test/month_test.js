@@ -5,7 +5,8 @@ import { mount, shallow } from 'enzyme';
 import * as utils from '../src/date_utils';
 import TestUtils from 'react-dom/test-utils';
 
-const range = length => Array.from({ length }, (_, i) => i);
+const range = (start, end, step = 1) =>
+  Array.from({ length: (end - start) / step }, (_, i) => i * step + start);
 
 describe('Month', () => {
   function assertDateRangeInclusive(month, start, end) {

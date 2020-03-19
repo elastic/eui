@@ -4,7 +4,8 @@ import YearDropdownOptions from '../src/year_dropdown_options.jsx';
 import { mount } from 'enzyme';
 import { newDate } from '../src/date_utils';
 
-const range = length => Array.from({ length }, (_, i) => i);
+const range = (start, end, step = 1) =>
+  Array.from({ length: (end - start) / step }, (_, i) => i * step + start);
 
 describe('YearDropdown', () => {
   var yearDropdown;
