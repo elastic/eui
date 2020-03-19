@@ -51,6 +51,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   border-left: $euiBorderThin;
   max-width: 1000px;
   margin-left: 240px;
+  z-index:1;
 }
 
 .guideDemo__highlightLayout {
@@ -228,6 +229,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   .guidePageContent {
     margin-left: 0;
     width: 100%;
+    z-index:auto;
   }
 }
 
