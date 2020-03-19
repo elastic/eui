@@ -87,7 +87,7 @@ export const KeyPadMenuExample = {
         <p>
           The KeyPadMenuItem component can act both as an anchor as well as a
           button by specifying <EuiCode>href</EuiCode> or
-          <EuiCode>onClick</EuiCode> attribute respectively.
+          <EuiCode>onClick</EuiCode> respectively.
         </p>
       ),
       snippet: keyPadMenuItemButtonSnippet,
