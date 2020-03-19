@@ -12,15 +12,10 @@ export function parseRelativeParts(value) {
     isString(value) &&
     value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
 
-  const isNow = matches && !matches[1];
   const operator = matches && matches[2];
   const count = matches && matches[3];
   const unit = matches && matches[4];
   const roundBy = matches && matches[5];
-
-  if (isNow) {
-    return { count: 0, unit: 's', round: false };
-  }
 
   if (count && unit) {
     const isRounded = roundBy ? true : false;
