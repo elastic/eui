@@ -1,3 +1,15 @@
+/**
+ * This function returns time value, time unit and time tense for a given time string.
+ * For example: for `now-40m` it will parse output as time value to `40`
+ * time unit to `m` and time unit to `last`.
+ * If given a datetime string it will return a default value.
+ * If the given string is in the format such as `now/d` it will parse the string to moment object
+ * and find the time value, time unit and time tense using moment
+ *
+ * @param {string} value The time string to be parsed
+ * @returns {object} time value, time unit and time tense
+ */
+
 import { isString } from '../../../../services/predicate';
 import dateMath from '@elastic/datemath';
 import moment from 'moment';
