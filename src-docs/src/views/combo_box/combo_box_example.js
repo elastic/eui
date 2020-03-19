@@ -364,14 +364,19 @@ export const ComboBoxExample = {
         },
         {
           type: GuideSectionTypes.HTML,
-          code: delimiterHtml, },
-      ], text: (
-        <p> Use the <EuiCode>delimiter</EuiCode> prop to trigger an entry creation
+          code: delimiterHtml,
+        },
+      ],
+      text: (
+        <p>
+          {' '}
+          Use the <EuiCode>delimiter</EuiCode> prop to trigger an entry creation
           in <EuiCode>EuiComboBox</EuiCode> .
         </p>
       ),
       props: { EuiComboBox },
-      demo: <Delimiter />,},
+      demo: <Delimiter />,
+    },
     {
       title: 'Sorting matches',
       source: [
