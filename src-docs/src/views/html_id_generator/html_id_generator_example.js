@@ -98,7 +98,7 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          HtmlIdGenerator is caplable of generating ID with specific prefix and
+          The <strong>HtmlIdGenerator</strong> is capable of generating an ID with both a specified prefix <strong>and</strong>
           suffix.
         </p>
       ),
