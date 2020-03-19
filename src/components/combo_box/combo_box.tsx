@@ -581,7 +581,6 @@ export class EuiComboBox<T> extends Component<
         event.preventDefault();
         event.stopPropagation();
         if (this.hasActiveOption()) {
-          console.log(this.state.matchingOptions[this.state.activeOptionIndex]);
           this.onAddOption(
             this.state.matchingOptions[this.state.activeOptionIndex]
           );
