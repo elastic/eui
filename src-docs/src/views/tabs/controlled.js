@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import {
   EuiButton,
+  EuiIcon,
   EuiTabbedContent,
   EuiTitle,
   EuiText,
@@ -51,7 +52,12 @@ class EuiTabsExample extends Component {
       },
       {
         id: 'hydrogen',
-        name: 'Hydrogen',
+        name: (
+          <span>
+            <EuiIcon type="heatmap" />
+            &nbsp;Hydrogen
+          </span>
+        ),
         content: (
           <Fragment>
             <EuiSpacer />
