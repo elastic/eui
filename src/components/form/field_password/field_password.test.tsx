@@ -45,5 +45,13 @@ describe('EuiFieldPassword', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('prepend and append is rendered', () => {
+      const component = render(
+        <EuiFieldPassword prepend="String" append="String" />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
