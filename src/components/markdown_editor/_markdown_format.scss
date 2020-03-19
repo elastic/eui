@@ -18,6 +18,10 @@ $euiDefaultFontSize: 14px;
 }
 
 .euiMarkdownFormat {
+  // sass-lint:disable-block indentation
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
   // Font size variables
   $euiMarkdownFontSizeS: canvasToEm(12px);
   $euiMarkdownFontSize: canvasToEm(14px);
@@ -257,7 +261,6 @@ $euiDefaultFontSize: 14px;
     }
   }
 
-
   table tr {
     background-color: transparent;
     border-top: 1px solid $euiMarkdownAlphaLightShade;
@@ -267,7 +270,8 @@ $euiDefaultFontSize: 14px;
   code,
   pre {
     margin-bottom: $euiMarkdownSizeXS;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro',
+      monospace;
     font-size: $euiMarkdownFontSizeS;
   }
 

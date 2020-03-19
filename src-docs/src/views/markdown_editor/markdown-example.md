@@ -81,6 +81,24 @@ var foo = function (bar) {
 console.log(foo(5));
 ```
 
+Syntax highlighting 
+
+``` java
+package l2f.gameserver.model;
+
+public abstract class L2Char extends L2Object {
+  public static final Short ERROR = 0x0001;
+
+  public void moveTo(int x, int y, int z) {
+    _ai = null;
+    log("Should not be called");
+    if (1 > 5) { // wtf!?
+      return;
+    }
+  }
+}
+```
+
 ## Tables
 
 | Option | Description |
@@ -116,4 +134,4 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
 ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
 
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
+> Classic markup: :wink: :cry: :laughing: :yum:

@@ -1,23 +1,35 @@
-import React from 'react';
-import remark from 'remark';
-import remarkParse from 'remark-parse';
+import React, { createElement, FunctionComponent } from 'react';
 // @ts-ignore
-import remarkToReact from 'remark-react';
+import emoji from 'remark-emoji';
+import unified from 'unified';
+import markdown from 'remark-parse';
 // @ts-ignore
-import remarkSlug from 'remark-slug';
+import remark2rehype from 'remark-rehype';
+// @ts-ignore
+import highlight from 'remark-highlight.js';
+// @ts-ignore
+import rehype2react from 'rehype-react';
+// @ts-ignore
+import row from 'rehype-raw';
 
-export const EuiMarkdownFormat = (props: any) => {
-  const { children } = props;
+const processor = unified()
+  .use(markdown)
+  .use(highlight)
+  .use(emoji, { emoticon: true })
+  .use(remark2rehype, { allowDangerousHTML: true })
+  .use(row)
+  .use(rehype2react, {
+    createElement: createElement,
+  });
 
-  return (
-    <div className="euiMarkdownFormat">
-      {
-        remark()
-          .use(remarkParse)
-          .use(remarkSlug)
-          .use(remarkToReact)
-          .processSync(children).contents
-      }
-    </div>
-  );
-};
+interface EuiMarkdownFormatProps {
+  children: string;
+}
+
+export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
+  children,
+}) => (
+  <div className="euiMarkdownFormat">
+    {processor.processSync(children).contents}
+  </div>
+);
