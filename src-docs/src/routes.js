@@ -144,6 +144,8 @@ import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
+import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
+
 import { PageExample } from './views/page/page_example';
 
 import { PaginationExample } from './views/pagination/pagination_example';
@@ -310,6 +312,7 @@ const navigation = [
       HorizontalRuleExample,
       ModalExample,
       NavDrawerExample,
+      OverlayMaskExample,
       PageExample,
       PanelExample,
       PopoverExample,
