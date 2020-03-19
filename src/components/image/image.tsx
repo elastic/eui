@@ -125,7 +125,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
       classes = `${classes}`;
       customStyle.maxWidth = size;
       customStyle.maxHeight = size;
-      customStyle.height = 'auto';
+      // Set width back to auto to ensure aspect ratio is kept
       customStyle.width = 'auto';
     }
 
