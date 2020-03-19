@@ -34,6 +34,16 @@ describe('EuiBadge', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is rendered with href provided', () => {
+    const component = render(
+      <EuiBadge {...requiredProps} href="/#/">
+        Content
+      </EuiBadge>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('is rendered with iconOnClick provided', () => {
     const component = render(
       <EuiBadge
@@ -55,6 +65,20 @@ describe('EuiBadge', () => {
         iconOnClickAriaLabel="Example of onclick event for icon within the button"
         onClick={jest.fn()}
         onClickAriaLabel="Example of onclick event for the button">
+        Content
+      </EuiBadge>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('is rendered with iconOnClick and href provided', () => {
+    const component = render(
+      <EuiBadge
+        {...requiredProps}
+        iconOnClick={jest.fn()}
+        iconOnClickAriaLabel="Example of onclick event for icon within the anchor"
+        href="/#/">
         Content
       </EuiBadge>
     );
