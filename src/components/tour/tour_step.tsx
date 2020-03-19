@@ -46,6 +46,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   subtitle,
   title,
   decoration = 'beacon',
+  footerAction,
   ...rest
 }) => {
   let newStyle;
@@ -95,25 +96,30 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
           ))}
         </ul>
       </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        {stepsTotal === step ? (
-          <EuiI18n token="euiTourStep.endTour" default="End tour">
-            {(endTour: string) => (
-              <EuiButtonEmpty onClick={onEnd} {...finishButtonProps}>
-                {endTour}
-              </EuiButtonEmpty>
-            )}
-          </EuiI18n>
-        ) : (
-          <EuiI18n token="euiTourStep.skipTour" default="Skip tour">
-            {(skipTour: string) => (
-              <EuiButtonEmpty onClick={onSkip} {...finishButtonProps}>
-                {skipTour}
-              </EuiButtonEmpty>
-            )}
-          </EuiI18n>
-        )}
-      </EuiFlexItem>
+
+      {footerAction ? (
+        <EuiFlexItem grow={false}>{footerAction}</EuiFlexItem>
+      ) : (
+        <EuiFlexItem grow={false}>
+          {stepsTotal === step ? (
+            <EuiI18n token="euiTourStep.endTour" default="End tour">
+              {(endTour: string) => (
+                <EuiButtonEmpty onClick={onEnd} {...finishButtonProps}>
+                  {endTour}
+                </EuiButtonEmpty>
+              )}
+            </EuiI18n>
+          ) : (
+            <EuiI18n token="euiTourStep.skipTour" default="Skip tour">
+              {(skipTour: string) => (
+                <EuiButtonEmpty onClick={onSkip} {...finishButtonProps}>
+                  {skipTour}
+                </EuiButtonEmpty>
+              )}
+            </EuiI18n>
+          )}
+        </EuiFlexItem>
+      )}
     </EuiFlexGroup>
   );
 

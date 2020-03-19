@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 
 import {
   EuiButton,
+  EuiButtonEmpty,
   EuiColorPicker,
   EuiColorPickerSwatch,
   EuiFocusTrap,
@@ -133,7 +134,17 @@ export default () => {
 
           <EuiSpacer />
 
-          <EuiTourStep {...euiTourStepTwo}>
+          <EuiTourStep
+            {...euiTourStepTwo}
+            footerAction={
+              <EuiButtonEmpty
+                color="text"
+                flush="right"
+                size="xs"
+                onClick={actions.incrementStep}>
+                {"I don't have a favorite color"}
+              </EuiButtonEmpty>
+            }>
             <EuiColorPicker
               onChange={onSelectColor}
               color={color}
@@ -141,7 +152,7 @@ export default () => {
               button={
                 <EuiColorPickerSwatch
                   color={color}
-                  aria-label="Select a new color"
+                  aria-label="Select a color"
                 />
               }
             />

@@ -60,6 +60,11 @@ export interface EuiTourStepInterface {
    * Extra visual indication of step location
    */
   decoration?: 'none' | 'beacon';
+
+  /**
+   * Element to replace the 'Skip tour' link in the footer
+   */
+  footerAction?: ReactElement;
 }
 
 export interface EuiTourState {
