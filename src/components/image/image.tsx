@@ -41,7 +41,7 @@ interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLImageElement> {
   /**
    * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
    * `fullWidth` will set the figure to stretch to 100% of its container.
-   * All sizing values will max both the width or height, whichever is greater.
+   * `string` and `number` types will max both the width or height, whichever is greater.
    */
   size?: ImageSize | number | string;
   /**
