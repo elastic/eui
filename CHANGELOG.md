@@ -10,6 +10,10 @@
 
 - Fixed race condition in `EuiIcon` when switching from dynamically fetched components ([#3118](https://github.com/elastic/eui/pull/3118))
 
+**Breaking changes**
+
+- Removed `EuiKeyPadMenuItemButton` in favor of just `EuiKeyPadMenuItem` that can also accept an `onClick` ([#3062](https://github.com/elastic/eui/pull/3062))
+
 ## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)
 
 - Updated `EuiFilterSelect` to retain the order of its filters ([#3063](https://github.com/elastic/eui/pull/3063))
