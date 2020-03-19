@@ -83,7 +83,7 @@ export default () => {
             size="xs"
             iconType="arrowDown"
             iconSide="right"
-            aria-label="Use aria labels when no actual label is in use">
+            aria-label="Calendar dropdown">
             <EuiIcon type="calendar" />
           </EuiButtonEmpty>
         }
