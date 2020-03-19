@@ -105,7 +105,7 @@ export const ImageExample = {
             s / m / l / xl / original / fullWidth / number / string
           </EuiCode>
           . This size sets the <strong>maximum</strong> length of the longest
-          edge of the image, whether that is height or width, and scales the it.
+          edge of the image, whether that is height or width, and scales it.
           It will not increase the size of a smaller image or crop it.
         </p>
       ),
