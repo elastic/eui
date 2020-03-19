@@ -43,7 +43,10 @@ export const HtmlIdGeneratorExample = {
       text: (
         <p>
           Use <EuiCode>HtmlIdGenerator</EuiCode> to generate unique ID and avoid
-          accessibility issues.
+          accessibility issues. It is capable of generating ID&apos;s with
+          specific <EuiCode>prefix</EuiCode> or <EuiCode>suffix</EuiCode>, in
+          the first run it genrates a function which generates ID with a prefix
+          and in the second run it adds a suffix to the ID if specified
         </p>
       ),
       snippet: htmlIdGeneratorSnippet,
