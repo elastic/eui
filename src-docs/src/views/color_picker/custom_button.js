@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   EuiColorPicker,
@@ -8,56 +8,42 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { isValidHex } from '../../../../src/services';
+import { useColorPicker } from './utils';
 
-export class CustomButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: null,
-    };
-  }
-
-  handleChange = value => {
-    this.setState({ color: value });
+export const CustomButton = () => {
+  const [color, setColor, errors] = useColorPicker('');
+  const [selectedColor, setSelectedColor] = useState(color);
+  const handleColorChange = (text, { hex, isValid }) => {
+    setColor(text, { hex, isValid });
+    setSelectedColor(hex);
   };
-
-  render() {
-    const hasErrors = !isValidHex(this.state.color) && this.state.color !== '';
-
-    let errors;
-    if (hasErrors) {
-      errors = ['Provide a valid hex value'];
-    }
-
-    return (
-      <Fragment>
-        <EuiFormRow label="Pick a color" error={errors}>
-          <EuiColorPicker
-            onChange={this.handleChange}
-            color={this.state.color}
-            button={
-              <EuiColorPickerSwatch
-                color={this.state.color}
-                aria-label="Select a new color"
-              />
-            }
-          />
-        </EuiFormRow>
-        <EuiSpacer />
+  return (
+    <Fragment>
+      <EuiFormRow label="Pick a color" error={errors}>
         <EuiColorPicker
-          onChange={this.handleChange}
-          color={this.state.color}
-          isInvalid={hasErrors}
+          onChange={handleColorChange}
+          color={color}
           button={
-            <EuiBadge
-              color={this.state.color ? this.state.color : 'hollow'}
-              onClickAriaLabel="Select a new color">
-              Color this badge
-            </EuiBadge>
+            <EuiColorPickerSwatch
+              color={selectedColor}
+              aria-label="Select a new color"
+            />
           }
         />
-      </Fragment>
-    );
-  }
-}
+      </EuiFormRow>
+      <EuiSpacer />
+      <EuiColorPicker
+        onChange={handleColorChange}
+        color={color}
+        isInvalid={!!errors}
+        button={
+          <EuiBadge
+            color={selectedColor ? selectedColor : 'hollow'}
+            onClickAriaLabel="Select a new color">
+            Color this badge
+          </EuiBadge>
+        }
+      />
+    </Fragment>
+  );
+};

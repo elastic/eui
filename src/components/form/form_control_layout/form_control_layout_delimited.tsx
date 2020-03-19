@@ -12,7 +12,9 @@ import {
   EuiFormControlLayoutProps,
 } from './form_control_layout';
 
-type EuiFormControlLayoutDelimitedProps = Partial<EuiFormControlLayoutProps> & {
+export type EuiFormControlLayoutDelimitedProps = Partial<
+  EuiFormControlLayoutProps
+> & {
   /**
    * Left side control
    */

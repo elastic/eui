@@ -20,15 +20,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="editorBold"
           />
         </button>
         <button
@@ -36,15 +31,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="editorItalic"
           />
         </button>
         <span
@@ -55,15 +45,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="editorUnorderedList"
           />
         </button>
         <button
@@ -71,15 +56,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="editorOrderedList"
           />
         </button>
         <span
@@ -90,15 +70,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="editorComment"
           />
         </button>
         <button
@@ -106,15 +81,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="editorCodeBlock"
           />
         </button>
         <button
@@ -122,15 +92,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
-          <svg
+          <div
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-            focusable="false"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="editorLink"
           />
         </button>
       </div>
@@ -154,15 +119,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             <span
               class="euiButton__content"
             >
-              <svg
+              <div
                 aria-hidden="true"
-                class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
-                focusable="false"
-                height="16"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
+                class="euiButton__icon"
+                data-euiicon-type="eye"
               />
               <span
                 class="euiButton__text"
@@ -187,15 +147,10 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     <button
       class="euiMarkdownEditor__dropZone__button"
     >
-      <svg
+      <div
         aria-hidden="true"
-        class="euiIcon euiIcon--small euiIcon-isLoading euiMarkdownEditor__dropZone__icon"
-        focusable="false"
-        height="16"
-        role="img"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="euiMarkdownEditor__dropZone__icon"
+        data-euiicon-type="paperClip"
       />
       <div
         class="euiMarkdownEditor__dropZone__text"

@@ -1,1 +1,1 @@
-export { EuiFormErrorText } from './form_error_text';
+export { EuiFormErrorText, EuiFormErrorTextProps } from './form_error_text';

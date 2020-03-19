@@ -1,1 +1,1 @@
-export { EuiFieldText } from './field_text';
+export { EuiFieldText, EuiFieldTextProps } from './field_text';

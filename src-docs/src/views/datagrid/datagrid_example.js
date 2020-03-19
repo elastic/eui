@@ -29,6 +29,8 @@ import {
   DataGridToolbarVisibilityOptions,
   DataGridColumnVisibility,
   DataGridPopoverContent,
+  DataGridControlColumn,
+  DataGridToolBarVisibilityColumnSelectorOptions,
 } from './props';
 
 const gridSnippet = `
@@ -46,6 +48,22 @@ const gridSnippet = `
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
+    leadingControlColumns={[
+      {
+        id: 'selection',
+        width: 31,
+        headerCellRender: () => <span>Select a Row</span>,
+        rowCellRender: () => <div><EuiCheckbox ... /></div>,
+      },
+    ]}
+    trailingControlColumns={[
+      {
+        id: 'actions',
+        width: 40,
+        headerCellRender: () => null,
+        rowCellRender: MyGridActionsComponent,
+      },
+    ]}
     // Optional. Customize the content inside the cell. The current example outputs the row and column position.
     // Often used in combination with useEffect() to dynamically change the render.
     renderCellValue={({ rowIndex, columnId }) =>
@@ -162,6 +180,16 @@ const gridConcepts = [
     ),
   },
   {
+    title: 'leading and trailing controlColumns',
+    description: (
+      <span>
+        An array of <EuiCode>EuiDataGridControlColumn</EuiCode> objects. Used to
+        define ancillary columns on the left side of the data grid. Useful for
+        adding items like checkboxes and buttons.
+      </span>
+    ),
+  },
+  {
     title: 'schemaDetectors',
     description: (
       <span>
@@ -267,7 +295,7 @@ export const DataGridExample = {
             similar to traditional spreedsheet software, EuiDataGrid&apos;s
             current strengths are in rendering rather than creating content.{' '}
           </p>
-          <h3>Core concepts</h3>
+          <h2>Core concepts</h2>
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
@@ -289,15 +317,24 @@ export const DataGridExample = {
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <Link to="/tabular-content/data-grid-schemas-and-popvers/">
+              <Link to="/tabular-content/data-grid-schemas-and-popovers/">
                 popovers
               </Link>{' '}
               to display more content and actions into popovers.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-styling/">Grid styling</Link>{' '}
+              <Link to="/tabular-content/data-grid-styling-and-toolbar/">
+                Grid styling
+              </Link>{' '}
               can be controlled by the engineer, but augmented by user
               preference depending upon the features you enable.
+            </li>
+            <li>
+              <Link to="/tabular-content/data-grid-control-columns/">
+                Control columns
+              </Link>{' '}
+              allow you to add repeatable actions and controls like checkboxes
+              or buttons to your grid.
             </li>
           </ul>
         </Fragment>
@@ -307,6 +344,7 @@ export const DataGridExample = {
         EuiDataGrid,
         EuiDataGridColumn: DataGridColumn,
         EuiDataGridColumnVisibility: DataGridColumnVisibility,
+        EuiDataGridControlColumn: DataGridControlColumn,
         EuiDataGridInMemory: DataGridInMemory,
         EuiDataGridPagination: DataGridPagination,
         EuiDataGridSorting: DataGridSorting,
@@ -314,6 +352,7 @@ export const DataGridExample = {
         EuiDataGridSchemaDetector: DataGridSchemaDetector,
         EuiDataGridStyle: DataGridStyle,
         EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
+        EuiDataGridToolBarVisibilityColumnSelectorOptions: DataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridPopoverContent: DataGridPopoverContent,
       },
       demo: (

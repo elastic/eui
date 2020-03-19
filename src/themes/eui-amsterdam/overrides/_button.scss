@@ -1,0 +1,68 @@
+// This file has lots of modifiers and is somewhat nesty by nature
+//sass-lint:disable nesting-depth
+
+.euiButton {
+  // sass-lint:disable no-important
+  // remove for all states
+  box-shadow: none !important;
+
+  // Added exclusion of the `ghost` type of button
+  // so as not to override those specific styles from default theme
+  // And the only style that needs to change is the non-filled version
+  &:disabled:not(.euiButton--ghost):not(.euiButton--fill) {
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 70%);
+    background-color: transparentize($euiButtonColorDisabled, .7);
+    color: makeHighContrastColor($euiButtonColorDisabled, $backgroundColorSimulated, 2);
+  }
+}
+
+.euiButton--small {
+  // Use a moderately smaller radius on small buttons
+  // so that they don't appear completely rounded
+  border-radius: $euiBorderRadius * .667;
+}
+
+// Change the hollow (bordered) buttons to have a transparent background
+// and no border
+@each $name, $color in $euiButtonTypes {
+  .euiButton--#{$name} {
+    // This variable simulates the possibly darkest background the button could be on
+    // Simulates the 20% opaque color on top of the page background color
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $color, 80%);
+
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
+      color: makeHighContrastColor($color, $backgroundColorSimulated);
+    } @else {
+      // Then we can calculate the darkest text color needed
+      color: makeHighContrastColor($color, $backgroundColorSimulated);
+    }
+
+    // But still use transparency
+    background-color: transparentize($color, .8);
+
+    &:enabled {
+      &:hover,
+      &:focus {
+        background-color: transparentize($color, lightOrDarkTheme(.9, .65));
+      }
+
+      &.euiButton--fill {
+        &:hover,
+        &:focus {
+          background-color: darken($color, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Fix ghost/disabled look specifically
+.euiButton:disabled.euiButton--ghost:not(.euiButton--fill) {
+  &,
+  &:hover,
+  &:focus {
+    background-color: transparentize($euiButtonColorGhostDisabled, .7);
+  }
+}

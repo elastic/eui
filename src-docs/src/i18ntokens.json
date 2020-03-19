@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 547,
+        "line": 559,
         "column": 10
       },
       "end": {
-        "line": 554,
+        "line": 566,
         "column": 12
       }
     },
@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 558,
+        "line": 570,
         "column": 10
       },
       "end": {
-        "line": 564,
+        "line": 576,
         "column": 12
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 604,
+        "line": 616,
         "column": 6
       },
       "end": {
-        "line": 604,
+        "line": 616,
         "column": 77
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 978,
+        "line": 1005,
         "column": 8
       },
       "end": {
-        "line": 978,
+        "line": 1005,
         "column": 79
       }
     },
@@ -96,17 +96,49 @@
     "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
   },
   {
-    "token": "euiBottomBar.screenReaderAnnouncement",
-    "defString": "There is a new menu opening with page level controls at the end of the document.",
+    "token": "euiBottomBar.screenReaderHeading",
+    "defString": "Page level controls",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 70,
-        "column": 12
+        "line": 73,
+        "column": 8
       },
       "end": {
-        "line": 73,
+        "line": 75,
+        "column": 40
+      }
+    },
+    "filepath": "src/components/bottom_bar/bottom_bar.tsx"
+  },
+  {
+    "token": "euiBottomBar.customScreenReaderAnnouncement",
+    "defString": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 100,
         "column": 14
+      },
+      "end": {
+        "line": 104,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/bottom_bar/bottom_bar.tsx"
+  },
+  {
+    "token": "euiBottomBar.screenReaderAnnouncement",
+    "defString": "There is a new region landmark with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 106,
+        "column": 14
+      },
+      "end": {
+        "line": 109,
+        "column": 16
       }
     },
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"
@@ -181,15 +213,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 171,
+        "line": 224,
         "column": 12
       },
       "end": {
-        "line": 174,
+        "line": 227,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeEditor.startEditing",
@@ -197,15 +229,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 176,
+        "line": 229,
         "column": 12
       },
       "end": {
-        "line": 179,
+        "line": 232,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeEditor.stopInteracting",
@@ -213,15 +245,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 238,
         "column": 12
       },
       "end": {
-        "line": 188,
+        "line": 241,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeEditor.stopEditing",
@@ -229,15 +261,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 190,
+        "line": 243,
         "column": 12
       },
       "end": {
-        "line": 193,
+        "line": 246,
         "column": 14
       }
     },
-    "filepath": "src/components/code_editor/code_editor.js"
+    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeBlock.copyButton",
@@ -245,15 +277,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 167,
+        "line": 208,
         "column": 12
       },
       "end": {
-        "line": 167,
+        "line": 208,
         "column": 68
       }
     },
-    "filepath": "src/components/code/_code_block.js"
+    "filepath": "src/components/code/_code_block.tsx"
   },
   {
     "token": "euiColorPicker.swatchAriaLabel",
@@ -261,12 +293,28 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 299,
+        "line": 421,
         "column": 14
       },
       "end": {
-        "line": 302,
+        "line": 424,
         "column": 55
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
+    "token": "euiColorPicker.alphaLabel",
+    "defString": "Alpha channel (opacity) value",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 443,
+        "column": 10
+      },
+      "end": {
+        "line": 445,
+        "column": 52
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -277,11 +325,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 403,
+        "line": 549,
         "column": 14
       },
       "end": {
-        "line": 408,
+        "line": 554,
         "column": 16
       }
     },
@@ -293,11 +341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 293,
+        "line": 301,
         "column": 12
       },
       "end": {
-        "line": 298,
+        "line": 306,
         "column": 14
       }
     },
@@ -309,11 +357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 335,
+        "line": 339,
         "column": 14
       },
       "end": {
-        "line": 337,
+        "line": 341,
         "column": 43
       }
     },
@@ -325,11 +373,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 436,
+        "line": 443,
         "column": 10
       },
       "end": {
-        "line": 444,
+        "line": 451,
         "column": 12
       }
     },
@@ -389,15 +437,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 51,
+        "line": 61,
         "column": 8
       },
       "end": {
-        "line": 54,
+        "line": 64,
         "column": 32
       }
     },
-    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.js"
+    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.loadingOptions",
@@ -405,15 +453,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 156,
+        "line": 194,
         "column": 12
       },
       "end": {
-        "line": 159,
+        "line": 197,
         "column": 14
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.alreadyAdded",
@@ -421,15 +469,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 173,
+        "line": 211,
         "column": 14
       },
       "end": {
-        "line": 179,
+        "line": 217,
         "column": 16
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.createCustomOption",
@@ -437,15 +485,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 223,
         "column": 14
       },
       "end": {
-        "line": 192,
+        "line": 230,
         "column": 16
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.noMatchingOptions",
@@ -453,15 +501,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
+        "line": 237,
         "column": 12
       },
       "end": {
-        "line": 203,
+        "line": 241,
         "column": 14
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.noAvailableOptions",
@@ -469,15 +517,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 210,
+        "line": 248,
         "column": 10
       },
       "end": {
-        "line": 213,
+        "line": 251,
         "column": 12
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.allOptionsSelected",
@@ -485,15 +533,111 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 219,
+        "line": 257,
         "column": 10
       },
       "end": {
-        "line": 222,
+        "line": 260,
         "column": 12
       }
     },
-    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
+  },
+  {
+    "token": "euiControlBar.screenReaderHeading",
+    "defString": "Page level controls",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 406,
+        "column": 6
+      },
+      "end": {
+        "line": 408,
+        "column": 38
+      }
+    },
+    "filepath": "src/components/control_bar/control_bar.tsx"
+  },
+  {
+    "token": "euiControlBar.customScreenReaderAnnouncement",
+    "defString": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 443,
+        "column": 14
+      },
+      "end": {
+        "line": 447,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/control_bar/control_bar.tsx"
+  },
+  {
+    "token": "euiControlBar.screenReaderAnnouncement",
+    "defString": "There is a new region landmark with page level controls at the end of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 449,
+        "column": 14
+      },
+      "end": {
+        "line": 452,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/control_bar/control_bar.tsx"
+  },
+  {
+    "token": "euiColumnSelector.button",
+    "defString": "Columns",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 96,
+        "column": 4
+      },
+      "end": {
+        "line": 96,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/datagrid/column_selector.tsx"
+  },
+  {
+    "token": "euiColumnSelector.buttonActiveSingular",
+    "defString": "{numberOfHiddenFields} column hidden",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 101,
+        "column": 6
+      },
+      "end": {
+        "line": 105,
+        "column": 8
+      }
+    },
+    "filepath": "src/components/datagrid/column_selector.tsx"
+  },
+  {
+    "token": "euiColumnSelector.buttonActivePlural",
+    "defString": "{numberOfHiddenFields} columns hidden",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 109,
+        "column": 6
+      },
+      "end": {
+        "line": 113,
+        "column": 8
+      }
+    },
+    "filepath": "src/components/datagrid/column_selector.tsx"
   },
   {
     "token": "euiColumnSelector.selectAll",
@@ -501,12 +645,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 189,
-        "column": 14
+        "line": 228,
+        "column": 16
       },
       "end": {
-        "line": 189,
-        "column": 80
+        "line": 231,
+        "column": 18
       }
     },
     "filepath": "src/components/datagrid/column_selector.tsx"
@@ -517,12 +661,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 197,
-        "column": 14
+        "line": 239,
+        "column": 16
       },
       "end": {
-        "line": 197,
-        "column": 78
+        "line": 239,
+        "column": 80
       }
     },
     "filepath": "src/components/datagrid/column_selector.tsx"
@@ -533,11 +677,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 33,
+        "line": 38,
         "column": 6
       },
       "end": {
-        "line": 33,
+        "line": 38,
         "column": 80
       }
     },
@@ -549,11 +693,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 40,
+        "line": 45,
         "column": 6
       },
       "end": {
-        "line": 43,
+        "line": 48,
         "column": 8
       }
     },
@@ -565,11 +709,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 69,
+        "line": 74,
         "column": 14
       },
       "end": {
-        "line": 71,
+        "line": 76,
         "column": 52
       }
     },
@@ -581,11 +725,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
+        "line": 91,
         "column": 14
       },
       "end": {
-        "line": 88,
+        "line": 93,
         "column": 54
       }
     },
@@ -597,11 +741,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 135,
+        "line": 128,
         "column": 14
       },
       "end": {
-        "line": 137,
+        "line": 130,
         "column": 60
       }
     },
@@ -613,11 +757,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 154,
+        "line": 173,
         "column": 12
       },
       "end": {
-        "line": 157,
+        "line": 176,
         "column": 14
       }
     },
@@ -629,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 204,
         "column": 22
       },
       "end": {
-        "line": 188,
+        "line": 207,
         "column": 24
       }
     },
@@ -645,11 +789,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 191,
+        "line": 210,
         "column": 18
       },
       "end": {
-        "line": 193,
+        "line": 212,
         "column": 40
       }
     },
@@ -661,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 257,
+        "line": 285,
         "column": 18
       },
       "end": {
-        "line": 260,
+        "line": 288,
         "column": 20
       }
     },
@@ -677,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 261,
         "column": 6
       },
       "end": {
-        "line": 256,
+        "line": 263,
         "column": 67
       }
     },
@@ -693,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 75,
+        "line": 83,
         "column": 6
       },
       "end": {
-        "line": 78,
+        "line": 86,
         "column": 8
       }
     },
@@ -709,11 +853,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 81,
+        "line": 89,
         "column": 6
       },
       "end": {
-        "line": 84,
+        "line": 92,
         "column": 8
       }
     },
@@ -725,11 +869,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 116,
+        "line": 124,
         "column": 6
       },
       "end": {
-        "line": 119,
+        "line": 127,
         "column": 8
       }
     },
@@ -741,11 +885,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 122,
+        "line": 130,
         "column": 6
       },
       "end": {
-        "line": 125,
+        "line": 133,
         "column": 8
       }
     },
@@ -757,11 +901,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 154,
+        "line": 162,
         "column": 6
       },
       "end": {
-        "line": 154,
+        "line": 162,
         "column": 77
       }
     },
@@ -773,11 +917,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 157,
+        "line": 165,
         "column": 6
       },
       "end": {
-        "line": 157,
+        "line": 165,
         "column": 78
       }
     },
@@ -789,11 +933,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 191,
+        "line": 199,
         "column": 6
       },
       "end": {
-        "line": 191,
+        "line": 199,
         "column": 80
       }
     },
@@ -805,11 +949,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 194,
+        "line": 202,
         "column": 6
       },
       "end": {
-        "line": 197,
+        "line": 205,
         "column": 8
       }
     },
@@ -821,11 +965,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 222,
+        "line": 230,
         "column": 6
       },
       "end": {
-        "line": 225,
+        "line": 233,
         "column": 8
       }
     },
@@ -837,11 +981,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 228,
+        "line": 236,
         "column": 6
       },
       "end": {
-        "line": 231,
+        "line": 239,
         "column": 8
       }
     },
@@ -853,11 +997,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 829,
+        "line": 929,
         "column": 12
       },
       "end": {
-        "line": 832,
+        "line": 932,
         "column": 14
       }
     },
@@ -1301,15 +1445,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 29,
+        "line": 54,
         "column": 6
       },
       "end": {
-        "line": 31,
+        "line": 56,
         "column": 58
       }
     },
-    "filepath": "src/components/form/form.js"
+    "filepath": "src/components/form/form.tsx"
   },
   {
     "token": "euiSuperSelectControl.selectAnOption",
@@ -1381,11 +1525,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 121,
+        "line": 120,
         "column": 12
       },
       "end": {
-        "line": 124,
+        "line": 123,
         "column": 54
       }
     },
@@ -1397,11 +1541,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 155,
+        "line": 154,
         "column": 10
       },
       "end": {
-        "line": 158,
+        "line": 157,
         "column": 51
       }
     },
@@ -1653,11 +1797,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 624,
+        "line": 625,
         "column": 14
       },
       "end": {
-        "line": 627,
+        "line": 628,
         "column": 16
       }
     },
@@ -1669,11 +1813,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 312,
+        "line": 316,
         "column": 12
       },
       "end": {
-        "line": 315,
+        "line": 319,
         "column": 14
       }
     },
@@ -1685,11 +1829,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 322,
+        "line": 326,
         "column": 10
       },
       "end": {
-        "line": 326,
+        "line": 330,
         "column": 12
       }
     },
@@ -1701,11 +1845,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 332,
+        "line": 336,
         "column": 10
       },
       "end": {
-        "line": 335,
+        "line": 339,
         "column": 12
       }
     },
