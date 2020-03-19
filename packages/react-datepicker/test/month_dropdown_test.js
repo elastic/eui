@@ -8,9 +8,11 @@ import {
   getDefaultLocaleData,
 } from '../src/date_utils';
 
-
-const range = (start, end, step=1) =>
-  Array.from({ length: (end - start) / step }, (_, i) => i * step + start);
+const range = (start, end, step = 1) =>
+  Array.from(
+    { length: (end - start + step - 1) / step },
+    (_, i) => i * step + start
+  );
 
 describe('MonthDropdown', () => {
   let monthDropdown;
