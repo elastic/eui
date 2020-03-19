@@ -38,6 +38,46 @@ exports[`EuiBadge is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiBadge is rendered with href provided 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiBadge euiBadge-isClickable euiBadge--iconLeft testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="/#/"
+  style="background-color:#d3dae6;color:#000"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</a>
+`;
+
+exports[`EuiBadge is rendered with iconOnClick and href provided 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft testClass1 testClass2"
+  style="background-color:#d3dae6;color:#000"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <a
+      aria-label="aria-label"
+      class="euiBadge__childButton"
+      data-test-subj="test subject string"
+      href="/#/"
+    >
+      Content
+    </a>
+  </span>
+</span>
+`;
+
 exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft testClass1 testClass2"
@@ -59,19 +99,19 @@ exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
 
 exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
 <span
-  aria-label="aria-label"
   class="euiBadge euiBadge--iconLeft testClass1 testClass2"
-  data-test-subj="test subject string"
   style="background-color:#d3dae6;color:#000"
 >
   <span
     class="euiBadge__content"
   >
-    <span
-      class="euiBadge__text"
+    <button
+      aria-label="aria-label"
+      class="euiBadge__childButton"
+      data-test-subj="test subject string"
     >
       Content
-    </span>
+    </button>
   </span>
 </span>
 `;

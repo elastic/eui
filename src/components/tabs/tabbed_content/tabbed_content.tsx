@@ -15,7 +15,7 @@ export const AUTOFOCUS = ['initial', 'selected'] as const;
 
 export interface EuiTabbedContentTab {
   id: string;
-  name: string;
+  name: ReactNode;
   content: ReactNode;
 }
 
@@ -53,7 +53,7 @@ export type EuiTabbedContentProps = CommonProps &
     size?: EuiTabsSizes;
     /**
      * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
-     * The name property is also required to display to the user.
+     * The name property (a node) is also required to display to the user.
      */
     tabs: EuiTabbedContentTab[];
   };

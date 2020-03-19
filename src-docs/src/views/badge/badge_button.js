@@ -41,5 +41,17 @@ export default () => (
         onClick on both text and icon within badge
       </EuiBadge>
     </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        isDisabled={true}
+        color="danger"
+        onClick={() => window.alert('Badge clicked')}
+        onClickAriaLabel="Example of disabled button badge"
+        iconOnClick={() => window.alert('Disabled badge clicked')}
+        iconOnClickAriaLabel="Example of disabled button badge"
+        data-test-sub="testExample4">
+        disabled button badge
+      </EuiBadge>
+    </EuiFlexItem>
   </EuiFlexGroup>
 );

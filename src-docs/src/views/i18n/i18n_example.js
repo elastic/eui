@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiI18n } from '../../../../src/components';
+import { EuiCode, EuiI18n, EuiContext } from '../../../../src/components';
 
 import I18nBasic from './i18n_basic';
 const i18nBasicSource = require('!!raw-loader!./i18n_basic');
@@ -22,6 +22,11 @@ import I18nNumber from './i18n_number';
 const I18nNumberSource = require('!!raw-loader!./i18n_number');
 const I18nNumberHtml = renderToHtml(I18nNumber);
 
+import Context from './context';
+const contextSource = require('!!raw-loader!./context');
+const contextHtml = renderToHtml(Context);
+
+import { I18nShapeProps } from './props';
 export const I18nExample = {
   title: 'I18n',
   sections: [
@@ -115,6 +120,30 @@ export const I18nExample = {
         </p>
       ),
       demo: <I18nNumber />,
+    },
+    {
+      title: 'Context',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: contextSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: contextHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>EuiContext</EuiCode> allows setting global
+          internationalization copy for EUI components. Any components used
+          within this context will lookup their display values from this
+          mapping.
+        </p>
+      ),
+      components: { EuiContext },
+      demo: <Context />,
+      props: { EuiContext, EuiI18n, i18n: I18nShapeProps },
     },
   ],
 };

@@ -40,9 +40,9 @@ export interface EuiDataGridSchemaDetector {
    */
   sortTextDesc: ReactNode;
   /**
-   * Whether this column is sortable
+   * Whether this column is sortable (defaults to true)
    */
-  isSortable: boolean;
+  isSortable?: boolean;
   /**
    * Default sort direction of the column
    */
@@ -91,7 +91,6 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="False-True"
       />
     ),
-    isSortable: true,
   },
   {
     type: 'currency',
@@ -133,7 +132,6 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="High-Low"
       />
     ),
-    isSortable: true,
   },
   {
     type: 'datetime',
@@ -166,7 +164,6 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     sortTextDesc: (
       <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
     ),
-    isSortable: true,
   },
   {
     type: 'numeric',
@@ -207,7 +204,6 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="High-Low"
       />
     ),
-    isSortable: true,
   },
   {
     type: 'json',
@@ -242,7 +238,6 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
         default="Large-Small"
       />
     ),
-    isSortable: true,
   },
 ];
 

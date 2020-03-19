@@ -21,7 +21,7 @@ export default class extends Component {
   render() {
     return (
       /* DisplayToggles wrapper for Docs only */
-      <DisplayToggles>
+      <DisplayToggles canAppend canPrepend>
         <EuiFieldPassword
           placeholder="Placeholder text"
           value={this.state.value}
