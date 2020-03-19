@@ -163,11 +163,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       <div
                         className="euiTableCellContent"
                       >
-                        <span
-                          className="euiTableCellContent__text"
-                        >
-                          Name
-                        </span>
+                        <EuiInnerText>
+                          <span
+                            className="euiTableCellContent__text"
+                            title="Name"
+                          >
+                            Name
+                          </span>
+                        </EuiInnerText>
                       </div>
                     </th>
                   </EuiTableHeaderCell>

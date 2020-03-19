@@ -3,21 +3,21 @@ import React from 'react';
 import {
   EuiIcon,
   EuiKeyPadMenu,
-  EuiKeyPadMenuItemButton,
+  EuiKeyPadMenuItem,
 } from '../../../../src/components';
 
 export default () => (
   <EuiKeyPadMenu>
-    <EuiKeyPadMenuItemButton
+    <EuiKeyPadMenuItem
       label="Dashboard"
       onClick={() => window.alert('Clicked')}>
       <EuiIcon type="dashboardApp" size="l" />
-    </EuiKeyPadMenuItemButton>
-    <EuiKeyPadMenuItemButton
+    </EuiKeyPadMenuItem>
+    <EuiKeyPadMenuItem
       label="Dashboard"
       isDisabled
       onClick={() => window.alert('Clicked')}>
       <EuiIcon type="dashboardApp" size="l" />
-    </EuiKeyPadMenuItemButton>
+    </EuiKeyPadMenuItem>
   </EuiKeyPadMenu>
 );
