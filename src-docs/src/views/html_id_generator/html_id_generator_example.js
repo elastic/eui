@@ -78,8 +78,8 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          Provide <EuiCode>suffix</EuiCode> to generator to get ID with a
-          specific suffix.
+          Provide a <EuiCode>suffix</EuiCode> to the generator to get an ID that starts with the
+          specified suffix.
         </p>
       ),
       demo: <HtmlIdGeneratorSuffix />,
