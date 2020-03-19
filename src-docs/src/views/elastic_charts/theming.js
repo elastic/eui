@@ -84,11 +84,7 @@ export const Theming = () => {
   return (
     <Fragment>
       <Chart size={{ height: 200 }}>
-        <Settings
-          theme={[customColors, theme]}
-          showLegend={false}
-          showLegendDisplayValue={false}
-        />
+        <Settings theme={[customColors, theme]} showLegend={false} />
         <BarSeries
           id="status"
           name="Status"
@@ -104,7 +100,7 @@ export const Theming = () => {
           data={data1}
           xAccessor={'x'}
           yAccessors={['y']}
-          customSeriesColors={['black']}
+          color={['black']}
         />
         <Axis id="bottom-axis" position="bottom" showGridLines />
         <Axis id="left-axis" position="left" showGridLines />
