@@ -24,7 +24,7 @@ const codeBlockProps = {
 };
 
 export default {
-  title: 'Accessibility',
+  title: 'Accessibility guidelines',
   intro: (
     <>
       <EuiText className="guideSection__text" grow={false}>
