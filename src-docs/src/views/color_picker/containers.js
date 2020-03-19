@@ -16,12 +16,12 @@ import {
 
 import {
   useColorPickerState,
-  useColorStopState,
+  useColorStopsState,
 } from '../../../../src/services';
 
 export default () => {
   const [color, setColor] = useColorPickerState('#FFF');
-  const [colorStops, setColorStops] = useColorStopState();
+  const [colorStops, setColorStops] = useColorStopsState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 

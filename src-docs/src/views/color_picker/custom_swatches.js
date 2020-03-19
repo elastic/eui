@@ -9,12 +9,12 @@ import {
 
 import {
   useColorPickerState,
-  useColorStopState,
+  useColorStopsState,
 } from '../../../../src/services';
 
 export const CustomSwatches = () => {
   const [color, setColor, errors] = useColorPickerState();
-  const [colorStops, setColorStops] = useColorStopState();
+  const [colorStops, setColorStops] = useColorStopsState();
 
   const customSwatches = ['#333', '#666', '#999', '#CCC'];
 

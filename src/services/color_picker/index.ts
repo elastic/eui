@@ -1,1 +1,1 @@
-export { useColorPickerState, useColorStopState } from './color_picker';
+export { useColorPickerState, useColorStopsState } from './color_picker';

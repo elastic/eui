@@ -9,12 +9,12 @@ import { DisplayToggles } from '../form_controls/display_toggles';
 
 import {
   useColorPickerState,
-  useColorStopState,
+  useColorStopsState,
 } from '../../../../src/services';
 
 export const KitchenSink = () => {
   const [color, setColor] = useColorPickerState('#D36086');
-  const [colorStops, setColorStops, addStop] = useColorStopState(true);
+  const [colorStops, setColorStops, addStop] = useColorStopsState(true);
 
   return (
     <React.Fragment>

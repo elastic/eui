@@ -9,12 +9,12 @@ import {
 
 import {
   useColorPickerState,
-  useColorStopState,
+  useColorStopsState,
 } from '../../../../src/services';
 
 export const Modes = () => {
   const [color, setColor, errors] = useColorPickerState('#D36086');
-  const [colorStops, setColorStops] = useColorStopState();
+  const [colorStops, setColorStops] = useColorStopsState();
 
   return (
     <React.Fragment>

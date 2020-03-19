@@ -45,7 +45,7 @@ export {
   HSV,
 } from './color';
 
-export { useColorPickerState, useColorStopState } from './color_picker';
+export { useColorPickerState, useColorStopsState } from './color_picker';
 
 export { copyToClipboard } from './copy_to_clipboard';
 
