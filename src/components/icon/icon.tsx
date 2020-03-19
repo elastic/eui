@@ -548,7 +548,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
       enqueueStateChange(() => {
-        if (this.isMounted) {
+        if (this.isMounted && this.props.type === iconType) {
           this.setState(
             {
               icon,
