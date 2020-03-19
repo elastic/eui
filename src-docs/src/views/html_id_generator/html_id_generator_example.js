@@ -45,7 +45,7 @@ export const HtmlIdGeneratorExample = {
       demo: <IdGenerator />,
     },
     {
-      title: 'Id Generator with prefix',
+      title: 'ID generator with prefix',
       source: [
         {
           type: GuideSectionTypes.JS,
