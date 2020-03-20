@@ -20,6 +20,9 @@ export type EuiFormProps = CommonProps &
      */
     component?: 'form' | 'div';
     error?: ReactNode | ReactNode[];
+    /**
+     * Whether to show form top level error or not
+     */
     showCallout?: boolean;
   };
 
