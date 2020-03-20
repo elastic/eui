@@ -87,7 +87,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       {optionalOverlay}
       {/* Trap focus only when isDocked={false} */}
       <EuiFocusTrap disabled={isDocked} clickOutsideDisables={true}>
-        <nav className={classes} {...rest}>
+        <nav className={classes} role="group" {...rest}>
           {children}
 
           <EuiButtonEmpty

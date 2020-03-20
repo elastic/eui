@@ -127,7 +127,10 @@ export default () => {
   const leftSectionItems = [
     <EuiCollapsibleNavToggle navIsDocked={navIsDocked}>
       <EuiHeaderSectionItemButton
-        aria-label="Open nav"
+        aria-label="Toggle main navigation"
+        aria-controls="guideCollapsibleNavAllExampleNav"
+        aria-expanded={navIsOpen}
+        aria-pressed={navIsOpen}
         onClick={() => setNavIsOpen(!navIsOpen)}>
         <EuiIcon type={'menu'} size="m" />
       </EuiHeaderSectionItemButton>
@@ -160,6 +163,8 @@ export default () => {
 
           {navIsOpen && (
             <EuiCollapsibleNav
+              id="guideCollapsibleNavAllExampleNav"
+              aria-label="Main navigation"
               docked={navIsDocked}
               onClose={() => setNavIsOpen(false)}>
               {/* Dark deployments section */}

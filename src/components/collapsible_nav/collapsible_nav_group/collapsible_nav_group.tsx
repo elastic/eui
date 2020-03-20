@@ -100,6 +100,8 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   ...rest
 }) => {
   const [groupID] = useState(id || htmlIdGenerator()());
+  const titleID = `${groupID}__title`;
+
   const classes = classNames(
     'euiCollapsibleNavGroup',
     backgroundToClassNameMap[background],
@@ -133,7 +135,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
 
       <EuiFlexItem>
         <EuiTitle size={titleSize as EuiTitleSize}>
-          <TitleElement className="euiCollapsibleNavGroup__title">
+          <TitleElement id={titleID} className="euiCollapsibleNavGroup__title">
             {title}
           </TitleElement>
         </EuiTitle>
@@ -147,6 +149,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     return (
       <EuiAccordion
         id={groupID}
+        aria-labelledby={title ? titleID : undefined}
         className={classes}
         buttonClassName={headingClasses}
         buttonContent={titleContent}
@@ -158,7 +161,11 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     );
   } else {
     return (
-      <div id={groupID} className={classes} {...rest}>
+      <div
+        id={groupID}
+        aria-labelledby={title ? titleID : undefined}
+        className={classes}
+        {...rest}>
         {titleContent && <div className={headingClasses}>{titleContent}</div>}
         {content}
       </div>
