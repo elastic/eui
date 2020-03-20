@@ -20,6 +20,7 @@ export type EuiFormProps = CommonProps &
      */
     component?: 'form' | 'div';
     error?: ReactNode | ReactNode[];
+    showCallout?: boolean;
   };
 
 export const EuiForm: FunctionComponent<EuiFormProps> = ({
@@ -27,6 +28,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   className,
   isInvalid,
   error,
+  showCallout = true,
   component = 'div',
   ...rest
 }) => {
@@ -49,7 +51,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
 
   let optionalErrorAlert;
 
-  if (isInvalid) {
+  if (isInvalid && showCallout) {
     optionalErrorAlert = (
       <EuiI18n
         token="euiForm.addressFormErrors"

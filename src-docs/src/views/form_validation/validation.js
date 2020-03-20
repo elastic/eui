@@ -43,7 +43,10 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <EuiForm isInvalid={this.state.showErrors} error={errors}>
+        <EuiForm
+          isInvalid={this.state.showErrors}
+          error={errors}
+          showCallout={true}>
           <EuiFormRow label="Validation only" isInvalid={this.state.showErrors}>
             <EuiFieldText name="first" isInvalid={this.state.showErrors} />
           </EuiFormRow>
