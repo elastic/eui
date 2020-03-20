@@ -132,7 +132,7 @@ export default () => {
         aria-expanded={navIsOpen}
         aria-pressed={navIsOpen}
         onClick={() => setNavIsOpen(!navIsOpen)}>
-        <EuiIcon type={'menu'} size="m" />
+        <EuiIcon type={'menu'} size="m" aria-hidden="true" />
       </EuiHeaderSectionItemButton>
     </EuiCollapsibleNavToggle>,
     <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
@@ -175,6 +175,7 @@ export default () => {
               {/* Shaded pinned section always with a home item */}
               <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
                 <EuiCollapsibleNavGroup
+                  aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
                   background="light"
                   className="eui-yScroll"
                   style={{ maxHeight: '40vh' }}>
