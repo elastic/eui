@@ -53,7 +53,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
     optionalErrorAlert = (
       <EuiI18n
         token="euiForm.addressFormErrors"
-        default="Please address the errors in your form.">
+        default="Please address the highlighted errors.">
         {(addressFormErrors: string) => (
           <EuiCallOut
             className="euiForm__errors"
