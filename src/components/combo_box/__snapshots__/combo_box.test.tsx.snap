@@ -59,7 +59,6 @@ exports[`EuiComboBox is rendered 1`] = `
 
 exports[`props delimiter is rendered 1`] = `
 <div
-  append={null}
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
@@ -67,14 +66,6 @@ exports[`props delimiter is rendered 1`] = `
   role="combobox"
 >
   <EuiComboBoxInput
-    append={
-      <EuiCopy
-        afterMessage="Copied"
-        textToCopy="Mimas,Dione"
-      >
-        [Function]
-      </EuiCopy>
-    }
     autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
@@ -111,7 +102,6 @@ exports[`props delimiter is rendered 1`] = `
 
 exports[`props full width is rendered 1`] = `
 <div
-  append={null}
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox euiComboBox--fullWidth"
@@ -152,7 +142,6 @@ exports[`props full width is rendered 1`] = `
 
 exports[`props isClearable=false disallows user from clearing input when no options are selected 1`] = `
 <div
-  append={null}
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
@@ -186,7 +175,6 @@ exports[`props isClearable=false disallows user from clearing input when no opti
 
 exports[`props isClearable=false disallows user from clearing input when options are selected 1`] = `
 <div
-  append={null}
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
@@ -229,7 +217,6 @@ exports[`props isClearable=false disallows user from clearing input when options
 
 exports[`props isDisabled is rendered 1`] = `
 <div
-  append={null}
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox euiComboBox-isDisabled"
@@ -344,7 +331,6 @@ exports[`props options list is rendered 1`] = `
 
 exports[`props selectedOptions are rendered 1`] = `
 <div
-  append={null}
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
@@ -388,7 +374,6 @@ exports[`props selectedOptions are rendered 1`] = `
 
 exports[`props singleSelection is rendered 1`] = `
 <div
-  append={null}
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
@@ -431,7 +416,6 @@ exports[`props singleSelection is rendered 1`] = `
 
 exports[`props singleSelection prepend and append is rendered 1`] = `
 <div
-  append="String"
   aria-expanded={true}
   aria-haspopup="listbox"
   className="euiComboBox euiComboBox-isOpen"
@@ -561,7 +545,6 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
 
 exports[`props singleSelection selects existing option when opened 1`] = `
 <div
-  append={null}
   aria-expanded={true}
   aria-haspopup="listbox"
   className="euiComboBox euiComboBox-isOpen"

@@ -846,17 +846,6 @@ export class EuiComboBox<T> extends Component<
     this._isMounted = false;
   }
 
-  renderCopyIcon = () => {
-    const { delimiter, selectedOptions } = this.props;
-    const text = selectedOptions.map(object => object.label).join(delimiter);
-
-    return (
-      <EuiCopy textToCopy={text}>
-        {copy => <EuiIcon type="copy" onClick={copy} />}
-      </EuiCopy>
-    );
-  };
-
   render() {
     const {
       'data-test-subj': dataTestSubj,
@@ -884,6 +873,7 @@ export class EuiComboBox<T> extends Component<
       prepend,
       sortMatchesBy,
       delimiter,
+      append,
       ...rest
     } = this.props;
     const {
@@ -935,9 +925,6 @@ export class EuiComboBox<T> extends Component<
     const value = selectedOptions
       .map(selectedOption => selectedOption.label)
       .join(', ');
-
-    let append = singleSelection ? this.props.append : undefined;
-    if (delimiter) append = this.renderCopyIcon();
 
     let optionsList;
 
@@ -1031,7 +1018,7 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
-          append={append as EuiFormControlLayoutProps['append']}
+          append={singleSelection ? append : undefined}
           prepend={singleSelection ? prepend : undefined}
         />
         {optionsList}
