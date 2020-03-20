@@ -10,7 +10,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     class="euiMarkdownEditor__toolbar"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
     >
       <div
         class="euiFlexItem euiFlexItem--flexGrowZero euiMarkdownEditor__toolbar__buttons"

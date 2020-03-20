@@ -81,7 +81,7 @@ var foo = function (bar) {
 console.log(foo(5));
 ```
 
-Syntax highlighting 
+Syntax highlighting Java
 
 ``` java
 package l2f.gameserver.model;

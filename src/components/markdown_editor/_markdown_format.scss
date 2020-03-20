@@ -269,15 +269,10 @@ $euiDefaultFontSize: 14px;
   .euiMarkdownFormat__code {
     @include euiCodeFont;
     color: $euiCodeBlockColor;
-    font-size: $euiMarkdownFontSizeS;
+    font-size: $euiFontSizeXS;
     padding: $euiMarkdownSizeXXS 0;
-    margin: 0;
     margin-bottom: $euiMarkdownSizeXS;
     border-radius: $euiMarkdownSizeXXS;
-  }
-
-  pre,
-  .euiMarkdownFormat__code {
     background: $euiCodeBlockBackgroundColor;
   }
 
@@ -287,9 +282,10 @@ $euiDefaultFontSize: 14px;
     content: '\00a0';
   }
 
+  // code block
   pre .euiMarkdownFormat__code {
-    display: inline;
-    max-width: auto;
+    display: block;
+    padding: $euiSizeL;
     overflow: visible;
     line-height: inherit;
     word-wrap: normal;

@@ -67,7 +67,6 @@ export class EuiMarkdownEditorToolbar extends Component<
   ];
 
   handleMdButtonClick = (mdButtonId: string) => {
-    console.log('button clicked');
     this.props.markdownActions.do(mdButtonId);
   };
 
@@ -76,7 +75,10 @@ export class EuiMarkdownEditorToolbar extends Component<
 
     return (
       <div className="euiMarkdownEditor__toolbar">
-        <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+        <EuiFlexGroup
+          justifyContent="spaceBetween"
+          alignItems="center"
+          responsive={false}>
           <EuiFlexItem
             grow={false}
             className="euiMarkdownEditor__toolbar__buttons">
