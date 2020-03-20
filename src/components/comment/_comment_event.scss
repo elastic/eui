@@ -19,14 +19,17 @@
     font-weight: 600;
   }
 
+  .euiCommentEvent__event {
+    padding-right: $euiSizeXS;
+  }
+
   // .euiCommentEvent__headerTimeStamp {
   //   flex-grow: 1;
   // }
-
   .euiCommentEvent__body {
-    padding: $euiSizeS;
-    line-height: $euiSize * 1.2;
+    line-height: $euiSize * 1.2; // this should be on the demo side only?
   }
+
 }
 
 .euiCommentEvent--regular {
@@ -39,6 +42,10 @@
       flex-grow: 1;
     }
   }
+
+  .euiCommentEvent__body {
+    padding: $euiSizeS;
+  }
 }
 
 .euiCommentEvent--update {
@@ -48,5 +55,9 @@
 
   .euiCommentEvent__headerTimeStamp {
     padding-right: $euiSizeL;
+  }
+
+  .euiCommentEvent__body {
+    padding-top: $euiSizeS;
   }
 }

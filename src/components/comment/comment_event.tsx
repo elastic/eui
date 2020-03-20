@@ -5,9 +5,10 @@ import classNames from 'classnames';
 export type EuiCommentEventProps = CommonProps &
   CommonProps & {
     body?: ReactNode;
-    user?: ReactNode;
+    username?: ReactNode;
     timeStamp?: ReactNode;
     event?: ReactNode;
+    responses?: ReactNode;
     actions?: ReactNode;
     commentStyle?: 'regular' | 'update';
   };
@@ -21,8 +22,9 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   children,
   className,
   body,
-  user,
+  username,
   timeStamp,
+  responses,
   commentStyle = 'regular',
   event,
   actions,
@@ -38,8 +40,8 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   return (
     <div className={classes} {...rest}>
       <div className="euiCommentEvent__header">
-        <div className="euiCommentEvent__headerUser">{user}</div>
-        {event}
+        <div className="euiCommentEvent__headerUser">{username}</div>
+        <div className="euiCommentEvent__event">{event}</div>
         <div className="euiCommentEvent__headerTimeStamp">{timeStamp}</div>
         {actions}
       </div>

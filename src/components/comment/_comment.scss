@@ -4,6 +4,7 @@
   display: flex;
   margin: -($euiSize * .5);
   padding-bottom: $euiSize;
+  min-height: $euiSize * 5;
 
   .euiCommentEvent {
     flex-grow: 1;
@@ -16,7 +17,8 @@
     &::before {
       content: '';
       position: absolute;
-      left: $euiSizeXL / 2;
+      left: $euiSizeXXL / 2;
+      // left: calc(50% - (#{$euiSize * .5}));
       top: $euiSizeXXL;
       width: $euiSizeXS / 2;
       background-color: $euiColorLightShade;
