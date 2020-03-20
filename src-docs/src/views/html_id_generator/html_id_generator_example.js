@@ -16,7 +16,7 @@ const htmlIdGeneratorSnippet = ' htmlIdGenerator()()';
 
 const htmlIdGeneratorPrefixSource = require('!!raw-loader!./htmlIdGeneratorPrefix');
 const htmlIdGeneratorPrefixHtml = renderToHtml(HtmlIdGeneratorPrefix);
-const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('Id')()";
+const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('prefix')()";
 
 const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./htmlIdGeneratorSuffix');
 const HtmlIdGeneratorSuffixHtml = renderToHtml(HtmlIdGeneratorSuffix);
