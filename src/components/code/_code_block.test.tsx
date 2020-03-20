@@ -68,16 +68,13 @@ describe('EuiCodeBlockImpl', () => {
 
       expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
-  });
 
-  describe('props', () => {
-    test('whiteSpace', () => {
+    test('renders a pre block tag with a css class modifier', () => {
       const component = mount(
-        <EuiCodeBlockImpl whiteSpace="pre" {...requiredProps}>
+        <EuiCodeBlockImpl inline={false} whiteSpace="pre" {...requiredProps}>
           {code}
         </EuiCodeBlockImpl>
       );
-
       expect(snapshotCodeBlock(component)).toMatchSnapshot();
     });
   });
