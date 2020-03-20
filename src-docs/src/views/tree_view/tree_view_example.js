@@ -69,11 +69,11 @@ export const TreeViewExample = {
         <div>
           <p>
             <strong>EuiTreeView</strong> supports a compressed mode with the{' '}
-            <EuiCode>display=&quot;compressed&quot;</EuiCode> setting. When
-            using the compressed version it&apos;s highly recommended to use the
-            small size of <strong>EuiIcon</strong> and the extra small size of{' '}
-            <strong>EuiToken</strong>. This will help prevent awkard alignment
-            issues when used alongside the{' '}
+            <EuiCode language="js">{'display="compressed"'}</EuiCode> setting.
+            When using the compressed version it&apos;s highly recommended to
+            use the small size of <strong>EuiIcon</strong> and the extra small
+            size of <strong>EuiToken</strong>. This will help prevent awkard
+            alignment issues when used alongside the{' '}
             <EuiCode>showExpansionArrows</EuiCode> prop.
           </p>
           <p>

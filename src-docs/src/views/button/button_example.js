@@ -179,7 +179,7 @@ export const ButtonExample = {
             // eslint-disable-next-line react/no-unescaped-entities
           }{' '}
           to the opposite side by passing{' '}
-          <EuiCode>iconSide=&quot;right&quot;</EuiCode>.
+          <EuiCode language="js">iconSide=&quot;right&quot;</EuiCode>.
         </p>
       ),
       snippet: buttonWithIconSnippet,
@@ -328,16 +328,16 @@ export const ButtonExample = {
             <strong>EuiButtonGroup</strong>s are handled similarly to the way
             checkbox and radio groups are handled but made to look like buttons.
             They group multiple <strong>EuiButtonToggle</strong>s and utilize
-            the <EuiCode>type=&quot;single&quot;</EuiCode> or{' '}
-            <EuiCode>&quot;multi&quot;</EuiCode> prop to determine whether
-            multiple or only single selections are allowed per group.
+            the <EuiCode language="js">type=&quot;single&quot;</EuiCode> or{' '}
+            <EuiCode language="js">&quot;multi&quot;</EuiCode> prop to determine
+            whether multiple or only single selections are allowed per group.
           </p>
           <p>
             Stylistically, all button groups are the size of small buttons, do
             not stretch to fill the container, and typically should only be{' '}
-            <EuiCode>color=&quot;text&quot;</EuiCode> (default) or{' '}
-            <EuiCode>&quot;primary&quot;</EuiCode>. If you&apos;re just
-            displaying a group of icons, add the prop{' '}
+            <EuiCode language="js">color=&quot;text&quot;</EuiCode> (default) or{' '}
+            <EuiCode language="js">&quot;primary&quot;</EuiCode>. If you&apos;re
+            just displaying a group of icons, add the prop{' '}
             <EuiCode>isIconOnly</EuiCode>.
           </p>
           <EuiCallOut
@@ -372,10 +372,10 @@ export const ButtonExample = {
       text: (
         <p>
           For buttons on dark color backgrounds, you can pass{' '}
-          <EuiCode>color=&apos;ghost&apos;</EuiCode> to any of the button styles
-          on this page. These should be used extremely rarely, and are only for
-          placing buttons on top of dark or image-based backgrounds. A good
-          example of their use is in the{' '}
+          <EuiCode language="js">{'color="ghost"'}</EuiCode> to any of the
+          button styles on this page. These should be used extremely rarely, and
+          are only for placing buttons on top of dark or image-based
+          backgrounds. A good example of their use is in the{' '}
           <Link to="/layout/bottom-bar">
             <strong>EuiBottomBar</strong>
           </Link>{' '}

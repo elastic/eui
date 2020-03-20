@@ -171,7 +171,8 @@ export const ControlBarExample = {
         <div>
           <p>
             This example demonstrates the use of tabs and reduces the size of
-            the content with <EuiCode>size=&quot;m&quot;</EuiCode>.
+            the content with <EuiCode language="js">size=&quot;m&quot;</EuiCode>
+            .
           </p>
           <p>
             Optional children of the <strong>EuiControlBar</strong> are rendered
@@ -291,8 +292,8 @@ export const ControlBarExample = {
             Typically, a control bar is fixed positioned against the browser
             window and therefore rendered within a portal. To change the parent
             element of the control bar, change the <EuiCode>position</EuiCode>{' '}
-            prop to <EuiCode>&apos;absolute&apos;</EuiCode> or{' '}
-            <EuiCode>&apos;relative&apos;</EuiCode>.
+            prop to <EuiCode language="js">{'"absolute"'}</EuiCode> or{' '}
+            <EuiCode language="js">{'"relative"'}</EuiCode>.
           </p>
           <p>
             To offest the left and right position of the control bar, for

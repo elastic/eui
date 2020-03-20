@@ -22,7 +22,7 @@ export class LinkDisable extends Component {
     return (
       <div>
         <EuiSwitch
-          label="Disable Links"
+          label="Disable links"
           checked={this.state.disableLink}
           onChange={this.toggleLinkDisable}
         />

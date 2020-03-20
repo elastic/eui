@@ -231,11 +231,17 @@ export const HeaderExample = {
       text: (
         <p>
           Use an <strong>EuiHeaderSectionItemButton</strong> to display
-          additional information in an <strong>EuiPopover</strong> or{' '}
-          <strong>EuiFlyout</strong>, such as a user profile or news feed. In
-          the latter example, this additional content can be presented in a list
-          style format using <strong>EuiHeaderAlert</strong> components, as
-          shown below.
+          additional information in an{' '}
+          <Link to="/layout/popover">
+            <strong>EuiPopover</strong>
+          </Link>{' '}
+          or{' '}
+          <Link to="/layout/flyout">
+            <strong>EuiFlyout</strong>
+          </Link>
+          , such as a user profile or news feed. In the latter example, this
+          additional content can be presented in a list style format using{' '}
+          <strong>EuiHeaderAlert</strong> components, as shown below.
         </p>
       ),
       props: {

@@ -387,10 +387,11 @@ export const PopoverExample = {
       text: (
         <div>
           <p>
-            Popover anchors default to <EuiCode>display: inline-block</EuiCode>{' '}
-            so they do not force block display on inline triggers. If you do
-            need to change this to block display, just add{' '}
-            <EuiCode>display=&quot;block&quot;</EuiCode>
+            Popover anchors default to{' '}
+            <EuiCode language="sass">display: inline-block</EuiCode> so they do
+            not force block display on inline triggers. If you do need to change
+            this to block display, just add{' '}
+            <EuiCode language="js">display=&quot;block&quot;</EuiCode>
           </p>
         </div>
       ),

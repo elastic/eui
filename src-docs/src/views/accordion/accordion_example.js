@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -200,9 +201,12 @@ export const AccordionExample = {
           </p>
           <p>
             Due to the previously mentioned bare styles, it is recommended to
-            place an <strong>EuiSpacer</strong> between accordion items. Padding
-            within each accordion item can be applied via the{' '}
-            <EuiCode>paddingSize</EuiCode> prop.
+            place an{' '}
+            <Link to="/layout/spacer">
+              <strong>EuiSpacer</strong>
+            </Link>{' '}
+            between accordion items. Padding within each accordion item can be
+            applied via the <EuiCode>paddingSize</EuiCode> prop.
           </p>
         </div>
       ),

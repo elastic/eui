@@ -119,7 +119,8 @@ export const ContextMenuExample = {
           <p>
             If your panel contents have different widths or you need to ensure
             that a specific context menu panel has a certain width, add{' '}
-            <EuiCode>width: [number of pixels]</EuiCode> to the panel tree.
+            <EuiCode language="ts">width: [number of pixels]</EuiCode> to the
+            panel tree.
           </p>
         </div>
       ),
