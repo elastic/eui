@@ -152,6 +152,11 @@
   }
 }
 
+.colorGuidelines_colorPreviewTooLight rect {
+  stroke: transparentize($euiColorLightShade, lightOrDarkTheme(.5, 0));
+  stroke-width: .25px;
+}
+
 .guideSass__shadow--euiSlightShadow { @include euiSlightShadow; }
 .guideSass__shadow--euiBottomShadowSmall { @include euiBottomShadowSmall; }
 .guideSass__shadow--euiBottomShadowMedium { @include euiBottomShadowMedium; }
@@ -290,8 +295,8 @@
   color: #333;
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__themedBox--dark {
+  // sass-lint:disable no-color-literals
   border-color: #4DA1C0;
   background: shade(#4DA1C0, 70%);
   color: #FFF;
@@ -311,6 +316,18 @@
     vertical-align: bottom;
   }
 }
+
+.guideSection__shadedBox {
+  background-color: $euiPageBackgroundColor;
+  padding: $euiSize;
+  border-radius: $euiBorderRadius;
+}
+
+.guideSection__emptyBox {
+  background-color: $euiColorEmptyShade;
+}
+
+@import 'colors/color_section';
 
 @include euiBreakpoint('xl') {
   .guideSass__breakpointExample {
