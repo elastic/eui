@@ -118,7 +118,7 @@ export class EuiSuperUpdateButton extends Component {
       );
     }
 
-    return isPopoverClosed ? (
+    return (
       <EuiToolTip
         ref={this.setTootipRef}
         content={tooltipContent}
@@ -137,19 +137,6 @@ export class EuiSuperUpdateButton extends Component {
           {buttonText}
         </EuiButton>
       </EuiToolTip>
-    ) : (
-      <EuiButton
-        className={classes}
-        color={needsUpdate || isLoading ? 'secondary' : 'primary'}
-        fill
-        iconType={needsUpdate || isLoading ? 'kqlFunction' : 'refresh'}
-        textProps={{ className: 'euiSuperUpdateButton__text' }}
-        isDisabled={isDisabled}
-        onClick={onClick}
-        isLoading={isLoading}
-        {...rest}>
-        {buttonText}
-      </EuiButton>
     );
   }
 }
