@@ -20,7 +20,7 @@ const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('prefix')()";
 
 const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./htmlIdGeneratorSuffix');
 const HtmlIdGeneratorSuffixHtml = renderToHtml(HtmlIdGeneratorSuffix);
-const suffixSnippet = " htmlIdGenerator()('Id')";
+const suffixSnippet = " htmlIdGenerator()('suffix')";
 
 const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
 const PrefixSufixHtml = renderToHtml(PrefixSufix);
