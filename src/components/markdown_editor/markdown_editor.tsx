@@ -59,8 +59,8 @@ export class EuiMarkdownEditor extends Component<
     this.markdownActions.do(mdButtonId);
   };
 
-  onTogglePreview = (e: any) => {
-    this.setState({ viewMarkdownPreview: e.target.checked });
+  onClickPreview = () => {
+    this.setState({ viewMarkdownPreview: !this.state.viewMarkdownPreview });
   };
 
   onAttachFiles = (files: FileList | null) => {
@@ -81,7 +81,7 @@ export class EuiMarkdownEditor extends Component<
       <div className={classes} {...rest}>
         <EuiMarkdownEditorToolbar
           markdownActions={this.markdownActions}
-          onTogglePreview={this.onTogglePreview}
+          onClickPreview={this.onClickPreview}
           viewMarkdownPreview={viewMarkdownPreview}
         />
 
