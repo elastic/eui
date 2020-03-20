@@ -4,6 +4,7 @@
 - Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
 - Added `title` to headers of `EuiTable` in case of truncation ([#3094](https://github.com/elastic/eui/pull/3094))
 - Added i18n to `EuiTableHeaderCell` ([#3094](https://github.com/elastic/eui/pull/3094))
+- Updated makeId to DEPRECATED, shifted all the calls to htmlIdGenerator
 
 **Bug Fixes**
 
