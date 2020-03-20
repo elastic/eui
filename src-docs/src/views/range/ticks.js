@@ -7,7 +7,7 @@ import {
   EuiDualRange,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiRange
-          id={makeId()}
+          id={htmlIdGenerator()()}
           step={10}
           value={this.state.value}
           onChange={this.onChange}
@@ -52,7 +52,7 @@ export default class extends Component {
         <EuiSpacer size="l" />
 
         <EuiRange
-          id={makeId()}
+          id={htmlIdGenerator()()}
           value={this.state.value}
           onChange={this.onChange}
           showInput
@@ -71,7 +71,7 @@ export default class extends Component {
         <EuiSpacer size="l" />
 
         <EuiDualRange
-          id={makeId()}
+          id={htmlIdGenerator()()}
           value={this.state.dualValue}
           onChange={this.onDualChange}
           showTicks

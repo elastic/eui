@@ -15,8 +15,6 @@ import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
 
-// import makeId from './make_id';
-
 import { htmlIdGenerator } from '../../../services/accessibility';
 
 const displayToClassNameMap = {
@@ -304,11 +302,11 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     return labelType === 'legend' ? (
       <fieldset
         {...sharedProps}
-        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}>
+        {...rest as HTMLAttributes<HTMLFieldSetElement>}>
         {contents}
       </fieldset>
     ) : (
-      <div {...sharedProps} {...(rest as HTMLAttributes<HTMLDivElement>)}>
+      <div {...sharedProps} {...rest as HTMLAttributes<HTMLDivElement>}>
         {contents}
       </div>
     );

@@ -6,7 +6,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const shortDescription = 'This is the description';
 
@@ -45,7 +45,7 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
-    const idPrefix = makeId();
+    const idPrefix = htmlIdGenerator()();
 
     this.radios = [
       { id: `${idPrefix}0`, value: 'unchanged', label: 'No new changes' },

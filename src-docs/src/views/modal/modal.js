@@ -20,7 +20,7 @@ import {
 
 import SuperSelectComplexExample from '../super_select/super_select_complex';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export class Modal extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export class Modal extends Component {
       <EuiForm>
         <EuiFormRow>
           <EuiSwitch
-            id={makeId()}
+            id={htmlIdGenerator()()}
             name="popswitch"
             label="Isn't this modal form cool?"
             checked={this.state.isSwitchChecked}

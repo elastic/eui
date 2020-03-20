@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { EuiDualRange } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class extends Component {
   render() {
     return (
       <EuiDualRange
-        id={makeId()}
+        id={htmlIdGenerator()()}
         min={-100}
         max={200}
         step={10}

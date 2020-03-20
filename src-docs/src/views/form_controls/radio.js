@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import { EuiRadio, EuiSpacer } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiRadio
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am a radio"
           checked={this.state.checked}
           onChange={this.onChange}
@@ -32,7 +32,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiRadio
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am a disabled radio"
           checked={this.state.checked}
           onChange={this.onChange}
@@ -42,7 +42,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiRadio
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am a compressed radio"
           checked={this.state.checked}
           onChange={this.onChange}

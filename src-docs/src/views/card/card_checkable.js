@@ -8,11 +8,11 @@ import {
   EuiFormFieldset,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   state = {
-    radioName: makeId(),
+    radioName: htmlIdGenerator()(),
     radio: 'radio2',
     nestedRadio: 'nestedRadio1',
     checkbox: false,
@@ -47,7 +47,7 @@ export default class extends Component {
             ),
           }}>
           <EuiCheckableCard
-            id={makeId()}
+            id={htmlIdGenerator()()}
             label="Option one"
             name={radioName}
             value="radio1"
@@ -58,7 +58,7 @@ export default class extends Component {
           <EuiSpacer size="m" />
 
           <EuiCheckableCard
-            id={makeId()}
+            id={htmlIdGenerator()()}
             label="Option two"
             name={radioName}
             value="radio2"
@@ -75,7 +75,7 @@ export default class extends Component {
           <EuiSpacer size="m" />
 
           <EuiCheckableCard
-            id={makeId()}
+            id={htmlIdGenerator()()}
             label="Option three (disabled)"
             name={radioName}
             value="radio3"
@@ -88,7 +88,7 @@ export default class extends Component {
         <EuiSpacer size="xl" />
 
         <EuiCheckableCard
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am a checkbox"
           checkableType="checkbox"
           value="checkbox1"

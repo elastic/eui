@@ -15,7 +15,6 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-// import makeId from '../../../../src/components/form/form_row/make_id';
 import { htmlIdGenerator } from '../../../../src/services/accessibility';
 
 export default class extends Component {

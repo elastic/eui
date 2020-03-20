@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import { EuiCheckbox, EuiSpacer } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiCheckbox
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am a checkbox"
           checked={this.state.checked}
           onChange={this.onChange}
@@ -39,7 +39,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiCheckbox
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am an indeterminate checkbox"
           indeterminate={this.state.indeterminate}
           onChange={this.onChangeIndeterminate}
@@ -48,7 +48,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiCheckbox
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am a disabled checkbox"
           checked={this.state.checked}
           onChange={this.onChange}
@@ -58,7 +58,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiCheckbox
-          id={makeId()}
+          id={htmlIdGenerator()()}
           label="I am a compressed checkbox"
           checked={this.state.checked}
           onChange={this.onChange}
