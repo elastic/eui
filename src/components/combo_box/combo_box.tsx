@@ -44,8 +44,6 @@ import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
 import { EuiFormControlLayoutProps } from '../form';
-import { EuiIcon } from '../icon';
-import { EuiCopy } from '../copy';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
