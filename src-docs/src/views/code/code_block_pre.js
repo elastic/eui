@@ -22,7 +22,7 @@ export default () => (
             overflowHeight={300}
             isCopyable>
               <div>
-When the whiteSpace property is set to pre all the whitespaces will be kept as is and the text only wraps when line breaks are in the content.
+                When the whiteSpace property is set to pre all the whitespaces will be kept as is and the text only wraps when line breaks are in the content.
               </div>
             </EuiCodeBlock>
 
