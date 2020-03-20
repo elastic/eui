@@ -6,6 +6,7 @@
 - Added `title` to headers of `EuiTable` in case of truncation ([#3094](https://github.com/elastic/eui/pull/3094))
 - Added i18n to `EuiTableHeaderCell` ([#3094](https://github.com/elastic/eui/pull/3094))
 - Added `number` and `string` to `size` type of `EuiImage` for setting custom sizes ([#3012](https://github.com/elastic/eui/pull/3012))
+- Upgraded `react-beautiful-dnd` to v13 ([#3064](https://github.com/elastic/eui/pull/3064))
 
 **Bug Fixes**
 
@@ -14,7 +15,6 @@
 
 **Breaking changes**
 
-- Upgraded `react-beautiful-dnd` to version 13 ([#3064](https://github.com/elastic/eui/pull/3064))
 - Removed `EuiKeyPadMenuItemButton` in favor of just `EuiKeyPadMenuItem` that can also accept an `onClick` ([#3062](https://github.com/elastic/eui/pull/3062))
 
 ## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)
