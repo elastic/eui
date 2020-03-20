@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { GuidePageChrome, ThemeProvider, ThemeContext } from '../components';
-import { translateUsingPseudoLocale } from '../services';
+import { registerRouter, translateUsingPseudoLocale } from '../services';
 
 import {
   EuiErrorBoundary,
@@ -14,6 +14,13 @@ import {
 import { keyCodes } from '../../../src/services';
 
 export class AppView extends Component {
+  constructor(...args) {
+    super(...args);
+
+    // Share the router with the app without requiring React or context.
+    // See `/wiki/react-router.md`
+    registerRouter(this.context.router);
+  }
   componentDidUpdate(prevProps) {
     if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
       window.scrollTo(0, 0);
@@ -117,4 +124,11 @@ AppView.propTypes = {
 
 AppView.defaultProps = {
   currentRoute: {},
+};
+
+AppView.contextTypes = {
+  router: PropTypes.shape({
+    createHref: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };

@@ -2,15 +2,12 @@ import React from 'react';
 import { render, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import {
-  EuiKeyPadMenuItem,
-  EuiKeyPadMenuItemButton,
-} from './key_pad_menu_item';
+import { EuiKeyPadMenuItem } from './key_pad_menu_item';
 
 describe('EuiKeyPadMenuItem', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiKeyPadMenuItem label="Label" {...requiredProps}>
+      <EuiKeyPadMenuItem label="Label" {...requiredProps} href="#">
         Icon
       </EuiKeyPadMenuItem>
     );
@@ -27,44 +24,42 @@ describe('EuiKeyPadMenuItem', () => {
 
     expect(component).toMatchSnapshot();
   });
-});
 
-describe('EuiKeyPadMenuItemButton', () => {
-  test('is rendered', () => {
+  test('renders button', () => {
+    const onClickHandler = jest.fn();
+
     const component = render(
-      <EuiKeyPadMenuItemButton label="Label" {...requiredProps}>
+      <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
         Icon
-      </EuiKeyPadMenuItemButton>
+      </EuiKeyPadMenuItem>
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  describe('onClick', () => {
-    test("isn't called upon instantiation", () => {
-      const onClickHandler = jest.fn();
+  test("onClick isn't called upon instantiation", () => {
+    const onClickHandler = jest.fn();
 
-      shallow(
-        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
-          Icon
-        </EuiKeyPadMenuItemButton>
-      );
+    shallow(
+      <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
+        Icon
+      </EuiKeyPadMenuItem>
+    );
 
-      expect(onClickHandler).not.toBeCalled();
-    });
+    expect(onClickHandler).not.toBeCalled();
+  });
 
-    test('is called when the button is clicked', () => {
-      const onClickHandler = jest.fn();
+  test('onClick is called when the button is clicked', () => {
+    const onClickHandler = jest.fn();
 
-      const $button = shallow(
-        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
-          Icon
-        </EuiKeyPadMenuItemButton>
-      );
+    const $button = shallow(
+      <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
+        Icon
+      </EuiKeyPadMenuItem>
+    );
 
-      $button.simulate('click');
+    $button.simulate('click');
 
-      expect(onClickHandler).toBeCalledTimes(1);
-    });
+    expect(onClickHandler).toBeCalledTimes(1);
   });
 });
