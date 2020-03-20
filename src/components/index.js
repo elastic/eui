@@ -176,11 +176,7 @@ export {
   EuiLoadingSpinner,
 } from './loading';
 
-export {
-  EuiKeyPadMenu,
-  EuiKeyPadMenuItem,
-  EuiKeyPadMenuItemButton,
-} from './key_pad_menu';
+export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';
 
 export { EuiLink } from './link';
 

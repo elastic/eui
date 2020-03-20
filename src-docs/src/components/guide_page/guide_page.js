@@ -10,6 +10,8 @@ import {
   EuiBetaBadge,
 } from '../../../../src/components';
 
+import { getRouterLinkProps } from '../../services';
+
 export const GuidePage = ({
   children,
   title,
@@ -39,7 +41,7 @@ export const GuidePage = ({
           </EuiFlexItem>
           {componentLinkTo && (
             <EuiFlexItem grow={false}>
-              <EuiButton href={`#${componentLinkTo}`}>
+              <EuiButton href={getRouterLinkProps(componentLinkTo).href}>
                 View component code
               </EuiButton>
             </EuiFlexItem>
