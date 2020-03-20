@@ -15,9 +15,13 @@
   width: $euiSizeXL;
 }
 
+.euiLoadingElastic--xxLarge {
+  width: $euiSizeXXL;
+}
+
 
 .euiLoadingElastic path {
-  animation-name: scaleElastic;
+  animation-name: euiLoadingElastic;
   animation-fill-mode: forwards;
   animation-direction: alternate;
   transform-style: preserve-3d;
@@ -52,7 +56,7 @@
 };
 
 
-@keyframes scaleElastic {
+@keyframes euiLoadingElastic {
   0% {
     transform: scale3d(0, 0, -.7);
     opacity: 0;

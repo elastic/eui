@@ -7,6 +7,7 @@ const sizeToClassNameMap = {
   m: 'euiLoadingElastic--medium',
   l: 'euiLoadingElastic--large',
   xl: 'euiLoadingElastic--xLarge',
+  xxl: 'euiLoadingElastic--xxLarge',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);

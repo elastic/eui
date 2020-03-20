@@ -7,5 +7,6 @@ export default () => (
     <EuiLoadingElastic size="m" />
     <EuiLoadingElastic size="l" />
     <EuiLoadingElastic size="xl" />
+    <EuiLoadingElastic size="xxl" />
   </div>
 );
