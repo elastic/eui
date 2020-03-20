@@ -19,7 +19,12 @@
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
-import { PartialTheme, LineAnnotationStyle } from '@elastic/charts';
+import {
+  PartialTheme,
+  LineAnnotationStyle,
+  PartitionConfig,
+  PartitionLayout,
+} from '@elastic/charts';
 
 // @ts-ignore
 import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
@@ -32,6 +37,7 @@ const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
+  pie: PartitionConfig; //Omit<PartitionLayer, 'groupByRollup'>;
 }
 
 function createTheme(colors: any) {
@@ -48,6 +54,24 @@ function createTheme(colors: any) {
         fill: colors.euiColorDarkShade.rgba,
         padding: 0,
       },
+    },
+    pie: {
+      fontFamily: fontFamily,
+      minFontSize: 8,
+      maxFontSize: 16,
+      fillLabel: {
+        valueFont: {
+          fontWeight: 700,
+        },
+      },
+      linkLabel: {
+        maxCount: 5,
+        fontSize: 11,
+      },
+      outerSizeRatio: 1,
+      emptySizeRatio: 0.4,
+      circlePadding: 4,
+      backgroundColor: colors.euiColorDarkShade.rgba, // This seems to do nothing
     },
     theme: {
       chartMargins: {

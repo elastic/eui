@@ -276,3 +276,122 @@ export const GITHUB_DATASET = [
     count: 11000,
   },
 ];
+
+export const BROWSER_DATA_2019 = [
+  {
+    browser: 'Chrome',
+    percent: 61.72,
+  },
+  {
+    browser: 'Safari',
+    percent: 15.23,
+  },
+  {
+    browser: 'Firefox',
+    percent: 4.66,
+  },
+  {
+    browser: 'Samsung Internet',
+    percent: '3.64',
+  },
+  {
+    browser: 'UC Browser',
+    percent: '3.83',
+  },
+  {
+    browser: 'Opera',
+    percent: '2.91',
+  },
+  {
+    browser: 'IE',
+    percent: '2.7',
+  },
+  {
+    browser: 'Edge Legacy',
+    percent: '2.13',
+  },
+  {
+    browser: 'Android',
+    percent: '1.15',
+  },
+  {
+    browser: 'KaiOS',
+    percent: '0.54',
+  },
+  {
+    browser: 'Yandex Browser',
+    percent: '0.24',
+  },
+  {
+    browser: 'QQ Browser',
+    percent: '0.22',
+  },
+  {
+    browser: 'Puffin',
+    percent: '0.12',
+  },
+  {
+    browser: 'Coc Coc',
+    percent: '0.09',
+  },
+  {
+    browser: 'IEMobile',
+    percent: '0.1',
+  },
+  {
+    browser: 'Chromium',
+    percent: '0.08',
+  },
+  {
+    browser: 'Whale Browser',
+    percent: '0.01',
+  },
+  {
+    browser: 'Sogou Explorer',
+    percent: '0.08',
+  },
+  {
+    browser: 'Sony PS4',
+    percent: '0.06',
+  },
+  {
+    browser: 'mCent',
+    percent: '0.21',
+  },
+  {
+    browser: 'Maxthon',
+    percent: '0.04',
+  },
+  {
+    browser: 'Mozilla',
+    percent: '0.03',
+  },
+  {
+    browser: 'Vivaldi',
+    percent: '0.02',
+  },
+  {
+    browser: '360 Safe Browser',
+    percent: '0.03',
+  },
+  {
+    browser: 'Unknown',
+    percent: '0.03',
+  },
+  {
+    browser: 'BlackBerry',
+    percent: '0.02',
+  },
+  {
+    browser: 'Nokia',
+    percent: '0.03',
+  },
+  {
+    browser: 'Pale Moon',
+    percent: '0.01',
+  },
+  {
+    browser: 'Other',
+    percent: '0.06',
+  },
+];

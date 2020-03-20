@@ -27,8 +27,7 @@ export const ElasticChartsPieExample = {
       ],
       text: (
         <p>
-          Description needed: how to use the <EuiCode>EuiElasticCharts</EuiCode>{' '}
-          component.
+          Description needed: how to use the <EuiCode>Pie</EuiCode> component.
         </p>
       ),
       demo: <PieChart />,
