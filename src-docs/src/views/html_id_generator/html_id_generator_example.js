@@ -24,7 +24,7 @@ const suffixSnippet = " htmlIdGenerator()('Id')";
 
 const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
 const PrefixSufixHtml = renderToHtml(PrefixSufix);
-const prefixSuffixSnippet = " htmlIdGenerator('Some')('Id')";
+const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
 
 export const HtmlIdGeneratorExample = {
   title: 'Html Id Generator',
