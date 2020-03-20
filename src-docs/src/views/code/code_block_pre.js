@@ -22,7 +22,7 @@ export default () => (
             overflowHeight={300}
             isCopyable>
               <div>
-              Phasellus posuere quam neque, ac tristique ipsum pulvinar non. Sed ultricies enim nibh, vel ullamcorper tortor commodo sed. Nam ut egestas enim. Pellentesque commodo tempus sapien nec lobortis. Suspendisse suscipit quis lacus quis tincidunt. Aenean pulvinar eros vel felis maximus tristique. Sed rutrum enim quis vestibulum dapibus. Aenean rhoncus iaculis justo, et dapibus magna ultricies non. Etiam non lacus condimentum, commodo erat ut, ultrices ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+When the whiteSpace property is set to pre all the whitespaces will be kept as is and the text only wraps when line breaks are in the content.
               </div>
             </EuiCodeBlock>
 
