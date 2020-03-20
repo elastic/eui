@@ -5,6 +5,7 @@ import {
   EuiButton,
   EuiFieldText,
   EuiSpacer,
+  EuiFormRow,
 } from '../../../../src/components/';
 
 export default class extends Component {
@@ -21,11 +22,9 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <EuiFieldText
-          placeholder="Enter text that will be copied to clipboard"
-          value={this.state.copyText}
-          onChange={this.onChange}
-        />
+        <EuiFormRow label="Enter text that will be copied to clipboard">
+          <EuiFieldText value={this.state.copyText} onChange={this.onChange} />
+        </EuiFormRow>
 
         <EuiSpacer size="m" />
 

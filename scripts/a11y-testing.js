@@ -8,7 +8,75 @@ const docsPages = async (root, page) => {
     ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
   ];
 
-  links = links.splice(0, 9);
+  links = links.splice(0, 14);
+  const reflinks = [
+    `${root}#/layout/horizontal-rule`,
+    `${root}#/layout/modal`,
+    `${root}#/layout/nav-drawer`,
+    `${root}#/layout/page`,
+    `${root}#/layout/panel`,
+    `${root}#/layout/popover`,
+    `${root}#/layout/spacer`,
+    `${root}#/navigation/breadcrumbs`,
+    `${root}#/navigation/context-menu`,
+    `${root}#/navigation/control-bar`,
+    `${root}#/navigation/facet`,
+    `${root}#/navigation/link`,
+    `${root}#/navigation/pagination`,
+    `${root}#/navigation/steps`,
+    `${root}#/navigation/tabs`,
+    `${root}#/tabular-content/data-grid`,
+    `${root}#/tabular-content/data-grid-in-memory-settings`,
+    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
+    `${root}#/tabular-content/data-grid-styling-and-toolbar`,
+    `${root}#/tabular-content/data-grid-control-columns`,
+    `${root}#/display/avatar`,
+    `${root}#/display/badge`,
+    `${root}#/display/callout`,
+    `${root}#/display/card`,
+    `${root}#/display/description-list`,
+    `${root}#/display/emptyprompt`,
+    `${root}#/display/health`,
+    `${root}#/display/icons`,
+    `${root}#/display/image`,
+    `${root}#/display/list-group`,
+    `${root}#/display/loading`,
+    `${root}#/display/progress`,
+    `${root}#/display/stat`,
+    `${root}#/display/text`,
+    `${root}#/display/title`,
+    `${root}#/display/toast`,
+    `${root}#/display/tooltip`,
+    `${root}#/forms/form-layouts`,
+    `${root}#/forms/form-validation`,
+    `${root}#/forms/code-editor`,
+    `${root}#/forms/expression`,
+    `${root}#/forms/filter-group`,
+    `${root}#/forms/range-sliders`,
+    `${root}#/forms/search-bar`,
+    `${root}#/elastic-charts/sizing`,
+    `${root}#/elastic-charts/time-series`,
+    `${root}#/elastic-charts/categorical`,
+    `${root}#/utilities/i18n`,
+    `${root}#/utilities/is-color-dark`,
+    `${root}#/utilities/pretty-duration`,
+    `${root}#/utilities/mutationobserver`,
+    `${root}#/utilities/outside-click-detector`,
+    `${root}#/utilities/portal`,
+    `${root}#/utilities/resizeobserver`,
+    `${root}#/utilities/responsive`,
+    `${root}#/utilities/toggle`,
+    `${root}#/utilities/window-events`,
+    `${root}#/package/i18n-tokens`,
+    `${root}#/utilities/accessibility`,
+    `${root}#/utilities/context`,
+    `${root}#/utilities/copy`,
+    `${root}#/utilities/delay-hide`,
+    `${root}#/utilities/delay-render`,
+    `${root}#/utilities/highlight`,
+  ];
+
+  links = [...links, ...reflinks];
 
   return links;
 };
@@ -51,15 +119,21 @@ const printResult = result =>
       process.exit(1);
     }
   }
-
   const links = await docsPages(root, page);
 
   for (const link of links) {
     await page.goto(link);
 
     const { violations } = await new AxePuppeteer(page)
-      .disableRules('color-contrast')
-      .exclude(['figure[role="figure"']) // excluding figure[role="figure"] the duplicatory role is there for ie11 support
+      .configure({
+        rules: [
+          { id: 'color-contrast', enabled: false },
+          {
+            id: 'scrollable-region-focusable',
+            matches: '[role="grid"]',
+          },
+        ],
+      })
       .analyze();
 
     if (violations.length > 0) {
@@ -91,4 +165,4 @@ Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
   } else {
     console.log(chalk.green('axe found no accessibility errors!'));
   }
-})();
+})().catch(e => console.error(e));

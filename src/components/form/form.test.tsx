@@ -10,4 +10,10 @@ describe('EuiForm', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('renders a form element', () => {
+    const component = render(<EuiForm {...requiredProps} component="form" />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

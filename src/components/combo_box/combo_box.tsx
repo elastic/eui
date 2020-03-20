@@ -43,6 +43,7 @@ import {
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
+import { EuiFormControlLayoutProps } from '../form';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -54,25 +55,77 @@ interface _EuiComboBoxProps<T>
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
   'data-test-subj'?: string;
+  /**
+   * Updates the list of options asynchronously
+   */
   async: boolean;
   className?: string;
+  /**
+   * When `true` creates a shorter height input
+   */
   compressed: boolean;
+  /**
+   * When `true` expands to the entire width available
+   */
   fullWidth: boolean;
   id?: string;
   inputRef?: RefCallback<HTMLInputElement>;
+  /**
+   * Shows a button that quickly clears any input
+   */
   isClearable: boolean;
+  /**
+   * Disables the input
+   */
   isDisabled?: boolean;
   isInvalid?: boolean;
+  /**
+   * Swaps the dropdown options for a loading spinner
+   */
   isLoading?: boolean;
+  /**
+   * Doesn't show the suggestions list/dropdown
+   */
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the query in the combo box is parsed
+   */
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the text query in the search box is parsed
+   */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
+  /**
+   * Sets the placeholder of the input
+   */
   placeholder?: string;
+  /**
+   * Every option must be the same height and must be explicitly set if using a custom render
+   */
   rowHeight?: number;
+  /**
+   * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
+   */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
+  /**
+   * Display matching options by:
+   * `startsWith`: moves items that start with search value to top of the list;
+   * `none`: don't change the sort order of initial object
+   */
+  sortMatchesBy?: 'none' | 'startsWith';
+  /**
+   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+  /**
+   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 /**
@@ -121,6 +174,9 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
+    prepend: null,
+    append: null,
+    sortMatchesBy: 'none',
   };
 
   state: EuiComboBoxState<T> = {
@@ -730,6 +786,7 @@ export class EuiComboBox<T> extends Component<
           );
         }
       }
+
       this.setState({
         matchingOptions: newMatchingOptions,
         activeOptionIndex: nextActiveOptionIndex,
@@ -790,6 +847,9 @@ export class EuiComboBox<T> extends Component<
       rowHeight,
       selectedOptions,
       singleSelection,
+      prepend,
+      append,
+      sortMatchesBy,
       ...rest
     } = this.props;
     const {
@@ -799,8 +859,30 @@ export class EuiComboBox<T> extends Component<
       listPosition,
       searchValue,
       width,
+      matchingOptions,
     } = this.state;
 
+    let newMatchingOptions = matchingOptions;
+
+    if (sortMatchesBy === 'startsWith') {
+      const refObj: {
+        startWith: Array<EuiComboBoxOptionOption<T>>;
+        others: Array<EuiComboBoxOptionOption<T>>;
+      } = { startWith: [], others: [] };
+
+      newMatchingOptions.forEach(object => {
+        if (
+          object.label
+            .toLowerCase()
+            .startsWith(searchValue.trim().toLowerCase())
+        ) {
+          refObj.startWith.push(object);
+        } else {
+          refObj.others.push(object);
+        }
+      });
+      newMatchingOptions = [...refObj.startWith, ...refObj.others];
+    }
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
@@ -836,7 +918,7 @@ export class EuiComboBox<T> extends Component<
             fullWidth={fullWidth}
             isLoading={isLoading}
             listRef={this.listRefCallback}
-            matchingOptions={this.state.matchingOptions}
+            matchingOptions={newMatchingOptions}
             onCloseList={this.closeList}
             onCreateOption={onCreateOption}
             onOptionClick={this.onOptionClick}
@@ -912,8 +994,9 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
+          append={singleSelection ? append : undefined}
+          prepend={singleSelection ? prepend : undefined}
         />
-
         {optionsList}
       </div>
     );

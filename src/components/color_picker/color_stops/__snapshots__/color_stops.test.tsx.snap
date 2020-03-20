@@ -20,7 +20,7 @@ exports[`renders EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -50,7 +50,7 @@ exports[`renders EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#FF0000"
+          style="background:rgb(255,0,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -75,7 +75,7 @@ exports[`renders EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#00FF00"
+          style="background:rgb(0,255,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -100,7 +100,7 @@ exports[`renders EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#0000FF"
+          style="background:rgb(0,0,255)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -131,7 +131,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -161,7 +161,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#FF0000"
+          style="background:rgb(255,0,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -186,7 +186,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#00FF00"
+          style="background:rgb(0,255,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -211,7 +211,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#0000FF"
+          style="background:rgb(0,0,255)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -242,7 +242,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -273,7 +273,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
-          style="background:#FF0000"
+          style="background:rgb(255,0,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -299,7 +299,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
-          style="background:#00FF00"
+          style="background:rgb(0,255,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -325,7 +325,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
-          style="background:#0000FF"
+          style="background:rgb(0,0,255)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -392,7 +392,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%, #FF0000 undefined%,#00FF00 undefined%, #00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%, rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -422,7 +422,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#FF0000"
+          style="background:rgb(255,0,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -447,7 +447,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#00FF00"
+          style="background:rgb(0,255,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -472,7 +472,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#0000FF"
+          style="background:rgb(0,0,255)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -539,7 +539,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -569,7 +569,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#FF0000"
+          style="background:rgb(255,0,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -594,7 +594,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#00FF00"
+          style="background:rgb(0,255,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -619,7 +619,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#0000FF"
+          style="background:rgb(0,0,255)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -722,7 +722,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, #FF0000 undefined%,#00FF00 undefined%,#0000FF undefined%);margin-left:0%;width:100%"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
       />
     </div>
     <div
@@ -752,7 +752,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#FF0000"
+          style="background:rgb(255,0,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -777,7 +777,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#00FF00"
+          style="background:rgb(0,255,0)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -802,7 +802,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:#0000FF"
+          style="background:rgb(0,0,255)"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
