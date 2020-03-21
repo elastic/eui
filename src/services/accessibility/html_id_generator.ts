@@ -8,6 +8,6 @@ import uuid from 'uuid';
  * it should begin with an letter to be HTML4 compliant.
  */
 export function htmlIdGenerator(idPrefix: string = '') {
-  const prefix = `${idPrefix}i${uuid.v1()}`;
+  const prefix = `${idPrefix}${idPrefix !== '' ? '_' : 'i'}${uuid.v1()}`;
   return (suffix?: string) => `${prefix}_${suffix || uuid.v1()}`;
 }
