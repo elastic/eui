@@ -32,6 +32,7 @@ export const parseTimeParts = value => {
     results.timeValueDefault = 0;
     results.timeUnitsDefault = 's';
     results.timeTenseDefault = LAST;
+    return results;
   }
 
   const matches =
