@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Default actions in `EuiBasicTable` support both props `href` and `onClick`
+- Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions
 - Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
 
 ## [`21.1.0`](https://github.com/elastic/eui/tree/v21.1.0)

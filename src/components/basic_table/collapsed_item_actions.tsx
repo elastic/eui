@@ -141,7 +141,7 @@ export class CollapsedItemActions<T> extends Component<
               data-test-subj={dataTestSubj}
               onClick={this.onClickItem.bind(
                 null,
-                onClick && !href ? onClick.bind(null, item) : undefined
+                onClick ? onClick.bind(null, item) : undefined
               )}>
               {name}
             </EuiContextMenuItem>

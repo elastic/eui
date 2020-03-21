@@ -196,7 +196,7 @@ export class Table extends Component {
             {
               name: 'Elastic.co',
               description: 'Go to elastic.co',
-              icon: 'logoCloud',
+              icon: 'logoElastic',
               type: 'icon',
               href: 'https://elastic.co',
               target: '_blank',
