@@ -9,11 +9,13 @@
 - Improved `EuiButtonEmpty` focus state when the `color` type is `text` ([#3135](https://github.com/elastic/eui/pull/3135))
 - Added `EuiLoadingElastic` component ([#3017](https://github.com/elastic/eui/pull/3017))
 - Upgraded `react-beautiful-dnd` to v13 ([#3064](https://github.com/elastic/eui/pull/3064))
+- Updated prop descriptions for `EuiInMemoryTable` ([#3136](https://github.com/elastic/eui/pull/3136))
 
 **Bug Fixes**
 
 - Fixed bug in `EuiSuperDatePicker` to show correct values of commonly used values in relative tab ([#3106](https://github.com/elastic/eui/pull/3106))
 - Fixed race condition in `EuiIcon` when switching from dynamically fetched components ([#3118](https://github.com/elastic/eui/pull/3118))
+- Fixed `Adding Pagination to a Basic Table` docs section toggle ([#3136](https://github.com/elastic/eui/pull/3136))
 
 **Breaking changes**
 
