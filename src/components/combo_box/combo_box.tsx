@@ -736,7 +736,9 @@ export class EuiComboBox<T> extends Component<
       if (searchValue && this.state.isListOpen === false) this.openList();
     });
     if (delimiter && searchValue.endsWith(delimiter)) {
-      this.addCustomOption(false, searchValue.split(delimiter)[0]);
+      searchValue.split(delimiter).forEach(value => {
+        this.addCustomOption(false, value);
+      });
     }
   };
 

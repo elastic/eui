@@ -86,7 +86,6 @@ export default class extends Component {
         placeholder="Select or create options"
         options={this.options}
         delimiter=","
-        noSuggestions
         selectedOptions={selectedOptions}
         onChange={this.onChange}
         onCreateOption={this.onCreateOption}
