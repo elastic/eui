@@ -14,7 +14,7 @@ import {
 
 export default () => (
   <EuiPage>
-    <EuiPageBody>
+    <EuiPageBody component="div">
       <EuiPageHeader>
         <EuiPageHeaderSection>
           <EuiTitle size="l">

@@ -2,7 +2,7 @@
 
 exports[`EuiImage is rendered 1`] = `
 <figure
-  class="euiImage euiImage--large testClass1 testClass2"
+  class="euiImage testClass1 testClass2 euiImage--large"
 >
   <img
     alt="alt"
@@ -16,7 +16,7 @@ exports[`EuiImage is rendered 1`] = `
 
 exports[`EuiImage is rendered and allows full screen 1`] = `
 <figure
-  class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
+  class="euiImage euiImage--allowFullScreen testClass1 testClass2 euiImage--large"
 >
   <button
     aria-label="Open full screen alt image"
@@ -36,5 +36,20 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
       data-euiicon-type="fullScreen"
     />
   </button>
+</figure>
+`;
+
+exports[`EuiImage is rendered with custom size 1`] = `
+<figure
+  class="euiImage testClass1 testClass2"
+>
+  <img
+    alt="alt"
+    aria-label="aria-label"
+    class="euiImage__img"
+    data-test-subj="test subject string"
+    src="/cat.jpg"
+    style="max-width:50px;max-height:50px;width:auto"
+  />
 </figure>
 `;

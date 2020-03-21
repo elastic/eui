@@ -295,7 +295,7 @@ export const DataGridExample = {
             similar to traditional spreedsheet software, EuiDataGrid&apos;s
             current strengths are in rendering rather than creating content.{' '}
           </p>
-          <h3>Core concepts</h3>
+          <h2>Core concepts</h2>
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
