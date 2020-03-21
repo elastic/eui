@@ -421,7 +421,7 @@ export class EuiSuperDatePicker extends Component {
       <EuiFlexItem grow={false}>
         <EuiSuperUpdateButton
           needsUpdate={this.state.hasChanged}
-          isPopoverClosed={
+          showTooltip={
             !this.state.isStartDatePopoverOpen &&
             !this.state.isEndDatePopoverOpen
           }

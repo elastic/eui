@@ -19,15 +19,16 @@ export class EuiSuperUpdateButton extends Component {
     toolTipProps: PropTypes.object,
 
     /**
-     * Check if the popover is closed to display toggle
+     * Display Tooltip
      */
-    isPopoverClosed: PropTypes.bool,
+    showTooltip: PropTypes.bool,
   };
 
   static defaultProps = {
     needsUpdate: false,
     isLoading: false,
     isDisabled: false,
+    showTooltip: false,
   };
 
   componentWillUnmount() {
@@ -40,7 +41,7 @@ export class EuiSuperUpdateButton extends Component {
 
   componentDidUpdate() {
     if (
-      this.props.isPopoverClosed &&
+      this.props.showTooltip &&
       !this.props.isDisabled &&
       !this.props.isLoading
     ) {
@@ -75,7 +76,7 @@ export class EuiSuperUpdateButton extends Component {
       isDisabled,
       onClick,
       toolTipProps,
-      isPopoverClosed,
+      showTooltip,
       ...rest
     } = this.props;
 
