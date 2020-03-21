@@ -87,6 +87,8 @@ export const propsInfo = {
         },
         pageSizeOptions:
           basicPropsInfo.Pagination.__docgenInfo.props.pageSizeOptions,
+        hidePerPageOptions:
+          basicPropsInfo.Pagination.__docgenInfo.props.hidePerPageOptions,
       },
     },
   },
