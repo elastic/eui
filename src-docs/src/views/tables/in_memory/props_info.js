@@ -36,7 +36,7 @@ export const propsInfo = {
         columns: basicPropsInfo.EuiBasicTable.__docgenInfo.props.columns,
         pagination: {
           description:
-            'Enables/disables pagination. Can be an object that configured pagination when enabled',
+            'Enables/disables pagination. Can be an object that configures pagination when enabled',
           required: false,
           type: { name: 'boolean | #Pagination' },
         },
