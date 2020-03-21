@@ -12,7 +12,7 @@ import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { EuiI18n } from '../../../i18n';
 import { timeUnits } from '../time_units';
 import { EuiScreenReaderOnly } from '../../../accessibility';
-import { parseTimeParts } from './quick_select_utlis';
+import { parseTimeParts } from './quick_select_utils';
 
 const LAST = 'last';
 const NEXT = 'next';
