@@ -1,47 +1,119 @@
+  //Mimics the "grab" icon with CSS psuedo-elements. The "grab" icon transforms into a 2px straight line on :hover and :focus.
 .euiResizer {
   position: relative;
-  display: flex;
-  flex: 0 0 $euiSizeM;
-  background-color: $euiPageBackgroundColor;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  user-select: none;
 
-  &:hover {
-    background-color: tintOrShade($euiColorPrimary, 80%, 60%);
-  }
-
-  &:focus,
-  &.active {
-    background-color: $euiColorPrimary;
-    color: $euiColorEmptyShade;
-  }
-
-  &::after {
-    content: "";
+  &:before,
+  &:after {
+    content: '';
+    display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    background-color: $euiColorDarkestShade;
+    transition: width $euiResizerTransitionSpeed ease, height $euiResizerTransitionSpeed ease, transform $euiResizerTransitionSpeed ease,      background-color $euiResizerTransitionSpeed ease;
   }
 
   &.euiResizer--horizontal {
-    width: $euiSizeM;
+    cursor: col-resize;
 
-    &::after {
-      cursor: ew-resize;
+    &:before,
+    &:after {
+      width: 1px;
+      height: 12px;
+    }
+
+    &:before {
+      transform: translate3d(-2px, -50%, 0);
+    }
+
+    &:after {
+      transform: translate3d(1px, -50%, 0);
     }
   }
 
   &.euiResizer--vertical {
-    cursor: ns-resize;
-    height: $euiSizeM;
-    width: 100%;
+    cursor: row-resize;
 
-    &::after {
-      cursor: ns-resize;
+    &:before,
+    &:after {
+      width: 12px;
+      height: 1px;
+    }
+
+    &:before {
+      transform: translate3d(-50%, -2px, 0);
+    }
+
+    &:after {
+      transform: translate3d(-50%, 1px, 0);
+    }
+  }
+
+  //Lighten the "grab" icon on :hover
+  &:hover {
+    &:before,
+    &:after {
+      background-color: $euiColorMediumShade;
+      transition-delay: $euiResizerTransitionSpeed; //Delay transition on hover so animation is not accidentally triggered on mouse over
+    }
+  }
+
+  //Add a transparent background to the container and emphasis the "grab" icon with primary color on :focus
+  &:focus {
+    background-color: transparentize($euiColorPrimary, .9);
+
+    &:before,
+    &:after {
+      background-color: $euiColorPrimary;
+      // Overrides default transition so that "grab" icon background-color doesn't animate
+      transition: width $euiResizerTransitionSpeed ease, height $euiResizerTransitionSpeed ease, transform $euiResizerTransitionSpeed ease;
+    }
+  }
+
+  //Morph the "grab" icon into a fluid 2px straight line on :hover and :focus
+  &:hover,
+  &:focus {
+    &.euiResizer--horizontal {
+      &:before,
+      &:after {
+        height: 100%;
+      }
+
+      &:before {
+        transform: translate3d(-1px, -50%, 0);
+      }
+
+      &:after {
+        transform: translate3d(0, -50%, 0);
+      }
+    }
+
+    &.euiResizer--vertical {
+      &:before,
+      &:after {
+        width: 100%;
+      }
+
+      &:before {
+        transform: translate3d(-50%, -1px, 0);
+      }
+
+      &:after {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+  }
+}
+
+//Generate modifier classes that control the size of the resizer
+@each $modifier, $amount in $euiResizerSizeModifiers {
+  .euiResizer--#{$modifier} {
+    &.euiResizer--vertical {
+      height: $amount;
+    }
+
+    &.euiResizer--horizontal {
+      width: $amount;
     }
   }
 }

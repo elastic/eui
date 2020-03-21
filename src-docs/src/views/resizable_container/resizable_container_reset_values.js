@@ -90,7 +90,7 @@ export default () => {
               </EuiText>
             </Panel>
 
-            <Resizer />
+            <Resizer size="l" />
 
             <Panel
               id={secondPanelId}
