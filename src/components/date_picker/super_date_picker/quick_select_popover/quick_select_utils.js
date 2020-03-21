@@ -17,6 +17,9 @@ import { relativeUnitsFromLargestToSmallest } from '../relative_options';
 
 const LAST = 'last';
 const NEXT = 'next';
+const NOW = 'now';
+
+const isNow = value => value === NOW;
 
 export const parseTimeParts = value => {
   const results = {
@@ -24,6 +27,12 @@ export const parseTimeParts = value => {
     timeUnitsDefault: 'm',
     timeTenseDefault: LAST,
   };
+
+  if (isNow(value)) {
+    results.timeValueDefault = 0;
+    results.timeUnitsDefault = 's';
+    results.timeTenseDefault = LAST;
+  }
 
   const matches =
     isString(value) &&
