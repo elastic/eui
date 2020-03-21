@@ -126,6 +126,9 @@ interface _EuiComboBoxProps<T>
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
+  /**
+   * A special character to use as a value separator. Typically a comma `,`
+   */
   delimiter?: string;
 }
 
