@@ -80,8 +80,8 @@ export const propsInfo = {
           type: { name: 'number' },
         },
         initialPageSize: {
-          description:
-            'Configures the default page size to show, must be one of "pageSizeOptions"',
+          description: `Configures the default page size to show, must be one of \`pageSizeOptions\`. Defaults to
+             the first page size in \`pageSizeOptions\`.`,
           required: false,
           type: { name: 'number' },
         },
