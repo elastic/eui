@@ -19,16 +19,18 @@ const LAST = 'last';
 const NEXT = 'next';
 
 export const parseTimeParts = value => {
+  const results = {
+    timeValueDefault: 15,
+    timeUnitsDefault: 'm',
+    timeTenseDefault: LAST,
+  };
+
   const matches =
     isString(value) &&
     value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
 
   if (!matches) {
-    return {
-      timeValueDefault: 15,
-      timeUnitsDefault: 'm',
-      timeTenseDefault: LAST,
-    };
+    return results;
   }
 
   const operator = matches && matches[2];
@@ -45,12 +47,6 @@ export const parseTimeParts = value => {
       timeTenseDefault,
     };
   }
-
-  const results = {
-    timeValueDefault: 15,
-    timeUnitsDefault: 'm',
-    timeTenseDefault: LAST,
-  };
 
   const duration = moment.duration(moment().diff(dateMath.parse(value)));
   let unitOp = '';
