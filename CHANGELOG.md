@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `isPopoverClosed` prop to `EuiSuperUpdateButton` to show tooltip only if popover is closed ([#3127](https://github.com/elastic/eui/pull/3127))
+- Added `showTooltip` prop for `EuiSuperUpdateButton` to show tooltip ([#3127](https://github.com/elastic/eui/pull/3127))
 - Added `sortMatchesBy` prop for `EuiComboBox` ([#3089](https://github.com/elastic/eui/pull/3089))
 - Added `prepend` and `append` ability to `EuiFieldPassword` ([#3122](https://github.com/elastic/eui/pull/3122))
 - Added `Enter` key press functionality to `EuiSuperDatePicker` ([#3048](https://github.com/elastic/eui/pull/3048))
