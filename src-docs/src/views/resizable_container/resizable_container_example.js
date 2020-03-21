@@ -19,11 +19,13 @@ import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerThreePanels from './resizable_container_three_panels';
 import ResizableContainerResetValues from './resizable_container_reset_values';
+import ResizableResizerSize from './resizable_resizer_size';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVericalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerThreePanelsSource = require('!!raw-loader!./resizable_container_three_panels');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
+const ResizableResizerSizeSource = require('!!raw-loader!./resizable_resizer_size');
 
 const ResizableContainerHtml = renderToHtml(ResizableContainerBasic);
 const ResizableContainerVericalHtml = renderToHtml(ResizableContainerVertical);
@@ -33,6 +35,7 @@ const ResizableContainerThreePanelsHtml = renderToHtml(
 const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
+const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
 
 export const ResizableContainerExample = {
   title: 'Resizable Container',
@@ -178,6 +181,34 @@ export const ResizableContainerExample = {
           <ResizableContainerVertical />
         </div>
       ),
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizableResizerSizeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizableResizerSizeHtml,
+        },
+      ],
+      title: 'Resizable Resizer Size',
+      text: (
+        <div>
+          <p>
+            Now say that five times fast. You can control the space between
+            panels by modifying the <EuiCode>size</EuiCode> of the{' '}
+            <EuiCode>Resizer</EuiCode> component. The available sizes are{' '}
+            <EuiCode>xl</EuiCode>, <EuiCode>l</EuiCode>, <EuiCode>m</EuiCode>,
+            and <EuiCode>s</EuiCode>. You should avoid using different sizes
+            within the same <EuiCode>EuiResizableContainer</EuiCode>, as shown
+            in the demo below.
+          </p>
+        </div>
+      ),
+      props: { EuiResizableContainer, Panel, Resizer },
+      demo: <ResizableResizerSize />,
     },
   ],
 };

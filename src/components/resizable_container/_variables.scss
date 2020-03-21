@@ -1,0 +1,8 @@
+$euiResizerTransitionSpeed: $euiAnimSpeedFast;
+
+$euiResizerSizeModifiers: (
+  'sizeSmall': $euiSizeM,
+  'sizeMedium': $euiSize,
+  'sizeLarge': $euiSizeL,
+  'sizeExtraLarge': $euiSizeXXL
+) !default;

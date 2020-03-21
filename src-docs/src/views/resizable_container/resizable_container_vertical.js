@@ -14,7 +14,7 @@ export default () => (
           </EuiText>
         </Panel>
 
-        <Resizer />
+        <Resizer size="xl" />
 
         <Panel initialSize={40} minSize="10%" scrollable>
           <EuiText>
