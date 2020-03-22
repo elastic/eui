@@ -56,13 +56,11 @@ const makeCompatibleObserver = (node: Element, callback: () => void) => {
   observer.observe(node, mutationObserverOptions);
 
   window.addEventListener('resize', callback);
-  node.addEventListener('resize', callback);
 
   observer.disconnect = () => {
     observer.disconnect();
 
     window.removeEventListener('resize', callback);
-    node.removeEventListener('resize', callback);
   };
 
   return observer;
