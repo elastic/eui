@@ -486,7 +486,10 @@ const useFocus = (
   const focusProps = useMemo<FocusProps>(
     () =>
       hasHadFocus
-        ? {}
+        ? {
+            // FireFox allows tabbing to a div that is scrollable, while Chrome does not
+            tabIndex: -1,
+          }
         : {
             tabIndex: 0,
             onFocus: e => {
@@ -829,8 +832,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     <DataGridContext.Provider value={datagridContext}>
       <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
         <div
-          data-test-subj="dataGridWrapper"
-          {...wrappingDivFocusProps}
           className={classes}
           onKeyDown={handleGridKeyDown}
           ref={setContainerRef}>
@@ -881,8 +882,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   ) : null}
                   <div
                     ref={contentRef}
+                    data-test-subj="dataGridWrapper"
                     className="euiDataGrid__content"
                     role="grid"
+                    {...wrappingDivFocusProps}
                     {...gridAriaProps}>
                     <EuiMutationObserver
                       observerOptions={{
