@@ -21,14 +21,25 @@ const mutationObserverOptions = {
 export class EuiResizeObserver extends EuiObserver<Props> {
   name = 'EuiResizeObserver';
 
+  state = {
+    height: 0,
+    width: 0,
+  };
+
   onResize = () => {
     if (this.childNode != null) {
       // Eventually use `clientRect` on the `entries[]` returned natively
       const { height, width } = this.childNode.getBoundingClientRect();
+      // Check for actual resize event
+      if (this.state.height === height && this.state.width === width) {
+        return;
+      }
+
       this.props.onResize({
         height,
         width,
       });
+      this.setState({ height, width });
     }
   };
 
