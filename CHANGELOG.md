@@ -10,6 +10,7 @@
 - Improved `EuiButtonEmpty` focus state when the `color` type is `text` ([#3135](https://github.com/elastic/eui/pull/3135))
 - Added `EuiLoadingElastic` component ([#3017](https://github.com/elastic/eui/pull/3017))
 - Upgraded `react-beautiful-dnd` to v13 ([#3064](https://github.com/elastic/eui/pull/3064))
+- Added `showTooltip` prop for `EuiSuperUpdateButton` to show tooltip and showing only once popovers are closed ([#3127](https://github.com/elastic/eui/pull/3127))
 
 **Bug Fixes**
 
