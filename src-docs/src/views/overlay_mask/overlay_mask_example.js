@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -31,16 +32,24 @@ export const OverlayMaskExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiOverlayMask</EuiCode> is an useful component to create
-            an overlay effect. It can be used to pop up messages. Best use of an
-            overlay mask is to wrap it on <EuiCode>EuiModal</EuiCode>. See
-            examples <a href="http://localhost:8030/#/layout/modal">Here</a>.
+            <EuiCode>EuiOverlayMask</EuiCode> is simply a display component used
+            to obscure the main body content to bring attention to its children.
+            It is best used in conjunction with hyper-focus content areas like{' '}
+            <Link to="/layout/modal">modals</Link> and{' '}
+            <Link to="/layout/flyout">flyouts</Link>.
           </p>
           <p>
-            <EuiCode>EuiOverlayMask</EuiCode> accepts <EuiCode>onClick</EuiCode>
-            as prop, where function can be passed. It also accepts
-            <EuiCode>style</EuiCode> prop where string for custom styling is
-            passed.
+            There are{' '}
+            <a href="https://www.nngroup.com/articles/overuse-of-overlays/">
+              many considerations
+            </a>{' '}
+            to make before choosing to use an overlay. At the very least, you
+            must provide a visible button to close the overlay. You can also
+            pass an <EuiCode>onClick</EuiCode> handler to handle closing the
+            overlay. However, be wary of using <EuiCode>onClick</EuiCode> and{' '}
+            <EuiCode>children</EuiCode>, as clicking the{' '}
+            <EuiCode>children</EuiCode> will also trigger the{' '}
+            <EuiCode>onClick</EuiCode>.
           </p>
         </div>
       ),
