@@ -35,4 +35,12 @@ describe('EuiSuperUpdateButton', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('showTooltip', () => {
+    const component = shallow(
+      <EuiSuperUpdateButton showTooltip onClick={noop} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
