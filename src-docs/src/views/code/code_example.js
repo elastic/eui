@@ -72,7 +72,7 @@ export const CodeExample = {
       demo: <CodeBlock />,
     },
     {
-      title: 'CodeBlock with pre white space',
+      title: 'CodeBlock and white-space',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -85,8 +85,11 @@ export const CodeExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiCodeBlock</EuiCode> allows whiteSpace property to be set
-          allowing user to breaks/white space forcefuly or not.
+          By default, the <EuiCode>whiteSpace</EuiCode> property is set to{' '}
+          <EuiCode>pre-wrap</EuiCode>. This makes the text wrap when needed. You
+          can, however, pass <EuiCode>pre</EuiCode> to the{' '}
+          <EuiCode>whiteSpace</EuiCode> prop and the text won&apos;t wrap unless
+          line breaks are in the content.
         </p>
       ),
       props: { EuiCodeBlockImpl },
