@@ -1,40 +1,16 @@
-import React, { Component } from 'react';
+/* eslint-disable jsx-a11y/accessible-emoji */
+import React, { useState, useCallback, useMemo } from 'react';
 import { fake } from 'faker';
 
 import {
   EuiDataGrid,
   EuiButtonEmpty,
+  EuiButtonIcon,
   EuiLink,
+  EuiSwitch,
+  EuiSpacer,
 } from '../../../../src/components/';
 
-const columns = [
-  {
-    id: '⓪ interactives, ⛔️ expandable',
-    isExpandable: false,
-  },
-  {
-    id: '⓪ interactives, ✅ expandable',
-  },
-  {
-    id: '① interactive, ⛔️ expandable',
-    isExpandable: false,
-  },
-  {
-    id: '①️ interactive, ✅ expandable',
-  },
-  {
-    id: '⓶ interactives, ⛔️ expandable',
-    isExpandable: false,
-  },
-  {
-    id: '⓶ interactives, ✅ expandable',
-  },
-];
-
-const columnIdToIndex = columns.reduce((acc, { id }, index) => {
-  acc[id] = index;
-  return acc;
-}, {});
 const data = [];
 
 for (let i = 1; i < 5; i++) {
@@ -54,129 +30,137 @@ for (let i = 1; i < 5; i++) {
     </span>,
 
     <span>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clicked Yes')}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clicked No')}>
         No
       </EuiButtonEmpty>
     </span>,
     <span>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clicked Yes')}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clickerooed')}>
+      <EuiButtonEmpty size="s" onClick={() => console.log('clicked No')}>
         No
       </EuiButtonEmpty>
     </span>,
   ]);
 }
 
-export default class DataGridSchema extends Component {
-  constructor(props) {
-    super(props);
+const renderHeaderIcon = areHeadersInteractive =>
+  areHeadersInteractive ? (
+    <EuiButtonIcon
+      aria-label="column settings"
+      iconType="gear"
+      onClick={() => console.log('gear icon clicked')}
+    />
+  ) : null;
 
-    this.state = {
-      data,
-      sortingColumns: [{ id: 'contributions', direction: 'asc' }],
+export default () => {
+  const [areHeadersInteractive, setAreHeadersInteractive] = useState(false);
+  const switchInteractiveHeaders = useCallback(
+    e => setAreHeadersInteractive(e.target.checked),
+    [setAreHeadersInteractive]
+  );
 
-      pagination: {
-        pageIndex: 0,
-        pageSize: 10,
+  const columns = useMemo(
+    () => [
+      {
+        id: 'no-interactives not expandable',
+        display: (
+          <>
+            {renderHeaderIcon(areHeadersInteractive)}⓪ interactives, ⛔️
+            expandable
+          </>
+        ),
+        isExpandable: false,
       },
+      {
+        id: 'no-interactives is expandable',
+        display: (
+          <>
+            {renderHeaderIcon(areHeadersInteractive)}⓪ interactives, ✅
+            expandable
+          </>
+        ),
+      },
+      {
+        id: 'one-interactive not expandable',
+        display: (
+          <>
+            {renderHeaderIcon(areHeadersInteractive)}① interactive, ⛔️
+            expandable
+          </>
+        ),
+        isExpandable: false,
+      },
+      {
+        id: 'one-interactives is expandable',
+        display: (
+          <>
+            {renderHeaderIcon(areHeadersInteractive)}①️ interactive, ✅
+            expandable
+          </>
+        ),
+      },
+      {
+        id: 'two-interactives not expandable',
+        display: (
+          <>
+            {renderHeaderIcon(areHeadersInteractive)}⓶ interactives, ⛔️
+            expandable
+          </>
+        ),
+        isExpandable: false,
+      },
+      {
+        id: 'two-interactives is expandable',
+        display: (
+          <>
+            {renderHeaderIcon(areHeadersInteractive)}⓶ interactives, ✅
+            expandable
+          </>
+        ),
+      },
+    ],
+    [areHeadersInteractive]
+  );
+  const columnIdToIndex = columns.reduce((acc, { id }, index) => {
+    acc[id] = index;
+    return acc;
+  }, {});
 
-      visibleColumns: columns.map(({ id }) => id),
-    };
-  }
+  const renderCellValue = useCallback(
+    ({ rowIndex, columnId }) => {
+      const columnIndex = columnIdToIndex[columnId];
+      return data[rowIndex][columnIndex];
+    },
+    [columnIdToIndex]
+  );
 
-  setSorting = sortingColumns => {
-    const data = [...this.state.data].sort((a, b) => {
-      for (let i = 0; i < sortingColumns.length; i++) {
-        const column = sortingColumns[i];
-        const aValue = a[column.id];
-        const bValue = b[column.id];
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
 
-        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
-        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
-      }
+  return (
+    <>
+      <EuiSwitch
+        label="Use interactive headers - toggling will reset the datagrid and any internal states"
+        checked={areHeadersInteractive}
+        onChange={switchInteractiveHeaders}
+      />
 
-      return 0;
-    });
+      <EuiSpacer />
 
-    this.setState({ data, sortingColumns });
-  };
-
-  setPageIndex = pageIndex =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageIndex },
-    }));
-
-  setPageSize = pageSize =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageSize, pageIndex: 0 },
-    }));
-
-  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
-
-  render() {
-    const { data, pagination, sortingColumns } = this.state;
-
-    return (
       <EuiDataGrid
+        key={areHeadersInteractive ? 'interactive-headers' : 'static-headers'}
         aria-label="Top EUI contributors"
         columns={columns}
-        columnVisibility={{
-          visibleColumns: this.state.visibleColumns,
-          setVisibleColumns: this.setVisibleColumns,
-        }}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={data.length}
-        inMemory={{ level: 'sorting' }}
-        renderCellValue={({ rowIndex, columnId }) => {
-          const columnIndex = columnIdToIndex[columnId];
-          return data[rowIndex][columnIndex];
-        }}
-        sorting={{ columns: sortingColumns, onSort: this.setSorting }}
-        pagination={{
-          ...pagination,
-          pageSizeOptions: [5, 10, 25],
-          onChangeItemsPerPage: this.setPageSize,
-          onChangePage: this.setPageIndex,
-        }}
-        schemaDetectors={[
-          {
-            type: 'favoriteFranchise',
-            detector(value) {
-              return value.toLowerCase() === 'star wars' ||
-                value.toLowerCase() === 'star trek'
-                ? 1
-                : 0;
-            },
-            comparator(a, b, direction) {
-              const aValue = a.toLowerCase() === 'star wars';
-              const bValue = b.toLowerCase() === 'star wars';
-              if (aValue < bValue) return direction === 'asc' ? 1 : -1;
-              if (aValue > bValue) return direction === 'asc' ? -1 : 1;
-              return 0;
-            },
-            sortTextAsc: 'Star wars-Star trek',
-            sortTextDesc: 'Star trek-Star wars',
-            icon: 'starFilled',
-            color: '#800080',
-          },
-        ]}
-        popoverContents={{
-          numeric: ({ cellContentsElement }) => {
-            // want to process the already-rendered cell value
-            const stringContents = cellContentsElement.textContent;
-
-            // extract the groups-of-three digits that are right-aligned
-            return stringContents.replace(/((\d{3})+)$/, match =>
-              // then replace each group of xyz digits with ,xyz
-              match.replace(/(\d{3})/g, ',$1')
-            );
-          },
-        }}
+        renderCellValue={renderCellValue}
       />
-    );
-  }
-}
+    </>
+  );
+};
