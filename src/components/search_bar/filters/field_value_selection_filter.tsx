@@ -10,7 +10,7 @@ import { EuiIcon } from '../../icon';
 import { Query } from '../query';
 import { Clause, Value } from '../query/ast';
 
-interface FieldValueOptionType {
+export interface FieldValueOptionType {
   field?: string;
   value: Value;
   name?: string;

@@ -5,5 +5,5 @@ export {
   Query,
   Ast,
 } from './search_bar';
-export { SearchBoxConfigProps } from './search_box';
-export { SearchFiltersFiltersType } from './search_filters';
+export { SearchFilterConfig } from './search_filters';
+export { FieldValueOptionType } from './filters/field_value_selection_filter';
