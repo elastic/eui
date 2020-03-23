@@ -14,8 +14,7 @@ const body =
 const longBody =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar.';
 
-const bodyUpdate =
-  'This is a comment of the style "update" but it can also have a body';
+const bodyUpdate = 'This type of comment can also have a body';
 
 export default () => (
   <div>
@@ -28,13 +27,14 @@ export default () => (
     </EuiComment>
     <EuiComment
       username="chandlerp"
-      commentStyle="update"
+      type="update"
       actions={<EuiIcon type="copy" />}
       event="pushed a new incident"
       timeStamp="on Jan 3, 2020"
       timelineIcon={<EuiAvatar size="l" name="Chandler" />}
     />
     <EuiComment
+      actions={<EuiIcon type="copy" />}
       username={
         <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
           <EuiFlexItem grow={false}>
@@ -43,7 +43,7 @@ export default () => (
           <EuiFlexItem grow={false}>dsnide</EuiFlexItem>
         </EuiFlexGroup>
       }
-      commentStyle="update"
+      type="update"
       event={
         <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
           <EuiFlexItem grow={false}>added tags</EuiFlexItem>
@@ -56,11 +56,11 @@ export default () => (
         </EuiFlexGroup>
       }
       timeStamp="on Jan 4, 2020"
-      timelineIcon={<EuiAvatar size="xl" name="document" />}
+      timelineIcon={<EuiIcon color="subdued" size="xxl" type="tag" />}
     />
     <EuiComment
       username="gregg"
-      commentStyle="update"
+      type="update"
       event="edited case"
       timeStamp="on Jan 11, 2020"
       timelineIcon={<EuiAvatar size="l" name="Greg" />}
@@ -75,7 +75,7 @@ export default () => (
     </EuiComment>
     <EuiComment
       username="gregg"
-      commentStyle="update"
+      type="update"
       event="edited case"
       timeStamp="on Jan 21, 2020"
       timelineIcon={<EuiAvatar size="l" name="Greg" />}>

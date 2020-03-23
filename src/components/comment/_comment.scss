@@ -1,5 +1,4 @@
 .euiComment {
-  // @include euiPanel($selector: '.euiComment__panel');
   font-size: $euiFontSizeS;
   display: flex;
   margin: -($euiSize * .5);
@@ -18,11 +17,10 @@
       content: '';
       position: absolute;
       left: $euiSizeXXL / 2;
-      // left: calc(50% - (#{$euiSize * .5}));
       top: $euiSizeXXL;
       width: $euiSizeXS / 2;
       background-color: $euiColorLightShade;
-      height: calc(100% - (#{$euiSizeL}));
+      height: 100%;
     }
   }
 

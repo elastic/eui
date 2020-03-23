@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 
 export type EuiCommentEventProps = CommonProps &
@@ -10,13 +10,20 @@ export type EuiCommentEventProps = CommonProps &
     event?: ReactNode;
     responses?: ReactNode;
     actions?: ReactNode;
-    commentStyle?: 'regular' | 'update';
+    type?: EuiCommentType;
   };
 
-const commentStyleToClassMap: { [commentStyle: string]: string | null } = {
+// const commentStyleToClassMap: { [commentStyle: string]: string | null } = {
+//   regular: 'euiCommentEvent--regular',
+//   update: 'euiCommentEvent--update',
+// };
+const typeToClassNameMap = {
   regular: 'euiCommentEvent--regular',
   update: 'euiCommentEvent--update',
 };
+
+export const TYPES = keysOf(typeToClassNameMap);
+export type EuiCommentType = keyof typeof typeToClassNameMap;
 
 export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   children,
@@ -25,7 +32,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   username,
   timeStamp,
   responses,
-  commentStyle = 'regular',
+  type = 'regular',
   event,
   actions,
   ...rest
@@ -33,17 +40,17 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const classes = classNames(
     'euiCommentEvent',
     // { 'euiComment--hasBody': body },
-    commentStyleToClassMap[commentStyle],
+    typeToClassNameMap[type],
     className
   );
 
   return (
     <div className={classes} {...rest}>
       <div className="euiCommentEvent__header">
-        <div className="euiCommentEvent__headerUser">{username}</div>
-        <div className="euiCommentEvent__event">{event}</div>
-        <div className="euiCommentEvent__headerTimeStamp">{timeStamp}</div>
-        {actions}
+        <div className="euiCommentEvent__headerData">
+          {username} {event} {timeStamp}
+        </div>
+        <div className="euiCommentEvent__headerActions">{actions}</div>
       </div>
       <div className="euiCommentEvent__body">{children}</div>
     </div>

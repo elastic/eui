@@ -28,7 +28,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   event,
   actions,
   timelineIcon,
-  commentStyle = 'regular',
+  type = 'regular',
   // headerText,
   timeStamp,
   ...rest
@@ -39,10 +39,6 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
     className
   );
 
-  const headerClasses = classNames('euiComment__panelHeader', {
-    // 'euiComment__panelHeader--hasBody': body,
-  });
-
   return (
     <div className={classes} {...rest}>
       <EuiCommentTimeline timelineIcon={timelineIcon} />
@@ -51,7 +47,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
         actions={actions}
         event={event}
         timeStamp={timeStamp}
-        commentStyle={commentStyle}>
+        type={type}>
         {children}
       </EuiCommentEvent>
     </div>

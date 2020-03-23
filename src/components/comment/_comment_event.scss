@@ -4,32 +4,32 @@
   font-size: $euiFontSizeS;
   overflow: hidden;
 
-  .euiCommentEvent__header {
-    // padding: $euiSizeM;
-    // background-color: $euiColorLightestShade;
-    // border-bottom: $euiBorderThin;
-    display: flex;
-    align-items: center;
-  }
-
-  .euiCommentEvent__headerUser {
-    display: flex;
-    align-items: center;
-    padding-right: $euiSizeXS;
-    font-weight: 600;
-  }
-
   .euiCommentEvent__event {
     padding-right: $euiSizeXS;
   }
 
-  // .euiCommentEvent__headerTimeStamp {
-  //   flex-grow: 1;
-  // }
+  .euiCommentEvent__header {
+    align-items: center;
+
+    @include euiBreakpoint('xs', 's') {
+      margin: -($euiSizeXS);
+
+      >div {
+        margin: $euiSizeXS;
+      }
+    }
+  }
+
+  .euiCommentEvent__headerData {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .euiCommentEvent__body {
     line-height: $euiSize * 1.2; // this should be on the demo side only?
   }
-
+  
 }
 
 .euiCommentEvent--regular {
@@ -37,10 +37,9 @@
     background-color: $euiColorLightestShade;
     border-bottom: $euiBorderThin;
     padding: $euiSizeM;
-
-    .euiCommentEvent__headerTimeStamp {
-      flex-grow: 1;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .euiCommentEvent__body {
@@ -51,6 +50,8 @@
 .euiCommentEvent--update {
   .euiCommentEvent__header {
     padding-top: $euiSizeS;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .euiCommentEvent__headerTimeStamp {
