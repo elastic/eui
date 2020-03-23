@@ -19,7 +19,7 @@ export class EuiSuperUpdateButton extends Component {
     toolTipProps: PropTypes.object,
 
     /**
-     * Display Tooltip
+     * Show the "Click to apply" tooltip
      */
     showTooltip: PropTypes.bool,
   };
