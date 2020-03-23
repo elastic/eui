@@ -78,21 +78,11 @@ export default () => {
       },
       {
         id: 'no-interactives is expandable',
-        display: (
-          <>
-            {renderHeaderIcon(areHeadersInteractive)}⓪ interactives, ✅
-            expandable
-          </>
-        ),
+        display: '⓪ interactives, ✅ expandable',
       },
       {
         id: 'one-interactive not expandable',
-        display: (
-          <>
-            {renderHeaderIcon(areHeadersInteractive)}① interactive, ⛔️
-            expandable
-          </>
-        ),
+        display: '① interactive, ⛔️ expandable',
         isExpandable: false,
       },
       {
@@ -106,22 +96,12 @@ export default () => {
       },
       {
         id: 'two-interactives not expandable',
-        display: (
-          <>
-            {renderHeaderIcon(areHeadersInteractive)}⓶ interactives, ⛔️
-            expandable
-          </>
-        ),
+        display: '⓶ interactives, ⛔️ expandable',
         isExpandable: false,
       },
       {
         id: 'two-interactives is expandable',
-        display: (
-          <>
-            {renderHeaderIcon(areHeadersInteractive)}⓶ interactives, ✅
-            expandable
-          </>
-        ),
+        display: '⓶ interactives, ✅ expandable',
       },
     ],
     [areHeadersInteractive]
