@@ -88,11 +88,7 @@ $euiButtonEmptyTypes: (
     }
 
     &:focus {
-      @if ($name == 'text') {
-        background-color: $euiColorLightestShade;
-      } @else {
-        background-color: transparentize($color, .9);
-      }
+      background-color: transparentize($color, .9);
     }
 
     &:hover {
