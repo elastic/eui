@@ -21,14 +21,25 @@ const mutationObserverOptions = {
 export class EuiResizeObserver extends EuiObserver<Props> {
   name = 'EuiResizeObserver';
 
+  state = {
+    height: 0,
+    width: 0,
+  };
+
   onResize = () => {
     if (this.childNode != null) {
       // Eventually use `clientRect` on the `entries[]` returned natively
       const { height, width } = this.childNode.getBoundingClientRect();
+      // Check for actual resize event
+      if (this.state.height === height && this.state.width === width) {
+        return;
+      }
+
       this.props.onResize({
         height,
         width,
       });
+      this.setState({ height, width });
     }
   };
 
@@ -40,14 +51,28 @@ export class EuiResizeObserver extends EuiObserver<Props> {
   };
 }
 
+const makeCompatibleObserver = (node: Element, callback: () => void) => {
+  const observer = new MutationObserver(callback);
+  observer.observe(node, mutationObserverOptions);
+
+  window.addEventListener('resize', callback);
+
+  observer.disconnect = () => {
+    observer.disconnect();
+
+    window.removeEventListener('resize', callback);
+  };
+
+  return observer;
+};
+
 const makeResizeObserver = (node: Element, callback: () => void) => {
   let observer: Observer | undefined;
   if (hasResizeObserver) {
     observer = new window.ResizeObserver(callback);
     observer.observe(node);
   } else {
-    observer = new MutationObserver(callback);
-    observer.observe(node, mutationObserverOptions);
+    observer = makeCompatibleObserver(node, callback);
     requestAnimationFrame(callback); // Mimic ResizeObserver behavior of triggering a resize event on init
   }
   return observer;
