@@ -2,8 +2,16 @@
   display: flex;
   align-items: center;
 
-  &__text {
+  &__compressedText {
     display: inline-flex;
     align-items: center;
+
+    > *:first-child {
+      margin-right: $euiSizeXS;
+    }
+
+    > *:last-child {
+      margin-left: $euiSizeXS;
+    }
   }
 }
