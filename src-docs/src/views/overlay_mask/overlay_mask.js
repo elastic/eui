@@ -3,63 +3,72 @@ import React, { useState } from 'react';
 import {
   EuiOverlayMask,
   EuiButton,
-  EuiText,
   EuiSpacer,
+  EuiFlyout,
+  EuiTitle,
+  EuiFlyoutHeader,
 } from '../../../../src/components';
-
-const expressionList = ['😂', '🤣', '😤', '😭', '🐀', '💚'];
-const colorList = [
-  'rgba(46, 204, 113,0.8)',
-  'rgba(39, 174, 96,0.8)',
-  'rgba(241, 196, 15,0.8)',
-  'rgba(243, 156, 18,0.8)',
-  'rgba(230, 126, 34,0.8)',
-  'rgba(149, 165, 166,0.8)',
-];
-
-const rand = () => Math.floor(Math.random() * 6);
 
 export default () => {
   const [modalOpen, changeModal] = useState(false);
   const [selectedModal, selectModal] = useState(1);
+  const [flyOut, changeFlyOut] = useState(false);
 
-  const toggleModal = modal => {
-    if (modal) selectModal(modal);
+  const openModal = modal => {
+    selectModal(modal);
     changeModal(!modalOpen);
   };
 
-  if (modalOpen) {
-    const fixChild = (
-      <React.Fragment>
-        <EuiText>
-          <h1> {expressionList[rand()]} &nbsp;&nbsp;</h1>
-        </EuiText>
-        <EuiButton onClick={() => toggleModal()}>
-          Close Overlay {expressionList[rand()]}
-        </EuiButton>
-      </React.Fragment>
-    );
+  const closeModal = () => {
+    changeModal(!modalOpen);
+  };
 
-    if (selectedModal === 2) {
+  const toggleFlyOut = () => {
+    changeFlyOut(!flyOut);
+  };
+
+  if (modalOpen) {
+    if (selectedModal === 1) {
       return (
-        <EuiOverlayMask style={`background:${colorList[rand()]}`}>
-          {fixChild}
-        </EuiOverlayMask>
+        <React.Fragment>
+          <EuiOverlayMask onClick={closeModal}>
+            <EuiTitle>
+              <h2> Click anywhere to close overlay. </h2>
+            </EuiTitle>
+          </EuiOverlayMask>
+        </React.Fragment>
       );
     }
 
-    return <EuiOverlayMask> {fixChild} </EuiOverlayMask>;
+    return (
+      <EuiOverlayMask>
+        <EuiButton onClick={closeModal}> Click Here to close. </EuiButton>
+      </EuiOverlayMask>
+    );
+  }
+
+  if (flyOut) {
+    return (
+      <React.Fragment>
+        <EuiOverlayMask onClick={toggleFlyOut} />
+        <EuiFlyout size="s" onClose={toggleFlyOut}>
+          <EuiFlyoutHeader>
+            <EuiTitle>
+              <h1>Click outside this flyout to close overlay. </h1>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+        </EuiFlyout>
+      </React.Fragment>
+    );
   }
 
   return (
     <React.Fragment>
-      <EuiButton onClick={() => toggleModal(1)}>
-        Open Simple Overlay {expressionList[rand()]}
-      </EuiButton>
+      <EuiButton onClick={() => openModal(1)}> Empty Overlay. </EuiButton>
       <EuiSpacer size="xxl" />
-      <EuiButton onClick={() => toggleModal(2)}>
-        Open Random Background Overlay {expressionList[rand()]}
-      </EuiButton>
+      <EuiButton onClick={() => openModal(2)}> Overlay With Button. </EuiButton>
+      <EuiSpacer size="xxl" />
+      <EuiButton onClick={() => toggleFlyOut()}>Overlay with flyout.</EuiButton>
     </React.Fragment>
   );
 };
