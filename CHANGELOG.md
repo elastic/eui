@@ -7,9 +7,13 @@
 - Added `title` to headers of `EuiTable` in case of truncation ([#3094](https://github.com/elastic/eui/pull/3094))
 - Added i18n to `EuiTableHeaderCell` ([#3094](https://github.com/elastic/eui/pull/3094))
 - Added `number` and `string` to `size` type of `EuiImage` for setting custom sizes ([#3012](https://github.com/elastic/eui/pull/3012))
+- Improved `EuiButtonEmpty` focus state when the `color` type is `text` ([#3135](https://github.com/elastic/eui/pull/3135))
+- Added `EuiLoadingElastic` component ([#3017](https://github.com/elastic/eui/pull/3017))
+- Upgraded `react-beautiful-dnd` to v13 ([#3064](https://github.com/elastic/eui/pull/3064))
 
 **Bug Fixes**
 
+- Fixed bug in `EuiSuperDatePicker` to show correct values of commonly used values in relative tab ([#3106](https://github.com/elastic/eui/pull/3106))
 - Fixed race condition in `EuiIcon` when switching from dynamically fetched components ([#3118](https://github.com/elastic/eui/pull/3118))
 
 **Breaking changes**
