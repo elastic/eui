@@ -24,9 +24,19 @@
     }
   }
 
-  .euiCommentTimeline, .euiCommentEvent {
+  .euiCommentTimeline,
+  .euiCommentEvent {
     flex-basis: auto;
     margin: $euiSize * .5;
   }
 
+}
+
+.euiComment:last-of-type {
+  .euiCommentTimeline {
+    &::before {
+      content: '';
+      height: 0;
+    }
+  }
 }

@@ -10,13 +10,12 @@ export type EuiCommentEventProps = CommonProps &
     event?: ReactNode;
     responses?: ReactNode;
     actions?: ReactNode;
+    /**
+     * Use "update" when the comment is primarily showing info about actions that the user has performed (e.g. "user1 edited a case").
+     */
     type?: EuiCommentType;
   };
 
-// const commentStyleToClassMap: { [commentStyle: string]: string | null } = {
-//   regular: 'euiCommentEvent--regular',
-//   update: 'euiCommentEvent--update',
-// };
 const typeToClassNameMap = {
   regular: 'euiCommentEvent--regular',
   update: 'euiCommentEvent--update',
@@ -39,7 +38,6 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 }) => {
   const classes = classNames(
     'euiCommentEvent',
-    // { 'euiComment--hasBody': body },
     typeToClassNameMap[type],
     className
   );

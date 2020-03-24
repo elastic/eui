@@ -11,8 +11,34 @@ const commentSource = require('!!raw-loader!./comment');
 const commentHtml = renderToHtml(Comment);
 
 export const CommentExample = {
-  title: 'Comment',
+  title: 'Comment List',
   sections: [
+    // {
+    //   source: [
+    //     {
+    //       type: GuideSectionTypes.JS,
+    //       code: suggestSource,
+    //     },
+    //     {
+    //       type: GuideSectionTypes.HTML,
+    //       code: suggestHtml,
+    //     },
+    //   ],
+    //   text: (
+    //     <div>
+    //       <p>
+    //         <EuiCode>EuiSuggest</EuiCode> is a text field component used to
+    //         display suggestions. The status of the component is shown on its
+    //         right side. The available <EuiCode>status</EuiCode> are:{' '}
+    //         <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
+    //         <EuiCode>unchanged</EuiCode> and <EuiCode>isLoading</EuiCode>.
+    //       </p>
+    //     </div>
+    //   ),
+    //   props: { EuiSuggest },
+    //   snippet: suggestSnippet,
+    //   demo: <Suggest />,
+    // },
     {
       title: 'Comment',
       source: [

@@ -10,34 +10,20 @@ import {
 
 export type EuiCommentProps = EuiCommentEventProps &
   EuiCommentTimelineProps &
-  CommonProps & {
-    // body?: ReactNode;
-    // user?: ReactNode;
-    // headerText?: ReactNode;
-    // timeStamp?: ReactNode;
-    // event?: ReactNode;
-    // commentStyle?: 'regular' | 'update';
-    // actions?: ReactNode;
-  };
+  CommonProps & {};
 
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   children,
   className,
-  // body,
   username,
   event,
   actions,
   timelineIcon,
   type = 'regular',
-  // headerText,
   timeStamp,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiComment',
-    // { 'euiComment--hasBody': body },
-    className
-  );
+  const classes = classNames('euiComment', className);
 
   return (
     <div className={classes} {...rest}>

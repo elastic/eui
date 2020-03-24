@@ -39,3 +39,41 @@ exports[`EuiComment is rendered 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiComment props type is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        color="subdued"
+        data-euiicon-type="tag"
+      />
+    </div>
+  </div>
+  <div
+    class="euiCommentEvent euiCommentEvent--update"
+  >
+    <div
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+          
+      </div>
+      <div
+        class="euiCommentEvent__headerActions"
+      />
+    </div>
+    <div
+      class="euiCommentEvent__body"
+    />
+  </div>
+</div>
+`;

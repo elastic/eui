@@ -6,11 +6,18 @@ import { EuiComment } from './comment';
 
 describe('EuiComment', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiComment {...requiredProps} />
-    );
+    const component = render(<EuiComment {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('type', () => {
+      it('is rendered', () => {
+        const component = render(<EuiComment type="update" />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

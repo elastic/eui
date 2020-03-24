@@ -9,8 +9,6 @@
   }
 
   .euiCommentEvent__header {
-    align-items: center;
-
     @include euiBreakpoint('xs', 's') {
       margin: -($euiSizeXS);
 
@@ -18,6 +16,8 @@
         margin: $euiSizeXS;
       }
     }
+
+    align-items: center;
   }
 
   .euiCommentEvent__headerData {
@@ -29,7 +29,7 @@
   .euiCommentEvent__body {
     line-height: $euiSize * 1.2; // this should be on the demo side only?
   }
-  
+
 }
 
 .euiCommentEvent--regular {
