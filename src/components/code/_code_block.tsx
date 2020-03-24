@@ -55,6 +55,12 @@ interface Props {
   overflowHeight?: number;
   paddingSize: PaddingSize;
   transparentBackground: boolean;
+  /**
+   * Specify how `white-space` inside the element is handled.
+   * `pre` respects line breaks/white space but doesn't force them to wrap the line
+   * `pre-wrap` respects line breaks/white space but does force them to wrap the line when necessary.
+   */
+  whiteSpace?: 'pre' | 'pre-wrap';
 }
 
 interface State {
@@ -71,6 +77,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     paddingSize: 'l',
     fontSize: 's',
     isCopyable: false,
+    whiteSpace: 'pre-wrap',
   };
 
   constructor(props: Props) {
@@ -152,6 +159,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
       paddingSize,
       transparentBackground,
       isCopyable,
+      whiteSpace,
       ...otherProps
     } = this.props;
 
@@ -168,6 +176,11 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     );
 
     const codeClasses = classNames('euiCodeBlock__code', language);
+
+    const preClasses = classNames('euiCodeBlock__pre', {
+      'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre',
+      'euiCodeBlock__pre--whiteSpacePreWrap': whiteSpace === 'pre-wrap',
+    });
 
     const optionalStyles: CSSProperties = {};
 
@@ -286,7 +299,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
           <EuiOverlayMask>
             <EuiFocusTrap clickOutsideDisables={true}>
               <div className={fullScreenClasses}>
-                <pre className="euiCodeBlock__pre">
+                <pre className={preClasses}>
                   <code
                     ref={ref => {
                       this.codeFullScreen = ref;
@@ -318,7 +331,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
                 <pre
                   ref={innerTextRef}
                   style={optionalStyles}
-                  className="euiCodeBlock__pre">
+                  className={preClasses}>
                   {codeSnippet}
                 </pre>
 
