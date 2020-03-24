@@ -35,9 +35,9 @@ export type EuiSelectableOptionsListProps = CommonProps &
     showIcons?: boolean;
     singleSelection?: 'always' | boolean;
     /**
-     * Any props to send specifically to the react-virtualized `List`
+     * Any props to send specifically to the react-window `FixedSizeList`
      */
-    virtualizedProps?: ListProps;
+    windowProps?: ListProps;
     /**
      * Adds a border around the list to indicate the bounds;
      * Useful when the list scrolls, otherwise use your own container
@@ -210,7 +210,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       onOptionClick,
       renderOption,
       height: forcedHeight,
-      virtualizedProps,
+      windowProps,
       rowHeight,
       activeOptionIndex,
       rootId,
@@ -269,7 +269,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
               itemSize={rowHeight}
               innerElementType="ul"
               innerRef={this.setListBoxRef}
-              {...virtualizedProps}>
+              {...windowProps}>
               {this.ListRow}
             </FixedSizeList>
           )}
