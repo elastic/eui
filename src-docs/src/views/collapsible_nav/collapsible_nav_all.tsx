@@ -124,6 +124,14 @@ export default () => {
     });
   }
 
+  function addLinkNameToPinTitle(listItem: EuiPinnableListGroupItemProps) {
+    return `Pin ${listItem.label} to top`;
+  }
+
+  function addLinkNameToUnpinTitle(listItem: EuiPinnableListGroupItemProps) {
+    return `Unpin ${listItem.label}`;
+  }
+
   const leftSectionItems = [
     <EuiCollapsibleNavToggle navIsDocked={navIsDocked}>
       <EuiHeaderSectionItemButton
@@ -183,6 +191,7 @@ export default () => {
                     listItems={alterLinksWithCurrentState(TopLinks).concat(
                       alterLinksWithCurrentState(pinnedItems, true)
                     )}
+                    unpinTitle={addLinkNameToUnpinTitle}
                     onPinClick={removePin}
                     maxWidth="none"
                     color="subdued"
@@ -207,6 +216,7 @@ export default () => {
                   }>
                   <EuiPinnableListGroup
                     listItems={alterLinksWithCurrentState(KibanaLinks)}
+                    pinTitle={addLinkNameToPinTitle}
                     onPinClick={addPin}
                     maxWidth="none"
                     color="subdued"
@@ -229,6 +239,7 @@ export default () => {
                   }>
                   <EuiPinnableListGroup
                     listItems={alterLinksWithCurrentState(LearnLinks)}
+                    pinTitle={addLinkNameToPinTitle}
                     onPinClick={addPin}
                     maxWidth="none"
                     color="subdued"
