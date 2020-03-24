@@ -34,7 +34,7 @@ export class EuiQuickSelect extends Component {
       timeTenseDefault,
       timeValueDefault,
       timeUnitsDefault,
-    } = parseTimeParts(this.props.start);
+    } = parseTimeParts(this.props.start, this.props.end);
     this.state = {
       timeTense: timeTense ? timeTense : timeTenseDefault,
       timeValue: timeValue ? timeValue : timeValueDefault,

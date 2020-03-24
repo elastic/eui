@@ -5,35 +5,33 @@
  * If given a datetime string it will return a default value.
  * If the given string is in the format such as `now/d` it will parse the string to moment object
  * and find the time value, time unit and time tense using moment
+ * This function accepts two strings start and end time. I the start value is now then it uses
+ * the end value to parse.
  *
- * @param {string} value The time string to be parsed
+ * @param {string} start start time
+ * @param {string} start end time
  * @returns {object} time value, time unit and time tense
  */
 
-import { isString } from '../../../../services/predicate';
-import dateMath from '@elastic/datemath';
 import moment from 'moment';
+import dateMath from '@elastic/datemath';
+import { isString } from '../../../../services/predicate';
 import { relativeUnitsFromLargestToSmallest } from '../relative_options';
+import { DATE_MODES } from '../date_modes';
 
 const LAST = 'last';
 const NEXT = 'next';
-const NOW = 'now';
 
-const isNow = value => value === NOW;
+const isNow = value => value === DATE_MODES.NOW;
 
-export const parseTimeParts = value => {
+export const parseTimeParts = (start, end) => {
   const results = {
     timeValueDefault: 15,
     timeUnitsDefault: 'm',
     timeTenseDefault: LAST,
   };
 
-  if (isNow(value)) {
-    results.timeValueDefault = 0;
-    results.timeUnitsDefault = 's';
-    results.timeTenseDefault = LAST;
-    return results;
-  }
+  const value = isNow(start) ? end : start;
 
   const matches =
     isString(value) &&
