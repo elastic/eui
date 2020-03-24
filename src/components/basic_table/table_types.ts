@@ -6,6 +6,8 @@ import { Primitive } from '../../services/sort/comparators';
 import { CommonProps } from '../common';
 
 export type ItemId<T> = string | number | ((item: T) => string);
+export type ItemIdResolved = string | number;
+
 export type EuiTableDataType =
   | 'auto'
   | 'string'
