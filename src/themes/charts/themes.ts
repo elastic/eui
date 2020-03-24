@@ -23,7 +23,6 @@ import {
   PartialTheme,
   LineAnnotationStyle,
   PartitionConfig,
-  PartitionLayout,
 } from '@elastic/charts';
 
 // @ts-ignore
@@ -37,7 +36,7 @@ const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
-  pie: PartitionConfig; //Omit<PartitionLayer, 'groupByRollup'>;
+  pie: PartitionConfig;
 }
 
 function createTheme(colors: any) {
@@ -60,6 +59,7 @@ function createTheme(colors: any) {
       minFontSize: 8,
       maxFontSize: 16,
       fillLabel: {
+        textInvertible: false,
         valueFont: {
           fontWeight: 700,
         },
@@ -67,11 +67,11 @@ function createTheme(colors: any) {
       linkLabel: {
         maxCount: 5,
         fontSize: 11,
+        textColor: colors.euiColorDarkestShade.rgba,
       },
       outerSizeRatio: 1,
-      emptySizeRatio: 0.4,
+      // emptySizeRatio: 0.4,
       circlePadding: 4,
-      backgroundColor: colors.euiColorDarkShade.rgba, // This seems to do nothing
     },
     theme: {
       chartMargins: {
