@@ -15,6 +15,7 @@
 
 **Bug Fixes**
 
+- Fixed bug in `EuiSuperDatePicker` that required two clicks to focus input in relative tab  ([#3154](https://github.com/elastic/eui/pull/3154))
 - Fixed bug in `EuiSuperDatePicker` to show correct values of commonly used values in relative tab ([#3106](https://github.com/elastic/eui/pull/3106))
 - Fixed race condition in `EuiIcon` when switching from dynamically fetched components ([#3118](https://github.com/elastic/eui/pull/3118))
 - Fixed the issue that `EuiResizeObserver` fallback did not properly listen to pure window resizing ([#3088](https://github.com/elastic/eui/pull/3088))
