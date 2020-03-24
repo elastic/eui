@@ -35,18 +35,18 @@ export const parseTimeParts = (start, end) => {
 
   const matches =
     isString(value) &&
-    value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
+    value.match(/now(([-+])([\d]+)([smhdwMy])(\/[smhdwMy])?)?/);
 
   if (!matches) {
     return results;
   }
 
-  const operator = matches && matches[2];
-  const timeValue = matches && matches[3];
-  const timeUnitsDefault = matches && matches[4];
+  const operator = matches[2];
+  const timeValue = matches[3];
+  const timeUnitsDefault = matches[4];
 
   if (timeValue && timeUnitsDefault && operator) {
-    const timeValueDefault = parseInt(timeValue);
+    const timeValueDefault = parseInt(timeValue, 10);
     const timeTenseDefault = operator === '+' ? NEXT : LAST;
 
     return {
