@@ -208,7 +208,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
     return (
       <div className={classes} {...rest}>
         {previousButton}
-        <EuiText size="s">
+        <EuiText size="s" className="euiPagination__compressedText">
           <EuiI18n
             token="euiPagination.pageOfTotalCompressed"
             default="{page} of {total}"

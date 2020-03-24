@@ -140,6 +140,8 @@ export class GuideSection extends Component {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
     };
+
+    this.memoScroll = 0;
   }
 
   onSelectedTabChanged = selectedTab => {
@@ -433,14 +435,39 @@ export class GuideSection extends Component {
     );
   }
 
+  componentDidUpdate() {
+    if (this.state.selectedTab.name === 'javascript') {
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      pre.scrollTop = this.memoScroll;
+    }
+  }
+
   renderCode(name) {
-    return (
-      <div key={name} ref={name}>
-        <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
-          {this.state.renderedCode}
-        </EuiCodeBlock>
-      </div>
+    const euiCodeBlock = (
+      <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
+        {this.state.renderedCode}
+      </EuiCodeBlock>
     );
+
+    const divProps = {
+      key: name,
+      ref: name,
+    };
+
+    const memoScrollUtility = () => {
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      this.memoScroll = pre.scrollTop;
+    };
+
+    if (name === 'javascript') {
+      return (
+        <div {...divProps} onScroll={memoScrollUtility}>
+          {euiCodeBlock}
+        </div>
+      );
+    }
+
+    return <div {...divProps}> {euiCodeBlock} </div>;
   }
 
   renderContent() {

@@ -27,11 +27,11 @@ const keyPadMenuSnippet = `<EuiKeyPadMenu>
 import KeyPadMenuItemButton from './key_pad_menu_item_button';
 const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_button');
 const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
-const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItemButton
+const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItem
   label={label}
   onClick={this.handleClick}>
   <EuiIcon type={icon} size="l" />
-</EuiKeyPadMenuItemButton>
+</EuiKeyPadMenuItem>
 `;
 
 import KeyPadBeta from './key_pad_beta';
@@ -85,9 +85,9 @@ export const KeyPadMenuExample = {
       ],
       text: (
         <p>
-          The KeyPadMenuItem component is a link by default, but you can swap it
-          out for a KeyPadMenuItemButton if you want <EuiCode>onClick</EuiCode>{' '}
-          behavior.
+          The KeyPadMenuItem component can act both as an anchor as well as a
+          button by specifying <EuiCode>href</EuiCode> or
+          <EuiCode>onClick</EuiCode> respectively.
         </p>
       ),
       snippet: keyPadMenuItemButtonSnippet,
