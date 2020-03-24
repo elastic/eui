@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Replaced various `lodash` functions with native functions ([#3053](https://github.com/elastic/eui/pull/3053))
 - Added `whiteSpace ` prop to `EuiCodeBlock` ([#3103](https://github.com/elastic/eui/pull/3103))
 - Added `sortMatchesBy` prop for `EuiComboBox` ([#3089](https://github.com/elastic/eui/pull/3089))
 - Added `prepend` and `append` ability to `EuiFieldPassword` ([#3122](https://github.com/elastic/eui/pull/3122))
