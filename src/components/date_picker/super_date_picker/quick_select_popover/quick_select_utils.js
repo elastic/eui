@@ -35,7 +35,7 @@ export const parseTimeParts = (start, end) => {
 
   const matches =
     isString(value) &&
-    value.match(/now(([-+])([\d]+)([smhdwMy])(\/[smhdwMy])?)?/);
+    value.match(/now(([-+])(\d+)([smhdwMy])(\/[smhdwMy])?)?/);
 
   if (!matches) {
     return results;
