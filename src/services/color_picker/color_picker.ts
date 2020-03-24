@@ -10,6 +10,7 @@ const generateRandomColor = () =>
   `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
 export const useColorStopsState = (
+  useRandomColor: boolean = false,
   initialColorStops: colorStopsType[] = [
     {
       stop: 20,
@@ -23,8 +24,7 @@ export const useColorStopsState = (
       stop: 65,
       color: '#9170B8',
     },
-  ],
-  useRandomColor: boolean = false
+  ]
 ) => {
   const [addColor, setAddColor] = useState(generateRandomColor());
   const [colorStops, setColorStops] = useState(initialColorStops);
