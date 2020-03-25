@@ -1,6 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCollapsibleNav can be docked 1`] = `
+exports[`EuiCollapsibleNav is rendered 1`] = `null`;
+
+exports[`EuiCollapsibleNav props button 1`] = `
+<button
+  aria-controls="id"
+  aria-expanded="false"
+  aria-pressed="false"
+  class="euiCollapsibleNav__toggle"
+/>
+`;
+
+exports[`EuiCollapsibleNav props hideButtonIfDocked 1`] = `
+<button
+  aria-controls="id"
+  aria-expanded="false"
+  aria-pressed="false"
+  class="euiCollapsibleNav__toggle"
+/>
+`;
+
+exports[`EuiCollapsibleNav props isDocked 1`] = `
 <div>
   <div
     data-focus-guard="true"
@@ -17,6 +37,7 @@ exports[`EuiCollapsibleNav can be docked 1`] = `
   >
     <nav
       class="euiCollapsibleNav euiCollapsibleNav--isDocked"
+      id="id"
       role="group"
     >
       <button
@@ -48,7 +69,7 @@ exports[`EuiCollapsibleNav can be docked 1`] = `
 </div>
 `;
 
-exports[`EuiCollapsibleNav is rendered 1`] = `
+exports[`EuiCollapsibleNav props isOpen 1`] = `
 Array [
   <div />,
   <div>
@@ -66,9 +87,8 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
-        aria-label="aria-label"
-        class="euiCollapsibleNav testClass1 testClass2"
-        data-test-subj="test subject string"
+        class="euiCollapsibleNav"
+        id="id"
         role="group"
       >
         <button
@@ -100,3 +120,5 @@ Array [
   </div>,
 ]
 `;
+
+exports[`EuiCollapsibleNav props onClose 1`] = `null`;

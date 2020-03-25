@@ -10,18 +10,50 @@ jest.mock('../overlay_mask', () => ({
 
 describe('EuiCollapsibleNav', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiCollapsibleNav onClose={() => {}} {...requiredProps} />
-    );
+    const component = render(<EuiCollapsibleNav id="id" {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
 
-  test('can be docked', () => {
-    const component = render(
-      <EuiCollapsibleNav docked={true} onClose={() => {}} />
-    );
+  describe('props', () => {
+    test('onClose', () => {
+      const component = render(
+        <EuiCollapsibleNav id="id" onClose={() => {}} />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isDocked', () => {
+      const component = render(<EuiCollapsibleNav id="id" isDocked={true} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isOpen', () => {
+      const component = render(<EuiCollapsibleNav id="id" isOpen={true} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('button', () => {
+      const component = render(
+        <EuiCollapsibleNav id="id" button={<button />} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('hideButtonIfDocked', () => {
+      const component = render(
+        <EuiCollapsibleNav
+          id="id"
+          button={<button />}
+          hideButtonIfDocked={false}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

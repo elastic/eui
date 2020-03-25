@@ -3,7 +3,6 @@ import _ from 'lodash';
 
 import {
   EuiCollapsibleNav,
-  EuiCollapsibleNavToggle,
   EuiCollapsibleNavGroup,
 } from '../../../../src/components/collapsible_nav';
 import {
@@ -132,17 +131,115 @@ export default () => {
     return `Unpin ${listItem.label}`;
   }
 
+  const collapsibleNav = (
+    <EuiCollapsibleNav
+      id="guideCollapsibleNavAllExampleNav"
+      aria-label="Main navigation"
+      isOpen={navIsOpen}
+      isDocked={navIsDocked}
+      button={
+        <EuiHeaderSectionItemButton
+          aria-label="Toggle main navigation"
+          onClick={() => setNavIsOpen(!navIsOpen)}>
+          <EuiIcon type={'menu'} size="m" aria-hidden="true" />
+        </EuiHeaderSectionItemButton>
+      }
+      onClose={() => setNavIsOpen(false)}>
+      {/* Dark deployments section */}
+      <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+        {DeploymentsGroup}
+      </EuiFlexItem>
+
+      {/* Shaded pinned section always with a home item */}
+      <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+        <EuiCollapsibleNavGroup
+          background="light"
+          className="eui-yScroll"
+          style={{ maxHeight: '40vh' }}>
+          <EuiPinnableListGroup
+            aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
+            listItems={alterLinksWithCurrentState(TopLinks).concat(
+              alterLinksWithCurrentState(pinnedItems, true)
+            )}
+            unpinTitle={addLinkNameToUnpinTitle}
+            onPinClick={removePin}
+            maxWidth="none"
+            color="subdued"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
+
+      <EuiHorizontalRule margin="none" />
+
+      {/* BOTTOM */}
+      <EuiFlexItem className="eui-yScroll">
+        {/* Kibana section */}
+        <EuiCollapsibleNavGroup
+          title="Kibana"
+          iconType="logoKibana"
+          isCollapsible={true}
+          initialIsOpen={openGroups.includes('Kibana')}
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}>
+          <EuiPinnableListGroup
+            aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
+            listItems={alterLinksWithCurrentState(KibanaLinks)}
+            pinTitle={addLinkNameToPinTitle}
+            onPinClick={addPin}
+            maxWidth="none"
+            color="subdued"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+
+        {/* Security callout */}
+        {SecurityGroup}
+
+        {/* Learn section */}
+        <EuiCollapsibleNavGroup
+          title="Learn"
+          iconType="training"
+          isCollapsible={true}
+          initialIsOpen={openGroups.includes('Learn')}
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}>
+          <EuiPinnableListGroup
+            aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
+            listItems={alterLinksWithCurrentState(LearnLinks)}
+            pinTitle={addLinkNameToPinTitle}
+            onPinClick={addPin}
+            maxWidth="none"
+            color="subdued"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+
+        {/* Docking button only for larger screens that can support it*/}
+        <EuiShowFor sizes={['l', 'xl']}>
+          <EuiCollapsibleNavGroup>
+            <EuiListGroupItem
+              size="xs"
+              color="subdued"
+              label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
+              onClick={() => {
+                setNavIsDocked(!navIsDocked);
+                localStorage.setItem(
+                  'navIsDocked',
+                  JSON.stringify(!navIsDocked)
+                );
+              }}
+              iconType={navIsDocked ? 'lock' : 'lockOpen'}
+            />
+          </EuiCollapsibleNavGroup>
+        </EuiShowFor>
+      </EuiFlexItem>
+    </EuiCollapsibleNav>
+  );
+
   const leftSectionItems = [
-    <EuiCollapsibleNavToggle navIsDocked={navIsDocked}>
-      <EuiHeaderSectionItemButton
-        aria-label="Toggle main navigation"
-        aria-controls="guideCollapsibleNavAllExampleNav"
-        aria-expanded={navIsOpen}
-        aria-pressed={navIsOpen}
-        onClick={() => setNavIsOpen(!navIsOpen)}>
-        <EuiIcon type={'menu'} size="m" aria-hidden="true" />
-      </EuiHeaderSectionItemButton>
-    </EuiCollapsibleNavToggle>,
+    collapsibleNav,
     <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
   ];
 
@@ -168,109 +265,6 @@ export default () => {
               },
             ]}
           />
-
-          {navIsOpen && (
-            <EuiCollapsibleNav
-              id="guideCollapsibleNavAllExampleNav"
-              aria-label="Main navigation"
-              docked={navIsDocked}
-              onClose={() => setNavIsOpen(false)}>
-              {/* Dark deployments section */}
-              <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-                {DeploymentsGroup}
-              </EuiFlexItem>
-
-              {/* Shaded pinned section always with a home item */}
-              <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-                <EuiCollapsibleNavGroup
-                  background="light"
-                  className="eui-yScroll"
-                  style={{ maxHeight: '40vh' }}>
-                  <EuiPinnableListGroup
-                    aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
-                    listItems={alterLinksWithCurrentState(TopLinks).concat(
-                      alterLinksWithCurrentState(pinnedItems, true)
-                    )}
-                    unpinTitle={addLinkNameToUnpinTitle}
-                    onPinClick={removePin}
-                    maxWidth="none"
-                    color="subdued"
-                    gutterSize="none"
-                    size="s"
-                  />
-                </EuiCollapsibleNavGroup>
-              </EuiFlexItem>
-
-              <EuiHorizontalRule margin="none" />
-
-              {/* BOTTOM */}
-              <EuiFlexItem className="eui-yScroll">
-                {/* Kibana section */}
-                <EuiCollapsibleNavGroup
-                  title="Kibana"
-                  iconType="logoKibana"
-                  isCollapsible={true}
-                  initialIsOpen={openGroups.includes('Kibana')}
-                  onToggle={(isOpen: boolean) =>
-                    toggleAccordion(isOpen, 'Kibana')
-                  }>
-                  <EuiPinnableListGroup
-                    aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-                    listItems={alterLinksWithCurrentState(KibanaLinks)}
-                    pinTitle={addLinkNameToPinTitle}
-                    onPinClick={addPin}
-                    maxWidth="none"
-                    color="subdued"
-                    gutterSize="none"
-                    size="s"
-                  />
-                </EuiCollapsibleNavGroup>
-
-                {/* Security callout */}
-                {SecurityGroup}
-
-                {/* Learn section */}
-                <EuiCollapsibleNavGroup
-                  title="Learn"
-                  iconType="training"
-                  isCollapsible={true}
-                  initialIsOpen={openGroups.includes('Learn')}
-                  onToggle={(isOpen: boolean) =>
-                    toggleAccordion(isOpen, 'Learn')
-                  }>
-                  <EuiPinnableListGroup
-                    aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-                    listItems={alterLinksWithCurrentState(LearnLinks)}
-                    pinTitle={addLinkNameToPinTitle}
-                    onPinClick={addPin}
-                    maxWidth="none"
-                    color="subdued"
-                    gutterSize="none"
-                    size="s"
-                  />
-                </EuiCollapsibleNavGroup>
-
-                {/* Docking button only for larger screens that can support it*/}
-                <EuiShowFor sizes={['l', 'xl']}>
-                  <EuiCollapsibleNavGroup>
-                    <EuiListGroupItem
-                      size="xs"
-                      color="subdued"
-                      label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
-                      onClick={() => {
-                        setNavIsDocked(!navIsDocked);
-                        localStorage.setItem(
-                          'navIsDocked',
-                          JSON.stringify(!navIsDocked)
-                        );
-                      }}
-                      iconType={navIsDocked ? 'lock' : 'lockOpen'}
-                    />
-                  </EuiCollapsibleNavGroup>
-                </EuiShowFor>
-              </EuiFlexItem>
-            </EuiCollapsibleNav>
-          )}
 
           <EuiPage className="guideFullScreenOverlay" />
         </React.Fragment>
