@@ -59,7 +59,7 @@ export const DeploymentsGroup = (
     isCollapsible={true}
     initialIsOpen={false}
     background="dark">
-    <div className="kibanaNavDeployment__content">
+    <div role="group" className="kibanaNavDeployment__content">
       <EuiListGroup listItems={deploymentsList} flush />
       <EuiSpacer size="s" />
       <EuiButton color="ghost" fullWidth>

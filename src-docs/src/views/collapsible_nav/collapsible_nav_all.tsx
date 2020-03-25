@@ -183,11 +183,11 @@ export default () => {
               {/* Shaded pinned section always with a home item */}
               <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
                 <EuiCollapsibleNavGroup
-                  aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
                   background="light"
                   className="eui-yScroll"
                   style={{ maxHeight: '40vh' }}>
                   <EuiPinnableListGroup
+                    aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
                     listItems={alterLinksWithCurrentState(TopLinks).concat(
                       alterLinksWithCurrentState(pinnedItems, true)
                     )}
@@ -215,6 +215,7 @@ export default () => {
                     toggleAccordion(isOpen, 'Kibana')
                   }>
                   <EuiPinnableListGroup
+                    aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
                     listItems={alterLinksWithCurrentState(KibanaLinks)}
                     pinTitle={addLinkNameToPinTitle}
                     onPinClick={addPin}
@@ -238,6 +239,7 @@ export default () => {
                     toggleAccordion(isOpen, 'Learn')
                   }>
                   <EuiPinnableListGroup
+                    aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
                     listItems={alterLinksWithCurrentState(LearnLinks)}
                     pinTitle={addLinkNameToPinTitle}
                     onPinClick={addPin}

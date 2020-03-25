@@ -149,7 +149,6 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     return (
       <EuiAccordion
         id={groupID}
-        aria-labelledby={title ? titleID : undefined}
         className={classes}
         buttonClassName={headingClasses}
         buttonContent={titleContent}
@@ -161,11 +160,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     );
   } else {
     return (
-      <div
-        id={groupID}
-        aria-labelledby={title ? titleID : undefined}
-        className={classes}
-        {...rest}>
+      <div id={groupID} className={classes} {...rest}>
         {titleContent && <div className={headingClasses}>{titleContent}</div>}
         {content}
       </div>

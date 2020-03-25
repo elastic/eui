@@ -48,7 +48,6 @@ exports[`EuiCollapsibleNavGroup props background none is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
 <div
-  aria-labelledby="id__title"
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
   id="id"
 >
@@ -86,7 +85,6 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
 <div
-  aria-labelledby="id__title"
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
   id="id"
 >
@@ -124,7 +122,6 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
 <div
-  aria-labelledby="id__title"
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
   id="id"
 >
@@ -154,7 +151,6 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props titleElement can change the rendered element to h2 1`] = `
 <div
-  aria-labelledby="id__title"
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
   id="id"
 >
@@ -206,7 +202,6 @@ exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a
 
 exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
 <div
-  aria-labelledby="id__title"
   class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
 >
   <div
