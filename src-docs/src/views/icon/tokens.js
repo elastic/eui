@@ -61,6 +61,9 @@ const tokens = [
   'tokenSymbol',
   'tokenRepo',
   'esTokenBinary',
+  'esTokenJoin',
+  'esTokenPercolator',
+  'esTokenFlattened',
 ];
 
 export default () => (

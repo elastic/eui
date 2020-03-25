@@ -38,7 +38,10 @@ export type EuiTokenMapType =
   | 'tokenRange'
   | 'tokenSymbol'
   | 'tokenVariable'
-  | 'esTokenBinary';
+  | 'esTokenBinary'
+  | 'esTokenJoin'
+  | 'esTokenPercolator'
+  | 'esTokenFlattened';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -203,5 +206,17 @@ export const TOKEN_MAP: {
   esTokenBinary: {
     shape: 'square',
     color: 'euiColorVis4',
+  },
+  esTokenJoin: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  esTokenPercolator: {
+    shape: 'square',
+    color: 'euiColorVis6',
+  },
+  esTokenFlattened: {
+    shape: 'square',
+    color: 'euiColorVis7',
   },
 };

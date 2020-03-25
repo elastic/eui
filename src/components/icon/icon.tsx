@@ -395,6 +395,9 @@ const typeToPathMap = {
   tokenGeo: 'tokens/tokenGeo',
   tokenRange: 'tokens/tokenRange',
   esTokenBinary: 'tokens/esTokenBinary',
+  esTokenJoin: 'tokens/esTokenJoin',
+  esTokenPercolator: 'tokens/esTokenPercolator',
+  esTokenFlattened: 'tokens/esTokenFlattened',
 };
 
 export const TYPES = keysOf(typeToPathMap);
