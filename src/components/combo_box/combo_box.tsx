@@ -538,9 +538,9 @@ export class EuiComboBox<T> extends Component<
         const { searchValue } = this.state;
         const { delimiter } = this.props;
         if (delimiter) {
-          searchValue
-            .split(delimiter)
-            .forEach((option: string) => this.addCustomOption(true, option));
+          searchValue.split(delimiter).forEach((option: string) => {
+            if (option.length > 0) this.addCustomOption(true, option);
+          });
         } else {
           this.addCustomOption(true, searchValue);
         }
@@ -591,9 +591,9 @@ export class EuiComboBox<T> extends Component<
           const { searchValue } = this.state;
           const { delimiter } = this.props;
           if (delimiter) {
-            searchValue
-              .split(delimiter)
-              .forEach((option: string) => this.addCustomOption(false, option));
+            searchValue.split(delimiter).forEach((option: string) => {
+              if (option.length > 0) this.addCustomOption(false, option);
+            });
           } else {
             this.addCustomOption(false, searchValue);
           }
@@ -740,7 +740,7 @@ export class EuiComboBox<T> extends Component<
     });
     if (delimiter && searchValue.endsWith(delimiter)) {
       searchValue.split(delimiter).forEach(value => {
-        this.addCustomOption(false, value);
+        if (value.length > 0) this.addCustomOption(false, value);
       });
     }
   };
