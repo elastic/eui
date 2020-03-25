@@ -40,7 +40,7 @@ export const CollapsibleNavExample = {
         <Link to="/layout/nav-drawer">
           <strong>EuiNavDrawer</strong>
         </Link>{' '}
-        which will be deprecated in the coming months.
+        which will be deprecated soon.
       </p>
       <EuiSpacer size="m" />
     </EuiText>
@@ -77,13 +77,12 @@ export const CollapsibleNavExample = {
       ),
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
-      snippet: `<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>
-{navIsOpen && (
-  <EuiCollapsibleNav
-    docked={navIsDocked}
-    onClose={() => setNavIsOpen(false)}
-  />
-)}`,
+      snippet: `<EuiCollapsibleNav
+  button={<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>}
+  isOpen={navIsOpen}
+  isDocked={navIsDocked}
+  onClose={() => setNavIsOpen(false)}
+/>`,
     },
     {
       title: 'Collapsible nav group',
