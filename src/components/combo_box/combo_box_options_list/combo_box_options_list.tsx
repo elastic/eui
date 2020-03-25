@@ -238,7 +238,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
           emptyStateContent = (
             <p>
               <EuiI18n
-                token="euiComboBoxOptionsList.noMatchingOptions"
+                token="euiComboBoxOptionsList.delimiterMessage"
                 default="Hit enter to add each item separated by {delimiter}"
                 values={{ delimiter: <strong>{delimiter}</strong> }}
               />
