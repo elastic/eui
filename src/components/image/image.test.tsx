@@ -26,4 +26,12 @@ describe('EuiImage', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('is rendered with custom size', () => {
+    const component = render(
+      <EuiImage alt="alt" size={50} url="/cat.jpg" {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -5,6 +5,7 @@ exports[`EuiKeyPadMenuItem is rendered 1`] = `
   aria-label="aria-label"
   class="euiKeyPadMenuItem testClass1 testClass2"
   data-test-subj="test subject string"
+  href="#"
   role="menuitem"
 >
   <div
@@ -22,6 +23,28 @@ exports[`EuiKeyPadMenuItem is rendered 1`] = `
     </p>
   </div>
 </a>
+`;
+
+exports[`EuiKeyPadMenuItem renders button 1`] = `
+<button
+  class="euiKeyPadMenuItem"
+  type="button"
+>
+  <div
+    class="euiKeyPadMenuItem__inner"
+  >
+    <div
+      class="euiKeyPadMenuItem__icon"
+    >
+      Icon
+    </div>
+    <p
+      class="euiKeyPadMenuItem__label"
+    >
+      Label
+    </p>
+  </div>
+</button>
 `;
 
 exports[`EuiKeyPadMenuItem renders href 1`] = `
@@ -45,28 +68,4 @@ exports[`EuiKeyPadMenuItem renders href 1`] = `
     </p>
   </div>
 </a>
-`;
-
-exports[`EuiKeyPadMenuItemButton is rendered 1`] = `
-<button
-  aria-label="aria-label"
-  class="euiKeyPadMenuItem testClass1 testClass2"
-  data-test-subj="test subject string"
-  type="button"
->
-  <div
-    class="euiKeyPadMenuItem__inner"
-  >
-    <div
-      class="euiKeyPadMenuItem__icon"
-    >
-      Icon
-    </div>
-    <p
-      class="euiKeyPadMenuItem__label"
-    >
-      Label
-    </p>
-  </div>
-</button>
 `;
