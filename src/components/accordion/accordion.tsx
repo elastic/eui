@@ -189,7 +189,13 @@ export class EuiAccordion extends Component<
             className={buttonClasses}
             type="button">
             {icon}
-            <span className={buttonContentClassName}>{buttonContent}</span>
+            <span
+              className={classNames(
+                'euiIEFlexWrapFix',
+                buttonContentClassName
+              )}>
+              {buttonContent}
+            </span>
           </button>
 
           {optionalAction}

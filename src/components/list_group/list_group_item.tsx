@@ -39,7 +39,7 @@ export type EuiListGroupItemProps = CommonProps &
   ExclusiveUnion<
     ExclusiveUnion<
       ButtonHTMLAttributes<HTMLButtonElement>,
-      AnchorHTMLAttributes<HTMLAnchorElement>
+      Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
     >,
     HTMLAttributes<HTMLSpanElement>
   > & {

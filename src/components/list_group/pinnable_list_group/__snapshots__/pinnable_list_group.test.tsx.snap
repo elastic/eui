@@ -7,7 +7,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <span
       class="euiListGroupItem__text"
@@ -37,7 +37,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <span
       class="euiListGroupItem__text"
@@ -62,7 +62,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <a
       class="euiListGroupItem__button"
@@ -89,7 +89,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <button
       class="euiListGroupItem__button"
@@ -116,7 +116,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <a
       class="euiListGroupItem__button"
@@ -152,7 +152,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <span
       class="euiListGroupItem__text"
@@ -182,7 +182,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <span
       class="euiListGroupItem__text"
@@ -207,7 +207,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <a
       class="euiListGroupItem__button"
@@ -234,7 +234,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <button
       class="euiListGroupItem__button"
@@ -261,7 +261,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--small euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
   >
     <a
       class="euiListGroupItem__button"

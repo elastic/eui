@@ -11,9 +11,18 @@ export default () => {
 
   return (
     <>
-      <EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>
+      <EuiButton
+        onClick={() => setNavIsOpen(!navIsOpen)}
+        aria-label="Toggle main navigation"
+        aria-controls="guideCollapsibleNavExampleNav"
+        aria-expanded={navIsOpen}
+        aria-pressed={navIsOpen}>
+        Toggle nav
+      </EuiButton>
       {navIsOpen && (
         <EuiCollapsibleNav
+          id="guideCollapsibleNavExampleNav"
+          aria-label="Example of main navigation flyout"
           docked={navIsDocked}
           onClose={() => setNavIsOpen(false)}>
           <div style={{ padding: 16 }}>
