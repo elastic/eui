@@ -34,3 +34,9 @@
     @include euiFormControlFocusStyle;
   }
 }
+
+.euiSuperSelectControlWrapper {
+  > div {
+    overflow: hidden;
+  }
+}
