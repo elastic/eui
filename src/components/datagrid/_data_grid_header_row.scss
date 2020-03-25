@@ -1,6 +1,10 @@
 .euiDataGridHeader {
   display: inline-flex;
   min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+  z-index: 3; // Needs to sit above the content and focused cells
+  background: $euiColorLightestShade;
+  position: sticky; // In IE11 this does not work, but doesn't cause a break.
+  top: 0;
 }
 
 @include euiDataGridHeaderCell {
@@ -30,8 +34,7 @@
     border: 1px solid transparent;
     box-shadow: 0 0 0 2px $euiFocusRingColor;
     border-radius: 1px;
-    // Needed so it sits above the other rows
-    z-index: 2;
+    z-index: 2; // Needed so the focus ring sits above the other row below it.
   }
 
   // We only truncate if the cell is not a control column.
@@ -46,6 +49,12 @@
 
 // Header alternates
 // Often these need extra specificity because they need to gracefully clash with the border settings
+
+@include euiDataGridStyles(bordersNone, bordersHorizontal) {
+  .euiDataGridHeader {
+    background: $euiColorEmptyShade;
+  }
+}
 
 @include euiDataGridStyles(headerUnderline) {
   @include euiDataGridHeaderCell {

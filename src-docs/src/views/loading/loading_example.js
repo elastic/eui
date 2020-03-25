@@ -7,6 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiLoadingKibana,
+  EuiLoadingElastic,
   EuiLoadingSpinner,
   EuiLoadingChart,
   EuiLoadingContent,
@@ -15,6 +16,10 @@ import {
 import LoadingKibana from './loading_kibana';
 const loadingKibanaSource = require('!!raw-loader!./loading_kibana');
 const loadingKibanaHtml = renderToHtml(LoadingKibana);
+
+import LoadingElastic from './loading_elastic';
+const loadingElasticSource = require('!!raw-loader!./loading_elastic');
+const loadingElasticHtml = renderToHtml(LoadingElastic);
 
 import LoadingChart from './loading_chart';
 const loadingChartSource = require('!!raw-loader!./loading_chart');
@@ -52,6 +57,28 @@ export const LoadingExample = {
       props: { EuiLoadingKibana },
       demo: <LoadingKibana />,
       snippet: '<EuiLoadingKibana size="m" />',
+    },
+    {
+      title: 'Elastic',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: loadingElasticSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: loadingElasticHtml,
+        },
+      ],
+      text: (
+        <p>
+          Elastic logo based load. Should only be used in very large panels,
+          like bootup screens.
+        </p>
+      ),
+      props: { EuiLoadingElastic },
+      demo: <LoadingElastic />,
+      snippet: '<EuiLoadingElastic size="m" />',
     },
     {
       title: 'Chart',

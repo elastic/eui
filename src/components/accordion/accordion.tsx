@@ -10,7 +10,7 @@ import { getDurationAndPerformOnFrame } from '../../services';
 const MUTATION_ATTRIBUTE_FILTER = ['style'];
 
 const paddingSizeToClassNameMap = {
-  none: null,
+  none: '',
   xs: 'euiAccordion__padding--xs',
   s: 'euiAccordion__padding--s',
   m: 'euiAccordion__padding--m',
@@ -51,7 +51,12 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
     /**
      * The padding around the exposed accordion content.
      */
-    paddingSize: EuiAccordionSize;
+    paddingSize?: EuiAccordionSize;
+    /**
+     * Placement of the arrow indicator, or 'none' to hide it.
+     * Placing on the `right` doesn't work with `extraAction` and so it will be ignored
+     */
+    arrowDisplay?: 'left' | 'right' | 'none';
   };
 
 export class EuiAccordion extends Component<
@@ -61,6 +66,7 @@ export class EuiAccordion extends Component<
   static defaultProps = {
     initialIsOpen: false,
     paddingSize: 'none',
+    arrowDisplay: 'left',
   };
 
   childContent: HTMLDivElement | null = null;
@@ -128,6 +134,7 @@ export class EuiAccordion extends Component<
       extraAction,
       paddingSize,
       initialIsOpen,
+      arrowDisplay,
       ...rest
     } = this.props;
 
@@ -139,15 +146,30 @@ export class EuiAccordion extends Component<
       className
     );
 
-    const paddingClass = classNames(paddingSizeToClassNameMap[paddingSize]);
+    const paddingClass = paddingSize
+      ? classNames(paddingSizeToClassNameMap[paddingSize])
+      : undefined;
 
-    const buttonClasses = classNames('euiAccordion__button', buttonClassName);
+    const buttonClasses = classNames(
+      'euiAccordion__button',
+      {
+        euiAccordion__buttonReverse: !extraAction && arrowDisplay === 'right',
+      },
+      buttonClassName
+    );
 
     const iconClasses = classNames('euiAccordion__icon', {
       'euiAccordion__icon-isOpen': this.state.isOpen,
     });
 
-    const icon = <EuiIcon className={iconClasses} type="arrowRight" size="m" />;
+    let icon;
+    if (arrowDisplay !== 'none') {
+      icon = (
+        <span className="euiAccordion__iconWrapper">
+          <EuiIcon className={iconClasses} type="arrowRight" size="m" />
+        </span>
+      );
+    }
 
     let optionalAction = null;
 
@@ -166,7 +188,7 @@ export class EuiAccordion extends Component<
             onClick={this.onToggle}
             className={buttonClasses}
             type="button">
-            <span className="euiAccordion__iconWrapper">{icon}</span>
+            {icon}
             <span className={buttonContentClassName}>{buttonContent}</span>
           </button>
 

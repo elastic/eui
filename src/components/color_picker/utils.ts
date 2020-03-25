@@ -1,4 +1,5 @@
 import { MouseEvent as ReactMouseEvent, TouchEvent, useEffect } from 'react';
+import chroma, { ColorSpaces } from 'chroma-js';
 
 export const getEventPosition = (
   location: { x: number; y: number },
@@ -80,3 +81,59 @@ export function useMouseMove<T = HTMLDivElement>(
 
   return [handleMouseDown, handleInteraction];
 }
+
+export const HEX_FALLBACK = '';
+export const HSV_FALLBACK: ColorSpaces['hsv'] = [0, 0, 0];
+export const RGB_FALLBACK: ColorSpaces['rgba'] = [NaN, NaN, NaN, 1];
+export const RGB_JOIN = ', ';
+
+// Given a string, this attempts to return a format that can be consumed by chroma-js
+export const parseColor = (input?: string | null) => {
+  let parsed: string | number[];
+  if (!input) return null;
+  if (input.indexOf(',') > 0) {
+    if (!/^[\s,.0-9]*$/.test(input)) {
+      return null;
+    }
+    const rgb = input
+      .trim()
+      .split(',')
+      .filter(n => n !== '')
+      .map(Number);
+    parsed = rgb.length > 2 && rgb.length < 5 ? rgb : HEX_FALLBACK;
+  } else {
+    parsed = input;
+  }
+  return parsed;
+};
+
+// Returns whether the given input will return a valid chroma-js object when designated as one of
+// the acceptable formats: hex, rgb, rgba
+export const chromaValid = (color: string | number[]) => {
+  let parsed: string | number[] | null = color;
+  if (typeof color === 'string') {
+    parsed = parseColor(color);
+  }
+
+  if (!parsed) return false;
+
+  if (typeof parsed === 'object') {
+    return chroma.valid(parsed, 'rgb') || chroma.valid(parsed, 'rgba');
+  }
+  return chroma.valid(color, 'hex');
+};
+
+// Given an input and opacity configuration, this returns a valid chroma-js object
+export const getChromaColor = (input?: string | null, allowOpacity = false) => {
+  const parsed = parseColor(input);
+  if (parsed && chromaValid(parsed)) {
+    // type guard for the function overload
+    const chromaColor =
+      typeof parsed === 'object' ? chroma(parsed) : chroma(parsed);
+    if (!allowOpacity && chromaColor.alpha() < 1) {
+      return null;
+    }
+    return chromaColor;
+  }
+  return null;
+};

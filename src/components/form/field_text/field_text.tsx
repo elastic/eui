@@ -19,12 +19,14 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
     inputRef?: Ref<HTMLInputElement>;
 
     /**
-     * Creates an input group with element(s) coming before input
+     * Creates an input group with element(s) coming before input.
+     * `string` | `ReactElement` or an array of these
      */
     prepend?: EuiFormControlLayoutProps['prepend'];
 
     /**
-     * Creates an input group with element(s) coming after input
+     * Creates an input group with element(s) coming after input.
+     * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
 

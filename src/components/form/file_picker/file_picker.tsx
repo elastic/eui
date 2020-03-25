@@ -9,6 +9,7 @@ import { EuiProgress } from '../../progress';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
+import { htmlIdGenerator } from '../../../services/accessibility/html_id_generator';
 
 const displayToClassNameMap = {
   default: null,
@@ -127,6 +128,12 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             ...rest
           } = this.props;
 
+          let promptId: string = htmlIdGenerator()();
+
+          if (id) {
+            promptId = `${id}-filePicker__prompt`;
+          }
+
           const isOverridingInitialPrompt = this.state.promptText != null;
 
           const normalFormControl = display === 'default';
@@ -198,10 +205,11 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                     onDragLeave={this.hideDrop}
                     onDrop={this.hideDrop}
                     disabled={disabled}
+                    aria-describedby={promptId}
                     {...rest}
                   />
                 </EuiValidatableControl>
-                <div className="euiFilePicker__prompt">
+                <div className="euiFilePicker__prompt" id={promptId}>
                   <EuiIcon
                     className="euiFilePicker__icon"
                     type="importAction"

@@ -61,7 +61,6 @@ export default class extends Component {
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="withTitle"
             ownFocus
             button={
               <EuiButton
@@ -89,7 +88,6 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="withFooter"
             ownFocus
             button={
               <EuiButton
@@ -121,7 +119,6 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="withTitleAndFooter"
             ownFocus
             button={
               <EuiButton

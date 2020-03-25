@@ -171,6 +171,11 @@ export const propsInfo = {
           required: false,
           type: { name: 'bool' },
         },
+        enableAllColumns: {
+          description: 'Enables the default sorting ability for each column.',
+          required: false,
+          type: { name: 'bool' },
+        },
       },
     },
   },

@@ -17,6 +17,74 @@ exports[`EuiListGroupItem is rendered 1`] = `
 </li>
 `;
 
+exports[`EuiListGroupItem props color inherit is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props color primary is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props color subdued is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--subdued"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props color text is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--text"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
   class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction"
@@ -36,15 +104,10 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
     class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
     type="button"
   >
-    <svg
+    <div
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+      class="euiButtonIcon__icon"
+      data-euiicon-type="empty"
     />
   </button>
 </li>
@@ -111,15 +174,9 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
   <span
     class="euiListGroupItem__text"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiListGroupItem__icon"
+      data-euiicon-type="empty"
     />
     <span
       class="euiListGroupItem__label"
@@ -305,22 +362,16 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
 </li>
 `;
 
-exports[`EuiListGroupItem throws an warning if both iconType and icon are provided but still renders 1`] = `
+exports[`EuiListGroupItem throws a warning if both iconType and icon are provided but still renders 1`] = `
 <li
   class="euiListGroupItem euiListGroupItem--medium"
 >
   <span
     class="euiListGroupItem__text"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading euiListGroupItem__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiListGroupItem__icon"
+      data-euiicon-type="empty"
     />
     <span
       class="euiListGroupItem__label"

@@ -4,9 +4,18 @@ export { EuiAspectRatio } from './aspect_ratio';
 
 export { EuiAvatar } from './avatar';
 
-export { EuiKeyboardAccessible, EuiScreenReaderOnly } from './accessibility';
+export {
+  EuiKeyboardAccessible,
+  EuiScreenReaderOnly,
+  EuiSkipLink,
+} from './accessibility';
 
-export { EuiBadge, EuiBetaBadge, EuiNotificationBadge } from './badge';
+export {
+  EuiBadge,
+  EuiBetaBadge,
+  EuiNotificationBadge,
+  EuiBadgeGroup,
+} from './badge';
 
 export { EuiBottomBar } from './bottom_bar';
 
@@ -162,20 +171,19 @@ export { EuiI18n, EuiI18nNumber } from './i18n';
 
 export {
   EuiLoadingKibana,
+  EuiLoadingElastic,
   EuiLoadingChart,
   EuiLoadingContent,
   EuiLoadingSpinner,
 } from './loading';
 
-export {
-  EuiKeyPadMenu,
-  EuiKeyPadMenuItem,
-  EuiKeyPadMenuItemButton,
-} from './key_pad_menu';
+export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';
 
 export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
+
+export { EuiMark } from './mark';
 
 export {
   EUI_MODAL_CANCEL_BUTTON,
@@ -230,7 +238,10 @@ export { EuiProgress } from './progress';
 
 export { EuiTreeView } from './tree_view';
 
-export { EuiResizeObserver } from './observer/resize_observer';
+export {
+  EuiResizeObserver,
+  useResizeObserver,
+} from './observer/resize_observer';
 
 export { EuiSearchBar, Query, Ast } from './search_bar';
 

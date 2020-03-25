@@ -28,15 +28,10 @@ exports[`EuiFlyout is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
         />
       </button>
     </div>
@@ -76,15 +71,10 @@ exports[`EuiFlyout max width can be set to a custom number 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
         />
       </button>
     </div>
@@ -124,15 +114,10 @@ exports[`EuiFlyout max width can be set to a custom value and measurement 1`] = 
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
         />
       </button>
     </div>
@@ -171,15 +156,53 @@ exports[`EuiFlyout max width can be set to a default 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    tabindex="0"
+  />
+</div>
+`;
+
+exports[`EuiFlyout props accepts div props 1`] = `
+<div>
+  <div
+    data-focus-guard="true"
+    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    tabindex="0"
+  />
+  <div
+    data-focus-guard="true"
+    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    tabindex="1"
+  />
+  <div
+    data-focus-lock-disabled="false"
+  >
+    <div
+      class="euiFlyout euiFlyout--medium"
+      id="imaflyout"
+      role="dialog"
+      tabindex="0"
+    >
+      <button
+        aria-label="Closes this dialog"
+        class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
+        data-test-subj="euiFlyoutCloseButton"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
         />
       </button>
     </div>
@@ -247,15 +270,10 @@ exports[`EuiFlyout size l is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
         />
       </button>
     </div>
@@ -294,15 +312,10 @@ exports[`EuiFlyout size m is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
         />
       </button>
     </div>
@@ -341,15 +354,10 @@ exports[`EuiFlyout size s is rendered 1`] = `
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="cross"
         />
       </button>
     </div>

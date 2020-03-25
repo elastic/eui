@@ -61,15 +61,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="arrowDown"
             />
             <span
               class="euiButtonEmpty__text"
@@ -94,15 +89,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
         data-test-subj="pagination-button-previous"
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowLeft"
         />
       </button>
       <button
@@ -144,15 +134,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
         disabled=""
         type="button"
       >
-        <svg
+        <div
           aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="arrowRight"
         />
       </button>
     </div>
@@ -178,6 +163,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -201,20 +188,15 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>
@@ -235,15 +217,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -262,15 +239,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -331,7 +303,7 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__content"
@@ -371,15 +343,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -432,15 +399,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -499,15 +461,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -560,15 +517,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -627,15 +579,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -688,15 +635,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -743,6 +685,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -766,20 +710,15 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>
@@ -800,15 +739,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -827,15 +761,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -927,7 +856,7 @@ Array [
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
                 style="width:50px"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__expandFlex"
@@ -994,15 +923,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1055,15 +979,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1178,15 +1097,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1239,15 +1153,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1362,15 +1271,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1423,15 +1327,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1506,6 +1405,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -1526,20 +1427,15 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>
@@ -1560,15 +1456,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -1587,15 +1478,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -1658,7 +1544,7 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__content"
@@ -1698,15 +1584,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1759,15 +1640,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1826,15 +1702,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1887,15 +1758,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -1954,15 +1820,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2015,15 +1876,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2070,6 +1926,8 @@ Array [
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+      data-test-subj="dataGridWrapper"
+      tabindex="0"
     >
       <div
         class="euiDataGrid__controls"
@@ -2090,20 +1948,15 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>
@@ -2124,15 +1977,10 @@ Array [
               <span
                 class="euiButtonEmpty__content"
               >
-                <svg
+                <div
                   aria-hidden="true"
-                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-                  focusable="false"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="euiButtonEmpty__icon"
+                  data-euiicon-type="tableDensityExpanded"
                 />
                 <span
                   class="euiButtonEmpty__text"
@@ -2151,15 +1999,10 @@ Array [
           <span
             class="euiButtonEmpty__content"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+              class="euiButtonEmpty__icon"
+              data-euiicon-type="fullScreen"
             />
             <span
               class="euiButtonEmpty__text"
@@ -2220,7 +2063,7 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                tabindex="0"
+                tabindex="-1"
               >
                 <div
                   class="euiDataGridRowCell__content"
@@ -2260,15 +2103,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2321,15 +2159,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2388,15 +2221,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2449,15 +2277,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2516,15 +2339,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>
@@ -2577,15 +2395,10 @@ Array [
                             title="Click or hit enter to interact with cell content"
                             type="button"
                           >
-                            <svg
+                            <div
                               aria-hidden="true"
-                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                              focusable="false"
-                              height="16"
-                              role="img"
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
+                              class="euiButtonIcon__icon"
+                              data-euiicon-type="expandMini"
                             />
                           </button>
                         </div>

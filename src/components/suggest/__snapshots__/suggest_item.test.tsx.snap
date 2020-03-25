@@ -9,15 +9,8 @@ exports[`EuiSuggestItem is rendered 1`] = `
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint1"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      data-euiicon-type="search"
     />
   </span>
   <span
@@ -38,15 +31,8 @@ exports[`props item with no description has expanded label is rendered 1`] = `
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      data-euiicon-type="kqlValue"
     />
   </span>
   <span
@@ -67,15 +53,8 @@ exports[`props labelDisplay as expand is rendered 1`] = `
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon-isLoading"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      data-euiicon-type="kqlValue"
     />
   </span>
   <span

@@ -182,7 +182,7 @@ export function findPopoverPosition({
     }
   }
 
-  let bestFit = -Infinity;
+  let bestFit: number | undefined = undefined;
   let bestPosition: FindPopoverPositionResult | null = null;
 
   for (let idx = 0; idx < iterationPositions.length; idx++) {
@@ -201,7 +201,7 @@ export function findPopoverPosition({
       arrowConfig,
     });
 
-    if (screenCoordinates.fit > bestFit) {
+    if (bestFit === undefined || screenCoordinates.fit > bestFit) {
       bestFit = screenCoordinates.fit;
       bestPosition = {
         fit: screenCoordinates.fit,

@@ -1,1 +1,1 @@
-export { EuiSwitch, EuiSwitchEvent, EuiSwitchProps } from './switch';
+export { EuiSwitch, EuiSwitchProps, EuiSwitchEvent } from './switch';

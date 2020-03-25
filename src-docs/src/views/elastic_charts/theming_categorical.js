@@ -1,8 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component, Fragment } from 'react';
-import { find } from 'lodash';
-import { withTheme } from '../../components';
 import { Chart, Settings, Axis, DataGenerator } from '@elastic/charts';
+import { ThemeContext } from '../../components';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -31,7 +30,7 @@ import {
   euiPaletteGray,
 } from '../../../../src/services';
 
-class _Categorical extends Component {
+export class Categorical extends Component {
   constructor(props) {
     super(props);
 
@@ -81,7 +80,8 @@ class _Categorical extends Component {
   };
 
   onColorTypeChange = optionId => {
-    const colorType = find(this.colorTypeRadios, { id: optionId }).label;
+    const colorType = this.colorTypeRadios.find(({ id }) => id === optionId)
+      .label;
     this.updateCorrectChart(Number(this.state.numCharts), colorType);
     this.setState({
       colorTypeIdSelected: optionId,
@@ -92,8 +92,9 @@ class _Categorical extends Component {
   onGroupChange = e => {
     const colorType = e.target.checked
       ? 'Grouped'
-      : find(this.colorTypeRadios, { id: this.state.colorTypeIdSelected })
-          .label;
+      : this.colorTypeRadios.find(
+          ({ id }) => id === this.state.colorTypeIdSelected
+        ).label;
     this.updateCorrectChart(Number(this.state.numCharts), colorType);
     this.setState({
       grouped: e.target.checked,
@@ -239,7 +240,7 @@ class _Categorical extends Component {
     }
 
     const dg = new DataGenerator();
-    const isDarkTheme = this.props.theme.includes('dark');
+    const isDarkTheme = this.context.theme.includes('dark');
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
@@ -479,4 +480,4 @@ class _Categorical extends Component {
   }
 }
 
-export const Categorical = withTheme(_Categorical);
+Categorical.contextType = ThemeContext;

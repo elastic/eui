@@ -1,1 +1,1 @@
-export { EuiResizeObserver } from './resize_observer';
+export { EuiResizeObserver, useResizeObserver } from './resize_observer';

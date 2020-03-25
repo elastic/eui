@@ -4,15 +4,15 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiCode,
-  EuiLink,
-  EuiResizeObserver,
-} from '../../../../src/components';
+import { EuiCode, EuiLink } from '../../../../src/components';
 
 import { ResizeObserverExample as ResizeObserver } from './resize_observer';
 const resizeObserverSource = require('!!raw-loader!./resize_observer');
 const resizeObserverHtml = renderToHtml(ResizeObserver);
+
+import { ResizeObserverHookExample as ResizeObserverHook } from './resize_observer_hook';
+const resizeObserverHookSource = require('!!raw-loader!./resize_observer_hook');
+const resizeObserverHookHtml = renderToHtml(ResizeObserverHook);
 
 export const ResizeObserverExample = {
   title: 'ResizeObserver',
@@ -49,16 +49,37 @@ export const ResizeObserverExample = {
             callback which you must put on the element you wish to observe.
           </p>
           <p>
-            Due to limited browser support (currently supported in Chrome and
-            Opera), <EuiCode>EuiResizeObserver</EuiCode> will fallback to using
-            the <EuiCode>MutationObserver</EuiCode> API with a default set of
+            Due to limited browser support (currently not in Safari and IE11),{' '}
+            <EuiCode>EuiResizeObserver</EuiCode> will fallback to using the{' '}
+            <EuiCode>MutationObserver</EuiCode> API with a default set of
             parameters that approximate the results of{' '}
             <EuiCode>MutationObserver</EuiCode>.
           </p>
         </React.Fragment>
       ),
-      components: { EuiResizeObserver },
       demo: <ResizeObserver />,
+    },
+    {
+      title: 'useResizeObserver hook',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: resizeObserverHookSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: resizeObserverHookHtml,
+        },
+      ],
+      text: (
+        <React.Fragment>
+          <p>
+            There is also a React hook, <EuiCode>useResizeObserver</EuiCode>,
+            which provides the same observation functionality.
+          </p>
+        </React.Fragment>
+      ),
+      demo: <ResizeObserverHook />,
     },
   ],
 };

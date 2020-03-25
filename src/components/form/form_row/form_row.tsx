@@ -88,6 +88,10 @@ type LabelProps = {
   HTMLAttributes<HTMLDivElement>;
 
 type LegendProps = {
+  /**
+   * Defaults to rendering a `<label>` but if passed `'legend'` for labelType,
+   * will render both a `<legend>` and the surrounding container as a `<fieldset>`
+   */
   labelType?: 'legend';
 } & EuiFormRowCommonProps &
   HTMLAttributes<HTMLFieldSetElement>;
@@ -104,19 +108,12 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     hasChildLabel: true,
   };
 
-  constructor(props: EuiFormRowProps) {
-    super(props);
+  state: EuiFormRowState = {
+    isFocused: false,
+    id: this.props.id || makeId(),
+  };
 
-    this.state = {
-      isFocused: false,
-      id: props.id || makeId(),
-    };
-
-    this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-  }
-
-  onFocus(...args: any[]) {
+  onFocus = (...args: any[]) => {
     // Doing this to allow onFocus to be called correctly from the child input element as this component overrides it
     const onChildFocus = get(this.props, 'children.props.onFocus');
     if (onChildFocus) {
@@ -126,9 +123,9 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     this.setState({
       isFocused: true,
     });
-  }
+  };
 
-  onBlur(...args: any[]) {
+  onBlur = (...args: any[]) => {
     // Doing this to allow onBlur to be called correctly from the child input element as this component overrides it
     const onChildBlur = get(this.props, 'children.props.onBlur');
     if (onChildBlur) {
@@ -138,7 +135,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     this.setState({
       isFocused: false,
     });
-  }
+  };
 
   render() {
     const {

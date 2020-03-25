@@ -38,7 +38,7 @@ export default () => {
   return (
     <Fragment>
       <EuiTitle size="xs">
-        <h3>Accepted color names</h3>
+        <h2>Accepted color names</h2>
       </EuiTitle>
       <EuiSpacer size="m" />
       <EuiFlexGroup wrap responsive={false} gutterSize="xs">
