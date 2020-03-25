@@ -61,7 +61,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
       index={index}
       isDragDisabled={isDragDisabled}
       {...rest}>
-      {(provided, snapshot) => {
+      {(provided, snapshot, rubric) => {
         const classes = classNames(
           'euiDraggable',
           {
@@ -81,7 +81,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
         });
         const DraggableElement =
           typeof children === 'function'
-            ? children(provided, snapshot)
+            ? children(provided, snapshot, rubric)
             : (children as ReactElement); // as specified by `DraggableProps`
         return (
           <Fragment>
