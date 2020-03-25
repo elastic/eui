@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
+- Added `useColorPickerState` and `useColorStopsState` utilities ([#3067](https://github.com/elastic/eui/pull/3067))
 
 ## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
 
@@ -46,9 +47,7 @@
 - Added `useResizeObserver` hook ([#2991](https://github.com/elastic/eui/pull/2991))
 - Added `showColumnSelector.allowHide` and `showColumnSelector.allowReorder` props to `EuiDataGrid` UI configuration ([#2993](https://github.com/elastic/eui/pull/2993))
 - Added `EuiMark` component ([#3060](https://github.com/elastic/eui/pull/3060))
-- Moved and renamed `useColorPicker and useColorStops` from src-docs/src/views/color_picker/utils to `useColorPickerState and useColorStops` src/services ([#3067](https://github.com/elastic/eui/pull/3067))
 - Changed `tabs.name` prop shape in `EuiTabbedContent` to accept a `node`, which aligns it with `EuiTab` ([#3100](https://github.com/elastic/eui/pull/3100))
-
 
 **Bug Fixes**
 
