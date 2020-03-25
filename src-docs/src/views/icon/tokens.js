@@ -60,13 +60,14 @@ const tokens = [
   'tokenFile',
   'tokenSymbol',
   'tokenRepo',
-  'esTokenBinary',
-  'esTokenJoin',
-  'esTokenPercolator',
-  'esTokenFlattened',
-  'esTokenRankFeature',
-  'esTokenKeyword',
-  'esTokenCompSuggester',
+  'tokenBinary',
+  'tokenJoin',
+  'tokenPercolator',
+  'tokenFlattened',
+  'tokenRankFeature',
+  'tokenKeyword',
+  'tokenCompSuggester',
+  'tokenDenseVector',
 ];
 
 export default () => (

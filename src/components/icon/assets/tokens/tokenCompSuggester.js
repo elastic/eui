@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconESTokenCompSuggester = ({ title, titleId, ...props }) => (
+const EuiIconTokenCompSuggester = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
@@ -16,4 +16,4 @@ const EuiIconESTokenCompSuggester = ({ title, titleId, ...props }) => (
   </svg>
 );
 
-export const icon = EuiIconESTokenCompSuggester;
+export const icon = EuiIconTokenCompSuggester;

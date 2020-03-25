@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconESTokenRankFeature = ({ title, titleId, ...props }) => (
+const EuiIconTokenRankFeature = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
@@ -16,4 +16,4 @@ const EuiIconESTokenRankFeature = ({ title, titleId, ...props }) => (
   </svg>
 );
 
-export const icon = EuiIconESTokenRankFeature;
+export const icon = EuiIconTokenRankFeature;

@@ -394,13 +394,14 @@ const typeToPathMap = {
   tokenShape: 'tokens/tokenShape',
   tokenGeo: 'tokens/tokenGeo',
   tokenRange: 'tokens/tokenRange',
-  esTokenBinary: 'tokens/esTokenBinary',
-  esTokenJoin: 'tokens/esTokenJoin',
-  esTokenPercolator: 'tokens/esTokenPercolator',
-  esTokenFlattened: 'tokens/esTokenFlattened',
-  esTokenRankFeature: 'tokens/esTokenRankFeature',
-  esTokenKeyword: 'tokens/esTokenKeyword',
-  esTokenCompSuggester: 'tokens/esTokenCompSuggester',
+  tokenBinary: 'tokens/tokenBinary',
+  tokenJoin: 'tokens/tokenJoin',
+  tokenPercolator: 'tokens/tokenPercolator',
+  tokenFlattened: 'tokens/tokenFlattened',
+  tokenRankFeature: 'tokens/tokenRankFeature',
+  tokenKeyword: 'tokens/tokenKeyword',
+  tokenCompSuggester: 'tokens/tokenCompSuggester',
+  tokenDenseVector: 'tokens/tokenDenseVector',
 };
 
 export const TYPES = keysOf(typeToPathMap);

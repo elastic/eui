@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconESTokenBinary = ({ title, titleId, ...props }) => (
+const EuiIconTokenBinary = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
@@ -16,4 +16,4 @@ const EuiIconESTokenBinary = ({ title, titleId, ...props }) => (
   </svg>
 );
 
-export const icon = EuiIconESTokenBinary;
+export const icon = EuiIconTokenBinary;
