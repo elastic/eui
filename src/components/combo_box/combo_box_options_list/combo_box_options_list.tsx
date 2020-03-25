@@ -76,6 +76,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     updatePosition: UpdatePositionHandler;
     width: number;
     singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
+    delimiter?: string;
   };
 
 export class EuiComboBoxOptionsList<T> extends Component<
@@ -179,9 +180,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
       singleSelection,
       updatePosition,
       width,
+      delimiter,
       ...rest
     } = this.props;
-
     let emptyStateContent;
 
     if (isLoading) {
@@ -232,15 +233,27 @@ export class EuiComboBoxOptionsList<T> extends Component<
           );
         }
       } else {
-        emptyStateContent = (
-          <p>
-            <EuiI18n
-              token="euiComboBoxOptionsList.noMatchingOptions"
-              default="{searchValue} doesn't match any options"
-              values={{ searchValue: <strong>{searchValue}</strong> }}
-            />
-          </p>
-        );
+        if (delimiter && searchValue.includes(delimiter)) {
+          emptyStateContent = (
+            <p>
+              <EuiI18n
+                token="euiComboBoxOptionsList.noMatchingOptions"
+                default="Hit enter to add each item separated by {delimiter}"
+                values={{ delimiter: <strong>{delimiter}</strong> }}
+              />
+            </p>
+          );
+        } else {
+          emptyStateContent = (
+            <p>
+              <EuiI18n
+                token="euiComboBoxOptionsList.noMatchingOptions"
+                default="{searchValue} doesn't match any options"
+                values={{ searchValue: <strong>{searchValue}</strong> }}
+              />
+            </p>
+          );
+        }
       }
     } else if (!options.length) {
       emptyStateContent = (

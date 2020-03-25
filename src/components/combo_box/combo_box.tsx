@@ -963,6 +963,7 @@ export class EuiComboBox<T> extends Component<
             selectedOptions={selectedOptions}
             updatePosition={this.updatePosition}
             width={width}
+            delimiter={delimiter}
           />
         </EuiPortal>
       );
