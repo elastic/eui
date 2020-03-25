@@ -501,6 +501,18 @@ export class EuiComboBox<T> extends Component<
     this.setState({ hasFocus: true });
   };
 
+  setCustomOptions = (isContainerBlur: boolean) => {
+    const { searchValue } = this.state;
+    const { delimiter } = this.props;
+    if (delimiter) {
+      searchValue.split(delimiter).forEach((option: string) => {
+        if (option.length > 0) this.addCustomOption(true, option);
+      });
+    } else {
+      this.addCustomOption(isContainerBlur, searchValue);
+    }
+  };
+
   onContainerBlur: EventListener = event => {
     // close the options list, unless the use clicked on an option
 
@@ -535,15 +547,7 @@ export class EuiComboBox<T> extends Component<
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
       if (!this.hasActiveOption()) {
-        const { searchValue } = this.state;
-        const { delimiter } = this.props;
-        if (delimiter) {
-          searchValue.split(delimiter).forEach((option: string) => {
-            if (option.length > 0) this.addCustomOption(true, option);
-          });
-        } else {
-          this.addCustomOption(true, searchValue);
-        }
+        this.setCustomOptions(true);
       }
     }
   };
@@ -588,15 +592,7 @@ export class EuiComboBox<T> extends Component<
             this.state.matchingOptions[this.state.activeOptionIndex]
           );
         } else {
-          const { searchValue } = this.state;
-          const { delimiter } = this.props;
-          if (delimiter) {
-            searchValue.split(delimiter).forEach((option: string) => {
-              if (option.length > 0) this.addCustomOption(false, option);
-            });
-          } else {
-            this.addCustomOption(false, searchValue);
-          }
+          this.setCustomOptions(false);
         }
         break;
 
