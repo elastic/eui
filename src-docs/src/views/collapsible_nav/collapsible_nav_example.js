@@ -162,6 +162,7 @@ export const CollapsibleNavExample = {
   isCollapsible={true}
   initialIsOpen={true}>
   <EuiPinnableListGroup
+    aria-label="Kibana"
     listItems={[
       { label: 'Discover' },
       { label: 'Visualize' }
