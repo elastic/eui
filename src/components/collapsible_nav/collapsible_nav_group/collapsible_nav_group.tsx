@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useState,
+  HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
 import { htmlIdGenerator } from '../../../services';
@@ -48,7 +53,8 @@ export interface EuiCollapsibleNavGroupInterface extends CommonProps {
 }
 
 type GroupAsAccordion = EuiCollapsibleNavGroupInterface &
-  Omit<EuiAccordionProps, 'id'> & {
+  // The HTML `title` prop conflicts in type with our `title` prop
+  Omit<EuiAccordionProps, 'id' | 'title'> & {
     /**
      * If `true`, wraps children in the body of an accordion,
      * requiring the prop `title` to be used as the button
@@ -71,7 +77,7 @@ type GroupAsDiv = EuiCollapsibleNavGroupInterface & {
    * with the option to add an iconType
    */
   title?: ReactNode;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 export type EuiCollapsibleNavGroupProps = ExclusiveUnion<
   GroupAsAccordion,
@@ -94,6 +100,8 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   ...rest
 }) => {
   const [groupID] = useState(id || htmlIdGenerator()());
+  const titleID = `${groupID}__title`;
+
   const classes = classNames(
     'euiCollapsibleNavGroup',
     backgroundToClassNameMap[background],
@@ -127,7 +135,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
 
       <EuiFlexItem>
         <EuiTitle size={titleSize as EuiTitleSize}>
-          <TitleElement className="euiCollapsibleNavGroup__title">
+          <TitleElement id={titleID} className="euiCollapsibleNavGroup__title">
             {title}
           </TitleElement>
         </EuiTitle>

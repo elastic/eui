@@ -8,7 +8,7 @@ exports[`EuiListGroup is rendered 1`] = `
 />
 `;
 
-exports[`EuiListGroup is rendered with listItems 1`] = `
+exports[`EuiListGroup listItems is rendered 1`] = `
 <ul
   class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 >
@@ -103,7 +103,7 @@ exports[`EuiListGroup is rendered with listItems 1`] = `
 </ul>
 `;
 
-exports[`EuiListGroup is rendered with listItems and color 1`] = `
+exports[`EuiListGroup listItems is rendered with color 1`] = `
 <ul
   class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 >
@@ -196,6 +196,12 @@ exports[`EuiListGroup is rendered with listItems and color 1`] = `
     </a>
   </li>
 </ul>
+`;
+
+exports[`EuiListGroup listItems is rendered with size 1`] = `
+<ul
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
+/>
 `;
 
 exports[`EuiListGroup props bordered is rendered 1`] = `

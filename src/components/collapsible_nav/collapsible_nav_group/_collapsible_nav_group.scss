@@ -2,6 +2,13 @@
   &:not(:first-child) {
     border-top: $euiBorderThin;
   }
+
+  // This class does not accept a custom classname
+  .euiAccordion__triggerWrapper {
+    // Add padding to the trigger wrapper in case an `extraAction` is passed
+    // that doesn't get wrapped in the `__heading`
+    padding: $euiSize;
+  }
 }
 
 .euiCollapsibleNavGroup--light {
@@ -20,12 +27,17 @@
 
   .euiCollapsibleNavGroup__title {
     color: inherit;
+    line-height: inherit;
   }
 }
 
 .euiCollapsibleNavGroup__heading {
-  padding: $euiSize;
   font-weight: $euiFontWeightSemiBold;
+
+  // If the heading is not in an accordion, it needs the padding
+  &:not(.euiAccordion__button) {
+    padding: $euiSize;
+  }
 }
 
 .euiCollapsibleNavGroup__children {

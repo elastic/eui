@@ -70,7 +70,6 @@ export const EuiPinnableListGroup: FunctionComponent<
         'euiPinnableListGroup__item',
         item.className
       );
-      itemProps.size = item.size || 's';
 
       // Add the pinning action unless the item has it's own extra action
       if (onPinClick && !itemProps.extraAction) {

@@ -22,6 +22,14 @@ import CollapsibleNavGroup from './collapsible_nav_group';
 const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
 const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
 
+import CollapsibleNavList from './collapsible_nav_list';
+const collapsibleNavListSource = require('!!raw-loader!./collapsible_nav_list');
+const collapsibleNavListHtml = renderToHtml(CollapsibleNavList);
+
+import CollapsibleNavAll from './collapsible_nav_all';
+const collapsibleNavAllSource = require('!!raw-loader!./collapsible_nav_all');
+const collapsibleNavAllHtml = renderToHtml(CollapsibleNavAll);
+
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
   intro: (
@@ -118,6 +126,96 @@ export const CollapsibleNavExample = {
   initialIsOpen={true}
   background="none"
 />`,
+    },
+    {
+      title: 'Nav groups with lists and other content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: collapsibleNavListSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: collapsibleNavListHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiCollapsibleNavGroups</strong> can contain any children.
+            They work well with{' '}
+            <Link to="/display/list-group">
+              <strong>EuiListGroup, EuiPinnableListGroup</strong>
+            </Link>{' '}
+            and simple{' '}
+            <Link to="/navigation/link">
+              <strong>EuiText</strong>
+            </Link>
+            .
+          </p>
+          <p>Below are a few established patterns to use.</p>
+        </>
+      ),
+      demo: <CollapsibleNavList />,
+      snippet: `<EuiCollapsibleNavGroup
+  title="Kibana"
+  iconType="logoKibana"
+  isCollapsible={true}
+  initialIsOpen={true}>
+  <EuiPinnableListGroup
+    listItems={[
+      { label: 'Discover' },
+      { label: 'Visualize' }
+    ]}
+    onPinClick={() => {}}
+    maxWidth="none"
+    color="subdued"
+    gutterSize="none"
+    size="s"
+  />
+</EuiCollapsibleNavGroup>`,
+    },
+    {
+      title: 'Full pattern with header and saved pins',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: collapsibleNavAllSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: collapsibleNavAllHtml,
+        },
+      ],
+      text: (
+        <>
+          <h3>Putting it all together</h3>
+          <p>
+            The button below will launch a full screen example that includes{' '}
+            <Link to="/layout/header">
+              <strong>EuiHeader</strong>
+            </Link>{' '}
+            with a toggle button to open an <strong>EuiCollapsibleNav</strong>.
+            The contents of which are multiple{' '}
+            <strong>EuiCollapsibleNavGroups</strong> and saves the
+            open/closed/pinned state for each section and item in local store.
+          </p>
+          <p>
+            This is just a pattern and should be treated as such. Consuming
+            applications will need to create the navigation groups according to
+            their context and save the states as is appropriate to their data
+            store.
+          </p>
+          <h3>EuiCollapsibleNavToggle</h3>
+          <p>
+            This example also introduces the{' '}
+            <strong>EuiCollapsibleNavToggle</strong> component, which is used to
+            simply wrap around your external nav trigger to show/hide in certain
+            docked and mobile states.
+          </p>
+        </>
+      ),
+      demo: <CollapsibleNavAll />,
     },
   ],
 };
