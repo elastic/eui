@@ -1,5 +1,35 @@
 [
   {
+    "version": "22.0.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.clickForDescending",
+        "changeType": "added",
+        "value": "Click to sort in descending order"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForUnsort",
+        "changeType": "added",
+        "value": "Click to unsort"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForAscending",
+        "changeType": "added",
+        "value": "Click to sort in ascending order"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithSort",
+        "changeType": "added",
+        "value": "{innerText}; Sorted in {ariaSortValue} order"
+      },
+      {
+        "token": "euiTableHeaderCell.sortedAriaLabel",
+        "changeType": "added",
+        "value": "Sorted in {ariaSortValue} order"
+      }
+    ]
+  },
+  {
     "version": "21.1.0",
     "changes": [
       {
