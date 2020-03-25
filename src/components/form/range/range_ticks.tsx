@@ -5,7 +5,6 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import find from 'lodash/find';
 
 import { useInnerText } from '../../inner_text';
 
@@ -44,7 +43,7 @@ const EuiTickValue: FunctionComponent<
   const tickStyle: { left?: string; width?: string } = {};
   let customTick;
   if (ticks) {
-    customTick = find(ticks, o => o.value === tickValue);
+    customTick = ticks.find(o => o.value === tickValue);
 
     if (customTick) {
       tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;

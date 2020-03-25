@@ -2,7 +2,6 @@
  * Secures outbound links. For more info:
  * https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
  */
-import filter from 'lodash/filter';
 import { isDomainSecure } from '../url';
 
 export const getSecureRelForTarget = ({
@@ -16,7 +15,7 @@ export const getSecureRelForTarget = ({
 }) => {
   const isElasticHref = !!href && isDomainSecure(href);
   const relParts = !!rel
-    ? filter(rel.split(' '), part => !!part.length && part !== 'noreferrer')
+    ? rel.split(' ').filter(part => !!part.length && part !== 'noreferrer')
     : [];
 
   if (!isElasticHref) {

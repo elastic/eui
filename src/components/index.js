@@ -173,6 +173,7 @@ export { EuiI18n, EuiI18nNumber } from './i18n';
 
 export {
   EuiLoadingKibana,
+  EuiLoadingElastic,
   EuiLoadingChart,
   EuiLoadingContent,
   EuiLoadingSpinner,
