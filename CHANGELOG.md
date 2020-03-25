@@ -12,7 +12,7 @@
 - Upgraded `react-beautiful-dnd` to v13 ([#3064](https://github.com/elastic/eui/pull/3064))
 - Fixed `EuiPagination` vertical alignment of the text when used as `compressed` ([#3152](https://github.com/elastic/eui/pull/3152))
 - Added `showTooltip` prop for `EuiSuperUpdateButton` to show tooltip and showing only once popovers are closed ([#3127](https://github.com/elastic/eui/pull/3127))
-- Added `prepend` and `append` ability to `EuiSuperSelect` ([#3003](https://github.com/elastic/eui/pull/3003)) 
+- Added `prepend` and `append` ability to `EuiSuperSelect` ([#3167](https://github.com/elastic/eui/pull/3167)) 
 
 **Bug Fixes**
 
