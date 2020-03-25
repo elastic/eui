@@ -5,13 +5,18 @@ import classNames from 'classnames';
 export type EuiCommentEventProps = CommonProps &
   CommonProps & {
     body?: ReactNode;
+    /**
+     * Author of the comment. Given it is a node you can display an icon or a small avatar with it if needed.
+     */
     username?: ReactNode;
     timeStamp?: ReactNode;
     event?: ReactNode;
-    responses?: ReactNode;
-    actions?: ReactNode;
     /**
      * Use "update" when the comment is primarily showing info about actions that the user has performed (e.g. "user1 edited a case").
+     */
+    actions?: ReactNode;
+    /**
+     * Actions available from the comment's header
      */
     type?: EuiCommentType;
   };
@@ -30,7 +35,6 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   body,
   username,
   timeStamp,
-  responses,
   type = 'regular',
   event,
   actions,

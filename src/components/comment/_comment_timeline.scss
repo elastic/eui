@@ -1,9 +1,21 @@
 .euiCommentTimeline__content {
-  min-width: $euiSizeXXL;
-  min-height: $euiSizeXXL;
+  min-width: $euiSizeXL;
+  min-height: $euiSizeXL;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   background-color: $euiColorEmptyShade;
+}
+
+.euiCommentTimeline__contentDefault {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  border-radius: 50%;
+  background-color: $euiColorLightShade;
+  width: $euiSizeXXL;
+  height: $euiSizeXXL;
 }

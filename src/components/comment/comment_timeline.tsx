@@ -8,16 +8,11 @@ export type EuiCommentTimelineProps = CommonProps & {
 };
 
 export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
-  // children,
   className,
   timelineIcon,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiCommentTimeline',
-    // { 'euiComment--hasBody': body },
-    className
-  );
+  const classes = classNames('euiCommentTimeline', className);
 
   return (
     <div className={classes} {...rest}>
@@ -25,7 +20,9 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
         {timelineIcon ? (
           timelineIcon
         ) : (
-          <EuiIcon color="subdued" size="xl" type="tag" />
+          <div className="euiCommentTimeline__contentDefault">
+            <EuiIcon size="l" type="user" />
+          </div>
         )}
       </div>
     </div>

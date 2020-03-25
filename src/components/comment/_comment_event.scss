@@ -18,6 +18,10 @@
     }
 
     align-items: center;
+
+    .euiCommentEvent__headerData>div {
+      padding-right: $euiSizeXS;
+    }
   }
 
   .euiCommentEvent__headerData {
@@ -54,8 +58,8 @@
     justify-content: flex-start;
   }
 
-  .euiCommentEvent__headerTimeStamp {
-    padding-right: $euiSizeL;
+  .euiCommentEvent__headerData {
+    padding-right: $euiSizeS;
   }
 
   .euiCommentEvent__body {

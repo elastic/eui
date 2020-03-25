@@ -11,36 +11,9 @@ const commentSource = require('!!raw-loader!./comment');
 const commentHtml = renderToHtml(Comment);
 
 export const CommentExample = {
-  title: 'Comment List',
+  title: 'Comment',
   sections: [
-    // {
-    //   source: [
-    //     {
-    //       type: GuideSectionTypes.JS,
-    //       code: suggestSource,
-    //     },
-    //     {
-    //       type: GuideSectionTypes.HTML,
-    //       code: suggestHtml,
-    //     },
-    //   ],
-    //   text: (
-    //     <div>
-    //       <p>
-    //         <EuiCode>EuiSuggest</EuiCode> is a text field component used to
-    //         display suggestions. The status of the component is shown on its
-    //         right side. The available <EuiCode>status</EuiCode> are:{' '}
-    //         <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
-    //         <EuiCode>unchanged</EuiCode> and <EuiCode>isLoading</EuiCode>.
-    //       </p>
-    //     </div>
-    //   ),
-    //   props: { EuiSuggest },
-    //   snippet: suggestSnippet,
-    //   demo: <Suggest />,
-    // },
     {
-      title: 'Comment',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -52,10 +25,24 @@ export const CommentExample = {
         },
       ],
       text: (
-        <p>
-          Description needed: how to use the <EuiCode>EuiComment</EuiCode>{' '}
-          component.
-        </p>
+        <div>
+          <p>
+            Use <EuiCode>EuiComment</EuiCode> for displaying comment threads
+            with <EuiCode>EuiCommentList</EuiCode>. There are two different
+            types of comments <EuiCode>regular</EuiCode> and{' '}
+            <EuiCode>update</EuiCode> available through the{' '}
+            <EuiCode>type</EuiCode> prop. Use comments of type{' '}
+            <EuiCode>update</EuiCode> to display comments that generally do not
+            have a body and are logging actions that either the user or the
+            system has performed (e.g. &ldquo;jsmith edited a case&rdquo; or
+            &ldquo;kibanamachine added the backport missing label&rdquo;).
+          </p>
+          <p>
+            The <EuiCode>timelineIcon</EuiCode> can be customized as needed. It
+            is recommended to use an element of dimensions 40x40. The default{' '}
+            <EuiCode>timelineIcon</EuiCode> is a user icon.
+          </p>
+        </div>
       ),
       props: { EuiComment },
       demo: <Comment />,

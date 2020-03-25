@@ -6,11 +6,8 @@ import { EuiCommentList } from './comment_list';
 
 describe('EuiCommentList', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiCommentList {...requiredProps} />
-    );
+    const component = render(<EuiCommentList {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

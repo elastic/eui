@@ -13,9 +13,12 @@ exports[`EuiComment is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        color="subdued"
-        data-euiicon-type="tag"
-      />
+        class="euiCommentTimeline__contentDefault"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -51,9 +54,12 @@ exports[`EuiComment props type is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        color="subdued"
-        data-euiicon-type="tag"
-      />
+        class="euiCommentTimeline__contentDefault"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
     </div>
   </div>
   <div
