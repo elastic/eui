@@ -183,6 +183,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       delimiter,
       ...rest
     } = this.props;
+
     let emptyStateContent;
 
     if (isLoading) {
