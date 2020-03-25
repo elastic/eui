@@ -13,16 +13,23 @@ const docsPages = async (root, page) => {
     `${root}#/layout/horizontal-rule`,
     `${root}#/layout/modal`,
     `${root}#/layout/nav-drawer`,
+    `${root}#/layout/page`,
     `${root}#/layout/panel`,
     `${root}#/layout/popover`,
     `${root}#/layout/spacer`,
     `${root}#/navigation/breadcrumbs`,
     `${root}#/navigation/context-menu`,
     `${root}#/navigation/control-bar`,
+    `${root}#/navigation/facet`,
     `${root}#/navigation/link`,
     `${root}#/navigation/pagination`,
     `${root}#/navigation/steps`,
     `${root}#/navigation/tabs`,
+    `${root}#/tabular-content/data-grid`,
+    `${root}#/tabular-content/data-grid-in-memory-settings`,
+    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
+    `${root}#/tabular-content/data-grid-styling-and-toolbar`,
+    `${root}#/tabular-content/data-grid-control-columns`,
     `${root}#/display/avatar`,
     `${root}#/display/badge`,
     `${root}#/display/callout`,
@@ -40,6 +47,7 @@ const docsPages = async (root, page) => {
     `${root}#/display/title`,
     `${root}#/display/toast`,
     `${root}#/display/tooltip`,
+    `${root}#/forms/form-controls`,
     `${root}#/forms/form-layouts`,
     `${root}#/forms/form-validation`,
     `${root}#/forms/code-editor`,
@@ -67,6 +75,8 @@ const docsPages = async (root, page) => {
     `${root}#/utilities/delay-hide`,
     `${root}#/utilities/delay-render`,
     `${root}#/utilities/highlight`,
+    `${root}#/utilities/error-boundary`,
+    `${root}#/utilities/inner-text`,
   ];
 
   links = [...links, ...reflinks];
@@ -112,15 +122,21 @@ const printResult = result =>
       process.exit(1);
     }
   }
-
   const links = await docsPages(root, page);
 
   for (const link of links) {
     await page.goto(link);
 
     const { violations } = await new AxePuppeteer(page)
-      .disableRules('color-contrast')
-      .exclude(['figure[role="figure"']) // excluding figure[role="figure"] the duplicatory role is there for ie11 support
+      .configure({
+        rules: [
+          { id: 'color-contrast', enabled: false },
+          {
+            id: 'scrollable-region-focusable',
+            matches: '[role="grid"]',
+          },
+        ],
+      })
       .analyze();
 
     if (violations.length > 0) {
@@ -152,4 +168,4 @@ Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
   } else {
     console.log(chalk.green('axe found no accessibility errors!'));
   }
-})();
+})().catch(e => console.error(e));

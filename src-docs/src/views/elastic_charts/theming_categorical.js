@@ -1,6 +1,5 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component, Fragment } from 'react';
-import { find } from 'lodash';
 import { Chart, Settings, Axis, DataGenerator } from '@elastic/charts';
 import { ThemeContext } from '../../components';
 
@@ -81,7 +80,8 @@ export class Categorical extends Component {
   };
 
   onColorTypeChange = optionId => {
-    const colorType = find(this.colorTypeRadios, { id: optionId }).label;
+    const colorType = this.colorTypeRadios.find(({ id }) => id === optionId)
+      .label;
     this.updateCorrectChart(Number(this.state.numCharts), colorType);
     this.setState({
       colorTypeIdSelected: optionId,
@@ -92,8 +92,9 @@ export class Categorical extends Component {
   onGroupChange = e => {
     const colorType = e.target.checked
       ? 'Grouped'
-      : find(this.colorTypeRadios, { id: this.state.colorTypeIdSelected })
-          .label;
+      : this.colorTypeRadios.find(
+          ({ id }) => id === this.state.colorTypeIdSelected
+        ).label;
     this.updateCorrectChart(Number(this.state.numCharts), colorType);
     this.setState({
       grouped: e.target.checked,

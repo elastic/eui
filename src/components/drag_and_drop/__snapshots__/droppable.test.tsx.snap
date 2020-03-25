@@ -3,7 +3,8 @@
 exports[`EuiDroppable can be given ReactElement children 1`] = `
 <div
   class="euiDroppable euiDroppable--noGrow"
-  data-react-beautiful-dnd-droppable="2"
+  data-rbd-droppable-context-id="2"
+  data-rbd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div />
@@ -16,7 +17,8 @@ exports[`EuiDroppable can be given ReactElement children 1`] = `
 exports[`EuiDroppable can be given multiple ReactElement children 1`] = `
 <div
   class="euiDroppable euiDroppable--noGrow"
-  data-react-beautiful-dnd-droppable="3"
+  data-rbd-droppable-context-id="3"
+  data-rbd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div />
@@ -31,7 +33,8 @@ exports[`EuiDroppable can be given multiple ReactElement children 1`] = `
 exports[`EuiDroppable is rendered 1`] = `
 <div
   class="euiDroppable euiDroppable--noGrow"
-  data-react-beautiful-dnd-droppable="1"
+  data-rbd-droppable-context-id="1"
+  data-rbd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div />

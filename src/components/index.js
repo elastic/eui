@@ -171,20 +171,19 @@ export { EuiI18n, EuiI18nNumber } from './i18n';
 
 export {
   EuiLoadingKibana,
+  EuiLoadingElastic,
   EuiLoadingChart,
   EuiLoadingContent,
   EuiLoadingSpinner,
 } from './loading';
 
-export {
-  EuiKeyPadMenu,
-  EuiKeyPadMenuItem,
-  EuiKeyPadMenuItemButton,
-} from './key_pad_menu';
+export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';
 
 export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
+
+export { EuiMark } from './mark';
 
 export {
   EUI_MODAL_CANCEL_BUTTON,
