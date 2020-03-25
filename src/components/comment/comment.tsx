@@ -20,7 +20,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   actions,
   timelineIcon,
   type = 'regular',
-  timeStamp,
+  timestamp,
   ...rest
 }) => {
   const classes = classNames('euiComment', className);
@@ -32,7 +32,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
         username={username}
         actions={actions}
         event={event}
-        timeStamp={timeStamp}
+        timestamp={timestamp}
         type={type}>
         {children}
       </EuiCommentEvent>

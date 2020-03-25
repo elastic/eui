@@ -86,7 +86,6 @@ export default class extends Component {
       /* DisplayToggles wrapper for Docs only */
       <DisplayToggles canDisabled={false} canReadOnly={false}>
         <EuiComboBox
-          className="customC"
           placeholder="Select or create options"
           options={this.options}
           selectedOptions={selectedOptions}

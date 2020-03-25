@@ -7,7 +7,7 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-const icons = ['Beats', 'Cloud', 'Xpack', 'Kibana'];
+const icons = ['Beats', 'Cloud', 'Logging', 'Kibana'];
 
 const cardNodes = icons.map(function(item, index) {
   return (
@@ -15,6 +15,7 @@ const cardNodes = icons.map(function(item, index) {
       <EuiCard
         icon={<EuiIcon size="xxl" type={`logo${item}`} />}
         title={`Elastic ${item}`}
+        isDisabled={item === 'Kibana' ? true : false}
         description="Example of a card's description. Stick to one or two sentences."
         onClick={() => window.alert('Card clicked')}
       />

@@ -30,8 +30,12 @@
     flex-wrap: wrap;
   }
 
+  .euiCommentEvent__headerUsername {
+    font-weight: $euiFontWeightSemiBold;
+  }
+
   .euiCommentEvent__body {
-    line-height: $euiSize * 1.2; // this should be on the demo side only?
+    line-height: $euiSize * 1.2;
   }
 
 }

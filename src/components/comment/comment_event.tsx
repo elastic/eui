@@ -4,19 +4,21 @@ import classNames from 'classnames';
 
 export type EuiCommentEventProps = CommonProps &
   CommonProps & {
-    body?: ReactNode;
     /**
-     * Author of the comment. Given it is a node you can display an icon or a small avatar with it if needed.
+     * Author of the comment. Display a small icon or avatar with it if needed.
      */
-    username?: ReactNode;
-    timeStamp?: ReactNode;
+    username: ReactNode;
+    timestamp?: ReactNode;
+    /**
+     * Describes the event that took place
+     */
     event?: ReactNode;
     /**
-     * Use "update" when the comment is primarily showing info about actions that the user has performed (e.g. "user1 edited a case").
+     * Actions the user can perform from the comment's header
      */
     actions?: ReactNode;
     /**
-     * Actions available from the comment's header
+     * Use "update" when the comment is primarily showing info about actions that the user or the system has performed (e.g. "user1 edited a case").
      */
     type?: EuiCommentType;
   };
@@ -32,9 +34,8 @@ export type EuiCommentType = keyof typeof typeToClassNameMap;
 export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   children,
   className,
-  body,
   username,
-  timeStamp,
+  timestamp,
   type = 'regular',
   event,
   actions,
@@ -47,10 +48,11 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div data-focusable="true" className={classes} {...rest}>
       <div className="euiCommentEvent__header">
         <div className="euiCommentEvent__headerData">
-          {username} {event} {timeStamp}
+          <div className="euiCommentEvent__headerUsername">{username}</div>
+          {event} {timestamp}
         </div>
         <div className="euiCommentEvent__headerActions">{actions}</div>
       </div>

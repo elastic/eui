@@ -4,34 +4,37 @@ import { EuiIcon } from '../../../../src/components/icon';
 import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
+import { EuiButtonIcon } from '../../../../src/components/button';
 
 const body =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar.';
+  'Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.';
 
 const longBody =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar.';
+  'This planet has - or rather had - a problem, which was this: most of the people living on it were unhappy for pretty much of the time. Many solutions were suggested for this problem, but most of these were largely concerned with the movements of small green pieces of paper, which is odd because on the whole it was not the small green pieces of paper that were unhappy.';
 
 const bodyUpdate = 'This type of comment can also have a body';
+
+const copyAction = <EuiButtonIcon color="subdued" iconType="copy" />;
 
 export default () => (
   <div>
     <EuiComment
       username="janed"
       event="added a comment"
-      actions={<EuiIcon type="copy" />}
-      timeStamp="on Jan 1, 2020">
+      actions={copyAction}
+      timestamp="on Jan 1, 2020">
       {body}
     </EuiComment>
     <EuiComment
       username="mariob"
       type="update"
-      actions={<EuiIcon type="copy" />}
-      event="pushed a new incident"
-      timeStamp="on Jan 3, 2020"
-      timelineIcon={<EuiAvatar size="l" name="Chandler" />}
+      actions={copyAction}
+      event="pushed incident X0Z235"
+      timestamp="on Jan 3, 2020"
+      timelineIcon={<EuiAvatar size="l" name="Mario" />}
     />
     <EuiComment
-      actions={<EuiIcon type="copy" />}
+      actions={copyAction}
       username={
         <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
           <EuiFlexItem grow={false}>
@@ -52,7 +55,7 @@ export default () => (
           </EuiFlexItem>
         </EuiFlexGroup>
       }
-      timeStamp="on Jan 4, 2020"
+      timestamp="on Jan 4, 2020"
       timelineIcon={
         <div className="euiCommentTimeline__contentDefault">
           <EuiIcon size="l" type="tag" />
@@ -63,23 +66,23 @@ export default () => (
       username="pancho1"
       type="update"
       event="edited case"
-      timeStamp="on Jan 11, 2020"
-      timelineIcon={<EuiAvatar size="l" name="Greg" />}
+      timestamp="on Jan 11, 2020"
+      timelineIcon={<EuiAvatar size="l" name="Pancho" />}
     />
     <EuiComment
       username="elohar"
       event="added a comment"
-      actions={<EuiIcon type="copy" />}
-      timeStamp="on Jan 14, 2020"
-      timelineIcon={<EuiAvatar size="l" name="Andrea" />}>
+      actions={copyAction}
+      timestamp="on Jan 14, 2020"
+      timelineIcon={<EuiAvatar size="l" name="Eloha" />}>
       {longBody}
     </EuiComment>
     <EuiComment
       username="pancho1"
       type="update"
       event="edited case"
-      timeStamp="on Jan 21, 2020"
-      timelineIcon={<EuiAvatar size="l" name="Greg" />}>
+      timestamp="on Jan 21, 2020"
+      timelineIcon={<EuiAvatar size="l" name="Pancho" />}>
       {bodyUpdate}
     </EuiComment>
   </div>

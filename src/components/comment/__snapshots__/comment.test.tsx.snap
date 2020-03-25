@@ -23,6 +23,7 @@ exports[`EuiComment is rendered 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--regular"
+    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"
@@ -30,7 +31,158 @@ exports[`EuiComment is rendered 1`] = `
       <div
         class="euiCommentEvent__headerData"
       >
-          
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+         
+      </div>
+      <div
+        class="euiCommentEvent__headerActions"
+      />
+    </div>
+    <div
+      class="euiCommentEvent__body"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiComment props event is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__contentDefault"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCommentEvent euiCommentEvent--regular"
+    data-focusable="true"
+  >
+    <div
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        commented 
+      </div>
+      <div
+        class="euiCommentEvent__headerActions"
+      />
+    </div>
+    <div
+      class="euiCommentEvent__body"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiComment props timelineIcon is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        aria-label="Mario"
+        class="euiAvatar euiAvatar--l euiAvatar--user"
+        style="background-image:none;background-color:#f1d86f;color:#000000"
+        title="Mario"
+      >
+        <span
+          aria-hidden="true"
+        >
+          M
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCommentEvent euiCommentEvent--regular"
+    data-focusable="true"
+  >
+    <div
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+         
+      </div>
+      <div
+        class="euiCommentEvent__headerActions"
+      />
+    </div>
+    <div
+      class="euiCommentEvent__body"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiComment props timestamp is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__contentDefault"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCommentEvent euiCommentEvent--regular"
+    data-focusable="true"
+  >
+    <div
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+         21 days ago
       </div>
       <div
         class="euiCommentEvent__headerActions"
@@ -64,6 +216,7 @@ exports[`EuiComment props type is rendered 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--update"
+    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"
@@ -71,7 +224,12 @@ exports[`EuiComment props type is rendered 1`] = `
       <div
         class="euiCommentEvent__headerData"
       >
-          
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+         
       </div>
       <div
         class="euiCommentEvent__headerActions"
@@ -80,6 +238,57 @@ exports[`EuiComment props type is rendered 1`] = `
     <div
       class="euiCommentEvent__body"
     />
+  </div>
+</div>
+`;
+
+exports[`EuiComment renders a body 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__contentDefault"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCommentEvent euiCommentEvent--regular"
+    data-focusable="true"
+  >
+    <div
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+         
+      </div>
+      <div
+        class="euiCommentEvent__headerActions"
+      />
+    </div>
+    <div
+      class="euiCommentEvent__body"
+    >
+      <p>
+        This is the body.
+      </p>
+    </div>
   </div>
 </div>
 `;

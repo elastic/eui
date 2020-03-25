@@ -42,6 +42,9 @@ export const CommentExample = {
             is recommended to use an element of dimensions 40x40. The default{' '}
             <EuiCode>timelineIcon</EuiCode> is a user icon.
           </p>
+          <p>
+            Use <EuiCode>children</EuiCode> to pass the body of the comment.
+          </p>
         </div>
       ),
       props: { EuiComment },

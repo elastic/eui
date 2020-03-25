@@ -4,6 +4,9 @@ import classNames from 'classnames';
 import { EuiIcon } from '../icon';
 
 export type EuiCommentTimelineProps = CommonProps & {
+  /**
+   * Main icon that accompanies the comment.
+   */
   timelineIcon?: ReactNode;
 };
 
