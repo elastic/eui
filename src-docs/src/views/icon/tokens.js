@@ -64,6 +64,9 @@ const tokens = [
   'esTokenJoin',
   'esTokenPercolator',
   'esTokenFlattened',
+  'esTokenRankFeature',
+  'esTokenKeyword',
+  'esTokenCompSuggester',
 ];
 
 export default () => (
