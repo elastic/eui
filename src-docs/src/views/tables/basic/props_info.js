@@ -107,6 +107,13 @@ export const propsInfo = {
           required: false,
           type: { name: 'string' },
         },
+        textOnly: {
+          description:
+            'Applied to table cells => Any cell using render function will set this to be `false`, leading to unnecessary word breaks. Apply `textOnly: true` in order to ensure it breaks properly',
+          required: false,
+          type: { name: 'bool' },
+          defaultValue: { value: 'false' },
+        },
         tableLayout: {
           description:
             'Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.',
