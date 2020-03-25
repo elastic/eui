@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `22.0.0`.
+- Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
 
 ## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
 
