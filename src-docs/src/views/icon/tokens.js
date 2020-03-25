@@ -60,6 +60,7 @@ const tokens = [
   'tokenFile',
   'tokenSymbol',
   'tokenRepo',
+  'esTokenBinary',
 ];
 
 export default () => (

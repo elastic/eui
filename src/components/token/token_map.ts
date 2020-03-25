@@ -37,7 +37,8 @@ export type EuiTokenMapType =
   | 'tokenGeo'
   | 'tokenRange'
   | 'tokenSymbol'
-  | 'tokenVariable';
+  | 'tokenVariable'
+  | 'esTokenBinary';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -198,5 +199,9 @@ export const TOKEN_MAP: {
   tokenAlias: {
     shape: 'circle',
     color: 'euiColorVis3',
+  },
+  esTokenBinary: {
+    shape: 'square',
+    color: 'euiColorVis4',
   },
 };
