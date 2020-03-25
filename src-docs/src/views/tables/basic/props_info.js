@@ -109,7 +109,7 @@ export const propsInfo = {
         },
         textOnly: {
           description:
-            'Applied to table cells => Any cell using render function will have the value of this prop bydefault to be false, leading to unnecessary word breaks. Do not forget to apply "textOnly: true" in order to ensure it breaks properly',
+            'Applied to table cells => Any cell using render function will set this to be `false`, leading to unnecessary word breaks. Apply `textOnly: true` in order to ensure it breaks properly',
           required: false,
           type: { name: 'bool' },
           defaultValue: { value: 'false' },
