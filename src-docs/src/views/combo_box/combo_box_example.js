@@ -369,9 +369,9 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          Pass a unique character to the <EuiCode>delimiter</EuiCode> prop to aid in option creation.
-          This is best used when knowing that content may be pasted from elsewhere such as
-          a comma separated list.
+          Pass a unique character to the <EuiCode>delimiter</EuiCode> prop to
+          aid in option creation. This is best used when knowing that content
+          may be pasted from elsewhere such as a comma separated list.
         </p>
       ),
       props: { EuiComboBox },
