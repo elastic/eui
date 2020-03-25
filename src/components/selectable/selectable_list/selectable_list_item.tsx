@@ -1,4 +1,4 @@
-import React, { Component, ButtonHTMLAttributes } from 'react';
+import React, { Component, LiHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, IconType, IconColor } from '../../icon';
@@ -15,9 +15,7 @@ function resolveIconAndColor(
     : { icon: 'cross', color: 'text' };
 }
 
-export type EuiSelectableListItemProps = ButtonHTMLAttributes<
-  HTMLButtonElement
-> &
+export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
     children?: React.ReactNode;
     /**
@@ -70,10 +68,10 @@ export class EuiSelectableListItem extends Component<
       className
     );
 
-    let buttonIcon: React.ReactNode;
+    let optionIcon: React.ReactNode;
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
-      buttonIcon = (
+      optionIcon = (
         <EuiIcon
           className="euiSelectableListItem__icon"
           color={color}
@@ -97,21 +95,20 @@ export class EuiSelectableListItem extends Component<
     }
 
     return (
-      <button
+      <li
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
         role="option"
-        type="button"
-        aria-selected={isFocused}
+        aria-selected={checked === 'on'}
         className={classes}
-        disabled={disabled}
         aria-disabled={disabled}
         {...rest}>
         <span className="euiSelectableListItem__content">
-          {buttonIcon}
+          {optionIcon}
           {prependNode}
           <span className="euiSelectableListItem__text">{children}</span>
           {appendNode}
         </span>
-      </button>
+      </li>
     );
   }
 }

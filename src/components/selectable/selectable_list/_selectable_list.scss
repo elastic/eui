@@ -12,6 +12,10 @@
 .euiSelectableList__list {
   @include euiOverflowShadow;
   @include euiScrollBar;
+
+  &:focus-within {
+    @include euiFocusRing; // TODO @myasonik why don't this work?
+  }
 }
 
 .euiSelectableList__groupLabel {

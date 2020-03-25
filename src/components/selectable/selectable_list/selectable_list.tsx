@@ -1,8 +1,6 @@
-import React, { Component, HTMLAttributes, ReactNode } from 'react';
+import React, { Component, HTMLAttributes, ReactNode, memo } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-// eslint-disable-next-line import/named
-import { List, AutoSizer, ListProps } from 'react-virtualized';
 import { htmlIdGenerator } from '../../../services';
 import {
   EuiSelectableListItem,
@@ -10,8 +8,13 @@ import {
 } from './selectable_list_item';
 import { EuiHighlight } from '../../highlight';
 import { EuiSelectableOption } from '../selectable_option';
-
-export type EuiSelectableSingleOptionProps = 'always' | boolean;
+import AutoSizer from 'react-virtualized-auto-sizer';
+import {
+  FixedSizeList,
+  ListProps,
+  ListChildComponentProps,
+  areEqual,
+} from 'react-window';
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
 export type EuiSelectableOptionsListProps = CommonProps &
@@ -30,11 +33,11 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * Show the check/cross selection indicator icons
      */
     showIcons?: boolean;
-    singleSelection?: EuiSelectableSingleOptionProps;
+    singleSelection?: 'always' | boolean;
     /**
-     * Any props to send specifically to the react-virtualized `List`
+     * Any props to send specifically to the react-window `FixedSizeList`
      */
-    virtualizedProps?: ListProps;
+    windowProps?: ListProps;
     /**
      * Adds a border around the list to indicate the bounds;
      * Useful when the list scrolls, otherwise use your own container
@@ -79,6 +82,7 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
    */
   allowExclusions?: boolean;
   rootId?: (appendix?: string) => string;
+  searchable?: boolean;
 };
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
@@ -88,10 +92,115 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   };
 
   rootId = this.props.rootId || htmlIdGenerator();
+  listRef: FixedSizeList | null = null;
+  listBoxRef: HTMLUListElement | null = null;
+
+  makeOptionId(index: number | undefined) {
+    if (typeof index === 'undefined') {
+      return '';
+    }
+
+    return this.rootId(`_option-${index}`);
+  }
+
+  setListRef = (ref: FixedSizeList | null) => {
+    this.listRef = ref;
+
+    if (ref && this.props.activeOptionIndex) {
+      ref.scrollToItem(this.props.activeOptionIndex, 'auto');
+    }
+  };
+
+  setListBoxRef = (ref: HTMLUListElement | null) => {
+    this.listBoxRef = ref;
+
+    if (ref) {
+      ref.setAttribute('id', this.rootId('listbox'));
+      ref.setAttribute('role', 'listBox');
+
+      if (this.props.searchable !== true) {
+        ref.setAttribute('tabindex', '0');
+      }
+
+      if (
+        this.props.singleSelection !== 'always' &&
+        this.props.singleSelection !== true
+      ) {
+        ref.setAttribute('aria-multiselectable', 'true');
+      }
+    }
+  };
+
+  componentDidUpdate() {
+    const { activeOptionIndex } = this.props;
+
+    if (this.listBoxRef) {
+      this.listBoxRef.setAttribute(
+        'aria-activedescendant',
+        `${this.makeOptionId(activeOptionIndex)}`
+      );
+    }
+
+    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
+      this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
+    }
+  }
 
   constructor(props: EuiSelectableListProps) {
     super(props);
   }
+
+  ListRow = memo(({ data, index, style }: ListChildComponentProps) => {
+    const option = data[index];
+    const {
+      label,
+      isGroupLabel,
+      checked,
+      disabled,
+      prepend,
+      append,
+      ref,
+      key,
+      ...optionRest
+    } = option;
+
+    if (isGroupLabel) {
+      return (
+        <li
+          role="presentation"
+          className="euiSelectableList__groupLabel"
+          style={style}
+          {...optionRest as HTMLAttributes<HTMLLIElement>}>
+          {prepend}
+          {label}
+          {append}
+        </li>
+      );
+    }
+
+    return (
+      <EuiSelectableListItem
+        id={this.makeOptionId(index)}
+        style={style}
+        key={key || label.toLowerCase()}
+        onClick={() => this.onAddOrRemoveOption(option)}
+        ref={ref ? ref.bind(null, index) : undefined}
+        isFocused={this.props.activeOptionIndex === index}
+        title={label}
+        showIcons={this.props.showIcons}
+        checked={checked}
+        disabled={disabled}
+        prepend={prepend}
+        append={append}
+        {...optionRest as EuiSelectableListItemProps}>
+        {this.props.renderOption ? (
+          this.props.renderOption(option, this.props.searchValue)
+        ) : (
+          <EuiHighlight search={this.props.searchValue}>{label}</EuiHighlight>
+        )}
+      </EuiSelectableListItem>
+    );
+  }, areEqual);
 
   render() {
     const {
@@ -101,7 +210,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       onOptionClick,
       renderOption,
       height: forcedHeight,
-      virtualizedProps,
+      windowProps,
       rowHeight,
       activeOptionIndex,
       rootId,
@@ -110,6 +219,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       visibleOptions,
       allowExclusions,
       bordered,
+      searchable,
       ...rest
     } = this.props;
 
@@ -149,66 +259,19 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       <div className={classes} {...rest}>
         <AutoSizer disableHeight={!heightIsFull}>
           {({ width, height }) => (
-            <List
-              id={this.rootId('listbox')}
+            <FixedSizeList
+              ref={this.setListRef}
               className="euiSelectableList__list"
-              role="listbox"
               width={width}
               height={calculatedHeight || height}
-              rowCount={optionArray.length}
-              rowHeight={rowHeight}
-              scrollToIndex={activeOptionIndex}
-              {...virtualizedProps}
-              rowRenderer={({ key: rowKey, index, style }) => {
-                const option = optionArray[index];
-                const {
-                  label,
-                  isGroupLabel,
-                  checked,
-                  disabled,
-                  prepend,
-                  append,
-                  ref,
-                  key,
-                  ...optionRest
-                } = option;
-                if (isGroupLabel) {
-                  return (
-                    <div
-                      className="euiSelectableList__groupLabel"
-                      key={rowKey}
-                      style={style}
-                      {...optionRest as HTMLAttributes<HTMLDivElement>}>
-                      {prepend}
-                      {label}
-                      {append}
-                    </div>
-                  );
-                }
-                return (
-                  <EuiSelectableListItem
-                    id={this.rootId(`_option-${index}`)}
-                    style={style}
-                    key={key || option.label.toLowerCase()}
-                    onClick={() => this.onAddOrRemoveOption(option)}
-                    ref={ref ? ref.bind(null, index) : undefined}
-                    isFocused={activeOptionIndex === index}
-                    title={label}
-                    showIcons={showIcons}
-                    checked={checked}
-                    disabled={disabled}
-                    prepend={prepend}
-                    append={append}
-                    {...optionRest as EuiSelectableListItemProps}>
-                    {renderOption ? (
-                      renderOption(option, searchValue)
-                    ) : (
-                      <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-                    )}
-                  </EuiSelectableListItem>
-                );
-              }}
-            />
+              itemCount={optionArray.length}
+              itemData={optionArray}
+              itemSize={rowHeight}
+              innerElementType="ul"
+              innerRef={this.setListBoxRef}
+              {...windowProps}>
+              {this.ListRow}
+            </FixedSizeList>
           )}
         </AutoSizer>
       </div>

@@ -4,6 +4,7 @@ import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
 import { getMatchingOptions } from '../matching_options';
 import { EuiSelectableOption } from '../selectable_option';
+import { EuiI18n } from '../../i18n';
 
 export type EuiSelectableSearchProps = Omit<
   InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps,
@@ -67,15 +68,21 @@ export class EuiSelectableSearch extends Component<
     const classes = classNames('euiSelectableSearch', className);
 
     return (
-      <EuiFieldSearch
-        className={classes}
-        placeholder="Filter options"
-        onSearch={this.onSearchChange}
-        incremental
-        defaultValue={defaultValue}
-        fullWidth
-        {...rest}
-      />
+      <EuiI18n
+        token="euiSelectableSearch.placeholderName"
+        default="Filter options">
+        {(placeholderName: string) => (
+          <EuiFieldSearch
+            className={classes}
+            placeholder={placeholderName}
+            onSearch={this.onSearchChange}
+            incremental
+            defaultValue={defaultValue}
+            fullWidth
+            {...rest}
+          />
+        )}
+      </EuiI18n>
     );
   }
 }
