@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `22.0.0`.
+
+## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
+
 - Replaced various `lodash` functions with native functions ([#3053](https://github.com/elastic/eui/pull/3053))
 - Added `whiteSpace ` prop to `EuiCodeBlock` ([#3103](https://github.com/elastic/eui/pull/3103))
 - Added `sortMatchesBy` prop for `EuiComboBox` ([#3089](https://github.com/elastic/eui/pull/3089))
