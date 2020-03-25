@@ -277,11 +277,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 208,
+        "line": 221,
         "column": 12
       },
       "end": {
-        "line": 208,
+        "line": 221,
         "column": 68
       }
     },
@@ -1109,11 +1109,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 126,
+        "line": 130,
         "column": 8
       },
       "end": {
-        "line": 128,
+        "line": 132,
         "column": 46
       }
     },
@@ -1125,11 +1125,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 145,
+        "line": 149,
         "column": 12
       },
       "end": {
-        "line": 147,
+        "line": 151,
         "column": 37
       }
     },
@@ -1141,11 +1141,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 158,
+        "line": 162,
         "column": 16
       },
       "end": {
-        "line": 160,
+        "line": 164,
         "column": 49
       }
     },
@@ -1157,11 +1157,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 173,
+        "line": 177,
         "column": 16
       },
       "end": {
-        "line": 175,
+        "line": 179,
         "column": 45
       }
     },
@@ -1173,11 +1173,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 193,
+        "line": 197,
         "column": 12
       },
       "end": {
-        "line": 193,
+        "line": 197,
         "column": 76
       }
     },
@@ -1189,11 +1189,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 207,
+        "line": 212,
         "column": 12
       },
       "end": {
-        "line": 207,
+        "line": 212,
         "column": 76
       }
     },
@@ -1205,11 +1205,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 220,
+        "line": 226,
         "column": 12
       },
       "end": {
-        "line": 220,
+        "line": 226,
         "column": 74
       }
     },
@@ -1221,11 +1221,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 240,
+        "line": 247,
         "column": 14
       },
       "end": {
-        "line": 240,
+        "line": 247,
         "column": 76
       }
     },
@@ -1237,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 247,
+        "line": 254,
         "column": 12
       },
       "end": {
-        "line": 257,
+        "line": 264,
         "column": 14
       }
     },
@@ -1253,11 +1253,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 129,
+        "line": 146,
         "column": 12
       },
       "end": {
-        "line": 132,
+        "line": 149,
         "column": 14
       }
     },
@@ -1269,11 +1269,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 168,
+        "line": 187,
         "column": 16
       },
       "end": {
-        "line": 168,
+        "line": 187,
         "column": 76
       }
     },
@@ -1285,11 +1285,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 170,
+        "line": 189,
         "column": 16
       },
       "end": {
-        "line": 170,
+        "line": 189,
         "column": 74
       }
     },
@@ -1301,11 +1301,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 177,
+        "line": 196,
         "column": 12
       },
       "end": {
-        "line": 186,
+        "line": 205,
         "column": 14
       }
     },
@@ -1333,11 +1333,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 78,
+        "line": 86,
         "column": 6
       },
       "end": {
-        "line": 81,
+        "line": 89,
         "column": 8
       }
     },
@@ -1349,11 +1349,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 85,
+        "line": 93,
         "column": 8
       },
       "end": {
-        "line": 88,
+        "line": 96,
         "column": 10
       }
     },
@@ -1365,11 +1365,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 90,
+        "line": 98,
         "column": 8
       },
       "end": {
-        "line": 93,
+        "line": 101,
         "column": 10
       }
     },
@@ -1381,11 +1381,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 100,
+        "line": 108,
         "column": 8
       },
       "end": {
-        "line": 103,
+        "line": 111,
         "column": 10
       }
     },
@@ -1397,11 +1397,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 107,
+        "line": 115,
         "column": 8
       },
       "end": {
-        "line": 110,
+        "line": 118,
         "column": 10
       }
     },
@@ -1525,11 +1525,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 120,
+        "line": 153,
         "column": 12
       },
       "end": {
-        "line": 123,
+        "line": 156,
         "column": 54
       }
     },
@@ -1541,11 +1541,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 154,
+        "line": 187,
         "column": 10
       },
       "end": {
-        "line": 157,
+        "line": 190,
         "column": 51
       }
     },
@@ -1902,6 +1902,86 @@
       }
     },
     "filepath": "src/components/table/mobile/table_sort_mobile.tsx"
+  },
+  {
+    "token": "euiTableHeaderCell.clickForDescending",
+    "defString": "Click to sort in descending order",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 111,
+        "column": 10
+      },
+      "end": {
+        "line": 114,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/table/table_header_cell.tsx"
+  },
+  {
+    "token": "euiTableHeaderCell.clickForUnsort",
+    "defString": "Click to unsort",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 120,
+        "column": 10
+      },
+      "end": {
+        "line": 123,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/table/table_header_cell.tsx"
+  },
+  {
+    "token": "euiTableHeaderCell.clickForAscending",
+    "defString": "Click to sort in ascending order",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 128,
+        "column": 8
+      },
+      "end": {
+        "line": 131,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/table/table_header_cell.tsx"
+  },
+  {
+    "token": "euiTableHeaderCell.titleTextWithSort",
+    "defString": "{innerText}; Sorted in {ariaSortValue} order",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 152,
+        "column": 16
+      },
+      "end": {
+        "line": 155,
+        "column": 56
+      }
+    },
+    "filepath": "src/components/table/table_header_cell.tsx"
+  },
+  {
+    "token": "euiTableHeaderCell.sortedAriaLabel",
+    "defString": "Sorted in {ariaSortValue} order",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 169,
+        "column": 14
+      },
+      "end": {
+        "line": 172,
+        "column": 43
+      }
+    },
+    "filepath": "src/components/table/table_header_cell.tsx"
   },
   {
     "token": "euiTablePagination.rowsPerPage",

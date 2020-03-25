@@ -59,6 +59,14 @@ import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
 const disabledHtml = renderToHtml(Disabled);
 
+import Delimiter from './combo_box_delimiter';
+const delimiterSource = require('!!raw-loader!./combo_box_delimiter');
+const delimiterHtml = renderToHtml(Delimiter);
+
+import StartingWith from './startingWith';
+const startingWithSource = require('!!raw-loader!./startingWith');
+const startingWithHtml = renderToHtml(StartingWith);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -346,6 +354,52 @@ export const ComboBoxExample = {
       ),
       props: { EuiComboBox },
       demo: <Async />,
+    },
+    {
+      title: 'With delimiter',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: delimiterSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: delimiterHtml,
+        },
+      ],
+      text: (
+        <p>
+          Pass a unique character to the <EuiCode>delimiter</EuiCode> prop to
+          aid in option creation. This is best used when knowing that content
+          may be pasted from elsewhere such as a comma separated list.
+        </p>
+      ),
+      props: { EuiComboBox },
+      demo: <Delimiter />,
+    },
+    {
+      title: 'Sorting matches',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: startingWithSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: startingWithHtml,
+        },
+      ],
+      text: (
+        <p>
+          By default, the matched options will keep their original sort order.
+          If you would like to prioritize those options that{' '}
+          <strong>start with</strong> the searched string, pass{' '}
+          <EuiCode language="js">sortMatchesBy=&quot;startsWith&quot;</EuiCode>
+          to display those options at the top of the list.
+        </p>
+      ),
+      props: { EuiComboBox },
+      demo: <StartingWith />,
     },
   ],
 };

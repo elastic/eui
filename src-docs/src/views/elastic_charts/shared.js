@@ -9,7 +9,6 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
-import { find } from 'lodash';
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
 import { devDependencies } from '../../../../package';
 
@@ -93,7 +92,8 @@ export class ChartTypeCard extends Component {
       toggleIdSelected: optionId,
     });
 
-    const chartType = find(this.toggleButtonsIcons, { id: optionId }).label;
+    const chartType = this.toggleButtonsIcons.find(({ id }) => id === optionId)
+      .label;
     this.props.onChange(chartType);
   };
 
