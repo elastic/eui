@@ -7,7 +7,7 @@ import {
 } from '../../test';
 import { comboBoxKeyCodes } from '../../services';
 
-import { EuiComboBox } from './combo_box';
+import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
@@ -137,6 +137,19 @@ describe('props', () => {
       component.setState({ isListOpen: true });
       expect(component).toMatchSnapshot();
     });
+    test('prepend and append is rendered', () => {
+      const component = shallow(
+        <EuiComboBox
+          options={options}
+          singleSelection={true}
+          prepend="String"
+          append="String"
+        />
+      );
+
+      component.setState({ isListOpen: true });
+      expect(component).toMatchSnapshot();
+    });
   });
 
   test('isDisabled is rendered', () => {
@@ -157,6 +170,18 @@ describe('props', () => {
         options={options}
         selectedOptions={[options[2]]}
         fullWidth={true}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('delimiter is rendered', () => {
+    const component = shallow(
+      <EuiComboBox
+        options={options}
+        selectedOptions={[options[2], options[3]]}
+        delimiter=","
       />
     );
 
@@ -310,6 +335,22 @@ describe('behavior', () => {
       expect(
         findTestSubject(component, 'comboBoxSearchInput').getDOMNode()
       ).toBe(document.activeElement);
+    });
+  });
+
+  describe('sortMatchesBy', () => {
+    test('options startsWith', () => {
+      const component = mount<
+        EuiComboBox<TitanOption>,
+        EuiComboBoxProps<TitanOption>,
+        { matchingOptions: TitanOption[] }
+      >(<EuiComboBox options={options} sortMatchesBy="startsWith" />);
+
+      findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
+        target: { value: 'e' },
+      });
+
+      expect(component.state('matchingOptions')[0].label).toBe('Enceladus');
     });
   });
 });

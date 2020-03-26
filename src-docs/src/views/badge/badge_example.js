@@ -11,10 +11,12 @@ import {
   EuiCode,
   EuiBetaBadge,
   EuiNotificationBadge,
+  EuiBadgeGroup,
   EuiCallOut,
 } from '../../../../src/components';
 
 import Badge from './badge';
+
 const badgeSource = require('!!raw-loader!./badge');
 const badgeHtml = renderToHtml(Badge);
 const badgeSnippet = [
@@ -69,9 +71,20 @@ const badgeButtonSnippet = [
 </EuiBadge>`,
 ];
 
+import BadgeHref from './badge_href';
+const badgeHrefSource = require('!!raw-loader!./badge_href');
+const badgeHrefHtml = renderToHtml(BadgeHref);
+const badgeHrefSnippet = ['<EuiBadge href="#" />'];
+
 import BadgeTruncate from './badge_truncate';
 const badgeTruncateSource = require('!!raw-loader!./badge_truncate');
 const badgeTruncateHtml = renderToHtml(BadgeTruncate);
+const badgeTruncateSnippet = [
+  `<EuiBadgeGroup gutterSize="s">
+  <EuiBadge />
+  <EuiBadge />
+</EuiBadgeGroup>`,
+];
 
 import BetaBadge from './beta_badge';
 const betaBadgeSource = require('!!raw-loader!./beta_badge');
@@ -170,7 +183,30 @@ export const BadgeExample = {
       demo: <BadgeButton />,
     },
     {
-      title: 'Badge truncation',
+      title: 'Badge with href',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeHrefSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeHrefHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Badges can also be made to render anchor tags by passing an{' '}
+            <EuiCode>href</EuiCode>.
+          </p>
+        </div>
+      ),
+      snippet: badgeHrefSnippet,
+      demo: <BadgeHref />,
+    },
+    {
+      title: 'Badge groups and truncation',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -193,9 +229,15 @@ export const BadgeExample = {
             to the <EuiCode>title</EuiCode> attribute of the element to provide
             default browser tooltips with the full badge text.
           </p>
+          <p>
+            To ensure proper wrapping, truncation and spacing of multiple
+            badges, it is advisable to wrap them in a{' '}
+            <EuiCode>EuiBadgeGroup</EuiCode>
+          </p>
         </Fragment>
       ),
       demo: <BadgeTruncate />,
+      snippet: badgeTruncateSnippet,
     },
     {
       title: 'Beta badge type',
@@ -233,7 +275,7 @@ export const BadgeExample = {
           </p>
         </div>
       ),
-      props: { EuiBetaBadge },
+      props: { EuiBetaBadge, EuiBadgeGroup },
       snippet: betaBadgeSnippet,
       demo: <BetaBadge />,
     },

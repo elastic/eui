@@ -140,6 +140,8 @@ export class GuideSection extends Component {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
       renderedCode: null,
     };
+
+    this.memoScroll = 0;
   }
 
   onSelectedTabChanged = selectedTab => {
@@ -167,7 +169,7 @@ export class GuideSection extends Component {
             "from '@elastic/eui';"
           );
         renderedCode = renderedCode.split('\n');
-        let linesWithImport = [];
+        const linesWithImport = [];
         // eslint-disable-next-line guard-for-in
         for (const idx in renderedCode) {
           const line = renderedCode[idx];
@@ -179,13 +181,12 @@ export class GuideSection extends Component {
             renderedCode[idx] = '';
           }
         }
-
         if (linesWithImport.length > 1) {
           linesWithImport[0] = linesWithImport[0].replace(
             " } from '@elastic/eui';",
             ','
           );
-          for (let i = 1; i < linesWithImport.length - 1; linesWithImport++) {
+          for (let i = 1; i < linesWithImport.length - 1; i++) {
             linesWithImport[i] = linesWithImport[i]
               .replace('import {', '')
               .replace(" } from '@elastic/eui';", ',');
@@ -434,14 +435,39 @@ export class GuideSection extends Component {
     );
   }
 
+  componentDidUpdate() {
+    if (this.state.selectedTab.name === 'javascript') {
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      pre.scrollTop = this.memoScroll;
+    }
+  }
+
   renderCode(name) {
-    return (
-      <div key={name} ref={name}>
-        <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
-          {this.state.renderedCode}
-        </EuiCodeBlock>
-      </div>
+    const euiCodeBlock = (
+      <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
+        {this.state.renderedCode}
+      </EuiCodeBlock>
     );
+
+    const divProps = {
+      key: name,
+      ref: name,
+    };
+
+    const memoScrollUtility = () => {
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      this.memoScroll = pre.scrollTop;
+    };
+
+    if (name === 'javascript') {
+      return (
+        <div {...divProps} onScroll={memoScrollUtility}>
+          {euiCodeBlock}
+        </div>
+      );
+    }
+
+    return <div {...divProps}> {euiCodeBlock} </div>;
   }
 
   renderContent() {

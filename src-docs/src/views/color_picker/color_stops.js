@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import { EuiColorStops, EuiFormRow } from '../../../../src/components';
 
-import { useColorStop } from './utils';
+import { useColorStopsState } from '../../../../src/services';
 
 export const ColorStops = () => {
-  const [colorStops, setColorStops, addColor] = useColorStop(true);
+  const [colorStops, setColorStops, addColor] = useColorStopsState(true);
 
   const [extendedColorStops, setExtendedColorStops] = useState([
     {

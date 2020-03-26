@@ -12,7 +12,7 @@ export const propsInfo = {
           description:
             'Describes how to extract a unique ID from each item, used for selections & expanded rows',
           required: false,
-          type: { name: 'string | (item) => string' },
+          type: { name: 'string | number | (item) => string' },
         },
         itemIdToExpandedRowMap: {
           description:
@@ -107,6 +107,13 @@ export const propsInfo = {
           required: false,
           type: { name: 'string' },
         },
+        textOnly: {
+          description:
+            'Applied to table cells => Any cell using render function will set this to be `false`, leading to unnecessary word breaks. Apply `textOnly: true` in order to ensure it breaks properly',
+          required: false,
+          type: { name: 'bool' },
+          defaultValue: { value: 'false' },
+        },
         tableLayout: {
           description:
             'Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.',
@@ -168,6 +175,11 @@ export const propsInfo = {
         allowNeutralSort: {
           description:
             'Enables/disables unsorting of table columns. Supported by EuiInMemoryTable.',
+          required: false,
+          type: { name: 'bool' },
+        },
+        enableAllColumns: {
+          description: 'Enables the default sorting ability for each column.',
           required: false,
           type: { name: 'bool' },
         },

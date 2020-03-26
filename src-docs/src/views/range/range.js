@@ -30,6 +30,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           showLabels
+          aria-label="An example of EuiRange with showLabels prop"
         />
 
         <EuiSpacer size="xl" />
@@ -42,6 +43,7 @@ export default class extends Component {
           onChange={this.onChange}
           showLabels
           showValue
+          aria-label="An example of EuiRange with showValue prop"
         />
 
         <EuiSpacer size="xl" />
@@ -56,6 +58,7 @@ export default class extends Component {
           showRange
           showValue
           valuePrepend="100 - "
+          aria-label="An example of EuiRange with valuePrepend prop"
         />
       </Fragment>
     );

@@ -7,8 +7,9 @@
 import React, {
   Component,
   FocusEventHandler,
-  KeyboardEventHandler,
   HTMLAttributes,
+  KeyboardEventHandler,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -34,7 +35,6 @@ import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_
 import {
   UpdatePositionHandler,
   OptionHandler,
-  RefCallback,
   RefInstance,
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
@@ -43,6 +43,7 @@ import {
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
+import { EuiFormControlLayoutProps } from '../form';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -54,25 +55,81 @@ interface _EuiComboBoxProps<T>
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
   'data-test-subj'?: string;
+  /**
+   * Updates the list of options asynchronously
+   */
   async: boolean;
   className?: string;
+  /**
+   * When `true` creates a shorter height input
+   */
   compressed: boolean;
+  /**
+   * When `true` expands to the entire width available
+   */
   fullWidth: boolean;
   id?: string;
   inputRef?: RefCallback<HTMLInputElement>;
+  /**
+   * Shows a button that quickly clears any input
+   */
   isClearable: boolean;
+  /**
+   * Disables the input
+   */
   isDisabled?: boolean;
   isInvalid?: boolean;
+  /**
+   * Swaps the dropdown options for a loading spinner
+   */
   isLoading?: boolean;
+  /**
+   * Doesn't show the suggestions list/dropdown
+   */
   noSuggestions?: boolean;
   onBlur?: FocusEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the query in the combo box is parsed
+   */
   onChange?: (options: Array<EuiComboBoxOptionOption<T>>) => void;
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  /**
+   * Called every time the text query in the search box is parsed
+   */
   onSearchChange?: (searchValue: string, hasMatchingOptions?: boolean) => void;
+  /**
+   * Sets the placeholder of the input
+   */
   placeholder?: string;
+  /**
+   * Every option must be the same height and must be explicitly set if using a custom render
+   */
   rowHeight?: number;
+  /**
+   * When `true` only allows the user to select a single option. Set to `{ asPlainText: true }` to not render input selection as pills
+   */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
+  /**
+   * Display matching options by:
+   * `startsWith`: moves items that start with search value to top of the list;
+   * `none`: don't change the sort order of initial object
+   */
+  sortMatchesBy?: 'none' | 'startsWith';
+  /**
+   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+  /**
+   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
+  /**
+   * A special character to use as a value separator. Typically a comma `,`
+   */
+  delimiter?: string;
 }
 
 /**
@@ -121,6 +178,9 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
+    prepend: null,
+    append: null,
+    sortMatchesBy: 'none',
   };
 
   state: EuiComboBoxState<T> = {
@@ -344,7 +404,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  addCustomOption = (isContainerBlur: boolean) => {
+  addCustomOption = (isContainerBlur: boolean, searchValue: string) => {
     const {
       onCreateOption,
       options,
@@ -352,7 +412,7 @@ export class EuiComboBox<T> extends Component<
       singleSelection,
     } = this.props;
 
-    const { searchValue, matchingOptions } = this.state;
+    const { matchingOptions } = this.state;
 
     if (this.doesSearchMatchOnlyOption()) {
       this.onAddOption(matchingOptions[0], isContainerBlur);
@@ -441,6 +501,18 @@ export class EuiComboBox<T> extends Component<
     this.setState({ hasFocus: true });
   };
 
+  setCustomOptions = (isContainerBlur: boolean) => {
+    const { searchValue } = this.state;
+    const { delimiter } = this.props;
+    if (delimiter) {
+      searchValue.split(delimiter).forEach((option: string) => {
+        if (option.length > 0) this.addCustomOption(true, option);
+      });
+    } else {
+      this.addCustomOption(isContainerBlur, searchValue);
+    }
+  };
+
   onContainerBlur: EventListener = event => {
     // close the options list, unless the use clicked on an option
 
@@ -475,7 +547,7 @@ export class EuiComboBox<T> extends Component<
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
       if (!this.hasActiveOption()) {
-        this.addCustomOption(true);
+        this.setCustomOptions(true);
       }
     }
   };
@@ -520,7 +592,7 @@ export class EuiComboBox<T> extends Component<
             this.state.matchingOptions[this.state.activeOptionIndex]
           );
         } else {
-          this.addCustomOption(false);
+          this.setCustomOptions(false);
         }
         break;
 
@@ -652,7 +724,8 @@ export class EuiComboBox<T> extends Component<
   onSearchChange: NonNullable<
     EuiComboBoxInputProps<T>['onChange']
   > = searchValue => {
-    const { onSearchChange } = this.props;
+    const { onSearchChange, delimiter } = this.props;
+
     if (onSearchChange) {
       const hasMatchingOptions = this.state.matchingOptions.length > 0;
       onSearchChange(searchValue, hasMatchingOptions);
@@ -661,6 +734,11 @@ export class EuiComboBox<T> extends Component<
     this.setState({ searchValue }, () => {
       if (searchValue && this.state.isListOpen === false) this.openList();
     });
+    if (delimiter && searchValue.endsWith(delimiter)) {
+      searchValue.split(delimiter).forEach(value => {
+        if (value.length > 0) this.addCustomOption(false, value);
+      });
+    }
   };
 
   componentDidMount() {
@@ -730,6 +808,7 @@ export class EuiComboBox<T> extends Component<
           );
         }
       }
+
       this.setState({
         matchingOptions: newMatchingOptions,
         activeOptionIndex: nextActiveOptionIndex,
@@ -790,6 +869,10 @@ export class EuiComboBox<T> extends Component<
       rowHeight,
       selectedOptions,
       singleSelection,
+      prepend,
+      sortMatchesBy,
+      delimiter,
+      append,
       ...rest
     } = this.props;
     const {
@@ -799,8 +882,30 @@ export class EuiComboBox<T> extends Component<
       listPosition,
       searchValue,
       width,
+      matchingOptions,
     } = this.state;
 
+    let newMatchingOptions = matchingOptions;
+
+    if (sortMatchesBy === 'startsWith') {
+      const refObj: {
+        startWith: Array<EuiComboBoxOptionOption<T>>;
+        others: Array<EuiComboBoxOptionOption<T>>;
+      } = { startWith: [], others: [] };
+
+      newMatchingOptions.forEach(object => {
+        if (
+          object.label
+            .toLowerCase()
+            .startsWith(searchValue.trim().toLowerCase())
+        ) {
+          refObj.startWith.push(object);
+        } else {
+          refObj.others.push(object);
+        }
+      });
+      newMatchingOptions = [...refObj.startWith, ...refObj.others];
+    }
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
@@ -836,7 +941,7 @@ export class EuiComboBox<T> extends Component<
             fullWidth={fullWidth}
             isLoading={isLoading}
             listRef={this.listRefCallback}
-            matchingOptions={this.state.matchingOptions}
+            matchingOptions={newMatchingOptions}
             onCloseList={this.closeList}
             onCreateOption={onCreateOption}
             onOptionClick={this.onOptionClick}
@@ -854,6 +959,7 @@ export class EuiComboBox<T> extends Component<
             selectedOptions={selectedOptions}
             updatePosition={this.updatePosition}
             width={width}
+            delimiter={delimiter}
           />
         </EuiPortal>
       );
@@ -912,8 +1018,9 @@ export class EuiComboBox<T> extends Component<
           toggleButtonRef={this.toggleButtonRefCallback}
           updatePosition={this.updatePosition}
           value={value}
+          append={singleSelection ? append : undefined}
+          prepend={singleSelection ? prepend : undefined}
         />
-
         {optionsList}
       </div>
     );

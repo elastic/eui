@@ -12,6 +12,7 @@ import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { EuiI18n } from '../../../i18n';
 import { timeUnits } from '../time_units';
 import { EuiScreenReaderOnly } from '../../../accessibility';
+import { parseTimeParts } from './quick_select_utils';
 
 const LAST = 'last';
 const NEXT = 'next';
@@ -29,10 +30,15 @@ export class EuiQuickSelect extends Component {
     super(props);
 
     const { timeTense, timeValue, timeUnits } = this.props.prevQuickSelect;
+    const {
+      timeTenseDefault,
+      timeValueDefault,
+      timeUnitsDefault,
+    } = parseTimeParts(this.props.start, this.props.end);
     this.state = {
-      timeTense: timeTense ? timeTense : LAST,
-      timeValue: timeValue ? timeValue : 15,
-      timeUnits: timeUnits ? timeUnits : 'm',
+      timeTense: timeTense ? timeTense : timeTenseDefault,
+      timeValue: timeValue ? timeValue : timeValueDefault,
+      timeUnits: timeUnits ? timeUnits : timeUnitsDefault,
     };
   }
 
@@ -55,6 +61,10 @@ export class EuiQuickSelect extends Component {
     this.setState({
       timeUnits: evt.target.value,
     });
+  };
+
+  handleKeyDown = ({ key }) => {
+    if (key === 'Enter') this.applyQuickSelect();
   };
 
   applyQuickSelect = () => {
@@ -194,6 +204,7 @@ export class EuiQuickSelect extends Component {
               {tenseLabel => (
                 <EuiSelect
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-label={tenseLabel}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   value={timeTense}
@@ -208,6 +219,7 @@ export class EuiQuickSelect extends Component {
               {valueLabel => (
                 <EuiFieldNumber
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   aria-label={valueLabel}
                   value={timeValue}
@@ -221,6 +233,7 @@ export class EuiQuickSelect extends Component {
               {unitLabel => (
                 <EuiSelect
                   compressed
+                  onKeyDown={this.handleKeyDown}
                   aria-label={unitLabel}
                   aria-describedby={`${timeSelectionId} ${legendId}`}
                   value={timeUnits}

@@ -119,3 +119,30 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
   </EuiButton>
 </EuiToolTip>
 `;
+
+exports[`EuiSuperUpdateButton showTooltip 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="primary"
+    fill={true}
+    iconType="refresh"
+    isDisabled={false}
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+  >
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
+  </EuiButton>
+</EuiToolTip>
+`;
