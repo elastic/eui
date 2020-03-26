@@ -29,15 +29,15 @@
 
   .euiPopover__panelArrow.euiPopover__panelArrow--right {
     .euiTour__beacon {
-      top: 6px;
-      left: -24px;
+      top: $euiPopoverArrowSize / 2;
+      left: -$euiPopoverArrowSize * 2;
     }
   }
 
   .euiPopover__panelArrow.euiPopover__panelArrow--left {
     .euiTour__beacon {
-      top: 6px;
-      left: 12px;
+      top: $euiPopoverArrowSize / 2;
+      left: $euiPopoverArrowSize;
     }
   }
 
@@ -47,15 +47,15 @@
     }
 
     .euiTour__beacon {
-      top: 12px;
-      left: 6px;
+      top: $euiPopoverArrowSize;
+      left: $euiPopoverArrowSize / 2;
     }
   }
 
   .euiPopover__panelArrow.euiPopover__panelArrow--bottom {
     .euiTour__beacon {
-      top: -24px;
-      left: 6px;
+      top: -$euiPopoverArrowSize * 2;
+      left: $euiPopoverArrowSize / 2;
     }
   }
 }

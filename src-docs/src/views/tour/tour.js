@@ -25,6 +25,7 @@ const demoTourSteps = [
       </span>
     ),
     anchorRef: 'tourStep2',
+    anchorPosition: 'rightCenter',
   },
   {
     step: 2,

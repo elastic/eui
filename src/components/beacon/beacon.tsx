@@ -5,9 +5,9 @@ import classNames from 'classnames';
 export type EuiBeaconProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
   CommonProps & {
     /**
-     * Height and width
+     * Height and width of the center circle. Value is passed directly to the `style` attribute
      */
-    size?: number;
+    size?: number | string;
   };
 
 export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({

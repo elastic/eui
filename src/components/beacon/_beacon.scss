@@ -18,15 +18,15 @@
   }
 
   &:before {
-    animation: big 2.5s infinite ease-out;
+    animation: euiBeaconPulseLarge 2.5s infinite ease-out;
   }
 
   &:after {
-    animation: small 2.5s infinite ease-out .25s;
+    animation: euiBeaconPulseSmall 2.5s infinite ease-out .25s;
   }
 }
 
-@keyframes big {
+@keyframes euiBeaconPulseLarge {
   0% {
     transform: scale(.1);
     opacity: 1;
@@ -42,7 +42,7 @@
   }
 }
 
-@keyframes small {
+@keyframes euiBeaconPulseSmall {
   0% {
     transform: scale(.1);
     opacity: 1;

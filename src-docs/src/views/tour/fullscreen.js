@@ -41,7 +41,7 @@ const demoTourSteps = [
     step: 3,
     title: 'Step 3',
     content: <p>Click here for more cool things.</p>,
-    anchorPosition: 'upLeft',
+    anchorPosition: 'downRight',
     minWidth: 'auto',
   },
   {

@@ -25,6 +25,7 @@ const demoTourSteps = [
         </EuiCodeBlock>
       </span>
     ),
+    anchorPosition: 'rightCenter',
   },
   {
     step: 2,
