@@ -1,6 +1,22 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Allow partial dates to `EuiSuperDatePicker` ([#3108](https://github.com/elastic/eui/pull/3108))
+- Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))
+
+**Bug Fixes**
+
+- Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
+- Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
+
+## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
+
+- Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
+- Added `useColorPickerState` and `useColorStopsState` utilities ([#3067](https://github.com/elastic/eui/pull/3067))
+- Fixed `EuiSearchBar` related types ([#3147](https://github.com/elastic/eui/pull/3147))
+- Added `prepend` and `append` ability to `EuiSuperSelect` ([#3167](https://github.com/elastic/eui/pull/3167)) 
+
+## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
+
 - Replaced various `lodash` functions with native functions ([#3053](https://github.com/elastic/eui/pull/3053))
 - Added `whiteSpace ` prop to `EuiCodeBlock` ([#3103](https://github.com/elastic/eui/pull/3103))
 - Added `sortMatchesBy` prop for `EuiComboBox` ([#3089](https://github.com/elastic/eui/pull/3089))

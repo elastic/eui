@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { EuiFieldSearch } from '../form';
-import { CommonProps } from '../common';
+import { EuiFieldSearch, EuiFieldSearchProps } from '../form';
 
 export interface SchemaType {
   strict?: boolean;
@@ -8,20 +7,10 @@ export interface SchemaType {
   flags?: string[];
 }
 
-export interface SearchBoxConfigProps extends CommonProps {
-  placeholder?: string;
-  incremental?: boolean;
-  // Boolean values are not meaningful to this component, but are allowed so that other
-  // components can use e.g. a true value to mean "auto-derive a schema". See EuiInMemoryTable.
-  // Admittedly, this is a bit of a hack.
-  schema?: SchemaType | boolean;
-}
-
-export interface EuiSearchBoxProps extends SearchBoxConfigProps {
+export interface EuiSearchBoxProps extends EuiFieldSearchProps {
   query: string;
+  // This is optional in EuiFieldSearchProps
   onSearch: (queryText: string) => void;
-  isInvalid?: boolean;
-  title?: string;
 }
 
 type DefaultProps = Pick<EuiSearchBoxProps, 'placeholder' | 'incremental'>;
@@ -41,15 +30,7 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
   }
 
   render() {
-    const {
-      placeholder,
-      query,
-      incremental,
-      onSearch,
-      isInvalid,
-      title,
-      ...rest
-    } = this.props;
+    const { query, incremental, ...rest } = this.props;
 
     let ariaLabel;
     if (incremental) {
@@ -64,13 +45,9 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
       <EuiFieldSearch
         inputRef={input => (this.inputElement = input)}
         fullWidth
-        placeholder={placeholder}
         defaultValue={query}
         incremental={incremental}
-        onSearch={query => onSearch(query)}
-        isInvalid={isInvalid}
         aria-label={ariaLabel}
-        title={title}
         {...rest}
       />
     );

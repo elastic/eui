@@ -1,14 +1,14 @@
 import React, { Component, Fragment, ReactElement } from 'react';
-import { createFilter, FilterConfig } from './filters';
+import { createFilter, SearchFilterConfig } from './filters';
 import { Query } from './query';
 import { EuiFilterGroup } from '../filter_group';
 
-export type SearchFiltersFiltersType = FilterConfig[];
+export { SearchFilterConfig } from './filters';
 
 interface EuiSearchFiltersProps {
   query: Query;
   onChange: (query: Query) => void;
-  filters: SearchFiltersFiltersType;
+  filters: SearchFilterConfig[];
 }
 
 type DefaultProps = Pick<EuiSearchFiltersProps, 'filters'>;

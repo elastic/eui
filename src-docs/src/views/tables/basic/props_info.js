@@ -12,7 +12,7 @@ export const propsInfo = {
           description:
             'Describes how to extract a unique ID from each item, used for selections & expanded rows',
           required: false,
-          type: { name: 'string | (item) => string' },
+          type: { name: 'string | number | (item) => string' },
         },
         itemIdToExpandedRowMap: {
           description:
@@ -106,6 +106,13 @@ export const propsInfo = {
             'Describes the content of the table. If not specified, the caption will be "This table contains {itemCount} rows."',
           required: false,
           type: { name: 'string' },
+        },
+        textOnly: {
+          description:
+            'Applied to table cells => Any cell using render function will set this to be `false`, leading to unnecessary word breaks. Apply `textOnly: true` in order to ensure it breaks properly',
+          required: false,
+          type: { name: 'bool' },
+          defaultValue: { value: 'false' },
         },
         tableLayout: {
           description:
