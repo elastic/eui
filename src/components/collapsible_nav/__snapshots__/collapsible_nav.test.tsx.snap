@@ -38,7 +38,6 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
     <nav
       class="euiCollapsibleNav euiCollapsibleNav--isDocked"
       id="id"
-      role="group"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiCollapsibleNav__closeButton"
@@ -89,7 +88,6 @@ Array [
       <nav
         class="euiCollapsibleNav"
         id="id"
-        role="group"
       >
         <button
           class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiCollapsibleNav__closeButton"
