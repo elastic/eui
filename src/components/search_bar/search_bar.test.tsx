@@ -5,7 +5,7 @@ import { mount, shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
 import { Query } from './query';
 import { ENTER } from '../../services/key_codes';
-import { SearchFiltersFiltersType } from './search_filters';
+import { SearchFilterConfig } from './search_filters';
 
 describe('SearchBar', () => {
   test('render - no config, no query', () => {
@@ -48,7 +48,7 @@ describe('SearchBar', () => {
   });
 
   test('render - provided query, filters', () => {
-    const filters: SearchFiltersFiltersType = [
+    const filters: SearchFilterConfig[] = [
       {
         type: 'is',
         field: 'open',
