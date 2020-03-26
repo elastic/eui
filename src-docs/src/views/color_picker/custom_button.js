@@ -8,10 +8,10 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { useColorPicker } from './utils';
+import { useColorPickerState } from '../../../../src/services';
 
 export const CustomButton = () => {
-  const [color, setColor, errors] = useColorPicker('');
+  const [color, setColor, errors] = useColorPickerState('');
   const [selectedColor, setSelectedColor] = useState(color);
   const handleColorChange = (text, { hex, isValid }) => {
     setColor(text, { hex, isValid });
