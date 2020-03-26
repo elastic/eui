@@ -29,7 +29,9 @@ export default () => {
 
   return (
     <EuiText size="s">
-      <h5>Example:</h5>
+      <p>
+        <strong>Example:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
@@ -42,7 +44,9 @@ export default () => {
                 </EuiPanel>
               </EuiFlexItem>
             </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}
@@ -50,7 +54,9 @@ export default () => {
 
       <EuiHorizontalRule margin="xl" />
 
-      <h5>Example with complex children:</h5>
+      <p>
+        <strong>Example with complex children:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
@@ -66,7 +72,9 @@ export default () => {
                 </EuiPanel>
               </EuiFlexItem>
             </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}
@@ -74,7 +82,9 @@ export default () => {
 
       <EuiHorizontalRule margin="xl" />
 
-      <h5>Example with updating content:</h5>
+      <p>
+        <strong>Example with updating content:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
@@ -87,7 +97,9 @@ export default () => {
                 </EuiPanel>
               </EuiFlexItem>
             </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}
@@ -95,7 +107,9 @@ export default () => {
 
       <EuiHorizontalRule margin="xl" />
 
-      <h5>Example with updating element:</h5>
+      <p>
+        <strong>Example with updating element:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
@@ -113,7 +127,9 @@ export default () => {
                 </EuiPanel>
               </EuiFlexItem>
             </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}

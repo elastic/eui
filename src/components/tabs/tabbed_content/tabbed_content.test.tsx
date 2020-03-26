@@ -19,7 +19,7 @@ const elasticsearchTab = {
 
 const kibanaTab = {
   id: 'kibana',
-  name: 'Kibana',
+  name: <strong>Kibana</strong>,
   'data-test-subj': 'kibanaTab',
   content: <p>Kibana content</p>,
 };

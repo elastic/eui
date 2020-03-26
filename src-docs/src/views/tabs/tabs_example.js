@@ -119,7 +119,7 @@ export const TabsExample = {
         EuiTabbedContent,
       },
       demo: <TabbedContent />,
-      snippet: `<EuiTabbedContent 
+      snippet: `<EuiTabbedContent
   tabs={[
     {
       id: 'example1',
