@@ -3,6 +3,7 @@
 **Bug Fixes**
 
 - Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
+- Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
 
 ## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
 
