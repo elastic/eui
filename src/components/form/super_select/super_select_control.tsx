@@ -80,6 +80,10 @@ export const EuiSuperSelectControl: <T extends string>(
     className
   );
 
+  const wrapperClasses = classNames({
+    'euiSuperSelectControlWrapper--group': prepend || append,
+  });
+
   // React HTML input can not have both value and defaultValue properties.
   // https://reactjs.org/docs/uncontrolled-components.html#default-values
   let selectDefaultValue;
@@ -113,7 +117,7 @@ export const EuiSuperSelectControl: <T extends string>(
       />
 
       <EuiFormControlLayout
-        className="euiSuperSelectControlWrapper"
+        className={wrapperClasses}
         icon={icon}
         fullWidth={fullWidth}
         isLoading={isLoading}

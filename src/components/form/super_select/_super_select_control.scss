@@ -35,8 +35,6 @@
   }
 }
 
-.euiSuperSelectControlWrapper {
-  > div {
-    overflow: hidden;
-  }
+.euiSuperSelectControlWrapper--group > div {
+  overflow: hidden;
 }

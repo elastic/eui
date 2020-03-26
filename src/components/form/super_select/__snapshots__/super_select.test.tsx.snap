@@ -12,7 +12,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
       value=""
     />
     <div
-      class="euiFormControlLayout euiSuperSelectControlWrapper"
+      class="euiFormControlLayout"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -64,7 +64,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
       value=""
     />
     <div
-      class="euiFormControlLayout euiFormControlLayout--compressed euiSuperSelectControlWrapper"
+      class="euiFormControlLayout euiFormControlLayout--compressed"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -116,7 +116,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
       value=""
     />
     <div
-      class="euiFormControlLayout euiSuperSelectControlWrapper"
+      class="euiFormControlLayout"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -256,7 +256,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
       value=""
     />
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth euiSuperSelectControlWrapper"
+      class="euiFormControlLayout euiFormControlLayout--fullWidth"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -308,7 +308,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
       value="1"
     />
     <div
-      class="euiFormControlLayout euiSuperSelectControlWrapper"
+      class="euiFormControlLayout"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -550,7 +550,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
               value="1"
             />
             <EuiFormControlLayout
-              className="euiSuperSelectControlWrapper"
+              className=""
               compressed={false}
               fullWidth={false}
               icon={
@@ -562,7 +562,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
               isLoading={false}
             >
               <div
-                className="euiFormControlLayout euiSuperSelectControlWrapper"
+                className="euiFormControlLayout"
               >
                 <div
                   className="euiFormControlLayout__childrenWrapper"
@@ -1085,7 +1085,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
       value=""
     />
     <div
-      class="euiFormControlLayout euiSuperSelectControlWrapper"
+      class="euiFormControlLayout"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -1225,7 +1225,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
       value=""
     />
     <div
-      class="euiFormControlLayout euiSuperSelectControlWrapper"
+      class="euiFormControlLayout"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -1275,7 +1275,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
       value="2"
     />
     <div
-      class="euiFormControlLayout euiSuperSelectControlWrapper"
+      class="euiFormControlLayout"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"

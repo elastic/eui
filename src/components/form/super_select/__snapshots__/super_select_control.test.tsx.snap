@@ -7,7 +7,7 @@ Array [
     value=""
   />,
   <div
-    class="euiFormControlLayout euiSuperSelectControlWrapper"
+    class="euiFormControlLayout"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -53,7 +53,7 @@ Array [
     value=""
   />,
   <div
-    class="euiFormControlLayout euiFormControlLayout--compressed euiSuperSelectControlWrapper"
+    class="euiFormControlLayout euiFormControlLayout--compressed"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -97,7 +97,7 @@ Array [
     value=""
   />,
   <div
-    class="euiFormControlLayout euiSuperSelectControlWrapper"
+    class="euiFormControlLayout"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -141,7 +141,7 @@ Array [
     value=""
   />,
   <div
-    class="euiFormControlLayout euiSuperSelectControlWrapper"
+    class="euiFormControlLayout"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -185,7 +185,7 @@ Array [
     value=""
   />,
   <div
-    class="euiFormControlLayout euiFormControlLayout--fullWidth euiSuperSelectControlWrapper"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -229,7 +229,7 @@ Array [
     value=""
   />,
   <div
-    class="euiFormControlLayout euiSuperSelectControlWrapper"
+    class="euiFormControlLayout"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -273,7 +273,7 @@ Array [
     value=""
   />,
   <div
-    class="euiFormControlLayout euiSuperSelectControlWrapper"
+    class="euiFormControlLayout"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -320,7 +320,7 @@ Array [
     value="1"
   />,
   <div
-    class="euiFormControlLayout euiSuperSelectControlWrapper"
+    class="euiFormControlLayout"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
