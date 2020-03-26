@@ -94,6 +94,11 @@
 }
 
 @include euiBreakpoint('xs', 's') {
+  .euiNavDrawer > .euiFlexGroup--responsive {
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+  }
+
   .euiNavDrawer {
     width: 0;
 
