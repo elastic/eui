@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))
+- Added `EuiComment` component ([#3179](https://github.com/elastic/eui/pull/3179))
 
 **Bug Fixes**
 
