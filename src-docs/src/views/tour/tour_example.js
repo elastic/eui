@@ -4,7 +4,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiSpacer, EuiTourStep } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiSpacer,
+  EuiText,
+  EuiTourStep,
+} from '../../../../src/components';
 
 import Tour from './tour';
 import Managed from './managed';
@@ -25,14 +30,18 @@ export const TourExample = {
   title: 'Tour',
   beta: true,
   intro: (
-    <>
+    <EuiText>
       <p>
         The tour components provided by EUI allow for a flexible and
         customizable way to showcase items on a page in an ordered manner by
         augmenting existing elements on the page without altering functionality.
       </p>
+      <p>
+        The examples on this page, use <EuiCode>localStorage</EuiCode> to
+        persist state to demonstrate starting a tour at differnt stages.
+      </p>
       <EuiSpacer />
-    </>
+    </EuiText>
   ),
   sections: [
     {
@@ -52,8 +61,8 @@ export const TourExample = {
           Each <EuiCode>EuiTourStep</EuiCode> can be configured independently
           via props. In this case, each component is stateless and needs to be
           paired with some form of state management for navigation. See two
-          options below: <EuiCode>useEuiTour</EuiCode> and{' '}
-          <EuiCode>EuiTour</EuiCode>.
+          options in later examples (<EuiCode>useEuiTour</EuiCode> and{' '}
+          <EuiCode>EuiTour</EuiCode>).
         </p>
       ),
       props: { EuiTourStep },
@@ -97,12 +106,18 @@ export const TourExample = {
         },
       ],
       text: (
-        <p>
-          Use the <EuiCode>EuiTour</EuiCode> render prop component for minimal
-          state management. This is an alternative to the{' '}
-          <EuiCode>useEuiTour</EuiCode> hook for React class components, or use
-          cases where a single wrapping component can be used.
-        </p>
+        <>
+          <p>
+            Use the <EuiCode>EuiTour</EuiCode> render prop component for minimal
+            state management. This is an alternative to the{' '}
+            <EuiCode>useEuiTour</EuiCode> hook for React class components, or
+            use cases where a single wrapping component can be used.
+          </p>
+          <p>
+            Unlike the other examples on this page, this example does not use{' '}
+            <EuiCode>localStorage</EuiCode> to persist state.
+          </p>
+        </>
       ),
       demo: <Managed />,
     },

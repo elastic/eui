@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiBeacon } from '../../../../src/components';
+import { EuiBeacon, EuiText } from '../../../../src/components';
 
 import Beacon from './beacon';
 const beaconSource = require('!!raw-loader!./beacon');
@@ -25,9 +25,12 @@ export const BeaconExample = {
         },
       ],
       text: (
-        <div>
-          <p>Blink, blink</p>
-        </div>
+        <EuiText>
+          <p>
+            Use the beacon component to draw visual attention to a specific
+            location or element.
+          </p>
+        </EuiText>
       ),
       props: { EuiBeacon },
       demo: <Beacon />,

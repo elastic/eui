@@ -113,6 +113,7 @@ export default () => {
       disabled: false,
       content: (
         <div>
+          <EuiSpacer />
           <EuiTourStep
             {...euiTourStepOne}
             content={
@@ -120,7 +121,7 @@ export default () => {
                 <p>This is a neat thing. You enter queries here.</p>
                 <EuiSpacer />
                 <EuiButton color="primary" onClick={actions.incrementStep}>
-                  Ok. Got it.
+                  Ok, got it.
                 </EuiButton>
               </div>
             }>

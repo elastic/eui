@@ -354,7 +354,6 @@ const navigation = [
       AspectRatioExample,
       AvatarExample,
       BadgeExample,
-      BeaconExample,
       CallOutExample,
       CardExample,
       CodeExample,
@@ -409,6 +408,7 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      BeaconExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
