@@ -34,6 +34,10 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
       'aria-label': 'bell',
     },
   },
+  {
+    label: 'Item with pinnability turned off',
+    pinnable: false,
+  },
 ];
 
 export default () => (

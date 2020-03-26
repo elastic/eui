@@ -30,6 +30,7 @@ export const TopNavLinks: EuiPinnableListGroupItemProps[] = [
     label: 'Home',
     iconType: 'home',
     isActive: true,
+    pinnable: false,
   },
   { label: 'Dashboards', pinned: true },
   { label: 'Dev tools', pinned: true },
@@ -103,7 +104,7 @@ export default () => (
         listItems={TopNavLinks}
         onPinClick={() => {}}
         maxWidth="none"
-        color="subdued"
+        color="text"
         gutterSize="none"
         size="s"
       />

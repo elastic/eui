@@ -36,6 +36,11 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
     label: 'Link with href',
     href: '#',
   },
+  {
+    label: 'Not pinnable',
+    href: '#',
+    pinnable: false,
+  },
 ];
 
 describe('EuiPinnableListGroup', () => {

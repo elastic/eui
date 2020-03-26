@@ -29,8 +29,15 @@ import {
 } from './collapsible_nav_list';
 import { EuiShowFor } from '../../../../src/components/responsive';
 
-const TopLinks = [
-  { label: 'Home', iconType: 'home', isActive: true, 'aria-current': true },
+const TopLinks: EuiPinnableListGroupItemProps[] = [
+  {
+    label: 'Home',
+    iconType: 'home',
+    isActive: true,
+    'aria-current': true,
+    href: '#/navigation/collapsible-nav',
+    pinnable: false,
+  },
 ];
 const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
   link => {
@@ -164,7 +171,7 @@ export default () => {
             unpinTitle={addLinkNameToUnpinTitle}
             onPinClick={removePin}
             maxWidth="none"
-            color="subdued"
+            color="text"
             gutterSize="none"
             size="s"
           />
