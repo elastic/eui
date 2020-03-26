@@ -89,8 +89,8 @@
 .euiModal__closeIcon {
   background-color: transparentize($euiColorEmptyShade, .1);
   position: absolute;
-  right: $euiSizeL - 7px;
-  top: $euiSizeL - 7px;
+  right: $euiSizeXS;
+  top: $euiSizeXS;
   z-index: 3;
 }
 
