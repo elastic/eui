@@ -70,6 +70,7 @@ export class FilePicker extends Component {
                   this.onChange(files);
                 }}
                 display={this.state.large ? 'large' : 'default'}
+                aria-label="Use aria labels when no actual label is in use"
               />
             </DisplayToggles>
             <EuiSpacer />

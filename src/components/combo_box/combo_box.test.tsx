@@ -175,6 +175,18 @@ describe('props', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('delimiter is rendered', () => {
+    const component = shallow(
+      <EuiComboBox
+        options={options}
+        selectedOptions={[options[2], options[3]]}
+        delimiter=","
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
 
 describe('behavior', () => {
