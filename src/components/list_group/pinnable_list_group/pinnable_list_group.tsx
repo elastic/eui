@@ -23,7 +23,15 @@ const pinnedExtraAction: EuiListGroupItemProps['extraAction'] = {
 };
 
 export type EuiPinnableListGroupItemProps = EuiListGroupItemProps & {
+  /**
+   * Saves the pinned status and changes the visibility of the pin icon
+   */
   pinned?: boolean;
+  /**
+   * Passing `onPinClick` to the full EuiPinnableListGroup, will make every item pinnable.
+   * Set this property to `false` to turn off individual item pinnability
+   */
+  pinnable?: boolean;
 };
 
 export interface EuiPinnableListGroupProps
@@ -64,7 +72,7 @@ export const EuiPinnableListGroup: FunctionComponent<
     pinnedExtraActionLabel: string
   ) =>
     listItems.map(item => {
-      const { pinned, ...itemProps } = item;
+      const { pinned, pinnable = true, ...itemProps } = item;
       // Make some declarations of props for the nav implementation
       itemProps.className = classNames(
         'euiPinnableListGroup__item',
@@ -72,7 +80,7 @@ export const EuiPinnableListGroup: FunctionComponent<
       );
 
       // Add the pinning action unless the item has it's own extra action
-      if (onPinClick && !itemProps.extraAction) {
+      if (onPinClick && !itemProps.extraAction && pinnable) {
         // Different displays for pinned vs unpinned
         if (pinned) {
           itemProps.extraAction = {
@@ -85,8 +93,8 @@ export const EuiPinnableListGroup: FunctionComponent<
         } else {
           itemProps.extraAction = {
             ...pinExtraAction,
-            title: pinTitle ? pinTitle(item) : pinnedExtraActionLabel,
-            'aria-label': pinTitle ? pinTitle(item) : pinnedExtraActionLabel,
+            title: pinTitle ? pinTitle(item) : pinExtraActionLabel,
+            'aria-label': pinTitle ? pinTitle(item) : pinExtraActionLabel,
           };
         }
         // Return the item on click

@@ -4,6 +4,7 @@ import React, {
   FunctionComponent,
   ReactElement,
   ReactNode,
+  useEffect,
 } from 'react';
 
 import { EuiFocusTrap } from '../../../../src/components/focus_trap';
@@ -19,6 +20,16 @@ export const GuideFullScreen: FunctionComponent<{
   buttonText = 'Show fullscreen demo',
 }) => {
   const [fullScreen, setFullScreen] = useState(isFullScreen);
+
+  // Watch for fullScreen status and appropriately add/remove body classes for hiding scroll
+  useEffect(() => {
+    if (fullScreen) {
+      document.body.classList.add('guideBody--overflowHidden');
+    }
+    return () => {
+      document.body.classList.remove('guideBody--overflowHidden');
+    };
+  }, [fullScreen]);
 
   return (
     <Fragment>

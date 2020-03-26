@@ -5,6 +5,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideBody {
   background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
+
+  &--overflowHidden {
+    overflow: hidden;
+  }
 }
 
 .guidePage {

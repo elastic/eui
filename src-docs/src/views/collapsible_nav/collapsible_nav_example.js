@@ -40,7 +40,7 @@ export const CollapsibleNavExample = {
         <Link to="/layout/nav-drawer">
           <strong>EuiNavDrawer</strong>
         </Link>{' '}
-        which will be deprecated in the coming months.
+        which will be deprecated soon.
       </p>
       <EuiSpacer size="m" />
     </EuiText>
@@ -77,13 +77,12 @@ export const CollapsibleNavExample = {
       ),
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
-      snippet: `<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>
-{navIsOpen && (
-  <EuiCollapsibleNav
-    docked={navIsDocked}
-    onClose={() => setNavIsOpen(false)}
-  />
-)}`,
+      snippet: `<EuiCollapsibleNav
+  button={<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>}
+  isOpen={navIsOpen}
+  isDocked={navIsDocked}
+  onClose={() => setNavIsOpen(false)}
+/>`,
     },
     {
       title: 'Collapsible nav group',
@@ -163,6 +162,7 @@ export const CollapsibleNavExample = {
   isCollapsible={true}
   initialIsOpen={true}>
   <EuiPinnableListGroup
+    aria-label="Kibana"
     listItems={[
       { label: 'Discover' },
       { label: 'Visualize' }
@@ -205,13 +205,6 @@ export const CollapsibleNavExample = {
             applications will need to create the navigation groups according to
             their context and save the states as is appropriate to their data
             store.
-          </p>
-          <h3>EuiCollapsibleNavToggle</h3>
-          <p>
-            This example also introduces the{' '}
-            <strong>EuiCollapsibleNavToggle</strong> component, which is used to
-            simply wrap around your external nav trigger to show/hide in certain
-            docked and mobile states.
           </p>
         </>
       ),
