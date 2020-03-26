@@ -16,7 +16,7 @@ import { Query } from '../query';
 
 export const createFilter = (
   index: number,
-  config: FilterConfig,
+  config: SearchFilterConfig,
   query: Query,
   onChange: (query: Query) => void
 ) => {
@@ -46,7 +46,7 @@ export const createFilter = (
   }
 };
 
-export type FilterConfig =
+export type SearchFilterConfig =
   | IsFilterConfigType
   | FieldValueSelectionFilterConfigType
   | FieldValueToggleFilterConfigType
