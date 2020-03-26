@@ -1,1 +1,1 @@
-export { createFilter, FilterConfig } from './filters';
+export { createFilter, SearchFilterConfig } from './filters';

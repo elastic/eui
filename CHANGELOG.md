@@ -1,6 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug Fixes**
+
+- Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
+
+## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
+
 - Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
+- Added `useColorPickerState` and `useColorStopsState` utilities ([#3067](https://github.com/elastic/eui/pull/3067))
+- Fixed `EuiSearchBar` related types ([#3147](https://github.com/elastic/eui/pull/3147))
 
 ## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
 
@@ -20,7 +28,6 @@
 
 **Bug Fixes**
 
-- Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
 - Fixed bug in `EuiSuperDatePicker` not showing correct values in relative tab of end date ([#3132](https://github.com/elastic/eui/pull/3132))
 - Fixed bug in `EuiSuperDatePicker` to show correct values of commonly used values in relative tab ([#3106](https://github.com/elastic/eui/pull/3106))
 - Fixed race condition in `EuiIcon` when switching from dynamically fetched components ([#3118](https://github.com/elastic/eui/pull/3118))
