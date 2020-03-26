@@ -10,6 +10,10 @@ import Comment from './comment';
 const commentSource = require('!!raw-loader!./comment');
 const commentHtml = renderToHtml(Comment);
 
+const commentSnippet = `<EuiComment username="janed">
+  {body}
+</EuiComment>`;
+
 export const CommentExample = {
   title: 'Comment',
   sections: [
@@ -48,6 +52,7 @@ export const CommentExample = {
         </div>
       ),
       props: { EuiComment },
+      snippet: commentSnippet,
       demo: <Comment />,
     },
   ],

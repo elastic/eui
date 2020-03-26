@@ -1,7 +1,7 @@
 .euiComment {
   font-size: $euiFontSizeS;
   display: flex;
-  margin: -($euiSize * .5);
+  margin: -($euiSizeS);
   padding-bottom: $euiSize;
   min-height: $euiSize * 5;
 
@@ -27,7 +27,7 @@
   .euiCommentTimeline,
   .euiCommentEvent {
     flex-basis: auto;
-    margin: $euiSize * .5;
+    margin: $euiSizeS;
   }
 
 }

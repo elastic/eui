@@ -15,6 +15,10 @@
       >div {
         margin: $euiSizeXS;
       }
+
+      .euiCommentEvent__headerTimestamp {
+        padding-top: $euiSizeXS * .5;
+      }
     }
 
     align-items: center;
@@ -44,7 +48,7 @@
   .euiCommentEvent__header {
     background-color: $euiColorLightestShade;
     border-bottom: $euiBorderThin;
-    padding: $euiSizeM;
+    padding: $euiSizeS;
     display: flex;
     justify-content: space-between;
     align-items: center;
