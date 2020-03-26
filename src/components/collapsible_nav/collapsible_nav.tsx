@@ -54,7 +54,6 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
     window.innerWidth >= 992
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
-  // const [navIsOpen, setNavIsOpen] = useState(isDocked ? true : isOpen);
 
   const functionToCallOnWindowResize = throttle(() => {
     if (window.innerWidth < 992) {
