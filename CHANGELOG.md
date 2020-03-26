@@ -7,7 +7,7 @@
 - Added `ghost` colored `EuiListGroupItem`, increased overall large size, and fixed focus states
 - Added `color` and `size` props to `EuiListGroup`
 - Added `home` and `menu` glyphs to `EuiIcon`
-- Added simple `euiXScroll` and `euiYScroll` SASS mixins nad CSS utility equivelants
+- Added simple `euiXScroll` and `euiYScroll` SASS mixins and CSS utility equivelants
 
 **Bug Fixes**
 
