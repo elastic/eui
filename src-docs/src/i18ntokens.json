@@ -453,11 +453,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 194,
+        "line": 196,
         "column": 12
       },
       "end": {
-        "line": 197,
+        "line": 199,
         "column": 14
       }
     },
@@ -469,11 +469,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 211,
+        "line": 213,
         "column": 14
       },
       "end": {
-        "line": 217,
+        "line": 219,
         "column": 16
       }
     },
@@ -485,11 +485,27 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 223,
+        "line": 225,
         "column": 14
       },
       "end": {
-        "line": 230,
+        "line": 232,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
+  },
+  {
+    "token": "euiComboBoxOptionsList.delimiterMessage",
+    "defString": "Hit enter to add each item separated by {delimiter}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 240,
+        "column": 14
+      },
+      "end": {
+        "line": 244,
         "column": 16
       }
     },
@@ -501,12 +517,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 237,
-        "column": 12
+        "line": 250,
+        "column": 14
       },
       "end": {
-        "line": 241,
-        "column": 14
+        "line": 254,
+        "column": 16
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -517,11 +533,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 248,
+        "line": 262,
         "column": 10
       },
       "end": {
-        "line": 251,
+        "line": 265,
         "column": 12
       }
     },
@@ -533,11 +549,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 257,
+        "line": 271,
         "column": 10
       },
       "end": {
-        "line": 260,
+        "line": 274,
         "column": 12
       }
     },

@@ -10,12 +10,12 @@ import {
   DefaultItemIconButtonAction,
 } from './action_types';
 import { EuiIconType } from '../icon/icon';
-import { ItemId } from './table_types';
+import { ItemIdResolved } from './table_types';
 
 export interface CollapsedItemActionsProps<T> {
   actions: Array<Action<T>>;
   item: T;
-  itemId: ItemId<T>;
+  itemId: ItemIdResolved;
   actionEnabled: (action: Action<T>) => boolean;
   className?: string;
   onFocus?: (event: FocusEvent) => void;
