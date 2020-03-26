@@ -68,6 +68,7 @@ const tokens = [
   'tokenKeyword',
   'tokenCompSuggester',
   'tokenDenseVector',
+  'tokenText',
 ];
 
 export default () => (

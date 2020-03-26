@@ -45,7 +45,8 @@ export type EuiTokenMapType =
   | 'tokenRankFeature'
   | 'tokenKeyword'
   | 'tokenCompSuggester'
-  | 'tokenDenseVector';
+  | 'tokenDenseVector'
+  | 'tokenText';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -238,5 +239,9 @@ export const TOKEN_MAP: {
   tokenDenseVector: {
     shape: 'square',
     color: 'euiColorVis2',
+  },
+  tokenText: {
+    shape: 'square',
+    color: 'euiColorVis3',
   },
 };

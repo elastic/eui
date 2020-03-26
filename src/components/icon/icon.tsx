@@ -402,6 +402,7 @@ const typeToPathMap = {
   tokenKeyword: 'tokens/tokenKeyword',
   tokenCompSuggester: 'tokens/tokenCompSuggester',
   tokenDenseVector: 'tokens/tokenDenseVector',
+  tokenText: 'tokens/tokenText',
 };
 
 export const TYPES = keysOf(typeToPathMap);
