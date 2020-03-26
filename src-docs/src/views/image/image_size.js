@@ -5,6 +5,15 @@ import { EuiImage, EuiSpacer } from '../../../../src/components';
 export default () => (
   <div>
     <EuiImage
+      hasShadow
+      allowFullScreen
+      size={50}
+      caption="Custom size (50)"
+      alt="Accessible image alt goes here"
+      url="https://source.unsplash.com/1000x1000/?Nature"
+    />
+    <EuiSpacer />
+    <EuiImage
       size="s"
       hasShadow
       allowFullScreen
