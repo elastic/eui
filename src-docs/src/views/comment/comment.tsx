@@ -26,12 +26,18 @@ export default () => (
       {body}
     </EuiComment>
     <EuiComment
-      username="mariob"
+      username="juanab"
       type="update"
       actions={copyAction}
       event="pushed incident X0Z235"
       timestamp="on Jan 3, 2020"
-      timelineIcon={<EuiAvatar size="l" name="Mario" />}
+      timelineIcon={
+        <EuiAvatar
+          imageUrl="https://source.unsplash.com/64x64/?woman"
+          size="l"
+          name="Juana"
+        />
+      }
     />
     <EuiComment
       actions={copyAction}

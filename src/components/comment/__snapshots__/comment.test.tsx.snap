@@ -36,7 +36,12 @@ exports[`EuiComment is rendered 1`] = `
         >
           someuser
         </div>
-         
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+        <div
+          class="euiCommentEvent__headerTimestamp"
+        />
       </div>
       <div
         class="euiCommentEvent__headerActions"
@@ -83,7 +88,14 @@ exports[`EuiComment props event is rendered 1`] = `
         >
           someuser
         </div>
-        commented 
+        <div
+          class="euiCommentEvent__headerEvent"
+        >
+          commented
+        </div>
+        <div
+          class="euiCommentEvent__headerTimestamp"
+        />
       </div>
       <div
         class="euiCommentEvent__headerActions"
@@ -135,7 +147,12 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
         >
           someuser
         </div>
-         
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+        <div
+          class="euiCommentEvent__headerTimestamp"
+        />
       </div>
       <div
         class="euiCommentEvent__headerActions"
@@ -182,7 +199,14 @@ exports[`EuiComment props timestamp is rendered 1`] = `
         >
           someuser
         </div>
-         21 days ago
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+        <div
+          class="euiCommentEvent__headerTimestamp"
+        >
+          21 days ago
+        </div>
       </div>
       <div
         class="euiCommentEvent__headerActions"
@@ -229,7 +253,12 @@ exports[`EuiComment props type is rendered 1`] = `
         >
           someuser
         </div>
-         
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+        <div
+          class="euiCommentEvent__headerTimestamp"
+        />
       </div>
       <div
         class="euiCommentEvent__headerActions"
@@ -276,7 +305,12 @@ exports[`EuiComment renders a body 1`] = `
         >
           someuser
         </div>
-         
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+        <div
+          class="euiCommentEvent__headerTimestamp"
+        />
       </div>
       <div
         class="euiCommentEvent__headerActions"

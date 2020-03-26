@@ -52,7 +52,8 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
       <div className="euiCommentEvent__header">
         <div className="euiCommentEvent__headerData">
           <div className="euiCommentEvent__headerUsername">{username}</div>
-          {event} {timestamp}
+          <div className="euiCommentEvent__headerEvent">{event}</div>
+          <div className="euiCommentEvent__headerTimestamp">{timestamp}</div>
         </div>
         <div className="euiCommentEvent__headerActions">{actions}</div>
       </div>
