@@ -1,7 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Improved `htmlIdGenerator` util ([#3076](https://github.com/elastic/eui/pull/3076))
+
+**Bug Fixes**
+
+- Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
+- Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
+
+## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
+
 - Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
+- Added `useColorPickerState` and `useColorStopsState` utilities ([#3067](https://github.com/elastic/eui/pull/3067))
+- Fixed `EuiSearchBar` related types ([#3147](https://github.com/elastic/eui/pull/3147))
+- Added `prepend` and `append` ability to `EuiSuperSelect` ([#3167](https://github.com/elastic/eui/pull/3167)) 
 
 ## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
 

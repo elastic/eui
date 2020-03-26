@@ -60,6 +60,20 @@ describe('EuiSuperSelect', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('is rendered with a prepend and append', () => {
+      const component = render(
+        <EuiSuperSelect
+          {...requiredProps}
+          options={options}
+          onChange={() => {}}
+          prepend="prepend"
+          append="append"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('select component is rendered', () => {
       const component = render(
         <EuiSuperSelect
