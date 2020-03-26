@@ -6,7 +6,6 @@
   align-items: center;
   transition: background-color $euiAnimSpeedFast;
   position: relative;
-  line-height: $euiSize;
 
   &.euiListGroupItem-isActive,
   &.euiListGroupItem-isClickable:hover {
@@ -64,7 +63,8 @@
 
 .euiListGroupItem__text,
 .euiListGroupItem__button {
-  padding: $euiSizeS;
+  line-height: $euiSizeL;
+  padding: $euiSizeXS;
   display: flex;
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
@@ -130,7 +130,10 @@
 }
 
 .euiListGroupItem--large {
-  line-height: $euiSizeL;
+  .euiListGroupItem__button,
+  .euiListGroupItem__text {
+    line-height: $euiSizeXL;
+  }
 }
 
 .euiListGroupItem--wrapText {

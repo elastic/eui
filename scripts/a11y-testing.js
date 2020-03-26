@@ -19,6 +19,7 @@ const docsPages = async (root, page) => {
     `${root}#/layout/spacer`,
     `${root}#/navigation/breadcrumbs`,
     `${root}#/navigation/context-menu`,
+    `${root}#/navigation/collapsible-nav`,
     `${root}#/navigation/control-bar`,
     `${root}#/navigation/facet`,
     `${root}#/navigation/link`,

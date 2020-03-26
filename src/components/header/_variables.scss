@@ -6,3 +6,6 @@ $euiHeaderBreadcrumbColor: $euiColorDarkestShade;
 // Layout vars
 $euiHeaderHeight: $euiSizeXXL + $euiSizeS;
 $euiHeaderChildSize: $euiHeaderHeight;
+
+// Use the following variable in other components to afford for the fixed header
+$euiHeaderHeightCompensation: $euiHeaderHeight + 1px !default;

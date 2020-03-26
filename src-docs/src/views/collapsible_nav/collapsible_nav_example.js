@@ -102,7 +102,7 @@ export const CollapsibleNavExample = {
             An <strong>EuiCollapsibleNavGroup</strong> adds some basic borders
             and <EuiCode>background</EuiCode> color of <EuiCode>none</EuiCode>,{' '}
             <EuiCode>light</EuiCode>, or <EuiCode>dark</EuiCode>. Give each
-            seaction a heading by providing an optional <EuiCode>title</EuiCode>{' '}
+            section a heading by providing an optional <EuiCode>title</EuiCode>{' '}
             and <EuiCode>iconType</EuiCode>. Make the section collapsible (
             <Link to="/layout/accordion">accordion style</Link>) with{' '}
             <EuiCode language="js">isCollapsible=true</EuiCode>.

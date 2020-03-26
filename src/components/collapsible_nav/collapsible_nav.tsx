@@ -20,7 +20,7 @@ export type EuiCollapsibleNavProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
     children?: ReactNode;
     /**
-     * Keep navigation flyout visible and push `<body>` content via padding
+     * Keeps navigation flyout visible and push `<body>` content via padding
      */
     isDocked?: boolean;
     /**

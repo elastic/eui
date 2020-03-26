@@ -57,7 +57,8 @@ type GroupAsAccordion = EuiCollapsibleNavGroupInterface &
   Omit<EuiAccordionProps, 'id' | 'title'> & {
     /**
      * If `true`, wraps children in the body of an accordion,
-     * requiring the prop `title` to be used as the button
+     * requiring the prop `title` to be used as the button.
+     * When `false`, simply renders a div without any accordion functionality.
      */
     isCollapsible: true;
     /**
@@ -69,7 +70,9 @@ type GroupAsAccordion = EuiCollapsibleNavGroupInterface &
 
 type GroupAsDiv = EuiCollapsibleNavGroupInterface & {
   /**
-   * When `false`, simply renders a div without any accordion functionality
+   * If `true`, wraps children in the body of an accordion,
+   * requiring the prop `title` to be used as the button.
+   * When `false`, simply renders a div without any accordion functionality.
    */
   isCollapsible?: false;
   /**
