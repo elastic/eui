@@ -399,10 +399,14 @@ const typeToPathMap = {
   tokenPercolator: 'tokens/tokenPercolator',
   tokenFlattened: 'tokens/tokenFlattened',
   tokenRankFeature: 'tokens/tokenRankFeature',
+  tokenRankFeatures: 'tokens/tokenRankFeatures',
   tokenKeyword: 'tokens/tokenKeyword',
   tokenCompSuggester: 'tokens/tokenCompSuggester',
   tokenDenseVector: 'tokens/tokenDenseVector',
   tokenText: 'tokens/tokenText',
+  tokenCount: 'tokens/tokenCount',
+  tokenSearchType: 'tokens/tokenSearchType',
+  tokenHistogram: 'tokens/tokenHistogram',
 };
 
 export const TYPES = keysOf(typeToPathMap);

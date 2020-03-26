@@ -65,10 +65,14 @@ const tokens = [
   'tokenPercolator',
   'tokenFlattened',
   'tokenRankFeature',
+  'tokenRankFeatures',
   'tokenKeyword',
   'tokenCompSuggester',
   'tokenDenseVector',
   'tokenText',
+  'tokenCount',
+  'tokenSearchType',
+  'tokenHistogram',
 ];
 
 export default () => (

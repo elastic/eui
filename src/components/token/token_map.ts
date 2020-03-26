@@ -43,10 +43,14 @@ export type EuiTokenMapType =
   | 'tokenPercolator'
   | 'tokenFlattened'
   | 'tokenRankFeature'
+  | 'tokenRankFeatures'
   | 'tokenKeyword'
   | 'tokenCompSuggester'
   | 'tokenDenseVector'
-  | 'tokenText';
+  | 'tokenText'
+  | 'tokenCount'
+  | 'tokenSearchType'
+  | 'tokenHistogram';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -228,6 +232,10 @@ export const TOKEN_MAP: {
     shape: 'square',
     color: 'euiColorVis8',
   },
+  tokenRankFeatures: {
+    shape: 'square',
+    color: 'euiColorVis3',
+  },
   tokenKeyword: {
     shape: 'square',
     color: 'euiColorVis9',
@@ -243,5 +251,17 @@ export const TOKEN_MAP: {
   tokenText: {
     shape: 'square',
     color: 'euiColorVis3',
+  },
+  tokenCount: {
+    shape: 'square',
+    color: 'euiColorVis4',
+  },
+  tokenSearchType: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenHistogram: {
+    shape: 'square',
+    color: 'euiColorVis6',
   },
 };
