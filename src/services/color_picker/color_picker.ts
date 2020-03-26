@@ -1,12 +1,17 @@
 import { useMemo, useState } from 'react';
 
+interface colorStopsType {
+  stop: number;
+  color: string;
+}
+
 const generateRandomColor = () =>
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
   `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
-export const useColorStop = (useRandomColor = false) => {
-  const [addColor, setAddColor] = useState(generateRandomColor());
-  const [colorStops, setColorStops] = useState([
+export const useColorStopsState = (
+  useRandomColor: boolean = false,
+  initialColorStops: colorStopsType[] = [
     {
       stop: 20,
       color: '#54B399',
@@ -19,9 +24,12 @@ export const useColorStop = (useRandomColor = false) => {
       stop: 65,
       color: '#9170B8',
     },
-  ]);
+  ]
+) => {
+  const [addColor, setAddColor] = useState(generateRandomColor());
+  const [colorStops, setColorStops] = useState(initialColorStops);
 
-  const updateColorStops = colorStops => {
+  const updateColorStops = (colorStops: colorStopsType[]) => {
     setColorStops(colorStops);
     if (useRandomColor) {
       setAddColor(generateRandomColor());
@@ -30,10 +38,10 @@ export const useColorStop = (useRandomColor = false) => {
   return [colorStops, updateColorStops, addColor];
 };
 
-export const useColorPicker = (initialColor = '') => {
+export const useColorPickerState = (initialColor = '') => {
   const [color, setColorValue] = useState(initialColor);
   const [isValid, setIsValid] = useState(true);
-  const setColor = (text, { isValid }) => {
+  const setColor = (text: string, { isValid }: { isValid: boolean }) => {
     setColorValue(text);
     setIsValid(isValid);
   };
