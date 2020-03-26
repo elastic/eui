@@ -209,7 +209,7 @@ export default class extends Component {
         />
         <EuiSpacer size="m" />
         <EuiTitle size="xxs">
-          <h3> Primary & amp; multi select </h3>
+          <h3>Primary &amp; multi select</h3>
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiButtonGroup
@@ -223,7 +223,7 @@ export default class extends Component {
         />
         <EuiSpacer size="m" />
         <EuiTitle size="xxs">
-          <h3> Disabled & amp; full width </h3>
+          <h3>Disabled &amp; full width</h3>
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiButtonGroup

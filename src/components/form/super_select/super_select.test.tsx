@@ -12,11 +12,6 @@ jest.mock('../../portal', () => ({
   EuiPortal: ({ children }: any) => children,
 }));
 
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-// jest.mock('../../../services/accessibility/html_id_generator', () => ({
-//   htmlIdGenerator: () => () => 'htmlId',
-// }));
-
 const options = [
   { value: '1', inputDisplay: 'Option #1', describedby: 'generated-id' },
   { value: '2', inputDisplay: 'Option #2', describedby: 'generated-id' },
