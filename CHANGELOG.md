@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `22.1.0`.
+**Bug Fixes**
+
+- Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
 
 ## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
 
