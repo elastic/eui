@@ -14,7 +14,7 @@
 - Fixed `EuiAccordion` icon margins, focus state, and flex issue in IE
 - Fixed `1.1px` height of  `EuiHorizontalRule`
 
-##
+### Extraneous to feature
 
 - Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))
 
