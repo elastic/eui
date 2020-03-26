@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `22.1.0`.
+
+## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
+
 - Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
 - Added `useColorPickerState` and `useColorStopsState` utilities ([#3067](https://github.com/elastic/eui/pull/3067))
 - Fixed `EuiSearchBar` related types ([#3147](https://github.com/elastic/eui/pull/3147))
