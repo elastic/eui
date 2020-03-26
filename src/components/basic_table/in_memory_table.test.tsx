@@ -5,7 +5,7 @@ import { requiredProps } from '../../test';
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { ENTER } from '../../services/key_codes';
 import { SortDirection } from '../../services';
-import { FilterConfig } from '../search_bar/filters';
+import { SearchFilterConfig } from '../search_bar/filters';
 
 interface BasicItem {
   id: number | string;
@@ -662,7 +662,7 @@ describe('EuiInMemoryTable', () => {
             name: 'Name1',
             negatedName: 'Not Name1',
           },
-        ] as FilterConfig[],
+        ] as SearchFilterConfig[],
       },
       selection: {
         onSelectionChange: () => undefined,

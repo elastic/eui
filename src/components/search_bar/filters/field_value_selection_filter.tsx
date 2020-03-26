@@ -10,7 +10,7 @@ import { EuiIcon } from '../../icon';
 import { Query } from '../query';
 import { Clause, Value } from '../query/ast';
 
-interface FieldValueOptionType {
+export interface FieldValueOptionType {
   field?: string;
   value: Value;
   name?: string;
@@ -39,6 +39,7 @@ export interface FieldValueSelectionFilterConfigType {
   noOptionsMessage?: string;
   searchThreshold?: number;
   available?: () => boolean;
+  autoClose?: boolean;
 }
 
 export interface FieldValueSelectionFilterProps {
@@ -46,7 +47,6 @@ export interface FieldValueSelectionFilterProps {
   config: FieldValueSelectionFilterConfigType;
   query: Query;
   onChange: (query: Query) => void;
-  autoClose?: boolean;
 }
 
 const defaults = {
@@ -69,16 +69,10 @@ interface State {
   cachedOptions?: FieldValueOptionType[] | null;
 }
 
-type DefaultProps = Pick<FieldValueSelectionFilterProps, 'autoClose'>;
-
 export class FieldValueSelectionFilter extends Component<
   FieldValueSelectionFilterProps,
   State
 > {
-  static defaultProps: DefaultProps = {
-    autoClose: true,
-  };
-
   private readonly selectItems: EuiFilterSelectItem[];
   private searchInput: HTMLInputElement | null = null;
 
@@ -248,7 +242,9 @@ export class FieldValueSelectionFilter extends Component<
     checked: 'on' | 'off' | undefined
   ) {
     const multiSelect = this.resolveMultiSelect();
-    const { autoClose } = this.props;
+    const {
+      config: { autoClose = true },
+    } = this.props;
 
     // we're closing popover only if the user can only select one item... if the
     // user can select more, we'll leave it open so she can continue selecting
