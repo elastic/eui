@@ -126,7 +126,10 @@
 }
 
 .euiListGroupItem--xSmall {
-  line-height: $euiSizeM;
+  .euiListGroupItem__button,
+  .euiListGroupItem__text {
+    line-height: $euiSize;
+  }
 }
 
 .euiListGroupItem--large {
