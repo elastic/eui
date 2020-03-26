@@ -308,7 +308,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
       value=""
     />
     <div
-      class="euiFormControlLayout euiFormControlLayout--group euiSuperSelectControlWrapper--group"
+      class="euiFormControlLayout euiFormControlLayout--group"
     >
       <label
         class="euiFormLabel euiFormControlLayout__prepend"
@@ -612,7 +612,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
               value="1"
             />
             <EuiFormControlLayout
-              className=""
               compressed={false}
               fullWidth={false}
               icon={
