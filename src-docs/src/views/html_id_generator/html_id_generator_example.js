@@ -110,8 +110,7 @@ export const HtmlIdGeneratorExample = {
       text: (
         <p>
           The <strong>HtmlIdGenerator</strong> is capable of generating an ID
-          with both a specified prefix <strong>and</strong>{' '}
-          suffix.
+          with both a specified prefix <strong>and</strong> suffix.
         </p>
       ),
       snippet: prefixSuffixSnippet,
