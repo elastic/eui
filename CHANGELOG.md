@@ -1,12 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
+
+## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
+
 - Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))
 
 **Bug Fixes**
 
 - Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
 - Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
+- Fixed infinite call stack in `EuiResizeObserver`'s fallback polyfill ([#3180](https://github.com/elastic/eui/pull/3180))
+- Correct `defaultProps` definition in `EuiComboBox` ([#3180](https://github.com/elastic/eui/pull/3180))
 
 ### Feature: EuiCollapsibleNav ([#3019](https://github.com/elastic/eui/pull/3019))
 
