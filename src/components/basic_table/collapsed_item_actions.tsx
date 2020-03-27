@@ -5,8 +5,7 @@ import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { EuiI18n } from '../i18n';
-import { Action, CustomItemAction, DefaultItemAction } from './action_types';
-import { EuiIconType } from '../icon/icon';
+import { Action, CustomItemAction } from './action_types';
 import { ItemId } from './table_types';
 
 export interface CollapsedItemActionsProps<T> {
@@ -121,11 +120,11 @@ export class CollapsedItemActions<T> extends Component<
         } else {
           const { onClick, name, 'data-test-subj': dataTestSubj } = action;
 
-          const buttonIcon = (action as DefaultItemAction<T>)
-            .icon as EuiIconType;
-          const resolveActionIcon = (action: DefaultItemAction<T>) =>
-            isString(action.icon) ? action.icon : action.icon!(item);
-          const icon = buttonIcon ? resolveActionIcon(action) : undefined;
+          const buttonIcon = action.icon;
+          let icon;
+          if (buttonIcon) {
+            icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
+          }
 
           controls.push(
             <EuiContextMenuItem
