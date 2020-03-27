@@ -7,8 +7,8 @@ import { CommonProps } from '../common';
 type GutterSize = 'none' | 's' | 'm';
 const gutterSizeToClassNameMap: { [size in GutterSize]: string } = {
   none: '',
-  s: 'euiListGroup--gutterS',
-  m: 'euiListGroup--gutterM',
+  s: 'euiListGroup--gutterSmall',
+  m: 'euiListGroup--gutterMedium',
 };
 export const GUTTER_SIZES = Object.keys(
   gutterSizeToClassNameMap
@@ -35,6 +35,16 @@ export type EuiListGroupProps = CommonProps &
      * Items to display in this group. See #EuiListGroupItem
      */
     listItems?: EuiListGroupItemProps[];
+
+    /**
+     * Change the colors of all `listItems` at once
+     */
+    color?: EuiListGroupItemProps['color'];
+
+    /**
+     * Change the size of all `listItems` at once
+     */
+    size?: EuiListGroupItemProps['size'];
 
     /**
      * Sets the max-width of the page,
@@ -68,6 +78,8 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   wrapText = false,
   maxWidth = true,
   showToolTips = false,
+  color,
+  size,
   ariaLabelledby,
   ...rest
 }) => {
@@ -105,6 +117,8 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           key={`title-${index}`}
           showToolTip={showToolTips}
           wrapText={wrapText}
+          color={color}
+          size={size}
           {...item}
         />,
       ];
