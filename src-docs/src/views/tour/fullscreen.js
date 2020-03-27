@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
+import { GuideFullScreen } from '../../services';
+
 import {
   EuiButton,
   EuiButtonEmpty,
   EuiColorPicker,
   EuiColorPickerSwatch,
-  EuiFocusTrap,
   EuiPage,
   EuiPageBody,
   EuiPageHeader,
@@ -23,8 +24,6 @@ import {
   EuiTourStep,
   useEuiTour,
 } from '../../../../src/components';
-
-import { keyCodes } from '../../../../src/services';
 
 const demoTourSteps = [
   {
@@ -61,7 +60,6 @@ const tourConfig = {
 
 export default () => {
   const [color, setColor] = useState('#000');
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('query');
   const [
     [euiTourStepOne, euiTourStepTwo, euiTourStepThree, euiTourStepFour],
@@ -72,22 +70,6 @@ export default () => {
   useEffect(() => {
     console.log('Update', reducerState);
   }, [reducerState]);
-
-  const onKeyDown = event => {
-    if (event.keyCode === keyCodes.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.closeFullScreen();
-    }
-  };
-
-  const toggleFullScreen = () => {
-    setIsFullScreen(!isFullScreen);
-  };
-
-  const closeFullScreen = () => {
-    setIsFullScreen(false);
-  };
 
   const onSelectColor = color => {
     setColor(color);
@@ -192,80 +174,62 @@ export default () => {
   ];
 
   return (
-    <Fragment>
-      <EuiButton
-        onClick={toggleFullScreen}
-        iconType="fullScreen"
-        aria-label="Show fullscreen demo">
-        Show fullscreen demo
-      </EuiButton>
-
-      {isFullScreen ? (
-        <EuiFocusTrap>
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              height: '100%',
-              width: '100%',
-              zIndex: 3000,
-            }}
-            onKeyDown={onKeyDown}>
-            <EuiPage style={{ height: '100%' }}>
-              <EuiPageBody>
-                <EuiPageHeader>
-                  <EuiPageHeaderSection>
-                    <EuiTitle size="l">
-                      <h1>My app</h1>
+    <GuideFullScreen>
+      {setIsFullScreen => (
+        <React.Fragment>
+          <EuiPage className="guideFullScreenOverlay" style={{ zIndex: 9000 }}>
+            <EuiPageBody>
+              <EuiPageHeader>
+                <EuiPageHeaderSection>
+                  <EuiTitle size="l">
+                    <h1>My app</h1>
+                  </EuiTitle>
+                </EuiPageHeaderSection>
+                <EuiPageHeaderSection>
+                  <EuiButton
+                    fill
+                    onClick={() => setIsFullScreen(false)}
+                    iconType="exit"
+                    aria-label="Exit fullscreen demo">
+                    Exit fullscreen demo
+                  </EuiButton>
+                </EuiPageHeaderSection>
+              </EuiPageHeader>
+              <EuiPageContent>
+                <EuiPageContentHeader>
+                  <EuiPageContentHeaderSection>
+                    <EuiTitle>
+                      <h2>A new feature to demo</h2>
                     </EuiTitle>
-                  </EuiPageHeaderSection>
-                  <EuiPageHeaderSection>
-                    <EuiButton
-                      fill
-                      onClick={closeFullScreen}
-                      iconType="exit"
-                      aria-label="Exit fullscreen demo">
-                      Exit fullscreen demo
-                    </EuiButton>
-                  </EuiPageHeaderSection>
-                </EuiPageHeader>
-                <EuiPageContent>
-                  <EuiPageContentHeader>
-                    <EuiPageContentHeaderSection>
-                      <EuiTitle>
-                        <h2>A new feature to demo</h2>
-                      </EuiTitle>
-                    </EuiPageContentHeaderSection>
-                  </EuiPageContentHeader>
-                  <EuiPageContentBody>
-                    <EuiTabs>
-                      {tabs.map((tab, index) => (
-                        <EuiTab
-                          id={tab.id}
-                          onClick={() => onTabClick(tab.id)}
-                          isSelected={tab.id === selectedTabId}
-                          key={index}>
-                          {tab.name}
-                        </EuiTab>
-                      ))}
-                    </EuiTabs>
+                  </EuiPageContentHeaderSection>
+                </EuiPageContentHeader>
+                <EuiPageContentBody>
+                  <EuiTabs>
                     {tabs.map((tab, index) => (
-                      <Fragment key={index}>
-                        {tab.id === selectedTabId && (
-                          <div role="tabpanel" aria-labelledby={tab.id}>
-                            {tab.content}
-                          </div>
-                        )}
-                      </Fragment>
+                      <EuiTab
+                        id={tab.id}
+                        onClick={() => onTabClick(tab.id)}
+                        isSelected={tab.id === selectedTabId}
+                        key={index}>
+                        {tab.name}
+                      </EuiTab>
                     ))}
-                  </EuiPageContentBody>
-                </EuiPageContent>
-              </EuiPageBody>
-            </EuiPage>
-          </div>
-        </EuiFocusTrap>
-      ) : null}
-    </Fragment>
+                  </EuiTabs>
+                  {tabs.map((tab, index) => (
+                    <Fragment key={index}>
+                      {tab.id === selectedTabId && (
+                        <div role="tabpanel" aria-labelledby={tab.id}>
+                          {tab.content}
+                        </div>
+                      )}
+                    </Fragment>
+                  ))}
+                </EuiPageContentBody>
+              </EuiPageContent>
+            </EuiPageBody>
+          </EuiPage>
+        </React.Fragment>
+      )}
+    </GuideFullScreen>
   );
 };

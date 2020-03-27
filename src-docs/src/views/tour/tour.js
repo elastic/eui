@@ -25,7 +25,6 @@ const demoTourSteps = [
       </span>
     ),
     anchorRef: 'tourStep2',
-    anchorPosition: 'rightCenter',
   },
   {
     step: 2,
@@ -115,7 +114,8 @@ export default () => {
             step={1}
             stepsTotal={demoTourSteps.length}
             subtitle={state.tourSubtitle}
-            title={demoTourSteps[0].title}>
+            title={demoTourSteps[0].title}
+            anchorPosition="rightUp">
             <EuiTextArea
               placeholder="Placeholder text"
               aria-label="Enter ES SQL query"
