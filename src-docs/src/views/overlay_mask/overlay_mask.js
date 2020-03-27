@@ -42,7 +42,7 @@ export default () => {
 
     return (
       <EuiOverlayMask>
-        <EuiButton onClick={closeModal}> Click Here to close. </EuiButton>
+        <EuiButton onClick={closeModal}>Click this button to close.</EuiButton>
       </EuiOverlayMask>
     );
   }
@@ -64,11 +64,13 @@ export default () => {
 
   return (
     <React.Fragment>
-      <EuiButton onClick={() => openModal(1)}> Empty Overlay. </EuiButton>
+      <EuiButton onClick={() => openModal(1)}>Overlay with onClick</EuiButton>
       <EuiSpacer size="xxl" />
-      <EuiButton onClick={() => openModal(2)}> Overlay With Button. </EuiButton>
+      <EuiButton onClick={() => openModal(2)}>Overlay with button.</EuiButton>
       <EuiSpacer size="xxl" />
-      <EuiButton onClick={() => toggleFlyOut()}>Overlay with flyout.</EuiButton>
+      <EuiButton onClick={() => toggleFlyOut()}>
+        Overlay as a sibling of a flyout.
+      </EuiButton>
     </React.Fragment>
   );
 };
