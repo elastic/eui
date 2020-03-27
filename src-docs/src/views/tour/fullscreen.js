@@ -73,11 +73,13 @@ export default () => {
 
   const onSelectColor = color => {
     setColor(color);
-    actions.goToStep(3);
+    if (reducerState.currentTourStep === 2) {
+      actions.goToStep(3);
+    }
   };
 
   const onTabClick = id => {
-    if (id === 'stat') {
+    if (id === 'stat' && reducerState.currentTourStep === 3) {
       actions.goToStep(4);
     }
     setSelectedTabId(id);

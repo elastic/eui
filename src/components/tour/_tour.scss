@@ -25,10 +25,13 @@
   .euiTour__beacon {
     pointer-events: none;
     position: absolute;
+    opacity: 0;
+    transition: opacity 0s $euiAnimSpeedSlow; // delay time equals EuiPopover animation time
   }
 
   .euiPopover__panelArrow.euiPopover__panelArrow--right {
     .euiTour__beacon {
+      opacity: 1;
       top: $euiPopoverArrowSize / 2;
       left: -$euiPopoverArrowSize * 2;
     }
@@ -36,6 +39,7 @@
 
   .euiPopover__panelArrow.euiPopover__panelArrow--left {
     .euiTour__beacon {
+      opacity: 1;
       top: $euiPopoverArrowSize / 2;
       left: $euiPopoverArrowSize;
     }
@@ -47,6 +51,7 @@
     }
 
     .euiTour__beacon {
+      opacity: 1;
       top: $euiPopoverArrowSize;
       left: $euiPopoverArrowSize / 2;
     }
@@ -54,6 +59,7 @@
 
   .euiPopover__panelArrow.euiPopover__panelArrow--bottom {
     .euiTour__beacon {
+      opacity: 1;
       top: -$euiPopoverArrowSize * 2;
       left: $euiPopoverArrowSize / 2;
     }
