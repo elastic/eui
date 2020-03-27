@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `22.1.0`.
+**Bug Fixes**
+
+- Fixed infinite call stack in `EuiResizeObserver`'s fallback polyfill ([#3180](https://github.com/elastic/eui/pull/3180))
+- Correct `defaultProps` definition in `EuiComboBox` ([#3180](https://github.com/elastic/eui/pull/3180))
 
 ## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
 
