@@ -1,5 +1,21 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+### Feature: EuiCollapsibleNav ([#3019](https://github.com/elastic/eui/pull/3019))
+
+- Added `EuiCollapsibleNav` and `EuiCollapsibleNavGroup` components
+- Added `EuiPinnableListGroup`, an extension of `EuiListGroup`
+- Added `ghost` colored `EuiListGroupItem`, increased overall large size, and fixed focus states
+- Added `color` and `size` props to `EuiListGroup`
+- Added `home` and `menu` glyphs to `EuiIcon`
+- Added simple `euiXScroll` and `euiYScroll` SASS mixins and CSS utility equivelants
+
+**Bug Fixes**
+
+- Fixed `EuiAccordion` icon margins, focus state, and flex issue in IE
+- Fixed `1.1px` height of  `EuiHorizontalRule`
+
+### Extraneous to feature
+
 - Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))
 
 **Bug Fixes**
@@ -7,12 +23,13 @@
 - Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
 - Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
 
+
 ## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
 
 - Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
 - Added `useColorPickerState` and `useColorStopsState` utilities ([#3067](https://github.com/elastic/eui/pull/3067))
 - Fixed `EuiSearchBar` related types ([#3147](https://github.com/elastic/eui/pull/3147))
-- Added `prepend` and `append` ability to `EuiSuperSelect` ([#3167](https://github.com/elastic/eui/pull/3167)) 
+- Added `prepend` and `append` ability to `EuiSuperSelect` ([#3167](https://github.com/elastic/eui/pull/3167))
 
 ## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
 

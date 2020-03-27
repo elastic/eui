@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavGroup is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiCollapsibleNavGroup testClass1 testClass2"
+  data-test-subj="test subject string"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props background dark is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--dark"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props background light is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--light"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props background none is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__heading"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <div
+          aria-hidden="true"
+          data-euiicon-type="bolt"
+        />
+      </div>
+      <div
+        class="euiFlexItem"
+      >
+        <h3
+          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          id="id__title"
+        >
+          Title
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__heading"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <div
+          aria-hidden="true"
+          data-euiicon-type="bolt"
+        />
+      </div>
+      <div
+        class="euiFlexItem"
+      >
+        <h3
+          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          id="id__title"
+        >
+          Title
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__heading"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem"
+      >
+        <h3
+          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          id="id__title"
+        >
+          Title
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props titleElement can change the rendered element to h2 1`] = `
+<div
+  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__heading"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    >
+      <div
+        class="euiFlexItem"
+      >
+        <h2
+          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          id="id__title"
+        >
+          Title
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup props titleSize can be larger 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a title 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+  id="id"
+>
+  <div
+    class="euiCollapsibleNavGroup__children"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
+<div
+  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="id"
+      aria-expanded="false"
+      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__heading"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span
+        class="euiIEFlexWrapFix"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        >
+          <div
+            class="euiFlexItem"
+          >
+            <h3
+              class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+              id="id__title"
+            >
+              Title
+            </h3>
+          </div>
+        </div>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="id"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <div
+          class="euiCollapsibleNavGroup__children"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
