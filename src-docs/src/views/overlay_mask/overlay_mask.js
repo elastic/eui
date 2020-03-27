@@ -42,7 +42,7 @@ export default () => {
 
     return (
       <EuiOverlayMask>
-        <EuiButton onClick={closeModal}>Click this button to close.</EuiButton>
+        <EuiButton onClick={closeModal}>Click this button to close</EuiButton>
       </EuiOverlayMask>
     );
   }
