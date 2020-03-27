@@ -122,6 +122,8 @@ import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_an
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
 
+import { HtmlIdGeneratorExample } from './views/html_id_generator/html_id_generator_example';
+
 import { I18nExample } from './views/i18n/i18n_example';
 
 import { IconExample } from './views/icon/icon_example';
@@ -414,6 +416,7 @@ const navigation = [
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightAndMarkExample,
+      HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
       IsColorDarkExample,
