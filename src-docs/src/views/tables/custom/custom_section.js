@@ -49,10 +49,10 @@ export const section = {
       </p>
       <h3>Responsive extras</h3>
       <p>
-        You must supply a <EuiCode>mobileOptions.header</EuiCode> prop
-        equivalent to the column header on each <strong>EuiTableRowCell</strong>{' '}
-        so that the mobile version will use that to populate the per cell
-        headers.
+        You must supply a <EuiCode language="js">mobileOptions.header</EuiCode>{' '}
+        prop equivalent to the column header on each{' '}
+        <strong>EuiTableRowCell</strong> so that the mobile version will use
+        that to populate the per cell headers.
       </p>
       <p>
         Also, custom table implementations <strong>will not</strong>{' '}

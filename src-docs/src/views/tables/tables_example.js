@@ -10,13 +10,6 @@ import { section as selectionSection } from './selection';
 import { section as footerSection } from './footer';
 import { section as expandingRowsSection } from './expanding_rows';
 import { section as actionsSection } from './actions';
-import {
-  section as inMemorySection,
-  selectionSection as inMemorySelectionSection,
-  searchSection as inMemorySearchSection,
-  searchCallbackSection as inMemorySearchCallbackSection,
-  customSortingSection as inMemoryCustomSortingSection,
-} from './in_memory';
 import { section as customSection } from './custom';
 import { section as mobileSection } from './mobile';
 
@@ -51,11 +44,6 @@ export const TableExample = {
     footerSection,
     expandingRowsSection,
     actionsSection,
-    inMemorySection,
-    inMemorySelectionSection,
-    inMemorySearchSection,
-    inMemorySearchCallbackSection,
-    inMemoryCustomSortingSection,
     autoSection,
     mobileSection,
     customSection,

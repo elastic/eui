@@ -46,12 +46,12 @@ export const DataGridSchemaExample = {
             <EuiCode>numeric, currency, datetime, boolean and json</EuiCode>{' '}
             data. When the <EuiCode>inMemory</EuiCode> prop is in use it will
             automatically try to figure out the best schema based on the{' '}
-            <EuiCode>{'inMemory: {{ level: value }}'}</EuiCode> you set, but
-            this will come with the caveat that you will need to provide and
-            manage sorting outside the component. In general we recommend
-            passing schema information to your columns instead of using
-            auto-detection when you have that knowledge of your data available
-            during ingestion.
+            <EuiCode language="js">{'inMemory:{{ level: value }}'}</EuiCode> you
+            set, but this will come with the caveat that you will need to
+            provide and manage sorting outside the component. In general we
+            recommend passing schema information to your columns instead of
+            using auto-detection when you have that knowledge of your data
+            available during ingestion.
           </p>
           <h2>Defining custom schemas</h2>
           <p>
@@ -61,8 +61,8 @@ export const DataGridSchemaExample = {
             example of a simple custom schema used on the last column below. In
             addition to schemas being useful to map against for cell and
             expansion rendering, any schema will also add a
-            <EuiCode>
-              className=&quot;euiDataGridRowCell--schemaName&quot;
+            <EuiCode language="js">
+              {'className="euiDataGridRowCell--schemaName"'}
             </EuiCode>{' '}
             to each matching cell.
           </p>
@@ -78,7 +78,8 @@ export const DataGridSchemaExample = {
           <p>
             Often the popovers are unnecessary for short form content. In the
             example below we&apos;ve turned them off by setting{' '}
-            <EuiCode>isExpandable=false</EuiCode> on the boolean column.
+            <EuiCode language="js">isExpandable=false</EuiCode> on the boolean
+            column.
           </p>
         </Fragment>
       ),

@@ -207,10 +207,10 @@ export const DataGridStylingExample = {
           Use the <EuiCode>toolbarVisibility.additionalControls</EuiCode> prop
           to pass additional controls to the toolbar. These will always live to
           the left of the full screen button. It will respect the{' '}
-          <EuiCode>toolbarVisibility={'{false}'}</EuiCode> setting and hide when
-          appropriate. Although any node can fit in this space, the
-          recommendation is to use <strong>EuiButtonEmpty</strong> components
-          with the configuration shown in the snippet.
+          <EuiCode language="js">toolbarVisibility={'{false}'}</EuiCode> setting
+          and hide when appropriate. Although any node can fit in this space,
+          the recommendation is to use <strong>EuiButtonEmpty</strong>{' '}
+          components with the configuration shown in the snippet.
         </p>
       ),
       components: { DataGridControls },

@@ -9,7 +9,6 @@ const source = require('!!raw-loader!./in_memory');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'In-memory table',
   source: [
     {
       type: GuideSectionTypes.JS,

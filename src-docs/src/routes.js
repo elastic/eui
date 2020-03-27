@@ -188,6 +188,8 @@ import { SuperDatePickerExample } from './views/super_date_picker/super_date_pic
 
 import { TableExample } from './views/tables/tables_example';
 
+import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
+
 import { TabsExample } from './views/tabs/tabs_example';
 
 import { TextExample } from './views/text/text_example';
@@ -349,6 +351,7 @@ const navigation = [
       DataGridStylingExample,
       DataGridControlColumnsExample,
       TableExample,
+      TableInMemoryExample,
     ].map(example => createExample(example)),
   },
   {

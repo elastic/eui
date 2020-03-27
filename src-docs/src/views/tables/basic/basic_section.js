@@ -73,8 +73,9 @@ export const section = {
           <br />
           <strong>Note:</strong> the basic table will treat any cells that use a{' '}
           <EuiCode>render</EuiCode> function as being{' '}
-          <EuiCode>textOnly: false</EuiCode>. This may cause unnecessary word
-          breaks. Apply <EuiCode>textOnly: true</EuiCode> to ensure it breaks
+          <EuiCode language="js">textOnly: false</EuiCode>. This may cause
+          unnecessary word breaks. Apply{' '}
+          <EuiCode language="js">textOnly: true</EuiCode> to ensure it breaks
           properly.
         </li>
       </ul>
