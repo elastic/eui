@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Allow partial dates to `EuiSuperDatePicker` ([#3108](https://github.com/elastic/eui/pull/3108))
+
 ### Feature: EuiCollapsibleNav ([#3019](https://github.com/elastic/eui/pull/3019))
 
 - Added `EuiCollapsibleNav` and `EuiCollapsibleNavGroup` components
