@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `22.1.1`.
+
+## [`22.1.1`](https://github.com/elastic/eui/tree/v22.1.1)
+
 **Bug Fixes**
 
 - Fixed infinite call stack in `EuiResizeObserver`'s fallback polyfill ([#3180](https://github.com/elastic/eui/pull/3180))
