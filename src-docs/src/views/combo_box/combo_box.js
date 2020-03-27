@@ -54,7 +54,7 @@ export default class extends Component {
     });
   };
 
-  onCreateOption = (searchValue, flattenedOptions) => {
+  onCreateOption = (searchValue, _) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -64,15 +64,6 @@ export default class extends Component {
     const newOption = {
       label: searchValue,
     };
-
-    // Create the option if it doesn't exist.
-    if (
-      flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
-      ) === -1
-    ) {
-      this.options.push(newOption);
-    }
 
     // Select the option.
     this.setState(prevState => ({
