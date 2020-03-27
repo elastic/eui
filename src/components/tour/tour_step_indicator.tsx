@@ -33,7 +33,21 @@ export const EuiTourStepIndicator: FunctionComponent<
   );
 
   let indicatorIcon: ReactNode;
-  if (status === 'complete' || status === 'active') {
+  if (status === 'active') {
+    indicatorIcon = (
+      <EuiI18n token="euiTourStepIndicator.isActive" default="active">
+        {(isActive: string) => (
+          <EuiIcon
+            type="dot"
+            className="euiStepNumber__icon"
+            aria-label={isActive}
+            color="secondary"
+            aria-current="step"
+          />
+        )}
+      </EuiI18n>
+    );
+  } else if (status === 'complete') {
     indicatorIcon = (
       <EuiI18n token="euiTourStepIndicator.isComplete" default="complete">
         {(isComplete: string) => (
@@ -41,7 +55,7 @@ export const EuiTourStepIndicator: FunctionComponent<
             type="dot"
             className="euiStepNumber__icon"
             aria-label={isComplete}
-            color="secondary"
+            color="subdued"
           />
         )}
       </EuiI18n>

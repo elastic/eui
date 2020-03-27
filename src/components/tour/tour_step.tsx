@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiBeacon } from '../beacon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -16,7 +15,7 @@ import {
 } from '../popover';
 import { EuiTitle } from '../title';
 
-import { EuiTourStepIndicator } from './tour_step_indicator';
+import { EuiTourStepIndicator, EuiTourStepStatus } from './tour_step_indicator';
 import { EuiTourStepInterface } from './types';
 
 type PopoverOverrides = 'button' | 'closePopover';
@@ -69,31 +68,19 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
 
   const footer = (
     <EuiFlexGroup responsive={false} justifyContent="spaceBetween">
-      <EuiFlexItem grow={false} aria-labelledby="stepProgress">
-        <EuiI18n
-          token="euiTourStep.stepProgress"
-          values={{ step, stepsTotal }}
-          default={({
-            step,
-            stepsTotal,
-          }: {
-            step: number;
-            stepsTotal: number;
-          }) => `Step ${step} of ${stepsTotal}`}>
-          {(stepProgress: string) => (
-            <EuiScreenReaderOnly>
-              <h6 id="stepProgress">{stepProgress}</h6>
-            </EuiScreenReaderOnly>
-          )}
-        </EuiI18n>
+      <EuiFlexItem grow={false}>
         <ul className="euiTourFooter__stepList">
-          {[...Array(stepsTotal).keys()].map((_, i) => (
-            <EuiTourStepIndicator
-              key={i}
-              number={i + 1}
-              status={step === i + 1 ? 'active' : 'incomplete'}
-            />
-          ))}
+          {[...Array(stepsTotal).keys()].map((_, i) => {
+            let status: EuiTourStepStatus = 'incomplete';
+            if (step === i + 1) {
+              status = 'active';
+            } else if (step <= i) {
+              status = 'complete';
+            }
+            return (
+              <EuiTourStepIndicator key={i} number={i + 1} status={status} />
+            );
+          })}
         </ul>
       </EuiFlexItem>
 
@@ -139,10 +126,10 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       {...rest}>
       <EuiPopoverTitle className="euiTourHeader">
         <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
-          <h6>{subtitle}</h6>
+          <h1>{subtitle}</h1>
         </EuiTitle>
         <EuiTitle size="xxs" className="euiTourHeader__title">
-          <h5>{title}</h5>
+          <h2>{title}</h2>
         </EuiTitle>
       </EuiPopoverTitle>
       <div className="euiTour__content">{content}</div>
