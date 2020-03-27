@@ -13,8 +13,8 @@ jest.mock('../../portal', () => ({
 }));
 
 const options = [
-  { value: '1', inputDisplay: 'Option #1', describedby: 'generated-id' },
-  { value: '2', inputDisplay: 'Option #2', describedby: 'generated-id' },
+  { value: '1', inputDisplay: 'Option #1' },
+  { value: '2', inputDisplay: 'Option #2' },
 ];
 
 describe('EuiSuperSelect', () => {
