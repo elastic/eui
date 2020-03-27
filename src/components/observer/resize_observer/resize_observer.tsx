@@ -57,9 +57,9 @@ const makeCompatibleObserver = (node: Element, callback: () => void) => {
 
   window.addEventListener('resize', callback);
 
+  const _disconnect = observer.disconnect.bind(observer);
   observer.disconnect = () => {
-    observer.disconnect();
-
+    _disconnect();
     window.removeEventListener('resize', callback);
   };
 
