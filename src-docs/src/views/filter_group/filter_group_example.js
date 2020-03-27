@@ -147,7 +147,7 @@ export const FilterGroupExample = {
           the bar to fill its parent&apos;s width add{' '}
           <EuiCode>fullWidth</EuiCode>. This will also set each button to grow.
           If you do not want the button to grow, set{' '}
-          <EuiCode>grow = false</EuiCode>.
+          <EuiCode language="js">grow=false</EuiCode>.
         </p>
       ),
       components: { EuiFilterGroup },

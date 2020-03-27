@@ -289,7 +289,11 @@ export const RangeControlExample = {
             To create colored indicators for certain intervals, pass an array of
             objects that include a <EuiCode>min</EuiCode>,{' '}
             <EuiCode>max</EuiCode> and <EuiCode>color</EuiCode>. Color options
-            are <EuiCode>{JSON.stringify(LEVEL_COLORS, null, 2)}</EuiCode>.
+            are{' '}
+            <EuiCode language="js">
+              {JSON.stringify(LEVEL_COLORS, null, 2)}
+            </EuiCode>
+            .
           </p>
           <p>
             Be sure to then add an <EuiCode>aria-describedby</EuiCode> and match
@@ -331,7 +335,10 @@ export const RangeControlExample = {
       text: (
         <Fragment>
           <p>
-            Passing <EuiCode>showInput=&quot;inputWithPopover&quot;</EuiCode>{' '}
+            Passing{' '}
+            <EuiCode language="js">
+              showInput=&quot;inputWithPopover&quot;
+            </EuiCode>{' '}
             instead of a boolean will only display the inputs until the input is
             interacted with in which case a dropdown will appear displaying the
             actual slider.

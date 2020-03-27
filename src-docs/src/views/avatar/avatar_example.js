@@ -70,8 +70,9 @@ export const AvatarExample = {
           <h3>Types</h3>
           <p>
             The avatar <EuiCode>type</EuiCode>, which primarily defines the
-            shape, is keyworded and can be <EuiCode>&quot;user&quot;</EuiCode>{' '}
-            (default) or <EuiCode>&quot;space&quot;</EuiCode> (for workspaces).
+            shape, is keyworded and can be{' '}
+            <EuiCode language="js">&quot;user&quot;</EuiCode> (default) or{' '}
+            <EuiCode language="js">&quot;space&quot;</EuiCode> (for workspaces).
           </p>
         </div>
       ),

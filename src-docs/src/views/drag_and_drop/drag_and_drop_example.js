@@ -335,7 +335,7 @@ export const DragAndDropExample = {
           <p>
             For cases where collections of <strong>EuiDraggable</strong>{' '}
             elements are static or can be used in multiple places set{' '}
-            <EuiCode>cloneDraggables=true</EuiCode> on the parent{' '}
+            <EuiCode language="js">cloneDraggables=true</EuiCode> on the parent{' '}
             <strong>EuiDroppable</strong>. The <strong>EuiDroppable</strong>{' '}
             becomes disabled (does not accept new <strong>EuiDraggable</strong>{' '}
             elements) in this scenario to avoid mixed content intentions.

@@ -72,7 +72,7 @@ export const CodeExample = {
       demo: <CodeBlock />,
     },
     {
-      title: 'CodeBlock and white-space',
+      title: 'Code block and white-space',
       source: [
         {
           type: GuideSectionTypes.JS,

@@ -277,8 +277,9 @@ export const DatePickerExample = {
         <p>
           Use the <EuiCode>inline</EuiCode> prop to display the date picker
           directly in the page. If you do not need the shadows / popover effect
-          to the date picker then also apply the <EuiCode>shadow=false</EuiCode>{' '}
-          prop as shown in the second example.
+          to the date picker then also apply the{' '}
+          <EuiCode language="js">shadow=false</EuiCode> prop as shown in the
+          second example.
         </p>
       ),
       demo: <Inline />,

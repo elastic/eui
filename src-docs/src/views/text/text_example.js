@@ -52,9 +52,10 @@ export const TextExample = {
           </p>
           <p>
             <strong>EuiText</strong> can ensure proper line-length for
-            readability by setting a <EuiCode>max-width</EuiCode> on the entire
+            readability by setting a{' '}
+            <EuiCode language="sass">max-width</EuiCode> on the entire
             component. To add the max-width setting, set{' '}
-            <EuiCode>grow = false</EuiCode>.
+            <EuiCode language="js">grow=false</EuiCode>.
           </p>
         </div>
       ),

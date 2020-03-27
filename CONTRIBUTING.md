@@ -42,11 +42,11 @@ Always remember to update [documentation site][docs] via the `src-docs` folder a
 
 Here are some formatting guidelines fo writing documentation:
 
-- Use sentence case, always, for page and section titles. Example: `This component does something`.
-- When referencing the component name, wrap it in `<strong>` tags. Example: `<strong>EuiComponent</strong>`.
-- Wrap references to prop names and elements in `<EuiCode>` blocks.
-Example: `<EuiCode>propName</EuiCode>`.
-- When referencing another EUI component, wrap the reference in a link to the component. Example: `<Link to="/component/url><strong>EuiComponent</strong><Link>`.
+- Use sentence case, always, for page and section titles. Example: `This component does something`
+- When referencing the component name, wrap it in `<strong>` tags. Example: `<strong>EuiComponent</strong>`
+- Wrap references to prop names and elements in `<EuiCode>` blocks. Example: `<EuiCode>propName</EuiCode>`
+- If the code reference is more than a single prop name or value, add the language type. Example: `<EuiCode language="js">propName=true</EuiCode>`
+- When referencing another EUI component, wrap the reference in a link to the component. Example: `<Link to="/component/url><strong>EuiComponent</strong><Link>`
 
 Here are our guidelines for updating the `CHANGELOG.md` file:
 

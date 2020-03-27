@@ -104,8 +104,8 @@ export const CardExample = {
             Most of the time, cards should read from top to bottom (vertical).
             However, in some cases, you may want the icon to be to the left of
             the content. In this case, add the prop{' '}
-            <EuiCode>layout=&quot;horizontal&quot;</EuiCode>. Works best when
-            the icon is size <EuiCode>xl</EuiCode>.
+            <EuiCode language="js">layout=&quot;horizontal&quot;</EuiCode>.
+            Works best when the icon is size <EuiCode>xl</EuiCode>.
           </p>
           <EuiCallOut
             color="danger"
@@ -273,8 +273,8 @@ export const CardExample = {
             <EuiCode>selectable</EuiCode> prop. The prop is an object that
             extends <strong>EuiButtonEmpty</strong>. It will apply the button as
             seen below, and passing{' '}
-            <EuiCode>selectable.isSelected = true</EuiCode> will alter the
-            styles of the card and button to look selected.
+            <EuiCode language="js">selectable.isSelected=true</EuiCode> will
+            alter the styles of the card and button to look selected.
           </p>
           <EuiCallOut
             color="warning"

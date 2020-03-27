@@ -395,9 +395,9 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          To allow color opacity via alpha channel, set the{' '}
-          <EuiCode>showAlpha</EuiCode> prop to `true`. This will also display a
-          range slider allowing manual opacity updates.
+          To allow color opacity via alpha channel, set{' '}
+          <EuiCode language="js">showAlpha=true</EuiCode>. This will also
+          display a range slider allowing manual opacity updates.
         </p>
       ),
       snippet: alphaSnippet,

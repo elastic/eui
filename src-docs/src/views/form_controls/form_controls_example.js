@@ -179,9 +179,10 @@ export const FormControlsExample = {
       ],
       text: (
         <p>
-          This component renders a basic HTML <EuiCode>&lt;select&gt;</EuiCode>{' '}
-          element. If you need more customization for how the options and/or
-          selected values render, use the{' '}
+          This component renders a basic HTML{' '}
+          <EuiCode language="html">&lt;select&gt;</EuiCode> element. If you need
+          more customization for how the options and/or selected values render,
+          use the{' '}
           <Link to="/forms/super-select">
             <strong>EuiSuperSelect</strong>
           </Link>
@@ -230,9 +231,9 @@ export const FormControlsExample = {
       text: (
         <p>
           <strong>EuiFilePicker</strong> is a stylized, but generic HTML{' '}
-          <EuiCode>&lt;input type=&quot;file&quot;&gt;</EuiCode> tag. It
-          supports drag and drop as well as on click style selection of files.
-          The example below shows how to grab the files using the{' '}
+          <EuiCode language="html">&lt;input type=&quot;file&quot;&gt;</EuiCode>{' '}
+          tag. It supports drag and drop as well as on click style selection of
+          files. The example below shows how to grab the files using the{' '}
           <EuiLink
             href="https://developer.mozilla.org/en-US/docs/Web/API/FileList"
             target="_blank">
@@ -398,9 +399,9 @@ export const FormControlsExample = {
           <EuiSpacer />
           <p>
             <strong>EuiFormFieldset</strong> simply wraps its children in a{' '}
-            <EuiCode>&lt;fieldset&gt;</EuiCode> with the option to add a{' '}
-            <EuiCode>&lt;legend&gt;</EuiCode> via the <EuiCode>legend</EuiCode>{' '}
-            object prop.
+            <EuiCode language="html">&lt;fieldset&gt;</EuiCode> with the option
+            to add a <EuiCode language="html">&lt;legend&gt;</EuiCode> via the{' '}
+            <EuiCode>legend</EuiCode> object prop.
           </p>
         </Fragment>
       ),
@@ -433,7 +434,10 @@ export const FormControlsExample = {
             These are great for demarcating the input&apos;s metric like
             &quot;px&quot; or &quot;ms&quot;. You can also pass buttons for
             input settings or additional filters. Just be sure to use
-            <EuiCode>&lt;EuiButtonEmpty size=&quot;xs&quot; /&gt;</EuiCode>.
+            <EuiCode language="js">
+              &lt;EuiButtonEmpty size=&quot;xs&quot; /&gt;
+            </EuiCode>
+            .
           </p>
         </Fragment>
       ),

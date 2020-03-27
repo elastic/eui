@@ -100,7 +100,7 @@ export const ProgressExample = {
             options, the background color of the base bar is dropped (since the
             context of width is already known from your wrapping element). For
             the absolute option, make sure that your wrapping element has{' '}
-            <EuiCode>position: relative</EuiCode> applied.
+            <EuiCode language="sass">position: relative</EuiCode> applied.
           </p>
           <EuiCallOut
             title="Note about progress bars over fixed headers"

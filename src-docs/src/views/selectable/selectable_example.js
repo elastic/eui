@@ -173,9 +173,9 @@ export const SelectableExample = {
             Selection can be restricted to a single option at a time with the{' '}
             <EuiCode>singleSelection</EuiCode> prop. Passing{' '}
             <EuiCode>true</EuiCode> allows for 0 or 1 option to be selected,
-            while <EuiCode>&apos;always&apos;</EuiCode> requires 1 option to be
-            selected at all times. The default value is <EuiCode>false</EuiCode>
-            .
+            while <EuiCode language="js">{'"always"'}</EuiCode> requires 1
+            option to be selected at all times. The default value is{' '}
+            <EuiCode>false</EuiCode>.
           </p>
         </Fragment>
       ),
@@ -221,10 +221,10 @@ export const SelectableExample = {
           </p>
           <h3>Flexbox</h3>
           <p>
-            Be aware that <EuiCode>display: flex</EuiCode> with column layout is
-            applied to the wrapping container. This is so that you can opt in to
-            allow the height of the list stretch to fill its container. See the
-            flyout example.
+            Be aware that <EuiCode language="sass">display: flex</EuiCode> with
+            column layout is applied to the wrapping container. This is so that
+            you can opt in to allow the height of the list stretch to fill its
+            container. See the flyout example.
           </p>
         </Fragment>
       ),
@@ -312,9 +312,10 @@ export const SelectableExample = {
           <h3>Selection icons</h3>
           <p>
             You can choose not to display the check and cross icons indicating
-            selection by passing <EuiCode>showIcons=false</EuiCode>. This is
-            useful for instances that navigate elsewhere on selection or hide
-            their selected options from the list.
+            selection by passing{' '}
+            <EuiCode language="js">showIcons=false</EuiCode>. This is useful for
+            instances that navigate elsewhere on selection or hide their
+            selected options from the list.
           </p>
           <h3>Group labels</h3>
           <p>

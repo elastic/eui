@@ -89,7 +89,7 @@ export const SuggestExample = {
       demo: <Suggest />,
     },
     {
-      title: 'Suggest Item',
+      title: 'Suggest item',
       source: [
         {
           type: GuideSectionTypes.JS,

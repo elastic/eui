@@ -156,9 +156,10 @@ export const StatExample = {
           <EuiCode>title</EuiCode> uses the <strong>EuiTitle</strong> component
           and thus its sizing properites. Although all <strong>EuiTitle</strong>{' '}
           sizes are available, suggested sizes include{' '}
-          <EuiCode>`l`, `m`, and `s`</EuiCode>. By default, the size is set to
-          Large (<EuiCode>`l`</EuiCode>). The <EuiCode>description</EuiCode>{' '}
-          label cannot be re-sized via component properties.
+          <EuiCode language="ts">{"'l' | 'm' | 's'"}</EuiCode>. By default, the
+          size is set to large <EuiCode language="ts">{"'l'"}</EuiCode>. The{' '}
+          <EuiCode>description</EuiCode> label cannot be re-sized via component
+          properties.
         </p>
       ),
       snippet: statSizeSnippet,

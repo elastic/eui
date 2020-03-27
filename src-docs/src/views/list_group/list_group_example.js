@@ -203,7 +203,7 @@ export const ListGroupExample = {
           </p>
           <p>
             They also accept options for text size;{' '}
-            <EuiCode>xs | s | m | l</EuiCode>.
+            <EuiCode language="ts">{"'xs' | 's' | 'm' | 'l'"}</EuiCode>.
           </p>
         </>
       ),

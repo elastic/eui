@@ -69,7 +69,7 @@ export const FormLayoutsExample = {
           <strong>EuiForm</strong> component to group{' '}
           <strong>EuiFormRow</strong>s. By default EuiForm will render as a
           simple div unless you pass{' '}
-          <EuiCode>component=&quot;form&quot;</EuiCode>.
+          <EuiCode language="js">component=&quot;form&quot;</EuiCode>.
         </p>
       ),
       props: {
@@ -160,10 +160,14 @@ export const FormLayoutsExample = {
       title: 'Inline',
       text: (
         <p>
-          Inline forms can be made with <EuiCode>FlexGroup</EuiCode>. Apply
-          <EuiCode>grow=false</EuiCode> on any of the items you want to collapse
-          (like this button). Note that the button FormRow component also
-          requires an additional prop because it&rsquo;s missing a label.
+          Inline forms can be made with{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>
+          . Apply <EuiCode language="js">grow=false</EuiCode> on any of the
+          items you want to collapse (like this button). Note that the button
+          FormRow component also requires an additional prop because it&rsquo;s
+          missing a label.
         </p>
       ),
       source: [

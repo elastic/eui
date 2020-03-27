@@ -126,7 +126,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;info&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;info&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -149,7 +149,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;success&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;success&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -172,7 +172,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;warning&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;warning&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -195,7 +195,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;danger&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;danger&quot;</EuiCode>.
         </p>
       ),
       demo: (

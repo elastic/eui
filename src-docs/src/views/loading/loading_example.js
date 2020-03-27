@@ -37,28 +37,6 @@ export const LoadingExample = {
   title: 'Loading',
   sections: [
     {
-      title: 'Kibana',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: loadingKibanaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingKibanaHtml,
-        },
-      ],
-      text: (
-        <p>
-          Logo based loader. Should only be used in very large panels, like
-          bootup screens.
-        </p>
-      ),
-      props: { EuiLoadingKibana },
-      demo: <LoadingKibana />,
-      snippet: '<EuiLoadingKibana size="m" />',
-    },
-    {
       title: 'Elastic',
       source: [
         {
@@ -79,6 +57,28 @@ export const LoadingExample = {
       props: { EuiLoadingElastic },
       demo: <LoadingElastic />,
       snippet: '<EuiLoadingElastic size="m" />',
+    },
+    {
+      title: 'Kibana',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: loadingKibanaSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: loadingKibanaHtml,
+        },
+      ],
+      text: (
+        <p>
+          Logo based loader. Should only be used in very large panels, like
+          bootup screens.
+        </p>
+      ),
+      props: { EuiLoadingKibana },
+      demo: <LoadingKibana />,
+      snippet: '<EuiLoadingKibana size="m" />',
     },
     {
       title: 'Chart',
