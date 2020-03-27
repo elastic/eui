@@ -65,6 +65,8 @@ import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
+import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
+
 import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
@@ -121,6 +123,8 @@ import { HealthExample } from './views/health/health_example';
 import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_and_mark_example';
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
+
+import { HtmlIdGeneratorExample } from './views/html_id_generator/html_id_generator_example';
 
 import { I18nExample } from './views/i18n/i18n_example';
 
@@ -325,6 +329,7 @@ const navigation = [
     items: [
       BreadcrumbsExample,
       ButtonExample,
+      CollapsibleNavExample,
       ContextMenuExample,
       ControlBarExample,
       FacetExample,
@@ -417,6 +422,7 @@ const navigation = [
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightAndMarkExample,
+      HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
       IsColorDarkExample,
