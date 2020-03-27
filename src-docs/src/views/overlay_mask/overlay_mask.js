@@ -69,7 +69,7 @@ export default () => {
       <EuiButton onClick={() => openModal(2)}>Overlay with button</EuiButton>
       <EuiSpacer size="xxl" />
       <EuiButton onClick={() => toggleFlyOut()}>
-        Overlay as a sibling of a flyout.
+        Overlay as a sibling of a flyout
       </EuiButton>
     </React.Fragment>
   );
