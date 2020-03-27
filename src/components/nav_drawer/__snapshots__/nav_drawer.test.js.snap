@@ -5,7 +5,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
   class="euiNavDrawer euiNavDrawer-isCollapsed euiNavDrawer-flyoutIsCollapsed"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--directionRow"
   >
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -266,7 +266,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
   class="euiNavDrawer euiNavDrawer-isCollapsed euiNavDrawer-flyoutIsCollapsed"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--directionRow"
   >
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -473,7 +473,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
   class="euiNavDrawer euiNavDrawer-isCollapsed euiNavDrawer-flyoutIsCollapsed"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--directionRow"
   >
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
