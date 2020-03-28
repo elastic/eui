@@ -68,6 +68,7 @@ _3. Compile and test_
 - Run `yarn compile-icons`
 - Preview your icon locally at `http://localhost:8030/#/display/icons` **
 - Switch the docs to dark mode and verify that the icon is visible (all paths should be filled with the reverse color)
+- Run `yarn run test-unit icon -u` to create/update the jest snapshots
 
 If everything looks good, then commit your changes, push up your branch, and open a PR! :raised_hands:
 
