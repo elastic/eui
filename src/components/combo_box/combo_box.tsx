@@ -115,7 +115,7 @@ interface _EuiComboBoxProps<T>
    * `startsWith`: moves items that start with search value to top of the list;
    * `none`: don't change the sort order of initial object
    */
-  sortMatchesBy?: 'none' | 'startsWith';
+  sortMatchesBy: 'none' | 'startsWith';
   /**
    * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
@@ -178,9 +178,9 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
-    prepend: null,
-    append: null,
-    sortMatchesBy: 'none',
+    prepend: undefined,
+    append: undefined,
+    sortMatchesBy: 'none' as const,
   };
 
   state: EuiComboBoxState<T> = {

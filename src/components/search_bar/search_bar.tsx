@@ -1,10 +1,11 @@
 import React, { Component, ReactElement } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSearchBox, SchemaType, SearchBoxConfigProps } from './search_box';
-import { EuiSearchFilters, SearchFiltersFiltersType } from './search_filters';
+import { EuiSearchBox, SchemaType } from './search_box';
+import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 import { CommonProps } from '../common';
+import { EuiFieldSearchProps } from '../form/field_search';
 
 export { Query, AST as Ast } from './query';
 
@@ -42,12 +43,17 @@ export interface EuiSearchBarProps extends CommonProps {
    Configures the search box. Set `placeholder` to change the placeholder text in the box and
    `incremental` to support incremental (as you type) search.
    */
-  box?: SearchBoxConfigProps;
+  box?: EuiFieldSearchProps & {
+    // Boolean values are not meaningful to this EuiSearchBox, but are allowed so that other
+    // components can use e.g. a true value to mean "auto-derive a schema". See EuiInMemoryTable.
+    // Admittedly, this is a bit of a hack.
+    schema?: SchemaType | boolean;
+  };
 
   /**
    An array of search filters.
    */
-  filters?: SearchFiltersFiltersType;
+  filters?: SearchFilterConfig[];
 
   /**
    * Tools which go to the left of the search bar.

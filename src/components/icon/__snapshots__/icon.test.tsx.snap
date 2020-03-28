@@ -2697,6 +2697,23 @@ exports[`EuiIcon props type help is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type home is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8.13 1.229l5.5 4.47a1 1 0 01.37.777V14a1 1 0 01-1 1H2a1 1 0 01-1-1V6.476a1 1 0 01.37-.776l5.5-4.471a1 1 0 011.26 0zM13 6.476L7.5 2.005 2 6.475V14h11V6.476z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type iInCircle is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -5928,6 +5945,24 @@ exports[`EuiIcon props type memory is rendered 1`] = `
   />
   <path
     d="M0 3v7.05h1v3.698h1v-3.699h12v3.699h1v-3.699h1V3H0zm1 6h14V4H1v5z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type menu is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M0 2h16v2H0V2zm0 5h16v2H0V7zm16 5H0v2h16v-2z"
   />
 </svg>
 `;
