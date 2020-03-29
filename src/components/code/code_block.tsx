@@ -6,6 +6,7 @@ import { EuiCodeSharedProps } from './code';
 
 interface OwnProps extends EuiCodeSharedProps {
   inline?: false;
+  showLineNumbers?: false;
 }
 
 export type EuiCodeBlockProps = CommonProps &
@@ -14,7 +15,8 @@ export type EuiCodeBlockProps = CommonProps &
 
 export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   inline,
+  showLineNumbers,
   ...rest
 }) => {
-  return <EuiCodeBlockImpl inline={false} {...rest} />;
+  return <EuiCodeBlockImpl inline={false} showLineNumbers={showLineNumbers} {...rest} />;
 };

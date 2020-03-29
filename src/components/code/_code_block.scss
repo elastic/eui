@@ -8,7 +8,8 @@
     @include euiScrollBar;
     height: 100%;
     overflow: auto;
-    display: block;
+    display: flex;
+    position: relative;
   }
 
   .euiCodeBlock__pre--whiteSpacePre {
@@ -49,6 +50,11 @@
       padding: $euiSizeXL !important;
     }
 
+    .euiCodeBlock__lineNumbers {
+      margin: -$euiSizeXL !important;
+      margin-right: $euiSizeXL !important;
+    }
+
     .euiCodeBlock__controls {
       top: $euiSizeXS;
       right: $euiSizeXS;
@@ -75,6 +81,10 @@
     .euiCodeBlock__pre {
       padding: $euiSizeS;
     }
+    .euiCodeBlock__lineNumbers {
+      margin: -$euiSizeS;
+      margin-right: $euiSizeS;
+    }
 
     .euiCodeBlock__controls {
       top: $euiSizeS;
@@ -91,6 +101,11 @@
     .euiCodeBlock__pre {
       padding: $euiSize;
     }
+    .euiCodeBlock__lineNumbers {
+      margin: -$euiSize;
+      margin-right: $euiSize;
+    }
+
 
     .euiCodeBlock__controls {
       top: $euiSize;
@@ -107,6 +122,11 @@
     .euiCodeBlock__pre {
       padding: $euiSizeL;
     }
+    .euiCodeBlock__lineNumbers {
+      margin: -$euiSizeL;
+      margin-right: $euiSizeL;
+    }
+
 
     .euiCodeBlock__controls {
       top: $euiSizeL;
@@ -260,4 +280,29 @@
   .hljs-link {
     text-decoration: underline;
   }
+
+
+
+
+
+  .euiCodeBlock__lineNumbers{
+    @include euiCodeFont;
+    width: auto;
+    padding: inherit;
+    height: inherit;
+
+    color: $euiTextColor;
+
+    padding-left: 10px;
+    padding-right: 6px;
+    
+    line-height: $euiLineHeight;
+    font-weight: $euiFontWeightRegular;
+    user-select: none;
+    text-align: right;
+    font-size: inherit;
+    border-right:solid 1px $euiColorLightShade;
+    opacity: .7;
+  }
+
 }

@@ -22,6 +22,7 @@ export default () => (
       paddingSize="m"
       color="dark"
       overflowHeight={300}
+      showLineNumbers
       isCopyable>
       {jsCode}
     </EuiCodeBlock>

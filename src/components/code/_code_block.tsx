@@ -61,6 +61,11 @@ interface Props {
    * `pre-wrap` respects line breaks/white space but does force them to wrap the line when necessary.
    */
   whiteSpace?: 'pre' | 'pre-wrap';
+
+  /**
+   * Specifies whether to show line numbers or not.
+   */ 
+  showLineNumbers?: boolean;
 }
 
 interface State {
@@ -77,7 +82,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     paddingSize: 'l',
     fontSize: 's',
     isCopyable: false,
-    whiteSpace: 'pre-wrap',
+    whiteSpace: 'pre-wrap'
   };
 
   constructor(props: Props) {
@@ -160,8 +165,10 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
       transparentBackground,
       isCopyable,
       whiteSpace,
+      showLineNumbers,
       ...otherProps
     } = this.props;
+
 
     const classes = classNames(
       'euiCodeBlock',
@@ -171,6 +178,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
         'euiCodeBlock--transparentBackground': transparentBackground,
         'euiCodeBlock--inline': inline,
         'euiCodeBlock--hasControls': isCopyable || overflowHeight,
+        'euiCodeBlock--lineNumbers': showLineNumbers
       },
       className
     );
@@ -197,6 +205,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
         {...otherProps}
       />
     );
+
 
     const wrapperProps = {
       className: classes,
@@ -320,20 +329,46 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
       return fullScreenDisplay;
     };
 
+    const getLineNumbers = () => {
+      const numLines = this.code ? this.code.innerHTML.trim().split(/\r\n|\r|\n/).length : 0;
+      const lines = [];
+
+      for(let i=1; i<=numLines; i++){
+        lines.push(
+          <li key={i} ><span>{i}</span></li>
+        )
+      }
+
+      return (
+        <div className="euiCodeBlock__lineNumbers">
+          <ul>
+            {lines}
+          </ul>
+        </div>
+      )
+    }
+
+
     return (
       <>
         {createPortal(children, this.codeTarget)}
         <EuiInnerText fallback="">
           {(innerTextRef, innerText) => {
             const codeBlockControls = getCodeBlockControls(innerText);
+            const lineNumbers = showLineNumbers ? getLineNumbers() : "";
+            
             return (
               <div {...wrapperProps}>
+                
+
                 <pre
                   ref={innerTextRef}
                   style={optionalStyles}
                   className={preClasses}>
+                  {lineNumbers}
                   {codeSnippet}
                 </pre>
+                  
 
                 {/*
                 If the below fullScreen code renders, it actually attaches to the body because of
