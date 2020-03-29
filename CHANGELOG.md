@@ -1,5 +1,51 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
+
+## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
+
+- Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))
+
+**Bug Fixes**
+
+- Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
+- Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
+
+### Feature: EuiCollapsibleNav ([#3019](https://github.com/elastic/eui/pull/3019))
+
+- Added `EuiCollapsibleNav` and `EuiCollapsibleNavGroup` components
+- Added `EuiPinnableListGroup`, an extension of `EuiListGroup`
+- Added `ghost` colored `EuiListGroupItem`, increased overall large size, and fixed focus states
+- Added `color` and `size` props to `EuiListGroup`
+- Added `home` and `menu` glyphs to `EuiIcon`
+- Added simple `euiXScroll` and `euiYScroll` SASS mixins and CSS utility equivelants
+
+**Bug Fixes**
+
+- Fixed `EuiAccordion` icon margins, focus state, and flex issue in IE
+- Fixed `1.1px` height of  `EuiHorizontalRule`
+
+## [`22.1.1`](https://github.com/elastic/eui/tree/v22.1.1)
+
+**Bug Fixes**
+
+- Fixed infinite call stack in `EuiResizeObserver`'s fallback polyfill ([#3180](https://github.com/elastic/eui/pull/3180))
+- Correct `defaultProps` definition in `EuiComboBox` ([#3180](https://github.com/elastic/eui/pull/3180))
+
+## [`22.1.0`](https://github.com/elastic/eui/tree/v22.1.0)
+
+- Added `delimiter` prop to `EuiComboBox` ([#3104](https://github.com/elastic/eui/pull/3104))
+- Added `useColorPickerState` and `useColorStopsState` utilities ([#3067](https://github.com/elastic/eui/pull/3067))
+- Fixed `EuiSearchBar` related types ([#3147](https://github.com/elastic/eui/pull/3147))
+- Added `prepend` and `append` ability to `EuiSuperSelect` ([#3167](https://github.com/elastic/eui/pull/3167))
+
+**Bug Fixes**
+
+- Fixed `EuiNavDrawer` scrolling issue on mobile ([#3174](https://github.com/elastic/eui/pull/3174))
+
+## [`22.0.0`](https://github.com/elastic/eui/tree/v22.0.0)
+
+- Replaced various `lodash` functions with native functions ([#3053](https://github.com/elastic/eui/pull/3053))
 - Added `whiteSpace ` prop to `EuiCodeBlock` ([#3103](https://github.com/elastic/eui/pull/3103))
 - Added `sortMatchesBy` prop for `EuiComboBox` ([#3089](https://github.com/elastic/eui/pull/3089))
 - Added `prepend` and `append` ability to `EuiFieldPassword` ([#3122](https://github.com/elastic/eui/pull/3122))
@@ -16,6 +62,7 @@
 **Bug Fixes**
 
 - Fixed bug in `EuiSuperDatePicker` that required two clicks to focus input in relative tab  ([#3154](https://github.com/elastic/eui/pull/3154))
+- Fixed bug in `EuiSuperDatePicker` not showing correct values in relative tab of end date ([#3132](https://github.com/elastic/eui/pull/3132))
 - Fixed bug in `EuiSuperDatePicker` to show correct values of commonly used values in relative tab ([#3106](https://github.com/elastic/eui/pull/3106))
 - Fixed race condition in `EuiIcon` when switching from dynamically fetched components ([#3118](https://github.com/elastic/eui/pull/3118))
 - Fixed the issue that `EuiResizeObserver` fallback did not properly listen to pure window resizing ([#3088](https://github.com/elastic/eui/pull/3088))

@@ -25,12 +25,13 @@ const sizeToClassNameMap: { [size in ItemSize]: string } = {
 };
 export const SIZES = Object.keys(sizeToClassNameMap) as ItemSize[];
 
-type Color = 'inherit' | 'primary' | 'text' | 'subdued';
+type Color = 'inherit' | 'primary' | 'text' | 'subdued' | 'ghost';
 const colorToClassNameMap: { [color in Color]: string } = {
   inherit: '',
   primary: 'euiListGroupItem--primary',
   text: 'euiListGroupItem--text',
   subdued: 'euiListGroupItem--subdued',
+  ghost: 'euiListGroupItem--ghost',
 };
 export const COLORS = Object.keys(colorToClassNameMap) as Color[];
 
@@ -38,7 +39,7 @@ export type EuiListGroupItemProps = CommonProps &
   ExclusiveUnion<
     ExclusiveUnion<
       ButtonHTMLAttributes<HTMLButtonElement>,
-      AnchorHTMLAttributes<HTMLAnchorElement>
+      Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
     >,
     HTMLAttributes<HTMLSpanElement>
   > & {
@@ -48,7 +49,7 @@ export type EuiListGroupItemProps = CommonProps &
     size?: ItemSize;
     /**
      * By default the item will inherit the color of its wrapper (button/link/span),
-     * otherwise pass on of the acceptable options
+     * otherwise pass one of the acceptable options
      */
     color?: Color;
 
