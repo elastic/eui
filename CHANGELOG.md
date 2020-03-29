@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Improved edge case for EuiPopover arrow subpixel rendering bug ([#3188](https://github.com/elastic/eui/pull/3188))
 - Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
 
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
