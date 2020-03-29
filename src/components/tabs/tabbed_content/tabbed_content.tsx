@@ -110,8 +110,13 @@ export class EuiTabbedContent extends Component<
     }
   }
 
-  initializeFocus = () => {
-    if (!this.state.inFocus && this.props.autoFocus === 'selected') {
+  initializeFocus = (focusEvent: React.FocusEvent<HTMLDivElement>) => {
+    const target = focusEvent.target! as HTMLDivElement;
+    if (
+      !this.state.inFocus &&
+      this.props.autoFocus === 'selected' &&
+      target.tagName !== 'INPUT'
+    ) {
       // Must wait for setState to finish before calling `.focus()`
       // as the focus call triggers a blur on the first tab
       this.setState({ inFocus: true }, () => {

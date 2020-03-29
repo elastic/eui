@@ -106,9 +106,6 @@ export class EuiRelativeTab extends Component {
                     value={this.state.count}
                     onChange={this.onCountChange}
                     isInvalid={isInvalid}
-                    onMouseDown={e => {
-                      e.target.focus();
-                    }}
                   />
                 </EuiFormRow>
               )}
