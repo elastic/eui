@@ -10,6 +10,7 @@
 
 - Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
 - Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
+- Pass title and aria attributes to `EuiToken`'s icon element ([#3195](https://github.com/elastic/eui/pull/3195)) 
 
 ### Feature: EuiCollapsibleNav ([#3019](https://github.com/elastic/eui/pull/3019))
 
