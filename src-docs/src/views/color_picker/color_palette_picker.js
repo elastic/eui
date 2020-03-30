@@ -107,8 +107,6 @@ export const ColorPalettePicker = () => {
   const [colorStops, setColorStops] = useColorStopsState(true);
   const [isShowing, setIsShowing] = useState(false);
 
-  console.log('basicExample', basicExample);
-
   const onBasicPaletteChange = value => {
     setBasicPalette(value);
   };
