@@ -12,6 +12,7 @@ import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { EuiI18n } from '../../../i18n';
 import { timeUnits } from '../time_units';
 import { EuiScreenReaderOnly } from '../../../accessibility';
+import { parseTimeParts } from './quick_select_utils';
 
 const LAST = 'last';
 const NEXT = 'next';
@@ -29,10 +30,15 @@ export class EuiQuickSelect extends Component {
     super(props);
 
     const { timeTense, timeValue, timeUnits } = this.props.prevQuickSelect;
+    const {
+      timeTenseDefault,
+      timeValueDefault,
+      timeUnitsDefault,
+    } = parseTimeParts(this.props.start, this.props.end);
     this.state = {
-      timeTense: timeTense ? timeTense : LAST,
-      timeValue: timeValue ? timeValue : 15,
-      timeUnits: timeUnits ? timeUnits : 'm',
+      timeTense: timeTense ? timeTense : timeTenseDefault,
+      timeValue: timeValue ? timeValue : timeValueDefault,
+      timeUnits: timeUnits ? timeUnits : timeUnitsDefault,
     };
   }
 

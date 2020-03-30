@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { EuiColorPicker } from '../../../../src/components';
-import { useColorPicker } from './utils';
+import { useColorPickerState } from '../../../../src/services';
 
 export const Inline = () => {
-  const [color, setColor, errors] = useColorPicker('#D36086');
+  const [color, setColor, errors] = useColorPickerState('#D36086');
   return (
     <EuiColorPicker
       onChange={setColor}

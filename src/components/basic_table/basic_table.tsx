@@ -53,6 +53,7 @@ import {
   ItemId,
   EuiTableSelectionType,
   EuiTableSortingType,
+  ItemIdResolved,
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
@@ -863,7 +864,7 @@ export class EuiBasicTable<T = any> extends Component<
     const cells = [];
 
     const { itemId: itemIdCallback } = this.props;
-    const itemId = getItemId(item, itemIdCallback) || rowIndex;
+    const itemId: ItemIdResolved = getItemId(item, itemIdCallback) || rowIndex;
     const selected = !selection
       ? false
       : this.state.selection &&
@@ -1021,7 +1022,7 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderItemActionsCell(
-    itemId: ItemId<T>,
+    itemId: ItemIdResolved,
     item: T,
     column: EuiTableActionsColumnType<T>,
     columnIndex: number

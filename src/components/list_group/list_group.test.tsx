@@ -15,6 +15,7 @@ const someListItems: EuiListGroupItemProps[] = [
     extraAction: {
       iconType: 'bell',
       alwaysShow: true,
+      'aria-label': 'bell',
     },
   },
   {
@@ -22,6 +23,11 @@ const someListItems: EuiListGroupItemProps[] = [
     onClick: e => {
       console.log('Visualize clicked', e);
     },
+  },
+  {
+    label: 'Active link',
+    isActive: true,
+    href: '#',
   },
   {
     label: 'Link with href',
@@ -36,10 +42,26 @@ describe('EuiListGroup', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('is rendered with listItems', () => {
-    const component = render(<EuiListGroup listItems={someListItems} />);
+  describe('listItems', () => {
+    test('is rendered', () => {
+      const component = render(<EuiListGroup listItems={someListItems} />);
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('is rendered with color', () => {
+      const component = render(
+        <EuiListGroup color="primary" listItems={someListItems} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('is rendered with size', () => {
+      const component = render(<EuiListGroup color="primary" size="xs" />);
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('props', () => {

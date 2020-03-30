@@ -2,11 +2,11 @@
 
 exports[`EuiToken is rendered 1`] = `
 <span
-  aria-label="aria-label"
   class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div
+    aria-label="aria-label"
     data-euiicon-type="dot"
   />
 </span>
