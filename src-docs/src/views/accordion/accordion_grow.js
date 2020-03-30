@@ -40,7 +40,7 @@ const Rows = () => {
           Decrease height to {counter - 1} item{counter > 2 && 's'}
         </EuiButton>
       </p>
-      <ul i={listId}>{rows}</ul>
+      <ul id={listId}>{rows}</ul>
     </EuiText>
   );
 };
