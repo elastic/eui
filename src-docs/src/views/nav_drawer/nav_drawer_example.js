@@ -43,11 +43,10 @@ export const NavDrawerExample = {
               Providing a <EuiCode>flyoutMenu</EuiCode> prop on the{' '}
               <EuiCode>listItems</EuiCode> object of an{' '}
               <EuiCode>EuiNavDrawerGroup</EuiCode> will result in that link
-              opening a secondary menu. Note that this will also
-              override the <EuiCode>onClick</EuiCode> event. 
-              For more details about other props
-              available for the <EuiCode>listItems</EuiCode> object, please refer to{' '}
-              <EuiCode>EuiListGroupItem</EuiCode>.
+              opening a secondary menu. Note that this will also override the{' '}
+              <EuiCode>onClick</EuiCode> event. For more details about other
+              props available for the <EuiCode>listItems</EuiCode> object,
+              please refer to <EuiCode>EuiListGroupItem</EuiCode>.
             </p>
           </EuiCallOut>
         </div>
