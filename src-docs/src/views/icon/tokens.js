@@ -67,10 +67,10 @@ const tokens = [
   'tokenRankFeature',
   'tokenRankFeatures',
   'tokenKeyword',
-  'tokenCompSuggester',
+  'tokenCompletionSuggester',
   'tokenDenseVector',
   'tokenText',
-  'tokenCount',
+  'tokenTokenCount',
   'tokenSearchType',
   'tokenHistogram',
 ];

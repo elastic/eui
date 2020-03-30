@@ -45,10 +45,10 @@ export type EuiTokenMapType =
   | 'tokenRankFeature'
   | 'tokenRankFeatures'
   | 'tokenKeyword'
-  | 'tokenCompSuggester'
+  | 'tokenCompletionSuggester'
   | 'tokenDenseVector'
   | 'tokenText'
-  | 'tokenCount'
+  | 'tokenTokenCount'
   | 'tokenSearchType'
   | 'tokenHistogram';
 
@@ -240,7 +240,7 @@ export const TOKEN_MAP: {
     shape: 'square',
     color: 'euiColorVis9',
   },
-  tokenCompSuggester: {
+  tokenCompletionSuggester: {
     shape: 'square',
     color: 'euiColorVis1',
   },
@@ -252,7 +252,7 @@ export const TOKEN_MAP: {
     shape: 'square',
     color: 'euiColorVis3',
   },
-  tokenCount: {
+  tokenTokenCount: {
     shape: 'square',
     color: 'euiColorVis4',
   },

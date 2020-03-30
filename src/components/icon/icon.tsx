@@ -401,10 +401,10 @@ const typeToPathMap = {
   tokenRankFeature: 'tokens/tokenRankFeature',
   tokenRankFeatures: 'tokens/tokenRankFeatures',
   tokenKeyword: 'tokens/tokenKeyword',
-  tokenCompSuggester: 'tokens/tokenCompSuggester',
+  tokenCompletionSuggester: 'tokens/tokenCompletionSuggester',
   tokenDenseVector: 'tokens/tokenDenseVector',
   tokenText: 'tokens/tokenText',
-  tokenCount: 'tokens/tokenCount',
+  tokenTokenCount: 'tokens/tokenTokenCount',
   tokenSearchType: 'tokens/tokenSearchType',
   tokenHistogram: 'tokens/tokenHistogram',
 };
