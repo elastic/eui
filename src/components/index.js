@@ -47,6 +47,8 @@ export {
   EuiSaturation,
 } from './color_picker';
 
+export { EuiColorPalettePicker } from './color_palette_picker';
+
 export { EuiComboBox } from './combo_box';
 
 export { EuiContext, EuiI18nConsumer } from './context';

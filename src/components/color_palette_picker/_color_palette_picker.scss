@@ -1,0 +1,20 @@
+.euiColorPalettePicker {
+  &__colorContainer {
+    display: flex;
+    flex-direction: row;
+    border-radius: $euiBorderRadius;
+    overflow: hidden;
+    height: $euiSizeS;
+    border: $euiBorderThin;
+  }
+
+  &__colorStop {
+    flex: 1;
+    width: auto;
+    height: $euiSizeS;
+  }
+
+  &__paletteTitle {
+    min-width: $euiSizeXL * 3;
+  }
+}

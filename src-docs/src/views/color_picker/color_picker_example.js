@@ -7,6 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiColorPicker,
+  EuiColorPalettePicker,
   EuiColorStops,
   EuiSpacer,
   EuiText,
@@ -21,6 +22,12 @@ const colorPickerSnippet = `<EuiColorPicker
   color={chosenColor}
   isInvalid={hasErrors}
 />
+`;
+
+import { ColorPalettePicker } from './color_palette_picker';
+const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
+const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
+const colorPalettePickerSnippet = `<EuiColorPalettePicker />
 `;
 
 import { ColorStops } from './color_stops';
@@ -246,9 +253,10 @@ export const ColorPickerExample = {
     <React.Fragment>
       <EuiText>
         <p>
-          Two components exist to aid color selection:{' '}
-          <EuiCode>EuiColorPicker</EuiCode> and <EuiCode>EuiColorStops</EuiCode>
-          .
+          Three components exist to aid color selection:{' '}
+          <EuiCode>EuiColorPicker</EuiCode>,{' '}
+          <EuiCode>EuiColorPalettePicker</EuiCode> and{' '}
+          <EuiCode>EuiColorStops</EuiCode>.
         </p>
       </EuiText>
       <EuiSpacer />
@@ -289,6 +297,59 @@ export const ColorPickerExample = {
       props: { EuiColorPicker },
       snippet: colorPickerSnippet,
       demo: <ColorPicker />,
+    },
+    {
+      title: 'Color Palette picker',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Use <EuiCode>ColorPalettePicker</EuiCode> to apply color to data
+              like maps, bar charts or any other type of data visualization.
+              This component is perfect to assign colors automatically without
+              mapping the colors to a value or category.
+            </p>
+            <p>To display palettes simply pass an array of objects with:</p>
+            <ul>
+              <li>
+                <EuiCode>value</EuiCode>: a unique value
+              </li>
+              <li>
+                <EuiCode>title</EuiCode>: the name of your palette (not
+                required)
+              </li>
+              <li>
+                <EuiCode>type</EuiCode>: specify if your palette is a{' '}
+                <EuiCode>gradient</EuiCode>
+                or <EuiCode>stops</EuiCode>
+              </li>
+              <li>
+                <EuiCode>palette</EuiCode>: if your palette is a gradient a CSS
+                linear gradient or if it&apos;s <EuiCode>stops</EuiCode> pass an
+                array of hexadecimals
+              </li>
+            </ul>
+            <p>
+              When you need to create a custom palette it&apos;s recommended to
+              prepend a button and trigger an <EuiCode>EuiModal</EuiCode> with
+              all the logic to create the palette.
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorPalettePickerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorPalettePickerHtml,
+        },
+      ],
+      props: { EuiColorPalettePicker },
+      snippet: colorPalettePickerSnippet,
+      demo: <ColorPalettePicker />,
     },
     {
       title: 'Color stops',
