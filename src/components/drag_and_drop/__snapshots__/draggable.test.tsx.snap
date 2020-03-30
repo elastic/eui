@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiDraggable can be given ReactElement children 1`] = `
-"<div data-rbd-droppable-id=\\"testDroppable\\" data-rbd-droppable-context-id=\\"0\\"
-data-test-subj=\\"droppable\\" class=\\"euiDroppable euiDroppable--noGrow\\">
-  <div data-rbd-draggable-context-id=\\"0\\" data-rbd-draggable-id=\\"testDraggable\\"
-  tabindex=\\"0\\" role=\\"button\\" aria-describedby=\\"rbd-hidden-text-0-hidden-text-0\\"
-  data-rbd-drag-handle-draggable-id=\\"testDraggable\\" data-rbd-drag-handle-context-id=\\"0\\"
-  draggable=\\"false\\" data-test-subj=\\"draggable\\" class=\\"euiDraggable\\">
+"<div data-react-beautiful-dnd-droppable=\\"0\\" data-test-subj=\\"droppable\\"
+class=\\"euiDroppable euiDroppable--noGrow\\">
+  <div data-react-beautiful-dnd-draggable=\\"0\\" tabindex=\\"0\\" data-react-beautiful-dnd-drag-handle=\\"0\\"
+  aria-roledescription=\\"Draggable item. Press space bar to lift\\" draggable=\\"false\\"
+  data-test-subj=\\"draggable\\" class=\\"euiDraggable\\">
     <div class=\\"euiDraggable__item\\">Hello</div>
   </div>
   <div class=\\"euiDroppable__placeholder\\"></div>
@@ -16,12 +15,11 @@ data-test-subj=\\"droppable\\" class=\\"euiDroppable euiDroppable--noGrow\\">
 exports[`EuiDraggable can be given ReactElement children 2`] = `undefined`;
 
 exports[`EuiDraggable is rendered 1`] = `
-"<div data-rbd-droppable-id=\\"testDroppable\\" data-rbd-droppable-context-id=\\"0\\"
-data-test-subj=\\"droppable\\" class=\\"euiDroppable euiDroppable--noGrow\\">
-  <div data-rbd-draggable-context-id=\\"0\\" data-rbd-draggable-id=\\"testDraggable\\"
-  tabindex=\\"0\\" role=\\"button\\" aria-describedby=\\"rbd-hidden-text-0-hidden-text-0\\"
-  data-rbd-drag-handle-draggable-id=\\"testDraggable\\" data-rbd-drag-handle-context-id=\\"0\\"
-  draggable=\\"false\\" data-test-subj=\\"draggable\\" class=\\"euiDraggable\\">
+"<div data-react-beautiful-dnd-droppable=\\"0\\" data-test-subj=\\"droppable\\"
+class=\\"euiDroppable euiDroppable--noGrow\\">
+  <div data-react-beautiful-dnd-draggable=\\"0\\" tabindex=\\"0\\" data-react-beautiful-dnd-drag-handle=\\"0\\"
+  aria-roledescription=\\"Draggable item. Press space bar to lift\\" draggable=\\"false\\"
+  data-test-subj=\\"draggable\\" class=\\"euiDraggable\\">
     <div class=\\"euiDraggable__item\\">Hello</div>
   </div>
   <div class=\\"euiDroppable__placeholder\\"></div>
