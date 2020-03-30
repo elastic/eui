@@ -3,6 +3,7 @@
 - Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
 - Updated pagination prop descriptions for `EuiInMemoryTable` ([#3142](https://github.com/elastic/eui/pull/3142))
 - Added `title` and `aria` attributes to `EuiToken`'s icon element ([#3195](https://github.com/elastic/eui/pull/3195))
+- Added new Elasticsearch token types ([58036](https://github.com/elastic/kibana/issues/58036))
 
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
 
@@ -61,7 +62,6 @@
 - Upgraded `react-beautiful-dnd` to v13 ([#3064](https://github.com/elastic/eui/pull/3064))
 - Fixed `EuiPagination` vertical alignment of the text when used as `compressed` ([#3152](https://github.com/elastic/eui/pull/3152))
 - Added `showTooltip` prop for `EuiSuperUpdateButton` to show tooltip and showing only once popovers are closed ([#3127](https://github.com/elastic/eui/pull/3127))
-- Added new Elasticsearch token types ([58036](https://github.com/elastic/kibana/issues/58036))
 
 **Bug Fixes**
 
