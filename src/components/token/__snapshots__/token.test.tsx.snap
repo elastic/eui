@@ -193,6 +193,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenArray is rendered 1`] =
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenBinary is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenBinary"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenBoolean is rendered 1`] = `
 <span
   class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
@@ -213,6 +223,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenClass is rendered 1`] =
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenCompletionSuggester is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenCompletionSuggester"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenConstant is rendered 1`] = `
 <span
   class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
@@ -229,6 +249,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenDate is rendered 1`] = 
 >
   <div
     data-euiicon-type="tokenDate"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenDenseVector is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis2 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenDenseVector"
   />
 </span>
 `;
@@ -303,6 +333,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenFile is rendered 1`] = 
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenFlattened is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenFlattened"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenFunction is rendered 1`] = `
 <span
   class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
@@ -319,6 +359,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenGeo is rendered 1`] = `
 >
   <div
     data-euiicon-type="tokenGeo"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenHistogram is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis6 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenHistogram"
   />
 </span>
 `;
@@ -343,12 +393,32 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenInterface is rendered 1
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenJoin is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenJoin"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenKey is rendered 1`] = `
 <span
   class="euiToken euiToken--euiColorVis5 euiToken--circle euiToken--light euiToken--small"
 >
   <div
     data-euiicon-type="tokenKey"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenKeyword is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis9 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenKeyword"
   />
 </span>
 `;
@@ -453,6 +523,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenParameter is rendered 1
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenPercolator is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis6 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenPercolator"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenProperty is rendered 1`] = `
 <span
   class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
@@ -473,12 +553,42 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenRange is rendered 1`] =
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenRankFeature is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis8 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenRankFeature"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenRankFeatures is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis3 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenRankFeatures"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenRepo is rendered 1`] = `
 <span
   class="euiToken euiToken--euiColorVis1 euiToken--rectangle euiToken--dark euiToken--small"
 >
   <div
     data-euiicon-type="tokenRepo"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenSearchType is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenSearchType"
   />
 </span>
 `;
@@ -519,6 +629,26 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenSymbol is rendered 1`] 
 >
   <div
     data-euiicon-type="tokenSymbol"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenText is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis3 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenText"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenTokenCount is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+>
+  <div
+    data-euiicon-type="tokenTokenCount"
   />
 </span>
 `;
