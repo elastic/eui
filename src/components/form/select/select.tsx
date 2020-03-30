@@ -71,7 +71,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
     // notably for use in conjunction with EuiOutsideClickDetector.
     // See https://github.com/elastic/eui/pull/1926 for full discussion on
     // rationale and alternatives should this intervention become problematic.
-    e.nativeEvent.stopImmediatePropagation();
+    e.nativeEvent.stopPropagation();
     if (onMouseUp) onMouseUp(e);
   };
 
