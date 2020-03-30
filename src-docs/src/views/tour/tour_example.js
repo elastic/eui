@@ -11,11 +11,37 @@ import {
   EuiTourStep,
 } from '../../../../src/components';
 
+import Step from './step';
 import Tour from './tour';
 import Managed from './managed';
 import ManagedHook from './managed_hook';
 import FullScreen from './fullscreen';
 
+const stepSource = require('!!raw-loader!./step');
+const stepHtml = renderToHtml(Step);
+const stepSnippet = `
+<EuiTourStep
+  content={
+    <EuiText>
+      <p>The tour step content.</p>
+    </EuiText>
+  }
+  isStepOpen={true}
+  isTourActive={true}
+  minWidth={300}
+  onSkip={() => alert('Skip the tour!')}
+  onEnd={() => alert('End the tour!')}
+  step={1}
+  stepsTotal={1}
+  title="An individual step"
+  subtitle="A tour"
+  anchorPosition="rightUp">
+  <EuiText>
+    <p>The tour step anchor point.</p>
+  </EuiText>
+</EuiTourStep>
+
+`;
 const tourSource = require('!!raw-loader!./tour');
 const tourHtml = renderToHtml(Tour);
 const managedSource = require('!!raw-loader!./managed');
@@ -45,6 +71,28 @@ export const TourExample = {
   ),
   sections: [
     {
+      title: 'Step options',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: stepSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: stepHtml,
+        },
+      ],
+      text: (
+        <p>
+          The <EuiCode>EuiTourStep</EuiCode> component is the base for building
+          a feature tour or individual onboarding popover.
+        </p>
+      ),
+      props: { EuiTourStep },
+      demo: <Step />,
+      snippet: stepSnippet,
+    },
+    {
       title: 'Standalone steps',
       source: [
         {
@@ -65,7 +113,6 @@ export const TourExample = {
           <EuiCode>EuiTour</EuiCode>).
         </p>
       ),
-      props: { EuiTourStep },
       demo: <Tour />,
     },
     {
@@ -90,7 +137,6 @@ export const TourExample = {
           object derived from the internal reducer.
         </p>
       ),
-      props: { EuiTourStep },
       demo: <ManagedHook />,
     },
     {
@@ -133,7 +179,6 @@ export const TourExample = {
           code: fullHtml,
         },
       ],
-      text: <p />,
       demo: <FullScreen />,
     },
   ],
