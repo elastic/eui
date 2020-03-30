@@ -90,7 +90,7 @@ export interface TokenProps {
    */
   size?: TokenSize;
   /**
-   * What would typically be the icon's title. Required for accessibility.
+   * The icon's title. Required for accessibility
    */
   title?: string;
   'aria-label'?: string;
