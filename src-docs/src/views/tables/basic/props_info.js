@@ -12,7 +12,7 @@ export const propsInfo = {
           description:
             'Describes how to extract a unique ID from each item, used for selections & expanded rows',
           required: false,
-          type: { name: 'string | (item) => string' },
+          type: { name: 'string | number | (item) => string' },
         },
         itemIdToExpandedRowMap: {
           description:
