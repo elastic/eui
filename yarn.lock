@@ -1024,36 +1024,6 @@
   resolved "https://registry.yarnpkg.com/@elastic/eslint-config-kibana/-/eslint-config-kibana-0.15.0.tgz#a552793497cdfc1829c2f9b7cd7018eb008f1606"
   integrity sha1-pVJ5NJfN/Bgpwvm3zXAY6wCPFgY=
 
-"@elastic/eui@^21.1.0":
-  version "21.1.0"
-  resolved "https://registry.yarnpkg.com/@elastic/eui/-/eui-21.1.0.tgz#f9a9edc6f682c1a17f8394827c12d7dc57bac7bf"
-  integrity sha512-U6y/OjM3qfgSZusTVrtpGbYhKXh9bRLqy89JAVo/qrAzzchKCIur9P+AasVF1UG/bUDQEkkmgpNGutbe/BWrJg==
-  dependencies:
-    "@types/chroma-js" "^2.0.0"
-    "@types/enzyme" "^3.1.13"
-    "@types/lodash" "^4.14.116"
-    "@types/numeral" "^0.0.25"
-    "@types/react-beautiful-dnd" "^10.1.0"
-    "@types/react-input-autosize" "^2.0.2"
-    "@types/react-virtualized" "^9.18.7"
-    chroma-js "^2.0.4"
-    classnames "^2.2.5"
-    highlight.js "^9.12.0"
-    html "^1.0.0"
-    keymirror "^0.1.1"
-    lodash "^4.17.11"
-    numeral "^2.0.6"
-    prop-types "^15.6.0"
-    react-ace "^7.0.5"
-    react-beautiful-dnd "^10.1.0"
-    react-focus-lock "^1.17.7"
-    react-input-autosize "^2.2.2"
-    react-is "~16.3.0"
-    react-virtualized "^9.21.2"
-    resize-observer-polyfill "^1.5.0"
-    tabbable "^3.0.0"
-    uuid "^3.1.0"
-
 "@sentry/core@4.2.4":
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-4.2.4.tgz#e4a331512a4db149f14a2976b75a5b3c8ef47f87"
@@ -9733,10 +9703,15 @@ moment@2.x.x:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
   integrity sha512-TCZ36BjURTeFTM/CwRcViQlfkMvL1/vFISuNLO5GkcVm1+QHfbSiNqZuWeMFjj1/3+uAjXswgRk30j1kkLYJBQ==
 
-"moment@>= 2.9.0", moment@^2.24.0:
+"moment@>= 2.9.0":
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+
+moment@^2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
+  integrity sha512-Yh9y73JRljxW5QxN08Fner68eFLxM5ynNOAw2LbIB1YAGeQzZT8QFSUvkAz609Zf+IHhhaUxqZK8dG3W/+HEvg==
 
 monocle-ts@^1.0.0:
   version "1.7.2"
