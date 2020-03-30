@@ -9,6 +9,7 @@
 
 **Bug Fixes**
 
+- Removed outline of `EuiSelect` in Firefox ([#3197] (https://github.com/elastic/eui/pull/3197))
 - Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
 - Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
 
