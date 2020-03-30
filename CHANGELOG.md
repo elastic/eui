@@ -13,6 +13,7 @@
 - Upgraded `react-beautiful-dnd` to v13 ([#3064](https://github.com/elastic/eui/pull/3064))
 - Fixed `EuiPagination` vertical alignment of the text when used as `compressed` ([#3152](https://github.com/elastic/eui/pull/3152))
 - Added `showTooltip` prop for `EuiSuperUpdateButton` to show tooltip and showing only once popovers are closed ([#3127](https://github.com/elastic/eui/pull/3127))
+- Added new Elasticsearch token types ([58036](https://github.com/elastic/kibana/issues/58036))
 
 **Bug Fixes**
 
