@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
+- Fix `EuiProgress` max property to allow `undefined` ([#3198](https://github.com/elastic/eui/pull/3198))
 
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
 
