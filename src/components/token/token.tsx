@@ -89,6 +89,13 @@ export interface TokenProps {
    * Size of the token
    */
   size?: TokenSize;
+  /**
+   * The icon's title. Required for accessibility
+   */
+  title?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
 }
 
 export type EuiTokenProps = CommonProps &
@@ -103,6 +110,10 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   size = 's',
   style = {},
   className,
+  title,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
   ...rest
 }) => {
   // Set the icon size to the same as the passed size
@@ -171,7 +182,14 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   return (
     <span className={classes} style={style} {...rest}>
-      <EuiIcon type={iconType} size={finalSize} />
+      <EuiIcon
+        type={iconType}
+        size={finalSize}
+        title={title}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+        aria-describedby={ariaDescribedby}
+      />
     </span>
   );
 };

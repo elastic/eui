@@ -36,7 +36,7 @@ export const propsInfo = {
         columns: basicPropsInfo.EuiBasicTable.__docgenInfo.props.columns,
         pagination: {
           description:
-            'Enables/disables pagination. Can be an object that configured pagination when enabled',
+            'Enables/disables pagination. Can be an object that configures pagination when enabled',
           required: false,
           type: { name: 'boolean | #Pagination' },
         },
@@ -80,13 +80,15 @@ export const propsInfo = {
           type: { name: 'number' },
         },
         initialPageSize: {
-          description:
-            'Configures the default page size to show, must be one of "pageSizeOptions"',
+          description: `Configures the default page size to show, must be one of \`pageSizeOptions\`. Defaults to
+             the first page size in \`pageSizeOptions\`.`,
           required: false,
           type: { name: 'number' },
         },
         pageSizeOptions:
           basicPropsInfo.Pagination.__docgenInfo.props.pageSizeOptions,
+        hidePerPageOptions:
+          basicPropsInfo.Pagination.__docgenInfo.props.hidePerPageOptions,
       },
     },
   },

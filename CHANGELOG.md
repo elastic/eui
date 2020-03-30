@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
+- Updated pagination prop descriptions for `EuiInMemoryTable` ([#3142](https://github.com/elastic/eui/pull/3142))
+- Added `title` and `aria` attributes to `EuiToken`'s icon element ([#3195](https://github.com/elastic/eui/pull/3195))
 
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
 
@@ -8,6 +10,7 @@
 
 **Bug Fixes**
 
+- Removed outline of `EuiSelect` in Firefox ([#3197] (https://github.com/elastic/eui/pull/3197))
 - Fixed EuiBasicTable proptypes of itemId ([#3133](https://github.com/elastic/eui/pull/3133))
 - Updated `EuiSuperDatePicker` to inherit the selected value in quick select ([#3105](https://github.com/elastic/eui/pull/3105))
 
