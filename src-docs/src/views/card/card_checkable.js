@@ -8,10 +8,10 @@ import {
   EuiFormFieldset,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
-  const radioName = makeId();
+  const radioName = htmlIdGenerator();
   const [radio, setRadio] = useState('radio2');
   const [nestedRadio, setNestedRadio] = useState('nestedRadio1');
   const [checkbox, setCheckbox] = useState(false);
