@@ -11,7 +11,7 @@ import {
 import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
-  const radioName = htmlIdGenerator();
+  const radioName = htmlIdGenerator()();
   const [radio, setRadio] = useState('radio2');
   const [nestedRadio, setNestedRadio] = useState('nestedRadio1');
   const [checkbox, setCheckbox] = useState(false);
