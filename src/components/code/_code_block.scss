@@ -51,6 +51,7 @@
     }
 
     .euiCodeBlock__lineNumbers {
+      // sass-lint:disable-block no-important
       margin: -$euiSizeXL !important;
       margin-right: $euiSizeXL !important;
     }
@@ -81,6 +82,7 @@
     .euiCodeBlock__pre {
       padding: $euiSizeS;
     }
+
     .euiCodeBlock__lineNumbers {
       margin: -$euiSizeS;
       margin-right: $euiSizeS;
@@ -101,6 +103,7 @@
     .euiCodeBlock__pre {
       padding: $euiSize;
     }
+
     .euiCodeBlock__lineNumbers {
       margin: -$euiSize;
       margin-right: $euiSize;
@@ -122,6 +125,7 @@
     .euiCodeBlock__pre {
       padding: $euiSizeL;
     }
+
     .euiCodeBlock__lineNumbers {
       margin: -$euiSizeL;
       margin-right: $euiSizeL;
@@ -285,23 +289,20 @@
 
 
 
-  .euiCodeBlock__lineNumbers{
+  .euiCodeBlock__lineNumbers {
     @include euiCodeFont;
     width: auto;
     padding: inherit;
     height: inherit;
-
     color: $euiTextColor;
-
     padding-left: 10px;
     padding-right: 6px;
-    
     line-height: $euiLineHeight;
     font-weight: $euiFontWeightRegular;
     user-select: none;
     text-align: right;
     font-size: inherit;
-    border-right:solid 1px $euiColorLightShade;
+    border-right: solid 1px $euiColorLightShade;
     opacity: .7;
   }
 

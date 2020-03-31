@@ -64,7 +64,7 @@ interface Props {
 
   /**
    * Specifies whether to show line numbers or not.
-   */ 
+   */
   showLineNumbers?: boolean;
 }
 
@@ -82,7 +82,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     paddingSize: 'l',
     fontSize: 's',
     isCopyable: false,
-    whiteSpace: 'pre-wrap'
+    whiteSpace: 'pre-wrap',
   };
 
   constructor(props: Props) {
@@ -169,7 +169,6 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
       ...otherProps
     } = this.props;
 
-
     const classes = classNames(
       'euiCodeBlock',
       fontSizeToClassNameMap[fontSize],
@@ -178,7 +177,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
         'euiCodeBlock--transparentBackground': transparentBackground,
         'euiCodeBlock--inline': inline,
         'euiCodeBlock--hasControls': isCopyable || overflowHeight,
-        'euiCodeBlock--lineNumbers': showLineNumbers
+        'euiCodeBlock--lineNumbers': showLineNumbers,
       },
       className
     );
@@ -205,7 +204,6 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
         {...otherProps}
       />
     );
-
 
     const wrapperProps = {
       className: classes,
@@ -330,24 +328,25 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     };
 
     const getLineNumbers = () => {
-      const numLines = this.code ? this.code.innerHTML.trim().split(/\r\n|\r|\n/).length : 0;
+      const numLines = this.code
+        ? this.code.innerHTML.trim().split(/\r\n|\r|\n/).length
+        : 0;
       const lines = [];
 
-      for(let i=1; i<=numLines; i++){
+      for (let i = 1; i <= numLines; i++) {
         lines.push(
-          <li key={i} ><span>{i}</span></li>
-        )
+          <li key={i}>
+            <span>{i}</span>
+          </li>
+        );
       }
 
       return (
         <div className="euiCodeBlock__lineNumbers">
-          <ul>
-            {lines}
-          </ul>
+          <ul>{lines}</ul>
         </div>
-      )
-    }
-
+      );
+    };
 
     return (
       <>
@@ -355,12 +354,10 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
         <EuiInnerText fallback="">
           {(innerTextRef, innerText) => {
             const codeBlockControls = getCodeBlockControls(innerText);
-            const lineNumbers = showLineNumbers ? getLineNumbers() : "";
-            
+            const lineNumbers = showLineNumbers ? getLineNumbers() : '';
+
             return (
               <div {...wrapperProps}>
-                
-
                 <pre
                   ref={innerTextRef}
                   style={optionalStyles}
@@ -368,7 +365,6 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
                   {lineNumbers}
                   {codeSnippet}
                 </pre>
-                  
 
                 {/*
                 If the below fullScreen code renders, it actually attaches to the body because of

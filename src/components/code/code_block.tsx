@@ -18,5 +18,11 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   showLineNumbers,
   ...rest
 }) => {
-  return <EuiCodeBlockImpl inline={false} showLineNumbers={showLineNumbers} {...rest} />;
+  return (
+    <EuiCodeBlockImpl
+      inline={false}
+      showLineNumbers={showLineNumbers}
+      {...rest}
+    />
+  );
 };

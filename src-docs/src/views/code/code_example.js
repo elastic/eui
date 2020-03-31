@@ -62,7 +62,8 @@ export const CodeExample = {
       text: (
         <p>
           <EuiCode>EuiCodeBlock</EuiCode> can be used to create multi-line code
-          blocks. <EuiCode>showLineNumbers</EuiCode> can be used to show the line numbers. Copy and fullscreen buttons can be enabled via the
+          blocks. <EuiCode>showLineNumbers</EuiCode> can be used to show the
+          line numbers. Copy and fullscreen buttons can be enabled via the
           <EuiCode>isCopyable</EuiCode> and <EuiCode>overflowHeight</EuiCode>
           props, respectively.
         </p>
