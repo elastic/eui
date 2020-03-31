@@ -152,7 +152,7 @@ export default class DataGridSchema extends Component {
 
   dummyIcon = () => (
     <EuiButtonIcon
-      label="dummy icon"
+      aria-label="dummy icon"
       iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
     />
   );

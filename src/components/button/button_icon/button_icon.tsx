@@ -3,10 +3,9 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   Ref,
-  ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
+
 import { getSecureRelForTarget } from '../../../services';
 import {
   CommonProps,
@@ -32,12 +31,14 @@ export type EuiButtonIconColor =
 
 export type HideOrLabel = ExclusiveUnion<
   { 'aria-hidden': true },
-  ExclusiveUnion<{ label: ReactNode }, { 'aria-labelledby': string }>
+  ExclusiveUnion<{ 'aria-label': string }, { 'aria-labelledby': string }>
 >;
 
 export type EuiButtonIconProps = {
   iconType?: IconType;
   color?: EuiButtonIconColor;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
   isDisabled?: boolean;
   size?: ButtonSize;
   iconSize?: IconSize;
@@ -87,7 +88,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   target,
   rel,
   buttonRef,
-  label,
   ...rest
 }) => {
   const classes = classNames(
@@ -124,11 +124,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         ref={buttonRef as Ref<HTMLAnchorElement>}
         {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {buttonIcon}
-        {label && (
-          <EuiScreenReaderOnly>
-            <span>{label}</span>
-          </EuiScreenReaderOnly>
-        )}
       </a>
     );
   }
@@ -142,11 +137,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       ref={buttonRef as Ref<HTMLButtonElement>}
       {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
       {buttonIcon}
-      {label && (
-        <EuiScreenReaderOnly>
-          <span>{label}</span>
-        </EuiScreenReaderOnly>
-      )}
     </button>
   );
 };

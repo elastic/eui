@@ -5,6 +5,7 @@ export {
   ButtonIconSide,
   EuiButton,
   EuiButtonProps,
+  colorToClassNameMap,
 } from './button';
 
 export {

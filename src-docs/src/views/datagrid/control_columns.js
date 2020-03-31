@@ -105,7 +105,7 @@ const SelectionButton = () => {
             <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
-                  label="Pin selected items"
+                  aria-label="Pin selected items"
                   iconType="pin"
                   color="text"
                 />
@@ -118,7 +118,7 @@ const SelectionButton = () => {
             <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
-                  label="Delete selected items"
+                  aria-label="Delete selected items"
                   iconType="trash"
                   color="text"
                 />
@@ -220,7 +220,7 @@ const FlyoutRowCell = rowIndex => {
         color="text"
         iconType="eye"
         iconSize="s"
-        label="View details"
+        aria-label="View details"
         onClick={() => setIsFlyoutOpen(!isFlyoutOpen)}
       />
       {flyout}
@@ -258,7 +258,7 @@ const trailingControlColumns = [
             panelPaddingSize="s"
             button={
               <EuiButtonIcon
-                label="show actions"
+                aria-label="show actions"
                 iconType="boxesHorizontal"
                 color="text"
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
@@ -275,7 +275,7 @@ const trailingControlColumns = [
                   gutterSize="s">
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
-                      label="Pin selected items"
+                      aria-label="Pin selected items"
                       iconType="pin"
                       color="text"
                     />
@@ -291,7 +291,7 @@ const trailingControlColumns = [
                   gutterSize="s">
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
-                      label="Delete selected items"
+                      aria-label="Delete selected items"
                       iconType="trash"
                       color="text"
                     />

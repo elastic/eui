@@ -10,7 +10,6 @@ import {
   EuiButton,
   colorToClassNameMap,
 } from '../button';
-import { EuiButtonIcon } from '../button_icon';
 import { EuiIcon } from '../../icon/icon';
 
 export interface EuiButtonGroupIdToSelectedMap {
@@ -70,9 +69,9 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 }) => {
   const classes = classNames(
     'euiButtonGroup',
-    [`euiButtonGroup--${buttonSize}`],
     {
       'euiButtonGroup--fullWidth': isFullWidth,
+      'euiButtonGroup--compressed': buttonSize === 'compressed',
     },
     className
   );
@@ -116,30 +115,12 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             'euiButtonGroup__button',
             {
               'euiButtonGroup__button--selected': isSelectedState,
+              'euiButtonGroup__button--iconOnly': isIconOnly,
             },
             className
           );
 
           if (type === 'multi') {
-            if (isIconOnly) {
-              return (
-                <EuiButtonIcon
-                  className={buttonClasses}
-                  id={id}
-                  color={color === 'secondary' ? 'success' : color}
-                  isDisabled={optionDisabled || isDisabled}
-                  aria-selected={isSelectedState}
-                  size={buttonSize === 'compressed' ? 's' : buttonSize}
-                  onClick={() => onChange(id, value)}
-                  data-test-subj={dataTestSubj}
-                  label={label}
-                  key={index}
-                  iconType={iconType}
-                  {...rest}
-                />
-              );
-            }
-
             return (
               <EuiButton
                 className={buttonClasses}
@@ -147,7 +128,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                 color={color}
                 fill={fill}
                 isDisabled={optionDisabled || isDisabled}
-                aria-selected={isSelectedState}
+                aria-pressed={isSelectedState}
                 size={buttonSize === 'compressed' ? 's' : buttonSize}
                 onClick={() => onChange(id, value)}
                 data-test-subj={dataTestSubj}
@@ -155,21 +136,27 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                 iconSide={iconSide}
                 iconType={iconType}
                 {...rest}>
-                {label}
+                {isIconOnly ? (
+                  <EuiScreenReaderOnly>
+                    <span>{label}</span>
+                  </EuiScreenReaderOnly>
+                ) : (
+                  <>{label}</>
+                )}
               </EuiButton>
             );
           }
 
           const wrapperClasses = classNames(
-            'euiButtonToggle',
-            'euiToggle',
+            'euiButton',
             'euiButtonGroup__toggle',
-            'euiButtonToggle__wrapper',
             color ? colorToClassNameMap[color] : null,
             {
-              'euiButtonToggle--isDisabled': isDisabled,
-              'euiButtonToggle--isIconOnly': isIconOnly,
+              'euiButton--disabled': isDisabled,
+              'euiButtonGroup__toggle--isIconOnly': isIconOnly,
               'euiButton--fill': fill,
+              'euiButton--small':
+                buttonSize === 'compressed' || buttonSize === 's',
             },
             buttonClasses
           );
@@ -184,7 +171,21 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 
           return (
             <div className={wrapperClasses} key={index} {...rest}>
-              <label htmlFor={id}>
+              <input
+                id={id}
+                className="euiButtonGroup__input"
+                name={optionName || name}
+                onChange={() => onChange(id, value)}
+                checked={isSelectedState}
+                data-test-subj={dataTestSubj}
+                disabled={optionDisabled || isDisabled}
+                value={value}
+                type="radio"
+                {...rest}
+              />
+              <label
+                htmlFor={id}
+                className="euiButton__content euiButtonGroup__label">
                 {isIconOnly ? (
                   <>
                     <EuiScreenReaderOnly>
@@ -200,18 +201,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                   </>
                 )}
               </label>
-              <input
-                id={id}
-                className="euiToggle__input"
-                name={optionName || name}
-                onChange={() => onChange(id, value)}
-                checked={isSelectedState}
-                data-test-subj={dataTestSubj}
-                disabled={optionDisabled || isDisabled}
-                value={value}
-                type="radio"
-                {...rest}
-              />
             </div>
           );
         })}

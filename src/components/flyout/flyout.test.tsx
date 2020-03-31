@@ -29,7 +29,7 @@ describe('EuiFlyout', () => {
         const component = render(<EuiFlyout onClose={() => {}} />);
         const label = component
           .find('[data-test-subj="euiFlyoutCloseButton"]')
-          .text();
+          .prop('aria-label');
         expect(label).toBe('Closes this dialog');
       });
 
@@ -42,7 +42,7 @@ describe('EuiFlyout', () => {
         );
         const label = component
           .find('[data-test-subj="euiFlyoutCloseButton"]')
-          .text();
+          .prop('aria-label');
         expect(label).toBe('Closes specific flyout');
       });
     });

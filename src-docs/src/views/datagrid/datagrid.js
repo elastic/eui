@@ -33,7 +33,7 @@ const columns = [
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiButtonIcon
-            label="Column header email"
+            aria-label="Column header email"
             iconType="gear"
             color="text"
             onClick={() => alert('Email Icon Clicked!')}
@@ -103,7 +103,7 @@ const trailingControlColumns = [
             anchorPosition="upCenter"
             button={
               <EuiButtonIcon
-                label="show actions"
+                aria-label="show actions"
                 iconType="boxesHorizontal"
                 color="text"
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
@@ -120,7 +120,7 @@ const trailingControlColumns = [
                   gutterSize="s">
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
-                      label="Pin selected items"
+                      aria-label="Pin selected items"
                       iconType="pin"
                       color="text"
                     />
@@ -136,7 +136,7 @@ const trailingControlColumns = [
                   gutterSize="s">
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
-                      label="Delete selected items"
+                      aria-label="Delete selected items"
                       iconType="trash"
                       color="text"
                     />

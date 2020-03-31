@@ -48,13 +48,13 @@ export default class extends Component {
         </EuiButton>
         &emsp;
         <EuiButtonIcon
-          label={this.state.toggle2On ? 'Play' : 'Pause'}
+          aria-label={this.state.toggle2On ? 'Play' : 'Pause'}
           iconType={this.state.toggle2On ? 'play' : 'pause'}
           onClick={this.onToggle2Change}
         />
         &emsp;
         <EuiButtonIcon
-          label="Autosave"
+          aria-label="Autosave"
           iconType="save"
           aria-pressed={this.state.onToggle3Change}
           onClick={this.onToggle3Change}

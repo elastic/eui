@@ -43,10 +43,10 @@ exports[`DefaultItemAction render - icon 1`] = `
   position="top"
 >
   <EuiButtonIcon
+    aria-label="action1"
     color="primary"
     iconType="trash"
     isDisabled={false}
-    label="action1"
     onClick={[Function]}
   />
 </EuiToolTip>

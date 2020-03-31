@@ -96,7 +96,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                     color="text"
                     size="s"
                     className="euiDataGridColumnSorting__button"
-                    label={`${removeSortLabel} ${id}`}
+                    aria-label={`${removeSortLabel} ${id}`}
                     iconType="cross"
                     onClick={() => {
                       const nextColumns = [...sorting.columns];

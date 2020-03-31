@@ -62,7 +62,7 @@ export default class extends Component {
             color="ghost"
             iconType="user"
             onClick={() => window.alert('Button clicked')}
-            label="Your account"
+            aria-label="Your account"
           />
         </EuiFlexItem>
 

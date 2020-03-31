@@ -76,7 +76,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
               onClick={onClose}
               className="euiModal__closeIcon"
               color="text"
-              label={closeModal}
+              aria-label={closeModal}
             />
           )}
         </EuiI18n>

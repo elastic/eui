@@ -98,7 +98,7 @@ describe('EuiListGroupItem', () => {
             extraAction={{
               iconType: 'empty',
               alwaysShow: true,
-              label: 'label',
+              'aria-label': 'label',
             }}
           />
         );

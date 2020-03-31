@@ -12,7 +12,6 @@ import {
   EuiButtonIcon,
   EuiButtonIconProps,
   EuiButtonProps,
-  HideOrLabel,
 } from '../button';
 import {
   CommonProps,
@@ -334,19 +333,6 @@ export class EuiControlBar extends Component<
             );
           }
 
-          const {
-            label,
-            'aria-labelledby': ariaLabelledby,
-            'aria-hidden': ariaHidden,
-            ...buttonIconRest
-          } = rest as IconButtonControlType;
-          let buttonIconProps: HideOrLabel = { label: label };
-          if (ariaHidden === true) {
-            buttonIconProps = { 'aria-hidden': ariaHidden };
-          } else if (ariaLabelledby) {
-            buttonIconProps = { 'aria-labelledby': ariaLabelledby };
-          }
-
           return (
             <EuiButtonIcon
               key={id + index}
@@ -355,9 +341,9 @@ export class EuiControlBar extends Component<
               onClick={onClick}
               href={href}
               color={color as EuiButtonIconProps['color']}
+              // @ts-ignore Help?
               size="s"
-              {...buttonIconProps}
-              {...buttonIconRest}
+              {...rest}
             />
           );
         }

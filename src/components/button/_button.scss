@@ -43,7 +43,8 @@
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &.euiButton--disabled {
     color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
     pointer-events: none;
@@ -138,7 +139,8 @@
 }
 
 // Fix ghost/disabled look specifically
-.euiButton:disabled.euiButton--ghost {
+.euiButton:disabled.euiButton--ghost,
+.euiButton--disabled.euiButton--ghost, {
   &,
   &:hover,
   &:focus {

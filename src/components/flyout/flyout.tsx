@@ -99,11 +99,12 @@ export class EuiFlyout extends Component<EuiFlyoutProps> {
     let closeButton;
     if (onClose && !hideCloseButton) {
       closeButton = (
+        // @ts-ignore Help?
         <EuiButtonIcon
           className="euiFlyout__closeButton"
           iconType="cross"
           color="text"
-          label={closeButtonAriaLabel}
+          aria-label={closeButtonAriaLabel}
           onClick={onClose}
           data-test-subj="euiFlyoutCloseButton"
         />

@@ -104,7 +104,7 @@ export default () => (
             color="danger"
             onClick={() => window.alert('Button clicked')}
             iconType="trash"
-            label="Next"
+            aria-label="Next"
           />
         </div>
       </EuiFlexItem>
@@ -264,9 +264,9 @@ export default () => (
         panel={false}
         frame="frame">
         <div>
-          <EuiButtonIcon size="s" iconType="pencil" label="Edit" />
+          <EuiButtonIcon size="s" iconType="pencil" aria-label="Edit" />
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <EuiButtonIcon size="s" iconType="expand" label="Expand" />
+          <EuiButtonIcon size="s" iconType="expand" aria-label="Expand" />
         </div>
       </GuideRuleExample>
       <GuideRuleExample
@@ -276,11 +276,11 @@ export default () => (
         frame="frame">
         <div>
           <EuiButton>
-            <EuiIcon type="pencil" label="Edit" />
+            <EuiIcon type="pencil" aria-label="Edit" />
           </EuiButton>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <EuiButton>
-            <EuiIcon type="expand" label="Expand" />
+            <EuiIcon type="expand" aria-label="Expand" />
           </EuiButton>
         </div>
       </GuideRuleExample>
@@ -475,7 +475,7 @@ export default () => (
               size="s"
               color="danger"
               iconType="trash"
-              label="delete"
+              aria-label="delete"
             />
           </EuiTableRowCell>
 
@@ -492,7 +492,7 @@ export default () => (
               size="s"
               color="danger"
               iconType="cross"
-              label="Remove"
+              aria-label="Remove"
             />
           </EuiTableRowCell>
           <EuiTableRowCell>

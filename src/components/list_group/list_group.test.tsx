@@ -15,7 +15,7 @@ const someListItems: EuiListGroupItemProps[] = [
     extraAction: {
       iconType: 'bell',
       alwaysShow: true,
-      label: 'Notification',
+      'aria-label': 'Notification',
     },
   },
   {

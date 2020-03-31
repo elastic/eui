@@ -52,7 +52,7 @@ export const DefaultItemAction = <T extends {}>({
     button = (
       <EuiButtonIcon
         className={className}
-        label={action.name}
+        aria-label={action.name}
         isDisabled={!enabled}
         color={color}
         iconType={icon}

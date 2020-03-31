@@ -100,6 +100,7 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
     </span>
   </span>
   <button
+    aria-label="label"
     class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
     type="button"
   >
@@ -108,11 +109,6 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
       class="euiButtonIcon__icon"
       data-euiicon-type="empty"
     />
-    <span
-      class="euiScreenReaderOnly"
-    >
-      label
-    </span>
   </button>
 </li>
 `;

@@ -44,6 +44,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       role="group"
     >
       <button
+        aria-label="Previous page"
         class="euiButtonIcon euiButtonIcon--text"
         data-test-subj="pagination-button-previous"
         type="button"
@@ -53,11 +54,6 @@ exports[`EuiTablePagination is rendered 1`] = `
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowLeft"
         />
-        <span
-          class="euiScreenReaderOnly"
-        >
-          Previous page
-        </span>
       </button>
       <button
         aria-label="Page 1 of 5"
@@ -140,6 +136,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         </span>
       </button>
       <button
+        aria-label="Next page"
         class="euiButtonIcon euiButtonIcon--text"
         data-test-subj="pagination-button-next"
         type="button"
@@ -149,11 +146,6 @@ exports[`EuiTablePagination is rendered 1`] = `
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowRight"
         />
-        <span
-          class="euiScreenReaderOnly"
-        >
-          Next page
-        </span>
       </button>
     </div>
   </div>
@@ -175,6 +167,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       role="group"
     >
       <button
+        aria-label="Previous page"
         class="euiButtonIcon euiButtonIcon--text"
         data-test-subj="pagination-button-previous"
         type="button"
@@ -184,11 +177,6 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowLeft"
         />
-        <span
-          class="euiScreenReaderOnly"
-        >
-          Previous page
-        </span>
       </button>
       <button
         aria-label="Page 1 of 5"
@@ -271,6 +259,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         </span>
       </button>
       <button
+        aria-label="Next page"
         class="euiButtonIcon euiButtonIcon--text"
         data-test-subj="pagination-button-next"
         type="button"
@@ -280,11 +269,6 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
           class="euiButtonIcon__icon"
           data-euiicon-type="arrowRight"
         />
-        <span
-          class="euiScreenReaderOnly"
-        >
-          Next page
-        </span>
       </button>
     </div>
   </div>

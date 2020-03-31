@@ -101,6 +101,7 @@ console.log(some);
         class="euiToolTipAnchor"
       >
         <button
+          aria-label="Copy"
           class="euiButtonIcon euiButtonIcon--text"
           type="button"
         >
@@ -109,11 +110,6 @@ console.log(some);
             class="euiButtonIcon__icon"
             data-euiicon-type="copy"
           />
-          <span
-            class="euiScreenReaderOnly"
-          >
-            Copy
-          </span>
         </button>
       </span>
     </div>
@@ -158,6 +154,7 @@ console.log(some);
     class="euiCodeBlock__controls"
   >
     <button
+      aria-label="Expand"
       class="euiButtonIcon euiButtonIcon--text euiCodeBlock__fullScreenButton"
       type="button"
     >
@@ -166,11 +163,6 @@ console.log(some);
         class="euiButtonIcon__icon"
         data-euiicon-type="fullScreen"
       />
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Expand
-      </span>
     </button>
   </div>
 </div>

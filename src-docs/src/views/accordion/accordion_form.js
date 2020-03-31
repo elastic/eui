@@ -72,7 +72,7 @@ const extraAction = (
     iconType="cross"
     color="danger"
     className="euiAccordionForm__extraAction"
-    label="Delete"
+    aria-label="Delete"
   />
 );
 

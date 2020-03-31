@@ -149,7 +149,7 @@ export class CollapsedItemActions<T> extends Component<
         {(allActions: string) => (
           <EuiButtonIcon
             className={className}
-            label={allActions}
+            aria-label={allActions}
             iconType="boxesHorizontal"
             color="text"
             isDisabled={allDisabled}
