@@ -83,10 +83,16 @@ export const TourExample = {
         },
       ],
       text: (
-        <p>
-          The <EuiCode>EuiTourStep</EuiCode> component is the base for building
-          a feature tour or individual onboarding popover.
-        </p>
+        <>
+          <p>
+            The <strong>EuiTourStep</strong> component is the base for building
+            a feature tour or individual popover for onboarding.
+          </p>
+          <p>
+            All content and actions—including titles, headings, and buttons—are
+            customizable via props.
+          </p>
+        </>
       ),
       props: { EuiTourStep },
       demo: <Step />,
@@ -106,11 +112,11 @@ export const TourExample = {
       ],
       text: (
         <p>
-          Each <EuiCode>EuiTourStep</EuiCode> can be configured independently
-          via props. In this case, each component is stateless and needs to be
+          Each <strong>EuiTourStep</strong> can be configured independently via
+          props. In this case, each component is stateless and needs to be
           paired with some form of state management for navigation. See two
-          options in later examples (<EuiCode>useEuiTour</EuiCode> and{' '}
-          <EuiCode>EuiTour</EuiCode>).
+          options in later examples (<strong>useEuiTour</strong> and{' '}
+          <strong>EuiTour</strong>).
         </p>
       ),
       demo: <Tour />,
@@ -129,12 +135,12 @@ export const TourExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>useEuiTour</EuiCode> hook for minimal state
-          management using a predefined React reducer. Pass an array of steps
-          consisting of accepted props, and an object of global configuration.
-          The result is a full configuration obejct for each step, a set of
-          reducer actions to perform state changes, and an up-to-date state
-          object derived from the internal reducer.
+          Use the <strong>useEuiTour</strong> hook for minimal state management
+          using a predefined React reducer. Pass an array of steps consisting of
+          accepted props, and an object of global configuration. The result is a
+          full configuration obejct for each step, a set of reducer actions to
+          perform state changes, and an up-to-date state object derived from the
+          internal reducer.
         </p>
       ),
       demo: <ManagedHook />,
@@ -154,10 +160,10 @@ export const TourExample = {
       text: (
         <>
           <p>
-            Use the <EuiCode>EuiTour</EuiCode> render prop component for minimal
+            Use the <strong>EuiTour</strong> render prop component for minimal
             state management. This is an alternative to the{' '}
-            <EuiCode>useEuiTour</EuiCode> hook for React class components, or
-            use cases where a single wrapping component can be used.
+            <strong>useEuiTour</strong> hook for React class components, or use
+            cases where a single wrapping component can be used.
           </p>
           <p>
             Unlike the other examples on this page, this example does not use{' '}
