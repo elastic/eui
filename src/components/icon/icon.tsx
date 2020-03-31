@@ -396,6 +396,19 @@ const typeToPathMap = {
   tokenShape: 'tokens/tokenShape',
   tokenGeo: 'tokens/tokenGeo',
   tokenRange: 'tokens/tokenRange',
+  tokenBinary: 'tokens/tokenBinary',
+  tokenJoin: 'tokens/tokenJoin',
+  tokenPercolator: 'tokens/tokenPercolator',
+  tokenFlattened: 'tokens/tokenFlattened',
+  tokenRankFeature: 'tokens/tokenRankFeature',
+  tokenRankFeatures: 'tokens/tokenRankFeatures',
+  tokenKeyword: 'tokens/tokenKeyword',
+  tokenCompletionSuggester: 'tokens/tokenCompletionSuggester',
+  tokenDenseVector: 'tokens/tokenDenseVector',
+  tokenText: 'tokens/tokenText',
+  tokenTokenCount: 'tokens/tokenTokenCount',
+  tokenSearchType: 'tokens/tokenSearchType',
+  tokenHistogram: 'tokens/tokenHistogram',
 };
 
 export const TYPES = keysOf(typeToPathMap);
