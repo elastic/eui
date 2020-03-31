@@ -3,14 +3,14 @@
 exports[`EuiListGroup is rendered 1`] = `
 <ul
   aria-label="aria-label"
-  class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault testClass1 testClass2"
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
 
-exports[`EuiListGroup is rendered with listItems 1`] = `
+exports[`EuiListGroup listItems is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 >
   <li
     class="euiListGroupItem euiListGroupItem--medium"
@@ -44,6 +44,7 @@ exports[`EuiListGroup is rendered with listItems 1`] = `
       </span>
     </span>
     <button
+      aria-label="bell"
       class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
@@ -70,6 +71,21 @@ exports[`EuiListGroup is rendered with listItems 1`] = `
     </button>
   </li>
   <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive euiListGroupItem-isClickable"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Active link"
+      >
+        Active link
+      </span>
+    </a>
+  </li>
+  <li
     class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
   >
     <a
@@ -87,21 +103,122 @@ exports[`EuiListGroup is rendered with listItems 1`] = `
 </ul>
 `;
 
+exports[`EuiListGroup listItems is rendered with color 1`] = `
+<ul
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
+>
+  <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary"
+  >
+    <span
+      class="euiListGroupItem__text"
+    >
+      <div
+        class="euiListGroupItem__icon"
+        data-euiicon-type="stop"
+      />
+      <span
+        class="euiListGroupItem__label"
+        title="Label with iconType"
+      >
+        Label with iconType
+      </span>
+    </span>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-hasExtraAction"
+  >
+    <span
+      class="euiListGroupItem__text"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Custom extra action"
+      >
+        Custom extra action
+      </span>
+    </span>
+    <button
+      aria-label="bell"
+      class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
+      type="button"
+    >
+      <div
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        data-euiicon-type="bell"
+      />
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isClickable"
+  >
+    <button
+      class="euiListGroupItem__button"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Button with onClick"
+      >
+        Button with onClick
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isActive euiListGroupItem-isClickable"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Active link"
+      >
+        Active link
+      </span>
+    </a>
+  </li>
+  <li
+    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isClickable"
+  >
+    <a
+      class="euiListGroupItem__button"
+      href="#"
+    >
+      <span
+        class="euiListGroupItem__label"
+        title="Link with href"
+      >
+        Link with href
+      </span>
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`EuiListGroup listItems is rendered with size 1`] = `
+<ul
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
+/>
+`;
+
 exports[`EuiListGroup props bordered is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup-bordered euiListGroup--gutterS euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup-bordered euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 />
 `;
 
 exports[`EuiListGroup props flush is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup-flush euiListGroup--gutterS euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup-flush euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 />
 `;
 
 exports[`EuiListGroup props gutter size m is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterM euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup--gutterMedium euiListGroup-maxWidthDefault"
 />
 `;
 
@@ -113,38 +230,38 @@ exports[`EuiListGroup props gutter size none is rendered 1`] = `
 
 exports[`EuiListGroup props gutter size s is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 />
 `;
 
 exports[`EuiListGroup props maxWidth as a number is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterS"
+  class="euiListGroup euiListGroup--gutterSmall"
   style="max-width:300px"
 />
 `;
 
 exports[`EuiListGroup props maxWidth as a string is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterS"
+  class="euiListGroup euiListGroup--gutterSmall"
   style="max-width:20em"
 />
 `;
 
 exports[`EuiListGroup props maxWidth as true is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 />
 `;
 
 exports[`EuiListGroup props showToolTips is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 />
 `;
 
 exports[`EuiListGroup props wrapText is rendered 1`] = `
 <ul
-  class="euiListGroup euiListGroup--gutterS euiListGroup-maxWidthDefault"
+  class="euiListGroup euiListGroup--gutterSmall euiListGroup-maxWidthDefault"
 />
 `;

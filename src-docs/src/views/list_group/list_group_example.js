@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -7,8 +8,10 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiListGroup,
   EuiListGroupItem,
+  EuiPinnableListGroup,
   EuiCode,
 } from '../../../../src/components';
+import { EuiPinnableListGroupItem } from './props';
 
 import ListGroup from './list_group';
 const listGroupSource = require('!!raw-loader!./list_group');
@@ -29,6 +32,10 @@ const listGroupExtraHtml = renderToHtml(ListGroupExtra);
 import ListGroupItemColor from './list_group_item_color';
 const listGroupItemColorSource = require('!!raw-loader!./list_group_item_color');
 const listGroupItemColorHtml = renderToHtml(ListGroupItemColor);
+
+import PinnableListGroup from './pinnable_list_group';
+const pinnableListGroupSource = require('!!raw-loader!./pinnable_list_group');
+const pinnableListGroupHtml = renderToHtml(PinnableListGroup);
 
 export const ListGroupExample = {
   title: 'List group',
@@ -191,7 +198,8 @@ export const ListGroupExample = {
             <EuiCode>anchor</EuiCode>, or <EuiCode>span</EuiCode>. You can
             enforce a different color of <EuiCode>primary</EuiCode>,{' '}
             <EuiCode>text</EuiCode>, or <EuiCode>subdued</EuiCode> with the{' '}
-            <EuiCode>color</EuiCode> prop.
+            <EuiCode>color</EuiCode> prop. Or provide the prop directly to{' '}
+            <strong>EuiListGroup</strong>.
           </p>
           <p>
             They also accept options for text size;{' '}
@@ -204,6 +212,58 @@ export const ListGroupExample = {
   label="Primary"
   color="primary"
   size="s"
+/>`,
+    },
+    {
+      title: 'Pinnable list group',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pinnableListGroupSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pinnableListGroupHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiPinnableListGroup</strong> is simply an extra wrapper
+            around an{' '}
+            <Link to="/display/list-group">
+              <strong>EuiListGroup</strong>
+            </Link>{' '}
+            that provides visual indicators for <strong>pinning</strong>.
+          </p>
+          <p>
+            Pinning is the concept that users can click a pin icon and add it to
+            a subset of links (most likely shown in different list group). By
+            providing an <EuiCode>onPinClick</EuiCode> handler, the component
+            will automatically add the pin action to the item. However, the
+            consuming application must manage the <EuiCode>listItem</EuiCode>s
+            and their <EuiCode>pinned</EuiCode> state.
+          </p>
+          <p>
+            In order to get the full benefit of using{' '}
+            <strong>EuiPinnableListGroup</strong>, the component only supports
+            providing list items via the <EuiCode>listItem</EuiCode> prop and
+            does not support <EuiCode>children</EuiCode>.
+          </p>
+        </>
+      ),
+      props: { EuiPinnableListGroup, EuiPinnableListGroupItem },
+      demo: <PinnableListGroup />,
+      snippet: `<EuiPinnableListGroup
+  onPinClick={item => {}}
+  listItems={[
+    {
+      label: 'A link',
+      href: '#',
+      pinned: true,
+      isActive: true,
+    },
+  ]}
 />`,
     },
   ],

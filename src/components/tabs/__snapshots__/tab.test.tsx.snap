@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiTab Props is disabled 1`] = `
+<button
+  aria-selected="false"
+  class="euiTab euiTab-isDisabled"
+  disabled=""
+  role="tab"
+  type="button"
+>
+  <span
+    class="euiTab__content"
+  >
+    Click Me
+  </span>
+</button>
+`;
+
 exports[`EuiTab renders anchor 1`] = `
 <a
   aria-label="aria-label"

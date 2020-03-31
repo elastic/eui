@@ -44,5 +44,11 @@ describe('EuiTab', () => {
         expect(onClickHandler).toBeCalled();
       });
     });
+
+    test('is disabled', () => {
+      const component = render(<EuiTab disabled>Click Me</EuiTab>);
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

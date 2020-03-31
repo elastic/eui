@@ -35,7 +35,9 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             />
           </EuiIcon>
         </span>
-        <span />
+        <span
+          className="euiIEFlexWrapFix"
+        />
       </button>
     </div>
     <div
@@ -91,7 +93,9 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             />
           </EuiIcon>
         </span>
-        <span />
+        <span
+          className="euiIEFlexWrapFix"
+        />
       </button>
     </div>
     <div
@@ -135,7 +139,9 @@ exports[`EuiAccordion is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div
@@ -164,7 +170,9 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
       class="euiAccordion__button"
       type="button"
     >
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div
@@ -205,7 +213,9 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div
@@ -246,7 +256,9 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span>
+      <span
+        class="euiIEFlexWrapFix"
+      >
         <div>
           Button content
         </div>
@@ -288,7 +300,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         />
       </span>
       <span
-        class="button content class name"
+        class="euiIEFlexWrapFix button content class name"
       />
     </button>
   </div>
@@ -326,7 +338,9 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
     <div
       class="euiAccordion__optionalAction"
@@ -370,7 +384,9 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div
