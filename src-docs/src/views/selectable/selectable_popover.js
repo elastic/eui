@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { orderBy } from 'lodash';
 import {
   EuiButton,
   EuiCode,
@@ -13,6 +12,7 @@ import {
   EuiSpacer,
   EuiTitle,
 } from '../../../../src/components';
+import { Comparators } from '../../../../src/services/sort';
 
 import { Options } from './data';
 import { createDataStore } from '../tables/data_store';
@@ -39,7 +39,7 @@ export default class extends Component {
 
   onButtonClick = () => {
     this.setState(prevState => ({
-      options: orderBy(prevState.options, ['checked'], ['asc']),
+      options: prevState.options.slice().sort(Comparators.property('checked')),
       isPopoverOpen: !prevState.isPopoverOpen,
     }));
   };

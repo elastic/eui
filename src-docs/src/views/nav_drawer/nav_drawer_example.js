@@ -44,8 +44,9 @@ export const NavDrawerExample = {
               <EuiCode>listItems</EuiCode> object of an{' '}
               <EuiCode>EuiNavDrawerGroup</EuiCode> will result in that link
               opening a secondary menu. Note that this will also override the{' '}
-              <EuiCode>onClick</EuiCode> event. See sample data in the Demo JS
-              tab.
+              <EuiCode>onClick</EuiCode> event. For more details about other
+              props available for the <EuiCode>listItems</EuiCode> object,
+              please refer to <EuiCode>EuiListGroupItem</EuiCode>.
             </p>
           </EuiCallOut>
         </div>

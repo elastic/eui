@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiFlyout,
@@ -9,53 +9,37 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-export class FlyoutLarge extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
-    this.state = {
-      isFlyoutVisible: false,
-    };
+  const closeFlyout = () => setIsFlyoutVisible(false);
 
-    this.closeFlyout = this.closeFlyout.bind(this);
-    this.showFlyout = this.showFlyout.bind(this);
-  }
+  const showFlyout = () => setIsFlyoutVisible(true);
 
-  closeFlyout() {
-    this.setState({ isFlyoutVisible: false });
-  }
-
-  showFlyout() {
-    this.setState({ isFlyoutVisible: true });
-  }
-
-  render() {
-    let flyout;
-    if (this.state.isFlyoutVisible) {
-      flyout = (
-        <EuiFlyout
-          onClose={this.closeFlyout}
-          size="l"
-          aria-labelledby="flyoutLargeTitle">
-          <EuiFlyoutHeader hasBorder>
-            <EuiTitle size="m">
-              <h2 id="flyoutLargeTitle">A large flyout</h2>
-            </EuiTitle>
-          </EuiFlyoutHeader>
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>The large flyout is very wide.</p>
-            </EuiText>
-          </EuiFlyoutBody>
-        </EuiFlyout>
-      );
-    }
-    return (
-      <div>
-        <EuiButton onClick={this.showFlyout}>Show large flyout</EuiButton>
-
-        {flyout}
-      </div>
+  let flyout;
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        onClose={closeFlyout}
+        size="l"
+        aria-labelledby="flyoutLargeTitle">
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id="flyoutLargeTitle">A large flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>The large flyout is very wide.</p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
     );
   }
-}
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show large flyout</EuiButton>
+      {flyout}
+    </div>
+  );
+};

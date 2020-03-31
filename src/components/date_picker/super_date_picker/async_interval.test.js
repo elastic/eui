@@ -1,5 +1,4 @@
 import { AsyncInterval } from './async_interval';
-import { times } from 'lodash';
 import { sleep } from '../../../test';
 
 describe('AsyncInterval', () => {
@@ -15,7 +14,7 @@ describe('AsyncInterval', () => {
   // This helper makes it easier to advance time without worrying
   // whether tasks are still lingering on the event loop
   async function andvanceTimerAndAwaitFn(instance, ms) {
-    const iterations = times(Math.floor(ms / 100));
+    const iterations = [...Array(Math.floor(ms / 100)).keys()];
     const remainder = ms % 100;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     for (const item of iterations) {

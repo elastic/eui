@@ -37,7 +37,20 @@ export type EuiTokenMapType =
   | 'tokenGeo'
   | 'tokenRange'
   | 'tokenSymbol'
-  | 'tokenVariable';
+  | 'tokenVariable'
+  | 'tokenBinary'
+  | 'tokenJoin'
+  | 'tokenPercolator'
+  | 'tokenFlattened'
+  | 'tokenRankFeature'
+  | 'tokenRankFeatures'
+  | 'tokenKeyword'
+  | 'tokenCompletionSuggester'
+  | 'tokenDenseVector'
+  | 'tokenText'
+  | 'tokenTokenCount'
+  | 'tokenSearchType'
+  | 'tokenHistogram';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -198,5 +211,57 @@ export const TOKEN_MAP: {
   tokenAlias: {
     shape: 'circle',
     color: 'euiColorVis3',
+  },
+  tokenBinary: {
+    shape: 'square',
+    color: 'euiColorVis4',
+  },
+  tokenJoin: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenPercolator: {
+    shape: 'square',
+    color: 'euiColorVis6',
+  },
+  tokenFlattened: {
+    shape: 'square',
+    color: 'euiColorVis7',
+  },
+  tokenRankFeature: {
+    shape: 'square',
+    color: 'euiColorVis8',
+  },
+  tokenRankFeatures: {
+    shape: 'square',
+    color: 'euiColorVis3',
+  },
+  tokenKeyword: {
+    shape: 'square',
+    color: 'euiColorVis9',
+  },
+  tokenCompletionSuggester: {
+    shape: 'square',
+    color: 'euiColorVis1',
+  },
+  tokenDenseVector: {
+    shape: 'square',
+    color: 'euiColorVis2',
+  },
+  tokenText: {
+    shape: 'square',
+    color: 'euiColorVis3',
+  },
+  tokenTokenCount: {
+    shape: 'square',
+    color: 'euiColorVis4',
+  },
+  tokenSearchType: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenHistogram: {
+    shape: 'square',
+    color: 'euiColorVis6',
   },
 };
