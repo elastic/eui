@@ -268,7 +268,7 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          <strong>EuiButtonIcon</strong>s are buttons that only contain an icon
+          <strong>EuiButtonIcons</strong> are buttons that only contain an icon
           (no text).
         </p>
       ),
@@ -325,9 +325,9 @@ export const ButtonExample = {
       text: (
         <div>
           <p>
-            <strong>EuiButtonGroup</strong>s are handled similarly to the way
+            <strong>EuiButtonGroups</strong> are handled similarly to the way
             checkbox and radio groups are handled but made to look like buttons.
-            They group multiple <strong>EuiButtonToggle</strong>s and utilize
+            They group multiple <strong>EuiButtonToggles</strong> and utilize
             the <EuiCode language="js">type=&quot;single&quot;</EuiCode> or{' '}
             <EuiCode language="js">&quot;multi&quot;</EuiCode> prop to determine
             whether multiple or only single selections are allowed per group.

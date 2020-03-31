@@ -44,7 +44,7 @@ export const FilterGroupExample = {
         <Fragment>
           <p>
             Use <strong>EuiFilterGroup</strong> to wrap{' '}
-            <strong>EuiFilterButton</strong>s into a container that looks nice
+            <strong>EuiFilterButtons</strong> into a container that looks nice
             against form fields (like search). These buttons are used in two
             different patterns. The most simplest use is that of an on/off
             pattern to show whether a filter is on. Add the prop{' '}

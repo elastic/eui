@@ -180,8 +180,8 @@ export const DescriptionListExample = {
       text: (
         <p>
           When using the <EuiCode>listItems</EuiCode> prop to pass an object of
-          items and you need to also add <EuiCode>className</EuiCode>s (or other
-          available props) to the individual pieces, you can use the{' '}
+          items and you need to also add a <EuiCode>className</EuiCode> (or
+          other available prop) to the individual pieces, you can use the{' '}
           <EuiCode>titleProps</EuiCode> and <EuiCode>descriptionProps</EuiCode>{' '}
           to do so.
         </p>

@@ -50,7 +50,11 @@ export const NavDrawerExample = {
               opening a secondary menu. Note that this will also override the{' '}
               <EuiCode>onClick</EuiCode> event. For more details about other
               props available for the <EuiCode>listItems</EuiCode> object,
-              please refer to <EuiCode>EuiListGroupItem</EuiCode>.
+              please refer to{' '}
+              <Link to="/display/list-group">
+                <strong>EuiListGroupItem</strong>
+              </Link>
+              .
             </p>
           </EuiCallOut>
         </div>

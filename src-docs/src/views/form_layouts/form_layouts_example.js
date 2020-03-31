@@ -67,7 +67,7 @@ export const FormLayoutsExample = {
           Use the <strong>EuiFormRow</strong> component to easily associate form
           components with labels, help text, and error text. Use the{' '}
           <strong>EuiForm</strong> component to group{' '}
-          <strong>EuiFormRow</strong>s. By default EuiForm will render as a
+          <strong>EuiFormRows</strong>. By default EuiForm will render as a
           simple div unless you pass{' '}
           <EuiCode language="js">component=&quot;form&quot;</EuiCode>.
         </p>
@@ -132,7 +132,7 @@ export const FormLayoutsExample = {
       text: (
         <p>
           Use <strong>EuiDescribedFormGroup</strong> component to associate
-          multiple <strong>EuiFormRow</strong>s. It can also simply be used with
+          multiple <strong>EuiFormRows</strong>. It can also simply be used with
           one <strong>EuiFormRow</strong> as a way to display additional text
           next to the field (on mobile, it will revert to being stacked).
         </p>

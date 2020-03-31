@@ -65,7 +65,8 @@ export const DragAndDropExample = {
           </li>
           <li>
             <EuiCode>{'<EuiDroppable />'}</EuiCode>: Area into which items can
-            be dropped. Contains <EuiCode>{'<EuiDraggable />'}</EuiCode>s.
+            be dropped. Contains one or more{' '}
+            <EuiCode>{'<EuiDraggable />'}</EuiCode>.
           </li>
           <li>
             <EuiCode>{'<EuiDraggable />'}</EuiCode>: Items that can be dragged.
@@ -124,12 +125,12 @@ export const DragAndDropExample = {
           </p>
           <p>
             All <strong>EuiDragDropContext</strong> elements are discrete and
-            isolated; <strong>EuiDroppable</strong>s and{' '}
-            <strong>EuiDraggable</strong>s cannot be shared/transferred between
-            instances. Also, <strong>EuiDragDropContext</strong>s cannot be
+            isolated; <strong>EuiDroppables</strong> and{' '}
+            <strong>EuiDraggables</strong> cannot be shared/transferred between
+            instances. Also, <strong>EuiDragDropContexts</strong> cannot be
             nested. It is recommended that a single, high-level{' '}
             <strong>EuiDragDropContext</strong> is used and{' '}
-            <strong>EuiDroppable</strong>s account for categorical and
+            <strong>EuiDroppables</strong> account for categorical and
             functional separation (see later examples).
           </p>
           <p>
@@ -370,8 +371,8 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            <strong>EuiDraggable</strong>s in <strong>EuiDroppables</strong>,{' '}
-            <strong>EuiDroppable</strong>s in <strong>EuiDraggable</strong>s,
+            <strong>EuiDraggables</strong> in <strong>EuiDroppables</strong>,{' '}
+            <strong>EuiDroppables</strong> in <strong>EuiDraggables</strong>,
             custom drag handles, horizontal movement, vertical movement,
             flexbox, panel inception, you name it.
           </p>

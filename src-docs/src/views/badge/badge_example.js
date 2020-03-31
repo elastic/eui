@@ -120,7 +120,7 @@ export const BadgeExample = {
       ],
       text: (
         <p>
-          <strong>EuiBadge</strong>s are used to focus on important bits of
+          <strong>EuiBadges</strong> are used to focus on important bits of
           information. Although they will automatically space themselves if you
           use them in a repetitive fashion it is good form to wrap them using a{' '}
           <strong>EuiBadgeGroup</strong> so that they will wrap when width is
@@ -172,7 +172,7 @@ export const BadgeExample = {
               When providing both these click handlers,{' '}
               <strong>EuiBadge</strong> must alter the contents so that it does
               not contain nested button tags. Please make note that if you
-              provide props other than those explicit to
+              provide props other than those explicit to{' '}
               <strong>EuiBadge</strong>, they will always be applied to the main{' '}
               <EuiCode>button</EuiCode> tag which may be inside of the outer
               most tag.

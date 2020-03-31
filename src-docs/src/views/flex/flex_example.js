@@ -239,7 +239,7 @@ export const FlexExample = {
         <Fragment>
           <p>
             You can set <EuiCode>wrap</EuiCode> on <strong>EuiFlexGroup</strong>{' '}
-            if it contains <strong>EuiFlexItem</strong>s with minimum widths,
+            if it contains <strong>EuiFlexItems</strong> with minimum widths,
             which you want to wrap as the container becomes narrower.
           </p>
           <EuiCallOut color="warning" title="IE Warning">
@@ -400,12 +400,12 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          <strong>EuiFlexGroup</strong>s can also use{' '}
+          <strong>EuiFlexGroups</strong> can also use{' '}
           <EuiCode>justifyContent</EuiCode> and <EuiCode>alignItems</EuiCode>{' '}
           props that accept normal flex-box parameters. Below are some common
           scenarios, where you need to separate two items, center justify a
           single one, or center an item vertically. Note the usage of{' '}
-          <strong>EuiFlexItem</strong>s with <EuiCode>grow=false</EuiCode> so
+          <strong>EuiFlexItems</strong> with <EuiCode>grow=false</EuiCode> so
           that they do not stretch.
         </p>
       ),
@@ -586,7 +586,7 @@ export const FlexExample = {
         <p>
           The <EuiCode>gutterSize</EuiCode> prop can be applied to either a{' '}
           <strong>EuiFlexGroup</strong> or a <strong>EuiFlexGrid</strong> to
-          adjust the spacing between <strong>EuiFlexItem</strong>s.
+          adjust the spacing between <strong>EuiFlexItems</strong>.
         </p>
       ),
       snippet: flexGutterSnippet,

@@ -64,7 +64,7 @@ export const KeyPadMenuExample = {
       text: (
         <p>
           The <strong>EuiKeyPadMenu</strong> component presents{' '}
-          <strong>EuiKeyPadMenuItem</strong>s in a tiled format, with a fixed
+          <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
           width which will accommodate three items and then wrap.
         </p>
       ),
