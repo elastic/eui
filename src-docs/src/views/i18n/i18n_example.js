@@ -31,6 +31,7 @@ export const I18nExample = {
   title: 'I18n',
   sections: [
     {
+      title: 'Internationalization',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -43,7 +44,7 @@ export const I18nExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiI18n</EuiCode> allows localizing string and numeric values
+          <strong>EuiI18n</strong> allows localizing string and numeric values
           for internationalization. At its simplest, the component takes{' '}
           <EuiCode>token</EuiCode> and <EuiCode>default</EuiCode> props.&nbsp;
           <EuiCode>token</EuiCode> provides a reference to use when looking for
@@ -69,7 +70,7 @@ export const I18nExample = {
       text: (
         <p>
           Some times a localized value is needed for a prop instead of rendering
-          directly to the DOM. In these cases <EuiCode>EuiI18n</EuiCode> can be
+          directly to the DOM. In these cases <strong>EuiI18n</strong> can be
           passed a render prop child which is called with the localized value.
         </p>
       ),
@@ -112,8 +113,8 @@ export const I18nExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiI18nNumber</EuiCode> can be used to format one or more
-          numbers. Similarly to <EuiCode>EuiI18n</EuiCode>, it takes{' '}
+          <strong>EuiI18nNumber</strong> can be used to format one or more
+          numbers. Similarly to <strong>EuiI18n</strong>, it takes{' '}
           <EuiCode>value</EuiCode> or
           <EuiCode>values</EuiCode> and can render directly to the DOM or call a
           render prop.

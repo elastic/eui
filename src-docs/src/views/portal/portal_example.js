@@ -18,7 +18,6 @@ export const PortalExample = {
   title: 'Portal',
   sections: [
     {
-      title: 'Portal',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -31,17 +30,17 @@ export const PortalExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiPortal</EuiCode> allows you to append its contained
-          children onto the document body. It is useful for moving fixed
-          elements like modals, tooltips or toasts when you are worried about a
-          z-index or overflow conflict.
+          <strong>EuiPortal</strong> allows you to append its contained children
+          onto the document body. It is useful for moving fixed elements like
+          modals, tooltips or toasts when you are worried about a z-index or
+          overflow conflict.
         </p>
       ),
       components: { EuiPortal },
       demo: <Portal />,
     },
     {
-      title: 'Inserting Portals',
+      title: 'Inserting portals',
       source: [
         {
           type: GuideSectionTypes.JS,

@@ -74,14 +74,14 @@
 
     &.euiPopover__panelArrow--top {
       &:before {
-        bottom: -$euiPopoverArrowSize + 1;
+        bottom: -$euiPopoverArrowSize + 2;
         border-left: $euiPopoverArrowSize solid transparent;
         border-right: $euiPopoverArrowSize solid transparent;
         border-top: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        bottom: -$euiPopoverArrowSize + 2;
+        bottom: -$euiPopoverArrowSize + 3;
         border-left: $euiPopoverArrowSize solid transparent;
         border-right: $euiPopoverArrowSize solid transparent;
         border-top: $euiPopoverArrowSize solid $euiColorEmptyShade;

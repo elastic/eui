@@ -17,7 +17,7 @@ const prettyDurationSource = require('!!raw-loader!./pretty_duration');
 const prettyDurationHtml = renderToHtml(PrettyDuration);
 
 export const PrettyDurationExample = {
-  title: 'Pretty Duration',
+  title: 'Pretty duration',
   sections: [
     {
       source: [

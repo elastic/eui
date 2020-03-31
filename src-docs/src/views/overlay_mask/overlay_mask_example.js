@@ -32,7 +32,7 @@ export const OverlayMaskExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiOverlayMask</EuiCode> is simply a display component used
+            <strong>EuiOverlayMask</strong> is simply a display component used
             to obscure the main content to bring attention to its children or
             other content. It is best used in conjunction with hyper-focus
             content areas like <Link to="/layout/modal">modals</Link> and{' '}

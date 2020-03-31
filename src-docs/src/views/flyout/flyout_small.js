@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiFlyout,
@@ -9,57 +9,42 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-export class FlyoutSmall extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
-    this.state = {
-      isFlyoutVisible: false,
-    };
+  const closeFlyout = () => setIsFlyoutVisible(false);
 
-    this.closeFlyout = this.closeFlyout.bind(this);
-    this.showFlyout = this.showFlyout.bind(this);
-  }
+  const showFlyout = () => setIsFlyoutVisible(true);
 
-  closeFlyout() {
-    this.setState({ isFlyoutVisible: false });
-  }
-
-  showFlyout() {
-    this.setState({ isFlyoutVisible: true });
-  }
-
-  render() {
-    let flyout;
-    if (this.state.isFlyoutVisible) {
-      flyout = (
-        <EuiFlyout
-          ownFocus
-          onClose={this.closeFlyout}
-          size="s"
-          aria-labelledby="flyoutSmallTitle">
-          <EuiFlyoutHeader hasBorder>
-            <EuiTitle size="s">
-              <h2 id="flyoutSmallTitle">A small flyout</h2>
-            </EuiTitle>
-          </EuiFlyoutHeader>
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>
-                In small flyouts, it is ok to reduce the header size to{' '}
-                <code>s</code>.
-              </p>
-            </EuiText>
-          </EuiFlyoutBody>
-        </EuiFlyout>
-      );
-    }
-    return (
-      <div>
-        <EuiButton onClick={this.showFlyout}>Show small flyout</EuiButton>
-
-        {flyout}
-      </div>
+  let flyout;
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={closeFlyout}
+        size="s"
+        aria-labelledby="flyoutSmallTitle">
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="s">
+            <h2 id="flyoutSmallTitle">A small flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              In small flyouts, it is ok to reduce the header size to{' '}
+              <code>s</code>.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
     );
   }
-}
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show small flyout</EuiButton>
+
+      {flyout}
+    </div>
+  );
+};

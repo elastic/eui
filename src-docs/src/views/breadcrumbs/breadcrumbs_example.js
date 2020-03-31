@@ -72,14 +72,14 @@ export const BreadcrumbsExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiBreadcrumbs</EuiCode> let the user track their progress
+          <strong>EuiBreadcrumbs</strong> let the user track their progress
           within and back out of a UX flow. You can provide an{' '}
           <EuiCode>href</EuiCode> prop on any breadcrumb item that you wish to
           make clickable, including the last item, though we recommend the last
           item represent the current page and therefore the link is unnecessary.
-          They work well within
-          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to use them
-          within an app that also uses <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
+          They work well within <strong>EuiPageContentHeader</strong> but be
+          careful not to use them within an app that also uses{' '}
+          <strong>EuiHeaderBreadcrumbs</strong>.
         </p>
       ),
       props: { EuiBreadcrumbs },
@@ -129,7 +129,7 @@ export const BreadcrumbsExample = {
           <ol>
             <li>on the individual breadcrumb item,</li>
             <li>
-              on the full <EuiCode>EuiBreadcrumbs</EuiCode> set which will force
+              on the full <strong>EuiBreadcrumbs</strong> set which will force
               the full set to a single line, while setting a max width on all
               items except for the last.
             </li>
@@ -179,7 +179,7 @@ export const BreadcrumbsExample = {
           users to navigate to any item in the list, you can use the{' '}
           <EuiCode>showMaxPopover</EuiCode> prop. When used with the{' '}
           <EuiCode>max</EuiCode> prop, the hidden breadcrumbs will be rendered
-          into an <EuiCode>EuiPopover</EuiCode>.
+          into an <strong>EuiPopover</strong>.
         </p>
       ),
       props: { EuiBreadcrumbs },

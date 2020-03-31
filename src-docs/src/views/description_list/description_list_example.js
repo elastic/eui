@@ -36,7 +36,7 @@ const descriptionListClassesSource = require('!!raw-loader!./description_list_cl
 const descriptionListClassesHtml = renderToHtml(DescriptionListClasses);
 
 export const DescriptionListExample = {
-  title: 'Description List',
+  title: 'Description list',
   sections: [
     {
       source: [
@@ -51,12 +51,12 @@ export const DescriptionListExample = {
       ],
       text: (
         <p>
-          <EuiCode>DescriptionList</EuiCode> is a component for listing pairs of
-          information together. You can use the component on its own, passing in
-          an object for the list, or use the{' '}
-          <EuiCode>EuiDescriptionListTitle</EuiCode> and{' '}
-          <EuiCode>EuiDescriptionListDescription</EuiCode>
-          components separately to build a list manually.
+          <strong>EuiDescriptionList</strong> is a component for listing pairs
+          of information together. You can use the component on its own, passing
+          in an object for the list, or use the{' '}
+          <strong>EuiDescriptionListTitle</strong> and{' '}
+          <strong>EuiDescriptionListDescription</strong> components separately
+          to build a list manually.
         </p>
       ),
       props: {
@@ -180,8 +180,8 @@ export const DescriptionListExample = {
       text: (
         <p>
           When using the <EuiCode>listItems</EuiCode> prop to pass an object of
-          items and you need to also add <EuiCode>className</EuiCode>s (or other
-          available props) to the individual pieces, you can use the{' '}
+          items and you need to also add a <EuiCode>className</EuiCode> (or
+          other available prop) to the individual pieces, you can use the{' '}
           <EuiCode>titleProps</EuiCode> and <EuiCode>descriptionProps</EuiCode>{' '}
           to do so.
         </p>

@@ -8,7 +8,7 @@ const source = require('!!raw-loader!./paginated');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Adding pagination to a BasicTable',
+  title: 'Adding pagination to a table',
   source: [
     {
       type: GuideSectionTypes.JS,
