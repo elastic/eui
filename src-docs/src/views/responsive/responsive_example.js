@@ -53,9 +53,10 @@ export const ResponsiveExample = {
           </p>
 
           <p>
-            The sizing correlates with our <EuiCode>$euiBreakpoints</EuiCode>{' '}
-            SASS map. The named breakpoint starts at the pixel value provided
-            and ends before the next one.
+            The sizing correlates with our{' '}
+            <EuiCode language="scss">$euiBreakpoints</EuiCode> SASS map. The
+            named breakpoint starts at the pixel value provided and ends before
+            the next one.
           </p>
 
           <EuiCodeBlock language="scss" paddingSize="s">

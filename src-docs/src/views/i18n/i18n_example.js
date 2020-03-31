@@ -31,6 +31,7 @@ export const I18nExample = {
   title: 'I18n',
   sections: [
     {
+      title: 'Internationalization',
       source: [
         {
           type: GuideSectionTypes.JS,

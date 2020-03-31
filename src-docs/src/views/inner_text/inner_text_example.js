@@ -37,7 +37,7 @@ export const InnerTextExample = {
             function components
           </li>
           <li>
-            <EuiCode>&lt;EuiInnerText /&gt;</EuiCode> - A higher order{' '}
+            <EuiCode>{'<EuiInnerText />'}</EuiCode> - A higher order{' '}
             <EuiCode>useInnerText</EuiCode> component for use in class
             components
           </li>

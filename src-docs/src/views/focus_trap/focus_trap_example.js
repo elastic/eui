@@ -1,7 +1,6 @@
 import React from 'react';
-
+import { Link } from 'react-router';
 import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiFocusTrap } from '../../../../src/components';
@@ -29,8 +28,15 @@ export const FocusTrapExample = {
           <p>
             Use <strong>EuiFocusTrap</strong> to prevent keyboard-initiated
             focus from leaving a defined area. Temporary flows and UX escapes
-            that occur in components such as <strong>EuiModal</strong> and{' '}
-            <strong>EuiFlyout</strong> are prime examples.
+            that occur in components such as{' '}
+            <Link to="/layout/modal">
+              <strong>EuiModal</strong>
+            </Link>{' '}
+            and{' '}
+            <Link to="/layout/flyout">
+              <strong>EuiFlyout</strong>
+            </Link>{' '}
+            are prime examples.
           </p>
           <p>
             For components that project content in a React portal,{' '}

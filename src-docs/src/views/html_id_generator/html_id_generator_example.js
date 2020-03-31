@@ -5,20 +5,20 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 import { EuiCode } from '../../../../src/components';
 
-import IdGenerator from './htmlIdGenerator';
-import { HtmlIdGeneratorPrefix } from './htmlIdGeneratorPrefix';
-import { HtmlIdGeneratorSuffix } from './htmlIdGeneratorSuffix';
+import IdGenerator from './html_id_generator';
+import { HtmlIdGeneratorPrefix } from './html_id_generator_prefix';
+import { HtmlIdGeneratorSuffix } from './html_id_generator_suffix';
 import { PrefixSufix } from './bothPrefixSuffix';
 
-const htmlIdGeneratorSource = require('!!raw-loader!./htmlIdGenerator');
+const htmlIdGeneratorSource = require('!!raw-loader!./html_id_generator');
 const htmlIdGeneratorHtml = renderToHtml(IdGenerator);
 const htmlIdGeneratorSnippet = ' htmlIdGenerator()()';
 
-const htmlIdGeneratorPrefixSource = require('!!raw-loader!./htmlIdGeneratorPrefix');
+const htmlIdGeneratorPrefixSource = require('!!raw-loader!./html_id_generator_prefix');
 const htmlIdGeneratorPrefixHtml = renderToHtml(HtmlIdGeneratorPrefix);
 const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('prefix')()";
 
-const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./htmlIdGeneratorSuffix');
+const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./html_id_generator_suffix');
 const HtmlIdGeneratorSuffixHtml = renderToHtml(HtmlIdGeneratorSuffix);
 const suffixSnippet = " htmlIdGenerator()('suffix')";
 
@@ -27,7 +27,7 @@ const PrefixSufixHtml = renderToHtml(PrefixSufix);
 const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
 
 export const HtmlIdGeneratorExample = {
-  title: 'Html Id Generator',
+  title: 'HTML ID Generator',
   sections: [
     {
       source: [
@@ -42,7 +42,7 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>htmlIdGenerator</EuiCode> to generate unique IDs for
+          Use <EuiCode>htmlIdGenerator()()</EuiCode> to generate unique IDs for
           elements with an optional <EuiCode>prefix</EuiCode> and/or{' '}
           <EuiCode>suffix</EuiCode>. The first call to{' '}
           <EuiCode>htmlIdGenerator</EuiCode> accepts the prefix as an optional
@@ -109,7 +109,7 @@ export const HtmlIdGeneratorExample = {
       ],
       text: (
         <p>
-          The <strong>HtmlIdGenerator</strong> is capable of generating an ID
+          The <EuiCode>htmlIdGenerator</EuiCode> is capable of generating an ID
           with both a specified prefix <strong>and</strong> suffix.
         </p>
       ),

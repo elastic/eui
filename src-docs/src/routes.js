@@ -83,7 +83,6 @@ import { DataGridControlColumnsExample } from './views/datagrid/datagrid_control
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
-import { DelayHideExample } from './views/delay_hide/delay_hide_example';
 import { DelayRenderExample } from './views/delay_render/delay_render_example';
 
 import { DescriptionListExample } from './views/description_list/description_list_example';
@@ -413,10 +412,10 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      IsColorDarkExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
-      DelayHideExample,
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
@@ -424,7 +423,6 @@ const navigation = [
       HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
-      IsColorDarkExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
       OverlayMaskExample,
