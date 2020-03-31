@@ -13,27 +13,27 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
-import { Flyout } from './flyout';
+import Flyout from './flyout';
 const flyoutSource = require('!!raw-loader!./flyout');
 const flyoutHtml = renderToHtml(Flyout);
 
-import { FlyoutComplicated } from './flyout_complicated';
+import FlyoutComplicated from './flyout_complicated';
 const flyoutComplicatedSource = require('!!raw-loader!./flyout_complicated');
 const flyoutComplicatedHtml = renderToHtml(FlyoutComplicated);
 
-import { FlyoutSmall } from './flyout_small';
+import FlyoutSmall from './flyout_small';
 const flyoutSmallSource = require('!!raw-loader!./flyout_small');
 const flyoutSmallHtml = renderToHtml(FlyoutSmall);
 
-import { FlyoutLarge } from './flyout_large';
+import FlyoutLarge from './flyout_large';
 const flyoutLargeSource = require('!!raw-loader!./flyout_large');
 const flyoutLargeHtml = renderToHtml(FlyoutLarge);
 
-import { FlyoutMaxWidth } from './flyout_max_width';
+import FlyoutMaxWidth from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
-import { FlyoutWithBanner } from './flyout_banner';
+import FlyoutWithBanner from './flyout_banner';
 const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 const flyoutWithBannerHtml = renderToHtml(FlyoutWithBanner);
 
