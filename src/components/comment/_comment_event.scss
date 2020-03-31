@@ -4,15 +4,11 @@
   font-size: $euiFontSizeS;
   overflow: hidden;
 
-  .euiCommentEvent__event {
-    padding-right: $euiSizeXS;
-  }
-
   .euiCommentEvent__header {
     @include euiBreakpoint('xs', 's') {
       margin: -($euiSizeXS);
 
-      >div {
+      > div {
         margin: $euiSizeXS;
       }
 
@@ -23,7 +19,7 @@
 
     align-items: center;
 
-    .euiCommentEvent__headerData>div {
+    .euiCommentEvent__headerData > div {
       padding-right: $euiSizeXS;
     }
   }
@@ -38,13 +34,11 @@
     font-weight: $euiFontWeightSemiBold;
   }
 
-  .euiCommentEvent__body {
-    line-height: $euiSize * 1.2;
-  }
-
 }
 
 .euiCommentEvent--regular {
+  border: $euiBorderThin;
+
   .euiCommentEvent__header {
     background-color: $euiColorLightestShade;
     border-bottom: $euiBorderThin;

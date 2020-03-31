@@ -1,7 +1,7 @@
 .euiComment {
   font-size: $euiFontSizeS;
   display: flex;
-  margin: -($euiSizeS);
+  // margin: -($euiSizeS);
   padding-bottom: $euiSize;
   min-height: $euiSize * 5;
 
@@ -12,6 +12,7 @@
   .euiCommentTimeline {
     position: relative;
     flex-grow: 0;
+    margin-right: $euiSize;
 
     &::before {
       content: '';
@@ -23,20 +24,18 @@
       height: 100%;
     }
   }
-
-  .euiCommentTimeline,
-  .euiCommentEvent {
-    flex-basis: auto;
-    margin: $euiSizeS;
-  }
-
 }
 
 .euiComment:last-of-type {
   .euiCommentTimeline {
     &::before {
-      content: '';
-      height: 0;
+      display: none;
     }
+  }
+}
+
+.euiComment--update:not(.euiComment--hasBody) {
+  @include euiBreakpoint('m', 'l', 'xl') {
+    align-items: center;
   }
 }

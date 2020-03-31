@@ -12,6 +12,11 @@ export type EuiCommentProps = EuiCommentEventProps &
   EuiCommentTimelineProps &
   CommonProps & {};
 
+const typeToClassNameMap = {
+  regular: '',
+  update: 'euiComment--update',
+};
+
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   children,
   className,
@@ -23,7 +28,12 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   timestamp,
   ...rest
 }) => {
-  const classes = classNames('euiComment', className);
+  const classes = classNames(
+    'euiComment',
+    typeToClassNameMap[type],
+    { 'euiComment--hasBody': children },
+    className
+  );
 
   return (
     <div className={classes} {...rest}>

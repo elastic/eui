@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: $euiColorEmptyShade;
 }
 
 .euiCommentTimeline__contentDefault {
@@ -15,7 +14,7 @@
   align-items: center;
   overflow-x: hidden;
   border-radius: 50%;
-  background-color: $euiColorLightShade;
+  background-color: $euiColorLightestShade;
   width: $euiSizeXXL;
   height: $euiSizeXXL;
 }

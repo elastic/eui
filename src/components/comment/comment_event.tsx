@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
+import { EuiI18n } from '../i18n';
 
 export type EuiCommentEventProps = CommonProps &
   CommonProps & {
@@ -53,7 +54,14 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
         <div className="euiCommentEvent__headerData">
           <div className="euiCommentEvent__headerUsername">{username}</div>
           <div className="euiCommentEvent__headerEvent">{event}</div>
-          <div className="euiCommentEvent__headerTimestamp">{timestamp}</div>
+          {timestamp ? (
+            <div className="euiCommentEvent__headerTimestamp">
+              <EuiI18n token="euiCommentEven.onDate" default="on" />{' '}
+              <time>{timestamp}</time>
+            </div>
+          ) : (
+            undefined
+          )}
         </div>
         <div className="euiCommentEvent__headerActions">{actions}</div>
       </div>
