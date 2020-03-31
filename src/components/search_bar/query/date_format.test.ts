@@ -16,7 +16,7 @@ afterEach(() => {
 });
 
 describe('date format', () => {
-  test.skip('parse - explicit date', () => {
+  test('parse - explicit date', () => {
     const parsed = dateFormat.parse('2018-01-02T22:33:44.555Z');
     expect(parsed.utcOffset()).toBe(0);
     expect(parsed.year()).toBe(2018);
@@ -29,7 +29,7 @@ describe('date format', () => {
     expect(dateGranularity(parsed)).toBeUndefined();
   });
 
-  test.skip('parse - explicit date 2', () => {
+  test('parse - explicit date 2', () => {
     [
       '12 January 2018 22:33:44',
       '12 January 18 22:33:44',
@@ -48,7 +48,7 @@ describe('date format', () => {
     });
   });
 
-  test.skip('parse - explicit date 3', () => {
+  test('parse - explicit date 3', () => {
     [
       '12 January 2018 22:33',
       '12 January 18 22:33',
@@ -67,7 +67,7 @@ describe('date format', () => {
     });
   });
 
-  test.skip('parse - time', () => {
+  test('parse - time', () => {
     ['22:33', '10:33 PM', '10:33 pm'].forEach(time => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);
@@ -93,7 +93,7 @@ describe('date format', () => {
     });
   });
 
-  test.skip('parse - day granularity', () => {
+  test('parse - day granularity', () => {
     [
       '2 Jan 18',
       '2nd Jan 18',
@@ -166,7 +166,7 @@ describe('date format', () => {
     expect(dateGranularity(parsed)).toBe(Granularity.DAY);
   });
 
-  test.skip('parse - week granularity', () => {
+  test('parse - week granularity', () => {
     const weekNumber = random.integer({ min: 0, max: 50 });
     const week = moment(now)
       .week(weekNumber)
@@ -219,7 +219,7 @@ describe('date format', () => {
     expect(dateGranularity(parsed)).toBe(Granularity.WEEK);
   });
 
-  test.skip('parse - month granularity', () => {
+  test('parse - month granularity', () => {
     ['Feb', 'February'].forEach(date => {
       const parsed = dateFormat.parse(date);
       expect(parsed.utcOffset()).toBe(0);
@@ -291,7 +291,7 @@ describe('date format', () => {
     expect(dateGranularity(parsed)).toBe(Granularity.MONTH);
   });
 
-  test.skip('parse - year granularity', () => {
+  test('parse - year granularity', () => {
     const year = random.integer({ min: 1970, max: new Date().getFullYear() });
     [
       year.toString(),

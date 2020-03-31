@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -12,6 +13,8 @@ import {
   EuiGlobalToastListItem,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import ToastList, { addToast, removeAllToasts } from './toast_list';
@@ -40,9 +43,18 @@ const dangerHtml = renderToHtml(Danger);
 
 export const ToastExample = {
   title: 'Toast',
+  intro: (
+    <EuiText>
+      <p>
+        Be sure to read the full{' '}
+        <Link to="/guidelines/toasts">toast usage guidelines</Link>.
+      </p>
+      <EuiSpacer />
+    </EuiText>
+  ),
   sections: [
     {
-      title: 'ToastList',
+      title: 'Toast list',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -92,9 +104,9 @@ export const ToastExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiToast</EuiCode> allows for small notes that appear in
-            the bottom right of the screen. They should be used for ephemeral,
-            live actions (think <strong>save complete</strong> or{' '}
+            <strong>EuiToast</strong> allows for small notes that appear in the
+            bottom right of the screen. They should be used for ephemeral, live
+            actions (think <strong>save complete</strong> or{' '}
             <strong>something just finished right now</strong>).
           </p>
           <p>
@@ -125,7 +137,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;info&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;info&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -148,7 +160,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;success&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;success&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -171,7 +183,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;warning&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;warning&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -194,7 +206,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode>type=&quot;danger&quot;</EuiCode>.
+          Setting <EuiCode language="js">type=&quot;danger&quot;</EuiCode>.
         </p>
       ),
       demo: (

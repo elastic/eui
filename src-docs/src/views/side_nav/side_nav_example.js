@@ -21,7 +21,7 @@ const sideNavForceOpenHtml = renderToHtml(SideNavForceOpen);
 import { SideNavItem } from './props';
 
 export const SideNavExample = {
-  title: 'Side Nav',
+  title: 'Side nav',
   sections: [
     {
       source: [
@@ -37,14 +37,14 @@ export const SideNavExample = {
       text: (
         <div>
           <p>
-            <EuiCode>SideNav</EuiCode> is a responsive menu system that usually
+            <strong>EuiSideNav</strong> is a responsive menu system that usually
             sits on the left side of a page layout. It will expand to the width
             of its container. This is the menu that is used on the left side of
             the page you are currently looking at.
           </p>
 
           <p>
-            Configure the content of a <EuiCode>SideNav</EuiCode> by passing in
+            Configure the content of a <strong>EuiSideNav</strong> by passing in
             an <EuiCode>items</EuiCode> prop. Refer to the source code for an
             example of this data structure&rsquo;s anatomy.
           </p>
@@ -67,7 +67,7 @@ export const SideNavExample = {
       ],
       text: (
         <p>
-          <EuiCode>SideNav</EuiCode> also supports deeply-nested tree-based
+          <strong>EuiSideNav</strong> also supports deeply-nested tree-based
           data.
         </p>
       ),
@@ -87,7 +87,7 @@ export const SideNavExample = {
       ],
       text: (
         <p>
-          <EuiCode>SideNav</EuiCode> items can be forced open by setting{' '}
+          <strong>EuiSideNav</strong> items can be forced open by setting{' '}
           <EuiCode>items[n].forceOpen = true</EuiCode>
         </p>
       ),

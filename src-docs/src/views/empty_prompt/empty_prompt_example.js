@@ -19,7 +19,7 @@ const simpleSource = require('!!raw-loader!./simple');
 const simpleHtml = renderToHtml(Simple);
 
 export const EmptyPromptExample = {
-  title: 'EmptyPrompt',
+  title: 'Empty prompt',
   sections: [
     {
       source: [
@@ -34,8 +34,8 @@ export const EmptyPromptExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>EuiEmptyPrompt</EuiCode> as a placeholder for an
-          empty table or list of content.
+          Use the <strong>EuiEmptyPrompt</strong> as a placeholder for an empty
+          table or list of content.
         </p>
       ),
       props: { EuiEmptyPrompt },

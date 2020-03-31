@@ -33,7 +33,7 @@ export const CallOutExample = {
     <Fragment>
       <EuiText>
         <p>
-          <EuiCode>EuiCallOut</EuiCode> contains a message directly related to
+          <strong>EuiCallOut</strong> contains a message directly related to
           content on the page. This includes general information, success,
           warning, and error messages.
         </p>
@@ -79,7 +79,7 @@ export const CallOutExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiCallOut</EuiCode> to communicate general information
+            Use <strong>EuiCallOut</strong> to communicate general information
             to the user.
           </p>
         </div>

@@ -672,7 +672,13 @@ function getPropTypesForNode(node, optional, state) {
             node.body
               // This helps filter out index signatures from interfaces,
               // which don't translate to prop types.
-              .filter(property => property.key != null)
+              .filter(
+                property =>
+                  property.key != null &&
+                  !types.isTSNeverKeyword(
+                    property.typeAnnotation.typeAnnotation
+                  )
+              )
               .map(property => {
                 let propertyPropType =
                   property.type === 'TSMethodSignature'
@@ -762,6 +768,11 @@ function getPropTypesForNode(node, optional, state) {
           types.objectExpression(
             node.members
               .map(property => {
+                // skip never keyword
+                if (
+                  types.isTSNeverKeyword(property.typeAnnotation.typeAnnotation)
+                )
+                  return null;
                 // skip TS index signatures
                 if (types.isTSIndexSignature(property)) return null;
 
@@ -1154,7 +1165,6 @@ const typeDefinitionExtractors = {
         }`
       );
     }
-
     return [{ name: id.name, definition: typeAnnotation }];
   },
 
