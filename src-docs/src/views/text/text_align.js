@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  EuiText,
-  EuiTextAlign,
-  EuiCode,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiText, EuiTextAlign, EuiSpacer } from '../../../../src/components';
 
 export default () => (
   <div>
@@ -23,8 +18,8 @@ export default () => (
     <EuiSpacer />
     <EuiText textAlign="center">
       <p>
-        You can also pass alignment to <EuiCode>EuiText</EuiCode> directly with
-        a prop
+        You can also pass alignment to <strong>EuiText</strong> directly with a
+        prop
       </p>
     </EuiText>
     <EuiText textAlign="center" color="secondary">

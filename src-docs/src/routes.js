@@ -85,7 +85,6 @@ import { DataGridControlColumnsExample } from './views/datagrid/datagrid_control
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
-import { DelayHideExample } from './views/delay_hide/delay_hide_example';
 import { DelayRenderExample } from './views/delay_render/delay_render_example';
 
 import { DescriptionListExample } from './views/description_list/description_list_example';
@@ -189,6 +188,8 @@ import { SuggestExample } from './views/suggest/suggest_example';
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
+
+import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
 
@@ -353,6 +354,7 @@ const navigation = [
       DataGridStylingExample,
       DataGridControlColumnsExample,
       TableExample,
+      TableInMemoryExample,
     ].map(example => createExample(example)),
   },
   {
@@ -416,10 +418,10 @@ const navigation = [
     items: [
       AccessibilityExample,
       BeaconExample,
+      IsColorDarkExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
-      DelayHideExample,
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
@@ -427,7 +429,6 @@ const navigation = [
       HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
-      IsColorDarkExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
       OverlayMaskExample,

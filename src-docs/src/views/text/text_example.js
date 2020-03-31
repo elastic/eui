@@ -44,17 +44,18 @@ export const TextExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiText</EuiCode> is a generic catchall wrapper that will
+            <strong>EuiText</strong> is a generic catchall wrapper that will
             apply our standard typography styling and spacing to naked HTML.
             Because of its forced style it{' '}
             <strong>only accepts raw HTML</strong> and can not / should not be
             used to wrap React components (which would break their styling).
           </p>
           <p>
-            <EuiCode>EuiText</EuiCode> can ensure proper line-length for
-            readability by setting a <EuiCode>max-width</EuiCode> on the entire
+            <strong>EuiText</strong> can ensure proper line-length for
+            readability by setting a{' '}
+            <EuiCode language="sass">max-width</EuiCode> on the entire
             component. To add the max-width setting, set{' '}
-            <EuiCode>grow = false</EuiCode>.
+            <EuiCode language="js">grow=false</EuiCode>.
           </p>
         </div>
       ),
@@ -75,8 +76,8 @@ export const TextExample = {
       ],
       text: (
         <p>
-          Using the <EuiCode>size</EuiCode> prop on <EuiCode>EuiText</EuiCode>{' '}
-          you can get smaller sizes of text than the default.
+          Using the <EuiCode>size</EuiCode> prop on <strong>EuiText</strong> you
+          can get smaller sizes of text than the default.
         </p>
       ),
       demo: <TextSmall />,
@@ -96,10 +97,10 @@ export const TextExample = {
       text: (
         <p>
           There are two ways to color text. Either individually by applying{' '}
-          <EuiCode>EuiTextColor</EuiCode> on individual text objects, or by
+          <strong>EuiTextColor</strong> on individual text objects, or by
           passing the <EuiCode>color</EuiCode> prop directly on{' '}
-          <EuiCode>EuiText</EuiCode> for a blanket approach across the entirety
-          of your text.
+          <strong>EuiText</strong> for a blanket approach across the entirety of
+          your text.
         </p>
       ),
       props: { EuiTextColor },
@@ -120,10 +121,10 @@ export const TextExample = {
       text: (
         <p>
           There are two ways to align text. Either individually by applying{' '}
-          <EuiCode>EuiTextAlign</EuiCode> on individual text objects, or by
+          <strong>EuiTextAlign</strong> on individual text objects, or by
           passing the <EuiCode>textAlign</EuiCode> prop directly on{' '}
-          <EuiCode>EuiText</EuiCode> for a blanket approach across the entirety
-          of your text.
+          <strong>EuiText</strong> for a blanket approach across the entirety of
+          your text.
         </p>
       ),
       props: { EuiTextAlign },

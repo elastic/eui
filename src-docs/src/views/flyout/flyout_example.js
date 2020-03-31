@@ -132,32 +132,15 @@ export const FlyoutExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiFlyout</EuiCode> is a fixed position panel that pops in
+            <strong>EuiFlyout</strong> is a fixed position panel that pops in
             from the right side of the screen. It should be used any time you
             need to perform quick, individual actions to a larger page or list.
           </p>
 
-          <ul>
-            <li>
-              <EuiCode>size</EuiCode> accepts <EuiCode>s / m / l</EuiCode> and
-              defines the width of the panel.
-            </li>
-            <li>
-              <EuiCode>ownFocus</EuiCode> is a boolean that when{' '}
-              <EuiCode>true</EuiCode> will lock the mouse / keyboard focus to
-              within the flyout. It is off by default.
-            </li>
-            <li>
-              <EuiCode>maxWidth</EuiCode> accepts a boolean or number. When set
-              to <EuiCode>true</EuiCode>, it adds a predefined maxWidth, or you
-              can pass an integer to set the max width to a custom pixel value
-              or pass a string to set it to a custom measurement.
-            </li>
-          </ul>
-
           <p>
-            Notice how these examples use <EuiCode>aria-labelledby</EuiCode> to
-            announce the flyout to screen readers when the user opens it.
+            For accessibility, use{' '}
+            <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> to announce the
+            flyout to screen readers when the user opens it.
           </p>
         </div>
       ),
@@ -179,15 +162,37 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          In this example we use <EuiCode>EuiFlyoutHeader</EuiCode> and
-          <EuiCode>EuiFlyoutFooter</EuiCode> to allow for fixed position
+          In this example we use <strong>EuiFlyoutHeader</strong> and{' '}
+          <strong>EuiFlyoutFooter</strong> to allow for fixed position
           navigation and actions within a flyout. Note that any content within{' '}
-          <EuiCode>EuiContentBody</EuiCode> will automatically overflow.
+          <strong>EuiFlyoutBody</strong> will automatically overflow.
         </p>
       ),
       props: { EuiFlyoutFooter },
       snippet: flyoutComplicatedSnippet,
       demo: <FlyoutComplicated />,
+    },
+    {
+      title: 'Flyout with banner',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutWithBannerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: flyoutWithBannerHtml,
+        },
+      ],
+      text: (
+        <p>
+          To highlight some information at the top of a flyout, you can use the{' '}
+          <EuiCode>banner</EuiCode> prop available in{' '}
+          <strong>EuiFlyoutBody</strong>.
+        </p>
+      ),
+      snippet: flyoutWithBannerSnippet,
+      demo: <FlyoutWithBanner />,
     },
     {
       title: 'Small flyout, ownFocus',
@@ -262,28 +267,6 @@ export const FlyoutExample = {
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
       props: { EuiFlyout },
-    },
-    {
-      title: 'Flyout with banner',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: flyoutWithBannerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: flyoutWithBannerHtml,
-        },
-      ],
-      text: (
-        <p>
-          To highlight some information at the top of a flyout, you can use the
-          <EuiCode>banner</EuiCode> prop available in{' '}
-          <EuiCode>EuiFlyoutBody</EuiCode>.
-        </p>
-      ),
-      snippet: flyoutWithBannerSnippet,
-      demo: <FlyoutWithBanner />,
     },
   ],
 };

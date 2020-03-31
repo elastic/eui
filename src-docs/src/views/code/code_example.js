@@ -40,7 +40,7 @@ export const CodeExample = {
       ],
       text: (
         <p>
-          <EuiCode>Code</EuiCode> is for making inline code snippets that can
+          <strong>EuiCode</strong> is for making inline code snippets that can
           work within or next to bodies of text.
         </p>
       ),
@@ -48,7 +48,7 @@ export const CodeExample = {
       demo: <Code />,
     },
     {
-      title: 'CodeBlock',
+      title: 'Code block',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -61,7 +61,7 @@ export const CodeExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiCodeBlock</EuiCode> can be used to create multi-line code
+          <strong>EuiCodeBlock</strong> can be used to create multi-line code
           blocks. Copy and fullscreen buttons can be enabled via the
           <EuiCode>isCopyable</EuiCode> and <EuiCode>overflowHeight</EuiCode>
           props, respectively.
@@ -72,7 +72,7 @@ export const CodeExample = {
       demo: <CodeBlock />,
     },
     {
-      title: 'CodeBlock and white-space',
+      title: 'Code block and white-space',
       source: [
         {
           type: GuideSectionTypes.JS,
