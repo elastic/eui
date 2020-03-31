@@ -6,6 +6,10 @@
 - Added `title` and `aria` attributes to `EuiToken`'s icon element ([#3195](https://github.com/elastic/eui/pull/3195))
 - Added new Elasticsearch token types ([58036](https://github.com/elastic/kibana/issues/58036))
 
+**Bug Fixes**
+
+- Fixed bug in `EuiAccordion` to adjust to the correct height when content height changes ([#3160](https://github.com/elastic/eui/pull/3160))
+
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
 
 - Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))

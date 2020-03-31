@@ -44,24 +44,15 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__childWrapper"
       id="8"
     >
-      <EuiMutationObserver
-        observerOptions={
-          Object {
-            "attributeFilter": Array [
-              "style",
-            ],
-            "childList": true,
-            "subtree": true,
-          }
-        }
-        onMutation={[Function]}
+      <EuiResizeObserver
+        onResize={[Function]}
       >
         <div>
           <div
             className=""
           />
         </div>
-      </EuiMutationObserver>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiAccordion>
@@ -111,24 +102,15 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__childWrapper"
       id="7"
     >
-      <EuiMutationObserver
-        observerOptions={
-          Object {
-            "attributeFilter": Array [
-              "style",
-            ],
-            "childList": true,
-            "subtree": true,
-          }
-        }
-        onMutation={[Function]}
+      <EuiResizeObserver
+        onResize={[Function]}
       >
         <div>
           <div
             className=""
           />
         </div>
-      </EuiMutationObserver>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiAccordion>
