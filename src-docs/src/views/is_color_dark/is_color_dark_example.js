@@ -11,9 +11,10 @@ const isColorDarkSource = require('!!raw-loader!./is_color_dark');
 const isColorDarkHtml = renderToHtml(IsColorDark);
 
 export const IsColorDarkExample = {
-  title: 'Is Color Dark',
+  title: 'Color',
   sections: [
     {
+      title: 'Is color dark',
       source: [
         {
           type: GuideSectionTypes.JS,

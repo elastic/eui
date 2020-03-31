@@ -40,6 +40,15 @@ If you are willing and able to design the icon yourself, then please refer to th
 
 Always remember to update [documentation site][docs] via the `src-docs` folder and the [`CHANGELOG.md`](CHANGELOG.md) in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no differently than how you would treat tests.
 
+Here are our formatting guidelines for writing documentation:
+
+- Use sentence case, always, for page and section titles. Example: `This component does something`
+- When referencing the component name, wrap it in `<strong>` tags. Example: `<strong>EuiComponent</strong>`
+- When referencing the component name, always include the `Eui` prefix unless you are referencing the generic term. Example: `EuiFlyout` vs `flyout`
+- Wrap references to prop names and elements in `<EuiCode>` blocks. Example: `<EuiCode>propName</EuiCode>`
+- If the code reference is more than a single prop name or value, add the language type. Example: `<EuiCode language="js">propName=true</EuiCode>`
+- When referencing another EUI component, wrap the reference in a link to the component. Example: `<Link to="/component/url><strong>EuiComponent</strong><Link>`
+
 Here are our guidelines for updating the `CHANGELOG.md` file:
 
 * Append your changes to the `master` sub-heading of [`CHANGELOG.md`](CHANGELOG.md).

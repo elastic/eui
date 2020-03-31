@@ -10,7 +10,7 @@ const source = require('!!raw-loader!./basic');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'A simple BasicTable',
+  title: 'A basic table',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -24,7 +24,7 @@ export const section = {
   text: (
     <div>
       <p>
-        <EuiCode>EuiBasicTable</EuiCode> is an opinionated high level component
+        <strong>EuiBasicTable</strong> is an opinionated high level component
         that standardizes both display and injection. At its most simple it only
         accepts two properties:
       </p>
@@ -46,7 +46,7 @@ export const section = {
       </ul>
       <p>
         This example shows the most basic form of the{' '}
-        <EuiCode>EuiBasicTable</EuiCode>. It is configured with the required{' '}
+        <strong>EuiBasicTable</strong>. It is configured with the required{' '}
         <EuiCode>items</EuiCode> and <EuiCode>columns</EuiCode> properties. It
         shows how each column defines the data it needs to display per item.
         Some columns display the value as is (e.g. <EuiCode>firstName</EuiCode>{' '}
@@ -73,8 +73,9 @@ export const section = {
           <br />
           <strong>Note:</strong> the basic table will treat any cells that use a{' '}
           <EuiCode>render</EuiCode> function as being{' '}
-          <EuiCode>textOnly: false</EuiCode>. This may cause unnecessary word
-          breaks. Apply <EuiCode>textOnly: true</EuiCode> to ensure it breaks
+          <EuiCode language="js">textOnly: false</EuiCode>. This may cause
+          unnecessary word breaks. Apply{' '}
+          <EuiCode language="js">textOnly: true</EuiCode> to ensure it breaks
           properly.
         </li>
       </ul>

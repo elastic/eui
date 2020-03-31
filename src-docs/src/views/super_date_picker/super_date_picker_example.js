@@ -43,7 +43,7 @@ const superDatePickerCustomQuickSelectSnippet = `customQuickSelectPanels = [
 `;
 
 export const SuperDatePickerExample = {
-  title: 'Super Date Picker',
+  title: 'Super date picker',
   sections: [
     {
       source: [
@@ -59,13 +59,11 @@ export const SuperDatePickerExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiSuperDatePicker</EuiCode> is a date picker that supports
+            <strong>EuiSuperDatePicker</strong> is a date picker that supports
             relative and absolute dates. It offers a convenient{' '}
             <strong>Quick select menu</strong>{' '}
-            <EuiCode>
-              <EuiIcon type="calendar" color="primary" />
-            </EuiCode>{' '}
-            which includes <strong>Commonly used dates</strong>,{' '}
+            <EuiIcon type="calendar" color="primary" /> which includes{' '}
+            <strong>Commonly used dates</strong>,{' '}
             <strong>Recently used date ranges</strong> and{' '}
             <strong>Set refresh</strong> features.
           </p>
@@ -164,7 +162,7 @@ if (!endMoment || !endMoment.isValid()) {
       text: (
         <div>
           <p>
-            <EuiCode>EuiSuperDatePicker</EuiCode>&apos;s quick select menu also
+            <strong>EuiSuperDatePicker</strong>&apos;s quick select menu also
             supports <strong>custom panels</strong>. These panels can have their
             own title and perform custom actions on the date picker.
           </p>

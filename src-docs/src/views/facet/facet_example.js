@@ -4,7 +4,11 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiFacetButton, EuiFacetGroup } from '../../../../src/components';
+import {
+  EuiFacetButton,
+  EuiFacetGroup,
+  EuiCode,
+} from '../../../../src/components';
 
 import Facet from './facet';
 const facetSource = require('!!raw-loader!./facet');
@@ -37,13 +41,13 @@ export const FacetExample = {
       ],
       text: (
         <p>
-          <code>EuiFacetButtons</code> are to be used when allowing lists with
-          multiple search params to be filtered down by these particular params.
-          They allow for an <code>icon</code> node and/or <code>quantity</code>{' '}
-          to be passed. You can also indicate the current selection with{' '}
-          <code>isSelected</code>. Other props include <code>isDisabled</code>{' '}
-          and <code>isLoading</code> (which will swap the quantity indicator
-          with a loading icon).
+          <strong>EuiFacetButtons</strong> are to be used when allowing lists
+          with multiple search params to be filtered down by these particular
+          params. They allow for an <EuiCode>icon</EuiCode> node and/or{' '}
+          <EuiCode>quantity</EuiCode> to be passed. You can also indicate the
+          current selection with <EuiCode>isSelected</EuiCode>. Other props
+          include <EuiCode>isDisabled</EuiCode> and <EuiCode>isLoading</EuiCode>{' '}
+          (which will swap the quantity indicator with a loading icon).
         </p>
       ),
       props: { EuiFacetButton },
@@ -71,10 +75,11 @@ export const FacetExample = {
             multi-selection.
           </p>
           <p>
-            Utilize the <code>EuiFacetGroup</code> wrapper to correctly layout
-            multiple facets. You can supply a <code>layout</code> of either{' '}
-            <code>horizontal</code> or <code>vertical</code> with the default
-            being <code>vertical</code>. Be sure to contain vertical layouts in
+            Utilize the <strong>EuiFacetGroup</strong> wrapper to correctly
+            layout multiple facets. You can supply a <EuiCode>layout</EuiCode>{' '}
+            of either <EuiCode>horizontal</EuiCode> or{' '}
+            <EuiCode>vertical</EuiCode> with the default being{' '}
+            <EuiCode>vertical</EuiCode>. Be sure to contain vertical layouts in
             a skinny component or give it a max-width.
           </p>
         </div>

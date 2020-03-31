@@ -4,7 +4,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiHealth } from '../../../../src/components';
+import { EuiHealth } from '../../../../src/components';
 
 import Health from './health';
 const healthSource = require('!!raw-loader!./health');
@@ -26,7 +26,7 @@ export const HealthExample = {
       ],
       text: (
         <p>
-          The <EuiCode>Health</EuiCode> component should be used when showing
+          The <strong>EuiHealth</strong> component should be used when showing
           comparitive health of listed objects (like servers, nodes,
           indexes..etc). Because icons are vague and bulky and color alone does
           not work, we think color plus text provides a recognizable,

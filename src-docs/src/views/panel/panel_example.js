@@ -48,10 +48,17 @@ export const PanelExample = {
       ],
       text: (
         <p>
-          <EuiCode>Panel</EuiCode> is a simple wrapper component to add depth to
-          a contained layout. It is commonly used as a base for other larger
-          components like <Link to="/layout/page">Page</Link> and{' '}
-          <Link to="/layout/popover">Popover</Link>.
+          <strong>EuiPanel</strong> is a simple wrapper component to add depth
+          to a contained layout. It is commonly used as a base for other larger
+          components like{' '}
+          <Link to="/layout/page">
+            <strong>EuiPage</strong>
+          </Link>{' '}
+          and{' '}
+          <Link to="/layout/popover">
+            <strong>EuiPopover</strong>
+          </Link>
+          .
         </p>
       ),
       props: { EuiPanel },
@@ -73,8 +80,8 @@ export const PanelExample = {
       text: (
         <p>
           Adding an <EuiCode>onClick</EuiCode> handler to the{' '}
-          <EuiCode>EuiPanel</EuiCode> will turn the wrapping element into a
-          button to allow for interaction.
+          <strong>EuiPanel</strong> will turn the wrapping element into a button
+          to allow for interaction.
         </p>
       ),
       snippet: panelHoverSnippet,
@@ -94,8 +101,15 @@ export const PanelExample = {
       ],
       text: (
         <p>
-          Similar to <Link to="/display/card">EuiCard</Link>, panels can also
-          accept an <Link to="/display/badge">EuiBetaBadge</Link>.
+          Similar to{' '}
+          <Link to="/display/card">
+            <strong>EuiCard</strong>
+          </Link>
+          , panels can also accept an{' '}
+          <Link to="/display/badge">
+            <strong>EuiBetaBadge</strong>
+          </Link>
+          .
         </p>
       ),
       snippet: panelBadgeSnippet,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -28,7 +29,7 @@ const contextMenuWithContentSource = require('!!raw-loader!./context_menu_with_c
 const contextMenuWithContentHtml = renderToHtml(ContextMenuWithContent);
 
 export const ContextMenuExample = {
-  title: 'Context Menu',
+  title: 'Context menu',
   sections: [
     {
       source: [
@@ -43,9 +44,11 @@ export const ContextMenuExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiContextMenu</EuiCode> is a nested menu system useful for
-          navigating complicated trees. It lives within a{' '}
-          <EuiCode>EuiPopover</EuiCode>
+          <strong>EuiContextMenu</strong> is a nested menu system useful for
+          navigating complicated trees. It lives within an{' '}
+          <Link to="/layout/popover">
+            <strong>EuiPopover</strong>
+          </Link>{' '}
           which itself can be wrapped around any component (like a button in
           this example).
         </p>
@@ -89,7 +92,7 @@ export const ContextMenuExample = {
         <p>
           If you have custom content to show instead of a list of options, you
           can pass a React element as a child to{' '}
-          <EuiCode>EuiContextMenuPanel</EuiCode>.
+          <strong>EuiContextMenuPanel</strong>.
         </p>
       ),
       demo: <ContentPanel />,
@@ -109,14 +112,15 @@ export const ContextMenuExample = {
       text: (
         <div>
           <p>
-            Context menu panels can be passed React elements through the
+            Context menu panels can be passed React elements through the{' '}
             <EuiCode>content</EuiCode> prop instead of <EuiCode>items</EuiCode>.
             The panel will display your custom content without modification.
           </p>
           <p>
             If your panel contents have different widths or you need to ensure
             that a specific context menu panel has a certain width, add{' '}
-            <code>width: [number of pixels]</code> to the panel tree.
+            <EuiCode language="ts">width: [number of pixels]</EuiCode> to the
+            panel tree.
           </p>
         </div>
       ),
