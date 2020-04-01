@@ -6,7 +6,6 @@ import {
   EuiPanel,
   EuiText,
 } from '../../../../src/components';
-import { keyCodes } from '../../../../src/services';
 
 export default () => {
   const [contentIsVisible, setVisibility] = useState(false);
@@ -19,15 +18,6 @@ export default () => {
   const toggleDisplay = () => {
     setDisplay(!isDisplaying);
     setVisibility(false);
-  };
-
-  const onKeyDown = event => {
-    if (event.keyCode === keyCodes.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      setDisplay(false);
-      setVisibility(false);
-    }
   };
 
   const codeControls = [
