@@ -27,7 +27,7 @@ export const BeaconExample = {
       text: (
         <EuiText>
           <p>
-            Use the beacon component to draw visual attention to a specific
+            Use the <strong>EuiBeacon</strong> component to draw visual attention to a specific
             location or element.
           </p>
         </EuiText>
