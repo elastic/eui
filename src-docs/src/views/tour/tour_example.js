@@ -89,7 +89,7 @@ export const TourExample = {
             a feature tour or an individual popover for onboarding.
           </p>
           <p>
-            All content and actions—including titles, headings, and buttons—are
+            All content and actions including titles, headings, and buttons are
             customizable via props.
           </p>
         </>
