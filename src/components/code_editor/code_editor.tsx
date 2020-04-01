@@ -170,11 +170,14 @@ export class EuiCodeEditor extends Component<
     } = { id, readOnly: isReadOnly };
 
     const el = document.getElementById(this.state.name);
-    const textarea = el!.querySelector('textarea');
-
-    keysOf(textareaProps).forEach(key => {
-      if (textareaProps[key]) textarea!.setAttribute(key, textareaProps[key]);
-    });
+    if (el) {
+      const textarea = el.querySelector('textarea');
+      if (textarea)
+        keysOf(textareaProps).forEach(key => {
+          if (textareaProps[key])
+            textarea.setAttribute(`${key}`, textareaProps[key]!.toString());
+        });
+    }
   }
 
   componentDidUpdate(prevProps: EuiCodeEditorProps) {
