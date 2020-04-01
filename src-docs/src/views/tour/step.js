@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiText, EuiTourStep } from '../../../../src/components';
+import { EuiText, EuiSpacer, EuiTourStep } from '../../../../src/components';
 
 export default () => {
   return (
@@ -25,6 +25,7 @@ export default () => {
           <p>The tour step anchor point.</p>
         </EuiText>
       </EuiTourStep>
+      <EuiSpacer size="xxl" />
     </div>
   );
 };

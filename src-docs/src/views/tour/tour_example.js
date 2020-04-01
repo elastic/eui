@@ -64,7 +64,7 @@ export const TourExample = {
       </p>
       <p>
         The examples on this page, use <EuiCode>localStorage</EuiCode> to
-        persist state to demonstrate starting a tour at differnt stages.
+        persist state to demonstrate starting a tour at different stages.
       </p>
       <EuiSpacer />
     </EuiText>
@@ -86,7 +86,7 @@ export const TourExample = {
         <>
           <p>
             The <strong>EuiTourStep</strong> component is the base for building
-            a feature tour or individual popover for onboarding.
+            a feature tour or an individual popover for onboarding.
           </p>
           <p>
             All content and actions—including titles, headings, and buttons—are
