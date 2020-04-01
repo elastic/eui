@@ -11,7 +11,7 @@ import {
   ListProps,
   areEqual,
   ListChildComponentProps,
-} from 'react-window'; // eslint-disable-line import/named
+} from 'react-window';
 
 import { EuiCode } from '../../../components/code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
