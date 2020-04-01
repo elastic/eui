@@ -11,11 +11,13 @@ import {
   EuiToast,
   EuiGlobalToastList,
   EuiGlobalToastListItem,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiText,
   EuiSpacer,
 } from '../../../../src/components';
 
-import ToastList, { addToast } from './toast_list';
+import ToastList, { addToast, removeAllToasts } from './toast_list';
 const toastListSource = require('!!raw-loader!./toast_list');
 const toastListHtml = renderToHtml(ToastList);
 
@@ -70,9 +72,18 @@ export const ToastExample = {
       },
       demo: (
         <div style={{ maxWidth: 320 }}>
-          <EuiButton onClick={addToast}>
-            Add toast to global toast list
-          </EuiButton>
+          <EuiFlexGroup gutterSize="s">
+            <EuiFlexItem>
+              <EuiButton onClick={addToast}>
+                Add toast to global toast list
+              </EuiButton>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiButton onClick={removeAllToasts} color="danger">
+                Remove all toasts
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
 
           <ToastList />
         </div>
