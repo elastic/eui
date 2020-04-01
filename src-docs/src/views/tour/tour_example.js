@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiSpacer,
   EuiText,
@@ -62,10 +63,10 @@ export const TourExample = {
         customizable way to showcase items on a page in an ordered manner by
         augmenting existing elements on the page without altering functionality.
       </p>
-      <p>
-        The examples on this page, use <EuiCode>localStorage</EuiCode> to
-        persist state to demonstrate starting a tour at different stages.
-      </p>
+      <EuiCallOut
+        iconType="save"
+        title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
+      />
       <EuiSpacer />
     </EuiText>
   ),

@@ -26,6 +26,7 @@ export default () => {
         </EuiText>
       </EuiTourStep>
       <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
     </div>
   );
 };
