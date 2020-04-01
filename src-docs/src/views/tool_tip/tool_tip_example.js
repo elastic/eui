@@ -23,7 +23,7 @@ const infoTipSource = require('!!raw-loader!./icon_tip');
 const infoTipHtml = renderToHtml(IconTip);
 
 export const ToolTipExample = {
-  title: 'ToolTip',
+  title: 'Tooltip',
   intro: (
     <Fragment>
       <EuiCallOut title="EuiToolTip only applies to inline elements">
@@ -37,8 +37,8 @@ export const ToolTipExample = {
       <EuiSpacer size="l" />
 
       <EuiText>
-        Wrap <EuiCode>EuiToolTip</EuiCode> around any item that you need a
-        tooltip for. The <EuiCode>position</EuiCode> prop will take a suggested
+        Wrap <strong>EuiToolTip</strong> around any item that you need a tooltip
+        for. The <EuiCode>position</EuiCode> prop will take a suggested
         position, but will change it if the tooltip gets too close to the edge
         of the screen.
       </EuiText>
@@ -52,12 +52,13 @@ export const ToolTipExample = {
       <EuiSpacer size="s" />
 
       <EuiText>
-        Internally, <code>EuiToolTip</code> applies <code>onFocus</code>,{' '}
-        <code>onBlur</code>, <code>onMouseOver</code>, and{' '}
-        <code>onMouseOut</code> props to whatever you pass as{' '}
-        <code>children</code>. If you pass in a custom component, then
-        you&rsquo;ll need to make sure these props are applied to the root
-        element rendered by your component. The best way to do that is to follow{' '}
+        Internally, <strong>EuiToolTip</strong> applies{' '}
+        <EuiCode>onFocus</EuiCode>, <EuiCode>onBlur</EuiCode>,{' '}
+        <EuiCode>onMouseOver</EuiCode>, and <EuiCode>onMouseOut</EuiCode> props
+        to whatever you pass as <EuiCode>children</EuiCode>. If you pass in a
+        custom component, then you&rsquo;ll need to make sure these props are
+        applied to the root element rendered by your component. The best way to
+        do that is to follow{' '}
         <a href="https://github.com/elastic/eui/blob/master/wiki/component-design.md#pass-through-props">
           EUI&rsquo;s guidelines on pass-through props
         </a>
@@ -97,13 +98,13 @@ export const ToolTipExample = {
       text: (
         <Fragment>
           <p>
-            You can use <EuiCode>EuiIconTip</EuiCode> to explain options, other
+            You can use <strong>EuiIconTip</strong> to explain options, other
             controls, or entire parts of the user interface. When possible,
             surface explanations inline within the UI, and only hide them behind
-            a <EuiCode>EuiIconTip</EuiCode> as a last resort.
+            a <strong>EuiIconTip</strong> as a last resort.
           </p>
           <p>
-            It accepts all the same props as <EuiCode>EuiToolTip</EuiCode>. For
+            It accepts all the same props as <strong>EuiToolTip</strong>. For
             convenience, you can also specify optional icon{' '}
             <EuiCode>size</EuiCode>, <EuiCode>type</EuiCode>, and
             <EuiCode>color</EuiCode> props.

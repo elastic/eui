@@ -430,12 +430,18 @@ export const propsInfo = {
         icon: {
           description: 'Associates an icon with the button',
           required: false,
-          type: { name: 'string (must be one of the supported icon types)' },
+          type: {
+            name:
+              'string | (item) => string (must be one of the supported icon types)',
+          },
         },
         color: {
           description: 'Defines the color of the button',
           required: false,
-          type: { name: 'string (must be one of the supported button colors)' },
+          type: {
+            name:
+              'string | (item) => string (must be one of the supported button colors)',
+          },
         },
         'data-test-subj': {
           description:

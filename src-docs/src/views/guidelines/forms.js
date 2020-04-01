@@ -9,7 +9,6 @@ import {
 
 import {
   EuiText,
-  EuiCode,
   EuiSpacer,
   EuiFlexItem,
   EuiImage,
@@ -107,12 +106,10 @@ export default () => (
       </EuiFlexItem>
     </GuideRule>
 
-    <GuideRuleTitle>
-      <EuiCode>EuiDescribedFormRow</EuiCode>
-    </GuideRuleTitle>
+    <GuideRuleTitle>Described form rows</GuideRuleTitle>
     <EuiText className="guideSection__text">
       <p>
-        An <EuiCode>EuiDescribedFormRow</EuiCode> provides an additional heading
+        An <strong>EuiDescribedFormRow</strong> provides an additional heading
         along with description text for a single input or set of input fields.
       </p>
     </EuiText>
@@ -124,12 +121,11 @@ export default () => (
           <h4>Forms with lengthy descriptions per input</h4>
           <p>
             If a longer description is needed, use an{' '}
-            <EuiCode>EuiDescribedFormRow</EuiCode>
-            to divide the form into a column for descriptions and a column for
-            form fields. This is so there is space for descriptions to aid new
-            users, but keeps the form fields in a column, so frequent users can
-            still quickly navigate the form. Try to limit the description to
-            three sentences or less.
+            <strong>EuiDescribedFormRow</strong> to divide the form into a
+            column for descriptions and a column for form fields. This is so
+            there is space for descriptions to aid new users, but keeps the form
+            fields in a column, so frequent users can still quickly navigate the
+            form. Try to limit the description to three sentences or less.
           </p>
         </EuiText>
         <EuiSpacer />
@@ -137,7 +133,7 @@ export default () => (
           <h4>Forms with multiple inputs falling under a single heading</h4>
           <p>
             If multiple sub-steps are needed, grouping them together using an{' '}
-            <EuiCode>EuiDescribedFormRow</EuiCode> helps show they are all still
+            <strong>EuiDescribedFormRow</strong> helps show they are all still
             related.
           </p>
         </EuiText>
@@ -145,7 +141,7 @@ export default () => (
         <EuiText>
           <h4>Forms with complex nested options</h4>
           <p>
-            An <EuiCode>EuiDescribedFormRow</EuiCode> is useful when there are
+            An <strong>EuiDescribedFormRow</strong> is useful when there are
             parts of the form that can be hidden and shown by the user. The
             toggle to hide and show the row should be beneath the description
             and the following form fields should be in the right column with the
