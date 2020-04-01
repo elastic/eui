@@ -74,7 +74,7 @@ export const IconExample = {
     <div>
       <EuiText>
         <p>
-          <strong>EuiIcon</strong> is a handy component for using our custom
+          <EuiCode>EuiIcon</EuiCode> is a handy component for using our custom
           glyphs and logos. The <EuiCode>type</EuiCode> prop accepts either an
           enumerated name from one of the sets below, a location to a custom SVG
           asset, or a React Element.
