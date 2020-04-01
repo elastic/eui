@@ -37,7 +37,7 @@ const demoTourSteps = [
 
 const tourConfig = {
   currentTourStep: 1,
-  isTourActive: true,
+  isTourActive: false,
   tourPopoverWidth: 360,
   tourSubtitle: 'Demo tour',
 };
@@ -50,6 +50,7 @@ export default () => {
   let state = localStorage.getItem(STORAGE_KEY);
   if (state) {
     state = JSON.parse(state);
+    state = { ...state, isTourActive: false };
   } else {
     state = tourConfig;
   }
@@ -83,7 +84,7 @@ export default () => {
         return (
           <React.Fragment>
             <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
-              Reset tour
+              Start or reset tour
             </EuiButtonEmpty>
             <EuiSpacer />
             <EuiForm>

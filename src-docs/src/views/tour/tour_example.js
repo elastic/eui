@@ -159,18 +159,12 @@ export const TourExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            Use the <strong>EuiTour</strong> render prop component for minimal
-            state management. This is an alternative to the{' '}
-            <strong>useEuiTour</strong> hook for React class components, or use
-            cases where a single wrapping component can be used.
-          </p>
-          <p>
-            Unlike the other examples on this page, this example does not use{' '}
-            <EuiCode>localStorage</EuiCode> to persist state.
-          </p>
-        </>
+        <p>
+          Use the <strong>EuiTour</strong> render prop component for minimal
+          state management. This is an alternative to the{' '}
+          <strong>useEuiTour</strong> hook for React class components, or use
+          cases where a single wrapping component can be used.
+        </p>
       ),
       demo: <Managed />,
     },
@@ -186,6 +180,12 @@ export const TourExample = {
           code: fullHtml,
         },
       ],
+      text: (
+        <p>
+          Unlike the other examples on this page, this example does not use{' '}
+          <EuiCode>localStorage</EuiCode> to persist state.
+        </p>
+      ),
       demo: <FullScreen />,
     },
   ],
