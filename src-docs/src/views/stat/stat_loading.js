@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { EuiSwitch, EuiStat, EuiSpacer } from '../../../../src/components';
 
 export default () => {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   const onToggleChange = e => {
     setLoading(e.target.checked);
