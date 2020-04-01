@@ -43,4 +43,4 @@ export function Highlight(){
       </EuiHighlight>
     </Fragment>
   );
-
+}
