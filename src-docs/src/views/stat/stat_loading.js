@@ -1,35 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiSwitch, EuiStat, EuiSpacer } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isLoading, setLoading] = useState(true);
 
-    this.state = {
-      isLoading: true,
-    };
-  }
-
-  onToggleChange = e => {
-    this.setState({ isLoading: e.target.checked });
+  const onToggleChange = e => {
+    setLoading(e.target.checked);
   };
 
-  render() {
-    return (
-      <div>
-        <EuiStat
-          title="7,600 mm"
-          description="Total People"
-          isLoading={this.state.isLoading}
-        />
-        <EuiSpacer />
-        <EuiSwitch
-          label="Show as loading"
-          checked={this.state.isLoading}
-          onChange={this.onToggleChange}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <EuiStat
+        title="7,600 mm"
+        description="Total People"
+        isLoading={isLoading}
+      />
+      <EuiSpacer />
+      <EuiSwitch
+        label="Show as loading"
+        checked={isLoading}
+        onChange={onToggleChange}
+      />
+    </div>
+  );
+};
