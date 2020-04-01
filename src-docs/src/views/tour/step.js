@@ -18,7 +18,7 @@ export default () => {
         onEnd={() => alert('End the tour!')}
         step={1}
         stepsTotal={1}
-        title="An individual step"
+        title="Title of the current step"
         subtitle="A tour"
         anchorPosition="rightUp">
         <EuiText>
