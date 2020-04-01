@@ -127,21 +127,21 @@ export class ConfirmModal extends Component {
       <div>
         <EuiFlexGroup wrap gutterSize="xs">
           <EuiFlexItem grow={false}>
-            <EuiButton onClick={this.showModal}>Show ConfirmModal</EuiButton>
+            <EuiButton onClick={this.showModal}>Show confirm modal</EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton onClick={this.showDestroyModal}>
-              Show dangerous ConfirmModal
+              Show dangerous confirm modal
             </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton onClick={this.showEmptyModal}>
-              Show title-only ConfirmModal
+              Show title-only confirm modal
             </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton onClick={this.showButtonDisabledModal}>
-              Show confirm disabled ConfirmModal
+              Show confirm disabled confirm modal
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>

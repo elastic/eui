@@ -9,6 +9,7 @@
 **Bug Fixes**
 
 - Fixed bug in `EuiAccordion` to adjust to the correct height when content height changes ([#3160](https://github.com/elastic/eui/pull/3160))
+- Fixed bug in `EuiBasicTable` to handle dynamic icon value properly in collapsed actions ([#3145](https://github.com/elastic/eui/pull/3145))
 
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
 

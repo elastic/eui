@@ -1,15 +1,11 @@
 import React, { Component, FocusEvent, ReactNode, ReactElement } from 'react';
+import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { EuiI18n } from '../i18n';
-import {
-  Action,
-  CustomItemAction,
-  DefaultItemIconButtonAction,
-} from './action_types';
-import { EuiIconType } from '../icon/icon';
+import { Action, CustomItemAction } from './action_types';
 import { ItemIdResolved } from './table_types';
 
 export interface CollapsedItemActionsProps<T> {
@@ -123,13 +119,18 @@ export class CollapsedItemActions<T> extends Component<
           );
         } else {
           const { onClick, name, 'data-test-subj': dataTestSubj } = action;
+
+          const buttonIcon = action.icon;
+          let icon;
+          if (buttonIcon) {
+            icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
+          }
+
           controls.push(
             <EuiContextMenuItem
               key={key}
               disabled={!enabled}
-              icon={
-                (action as DefaultItemIconButtonAction<T>).icon as EuiIconType
-              }
+              icon={icon}
               data-test-subj={dataTestSubj}
               onClick={this.onClickItem.bind(
                 null,

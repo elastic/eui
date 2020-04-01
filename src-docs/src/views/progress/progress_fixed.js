@@ -7,7 +7,6 @@ import {
   EuiText,
   EuiPanel,
   EuiCallOut,
-  EuiCode,
   EuiFlexGroup,
   EuiFlexItem,
   EuiHeader,
@@ -93,7 +92,7 @@ export default class extends Component {
           <EuiCallOut title="Look up!" color="warning" iconType="sortUp">
             <p>
               The progress bar is fixed to the top of your browser and
-              positioned above an <EuiCode>EuiHeader</EuiCode>.
+              positioned above an <strong>EuiHeader</strong>.
             </p>
           </EuiCallOut>
           <EuiHeader

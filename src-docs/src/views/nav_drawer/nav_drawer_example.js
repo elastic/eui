@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -14,7 +15,7 @@ const navDrawerSnippet = `<EuiNavDrawer showToolTips={true}>
 </EuiNavDrawer>`;
 
 export const NavDrawerExample = {
-  title: 'Nav Drawer',
+  title: 'Nav drawer',
   sections: [
     {
       source: [
@@ -30,11 +31,14 @@ export const NavDrawerExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiNavDrawer</EuiCode> provides a side navigation feature
+            <strong>EuiNavDrawer</strong> provides a side navigation feature
             that is complete with interactions and a mobile-friendly design. It
-            can contain one or more <EuiCode>EuiNavDrawerGroup</EuiCode>{' '}
+            can contain one or more <strong>EuiNavDrawerGroup</strong>{' '}
             components and is designed to be used in conjunction with{' '}
-            <EuiCode>EuiHeader</EuiCode>.
+            <Link to="/layout/header">
+              <strong>EuiHeader</strong>
+            </Link>
+            .
           </p>
           <EuiCallOut
             title="Note about displaying flyout menus"
@@ -42,11 +46,15 @@ export const NavDrawerExample = {
             <p>
               Providing a <EuiCode>flyoutMenu</EuiCode> prop on the{' '}
               <EuiCode>listItems</EuiCode> object of an{' '}
-              <EuiCode>EuiNavDrawerGroup</EuiCode> will result in that link
+              <strong>EuiNavDrawerGroup</strong> will result in that link
               opening a secondary menu. Note that this will also override the{' '}
               <EuiCode>onClick</EuiCode> event. For more details about other
               props available for the <EuiCode>listItems</EuiCode> object,
-              please refer to <EuiCode>EuiListGroupItem</EuiCode>.
+              please refer to{' '}
+              <Link to="/display/list-group">
+                <strong>EuiListGroupItem</strong>
+              </Link>
+              .
             </p>
           </EuiCallOut>
         </div>

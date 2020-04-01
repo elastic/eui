@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import {
   EuiCallOut,
-  EuiCode,
   EuiFlexGroup,
   EuiFlexItem,
   EuiFlyout,
@@ -55,7 +54,7 @@ export default () => {
           <EuiText>
             <p>
               This flyout is using the banner prop in{' '}
-              <EuiCode>EuiFlyoutBody</EuiCode>.
+              <strong>EuiFlyoutBody</strong>.
             </p>
           </EuiText>
         </EuiFlyoutBody>

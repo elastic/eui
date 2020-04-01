@@ -84,7 +84,12 @@ export const StepsExample = {
           code: stepsHtml,
         },
       ],
-      text: <p>Numbered steps</p>,
+      text: (
+        <p>
+          <strong>EuiSteps</strong> presents procedural content in a numbered
+          outline format.
+        </p>
+      ),
       props: { EuiSteps, EuiStep },
       snippet: stepsSnippet,
       demo: <Steps />,
@@ -104,8 +109,8 @@ export const StepsExample = {
       text: (
         <p>
           If you need to call out a set of substeps that are not lines of code,
-          most likely a <EuiCode>&lt;ol/&gt;</EuiCode>, wrap the block in a{' '}
-          <EuiCode>&lt;EuiSubSteps/&gt;</EuiCode>.
+          most likely a <EuiCode>{'<ol/>'}</EuiCode>, wrap the block in a{' '}
+          <EuiCode>{'<EuiSubSteps/>'}</EuiCode>.
         </p>
       ),
       demo: <StepsComplex />,
@@ -130,10 +135,9 @@ export const StepsExample = {
             should pass in a heading element to use for each step title. The
             example below shows that the logical heading element should be an{' '}
             <EuiCode>h2</EuiCode>
-            and therefore adds <EuiCode>
-              headingElement=&quot;h2&quot;
-            </EuiCode>{' '}
-            to the EuiSteps component.
+            and therefore adds{' '}
+            <EuiCode language="j">{'headingElement="h2"'}</EuiCode> to the
+            EuiSteps component.
           </p>
           <p>
             The style of the title will <strong>not</strong> be affected.
@@ -188,8 +192,9 @@ export const StepsExample = {
           </p>
           <p>
             For each step object, be sure to signify previous/completed steps
-            with <EuiCode>isComplete: true</EuiCode> and the current/selected
-            step with <EuiCode>isSelected: true</EuiCode>.
+            with <EuiCode language="ts">isComplete: true</EuiCode> and the
+            current/selected step with{' '}
+            <EuiCode language="ts">isSelected: true</EuiCode>.
           </p>
         </Fragment>
       ),
