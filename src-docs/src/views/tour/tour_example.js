@@ -114,9 +114,8 @@ export const TourExample = {
         <p>
           Each <strong>EuiTourStep</strong> can be configured independently via
           props. In this case, each component is stateless and needs to be
-          paired with some form of state management for navigation. See two
-          options in later examples (<strong>useEuiTour</strong> and{' '}
-          <strong>EuiTour</strong>).
+          paired with some form of state management for navigation.
+          The later examples showcase other ways to handle state management via <strong>useEuiTour</strong> and <strong>EuiTour</strong>.
         </p>
       ),
       demo: <Tour />,
