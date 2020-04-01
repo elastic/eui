@@ -8,7 +8,7 @@ const source = require('!!raw-loader!./sorting');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Adding sorting to a BasicTable',
+  title: 'Adding sorting to a table',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -22,13 +22,11 @@ export const section = {
   text: (
     <p>
       The following example shows how to configure column sorting via the{' '}
-      <EuiCode>sorting</EuiCode>
-      property and flagging the sortable columns as{' '}
-      <EuiCode>sortable: true</EuiCode>. To enable the default sorting ability
-      for <strong>every</strong> column, pass{' '}
-      <EuiCode>enableAllColumns: true</EuiCode> to the{' '}
-      <EuiCode>sorting</EuiCode>
-      prop.
+      <EuiCode>sorting</EuiCode> property and flagging the sortable columns as{' '}
+      <EuiCode language="js">sortable: true</EuiCode>. To enable the default
+      sorting ability for <strong>every</strong> column, pass{' '}
+      <EuiCode language="js">enableAllColumns: true</EuiCode> to the{' '}
+      <EuiCode>sorting</EuiCode> prop.
     </p>
   ),
   components: { EuiBasicTable },

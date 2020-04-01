@@ -40,7 +40,7 @@ export const section = {
   text: (
     <div>
       <p>
-        <EuiCode>EuiBasicTable</EuiCode> has a fixed layout by default. You can
+        <strong>EuiBasicTable</strong> has a fixed layout by default. You can
         change it to <EuiCode>auto</EuiCode> using the{' '}
         <EuiCode>tableLayout</EuiCode> prop. Note that setting{' '}
         <EuiCode>tableLayout</EuiCode> to <EuiCode>auto</EuiCode> prevents the{' '}

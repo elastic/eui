@@ -22,7 +22,7 @@ const euiInnerTextSnippet = `<EuiInnerText>
 </EuiInnerText>`;
 
 export const InnerTextExample = {
-  title: 'Inner Text',
+  title: 'Inner text',
   intro: (
     <React.Fragment>
       <EuiText>
@@ -37,7 +37,7 @@ export const InnerTextExample = {
             function components
           </li>
           <li>
-            <EuiCode>EuiInnerText</EuiCode> - A higher order{' '}
+            <EuiCode>{'<EuiInnerText />'}</EuiCode> - A higher order{' '}
             <EuiCode>useInnerText</EuiCode> component for use in class
             components
           </li>

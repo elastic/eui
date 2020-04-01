@@ -68,14 +68,14 @@ const startingWithSource = require('!!raw-loader!./startingWith');
 const startingWithHtml = renderToHtml(StartingWith);
 
 export const ComboBoxExample = {
-  title: 'Combo Box',
+  title: 'Combo box',
   intro: (
     <Fragment>
       <EuiText>
         <p>
-          Use a <EuiCode>EuiComboBox</EuiCode> when the input has so many
-          options that the user needs to be able to search them, the user needs
-          to be able to select multiple options, and/or the user should have the
+          Use a <strong>EuiComboBox</strong> when the input has so many options
+          that the user needs to be able to search them, the user needs to be
+          able to select multiple options, and/or the user should have the
           ability to specify a custom value in addition to selecting from a
           predetermined list.
         </p>
@@ -146,7 +146,7 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiComboBoxList</EuiCode> uses{' '}
+          <strong>EuiComboBoxList</strong> uses{' '}
           <EuiLink href="https://github.com/bvaughn/react-virtualized">
             react-virtualized
           </EuiLink>{' '}
@@ -196,7 +196,11 @@ export const ComboBoxExample = {
           Useful for visualization or tagging systems. You can also pass a color
           in your option list. The color can be a hex value (like{' '}
           <EuiCode>#000</EuiCode>) or any other named color value accepted by
-          the <Link to="/display/badge">Badge</Link> component.
+          the{' '}
+          <Link to="/display/badge">
+            <strong>EuiBadge</strong>
+          </Link>{' '}
+          component.
         </p>
       ),
       props: { EuiComboBox },
@@ -274,7 +278,9 @@ export const ComboBoxExample = {
             To only allow the user to select a single option, provide the{' '}
             <EuiCode>singleSelection</EuiCode> prop. You may want to render the
             selected option as plain text instead of pill form. To do this, pass{' '}
-            <EuiCode>{'singleSelection={{ asPlainText: true }}'}</EuiCode>
+            <EuiCode language="js">
+              {'singleSelection={{ asPlainText: true }}'}
+            </EuiCode>
           </p>
           <p>
             <strong>Note:</strong> <EuiCode>append</EuiCode> and{' '}

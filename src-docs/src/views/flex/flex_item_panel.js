@@ -22,13 +22,13 @@ export default () => (
 
     <EuiFlexItem>
       <EuiPanel>
-        <EuiCode>EuiPanel</EuiCode>
+        <strong>EuiPanel</strong>
       </EuiPanel>
     </EuiFlexItem>
 
     <EuiFlexItem>
       <EuiPanel grow={false}>
-        Another <EuiCode>EuiPanel</EuiCode>, with{' '}
+        Another <strong>EuiPanel</strong>, with{' '}
         <EuiCode>grow=&#123;false&#125;</EuiCode>.
       </EuiPanel>
     </EuiFlexItem>

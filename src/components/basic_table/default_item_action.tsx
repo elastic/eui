@@ -1,11 +1,13 @@
 import React, { ReactElement } from 'react';
 import { isString } from '../../services/predicate';
-import { EuiButtonEmpty, EuiButtonIcon, EuiButtonEmptyColor } from '../button';
-import { EuiToolTip } from '../tool_tip';
 import {
-  DefaultItemAction as Action,
-  DefaultItemIconButtonAction as IconButtonAction,
-} from './action_types';
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiButtonEmptyColor,
+  EuiButtonIconColor,
+} from '../button';
+import { EuiToolTip } from '../tool_tip';
+import { DefaultItemAction as Action } from './action_types';
 
 export interface DefaultItemActionProps<T> {
   action: Action<T>;
@@ -32,14 +34,17 @@ export const DefaultItemAction = <T extends {}>({
 
   const onClick = action.onClick ? () => action.onClick!(item) : undefined;
 
-  const resolveActionColor = (action: Action<T>) =>
-    isString(action.color) ? action.color : action.color!(item);
-  const color = action.color ? resolveActionColor(action) : 'primary';
+  const buttonColor = action.color;
+  let color: EuiButtonIconColor = 'primary';
+  if (buttonColor) {
+    color = isString(buttonColor) ? buttonColor : buttonColor(item);
+  }
 
-  const { icon: buttonIcon } = action as IconButtonAction<T>;
-  const resolveActionIcon = (action: Action<T>) =>
-    isString(action.icon) ? action.icon : action.icon!(item);
-  const icon = buttonIcon ? resolveActionIcon(action) : undefined;
+  const buttonIcon = action.icon;
+  let icon;
+  if (buttonIcon) {
+    icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
+  }
 
   let button;
   if (action.type === 'icon') {

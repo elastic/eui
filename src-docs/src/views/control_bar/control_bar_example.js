@@ -119,7 +119,7 @@ const mobileBarSnippet = `<EuiControlBar
   ]}/>`;
 
 export const ControlBarExample = {
-  title: 'Control Bar',
+  title: 'Control bar',
   sections: [
     {
       source: [
@@ -135,8 +135,8 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiControlBar</EuiCode> is a bottom positioned container
-            and content well intended to provide additional view controls and
+            <strong>EuiControlBar</strong> is a bottom positioned container and
+            content well intended to provide additional view controls and
             actions.
           </p>
           <p>
@@ -156,7 +156,7 @@ export const ControlBarExample = {
       demo: <ControlBar />,
     },
     {
-      title: 'Using Tabs',
+      title: 'Using tabs',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -171,13 +171,14 @@ export const ControlBarExample = {
         <div>
           <p>
             This example demonstrates the use of tabs and reduces the size of
-            the content with <EuiCode>size=&quot;m&quot;</EuiCode>.
+            the content with <EuiCode language="js">size=&quot;m&quot;</EuiCode>
+            .
           </p>
           <p>
-            Optional children of the <EuiCode>EuiControlBar</EuiCode> are
-            rendered in the control bar drawer. You can toggle the visibility of
-            the content with the <EuiCode>showContent</EuiCode> prop. When you
-            want to display tab content, this is where you&apos;ll do it.
+            Optional children of the <strong>EuiControlBar</strong> are rendered
+            in the control bar drawer. You can toggle the visibility of the
+            content with the <EuiCode>showContent</EuiCode> prop. When you want
+            to display tab content, this is where you&apos;ll do it.
           </p>
         </div>
       ),
@@ -186,7 +187,7 @@ export const ControlBarExample = {
       demo: <ControlBarWithTabs />,
     },
     {
-      title: 'Mobile Usage',
+      title: 'Mobile usage',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -200,12 +201,12 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>EuiControlBar</EuiCode> is responsive in the sense that
+            The <strong>EuiControlBar</strong> is responsive in the sense that
             it utilizes flexbox and overflow scrolls. However, it makes no
             attempts to reorganize the controls you provide. By default the{' '}
-            <EuiCode>EuiControlBar</EuiCode> is hidden on mobile devices, but
-            this can be overridden with the <EuiCode>showOnMobile</EuiCode>{' '}
-            prop. You&apos;ll need to take the layout of your{' '}
+            <strong>EuiControlBar</strong> is hidden on mobile devices, but this
+            can be overridden with the <EuiCode>showOnMobile</EuiCode> prop.
+            You&apos;ll need to take the layout of your{' '}
             <EuiCode>controlTypes</EuiCode> into consideration when choosing to
             display on smaller screens.
           </p>
@@ -236,7 +237,7 @@ export const ControlBarExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>EuiControlBar</EuiCode> accepts an array of{' '}
+            The <strong>EuiControlBar</strong> accepts an array of{' '}
             <EuiCode>controlTypes</EuiCode> that will be arranged in the order
             in which they are provided. All controls <strong>must</strong> be
             provide a unique <EuiCode>id</EuiCode> to be used as the key.
@@ -244,14 +245,23 @@ export const ControlBarExample = {
           <ul>
             <li>
               <EuiCode>button</EuiCode>: Extends{' '}
-              <Link to="/navigation/button">EuiButton</Link> but always forces
-              to size small. Requires <EuiCode>label</EuiCode> as the children.
+              <Link to="/navigation/button">
+                <strong>EuiButton</strong>
+              </Link>{' '}
+              but always forces to size small. Requires <EuiCode>label</EuiCode>{' '}
+              as the children.
             </li>
             <li>
               <EuiCode>icon</EuiCode>: Extends{' '}
-              <Link to="/display/icons">EuiIcon</Link> unless provided an{' '}
-              <EuiCode>onClick</EuiCode> or <EuiCode>href</EuiCode>, then it
-              will render an <Link to="/navigation/button">EuiButtonIcon</Link>.
+              <Link to="/display/icons">
+                <strong>EuiIcon</strong>
+              </Link>{' '}
+              unless provided an <EuiCode>onClick</EuiCode> or{' '}
+              <EuiCode>href</EuiCode>, then it will render an{' '}
+              <Link to="/navigation/button">
+                <strong>EuiButtonIcon</strong>
+              </Link>
+              .
             </li>
             <li>
               <EuiCode>text</EuiCode>: Simple ghost colored text.
@@ -263,7 +273,10 @@ export const ControlBarExample = {
             </li>
             <li>
               <EuiCode>breadcrumbs</EuiCode>: Extends{' '}
-              <Link to="/navigation/breadcrumbs">EuiBreadcrumbs</Link>.
+              <Link to="/navigation/breadcrumbs">
+                <strong>EuiBreadcrumbs</strong>
+              </Link>
+              .
             </li>
             <li>
               <EuiCode>spacer</EuiCode>: Provides a horizontal space between
@@ -279,8 +292,8 @@ export const ControlBarExample = {
             Typically, a control bar is fixed positioned against the browser
             window and therefore rendered within a portal. To change the parent
             element of the control bar, change the <EuiCode>position</EuiCode>{' '}
-            prop to <EuiCode>&apos;absolute&apos;</EuiCode> or{' '}
-            <EuiCode>&apos;relative&apos;</EuiCode>.
+            prop to <EuiCode language="js">{'"absolute"'}</EuiCode> or{' '}
+            <EuiCode language="js">{'"relative"'}</EuiCode>.
           </p>
           <p>
             To offest the left and right position of the control bar, for
