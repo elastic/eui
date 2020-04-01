@@ -238,7 +238,7 @@ export default class extends Component {
         />
         <EuiSpacer size="m" />
         <EuiTitle size="xxs">
-          <h3> Icons only </h3>
+          <h3>Icons only</h3>
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiButtonGroup
@@ -249,7 +249,7 @@ export default class extends Component {
           onChange={this.onChangeIcons}
           isIconOnly
         />
-        &nbsp; &nbsp;
+        &nbsp;&nbsp;
         <EuiButtonGroup
           legend="Text style"
           options={this.toggleButtonsIconsMulti}
@@ -259,14 +259,11 @@ export default class extends Component {
           isIconOnly
         />
         <EuiSpacer />
-        <EuiPanel
-          style={{
-            maxWidth: 300,
-          }}>
+        <EuiPanel style={{ maxWidth: 300 }}>
           <EuiTitle size="xxxs">
             <h3>
               Compressed groups should always be fullWidth so they line up
-              nicely in their small container.{' '}
+              nicely in their small container.
             </h3>
           </EuiTitle>
           <EuiSpacer size="s" />
@@ -281,7 +278,7 @@ export default class extends Component {
           />
           <EuiSpacer />
           <EuiTitle size="xxxs">
-            <h3> Unless they are icon only </h3>
+            <h3>Unless they are icon only</h3>
           </EuiTitle>
           <EuiSpacer size="s" />
           <EuiButtonGroup
