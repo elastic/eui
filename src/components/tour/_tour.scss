@@ -1,5 +1,5 @@
 .euiTour--minWidth-default {
-  min-width: calc(#{$euiSizeL} * 10);
+  min-width: $euiSizeL * 10;
 }
 
 .euiTourHeader {
