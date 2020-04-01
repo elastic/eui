@@ -1,5 +1,25 @@
 [
   {
+    "version": "22.2.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNav.closeButtonLabel",
+        "changeType": "added",
+        "value": "close"
+      }
+    ]
+  },
+  {
+    "version": "22.1.0",
+    "changes": [
+      {
+        "token": "euiComboBoxOptionsList.delimiterMessage",
+        "changeType": "added",
+        "value": "Hit enter to add each item separated by {delimiter}"
+      }
+    ]
+  },
+  {
     "version": "22.0.0",
     "changes": [
       {

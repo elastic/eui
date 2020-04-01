@@ -590,7 +590,6 @@ exports[`props singleSelection is rendered 1`] = `
   role="combobox"
 >
   <EuiComboBoxInput
-    append={null}
     autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
@@ -605,7 +604,6 @@ exports[`props singleSelection is rendered 1`] = `
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
-    prepend={null}
     rootId={[Function]}
     searchValue=""
     selectedOptions={
@@ -761,7 +759,6 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   role="combobox"
 >
   <EuiComboBoxInput
-    append={null}
     autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
@@ -776,7 +773,6 @@ exports[`props singleSelection selects existing option when opened 1`] = `
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
-    prepend={null}
     rootId={[Function]}
     searchValue=""
     selectedOptions={

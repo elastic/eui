@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 559,
+        "line": 560,
         "column": 10
       },
       "end": {
-        "line": 566,
+        "line": 567,
         "column": 12
       }
     },
@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 570,
+        "line": 571,
         "column": 10
       },
       "end": {
-        "line": 576,
+        "line": 577,
         "column": 12
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 616,
+        "line": 617,
         "column": 6
       },
       "end": {
-        "line": 616,
+        "line": 617,
         "column": 77
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1005,
+        "line": 1006,
         "column": 8
       },
       "end": {
-        "line": 1005,
+        "line": 1006,
         "column": 79
       }
     },
@@ -288,6 +288,22 @@
     "filepath": "src/components/code/_code_block.tsx"
   },
   {
+    "token": "euiCollapsibleNav.closeButtonLabel",
+    "defString": "close",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 132,
+        "column": 12
+      },
+      "end": {
+        "line": 135,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/collapsible_nav/collapsible_nav.tsx"
+  },
+  {
     "token": "euiColorPicker.swatchAriaLabel",
     "defString": "Select {swatch} as the color",
     "highlighting": "string",
@@ -453,11 +469,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 194,
+        "line": 196,
         "column": 12
       },
       "end": {
-        "line": 197,
+        "line": 199,
         "column": 14
       }
     },
@@ -469,11 +485,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 211,
+        "line": 213,
         "column": 14
       },
       "end": {
-        "line": 217,
+        "line": 219,
         "column": 16
       }
     },
@@ -485,11 +501,27 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 223,
+        "line": 225,
         "column": 14
       },
       "end": {
-        "line": 230,
+        "line": 232,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
+  },
+  {
+    "token": "euiComboBoxOptionsList.delimiterMessage",
+    "defString": "Hit enter to add each item separated by {delimiter}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 240,
+        "column": 14
+      },
+      "end": {
+        "line": 244,
         "column": 16
       }
     },
@@ -501,12 +533,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 237,
-        "column": 12
+        "line": 250,
+        "column": 14
       },
       "end": {
-        "line": 241,
-        "column": 14
+        "line": 254,
+        "column": 16
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -517,11 +549,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 248,
+        "line": 262,
         "column": 10
       },
       "end": {
-        "line": 251,
+        "line": 265,
         "column": 12
       }
     },
@@ -533,11 +565,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 257,
+        "line": 271,
         "column": 10
       },
       "end": {
-        "line": 260,
+        "line": 274,
         "column": 12
       }
     },
@@ -1109,11 +1141,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 130,
+        "line": 136,
         "column": 8
       },
       "end": {
-        "line": 132,
+        "line": 138,
         "column": 46
       }
     },
@@ -1125,11 +1157,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 149,
+        "line": 155,
         "column": 12
       },
       "end": {
-        "line": 151,
+        "line": 157,
         "column": 37
       }
     },
@@ -1141,11 +1173,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 162,
+        "line": 168,
         "column": 16
       },
       "end": {
-        "line": 164,
+        "line": 170,
         "column": 49
       }
     },
@@ -1157,11 +1189,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 177,
+        "line": 183,
         "column": 16
       },
       "end": {
-        "line": 179,
+        "line": 185,
         "column": 45
       }
     },
@@ -1173,11 +1205,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 197,
+        "line": 203,
         "column": 12
       },
       "end": {
-        "line": 197,
+        "line": 203,
         "column": 76
       }
     },
@@ -1189,11 +1221,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 212,
+        "line": 218,
         "column": 12
       },
       "end": {
-        "line": 212,
+        "line": 218,
         "column": 76
       }
     },
@@ -1205,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 226,
+        "line": 232,
         "column": 12
       },
       "end": {
-        "line": 226,
+        "line": 232,
         "column": 74
       }
     },
@@ -1221,11 +1253,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 247,
+        "line": 253,
         "column": 14
       },
       "end": {
-        "line": 247,
+        "line": 253,
         "column": 76
       }
     },
@@ -1237,11 +1269,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 260,
         "column": 12
       },
       "end": {
-        "line": 264,
+        "line": 270,
         "column": 14
       }
     },
@@ -1461,11 +1493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 111,
+        "line": 128,
         "column": 12
       },
       "end": {
-        "line": 115,
+        "line": 132,
         "column": 14
       }
     },

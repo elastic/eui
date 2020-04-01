@@ -52,8 +52,8 @@ export const ImageExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiImage</EuiCode> when you need to place a static
-            image into a page with an optional caption.
+            Use <strong>EuiImage</strong> when you need to place a static image
+            into a page with an optional caption.
           </p>
         </div>
       ),
@@ -77,9 +77,10 @@ export const ImageExample = {
         <p>
           Apply the <EuiCode>allowFullScreen</EuiCode> prop to make the image
           clickable and show a full screen version. Note that the second image
-          also passes <EuiCode>fullScreenIconColor=&quot;dark&quot;</EuiCode> to
-          change icon color to better contrast against the light background of
-          that image.
+          also passes{' '}
+          <EuiCode language="js">fullScreenIconColor=&quot;dark&quot;</EuiCode>{' '}
+          to change icon color to better contrast against the light background
+          of that image.
         </p>
       ),
       demo: <ImageZoom />,

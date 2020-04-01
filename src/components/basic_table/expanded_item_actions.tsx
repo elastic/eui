@@ -7,11 +7,11 @@ import {
   CustomItemAction as CustomAction,
   DefaultItemAction as DefaultAction,
 } from './action_types';
-import { ItemId } from './table_types';
+import { ItemIdResolved } from './table_types';
 
 export interface ExpandedItemActionsProps<T> {
   actions: Array<Action<T>>;
-  itemId: ItemId<T>;
+  itemId: ItemIdResolved;
   item: T;
   actionEnabled: (action: Action<T>) => boolean;
   className?: string;
