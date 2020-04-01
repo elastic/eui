@@ -19,7 +19,7 @@ export default () => {
         step={1}
         stepsTotal={1}
         title="Title of the current step"
-        subtitle="A tour"
+        subtitle="Title of the full tour"
         anchorPosition="rightUp">
         <EuiText>
           <p>The tour step anchor point.</p>
