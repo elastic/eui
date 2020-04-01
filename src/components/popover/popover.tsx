@@ -119,7 +119,15 @@ export interface EuiPopoverProps {
   onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
 
   style?: CSSProperties;
+
+  /**
+   * Distance away from the anchor that the popover will render.
+   */
   offset?: number;
+
+  /**
+   * Element to pass as the child element of the arrow. Use case is typically limited to an accompanying `EuiBeacon`
+   */
   arrowChildren?: ReactNode;
 }
 
