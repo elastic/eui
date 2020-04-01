@@ -282,14 +282,13 @@ export default () => {
     return (
       <EuiHeaderSectionItemButton
         aria-label="Open nav"
-        onClick={() => navDrawerRef.toggleOpen()}>
+        onClick={() => navDrawerRef.current.toggleOpen()}>
         <EuiIcon type="apps" href="#" size="m" />
       </EuiHeaderSectionItemButton>
     );
   };
 
-  const navDrawerRef = useRef();
-
+  const navDrawerRef = useRef(null);
   let fullScreenDisplay;
 
   if (isFullScreen) {
