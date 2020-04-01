@@ -68,7 +68,7 @@ export default class extends Component {
           extraAction={{
             color: 'subdued',
             onClick: this.link1Clicked,
-            iconType: favorite1 === 'link1' ? 'pinFilled' : 'pin',
+            iconType: favorite1 === 'link1' ? 'starFilled' : 'starEmpty',
             iconSize: 's',
             'aria-label': 'Favorite link1',
             alwaysShow: favorite1 === 'link1',
@@ -83,7 +83,7 @@ export default class extends Component {
           extraAction={{
             color: 'subdued',
             onClick: this.link2Clicked,
-            iconType: favorite2 === 'link2' ? 'pinFilled' : 'pin',
+            iconType: favorite2 === 'link2' ? 'starFilled' : 'starEmpty',
             iconSize: 's',
             'aria-label': 'Favorite link2',
             alwaysShow: favorite2 === 'link2',
@@ -98,7 +98,7 @@ export default class extends Component {
           extraAction={{
             color: 'subdued',
             onClick: this.link3Clicked,
-            iconType: favorite3 === 'link3' ? 'pinFilled' : 'pin',
+            iconType: favorite3 === 'link3' ? 'starFilled' : 'starEmpty',
             iconSize: 's',
             'aria-label': 'Favorite link3',
             alwaysShow: favorite3 === 'link3',
@@ -114,7 +114,7 @@ export default class extends Component {
           extraAction={{
             color: 'subdued',
             onClick: () => window.alert('Action clicked'),
-            iconType: 'pin',
+            iconType: 'starEmpty',
             iconSize: 's',
             'aria-label': 'Favorite link4',
           }}

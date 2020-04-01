@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, useCallback, Fragment } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -39,77 +39,64 @@ for (let i = 1; i < 20; i++) {
   });
 }
 
-export default class DataGridContainer extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
 
-    this.state = {
-      pagination: {
-        pageIndex: 0,
-        pageSize: 10,
-      },
-      visibleColumns: columns.map(({ id }) => id),
-    };
-  }
+  const [visibleColumns, setVisibleColumns] = useState(() =>
+    columns.map(({ id }) => id)
+  );
 
-  setPageIndex = pageIndex =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageIndex },
-    }));
+  const setPageIndex = useCallback(
+    pageIndex => setPagination({ ...pagination, pageIndex }),
+    [pagination, setPagination]
+  );
+  const setPageSize = useCallback(
+    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
+    [pagination, setPagination]
+  );
 
-  setPageSize = pageSize =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageSize, pageIndex: 0 },
-    }));
-
-  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
-
-  render() {
-    const { pagination } = this.state;
-
-    return (
-      <EuiDataGrid
-        aria-label="Top EUI contributors"
-        columns={columns}
-        columnVisibility={{
-          visibleColumns: this.state.visibleColumns,
-          setVisibleColumns: this.setVisibleColumns,
-        }}
-        rowCount={data.length}
-        gridStyle={{
-          border: 'horizontal',
-          header: 'underline',
-        }}
-        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-        pagination={{
-          ...pagination,
-          pageSizeOptions: [5, 10, 25],
-          onChangeItemsPerPage: this.setPageSize,
-          onChangePage: this.setPageIndex,
-        }}
-        toolbarVisibility={{
-          additionalControls: (
-            <Fragment>
-              <EuiButtonEmpty
-                size="xs"
-                iconType="bell"
-                color="primary"
-                className="euiDataGrid__controlBtn"
-                onClick={() => alert('You clicked me! Hugs.')}>
-                New button
-              </EuiButtonEmpty>
-              <EuiButtonEmpty
-                size="xs"
-                iconType="branch"
-                color="danger"
-                className="euiDataGrid__controlBtn"
-                onClick={() => alert('You clicked me! Hugs.')}>
-                Another button
-              </EuiButtonEmpty>
-            </Fragment>
-          ),
-        }}
-      />
-    );
-  }
-}
+  return (
+    <EuiDataGrid
+      aria-label="Top EUI contributors"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+      }}
+      rowCount={data.length}
+      gridStyle={{
+        border: 'horizontal',
+        header: 'underline',
+      }}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [5, 10, 25],
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+      toolbarVisibility={{
+        additionalControls: (
+          <Fragment>
+            <EuiButtonEmpty
+              size="xs"
+              iconType="bell"
+              color="primary"
+              className="euiDataGrid__controlBtn"
+              onClick={() => alert('You clicked me! Hugs.')}>
+              New button
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              size="xs"
+              iconType="branch"
+              color="danger"
+              className="euiDataGrid__controlBtn"
+              onClick={() => alert('You clicked me! Hugs.')}>
+              Another button
+            </EuiButtonEmpty>
+          </Fragment>
+        ),
+      }}
+    />
+  );
+};

@@ -5,12 +5,11 @@ import { EuiInnerText } from '../../../../src/components/inner_text';
 import {
   EuiBadge,
   EuiCode,
-  EuiFlexGroup,
   EuiHighlight,
-  EuiFlexItem,
   EuiHorizontalRule,
   EuiPanel,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => {
@@ -29,20 +28,21 @@ export default () => {
 
   return (
     <EuiText size="s">
-      <h5>Example:</h5>
+      <p>
+        <strong>Example:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  <span ref={ref} title={innerText}>
-                    Simple string content
-                  </span>
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              <span ref={ref} title={innerText}>
+                Simple string content
+              </span>
+            </EuiPanel>
+            <EuiSpacer />
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}
@@ -50,23 +50,24 @@ export default () => {
 
       <EuiHorizontalRule margin="xl" />
 
-      <h5>Example with complex children:</h5>
+      <p>
+        <strong>Example with complex children:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  <span ref={ref} title={innerText}>
-                    <EuiHighlight search="content">
-                      EuiHighlight content
-                    </EuiHighlight>{' '}
-                    <EuiBadge>with EuiBadge</EuiBadge>
-                  </span>
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              <span ref={ref} title={innerText}>
+                <EuiHighlight search="content">
+                  EuiHighlight content
+                </EuiHighlight>{' '}
+                <EuiBadge>with EuiBadge</EuiBadge>
+              </span>
+            </EuiPanel>
+            <EuiSpacer />
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}
@@ -74,20 +75,21 @@ export default () => {
 
       <EuiHorizontalRule margin="xl" />
 
-      <h5>Example with updating content:</h5>
+      <p>
+        <strong>Example with updating content:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  <span ref={ref} title={innerText}>
-                    {thing}
-                  </span>
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              <span ref={ref} title={innerText}>
+                {thing}
+              </span>
+            </EuiPanel>
+            <EuiSpacer />
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}
@@ -95,25 +97,26 @@ export default () => {
 
       <EuiHorizontalRule margin="xl" />
 
-      <h5>Example with updating element:</h5>
+      <p>
+        <strong>Example with updating element:</strong>
+      </p>
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  {React.createElement(
-                    type,
-                    {
-                      ref,
-                      title: innerText,
-                    },
-                    thing2
-                  )}
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              {React.createElement(
+                type,
+                {
+                  ref,
+                  title: innerText,
+                },
+                thing2
+              )}
+            </EuiPanel>
+            <EuiSpacer />
+            <p className="eui-displayInlineBlock">
+              <strong>Output:</strong>
+            </p>{' '}
             <EuiCode>{innerText}</EuiCode>
           </React.Fragment>
         )}

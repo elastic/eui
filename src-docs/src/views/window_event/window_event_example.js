@@ -21,7 +21,7 @@ const mousePositionSource = require('!!raw-loader!./mouse_position');
 const mousePositionHtml = renderToHtml(MousePosition);
 
 export const WindowEventExample = {
-  title: 'Window Events',
+  title: 'Window events',
   sections: [
     {
       title: 'Basic example: closing a modal on escape',
@@ -38,7 +38,7 @@ export const WindowEventExample = {
       text: (
         <div>
           <p>
-            Use an <EuiCode>EuiWindowEvent</EuiCode> to safely and declaratively
+            Use an <strong>EuiWindowEvent</strong> to safely and declaratively
             manage adding and auto-removing event listeners to the{' '}
             <EuiCode>window</EuiCode>. This is preferable to setting up your own
             window event listeners because it will remove old listeners when
@@ -85,7 +85,7 @@ export const WindowEventExample = {
             <EuiCode>event.stopPropagation()</EuiCode> at the lowest, most
             specific level where you are responding to a DOM event. This will
             prevent the event from bubbling up to the window, and the{' '}
-            <EuiCode>WindowEvent</EuiCode> listener will never be triggered,
+            <strong>EuiWindowEvent</strong> listener will never be triggered,
             avoiding the conflict.
           </p>
         </div>
@@ -117,7 +117,7 @@ export const WindowEventExample = {
             If you were manually attaching window listeners, you might forget to
             remove the listener and be silently responding to mouse events in
             the background for the life of your app. The{' '}
-            <EuiCode>WindowEvent</EuiCode> component manages that
+            <strong>EuiWindowEvent</strong> component manages that
             unmount/unregister process for you.
           </p>
         </div>

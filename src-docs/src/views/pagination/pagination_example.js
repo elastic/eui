@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -138,8 +139,11 @@ export const PaginationExample = {
       ],
       text: (
         <p>
-          You can use <EuiCode>FlexGroup</EuiCode> to set up this pagination
-          layout.
+          You can use{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>{' '}
+          to set up this pagination layout.
         </p>
       ),
       snippet: centeredPaginationSnippet,
@@ -180,8 +184,12 @@ export const PaginationExample = {
       ],
       text: (
         <p>
-          You can use <EuiCode>FlexGroup</EuiCode> to set up this pagination
-          layout, commonly used with Tables.
+          You can use{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>{' '}
+          to set up this pagination layout, commonly used with{' '}
+          <Link to="/tabular-content/tables">tables</Link>.
         </p>
       ),
       snippet: customizablePaginationSnippet,

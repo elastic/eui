@@ -37,6 +37,18 @@ export interface EuiSuperSelectControlProps<T>
   value?: T;
 
   options?: Array<EuiSuperSelectOption<T>>;
+
+  /**
+   * Creates an input group with element(s) coming before input.
+   * `string` | `ReactElement` or an array of these
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+
+  /**
+   * Creates an input group with element(s) coming after input.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 export const EuiSuperSelectControl: <T extends string>(
@@ -52,6 +64,8 @@ export const EuiSuperSelectControl: <T extends string>(
   defaultValue,
   compressed = false,
   value,
+  prepend,
+  append,
   ...rest
 }) => {
   const classes = classNames(
@@ -59,6 +73,7 @@ export const EuiSuperSelectControl: <T extends string>(
     {
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,
+      'euiSuperSelectControl--inGroup': prepend || append,
       'euiSuperSelectControl-isLoading': isLoading,
       'euiSuperSelectControl-isInvalid': isInvalid,
     },
@@ -101,7 +116,9 @@ export const EuiSuperSelectControl: <T extends string>(
         icon={icon}
         fullWidth={fullWidth}
         isLoading={isLoading}
-        compressed={compressed}>
+        compressed={compressed}
+        prepend={prepend}
+        append={append}>
         {/*
           This is read when the user tabs in. The comma is important,
           otherwise the screen reader often combines the text.
@@ -115,7 +132,6 @@ export const EuiSuperSelectControl: <T extends string>(
             />
           </span>
         </EuiScreenReaderOnly>
-
         <button
           role="option"
           type="button"

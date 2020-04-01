@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -10,7 +9,7 @@ const source = require('!!raw-loader!./in_memory_search_callback');
 const html = renderToHtml(Table);
 
 export const searchCallbackSection = {
-  title: 'In-Memory Table - With Search Callback',
+  title: 'In-memory table with search callback',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -24,9 +23,9 @@ export const searchCallbackSection = {
   text: (
     <Fragment>
       <p>
-        The example shows how to configure <EuiCode>EuiInMemoryTable</EuiCode>{' '}
-        to display a search bar and intercept the search value when it changes
-        so you can perform your own search logic.
+        The example shows how to configure <strong>EuiInMemoryTable</strong> to
+        display a search bar and intercept the search value when it changes so
+        you can perform your own search logic.
       </p>
     </Fragment>
   ),

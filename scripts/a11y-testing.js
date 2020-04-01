@@ -19,6 +19,7 @@ const docsPages = async (root, page) => {
     `${root}#/layout/spacer`,
     `${root}#/navigation/breadcrumbs`,
     `${root}#/navigation/context-menu`,
+    `${root}#/navigation/collapsible-nav`,
     `${root}#/navigation/control-bar`,
     `${root}#/navigation/facet`,
     `${root}#/navigation/link`,
@@ -47,6 +48,7 @@ const docsPages = async (root, page) => {
     `${root}#/display/title`,
     `${root}#/display/toast`,
     `${root}#/display/tooltip`,
+    `${root}#/forms/form-controls`,
     `${root}#/forms/form-layouts`,
     `${root}#/forms/form-validation`,
     `${root}#/forms/code-editor`,
@@ -58,7 +60,7 @@ const docsPages = async (root, page) => {
     `${root}#/elastic-charts/time-series`,
     `${root}#/elastic-charts/categorical`,
     `${root}#/utilities/i18n`,
-    `${root}#/utilities/is-color-dark`,
+    `${root}#/utilities/color`,
     `${root}#/utilities/pretty-duration`,
     `${root}#/utilities/mutationobserver`,
     `${root}#/utilities/outside-click-detector`,
@@ -71,9 +73,10 @@ const docsPages = async (root, page) => {
     `${root}#/utilities/accessibility`,
     `${root}#/utilities/context`,
     `${root}#/utilities/copy`,
-    `${root}#/utilities/delay-hide`,
-    `${root}#/utilities/delay-render`,
+    `${root}#/utilities/delay`,
     `${root}#/utilities/highlight`,
+    `${root}#/utilities/error-boundary`,
+    `${root}#/utilities/inner-text`,
   ];
 
   links = [...links, ...reflinks];

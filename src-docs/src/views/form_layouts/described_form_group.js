@@ -140,8 +140,8 @@ export default class extends Component {
           titleSize="xxxs"
           description={
             <Fragment>
-              By default, <EuiCode>EuiDescribedFormGroup</EuiCode> will be
-              double the default width of form elements. However, you can pass{' '}
+              By default, <strong>EuiDescribedFormGroup</strong> will be double
+              the default width of form elements. However, you can pass{' '}
               <EuiCode>fullWidth</EuiCode> prop to this, the individual field
               and row components to expand to their container.
             </Fragment>

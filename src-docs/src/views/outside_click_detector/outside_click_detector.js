@@ -31,11 +31,11 @@ export default class extends Component {
             window.alert('Clicked outside');
           }}
           isDisabled={isDisabled}>
-          <div style={{ width: '300px' }}>
+          <p>
             {isDisabled
               ? 'This detector is disabled, so clicking outside will do nothing.'
               : 'Clicking inside here will do nothing, but clicking outside will trigger an alert.'}
-          </div>
+          </p>
         </EuiOutsideClickDetector>
 
         <EuiSpacer size="l" />

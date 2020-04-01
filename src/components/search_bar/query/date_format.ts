@@ -149,7 +149,7 @@ const parseWeek = (value: string) => {
       parsed = utc().add(1, 'weeks');
       break;
     default:
-      const match = value.match(/week ([1-9][1-9]?)/i);
+      const match = value.match(/week (\d+)/i);
       if (match) {
         const weekNr = Number(match[1]);
         parsed = utc().weeks(weekNr);

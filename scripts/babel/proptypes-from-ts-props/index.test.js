@@ -280,6 +280,28 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('should ignore never keyword', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface Props{
+  foo: never;
+}
+const FooComponent: React.SFC<Props> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {};`);
+      });
     });
 
     describe('function propTypes', () => {
@@ -2115,7 +2137,7 @@ const FooComponent: React.SFC<{foo: keyof typeof commonKeys, bar?: commonKeyType
                             s: 'small',
                             'l': 'large',
                           };
-                          
+
                           export type commonKeyTypes = keyof typeof commonKeys;
                         `)
                       }

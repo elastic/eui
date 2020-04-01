@@ -153,7 +153,7 @@ const gridConcepts = [
     title: 'columns',
     description: (
       <span>
-        An array of <EuiCode>EuiDataGridColumn</EuiCode> objects. Lists the
+        An array of <strong>EuiDataGridColumn</strong> objects. Lists the
         columns available and the schema and settings tied to it.
       </span>
     ),
@@ -162,7 +162,7 @@ const gridConcepts = [
     title: 'inMemory',
     description: (
       <span>
-        A <EuiCode>EuiDataGridInMemory</EuiCode> object to define the level of
+        A <strong>EuiDataGridInMemory</strong> object to define the level of
         high order schema-detection and sorting logic to use on your data.{' '}
         <strong>Try to set it when possible</strong>. If omitted, disables all
         enhancements and assumes content is flat strings.
@@ -173,7 +173,7 @@ const gridConcepts = [
     title: 'columnVisibility',
     description: (
       <span>
-        An array of <EuiCode>EuiDataGridColumnVisibility</EuiCode> objects.
+        An array of <strong>EuiDataGridColumnVisibility</strong> objects.
         Defines which columns are visible in the grid and the order they are
         displayed.
       </span>
@@ -183,7 +183,7 @@ const gridConcepts = [
     title: 'leading and trailing controlColumns',
     description: (
       <span>
-        An array of <EuiCode>EuiDataGridControlColumn</EuiCode> objects. Used to
+        An array of <strong>EuiDataGridControlColumn</strong> objects. Used to
         define ancillary columns on the left side of the data grid. Useful for
         adding items like checkboxes and buttons.
       </span>
@@ -193,7 +193,7 @@ const gridConcepts = [
     title: 'schemaDetectors',
     description: (
       <span>
-        An array of custom <EuiCode>EuiDataGridSchemaDetector</EuiCode> objects.
+        An array of custom <strong>EuiDataGridSchemaDetector</strong> objects.
         You can inject custom schemas to the grid to define the classnames
         applied.
       </span>
@@ -203,9 +203,9 @@ const gridConcepts = [
     title: 'popoverContents',
     description: (
       <span>
-        An object mapping <EuiCode>EuiDataGridColumn</EuiCode> schemas to a
-        custom popover render. This dictates the content of the popovers when
-        you click into each cell.
+        An object mapping <strong>EuiDataGridColumn</strong> schemas to a custom
+        popover render. This dictates the content of the popovers when you click
+        into each cell.
       </span>
     ),
   },
@@ -219,7 +219,7 @@ const gridConcepts = [
     description: (
       <span>
         Defines the look of the grid. Accepts a partial{' '}
-        <EuiCode>EuiDataGridStyle</EuiCode> object. Settings provided may be
+        <strong>EuiDataGridStyle</strong> object. Settings provided may be
         overwritten or merged with user defined preferences if{' '}
         <EuiCode>toolbarVisibility.showStyleSelector</EuiCode> is set to true
         (which is the default).
@@ -231,7 +231,7 @@ const gridConcepts = [
     description: (
       <span>
         Accepts either a boolean or{' '}
-        <EuiCode>EuiDataGridToolBarVisibilityOptions</EuiCode> object. When used
+        <strong>EuiDataGridToolBarVisibilityOptions</strong> object. When used
         as a boolean, defines the visibility of entire toolbar. When passed an
         object allows you to turn off individual controls within the toolbar.
       </span>
@@ -244,7 +244,7 @@ const gridConcepts = [
         A function called to render a cell&apos;s value. Behind the scenes it is
         treated as a React component allowing hooks, context, and other React
         concepts to be used. The function receives a{' '}
-        <EuiCode>EuiDataGridCellValueElement</EuiCode> as its only argument.
+        <strong>EuiDataGridCellValueElement</strong> as its only argument.
       </span>
     ),
   },
@@ -252,7 +252,7 @@ const gridConcepts = [
     title: 'pagination',
     description: (
       <span>
-        A <EuiCode>EuiDataGridPagination</EuiCode> object. Omit to disable
+        A <strong>EuiDataGridPagination</strong> object. Omit to disable
         pagination completely.
       </span>
     ),
@@ -261,7 +261,7 @@ const gridConcepts = [
     title: 'sorting',
     description: (
       <span>
-        A <EuiCode>EuiDataGridSorting</EuiCode> object that provides the sorted
+        A <strong>EuiDataGridSorting</strong> object that provides the sorted
         columns along with their direction. Omit to disable, but you&apos;ll
         likely want to also turn off the user sorting controls through the{' '}
         <EuiCode>toolbarVisibility</EuiCode> prop.
@@ -287,7 +287,7 @@ export const DataGridExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>EuiDataGrid</EuiCode> is for displaying large amounts of
+            <strong>EuiDataGrid</strong> is for displaying large amounts of
             tabular data. It is a better choice over{' '}
             <Link to="/tabular-content/tables/">EUI tables</Link> when there are
             many columns, the data in those columns is fairly uniform, and when

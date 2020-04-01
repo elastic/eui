@@ -296,6 +296,68 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <input
+      type="hidden"
+      value=""
+    />
+    <div
+      class="euiFormControlLayout euiFormControlLayout--group"
+    >
+      <label
+        class="euiFormLabel euiFormControlLayout__prepend"
+      >
+        prepend
+      </label>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: , is selected
+        </span>
+        <button
+          aria-haspopup="true"
+          aria-label="aria-label"
+          aria-labelledby="undefined generated-id"
+          aria-selected="true"
+          class="euiSuperSelectControl euiSuperSelectControl--inGroup testClass1 testClass2"
+          data-test-subj="test subject string"
+          role="option"
+          type="button"
+        />
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <div
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </div>
+      </div>
+      <label
+        class="euiFormLabel euiFormControlLayout__append"
+      >
+        append
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
