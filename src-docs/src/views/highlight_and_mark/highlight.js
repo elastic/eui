@@ -1,4 +1,4 @@
-import React, { Fragment, useState} from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   EuiHighlight,
@@ -8,8 +8,7 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-
-export function Highlight(){
+export function Highlight() {
   const [searchValue, setSearchValue] = useState('jumped over');
   const [isHighlightAll, setHighlightAll] = useState(false);
 
