@@ -138,7 +138,7 @@ export const TourExample = {
           Use the <strong>useEuiTour</strong> hook for minimal state management
           using a predefined React reducer. Pass an array of steps consisting of
           accepted props, and an object of global configuration. The result is a
-          full configuration obejct for each step, a set of reducer actions to
+          full configuration object for each step, a set of reducer actions to
           perform state changes, and an up-to-date state object derived from the
           internal reducer.
         </p>
