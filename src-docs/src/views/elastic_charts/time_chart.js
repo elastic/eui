@@ -35,6 +35,8 @@ import {
 } from './shared';
 
 export const TimeChart = () => {
+  const themeContext = useContext(ThemeContext);
+
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
   const [chartType, setChartType] = useState('BarSeries');
@@ -49,8 +51,7 @@ export const TimeChart = () => {
     setChartType(chartType);
   };
 
-  const context = useContext(ThemeContext);
-  const isDarkTheme = context.theme.includes('dark');
+  const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;

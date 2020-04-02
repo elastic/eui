@@ -32,7 +32,9 @@ import {
 } from '../../../../src/services';
 
 export const Sparklines = () => {
-  const isDarkTheme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
+
   const theme = [
     EUI_SPARKLINE_THEME_PARTIAL,
     isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme,

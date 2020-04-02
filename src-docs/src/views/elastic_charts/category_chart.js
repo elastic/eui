@@ -29,6 +29,8 @@ import {
 } from './shared';
 
 export const CategoryChart = () => {
+  const themeContext = useContext(ThemeContext);
+
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
   const [rotated, setRotated] = useState(true);
@@ -58,7 +60,7 @@ export const CategoryChart = () => {
     setChartType(chartType);
   };
 
-  const isDarkTheme = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;

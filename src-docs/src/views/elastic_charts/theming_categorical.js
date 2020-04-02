@@ -31,6 +31,7 @@ import {
 } from '../../../../src/services';
 
 export const Categorical = ({ idPrefix }) => {
+  const themeContext = useContext(ThemeContext);
   const highlightColor = euiPaletteColorBlind()[2];
 
   const colorTypeRadios = [
@@ -70,7 +71,7 @@ export const Categorical = ({ idPrefix }) => {
     createCategoryChart(3);
   }, []);
 
-  const isDarkTheme = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
