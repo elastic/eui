@@ -129,44 +129,50 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   };
 
   const footer = (
-    <EuiFlexGroup responsive={false} justifyContent="spaceBetween">
-      <EuiFlexItem grow={false}>
-        <ul className="euiTourFooter__stepList">
-          {[...Array(stepsTotal).keys()].map((_, i) => {
-            let status: EuiTourStepStatus = 'incomplete';
-            if (step === i + 1) {
-              status = 'active';
-            } else if (step <= i) {
-              status = 'complete';
-            }
-            return (
-              <EuiTourStepIndicator key={i} number={i + 1} status={status} />
-            );
-          })}
-        </ul>
-      </EuiFlexItem>
+    <EuiFlexGroup
+      responsive={false}
+      justifyContent={stepsTotal > 1 ? 'spaceBetween' : 'flexEnd'}>
+      {stepsTotal > 1 && (
+        <EuiFlexItem grow={false}>
+          <ul className="euiTourFooter__stepList">
+            {[...Array(stepsTotal).keys()].map((_, i) => {
+              let status: EuiTourStepStatus = 'incomplete';
+              if (step === i + 1) {
+                status = 'active';
+              } else if (step <= i) {
+                status = 'complete';
+              }
+              return (
+                <EuiTourStepIndicator key={i} number={i + 1} status={status} />
+              );
+            })}
+          </ul>
+        </EuiFlexItem>
+      )}
 
       {footerAction ? (
         <EuiFlexItem grow={false}>{footerAction}</EuiFlexItem>
       ) : (
         <EuiFlexItem grow={false}>
-          {stepsTotal === step ? (
-            <EuiI18n token="euiTourStep.endTour" default="End tour">
-              {(endTour: string) => (
+          <EuiI18n
+            tokens={[
+              'euiTourStep.endTour',
+              'euiTourStep.skipTour',
+              'euiTourStep.closeTour',
+            ]}
+            defaults={['End tour', 'Skip tour', 'Close']}>
+            {([endTour, skipTour, closeTour]: string[]) => {
+              let content = closeTour;
+              if (stepsTotal > 1) {
+                content = stepsTotal === step ? endTour : skipTour;
+              }
+              return (
                 <EuiButtonEmpty onClick={onFinish} {...finishButtonProps}>
-                  {endTour}
+                  {content}
                 </EuiButtonEmpty>
-              )}
-            </EuiI18n>
-          ) : (
-            <EuiI18n token="euiTourStep.skipTour" default="Skip tour">
-              {(skipTour: string) => (
-                <EuiButtonEmpty onClick={onFinish} {...finishButtonProps}>
-                  {skipTour}
-                </EuiButtonEmpty>
-              )}
-            </EuiI18n>
-          )}
+              );
+            }}
+          </EuiI18n>
         </EuiFlexItem>
       )}
     </EuiFlexGroup>
