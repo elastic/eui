@@ -54,12 +54,6 @@ export const ChartCard = ({ title, description, children }) => {
   );
 };
 
-ChartTypeCard.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  mixed: PropTypes.oneOf(['enabled', 'disabled', true, false]),
-  disabled: PropTypes.bool,
-};
-
 export const ChartTypeCard = props => {
   const idPrefix = 'chartType';
 
@@ -78,7 +72,7 @@ export const ChartTypeCard = props => {
     },
   ];
 
-  const [toggleIdSelected, setToggleIdSelectd] = useState(`${this.idPrefix}0`);
+  const [toggleIdSelected, setToggleIdSelectd] = useState(`${idPrefix}0`);
 
   const onChartTypeChange = optionId => {
     setToggleIdSelectd(optionId);
@@ -89,7 +83,7 @@ export const ChartTypeCard = props => {
   };
 
   if (props.mixed) {
-    this.toggleButtonsIcons[3] = {
+    toggleButtonsIcons[3] = {
       id: `${idPrefix}3`,
       label: 'Mixed',
       disabled: props.mixed === 'disabled',
@@ -113,11 +107,10 @@ export const ChartTypeCard = props => {
   );
 };
 
-MultiChartCard.propTypes = {
-  /**
-   * Returns (multi:boolean, stacked:boolean)
-   */
+ChartTypeCard.propTypes = {
   onChange: PropTypes.func.isRequired,
+  mixed: PropTypes.oneOf(['enabled', 'disabled', true, false]),
+  disabled: PropTypes.bool,
 };
 
 export const MultiChartCard = props => {
@@ -125,10 +118,10 @@ export const MultiChartCard = props => {
   const [stacked, setStacked] = useState(false);
 
   const onMultiChange = e => {
-    const stacked = e.target.checked ? stacked : false;
+    const isStacked = e.target.checked ? stacked : false;
 
-    setMulti(multi);
-    setStacked(stacked);
+    setMulti(e.target.checked);
+    setStacked(isStacked);
 
     props.onChange({
       multi: e.target.checked,
@@ -141,7 +134,6 @@ export const MultiChartCard = props => {
 
     props.onChange({ multi: multi, stacked: e.target.checked });
   };
-
   return (
     <ChartCard
       textAlign="left"
@@ -161,4 +153,11 @@ export const MultiChartCard = props => {
       />
     </ChartCard>
   );
+};
+
+MultiChartCard.propTypes = {
+  /**
+   * Returns (multi:boolean, stacked:boolean)
+   */
+  onChange: PropTypes.func.isRequired,
 };
