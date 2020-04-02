@@ -6,6 +6,7 @@
 - Updated pagination prop descriptions for `EuiInMemoryTable` ([#3142](https://github.com/elastic/eui/pull/3142))
 - Added `title` and `aria` attributes to `EuiToken`'s icon element ([#3195](https://github.com/elastic/eui/pull/3195))
 - Added new Elasticsearch token types ([58036](https://github.com/elastic/kibana/issues/58036))
+- Accounting for action availability while computing row actions in EuiBasicTable ([3030](https://github.com/elastic/kibana/issues/3030))
 
 **Bug Fixes**
 
