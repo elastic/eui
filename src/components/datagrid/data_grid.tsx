@@ -403,18 +403,7 @@ function createKeyDownHandler(
         const pageCount = Math.ceil(rowCount / pageSize);
         if (pageIndex < pageCount - 1) {
           props.pagination.onChangePage(pageIndex + 1);
-          const newPageRowCount = computeVisibleRows({
-            rowCount,
-            pagination: {
-              ...props.pagination,
-              pageIndex: pageIndex + 1,
-            },
-          });
-          const rowIndex =
-            focusedCell[1] < newPageRowCount
-              ? focusedCell[1]
-              : newPageRowCount - 1;
-          setFocusedCell([focusedCell[0], rowIndex]);
+          setFocusedCell([focusedCell[0], 0]);
           updateFocus();
         }
       }
@@ -424,6 +413,7 @@ function createKeyDownHandler(
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
           props.pagination.onChangePage(pageIndex - 1);
+          setFocusedCell([focusedCell[0], props.pagination.pageSize - 1]);
           updateFocus();
         }
       }
