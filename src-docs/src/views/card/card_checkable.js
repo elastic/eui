@@ -17,20 +17,20 @@ export default () => {
   const [checkbox, setCheckbox] = useState(false);
 
   const nestedRadios = [
-      {
-        id: 'nestedRadio1',
-        label: 'Nested option one',
-      },
-      {
-        id: 'nestedRadio2',
-        label: 'Nested option two',
-      },
-      {
-        id: 'nestedRadio3',
-        label: 'Nested option three',
-      },
+    {
+      id: 'nestedRadio1',
+      label: 'Nested option one',
+    },
+    {
+      id: 'nestedRadio2',
+      label: 'Nested option two',
+    },
+    {
+      id: 'nestedRadio3',
+      label: 'Nested option three',
+    },
   ];
-  
+
   return (
     <Fragment>
       <EuiFormFieldset
