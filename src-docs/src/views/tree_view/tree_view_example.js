@@ -36,7 +36,7 @@ const treeViewSnippet = [
           id: 'item_b',
           icon: <EuiIcon type="document" />,
         },
-      ]
+      ],
     },
     {
       label: 'Item Two',
