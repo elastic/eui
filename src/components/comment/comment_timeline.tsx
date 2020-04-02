@@ -37,7 +37,7 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
   let iconRender;
   if (typeof timelineIcon === 'string') {
     iconRender = (
-      <EuiIcon size={type === 'update' ? 's' : 'l'} type={timelineIcon} />
+      <EuiIcon size={type === 'update' ? 'm' : 'l'} type={timelineIcon} />
     );
   } else if (timelineIcon) {
     iconRender = timelineIcon;

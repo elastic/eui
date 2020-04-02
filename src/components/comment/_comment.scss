@@ -17,10 +17,10 @@
       content: '';
       position: absolute;
       left: $euiSizeXXL / 2;
-      top: 0;
+      top: $euiSizeL;
       width: $euiSizeXS / 2;
       background-color: $euiColorLightShade;
-      height: calc(100% + #{$euiSizeXXL});
+      height: calc(100% + #{$euiSizeL});
     }
   }
 }

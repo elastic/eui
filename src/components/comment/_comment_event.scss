@@ -39,9 +39,14 @@
   border: $euiBorderThin;
 
   .euiCommentEvent__header {
+    @include euiBreakpoint('xs', 's') {
+      padding: $euiSizeS;
+    }
+
+    min-height: $euiSizeXXL;
     background-color: $euiColorLightestShade;
     border-bottom: $euiBorderThin;
-    padding: $euiSizeS;
+    padding: 0 $euiSizeS;
     display: flex;
     justify-content: space-between;
     align-items: center;
