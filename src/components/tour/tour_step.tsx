@@ -31,7 +31,14 @@ export interface EuiTourStepProps
   extends CommonProps,
     Omit<EuiPopoverProps, PopoverOverrides>,
     EuiPopoverPartials {
+  /**
+   * Element to which the tour step popover attaches when open
+   */
   children: ReactElement;
+
+  /**
+   * Contents of the tour step popover
+   */
   content: ReactNode;
 
   /**
