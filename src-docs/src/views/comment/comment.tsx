@@ -1,6 +1,5 @@
 import React from 'react';
 import { EuiComment } from '../../../../src/components/comment';
-import { EuiIcon } from '../../../../src/components/icon';
 import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
@@ -26,12 +25,6 @@ const longBody = (
       because on the whole it was not the small green pieces of paper that were
       unhappy.
     </p>
-  </EuiText>
-);
-
-const bodyUpdate = (
-  <EuiText size="s">
-    <p>This type of comment can also have a body</p>
   </EuiText>
 );
 
@@ -68,6 +61,12 @@ export default () => (
       }
     />
     <EuiComment
+      username="pancho1"
+      type="update"
+      event="edited case"
+      timestamp="Jan 9, 2020"
+    />
+    <EuiComment
       actions={copyAction}
       username={
         <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
@@ -89,19 +88,8 @@ export default () => (
           </EuiFlexItem>
         </EuiFlexGroup>
       }
-      timestamp="Jan 4, 2020"
-      timelineIcon={
-        <div className="euiCommentTimeline__contentDefault">
-          <EuiIcon size="l" type="tag" />
-        </div>
-      }
-    />
-    <EuiComment
-      username="pancho1"
-      type="update"
-      event="edited case"
       timestamp="Jan 11, 2020"
-      timelineIcon={<EuiAvatar size="l" name="Pancho" />}
+      timelineIcon="tag"
     />
     <EuiComment
       username="elohar"
@@ -110,14 +98,6 @@ export default () => (
       timestamp="Jan 14, 2020"
       timelineIcon={<EuiAvatar size="l" name="Eloha" />}>
       {longBody}
-    </EuiComment>
-    <EuiComment
-      username="pancho1"
-      type="update"
-      event="edited case"
-      timestamp="Jan 21, 2020"
-      timelineIcon={<EuiAvatar size="l" name="Pancho" />}>
-      {bodyUpdate}
     </EuiComment>
   </div>
 );

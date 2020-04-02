@@ -37,7 +37,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      <EuiCommentTimeline timelineIcon={timelineIcon} />
+      <EuiCommentTimeline type={type} timelineIcon={timelineIcon} />
       <EuiCommentEvent
         username={username}
         actions={actions}

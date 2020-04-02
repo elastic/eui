@@ -1,9 +1,8 @@
 .euiComment {
   font-size: $euiFontSizeS;
   display: flex;
-  // margin: -($euiSizeS);
   padding-bottom: $euiSize;
-  min-height: $euiSize * 5;
+  min-height: $euiSize * 3.5;
 
   .euiCommentEvent {
     flex-grow: 1;
@@ -18,10 +17,10 @@
       content: '';
       position: absolute;
       left: $euiSizeXXL / 2;
-      top: $euiSizeXXL;
+      top: 0;
       width: $euiSizeXS / 2;
       background-color: $euiColorLightShade;
-      height: 100%;
+      height: calc(100% + #{$euiSizeXXL});
     }
   }
 }
@@ -35,7 +34,5 @@
 }
 
 .euiComment--update:not(.euiComment--hasBody) {
-  @include euiBreakpoint('m', 'l', 'xl') {
-    align-items: center;
-  }
+  align-items: center;
 }

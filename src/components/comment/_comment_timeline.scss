@@ -1,13 +1,12 @@
 .euiCommentTimeline__content {
-  min-width: $euiSizeXL;
-  min-height: $euiSizeXL;
+  min-width: $euiSizeXXL;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-.euiCommentTimeline__contentDefault {
+.euiCommentTimeline__default {
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -15,6 +14,14 @@
   overflow-x: hidden;
   border-radius: 50%;
   background-color: $euiColorLightestShade;
-  width: $euiSizeXXL;
-  height: $euiSizeXXL;
+
+  &.euiCommentTimeline--regular {
+    width: $euiSizeXXL;
+    height: $euiSizeXXL;
+  }
+
+  &.euiCommentTimeline--update {
+    width: $euiSizeL;
+    height: $euiSizeL;
+  }
 }

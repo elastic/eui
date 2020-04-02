@@ -56,7 +56,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
           <div className="euiCommentEvent__headerEvent">{event}</div>
           {timestamp ? (
             <div className="euiCommentEvent__headerTimestamp">
-              <EuiI18n token="euiCommentEven.onDate" default="on" />{' '}
+              <EuiI18n token="euiCommentEvent.onDate" default="on" />{' '}
               <time>{timestamp}</time>
             </div>
           ) : (
@@ -65,7 +65,11 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
         </div>
         <div className="euiCommentEvent__headerActions">{actions}</div>
       </div>
-      <div className="euiCommentEvent__body">{children}</div>
+      {children ? (
+        <div className="euiCommentEvent__body">{children}</div>
+      ) : (
+        undefined
+      )}
     </div>
   );
 };

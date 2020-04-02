@@ -1,7 +1,6 @@
 @include euiPanel($selector: '.euiCommentEvent--regular');
 
 .euiCommentEvent {
-  font-size: $euiFontSizeS;
   overflow: hidden;
 
   .euiCommentEvent__header {
@@ -55,9 +54,9 @@
 
 .euiCommentEvent--update {
   .euiCommentEvent__header {
-    padding-top: $euiSizeS;
     display: flex;
     justify-content: flex-start;
+    padding: $euiSizeXS 0;
   }
 
   .euiCommentEvent__headerData {
@@ -65,6 +64,6 @@
   }
 
   .euiCommentEvent__body {
-    padding-top: $euiSizeS;
+    padding-top: $euiSizeXS;
   }
 }
