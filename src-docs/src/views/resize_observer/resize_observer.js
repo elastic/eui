@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -11,82 +11,70 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export class ResizeObserverExample extends Component {
-  state = {
-    hasResizeObserver: typeof ResizeObserver !== 'undefined',
-    height: 0,
-    width: 0,
-    paddingSize: 's',
-    items: ['Item 1', 'Item 2', 'Item 3'],
+export const ResizeObserverExample = () => {
+  const hasResizeObserver = typeof ResizeObserver !== 'undefined';
+  const [paddingSize, setPaddingSize] = useState('s');
+  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(0);
+
+  const togglePaddingSize = () => {
+    setPaddingSize(paddingSize => (paddingSize === 's' ? 'l' : 's'));
   };
 
-  togglePaddingSize = () => {
-    this.setState(({ paddingSize }) => ({
-      paddingSize: paddingSize === 's' ? 'l' : 's',
-    }));
+  const addItem = () => {
+    setItems(items => [...items, `Item ${items.length + 1}`]);
   };
 
-  addItem = () => {
-    this.setState(({ items }) => ({
-      items: [...items, `Item ${items.length + 1}`],
-    }));
+  const onResize = ({ height, width }) => {
+    setHeight(height);
+    setWidth(width);
   };
 
-  onResize = ({ height, width }) => {
-    this.setState({
-      height,
-      width,
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <EuiText>
-          {this.state.hasResizeObserver ? (
-            <p>
-              <EuiIcon type="checkInCircleFilled" color="secondary" /> Browser
-              supports ResizeObserver API.
-            </p>
-          ) : (
-            <p>
-              <EuiIcon type="crossInACircleFilled" color="danger" /> Browser
-              does not support ResizeObserver API. Using MutationObserver.
-            </p>
-          )}
+  return (
+    <div>
+      <EuiText>
+        {hasResizeObserver ? (
           <p>
-            <EuiCode>{`height: ${this.state.height}; width: ${
-              this.state.width
-            }`}</EuiCode>
+            <EuiIcon type="checkInCircleFilled" color="secondary" /> Browser
+            supports ResizeObserver API.
           </p>
-        </EuiText>
+        ) : (
+          <p>
+            <EuiIcon type="crossInACircleFilled" color="danger" /> Browser does
+            not support ResizeObserver API. Using MutationObserver.
+          </p>
+        )}
+        <p>
+          <EuiCode>{`height: ${height}; width: ${width}`}</EuiCode>
+        </p>
+      </EuiText>
 
-        <EuiSpacer />
+      <EuiSpacer />
 
-        <EuiButton fill={true} onClick={this.togglePaddingSize}>
-          Toggle container padding
-        </EuiButton>
+      <EuiButton fill={true} onClick={togglePaddingSize}>
+        Toggle container padding
+      </EuiButton>
 
-        <EuiSpacer />
+      <EuiSpacer />
 
-        <EuiResizeObserver onResize={this.onResize}>
-          {resizeRef => (
-            <div className="eui-displayInlineBlock" ref={resizeRef}>
-              <EuiPanel
-                className="eui-displayInlineBlock"
-                paddingSize={this.state.paddingSize}>
-                <ul>
-                  {this.state.items.map(item => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <EuiSpacer size="s" />
-                <EuiButtonEmpty onClick={this.addItem}>add item</EuiButtonEmpty>
-              </EuiPanel>
-            </div>
-          )}
-        </EuiResizeObserver>
-      </div>
-    );
-  }
-}
+      <EuiResizeObserver onResize={onResize}>
+        {resizeRef => (
+          <div className="eui-displayInlineBlock" ref={resizeRef}>
+            <EuiPanel
+              className="eui-displayInlineBlock"
+              paddingSize={paddingSize}>
+              <ul>
+                {items.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <EuiSpacer size="s" />
+              <EuiButtonEmpty onClick={addItem}>add item</EuiButtonEmpty>
+            </EuiPanel>
+          </div>
+        )}
+      </EuiResizeObserver>
+    </div>
+  );
+};
