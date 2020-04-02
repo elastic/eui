@@ -6,7 +6,7 @@ export default function() {
   const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
 
   const toggleOpenOnMobile = () => {
-    setisSideNavOpenOnMobile(!this.state.isSideNavOpenOnMobile);
+    setisSideNavOpenOnMobile(!isSideNavOpenOnMobile);
   };
 
   const sideNav = [
