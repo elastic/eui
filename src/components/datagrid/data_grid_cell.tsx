@@ -73,6 +73,7 @@ interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
   popoverIsOpen: boolean; // is expansion popover open
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
+  disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
 }
 
 export type EuiDataGridCellValueProps = Omit<
@@ -110,6 +111,7 @@ export class EuiDataGridCell extends Component<
     cellProps: {},
     popoverIsOpen: false,
     isEntered: false,
+    disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
 
@@ -192,6 +194,8 @@ export class EuiDataGridCell extends Component<
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
+    if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
+      return true;
 
     return false;
   }
@@ -203,6 +207,21 @@ export class EuiDataGridCell extends Component<
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
     this.preventTabbing();
+  };
+
+  onFocus = () => {
+    const { onCellFocus, colIndex, visibleRowIndex, isExpandable } = this.props;
+    onCellFocus([colIndex, visibleRowIndex]);
+
+    const interactables = this.getInteractables();
+    if (interactables.length === 1 && isExpandable === false) {
+      interactables[0].focus();
+      this.setState({ disableCellTabIndex: true });
+    }
+  };
+
+  onBlur = () => {
+    this.setState({ disableCellTabIndex: false });
   };
 
   preventTabbing = () => {
@@ -238,7 +257,7 @@ export class EuiDataGridCell extends Component<
       className,
       ...rest
     } = this.props;
-    const { colIndex, rowIndex, visibleRowIndex } = rest;
+    const { colIndex, rowIndex } = rest;
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
@@ -283,6 +302,11 @@ export class EuiDataGridCell extends Component<
                 if (this.state.isEntered === false) {
                   this.enableTabbing();
                   this.setState({ isEntered: true });
+
+                  // result of this keypress is focus shifts to the first interactive element
+                  // and then the browser fires the onClick event because that's how [Enter] works
+                  // so we need to prevent that default action otherwise entering the trap triggers the first element
+                  e.preventDefault();
                 }
                 break;
               case 'F2':
@@ -457,12 +481,13 @@ export class EuiDataGridCell extends Component<
     return (
       <div
         role="gridcell"
-        tabIndex={isFocused ? 0 : -1}
+        tabIndex={isFocused && !this.state.disableCellTabIndex ? 0 : -1}
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
-        onFocus={() => onCellFocus([colIndex, visibleRowIndex])}>
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}>
         {innerContent}
       </div>
     );

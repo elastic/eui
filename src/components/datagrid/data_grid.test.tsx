@@ -537,6 +537,7 @@ Array [
   Object {
     "className": "euiDataGridRowCell customClass",
     "data-test-subj": "dataGridRowCell",
+    "onBlur": [Function],
     "onFocus": [Function],
     "onKeyDown": [Function],
     "role": "gridcell",
@@ -549,6 +550,7 @@ Array [
   Object {
     "className": "euiDataGridRowCell customClass",
     "data-test-subj": "dataGridRowCell",
+    "onBlur": [Function],
     "onFocus": [Function],
     "onKeyDown": [Function],
     "role": "gridcell",
@@ -561,6 +563,7 @@ Array [
   Object {
     "className": "euiDataGridRowCell customClass",
     "data-test-subj": "dataGridRowCell",
+    "onBlur": [Function],
     "onFocus": [Function],
     "onKeyDown": [Function],
     "role": "gridcell",
@@ -573,6 +576,7 @@ Array [
   Object {
     "className": "euiDataGridRowCell customClass",
     "data-test-subj": "dataGridRowCell",
+    "onBlur": [Function],
     "onFocus": [Function],
     "onKeyDown": [Function],
     "role": "gridcell",
