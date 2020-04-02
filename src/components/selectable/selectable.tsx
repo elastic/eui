@@ -14,10 +14,11 @@ import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
 import { EuiLoadingChart } from '../loading';
 import { getMatchingOptions } from './matching_options';
-import { comboBoxKeyCodes } from '../../services';
+import { comboBoxKeyCodes, htmlIdGenerator } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
+import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
@@ -43,7 +44,7 @@ type EuiSelectableSearchableProps = ExclusiveUnion<
     /**
      * Passes props down to the `EuiFieldSearch`
      */
-    searchProps?: {};
+    searchProps?: Partial<EuiSelectableSearchProps>;
   }
 >;
 
@@ -120,7 +121,7 @@ export class EuiSelectable extends Component<
   };
 
   private optionsListRef = createRef<EuiSelectableList>();
-
+  rootId = htmlIdGenerator();
   constructor(props: EuiSelectableProps) {
     super(props);
 
@@ -302,10 +303,26 @@ export class EuiSelectable extends Component<
       renderOption,
       height,
       allowExclusions,
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
       ...rest
     } = this.props;
 
     const { searchValue, visibleOptions, activeOptionIndex } = this.state;
+    const unknownAccessibleName = {
+      'aria-label': undefined,
+      'aria-describedby': undefined,
+    };
+    const {
+      'aria-label': searchAriaLabel,
+      'aria-describedby': searchAriaDescribedby,
+      ...cleanedSearchProps
+    } = searchProps || unknownAccessibleName;
+    const {
+      'aria-label': listAriaLabel,
+      'aria-describedby': listAriaDescribedby,
+      ...cleanedListProps
+    } = listProps || unknownAccessibleName;
 
     let messageContent;
 
@@ -351,37 +368,100 @@ export class EuiSelectable extends Component<
       className
     );
 
+    const listId = this.rootId('listbox');
+    const makeOptionId = (index: number | undefined) => {
+      if (typeof index === 'undefined') {
+        return '';
+      }
+
+      return `_option-${index}`;
+    };
+
+    const getAccessibleName = (
+      props:
+        | Partial<EuiSelectableSearchProps>
+        | EuiSelectableOptionsListPropsWithDefaults
+        | undefined
+    ) => {
+      if (props && props['aria-label']) {
+        return { 'aria-label': props['aria-label'] };
+      }
+
+      if (props && props['aria-describedby']) {
+        return {
+          'aria-describedby': props['aria-describedby'],
+        };
+      }
+
+      if (ariaLabel) {
+        return { 'aria-label': ariaLabel };
+      }
+
+      if (ariaDescribedby) {
+        return { 'aria-describedby': ariaDescribedby };
+      }
+
+      return {};
+    };
+
+    const searchAccessibleName = getAccessibleName(searchProps);
+    const searchHasAccessibleName = Boolean(
+      Object.keys(searchAccessibleName).length
+    );
     const search = searchable ? (
-      <EuiSelectableSearch
-        key="listSearch"
-        options={options}
-        onChange={this.onSearchChange}
-        {...searchProps}
-      />
+      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
+        {(placeholderName: string) => (
+          <EuiSelectableSearch
+            key="listSearch"
+            options={options}
+            onChange={this.onSearchChange}
+            listId={listId}
+            aria-activedescendant={makeOptionId(activeOptionIndex)}
+            placeholder={placeholderName}
+            {...(searchHasAccessibleName
+              ? searchAccessibleName
+              : { 'aria-label': placeholderName })}
+            {...cleanedSearchProps}
+          />
+        )}
+      </EuiI18n>
     ) : (
       undefined
     );
 
+    const listAccessibleName = getAccessibleName(listProps);
+    const listHasAccessibleName = Boolean(
+      Object.keys(listAccessibleName).length
+    );
     const list = messageContent ? (
       <EuiSelectableMessage key="listMessage">
         {messageContent}
       </EuiSelectableMessage>
     ) : (
-      <EuiSelectableList
-        key="list"
-        options={options}
-        visibleOptions={visibleOptions}
-        searchValue={searchValue}
-        activeOptionIndex={activeOptionIndex}
-        onOptionClick={this.onOptionClick}
-        singleSelection={singleSelection}
-        ref={this.optionsListRef}
-        renderOption={renderOption}
-        height={height}
-        allowExclusions={allowExclusions}
-        searchable={searchable}
-        {...listProps}
-      />
+      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
+        {(placeholderName: string) => (
+          <EuiSelectableList
+            key="list"
+            options={options}
+            visibleOptions={visibleOptions}
+            searchValue={searchValue}
+            activeOptionIndex={activeOptionIndex}
+            onOptionClick={this.onOptionClick}
+            singleSelection={singleSelection}
+            ref={this.optionsListRef}
+            renderOption={renderOption}
+            height={height}
+            allowExclusions={allowExclusions}
+            searchable={searchable}
+            makeOptionId={makeOptionId}
+            listId={listId}
+            {...(listHasAccessibleName
+              ? listAccessibleName
+              : searchable && { 'aria-label': placeholderName })}
+            {...cleanedListProps}
+          />
+        )}
+      </EuiI18n>
     );
 
     return (
@@ -390,6 +470,12 @@ export class EuiSelectable extends Component<
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
         onFocus={this.onFocus}
+        {...searchable && {
+          role: 'combobox',
+          'aria-expanded': true,
+          'aria-haspopup': 'listbox',
+          'aria-owns': this.rootId('listbox'),
+        }}
         {...rest}>
         {children && children(list, search)}
       </div>

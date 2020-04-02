@@ -33,15 +33,17 @@ const options: EuiSelectableOption[] = [
   },
 ];
 
-// tslint:disable:no-empty
+const selectableListRequiredProps = {
+  makeOptionId: (index: number | undefined) => `option_${index}`,
+  listId: 'list',
+  onOptionClick: () => {},
+  ...requiredProps,
+};
+
 describe('EuiSelectableListItem', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSelectableList
-        options={options}
-        onOptionClick={() => {}}
-        {...requiredProps}
-      />
+      <EuiSelectableList options={options} {...selectableListRequiredProps} />
     );
 
     expect(component).toMatchSnapshot();
@@ -52,7 +54,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           visibleOptions={options.slice(2)}
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -64,7 +66,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           searchValue="Mi"
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -76,7 +78,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           searchValue="Mi"
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -94,7 +96,7 @@ describe('EuiSelectableListItem', () => {
               </span>
             );
           }}
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -106,7 +108,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           height={200}
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -118,7 +120,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           height="full"
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -130,7 +132,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           allowExclusions
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -142,7 +144,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           activeOptionIndex={2}
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -154,7 +156,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           rowHeight={20}
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -166,7 +168,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           showIcons={false}
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -178,7 +180,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           singleSelection={true}
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -190,7 +192,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           singleSelection="always"
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
@@ -202,7 +204,7 @@ describe('EuiSelectableListItem', () => {
         <EuiSelectableList
           options={options}
           bordered
-          onOptionClick={() => {}}
+          {...selectableListRequiredProps}
         />
       );
 
