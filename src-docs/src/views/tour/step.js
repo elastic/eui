@@ -14,8 +14,7 @@ export default () => {
         isStepOpen={true}
         isTourActive={true}
         minWidth={300}
-        onSkip={() => alert('Skip the tour!')}
-        onEnd={() => alert('End the tour!')}
+        onFinish={() => alert('Done!')}
         step={1}
         stepsTotal={1}
         title="Title of the current step"

@@ -14,8 +14,7 @@ const steps = [
 
 const config = {
   isTourActive: true,
-  onSkip: () => {},
-  onEnd: () => {},
+  onFinish: () => {},
   stepsTotal: 1,
   title: 'A demo',
 };

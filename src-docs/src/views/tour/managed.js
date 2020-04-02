@@ -78,7 +78,7 @@ export default () => {
           if (reducerState.currentTourStep < 2) {
             actions.incrementStep();
           } else {
-            actions.endTour();
+            actions.finishTour();
           }
         };
         return (

@@ -54,14 +54,9 @@ export interface EuiTourStepProps
   minWidth?: boolean | number | string;
 
   /**
-   * Function to call for 'Skip tour' actions
+   * Function to call for 'Skip tour' and 'End tour' actions
    */
-  onSkip: NoArgCallback<void>;
-
-  /**
-   * Function to call for 'End tour' actions
-   */
-  onEnd: NoArgCallback<void>;
+  onFinish: NoArgCallback<void>;
 
   /**
    * The number of the step within the parent tour
@@ -105,8 +100,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   isStepOpen = false,
   isTourActive = false,
   minWidth = true,
-  onEnd,
-  onSkip,
+  onFinish,
   step = 1,
   stepsTotal,
   style,
@@ -159,7 +153,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
           {stepsTotal === step ? (
             <EuiI18n token="euiTourStep.endTour" default="End tour">
               {(endTour: string) => (
-                <EuiButtonEmpty onClick={onEnd} {...finishButtonProps}>
+                <EuiButtonEmpty onClick={onFinish} {...finishButtonProps}>
                   {endTour}
                 </EuiButtonEmpty>
               )}
@@ -167,7 +161,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
           ) : (
             <EuiI18n token="euiTourStep.skipTour" default="Skip tour">
               {(skipTour: string) => (
-                <EuiButtonEmpty onClick={onSkip} {...finishButtonProps}>
+                <EuiButtonEmpty onClick={onFinish} {...finishButtonProps}>
                   {skipTour}
                 </EuiButtonEmpty>
               )}

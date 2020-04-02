@@ -11,12 +11,7 @@ export const useEuiTour = (
 ): [EuiTourStepProps[], EuiTourActions, EuiTourState] => {
   function reducer(state: EuiTourState, action: EuiTourAction): EuiTourState {
     switch (action.type) {
-      case 'EUI_TOUR_SKIP':
-        return {
-          ...state,
-          isTourActive: false,
-        };
-      case 'EUI_TOUR_END':
+      case 'EUI_TOUR_FINISH':
         return {
           ...state,
           currentTourStep: 1,
@@ -66,8 +61,7 @@ export const useEuiTour = (
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const actions: EuiTourActions = {
-    endTour: () => dispatch({ type: 'EUI_TOUR_END' }),
-    skipTour: () => dispatch({ type: 'EUI_TOUR_SKIP' }),
+    finishTour: () => dispatch({ type: 'EUI_TOUR_FINISH' }),
     resetTour: () => dispatch({ type: 'EUI_TOUR_RESET' }),
     decrementStep: () => dispatch({ type: 'EUI_TOUR_PREVIOUS' }),
     incrementStep: () => dispatch({ type: 'EUI_TOUR_NEXT' }),
@@ -80,8 +74,7 @@ export const useEuiTour = (
     isStepOpen: state.currentTourStep === step.step,
     isTourActive: state.isTourActive,
     minWidth: state.tourPopoverWidth,
-    onEnd: actions.endTour,
-    onSkip: actions.skipTour,
+    onFinish: actions.finishTour,
     stepsTotal: stepsArray.length,
     subtitle: state.tourSubtitle,
   }));

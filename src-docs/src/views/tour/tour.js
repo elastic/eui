@@ -81,7 +81,7 @@ export default () => {
     setQueryValue('');
   };
 
-  const skipTour = () => {
+  const finishTour = () => {
     setState({
       ...state,
       isTourActive: false,
@@ -109,8 +109,7 @@ export default () => {
             isStepOpen={state.currentTourStep === 1}
             isTourActive={state.isTourActive}
             minWidth={state.tourPopoverWidth}
-            onSkip={skipTour}
-            onEnd={skipTour}
+            onFinish={finishTour}
             step={1}
             stepsTotal={demoTourSteps.length}
             subtitle={state.tourSubtitle}
@@ -134,8 +133,7 @@ export default () => {
           isStepOpen={state.currentTourStep === 2}
           isTourActive={state.isTourActive}
           minWidth={state.tourPopoverWidth}
-          onSkip={skipTour}
-          onEnd={skipTour}
+          onFinish={finishTour}
           step={2}
           stepsTotal={demoTourSteps.length}
           subtitle={state.tourSubtitle}

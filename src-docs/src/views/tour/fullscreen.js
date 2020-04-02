@@ -190,7 +190,10 @@ export default () => {
                 <EuiPageHeaderSection>
                   <EuiButton
                     fill
-                    onClick={() => setIsFullScreen(false)}
+                    onClick={() => {
+                      onReset();
+                      setIsFullScreen(false);
+                    }}
                     iconType="exit"
                     aria-label="Exit fullscreen demo">
                     Exit fullscreen demo
