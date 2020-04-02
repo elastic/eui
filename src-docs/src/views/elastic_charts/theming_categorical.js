@@ -30,9 +30,11 @@ import {
   euiPaletteGray,
 } from '../../../../src/services';
 
-export const Categorical = ({ idPrefix }) => {
+export const Categorical = () => {
   const themeContext = useContext(ThemeContext);
   const highlightColor = euiPaletteColorBlind()[2];
+
+  const idPrefix = 'colorType';
 
   const colorTypeRadios = [
     {
