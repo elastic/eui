@@ -13,7 +13,7 @@ import {
 
 const data = [];
 
-for (let i = 1; i < 5; i++) {
+for (let i = 0; i < 10; i++) {
   data.push([
     <span>{fake('{{name.firstName}}')}</span>,
     <span>{fake('{{name.firstName}}')}</span>,
@@ -123,6 +123,20 @@ export default () => {
     columns.map(({ id }) => id)
   );
 
+  const [pagination, setPagination] = useState({
+    pageSize: 4,
+    pageIndex: 0,
+    pageSizeOptions: [4],
+  });
+  const onChangeItemsPerPage = useCallback(
+    pageSize => setPagination(pagination => ({ ...pagination, pageSize })),
+    [setPagination]
+  );
+  const onChangePage = useCallback(
+    pageIndex => setPagination(pagination => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
   return (
     <>
       <EuiSwitch
@@ -140,6 +154,11 @@ export default () => {
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={data.length}
         renderCellValue={renderCellValue}
+        pagination={{
+          ...pagination,
+          onChangeItemsPerPage,
+          onChangePage,
+        }}
       />
     </>
   );

@@ -403,9 +403,9 @@ function createKeyDownHandler(
         const pageCount = Math.ceil(rowCount / pageSize);
         if (pageIndex < pageCount - 1) {
           props.pagination.onChangePage(pageIndex + 1);
-          setFocusedCell([focusedCell[0], 0]);
-          updateFocus();
         }
+        setFocusedCell([focusedCell[0], 0]);
+        updateFocus();
       }
     } else if (keyCode === keyCodes.PAGE_UP) {
       if (props.pagination) {
@@ -413,9 +413,9 @@ function createKeyDownHandler(
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
           props.pagination.onChangePage(pageIndex - 1);
-          setFocusedCell([focusedCell[0], props.pagination.pageSize - 1]);
-          updateFocus();
         }
+        setFocusedCell([focusedCell[0], props.pagination.pageSize - 1]);
+        updateFocus();
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
       event.preventDefault();

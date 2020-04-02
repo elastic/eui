@@ -1926,13 +1926,14 @@ Array [
       ).toEqual('0, A');
 
       // page should not change when moving before the first entry
+      // but the last row should remain focused
       focusableCell.simulate('keydown', {
         keyCode: keyCodes.PAGE_UP,
       });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+      ).toEqual('2, A');
 
       // advance to the next page
       focusableCell.simulate('keydown', {
