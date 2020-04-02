@@ -15,14 +15,14 @@ import Info from './info';
 const infoSource = require('!!raw-loader!./info');
 const infoHtml = renderToHtml(Info);
 const infoSnippet = [
+  `<EuiCallOut size="m" title="Just a title. No content." iconType="gear" />
+`,
   `<EuiCallOut
   size="s"
   title="A beautiful title"
   iconType="search">
   <p><!-- Content --></p>
 </EuiCallOut>
-`,
-  `<EuiCallOut size="m" title="Just a title. No content." iconType="gear" />
 `,
 ];
 
@@ -31,7 +31,7 @@ const successSource = require('!!raw-loader!./success');
 const successHtml = renderToHtml(Success);
 const successSnippet = [
   `<EuiCallOut title="Good news, everyone!" color="success" iconType="user">
-  <!-- Content -->
+  <p><!-- Content --></p>
 </EuiCallOut>
 `,
 ];
@@ -41,7 +41,7 @@ const warningSource = require('!!raw-loader!./warning');
 const warningHtml = renderToHtml(Warning);
 const warningSnippet = [
   `<EuiCallOut title="Proceed with caution!" color="warning" iconType="help">
-  <!-- Content -->
+  <p><!-- Content --></p>
 </EuiCallOut>
 `,
 ];
@@ -51,7 +51,7 @@ const dangerSource = require('!!raw-loader!./danger');
 const dangerHtml = renderToHtml(Danger);
 const dangerSnippet = [
   `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="alert">
-  <!-- Content -->
+  <p><!-- Content --></p>
 </EuiCallOut>
 `,
 ];
