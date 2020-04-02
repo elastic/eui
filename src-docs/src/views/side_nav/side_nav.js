@@ -1,23 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiSideNav } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default function() {
 
-    this.state = {
-      isSideNavOpenOnMobile: false,
+  const [ isSideNavOpenOnMobile, setisSideNavOpenOnMobile ] = useState(false);
+
+  const toggleOpenOnMobile = () => {
+    setisSideNavOpenOnMobile(!this.state.isSideNavOpenOnMobile);
     };
-  }
 
-  toggleOpenOnMobile = () => {
-    this.setState({
-      isSideNavOpenOnMobile: !this.state.isSideNavOpenOnMobile,
-    });
-  };
-
-  render() {
     const sideNav = [
       {
         name: 'Kibana',
@@ -57,11 +49,11 @@ export default class extends Component {
     return (
       <EuiSideNav
         mobileTitle="Navigate within $APP_NAME"
-        toggleOpenOnMobile={this.toggleOpenOnMobile}
-        isOpenOnMobile={this.state.isSideNavOpenOnMobile}
+        toggleOpenOnMobile={() => toggleOpenOnMobile()}
+        isOpenOnMobile={isSideNavOpenOnMobile}
         style={{ width: 192 }}
         items={sideNav}
       />
     );
   }
-}
+
