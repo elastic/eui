@@ -1,33 +1,39 @@
 .euiButtonGroup {
   max-width: 100%;
   display: flex;
+  border-radius: $euiBorderRadius;
 
   .euiButton {
     min-width: auto;
     border-radius: 0;
     border-right-width: 0;
-    transition: none;
-    transform: none;
-    animation: none;
 
     &:not(.euiButton--fill) {
       border-color: $euiButtonToggleBorderColor;
     }
 
+    &,
     &:hover,
+    &:focus,
     &:active {
       transition: none;
       transform: none;
       animation: none;
+      box-shadow: none;
     }
+
+    &.euiButton--disabled:hover {
+      text-decoration: none;
+      cursor: not-allowed;
+    }
+  }
+
+  .euiButton--fill + .euiButton {
+    border-left-color: transparent;
   }
 
   &:not(.euiButtonGroup--compressed) {
     .euiButton {
-      &:enabled {
-        @include euiSlightShadow;
-      }
-
       &[aria-pressed='true'] + [aria-pressed='true'] {
         box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
       }
@@ -43,6 +49,20 @@
         border-bottom-right-radius: $euiBorderRadius;
       }
     }
+  }
+}
+
+@each $name, $color in $euiButtonTypes {
+  .euiButtonGroup--#{$name}:not(.euiButtonGroup--disabled) {
+    $shadowColor: $euiShadowColor;
+    @if ($name == 'ghost') {
+      $shadowColor: $euiColorInk;
+    } @else if (lightness($euiTextColor) < 50) {
+      // Only if this is the light theme do we use the button variant color to colorize the shadow
+      $shadowColor: desaturate($color, 60%);
+    }
+
+    @include euiSlightShadow($shadowColor);
   }
 }
 
@@ -67,7 +87,11 @@
 
 .euiButtonGroup__label {
   white-space: nowrap;
-  cursor: pointer;
+  cursor: inherit;
+
+  .euiButton--disabled & {
+    pointer-events: none;
+  }
 }
 
 .euiButtonGroup__button--iconOnly {
@@ -120,7 +144,6 @@
     padding: 2px;
     background-clip: content-box;
 
-    &:not(.euiButtonGroup__button--selected):not(:disabled),
     &:not(.euiButtonGroup__button--selected):not(.euiButton--disabled) {
       color: $euiColorDarkShade;
     }
@@ -129,10 +152,6 @@
     &:focus {
       box-shadow: none;
     }
-  }
-
-  .euiButtonGroup__input:enabled:hover + .euiButtonGroup__label {
-    background-color: transparentize($euiFormInputGroupLabelBackground, .5);
   }
 
   .euiButtonGroup__button--selected {

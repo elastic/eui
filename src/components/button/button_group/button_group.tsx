@@ -69,9 +69,11 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 }) => {
   const classes = classNames(
     'euiButtonGroup',
+    `euiButtonGroup--${color}`,
     {
       'euiButtonGroup--fullWidth': isFullWidth,
       'euiButtonGroup--compressed': buttonSize === 'compressed',
+      'euiButtonGroup--disabled': isDisabled,
     },
     className
   );
@@ -113,6 +115,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
           }
           const buttonClasses = classNames(
             'euiButtonGroup__button',
+            'euiButton--no-hover',
             {
               'euiButtonGroup__button--selected': isSelectedState,
               'euiButtonGroup__button--iconOnly': isIconOnly,
@@ -149,6 +152,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
 
           const wrapperClasses = classNames(
             'euiButton',
+            'euiButton--no-hover',
             'euiButtonGroup__toggle',
             color ? colorToClassNameMap[color] : null,
             {
@@ -162,13 +166,10 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
           );
 
           const icon = iconType && (
-            <EuiIcon
-              type={iconType}
-              color={color}
-              size={buttonSize === 'compressed' ? 's' : buttonSize}
-            />
+            <EuiIcon type={iconType} color={color} size="m" />
           );
 
+          const isActuallyDisabled = optionDisabled || isDisabled;
           return (
             <div className={wrapperClasses} key={index} {...rest}>
               <input
@@ -178,7 +179,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                 onChange={() => onChange(id, value)}
                 checked={isSelectedState}
                 data-test-subj={dataTestSubj}
-                disabled={optionDisabled || isDisabled}
+                disabled={isActuallyDisabled}
                 value={value}
                 type="radio"
                 {...rest}

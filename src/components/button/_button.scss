@@ -31,28 +31,22 @@
     }
   }
 
-  &:hover,
-  &:active {
-    @include euiSlightShadowHover;
-  }
+  &:not(.euiButton--disabled) {
+    &:hover,
+    &:active {
+      @include euiSlightShadowHover;
+    }
 
-  &:enabled {
     &:hover,
     &:focus {
       background-color: transparentize($euiColorPrimary, .9);
     }
   }
 
-  &:disabled,
   &.euiButton--disabled {
     color: $euiButtonColorDisabledText;
     border-color: $euiButtonColorDisabled;
-    pointer-events: none;
-
-    .euiButton__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
+    cursor: not-allowed;
 
     .euiButton__spinner {
       border-color: euiLoadingSpinnerBorderColors(currentColor);
@@ -63,19 +57,6 @@
       color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
-
-      &:hover,
-      &:focus {
-        background-color: $euiButtonColorDisabled;
-        border-color: $euiButtonColorDisabled;
-      }
-    }
-
-    &:hover,
-    &:focus {
-      @include euiSlightShadow;
-
-      text-decoration: none;
     }
   }
 }
@@ -105,7 +86,7 @@
 
       color: $fillTextColor;
 
-      &:enabled {
+      &:not(.euiButton--disabled) {
         &:hover,
         &:focus {
           background-color: darken($color, 5%);
@@ -114,7 +95,7 @@
       }
     }
 
-    &:enabled {
+    &:not(.euiButton--disabled) {
       $shadowColor: $euiShadowColor;
       @if ($name == 'ghost') {
         $shadowColor: $euiColorInk;
@@ -129,18 +110,13 @@
       &:focus {
         @include euiSlightShadowHover($shadowColor);
         background-color: transparentize($color, .9);
-
-        @if ($name == 'disabled') {
-          cursor: not-allowed;
-        }
       }
     }
   }
 }
 
 // Fix ghost/disabled look specifically
-.euiButton:disabled.euiButton--ghost,
-.euiButton--disabled.euiButton--ghost, {
+.euiButton--disabled.euiButton--ghost {
   &,
   &:hover,
   &:focus {

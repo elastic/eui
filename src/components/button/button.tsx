@@ -133,6 +133,7 @@ export const EuiButton: FunctionComponent<Props> = ({
     {
       'euiButton--fill': fill,
       'euiButton--fullWidth': fullWidth,
+      'euiButton--disabled': isDisabled,
     }
   );
 
@@ -153,12 +154,7 @@ export const EuiButton: FunctionComponent<Props> = ({
     buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
   } else if (iconType) {
     buttonIcon = (
-      <EuiIcon
-        className="euiButton__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
+      <EuiIcon className="euiButton__icon" type={iconType} size="m" />
     );
   }
 
