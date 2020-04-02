@@ -19,7 +19,7 @@ const infoSnippet = [
   size="s"
   title="A beautiful title"
   iconType="search">
-  <!-- Content -->
+  <p><!-- Content --></p>
 </EuiCallOut>
 `,
   `<EuiCallOut size="m" title="Just a title. No content." iconType="gear" />
