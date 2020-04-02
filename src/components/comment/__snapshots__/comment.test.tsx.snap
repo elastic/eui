@@ -23,7 +23,6 @@ exports[`EuiComment is rendered 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--regular"
-    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"
@@ -69,7 +68,6 @@ exports[`EuiComment props event is rendered 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--regular"
-    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"
@@ -126,7 +124,6 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--regular"
-    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"
@@ -172,7 +169,6 @@ exports[`EuiComment props timestamp is rendered 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--regular"
-    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"
@@ -226,7 +222,6 @@ exports[`EuiComment props type is rendered 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--update"
-    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"
@@ -272,7 +267,6 @@ exports[`EuiComment renders a body 1`] = `
   </div>
   <div
     class="euiCommentEvent euiCommentEvent--regular"
-    data-focusable="true"
   >
     <div
       class="euiCommentEvent__header"

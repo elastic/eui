@@ -24,11 +24,7 @@ interface CustomActionsState {
   isPopoverOpen: boolean;
 }
 
-export default class extends Component<
-  // export class CustomActions extends Component<
-  CustomActionsProps,
-  CustomActionsState
-> {
+export default class extends Component<CustomActionsProps, CustomActionsState> {
   state = {
     isPopoverOpen: false,
   };
@@ -49,7 +45,6 @@ export default class extends Component<
     const { isPopoverOpen } = this.state;
     const customActions = (
       <EuiPopover
-        // id={`${item.id}-actions`}
         button={
           <EuiButtonIcon
             aria-label="Actions"

@@ -49,7 +49,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   );
 
   return (
-    <div data-focusable="true" className={classes} {...rest}>
+    <div className={classes} {...rest}>
       <div className="euiCommentEvent__header">
         <div className="euiCommentEvent__headerData">
           <div className="euiCommentEvent__headerUsername">{username}</div>
