@@ -7,25 +7,34 @@ export default function() {
 
   const options = [
     {
-      value: 'option_one',
-      inputDisplay: 'Option one',
-      disabled: true,
-      'data-test-subj': 'option one',
-    },
-    {
-      value: 'option_two',
-      inputDisplay: 'Option two',
-    },
-    {
-      value: 'option_three',
+      value: 'warning',
       inputDisplay: (
-        <span className="eui-textTruncate eui-displayBlock">
-            Option three has a super long text and added truncation
-          </span>
+        <EuiHealth color="subdued" style={{ lineHeight: 'inherit' }}>
+          Warning
+        </EuiHealth>
       ),
+      'data-test-subj': 'option-warning',
+      disabled: true,
+    },
+    {
+      value: 'minor',
+      inputDisplay: (
+        <EuiHealth color="warning" style={{ lineHeight: 'inherit' }}>
+          Minor
+        </EuiHealth>
+      ),
+      'data-test-subj': 'option-minor',
+    },
+    {
+      value: 'critical',
+      inputDisplay: (
+        <EuiHealth color="danger" style={{ lineHeight: 'inherit' }}>
+          Critical
+        </EuiHealth>
+      ),
+      'data-test-subj': 'option-critical',
     },
   ];
-  const [value, setValue] = useState(options[1].value);
 
   const onChange = value => {
     setValue(value);
