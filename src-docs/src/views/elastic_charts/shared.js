@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   EuiBadge,
@@ -54,135 +54,110 @@ export const ChartCard = ({ title, description, children }) => {
   );
 };
 
-// eslint-disable-next-line react/no-multi-comp
-export class ChartTypeCard extends Component {
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    mixed: PropTypes.oneOf(['enabled', 'disabled', true, false]),
-    disabled: PropTypes.bool,
-  };
+export const ChartTypeCard = props => {
+  const idPrefix = 'chartType';
 
-  constructor(props) {
-    super(props);
+  const toggleButtonsIcons = [
+    {
+      id: `${idPrefix}0`,
+      label: 'BarSeries',
+    },
+    {
+      id: `${idPrefix}1`,
+      label: 'LineSeries',
+    },
+    {
+      id: `${idPrefix}2`,
+      label: 'AreaSeries',
+    },
+  ];
 
-    this.idPrefix = 'chartType';
+  const [toggleIdSelected, setToggleIdSelectd] = useState(`${idPrefix}0`);
 
-    this.toggleButtonsIcons = [
-      {
-        id: `${this.idPrefix}0`,
-        label: 'BarSeries',
-      },
-      {
-        id: `${this.idPrefix}1`,
-        label: 'LineSeries',
-      },
-      {
-        id: `${this.idPrefix}2`,
-        label: 'AreaSeries',
-      },
-    ];
+  const onChartTypeChange = optionId => {
+    setToggleIdSelectd(optionId);
 
-    this.state = {
-      toggleIdSelected: `${this.idPrefix}0`,
-    };
-  }
-
-  onChartTypeChange = optionId => {
-    this.setState({
-      toggleIdSelected: optionId,
-    });
-
-    const chartType = this.toggleButtonsIcons.find(({ id }) => id === optionId)
+    const chartType = toggleButtonsIcons.find(({ id }) => id === optionId)
       .label;
-    this.props.onChange(chartType);
+    props.onChange(chartType);
   };
 
-  render() {
-    if (this.props.mixed) {
-      this.toggleButtonsIcons[3] = {
-        id: `${this.idPrefix}3`,
-        label: 'Mixed',
-        disabled: this.props.mixed === 'disabled',
-      };
-    }
-
-    return (
-      <ChartCard
-        title="Chart types"
-        description={`${
-          this.props.type
-        } charts can be displayed as any x/y series type.`}>
-        <EuiRadioGroup
-          compressed
-          options={this.toggleButtonsIcons}
-          idSelected={this.state.toggleIdSelected}
-          onChange={this.onChartTypeChange}
-          disabled={this.props.disabled}
-        />
-      </ChartCard>
-    );
-  }
-}
-
-// eslint-disable-next-line react/no-multi-comp
-export class MultiChartCard extends Component {
-  static propTypes = {
-    /**
-     * Returns (multi:boolean, stacked:boolean)
-     */
-    onChange: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      multi: false,
-      stacked: false,
+  if (props.mixed) {
+    toggleButtonsIcons[3] = {
+      id: `${idPrefix}3`,
+      label: 'Mixed',
+      disabled: props.mixed === 'disabled',
     };
   }
 
-  onMultiChange = e => {
-    const stacked = e.target.checked ? this.state.stacked : false;
+  return (
+    <ChartCard
+      title="Chart types"
+      description={`${
+        props.type
+      } charts can be displayed as any x/y series type.`}>
+      <EuiRadioGroup
+        compressed
+        options={toggleButtonsIcons}
+        idSelected={toggleIdSelected}
+        onChange={onChartTypeChange}
+        disabled={props.disabled}
+      />
+    </ChartCard>
+  );
+};
 
-    this.setState({
-      multi: e.target.checked,
-      stacked,
-    });
+ChartTypeCard.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  mixed: PropTypes.oneOf(['enabled', 'disabled', true, false]),
+  disabled: PropTypes.bool,
+};
 
-    this.props.onChange({
+export const MultiChartCard = props => {
+  const [multi, setMulti] = useState(false);
+  const [stacked, setStacked] = useState(false);
+
+  const onMultiChange = e => {
+    const isStacked = e.target.checked ? stacked : false;
+
+    setMulti(e.target.checked);
+    setStacked(isStacked);
+
+    props.onChange({
       multi: e.target.checked,
       stacked,
     });
   };
 
-  onStackedChange = e => {
-    this.setState({
-      stacked: e.target.checked,
-    });
+  const onStackedChange = e => {
+    setStacked(e.target.checked);
 
-    this.props.onChange({ multi: this.state.multi, stacked: e.target.checked });
+    props.onChange({ multi: multi, stacked: e.target.checked });
   };
+  return (
+    <ChartCard
+      textAlign="left"
+      title="Single vs multiple series"
+      description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts.">
+      <EuiSwitch
+        label="Show multi-series"
+        checked={multi}
+        onChange={onMultiChange}
+      />
+      <EuiSpacer size="s" />
+      <EuiSwitch
+        label="Stacked"
+        checked={stacked}
+        onChange={onStackedChange}
+        disabled={!multi}
+      />
+    </ChartCard>
+  );
+};
 
-  render() {
-    return (
-      <ChartCard
-        textAlign="left"
-        title="Single vs multiple series"
-        description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts.">
-        <EuiSwitch
-          label="Show multi-series"
-          checked={this.state.multi}
-          onChange={this.onMultiChange}
-        />
-        <EuiSpacer size="s" />
-        <EuiSwitch
-          label="Stacked"
-          checked={this.state.stacked}
-          onChange={this.onStackedChange}
-          disabled={!this.state.multi}
-        />
-      </ChartCard>
-    );
-  }
-}
+MultiChartCard.propTypes = {
+  /**
+   * Returns (multi:boolean, stacked:boolean)
+   */
+  onChange: PropTypes.func.isRequired,
+};

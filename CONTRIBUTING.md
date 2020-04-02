@@ -49,7 +49,9 @@ Here are our formatting guidelines for writing documentation:
 - If the code reference is more than a single prop name or value, add the language type. Example: `<EuiCode language="js">propName=true</EuiCode>`
 - When referencing another EUI component, wrap the reference in a link to the component. Example: `<Link to="/component/url><strong>EuiComponent</strong><Link>`
 
-Here are our guidelines for updating the `CHANGELOG.md` file:
+## Changelog
+
+Any updates to the `src/` folder require an entry in the `CHANGELOG.md` file. Documentation-only changes do not. Here are our guidelines for updating the file:
 
 * Append your changes to the `master` sub-heading of [`CHANGELOG.md`](CHANGELOG.md).
 * Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API

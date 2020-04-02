@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -22,95 +22,77 @@ import SuperSelectComplexExample from '../super_select/super_select_complex';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
-export class Modal extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isSwitchChecked, setIsSwitchChecked] = useState(true);
 
-    this.state = {
-      isModalVisible: false,
-      isSwitchChecked: true,
-    };
+  const onSwitchChange = () =>
+    setIsSwitchChecked(isSwitchChecked => !isSwitchChecked);
 
-    this.closeModal = this.closeModal.bind(this);
-    this.showModal = this.showModal.bind(this);
-  }
+  const closeModal = () => setIsModalVisible(false);
 
-  onSwitchChange = () => {
-    this.setState({
-      isSwitchChecked: !this.state.isSwitchChecked,
-    });
-  };
+  const showModal = () => setIsModalVisible(true);
 
-  closeModal() {
-    this.setState({ isModalVisible: false });
-  }
+  const formSample = (
+    <EuiForm>
+      <EuiFormRow>
+        <EuiSwitch
+          id={makeId()}
+          name="popswitch"
+          label="Isn't this modal form cool?"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+        />
+      </EuiFormRow>
 
-  showModal() {
-    this.setState({ isModalVisible: true });
-  }
+      <EuiFormRow label="A text field">
+        <EuiFieldText name="popfirst" />
+      </EuiFormRow>
 
-  render() {
-    const formSample = (
-      <EuiForm>
-        <EuiFormRow>
-          <EuiSwitch
-            id={makeId()}
-            name="popswitch"
-            label="Isn't this modal form cool?"
-            checked={this.state.isSwitchChecked}
-            onChange={this.onSwitchChange}
-          />
-        </EuiFormRow>
+      <EuiFormRow label="Range" helpText="Some help text for the range">
+        <EuiRange min={0} max={100} name="poprange" />
+      </EuiFormRow>
 
-        <EuiFormRow label="A text field">
-          <EuiFieldText name="popfirst" />
-        </EuiFormRow>
+      <EuiFormRow label="A SuperSelect field">
+        <SuperSelectComplexExample />
+      </EuiFormRow>
 
-        <EuiFormRow label="Range" helpText="Some help text for the range">
-          <EuiRange min={0} max={100} name="poprange" />
-        </EuiFormRow>
+      <EuiSpacer />
 
-        <EuiFormRow label="A SuperSelect field">
-          <SuperSelectComplexExample />
-        </EuiFormRow>
+      <EuiCodeBlock language="html" paddingSize="s" isCopyable>
+        {'<h1>Title</h1>'}
+      </EuiCodeBlock>
+    </EuiForm>
+  );
 
-        <EuiSpacer />
+  let modal;
 
-        <EuiCodeBlock language="html" paddingSize="s" isCopyable>
-          {'<h1>Title</h1>'}
-        </EuiCodeBlock>
-      </EuiForm>
-    );
+  if (isModalVisible) {
+    modal = (
+      <EuiOverlayMask>
+        <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+          </EuiModalHeader>
 
-    let modal;
+          <EuiModalBody>{formSample}</EuiModalBody>
 
-    if (this.state.isModalVisible) {
-      modal = (
-        <EuiOverlayMask>
-          <EuiModal onClose={this.closeModal} initialFocus="[name=popswitch]">
-            <EuiModalHeader>
-              <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
-            </EuiModalHeader>
+          <EuiModalFooter>
+            <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
 
-            <EuiModalBody>{formSample}</EuiModalBody>
-
-            <EuiModalFooter>
-              <EuiButtonEmpty onClick={this.closeModal}>Cancel</EuiButtonEmpty>
-
-              <EuiButton onClick={this.closeModal} fill>
-                Save
-              </EuiButton>
-            </EuiModalFooter>
-          </EuiModal>
-        </EuiOverlayMask>
-      );
-    }
-    return (
-      <div>
-        <EuiButton onClick={this.showModal}>Show modal</EuiButton>
-
-        {modal}
-      </div>
+            <EuiButton onClick={closeModal} fill>
+              Save
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      </EuiOverlayMask>
     );
   }
-}
+  return (
+    <div>
+      <EuiButton onClick={showModal}>Show modal</EuiButton>
+
+      {modal}
+    </div>
+  );
+};

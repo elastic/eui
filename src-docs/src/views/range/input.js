@@ -1,54 +1,42 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [value, setValue] = useState('20');
+  const [dualValue, setDualValue] = useState([20, 100]);
 
-    this.state = {
-      value: '20',
-      dualValue: [20, 100],
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
+  const onChange = e => {
+    setValue(e.target.value);
   };
 
-  onDualChange = value => {
-    this.setState({
-      dualValue: value,
-    });
+  const onDualChange = value => {
+    setDualValue(value);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <EuiRange
-          id={makeId()}
-          value={this.state.value}
-          onChange={this.onChange}
-          showInput
-          aria-label="An example of EuiRange"
-        />
+  return (
+    <Fragment>
+      <EuiRange
+        id={htmlIdGenerator()()}
+        value={value}
+        onChange={onChange}
+        showInput
+        aria-label="An example of EuiRange"
+      />
 
-        <EuiSpacer size="xl" />
+      <EuiSpacer size="xl" />
 
-        <EuiDualRange
-          id={makeId()}
-          value={this.state.dualValue}
-          onChange={this.onDualChange}
-          showInput
-          minInputProps={{ 'aria-label': 'Min value' }}
-          maxInputProps={{ 'aria-label': 'Max value' }}
-          aria-label="An example of EuiDualRange with inputs"
-        />
-      </Fragment>
-    );
-  }
-}
+      <EuiDualRange
+        id={htmlIdGenerator()()}
+        value={dualValue}
+        onChange={onDualChange}
+        showInput
+        minInputProps={{ 'aria-label': 'Min value' }}
+        maxInputProps={{ 'aria-label': 'Max value' }}
+        aria-label="An example of EuiDualRange with inputs"
+      />
+    </Fragment>
+  );
+};

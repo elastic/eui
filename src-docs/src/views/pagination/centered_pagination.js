@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiFlexGroup,
@@ -6,34 +6,23 @@ import {
   EuiPagination,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default function() {
+  const [activePage, setActivePage] = useState(0);
+  const PAGE_COUNT = 10;
 
-    this.state = {
-      activePage: 0,
-    };
-
-    this.PAGE_COUNT = 10;
-  }
-
-  goToPage = pageNumber => {
-    this.setState({
-      activePage: pageNumber,
-    });
+  const goToPage = pageNumber => {
+    setActivePage(pageNumber);
   };
 
-  render() {
-    return (
-      <EuiFlexGroup justifyContent="spaceAround">
-        <EuiFlexItem grow={false}>
-          <EuiPagination
-            pageCount={this.PAGE_COUNT}
-            activePage={this.state.activePage}
-            onPageClick={this.goToPage}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-  }
+  return (
+    <EuiFlexGroup justifyContent="spaceAround">
+      <EuiFlexItem grow={false}>
+        <EuiPagination
+          pageCount={PAGE_COUNT}
+          activePage={activePage}
+          onPageClick={activePage => goToPage(activePage)}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
 }

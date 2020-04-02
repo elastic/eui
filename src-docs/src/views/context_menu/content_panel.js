@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -6,52 +6,38 @@ import {
   EuiPopover,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
 
-    this.interval = undefined;
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
-
-  onButtonClick = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
+  const onButtonClick = () => {
+    setPopover(!isPopoverOpen);
   };
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
+  const closePopover = () => {
+    setPopover(false);
   };
 
-  render() {
-    const button = (
-      <EuiButton
-        size="s"
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick}>
-        Click to show some content
-      </EuiButton>
-    );
+  const button = (
+    <EuiButton
+      size="s"
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={onButtonClick}>
+      Click to show some content
+    </EuiButton>
+  );
 
-    return (
-      <EuiPopover
-        id="contentPanel"
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        panelPaddingSize="s"
-        anchorPosition="downLeft">
-        <EuiContextMenuPanel>
-          This context menu doesn&#39;t render items, it passes a child instead.
-        </EuiContextMenuPanel>
-      </EuiPopover>
-    );
-  }
-}
+  return (
+    <EuiPopover
+      id="contentPanel"
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      panelPaddingSize="s"
+      anchorPosition="downLeft">
+      <EuiContextMenuPanel>
+        This context menu doesn&#39;t render items, it passes a child instead.
+      </EuiContextMenuPanel>
+    </EuiPopover>
+  );
+};
