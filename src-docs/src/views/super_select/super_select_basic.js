@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
-import { EuiSuperSelect } from '../../../../src/components';
-import { DisplayToggles } from '../form_controls/display_toggles';
+import { EuiSuperSelect, EuiHealth } from '../../../../src/components';
 
 export default function() {
-
   const options = [
     {
       value: 'warning',
@@ -35,20 +33,17 @@ export default function() {
       'data-test-subj': 'option-critical',
     },
   ];
+  const [value, setValue] = useState(options[1].value);
 
   const onChange = value => {
     setValue(value);
   };
 
   return (
-    /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles>
-      <EuiSuperSelect
-        options={options}
-        valueOfSelected={value}
-        onChange={(value) => onChange(value)}
-      />
-    </DisplayToggles>
+    <EuiSuperSelect
+      options={options}
+      valueOfSelected={value}
+      onChange={value => onChange(value)}
+    />
   );
 }
-
