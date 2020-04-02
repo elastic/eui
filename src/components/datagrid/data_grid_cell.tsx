@@ -8,6 +8,7 @@ import React, {
   HTMLAttributes,
   KeyboardEvent,
   ReactChild,
+  MutableRefObject,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -104,8 +105,7 @@ export class EuiDataGridCell extends Component<
   EuiDataGridCellState
 > {
   cellRef = createRef<HTMLDivElement>();
-  // cellContentsRef = createRef<HTMLDivElement>();
-  // tabbingRef: HTMLDivElement | null = null;
+  popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
     cellProps: {},
@@ -466,11 +466,19 @@ export class EuiDataGridCell extends Component<
             anchorClassName="euiDataGridRowCell__expand"
             button={anchorContent}
             isOpen={this.state.popoverIsOpen}
+            panelRef={ref => (this.popoverPanelRef.current = ref)}
             ownFocus
             panelClassName="euiDataGridRowCell__popover"
             zIndex={8001}
             display="block"
             closePopover={() => this.setState({ popoverIsOpen: false })}
+            onKeyDown={e => {
+              if (e.key === 'F2' || e.key === 'Escape') {
+                e.preventDefault();
+                e.stopPropagation();
+                this.setState({ popoverIsOpen: false });
+              }
+            }}
             onTrapDeactivation={this.updateFocus}>
             {popoverContent}
           </EuiPopover>
