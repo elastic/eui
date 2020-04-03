@@ -472,7 +472,21 @@ export class EuiComboBox<T> extends Component<
     if (async) {
       return false;
     }
-    return flattenOptionGroups(options).length === selectedOptions.length;
+
+    const flattenOptions = flattenOptionGroups(options).map(option => {
+      return { ...option, label: option.label.trim().toLowerCase() };
+    });
+
+    let numberOfSelectedOptions = 0;
+    selectedOptions.forEach(({ label }) => {
+      const trimmedLabel = label.trim().toLowerCase();
+      if (
+        flattenOptions.findIndex(option => option.label === trimmedLabel) !== -1
+      )
+        numberOfSelectedOptions += 1;
+    });
+
+    return flattenOptions.length === numberOfSelectedOptions;
   };
 
   isSingleSelectionCustomOption = () => {

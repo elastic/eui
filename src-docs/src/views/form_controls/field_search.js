@@ -1,48 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiFieldSearch, EuiSwitch } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isClearable, setIsClearable] = useState(true);
+  const [value, setValue] = useState('');
 
-    this.state = {
-      isClearable: true,
-      value: '',
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
+  const onChange = e => {
+    setValue(e.target.value);
   };
 
-  render() {
-    return (
-      /* DisplayToggles wrapper for Docs only */
-      <DisplayToggles
-        canPrepend
-        canAppend
-        extras={[
-          <EuiSwitch
-            compressed
-            label={'clearable'}
-            checked={this.state.isClearable}
-            onChange={e => {
-              this.setState({ isClearable: e.target.checked });
-            }}
-          />,
-        ]}>
-        <EuiFieldSearch
-          placeholder="Search this"
-          value={this.state.value}
-          onChange={this.onChange}
-          isClearable={this.state.isClearable}
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      </DisplayToggles>
-    );
-  }
-}
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles
+      canPrepend
+      canAppend
+      extras={[
+        <EuiSwitch
+          compressed
+          label={'clearable'}
+          checked={isClearable}
+          onChange={e => {
+            setIsClearable(e.target.checked);
+          }}
+        />,
+      ]}>
+      <EuiFieldSearch
+        placeholder="Search this"
+        value={value}
+        onChange={e => onChange(e)}
+        isClearable={isClearable}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+    </DisplayToggles>
+  );
+};

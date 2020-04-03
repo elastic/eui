@@ -12,15 +12,15 @@ import {
   EuiOverlayMask,
 } from '../../../../src/components';
 
-import { Modal } from './modal';
+import Modal from './modal';
 const modalSource = require('!!raw-loader!./modal');
 const modalHtml = renderToHtml(Modal);
 
-import { ConfirmModal } from './confirm_modal';
+import ConfirmModal from './confirm_modal';
 const confirmModalSource = require('!!raw-loader!./confirm_modal');
 const confirmModalHtml = renderToHtml(ConfirmModal);
 
-import { OverflowTest } from './overflow_test';
+import OverflowTest from './overflow_test';
 const overflowTestSource = require('!!raw-loader!./overflow_test');
 const overflowTestHtml = renderToHtml(OverflowTest);
 

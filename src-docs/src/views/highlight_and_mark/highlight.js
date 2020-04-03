@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   EuiHighlight,
@@ -8,46 +8,38 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-export class Highlight extends Component {
-  constructor(props) {
-    super(props);
+export function Highlight() {
+  const [searchValue, setSearchValue] = useState('jumped over');
+  const [isHighlightAll, setHighlightAll] = useState(false);
 
-    this.state = {
-      searchValue: 'jumped over',
-      isHighlightAll: false,
-    };
-  }
-
-  onSearchChange = e => {
-    const searchValue = e.target.value;
-    this.setState({
-      searchValue,
-    });
+  const onSearchChange = e => {
+    setSearchValue(e.target.value);
+  };
+  const changeHighlightAll = e => {
+    setHighlightAll(e.target.checked);
   };
 
-  setHighlightAll = e => {
-    this.setState({ isHighlightAll: e.target.checked });
-  };
-
-  render() {
-    const { searchValue, isHighlightAll } = this.state;
-    return (
-      <Fragment>
-        <EuiFormRow label="Enter text to highlight substrings within a string">
-          <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
-        </EuiFormRow>
-
-        <EuiSpacer size="m" />
-        <EuiSwitch
-          label="Highlight all"
-          checked={isHighlightAll}
-          onChange={e => this.setHighlightAll(e)}
+  return (
+    <Fragment>
+      <EuiFormRow label="Enter text to highlight substrings within a string">
+        <EuiFieldSearch
+          value={searchValue}
+          onChange={e => {
+            onSearchChange(e);
+          }}
         />
-        <EuiSpacer size="m" />
-        <EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
-          The quick brown fox jumped over the lazy dog
-        </EuiHighlight>
-      </Fragment>
-    );
-  }
+      </EuiFormRow>
+
+      <EuiSpacer size="m" />
+      <EuiSwitch
+        label="Highlight all"
+        checked={isHighlightAll}
+        onChange={e => changeHighlightAll(e)}
+      />
+      <EuiSpacer size="m" />
+      <EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
+        The quick brown fox jumped over the lazy dog
+      </EuiHighlight>
+    </Fragment>
+  );
 }
