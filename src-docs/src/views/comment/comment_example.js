@@ -79,32 +79,13 @@ export const CommentExample = {
           <p>
             Use <strong>EuiComment</strong> for displaying comment threads with{' '}
             <strong>EuiCommentList</strong>. Each <strong>EuiComment</strong>{' '}
-            has a header with the following parts: <EuiCode>username</EuiCode>,{' '}
-            <EuiCode>event</EuiCode>, <EuiCode>timeStamp</EuiCode> and{' '}
-            <EuiCode>actions</EuiCode>.
+            has two parts: a <EuiCode>timelineIcon</EuiCode> on the left and
+            content on the right. The <EuiCode>timelineIcon</EuiCode> provides a
+            visual indication of the <EuiCode>type</EuiCode> of comment it is.
+            For example, it can be an icon that represents what action was
+            performed or it can be a user avatar. The content has a header with
+            all the relevant metadata and a body.
           </p>
-          <ul>
-            <li>
-              <EuiCode>username</EuiCode> can display a small avatar or icon
-              next to it.
-            </li>
-            <li>
-              <EuiCode>timeStamp</EuiCode> receives a date in the format of the
-              consumer&apos;s choice.
-            </li>
-            <li>
-              There are two different types of comments,
-              <EuiCode>regular</EuiCode> and <EuiCode>update</EuiCode> available
-              through the <EuiCode>type</EuiCode> prop.{' '}
-            </li>
-            <li>
-              <EuiCode>timelineIcon</EuiCode>s has default icons and styling for
-              both types of comments. It can also be customized as needed.
-            </li>
-            <li>
-              Use <EuiCode>children</EuiCode> to pass the body of the comment.
-            </li>
-          </ul>
         </div>
       ),
       props: { EuiComment },
@@ -198,11 +179,16 @@ export const CommentExample = {
       text: (
         <div>
           <p>
-            To allow the user to perform actions from within a comment, use the{' '}
-            <EuiCode>actions</EuiCode>prop. <EuiCode>actions</EuiCode> can be
-            any element. For example, for something simple you can use{' '}
-            <strong>EuiButtonIcon</strong> and for something more complex you
-            can combine that with <strong>EuiPopover</strong> and{' '}
+            There are scenarios where you might want to allow the user to
+            perform <EuiCode>actions</EuiCode> related to each comment. Some
+            common <EuiCode>actions</EuiCode> include: editing, deleting,
+            sharing and copying. To add custom <EuiCode>actions</EuiCode> to a
+            comment, use the <EuiCode>actions</EuiCode>
+            prop. These will be placed to the right of the metadata in the
+            comment&apos;s header. You can use any element to display{' '}
+            <EuiCode>actions</EuiCode>. For example, for something simple you
+            can use <strong>EuiButtonIcon</strong> and for something more
+            complex you can combine that with <strong>EuiPopover</strong> and{' '}
             <strong>EuiContextMenu</strong>.
           </p>
         </div>

@@ -5,7 +5,7 @@ import { EuiIcon } from '../icon';
 
 export type EuiCommentTimelineProps = CommonProps & {
   /**
-   * Main icon that accompanies the comment.
+   * Main icon that accompanies the comment. There's default icons for both types of comment, user icon for regular comments and dot icon for update comments. It also accepts any type supported by EuiIcon or any other node.
    */
   timelineIcon?: ReactNode | string;
   type?: EuiCommentType;

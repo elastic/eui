@@ -9,13 +9,16 @@ export type EuiCommentEventProps = CommonProps &
      * Author of the comment. Display a small icon or avatar with it if needed.
      */
     username: ReactNode;
+    /**
+     * Time of occurrence of the event. Its format is set on the consumer's side
+     */
     timestamp?: ReactNode;
     /**
      * Describes the event that took place
      */
     event?: ReactNode;
     /**
-     * Actions the user can perform from the comment's header
+     * Custom actions that the user can perform from the comment's header
      */
     actions?: ReactNode;
     /**

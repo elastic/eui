@@ -3,12 +3,12 @@ import { EuiComment } from '../../../../src/components/comment';
 import { EuiText } from '../../../../src/components/text';
 import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiCode } from '../../../../src/components/code';
-import { EuiSpacer } from '../../../../src/components/spacer';
 
 const defaultBody = (
   <EuiText size="s">
     <p>
-      These two comments are using the default <EuiCode>timelineIcon</EuiCode>s.
+      This comment and the one below are using the default{' '}
+      <EuiCode>timelineIcon</EuiCode>s.
     </p>
   </EuiText>
 );
@@ -32,45 +32,37 @@ const customIconBody = (
 
 export default () => (
   <Fragment>
-    <div>
-      <EuiComment
-        username="janed"
-        event="added a comment"
-        timestamp="Jan 1, 2020">
-        {defaultBody}
-      </EuiComment>
-      <EuiComment
-        username="pancho1"
-        type="update"
-        event="edited case"
-        timestamp="Jan 3, 2020"
-      />
-    </div>
-    <EuiSpacer />
-    <div>
-      <EuiComment
-        username="janed"
-        event="added a comment"
-        timestamp="Jan 1, 2020"
-        timelineIcon="tag">
-        {iconStringBody}
-      </EuiComment>
-    </div>
-    <EuiSpacer />
-    <div>
-      <EuiComment
-        username="juanab"
-        event="added a comment"
-        timestamp="Jan 3, 2020"
-        timelineIcon={
-          <EuiAvatar
-            imageUrl="https://source.unsplash.com/64x64/?woman"
-            size="l"
-            name="Juana"
-          />
-        }>
-        {customIconBody}
-      </EuiComment>
-    </div>
+    <EuiComment
+      username="janed"
+      event="added a comment"
+      timestamp="Jan 1, 2020">
+      {defaultBody}
+    </EuiComment>
+    <EuiComment
+      username="pancho1"
+      type="update"
+      event="edited case"
+      timestamp="Jan 3, 2020"
+    />
+    <EuiComment
+      username="janed"
+      event="added a comment"
+      timestamp="Jan 1, 2020"
+      timelineIcon="tag">
+      {iconStringBody}
+    </EuiComment>
+    <EuiComment
+      username="juanab"
+      event="added a comment"
+      timestamp="Jan 3, 2020"
+      timelineIcon={
+        <EuiAvatar
+          imageUrl="https://source.unsplash.com/64x64/?woman"
+          size="l"
+          name="Juana"
+        />
+      }>
+      {customIconBody}
+    </EuiComment>
   </Fragment>
 );
