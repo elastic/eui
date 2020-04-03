@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { EuiSelect } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-export default function() {
+export default () => {
   const options = [
     { value: 'option_one', text: 'Option one' },
     { value: 'option_two', text: 'Option two' },
@@ -28,4 +28,4 @@ export default function() {
       />
     </DisplayToggles>
   );
-}
+};

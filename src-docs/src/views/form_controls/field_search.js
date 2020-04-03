@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { EuiFieldSearch, EuiSwitch } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-export default function() {
+export default () => {
   const [isClearable, setIsClearable] = useState(true);
   const [value, setValue] = useState('');
 
@@ -35,4 +35,4 @@ export default function() {
       />
     </DisplayToggles>
   );
-}
+};

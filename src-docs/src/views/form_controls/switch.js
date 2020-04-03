@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 
 import { EuiSwitch, EuiSpacer } from '../../../../src/components';
 
-export default function() {
+export default () => {
   const [checked, setChecked] = useState(false);
 
   const onChange = e => {
@@ -65,4 +65,4 @@ export default function() {
       />
     </Fragment>
   );
-}
+};

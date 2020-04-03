@@ -4,7 +4,7 @@ import { EuiCheckbox, EuiSpacer } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
-export default function() {
+export default () => {
   const [checked, setChecked] = useState(false);
   const [indeterminate, setindeterminate] = useState(true);
 
@@ -19,7 +19,7 @@ export default function() {
   return (
     <Fragment>
       <EuiCheckbox
-        id={makeId()}
+        id={htmlIdGenerator()()}
         label="I am a checkbox"
         checked={checked}
         onChange={e => onChange(e)}
@@ -28,7 +28,7 @@ export default function() {
       <EuiSpacer size="m" />
 
       <EuiCheckbox
-        id={makeId()}
+        id={htmlIdGenerator()()}
         label="I am an indeterminate checkbox"
         indeterminate={indeterminate}
         onChange={() => onChangeIndeterminate()}
@@ -37,7 +37,7 @@ export default function() {
       <EuiSpacer size="m" />
 
       <EuiCheckbox
-        id={makeId()}
+        id={htmlIdGenerator()()}
         label="I am a disabled checkbox"
         checked={checked}
         onChange={e => onChange(e)}
@@ -47,7 +47,7 @@ export default function() {
       <EuiSpacer size="m" />
 
       <EuiCheckbox
-        id={makeId()}
+        id={htmlIdGenerator()()}
         label="I am a compressed checkbox"
         checked={checked}
         onChange={e => onChange(e)}
@@ -55,4 +55,4 @@ export default function() {
       />
     </Fragment>
   );
-}
+};

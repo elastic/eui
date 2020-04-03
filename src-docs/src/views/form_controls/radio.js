@@ -4,7 +4,7 @@ import { EuiRadio, EuiSpacer } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
-export default function() {
+export default () => {
   const [checked, setChecked] = useState(false);
 
   const onChange = e => {
@@ -14,7 +14,7 @@ export default function() {
   return (
     <Fragment>
       <EuiRadio
-        id={makeId()}
+        id={htmlIdGenerator()()}
         label="I am a radio"
         checked={checked}
         onChange={e => onChange(e)}
@@ -23,7 +23,7 @@ export default function() {
       <EuiSpacer size="m" />
 
       <EuiRadio
-        id={makeId()}
+        id={htmlIdGenerator()()}
         label="I am a disabled radio"
         checked={checked}
         onChange={e => onChange(e)}
@@ -33,7 +33,7 @@ export default function() {
       <EuiSpacer size="m" />
 
       <EuiRadio
-        id={makeId()}
+        id={htmlIdGenerator()()}
         label="I am a compressed radio"
         checked={checked}
         onChange={e => onChange(e)}
@@ -41,4 +41,4 @@ export default function() {
       />
     </Fragment>
   );
-}
+};
