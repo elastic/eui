@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiSuperSelect, EuiHealth } from '../../../../src/components';
 
-export default function() {
+export default () => {
   const options = [
     {
       value: 'warning',
@@ -46,4 +46,4 @@ export default function() {
       onChange={value => onChange(value)}
     />
   );
-}
+};

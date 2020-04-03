@@ -2,8 +2,7 @@ import React, { Fragment, useState } from 'react';
 
 import { EuiSuperSelect, EuiText } from '../../../../src/components';
 
-export default function() {
-
+export default () => {
   const options = [
     {
       value: 'option_one',
@@ -59,9 +58,9 @@ export default function() {
     <EuiSuperSelect
       options={options}
       valueOfSelected={value}
-      onChange={(value) => onChange(value)}
+      onChange={value => onChange(value)}
       itemLayoutAlign="top"
       hasDividers
     />
   );
-}
+};

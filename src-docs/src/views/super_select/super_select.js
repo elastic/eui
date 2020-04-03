@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { EuiSuperSelect } from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
-export default function() {
 
+export default () => {
   const options = [
     {
       value: 'option_one',
@@ -19,8 +19,8 @@ export default function() {
       value: 'option_three',
       inputDisplay: (
         <span className="eui-textTruncate eui-displayBlock">
-            Option three has a super long text and added truncation
-          </span>
+          Option three has a super long text and added truncation
+        </span>
       ),
     },
   ];
@@ -30,16 +30,14 @@ export default function() {
     setValue(value);
   };
 
- 
-    return (
-      /* DisplayToggles wrapper for Docs only */
-      <DisplayToggles canPrepend={true} canAppend={true}>
-        <EuiSuperSelect
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canPrepend={true} canAppend={true}>
+      <EuiSuperSelect
         options={options}
         valueOfSelected={value}
-        onChange={(value) => onChange(value)}
-        />
-      </DisplayToggles>
-    );
-  }
-
+        onChange={value => onChange(value)}
+      />
+    </DisplayToggles>
+  );
+};
