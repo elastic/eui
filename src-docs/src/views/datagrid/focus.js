@@ -10,7 +10,6 @@ import {
   EuiSwitch,
   EuiSpacer,
   EuiBadge,
-  EuiIcon,
   EuiToken,
   EuiFlexGroup,
   EuiFlexItem,
@@ -82,7 +81,7 @@ export default () => {
       {
         id: 'no-interactives not expandable',
         display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs">
+          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
             {renderHeaderIcon(areHeadersInteractive)}
             <EuiFlexItem grow={false}>
               <EuiToken
@@ -102,7 +101,7 @@ export default () => {
       {
         id: 'no-interactives is expandable',
         display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs">
+          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiToken
                 iconType="expandMini"
@@ -120,7 +119,7 @@ export default () => {
       {
         id: 'one-interactive not expandable',
         display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs">
+          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiToken
                 iconType="expandMini"
@@ -139,7 +138,7 @@ export default () => {
       {
         id: 'one-interactives is expandable',
         display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs">
+          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
             {renderHeaderIcon(areHeadersInteractive)}
             <EuiFlexItem grow={false}>
               <EuiToken
@@ -159,7 +158,7 @@ export default () => {
         id: 'two-interactives not expandable',
 
         display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs">
+          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiToken
                 iconType="expandMini"
@@ -179,7 +178,7 @@ export default () => {
         id: 'two-interactives is expandable',
 
         display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs">
+          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiToken
                 iconType="expandMini"
