@@ -1,7 +1,7 @@
 import React, {
   PureComponent,
   HTMLAttributes,
-  ReactElement,
+  ComponentType,
   SVGAttributes,
 } from 'react';
 import classNames from 'classnames';
@@ -415,7 +415,7 @@ export const TYPES = keysOf(typeToPathMap);
 
 export type EuiIconType = keyof typeof typeToPathMap;
 
-export type IconType = EuiIconType | string | ReactElement;
+export type IconType = EuiIconType | string | ComponentType;
 
 const colorToClassMap = {
   default: null,
@@ -488,7 +488,7 @@ export type EuiIconProps = CommonProps &
   };
 
 interface State {
-  icon: undefined | ReactElement | string;
+  icon: undefined | ComponentType | string;
   iconTitle: undefined | string;
   isLoading: boolean;
 }
@@ -625,7 +625,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       className
     );
 
-    const icon = this.state.icon || empty;
+    const icon = this.state.icon || (empty as ComponentType);
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
