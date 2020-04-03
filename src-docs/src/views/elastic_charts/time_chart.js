@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import { ThemeContext } from '../../components';
 import {
   Chart,
@@ -34,149 +34,133 @@ import {
   ChartCard,
 } from './shared';
 
-export class TimeChart extends Component {
-  constructor(props) {
-    super(props);
+export const TimeChart = () => {
+  const themeContext = useContext(ThemeContext);
 
-    this.idPrefix = 'chartType';
+  const [multi, setMulti] = useState(false);
+  const [stacked, setStacked] = useState(false);
+  const [chartType, setChartType] = useState('BarSeries');
 
-    this.state = {
-      multi: false,
-      stacked: false,
-      chartType: 'BarSeries',
-    };
+  const onMultiChange = multiObject => {
+    const { multi, stacked } = multiObject;
+    setMulti(multi);
+    setStacked(stacked);
+  };
+
+  const onChartTypeChange = chartType => {
+    setChartType(chartType);
+  };
+
+  const isDarkTheme = themeContext.theme.includes('dark');
+  const theme = isDarkTheme
+    ? EUI_CHARTS_THEME_DARK.theme
+    : EUI_CHARTS_THEME_LIGHT.theme;
+
+  let ChartType = CHART_COMPONENTS[chartType];
+  let ChartType2 = CHART_COMPONENTS[chartType];
+  if (chartType === 'Mixed') {
+    ChartType = BarSeries;
+    ChartType2 = LineSeries;
   }
 
-  onMultiChange = multiObject => {
-    this.setState({
-      ...multiObject,
-    });
-  };
+  const isBadChart = chartType === 'LineSeries' && stacked;
 
-  onChartTypeChange = chartType => {
-    this.setState({
-      chartType: chartType,
-    });
-  };
+  return (
+    <Fragment>
+      <EuiTitle size="xxs">
+        <h2>
+          Number of {!multi && 'financial '}robo-calls
+          {multi && ' by type'}
+        </h2>
+      </EuiTitle>
 
-  render() {
-    const isDarkTheme = this.context.theme.includes('dark');
-    const theme = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.theme
-      : EUI_CHARTS_THEME_LIGHT.theme;
+      <EuiSpacer size="s" />
 
-    let ChartType = CHART_COMPONENTS[this.state.chartType];
-    let ChartType2 = CHART_COMPONENTS[this.state.chartType];
-    if (this.state.chartType === 'Mixed') {
-      ChartType = BarSeries;
-      ChartType2 = LineSeries;
-    }
-
-    const isBadChart =
-      this.state.chartType === 'LineSeries' && this.state.stacked;
-
-    return (
-      <Fragment>
-        <EuiTitle size="xxs">
-          <h2>
-            Number of {!this.state.multi && 'financial '}robo-calls
-            {this.state.multi && ' by type'}
-          </h2>
-        </EuiTitle>
-
-        <EuiSpacer size="s" />
-
-        <Chart size={{ height: 200 }}>
-          <Settings
-            theme={theme}
-            showLegend={this.state.multi}
-            legendPosition="right"
-          />
-          <ChartType
-            id="financial"
-            name="Financial"
-            data={TIME_DATA}
+      <Chart size={{ height: 200 }}>
+        <Settings theme={theme} showLegend={multi} legendPosition="right" />
+        <ChartType
+          id="financial"
+          name="Financial"
+          data={TIME_DATA}
+          xScaleType="time"
+          xAccessor={0}
+          yAccessors={[1]}
+          stackAccessors={stacked ? [0] : undefined}
+        />
+        {multi && (
+          <ChartType2
+            id="tech"
+            name="Tech support"
+            data={TIME_DATA_2}
             xScaleType="time"
             xAccessor={0}
             yAccessors={[1]}
-            stackAccessors={this.state.stacked ? [0] : undefined}
+            stackAccessors={stacked ? [0] : undefined}
           />
-          {this.state.multi && (
-            <ChartType2
-              id="tech"
-              name="Tech support"
-              data={TIME_DATA_2}
-              xScaleType="time"
-              xAccessor={0}
-              yAccessors={[1]}
-              stackAccessors={this.state.stacked ? [0] : undefined}
-            />
-          )}
-          <Axis
-            title={formatDate(Date.now(), dateFormatAliases.date)}
-            id="bottom-axis"
-            position="bottom"
-            tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-            showGridLines={this.state.chartType !== 'BarSeries'}
-            tickPadding={0}
+        )}
+        <Axis
+          title={formatDate(Date.now(), dateFormatAliases.date)}
+          id="bottom-axis"
+          position="bottom"
+          tickFormat={timeFormatter(niceTimeFormatByDay(1))}
+          showGridLines={chartType !== 'BarSeries'}
+          tickPadding={0}
+        />
+        <Axis id="left-axis" position="left" showGridLines />
+      </Chart>
+
+      <EuiSpacer />
+
+      <EuiFlexGrid columns={3}>
+        <EuiFlexItem>
+          <ChartTypeCard
+            type="Time series"
+            onChange={onChartTypeChange}
+            mixed={multi ? 'enabled' : 'disabled'}
           />
-          <Axis id="left-axis" position="left" showGridLines />
-        </Chart>
+        </EuiFlexItem>
 
-        <EuiSpacer />
+        <EuiFlexItem>
+          <MultiChartCard onChange={onMultiChange} />
+        </EuiFlexItem>
 
-        <EuiFlexGrid columns={3}>
-          <EuiFlexItem>
-            <ChartTypeCard
-              type="Time series"
-              onChange={this.onChartTypeChange}
-              mixed={this.state.multi ? 'enabled' : 'disabled'}
-            />
-          </EuiFlexItem>
+        <EuiFlexItem>
+          <ChartCard
+            title="Tick marks"
+            description="If the tick marks all share a portion of their date (e.g. they're all on the same day) format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
+          />
+        </EuiFlexItem>
+      </EuiFlexGrid>
 
-          <EuiFlexItem>
-            <MultiChartCard onChange={this.onMultiChange} />
-          </EuiFlexItem>
+      <EuiSpacer />
 
-          <EuiFlexItem>
-            <ChartCard
-              title="Tick marks"
-              description="If the tick marks all share a portion of their date (e.g. they're all on the same day) format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
-            />
-          </EuiFlexItem>
-        </EuiFlexGrid>
-
-        <EuiSpacer />
-
-        <div className="eui-textCenter">
-          <EuiCopy
-            textToCopy={`<Chart size={{height: 200}}>
+      <div className="eui-textCenter">
+        <EuiCopy
+          textToCopy={`<Chart size={{height: 200}}>
   <Settings
     theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
-    showLegend={${this.state.multi}}
-    ${this.state.multi ? 'legendPosition="right"' : ''}
+    showLegend={${multi}}
+    ${multi ? 'legendPosition="right"' : ''}
   />
-  <${this.state.chartType === 'Mixed' ? 'BarSeries' : this.state.chartType}
+  <${chartType === 'Mixed' ? 'BarSeries' : chartType}
     id="financial"
     name="Financial"
     data={[[0,1],[1,2]]}
     xScaleType="time"
     xAccessor={0}
     yAccessors={[1]}
-    ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
+    ${stacked ? 'stackAccessors={[0]}' : ''}
   />
   ${
-    this.state.multi
-      ? `<${
-          this.state.chartType === 'Mixed' ? 'LineSeries' : this.state.chartType
-        }
+    multi
+      ? `<${chartType === 'Mixed' ? 'LineSeries' : chartType}
       id="tech"
       name="Tech support"
       data={[[0,1],[1,2]]}
       xScaleType="time"
       xAccessor={0}
       yAccessors={[1]}
-      ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
+      ${stacked ? 'stackAccessors={[0]}' : ''}
     />`
       : ''
   }
@@ -185,7 +169,7 @@ export class TimeChart extends Component {
     id="bottom-axis"
     position="bottom"
     tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-    ${this.state.chartType !== 'BarSeries' ? 'showGridLines' : ''}
+    ${chartType !== 'BarSeries' ? 'showGridLines' : ''}
   />
   <Axis
     id="left-axis"
@@ -193,22 +177,19 @@ export class TimeChart extends Component {
     showGridLines
   />
 </Chart>`}>
-            {copy => (
-              <EuiButton
-                fill
-                onClick={copy}
-                iconType="copyClipboard"
-                disabled={isBadChart}>
-                {isBadChart
-                  ? "Bad chart, don't copy"
-                  : 'Copy code of current configuration'}
-              </EuiButton>
-            )}
-          </EuiCopy>
-        </div>
-      </Fragment>
-    );
-  }
-}
-
-TimeChart.contextType = ThemeContext;
+          {copy => (
+            <EuiButton
+              fill
+              onClick={copy}
+              iconType="copyClipboard"
+              disabled={isBadChart}>
+              {isBadChart
+                ? "Bad chart, don't copy"
+                : 'Copy code of current configuration'}
+            </EuiButton>
+          )}
+        </EuiCopy>
+      </div>
+    </Fragment>
+  );
+};
