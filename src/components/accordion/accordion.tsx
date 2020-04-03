@@ -54,6 +54,7 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
      * Placing on the `right` doesn't work with `extraAction` and so it will be ignored
      */
     arrowDisplay?: 'left' | 'right' | 'none';
+    forceClose?: boolean;
   };
 
 export class EuiAccordion extends Component<
@@ -119,13 +120,14 @@ export class EuiAccordion extends Component<
       paddingSize,
       initialIsOpen,
       arrowDisplay,
+      forceClose,
       ...rest
     } = this.props;
 
     const classes = classNames(
       'euiAccordion',
       {
-        'euiAccordion-isOpen': this.state.isOpen,
+        'euiAccordion-isOpen': this.state.isOpen && !forceClose,
       },
       className
     );
@@ -143,7 +145,7 @@ export class EuiAccordion extends Component<
     );
 
     const iconClasses = classNames('euiAccordion__icon', {
-      'euiAccordion__icon-isOpen': this.state.isOpen,
+      'euiAccordion__icon-isOpen': this.state.isOpen && !forceClose,
     });
 
     let icon;
@@ -168,7 +170,7 @@ export class EuiAccordion extends Component<
         <div className="euiAccordion__triggerWrapper">
           <button
             aria-controls={id}
-            aria-expanded={!!this.state.isOpen}
+            aria-expanded={!!this.state.isOpen && !forceClose}
             onClick={this.onToggle}
             className={buttonClasses}
             type="button">
