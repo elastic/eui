@@ -11,7 +11,6 @@
 .euiDataGridColumnSelector__columnList {
   @include euiYScrollWithShadows;
   max-height: 400px;
-  padding: $euiSizeS;
   margin: 0 (-$euiSizeS);
 }
 
