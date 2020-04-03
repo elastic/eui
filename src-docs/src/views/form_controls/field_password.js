@@ -1,34 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiFieldPassword } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default function() {
+  const [value, setValue] = useState('');
 
-    this.state = {
-      value: '',
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
+  const onChange = e => {
+    setValue(e.target.value);
   };
 
-  render() {
-    return (
-      /* DisplayToggles wrapper for Docs only */
-      <DisplayToggles canAppend canPrepend>
-        <EuiFieldPassword
-          placeholder="Placeholder text"
-          value={this.state.value}
-          onChange={this.onChange}
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      </DisplayToggles>
-    );
-  }
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canAppend canPrepend>
+      <EuiFieldPassword
+        placeholder="Placeholder text"
+        value={value}
+        onChange={e => onChange(e)}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+    </DisplayToggles>
+  );
 }
