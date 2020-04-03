@@ -144,11 +144,12 @@ export const useColumnSorting = (
         </EuiI18n>
       }>
       {sorting.columns.length > 0 ? (
-        <div role="region" aria-live="assertive">
+        <div
+          role="region"
+          aria-live="assertive"
+          className="euiDataGrid__controlScroll">
           <EuiDragDropContext onDragEnd={onDragEnd}>
-            <EuiDroppable
-              droppableId="columnSorting"
-              className="euiDataGridColumnSorting">
+            <EuiDroppable droppableId="columnSorting">
               <Fragment>
                 {sorting.columns.map(({ id, direction }, index) => {
                   return (
