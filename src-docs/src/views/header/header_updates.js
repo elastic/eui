@@ -17,7 +17,7 @@ import {
   EuiBadge,
 } from '../../../../src/components';
 
-export default function() {
+export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [showBadge, setShowBadge] = useState(true);
 
@@ -133,7 +133,7 @@ export default function() {
     top: '49px',
     height: 'calc(100vh - 49px)',
   };
-  if (isFlyoutVisible) {
+  if(isFlyoutVisible){
     flyout = (
       <EuiFlyout
         onClose={() => closeFlyout()}
