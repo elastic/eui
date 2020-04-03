@@ -4,7 +4,9 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiRange } from './range';
 
-jest.mock('../form_row/make_id', () => () => 'generated-id');
+jest.mock('./../../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 const props = {
   value: '8',

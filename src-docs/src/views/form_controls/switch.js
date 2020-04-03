@@ -1,78 +1,68 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import { EuiSwitch, EuiSpacer } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [checked, setChecked] = useState(false);
 
-    this.state = {
-      checked: false,
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      checked: e.target.checked,
-    });
+  const onChange = e => {
+    setChecked(e.target.checked);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <EuiSwitch
-          label="I am a switch"
-          checked={this.state.checked}
-          onChange={this.onChange}
-        />
+  return (
+    <Fragment>
+      <EuiSwitch
+        label="I am a switch"
+        checked={checked}
+        onChange={e => onChange(e)}
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiSwitch
-          label="I am a disabled switch"
-          checked={this.state.checked}
-          onChange={this.onChange}
-          disabled
-        />
+      <EuiSwitch
+        label="I am a disabled switch"
+        checked={checked}
+        onChange={e => onChange(e)}
+        disabled
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiSwitch
-          showLabel={false}
-          label="I am a switch without a visible label"
-          checked={this.state.checked}
-          onChange={this.onChange}
-        />
+      <EuiSwitch
+        showLabel={false}
+        label="I am a switch without a visible label"
+        checked={checked}
+        onChange={e => onChange(e)}
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiSwitch
-          label="I am a compressed switch"
-          checked={this.state.checked}
-          onChange={this.onChange}
-          compressed
-        />
+      <EuiSwitch
+        label="I am a compressed switch"
+        checked={checked}
+        onChange={e => onChange(e)}
+        compressed
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiSwitch
-          label="I am a compressed, disabled switch"
-          checked={this.state.checked}
-          onChange={this.onChange}
-          compressed
-          disabled
-        />
+      <EuiSwitch
+        label="I am a compressed, disabled switch"
+        checked={checked}
+        onChange={e => onChange(e)}
+        compressed
+        disabled
+      />
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiSwitch
-          showLabel={false}
-          label="I am a compressed switch without a visible label"
-          checked={this.state.checked}
-          onChange={this.onChange}
-          compressed
-        />
-      </Fragment>
-    );
-  }
-}
+      <EuiSwitch
+        showLabel={false}
+        label="I am a compressed switch without a visible label"
+        checked={checked}
+        onChange={e => onChange(e)}
+        compressed
+      />
+    </Fragment>
+  );
+};
