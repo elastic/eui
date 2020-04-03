@@ -9,6 +9,11 @@ import {
   EuiLink,
   EuiSwitch,
   EuiSpacer,
+  EuiBadge,
+  EuiIcon,
+  EuiToken,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components/';
 
 const data = [];
@@ -30,18 +35,24 @@ for (let i = 0; i < 10; i++) {
     </span>,
 
     <span>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clicked Yes')}>
+      <EuiButtonEmpty size="xs" onClick={() => console.log('clicked Yes')}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clicked No')}>
+      <EuiButtonEmpty
+        size="xs"
+        color="danger"
+        onClick={() => console.log('clicked No')}>
         No
       </EuiButtonEmpty>
     </span>,
     <span>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clicked Yes')}>
+      <EuiButtonEmpty size="xs" onClick={() => console.log('clicked Yes')}>
         Yes
       </EuiButtonEmpty>
-      <EuiButtonEmpty size="s" onClick={() => console.log('clicked No')}>
+      <EuiButtonEmpty
+        size="xs"
+        color="danger"
+        onClick={() => console.log('clicked No')}>
         No
       </EuiButtonEmpty>
     </span>,
@@ -50,11 +61,13 @@ for (let i = 0; i < 10; i++) {
 
 const renderHeaderIcon = areHeadersInteractive =>
   areHeadersInteractive ? (
-    <EuiButtonIcon
-      aria-label="column settings"
-      iconType="gear"
-      onClick={() => console.log('gear icon clicked')}
-    />
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        aria-label="column settings"
+        iconType="gear"
+        onClick={() => console.log('gear icon clicked')}
+      />
+    </EuiFlexItem>
   ) : null;
 
 export default () => {
@@ -69,39 +82,117 @@ export default () => {
       {
         id: 'no-interactives not expandable',
         display: (
-          <>
-            {renderHeaderIcon(areHeadersInteractive)}⓪ interactives, ⛔️
-            expandable
-          </>
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            {renderHeaderIcon(areHeadersInteractive)}
+            <EuiFlexItem grow={false}>
+              <EuiToken
+                iconType="expandMini"
+                color="euiColorVis2"
+                shape="square"
+                fill="dark"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiBadge>0 interactive</EuiBadge>
+            </EuiFlexItem>
+          </EuiFlexGroup>
         ),
         isExpandable: false,
       },
       {
         id: 'no-interactives is expandable',
-        display: '⓪ interactives, ✅ expandable',
+        display: (
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            <EuiFlexItem grow={false}>
+              <EuiToken
+                iconType="expandMini"
+                color="euiColorVis0"
+                shape="square"
+                fill="dark"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiBadge>0 interactive</EuiBadge>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        ),
       },
       {
         id: 'one-interactive not expandable',
-        display: '① interactive, ⛔️ expandable',
+        display: (
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            <EuiFlexItem grow={false}>
+              <EuiToken
+                iconType="expandMini"
+                color="euiColorVis2"
+                shape="square"
+                fill="dark"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiBadge>1 interactive</EuiBadge>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        ),
         isExpandable: false,
       },
       {
         id: 'one-interactives is expandable',
         display: (
-          <>
-            {renderHeaderIcon(areHeadersInteractive)}①️ interactive, ✅
-            expandable
-          </>
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            {renderHeaderIcon(areHeadersInteractive)}
+            <EuiFlexItem grow={false}>
+              <EuiToken
+                iconType="expandMini"
+                color="euiColorVis0"
+                shape="square"
+                fill="dark"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiBadge>1 interactive</EuiBadge>
+            </EuiFlexItem>
+          </EuiFlexGroup>
         ),
       },
       {
         id: 'two-interactives not expandable',
-        display: '⓶ interactives, ⛔️ expandable',
+
+        display: (
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            <EuiFlexItem grow={false}>
+              <EuiToken
+                iconType="expandMini"
+                color="euiColorVis2"
+                shape="square"
+                fill="dark"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiBadge>2 interactive</EuiBadge>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        ),
         isExpandable: false,
       },
       {
         id: 'two-interactives is expandable',
-        display: '⓶ interactives, ✅ expandable',
+
+        display: (
+          <EuiFlexGroup alignItems="center" gutterSize="xs">
+            <EuiFlexItem grow={false}>
+              <EuiToken
+                iconType="expandMini"
+                color="euiColorVis0"
+                shape="square"
+                fill="dark"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiBadge>2 interactive</EuiBadge>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        ),
       },
     ],
     [areHeadersInteractive]
