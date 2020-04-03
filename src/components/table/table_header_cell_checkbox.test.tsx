@@ -5,6 +5,23 @@ import { requiredProps } from '../../test';
 import { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
 
 describe('EuiTableHeaderCellCheckbox', () => {
+  const _consoleWarn = console.warn;
+  beforeAll(() => {
+    console.warn = (...args: [any?, ...any[]]) => {
+      // Suppress an expencted warning
+      if (
+        args.length === 1 &&
+        args[0] ===
+          'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
+      )
+        return;
+      _consoleWarn.apply(console, args);
+    };
+  });
+  afterAll(() => {
+    console.warn = _consoleWarn;
+  });
+
   test('is rendered', () => {
     const component = render(<EuiTableHeaderCellCheckbox {...requiredProps} />);
 

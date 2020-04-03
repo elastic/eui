@@ -41,6 +41,23 @@ describe('align', () => {
 });
 
 describe('width and style', () => {
+  const _consoleWarn = console.warn;
+  beforeAll(() => {
+    console.warn = (...args: [any?, ...any[]]) => {
+      // Suppress an expencted warning
+      if (
+        args.length === 1 &&
+        args[0] ===
+          'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
+      )
+        return;
+      _consoleWarn.apply(console, args);
+    };
+  });
+  afterAll(() => {
+    console.warn = _consoleWarn;
+  });
+
   test('accepts style attribute', () => {
     const component = (
       <EuiTableHeaderCell style={{ width: '20%' }}>Test</EuiTableHeaderCell>

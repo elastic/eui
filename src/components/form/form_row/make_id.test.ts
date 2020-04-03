@@ -4,14 +4,14 @@ describe('makeId', () => {
   const _consoleLog = console.log;
   beforeAll(() => {
     const _consoleLog = console.log;
-    console.log = (...args: any[]) => {
+    console.log = (...args: [any?, ...any[]]) => {
       // swallow the deprecation warning
       if (
         args[0] ===
         'WARNING: makeId is deprecated. Use htmlIdGenerator from @elastic/eui instead.'
       )
         return;
-      _consoleLog.call(console, args);
+      _consoleLog.apply(console, args);
     };
   });
 
