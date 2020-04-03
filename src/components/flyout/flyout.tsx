@@ -25,6 +25,9 @@ export interface EuiFlyoutProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
+  /**
+   * Defines the width of the panel
+   */
   size?: EuiFlyoutSize;
   /**
    * Hides the default close button. You must provide another close button somewhere within the flyout.
@@ -39,7 +42,7 @@ export interface EuiFlyoutProps
    */
   closeButtonAriaLabel?: string;
   /**
-   * Sets the max-width of the page,
+   * Sets the max-width of the panel,
    * set to `true` to use the default size,
    * set to `false` to not restrict the width,
    * set to a number for a custom width in px,

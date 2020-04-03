@@ -32,7 +32,9 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>
@@ -66,7 +68,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
         </p>,
         "data-test-subj": "kibanaTab",
         "id": "kibana",
-        "name": "Kibana",
+        "name": <strong>
+          Kibana
+        </strong>,
       },
     ]
   }
@@ -123,7 +127,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             <span
               className="euiTab__content"
             >
-              Kibana
+              <strong>
+                Kibana
+              </strong>
             </span>
           </button>
         </EuiTab>
@@ -178,7 +184,9 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>
@@ -226,7 +234,9 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>
@@ -274,7 +284,9 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>
@@ -322,7 +334,9 @@ exports[`EuiTabbedContent props display can be condensed 1`] = `
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>
@@ -370,7 +384,9 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>
@@ -418,7 +434,9 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>
@@ -466,7 +484,9 @@ exports[`EuiTabbedContent props size can be small 1`] = `
       <span
         class="euiTab__content"
       >
-        Kibana
+        <strong>
+          Kibana
+        </strong>
       </span>
     </button>
   </div>

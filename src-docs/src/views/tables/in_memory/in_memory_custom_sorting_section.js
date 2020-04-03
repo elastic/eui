@@ -10,7 +10,7 @@ const source = require('!!raw-loader!./in_memory_custom_sorting');
 const html = renderToHtml(Table);
 
 export const customSortingSection = {
-  title: 'In-Memory Table - Custom sort values',
+  title: 'In-memory table with custom sort values',
   source: [
     {
       type: GuideSectionTypes.JS,

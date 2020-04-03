@@ -87,7 +87,7 @@ export default class extends Component {
 
   render() {
     return (
-      <EuiForm>
+      <EuiForm component="form">
         <EuiFormRow label="Text field" helpText="I am some friendly help text.">
           <EuiFieldText name="first" />
         </EuiFormRow>

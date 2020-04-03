@@ -63,11 +63,11 @@ import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
+import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
+
 import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
-
-import { ContextExample } from './views/context/context_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
@@ -83,7 +83,6 @@ import { DataGridControlColumnsExample } from './views/datagrid/datagrid_control
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
-import { DelayHideExample } from './views/delay_hide/delay_hide_example';
 import { DelayRenderExample } from './views/delay_render/delay_render_example';
 
 import { DescriptionListExample } from './views/description_list/description_list_example';
@@ -118,9 +117,11 @@ import { HeaderExample } from './views/header/header_example';
 
 import { HealthExample } from './views/health/health_example';
 
-import { HighlightExample } from './views/highlight/highlight_example';
+import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_and_mark_example';
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
+
+import { HtmlIdGeneratorExample } from './views/html_id_generator/html_id_generator_example';
 
 import { I18nExample } from './views/i18n/i18n_example';
 
@@ -145,6 +146,8 @@ import { MutationObserverExample } from './views/mutation_observer/mutation_obse
 import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
+
+import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
 
@@ -183,6 +186,8 @@ import { SuggestExample } from './views/suggest/suggest_example';
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
+
+import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
 
@@ -226,7 +231,7 @@ const slugify = str => {
   return parts.join('-');
 };
 
-const createExample = example => {
+const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
       'One of your example pages is undefined. This usually happens when you export or import it with the wrong name.'
@@ -254,7 +259,7 @@ const createExample = example => {
   );
 
   return {
-    name: title,
+    name: customTitle || title,
     component,
     sections,
   };
@@ -264,7 +269,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createExample(AccessibilityGuidelines),
+      createExample(AccessibilityGuidelines, 'Accesibility'),
       {
         name: 'Buttons',
         component: ButtonGuidelines,
@@ -321,6 +326,7 @@ const navigation = [
     items: [
       BreadcrumbsExample,
       ButtonExample,
+      CollapsibleNavExample,
       ContextMenuExample,
       ControlBarExample,
       FacetExample,
@@ -342,6 +348,7 @@ const navigation = [
       DataGridStylingExample,
       DataGridControlColumnsExample,
       TableExample,
+      TableInMemoryExample,
     ].map(example => createExample(example)),
   },
   {
@@ -403,22 +410,22 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      IsColorDarkExample,
       ColorPaletteExample,
-      ContextExample,
       CopyExample,
       UtilityClassesExample,
-      DelayHideExample,
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
-      HighlightExample,
+      HighlightAndMarkExample,
+      HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
-      IsColorDarkExample,
-      PrettyDurationExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
+      OverlayMaskExample,
       PortalExample,
+      PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
       WindowEventExample,

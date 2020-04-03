@@ -58,7 +58,7 @@ export const RangeControlExample = {
           Range sliders should only be used when{' '}
           <strong>the precise value is not considered important</strong>. If the
           precise value does matter, add the <EuiCode>showInput</EuiCode> prop
-          or use a <EuiCode>EuiFieldNumber</EuiCode> instead.
+          or use a <strong>EuiFieldNumber</strong> instead.
         </p>
       </EuiCallOut>
       <EuiSpacer />
@@ -152,27 +152,29 @@ export const RangeControlExample = {
       text: (
         <Fragment>
           <p>
-            The EuiDualRange accepts almost all the same props as the regular
-            EuiRange, with the exception of <EuiCode>showRange</EuiCode> which
-            is on by default, and <EuiCode>showValue</EuiCode> since tooltips
-            don&apos;t fit properly when there are two.
+            The <strong>EuiDualRange</strong> accepts almost all the same props
+            as the regular <strong>EuiRange</strong>, with the exception of{' '}
+            <EuiCode>showRange</EuiCode> which is on by default, and{' '}
+            <EuiCode>showValue</EuiCode> since tooltips don&apos;t fit properly
+            when there are two.
           </p>
           <EuiCallOut color="warning" title="Retrieving field values">
             <p>
               Two-value <EuiCode>input[type=range]</EuiCode> elements are not
-              part of the HTML5 specification. Because of this support gap,
-              EuiDualRange cannot expose a native <EuiCode>value</EuiCode>{' '}
-              property for native form to consumption.
+              part of the HTML5 specification. Because of this support gap,{' '}
+              <strong>EuiDualRange</strong> cannot expose a native{' '}
+              <EuiCode>value</EuiCode> property for native form to consumption.{' '}
               <strong>
                 The React <EuiCode>onChange</EuiCode> prop is the recommended
                 method for retrieving the upper and lower values.
               </strong>
             </p>
             <p>
-              EuiDualRange does use native inputs to help validate step values
-              and range limits. These may be used as form values when{' '}
-              <EuiCode>showInput</EuiCode> is in use. The alternative is to
-              store values in <EuiCode>input[type=hidden]</EuiCode>.
+              <strong>EuiDualRange</strong> does use native inputs to help
+              validate step values and range limits. These may be used as form
+              values when <EuiCode>showInput</EuiCode> is in use. The
+              alternative is to store values in{' '}
+              <EuiCode>input[type=hidden]</EuiCode>.
             </p>
           </EuiCallOut>
         </Fragment>
@@ -287,11 +289,15 @@ export const RangeControlExample = {
             To create colored indicators for certain intervals, pass an array of
             objects that include a <EuiCode>min</EuiCode>,{' '}
             <EuiCode>max</EuiCode> and <EuiCode>color</EuiCode>. Color options
-            are <EuiCode>{JSON.stringify(LEVEL_COLORS, null, 2)}</EuiCode>.
+            are{' '}
+            <EuiCode language="js">
+              {JSON.stringify(LEVEL_COLORS, null, 2)}
+            </EuiCode>
+            .
           </p>
           <p>
             Be sure to then add an <EuiCode>aria-describedby</EuiCode> and match
-            it to the id of a <EuiCode>EuiFormHelpText</EuiCode>.
+            it to the id of a <strong>EuiFormHelpText</strong>.
           </p>
         </Fragment>
       ),
@@ -329,7 +335,10 @@ export const RangeControlExample = {
       text: (
         <Fragment>
           <p>
-            Passing <EuiCode>showInput=&quot;inputWithPopover&quot;</EuiCode>{' '}
+            Passing{' '}
+            <EuiCode language="js">
+              showInput=&quot;inputWithPopover&quot;
+            </EuiCode>{' '}
             instead of a boolean will only display the inputs until the input is
             interacted with in which case a dropdown will appear displaying the
             actual slider.

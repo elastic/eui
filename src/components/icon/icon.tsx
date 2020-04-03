@@ -142,6 +142,7 @@ const typeToPathMap = {
   heartbeatApp: 'app_heartbeat',
   heatmap: 'heatmap',
   help: 'help',
+  home: 'home',
   iInCircle: 'iInCircle',
   image: 'image',
   importAction: 'import',
@@ -241,6 +242,7 @@ const typeToPathMap = {
   managementApp: 'app_management',
   mapMarker: 'map_marker',
   memory: 'memory',
+  menu: 'menu',
   menuLeft: 'menuLeft',
   menuRight: 'menuRight',
   merge: 'merge',
@@ -394,6 +396,19 @@ const typeToPathMap = {
   tokenShape: 'tokens/tokenShape',
   tokenGeo: 'tokens/tokenGeo',
   tokenRange: 'tokens/tokenRange',
+  tokenBinary: 'tokens/tokenBinary',
+  tokenJoin: 'tokens/tokenJoin',
+  tokenPercolator: 'tokens/tokenPercolator',
+  tokenFlattened: 'tokens/tokenFlattened',
+  tokenRankFeature: 'tokens/tokenRankFeature',
+  tokenRankFeatures: 'tokens/tokenRankFeatures',
+  tokenKeyword: 'tokens/tokenKeyword',
+  tokenCompletionSuggester: 'tokens/tokenCompletionSuggester',
+  tokenDenseVector: 'tokens/tokenDenseVector',
+  tokenText: 'tokens/tokenText',
+  tokenTokenCount: 'tokens/tokenTokenCount',
+  tokenSearchType: 'tokens/tokenSearchType',
+  tokenHistogram: 'tokens/tokenHistogram',
 };
 
 export const TYPES = keysOf(typeToPathMap);
@@ -548,7 +563,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
       enqueueStateChange(() => {
-        if (this.isMounted) {
+        if (this.isMounted && this.props.type === iconType) {
           this.setState(
             {
               icon,

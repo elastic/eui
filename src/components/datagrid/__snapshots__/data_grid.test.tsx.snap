@@ -191,12 +191,12 @@ Array [
                 <div
                   aria-hidden="true"
                   class="euiButtonEmpty__icon"
-                  data-euiicon-type="eyeClosed"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>
@@ -707,12 +707,12 @@ Array [
                 <div
                   aria-hidden="true"
                   class="euiButtonEmpty__icon"
-                  data-euiicon-type="eyeClosed"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>
@@ -1418,12 +1418,12 @@ Array [
                 <div
                   aria-hidden="true"
                   class="euiButtonEmpty__icon"
-                  data-euiicon-type="eyeClosed"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>
@@ -1933,12 +1933,12 @@ Array [
                 <div
                   aria-hidden="true"
                   class="euiButtonEmpty__icon"
-                  data-euiicon-type="eyeClosed"
+                  data-euiicon-type="listAdd"
                 />
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Hide fields
+                  Columns
                 </span>
               </span>
             </button>

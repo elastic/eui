@@ -49,6 +49,7 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
       <EuiSpacer />
       <EuiFieldText
@@ -71,12 +72,18 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
       <EuiSpacer />
       <EuiFieldText
         placeholder="XS empty buttons with icons"
         prepend={
-          <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
+          <EuiButtonEmpty
+            role="button"
+            size="xs"
+            iconType="arrowDown"
+            iconSide="right"
+            aria-label="Calendar dropdown">
             <EuiIcon type="calendar" />
           </EuiButtonEmpty>
         }
@@ -88,6 +95,7 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
       <EuiSpacer />
       <EuiFieldText
@@ -97,6 +105,7 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
       <EuiSpacer />
       <EuiFieldText
@@ -115,6 +124,7 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
       <EuiSpacer />
       <EuiFieldText
@@ -133,6 +143,7 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
       <EuiSpacer />
       <EuiFieldText
@@ -145,6 +156,7 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
       <EuiSpacer />
       <EuiFieldText
@@ -165,6 +177,7 @@ export default () => {
         compressed={isCompressed}
         disabled={isDisabled}
         readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
       />
     </Fragment>
   );

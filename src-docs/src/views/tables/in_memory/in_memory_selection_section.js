@@ -1,5 +1,4 @@
 import React from 'react';
-import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -8,7 +7,7 @@ const source = require('!!raw-loader!./in_memory_selection');
 const html = renderToHtml(Table);
 
 export const selectionSection = {
-  title: 'In-Memory Table - Selection',
+  title: 'In-memory table selection',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -21,7 +20,7 @@ export const selectionSection = {
   ],
   text: (
     <p>
-      The following example shows how to use <EuiCode>EuiInMemoryTable</EuiCode>{' '}
+      The following example shows how to use <strong>EuiInMemoryTable</strong>{' '}
       along with item selection. It also shows how you can display messages,
       errors and show loading indication.
     </p>

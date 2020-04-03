@@ -14,7 +14,7 @@ exports[`renders EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:#ffeedd"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout"
@@ -27,7 +27,6 @@ exports[`renders EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -80,7 +79,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:#ffffff"
+          style="color:rgb(255,255,255)"
         >
           <div
             class="euiFormControlLayout"
@@ -93,7 +92,6 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFFFFF"
               />
@@ -157,7 +155,6 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 placeholder="Transparent"
                 type="text"
                 value=""
@@ -222,7 +219,6 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 placeholder="Transparent"
                 type="text"
                 value=""
@@ -281,7 +277,7 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:#ffeedd"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout"
@@ -294,7 +290,6 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiColorPicker__input--inGroup euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -338,6 +333,71 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
 </div>
 `;
 
+exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div
+      class="euiFormControlLayout"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          style="color:rgb(255,238,221)"
+        >
+          <div
+            class="euiFormControlLayout"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                type="text"
+                value="#FFEEDD"
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <div
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="swatchInput"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <div
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders compressed EuiColorPicker 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
@@ -352,7 +412,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:#ffeedd"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -365,7 +425,6 @@ exports[`renders compressed EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--compressed"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -418,7 +477,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:#ffeedd"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout"
@@ -432,7 +491,6 @@ exports[`renders disabled EuiColorPicker 1`] = `
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
                 disabled=""
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -485,7 +543,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:#ffeedd"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -498,7 +556,6 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--fullWidth"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 type="text"
                 value="#FFEEDD"
               />
@@ -594,7 +651,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       <input
         class="euiHue__range"
         id="undefined-hue"
-        max="360"
+        max="359"
         min="0"
         step="1"
         type="range"
@@ -613,7 +670,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #54B399 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#54B399"
+        style="background:rgb(84,179,153)"
         type="button"
       />
     </div>
@@ -624,7 +681,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #6092C0 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#6092C0"
+        style="background:rgb(96,146,192)"
         type="button"
       />
     </div>
@@ -635,7 +692,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #D36086 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#D36086"
+        style="background:rgb(211,96,134)"
         type="button"
       />
     </div>
@@ -646,7 +703,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #9170B8 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#9170B8"
+        style="background:rgb(145,112,184)"
         type="button"
       />
     </div>
@@ -657,7 +714,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #CA8EAE as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#CA8EAE"
+        style="background:rgb(202,142,174)"
         type="button"
       />
     </div>
@@ -668,7 +725,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #D6BF57 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#D6BF57"
+        style="background:rgb(214,191,87)"
         type="button"
       />
     </div>
@@ -679,7 +736,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #B9A888 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#B9A888"
+        style="background:rgb(185,168,136)"
         type="button"
       />
     </div>
@@ -690,7 +747,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #DA8B45 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#DA8B45"
+        style="background:rgb(218,139,69)"
         type="button"
       />
     </div>
@@ -701,7 +758,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #AA6556 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#AA6556"
+        style="background:rgb(170,101,86)"
         type="button"
       />
     </div>
@@ -712,7 +769,7 @@ exports[`renders inline EuiColorPicker 1`] = `
         aria-label="Select #E7664C as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
         role="option"
-        style="background:#E7664C"
+        style="background:rgb(231,102,76)"
         type="button"
       />
     </div>
@@ -734,7 +791,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          style="color:#ffeedd"
+          style="color:rgb(255,238,221)"
         >
           <div
             class="euiFormControlLayout euiFormControlLayout--readOnly"
@@ -747,7 +804,6 @@ exports[`renders readOnly EuiColorPicker 1`] = `
                 autocomplete="off"
                 class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
                 data-test-subj="colorPickerAnchor"
-                maxlength="7"
                 readonly=""
                 type="text"
                 value="#FFEEDD"

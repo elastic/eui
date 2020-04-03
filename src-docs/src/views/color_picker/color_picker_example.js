@@ -63,6 +63,28 @@ const colorPickerRangeSnippet = `<EuiColorStops
 />
 `;
 
+import { Alpha } from './alpha';
+const alphaSource = require('!!raw-loader!./alpha');
+const alphaHtml = renderToHtml(Alpha);
+const alphaSnippet = `<EuiColorPicker
+  id={colorPickerId}
+  onChange={handleChange}
+  color={chosenColor}
+  showAlpha={true}
+  isInvalid={hasErrors}
+/>`;
+
+import { Formats } from './formats';
+const formatsSource = require('!!raw-loader!./formats');
+const formatsHtml = renderToHtml(Formats);
+const formatsSnippet = `<EuiColorPicker
+  format="hex"
+  id={colorPickerId}
+  onChange={handleChange}
+  color={chosenColor}
+  isInvalid={hasErrors}
+/>`;
+
 import { CustomSwatches } from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
@@ -219,14 +241,13 @@ const stopKitchenSinkSnippet = `<EuiColorStops
 `;
 
 export const ColorPickerExample = {
-  title: 'Color Selection',
+  title: 'Color selection',
   intro: (
     <React.Fragment>
       <EuiText>
         <p>
           Two components exist to aid color selection:{' '}
-          <EuiCode>EuiColorPicker</EuiCode> and <EuiCode>EuiColorStops</EuiCode>
-          .
+          <strong>EuiColorPicker</strong> and <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
       <EuiSpacer />
@@ -243,13 +264,13 @@ export const ColorPickerExample = {
               selection.
             </p>
             <p>
-              Direct text entry will only match hexadecimal (hex) colors, and
-              output values only return hex values. Spatial selection involves
-              HSV manipulaton, which is converted to hex.
+              Direct text entry will match hexadecimal (hex) and RGB(a) colors,
+              and output will return both hex and RGBa values. Spatial selection
+              involves HSV manipulaton, which is converted to hex.
             </p>
             <p>
               Swatches allow consumers to predefine preferred or suggested
-              choices. The swatches must also be entered in hex format.
+              choices. The swatches must also be entered in hex or RGBa format.
             </p>
           </EuiText>
         </React.Fragment>
@@ -274,10 +295,10 @@ export const ColorPickerExample = {
         <React.Fragment>
           <EuiText>
             <p>
-              Use <EuiCode>EuiColorStops</EuiCode> to define color stops for
-              data driven styling. Stops are numbers within the provided range.
-              The color segment spans from the given stop number (inclusive) to
-              the next stop number (exclusive).
+              Use <strong>EuiColorStops</strong> to define color stops for data
+              driven styling. Stops are numbers within the provided range. The
+              color segment spans from the given stop number (inclusive) to the
+              next stop number (exclusive).
             </p>
           </EuiText>
         </React.Fragment>
@@ -306,11 +327,12 @@ export const ColorPickerExample = {
         <React.Fragment>
           <EuiText>
             <p>
-              Typical use of <EuiCode>EuiColorStops</EuiCode> (as above) will
-              have defined `min` and `max` range values. It is also possible to
-              leave the range open-ended for cases where the target data set is
-              unknown or maleable. In this case, a user{"'"}s added values will
-              define `min` and `max` and users will have more freedom over
+              Typical use of <strong>EuiColorStops</strong> (as above) will have
+              defined <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> range
+              values. It is also possible to leave the range open-ended for
+              cases where the target data set is unknown or maleable. In this
+              case, a user{"'"}s added values will define <EuiCode>min</EuiCode>{' '}
+              and <EuiCode>max</EuiCode> and users will have more freedom over
               resetting the values on the fly.
             </p>
           </EuiText>
@@ -328,6 +350,58 @@ export const ColorPickerExample = {
       ],
       snippet: colorPickerRangeSnippet,
       demo: <ColorStopsRange />,
+    },
+    {
+      title: 'Format selection',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formatsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: formatsHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Format selection does <em>not</em> limit the format of text input
+            the picker will allow, but instead attempts to keep consistency
+            during HSV selection. By default, the color picker will
+            automatically use the last input value format. Notice in following
+            the examples how hue and saturation selection behave differently.
+          </p>
+          <p>
+            Swatches will always show the &quot;as-authored&quot; color value,
+            as will the value provided via the <EuiCode>color</EuiCode> prop.
+          </p>
+        </>
+      ),
+      snippet: formatsSnippet,
+      demo: <Formats />,
+    },
+    {
+      title: 'Alpha channel (opacity) selection',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: alphaSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: alphaHtml,
+        },
+      ],
+      text: (
+        <p>
+          To allow color opacity via alpha channel, set{' '}
+          <EuiCode language="js">showAlpha=true</EuiCode>. This will also
+          display a range slider allowing manual opacity updates.
+        </p>
+      ),
+      snippet: alphaSnippet,
+      demo: <Alpha />,
     },
     {
       title: 'Custom color swatches',
@@ -366,9 +440,10 @@ export const ColorPickerExample = {
       text: (
         <p>
           By default, both swatch selection and the gradient color map will be
-          rendered. Use the <EuiCode>mode</EuiCode> prop to pass `swatch` for
-          swatch-only selection, or pass `picker` for gradient map and hue
-          slider selection without swatches.
+          rendered. Use the <EuiCode>mode</EuiCode> prop to pass{' '}
+          <EuiCode>swatch</EuiCode> for swatch-only selection, or pass{' '}
+          <EuiCode>picker</EuiCode> for gradient map and hue slider selection
+          without swatches.
         </p>
       ),
       snippet: [
@@ -393,8 +468,8 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          Available only in <EuiCode>EuiColorPicker</EuiCode>. You can
-          optionally use a custom button as the trigger for selection using the{' '}
+          Available only in <strong>EuiColorPicker</strong>. You can optionally
+          use a custom button as the trigger for selection using the{' '}
           <EuiCode>button</EuiCode> prop. Please remember to add accessibility
           to this component, using proper button markup and aria labeling.
         </p>
@@ -416,9 +491,9 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          Available only in <EuiCode>EuiColorPicker</EuiCode>. Set the{' '}
-          <EuiCode>display</EuiCode> prop to `inline` to display the color
-          picker without an input or popover. Note that the{' '}
+          Available only in <strong>EuiColorPicker</strong>. Set the{' '}
+          <EuiCode>display</EuiCode> prop to <EuiCode>inline</EuiCode> to
+          display the color picker without an input or popover. Note that the{' '}
           <EuiCode>button</EuiCode> prop will be ignored in this case.
         </p>
       ),

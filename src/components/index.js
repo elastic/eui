@@ -37,6 +37,8 @@ export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
 export { EuiCodeEditor } from './code_editor';
 
+export { EuiCollapsibleNav, EuiCollapsibleNavGroup } from './collapsible_nav';
+
 export {
   EuiColorPicker,
   EuiColorPickerSwatch,
@@ -171,20 +173,23 @@ export { EuiI18n, EuiI18nNumber } from './i18n';
 
 export {
   EuiLoadingKibana,
+  EuiLoadingElastic,
   EuiLoadingChart,
   EuiLoadingContent,
   EuiLoadingSpinner,
 } from './loading';
 
-export {
-  EuiKeyPadMenu,
-  EuiKeyPadMenuItem,
-  EuiKeyPadMenuItemButton,
-} from './key_pad_menu';
+export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';
 
 export { EuiLink } from './link';
 
-export { EuiListGroup, EuiListGroupItem } from './list_group';
+export {
+  EuiListGroup,
+  EuiListGroupItem,
+  EuiPinnableListGroup,
+} from './list_group';
+
+export { EuiMark } from './mark';
 
 export {
   EUI_MODAL_CANCEL_BUTTON,
@@ -239,7 +244,10 @@ export { EuiProgress } from './progress';
 
 export { EuiTreeView } from './tree_view';
 
-export { EuiResizeObserver } from './observer/resize_observer';
+export {
+  EuiResizeObserver,
+  useResizeObserver,
+} from './observer/resize_observer';
 
 export { EuiSearchBar, Query, Ast } from './search_bar';
 

@@ -48,14 +48,15 @@ export const ResponsiveExample = {
         <div>
           <p>
             Pass an array of named breakpoints to either the{' '}
-            <EuiCode>EuiShowFor</EuiCode> or <EuiCode>EuiHideFor</EuiCode>{' '}
+            <strong>EuiShowFor</strong> or <strong>EuiHideFor</strong>{' '}
             components to make them responsive.
           </p>
 
           <p>
-            The sizing correlates with our <EuiCode>$euiBreakpoints</EuiCode>{' '}
-            SASS map. The named breakpoint starts at the pixel value provided
-            and ends before the next one.
+            The sizing correlates with our{' '}
+            <EuiCode language="scss">$euiBreakpoints</EuiCode> SASS map. The
+            named breakpoint starts at the pixel value provided and ends before
+            the next one.
           </p>
 
           <EuiCodeBlock language="scss" paddingSize="s">

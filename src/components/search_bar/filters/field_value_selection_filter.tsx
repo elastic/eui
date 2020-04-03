@@ -10,7 +10,7 @@ import { EuiIcon } from '../../icon';
 import { Query } from '../query';
 import { Clause, Value } from '../query/ast';
 
-interface FieldValueOptionType {
+export interface FieldValueOptionType {
   field?: string;
   value: Value;
   name?: string;
@@ -39,6 +39,7 @@ export interface FieldValueSelectionFilterConfigType {
   noOptionsMessage?: string;
   searchThreshold?: number;
   available?: () => boolean;
+  autoClose?: boolean;
 }
 
 export interface FieldValueSelectionFilterProps {
@@ -46,7 +47,6 @@ export interface FieldValueSelectionFilterProps {
   config: FieldValueSelectionFilterConfigType;
   query: Query;
   onChange: (query: Query) => void;
-  autoClose?: boolean;
 }
 
 const defaults = {
@@ -69,22 +69,15 @@ interface State {
   cachedOptions?: FieldValueOptionType[] | null;
 }
 
-type DefaultProps = Pick<FieldValueSelectionFilterProps, 'autoClose'>;
-
 export class FieldValueSelectionFilter extends Component<
   FieldValueSelectionFilterProps,
   State
 > {
-  static defaultProps: DefaultProps = {
-    autoClose: true,
-  };
-
   private readonly selectItems: EuiFilterSelectItem[];
   private searchInput: HTMLInputElement | null = null;
 
   constructor(props: FieldValueSelectionFilterProps) {
     super(props);
-
     const { options } = props.config;
 
     const preloadedOptions = isArray(options)
@@ -127,11 +120,46 @@ export class FieldValueSelectionFilter extends Component<
     this.setState({ options: null, error: null });
     loader()
       .then(options => {
+        const items: {
+          on: FieldValueOptionType[];
+          off: FieldValueOptionType[];
+          rest: FieldValueOptionType[];
+        } = {
+          on: [],
+          off: [],
+          rest: [],
+        };
+
+        const { query, config } = this.props;
+
+        const multiSelect = this.resolveMultiSelect();
+
+        if (options) {
+          options.forEach(op => {
+            const optionField = op.field || config.field;
+            if (optionField) {
+              const clause =
+                multiSelect === 'or'
+                  ? query.getOrFieldClause(optionField, op.value)
+                  : query.getSimpleFieldClause(optionField, op.value);
+              const checked = this.resolveChecked(clause);
+              if (!checked) {
+                items.rest.push(op);
+              } else if (checked === 'on') {
+                items.on.push(op);
+              } else {
+                items.off.push(op);
+              }
+            }
+            return;
+          });
+        }
+
         this.setState({
           error: null,
           options: {
             all: options,
-            shown: options,
+            shown: [...items.on, ...items.off, ...items.rest],
           },
         });
       })
@@ -214,7 +242,9 @@ export class FieldValueSelectionFilter extends Component<
     checked: 'on' | 'off' | undefined
   ) {
     const multiSelect = this.resolveMultiSelect();
-    const { autoClose } = this.props;
+    const {
+      config: { autoClose = true },
+    } = this.props;
 
     // we're closing popover only if the user can only select one item... if the
     // user can select more, we'll leave it open so she can continue selecting
@@ -370,15 +400,7 @@ export class FieldValueSelectionFilter extends Component<
       return;
     }
 
-    const items: {
-      on: ReactElement[];
-      off: ReactElement[];
-      rest: ReactElement[];
-    } = {
-      on: [],
-      off: [],
-      rest: [],
-    };
+    const items: ReactElement[] = [];
 
     this.state.options.shown.forEach((option, index) => {
       const optionField = option.field || field;
@@ -411,21 +433,10 @@ export class FieldValueSelectionFilter extends Component<
         </EuiFilterSelectItem>
       );
 
-      if (!checked) {
-        items.rest.push(item);
-      } else if (checked === 'on') {
-        items.on.push(item);
-      } else {
-        items.off.push(item);
-      }
-      return items;
+      items.push(item);
     });
 
-    return (
-      <div className="euiFilterSelect__items">
-        {[...items.on, ...items.off, ...items.rest]}
-      </div>
-    );
+    return <div className="euiFilterSelect__items">{items}</div>;
   }
 
   resolveChecked(clause: Clause | undefined): 'on' | 'off' | undefined {

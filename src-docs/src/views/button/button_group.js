@@ -32,6 +32,21 @@ export default class extends Component {
       },
     ];
 
+    this.toggleButtonsDisabled = [
+      {
+        id: `${idPrefix}3`,
+        label: 'Option one',
+      },
+      {
+        id: `${idPrefix}4`,
+        label: 'Option two is selected by default',
+      },
+      {
+        id: `${idPrefix}5`,
+        label: 'Option three',
+      },
+    ];
+
     this.toggleButtonsMulti = [
       {
         id: `${idPrefix2}0`,
@@ -109,11 +124,13 @@ export default class extends Component {
 
     this.state = {
       toggleIdSelected: `${idPrefix}1`,
+      toggleIdDisabled: `${idPrefix}4`,
       toggleIdToSelectedMap: {
         [`${idPrefix2}1`]: true,
       },
       toggleIconIdSelected: `${idPrefix3}1`,
       toggleIconIdToSelectedMap: {},
+      toggleIconIdToSelectedMapIcon: {},
       toggleCompressedIdSelected: `${idPrefix2}4`,
     };
   }
@@ -121,6 +138,12 @@ export default class extends Component {
   onChange = optionId => {
     this.setState({
       toggleIdSelected: optionId,
+    });
+  };
+
+  onChangeDisabled = optionId => {
+    this.setState({
+      toggleIdDisabled: optionId,
     });
   };
 
@@ -162,6 +185,19 @@ export default class extends Component {
     });
   };
 
+  onChangeIconsMultiIcons = optionId => {
+    const newToggleIconIdToSelectedMapIcon = {
+      ...this.state.toggleIconIdToSelectedMapIcon,
+      ...{
+        [optionId]: !this.state.toggleIconIdToSelectedMapIcon[optionId],
+      },
+    };
+
+    this.setState({
+      toggleIconIdToSelectedMapIcon: newToggleIconIdToSelectedMapIcon,
+    });
+  };
+
   render() {
     return (
       <Fragment>
@@ -193,9 +229,9 @@ export default class extends Component {
         <EuiButtonGroup
           legend="This is a disabled group"
           name="disabledGroup"
-          options={this.toggleButtons}
-          idSelected={this.state.toggleIdSelected}
-          onChange={this.onChange}
+          options={this.toggleButtonsDisabled}
+          idSelected={this.state.toggleIdDisabled}
+          onChange={this.onChangeDisabled}
           buttonSize="m"
           isDisabled
           isFullWidth
@@ -250,8 +286,8 @@ export default class extends Component {
             legend="Text style"
             className="eui-displayInlineBlock"
             options={this.toggleButtonsIconsMulti}
-            idToSelectedMap={this.state.toggleIconIdToSelectedMap}
-            onChange={this.onChangeIconsMulti}
+            idToSelectedMap={this.state.toggleIconIdToSelectedMapIcon}
+            onChange={this.onChangeIconsMultiIcons}
             type="multi"
             buttonSize="compressed"
             isIconOnly

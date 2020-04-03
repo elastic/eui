@@ -104,6 +104,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
       isLoading={false}
       needsUpdate={false}
       onClick={[Function]}
+      showTooltip={true}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
