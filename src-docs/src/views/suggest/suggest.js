@@ -6,7 +6,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const shortDescription = 'This is the description';
 
@@ -42,7 +42,7 @@ const sampleItems = [
 ];
 
 export default () => {
-  const idPrefix = makeId();
+  const idPrefix = htmlIdGenerator()();
 
   const radios = [
     { id: `${idPrefix}0`, value: 'unchanged', label: 'No new changes' },
