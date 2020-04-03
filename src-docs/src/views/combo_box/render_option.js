@@ -9,10 +9,9 @@ import {
   euiPaletteColorBlind,
   euiPaletteColorBlindBehindText,
 } from '../../../../src/services';
+
 const visColors = euiPaletteColorBlind();
-
 const visColorsBehindText = euiPaletteColorBlindBehindText();
-
 const options = [
   {
     value: {
@@ -87,6 +86,7 @@ const options = [
     color: visColorsBehindText[9],
   },
 ];
+
 export default () => {
   const [selectedOptions, setSelected] = useState([options[2], options[5]]);
 
