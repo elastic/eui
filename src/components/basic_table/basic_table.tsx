@@ -1031,10 +1031,12 @@ export class EuiBasicTable<T = any> extends Component<
       this.state.selection.length === 0 &&
       (!action.enabled || action.enabled(item));
 
-    let actualActions = column.actions;
-    if (column.actions.length > 2) {
+    let actualActions = column.actions.filter(
+      (action: Action<T>) => !action.available || action.available(item)
+    );
+    if (actualActions.length > 2) {
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = column.actions.filter(o => o.isPrimary);
+      const primaryActions = actualActions.filter(o => o.isPrimary);
       actualActions = primaryActions.slice(0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
