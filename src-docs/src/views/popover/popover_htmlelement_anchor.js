@@ -10,7 +10,8 @@ const PopoverApp = props => {
 
   useEffect(() => {
     props.anchor.addEventListener('click', onButtonClick);
-  });
+    return () => props.anchor.removeEventListener('click', onButtonClick);
+  }, [props.anchor]);
 
   const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
