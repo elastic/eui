@@ -41,9 +41,9 @@ const sampleItems = [
   },
 ];
 
-export default () => {
-  const idPrefix = htmlIdGenerator()();
+const idPrefix = htmlIdGenerator()();
 
+export default () => {
   const radios = [
     { id: `${idPrefix}0`, value: 'unchanged', label: 'No new changes' },
     { id: `${idPrefix}1`, value: 'unsaved', label: 'Not yet saved' },
@@ -67,7 +67,7 @@ export default () => {
       <EuiRadioGroup
         options={radios}
         idSelected={radioIdSelected}
-        onChange={onChange}
+        onChange={id => onChange(id)}
       />
       <EuiSpacer size="xl" />
       <EuiSuggest
