@@ -155,6 +155,7 @@ export default () => {
       disabled: false,
       content: (
         <div>
+          <EuiSpacer />
           <EuiTourStep
             {...euiTourStepFour}
             content={

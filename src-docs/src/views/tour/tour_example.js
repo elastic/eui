@@ -30,18 +30,16 @@ const stepSnippet = `
   isStepOpen={true}
   isTourActive={true}
   minWidth={300}
-  onSkip={() => alert('Skip the tour!')}
-  onEnd={() => alert('End the tour!')}
+  onFinish={() => alert('Done!')}
   step={1}
   stepsTotal={1}
-  title="An individual step"
-  subtitle="A tour"
+  title="Title of the current step"
+  subtitle="Title of the full tour"
   anchorPosition="rightUp">
   <EuiText>
     <p>The tour step anchor point.</p>
   </EuiText>
 </EuiTourStep>
-
 `;
 const tourSource = require('!!raw-loader!./tour');
 const tourHtml = renderToHtml(Tour);
