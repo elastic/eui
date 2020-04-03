@@ -8,18 +8,22 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const [forceClose, setForceClose] = useState(true);
+  const [trigger, setTrigger] = useState('close');
   const onChange = e => {
-    setForceClose(e.target.checked);
+    setTrigger(e.target.checked ? 'open' : 'close');
   };
 
   return (
     <div>
-      <EuiSwitch label="forceClose" checked={forceClose} onChange={onChange} />
+      <EuiSwitch
+        label={trigger !== 'open' ? 'open' : 'close'}
+        checked={trigger === 'open'}
+        onChange={onChange}
+      />
       <EuiSpacer />
       <EuiAccordion
         id="accordion1"
-        forceClose={forceClose}
+        trigger={trigger}
         buttonContent="Click me to toggle open / close">
         <EuiText>
           <p>

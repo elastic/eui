@@ -88,10 +88,10 @@ describe('EuiAccordion', () => {
       });
     });
 
-    describe('forceClose', () => {
+    describe('trigger', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiAccordion id={getId()} forceClose={true}>
+          <EuiAccordion id={getId()} trigger="close">
             <p>You can not see me.</p>
           </EuiAccordion>
         );

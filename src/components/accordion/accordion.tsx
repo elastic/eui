@@ -57,7 +57,7 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
     /**
      * Control the opening of accordin via prop
      */
-    forceClose?: boolean;
+    trigger?: 'close' | 'open';
   };
 
 export class EuiAccordion extends Component<
@@ -74,7 +74,9 @@ export class EuiAccordion extends Component<
   childWrapper: HTMLDivElement | null = null;
 
   state = {
-    isOpen: this.props.initialIsOpen,
+    isOpen: this.props.trigger
+      ? this.props.trigger === 'open'
+      : this.props.initialIsOpen,
   };
 
   setChildContentHeight = () => {
@@ -97,12 +99,14 @@ export class EuiAccordion extends Component<
   }
 
   onToggle = () => {
+    const { trigger } = this.props;
     this.setState(
       prevState => ({
-        isOpen: !prevState.isOpen,
+        isOpen: trigger ? trigger === 'open' : !prevState.isOpen,
       }),
       () => {
-        this.props.onToggle && this.props.onToggle(this.state.isOpen);
+        this.props.onToggle &&
+          this.props.onToggle(trigger ? trigger === 'open' : this.state.isOpen);
       }
     );
   };
@@ -123,14 +127,16 @@ export class EuiAccordion extends Component<
       paddingSize,
       initialIsOpen,
       arrowDisplay,
-      forceClose,
+      trigger,
       ...rest
     } = this.props;
+
+    const isOpen = trigger ? trigger === 'open' : this.state.isOpen;
 
     const classes = classNames(
       'euiAccordion',
       {
-        'euiAccordion-isOpen': this.state.isOpen && !forceClose,
+        'euiAccordion-isOpen': isOpen,
       },
       className
     );
@@ -148,7 +154,7 @@ export class EuiAccordion extends Component<
     );
 
     const iconClasses = classNames('euiAccordion__icon', {
-      'euiAccordion__icon-isOpen': this.state.isOpen && !forceClose,
+      'euiAccordion__icon-isOpen': isOpen,
     });
 
     let icon;
@@ -173,7 +179,7 @@ export class EuiAccordion extends Component<
         <div className="euiAccordion__triggerWrapper">
           <button
             aria-controls={id}
-            aria-expanded={!!this.state.isOpen && !forceClose}
+            aria-expanded={isOpen}
             onClick={this.onToggle}
             className={buttonClasses}
             type="button">
