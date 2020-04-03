@@ -20,7 +20,7 @@ export default () => {
   });
 
   const [example2, setExample2] = useState({
-    ivalue: 100,
+    value: 100,
     description: 'Is above',
   });
 
