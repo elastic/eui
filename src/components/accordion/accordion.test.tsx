@@ -87,6 +87,18 @@ describe('EuiAccordion', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('forceClose', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} forceClose={true}>
+            <p>You can not see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   describe('behavior', () => {
