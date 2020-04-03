@@ -7,7 +7,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 
 const idPrefix = htmlIdGenerator()();
 
-export default function() {
+export default () => {
   const checkboxes = [
     {
       id: `${idPrefix}0`,
