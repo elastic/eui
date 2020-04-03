@@ -39,7 +39,7 @@ export default () => {
   };
 
   const facet2Clicked = id => {
-    setDisabled(selectedOptionId => (selectedOptionId === id ? false : true));
+    setDisabled(disabled => !disabled);
     setSelectedOptionId(selectedOptionId =>
       selectedOptionId === id ? undefined : id
     );
