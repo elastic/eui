@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { EuiText, EuiSpacer, EuiTourStep } from '../../../../src/components';
+import {
+  EuiLink,
+  EuiText,
+  EuiSpacer,
+  EuiTourStep,
+} from '../../../../src/components';
 
 export default () => {
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <div>
       <EuiTourStep
@@ -11,17 +17,18 @@ export default () => {
             <p>The tour step content.</p>
           </EuiText>
         }
-        isStepOpen={true}
+        isStepOpen={isOpen}
         isTourActive={true}
         minWidth={300}
-        onFinish={() => alert('Done!')}
+        onFinish={() => setIsOpen(false)}
         step={1}
         stepsTotal={1}
         title="Title of the current step"
         subtitle="Title of the full tour"
         anchorPosition="rightUp">
         <EuiText>
-          <p>The tour step anchor point.</p>
+          The tour step{' '}
+          <EuiLink onClick={() => setIsOpen(!isOpen)}>anchor point</EuiLink>.
         </EuiText>
       </EuiTourStep>
       <EuiSpacer size="xxl" />
