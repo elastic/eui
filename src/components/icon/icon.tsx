@@ -457,7 +457,7 @@ export type IconSize = keyof typeof sizeToClassNameMap;
 export type EuiIconProps = CommonProps &
   Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
     /**
-     * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
+     * `Enum` is any of the named icons listed in the docs, `string` is usually a URL to an SVG file, and `elementType` is any React SVG component
      */
     type: IconType;
     /**
