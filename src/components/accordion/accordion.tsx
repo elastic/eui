@@ -54,6 +54,9 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
      * Placing on the `right` doesn't work with `extraAction` and so it will be ignored
      */
     arrowDisplay?: 'left' | 'right' | 'none';
+    /**
+     * Control the opening of accordin via prop
+     */
     forceClose?: boolean;
   };
 
