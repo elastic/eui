@@ -11,7 +11,7 @@ import {
   EuiPopover,
 } from '../../../../src/components';
 
-export default function() {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onMenuButtonClick = () => {
