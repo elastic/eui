@@ -221,7 +221,7 @@ export const useColumnSelector = (
       {allowColumnHiding && (
         <EuiPopoverFooter>
           <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween">
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
                 flush="left"
@@ -232,7 +232,7 @@ export const useColumnSelector = (
                 />
               </EuiButtonEmpty>
             </EuiFlexItem>
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
                 flush="right"
