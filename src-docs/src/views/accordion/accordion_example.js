@@ -103,6 +103,12 @@ const accordionGrowHtml = renderToHtml(AccordionGrow);
 import AccordionForceClose from './accordion_forceClose';
 const accordionForceCloseSource = require('!!raw-loader!./accordion_forceClose');
 const accordionForceCloseHtml = renderToHtml(AccordionForceClose);
+const accordionForceCloseSnippet = `<EuiAccordion
+  id={accordionId}
+  forceClose={true}
+  buttonContent="Click me to toggle open / close">
+    <!-- Content to show when expanded -->
+</EuiAccordion>`;
 
 export const AccordionExample = {
   title: 'Accordion',
@@ -344,7 +350,7 @@ export const AccordionExample = {
           state.
         </p>
       ),
-      snippet: accordionCallbackSnippet,
+      snippet: accordionForceCloseSnippet,
       demo: <AccordionForceClose />,
     },
   ],
