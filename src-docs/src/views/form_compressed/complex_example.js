@@ -25,30 +25,30 @@ import {
 import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
-  const idPrefix2 = htmlIdGenerator();
-  const idPrefix3 = htmlIdGenerator();
+  const idPrefix = htmlIdGenerator();
+  const idPrefix1 = htmlIdGenerator();
 
   const typeStyleToggleButtons = [
     {
-      id: `${idPrefix3}3`,
+      id: `${idPrefix1}3`,
       label: 'Bold',
       name: 'bold',
       iconType: 'editorBold',
     },
     {
-      id: `${idPrefix3}4`,
+      id: `${idPrefix1}4`,
       label: 'Italic',
       name: 'italic',
       iconType: 'editorItalic',
     },
     {
-      id: `${idPrefix3}5`,
+      id: `${idPrefix1}5`,
       label: 'Underline',
       name: 'underline',
       iconType: 'editorUnderline',
     },
     {
-      id: `${idPrefix3}6`,
+      id: `${idPrefix1}6`,
       label: 'Strikethrough',
       name: 'strikethrough',
       iconType: 'editorStrike',
@@ -57,15 +57,15 @@ export default () => {
 
   const granularityToggleButtons = [
     {
-      id: `${idPrefix2}3`,
+      id: `${idPrefix}3`,
       label: 'fine',
     },
     {
-      id: `${idPrefix2}4`,
+      id: `${idPrefix}4`,
       label: 'rough',
     },
     {
-      id: `${idPrefix2}5`,
+      id: `${idPrefix}5`,
       label: 'coarse',
     },
   ];
@@ -84,7 +84,7 @@ export default () => {
   const [
     granularityToggleButtonsIdSelected,
     setGranularityToggleButtonsIdSelected,
-  ] = useState(`${idPrefix2}4`);
+  ] = useState(`${idPrefix}4`);
 
   const onPopoverSliderValueChange = e => {
     setPopoverSliderValues(e.target.value);
