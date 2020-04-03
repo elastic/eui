@@ -42,7 +42,8 @@ import { EuiIcon } from '../icon';
 import { EuiKeyboardAccessible, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
-import makeId from '../form/form_row/make_id';
+
+import { htmlIdGenerator } from '../../services/accessibility';
 import { Action } from './action_types';
 import {
   EuiTableActionsColumnType,
@@ -617,7 +618,7 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
         {(selectAllRows: string) => (
           <EuiCheckbox
-            id={`_selection_column-checkbox_${makeId()}`}
+            id={`_selection_column-checkbox_${htmlIdGenerator()()}`}
             type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}

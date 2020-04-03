@@ -8,7 +8,8 @@ import {
   EuiFormControlLayoutDelimited,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-import makeId from '../form_row/make_id';
+
+import { htmlIdGenerator } from '../../../services/accessibility';
 
 import { EuiRangeProps } from './range';
 import { EuiRangeHighlight } from './range_highlight';
@@ -102,7 +103,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   };
 
   state = {
-    id: this.props.id || makeId(),
+    id: this.props.id || htmlIdGenerator()(),
     hasFocus: false,
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
