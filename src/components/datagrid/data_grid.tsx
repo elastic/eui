@@ -494,7 +494,6 @@ const useFocus = (
           },
     [hasHadFocus, setFocusedCell, headerIsInteractive]
   );
-  // const focusProps = useMemo(() => ({}), []);
 
   return [focusProps, focusedCell, setFocusedCell];
 };
