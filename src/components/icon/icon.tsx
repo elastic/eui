@@ -638,7 +638,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     if (typeof icon === 'string') {
       return (
         <img
-          alt={title}
+          alt={title ? title : ''}
           src={icon}
           className={classes}
           tabIndex={tabIndex}
