@@ -36,7 +36,7 @@ export default () => {
           title="Lists"
           description={
             <span>
-              Wrap a lists with <EuiCode>EuiText size=&quot;s&quot;</EuiCode> to
+              Wrap a lists with <strong>EuiText size=&quot;s&quot;</strong> to
               match the description text.
             </span>
           }>

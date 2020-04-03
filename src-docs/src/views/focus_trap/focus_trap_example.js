@@ -1,7 +1,6 @@
 import React from 'react';
-
+import { Link } from 'react-router';
 import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiFocusTrap } from '../../../../src/components';
@@ -11,7 +10,7 @@ const focusTrapSource = require('!!raw-loader!./focus_trap');
 const focusTrapHtml = renderToHtml(FocusTrap);
 
 export const FocusTrapExample = {
-  title: 'Focus Trap',
+  title: 'Focus trap',
   sections: [
     {
       source: [
@@ -27,15 +26,21 @@ export const FocusTrapExample = {
       text: (
         <React.Fragment>
           <p>
-            Use <EuiCode>EuiFocusTrap</EuiCode> to prevent keyboard-initiated
+            Use <strong>EuiFocusTrap</strong> to prevent keyboard-initiated
             focus from leaving a defined area. Temporary flows and UX escapes
-            that occur in components such as
-            <EuiCode>EuiModal</EuiCode> and <EuiCode>EuiFlyout</EuiCode> are
-            prime examples.
+            that occur in components such as{' '}
+            <Link to="/layout/modal">
+              <strong>EuiModal</strong>
+            </Link>{' '}
+            and{' '}
+            <Link to="/layout/flyout">
+              <strong>EuiFlyout</strong>
+            </Link>{' '}
+            are prime examples.
           </p>
           <p>
-            For components that project content in a React portal,
-            <EuiCode>EuiFocusTrap</EuiCode> will maintain the tab order expected
+            For components that project content in a React portal,{' '}
+            <strong>EuiFocusTrap</strong> will maintain the tab order expected
             by users.
           </p>
           <p>

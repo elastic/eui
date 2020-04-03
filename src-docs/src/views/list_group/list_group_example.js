@@ -193,7 +193,7 @@ export const ListGroupExample = {
       text: (
         <>
           <p>
-            <strong>EuiListGroupItem</strong>s will inherit the color from their
+            <strong>EuiListGroupItems</strong> will inherit the color from their
             element type whether it is a <EuiCode>button</EuiCode>,{' '}
             <EuiCode>anchor</EuiCode>, or <EuiCode>span</EuiCode>. You can
             enforce a different color of <EuiCode>primary</EuiCode>,{' '}
@@ -203,7 +203,7 @@ export const ListGroupExample = {
           </p>
           <p>
             They also accept options for text size;{' '}
-            <EuiCode>xs | s | m | l</EuiCode>.
+            <EuiCode language="ts">{"'xs' | 's' | 'm' | 'l'"}</EuiCode>.
           </p>
         </>
       ),
@@ -241,7 +241,7 @@ export const ListGroupExample = {
             a subset of links (most likely shown in different list group). By
             providing an <EuiCode>onPinClick</EuiCode> handler, the component
             will automatically add the pin action to the item. However, the
-            consuming application must manage the <EuiCode>listItem</EuiCode>s
+            consuming application must manage the <EuiCode>listItems</EuiCode>
             and their <EuiCode>pinned</EuiCode> state.
           </p>
           <p>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
   EuiHeader,
@@ -14,22 +14,16 @@ import HeaderAppMenu from './header_app_menu';
 import HeaderUserMenu from './header_user_menu';
 import HeaderSpacesMenu from './header_spaces_menu';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default () => {
+  const renderLogo = () => (
+    <EuiHeaderLogo
+      iconType="logoKibana"
+      href="#"
+      aria-label="Go to home page"
+    />
+  );
 
-  renderLogo() {
-    return (
-      <EuiHeaderLogo
-        iconType="logoKibana"
-        href="#"
-        aria-label="Go to home page"
-      />
-    );
-  }
-
-  renderBreadcrumbs() {
+  const renderBreadcrumbs = () => {
     const breadcrumbs = [
       {
         text: 'Management',
@@ -71,42 +65,38 @@ export default class extends Component {
     ];
 
     return <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />;
-  }
+  };
 
-  renderSearch() {
-    return (
-      <EuiHeaderSectionItemButton aria-label="Search">
-        <EuiIcon type="search" size="m" />
-      </EuiHeaderSectionItemButton>
-    );
-  }
+  const renderSearch = () => (
+    <EuiHeaderSectionItemButton aria-label="Search">
+      <EuiIcon type="search" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
 
-  render() {
-    return (
-      <EuiHeader>
-        <EuiHeaderSection grow={false}>
-          <EuiHeaderSectionItem border="right">
-            {this.renderLogo()}
-          </EuiHeaderSectionItem>
-          <EuiHeaderSectionItem border="right">
-            <HeaderSpacesMenu />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
+  return (
+    <EuiHeader>
+      <EuiHeaderSection grow={false}>
+        <EuiHeaderSectionItem border="right">
+          {renderLogo()}
+        </EuiHeaderSectionItem>
+        <EuiHeaderSectionItem border="right">
+          <HeaderSpacesMenu />
+        </EuiHeaderSectionItem>
+      </EuiHeaderSection>
 
-        {this.renderBreadcrumbs()}
+      {renderBreadcrumbs()}
 
-        <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem>{this.renderSearch()}</EuiHeaderSectionItem>
+      <EuiHeaderSection side="right">
+        <EuiHeaderSectionItem>{renderSearch()}</EuiHeaderSectionItem>
 
-          <EuiHeaderSectionItem>
-            <HeaderUserMenu />
-          </EuiHeaderSectionItem>
+        <EuiHeaderSectionItem>
+          <HeaderUserMenu />
+        </EuiHeaderSectionItem>
 
-          <EuiHeaderSectionItem>
-            <HeaderAppMenu />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
-    );
-  }
-}
+        <EuiHeaderSectionItem>
+          <HeaderAppMenu />
+        </EuiHeaderSectionItem>
+      </EuiHeaderSection>
+    </EuiHeader>
+  );
+};

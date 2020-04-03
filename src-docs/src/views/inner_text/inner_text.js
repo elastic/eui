@@ -5,12 +5,11 @@ import { EuiInnerText } from '../../../../src/components/inner_text';
 import {
   EuiBadge,
   EuiCode,
-  EuiFlexGroup,
   EuiHighlight,
-  EuiFlexItem,
   EuiHorizontalRule,
   EuiPanel,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => {
@@ -35,15 +34,12 @@ export default () => {
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  <span ref={ref} title={innerText}>
-                    Simple string content
-                  </span>
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              <span ref={ref} title={innerText}>
+                Simple string content
+              </span>
+            </EuiPanel>
+            <EuiSpacer />
             <p className="eui-displayInlineBlock">
               <strong>Output:</strong>
             </p>{' '}
@@ -60,18 +56,15 @@ export default () => {
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  <span ref={ref} title={innerText}>
-                    <EuiHighlight search="content">
-                      EuiHighlight content
-                    </EuiHighlight>{' '}
-                    <EuiBadge>with EuiBadge</EuiBadge>
-                  </span>
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              <span ref={ref} title={innerText}>
+                <EuiHighlight search="content">
+                  EuiHighlight content
+                </EuiHighlight>{' '}
+                <EuiBadge>with EuiBadge</EuiBadge>
+              </span>
+            </EuiPanel>
+            <EuiSpacer />
             <p className="eui-displayInlineBlock">
               <strong>Output:</strong>
             </p>{' '}
@@ -88,15 +81,12 @@ export default () => {
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  <span ref={ref} title={innerText}>
-                    {thing}
-                  </span>
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              <span ref={ref} title={innerText}>
+                {thing}
+              </span>
+            </EuiPanel>
+            <EuiSpacer />
             <p className="eui-displayInlineBlock">
               <strong>Output:</strong>
             </p>{' '}
@@ -113,20 +103,17 @@ export default () => {
       <EuiInnerText>
         {(ref, innerText) => (
           <React.Fragment>
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiPanel paddingSize="s" grow={false}>
-                  {React.createElement(
-                    type,
-                    {
-                      ref,
-                      title: innerText,
-                    },
-                    thing2
-                  )}
-                </EuiPanel>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
+              {React.createElement(
+                type,
+                {
+                  ref,
+                  title: innerText,
+                },
+                thing2
+              )}
+            </EuiPanel>
+            <EuiSpacer />
             <p className="eui-displayInlineBlock">
               <strong>Output:</strong>
             </p>{' '}

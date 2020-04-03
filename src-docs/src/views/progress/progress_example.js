@@ -47,7 +47,7 @@ export const ProgressExample = {
       ],
       text: (
         <p>
-          The <EuiCode>Progress</EuiCode> component by default will display in
+          The <strong>EuiProgress</strong> component by default will display in
           an indeterminate loading state (rendered as a single div) until you
           define a <EuiCode>max</EuiCode> and <EuiCode>value</EuiCode> prop. The{' '}
           <EuiCode>size</EuiCode> prop refers to its vertical height. It will
@@ -100,19 +100,18 @@ export const ProgressExample = {
             options, the background color of the base bar is dropped (since the
             context of width is already known from your wrapping element). For
             the absolute option, make sure that your wrapping element has{' '}
-            <EuiCode>position: relative</EuiCode> applied.
+            <EuiCode language="sass">position: relative</EuiCode> applied.
           </p>
           <EuiCallOut
             title="Note about progress bars over fixed headers"
             iconType="iInCircle">
             <p>
-              Using <EuiCode>EuiProgress</EuiCode> with a{' '}
-              <EuiCode>fixed</EuiCode> position may result in it being overlayed
-              when its parent wrapper has a <EuiCode>z-index</EuiCode> value
-              lower than another fixed element, such as{' '}
-              <EuiCode>EuiHeader</EuiCode>. In that case, wrap{' '}
-              <EuiCode>EuiProgress</EuiCode> in an <EuiCode>EuiPortal</EuiCode>{' '}
-              as seen on the Snippet tab.
+              Using <strong>EuiProgress</strong> with a <EuiCode>fixed</EuiCode>{' '}
+              position may result in it being overlayed when its parent wrapper
+              has a <EuiCode>z-index</EuiCode> value lower than another fixed
+              element, such as <strong>EuiHeader</strong>. In that case, wrap{' '}
+              <strong>EuiProgress</strong> in an <strong>EuiPortal</strong> as
+              seen on the Snippet tab.
             </p>
           </EuiCallOut>
         </div>

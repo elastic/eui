@@ -26,7 +26,7 @@ const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
 const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
 
 export const ColorPaletteExample = {
-  title: 'Color Palettes',
+  title: 'Color palettes',
   intro: (
     <>
       <EuiText>
