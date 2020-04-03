@@ -12,7 +12,7 @@ export default () => {
   };
 
   const toggleOnFilter = () => {
-    setIsOnFilterOn(isOnFilterOn);
+    setIsOnFilterOn(!isOnFilterOn);
     setIsOffFilterOn(isOffFilterOn && !isOnFilterOn ? false : isOffFilterOn);
   };
 

@@ -24,7 +24,7 @@ export default () => {
   };
 
   const toggleOffFilter = () => {
-    setIsOffFilterOn(isOffFilterOn);
+    setIsOffFilterOn(!isOffFilterOn);
     setIsOnFilterOn(isOnFilterOn && !isOffFilterOn ? false : isOnFilterOn);
   };
 
