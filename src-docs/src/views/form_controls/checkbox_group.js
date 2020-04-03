@@ -1,68 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiCheckboxGroup } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+const idPrefix = htmlIdGenerator()();
 
-    const idPrefix = makeId();
+export default function() {
+  const checkboxes = [
+    {
+      id: `${idPrefix}0`,
+      label: 'Option one',
+      'data-test-sub': 'dts_test',
+    },
+    {
+      id: `${idPrefix}1`,
+      label: 'Option two is checked by default',
+      className: 'classNameTest',
+    },
+    {
+      id: `${idPrefix}2`,
+      label: 'Option three is disabled',
+      disabled: true,
+    },
+  ];
+  const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
+    [`${idPrefix}1`]: true,
+  });
 
-    this.checkboxes = [
-      {
-        id: `${idPrefix}0`,
-        label: 'Option one',
-        'data-test-sub': 'dts_test',
-      },
-      {
-        id: `${idPrefix}1`,
-        label: 'Option two is checked by default',
-        className: 'classNameTest',
-      },
-      {
-        id: `${idPrefix}2`,
-        label: 'Option three is disabled',
-        disabled: true,
-      },
-    ];
-
-    this.state = {
-      checkboxIdToSelectedMap: {
-        [`${idPrefix}1`]: true,
-      },
-    };
-  }
-
-  onChange = optionId => {
+  const onChange = optionId => {
     const newCheckboxIdToSelectedMap = {
-      ...this.state.checkboxIdToSelectedMap,
+      ...checkboxIdToSelectedMap,
       ...{
-        [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
+        [optionId]: !checkboxIdToSelectedMap[optionId],
       },
     };
-
-    this.setState({
-      checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
-    });
+    setCheckboxIdToSelectedMap(newCheckboxIdToSelectedMap);
   };
 
-  render() {
-    return (
-      /* DisplayToggles wrapper for Docs only */
-      <DisplayToggles
-        canLoading={false}
-        canReadOnly={false}
-        canInvalid={false}
-        canFullWidth={false}>
-        <EuiCheckboxGroup
-          options={this.checkboxes}
-          idToSelectedMap={this.state.checkboxIdToSelectedMap}
-          onChange={this.onChange}
-        />
-      </DisplayToggles>
-    );
-  }
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles
+      canLoading={false}
+      canReadOnly={false}
+      canInvalid={false}
+      canFullWidth={false}>
+      <EuiCheckboxGroup
+        options={checkboxes}
+        idToSelectedMap={checkboxIdToSelectedMap}
+        onChange={id => onChange(id)}
+      />
+    </DisplayToggles>
+  );
 }
