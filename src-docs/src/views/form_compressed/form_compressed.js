@@ -18,8 +18,7 @@ import makeId from '../../../../src/components/form/form_row/make_id';
 export default () => {
   const idPrefix = makeId();
 
-  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
-  const [checkboxes] = useState([
+  const checkboxes = [
     {
       id: `${idPrefix}0`,
       label: 'Option one',
@@ -32,7 +31,9 @@ export default () => {
       id: `${idPrefix}2`,
       label: 'Option three',
     },
-  ]);
+  ];
+
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
     [`${idPrefix}1`]: true,
   });
