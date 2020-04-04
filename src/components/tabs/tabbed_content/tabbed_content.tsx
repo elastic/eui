@@ -172,6 +172,7 @@ export class EuiTabbedContent extends Component<
     return (
       <div ref={this.divRef} className={className} {...rest}>
         <EuiTabs
+          ref={this.divRef}
           expand={expand}
           display={display}
           size={size}
