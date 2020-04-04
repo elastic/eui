@@ -170,7 +170,7 @@ export class EuiTabbedContent extends Component<
     const { content: selectedTabContent, id: selectedTabId } = selectedTab!;
 
     return (
-      <div ref={this.divRef} className={className} {...rest}>
+      <div className={className} {...rest}>
         <EuiTabs
           ref={this.divRef}
           expand={expand}
