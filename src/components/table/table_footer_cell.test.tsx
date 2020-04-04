@@ -5,18 +5,14 @@ import { requiredProps } from '../../test/required_props';
 import { EuiTableFooterCell } from './table_footer_cell';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
+import { WARNING_MESSAGE } from './utils';
 
 describe('EuiTableFooterCell', () => {
   const _consoleWarn = console.warn;
   beforeAll(() => {
     console.warn = (...args: [any?, ...any[]]) => {
       // Suppress an expected warning
-      if (
-        args.length === 1 &&
-        args[0] ===
-          'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
-      )
-        return;
+      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
       _consoleWarn.apply(console, args);
     };
   });

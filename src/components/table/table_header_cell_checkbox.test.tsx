@@ -3,18 +3,14 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
+import { WARNING_MESSAGE } from './utils';
 
 describe('EuiTableHeaderCellCheckbox', () => {
   const _consoleWarn = console.warn;
   beforeAll(() => {
     console.warn = (...args: [any?, ...any[]]) => {
       // Suppress an expected warning
-      if (
-        args.length === 1 &&
-        args[0] ===
-          'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
-      )
-        return;
+      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
       _consoleWarn.apply(console, args);
     };
   });

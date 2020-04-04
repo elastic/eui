@@ -5,6 +5,7 @@ import { requiredProps } from '../../test/required_props';
 import { EuiTableHeaderCell } from './table_header_cell';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
+import { WARNING_MESSAGE } from './utils';
 
 test('renders EuiTableHeaderCell', () => {
   const component = (
@@ -45,12 +46,7 @@ describe('width and style', () => {
   beforeAll(() => {
     console.warn = (...args: [any?, ...any[]]) => {
       // Suppress an expected warning
-      if (
-        args.length === 1 &&
-        args[0] ===
-          'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
-      )
-        return;
+      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
       _consoleWarn.apply(console, args);
     };
   });
