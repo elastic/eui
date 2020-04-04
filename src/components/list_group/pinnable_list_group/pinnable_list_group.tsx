@@ -6,14 +6,20 @@ import { EuiI18n } from '../../i18n';
 import { EuiListGroup, EuiListGroupProps } from '../list_group';
 import { EuiListGroupItemProps } from '../list_group_item';
 
-const pinExtraAction: EuiListGroupItemProps['extraAction'] = {
+const pinExtraAction: Omit<
+  EuiListGroupItemProps['extraAction'],
+  'aria-hidden' // aria-label will be filled in below
+> = {
   color: 'primary',
   iconType: 'pinFilled',
   iconSize: 's',
   className: 'euiPinnableListGroup__itemExtraAction',
 };
 
-const pinnedExtraAction: EuiListGroupItemProps['extraAction'] = {
+const pinnedExtraAction: Omit<
+  EuiListGroupItemProps['extraAction'],
+  'aria-hidden' // aria-label will be filled in below
+> = {
   color: 'primary',
   iconType: 'pinFilled',
   iconSize: 's',

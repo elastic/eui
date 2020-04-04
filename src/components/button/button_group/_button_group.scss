@@ -53,7 +53,7 @@
 }
 
 @each $name, $color in $euiButtonTypes {
-  .euiButtonGroup--#{$name}:not(.euiButtonGroup--disabled) {
+  .euiButtonGroup--#{$name}:not(.euiButtonGroup--disabled):not(.euiButtonGroup--compressed) {
     $shadowColor: $euiShadowColor;
     @if ($name == 'ghost') {
       $shadowColor: $euiColorInk;
@@ -64,6 +64,11 @@
 
     @include euiSlightShadow($shadowColor);
   }
+}
+
+.euiButtonGroup__button {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .euiButtonGroup__fieldset {
@@ -98,6 +103,7 @@
   .euiButton__content {
     flex-direction: column;
     padding: 0 $euiSizeS;
+    justify-content: center;
   }
 
   .euiIcon {
@@ -106,20 +112,15 @@
   }
 }
 
-
 @include euiBreakpoint('xs', 's') {
   .euiButtonGroup__fieldset {
     display: block;
   }
 
-  // .euiButtonGroup__toggle {
-  //   flex: 1;
-  //   min-width: 0;
-
-  //   // .euiButtonGroup__button {
-  //   //   min-width: 0;
-  //   // }
-  // }
+  .euiButtonGroup__button {
+    flex: 1;
+    min-width: 0;
+  }
 }
 
 .euiButtonGroup--compressed {

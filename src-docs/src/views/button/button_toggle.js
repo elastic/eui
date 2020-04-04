@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-import { EuiButton, EuiButtonIcon } from '../../../../src/components';
+import {
+  EuiButton,
+  EuiButtonIcon,
+  EuiSpacer,
+  EuiTitle,
+} from '../../../../src/components';
 
 export default () => {
   const [toggle0On, setToggle0On] = useState(false);
@@ -9,7 +14,7 @@ export default () => {
   const [toggle3On, setToggle3On] = useState(true);
 
   return (
-    <div>
+    <>
       <EuiButton
         fill={toggle0On}
         aria-pressed={toggle0On}
@@ -44,6 +49,18 @@ export default () => {
           setToggle3On(!toggle3On);
         }}
       />
-    </div>
+      <EuiSpacer size="m" />
+      <EuiTitle size="xxs">
+        <h3>Disabled</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButton isDisabled={true} fill={false}>
+        Can&apos;t toggle this
+      </EuiButton>
+      &emsp;
+      <EuiButton isDisabled={true} fill={true}>
+        Can&apos;t toggle this either
+      </EuiButton>
+    </>
   );
 };
