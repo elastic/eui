@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useRef } from 'react';
 
 import {
   EuiPage,
@@ -26,408 +26,377 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import { keyCodes } from '../../../../src/services';
-
 import HeaderUserMenu from '../header/header_user_menu';
 import HeaderSpacesMenu from '../header/header_spaces_menu';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
-    this.state = {
-      isFullScreen: false,
-    };
+  const faveExtraAction = {
+    color: 'subdued',
+    iconType: 'starEmpty',
+    iconSize: 's',
+    'aria-label': 'Add to favorites',
+  };
 
-    const faveExtraAction = {
-      color: 'subdued',
+  const pinExtraAction = {
+    color: 'subdued',
+    iconType: 'pin',
+    iconSize: 's',
+  };
+
+  const pinExtraActionFn = val => {
+    pinExtraAction['aria-label'] = `Pin ${val} to top`;
+    return pinExtraAction;
+  };
+
+  const topLinks = [
+    {
+      label: 'Recently viewed',
+      iconType: 'clock',
+      flyoutMenu: {
+        title: 'Recent items',
+        listItems: [
+          {
+            label: 'My dashboard',
+            href: '#/layout/nav-drawer',
+            iconType: 'dashboardApp',
+            extraAction: faveExtraAction,
+          },
+          {
+            label: 'Workpad with title that wraps',
+            href: '#/layout/nav-drawer',
+            iconType: 'canvasApp',
+            extraAction: faveExtraAction,
+          },
+          {
+            label: 'My logs',
+            href: '#/layout/nav-drawer',
+            iconType: 'logsApp',
+            'aria-label': 'This is an alternate aria-label',
+            extraAction: faveExtraAction,
+          },
+        ],
+      },
+    },
+    {
+      label: 'Favorites',
       iconType: 'starEmpty',
-      iconSize: 's',
-      'aria-label': 'Add to favorites',
-    };
-
-    const pinExtraAction = {
-      color: 'subdued',
-      iconType: 'pin',
-      iconSize: 's',
-    };
-
-    const pinExtraActionFn = val => {
-      pinExtraAction['aria-label'] = `Pin ${val} to top`;
-      return pinExtraAction;
-    };
-
-    this.topLinks = [
-      {
-        label: 'Recently viewed',
-        iconType: 'clock',
-        flyoutMenu: {
-          title: 'Recent items',
-          listItems: [
-            {
-              label: 'My dashboard',
-              href: '#/layout/nav-drawer',
-              iconType: 'dashboardApp',
-              extraAction: faveExtraAction,
+      flyoutMenu: {
+        title: 'Favorite items',
+        listItems: [
+          {
+            label: 'My workpad',
+            href: '#/layout/nav-drawer',
+            iconType: 'canvasApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starFilled',
+              iconSize: 's',
+              'aria-label': 'Remove from favorites',
+              alwaysShow: true,
             },
-            {
-              label: 'Workpad with title that wraps',
-              href: '#/layout/nav-drawer',
-              iconType: 'canvasApp',
-              extraAction: faveExtraAction,
+          },
+          {
+            label: 'My logs',
+            href: '#/layout/nav-drawer',
+            iconType: 'logsApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starFilled',
+              iconSize: 's',
+              'aria-label': 'Remove from favorites',
+              alwaysShow: true,
             },
-            {
-              label: 'My logs',
-              href: '#/layout/nav-drawer',
-              iconType: 'logsApp',
-              'aria-label': 'This is an alternate aria-label',
-              extraAction: faveExtraAction,
-            },
-          ],
-        },
+          },
+        ],
       },
-      {
-        label: 'Favorites',
-        iconType: 'starEmpty',
-        flyoutMenu: {
-          title: 'Favorite items',
-          listItems: [
-            {
-              label: 'My workpad',
-              href: '#/layout/nav-drawer',
-              iconType: 'canvasApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starFilled',
-                iconSize: 's',
-                'aria-label': 'Remove from favorites',
-                alwaysShow: true,
-              },
+    },
+  ];
+
+  const adminLinks = [
+    {
+      label: 'Admin',
+      iconType: 'managementApp',
+      flyoutMenu: {
+        title: 'Tools and settings',
+        listItems: [
+          {
+            label: 'Dev tools',
+            href: '#/layout/nav-drawer',
+            iconType: 'devToolsApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add to Tools and Settings to favorites',
             },
-            {
-              label: 'My logs',
-              href: '#/layout/nav-drawer',
-              iconType: 'logsApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starFilled',
-                iconSize: 's',
-                'aria-label': 'Remove from favorites',
-                alwaysShow: true,
-              },
+          },
+          {
+            label: 'Stack Monitoring',
+            href: '#/layout/nav-drawer',
+            iconType: 'monitoringApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Stack Monitoring to favorites',
             },
-          ],
-        },
+          },
+          {
+            label: 'Stack Management',
+            href: '#/layout/nav-drawer',
+            iconType: 'managementApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Stack Management to favorites',
+            },
+          },
+          {
+            label: 'Nature Plugin (image as icon)',
+            href: '#/layout/nav-drawer',
+            extraAction: { ...pinExtraActionFn('Nature Plugin') },
+            icon: (
+              <EuiImage
+                size="s"
+                alt="Random nature image"
+                url="https://source.unsplash.com/300x300/?Nature"
+              />
+            ),
+          },
+        ],
       },
-    ];
+    },
+  ];
 
-    this.adminLinks = [
-      {
-        label: 'Admin',
-        iconType: 'managementApp',
-        flyoutMenu: {
-          title: 'Tools and settings',
-          listItems: [
-            {
-              label: 'Dev tools',
-              href: '#/layout/nav-drawer',
-              iconType: 'devToolsApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add to Tools and Settings to favorites',
-              },
+  const analyzeLinks = [
+    {
+      label: 'Analyze',
+      iconType: 'logoBusinessAnalytics',
+      flyoutMenu: {
+        title: 'Analyze your data',
+        listItems: [
+          {
+            label: 'Discover',
+            href: '#/layout/nav-drawer',
+            iconType: 'discoverApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Discover to favorites',
             },
-            {
-              label: 'Stack Monitoring',
-              href: '#/layout/nav-drawer',
-              iconType: 'monitoringApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Stack Monitoring to favorites',
-              },
+          },
+          {
+            label: 'Visualize',
+            href: '#/layout/nav-drawer',
+            iconType: 'visualizeApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Visualize to favorites',
             },
-            {
-              label: 'Stack Management',
-              href: '#/layout/nav-drawer',
-              iconType: 'managementApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Stack Management to favorites',
-              },
+          },
+          {
+            label: 'Canvas',
+            href: '#/layout/nav-drawer',
+            iconType: 'canvasApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Canvas to favorites',
             },
-            {
-              label: 'Nature Plugin (image as icon)',
-              href: '#/layout/nav-drawer',
-              extraAction: { ...pinExtraActionFn('Nature Plugin') },
-              icon: (
-                <EuiImage
-                  size="s"
-                  alt="Random nature image"
-                  url="https://source.unsplash.com/300x300/?Nature"
-                />
-              ),
+          },
+          {
+            label: 'Maps',
+            href: '#/layout/nav-drawer',
+            iconType: 'gisApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Maps to favorites',
             },
-          ],
-        },
+          },
+          {
+            label: 'Machine Learning',
+            href: '#/layout/nav-drawer',
+            iconType: 'machineLearningApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Machine Learning to favorites',
+            },
+          },
+          {
+            label: 'Graph',
+            href: '#/layout/nav-drawer',
+            iconType: 'graphApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Graph to favorites',
+            },
+          },
+        ],
       },
-    ];
+    },
+  ];
 
-    this.analyzeLinks = [
-      {
-        label: 'Analyze',
-        iconType: 'logoBusinessAnalytics',
-        flyoutMenu: {
-          title: 'Analyze your data',
-          listItems: [
-            {
-              label: 'Discover',
-              href: '#/layout/nav-drawer',
-              iconType: 'discoverApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Discover to favorites',
-              },
+  const securityLinks = [
+    {
+      label: 'Security',
+      iconType: 'logoSecurity',
+      flyoutMenu: {
+        title: 'Security',
+        listItems: [
+          {
+            label: 'SIEM',
+            href: '#/layout/nav-drawer',
+            iconType: 'securityApp',
+            extraAction: { ...pinExtraActionFn('SIEM') },
+          },
+          {
+            label: 'Endpoints',
+            href: '#/layout/nav-drawer',
+            iconType: 'securityAnalyticsApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add SIEM to favorites',
             },
-            {
-              label: 'Visualize',
-              href: '#/layout/nav-drawer',
-              iconType: 'visualizeApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Visualize to favorites',
-              },
-            },
-            {
-              label: 'Canvas',
-              href: '#/layout/nav-drawer',
-              iconType: 'canvasApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Canvas to favorites',
-              },
-            },
-            {
-              label: 'Maps',
-              href: '#/layout/nav-drawer',
-              iconType: 'gisApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Maps to favorites',
-              },
-            },
-            {
-              label: 'Machine Learning',
-              href: '#/layout/nav-drawer',
-              iconType: 'machineLearningApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Machine Learning to favorites',
-              },
-            },
-            {
-              label: 'Graph',
-              href: '#/layout/nav-drawer',
-              iconType: 'graphApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Graph to favorites',
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
-    ];
+    },
+  ];
 
-    this.securityLinks = [
-      {
-        label: 'Security',
-        iconType: 'logoSecurity',
-        flyoutMenu: {
-          title: 'Security',
-          listItems: [
-            {
-              label: 'SIEM',
-              href: '#/layout/nav-drawer',
-              iconType: 'securityApp',
-              extraAction: { ...pinExtraActionFn('SIEM') },
+  const searchLinks = [
+    {
+      label: 'Enterprise Search',
+      iconType: 'logoAppSearch',
+      flyoutMenu: {
+        title: 'Enterprise search',
+        listItems: [
+          {
+            label: 'Site search',
+            href: '#/layout/nav-drawer',
+            iconType: 'searchProfilerApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Enterprise search to favorites',
             },
-            {
-              label: 'Endpoints',
-              href: '#/layout/nav-drawer',
-              iconType: 'securityAnalyticsApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add SIEM to favorites',
-              },
+          },
+          {
+            label: 'App search',
+            href: '#/layout/nav-drawer',
+            iconType: 'searchProfilerApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add App Search to favorites',
             },
-          ],
-        },
+          },
+          {
+            label: 'Workplace search',
+            href: '#/layout/nav-drawer',
+            iconType: 'searchProfilerApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Workplace Search to favorites',
+            },
+          },
+        ],
       },
-    ];
+    },
+  ];
 
-    this.searchLinks = [
-      {
-        label: 'Enterprise Search',
-        iconType: 'logoAppSearch',
-        flyoutMenu: {
-          title: 'Enterprise search',
-          listItems: [
-            {
-              label: 'Site search',
-              href: '#/layout/nav-drawer',
-              iconType: 'searchProfilerApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Enterprise search to favorites',
-              },
+  const observabilityLinks = [
+    {
+      label: 'Observability',
+      iconType: 'logoMetrics',
+      flyoutMenu: {
+        title: 'Observe your operations',
+        listItems: [
+          {
+            label: 'Logs',
+            href: '#/layout/nav-drawer',
+            iconType: 'logsApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Logs to favorites',
             },
-            {
-              label: 'App search',
-              href: '#/layout/nav-drawer',
-              iconType: 'searchProfilerApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add App Search to favorites',
-              },
+          },
+          {
+            label: 'Metrics',
+            href: '#/layout/nav-drawer',
+            iconType: 'metricsApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Metrics to favorites',
             },
-            {
-              label: 'Workplace search',
-              href: '#/layout/nav-drawer',
-              iconType: 'searchProfilerApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Workplace Search to favorites',
-              },
+          },
+          {
+            label: 'APM',
+            href: '#/layout/nav-drawer',
+            iconType: 'apmApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add APM to favorites',
             },
-          ],
-        },
+          },
+          {
+            label: 'Uptime',
+            href: '#/layout/nav-drawer',
+            iconType: 'uptimeApp',
+            extraAction: {
+              color: 'subdued',
+              iconType: 'starEmpty',
+              iconSize: 's',
+              'aria-label': 'Add Uptime to favorites',
+            },
+          },
+        ],
       },
-    ];
+    },
+  ];
 
-    this.observabilityLinks = [
-      {
-        label: 'Observability',
-        iconType: 'logoMetrics',
-        flyoutMenu: {
-          title: 'Observe your operations',
-          listItems: [
-            {
-              label: 'Logs',
-              href: '#/layout/nav-drawer',
-              iconType: 'logsApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Logs to favorites',
-              },
-            },
-            {
-              label: 'Metrics',
-              href: '#/layout/nav-drawer',
-              iconType: 'metricsApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Metrics to favorites',
-              },
-            },
-            {
-              label: 'APM',
-              href: '#/layout/nav-drawer',
-              iconType: 'apmApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add APM to favorites',
-              },
-            },
-            {
-              label: 'Uptime',
-              href: '#/layout/nav-drawer',
-              iconType: 'uptimeApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add Uptime to favorites',
-              },
-            },
-          ],
-        },
-      },
-    ];
-  }
+  const toggleFullScreen = () => setIsFullScreen(isFullScreen => !isFullScreen);
 
-  onKeyDown = event => {
-    if (event.keyCode === keyCodes.ESCAPE) {
-      //   event.preventDefault();
-      //   event.stopPropagation();
-      //   this.closeFullScreen();
-    }
-  };
+  const renderLogo = () => (
+    <EuiHeaderLogo
+      iconType="logoKibana"
+      href="#/layout/nav-drawer"
+      aria-label="Goes to home"
+    />
+  );
 
-  toggleFullScreen = () => {
-    this.setState(prevState => ({
-      isFullScreen: !prevState.isFullScreen,
-    }));
-  };
-
-  closeFullScreen = () => {
-    this.setState({
-      isFullScreen: false,
-    });
-  };
-
-  renderLogo() {
-    return (
-      <EuiHeaderLogo
-        iconType="logoKibana"
-        href="#/layout/nav-drawer"
-        aria-label="Goes to home"
-      />
-    );
-  }
-
-  renderMenuTrigger() {
-    return (
-      <EuiHeaderSectionItemButton
-        aria-label="Open nav"
-        onClick={() => this.navDrawerRef.toggleOpen()}>
-        <EuiIcon type="apps" href="#" size="m" />
-      </EuiHeaderSectionItemButton>
-    );
-  }
-
-  renderBreadcrumbs() {
+  const renderMenuTrigger = () => (
+    <EuiHeaderSectionItemButton
+      aria-label="Open nav"
+      onClick={() => navDrawerRef.current.toggleOpen()}>
+      <EuiIcon type="apps" href="#" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
+  const renderBreadcrumbs = () => {
     const breadcrumbs = [
       {
         text: 'Management',
@@ -469,107 +438,104 @@ export default class extends Component {
     ];
 
     return <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />;
-  }
+  };
 
-  setNavDrawerRef = ref => (this.navDrawerRef = ref);
+  const navDrawerRef = useRef(null);
 
-  render() {
-    let fullScreenDisplay;
+  let fullScreenDisplay;
 
-    if (this.state.isFullScreen) {
-      fullScreenDisplay = (
-        <EuiFocusTrap>
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              height: '100%',
-              width: '100%',
-            }}
-            onKeyDown={this.onKeyDown}>
-            <EuiHeader>
-              <EuiHeaderSection grow={false}>
-                <EuiShowFor sizes={['xs', 's']}>
-                  <EuiHeaderSectionItem border="right">
-                    {this.renderMenuTrigger()}
-                  </EuiHeaderSectionItem>
-                </EuiShowFor>
+  if (isFullScreen) {
+    fullScreenDisplay = (
+      <EuiFocusTrap>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            height: '100%',
+            width: '100%',
+          }}>
+          <EuiHeader>
+            <EuiHeaderSection grow={false}>
+              <EuiShowFor sizes={['xs', 's']}>
                 <EuiHeaderSectionItem border="right">
-                  {this.renderLogo()}
+                  {renderMenuTrigger()}
                 </EuiHeaderSectionItem>
-                <EuiHeaderSectionItem border="right">
-                  <HeaderSpacesMenu />
-                </EuiHeaderSectionItem>
-              </EuiHeaderSection>
+              </EuiShowFor>
+              <EuiHeaderSectionItem border="right">
+                {renderLogo()}
+              </EuiHeaderSectionItem>
+              <EuiHeaderSectionItem border="right">
+                <HeaderSpacesMenu />
+              </EuiHeaderSectionItem>
+            </EuiHeaderSection>
 
-              {this.renderBreadcrumbs()}
+            {renderBreadcrumbs()}
 
-              <EuiHeaderSection side="right">
-                <EuiHeaderSectionItem>
-                  <HeaderUserMenu />
-                </EuiHeaderSectionItem>
-              </EuiHeaderSection>
-            </EuiHeader>
-            <EuiNavDrawer ref={this.setNavDrawerRef}>
-              <EuiNavDrawerGroup listItems={this.topLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.analyzeLinks} />
-              <EuiNavDrawerGroup listItems={this.securityLinks} />
-              <EuiNavDrawerGroup listItems={this.searchLinks} />
-              <EuiNavDrawerGroup listItems={this.observabilityLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.adminLinks} />
-            </EuiNavDrawer>
-            <EuiPage className="euiNavDrawerPage">
-              <EuiPageBody className="euiNavDrawerPage__pageBody">
-                <EuiPageHeader>
-                  <EuiPageHeaderSection>
-                    <EuiTitle size="l">
-                      <h1>Page title</h1>
+            <EuiHeaderSection side="right">
+              <EuiHeaderSectionItem>
+                <HeaderUserMenu />
+              </EuiHeaderSectionItem>
+            </EuiHeaderSection>
+          </EuiHeader>
+          <EuiNavDrawer ref={navDrawerRef}>
+            <EuiNavDrawerGroup listItems={topLinks} />
+            <EuiHorizontalRule margin="none" />
+            <EuiNavDrawerGroup listItems={analyzeLinks} />
+            <EuiNavDrawerGroup listItems={securityLinks} />
+            <EuiNavDrawerGroup listItems={searchLinks} />
+            <EuiNavDrawerGroup listItems={observabilityLinks} />
+            <EuiHorizontalRule margin="none" />
+            <EuiNavDrawerGroup listItems={adminLinks} />
+          </EuiNavDrawer>
+          <EuiPage className="euiNavDrawerPage">
+            <EuiPageBody className="euiNavDrawerPage__pageBody">
+              <EuiPageHeader>
+                <EuiPageHeaderSection>
+                  <EuiTitle size="l">
+                    <h1>Page title</h1>
+                  </EuiTitle>
+                </EuiPageHeaderSection>
+              </EuiPageHeader>
+              <EuiPageContent>
+                <EuiPageContentHeader>
+                  <EuiPageContentHeaderSection>
+                    <EuiTitle>
+                      <h2>Content title</h2>
                     </EuiTitle>
-                  </EuiPageHeaderSection>
-                </EuiPageHeader>
-                <EuiPageContent>
-                  <EuiPageContentHeader>
-                    <EuiPageContentHeaderSection>
-                      <EuiTitle>
-                        <h2>Content title</h2>
-                      </EuiTitle>
-                    </EuiPageContentHeaderSection>
-                  </EuiPageContentHeader>
-                  <EuiPageContentBody>
-                    <EuiButton
-                      fill
-                      onClick={this.toggleFullScreen}
-                      iconType="exit"
-                      aria-label="Exit fullscreen demo">
-                      Exit fullscreen demo
-                    </EuiButton>
-                  </EuiPageContentBody>
-                </EuiPageContent>
-              </EuiPageBody>
-            </EuiPage>
-          </div>
-        </EuiFocusTrap>
-      );
-    }
-    return (
-      <Fragment>
-        <EuiButton
-          onClick={this.toggleFullScreen}
-          iconType="fullScreen"
-          aria-label="Show fullscreen demo">
-          Show fullscreen demo
-        </EuiButton>
-
-        {/*
-          If the below fullScreen code renders, it actually attaches to the body because of
-          EuiOverlayMask's React portal usage.
-        */}
-
-        {fullScreenDisplay}
-      </Fragment>
+                  </EuiPageContentHeaderSection>
+                </EuiPageContentHeader>
+                <EuiPageContentBody>
+                  <EuiButton
+                    fill
+                    onClick={toggleFullScreen}
+                    iconType="exit"
+                    aria-label="Exit fullscreen demo">
+                    Exit fullscreen demo
+                  </EuiButton>
+                </EuiPageContentBody>
+              </EuiPageContent>
+            </EuiPageBody>
+          </EuiPage>
+        </div>
+      </EuiFocusTrap>
     );
   }
-}
+  return (
+    <Fragment>
+      <EuiButton
+        onClick={toggleFullScreen}
+        iconType="fullScreen"
+        aria-label="Show fullscreen demo">
+        Show fullscreen demo
+      </EuiButton>
+
+      {/*
+         If the below fullScreen code renders, it actually attaches to the body because of
+         EuiOverlayMask's React portal usage.
+       */}
+
+      {fullScreenDisplay}
+    </Fragment>
+  );
+};

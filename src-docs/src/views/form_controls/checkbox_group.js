@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import { EuiCheckboxGroup } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
-    const idPrefix = makeId();
+    const idPrefix = htmlIdGenerator()();
 
     this.checkboxes = [
       {

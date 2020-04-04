@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { createDataStore } from '../data_store';
 
-import makeId from '../../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
@@ -138,7 +138,7 @@ const getCellProps = (item, column) => {
   };
 };
 
-const idPrefix = makeId();
+const idPrefix = htmlIdGenerator()();
 
 const toggleButtons = [
   {

@@ -30,7 +30,7 @@ import {
   EuiTab,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const GuideRuleWriting = ({ children, className, ...rest }) => {
   const classes = classNames(className);
@@ -615,7 +615,7 @@ export default () => (
         <EuiFormRow>
           <EuiCheckbox
             onChange={() => {}}
-            id={makeId()}
+            id={htmlIdGenerator()()}
             label="Combine values in other bucket"
           />
         </EuiFormRow>
@@ -627,7 +627,7 @@ export default () => (
         <EuiFormRow>
           <EuiCheckbox
             onChange={() => {}}
-            id={makeId()}
+            id={htmlIdGenerator()()}
             label="Combine other"
           />
         </EuiFormRow>
