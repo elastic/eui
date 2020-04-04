@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { EuiFieldNumber } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-export default function() {
+export default () => {
   const [value, setValue] = useState('');
 
   const onChange = e => {
