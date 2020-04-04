@@ -1,61 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiButton, EuiPopover } from '../../../../src/components';
 
-export default class PopoverContainer extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isExampleShown, setIsExampleShown] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-    this.state = {
-      isExampleShown: false,
-      isPopoverOpen: false,
-    };
-  }
+  const toggleExample = () =>
+    setIsExampleShown(isExampleShown => !isExampleShown);
 
-  toggleExample = () =>
-    this.setState(({ isExampleShown }) => ({
-      isExampleShown: !isExampleShown,
-    }));
+  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  onButtonClick = () => {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  };
+  const button = (
+    <EuiButton
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={onButtonClick}
+      style={{ background: 'white' }}>
+      Show fixed popover
+    </EuiButton>
+  );
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
-
-  setPanelRef = node => (this.panel = node);
-
-  render() {
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick}
-        style={{ background: 'white' }}>
-        Show fixed popover
-      </EuiButton>
-    );
-
-    return (
-      <React.Fragment>
-        <EuiButton onClick={this.toggleExample}>Toggle Example</EuiButton>
-        {this.state.isExampleShown && (
-          <EuiPopover
-            button={button}
-            isOpen={this.state.isPopoverOpen}
-            closePopover={this.closePopover}
-            style={{ position: 'fixed', bottom: 50, right: 50, zIndex: 10 }}
-            repositionOnScroll={true}>
-            <div>This popover scrolls with the button element!</div>
-          </EuiPopover>
-        )}
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <EuiButton onClick={toggleExample}>Toggle Example</EuiButton>
+      {isExampleShown && (
+        <EuiPopover
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+          style={{ position: 'fixed', bottom: 50, right: 50, zIndex: 10 }}
+          repositionOnScroll={true}>
+          <div>This popover scrolls with the button element!</div>
+        </EuiPopover>
+      )}
+    </React.Fragment>
+  );
+};

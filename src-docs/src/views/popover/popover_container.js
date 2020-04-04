@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -8,57 +8,44 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export default class PopoverContainer extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  const onButtonClick = () =>
+    setIsPopoverOpen(isPopoverOpen1 => !isPopoverOpen1);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  onButtonClick = () => {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
+  let panel;
+  const setPanelRef = node => {
+    panel = node;
   };
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
+  const button = (
+    <EuiButton
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={onButtonClick}
+      style={{ position: 'relative', left: 50 }}>
+      Show constrained popover
+    </EuiButton>
+  );
 
-  setPanelRef = node => (this.panel = node);
+  return (
+    <EuiPanel panelRef={setPanelRef}>
+      <EuiPopover
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        container={panel}>
+        <div>
+          Popover is positioned <EuiCode>downCenter</EuiCode> but constrained to
+          fit within the panel.
+        </div>
+      </EuiPopover>
 
-  render() {
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick}
-        style={{ position: 'relative', left: 50 }}>
-        Show constrained popover
-      </EuiButton>
-    );
-
-    return (
-      <EuiPanel panelRef={this.setPanelRef}>
-        <EuiPopover
-          button={button}
-          isOpen={this.state.isPopoverOpen}
-          closePopover={this.closePopover}
-          container={this.panel}>
-          <div>
-            Popover is positioned <EuiCode>downCenter</EuiCode> but constrained
-            to fit within the panel.
-          </div>
-        </EuiPopover>
-
-        {/* create adequate room for the popover */}
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-      </EuiPanel>
-    );
-  }
-}
+      {/* create adequate room for the popover */}
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+    </EuiPanel>
+  );
+};

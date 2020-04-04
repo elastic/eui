@@ -12,7 +12,7 @@ import {
   EuiCardSelectProps,
   euiCardSelectableColor,
 } from './card_select';
-import makeId from '../form/form_row/make_id';
+import { htmlIdGenerator } from '../../services/accessibility';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -202,7 +202,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     className
   );
 
-  const ariaId = makeId();
+  const ariaId = htmlIdGenerator()();
 
   /**
    * Top area containing image, icon or both

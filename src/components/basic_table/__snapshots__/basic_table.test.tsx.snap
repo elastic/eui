@@ -1374,6 +1374,314 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
 </div>
 `;
 
+exports[`EuiBasicTable with multiple record actions with custom availability 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        justifyContent="spaceBetween"
+        responsive={false}
+      >
+        <EuiFlexItem
+          grow={false}
+        />
+        <EuiFlexItem
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+      tableLayout="fixed"
+    >
+      <EuiScreenReaderOnly>
+        <caption
+          className="euiTableCaption"
+        >
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="This table contains {itemCount} rows."
+              token="euiBasicTable.tableDescriptionWithoutPagination"
+              values={
+                Object {
+                  "itemCount": 4,
+                }
+              }
+            />
+          </EuiDelayRender>
+        </caption>
+      </EuiScreenReaderOnly>
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          data-test-subj="tableHeaderCell_name_0"
+          key="_data_h_name_0"
+        >
+          Name
+        </EuiTableHeaderCell>
+        <EuiTableHeaderCell
+          align="right"
+          key="_actions_h_1"
+        >
+          Actions
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
+        <EuiTableRow
+          hasActions={true}
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_1_1"
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
+                  Object {
+                    "description": "copy",
+                    "icon": "copy",
+                    "isPrimary": true,
+                    "name": "Copy",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                  Object {
+                    "description": "delete",
+                    "icon": "trash",
+                    "isPrimary": true,
+                    "name": "Delete",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                  Object {
+                    "name": "All actions",
+                    "render": [Function],
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "1",
+                  "name": "name1",
+                }
+              }
+              itemId="1"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          hasActions={true}
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_2_1"
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
+                  Object {
+                    "available": [Function],
+                    "description": "edit",
+                    "icon": "pencil",
+                    "isPrimary": true,
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                  Object {
+                    "description": "copy",
+                    "icon": "copy",
+                    "isPrimary": true,
+                    "name": "Copy",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                  Object {
+                    "name": "All actions",
+                    "render": [Function],
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "2",
+                  "name": "name2",
+                }
+              }
+              itemId="2"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          hasActions={true}
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_3_1"
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
+                  Object {
+                    "description": "copy",
+                    "icon": "copy",
+                    "isPrimary": true,
+                    "name": "Copy",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                  Object {
+                    "description": "delete",
+                    "icon": "trash",
+                    "isPrimary": true,
+                    "name": "Delete",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "3",
+                  "name": "name3",
+                }
+              }
+              itemId="3"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          hasActions={true}
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_4_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_4_1"
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
+                  Object {
+                    "available": [Function],
+                    "description": "edit",
+                    "icon": "pencil",
+                    "isPrimary": true,
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                  Object {
+                    "description": "copy",
+                    "icon": "copy",
+                    "isPrimary": true,
+                    "name": "Copy",
+                    "onClick": [Function],
+                    "type": "icon",
+                  },
+                  Object {
+                    "name": "All actions",
+                    "render": [Function],
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "4",
+                  "name": "name3",
+                }
+              }
+              itemId="4"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
 exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 <div
   className="euiBasicTable"

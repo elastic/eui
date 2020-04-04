@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButtonEmpty,
@@ -45,120 +45,108 @@ const sampleItems = [
   },
 ];
 
-export default class extends Component {
-  state = {
-    status: 'unchanged',
-    value: '',
-    hideDatepicker: false,
-    filters: [
-      {
-        id: 'filter0',
-        field: '@tags.keyword',
-        operator: 'IS',
-        value: 'value',
-        isDisabled: false,
-        isPinned: true,
-        isExcluded: false,
-      },
-      {
-        id: 'filter1',
-        field:
-          'Filter with a very long title to test if the badge will properly get truncated in the separate set of filter badges that are not quite as long but man does it really need to be long',
-        operator: 'IS',
-        value: 'value',
-        isDisabled: true,
-        isPinned: false,
-        isExcluded: false,
-      },
-      {
-        id: 'filter2',
-        field: '@tags.keyword',
-        operator: 'IS NOT',
-        value: 'value',
-        isDisabled: false,
-        isPinned: true,
-        isExcluded: true,
-      },
-      {
-        id: 'filter3',
-        field: '@tags.keyword',
-        operator: 'IS',
-        value: 'value',
-        isDisabled: false,
-        isPinned: false,
-        isExcluded: false,
-      },
-    ],
+export default () => {
+  const status = 'unchanged';
+  const [value, setValue] = useState('');
+  const [hideDatepicker, setHide] = useState(false);
+  const filters = [
+    {
+      id: 'filter0',
+      field: '@tags.keyword',
+      operator: 'IS',
+      value: 'value',
+      isDisabled: false,
+      isPinned: true,
+      isExcluded: false,
+    },
+    {
+      id: 'filter1',
+      field:
+        'Filter with a very long title to test if the badge will properly get truncated in the separate set of filter badges that are not quite as long but man does it really need to be long',
+      operator: 'IS',
+      value: 'value',
+      isDisabled: true,
+      isPinned: false,
+      isExcluded: false,
+    },
+    {
+      id: 'filter2',
+      field: '@tags.keyword',
+      operator: 'IS NOT',
+      value: 'value',
+      isDisabled: false,
+      isPinned: true,
+      isExcluded: true,
+    },
+    {
+      id: 'filter3',
+      field: '@tags.keyword',
+      operator: 'IS',
+      value: 'value',
+      isDisabled: false,
+      isPinned: false,
+      isExcluded: false,
+    },
+  ];
+
+  const onFieldFocus = () => {
+    setHide(true);
   };
 
-  onFieldFocus = () => {
-    this.setState({
-      hideDatepicker: true,
-    });
+  const onFieldBlur = () => {
+    setHide(false);
   };
 
-  onFieldBlur = () => {
-    this.setState({
-      hideDatepicker: false,
-    });
+  const getInputValue = val => {
+    setValue(val);
   };
 
-  getInputValue = val => {
-    this.setState({
-      value: val,
-    });
-  };
-
-  onItemClick = item => {
+  const onItemClick = item => {
     alert(`Item [${item.label}] was clicked`);
   };
 
-  onTimeChange() {
+  const onTimeChange = () => {
     alert('Time changed');
-  }
+  };
 
-  render() {
-    const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
+  const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
 
-    return (
-      <div className="savedQueriesInput">
-        <EuiFlexGroup
-          gutterSize="s"
-          className={
-            this.state.hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''
-          }>
-          <EuiFlexItem>
-            <EuiSuggest
-              status={this.state.status}
-              onFocus={this.onFieldFocus}
-              onBlur={this.onFieldBlur}
-              prepend={<HashtagPopover value={this.state.value} />}
-              append={append}
-              suggestions={sampleItems}
-              onItemClick={this.onItemClick}
-              onInputChange={this.getInputValue}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false} className="savedQueriesInput__datepicker">
-            <EuiSuperDatePicker onTimeChange={this.onTimeChange} />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiFlexGroup
-          className="globalFilterGroup"
-          gutterSize="none"
-          alignItems="flexStart"
-          responsive={false}>
-          <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
-            <GlobalFilterOptions />
-          </EuiFlexItem>
-          <EuiFlexItem className="globalFilterGroup__filterFlexItem">
-            <GlobalFilterBar
-              className="globalFilterGroup__filterBar"
-              filters={this.state.filters}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="savedQueriesInput">
+      <EuiFlexGroup
+        gutterSize="s"
+        className={hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''}>
+        <EuiFlexItem>
+          <EuiSuggest
+            status={status}
+            onFocus={onFieldFocus}
+            onBlur={onFieldBlur}
+            prepend={<HashtagPopover value={value} />}
+            append={append}
+            suggestions={sampleItems}
+            onItemClick={onItemClick}
+            onInputChange={getInputValue}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false} className="savedQueriesInput__datepicker">
+          <EuiSuperDatePicker onTimeChange={onTimeChange} />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiFlexGroup
+        className="globalFilterGroup"
+        gutterSize="none"
+        alignItems="flexStart"
+        responsive={false}>
+        <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
+          <GlobalFilterOptions />
+        </EuiFlexItem>
+        <EuiFlexItem className="globalFilterGroup__filterFlexItem">
+          <GlobalFilterBar
+            className="globalFilterGroup__filterBar"
+            filters={filters}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </div>
+  );
+};
