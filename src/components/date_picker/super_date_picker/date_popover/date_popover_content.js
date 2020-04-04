@@ -100,12 +100,18 @@ export function EuiDatePopoverContent({
     ];
   };
 
+  const initialSelectedTab = {
+    name: getDateMode(value),
+    id: getDateMode(value),
+    content: getDateMode(value),
+  };
+
   return (
     <EuiTabbedContent
       className="euiDatePopoverContent"
       tabs={renderTabs()}
       autoFocus="selected"
-      initialSelectedTab={{ id: getDateMode(value) }}
+      initialSelectedTab={initialSelectedTab}
       onTabClick={onTabClick}
       size="s"
       expand
