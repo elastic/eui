@@ -8,7 +8,7 @@ describe('EuiTableHeaderCellCheckbox', () => {
   const _consoleWarn = console.warn;
   beforeAll(() => {
     console.warn = (...args: [any?, ...any[]]) => {
-      // Suppress an expencted warning
+      // Suppress an expected warning
       if (
         args.length === 1 &&
         args[0] ===
