@@ -92,7 +92,7 @@ describe('EuiAccordion', () => {
       it('is rendered', () => {
         const component = render(
           <EuiAccordion id={getId()} forceState="closed">
-            <p>You can not see me.</p>
+            <p>You can not see me</p>
           </EuiAccordion>
         );
 

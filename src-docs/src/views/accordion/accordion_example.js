@@ -100,12 +100,12 @@ import AccordionGrow from './accordion_grow';
 const accordionGrowSource = require('!!raw-loader!./accordion_grow');
 const accordionGrowHtml = renderToHtml(AccordionGrow);
 
-import AccordionForceClose from './accordion_forceClose';
-const accordionForceCloseSource = require('!!raw-loader!./accordion_forceClose');
-const accordionForceCloseHtml = renderToHtml(AccordionForceClose);
-const accordionForceCloseSnippet = `<EuiAccordion
+import AccordionForceState from './accordion_forceState';
+const accordionForceStateSource = require('!!raw-loader!./accordion_forceState');
+const accordionForceStateHtml = renderToHtml(AccordionForceState);
+const accordionForceStateSnippet = `<EuiAccordion
   id={accordionId}
-  forceClose={true}
+  forceState={true}
   buttonContent="Click me to toggle open / close">
     <!-- Content to show when expanded -->
 </EuiAccordion>`;
@@ -337,21 +337,21 @@ export const AccordionExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: accordionForceCloseSource,
+          code: accordionForceStateSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: accordionForceCloseHtml,
+          code: accordionForceStateHtml,
         },
       ],
       text: (
         <p>
-          Use the <EuiCode>forceClose</EuiCode> prop to controll open and close
+          Use the <EuiCode>forceState</EuiCode> prop to controll open and close
           state.
         </p>
       ),
-      snippet: accordionForceCloseSnippet,
-      demo: <AccordionForceClose />,
+      snippet: accordionForceStateSnippet,
+      demo: <AccordionForceState />,
     },
   ],
 };

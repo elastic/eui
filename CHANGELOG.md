@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- `forceClose` prop can controll `EuiAccordion` state from outside ([#3240](https://github.com/elastic/eui/pull/3240))
+- `forceState` prop can controll `EuiAccordion` state from outside ([#3240](https://github.com/elastic/eui/pull/3240))
 - Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions ([#3115](https://github.com/elastic/eui/pull/3115))
 - Added support for `EuiCodeEditor` to set `readonly` and `id` on `<textarea />` ([#3212](https://github.com/elastic/eui/pull/3212))
 

@@ -134,7 +134,6 @@ export class EuiAccordion extends Component<
     } = this.props;
 
     const isOpen = forceState ? forceState === 'open' : this.state.isOpen;
-    if (forceState) console.log('isOpen', isOpen);
 
     const classes = classNames(
       'euiAccordion',
