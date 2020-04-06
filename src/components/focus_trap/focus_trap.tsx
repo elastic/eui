@@ -57,6 +57,13 @@ export class EuiFocusTrap extends Component<Props, State> {
     this.setInitialFocus(this.props.initialFocus);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.disabled === true && this.props.disabled === false) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ hasBeenDisabledByClick: false });
+    }
+  }
+
   // Programmatically sets focus on a nested DOM node; optional
   setInitialFocus = (initialFocus?: FocusTarget) => {
     let node = initialFocus instanceof HTMLElement ? initialFocus : null;

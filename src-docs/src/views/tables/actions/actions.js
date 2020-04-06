@@ -194,6 +194,15 @@ export class Table extends Component {
               onClick: () => {},
               'data-test-subj': 'action-share',
             },
+            {
+              name: 'Elastic.co',
+              description: 'Go to elastic.co',
+              icon: 'logoElastic',
+              type: 'icon',
+              href: 'https://elastic.co',
+              target: '_blank',
+              'data-test-subj': 'action-outboundlink',
+            },
           ];
     } else {
       actions = customAction
