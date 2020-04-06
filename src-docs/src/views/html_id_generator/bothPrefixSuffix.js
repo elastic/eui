@@ -12,20 +12,20 @@ import {
 import { htmlIdGenerator } from '../../../../src/services';
 
 export const PrefixSufix = () => {
-  const [prefix, setPrefix] = useState('some');
+  const [prefix, setPrefix] = useState('Some');
   const [suffix, setSuffix] = useState('Id');
-  const [id1, setId1] = useState(htmlIdGenerator('Some')('Id'));
+  const [customId, setCustomId] = useState(htmlIdGenerator('Some')('Id'));
 
   const onPrefixChange = e => {
     const prefix = e.target.value;
     setPrefix(prefix);
-    setId1(htmlIdGenerator(prefix)(suffix));
+    setCustomId(htmlIdGenerator(prefix)(suffix));
   };
 
   const onSuffixChange = e => {
     const suffix = e.target.value;
     setSuffix(suffix);
-    setId1(htmlIdGenerator(prefix)(suffix));
+    setCustomId(htmlIdGenerator(prefix)(suffix));
   };
 
   return (
@@ -54,7 +54,7 @@ export const PrefixSufix = () => {
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="xl" />
-      <EuiCode>{id1} </EuiCode>
+      <EuiCode>{customId} </EuiCode>
     </Fragment>
   );
 };
