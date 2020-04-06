@@ -9,7 +9,7 @@ import {
 
 import { htmlIdGenerator } from '../../../../src/services';
 
-export default function() {
+export default () => {
   const [value, setvalue] = useState('20');
   const [dualValue, setDualValue] = useState([20, 100]);
 
@@ -33,40 +33,39 @@ export default function() {
   const onDualChange = value => {
     setDualValue(value);
   };
-
-  render() {
+  
     return (
       <Fragment>
         <EuiRange
           id={htmlIdGenerator()()}
-          value={this.state.value}
-          onChange={this.onChange}
+          value={value}
+          onChange={e => onChange(e)}
           showTicks
           tickInterval={20}
-          levels={this.levels}
+          levels={levels}
           aria-label="An example of EuiRange with levels prop"
           aria-describedby="levelsHelp2"
         />
         <EuiFormHelpText id="levelsHelp2">
-          Recommended levels are {this.levels[1].min} and above.
+          Recommended levels are {levels[1].min} and above.
         </EuiFormHelpText>
 
       <EuiSpacer size="xl" />
         <EuiDualRange
           id={htmlIdGenerator()()}
-          value={this.state.dualValue}
-          onChange={this.onDualChange}
+          value={dualValue}
+          onChange={value => onDualChange(value)}
           showTicks
           ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
           showInput
-          levels={this.levels}
+          levels={levels}
           aria-label="An example of EuiDualRange with levels prop"
           aria-describedby="levelsHelp3"
         />
         <EuiFormHelpText id="levelsHelp3">
-          Recommended size is {this.levels[1].min}kb and above.
+          Recommended size is {levels[1].min}kb and above.
         </EuiFormHelpText>
       </Fragment>
     );
   }
-}
+
