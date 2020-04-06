@@ -14,26 +14,98 @@ import {
 import DescriptionList from './description_list';
 const descriptionListSource = require('!!raw-loader!./description_list');
 const descriptionListHtml = renderToHtml(DescriptionList);
+const descriptionListSnippet = [
+  `<EuiDescriptionList
+  listItems={[
+    {
+      title: 'The Elder Scrolls: Morrowind',
+      description: 'The opening music alone evokes such strong memories.',
+    },
+    {
+      title: 'TIE Fighter',
+      description: 'The sequel to XWING, join the dark side and fly for the Emporer.',
+    },
+  ]}
+/>`,
+  `<EuiDescriptionList>
+  <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
+  <EuiDescriptionListDescription>
+    A videogame that I have spent way too much time on over the years.
+  </EuiDescriptionListDescription>
+  <EuiDescriptionListTitle>Kings Quest VI</EuiDescriptionListTitle>
+  <EuiDescriptionListDescription>
+    The game that forced me to learn DOS.
+  </EuiDescriptionListDescription>
+</EuiDescriptionList>`,
+];
 
 import DescriptionListColumn from './description_list_column';
 const descriptionListColumnSource = require('!!raw-loader!./description_list_column');
 const descriptionListColumnHtml = renderToHtml(DescriptionListColumn);
+const descriptionListColumnSnippet = [
+  `<EuiDescriptionList
+  type="column"
+  listItems={favoriteVideoGames}
+/>`,
+  `<EuiDescriptionList
+  type="responsiveColumn"
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 import DescriptionListStyling from './description_list_styling';
 const descriptionListStylingSource = require('!!raw-loader!./description_list_styling');
 const descriptionListStylingHtml = renderToHtml(DescriptionListStyling);
+const descriptionListStylingSnippet = [
+  `<EuiDescriptionList
+  listItems={favoriteVideoGames}
+  align="center"
+  compressed
+/>`,
+  `<EuiDescriptionList
+  listItems={favoriteVideoGames}
+  type="column"
+  align="center"
+  compressed
+/>`,
+  `<EuiDescriptionList
+  listItems={favoriteVideoGames}
+  type="inline"
+  align="center"
+  compressed
+/>`,
+];
 
 import DescriptionListInline from './description_list_inline';
 const descriptionListInlineSource = require('!!raw-loader!./description_list_inline');
 const descriptionListInlineHtml = renderToHtml(DescriptionListInline);
+const descriptionListInlineSnippet = [
+  `<EuiDescriptionList
+  type="inline"
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 import DescriptionListReverse from './description_list_reverse';
 const descriptionListReverseSource = require('!!raw-loader!./description_list_reverse');
 const descriptionListReverseHtml = renderToHtml(DescriptionListReverse);
+const descriptionListReverseSnippet = [
+  `<EuiDescriptionList
+  textStyle="reverse"
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 import DescriptionListClasses from './description_list_classes';
 const descriptionListClassesSource = require('!!raw-loader!./description_list_classes');
 const descriptionListClassesHtml = renderToHtml(DescriptionListClasses);
+const descriptionListClassesSnippet = [
+  `<EuiDescriptionList
+  titleProps={{ className: 'eui-textTruncate' }}
+  descriptionProps={{ className: 'eui-textTruncate' }}
+  listItems={favoriteVideoGames}
+/>`,
+];
 
 export const DescriptionListExample = {
   title: 'Description list',
@@ -64,6 +136,7 @@ export const DescriptionListExample = {
         EuiDescriptionListTitle,
         EuiDescriptionListDescription,
       },
+      snippet: descriptionListSnippet,
       demo: <DescriptionList />,
     },
     {
@@ -93,6 +166,7 @@ export const DescriptionListExample = {
           </p>
         </div>
       ),
+      snippet: descriptionListReverseSnippet,
       demo: <DescriptionListReverse />,
     },
     {
@@ -120,6 +194,7 @@ export const DescriptionListExample = {
           </p>
         </Fragment>
       ),
+      snippet: descriptionListColumnSnippet,
       demo: <DescriptionListColumn />,
     },
     {
@@ -142,6 +217,7 @@ export const DescriptionListExample = {
           smaller than normal lists due to their compact nature.
         </p>
       ),
+      snippet: descriptionListInlineSnippet,
       demo: <DescriptionListInline />,
     },
     {
@@ -163,6 +239,7 @@ export const DescriptionListExample = {
           works with column and inline types.
         </p>
       ),
+      snippet: descriptionListStylingSnippet,
       demo: <DescriptionListStyling />,
     },
     {
@@ -186,6 +263,7 @@ export const DescriptionListExample = {
           to do so.
         </p>
       ),
+      snippet: descriptionListClassesSnippet,
       demo: <DescriptionListClasses />,
     },
   ],
