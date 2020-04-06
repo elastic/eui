@@ -13,12 +13,12 @@ import { htmlIdGenerator } from '../../../../src/services';
 
 export const HtmlIdGeneratorPrefix = () => {
   const [prefix, setPrefix] = useState('Id');
-  const [id1, setId1] = useState(htmlIdGenerator('Id')());
+  const [customId, setCustomId] = useState(htmlIdGenerator('Id')());
 
   const onSearchChange = e => {
     const prefix = e.target.value;
     setPrefix(prefix);
-    setId1(htmlIdGenerator(prefix)());
+    setCustomId(htmlIdGenerator(prefix)());
   };
 
   return (
@@ -38,7 +38,7 @@ export const HtmlIdGeneratorPrefix = () => {
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="xl" />
-      <EuiCode>{id1} </EuiCode>
+      <EuiCode>{customId} </EuiCode>
     </Fragment>
   );
 };

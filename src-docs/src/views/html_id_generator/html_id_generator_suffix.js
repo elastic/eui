@@ -13,12 +13,12 @@ import { htmlIdGenerator } from '../../../../src/services';
 
 export const HtmlIdGeneratorSuffix = () => {
   const [suffix, setSuffix] = useState('Id');
-  const [id1, setId1] = useState(htmlIdGenerator()('Id'));
+  const [customId, setCustomId] = useState(htmlIdGenerator()('Id'));
 
   const onSuffixChange = e => {
     const suffix = e.target.value;
     setSuffix(suffix);
-    setId1(htmlIdGenerator()(suffix));
+    setCustomId(htmlIdGenerator()(suffix));
   };
 
   return (
@@ -38,7 +38,7 @@ export const HtmlIdGeneratorSuffix = () => {
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="xl" />
-      <EuiCode>{id1} </EuiCode>
+      <EuiCode>{customId} </EuiCode>
     </Fragment>
   );
 };
