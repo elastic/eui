@@ -178,6 +178,7 @@ export class Table extends Component {
             {
               name: 'Edit',
               isPrimary: true,
+              available: ({ online }) => !online,
               description: 'Edit this user',
               icon: 'pencil',
               type: 'icon',
@@ -192,6 +193,15 @@ export class Table extends Component {
               type: 'icon',
               onClick: () => {},
               'data-test-subj': 'action-share',
+            },
+            {
+              name: 'Elastic.co',
+              description: 'Go to elastic.co',
+              icon: 'logoElastic',
+              type: 'icon',
+              href: 'https://elastic.co',
+              target: '_blank',
+              'data-test-subj': 'action-outboundlink',
             },
           ];
     } else {
