@@ -16,6 +16,9 @@ const descriptionListSource = require('!!raw-loader!./description_list');
 const descriptionListHtml = renderToHtml(DescriptionList);
 const descriptionListSnippet = [
   `<EuiDescriptionList
+  type="row"
+  textStyle="normal"
+  compressed={false}
   listItems={[
     {
       title: 'The Elder Scrolls: Morrowind',
@@ -27,7 +30,11 @@ const descriptionListSnippet = [
     },
   ]}
 />`,
-  `<EuiDescriptionList>
+  `<EuiDescriptionList
+  type="row"
+  textStyle="normal"
+  compressed={false}  
+>
   <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
   <EuiDescriptionListDescription>
     A videogame that I have spent way too much time on over the years.
