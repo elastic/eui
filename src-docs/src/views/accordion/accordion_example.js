@@ -105,8 +105,8 @@ const accordionForceStateSource = require('!!raw-loader!./accordion_forceState')
 const accordionForceStateHtml = renderToHtml(AccordionForceState);
 const accordionForceStateSnippet = `<EuiAccordion
   id={accordionId}
-  forceState={true}
-  buttonContent="Click me to toggle open / close">
+  forceState="open"
+  buttonContent="Controlled via outside prop">
     <!-- Content to show when expanded -->
 </EuiAccordion>`;
 
