@@ -1,0 +1,14 @@
+// Sizing
+$euiCollapsibleNavWidth: $euiSize * 20; // ~ 320px
+
+$euiCollapsibleNavGroupLightBackgroundColor: $euiPageBackgroundColor;
+
+$euiCollapsibleNavGroupDarkBackgroundColor: lightOrDarkTheme(
+  shade($euiColorDarkestShade, 20%),
+  shade($euiColorLightestShade, 50%),
+);
+
+$euiCollapsibleNavGroupDarkHighContrastColor: makeGraphicContrastColor(
+  $euiColorPrimary,
+  $euiCollapsibleNavGroupDarkBackgroundColor
+);

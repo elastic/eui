@@ -347,7 +347,7 @@ export class EuiNavDrawer extends Component {
         onOutsideClick={() => this.closeBoth()}
         isDisabled={this.state.outsideClickDisabled}>
         <nav className={classes} {...rest}>
-          <EuiFlexGroup gutterSize="none">
+          <EuiFlexGroup gutterSize="none" responsive={false}>
             <EuiFlexItem grow={false}>
               <div
                 id={MENU_ELEMENT_ID}

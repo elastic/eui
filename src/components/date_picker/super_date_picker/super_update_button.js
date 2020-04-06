@@ -12,16 +12,23 @@ export class EuiSuperUpdateButton extends Component {
     isLoading: PropTypes.bool,
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
+
     /**
      * Passes props to `EuiToolTip`
      */
     toolTipProps: PropTypes.object,
+
+    /**
+     * Show the "Click to apply" tooltip
+     */
+    showTooltip: PropTypes.bool,
   };
 
   static defaultProps = {
     needsUpdate: false,
     isLoading: false,
     isDisabled: false,
+    showTooltip: false,
   };
 
   componentWillUnmount() {
@@ -34,7 +41,7 @@ export class EuiSuperUpdateButton extends Component {
 
   componentDidUpdate() {
     if (
-      this.props.needsUpdate &&
+      this.props.showTooltip &&
       !this.props.isDisabled &&
       !this.props.isLoading
     ) {
@@ -69,6 +76,7 @@ export class EuiSuperUpdateButton extends Component {
       isDisabled,
       onClick,
       toolTipProps,
+      showTooltip,
       ...rest
     } = this.props;
 

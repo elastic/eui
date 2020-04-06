@@ -183,7 +183,7 @@ export const FlexExample = {
         color="warning">
         <p>
           Padding and background-color are added to all the{' '}
-          <EuiCode>FlexItem</EuiCode> components on this documentation page for
+          <strong>EuiFlexItem</strong> components on this documentation page for
           illustrative purposes only. You will need to add padding through
           additional components or classes if you need it.
         </p>
@@ -194,7 +194,7 @@ export const FlexExample = {
   ),
   sections: [
     {
-      title: 'FlexGroup is for a single row layout',
+      title: 'Flex group is for a single row layout',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -208,10 +208,10 @@ export const FlexExample = {
       text: (
         <div>
           <p>
-            <EuiCode>FlexGroup</EuiCode> is useful for setting up layouts for a{' '}
+            <strong>EuiFlexGroup</strong> is useful for setting up layouts for a{' '}
             <strong>single row</strong> of content. By default any{' '}
-            <EuiCode>FlexItem</EuiCode> within <EuiCode>FlexGroup</EuiCode> will
-            stretch and grow to match their siblings.
+            <strong>EuiFlexItem</strong> within <strong>EuiFlexGroup</strong>{' '}
+            will stretch and grow to match their siblings.
           </p>
         </div>
       ),
@@ -224,7 +224,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGroup can wrap its items',
+      title: 'Flex group can wrap its items',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -238,8 +238,8 @@ export const FlexExample = {
       text: (
         <Fragment>
           <p>
-            You can set <EuiCode>wrap</EuiCode> on <EuiCode>FlexGroup</EuiCode>{' '}
-            if it contains <EuiCode>FlexItem</EuiCode>s with minimum widths,
+            You can set <EuiCode>wrap</EuiCode> on <strong>EuiFlexGroup</strong>{' '}
+            if it contains <strong>EuiFlexItems</strong> with minimum widths,
             which you want to wrap as the container becomes narrower.
           </p>
           <EuiCallOut color="warning" title="IE Warning">
@@ -261,7 +261,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGroup accepts infinite items',
+      title: 'Flex group accepts infinite items',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -274,9 +274,9 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          Same code as above. Notice that <EuiCode>FlexItem</EuiCode> creates
+          Same code as above. Notice that <strong>EuiFlexItem</strong> creates
           equal width items no matter the number of siblings.{' '}
-          <EuiCode>FlexGroup</EuiCode> never wraps.
+          <strong>EuiFlexGroup</strong> never wraps.
         </p>
       ),
       demo: (
@@ -286,7 +286,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'You can specify spans instead of divs',
+      title: 'Specify spans instead of divs',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -300,7 +300,7 @@ export const FlexExample = {
       text: (
         <p>
           <EuiCode>component=&ldquo;span&rdquo;</EuiCode> can be set on{' '}
-          <EuiCode>FlexGroup</EuiCode> and/or <EuiCode>FlexItem</EuiCode>.
+          <strong>EuiFlexGroup</strong> and/or <strong>EuiFlexItem</strong>.
         </p>
       ),
       snippet: componentSpanSnippet,
@@ -311,7 +311,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexPanels grow to fill FlexItems',
+      title: 'Panels grow to fill flex items',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -324,16 +324,19 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          The <Link to="/layout/panel">Panel</Link> component will naturally
-          grow to fill the
-          <EuiCode>FlexItem</EuiCode> which contains it.
+          The{' '}
+          <Link to="/layout/panel">
+            <strong>EuiPanel</strong>
+          </Link>{' '}
+          component will naturally grow to fill the <strong>EuiFlexItem</strong>{' '}
+          which contains it.
         </p>
       ),
       snippet: flexItemPanelSnippet,
       demo: <FlexItemPanel />,
     },
     {
-      title: 'FlexItem can individually turn off stretching',
+      title: 'Flex item can individually turn off stretching',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -346,7 +349,7 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          Sometimes you do not want a <EuiCode>FlexItem</EuiCode> to grow. It
+          Sometimes you do not want a <strong>EuiFlexItem</strong> to grow. It
           can be turned off on each item individually.
         </p>
       ),
@@ -358,7 +361,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexItem can specify a proportional width',
+      title: 'Flex item can specify a proportional width',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -372,7 +375,7 @@ export const FlexExample = {
       text: (
         <p>
           You can specify a number between 1 and 10 for a{' '}
-          <EuiCode>FlexItem</EuiCode> to try to take up a proportional part of
+          <strong>EuiFlexItem</strong> to try to take up a proportional part of
           the flex box it is in.
         </p>
       ),
@@ -384,7 +387,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGroup can justify and align',
+      title: 'Flex group can justify and align',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -397,12 +400,12 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          <EuiCode>FlexGroup</EuiCode>s can also use{' '}
+          <strong>EuiFlexGroups</strong> can also use{' '}
           <EuiCode>justifyContent</EuiCode> and <EuiCode>alignItems</EuiCode>{' '}
           props that accept normal flex-box parameters. Below are some common
           scenarios, where you need to separate two items, center justify a
           single one, or center an item vertically. Note the usage of{' '}
-          <EuiCode>FlexItem</EuiCode>s with <EuiCode>grow=false</EuiCode> so
+          <strong>EuiFlexItems</strong> with <EuiCode>grow=false</EuiCode> so
           that they do not stretch.
         </p>
       ),
@@ -414,7 +417,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGroup can change direction',
+      title: 'Flex group can change direction',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -434,7 +437,7 @@ export const FlexExample = {
           <EuiCallOut color="warning" title="IE11 Warning">
             <p>
               Depending on the nested structure of your flex groups, it is
-              possible that flex-items inside a column directed flex group will
+              possible that flex items inside a column directed flex group will
               not show. To counter this, add the <code>grow</code> prop and set
               to either <code>false</code> or a number. Setting{' '}
               <code>grow</code> to <code>true</code> will not suffice. You may
@@ -451,7 +454,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGrids are for repeatable grids',
+      title: 'Flex grids are for repeatable grids',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -464,7 +467,7 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          <EuiCode>FlexGrid</EuiCode> is a more rigid component that sets
+          <strong>EuiFlexGrid</strong> is a more rigid component that sets
           multiple, wrapping rows of same width items.
         </p>
       ),
@@ -477,7 +480,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGrids can have set column widths',
+      title: 'Flex grids can have set column widths',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -502,7 +505,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGrids can change direction',
+      title: 'Flex grids can change direction',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -528,7 +531,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGrids and FlexGroups can nest',
+      title: 'Flex grids and flex groups can nest',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -542,10 +545,10 @@ export const FlexExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>FlexGroup</EuiCode> and <EuiCode>FlexGrid</EuiCode> can
+            <strong>EuiFlexGroup</strong> and <strong>EuiFlexGrid</strong> can
             nest within themselves indefinitely. For example, here we turn off
-            the growth on a<EuiCode>FlexGroup</EuiCode>, then nest a grid inside
-            of it.
+            the growth on a <strong>EuiFlexGroup</strong>, then nest a grid
+            inside of it.
           </p>
           <EuiCallOut color="warning" title="IE11 Warning">
             <p>
@@ -568,7 +571,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'Gutter sizing can be used on either FlexGroups or FlexGrids',
+      title: 'Gutter sizing can be used on either flex groups or flex grids',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -581,9 +584,9 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          The <EuiCode>gutterSize</EuiCode> prop can be applied to either a
-          <EuiCode>FlexGroup</EuiCode> or a <EuiCode>FlexGrid</EuiCode> to
-          adjust the spacing between <EuiCode>FlexItem</EuiCode>s.
+          The <EuiCode>gutterSize</EuiCode> prop can be applied to either a{' '}
+          <strong>EuiFlexGroup</strong> or a <strong>EuiFlexGrid</strong> to
+          adjust the spacing between <strong>EuiFlexItems</strong>.
         </p>
       ),
       snippet: flexGutterSnippet,
@@ -594,7 +597,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'FlexGroups can turn off responsive layouts',
+      title: 'Flex groups can turn off responsive layouts',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -607,11 +610,10 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          By default <EuiCode>EuiFlexGroup</EuiCode> is responsive. However,
-          often you only want to use groups for alignment and margins, rather
-          than layouts. Simply apply the{' '}
-          <EuiCode>responsive={'{false}'}</EuiCode> prop to retain a single row
-          layout for the group.
+          By default <strong>EuiFlexGroup</strong> is responsive. However, often
+          you only want to use groups for alignment and margins, rather than
+          layouts. Simply apply the <EuiCode>responsive={'{false}'}</EuiCode>{' '}
+          prop to retain a single row layout for the group.
         </p>
       ),
       snippet: flexGroupResponsiveSnippet,

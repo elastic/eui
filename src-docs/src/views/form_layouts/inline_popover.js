@@ -14,7 +14,7 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
@@ -111,7 +111,7 @@ export default class extends Component {
       <EuiForm>
         <EuiFormRow>
           <EuiSwitch
-            id={makeId()}
+            id={htmlIdGenerator()()}
             name="popswitch"
             label="Isn't this popover form cool?"
             checked={this.state.isSwitch2Checked}

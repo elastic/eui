@@ -14,21 +14,10 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
-const iconHtmlWarning = () => (
-  <p>
-    HTML preview disabled. Icons use SVG and are not usable without React unless
-    you load the icons manually through a separate asset loader.
-  </p>
-);
-
-const iconsHtml = renderToHtml(iconHtmlWarning);
-
 import Icons from './icons';
-const iconsSource = require('!!raw-loader!./icons');
 const iconsSnippet = '<EuiIcon type="alert" />';
 
 import Tokens from './tokens';
-const tokensSource = require('!!raw-loader!./tokens');
 const tokensSnippet = [
   '<EuiToken type="tokenAnnotation" />',
   `<EuiToken
@@ -46,41 +35,32 @@ const tokensSnippet = [
 ];
 
 import Apps from './apps';
-const appsSource = require('!!raw-loader!./apps');
 const appsSnippet = '<EuiIcon type="addDataApp" size="xl" />';
 
 import Editor from './editor';
-const editorSource = require('!!raw-loader!./editor');
 const editorSnippet = '<EuiIcon type="editorAlignLeft" />';
 
 import Ml from './ml';
-const mlSource = require('!!raw-loader!./ml');
 const mlSnippet = '<EuiIcon type="dataVisualizer" size="xl" />';
 
 import Logos from './logos';
-const logosSource = require('!!raw-loader!./logos');
 const logosSnippet = '<EuiIcon type="logoElasticsearch" size="xl" />';
 
 import LogosThird from './logos_third';
-const logosThirdSource = require('!!raw-loader!./logos_third');
 const logosThirdSnippet = '<EuiIcon type="logoApache" size="xl" />';
 
 import IconSizes from './icon_sizes';
-const iconSizesSource = require('!!raw-loader!./icon_sizes');
 const iconSizesSnippet = '<EuiIcon type="logoElasticStack" size="xl" />';
 
 import IconColors from './icon_colors';
-const iconColorsSource = require('!!raw-loader!./icon_colors');
 const iconColorsSnippet = [
   '<EuiIcon type="brush" color="primary" />',
   '<EuiIcon type="brush" color="#DA8B45" />',
 ];
 
-import Accessibility from './accessibility';
-const accessibilitySource = require('!!raw-loader!./accessibility');
-
 import IconTypes from './icon_types';
 const iconTypesSource = require('!!raw-loader!./icon_types');
+const iconTypesHtml = renderToHtml(IconTypes);
 const iconTypesSnippet = [
   '<EuiIcon type="logoElastic" size="xl" />',
   '<EuiIcon type={reactSVGElement} size="xl" />',
@@ -94,7 +74,7 @@ export const IconExample = {
     <div>
       <EuiText>
         <p>
-          <EuiCode>EuiIcon</EuiCode> is a handy component for using our custom
+          <strong>EuiIcon</strong> is a handy component for using our custom
           glyphs and logos. The <EuiCode>type</EuiCode> prop accepts either an
           enumerated name from one of the sets below, a location to a custom SVG
           asset, or a React Element.
@@ -116,7 +96,7 @@ export const IconExample = {
         color="warning">
         <p>
           If no title is provided the icon is going to be purely decorative and
-          it will get by default an <EuiCode>aria-hidden=true</EuiCode>.
+          it will get by default an <EuiCode language="js">aria-hidden=true</EuiCode>.
         </p>
       </EuiCallOut>
       <EuiSpacer />
@@ -124,22 +104,12 @@ export const IconExample = {
   ),
   sections: [
     {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: iconsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       title: 'Glyphs',
       text: (
         <div>
           <p>
             Glyphs are small, monochromatic icons that typically should always
-            use the default size of <EuiCode>size=&quot;m&quot;</EuiCode>. They
+            use the default size of <EuiCode language="js">size=&quot;m&quot;</EuiCode>. They
             tend to be pixel perfect and don&apos;t scale very well into larger
             sizes.
           </p>
@@ -151,20 +121,10 @@ export const IconExample = {
     },
     {
       title: 'Editor controls',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: editorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       text: (
         <p>
           Editor icons relate to the visual styling of elements and are commonly
-          used within <EuiCode>EuiButtonGroup</EuiCode> components.
+          used within <strong>EuiButtonGroup</strong> components.
         </p>
       ),
       snippet: editorSnippet,
@@ -172,16 +132,6 @@ export const IconExample = {
     },
     {
       title: 'Apps',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: appsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       text: (
         <p>
           App logos are usually displayed at <EuiCode>32x32</EuiCode> or above
@@ -193,24 +143,14 @@ export const IconExample = {
     },
     {
       title: 'Tokens',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: tokensSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       text: (
         <div>
           <p>
             Tokens are most commonly used to visually signify field or code
-            types. An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
-            <EuiCode>EuiIcon</EuiCode> as its
+            types. An <strong>EuiToken</strong> accepts any valid{' '}
+            <strong>EuiIcon</strong> as its
             <EuiCode>iconType</EuiCode> property. However, icons designed
-            specifically for use in the <EuiCode>EuiToken</EuiCode> are prefixed
+            specifically for use in the <strong>EuiToken</strong> are prefixed
             with &quot;token&quot; in their name and have pre-defined styles.
           </p>
         </div>
@@ -221,16 +161,6 @@ export const IconExample = {
     },
     {
       title: 'Machine learning icons',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: mlSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       text: (
         <p>
           ML has some specific icons for job creation. Again, these are made for{' '}
@@ -242,16 +172,6 @@ export const IconExample = {
     },
     {
       title: 'Elastic logos',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: logosSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       text: (
         <p>
           Product logos follow similar rules as app logos. Note the use of{' '}
@@ -263,32 +183,7 @@ export const IconExample = {
       demo: <Logos />,
     },
     {
-      title: 'Third party logos',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: logosThirdSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
-      snippet: logosThirdSnippet,
-      demo: <LogosThird />,
-    },
-    {
       title: 'Sizes',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: iconSizesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       text: (
         <p>
           Use the <EuiCode>size</EuiCode> prop to automatically size your icons.
@@ -301,16 +196,6 @@ export const IconExample = {
     },
     {
       title: 'Colors',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: iconColorsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
       text: (
         <p>
           The default behavior of icons is to inherit from the text color. You
@@ -349,12 +234,23 @@ export const IconExample = {
         },
         {
           type: GuideSectionTypes.HTML,
-          code: iconsHtml,
+          code: iconTypesHtml,
         },
       ],
       props: { EuiIcon },
       snippet: iconTypesSnippet,
       demo: <IconTypes />,
+    },
+    {
+      title: 'Third party logos',
+      text: (
+        <p>
+          EUI's library of third party logos are mostly maintained for legacy usages.{' '}
+          <strong>EuiIcon</strong> now accepts custom SVG and image content which is how we recommend displaying external logos.
+        </p>
+      ),
+      snippet: logosThirdSnippet,
+      demo: <LogosThird />,
     },
   ],
 };

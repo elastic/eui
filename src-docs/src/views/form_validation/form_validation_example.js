@@ -24,8 +24,8 @@ export const FormValidationExample = {
       text: (
         <p>
           Validation is achieved by applying <EuiCode>isInvalid</EuiCode> and
-          optionally error props onto the <EuiCode>EuiForm</EuiCode> or{' '}
-          <EuiCode>EuiFormRow</EuiCode> components. Errors are optional and are
+          optionally error props onto the <strong>EuiForm</strong> or{' '}
+          <strong>EuiFormRow</strong> components. Errors are optional and are
           passed as an array in case you need to list many errors.
         </p>
       ),

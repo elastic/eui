@@ -1,7 +1,7 @@
 import React from 'react';
 import { requiredProps } from '../../test';
 import { shallow } from 'enzyme';
-import { EuiSearchFilters, SearchFiltersFiltersType } from './search_filters';
+import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 
 describe('EuiSearchFilters', () => {
@@ -19,7 +19,7 @@ describe('EuiSearchFilters', () => {
   });
 
   test('render - with filters', () => {
-    const filters: SearchFiltersFiltersType = [
+    const filters: SearchFilterConfig[] = [
       {
         type: 'is',
         field: 'open',

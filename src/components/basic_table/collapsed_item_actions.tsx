@@ -1,21 +1,17 @@
 import React, { Component, FocusEvent, ReactNode, ReactElement } from 'react';
+import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { EuiI18n } from '../i18n';
-import {
-  Action,
-  CustomItemAction,
-  DefaultItemIconButtonAction,
-} from './action_types';
-import { EuiIconType } from '../icon/icon';
-import { ItemId } from './table_types';
+import { Action, CustomItemAction } from './action_types';
+import { ItemIdResolved } from './table_types';
 
 export interface CollapsedItemActionsProps<T> {
   actions: Array<Action<T>>;
   item: T;
-  itemId: ItemId<T>;
+  itemId: ItemIdResolved;
   actionEnabled: (action: Action<T>) => boolean;
   className?: string;
   onFocus?: (event: FocusEvent) => void;
@@ -129,15 +125,20 @@ export class CollapsedItemActions<T> extends Component<
             target,
             'data-test-subj': dataTestSubj,
           } = action;
+
+          const buttonIcon = action.icon;
+          let icon;
+          if (buttonIcon) {
+            icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
+          }
+
           controls.push(
             <EuiContextMenuItem
               key={key}
               disabled={!enabled}
-              icon={
-                (action as DefaultItemIconButtonAction<T>).icon as EuiIconType
-              }
               href={href}
               target={target}
+              icon={icon}
               data-test-subj={dataTestSubj}
               onClick={this.onClickItem.bind(
                 null,

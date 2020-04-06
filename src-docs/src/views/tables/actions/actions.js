@@ -178,6 +178,7 @@ export class Table extends Component {
             {
               name: 'Edit',
               isPrimary: true,
+              available: ({ online }) => !online,
               description: 'Edit this user',
               icon: 'pencil',
               type: 'icon',

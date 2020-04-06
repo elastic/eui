@@ -74,7 +74,7 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
               theme object depending on the current Kibana theme. Learn more
               from this{' '}
               <EuiLink
-                href="https://github.com/elastic/kibana/blob/master/src/plugins/eui_utils/README.md#eui-plus-elastic-charts"
+                href="https://github.com/elastic/kibana/tree/master/src/plugins/charts"
                 target="_blank">
                 readme
               </EuiLink>

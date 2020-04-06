@@ -37,6 +37,8 @@ export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
 export { EuiCodeEditor } from './code_editor';
 
+export { EuiCollapsibleNav, EuiCollapsibleNavGroup } from './collapsible_nav';
+
 export {
   EuiColorPicker,
   EuiColorPickerSwatch,
@@ -181,7 +183,11 @@ export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';
 
 export { EuiLink } from './link';
 
-export { EuiListGroup, EuiListGroupItem } from './list_group';
+export {
+  EuiListGroup,
+  EuiListGroupItem,
+  EuiPinnableListGroup,
+} from './list_group';
 
 export { EuiMark } from './mark';
 

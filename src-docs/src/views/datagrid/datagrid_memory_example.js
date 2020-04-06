@@ -59,8 +59,8 @@ export const DataGridMemoryExample = {
           The grid has levels of <strong>in-memory</strong> settings that can be
           set. It is in the consuming application&apos;s best interest to put as
           much of the data grid in memory as performance allows. Try to use the
-          highest level <EuiCode>inMemory=&quot;sorting&quot;</EuiCode> whenever
-          possible. The following values are available.
+          highest level <EuiCode language="js">{'inMemory="sorting"'}</EuiCode>{' '}
+          whenever possible. The following values are available.
         </p>
         <ul>
           <li>
@@ -155,7 +155,10 @@ export const DataGridMemoryExample = {
       title: 'Enhancements only in-memory',
       text: (
         <p>
-          With <EuiCode>{'inMemory="{{ level: \'enhancements\' }}"'}</EuiCode>{' '}
+          With{' '}
+          <EuiCode language="js">
+            {"inMemory={{ level: 'enhancements' }}"}
+          </EuiCode>{' '}
           the grid will now autodetect schemas based on the content it has
           available on the currently viewed page. Notice that the field list
           under Sort fields has detected the type of data each column contains.
@@ -190,9 +193,12 @@ export const DataGridMemoryExample = {
       title: 'Pagination only in-memory',
       text: (
         <p>
-          With <EuiCode>{'inMemory="{{ level: \'pagination\' }}"'}</EuiCode> the
-          grid will now take care of managing the data cleanup for pagination.
-          Like before it will autodetect schemas when possible.
+          With{' '}
+          <EuiCode language="js">
+            {"inMemory={{ level: 'pagination' }}"}
+          </EuiCode>{' '}
+          the grid will now take care of managing the data cleanup for
+          pagination. Like before it will autodetect schemas when possible.
         </p>
       ),
       props: {
@@ -224,9 +230,10 @@ export const DataGridMemoryExample = {
       title: 'Sorting and pagination in-memory',
       text: (
         <p>
-          With <EuiCode>{'inMemory="{{ level: \'sorting\' }}"'}</EuiCode> the
-          grid will now take care of managing the data cleanup for sorting as
-          well as pagination. Like before it will autodetect schemas when
+          With{' '}
+          <EuiCode language="js">{"inMemory={{ level: 'sorting' }}"}</EuiCode>{' '}
+          the grid will now take care of managing the data cleanup for sorting
+          as well as pagination. Like before it will autodetect schemas when
           possible.
         </p>
       ),

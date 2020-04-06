@@ -1,45 +1,26 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiButton, EuiPopover } from '../../../../src/components';
 
-export default class PopoverContainer extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  onButtonClick = () => {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  };
+  const button = (
+    <EuiButton onClick={onButtonClick} fullWidth>
+      This button is expanded
+    </EuiButton>
+  );
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
-
-  setPanelRef = node => (this.panel = node);
-
-  render() {
-    const button = (
-      <EuiButton onClick={this.onButtonClick} fullWidth>
-        This button is expanded
-      </EuiButton>
-    );
-
-    return (
-      <EuiPopover
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        display="block">
-        <div>This is a popover</div>
-      </EuiPopover>
-    );
-  }
-}
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      display="block">
+      <div>This is a popover</div>
+    </EuiPopover>
+  );
+};
