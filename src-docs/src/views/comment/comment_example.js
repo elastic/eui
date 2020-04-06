@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
@@ -49,6 +51,7 @@ const commentTimelineIconsSnippet = [
   `<EuiComment timelineIcon={
     <EuiAvatar
       name="Jane D"
+      size="l"
     />
   } username="janed">
   {body}
@@ -77,14 +80,14 @@ export const CommentExample = {
       text: (
         <div>
           <p>
-            Use <strong>EuiComment</strong> for displaying comment threads with{' '}
-            <strong>EuiCommentList</strong>. Each <strong>EuiComment</strong>{' '}
-            has two parts: a <EuiCode>timelineIcon</EuiCode> on the left and
-            content on the right. The <EuiCode>timelineIcon</EuiCode> provides a
-            visual indication of the <EuiCode>type</EuiCode> of comment it is.
-            For example, it can be an icon that represents what action was
-            performed or it can be a user avatar. The content has a header with
-            all the relevant metadata and a body.
+            Use <strong>EuiComment</strong> to display comments. Each{' '}
+            <strong>EuiComment</strong> has two parts: a{' '}
+            <EuiCode>timelineIcon</EuiCode> on the left and content on the
+            right. The <EuiCode>timelineIcon</EuiCode> provides a visual
+            indication of the <EuiCode>type</EuiCode> of comment it is. For
+            example, it can be an icon that represents what action was performed
+            or it can be a user avatar. The content has a header with all the
+            relevant metadata and a body.
           </p>
         </div>
       ),
@@ -107,12 +110,12 @@ export const CommentExample = {
       text: (
         <div>
           <p>
-            Use the default <EuiCode>type</EuiCode> of comment,{' '}
-            <EuiCode>regular</EuiCode> to display comments that a user has
+            The default <EuiCode>type</EuiCode> of comment is
+            <EuiCode>regular</EuiCode> and displays a comment that a user has
             written.
           </p>
           <p>
-            Use comments of type <EuiCode>update</EuiCode> to display comments
+            Change the type to <EuiCode>update</EuiCode> to display comments
             that generally do not have a body and are logging actions that
             either the user or the system has performed (e.g. &ldquo;jsmith
             edited a case&rdquo; or &ldquo;kibanamachine added the review
@@ -125,7 +128,7 @@ export const CommentExample = {
       demo: <CommentTypes />,
     },
     {
-      title: 'Custom timelineIcon',
+      title: 'Custom timeline icon',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -143,10 +146,9 @@ export const CommentExample = {
           </p>
           <ol>
             <li>
-              Use the defaults a) a user icon inside a 40x40 container for
-              comments of type
-              <EuiCode>regular</EuiCode> and b) a dot icon inside a 24x24
-              container for comments of type <EuiCode>update</EuiCode>.
+              Use the defaults; a user icon inside a large container for
+              <EuiCode>regular</EuiCode> comments; or a dot icon inside a small
+              container for <EuiCode>update</EuiCode> comments.
             </li>
             <li>
               Pass a string with any of the icon types that{' '}
@@ -154,8 +156,11 @@ export const CommentExample = {
               styling.
             </li>
             <li>
-              Pass any other element (e.g. <strong>EuiAvatar</strong>). It is
-              recommended not to use an element larger that 40x40.
+              Pass any other element (e.g.{' '}
+              <Link to="/display/avatar">
+                <strong>EuiAvatar</strong>
+              </Link>
+              ). It is recommended not to use an element larger that 40x40.
             </li>
           </ol>
         </div>
@@ -187,9 +192,19 @@ export const CommentExample = {
             prop. These will be placed to the right of the metadata in the
             comment&apos;s header. You can use any element to display{' '}
             <EuiCode>actions</EuiCode>. For example, for something simple you
-            can use <strong>EuiButtonIcon</strong> and for something more
-            complex you can combine that with <strong>EuiPopover</strong> and{' '}
-            <strong>EuiContextMenu</strong>.
+            can use{' '}
+            <Link to="/navigation/button">
+              <strong>EuiButtonIcon</strong>
+            </Link>{' '}
+            and for something more complex you can combine that with{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            and{' '}
+            <Link to="/navigation/context-menu">
+              <strong>EuiContextMenu</strong>
+            </Link>
+            .
           </p>
         </div>
       ),

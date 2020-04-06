@@ -5,15 +5,15 @@ import { EuiIcon } from '../icon';
 
 export type EuiCommentTimelineProps = CommonProps & {
   /**
-   * Main icon that accompanies the comment. There's default icons for both types of comment, user icon for regular comments and dot icon for update comments. It also accepts any type supported by EuiIcon or any other node.
+   * Main icon that accompanies the comment. The default is `user` for regular comments and `dot` for update comments. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`.
    */
   timelineIcon?: ReactNode | string;
   type?: EuiCommentType;
 };
 
 const typeToClassNameMap = {
-  regular: 'euiCommentTimeline--regular',
-  update: 'euiCommentTimeline--update',
+  regular: 'euiCommentTimeline__icon--regular',
+  update: 'euiCommentTimeline__icon--update',
 };
 
 export const TYPES = keysOf(typeToClassNameMap);
@@ -28,7 +28,7 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
   const classes = classNames('euiCommentTimeline', className);
   const iconClasses = classNames(
     {
-      euiCommentTimeline__default:
+      'euiCommentTimeline__icon--default':
         !timelineIcon || typeof timelineIcon === 'string',
     },
     typeToClassNameMap[type]

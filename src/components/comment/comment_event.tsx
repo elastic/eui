@@ -66,7 +66,11 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
             undefined
           )}
         </div>
-        <div className="euiCommentEvent__headerActions">{actions}</div>
+        {actions ? (
+          <div className="euiCommentEvent__headerActions">{actions}</div>
+        ) : (
+          undefined
+        )}
       </div>
       {children ? (
         <div className="euiCommentEvent__body">{children}</div>

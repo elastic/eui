@@ -13,7 +13,7 @@ exports[`EuiComment is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__default euiCommentTimeline--regular"
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
       >
         <div
           data-euiicon-type="user"
@@ -39,9 +39,6 @@ exports[`EuiComment is rendered 1`] = `
           class="euiCommentEvent__headerEvent"
         />
       </div>
-      <div
-        class="euiCommentEvent__headerActions"
-      />
     </div>
   </div>
 </div>
@@ -58,7 +55,7 @@ exports[`EuiComment props event is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__default euiCommentTimeline--regular"
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
       >
         <div
           data-euiicon-type="user"
@@ -86,9 +83,6 @@ exports[`EuiComment props event is rendered 1`] = `
           commented
         </div>
       </div>
-      <div
-        class="euiCommentEvent__headerActions"
-      />
     </div>
   </div>
 </div>
@@ -105,7 +99,7 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline--regular"
+        class="euiCommentTimeline__icon--regular"
       >
         <div
           aria-label="Mario"
@@ -140,9 +134,6 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
           class="euiCommentEvent__headerEvent"
         />
       </div>
-      <div
-        class="euiCommentEvent__headerActions"
-      />
     </div>
   </div>
 </div>
@@ -159,7 +150,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__default euiCommentTimeline--regular"
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
       >
         <div
           data-euiicon-type="user"
@@ -193,9 +184,6 @@ exports[`EuiComment props timestamp is rendered 1`] = `
           </time>
         </div>
       </div>
-      <div
-        class="euiCommentEvent__headerActions"
-      />
     </div>
   </div>
 </div>
@@ -212,7 +200,7 @@ exports[`EuiComment props type is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__default euiCommentTimeline--update"
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--update"
       >
         <div
           data-euiicon-type="dot"
@@ -238,9 +226,6 @@ exports[`EuiComment props type is rendered 1`] = `
           class="euiCommentEvent__headerEvent"
         />
       </div>
-      <div
-        class="euiCommentEvent__headerActions"
-      />
     </div>
   </div>
 </div>
@@ -257,7 +242,7 @@ exports[`EuiComment renders a body 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__default euiCommentTimeline--regular"
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
       >
         <div
           data-euiicon-type="user"
@@ -283,9 +268,6 @@ exports[`EuiComment renders a body 1`] = `
           class="euiCommentEvent__headerEvent"
         />
       </div>
-      <div
-        class="euiCommentEvent__headerActions"
-      />
     </div>
     <div
       class="euiCommentEvent__body"

@@ -8,7 +8,7 @@ const defaultBody = (
   <EuiText size="s">
     <p>
       This comment and the one below are using the default{' '}
-      <EuiCode>timelineIcon</EuiCode>s.
+      <EuiCode>timelineIcon</EuiCode>.
     </p>
   </EuiText>
 );

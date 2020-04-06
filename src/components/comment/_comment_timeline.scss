@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.euiCommentTimeline__default {
+.euiCommentTimeline__icon--default {
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -15,12 +15,12 @@
   border-radius: 50%;
   background-color: $euiColorLightestShade;
 
-  &.euiCommentTimeline--regular {
+  &.euiCommentTimeline__icon--regular {
     width: $euiSizeXXL;
     height: $euiSizeXXL;
   }
 
-  &.euiCommentTimeline--update {
+  &.euiCommentTimeline__icon--update {
     width: $euiSizeL;
     height: $euiSizeL;
   }

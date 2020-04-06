@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCommentEvent is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiCommentEvent euiCommentEvent--regular testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiCommentEvent__header"
+  >
+    <div
+      class="euiCommentEvent__headerData"
+    >
+      <div
+        class="euiCommentEvent__headerUsername"
+      >
+        someuser
+      </div>
+      <div
+        class="euiCommentEvent__headerEvent"
+      />
+    </div>
+  </div>
+</div>
+`;

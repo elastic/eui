@@ -1,6 +1,5 @@
 import React from 'react';
 import { EuiComment } from '../../../../src/components/comment';
-import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';
 import { EuiCode } from '../../../../src/components/code';
 
@@ -20,21 +19,11 @@ const bodyUpdate = (
   </EuiText>
 );
 
-const copyAction = (
-  <EuiButtonIcon
-    title="Custom action"
-    aria-label="Custom action"
-    color="subdued"
-    iconType="copy"
-  />
-);
-
 export default () => (
   <div>
     <EuiComment
       username="andred"
       event="added a comment"
-      actions={copyAction}
       timestamp="Jan 1, 2020">
       {body}
     </EuiComment>

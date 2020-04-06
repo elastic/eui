@@ -44,6 +44,7 @@
     }
 
     min-height: $euiSizeXXL;
+    height: $euiSize; // vertical centering stops working in IE when there's a min-height and not a height.
     background-color: $euiColorLightestShade;
     border-bottom: $euiBorderThin;
     padding: 0 $euiSizeS;
