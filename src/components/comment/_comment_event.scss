@@ -41,16 +41,35 @@
   .euiCommentEvent__header {
     @include euiBreakpoint('xs', 's') {
       padding: $euiSizeS;
+
+      /**
+       * Fix for IE when using align-items:center in an item that has min-height
+            (https://github.com/philipwalton/flexbugs/issues/231#issuecomment-362790042)
+       */
+      &::after {
+        content: '';
+        min-height: inherit;
+        font-size: 0;
+        display: block;
+      }
+    }
+
+    /**
+      * Fix for IE when using align-items:center in an item that has min-height
+          (https://github.com/philipwalton/flexbugs/issues/231#issue-245848315)
+      */
+    @include euiBreakpoint('m', 'l', 'xl') {
+      height: $euiSize;
     }
 
     min-height: $euiSizeXXL;
-    height: $euiSize; // vertical centering stops working in IE when there's a min-height and not a height.
     background-color: $euiColorLightestShade;
     border-bottom: $euiBorderThin;
     padding: 0 $euiSizeS;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
   }
 
   .euiCommentEvent__body {
