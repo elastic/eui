@@ -14,18 +14,25 @@ import {
 import Text from './text';
 const textSource = require('!!raw-loader!./text');
 const textHtml = renderToHtml(Text);
+const textSnippet = '<EuiText grow={false}><!-- Raw HTML Content --></EuiText>';
 
 import TextSmall from './text_small';
 const textSmallSource = require('!!raw-loader!./text_small');
 const textSmallHtml = renderToHtml(TextSmall);
+const textSmallSnippet = `<EuiText size="s"><!--Content --></EuiText>;
+<EuiText size="xs"><!-- Raw HTML Content --></EuiText>`;
 
 import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
 const textColorHtml = renderToHtml(TextColor);
+const textColorSnippet = `<EuiTextColor color="warning"><!-- Content --></EuiTextColor>
+<EuiText color="warning"><!-- Content --></EuiText>`;
 
 import TextAlign from './text_align';
 const textAlignSource = require('!!raw-loader!./text_align');
 const textAlignHtml = renderToHtml(TextAlign);
+const textAlignSnippet = `<EuiTextAlign textAlign="right"><!--Content --></EuiTextAlign>
+<EuiText textAlign="center"><!--Content --></EuiText>`;
 
 export const TextExample = {
   title: 'Text',
@@ -59,6 +66,7 @@ export const TextExample = {
           </p>
         </div>
       ),
+      snippet: textSnippet,
       props: { EuiText },
       demo: <Text />,
     },
@@ -80,6 +88,7 @@ export const TextExample = {
           can get smaller sizes of text than the default.
         </p>
       ),
+      snippet: textSmallSnippet,
       demo: <TextSmall />,
     },
     {
@@ -103,6 +112,7 @@ export const TextExample = {
           your text.
         </p>
       ),
+      snippet: textColorSnippet,
       props: { EuiTextColor },
       demo: <TextColor />,
     },
@@ -127,6 +137,7 @@ export const TextExample = {
           your text.
         </p>
       ),
+      snippet: textAlignSnippet,
       props: { EuiTextAlign },
       demo: <TextAlign />,
     },
