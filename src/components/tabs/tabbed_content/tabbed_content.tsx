@@ -6,8 +6,6 @@ import { EuiTabs, EuiTabsDisplaySizes, EuiTabsSizes } from '../tabs';
 import { EuiTab } from '../tab';
 import { CommonProps } from '../../common';
 
-const makeId = htmlIdGenerator();
-
 /**
  * Marked as const so type is `['initial', 'selected']` instead of `string[]`
  */
@@ -66,7 +64,7 @@ export class EuiTabbedContent extends Component<
     autoFocus: 'initial',
   };
 
-  private readonly rootId = makeId();
+  private readonly rootId = htmlIdGenerator()();
 
   private readonly divRef = createRef<HTMLDivElement>();
 

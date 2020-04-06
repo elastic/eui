@@ -225,6 +225,12 @@ function resolveIdentifierToPropTypes(node, state) {
         types.identifier('node')
       );
 
+    case 'ComponentType':
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('elementType')
+      );
+
     case 'JSXElementConstructor':
       return types.memberExpression(
         types.identifier('PropTypes'),

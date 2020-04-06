@@ -9053,3 +9053,15 @@ exports[`EuiIcon props type wrench is rendered 1`] = `
   />
 </svg>
 `;
+
+exports[`EuiIcon renders custom components 1`] = `
+<span
+  aria-hidden="true"
+  aria-label="heart"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  role="img"
+>
+  ❤️
+</span>
+`;

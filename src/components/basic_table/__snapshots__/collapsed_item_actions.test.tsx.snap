@@ -27,3 +27,52 @@ exports[`CollapsedItemActions render 1`] = `
   </div>
 </div>
 `;
+
+exports[`CollapsedItemActions render with href and _target provided 1`] = `
+<EuiPopover
+  anchorPosition="leftCenter"
+  button={
+    <EuiI18n
+      default="All actions"
+      token="euiCollapsedItemActions.allActions"
+    >
+      [Function]
+    </EuiI18n>
+  }
+  closePopover={[Function]}
+  display="inlineBlock"
+  hasArrow={true}
+  id="id-actions"
+  isOpen={true}
+  ownFocus={false}
+  panelPaddingSize="none"
+  popoverRef={[Function]}
+>
+  <EuiContextMenuPanel
+    hasFocus={true}
+    items={
+      Array [
+        <EuiContextMenuItem
+          disabled={false}
+          onClick={[Function]}
+        >
+          default1
+        </EuiContextMenuItem>,
+        <EuiContextMenuItem
+          onClick={[Function]}
+        >
+          <div />
+        </EuiContextMenuItem>,
+        <EuiContextMenuItem
+          disabled={false}
+          href="https://www.elastic.co/"
+          onClick={[Function]}
+          target="_blank"
+        >
+          default2
+        </EuiContextMenuItem>,
+      ]
+    }
+  />
+</EuiPopover>
+`;

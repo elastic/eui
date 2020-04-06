@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiPopover,
@@ -11,144 +11,111 @@ import {
   EuiTextColor,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isPopoverOpen1, setIsPopoverOpen1] = useState(false);
+  const [isPopoverOpen2, setIsPopoverOpen2] = useState(false);
+  const [isPopoverOpen3, setIsPopoverOpen3] = useState(false);
 
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  const onButtonClick1 = () =>
+    setIsPopoverOpen1(isPopoverOpen1 => !isPopoverOpen1);
+  const closePopover1 = () => setIsPopoverOpen1(false);
 
-  onButtonClick1() {
-    this.setState({
-      isPopoverOpen1: !this.state.isPopoverOpen1,
-    });
-  }
+  const onButtonClick2 = () =>
+    setIsPopoverOpen2(isPopoverOpen2 => !isPopoverOpen2);
+  const closePopover2 = () => setIsPopoverOpen2(false);
 
-  closePopover1() {
-    this.setState({
-      isPopoverOpen1: false,
-    });
-  }
+  const onButtonClick3 = () =>
+    setIsPopoverOpen3(isPopoverOpen3 => !isPopoverOpen3);
+  const closePopover3 = () => setIsPopoverOpen3(false);
 
-  onButtonClick2() {
-    this.setState({
-      isPopoverOpen2: !this.state.isPopoverOpen2,
-    });
-  }
+  return (
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          ownFocus
+          button={
+            <EuiButton
+              iconType="arrowDown"
+              iconSide="right"
+              onClick={onButtonClick1}>
+              With title
+            </EuiButton>
+          }
+          isOpen={isPopoverOpen1}
+          closePopover={closePopover1}
+          anchorPosition="downCenter">
+          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+          <div style={{ width: '300px' }}>
+            <EuiText>
+              <p>
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
+              </p>
+            </EuiText>
+          </div>
+        </EuiPopover>
+      </EuiFlexItem>
 
-  closePopover2() {
-    this.setState({
-      isPopoverOpen2: false,
-    });
-  }
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          ownFocus
+          button={
+            <EuiButton
+              iconType="arrowDown"
+              iconSide="right"
+              onClick={onButtonClick2}>
+              With footer
+            </EuiButton>
+          }
+          isOpen={isPopoverOpen2}
+          closePopover={closePopover2}
+          anchorPosition="upCenter">
+          <div style={{ width: '300px' }}>
+            <EuiText>
+              <p>
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
+              </p>
+            </EuiText>
+          </div>
+          <EuiPopoverFooter>
+            <EuiTextColor color="subdued">
+              Hello, I&rsquo;m a small popover footer caption
+            </EuiTextColor>
+          </EuiPopoverFooter>
+        </EuiPopover>
+      </EuiFlexItem>
 
-  onButtonClick3() {
-    this.setState({
-      isPopoverOpen3: !this.state.isPopoverOpen3,
-    });
-  }
-
-  closePopover3() {
-    this.setState({
-      isPopoverOpen3: false,
-    });
-  }
-
-  render() {
-    return (
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            ownFocus
-            button={
-              <EuiButton
-                iconType="arrowDown"
-                iconSide="right"
-                onClick={this.onButtonClick1.bind(this)}>
-                With title
-              </EuiButton>
-            }
-            isOpen={this.state.isPopoverOpen1}
-            closePopover={this.closePopover1.bind(this)}
-            anchorPosition="downCenter">
-            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
-            <div style={{ width: '300px' }}>
-              <EuiText>
-                <p>
-                  Selfies migas stumptown hot chicken quinoa wolf green juice,
-                  mumblecore tattooed trust fund hammock truffaut taxidermy
-                  kogi.
-                </p>
-              </EuiText>
-            </div>
-          </EuiPopover>
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            ownFocus
-            button={
-              <EuiButton
-                iconType="arrowDown"
-                iconSide="right"
-                onClick={this.onButtonClick2.bind(this)}>
-                With footer
-              </EuiButton>
-            }
-            isOpen={this.state.isPopoverOpen2}
-            closePopover={this.closePopover2.bind(this)}
-            anchorPosition="upCenter">
-            <div style={{ width: '300px' }}>
-              <EuiText>
-                <p>
-                  Selfies migas stumptown hot chicken quinoa wolf green juice,
-                  mumblecore tattooed trust fund hammock truffaut taxidermy
-                  kogi.
-                </p>
-              </EuiText>
-            </div>
-            <EuiPopoverFooter>
-              <EuiTextColor color="subdued">
-                Hello, I&rsquo;m a small popover footer caption
-              </EuiTextColor>
-            </EuiPopoverFooter>
-          </EuiPopover>
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            ownFocus
-            button={
-              <EuiButton
-                iconType="arrowDown"
-                iconSide="right"
-                onClick={this.onButtonClick3.bind(this)}>
-                With title and footer button
-              </EuiButton>
-            }
-            isOpen={this.state.isPopoverOpen3}
-            closePopover={this.closePopover3.bind(this)}
-            anchorPosition="upCenter">
-            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
-            <div style={{ width: '300px' }}>
-              <EuiText>
-                <p>
-                  Selfies migas stumptown hot chicken quinoa wolf green juice,
-                  mumblecore tattooed trust fund hammock truffaut taxidermy
-                  kogi.
-                </p>
-              </EuiText>
-            </div>
-            <EuiPopoverFooter>
-              <EuiButton fullWidth size="s">
-                Manage this thing
-              </EuiButton>
-            </EuiPopoverFooter>
-          </EuiPopover>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-  }
-}
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          ownFocus
+          button={
+            <EuiButton
+              iconType="arrowDown"
+              iconSide="right"
+              onClick={onButtonClick3}>
+              With title and footer button
+            </EuiButton>
+          }
+          isOpen={isPopoverOpen3}
+          closePopover={closePopover3}
+          anchorPosition="upCenter">
+          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+          <div style={{ width: '300px' }}>
+            <EuiText>
+              <p>
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
+              </p>
+            </EuiText>
+          </div>
+          <EuiPopoverFooter>
+            <EuiButton fullWidth size="s">
+              Manage this thing
+            </EuiButton>
+          </EuiPopoverFooter>
+        </EuiPopover>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};

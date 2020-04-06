@@ -118,7 +118,13 @@ export class CollapsedItemActions<T> extends Component<
             </EuiContextMenuItem>
           );
         } else {
-          const { onClick, name, 'data-test-subj': dataTestSubj } = action;
+          const {
+            onClick,
+            name,
+            href,
+            target,
+            'data-test-subj': dataTestSubj,
+          } = action;
 
           const buttonIcon = action.icon;
           let icon;
@@ -130,6 +136,8 @@ export class CollapsedItemActions<T> extends Component<
             <EuiContextMenuItem
               key={key}
               disabled={!enabled}
+              href={href}
+              target={target}
               icon={icon}
               data-test-subj={dataTestSubj}
               onClick={this.onClickItem.bind(
