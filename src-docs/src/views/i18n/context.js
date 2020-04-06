@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiContext,
@@ -24,77 +24,70 @@ const mappings = {
   },
 };
 
-export default class extends Component {
-  state = {
-    language: 'en',
+export default () => {
+  const [language, setLanguage] = useState('en');
+
+  const i18n = {
+    mapping: mappings[language],
+    formatNumber: value => new Intl.NumberFormat(language).format(value),
   };
 
-  setLanguage = language => this.setState({ language });
+  return (
+    <EuiContext i18n={i18n}>
+      <div>
+        <EuiFlexGroup gutterSize="s" alignItems="center">
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              fill={language === 'en'}
+              onClick={() => setLanguage('en')}>
+              <EuiI18n token="euiContext.english" default="English" />
+            </EuiButton>
+          </EuiFlexItem>
 
-  render() {
-    const i18n = {
-      mapping: mappings[this.state.language],
-      formatNumber: value =>
-        new Intl.NumberFormat(this.state.language).format(value),
-    };
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              fill={language === 'fr'}
+              onClick={() => setLanguage('fr')}>
+              <EuiI18n token="euiContext.french" default="French" />
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-    return (
-      <EuiContext i18n={i18n}>
-        <div>
-          <EuiFlexGroup gutterSize="s" alignItems="center">
-            <EuiFlexItem grow={false}>
-              <EuiButton
-                fill={this.state.language === 'en'}
-                onClick={() => this.setLanguage('en')}>
-                <EuiI18n token="euiContext.english" default="English" />
-              </EuiButton>
-            </EuiFlexItem>
+        <EuiSpacer size="m" />
 
-            <EuiFlexItem grow={false}>
-              <EuiButton
-                fill={this.state.language === 'fr'}
-                onClick={() => this.setLanguage('fr')}>
-                <EuiI18n token="euiContext.french" default="French" />
-              </EuiButton>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+        <strong>
+          <EuiI18n token="euiContext.greeting" default="Welcome!" />
+        </strong>
 
-          <EuiSpacer size="m" />
+        <EuiSpacer size="s" />
 
-          <strong>
-            <EuiI18n token="euiContext.greeting" default="Welcome!" />
-          </strong>
+        <p>
+          <EuiI18n token="euiContext.guestNo" default="You are guest #" />
+          <EuiI18nNumber value={1582394} />
+        </p>
 
-          <EuiSpacer size="s" />
+        <EuiSpacer size="m" />
 
-          <p>
-            <EuiI18n token="euiContext.guestNo" default="You are guest #" />
-            <EuiI18nNumber value={1582394} />
-          </p>
+        <EuiI18n
+          tokens={[
+            'euiContext.question',
+            'euiContext.action',
+            'euiContext.placeholder',
+          ]}
+          defaults={['What is your name?', 'Submit', 'John Doe']}>
+          {([question, action, placeholder]) => (
+            <Fragment>
+              <EuiFormRow label={question}>
+                <EuiFieldText placeholder={placeholder} />
+              </EuiFormRow>
 
-          <EuiSpacer size="m" />
+              <EuiSpacer />
 
-          <EuiI18n
-            tokens={[
-              'euiContext.question',
-              'euiContext.action',
-              'euiContext.placeholder',
-            ]}
-            defaults={['What is your name?', 'Submit', 'John Doe']}>
-            {([question, action, placeholder]) => (
-              <Fragment>
-                <EuiFormRow label={question}>
-                  <EuiFieldText placeholder={placeholder} />
-                </EuiFormRow>
-
-                <EuiSpacer />
-
-                <EuiButton>{action}</EuiButton>
-              </Fragment>
-            )}
-          </EuiI18n>
-        </div>
-      </EuiContext>
-    );
-  }
-}
+              <EuiButton>{action}</EuiButton>
+            </Fragment>
+          )}
+        </EuiI18n>
+      </div>
+    </EuiContext>
+  );
+};
