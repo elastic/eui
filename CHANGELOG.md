@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions
+
 **Deprecation**
 
 - Updated makeId to DEPRECATED, shifted all the calls to htmlIdGenerator ([#3129](https://github.com/elastic/eui/pull/3129))
