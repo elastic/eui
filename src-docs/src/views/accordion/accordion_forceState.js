@@ -43,7 +43,7 @@ export default () => {
       <EuiAccordion
         id="accordion1"
         forceState={trigger}
-        buttonContent="Click me to toggle open / close">
+        buttonContent="I am controlled via prop">
         <EuiText>
           <p>
             Any content inside of <strong>EuiAccordion</strong> will appear
