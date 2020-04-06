@@ -57,7 +57,7 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
     /**
      * Control the opening of accordin via prop
      */
-    trigger?: 'close' | 'open';
+    forceState?: 'close' | 'open';
   };
 
 export class EuiAccordion extends Component<
@@ -74,8 +74,8 @@ export class EuiAccordion extends Component<
   childWrapper: HTMLDivElement | null = null;
 
   state = {
-    isOpen: this.props.trigger
-      ? this.props.trigger === 'open'
+    isOpen: this.props.forceState
+      ? this.props.forceState === 'open'
       : this.props.initialIsOpen,
   };
 
@@ -99,14 +99,16 @@ export class EuiAccordion extends Component<
   }
 
   onToggle = () => {
-    const { trigger } = this.props;
+    const { forceState } = this.props;
     this.setState(
       prevState => ({
-        isOpen: trigger ? trigger === 'open' : !prevState.isOpen,
+        isOpen: forceState ? forceState === 'open' : !prevState.isOpen,
       }),
       () => {
         this.props.onToggle &&
-          this.props.onToggle(trigger ? trigger === 'open' : this.state.isOpen);
+          this.props.onToggle(
+            forceState ? forceState === 'open' : this.state.isOpen
+          );
       }
     );
   };
@@ -127,11 +129,11 @@ export class EuiAccordion extends Component<
       paddingSize,
       initialIsOpen,
       arrowDisplay,
-      trigger,
+      forceState,
       ...rest
     } = this.props;
 
-    const isOpen = trigger ? trigger === 'open' : this.state.isOpen;
+    const isOpen = forceState ? forceState === 'open' : this.state.isOpen;
 
     const classes = classNames(
       'euiAccordion',

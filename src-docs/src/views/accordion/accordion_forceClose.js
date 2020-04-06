@@ -3,27 +3,46 @@ import React, { useState } from 'react';
 import {
   EuiAccordion,
   EuiText,
-  EuiSwitch,
+  EuiButtonGroup,
   EuiSpacer,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
+
+const idPrefix = htmlIdGenerator()();
 
 export default () => {
-  const [trigger, setTrigger] = useState('close');
-  const onChange = e => {
-    setTrigger(e.target.checked ? 'open' : 'close');
+  const [trigger, setTrigger] = useState('closed');
+  const [toggleIdSelected, setID] = useState(`${idPrefix}1`);
+  const toggleButtons = [
+    {
+      id: `${idPrefix}0`,
+      label: 'Open',
+    },
+    {
+      id: `${idPrefix}1`,
+      label: 'Close',
+    },
+  ];
+
+  const onChange = () => {
+    setTrigger(trigger === 'open' ? 'closed' : 'open');
+    setID(
+      toggleIdSelected === `${idPrefix}0` ? `${idPrefix}1` : `${idPrefix}0`
+    );
   };
 
   return (
     <div>
-      <EuiSwitch
-        label={trigger !== 'open' ? 'open' : 'close'}
-        checked={trigger === 'open'}
+      <EuiButtonGroup
+        legend="This is a basic group"
+        options={toggleButtons}
+        idSelected={toggleIdSelected}
         onChange={onChange}
       />
       <EuiSpacer />
       <EuiAccordion
         id="accordion1"
-        trigger={trigger}
+        forceState={trigger}
         buttonContent="Click me to toggle open / close">
         <EuiText>
           <p>
