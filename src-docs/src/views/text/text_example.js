@@ -14,18 +14,62 @@ import {
 import Text from './text';
 const textSource = require('!!raw-loader!./text');
 const textHtml = renderToHtml(Text);
+const textSnippet = `<EuiText grow={false}><!-- Raw HTML content --></EuiText>
+`;
 
 import TextSmall from './text_small';
 const textSmallSource = require('!!raw-loader!./text_small');
 const textSmallHtml = renderToHtml(TextSmall);
+const textSmallSnippet = [
+  `<EuiText size="s"><!-- Raw HTML content --></EuiText>
+`,
+  `<EuiText size="xs"><!-- Raw HTML content --></EuiText>
+`,
+];
 
 import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
 const textColorHtml = renderToHtml(TextColor);
+const textColorSnippet = [
+  `<EuiTextColor color="default">Default text color</EuiTextColor>
+`,
+  `<EuiTextColor color="subdued">Subdued text color</EuiTextColor>
+`,
+  `<EuiTextColor color="secondary">Secondary text color</EuiTextColor>
+`,
+  `<EuiTextColor color="accent">Accent text color</EuiTextColor>
+`,
+  `<EuiTextColor color="warning">Warning text color</EuiTextColor>
+`,
+  `<EuiTextColor color="danger">Danger text color</EuiTextColor>
+`,
+  `<EuiTextColor color="ghost">Ghost text color is always white regardless of theme</EuiTextColor>
+`,
+];
 
 import TextAlign from './text_align';
 const textAlignSource = require('!!raw-loader!./text_align');
 const textAlignHtml = renderToHtml(TextAlign);
+const textAlignSnippet = [
+  `<EuiText>
+  <EuiTextAlign textAlign="left">
+    <p>Left aligned paragraph.</p>
+  </EuiTextAlign>
+  <EuiTextAlign textAlign="center">
+    <p>Center aligned paragraph.</p>
+  </EuiTextAlign>
+  <EuiTextAlign textAlign="right">
+    <p>Right aligned paragraph.</p>
+  </EuiTextAlign>
+</EuiText>
+`,
+  `<EuiText textAlign="center">
+  <p>
+    Center aligned paragraph
+  </p>
+</EuiText>
+`,
+];
 
 export const TextExample = {
   title: 'Text',
@@ -60,6 +104,7 @@ export const TextExample = {
         </div>
       ),
       props: { EuiText },
+      snippet: textSnippet,
       demo: <Text />,
     },
     {
@@ -80,6 +125,7 @@ export const TextExample = {
           can get smaller sizes of text than the default.
         </p>
       ),
+      snippet: textSmallSnippet,
       demo: <TextSmall />,
     },
     {
@@ -104,6 +150,7 @@ export const TextExample = {
         </p>
       ),
       props: { EuiTextColor },
+      snippet: textColorSnippet,
       demo: <TextColor />,
     },
     {
@@ -128,6 +175,7 @@ export const TextExample = {
         </p>
       ),
       props: { EuiTextAlign },
+      snippet: textAlignSnippet,
       demo: <TextAlign />,
     },
   ],
