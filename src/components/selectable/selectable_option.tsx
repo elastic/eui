@@ -43,11 +43,11 @@ export interface EuiSelectableGroupLabelOption
   isGroupLabel: true;
 }
 
-export interface EuiSelectableButtonOption
+export interface EuiSelectableLIOption
   extends EuiSelectableOptionBase,
-    ButtonHTMLAttributes<HTMLButtonElement> {}
+    ButtonHTMLAttributes<HTMLLIElement> {}
 
 export type EuiSelectableOption = ExclusiveUnion<
   EuiSelectableGroupLabelOption,
-  EuiSelectableButtonOption
+  EuiSelectableLIOption
 >;

@@ -114,7 +114,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
 
     if (ref) {
       ref.setAttribute('id', listId);
-      ref.setAttribute('role', 'listBox');
+      ref.setAttribute('role', 'listbox');
 
       if (searchable !== true) {
         ref.setAttribute('tabindex', '0');
@@ -273,6 +273,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
             <FixedSizeList
               ref={this.setListRef}
               className="euiSelectableList__list"
+              data-skip-axe="scrollable-region-focusable"
               width={width}
               height={calculatedHeight || height}
               itemCount={optionArray.length}

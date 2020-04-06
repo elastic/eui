@@ -39,11 +39,7 @@ exports[`EuiSelectable props renderOption 1`] = `
 
 exports[`EuiSelectable props searchable 1`] = `
 <div
-  aria-expanded="true"
-  aria-haspopup="listbox"
-  aria-owns="htmlId"
   class="euiSelectable"
-  role="combobox"
 />
 `;
 

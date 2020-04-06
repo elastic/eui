@@ -374,7 +374,7 @@ export class EuiSelectable extends Component<
         return '';
       }
 
-      return `_option-${index}`;
+      return `${listId}_option-${index}`;
     };
 
     const getAccessibleName = (
@@ -470,12 +470,6 @@ export class EuiSelectable extends Component<
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
         onFocus={this.onFocus}
-        {...searchable && {
-          role: 'combobox',
-          'aria-expanded': true,
-          'aria-haspopup': 'listbox',
-          'aria-owns': this.rootId('listbox'),
-        }}
         {...rest}>
         {children && children(list, search)}
       </div>

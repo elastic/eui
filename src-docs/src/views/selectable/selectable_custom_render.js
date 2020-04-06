@@ -84,6 +84,7 @@ export default class extends Component {
         <EuiSpacer />
 
         <EuiSelectable
+          aria-label="Selectable example with custom list items"
           searchable
           options={options}
           onChange={this.onChange}
