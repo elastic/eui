@@ -4,7 +4,9 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiHeaderAlert } from './header_alert';
 
-jest.mock('./../../form/form_row/make_id', () => () => 'generated-id');
+jest.mock('./../../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 describe('EuiHeaderAlert', () => {
   test('is rendered', () => {

@@ -157,70 +157,71 @@ export const useColumnSelector = (
             </EuiI18n>
           </EuiPopoverTitle>
         )}
-        <EuiDragDropContext onDragEnd={onDragEnd}>
-          <EuiDroppable
-            droppableId="columnOrder"
-            isDropDisabled={!isDragEnabled}
-            className="euiDataGridColumnSelector">
-            <Fragment>
-              {filteredColumns.map((id, index) => (
-                <EuiDraggable
-                  key={id}
-                  draggableId={id}
-                  index={index}
-                  isDragDisabled={!isDragEnabled}>
-                  {(provided, state) => (
-                    <div
-                      className={`euiDataGridColumnSelector__item ${state.isDragging &&
-                        'euiDataGridColumnSelector__item-isDragging'}`}>
-                      <EuiFlexGroup gutterSize="m" alignItems="center">
-                        <EuiFlexItem>
-                          {allowColumnHiding ? (
-                            <EuiSwitch
-                              name={id}
-                              label={id}
-                              checked={visibleColumnIds.has(id)}
-                              compressed
-                              className="euiSwitch--mini"
-                              onChange={event => {
-                                const {
-                                  target: { checked },
-                                } = event;
-                                const nextVisibleColumns = sortedColumns.filter(
-                                  columnId =>
-                                    checked
-                                      ? visibleColumnIds.has(columnId) ||
-                                        id === columnId
-                                      : visibleColumnIds.has(columnId) &&
-                                        id !== columnId
-                                );
-                                setVisibleColumns(nextVisibleColumns);
-                              }}
-                            />
-                          ) : (
-                            <span className="euiDataGridColumnSelector__itemLabel">
-                              {id}
-                            </span>
-                          )}
-                        </EuiFlexItem>
-                        {isDragEnabled && (
-                          <EuiFlexItem grow={false}>
-                            <EuiIcon type="grab" color="subdued" />
+        <div className="euiDataGrid__controlScroll">
+          <EuiDragDropContext onDragEnd={onDragEnd}>
+            <EuiDroppable
+              droppableId="columnOrder"
+              isDropDisabled={!isDragEnabled}>
+              <Fragment>
+                {filteredColumns.map((id, index) => (
+                  <EuiDraggable
+                    key={id}
+                    draggableId={id}
+                    index={index}
+                    isDragDisabled={!isDragEnabled}>
+                    {(provided, state) => (
+                      <div
+                        className={`euiDataGridColumnSelector__item ${state.isDragging &&
+                          'euiDataGridColumnSelector__item-isDragging'}`}>
+                        <EuiFlexGroup gutterSize="m" alignItems="center">
+                          <EuiFlexItem>
+                            {allowColumnHiding ? (
+                              <EuiSwitch
+                                name={id}
+                                label={id}
+                                checked={visibleColumnIds.has(id)}
+                                compressed
+                                className="euiSwitch--mini"
+                                onChange={event => {
+                                  const {
+                                    target: { checked },
+                                  } = event;
+                                  const nextVisibleColumns = sortedColumns.filter(
+                                    columnId =>
+                                      checked
+                                        ? visibleColumnIds.has(columnId) ||
+                                          id === columnId
+                                        : visibleColumnIds.has(columnId) &&
+                                          id !== columnId
+                                  );
+                                  setVisibleColumns(nextVisibleColumns);
+                                }}
+                              />
+                            ) : (
+                              <span className="euiDataGridColumnSelector__itemLabel">
+                                {id}
+                              </span>
+                            )}
                           </EuiFlexItem>
-                        )}
-                      </EuiFlexGroup>
-                    </div>
-                  )}
-                </EuiDraggable>
-              ))}
-            </Fragment>
-          </EuiDroppable>
-        </EuiDragDropContext>
+                          {isDragEnabled && (
+                            <EuiFlexItem grow={false}>
+                              <EuiIcon type="grab" color="subdued" />
+                            </EuiFlexItem>
+                          )}
+                        </EuiFlexGroup>
+                      </div>
+                    )}
+                  </EuiDraggable>
+                ))}
+              </Fragment>
+            </EuiDroppable>
+          </EuiDragDropContext>
+        </div>
       </div>
       {allowColumnHiding && (
         <EuiPopoverFooter>
           <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween">
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
                 flush="left"
@@ -231,7 +232,7 @@ export const useColumnSelector = (
                 />
               </EuiButtonEmpty>
             </EuiFlexItem>
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
                 flush="right"

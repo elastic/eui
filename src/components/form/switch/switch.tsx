@@ -8,7 +8,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import makeId from '../../form/form_row/make_id';
+import { htmlIdGenerator } from '../../../services/accessibility';
 import { EuiIcon } from '../../icon';
 
 export type EuiSwitchEvent = React.BaseSyntheticEvent<
@@ -47,8 +47,8 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   type = 'button',
   ...rest
 }) => {
-  const [switchId] = useState(id || makeId());
-  const [labelId] = useState(makeId());
+  const [switchId] = useState(id || htmlIdGenerator()());
+  const [labelId] = useState(htmlIdGenerator()());
 
   const onClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>) => {

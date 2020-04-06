@@ -5,7 +5,9 @@ import { requiredProps } from '../../../test';
 import { EuiFormRow } from '../form_row';
 import { EuiDescribedFormGroup } from './described_form_group';
 
-jest.mock('../form_row/make_id', () => () => 'generated-id');
+jest.mock('./../../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 describe('EuiDescribedFormGroup', () => {
   const props = {

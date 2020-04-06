@@ -403,20 +403,9 @@ function createKeyDownHandler(
         const pageCount = Math.ceil(rowCount / pageSize);
         if (pageIndex < pageCount - 1) {
           props.pagination.onChangePage(pageIndex + 1);
-          const newPageRowCount = computeVisibleRows({
-            rowCount,
-            pagination: {
-              ...props.pagination,
-              pageIndex: pageIndex + 1,
-            },
-          });
-          const rowIndex =
-            focusedCell[1] < newPageRowCount
-              ? focusedCell[1]
-              : newPageRowCount - 1;
-          setFocusedCell([focusedCell[0], rowIndex]);
-          updateFocus();
         }
+        setFocusedCell([focusedCell[0], 0]);
+        updateFocus();
       }
     } else if (keyCode === keyCodes.PAGE_UP) {
       if (props.pagination) {
@@ -424,8 +413,9 @@ function createKeyDownHandler(
         const pageIndex = props.pagination.pageIndex;
         if (pageIndex > 0) {
           props.pagination.onChangePage(pageIndex - 1);
-          updateFocus();
         }
+        setFocusedCell([focusedCell[0], props.pagination.pageSize - 1]);
+        updateFocus();
       }
     } else if (keyCode === (ctrlKey && keyCodes.END)) {
       event.preventDefault();
@@ -481,18 +471,28 @@ const useFocus = (
     EuiDataGridFocusedCell | undefined
   >(undefined);
 
-  const canCellsBeFocused = useMemo(() => focusedCell != null, [focusedCell]);
+  const hasHadFocus = useMemo(() => focusedCell != null, [focusedCell]);
 
   const focusProps = useMemo<FocusProps>(
     () =>
-      canCellsBeFocused
-        ? {}
+      hasHadFocus
+        ? {
+            // FireFox allows tabbing to a div that is scrollable, while Chrome does not
+            tabIndex: -1,
+          }
         : {
             tabIndex: 0,
-            onFocus: () =>
-              setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]),
+            onFocus: e => {
+              // if e.target (the source element of the `focus event`
+              // matches e.currentTarget (always the div with this onFocus listener)
+              // then the user has focused directly on the data grid wrapper (almost definitely by tabbing)
+              // so shift focus to the first interactive cell within the grid
+              if (e.target === e.currentTarget) {
+                setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]);
+              }
+            },
           },
-    [canCellsBeFocused, setFocusedCell, headerIsInteractive]
+    [hasHadFocus, setFocusedCell, headerIsInteractive]
   );
 
   return [focusProps, focusedCell, setFocusedCell];
@@ -821,8 +821,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     <DataGridContext.Provider value={datagridContext}>
       <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
         <div
-          data-test-subj="dataGridWrapper"
-          {...wrappingDivFocusProps}
           className={classes}
           onKeyDown={handleGridKeyDown}
           ref={setContainerRef}>
@@ -873,8 +871,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   ) : null}
                   <div
                     ref={contentRef}
+                    data-test-subj="dataGridWrapper"
                     className="euiDataGrid__content"
                     role="grid"
+                    {...wrappingDivFocusProps}
                     {...gridAriaProps}>
                     <EuiMutationObserver
                       observerOptions={{

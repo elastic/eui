@@ -1001,6 +1001,58 @@ FooComponent.propTypes = {
 
       });
 
+      describe('elementType propType', () => {
+
+        it('understands React.ComponentType', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: React.ComponentType, bar: React.ComponentType<{ prop: any }>}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.elementType.isRequired,
+  bar: PropTypes.elementType.isRequired
+};`);
+        });
+
+        it('understands ComponentType', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: ComponentType, bar: ComponentType<{ prop: any }>}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.elementType.isRequired,
+  bar: PropTypes.elementType.isRequired
+};`);
+        });
+
+      });
+
     });
 
     describe('intersection types', () => {

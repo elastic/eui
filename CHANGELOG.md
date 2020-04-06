@@ -1,6 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `22.3.0`.
+- Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions
+
+**Deprecation**
+
+- Updated makeId to DEPRECATED, shifted all the calls to htmlIdGenerator ([#3129](https://github.com/elastic/eui/pull/3129))
+
+**Bug Fixes**
+
+- Fixed the `img` element in `EuiIcon` using custom SVGs to have an `alt` attribute with an empty string, rather than no `alt` attribute at all ([#3245](https://github.com/elastic/eui/pull/3245))
+- Added overflows to EuiDataGrid toolbar dropdowns when there are many columns ([#3238](https://github.com/elastic/eui/pull/3238))
+- Fixed `EuiIcon`'s icon `type` definition to allow custom React components ([#3252](https://github.com/elastic/eui/pull/3252))
 
 ## [`22.3.0`](https://github.com/elastic/eui/tree/v22.3.0)
 
@@ -9,12 +19,13 @@ No public interface changes since `22.3.0`.
 - Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
 - Updated pagination prop descriptions for `EuiInMemoryTable` ([#3142](https://github.com/elastic/eui/pull/3142))
 - Added `title` and `aria` attributes to `EuiToken`'s icon element ([#3195](https://github.com/elastic/eui/pull/3195))
-- Added new Elasticsearch token types ([58036](https://github.com/elastic/kibana/issues/58036))
+- Added new Elasticsearch token types ([#2758](https://github.com/elastic/eui/pull/2758))
 
 **Bug Fixes**
 
 - Fixed bug in `EuiAccordion` to adjust to the correct height when content height changes ([#3160](https://github.com/elastic/eui/pull/3160))
 - Fixed bug in `EuiBasicTable` to handle dynamic icon value properly in collapsed actions ([#3145](https://github.com/elastic/eui/pull/3145))
+- Fixed `availability` check for actions in `EuiBasicTable` ([3030](https://github.com/elastic/kibana/issues/3030))
 
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
 
