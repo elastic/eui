@@ -143,11 +143,11 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
         <EuiFlexItem grow={false}>
           <ul className="euiTourFooter__stepList">
             {[...Array(stepsTotal).keys()].map((_, i) => {
-              let status: EuiTourStepStatus = 'incomplete';
+              let status: EuiTourStepStatus = 'complete';
               if (step === i + 1) {
                 status = 'active';
               } else if (step <= i) {
-                status = 'complete';
+                status = 'incomplete';
               }
               return (
                 <EuiTourStepIndicator key={i} number={i + 1} status={status} />
