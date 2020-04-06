@@ -1,61 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+const colorGroup = {
+  label: 'Colors',
+  options: [
+    {
+      label: 'Red',
+    },
+    {
+      label: 'Blue',
+    },
+    {
+      label: 'Yellow',
+    },
+    {
+      label: 'Green',
+    },
+  ],
+};
 
-    const colorGroup = {
-      label: 'Colors',
-      options: [
-        {
-          label: 'Red',
-        },
-        {
-          label: 'Blue',
-        },
-        {
-          label: 'Yellow',
-        },
-        {
-          label: 'Green',
-        },
-      ],
-    };
+const soundGroup = {
+  label: 'Sounds',
+  options: [
+    {
+      label: 'Pop',
+    },
+    {
+      label: 'Hiss',
+    },
+    {
+      label: 'Screech',
+    },
+    {
+      label: 'Ding',
+    },
+  ],
+};
 
-    const soundGroup = {
-      label: 'Sounds',
-      options: [
-        {
-          label: 'Pop',
-        },
-        {
-          label: 'Hiss',
-        },
-        {
-          label: 'Screech',
-        },
-        {
-          label: 'Ding',
-        },
-      ],
-    };
+const allOptions = [colorGroup, soundGroup];
 
-    this.options = [colorGroup, soundGroup];
+export default () => {
+  const [selectedOptions, setSelected] = useState([
+    colorGroup.options[2],
+    soundGroup.options[3],
+  ]);
 
-    this.state = {
-      selectedOptions: [colorGroup.options[2], soundGroup.options[3]],
-    };
-  }
-
-  onChange = selectedOptions => {
-    this.setState({
-      selectedOptions,
-    });
+  const onChange = selectedOptions => {
+    setSelected(selectedOptions);
   };
 
-  onCreateOption = (searchValue, flattenedOptions = []) => {
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
     if (!searchValue) {
       return;
     }
@@ -76,31 +71,26 @@ export default class extends Component {
         option => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
-      if (this.options[this.options.length - 1].label !== 'Custom') {
-        this.options.push({
+      if (allOptions[allOptions.length - 1].label !== 'Custom') {
+        allOptions.push({
           label: 'Custom',
           options: [],
         });
       }
-
-      this.options[this.options.length - 1].options.push(newOption);
+      allOptions[allOptions.length - 1].options.push(newOption);
     }
 
     // Select the option.
-    this.setState(prevState => ({
-      selectedOptions: prevState.selectedOptions.concat(newOption),
-    }));
+    setSelected([...selectedOptions, newOption]);
   };
 
-  render() {
-    return (
-      <EuiComboBox
-        placeholder="These options are grouped"
-        options={this.options}
-        selectedOptions={this.state.selectedOptions}
-        onChange={this.onChange}
-        onCreateOption={this.onCreateOption}
-      />
-    );
-  }
-}
+  return (
+    <EuiComboBox
+      placeholder="These options are grouped"
+      options={allOptions}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+    />
+  );
+};
