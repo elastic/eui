@@ -57,7 +57,7 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
     /**
      * Control the opening of accordin via prop
      */
-    forceState?: 'close' | 'open';
+    forceState?: 'closed' | 'open';
   };
 
 export class EuiAccordion extends Component<
