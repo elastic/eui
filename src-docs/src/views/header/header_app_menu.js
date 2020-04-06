@@ -26,7 +26,7 @@ export default () => {
       aria-haspopup="true"
       aria-label="Apps menu with 1 new app"
       notification="1"
-      onClick={() => onMenuButtonClick()}>
+      onClick={onMenuButtonClick}>
       <EuiIcon type="apps" size="m" />
     </EuiHeaderSectionItemButton>
   );
@@ -38,7 +38,7 @@ export default () => {
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"
-      closePopover={() => closeMenu()}>
+      closePopover={closeMenu}>
       <EuiKeyPadMenu id="keyPadMenu" style={{ width: 288 }}>
         <EuiKeyPadMenuItem label="Discover" href="#">
           <EuiIcon type="discoverApp" size="l" />
@@ -70,4 +70,4 @@ export default () => {
       </EuiKeyPadMenu>
     </EuiPopover>
   );
-}
+};

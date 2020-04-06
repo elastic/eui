@@ -4,7 +4,9 @@ import { EuiRadioGroup } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 import { DisplayToggles } from './display_toggles';
+
 const idPrefix = htmlIdGenerator()();
+
 export default () => {
   const radios = [
     {

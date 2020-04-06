@@ -28,7 +28,7 @@ export default () => {
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Account menu"
-      onClick={() => onMenuButtonClick()}>
+      onClick={onMenuButtonClick}>
       <EuiAvatar name="John Username" size="s" />
     </EuiHeaderSectionItemButton>
   );
@@ -40,7 +40,7 @@ export default () => {
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"
-      closePopover={() => closeMenu()}
+      closePopover={closeMenu}
       panelPaddingSize="none">
       <div style={{ width: 320 }}>
         <EuiFlexGroup
@@ -76,4 +76,4 @@ export default () => {
       </div>
     </EuiPopover>
   );
-}
+};
