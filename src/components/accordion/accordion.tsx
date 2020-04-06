@@ -80,9 +80,11 @@ export class EuiAccordion extends Component<
   };
 
   setChildContentHeight = () => {
+    const { forceState } = this.props;
     requestAnimationFrame(() => {
       const height =
-        this.childContent && this.state.isOpen
+        this.childContent &&
+        (forceState ? forceState === 'open' : this.state.isOpen)
           ? this.childContent.clientHeight
           : 0;
       this.childWrapper &&
@@ -100,15 +102,13 @@ export class EuiAccordion extends Component<
 
   onToggle = () => {
     const { forceState } = this.props;
+    if (forceState) return this.setState({ isOpen: forceState === 'open' });
     this.setState(
       prevState => ({
-        isOpen: forceState ? forceState === 'open' : !prevState.isOpen,
+        isOpen: !prevState.isOpen,
       }),
       () => {
-        this.props.onToggle &&
-          this.props.onToggle(
-            forceState ? forceState === 'open' : this.state.isOpen
-          );
+        this.props.onToggle && this.props.onToggle(this.state.isOpen);
       }
     );
   };
@@ -134,6 +134,7 @@ export class EuiAccordion extends Component<
     } = this.props;
 
     const isOpen = forceState ? forceState === 'open' : this.state.isOpen;
+    if (forceState) console.log('isOpen', isOpen);
 
     const classes = classNames(
       'euiAccordion',
