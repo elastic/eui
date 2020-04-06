@@ -32,6 +32,7 @@ export default class extends Component {
 
   addToast = () => {
     const toast = this.getRandomToast();
+
     this.setState({
       toasts: this.state.toasts.concat(toast),
     });
