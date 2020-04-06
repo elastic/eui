@@ -4,38 +4,28 @@ import { EuiRadioGroup } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 import { DisplayToggles } from './display_toggles';
+const idPrefix = htmlIdGenerator()();
+export default () => {
+  const radios = [
+    {
+      id: `${idPrefix}0`,
+      label: 'Option one',
+    },
+    {
+      id: `${idPrefix}1`,
+      label: 'Option two is checked by default',
+    },
+    {
+      id: `${idPrefix}2`,
+      label: 'Option three is disabled',
+      disabled: true,
+    },
+  ];
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+  const [radioIdSelected, setRadioIdSelected] = useState(`${idPrefix}1`);
 
-    const idPrefix = htmlIdGenerator()();
-
-    this.radios = [
-      {
-        id: `${idPrefix}0`,
-        label: 'Option one',
-      },
-      {
-        id: `${idPrefix}1`,
-        label: 'Option two is checked by default',
-      },
-      {
-        id: `${idPrefix}2`,
-        label: 'Option three is disabled',
-        disabled: true,
-      },
-    ];
-
-    this.state = {
-      radioIdSelected: `${idPrefix}1`,
-    };
-  }
-
-  onChange = optionId => {
-    this.setState({
-      radioIdSelected: optionId,
-    });
+  const onChange = optionId => {
+    setRadioIdSelected(optionId);
   };
 
   return (
