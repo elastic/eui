@@ -24,9 +24,6 @@ const descriptionListSnippet = [
   ]}
 />`,
   `<EuiDescriptionList
-  type="row"
-  textStyle="normal"
-  compressed={false}  
 >
   <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
   <EuiDescriptionListDescription>
