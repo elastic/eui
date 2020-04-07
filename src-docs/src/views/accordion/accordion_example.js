@@ -332,8 +332,7 @@ export const AccordionExample = {
       demo: <AccordionForm />,
     },
     {
-      title:
-        'Force accordion state',
+      title: 'Force accordion state',
       source: [
         {
           type: GuideSectionTypes.JS,
