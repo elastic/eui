@@ -20,6 +20,6 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiHealth color="#000000">Dominance</EuiHealth>
+    <EuiHealth color="#000000">Custom color as hex</EuiHealth>
   </div>
 );
