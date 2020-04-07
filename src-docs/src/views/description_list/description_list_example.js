@@ -16,17 +16,10 @@ const descriptionListSource = require('!!raw-loader!./description_list');
 const descriptionListHtml = renderToHtml(DescriptionList);
 const descriptionListSnippet = [
   `<EuiDescriptionList
-  type="row"
-  textStyle="normal"
-  compressed={false}
   listItems={[
     {
       title: 'The Elder Scrolls: Morrowind',
       description: 'The opening music alone evokes such strong memories.',
-    },
-    {
-      title: 'TIE Fighter',
-      description: 'The sequel to XWING, join the dark side and fly for the Emporer.',
     },
   ]}
 />`,
@@ -38,10 +31,6 @@ const descriptionListSnippet = [
   <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
   <EuiDescriptionListDescription>
     A videogame that I have spent way too much time on over the years.
-  </EuiDescriptionListDescription>
-  <EuiDescriptionListTitle>Kings Quest VI</EuiDescriptionListTitle>
-  <EuiDescriptionListDescription>
-    The game that forced me to learn DOS.
   </EuiDescriptionListDescription>
 </EuiDescriptionList>`,
 ];
@@ -66,18 +55,6 @@ const descriptionListStylingHtml = renderToHtml(DescriptionListStyling);
 const descriptionListStylingSnippet = [
   `<EuiDescriptionList
   listItems={favoriteVideoGames}
-  align="center"
-  compressed
-/>`,
-  `<EuiDescriptionList
-  listItems={favoriteVideoGames}
-  type="column"
-  align="center"
-  compressed
-/>`,
-  `<EuiDescriptionList
-  listItems={favoriteVideoGames}
-  type="inline"
   align="center"
   compressed
 />`,
