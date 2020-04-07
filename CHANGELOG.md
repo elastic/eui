@@ -2,6 +2,7 @@
 
 - Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions ([#3115](https://github.com/elastic/eui/pull/3115))
 - Added support for `EuiCodeEditor` to set `readonly` and `id` on `<textarea />` ([#3212](https://github.com/elastic/eui/pull/3212))
+- When running `yarn start`, pick the first free port in the range 8030-8130. This allows multiple instances to be run without having to edit anything ([#3271](https://github.com/elastic/eui/pull/3271))
 
 **Deprecation**
 
