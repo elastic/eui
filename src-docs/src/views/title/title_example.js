@@ -9,12 +9,12 @@ import { EuiTitle } from '../../../../src/components';
 import Title from './title';
 const titleSource = require('!!raw-loader!./title');
 const titleHtml = renderToHtml(Title);
-const titleSnippet = `<EuiTitle size='l'><!---Content--></EuiTitle>
-<EuiTitle><!--Content--></EuiTitle>
-<EuiTitle size='s'><!---Content--></EuiTitle>
-<EuiTitle size='xs'><!---Content--></EuiTitle>
-<EuiTitle size='xxs'><!---Content--></EuiTitle>
-<EuiTitle size='xxxs'><!---Content--></EuiTitle>`;
+const titleSnippet = [
+  `<EuiTitle size="l" textTransform="uppercase"><!---Content--></EuiTitle>
+`,
+  `<EuiTitle><!--Content--></EuiTitle>
+`,
+];
 
 export const TitleExample = {
   title: 'Title',
