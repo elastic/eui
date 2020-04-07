@@ -85,7 +85,7 @@ export class EuiSelectableSearch extends Component<
         aria-autocomplete="list"
         aria-expanded="true"
         aria-controls={listId}
-        aria-owns={listId}
+        aria-owns={listId} // legacy attribute but shims support for nearly everything atm
         aria-haspopup="listbox"
         {...rest}
       />

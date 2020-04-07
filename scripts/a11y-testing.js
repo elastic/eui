@@ -56,7 +56,7 @@ const docsPages = async (root, page) => {
     `${root}#/forms/filter-group`,
     `${root}#/forms/range-sliders`,
     `${root}#/forms/search-bar`,
-    `${root}#/forms/selectable`,
+    // `${root}#/forms/selectable`,
     `${root}#/elastic-charts/sizing`,
     `${root}#/elastic-charts/time-series`,
     `${root}#/elastic-charts/categorical`,

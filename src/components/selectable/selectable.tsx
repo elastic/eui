@@ -377,6 +377,16 @@ export class EuiSelectable extends Component<
       return `${listId}_option-${index}`;
     };
 
+    /**
+     * There are lots of ways to add an accessible name
+     * Usually we want the same name for the input and the listbox (which is added by aria-label/describedby)
+     * But you can always override it using searchProps or listProps
+     * This finds the correct name to use
+     *
+     * TODO: This doesn't handle being labelled (<label for="idOfInput">)
+     *
+     * @param props
+     */
     const getAccessibleName = (
       props:
         | Partial<EuiSelectableSearchProps>
@@ -416,7 +426,7 @@ export class EuiSelectable extends Component<
             options={options}
             onChange={this.onSearchChange}
             listId={listId}
-            aria-activedescendant={makeOptionId(activeOptionIndex)}
+            aria-activedescendant={makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
             {...(searchHasAccessibleName
               ? searchAccessibleName
