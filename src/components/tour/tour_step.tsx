@@ -1,6 +1,5 @@
 import React, {
   CSSProperties,
-  Fragment,
   FunctionComponent,
   ReactElement,
   ReactNode,
@@ -47,7 +46,7 @@ export interface EuiTourStepProps
   isStepOpen?: boolean;
 
   /**
-   * State of the parent tour
+   * State of the parent tour. No tour steps will be displayed if set to `false`
    */
   isTourActive: boolean;
 
@@ -75,6 +74,9 @@ export interface EuiTourStepProps
    */
   stepsTotal: number;
 
+  /**
+   * Optional, standard DOM `style` attribute
+   */
   style?: CSSProperties;
 
   /**
@@ -187,12 +189,12 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
 
   const hasBeacon = decoration === 'beacon';
 
-  return isTourActive ? (
+  return (
     <EuiPopover
       anchorPosition={anchorPosition}
       button={children}
       closePopover={closePopover}
-      isOpen={isStepOpen}
+      isOpen={isStepOpen && isTourActive}
       panelClassName={classes}
       style={newStyle || style}
       offset={hasBeacon ? 10 : 0}
@@ -210,7 +212,5 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       <div className="euiTour__content">{content}</div>
       <EuiPopoverFooter className="euiTourFooter">{footer}</EuiPopoverFooter>
     </EuiPopover>
-  ) : (
-    <Fragment>{children}</Fragment>
   );
 };

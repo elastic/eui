@@ -18,9 +18,20 @@ exports[`EuiTourStep can be closed 1`] = `
 `;
 
 exports[`EuiTourStep can be inactive 1`] = `
-<span>
-  Test
-</span>
+<div
+  aria-label="aria-label"
+  class="euiPopover euiPopover--anchorLeftUp euiPopover--withTitle"
+  data-test-subj="test subject string"
+  offset="10"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <span>
+      Test
+    </span>
+  </div>
+</div>
 `;
 
 exports[`EuiTourStep can override the footer action 1`] = `

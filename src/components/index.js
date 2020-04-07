@@ -291,7 +291,7 @@ export {
 
 export { EuiToken } from './token';
 
-export { EuiTour, EuiTourStep, EuiTourStepIndicator, useEuiTour } from './tour';
+export { EuiTour, EuiTourStep, useEuiTour } from './tour';
 
 export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
 

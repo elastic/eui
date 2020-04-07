@@ -177,7 +177,7 @@ export default () => {
   ];
 
   return (
-    <GuideFullScreen>
+    <GuideFullScreen onOpen={onReset}>
       {setIsFullScreen => (
         <React.Fragment>
           <EuiPage className="guideFullScreenOverlay" style={{ zIndex: 9000 }}>
@@ -191,10 +191,7 @@ export default () => {
                 <EuiPageHeaderSection>
                   <EuiButton
                     fill
-                    onClick={() => {
-                      onReset();
-                      setIsFullScreen(false);
-                    }}
+                    onClick={() => setIsFullScreen(false)}
                     iconType="exit"
                     aria-label="Exit fullscreen demo">
                     Exit fullscreen demo

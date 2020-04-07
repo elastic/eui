@@ -44,17 +44,14 @@ const tourConfig = {
 const STORAGE_KEY = 'tourDemo';
 
 export default () => {
-  const [state, setState] = useState(tourConfig);
+  let initialState = localStorage.getItem(STORAGE_KEY);
+  if (initialState) {
+    initialState = JSON.parse(initialState);
+  } else {
+    initialState = tourConfig;
+  }
+  const [state, setState] = useState(initialState);
   const [queryValue, setQueryValue] = useState('');
-
-  useEffect(() => {
-    const storedState = localStorage.getItem(STORAGE_KEY);
-    if (storedState) {
-      setState(JSON.parse(storedState));
-    } else {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(tourConfig));
-    }
-  }, []);
 
   useEffect(() => {
     // Store the tour data
