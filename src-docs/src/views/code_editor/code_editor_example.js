@@ -9,14 +9,52 @@ import { EuiCode, EuiCodeEditor } from '../../../../src/components';
 import CodeEditor from './code_editor';
 const codeEditorSource = require('!!raw-loader!./code_editor');
 const codeEditorHtml = renderToHtml(CodeEditor);
+const codeEditorSnippet = `<EuiCodeEditor
+    mode="typescript"
+    theme="github"
+    width="100%"
+    height="500px"
+    value={value}
+    onChange={onChange}
+    isReadOnly={false}
+    aria-label="Code Editor"
+    setOptions={{
+      fontSize: '25px',
+      enableBasicAutocompletion: true,
+      enableSnippets: true,
+      enableLiveAutocompletion: true,
+    }}
+    onBlur={() => {
+      console.log('blur');
+    }}
+  />`;
 
 import ReadOnly from './read_only';
 const readOnlySource = require('!!raw-loader!./read_only');
 const readOnlyrHtml = renderToHtml(ReadOnly);
+const readOnlySnippet = `<EuiCodeEditor
+      mode="less"
+      theme="github"
+      width="100%"
+      height="500px"
+      value={value}
+      setOptions={{ fontSize: '23px' }}
+      isReadOnly={true}
+      aria-label="Read only code editor"
+  />`;
 
 import CustomMode from './custom_mode';
 const customModeSource = require('!!raw-loader!./custom_mode');
 const customModeHtml = renderToHtml(CustomMode);
+const customModeSnippet = `<EuiCodeEditor
+      mode={new MyCustomAceMode()}
+      aria-label="Custom mode code editor"
+      theme="github"
+      width="100%"
+      height="500px"
+      value={value}
+      setOptions={{ fontSize: '20px' }}
+  />`;
 
 export const CodeEditorExample = {
   title: 'Code editor',
@@ -46,6 +84,7 @@ export const CodeEditorExample = {
           </p>
         </div>
       ),
+      snippet: codeEditorSnippet,
       props: { EuiCodeEditor },
       demo: <CodeEditor />,
     },
@@ -61,6 +100,7 @@ export const CodeEditorExample = {
           code: readOnlyrHtml,
         },
       ],
+      snippet: readOnlySnippet,
       demo: <ReadOnly />,
     },
     {
@@ -75,6 +115,7 @@ export const CodeEditorExample = {
           code: customModeHtml,
         },
       ],
+      snippet: customModeSnippet,
       demo: <CustomMode />,
     },
   ],
