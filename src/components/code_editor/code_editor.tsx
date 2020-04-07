@@ -2,6 +2,7 @@ import React, { Component, AriaAttributes, KeyboardEventHandler } from 'react';
 import classNames from 'classnames';
 import AceEditor, { IAceEditorProps } from 'react-ace';
 
+import { keysOf } from '../common';
 import { htmlIdGenerator, keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 
@@ -46,11 +47,13 @@ export interface EuiCodeEditorProps
    * Use string for a built-in mode or object for a custom mode
    */
   mode?: IAceEditorProps['mode'] | object;
+  id?: string;
 }
 
 export interface EuiCodeEditorState {
   isHintActive: boolean;
   isEditing: boolean;
+  name: string;
 }
 
 export class EuiCodeEditor extends Component<
@@ -64,6 +67,7 @@ export class EuiCodeEditor extends Component<
   state: EuiCodeEditorState = {
     isHintActive: true,
     isEditing: false,
+    name: htmlIdGenerator()(),
   };
 
   idGenerator = htmlIdGenerator();
@@ -157,6 +161,22 @@ export class EuiCodeEditor extends Component<
   componentDidMount() {
     if (this.isCustomMode()) {
       this.setCustomMode();
+    }
+    const { isReadOnly, id } = this.props;
+
+    const textareaProps: {
+      id?: string;
+      readOnly?: boolean;
+    } = { id, readOnly: isReadOnly };
+
+    const el = document.getElementById(this.state.name);
+    if (el) {
+      const textarea = el.querySelector('textarea');
+      if (textarea)
+        keysOf(textareaProps).forEach(key => {
+          if (textareaProps[key])
+            textarea.setAttribute(`${key}`, textareaProps[key]!.toString());
+        });
     }
   }
 
@@ -260,7 +280,7 @@ export class EuiCodeEditor extends Component<
           // Setting a default, existing `mode` is necessary to properly initialize the editor
           // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
           mode={this.isCustomMode() ? DEFAULT_MODE : (mode as string)} // https://github.com/securingsincity/react-ace/pull/771
-          name={this.idGenerator()}
+          name={this.state.name}
           theme={theme}
           ref={this.aceEditorRef}
           width={width}
