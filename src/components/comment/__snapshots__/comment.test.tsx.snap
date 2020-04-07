@@ -21,10 +21,10 @@ exports[`EuiComment is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div
+  <figure
     class="euiCommentEvent euiCommentEvent--regular"
   >
-    <div
+    <figcaption
       class="euiCommentEvent__header"
     >
       <div
@@ -39,8 +39,8 @@ exports[`EuiComment is rendered 1`] = `
           class="euiCommentEvent__headerEvent"
         />
       </div>
-    </div>
-  </div>
+    </figcaption>
+  </figure>
 </div>
 `;
 
@@ -63,10 +63,10 @@ exports[`EuiComment props event is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div
+  <figure
     class="euiCommentEvent euiCommentEvent--regular"
   >
-    <div
+    <figcaption
       class="euiCommentEvent__header"
     >
       <div
@@ -83,8 +83,8 @@ exports[`EuiComment props event is rendered 1`] = `
           commented
         </div>
       </div>
-    </div>
-  </div>
+    </figcaption>
+  </figure>
 </div>
 `;
 
@@ -116,10 +116,10 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div
+  <figure
     class="euiCommentEvent euiCommentEvent--regular"
   >
-    <div
+    <figcaption
       class="euiCommentEvent__header"
     >
       <div
@@ -134,8 +134,8 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
           class="euiCommentEvent__headerEvent"
         />
       </div>
-    </div>
-  </div>
+    </figcaption>
+  </figure>
 </div>
 `;
 
@@ -158,10 +158,10 @@ exports[`EuiComment props timestamp is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div
+  <figure
     class="euiCommentEvent euiCommentEvent--regular"
   >
-    <div
+    <figcaption
       class="euiCommentEvent__header"
     >
       <div
@@ -183,8 +183,8 @@ exports[`EuiComment props timestamp is rendered 1`] = `
           </time>
         </div>
       </div>
-    </div>
-  </div>
+    </figcaption>
+  </figure>
 </div>
 `;
 
@@ -249,10 +249,10 @@ exports[`EuiComment renders a body 1`] = `
       </div>
     </div>
   </div>
-  <div
+  <figure
     class="euiCommentEvent euiCommentEvent--regular"
   >
-    <div
+    <figcaption
       class="euiCommentEvent__header"
     >
       <div
@@ -267,7 +267,7 @@ exports[`EuiComment renders a body 1`] = `
           class="euiCommentEvent__headerEvent"
         />
       </div>
-    </div>
+    </figcaption>
     <div
       class="euiCommentEvent__body"
     >
@@ -275,6 +275,6 @@ exports[`EuiComment renders a body 1`] = `
         This is the body.
       </p>
     </div>
-  </div>
+  </figure>
 </div>
 `;

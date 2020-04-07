@@ -50,9 +50,17 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     className
   );
 
+  const Element =
+    type === 'regular' || (type === 'update' && children) ? 'figure' : 'div';
+
+  const HeaderElement =
+    type === 'regular' || (type === 'update' && children)
+      ? 'figcaption'
+      : 'div';
+
   return (
-    <div className={classes} {...rest}>
-      <div className="euiCommentEvent__header">
+    <Element className={classes} {...rest}>
+      <HeaderElement className="euiCommentEvent__header">
         <div className="euiCommentEvent__headerData">
           <div className="euiCommentEvent__headerUsername">{username}</div>
           <div className="euiCommentEvent__headerEvent">{event}</div>
@@ -69,12 +77,12 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
         ) : (
           undefined
         )}
-      </div>
+      </HeaderElement>
       {children ? (
         <div className="euiCommentEvent__body">{children}</div>
       ) : (
         undefined
       )}
-    </div>
+    </Element>
   );
 };

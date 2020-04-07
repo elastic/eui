@@ -21,7 +21,7 @@ const bodyUpdate = (
 
 export default () => (
   <div>
-    <EuiComment username="andred" event="added a comment" timestamp="yesteday">
+    <EuiComment username="andred" event="added a comment" timestamp="yesterday">
       {body}
     </EuiComment>
     <EuiComment
