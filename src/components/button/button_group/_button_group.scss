@@ -4,9 +4,8 @@
   border-radius: $euiBorderRadius;
 
   .euiButton {
-    min-width: auto;
     border-radius: 0;
-    border-right-width: 0;
+    margin-left: -1px;
 
     &:not(.euiButton--fill) {
       border-color: $euiButtonToggleBorderColor;
@@ -28,6 +27,15 @@
     }
   }
 
+  .euiButton--fill {
+    z-index: 0;
+  }
+
+  .euiButtonGroup__button--iconOnly,
+  .euiButtonGroup__toggle--iconOnly {
+    min-width: auto;
+  }
+
   .euiButton--fill + .euiButton {
     border-left-color: transparent;
   }
@@ -44,7 +52,6 @@
       }
 
       &:last-child {
-        border-right-width: 1px;
         border-top-right-radius: $euiBorderRadius;
         border-bottom-right-radius: $euiBorderRadius;
       }
@@ -53,7 +60,18 @@
 }
 
 @each $name, $color in $euiButtonTypes {
-  .euiButtonGroup--#{$name}:not(.euiButtonGroup--disabled):not(.euiButtonGroup--compressed) {
+  .euiButtonGroup--#{$name}:not(.euiButtonGroup--compressed) {
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      color: $color;
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make the it the text color
+      color: $euiTextColor;
+    } @else {
+      // Other colors need to check their contrast against the page background color.
+      color: makeHighContrastColor($color, $euiPageBackgroundColor);
+    }
+
     $shadowColor: $euiShadowColor;
     @if ($name == 'ghost') {
       $shadowColor: $euiColorInk;
@@ -63,6 +81,12 @@
     }
 
     @include euiSlightShadow($shadowColor);
+
+    .euiButtonGroup__input:focus + .euiButtonGroup__label {
+      background-color: darken($color, 5%);
+      border-color: darken($color, 5%);
+      text-decoration: underline;
+    }
   }
 }
 
@@ -140,6 +164,7 @@
     font-size: $euiFontSizeS;
     height: $euiFormControlCompressedHeight - 2px;
     box-shadow: none;
+    min-width: 0;
     // Offset the background color from the border by 2px
     // by clipping background to before the padding starts
     padding: 2px;

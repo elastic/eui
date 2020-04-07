@@ -157,7 +157,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
             color ? colorToClassNameMap[color] : null,
             {
               'euiButton--disabled': isDisabled,
-              'euiButtonGroup__toggle--isIconOnly': isIconOnly,
+              'euiButtonGroup__toggle--iconOnly': isIconOnly,
               'euiButton--fill': fill,
               'euiButton--small':
                 buttonSize === 'compressed' || buttonSize === 's',
@@ -197,7 +197,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                 ) : (
                   <>
                     {iconSide === 'left' && icon}
-                    {label}
+                    <span className="euiButton__text">{label}</span>
                     {iconSide === 'right' && icon}
                   </>
                 )}

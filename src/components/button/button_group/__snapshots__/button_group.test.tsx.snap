@@ -40,7 +40,11 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -55,7 +59,11 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -70,7 +78,11 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -101,7 +113,11 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -116,7 +132,11 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -131,7 +151,11 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -162,7 +186,11 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -177,7 +205,11 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -192,7 +224,11 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -223,7 +259,11 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -238,7 +278,11 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -253,7 +297,11 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -284,7 +332,11 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -299,7 +351,11 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -314,7 +370,11 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -345,7 +405,11 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -360,7 +424,11 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -375,7 +443,11 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -406,7 +478,11 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -421,7 +497,11 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -436,7 +516,11 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -467,7 +551,11 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -482,7 +570,11 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -497,7 +589,11 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -528,7 +624,11 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -543,7 +643,11 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -558,7 +662,11 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -590,7 +698,11 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -605,7 +717,11 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -620,7 +736,11 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -652,7 +772,11 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -668,7 +792,11 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -684,7 +812,11 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -715,7 +847,11 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -730,7 +866,11 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -745,7 +885,11 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -765,7 +909,7 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--isIconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
     >
       <input
         class="euiButtonGroup__input"
@@ -784,7 +928,7 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--isIconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
     >
       <input
         class="euiButtonGroup__input"
@@ -803,7 +947,7 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--isIconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
     >
       <input
         class="euiButtonGroup__input"
@@ -849,7 +993,11 @@ exports[`EuiButtonGroup props legend is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -864,7 +1012,11 @@ exports[`EuiButtonGroup props legend is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -879,7 +1031,11 @@ exports[`EuiButtonGroup props legend is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -911,7 +1067,11 @@ exports[`EuiButtonGroup props name is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -927,7 +1087,11 @@ exports[`EuiButtonGroup props name is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -943,7 +1107,11 @@ exports[`EuiButtonGroup props name is rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -974,7 +1142,11 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
     <div
@@ -989,7 +1161,11 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button01"
       >
-        Option two
+        <span
+          class="euiButton__text"
+        >
+          Option two
+        </span>
       </label>
     </div>
     <div
@@ -1004,7 +1180,11 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button02"
       >
-        Option three
+        <span
+          class="euiButton__text"
+        >
+          Option three
+        </span>
       </label>
     </div>
   </div>
@@ -1037,7 +1217,11 @@ exports[`EuiButtonGroup props options can pass down data-test-subj 1`] = `
         class="euiButton__content euiButtonGroup__label"
         for="button00"
       >
-        Option one
+        <span
+          class="euiButton__text"
+        >
+          Option one
+        </span>
       </label>
     </div>
   </div>
