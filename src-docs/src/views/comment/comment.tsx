@@ -43,7 +43,7 @@ export default () => (
       username="janed"
       event="added a comment"
       actions={copyAction}
-      timestamp="Jan 1, 2020">
+      timestamp="on Jan 1, 2020">
       {body}
     </EuiComment>
     <EuiComment
@@ -51,7 +51,7 @@ export default () => (
       type="update"
       actions={copyAction}
       event="pushed incident X0Z235"
-      timestamp="Jan 3, 2020"
+      timestamp="on Jan 3, 2020"
       timelineIcon={
         <EuiAvatar
           imageUrl="https://source.unsplash.com/64x64/?woman"
@@ -64,7 +64,7 @@ export default () => (
       username="pancho1"
       type="update"
       event="edited case"
-      timestamp="Jan 9, 2020"
+      timestamp="on Jan 9, 2020"
     />
     <EuiComment
       actions={copyAction}
@@ -88,14 +88,14 @@ export default () => (
           </EuiFlexItem>
         </EuiFlexGroup>
       }
-      timestamp="Jan 11, 2020"
+      timestamp="on Jan 11, 2020"
       timelineIcon="tag"
     />
     <EuiComment
       username="elohar"
       event="added a comment"
       actions={copyAction}
-      timestamp="Jan 14, 2020"
+      timestamp="on Jan 14, 2020"
       timelineIcon={<EuiAvatar size="l" name="Eloha" />}>
       {longBody}
     </EuiComment>

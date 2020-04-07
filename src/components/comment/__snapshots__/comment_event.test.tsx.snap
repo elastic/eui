@@ -71,7 +71,6 @@ exports[`EuiCommentEvent props timestamp is rendered 1`] = `
       <div
         class="euiCommentEvent__headerTimestamp"
       >
-        on 
         <time>
           21 days ago
         </time>

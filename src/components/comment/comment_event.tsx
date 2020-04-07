@@ -1,10 +1,9 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
-import { EuiI18n } from '../i18n';
 
 export type EuiCommentEventProps = CommonProps &
-  CommonProps & {
+  HTMLAttributes<HTMLDivElement> & {
     /**
      * Author of the comment. Display a small icon or avatar with it if needed.
      */
@@ -59,7 +58,6 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
           <div className="euiCommentEvent__headerEvent">{event}</div>
           {timestamp ? (
             <div className="euiCommentEvent__headerTimestamp">
-              <EuiI18n token="euiCommentEvent.onDate" default="on" />{' '}
               <time>{timestamp}</time>
             </div>
           ) : (

@@ -21,23 +21,20 @@ const bodyUpdate = (
 
 export default () => (
   <div>
-    <EuiComment
-      username="andred"
-      event="added a comment"
-      timestamp="Jan 1, 2020">
+    <EuiComment username="andred" event="added a comment" timestamp="yesteday">
       {body}
     </EuiComment>
     <EuiComment
       username="luisg"
       type="update"
       event="edited case"
-      timestamp="Jan 3, 2020"
+      timestamp="22 hours ago"
     />
     <EuiComment
       username="milal"
       type="update"
       event="edited case"
-      timestamp="Jan 4, 2020">
+      timestamp="6 hours ago">
       {bodyUpdate}
     </EuiComment>
   </div>

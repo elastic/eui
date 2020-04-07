@@ -1,15 +1,16 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
-import { EuiIcon } from '../icon';
+import { EuiIcon, IconType } from '../icon';
 
-export type EuiCommentTimelineProps = CommonProps & {
-  /**
-   * Main icon that accompanies the comment. The default is `user` for regular comments and `dot` for update comments. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`.
-   */
-  timelineIcon?: ReactNode | string;
-  type?: EuiCommentType;
-};
+export type EuiCommentTimelineProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    /**
+     * Main icon that accompanies the comment. The default is `user` for regular comments and `dot` for update comments. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`.
+     */
+    timelineIcon?: ReactNode | IconType;
+    type?: EuiCommentType;
+  };
 
 const typeToClassNameMap = {
   regular: 'euiCommentTimeline__icon--regular',

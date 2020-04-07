@@ -160,7 +160,7 @@ export const CommentExample = {
               <Link to="/display/avatar">
                 <strong>EuiAvatar</strong>
               </Link>
-              ). It is recommended not to use an element larger that 40x40.
+              ). It is recommended not to use an element larger than 40x40.
             </li>
           </ol>
         </div>
