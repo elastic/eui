@@ -33,7 +33,7 @@ export { EuiCallOut } from './call_out';
 
 export { EuiCard, EuiCheckableCard } from './card';
 
-export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
+export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl, EuiTextDiff } from './code';
 
 export { EuiCodeEditor } from './code_editor';
 

@@ -1,0 +1,43 @@
+.euiTextDiff {
+  display: block;
+  position: relative;
+  background: $euiCodeBlockBackgroundColor;
+  color: $euiCodeBlockColor;
+  box-sizing: border-box;
+  line-height: $euiLineHeight;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: $euiFontWeightRegular;
+
+  del {
+    color: $euiColorDanger;
+  }
+
+  ins {
+    color: $euiColorSecondary;
+  }
+}
+
+.euiTextDiff--paddingMedium  {
+  padding: $euiSize;
+}
+
+.euiTextDiff--paddingLarge {
+  padding: $euiSizeL;
+}
+
+.euiTextDiff--paddingSmall{
+  padding: $euiSizeS;
+}
+
+.euiTextDiff--fontSmall {
+  font-size: $euiFontSizeXS;
+}
+
+.euiTextDiff--fontMedium {
+  font-size: $euiFontSizeS;
+}
+
+.euiTextDiff--fontLarge {
+  font-size: $euiFontSize;
+}

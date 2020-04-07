@@ -4,7 +4,11 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCodeBlockImpl } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiCodeBlockImpl,
+  EuiTextDiff,
+} from '../../../../src/components';
 
 import Code from './code';
 const codeSource = require('!!raw-loader!./code');
@@ -22,6 +26,14 @@ const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyab
 import CodeBlockPre from './code_block_pre';
 const codeBlockPreSource = require('!!raw-loader!./code_block_pre');
 const codeBlockPreHtml = renderToHtml(CodeBlockPre);
+
+import TextDiff from './text_diff';
+const textDiffSource = require('!!raw-loader!./text_diff');
+const textDiffHtml = renderToHtml(TextDiff);
+
+import NoDeletion from './text_diff_no_deletions';
+const noDeletionSource = require('!!raw-loader!./text_diff_no_deletions');
+const noDeletionHtml = renderToHtml(NoDeletion);
 
 export const CodeExample = {
   title: 'Code',
@@ -94,6 +106,46 @@ export const CodeExample = {
       ),
       props: { EuiCodeBlockImpl },
       demo: <CodeBlockPre />,
+    },
+    {
+      title: 'Text Diff',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: textDiffSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: textDiffHtml,
+        },
+      ],
+      text: (
+        <p>
+          <strong>EuiTextDiff</strong> is for making text comparisions.
+        </p>
+      ),
+      demo: <TextDiff />,
+      props: { EuiTextDiff },
+    },
+    {
+      title: 'Text Diff without deletions',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: noDeletionSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: noDeletionHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>showDeletion</EuiCode> is used for hiding/showing deletions.
+        </p>
+      ),
+      demo: <NoDeletion />,
+      props: { EuiTextDiff },
     },
   ],
 };
