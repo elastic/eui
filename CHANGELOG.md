@@ -1,13 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions ([#3115](https://github.com/elastic/eui/pull/3115))
+- Added support for `EuiCodeEditor` to set `readonly` and `id` on `<textarea />` ([#3212](https://github.com/elastic/eui/pull/3212))
+
 **Deprecation**
 
 - Updated makeId to DEPRECATED, shifted all the calls to htmlIdGenerator ([#3129](https://github.com/elastic/eui/pull/3129))
 
 **Bug Fixes**
 
+- Fixed the `initialSelectedTab` prop of `EuiTabbedContent` to not steal focus from content. Which fixed the bug in `EuiSuperDatePicker` that required two clicks to focus input in relative tab  ([#3154](https://github.com/elastic/eui/pull/3154))
 - Fixed the `img` element in `EuiIcon` using custom SVGs to have an `alt` attribute with an empty string, rather than no `alt` attribute at all ([#3245](https://github.com/elastic/eui/pull/3245))
 - Added overflows to EuiDataGrid toolbar dropdowns when there are many columns ([#3238](https://github.com/elastic/eui/pull/3238))
+- Fixed `EuiIcon`'s icon `type` definition to allow custom React components ([#3252](https://github.com/elastic/eui/pull/3252))
 
 ## [`22.3.0`](https://github.com/elastic/eui/tree/v22.3.0)
 

@@ -93,4 +93,16 @@ describe('EuiIcon', () => {
       );
     });
   });
+
+  it('renders custom components', () => {
+    const CustomIcon = ({ ...props }) => {
+      return (
+        <span role="img" aria-label="heart" {...props}>
+          ❤️
+        </span>
+      );
+    };
+    const component = mount(<EuiIcon type={CustomIcon} />);
+    expect(prettyHtml(component.html())).toMatchSnapshot();
+  });
 });
