@@ -167,10 +167,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   setListRef = (ref: FixedSizeList | null) => {
     this.listRef = ref;
-
-    if (ref && this.props.activeOptionIndex) {
-      ref.scrollToItem(this.props.activeOptionIndex, 'auto');
-    }
   };
 
   setListBoxRef = (ref: HTMLUListElement | null) => {
@@ -179,6 +175,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (ref) {
       ref.setAttribute('id', this.props.rootId('listbox'));
       ref.setAttribute('role', 'listBox');
+      ref.setAttribute('tabIndex', '0');
     }
   };
 

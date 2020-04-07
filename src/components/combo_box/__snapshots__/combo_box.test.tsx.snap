@@ -322,6 +322,7 @@ exports[`props options list is rendered 1`] = `
           id="htmlid_listbox"
           role="listBox"
           style="height: 270px; width: 100%;"
+          tabindex="0"
         >
           <button
             aria-selected="false"
