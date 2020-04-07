@@ -65,7 +65,7 @@ export interface EuiTourStepProps
   onFinish: NoArgCallback<void>;
 
   /**
-   * The number of the step within the parent tour
+   * The number of the step within the parent tour. 1-based indexing.
    */
   step: number;
 
@@ -119,6 +119,11 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   footerAction,
   ...rest
 }) => {
+  if (step === 0) {
+    console.warn(
+      'EuiTourStep `step` should 1-based indexing. Please update to eliminate 0 indexes.'
+    );
+  }
   let newStyle;
 
   let widthClassName;
