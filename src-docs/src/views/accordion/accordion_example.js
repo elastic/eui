@@ -333,7 +333,7 @@ export const AccordionExample = {
     },
     {
       title:
-        'Accordion state ,i.e, open and close can be controlled from outside',
+        'Force accordion state',
       source: [
         {
           type: GuideSectionTypes.JS,
