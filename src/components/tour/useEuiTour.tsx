@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import { assertNever } from '../common';
 import { EuiTourStepProps } from './tour_step';
 import { EuiTourAction, EuiTourActions, EuiTourState } from './types';
 
@@ -44,9 +45,7 @@ export const useEuiTour = (
         };
       }
       case 'EUI_TOUR_GOTO': {
-        const step = action.payload
-          ? action.payload.step
-          : state.currentTourStep;
+        const step = action.payload.step;
         const goTo =
           step <= stepsArray.length && step > 0 ? step : state.currentTourStep;
         return {
@@ -55,6 +54,7 @@ export const useEuiTour = (
         };
       }
       default:
+        assertNever(action);
         return state;
     }
   }

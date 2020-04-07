@@ -15,6 +15,10 @@ export interface CommonProps {
 
 export type NoArgCallback<T> = () => T;
 
+export const assertNever = (x: never): never => {
+  throw new Error(`Unexpected value ${x}`);
+};
+
 // utility types:
 
 /**
