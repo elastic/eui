@@ -29,10 +29,10 @@ import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
 const textColorHtml = renderToHtml(TextColor);
 const textColorSnippet = [
+  `<EuiText color="danger"><!-- Raw HTML content --></EuiText>
+`,
   `<EuiTextColor color="subdued">Subdued text color</EuiTextColor>
 `,
-  `<EuiText color="danger"><!-- Raw HTML content --></EuiText>
-  `,
 ];
 
 import TextAlign from './text_align';
