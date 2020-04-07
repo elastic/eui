@@ -11,7 +11,7 @@ const titleSource = require('!!raw-loader!./title');
 const titleHtml = renderToHtml(Title);
 const titleSnippet = [
   `<EuiTitle>
-  <h2><!-- Default's to medium size. Change the heading level based on your context. --></h2>
+  <h2><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
 </EuiTitle>`,
   `<EuiTitle size="s">
   <h2><!-- Small title but heading level can be anything based on your context. --></h2>
