@@ -346,7 +346,7 @@ export const AccordionExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>forceState</EuiCode> prop to controll open and close
+          Use the <EuiCode>forceState</EuiCode> prop to control open and close
           state.
         </p>
       ),
