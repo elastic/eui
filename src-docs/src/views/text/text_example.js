@@ -23,51 +23,25 @@ const textSmallHtml = renderToHtml(TextSmall);
 const textSmallSnippet = [
   `<EuiText size="s"><!-- Raw HTML content --></EuiText>
 `,
-  `<EuiText size="xs"><!-- Raw HTML content --></EuiText>
-`,
 ];
 
 import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
 const textColorHtml = renderToHtml(TextColor);
 const textColorSnippet = [
-  `<EuiTextColor color="default">Default text color</EuiTextColor>
-`,
   `<EuiTextColor color="subdued">Subdued text color</EuiTextColor>
 `,
-  `<EuiTextColor color="secondary">Secondary text color</EuiTextColor>
-`,
-  `<EuiTextColor color="accent">Accent text color</EuiTextColor>
-`,
-  `<EuiTextColor color="warning">Warning text color</EuiTextColor>
-`,
-  `<EuiTextColor color="danger">Danger text color</EuiTextColor>
-`,
-  `<EuiTextColor color="ghost">Ghost text color is always white regardless of theme</EuiTextColor>
-`,
+  `<EuiText color="danger"><!-- Raw HTML content --></EuiText>
+  `,
 ];
 
 import TextAlign from './text_align';
 const textAlignSource = require('!!raw-loader!./text_align');
 const textAlignHtml = renderToHtml(TextAlign);
 const textAlignSnippet = [
-  `<EuiText>
-  <EuiTextAlign textAlign="left">
-    <p>Left aligned paragraph.</p>
-  </EuiTextAlign>
-  <EuiTextAlign textAlign="center">
-    <p>Center aligned paragraph.</p>
-  </EuiTextAlign>
-  <EuiTextAlign textAlign="right">
-    <p>Right aligned paragraph.</p>
-  </EuiTextAlign>
-</EuiText>
+  `<EuiText textAlign="center"><!-- Raw HTML content --></EuiText>
 `,
-  `<EuiText textAlign="center">
-  <p>
-    Center aligned paragraph
-  </p>
-</EuiText>
+  `<EuiTextAlign textAlign="center"><!-- Raw HTML content --></EuiTextAlign>
 `,
 ];
 
