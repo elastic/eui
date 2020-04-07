@@ -32,7 +32,7 @@ export const HighlightAndMarkExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiHighlight</EuiCode> to highlight substrings within a
+          Use <strong>EuiHighlight</strong> to highlight substrings within a
           string, typically in response to user input.
         </p>
       ),
@@ -54,7 +54,7 @@ export const HighlightAndMarkExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiMark</EuiCode> to wrap a string in an
+          Use <strong>EuiMark</strong> to wrap a string in an
           <EuiCode>mark</EuiCode> element.
         </p>
       ),

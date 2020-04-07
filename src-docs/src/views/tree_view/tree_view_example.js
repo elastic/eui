@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -16,7 +17,7 @@ const treeViewCompressedSource = require('!!raw-loader!./compressed');
 const treeViewCompressedHtml = renderToHtml(TreeViewCompressed);
 
 export const TreeViewExample = {
-  title: 'Tree View',
+  title: 'Tree view',
   sections: [
     {
       source: [
@@ -32,17 +33,17 @@ export const TreeViewExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiTreeView</EuiCode> allows you to render recursive
-            objects, such as a file directory. The <EuiCode>chilldren</EuiCode>{' '}
-            prop takes an array of <EuiCode>nodes</EuiCode>.
+            <strong>EuiTreeView</strong> allows you to render recursive objects,
+            such as a file directory. The <EuiCode>children</EuiCode> prop takes
+            an array of <EuiCode>nodes</EuiCode>.
           </p>
           <p>
             Keyboard navigation allows users to navigate and interact with the
             tree using the arrow keys, spacebar, and return.
           </p>
           <p>
-            The <EuiCode>icon</EuiCode> prop accepts <EuiCode>EuiIcon</EuiCode>{' '}
-            and <EuiCode>EuiToken</EuiCode> as react nodes. You can also
+            The <EuiCode>icon</EuiCode> prop accepts any{' '}
+            <Link to="/display/icons">icon or token</Link>. You can also
             specifiy a different icon for the open state with the{' '}
             <EuiCode>iconWhenExpanded</EuiCode> prop.
           </p>
@@ -67,12 +68,12 @@ export const TreeViewExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiTreeView</EuiCode> supports a compressed mode with the{' '}
-            <EuiCode>display=&quot;compressed&quot;</EuiCode> setting. When
-            using the compressed version it&apos;s highly recommended to use the
-            small size of <EuiCode>EuiIcon</EuiCode> and the extra small size of{' '}
-            <EuiCode>EuiToken</EuiCode>. This will help prevent awkard alignment
-            issues when used alongside the{' '}
+            <strong>EuiTreeView</strong> supports a compressed mode with the{' '}
+            <EuiCode language="js">{'display="compressed"'}</EuiCode> setting.
+            When using the compressed version it&apos;s highly recommended to
+            use the small size of <strong>EuiIcon</strong> and the extra small
+            size of <strong>EuiToken</strong>. This will help prevent awkard
+            alignment issues when used alongside the{' '}
             <EuiCode>showExpansionArrows</EuiCode> prop.
           </p>
           <p>

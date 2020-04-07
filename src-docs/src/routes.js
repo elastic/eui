@@ -63,6 +63,8 @@ import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
+import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
+
 import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
@@ -81,7 +83,6 @@ import { DataGridControlColumnsExample } from './views/datagrid/datagrid_control
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
-import { DelayHideExample } from './views/delay_hide/delay_hide_example';
 import { DelayRenderExample } from './views/delay_render/delay_render_example';
 
 import { DescriptionListExample } from './views/description_list/description_list_example';
@@ -120,6 +121,8 @@ import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_an
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
 
+import { HtmlIdGeneratorExample } from './views/html_id_generator/html_id_generator_example';
+
 import { I18nExample } from './views/i18n/i18n_example';
 
 import { IconExample } from './views/icon/icon_example';
@@ -143,6 +146,8 @@ import { MutationObserverExample } from './views/mutation_observer/mutation_obse
 import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
+
+import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
 
@@ -181,6 +186,8 @@ import { SuggestExample } from './views/suggest/suggest_example';
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
+
+import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
 
@@ -321,6 +328,7 @@ const navigation = [
     items: [
       BreadcrumbsExample,
       ButtonExample,
+      CollapsibleNavExample,
       ContextMenuExample,
       ControlBarExample,
       FacetExample,
@@ -342,6 +350,7 @@ const navigation = [
       DataGridStylingExample,
       DataGridControlColumnsExample,
       TableExample,
+      TableInMemoryExample,
     ].map(example => createExample(example)),
   },
   {
@@ -403,21 +412,22 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      IsColorDarkExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
-      DelayHideExample,
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightAndMarkExample,
+      HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
-      IsColorDarkExample,
-      PrettyDurationExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
+      OverlayMaskExample,
       PortalExample,
+      PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
       ToggleExample,

@@ -100,7 +100,7 @@ export class OverflowTest extends Component {
     }
     return (
       <div>
-        <EuiButton onClick={this.showModal}>Show Modal</EuiButton>
+        <EuiButton onClick={this.showModal}>Show modal</EuiButton>
 
         {modal}
       </div>

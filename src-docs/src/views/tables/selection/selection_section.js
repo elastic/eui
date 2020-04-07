@@ -8,7 +8,7 @@ const source = require('!!raw-loader!./selection');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Adding selection to a BasicTable',
+  title: 'Adding selection to a table',
   source: [
     {
       type: GuideSectionTypes.JS,

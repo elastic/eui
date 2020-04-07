@@ -7,7 +7,11 @@ import uuid from 'uuid';
  * specify it, it generates a random id prefix. If you specify a custom prefix
  * it should begin with an letter to be HTML4 compliant.
  */
-export function htmlIdGenerator(idPrefix?: string) {
-  const prefix = idPrefix || `i${uuid.v1()}`;
-  return (suffix?: string) => `${prefix}_${suffix || uuid.v1()}`;
+export function htmlIdGenerator(idPrefix: string = '') {
+  const staticUuid = uuid.v1();
+  return (idSuffix: string = '') => {
+    const prefix = `${idPrefix}${idPrefix !== '' ? '_' : 'i'}`;
+    const suffix = idSuffix ? `_${idSuffix}` : '';
+    return `${prefix}${suffix ? staticUuid : uuid.v1()}${suffix}`;
+  };
 }
