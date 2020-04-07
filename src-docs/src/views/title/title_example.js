@@ -12,7 +12,7 @@ const titleHtml = renderToHtml(Title);
 const titleSnippet = [
   `<EuiTitle size="l" textTransform="uppercase"><!---Content--></EuiTitle>
 `,
-  `<EuiTitle><!--Content--></EuiTitle>
+  `<EuiTitle><!--Default--></EuiTitle>
 `,
 ];
 
