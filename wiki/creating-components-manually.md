@@ -39,7 +39,6 @@ There are a couple themes to keep in mind when adding snippets:
 - Does this snippet provide the details of a specific object the component needs to work?
 - If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
 
-
 #### Stay consistent
 - When using text should it display actual strings or comments?
 - Don't use `this.` Write the snippet like a **Function Component** with descriptive function and state names.
