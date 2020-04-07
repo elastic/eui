@@ -23,8 +23,7 @@ const descriptionListSnippet = [
     },
   ]}
 />`,
-  `<EuiDescriptionList
->
+  `<EuiDescriptionList>
   <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
   <EuiDescriptionListDescription>
     A videogame that I have spent way too much time on over the years.
