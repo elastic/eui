@@ -9,9 +9,9 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     /**
-     * sets the color of the health component.
-     * It can either accept `enum` values like `default`, `primary`,  `secondary`,  `success`, `accent`, `warning`, `danger`, `text`,
-     * `subdued` and `ghost` or any `custom color` wrapped in `string` which can be any `valid CSS color data-type` like custom hex string present in the example
+     * Sets the color of the dot icon.
+     * It accepts any `IconColor`: `default`, `primary`, `secondary`, `success`, `accent`, `warning`, `danger`, `text`,
+     * `subdued` or `ghost`; or any valid CSS color value as a `string`
      */
     color?: IconColor;
   };
