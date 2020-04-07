@@ -98,8 +98,5 @@ There are a couple themes to keep in mind when adding snippets:
 />
 ```
 
-
-
-
 [docs]: https://elastic.github.io/eui/
 [docs-logical-group]: creating-components.md#logically-grouped-components
