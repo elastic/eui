@@ -62,7 +62,7 @@ There are a couple themes to keep in mind when adding snippets:
 </EuiLink>
 ```
 
-- Use HTML comments to suggest what a `children` might be.
+- Use HTML comments to suggest what the `children` might be.
 
 ``` js
 <EuiText color="danger"><!-- Raw HTML content --></EuiText>
