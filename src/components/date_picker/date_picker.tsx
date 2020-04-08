@@ -1,4 +1,4 @@
-import React, { Component, MouseEventHandler, RefCallback } from 'react';
+import React, { Component, MouseEventHandler, Ref } from 'react';
 import classNames from 'classnames';
 
 import { Moment } from 'moment'; // eslint-disable-line import/named
@@ -34,7 +34,7 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   /**
    * ref for the ReactDatePicker instance
    */
-  inputRef: RefCallback<Component<ReactDatePickerProps, any, any>>;
+  inputRef: Ref<Component<ReactDatePickerProps, any, any>>;
 
   /**
    * Provides styling to the input when invalid
