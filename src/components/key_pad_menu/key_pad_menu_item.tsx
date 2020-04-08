@@ -11,6 +11,8 @@ import { CommonProps, ExclusiveUnion } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
 
+import { getSecureRelForTarget } from '../../services';
+
 import { IconType } from '../icon';
 
 const renderContent = (
@@ -59,6 +61,7 @@ interface EuiKeyPadMenuItemCommonProps {
   betaBadgeTooltipContent?: ReactNode;
   onClick?: () => void;
   href?: string;
+  rel?: string;
 }
 
 export type EuiKeyPadMenuItemProps = CommonProps &
@@ -77,6 +80,8 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   betaBadgeTooltipContent,
   betaBadgeIconType,
   href,
+  rel,
+  target,
   ...rest
 }) => {
   const classes = classNames(
@@ -93,11 +98,15 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     disabled?: boolean;
     type?: string;
     href?: string;
+    rel?: string;
+    target?: string;
   } = {};
 
   if (href && !isDisabled) {
     relObj.role = 'menuitem';
     relObj.href = href;
+    relObj.target = target;
+    relObj.rel = getSecureRelForTarget({ href, rel, target });
   } else {
     relObj.type = 'button';
     relObj.disabled = isDisabled;
