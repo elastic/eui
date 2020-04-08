@@ -8,6 +8,7 @@ import {
   EUI_CHARTS_THEME_DARK,
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
+import { EuiFlexGrid, EuiFlexItem, EuiTitle } from '../../../../src/components';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
@@ -20,42 +21,51 @@ export default () => {
 
   return (
     <div>
-      <h2>Pie</h2>
-      <Chart size={{ height: 300 }}>
-        <Partition
-          id="pieByBrowser"
-          data={BROWSER_DATA_2019}
-          valueAccessor={d => Number(d.percent)}
-          layers={[
-            {
-              groupByRollup: d => d.browser,
-              shape: {
-                fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
-              },
-            },
-          ]}
-          config={theme.pie}
-        />
-      </Chart>
-      <h2>Donut</h2>
-      <Chart size={{ height: 300 }}>
-        <Partition
-          id="pieByBrowser"
-          data={BROWSER_DATA_2019}
-          valueAccessor={d => Number(d.percent)}
-          layers={[
-            {
-              groupByRollup: d => d.browser,
-              shape: {
-                fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
-              },
-            },
-          ]}
-          config={{ ...theme.pie, emptySizeRatio: 0.4 }}
-        />
-      </Chart>
-      <h2>Treemap</h2>
-      <Chart size={{ height: 300 }}>
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
+          <EuiTitle size="xs">
+            <h3>Pie chart</h3>
+          </EuiTitle>
+          <Chart size={{ height: 300 }}>
+            <Partition
+              id="pieByBrowser"
+              data={BROWSER_DATA_2019}
+              valueAccessor={d => Number(d.percent)}
+              layers={[
+                {
+                  groupByRollup: d => d.browser,
+                  shape: {
+                    fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
+                  },
+                },
+              ]}
+              config={theme.pie}
+            />
+          </Chart>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiTitle size="xs">
+            <h3>Donut chart</h3>
+          </EuiTitle>
+          <Chart size={{ height: 300 }}>
+            <Partition
+              id="pieByBrowser"
+              data={BROWSER_DATA_2019}
+              valueAccessor={d => Number(d.percent)}
+              layers={[
+                {
+                  groupByRollup: d => d.browser,
+                  shape: {
+                    fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
+                  },
+                },
+              ]}
+              config={{ ...theme.pie, emptySizeRatio: 0.4 }}
+            />
+          </Chart>
+        </EuiFlexItem>
+      </EuiFlexGrid>
+      {/* <Chart size={{ height: 300 }}>
         <Partition
           id="pieByBrowser"
           data={BROWSER_DATA_2019}
@@ -70,7 +80,7 @@ export default () => {
           ]}
           config={{ ...theme.pie, partitionLayout: PartitionLayout.treemap }}
         />
-      </Chart>
+      </Chart> */}
     </div>
   );
 };
