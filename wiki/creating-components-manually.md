@@ -40,10 +40,14 @@ There are a couple themes to keep in mind when adding snippets:
 - If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
 
 #### Stay consistent
-- Don't use `this.` Write the snippet like a **Function Component** with descriptive function and state names. Try to enforce what is the prop type whenever is possible. In the following example, the `anchorPosition` is a string and the other props suggest what they might represent.
+- Don't use `this.` Write the snippet like a **Function Component** with descriptive function and state names. Try to enforce what is the prop type whenever is possible. For instance, in the example below:
+  * `anchorPosition` calls for a string so we show a string as its value. 
+  * `id` calls for a string but we show as a variable that generates a string.
+  * For all other prop types, we show a variable that hints at the type of value that's expected (e.g. `closePopover` for a function).
 
 ``` js
 <EuiPopover
+  id={popoverId}
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}
