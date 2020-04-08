@@ -68,7 +68,9 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
 
-    "@typescript-eslint/array-type": ["error", "array-simple"],
+    "@typescript-eslint/array-type": ["error", { "default": "array-simple" }],
+    // Nice idea...but not today.
+    "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/class-name-casing": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -81,6 +83,10 @@ module.exports = {
     "@typescript-eslint/no-triple-slash-reference": "off",
     "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }],
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    // It"s all very well saying that some types are trivially inferrable,
+    // but being explicit is still clearer.
+    "@typescript-eslint/no-inferrable-types": "off",
   },
   env: {
     jest: true

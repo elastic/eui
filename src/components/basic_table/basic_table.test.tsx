@@ -777,4 +777,65 @@ describe('EuiBasicTable', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('with multiple record actions with custom availability', () => {
+    const props: EuiBasicTableProps<BasicItem> = {
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+        { id: '4', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+        {
+          name: 'Actions',
+          actions: [
+            {
+              type: 'icon',
+              name: 'Edit',
+              isPrimary: true,
+              icon: 'pencil',
+              available: ({ id }) => !(Number(id) % 2),
+              description: 'edit',
+              onClick: () => undefined,
+            },
+            {
+              type: 'icon',
+              name: 'Copy',
+              isPrimary: true,
+              icon: 'copy',
+              description: 'copy',
+              onClick: () => undefined,
+            },
+            {
+              type: 'icon',
+              name: 'Delete',
+              isPrimary: true,
+              icon: 'trash',
+              description: 'delete',
+              onClick: () => undefined,
+            },
+            {
+              type: 'icon',
+              name: 'Share',
+              icon: 'trash',
+              available: ({ id }) => id !== '3',
+              description: 'share',
+              onClick: () => undefined,
+            },
+          ],
+        },
+      ],
+      onChange: () => {},
+    };
+    const component = shallow(<EuiBasicTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

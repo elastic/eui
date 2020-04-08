@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButtonIcon,
@@ -22,103 +22,90 @@ function flattenPanelTree(tree, array = []) {
   return array;
 }
 
-export default class GlobalFilterOptions extends Component {
-  static propTypes = {};
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
 
-  state = {
-    isPopoverOpen: false,
+  const togglePopover = () => {
+    setPopover(!isPopoverOpen);
   };
 
-  togglePopover = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
+  const closePopover = () => {
+    setPopover(false);
   };
 
-  closePopover = () => {
-    this.setState({ isPopoverOpen: false });
+  const panelTree = {
+    id: 0,
+    items: [
+      {
+        name: 'Enable all',
+        icon: 'eye',
+        onClick: () => {
+          closePopover();
+        },
+      },
+      {
+        name: 'Disable all',
+        icon: 'eyeClosed',
+        onClick: () => {
+          closePopover();
+        },
+      },
+      {
+        name: 'Pin all',
+        icon: 'pin',
+        onClick: () => {
+          closePopover();
+        },
+      },
+      {
+        name: 'Unpin all',
+        icon: 'pin',
+        onClick: () => {
+          closePopover();
+        },
+      },
+      {
+        name: 'Invert inclusion',
+        icon: 'invert',
+        onClick: () => {
+          closePopover();
+        },
+      },
+      {
+        name: 'Invert visibility',
+        icon: 'eye',
+        onClick: () => {
+          closePopover();
+        },
+      },
+      {
+        name: 'Remove all',
+        icon: 'trash',
+        onClick: () => {
+          closePopover();
+        },
+      },
+    ],
   };
 
-  render() {
-    const { isPopoverOpen } = this.state;
-
-    const panelTree = {
-      id: 0,
-      items: [
-        {
-          name: 'Enable all',
-          icon: 'eye',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Disable all',
-          icon: 'eyeClosed',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Pin all',
-          icon: 'pin',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Unpin all',
-          icon: 'pin',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Invert inclusion',
-          icon: 'invert',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Invert visibility',
-          icon: 'eye',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Remove all',
-          icon: 'trash',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-      ],
-    };
-
-    return (
-      <EuiPopover
-        isOpen={isPopoverOpen}
-        closePopover={this.closePopover}
-        button={
-          <EuiButtonIcon
-            onClick={this.togglePopover}
-            color="text"
-            iconType="filter"
-            aria-label="Change all filters"
-            title="Change all filters"
-          />
-        }
-        anchorPosition="downCenter"
-        panelPaddingSize="none"
-        withTitle>
-        <EuiPopoverTitle>Change all filters</EuiPopoverTitle>
-        <EuiContextMenu
-          initialPanelId={0}
-          panels={flattenPanelTree(panelTree)}
+  return (
+    <EuiPopover
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      button={
+        <EuiButtonIcon
+          onClick={togglePopover}
+          color="text"
+          iconType="filter"
+          aria-label="Change all filters"
+          title="Change all filters"
         />
-      </EuiPopover>
-    );
-  }
-}
+      }
+      anchorPosition="downCenter"
+      panelPaddingSize="none"
+      withTitle>
+      <EuiPopoverTitle>Change all filters</EuiPopoverTitle>
+      <EuiContextMenu initialPanelId={0} panels={flattenPanelTree(panelTree)} />
+    </EuiPopover>
+  );
+};

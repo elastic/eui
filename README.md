@@ -36,11 +36,17 @@ nvm install
 
 ### Documentation
 
-You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running.
+You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.
 
 ```
 yarn
 yarn start
+```
+
+If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
+
+```
+yarn start --port 9000
 ```
 
 ## Goals

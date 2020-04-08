@@ -11,43 +11,71 @@ import {
 export default () => (
   <Fragment>
     <EuiFormControlLayout icon="search">
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout isLoading>
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout clear={{ onClick: () => {} }}>
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout isLoading clear={{ onClick: () => {} }}>
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout isLoading icon="search">
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout isLoading icon={{ type: 'arrowDown', side: 'right' }}>
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout clear={{ onClick: () => {} }} icon="search">
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -55,13 +83,21 @@ export default () => (
     <EuiFormControlLayout
       clear={{ onClick: () => {} }}
       icon={{ type: 'arrowDown', side: 'right' }}>
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout isLoading clear={{ onClick: () => {} }} icon="search">
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -70,13 +106,21 @@ export default () => (
       isLoading
       clear={{ onClick: () => {} }}
       icon={{ type: 'arrowDown', side: 'right' }}>
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout isLoading clear={{ onClick: () => {} }} icon="search">
-      <input type="text" className="euiFieldText" />
+      <input
+        type="text"
+        className="euiFieldText"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -111,7 +155,11 @@ export default () => (
           <strong>%</strong>
         </EuiText>
       }>
-      <input type="number" className="euiFieldNumber euiFieldNumber--inGroup" />
+      <input
+        type="number"
+        className="euiFieldNumber euiFieldNumber--inGroup"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -124,7 +172,11 @@ export default () => (
           Button
         </EuiButtonEmpty>
       }>
-      <input type="text" className="euiFieldText euiFieldText--inGroup" />
+      <input
+        type="text"
+        className="euiFieldText euiFieldText--inGroup"
+        aria-label="Use aria labels when no actual label is in use"
+      />
     </EuiFormControlLayout>
   </Fragment>
 );

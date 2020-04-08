@@ -45,7 +45,7 @@ const dragAndDropComplexSource = require('!!raw-loader!./drag_and_drop_complex')
 const dragAndDropComplexHtml = renderToHtml(DragAndDropComplex);
 
 export const DragAndDropExample = {
-  title: 'Drag And Drop',
+  title: 'Drag and drop',
   beta: true,
   intro: (
     <React.Fragment>
@@ -65,7 +65,8 @@ export const DragAndDropExample = {
           </li>
           <li>
             <EuiCode>{'<EuiDroppable />'}</EuiCode>: Area into which items can
-            be dropped. Contains <EuiCode>{'<EuiDraggable />'}</EuiCode>s.
+            be dropped. Contains one or more{' '}
+            <EuiCode>{'<EuiDraggable />'}</EuiCode>.
           </li>
           <li>
             <EuiCode>{'<EuiDraggable />'}</EuiCode>: Items that can be dragged.
@@ -111,29 +112,29 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            <EuiCode>EuiDraggable</EuiCode> makes very few assumptions about
-            what content it contains. To give affordance to draggable elements
-            and to ensure a consistent experience, child elements must be able
-            to accept a border and drop shadow (automatically applied via CSS).
-            No other style opinions are applied, however.
+            <strong>EuiDraggable</strong> makes very few assumptions about what
+            content it contains. To give affordance to draggable elements and to
+            ensure a consistent experience, child elements must be able to
+            accept a border and drop shadow (automatically applied via CSS). No
+            other style opinions are applied, however.
           </p>
           <p>
-            Similarly, <EuiCode>EuiDroppable</EuiCode> must accept a background
+            Similarly, <strong>EuiDroppable</strong> must accept a background
             color overlay (automatically applied via CSS), but has no other
             restrictions.
           </p>
           <p>
-            All <EuiCode>EuiDragDropContext</EuiCode> elements are discrete and
-            isolated; <EuiCode>EuiDroppable</EuiCode>s and
-            <EuiCode>EuiDraggable</EuiCode>s cannot be shared/transferred
-            between instances. Also, <EuiCode>EuiDragDropContext</EuiCode>s
-            cannot be nested. It is recommended that a single, high-level{' '}
-            <EuiCode>EuiDragDropContext</EuiCode> is used and
-            <EuiCode>EuiDroppable</EuiCode>s account for categorical and
+            All <strong>EuiDragDropContext</strong> elements are discrete and
+            isolated; <strong>EuiDroppables</strong> and{' '}
+            <strong>EuiDraggables</strong> cannot be shared/transferred between
+            instances. Also, <strong>EuiDragDropContexts</strong> cannot be
+            nested. It is recommended that a single, high-level{' '}
+            <strong>EuiDragDropContext</strong> is used and{' '}
+            <strong>EuiDroppables</strong> account for categorical and
             functional separation (see later examples).
           </p>
           <p>
-            <EuiCode>EuiDragDropContext</EuiCode> handles all eventing but makes
+            <strong>EuiDragDropContext</strong> handles all eventing but makes
             no assumptions about the result of a drop event. As such, the
             following event handlers are available:
           </p>
@@ -189,15 +190,14 @@ export const DragAndDropExample = {
         <React.Fragment>
           <p>
             The simplest case, demonstrating a single{' '}
-            <EuiCode>EuiDroppable</EuiCode> with <EuiCode>reorder</EuiCode>{' '}
+            <strong>EuiDroppable</strong> with <EuiCode>reorder</EuiCode>{' '}
             behavior.
           </p>
           <p>
             Notice the ability to change rendered content based on dragging
-            state.
-            <EuiCode>EuiDraggable</EuiCode> <EuiCode>children</EuiCode> is a
-            render prop that mush return a <EuiCode>ReactElement</EuiCode>. The{' '}
-            <EuiCode>snapshot</EuiCode> parameter on that function has state
+            state. <strong>EuiDraggable</strong> <EuiCode>children</EuiCode> is
+            a render prop that mush return a <EuiCode>ReactElement</EuiCode>.
+            The <EuiCode>snapshot</EuiCode> parameter on that function has state
             data that can be used to alter appearance or behavior (e.g.,{' '}
             <EuiCode>isDragging</EuiCode>).
           </p>
@@ -224,11 +224,11 @@ export const DragAndDropExample = {
             By default the entire element surface can initiate a drag. To
             specify a certain element within as the handle, set
             <EuiCode>customDragHandle=true</EuiCode> on the{' '}
-            <EuiCode>EuiDraggable</EuiCode>.
+            <strong>EuiDraggable</strong>.
           </p>
           <p>
             The <EuiCode>provided</EuiCode> parameter on the{' '}
-            <EuiCode>EuiDraggable</EuiCode> <EuiCode>children</EuiCode> render
+            <strong>EuiDraggable</strong> <EuiCode>children</EuiCode> render
             prop has all data required for functionality. Along with the{' '}
             <EuiCode>customDragHandle</EuiCode> flag,
             <EuiCode>provided.dragHandleProps</EuiCode> needs to be added to the
@@ -253,7 +253,7 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            <EuiCode>EuiDraggable</EuiCode> elements can contain interactive
+            <strong>EuiDraggable</strong> elements can contain interactive
             elements such as buttons and form fields by adding the
             <EuiCode>disableInteractiveElementBlocking</EuiCode> prop. This will
             keep drag functionality while also enabling click, etc., events on
@@ -278,9 +278,9 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            By default, all <EuiCode>EuiDroppable</EuiCode> elements are of the
-            same type and will accept <EuiCode>EuiDraggable</EuiCode> elements
-            from others in the same <EuiCode>EuiDragDropContext</EuiCode>.
+            By default, all <strong>EuiDroppable</strong> elements are of the
+            same type and will accept <strong>EuiDraggable</strong> elements
+            from others in the same <strong>EuiDragDropContext</strong>.
           </p>
           <p>
             The EUI <EuiCode>move</EuiCode> method is demonstrated in this
@@ -306,15 +306,14 @@ export const DragAndDropExample = {
         <React.Fragment>
           <p>
             Setting the <EuiCode>type</EuiCode> prop on an{' '}
-            <EuiCode>EuiDroppable</EuiCode> element will ensure that it will
-            only accept
-            <EuiCode>EuiDraggable</EuiCode> elements from the same type of{' '}
-            <EuiCode>EuiDroppable</EuiCode>.
+            <strong>EuiDroppable</strong> element will ensure that it will only
+            accept <strong>EuiDraggable</strong> elements from the same type of{' '}
+            <strong>EuiDroppable</strong>.
           </p>
           <p>
-            Notice that the enabled, compatible <EuiCode>EuiDroppable</EuiCode>{' '}
+            Notice that the enabled, compatible <strong>EuiDroppable</strong>{' '}
             elements have a visual change that indicates they can accept the
-            actively moving/focused <EuiCode>EuiDraggable</EuiCode> element.
+            actively moving/focused <strong>EuiDraggable</strong> element.
           </p>
         </React.Fragment>
       ),
@@ -335,19 +334,18 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            For cases where collections of <EuiCode>EuiDraggable</EuiCode>{' '}
+            For cases where collections of <strong>EuiDraggable</strong>{' '}
             elements are static or can be used in multiple places set{' '}
-            <EuiCode>cloneDraggables=true</EuiCode> on the parent{' '}
-            <EuiCode>EuiDroppable</EuiCode>. The <EuiCode>EuiDroppable</EuiCode>
-            becomes disabled (does not accept new{' '}
-            <EuiCode>EuiDraggable</EuiCode> elements) in this scenario to avoid
-            mixed content intentions.
+            <EuiCode language="js">cloneDraggables=true</EuiCode> on the parent{' '}
+            <strong>EuiDroppable</strong>. The <strong>EuiDroppable</strong>{' '}
+            becomes disabled (does not accept new <strong>EuiDraggable</strong>{' '}
+            elements) in this scenario to avoid mixed content intentions.
           </p>
           <p>
             The EUI <EuiCode>copy</EuiCode> method is available and demonstrated
             in the example below. Note that the data point used as
-            <EuiCode>draggableId</EuiCode> in <EuiCode>EuiDraggable</EuiCode>{' '}
-            must change to allow for real duplication.
+            <EuiCode>draggableId</EuiCode> in <strong>EuiDraggable</strong> must
+            change to allow for real duplication.
           </p>
           <p>
             <EuiCode>isRemovable</EuiCode> is used in the example for cloned
@@ -373,11 +371,10 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            <EuiCode>EuiDraggable</EuiCode>s in <EuiCode>EuiDroppables</EuiCode>
-            , <EuiCode>EuiDroppable</EuiCode>s in
-            <EuiCode>EuiDraggable</EuiCode>s, custom drag handles, horizontal
-            movement, vertical movement, flexbox,
-            <EuiCode>EuiPanel</EuiCode> <em>Inception</em>, you name it.
+            <strong>EuiDraggables</strong> in <strong>EuiDroppables</strong>,{' '}
+            <strong>EuiDroppables</strong> in <strong>EuiDraggables</strong>,
+            custom drag handles, horizontal movement, vertical movement,
+            flexbox, panel inception, you name it.
           </p>
         </React.Fragment>
       ),

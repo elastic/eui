@@ -5,6 +5,7 @@ import { requiredProps } from '../../test/required_props';
 import { EuiTableHeaderCell } from './table_header_cell';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
+import { WARNING_MESSAGE } from './utils';
 
 test('renders EuiTableHeaderCell', () => {
   const component = (
@@ -41,6 +42,18 @@ describe('align', () => {
 });
 
 describe('width and style', () => {
+  const _consoleWarn = console.warn;
+  beforeAll(() => {
+    console.warn = (...args: [any?, ...any[]]) => {
+      // Suppress an expected warning
+      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
+      _consoleWarn.apply(console, args);
+    };
+  });
+  afterAll(() => {
+    console.warn = _consoleWarn;
+  });
+
   test('accepts style attribute', () => {
     const component = (
       <EuiTableHeaderCell style={{ width: '20%' }}>Test</EuiTableHeaderCell>

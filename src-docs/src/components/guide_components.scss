@@ -5,6 +5,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideBody {
   background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
+
+  &--overflowHidden {
+    overflow: hidden;
+  }
 }
 
 .guidePage {
@@ -180,6 +184,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideCharts__customLegendLine--thin {
   height: 1px;
+}
+
+.guideFullScreenOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 @import '../views/guidelines/index';

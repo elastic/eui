@@ -13,13 +13,13 @@ import {
   EuiLink,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
-    const idPrefix = makeId();
+    const idPrefix = htmlIdGenerator()();
 
     this.state = {
       isSwitchChecked: false,
@@ -140,8 +140,8 @@ export default class extends Component {
           titleSize="xxxs"
           description={
             <Fragment>
-              By default, <EuiCode>EuiDescribedFormGroup</EuiCode> will be
-              double the default width of form elements. However, you can pass{' '}
+              By default, <strong>EuiDescribedFormGroup</strong> will be double
+              the default width of form elements. However, you can pass{' '}
               <EuiCode>fullWidth</EuiCode> prop to this, the individual field
               and row components to expand to their container.
             </Fragment>

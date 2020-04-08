@@ -1,66 +1,56 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import { EuiRange, EuiSpacer } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [value, setValue] = useState('120');
 
-    this.state = {
-      value: '120',
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
+  const onChange = e => {
+    setValue(e.target.value);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <EuiRange
-          id={makeId()}
-          min={100}
-          max={200}
-          step={0.05}
-          value={this.state.value}
-          onChange={this.onChange}
-          showLabels
-          aria-label="An example of EuiRange with showLabels prop"
-        />
+  return (
+    <Fragment>
+      <EuiRange
+        id={htmlIdGenerator()()}
+        min={100}
+        max={200}
+        step={0.05}
+        value={value}
+        onChange={onChange}
+        showLabels
+        aria-label="An example of EuiRange with showLabels prop"
+      />
 
-        <EuiSpacer size="xl" />
+      <EuiSpacer size="xl" />
 
-        <EuiRange
-          id={makeId()}
-          min={100}
-          max={200}
-          value={this.state.value}
-          onChange={this.onChange}
-          showLabels
-          showValue
-          aria-label="An example of EuiRange with showValue prop"
-        />
+      <EuiRange
+        id={htmlIdGenerator()()}
+        min={100}
+        max={200}
+        value={value}
+        onChange={onChange}
+        showLabels
+        showValue
+        aria-label="An example of EuiRange with showValue prop"
+      />
 
-        <EuiSpacer size="xl" />
+      <EuiSpacer size="xl" />
 
-        <EuiRange
-          id={makeId()}
-          min={100}
-          max={200}
-          value={this.state.value}
-          onChange={this.onChange}
-          showLabels
-          showRange
-          showValue
-          valuePrepend="100 - "
-          aria-label="An example of EuiRange with valuePrepend prop"
-        />
-      </Fragment>
-    );
-  }
-}
+      <EuiRange
+        id={htmlIdGenerator()()}
+        min={100}
+        max={200}
+        value={value}
+        onChange={onChange}
+        showLabels
+        showRange
+        showValue
+        valuePrepend="100 - "
+        aria-label="An example of EuiRange with valuePrepend prop"
+      />
+    </Fragment>
+  );
+};

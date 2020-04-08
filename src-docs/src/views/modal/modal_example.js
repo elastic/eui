@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -11,15 +12,15 @@ import {
   EuiOverlayMask,
 } from '../../../../src/components';
 
-import { Modal } from './modal';
+import Modal from './modal';
 const modalSource = require('!!raw-loader!./modal');
 const modalHtml = renderToHtml(Modal);
 
-import { ConfirmModal } from './confirm_modal';
+import ConfirmModal from './confirm_modal';
 const confirmModalSource = require('!!raw-loader!./confirm_modal');
 const confirmModalHtml = renderToHtml(ConfirmModal);
 
-import { OverflowTest } from './overflow_test';
+import OverflowTest from './overflow_test';
 const overflowTestSource = require('!!raw-loader!./overflow_test');
 const overflowTestHtml = renderToHtml(OverflowTest);
 
@@ -31,7 +32,7 @@ const modalSnippet = `<EuiModal onClose={this.closeModal}>
   <EuiModalBody>
     <!-- Modal body -->
   </EuiModalBody>
-    
+
   <EuiModalFooter>
     <!-- Modal footer -->
   </EuiModalFooter>
@@ -75,8 +76,9 @@ export const ModalExample = {
       ],
       text: (
         <p>
-          Use a <EuiCode>EuiModal</EuiCode> to temporarily escape the current UX
-          and create another UX within it.
+          Use a modal to temporarily interrupt a user’s current task and block
+          interactions to the content below it. Be sure to read the full{' '}
+          <Link to="/guidelines/modals">modal usage guidelines</Link>.
         </p>
       ),
       props: { EuiModal, EuiOverlayMask },
@@ -84,7 +86,7 @@ export const ModalExample = {
       demo: <Modal />,
     },
     {
-      title: 'Confirm Modal',
+      title: 'Confirm modal',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -97,8 +99,8 @@ export const ModalExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>EuiConfirmModal</EuiCode> to ask the user to confirm
-          a decision. The default type is a positive or neutral confirmation. To
+          Use the <strong>EuiConfirmModal</strong> to ask the user to confirm a
+          decision. The default type is a positive or neutral confirmation. To
           change the main button color change the <EuiCode>buttonColor</EuiCode>{' '}
           property to any of the button color options.
         </p>

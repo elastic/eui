@@ -9,10 +9,24 @@ import { EuiAvatar, EuiCode } from '../../../../src/components';
 import Avatar from './avatar';
 const avatarSource = require('!!raw-loader!./avatar');
 const avatarHtml = renderToHtml(Avatar);
+const avatarSnippet = [
+  `<EuiAvatar size="s" name="Raphael" />
+`,
+  `<EuiAvatar size="s" name="Cat" imageUrl="https://source.unsplash.com/64x64/?cat" />
+`,
+];
 
 import AvatarInitials from './avatar_initials';
 const avatarInitialsSource = require('!!raw-loader!./avatar_initials');
 const avatarInitialsHtml = renderToHtml(AvatarInitials);
+const avatarInitialsSnippet = [
+  `<EuiAvatar size="m" type="user" name="Two Words" />
+`,
+  `<EuiAvatar size="m" type="space" name="Kibana" initialsLength={2}/>
+`,
+  `<EuiAvatar size="m" type="space"  name="Engineering Space" initials="En" initialsLength={2} />
+`,
+];
 
 export const AvatarExample = {
   title: 'Avatar',
@@ -31,8 +45,8 @@ export const AvatarExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>Avatar</EuiCode> component creates a user icon. It will
-            accept <EuiCode>name</EuiCode> (required) and{' '}
+            The <strong>EuiAvatar</strong> component creates a user icon. It
+            will accept <EuiCode>name</EuiCode> (required) and{' '}
             <EuiCode>image</EuiCode> props and will configure the display and
             accessibility as needed. By default, the background colors come from
             the set of colors used for visualizations. Otherwise you can pass a
@@ -41,6 +55,7 @@ export const AvatarExample = {
         </div>
       ),
       props: { EuiAvatar },
+      snippet: avatarSnippet,
       demo: <Avatar />,
     },
     {
@@ -70,11 +85,13 @@ export const AvatarExample = {
           <h3>Types</h3>
           <p>
             The avatar <EuiCode>type</EuiCode>, which primarily defines the
-            shape, is keyworded and can be <EuiCode>&quot;user&quot;</EuiCode>{' '}
-            (default) or <EuiCode>&quot;space&quot;</EuiCode> (for workspaces).
+            shape, is keyworded and can be{' '}
+            <EuiCode language="js">&quot;user&quot;</EuiCode> (default) or{' '}
+            <EuiCode language="js">&quot;space&quot;</EuiCode> (for workspaces).
           </p>
         </div>
       ),
+      snippet: avatarInitialsSnippet,
       demo: <AvatarInitials />,
     },
   ],

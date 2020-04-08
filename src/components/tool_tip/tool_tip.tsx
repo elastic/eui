@@ -11,9 +11,8 @@ import classNames from 'classnames';
 import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { findPopoverPosition } from '../../services';
+import { findPopoverPosition, htmlIdGenerator } from '../../services';
 
-import makeId from '../form/form_row/make_id';
 import { EuiResizeObserver } from '../observer/resize_observer';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
@@ -115,7 +114,7 @@ export class EuiToolTip extends Component<Props, State> {
     calculatedPosition: this.props.position,
     toolTipStyles: DEFAULT_TOOLTIP_STYLES,
     arrowStyles: undefined,
-    id: this.props.id || makeId(),
+    id: this.props.id || htmlIdGenerator()(),
   };
 
   static defaultProps: Partial<Props> = {

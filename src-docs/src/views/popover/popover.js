@@ -1,47 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiPopover, EuiButton } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  onButtonClick() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  }
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+      Show popover
+    </EuiButton>
+  );
 
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  }
-
-  render() {
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick.bind(this)}>
-        Show popover
-      </EuiButton>
-    );
-
-    return (
-      <EuiPopover
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}>
-        <div style={{ width: '300px' }}>
-          Popover content that&rsquo;s wider than the default width
-        </div>
-      </EuiPopover>
-    );
-  }
-}
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}>
+      <div style={{ width: '300px' }}>
+        Popover content that&rsquo;s wider than the default width
+      </div>
+    </EuiPopover>
+  );
+};
