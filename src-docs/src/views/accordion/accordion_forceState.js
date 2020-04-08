@@ -15,11 +15,11 @@ export default () => {
   const [toggleIdSelected, setID] = useState(`${idPrefix}1`);
   const toggleButtons = [
     {
-      id: `${idPrefix}0`,
+      id: `${idPrefix}--open`,
       label: 'Open',
     },
     {
-      id: `${idPrefix}1`,
+      id: `${idPrefix}--close`,
       label: 'Close',
     },
   ];
@@ -41,7 +41,7 @@ export default () => {
       />
       <EuiSpacer />
       <EuiAccordion
-        id="accordion1"
+        id="accordion--forceState"
         forceState={trigger}
         buttonContent="I am controlled via prop">
         <EuiText>
