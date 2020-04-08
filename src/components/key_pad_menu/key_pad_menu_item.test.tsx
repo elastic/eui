@@ -25,6 +25,16 @@ describe('EuiKeyPadMenuItem', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('renders href with rel', () => {
+    const component = render(
+      <EuiKeyPadMenuItem label="Label" href="#" rel="noreferrer">
+        Icon
+      </EuiKeyPadMenuItem>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('renders button', () => {
     const onClickHandler = jest.fn();
 
