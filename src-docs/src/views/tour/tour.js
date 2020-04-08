@@ -44,13 +44,15 @@ const tourConfig = {
 const STORAGE_KEY = 'tourDemo';
 
 export default () => {
-  let initialState = localStorage.getItem(STORAGE_KEY);
-  if (initialState) {
-    initialState = JSON.parse(initialState);
-  } else {
-    initialState = tourConfig;
-  }
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState(() => {
+    let initialState = localStorage.getItem(STORAGE_KEY);
+    if (initialState) {
+      initialState = JSON.parse(initialState);
+    } else {
+      initialState = tourConfig;
+    }
+    return initialState;
+  });
   const [queryValue, setQueryValue] = useState('');
 
   useEffect(() => {
@@ -103,8 +105,7 @@ export default () => {
         <EuiFormRow label="Enter an ES SQL query">
           <EuiTourStep
             content={demoTourSteps[0].content}
-            isStepOpen={state.currentTourStep === 1}
-            isTourActive={state.isTourActive}
+            isStepOpen={state.currentTourStep === 1 && state.isTourActive}
             minWidth={state.tourPopoverWidth}
             onFinish={finishTour}
             step={1}
@@ -127,8 +128,7 @@ export default () => {
         <EuiTourStep
           anchorPosition="rightUp"
           content={demoTourSteps[1].content}
-          isStepOpen={state.currentTourStep === 2}
-          isTourActive={state.isTourActive}
+          isStepOpen={state.currentTourStep === 2 && state.isTourActive}
           minWidth={state.tourPopoverWidth}
           onFinish={finishTour}
           step={2}

@@ -18,7 +18,6 @@ export default () => {
           </EuiText>
         }
         isStepOpen={isOpen}
-        isTourActive={true}
         minWidth={300}
         onFinish={() => setIsOpen(false)}
         step={1}

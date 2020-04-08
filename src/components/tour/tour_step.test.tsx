@@ -13,7 +13,6 @@ const steps = [
 ];
 
 const config = {
-  isTourActive: true,
   onFinish: () => {},
   stepsTotal: 1,
   title: 'A demo',
@@ -23,20 +22,6 @@ describe('EuiTourStep', () => {
   test('is rendered', () => {
     const component = render(
       <EuiTourStep {...config} {...steps[0]} {...requiredProps}>
-        <span>Test</span>
-      </EuiTourStep>
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('can be inactive', () => {
-    const component = render(
-      <EuiTourStep
-        {...config}
-        {...steps[0]}
-        isTourActive={false}
-        {...requiredProps}>
         <span>Test</span>
       </EuiTourStep>
     );

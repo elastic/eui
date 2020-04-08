@@ -41,14 +41,9 @@ export interface EuiTourStepProps
   content: ReactNode;
 
   /**
-   * Set to `true`, step will display if parent tour is active
+   * Step will display if set to `true`
    */
   isStepOpen?: boolean;
-
-  /**
-   * State of the parent tour. No tour steps will be displayed if set to `false`
-   */
-  isTourActive: boolean;
 
   /**
    * Sets the min-width of the tour popover,
@@ -107,7 +102,6 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   closePopover = () => {},
   content,
   isStepOpen = false,
-  isTourActive = false,
   minWidth = true,
   onFinish,
   step = 1,
@@ -199,7 +193,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       anchorPosition={anchorPosition}
       button={children}
       closePopover={closePopover}
-      isOpen={isStepOpen && isTourActive}
+      isOpen={isStepOpen}
       panelClassName={classes}
       style={newStyle || style}
       offset={hasBeacon ? 10 : 0}

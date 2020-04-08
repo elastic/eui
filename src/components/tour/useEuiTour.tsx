@@ -71,8 +71,7 @@ export const useEuiTour = (
 
   const steps = stepsArray.map(step => ({
     ...step,
-    isStepOpen: state.currentTourStep === step.step,
-    isTourActive: state.isTourActive,
+    isStepOpen: state.currentTourStep === step.step && state.isTourActive,
     minWidth: state.tourPopoverWidth,
     onFinish: actions.finishTour,
     stepsTotal: stepsArray.length,

@@ -65,7 +65,7 @@ export default () => {
   }, [reducerState]);
 
   const handleClick = () => {
-    actions.incrementStep();
+    actions.finishTour();
   };
 
   const resetTour = () => {
