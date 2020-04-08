@@ -28,6 +28,7 @@ const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
 
 export const HtmlIdGeneratorExample = {
   title: 'HTML ID Generator',
+  isNew: true,
   sections: [
     {
       source: [

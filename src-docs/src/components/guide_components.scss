@@ -43,6 +43,19 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+// Hate to do this, but it's the only way to get the badge to display correctly
+.guideSideNav__item .euiSideNavItemButton__label {
+  // By using the `icon` display of EuiSideNavItem, it will continue to:
+  // a) truncate properly
+  // b) not underline the badge when selected
+  order: -1;
+}
+
+.guideSideNav__newBadge {
+  margin-left: $euiSizeXS;
+  margin-right: $euiSizeXS;
+}
+
 .guideSideNav__item--inSearch {
   color: $euiColorDarkShade;
 }

@@ -65,6 +65,7 @@ const commentActionsSnippet = `<EuiComment username="janed" actions={customActio
 
 export const CommentExample = {
   title: 'Comment',
+  isNew: true,
   sections: [
     {
       source: [

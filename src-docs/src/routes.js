@@ -243,7 +243,7 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta } = example;
+  const { title, intro, sections, beta, isNew } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -267,6 +267,7 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections,
+    isNew,
   };
 };
 
