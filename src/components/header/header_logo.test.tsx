@@ -17,6 +17,12 @@ describe('EuiHeaderLogo', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('renders href with rel', () => {
+    const component = render(<EuiHeaderLogo href="#" rel="noreferrer" />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('renders optional props', () => {
     const component = render(
       <EuiHeaderLogo
