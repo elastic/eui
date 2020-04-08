@@ -12,12 +12,16 @@ export const useEuiTour = (
 ): [EuiTourStepProps[], EuiTourActions, EuiTourState] => {
   function reducer(state: EuiTourState, action: EuiTourAction): EuiTourState {
     switch (action.type) {
-      case 'EUI_TOUR_FINISH':
+      case 'EUI_TOUR_FINISH': {
+        const currentTourStep = action.payload.resetTour
+          ? 1
+          : state.currentTourStep;
         return {
           ...state,
-          currentTourStep: 1,
+          currentTourStep,
           isTourActive: false,
         };
+      }
       case 'EUI_TOUR_RESET':
         return {
           ...state,
@@ -46,11 +50,16 @@ export const useEuiTour = (
       }
       case 'EUI_TOUR_GOTO': {
         const step = action.payload.step;
+        const isTourActive =
+          typeof action.payload.isTourActive !== 'undefined'
+            ? action.payload.isTourActive
+            : state.isTourActive;
         const goTo =
           step <= stepsArray.length && step > 0 ? step : state.currentTourStep;
         return {
           ...state,
           currentTourStep: goTo,
+          isTourActive,
         };
       }
       default:
@@ -61,12 +70,13 @@ export const useEuiTour = (
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const actions: EuiTourActions = {
-    finishTour: () => dispatch({ type: 'EUI_TOUR_FINISH' }),
+    finishTour: (resetTour: boolean = true) =>
+      dispatch({ type: 'EUI_TOUR_FINISH', payload: { resetTour } }),
     resetTour: () => dispatch({ type: 'EUI_TOUR_RESET' }),
     decrementStep: () => dispatch({ type: 'EUI_TOUR_PREVIOUS' }),
     incrementStep: () => dispatch({ type: 'EUI_TOUR_NEXT' }),
-    goToStep: (step: number) =>
-      dispatch({ type: 'EUI_TOUR_GOTO', payload: { step } }),
+    goToStep: (step: number, isTourActive?: boolean) =>
+      dispatch({ type: 'EUI_TOUR_GOTO', payload: { step, isTourActive } }),
   };
 
   const steps = stepsArray.map(step => ({

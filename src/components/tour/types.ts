@@ -7,6 +7,7 @@ export interface EuiTourState {
 
 interface ActionFinish {
   type: 'EUI_TOUR_FINISH';
+  payload: { resetTour?: boolean };
 }
 
 interface ActionReset {
@@ -23,7 +24,7 @@ interface ActionIncrement {
 
 interface ActionGotoStep {
   type: 'EUI_TOUR_GOTO';
-  payload: { step: number };
+  payload: { step: number; isTourActive?: boolean };
 }
 
 export type EuiTourAction =
@@ -34,9 +35,9 @@ export type EuiTourAction =
   | ActionGotoStep;
 
 export interface EuiTourActions {
-  finishTour: () => void;
+  finishTour: (resetTour?: boolean) => void;
   resetTour: () => void;
   decrementStep: () => void;
   incrementStep: () => void;
-  goToStep: (step: number) => void;
+  goToStep: (step: number, isTourActive?: boolean) => void;
 }
