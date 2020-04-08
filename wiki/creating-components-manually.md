@@ -40,13 +40,15 @@ There are a couple themes to keep in mind when adding snippets:
 - If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
 
 #### Stay consistent
-- Don't use `this.` Write the snippet like a **Function Component** with descriptive function and state names.
+- Don't use `this.` Write the snippet like a **Function Component** with descriptive function and state names. Try to enforce what is the prop type whenever is possible. In the following example, the `anchorPosition` is a string and the other props suggest what they might represent.
 
 ``` js
 <EuiPopover
   button={button}
   isOpen={isPopoverOpen}
-  closePopover={closePopover}>
+  closePopover={closePopover}
+  anchorPosition="downLeft"
+>
   <!-- Popover content -->
 </EuiPopover>
 ```
@@ -96,15 +98,6 @@ There are a couple themes to keep in mind when adding snippets:
       children: <p>Do this first</p>,
     },
   ]}
-/>
-```
-
-- Use the right prop type. In the following example, the `alt` and `url` props are both strings.
-
-``` js
-<EuiImage
-  alt="description"
-  url="someUrl"
 />
 ```
 
