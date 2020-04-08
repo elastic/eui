@@ -68,7 +68,7 @@ There are a couple themes to keep in mind when adding snippets:
 <EuiText color="danger"><!-- Raw HTML content --></EuiText>
 ```
 
-- The snippet should illustrate when a component requires its children to be wrapped with specific elements.
+- The snippet should illustrate when a component requires its children to be wrapped with a specific tag.
 
 ``` js
 <EuiCallOut>
