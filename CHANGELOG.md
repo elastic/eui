@@ -2,6 +2,7 @@
 
 - Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions ([#3115](https://github.com/elastic/eui/pull/3115))
 - Added support for `EuiCodeEditor` to set `readonly` and `id` on `<textarea />` ([#3212](https://github.com/elastic/eui/pull/3212))
+- Added `EuiComment` component ([#3179](https://github.com/elastic/eui/pull/3179))
 
 **Deprecation**
 
@@ -33,7 +34,6 @@
 ## [`22.2.0`](https://github.com/elastic/eui/tree/v22.2.0)
 
 - Improved `EuiModal` close button position to prevent from overlapping with the title ([#3176](https://github.com/elastic/eui/pull/3176))
-- Added `EuiComment` component ([#3179](https://github.com/elastic/eui/pull/3179))
 
 **Bug Fixes**
 
