@@ -2,6 +2,7 @@ import React, {
   AriaAttributes,
   FunctionComponent,
   HTMLAttributes,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -91,33 +92,37 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
 
+  const enableInteractives = useCallback(() => {
+    if (headerRef.current) {
+      const interactiveElements = headerRef.current.querySelectorAll(
+        '[data-euigrid-tab-managed]'
+      );
+      for (let i = 0; i < interactiveElements.length; i++) {
+        interactiveElements[i].setAttribute('tabIndex', '0');
+      }
+    }
+  }, []);
+
+  const disableInteractives = useCallback(() => {
+    if (headerRef.current) {
+      const tababbles = tabbable(headerRef.current);
+      if (tababbles.length > 1) {
+        console.warn(
+          `EuiDataGridHeaderCell expects at most 1 tabbable element, ${
+            tababbles.length
+          } found instead`
+        );
+      }
+      for (let i = 0; i < tababbles.length; i++) {
+        const element = tababbles[i];
+        element.setAttribute('data-euigrid-tab-managed', 'true');
+        element.setAttribute('tabIndex', '-1');
+      }
+    }
+  }, []);
+
   useEffect(() => {
     if (headerRef.current) {
-      function enableInteractives() {
-        const interactiveElements = headerRef.current!.querySelectorAll(
-          '[data-euigrid-tab-managed]'
-        );
-        for (let i = 0; i < interactiveElements.length; i++) {
-          interactiveElements[i].setAttribute('tabIndex', '0');
-        }
-      }
-
-      function disableInteractives() {
-        const tababbles = tabbable(headerRef.current!);
-        if (tababbles.length > 1) {
-          console.warn(
-            `EuiDataGridHeaderCell expects at most 1 tabbable element, ${
-              tababbles.length
-            } found instead`
-          );
-        }
-        for (let i = 0; i < tababbles.length; i++) {
-          const element = tababbles[i];
-          element.setAttribute('data-euigrid-tab-managed', 'true');
-          element.setAttribute('tabIndex', '-1');
-        }
-      }
-
       if (isCellEntered) {
         enableInteractives();
         const tabbables = tabbable(headerRef.current!);
@@ -128,7 +133,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         disableInteractives();
       }
     }
-  }, [isCellEntered]);
+  }, [disableInteractives, enableInteractives, isCellEntered]);
 
   useEffect(() => {
     if (headerRef.current) {
@@ -154,7 +159,23 @@ export const EuiDataGridHeaderCell: FunctionComponent<
           return false;
         } else {
           // take the focus
-          setFocusedCell([index, -1]);
+          if (
+            focusedCell == null ||
+            focusedCell[0] !== index ||
+            focusedCell[1] !== -1
+          ) {
+            setFocusedCell([index, -1]);
+          } else if (headerRef.current) {
+            // this cell already had the grid's focus, so re-enable interactives
+            enableInteractives();
+            setIsCellEntered(true);
+
+            // if there is only one interactive element shift focus to the interactive element
+            const tabbables = tabbable(headerRef.current);
+            if (tabbables.length === 1) {
+              tabbables[0].focus();
+            }
+          }
         }
       }
 
@@ -211,14 +232,22 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         headerNode.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [headerIsInteractive, isFocused, setIsCellEntered, setFocusedCell, index]);
+  }, [
+    enableInteractives,
+    headerIsInteractive,
+    isFocused,
+    setIsCellEntered,
+    focusedCell,
+    setFocusedCell,
+    index,
+  ]);
 
   return (
     <div
       role="columnheader"
       {...ariaProps}
       ref={headerRef}
-      tabIndex={isFocused ? 0 : -1}
+      tabIndex={isFocused && !isCellEntered ? 0 : -1}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       style={width != null ? { width: `${width}px` } : {}}>

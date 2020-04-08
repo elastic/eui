@@ -4,10 +4,7 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
 import { EuiIcon } from '../icon';
-import { EuiMutationObserver } from '../observer/mutation_observer';
-import { getDurationAndPerformOnFrame } from '../../services';
-
-const MUTATION_ATTRIBUTE_FILTER = ['style'];
+import { EuiResizeObserver } from '../observer/resize_observer';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -85,19 +82,6 @@ export class EuiAccordion extends Component<
       this.childWrapper &&
         this.childWrapper.setAttribute('style', `height: ${height}px`);
     });
-  };
-
-  onMutation = (records: MutationRecord[]) => {
-    const isChildStyleMutation = records.find((record: MutationRecord) => {
-      return record.attributeName
-        ? MUTATION_ATTRIBUTE_FILTER.indexOf(record.attributeName) > -1
-        : false;
-    });
-    if (isChildStyleMutation) {
-      getDurationAndPerformOnFrame(records, this.setChildContentHeight);
-    } else {
-      this.setChildContentHeight();
-    }
   };
 
   componentDidMount() {
@@ -189,7 +173,13 @@ export class EuiAccordion extends Component<
             className={buttonClasses}
             type="button">
             {icon}
-            <span className={buttonContentClassName}>{buttonContent}</span>
+            <span
+              className={classNames(
+                'euiIEFlexWrapFix',
+                buttonContentClassName
+              )}>
+              {buttonContent}
+            </span>
           </button>
 
           {optionalAction}
@@ -201,23 +191,17 @@ export class EuiAccordion extends Component<
             this.childWrapper = node;
           }}
           id={id}>
-          <EuiMutationObserver
-            observerOptions={{
-              childList: true,
-              subtree: true,
-              attributeFilter: MUTATION_ATTRIBUTE_FILTER,
-            }}
-            onMutation={this.onMutation}>
-            {mutationRef => (
+          <EuiResizeObserver onResize={this.setChildContentHeight}>
+            {resizeRef => (
               <div
                 ref={ref => {
                   this.setChildContentRef(ref);
-                  mutationRef(ref);
+                  resizeRef(ref);
                 }}>
                 <div className={paddingClass}>{children}</div>
               </div>
             )}
-          </EuiMutationObserver>
+          </EuiResizeObserver>
         </div>
       </div>
     );

@@ -6,7 +6,9 @@ import { EuiCard } from './card';
 
 import { EuiIcon } from '../icon';
 
-jest.mock('./../form/form_row/make_id', () => () => 'generated-id');
+jest.mock('./../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 describe('EuiCard', () => {
   test('is rendered', () => {

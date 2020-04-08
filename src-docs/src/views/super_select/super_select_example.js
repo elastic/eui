@@ -19,7 +19,7 @@ const superSelectComplexSource = require('!!raw-loader!./super_select_complex');
 const superSelectComplexHtml = renderToHtml(SuperSelectComplex);
 
 export const SuperSelectExample = {
-  title: 'SuperSelect',
+  title: 'Super select',
   sections: [
     {
       source: [
@@ -36,9 +36,9 @@ export const SuperSelectExample = {
         <div>
           <p>
             This is a simple replacement component for{' '}
-            <EuiCode>EuiSelect</EuiCode> if you need more customization in
-            either the display of the input or option. Simply pass an array of
-            option objects:
+            <strong>EuiSelect</strong> if you need more customization in either
+            the display of the input or option. Simply pass an array of option
+            objects:
           </p>
           <ul>
             <li>
@@ -101,7 +101,7 @@ export const SuperSelectExample = {
       text: (
         <p>
           You can pass the same props as you normally would to{' '}
-          <EuiCode>EuiSelect</EuiCode> like disabled, isLoading, compressed,
+          <strong>EuiSelect</strong> like disabled, isLoading, compressed,
           etc&hellip;
         </p>
       ),

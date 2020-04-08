@@ -4,15 +4,12 @@ import { requiredProps, takeMountedSnapshot } from '../../../test';
 
 import { EuiSuperSelect } from './super_select';
 
-jest.mock('../form_row/make_id', () => () => 'generated-id');
+jest.mock('./../../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 jest.mock('../../portal', () => ({
   EuiPortal: ({ children }: any) => children,
-}));
-
-// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
-jest.mock('../../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => () => 'htmlId',
 }));
 
 const options = [

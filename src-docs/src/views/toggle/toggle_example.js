@@ -29,7 +29,7 @@ export const ToggleExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>EuiToggle</EuiCode> component is a very simplified
+            The <strong>EuiToggle</strong> component is a very simplified
             utility for creating toggle-able elements. There is only an on/off
             (checked/unchecked) state. All this creates is a visibly hidden
             input (checkbox or radio) overtop of the children provided.

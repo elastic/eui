@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiComboBox,
@@ -13,79 +13,67 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+const options = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
 
-    this.options = [
-      {
-        label: 'Titan',
-        'data-test-subj': 'titanOption',
-      },
-      {
-        label: 'Enceladus',
-      },
-      {
-        label: 'Mimas',
-      },
-      {
-        label: 'Dione',
-      },
-      {
-        label: 'Iapetus',
-      },
-      {
-        label: 'Phoebe',
-      },
-      {
-        label: 'Rhea',
-      },
-      {
-        label:
-          "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-      },
-      {
-        label: 'Tethys',
-      },
-      {
-        label: 'Hyperion',
-      },
-    ];
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [isPopoverOpen, setPopover] = useState(false);
 
-    this.state = {
-      selectedOptions: [this.options[2], this.options[4]],
-      isModalVisible: false,
-      isPopoverOpen: false,
-    };
-  }
-
-  closeModal = () => {
-    this.setState({ isModalVisible: false });
+  const closeModal = () => {
+    setModalVisible(false);
   };
 
-  showModal = () => {
-    this.setState({ isModalVisible: true });
+  const showModal = () => {
+    setModalVisible(true);
   };
 
-  togglePopover = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
+  const togglePopover = () => {
+    setPopover(!isPopoverOpen);
   };
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
+  const closePopover = () => {
+    setPopover(false);
   };
 
-  onChange = selectedOptions => {
-    this.setState({
-      selectedOptions,
-    });
+  const onChange = selectedOptions => {
+    setSelected(selectedOptions);
   };
 
-  onCreateOption = (searchValue, flattenedOptions = []) => {
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
     if (!searchValue) {
       return;
     }
@@ -106,78 +94,69 @@ export default class extends Component {
         option => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
-      this.options.push(newOption);
+      options.push(newOption);
     }
 
     // Select the option.
-    this.setState(prevState => ({
-      selectedOptions: prevState.selectedOptions.concat(newOption),
-    }));
+    setSelected([...selectedOptions, newOption]);
   };
 
-  render() {
-    const { selectedOptions, isModalVisible, isPopoverOpen } = this.state;
+  const comboBox = (
+    <EuiComboBox
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+    />
+  );
 
-    const comboBox = (
-      <EuiComboBox
-        placeholder="Select or create options"
-        options={this.options}
-        selectedOptions={selectedOptions}
-        onChange={this.onChange}
-        onCreateOption={this.onCreateOption}
-      />
-    );
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={togglePopover}>
+      Open popover
+    </EuiButton>
+  );
 
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.togglePopover}>
-        Open popover
-      </EuiButton>
-    );
+  let modal;
 
-    let modal;
+  if (isModalVisible) {
+    modal = (
+      <EuiOverlayMask>
+        <EuiModal onClose={closeModal} style={{ width: '800px' }}>
+          <EuiModalHeader>
+            <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
+          </EuiModalHeader>
 
-    if (isModalVisible) {
-      modal = (
-        <EuiOverlayMask>
-          <EuiModal onClose={this.closeModal} style={{ width: '800px' }}>
-            <EuiModalHeader>
-              <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
-            </EuiModalHeader>
-
-            <EuiModalBody>{comboBox}</EuiModalBody>
-          </EuiModal>
-        </EuiOverlayMask>
-      );
-    }
-
-    return (
-      <Fragment>
-        <EuiFormRow
-          label="Combo box"
-          helpText="This combo box is inside of a form row">
-          {comboBox}
-        </EuiFormRow>
-
-        <EuiSpacer />
-
-        <EuiPopover
-          id="popover"
-          ownFocus
-          button={button}
-          isOpen={isPopoverOpen}
-          closePopover={this.closePopover}>
-          <div style={{ width: '300px' }}>{comboBox}</div>
-        </EuiPopover>
-
-        <EuiSpacer size="m" />
-
-        <EuiButton onClick={this.showModal}>Show modal</EuiButton>
-
-        {modal}
-      </Fragment>
+          <EuiModalBody>{comboBox}</EuiModalBody>
+        </EuiModal>
+      </EuiOverlayMask>
     );
   }
-}
+
+  return (
+    <Fragment>
+      <EuiFormRow
+        label="Combo box"
+        helpText="This combo box is inside of a form row">
+        {comboBox}
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiPopover
+        id="popover"
+        ownFocus
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}>
+        <div style={{ width: '300px' }}>{comboBox}</div>
+      </EuiPopover>
+
+      <EuiSpacer size="m" />
+
+      <EuiButton onClick={showModal}>Show modal</EuiButton>
+
+      {modal}
+    </Fragment>
+  );
+};

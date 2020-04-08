@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -8,6 +9,8 @@ import {
   EuiCode,
   EuiForm,
   EuiFormRow,
+  EuiText,
+  EuiSpacer,
   EuiDescribedFormGroup,
 } from '../../../../src/components';
 
@@ -37,6 +40,15 @@ const inlinePopoverHtml = renderToHtml(InlinePopover);
 
 export const FormLayoutsExample = {
   title: 'Form layouts',
+  intro: (
+    <EuiText>
+      <p>
+        Be sure to read the full{' '}
+        <Link to="/guidelines/forms">forms usage guidelines</Link>.
+      </p>
+      <EuiSpacer />
+    </EuiText>
+  ),
   sections: [
     {
       title: 'Form and form rows',
@@ -52,12 +64,12 @@ export const FormLayoutsExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>EuiFormRow</EuiCode> component to easily associate
-          form components with labels, help text, and error text. Use the{' '}
-          <EuiCode>EuiForm</EuiCode> component to group{' '}
-          <EuiCode>EuiFormRow</EuiCode>s. By default EuiForm will render as a
+          Use the <strong>EuiFormRow</strong> component to easily associate form
+          components with labels, help text, and error text. Use the{' '}
+          <strong>EuiForm</strong> component to group{' '}
+          <strong>EuiFormRows</strong>. By default EuiForm will render as a
           simple div unless you pass{' '}
-          <EuiCode>component=&quot;form&quot;</EuiCode>.
+          <EuiCode language="js">component=&quot;form&quot;</EuiCode>.
         </p>
       ),
       props: {
@@ -119,10 +131,10 @@ export const FormLayoutsExample = {
       ],
       text: (
         <p>
-          Use <EuiCode>EuiDescribedFormGroup</EuiCode> component to associate
-          multiple <EuiCode>EuiFormRow</EuiCode>s. It can also simply be used
-          with one <EuiCode>EuiFormRow</EuiCode> as a way to display additional
-          text next to the field (on mobile, it will revert to being stacked).
+          Use <strong>EuiDescribedFormGroup</strong> component to associate
+          multiple <strong>EuiFormRows</strong>. It can also simply be used with
+          one <strong>EuiFormRow</strong> as a way to display additional text
+          next to the field (on mobile, it will revert to being stacked).
         </p>
       ),
       props: {
@@ -148,10 +160,14 @@ export const FormLayoutsExample = {
       title: 'Inline',
       text: (
         <p>
-          Inline forms can be made with <EuiCode>FlexGroup</EuiCode>. Apply
-          <EuiCode>grow=false</EuiCode> on any of the items you want to collapse
-          (like this button). Note that the button FormRow component also
-          requires an additional prop because it&rsquo;s missing a label.
+          Inline forms can be made with{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>
+          . Apply <EuiCode language="js">grow=false</EuiCode> on any of the
+          items you want to collapse (like this button). Note that the button
+          FormRow component also requires an additional prop because it&rsquo;s
+          missing a label.
         </p>
       ),
       source: [

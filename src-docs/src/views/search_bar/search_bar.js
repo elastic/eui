@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { times } from '../../../../src/services/utils';
 import { Random } from '../../../../src/services/random';
 import {
@@ -57,38 +57,25 @@ const loadTags = () => {
 
 const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
-export class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: initialQuery,
-      result: items,
-      error: null,
-      incremental: false,
-    };
-  }
+export const SearchBar = () => {
+  const [query, setQuery] = useState(initialQuery);
+  const [error, setError] = useState(null);
+  const [incremental, setIncremental] = useState(false);
 
-  onChange = ({ query, error }) => {
+  const onChange = ({ query, error }) => {
     if (error) {
-      this.setState({ error });
+      setError(error);
     } else {
-      this.setState({
-        error: null,
-        result: EuiSearchBar.Query.execute(query, items, {
-          defaultFields: ['owner', 'tag', 'type'],
-        }),
-        query,
-      });
+      setError(null);
+      setQuery(query);
     }
   };
 
-  toggleIncremental = () => {
-    this.setState(prevState => ({ incremental: !prevState.incremental }));
+  const toggleIncremental = () => {
+    setIncremental(!incremental);
   };
 
-  renderSearch() {
-    const { incremental } = this.state;
-
+  const renderSearch = () => {
     const filters = [
       {
         type: 'field_value_toggle_group',
@@ -184,13 +171,12 @@ export class SearchBar extends Component {
           schema,
         }}
         filters={filters}
-        onChange={this.onChange}
+        onChange={onChange}
       />
     );
-  }
+  };
 
-  renderError() {
-    const { error } = this.state;
+  const renderError = () => {
     if (!error) {
       return;
     }
@@ -204,9 +190,9 @@ export class SearchBar extends Component {
         <EuiSpacer size="l" />
       </Fragment>
     );
-  }
+  };
 
-  renderTable() {
+  const renderTable = () => {
     const columns = [
       {
         name: 'Type',
@@ -245,80 +231,76 @@ export class SearchBar extends Component {
       },
     ];
 
-    const queriedItems = EuiSearchBar.Query.execute(this.state.query, items, {
+    const queriedItems = EuiSearchBar.Query.execute(query, items, {
       defaultFields: ['owner', 'tag', 'type'],
     });
 
     return <EuiBasicTable items={queriedItems} columns={columns} />;
+  };
+
+  let esQueryDsl;
+  let esQueryString;
+
+  try {
+    esQueryDsl = EuiSearchBar.Query.toESQuery(query);
+  } catch (e) {
+    esQueryDsl = e.toString();
+  }
+  try {
+    esQueryString = EuiSearchBar.Query.toESQueryString(query);
+  } catch (e) {
+    esQueryString = e.toString();
   }
 
-  render() {
-    const { incremental, query } = this.state;
+  const content = renderError() || (
+    <EuiFlexGroup>
+      <EuiFlexItem grow={4}>
+        <EuiTitle size="s">
+          <h3>Elasticsearch Query String</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiCodeBlock language="js">
+          {esQueryString ? esQueryString : ''}
+        </EuiCodeBlock>
 
-    let esQueryDsl;
-    let esQueryString;
+        <EuiSpacer size="l" />
 
-    try {
-      esQueryDsl = EuiSearchBar.Query.toESQuery(query);
-    } catch (e) {
-      esQueryDsl = e.toString();
-    }
-    try {
-      esQueryString = EuiSearchBar.Query.toESQueryString(query);
-    } catch (e) {
-      esQueryString = e.toString();
-    }
+        <EuiTitle size="s">
+          <h3>Elasticsearch Query DSL</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiCodeBlock language="js">
+          {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
+        </EuiCodeBlock>
+      </EuiFlexItem>
 
-    const content = this.renderError() || (
-      <EuiFlexGroup>
-        <EuiFlexItem grow={4}>
-          <EuiTitle size="s">
-            <h3>Elasticsearch Query String</h3>
-          </EuiTitle>
-          <EuiSpacer size="s" />
-          <EuiCodeBlock language="js">
-            {esQueryString ? esQueryString : ''}
-          </EuiCodeBlock>
+      <EuiFlexItem grow={6}>
+        <EuiTitle size="s">
+          <h3>JS execution</h3>
+        </EuiTitle>
 
-          <EuiSpacer size="l" />
+        <EuiSpacer size="s" />
 
-          <EuiTitle size="s">
-            <h3>Elasticsearch Query DSL</h3>
-          </EuiTitle>
-          <EuiSpacer size="s" />
-          <EuiCodeBlock language="js">
-            {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
-          </EuiCodeBlock>
-        </EuiFlexItem>
+        {renderTable()}
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
 
-        <EuiFlexItem grow={6}>
-          <EuiTitle size="s">
-            <h3>JS execution</h3>
-          </EuiTitle>
+  return (
+    <Fragment>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem>{renderSearch()}</EuiFlexItem>
 
-          <EuiSpacer size="s" />
-
-          {this.renderTable()}
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Incremental"
+            checked={incremental}
+            onChange={toggleIncremental}
+          />
         </EuiFlexItem>
       </EuiFlexGroup>
-    );
-
-    return (
-      <Fragment>
-        <EuiFlexGroup alignItems="center">
-          <EuiFlexItem>{this.renderSearch()}</EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Incremental"
-              checked={incremental}
-              onChange={this.toggleIncremental}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="l" />
-        {content}
-      </Fragment>
-    );
-  }
-}
+      <EuiSpacer size="l" />
+      {content}
+    </Fragment>
+  );
+};

@@ -151,7 +151,7 @@ export default class extends Component {
 
         <EuiTitle size="xxs">
           <h4>
-            Using <EuiCode>listProps.bordered = true</EuiCode>
+            Using <EuiCode language="js">listProps.bordered=true</EuiCode>
           </h4>
         </EuiTitle>
 

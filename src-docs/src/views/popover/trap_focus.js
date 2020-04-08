@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -8,69 +8,49 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  onButtonClick() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  }
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+      Show popover
+    </EuiButton>
+  );
 
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  }
+  return (
+    <EuiPopover
+      ownFocus
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      initialFocus="[id=asdf2]">
+      <EuiFormRow
+        label="Generate a public snapshot?"
+        id="asdf"
+        hasChildLabel={false}>
+        <EuiSwitch
+          name="switch"
+          label="Snapshot data"
+          checked={true}
+          onChange={() => {}}
+        />
+      </EuiFormRow>
 
-  render() {
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick.bind(this)}>
-        Show popover
-      </EuiButton>
-    );
+      <EuiFormRow label="Include the following in the embed" id="asdf2">
+        <EuiSwitch
+          name="switch"
+          label="Current time range"
+          checked={true}
+          onChange={() => {}}
+        />
+      </EuiFormRow>
 
-    return (
-      <EuiPopover
-        ownFocus
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
-        initialFocus="[id=asdf2]">
-        <EuiFormRow
-          label="Generate a public snapshot?"
-          id="asdf"
-          hasChildLabel={false}>
-          <EuiSwitch
-            name="switch"
-            label="Snapshot data"
-            checked={true}
-            onChange={() => {}}
-          />
-        </EuiFormRow>
+      <EuiSpacer />
 
-        <EuiFormRow label="Include the following in the embed" id="asdf2">
-          <EuiSwitch
-            name="switch"
-            label="Current time range"
-            checked={true}
-            onChange={() => {}}
-          />
-        </EuiFormRow>
-
-        <EuiSpacer />
-
-        <EuiButton fill>Copy IFRAME code</EuiButton>
-      </EuiPopover>
-    );
-  }
-}
+      <EuiButton fill>Copy IFRAME code</EuiButton>
+    </EuiPopover>
+  );
+};
