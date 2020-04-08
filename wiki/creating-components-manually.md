@@ -84,7 +84,7 @@ There are a couple themes to keep in mind when adding snippets:
 </EuiTitle>
 ```
 
-- When a component `prop` receives an array of objects use only one object.
+- When a prop receives an array of objects, display only one object and show all the required keys.
 
 ``` js
 <EuiSteps
