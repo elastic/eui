@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+const getPort = require('get-port');
+const deasync = require('deasync');
+
 const { NODE_ENV, CI } = process.env;
 
 const isDevelopment = NODE_ENV !== 'production' && CI == null;
@@ -99,9 +102,35 @@ const webpackConfig = {
     contentBase: 'src-docs/build',
     host: '0.0.0.0',
     allowedHosts: ['*'],
-    port: 8030,
+    port: getPortSync({ port: getPort.makeRange(8030, 8130), host: '0.0.0.0' }),
     disableHostCheck: true,
   },
 };
+
+// Inspired by `get-port-sync`, but propogates options
+function getPortSync(options) {
+  let isDone = false;
+  let freeport = null;
+  let error = null;
+
+  getPort(options)
+    .then(port => {
+      isDone = true;
+      freeport = port;
+    })
+    .catch(err => {
+      isDone = true;
+      error = err;
+    });
+
+  // wait until we're done'
+  deasync.loopWhile(() => !isDone);
+
+  if (error) {
+    throw error;
+  } else {
+    return freeport;
+  }
+}
 
 module.exports = webpackConfig;

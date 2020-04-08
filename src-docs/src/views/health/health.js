@@ -17,5 +17,9 @@ export default () => (
     <EuiSpacer />
 
     <EuiHealth color="danger">Failure</EuiHealth>
+
+    <EuiSpacer />
+
+    <EuiHealth color="#000000">Custom color as hex</EuiHealth>
   </div>
 );
