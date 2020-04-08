@@ -52,7 +52,7 @@ There are a couple themes to keep in mind when adding snippets:
 </EuiPopover>
 ```
 
-- If the demo code provides lots of examples, this is probably mostly for us maintainers to manage all the different states. However, **the consumer really just needs a single basic snippet**. In some cases, you can add a second one with the **most commonly used props in their default states**. The basic example should always come first.
+- If the demo code provides lots of examples, this is probably mostly for us maintainers to manage all the different states. However, **the consumer really just needs a single basic snippet**. In some cases, you can add a second one with the **most commonly used props**. The basic example should always come first.
 
 ```js
 <EuiLink href="#"><!-- Link text --></EuiLink>
