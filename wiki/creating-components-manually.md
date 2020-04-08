@@ -40,7 +40,6 @@ There are a couple themes to keep in mind when adding snippets:
 - If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
 
 #### Stay consistent
-- When using text should it display actual strings or comments?
 - Don't use `this.` Write the snippet like a **Function Component** with descriptive function and state names.
 
 ``` js
@@ -56,11 +55,14 @@ There are a couple themes to keep in mind when adding snippets:
 
 ```js
 <EuiLink href="#"><!-- Link text --></EuiLink>
+```
 
-<EuiLink href="#" color="primary">
+```js
+<EuiLink href="#" color="secondary">
   <!-- Colored link text -->
 </EuiLink>
 ```
+
 
 - Use HTML comments to suggest what the `children` might be.
 
@@ -76,11 +78,11 @@ There are a couple themes to keep in mind when adding snippets:
 </EuiCallOut>
 ```
 
-- When a component contains a single element child the snippet should illustrate it.
+- When a component contains a single element child the snippet should illustrate it. Enforce best practices by providing a description.
 
 ``` js
 <EuiTitle>
-  <h2><!-- Text --></h2>
+  <h2><!-- Defaults to medium size. Change the heading level based on your context. --></h2> 
 </EuiTitle>
 ```
 
@@ -94,6 +96,15 @@ There are a couple themes to keep in mind when adding snippets:
       children: <p>Do this first</p>,
     },
   ]}
+/>
+```
+
+- Use the right prop type. In the following example, the `alt` and `url` props are both strings.
+
+``` js
+<EuiImage
+  alt="description"
+  url="someUrl"
 />
 ```
 
