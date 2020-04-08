@@ -2,9 +2,7 @@
 
 exports[`EuiCommentEvent is rendered 1`] = `
 <figure
-  aria-label="aria-label"
   class="euiCommentEvent euiCommentEvent--regular testClass1 testClass2"
-  data-test-subj="test subject string"
 >
   <figcaption
     class="euiCommentEvent__header"

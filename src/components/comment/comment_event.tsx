@@ -1,30 +1,29 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 
-export type EuiCommentEventProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
-    /**
-     * Author of the comment. Display a small icon or avatar with it if needed.
-     */
-    username: ReactNode;
-    /**
-     * Time of occurrence of the event. Its format is set on the consumer's side
-     */
-    timestamp?: ReactNode;
-    /**
-     * Describes the event that took place
-     */
-    event?: ReactNode;
-    /**
-     * Custom actions that the user can perform from the comment's header
-     */
-    actions?: ReactNode;
-    /**
-     * Use "update" when the comment is primarily showing info about actions that the user or the system has performed (e.g. "user1 edited a case").
-     */
-    type?: EuiCommentType;
-  };
+export interface EuiCommentEventProps extends CommonProps {
+  /**
+   * Author of the comment. Display a small icon or avatar with it if needed.
+   */
+  username: ReactNode;
+  /**
+   * Time of occurrence of the event. Its format is set on the consumer's side
+   */
+  timestamp?: ReactNode;
+  /**
+   * Describes the event that took place
+   */
+  event?: ReactNode;
+  /**
+   * Custom actions that the user can perform from the comment's header
+   */
+  actions?: ReactNode;
+  /**
+   * Use "update" when the comment is primarily showing info about actions that the user or the system has performed (e.g. "user1 edited a case").
+   */
+  type?: EuiCommentType;
+}
 
 const typeToClassNameMap = {
   regular: 'euiCommentEvent--regular',
@@ -42,7 +41,6 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   type = 'regular',
   event,
   actions,
-  ...rest
 }) => {
   const classes = classNames(
     'euiCommentEvent',
@@ -50,16 +48,15 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     className
   );
 
-  const Element =
-    type === 'regular' || (type === 'update' && children) ? 'figure' : 'div';
+  const isFigure =
+    type === 'regular' ||
+    (type === 'update' && typeof children !== 'undefined');
 
-  const HeaderElement =
-    type === 'regular' || (type === 'update' && children)
-      ? 'figcaption'
-      : 'div';
+  const Element = isFigure ? 'figure' : 'div';
+  const HeaderElement = isFigure ? 'figcaption' : 'div';
 
   return (
-    <Element className={classes} {...rest}>
+    <Element className={classes}>
       <HeaderElement className="euiCommentEvent__header">
         <div className="euiCommentEvent__headerData">
           <div className="euiCommentEvent__headerUsername">{username}</div>

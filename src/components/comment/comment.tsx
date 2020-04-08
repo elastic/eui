@@ -1,5 +1,4 @@
-import React, { FunctionComponent } from 'react';
-import { CommonProps } from '../common';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
@@ -8,9 +7,10 @@ import {
   EuiCommentTimelineProps,
 } from './comment_timeline';
 
-export type EuiCommentProps = EuiCommentEventProps &
-  EuiCommentTimelineProps &
-  CommonProps & {};
+export interface EuiCommentProps
+  extends HTMLAttributes<HTMLDivElement>,
+    EuiCommentEventProps,
+    EuiCommentTimelineProps {}
 
 const typeToClassNameMap = {
   regular: '',

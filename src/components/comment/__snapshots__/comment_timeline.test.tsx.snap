@@ -2,9 +2,7 @@
 
 exports[`EuiCommentTimeline is rendered 1`] = `
 <div
-  aria-label="aria-label"
   class="euiCommentTimeline testClass1 testClass2"
-  data-test-subj="test subject string"
 >
   <div
     class="euiCommentTimeline__content"
