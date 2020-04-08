@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
 /// <reference path="./date_picker/index.d.ts" />
 
 declare module '@elastic/eui' {
