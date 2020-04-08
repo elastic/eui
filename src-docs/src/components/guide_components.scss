@@ -48,6 +48,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   // By using the `icon` display of EuiSideNavItem, it will continue to:
   // a) truncate properly
   // b) not underline the badge when selected
+  // But it shows to the left of the label instead of right, so we have to shift the order of the label
   order: -1;
 }
 
