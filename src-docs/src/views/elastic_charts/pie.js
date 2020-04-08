@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../components';
 import { Chart, Partition, PartitionLayout } from '@elastic/charts';
-import { BROWSER_DATA_2019 } from './data';
+import { BROWSER_DATA_2019, BROWSER_DATA_2019_OTHER, SEASONS } from './data';
 import { euiPaletteColorBlind } from '../../../../src/services';
 
 import {
@@ -24,16 +24,16 @@ export default () => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiTitle size="xs">
-            <h3>Pie chart</h3>
+            <h3>Average rainfall per season in inches</h3>
           </EuiTitle>
           <Chart size={{ height: 300 }}>
             <Partition
-              id="pieByBrowser"
-              data={BROWSER_DATA_2019}
-              valueAccessor={d => Number(d.percent)}
+              id="pieBySeason"
+              data={SEASONS}
+              valueAccessor={d => Number(d.inches)}
               layers={[
                 {
-                  groupByRollup: d => d.browser,
+                  groupByRollup: d => d.season,
                   shape: {
                     fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
                   },
@@ -50,7 +50,7 @@ export default () => {
           <Chart size={{ height: 300 }}>
             <Partition
               id="pieByBrowser"
-              data={BROWSER_DATA_2019}
+              data={BROWSER_DATA_2019_OTHER}
               valueAccessor={d => Number(d.percent)}
               layers={[
                 {
@@ -60,7 +60,12 @@ export default () => {
                   },
                 },
               ]}
-              config={{ ...theme.pie, emptySizeRatio: 0.4 }}
+              config={{
+                ...theme.pie,
+                emptySizeRatio: 0.4,
+                // specialFirstInnermostSector: false,
+                clockwiseSectors: false,
+              }}
             />
           </Chart>
         </EuiFlexItem>
