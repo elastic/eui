@@ -119,6 +119,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   closeButtonProps,
   href,
   target,
+  style,
   ...rest
 }) => {
   checkValidColor(color);
@@ -141,6 +142,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     optionalCustomStyles = {
       backgroundColor: colorHex,
       color: textColor,
+      ...style,
     };
   } else if (color !== 'hollow') {
     // This is a custom color that is neither from the base palette nor hollow
@@ -165,7 +167,11 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       );
     }
 
-    optionalCustomStyles = { backgroundColor: color, color: textColor };
+    optionalCustomStyles = {
+      backgroundColor: color,
+      color: textColor,
+      ...style,
+    };
   }
 
   const classes = classNames(
