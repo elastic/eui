@@ -155,6 +155,7 @@ export class EuiFieldSearch extends Component<
     onSearch?: (value: string) => void
   ) => {
     this.setState({ value: (event.target as HTMLInputElement).value });
+
     if (this.props.onKeyUp) {
       this.props.onKeyUp(event);
       if (event.defaultPrevented) {
@@ -185,7 +186,9 @@ export class EuiFieldSearch extends Component<
       ...rest
     } = this.props;
 
-    const { value } = this.state;
+    let value = this.props.value;
+    if (typeof this.props.value !== 'string') value = this.state.value;
+
     const classes = classNames(
       'euiFieldSearch',
       {
@@ -203,7 +206,7 @@ export class EuiFieldSearch extends Component<
         fullWidth={fullWidth}
         isLoading={isLoading}
         clear={
-          isClearable && value.length > 0 && !rest.readOnly && !rest.disabled
+          isClearable && value && !rest.readOnly && !rest.disabled
             ? { onClick: this.onClear }
             : undefined
         }
