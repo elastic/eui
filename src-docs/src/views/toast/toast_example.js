@@ -53,7 +53,7 @@ const infoToastSnippet = [
   `<EuiToast
   title="Info toast"
   type="info"
-  onClose={() => {}}}>
+  onClose={closeToast}>
   <!-- Raw HTML content -->
   </EuiToast>`,
 ];
