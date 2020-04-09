@@ -25,7 +25,7 @@ const toastListSnippet = [
   toasts={[
     {
       id: 1,
-      title: "Exapmle Toast",
+      title: "Example Toast",
       color: 'danger',
       iconType: 'user',
       text: <p><!-- Content --></p>,
