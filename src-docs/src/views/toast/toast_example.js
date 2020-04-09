@@ -79,7 +79,7 @@ const warningToastSnippet = [
   title="Warning toast"
   color="warning"
   iconType="help"
-  onClose={() => {}}}>
+  onClose={closeToast}>
   <!-- Raw HTML content -->
   </EuiToast>`,
 ];
