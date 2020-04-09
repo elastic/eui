@@ -12,6 +12,10 @@ import {
 import { SortDirection } from '../../services';
 import { EuiTableFieldDataColumnType } from './table_types';
 
+jest.mock('./../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
+
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
     expect(getItemId({ id: 5 })).toBeUndefined();

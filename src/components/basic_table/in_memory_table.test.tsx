@@ -7,6 +7,10 @@ import { ENTER } from '../../services/key_codes';
 import { SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
 
+jest.mock('./../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
+
 interface BasicItem {
   id: number | string;
   name: string;
@@ -924,7 +928,8 @@ describe('EuiInMemoryTable', () => {
 
       expect(props.onTableChange).toHaveBeenCalledTimes(0);
       component
-        .find('EuiPaginationButton[data-test-subj="pagination-button-1"]')
+        .find('[data-test-subj="pagination-button-1"]')
+        .first()
         .simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenCalledWith({

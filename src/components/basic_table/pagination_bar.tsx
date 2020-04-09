@@ -16,6 +16,10 @@ export interface Pagination {
 
 export interface PaginationBarProps {
   pagination: Pagination;
+  /**
+   * id of the table being controlled
+   */
+  controls?: string;
   onPageSizeChange: ItemsPerPageChangeHandler;
   onPageChange: PageChangeHandler;
 }
@@ -28,6 +32,7 @@ export const PaginationBar = ({
   pagination,
   onPageSizeChange,
   onPageChange,
+  ...rest
 }: PaginationBarProps) => {
   const pageSizeOptions = pagination.pageSizeOptions
     ? pagination.pageSizeOptions
@@ -44,6 +49,7 @@ export const PaginationBar = ({
         pageCount={pageCount}
         onChangeItemsPerPage={onPageSizeChange}
         onChangePage={onPageChange}
+        {...rest}
       />
     </div>
   );

@@ -20,12 +20,14 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -143,12 +145,14 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -268,12 +272,14 @@ exports[`EuiBasicTable empty is rendered 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -335,12 +341,14 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -410,12 +418,14 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -477,12 +487,14 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -710,12 +722,14 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -975,6 +989,8 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -1008,12 +1024,14 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -1136,12 +1154,14 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -1265,12 +1285,14 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -1394,12 +1416,14 @@ exports[`EuiBasicTable with multiple record actions with custom availability 1`]
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -1702,12 +1726,14 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -1777,6 +1803,8 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -1810,12 +1838,14 @@ exports[`EuiBasicTable with pagination 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -1903,6 +1933,8 @@ exports[`EuiBasicTable with pagination 1`] = `
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -1936,12 +1968,14 @@ exports[`EuiBasicTable with pagination and error 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -2016,12 +2050,14 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -2152,6 +2188,8 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -2185,12 +2223,14 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -2278,6 +2318,8 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -2333,12 +2375,14 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -2472,6 +2516,8 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -2526,12 +2572,14 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -2758,6 +2806,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -2812,12 +2862,14 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -2951,6 +3003,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -3005,12 +3059,14 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -3144,6 +3200,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -3198,12 +3256,14 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -3448,6 +3508,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -3502,12 +3564,14 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -3641,6 +3705,8 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
     </EuiTable>
   </div>
   <PaginationBar
+    aria-labelledby="generated-id"
+    controls="generated-id"
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
     pagination={
@@ -3674,12 +3740,14 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -3802,12 +3870,14 @@ exports[`EuiBasicTable with sorting 1`] = `
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}
@@ -3933,12 +4003,14 @@ exports[`EuiBasicTable with sorting enabled and enable all columns for sorting 1
       </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
+      id="generated-id"
       responsive={true}
       tableLayout="fixed"
     >
       <EuiScreenReaderOnly>
         <caption
           className="euiTableCaption"
+          id="generated-id"
         >
           <EuiDelayRender
             delay={500}

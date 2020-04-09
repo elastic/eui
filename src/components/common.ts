@@ -16,6 +16,8 @@ export interface CommonProps {
 export type NoArgCallback<T> = () => T;
 
 // utility types:
+export type OneOf<T, K extends keyof T> = Omit<T, K> &
+  { [k in K]: Pick<Required<T>, k> & { [k1 in Exclude<K, k>]?: never } }[K];
 
 /**
  * Wraps Object.keys with proper typescript definition of the resulting array

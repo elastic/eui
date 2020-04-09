@@ -422,6 +422,10 @@ export class EuiBasicTable<T = any> extends Component<
     }
   }
 
+  tableIds = htmlIdGenerator();
+  tableId = this.tableIds('__table');
+  captionId = this.tableIds('__caption');
+
   render() {
     const {
       className,
@@ -492,6 +496,7 @@ export class EuiBasicTable<T = any> extends Component<
       <div>
         {mobileHeader}
         <EuiTable
+          id={this.tableId}
           tableLayout={tableLayout}
           responsive={responsive}
           compressed={compressed}>
@@ -581,7 +586,7 @@ export class EuiBasicTable<T = any> extends Component<
     }
     return (
       <EuiScreenReaderOnly>
-        <caption className="euiTableCaption">
+        <caption id={this.captionId} className="euiTableCaption">
           <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
@@ -1220,11 +1225,26 @@ export class EuiBasicTable<T = any> extends Component<
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
         not configured. This callback must be implemented to handle pagination changes`);
       }
+
+      const {
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy = this.captionId,
+      } = this.props;
+
+      const accessibleName = {
+        ...(ariaLabel && { 'aria-label': ariaLabel }),
+        ...(ariaLabelledBy && {
+          'aria-labelledby': ariaLabelledBy,
+        }),
+      };
+
       return (
         <PaginationBar
+          controls={this.tableId}
           pagination={pagination}
           onPageSizeChange={this.onPageSizeChange.bind(this)}
           onPageChange={this.onPageChange.bind(this)}
+          {...accessibleName}
         />
       );
     }

@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import tabbable from 'tabbable';
 import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
-import { CommonProps } from '../common';
+import { CommonProps, OneOf } from '../common';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
@@ -123,25 +123,11 @@ type CommonGridProps = CommonProps &
     onColumnResize?: EuiDataGridOnColumnResizeHandler;
   };
 
-// This structure forces either aria-label or aria-labelledby to be defined
-// making some type of label a requirement
-export type EuiDataGridProps = Omit<
+// Force either aria-label or aria-labelledby to be defined
+export type EuiDataGridProps = OneOf<
   CommonGridProps,
   'aria-label' | 'aria-labelledby'
-> &
-  (
-    | {
-        /**
-         * must provide either aria-label OR aria-labelledby as a title for the grid
-         */
-        'aria-label': string;
-      }
-    | {
-        /**
-         * must provide either aria-label OR aria-labelledby as a title for the grid
-         */
-        'aria-labelledby': string;
-      });
+>;
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -190,7 +176,7 @@ function computeVisibleRows(
   return endRow - startRow;
 }
 
-function renderPagination(props: EuiDataGridProps) {
+function renderPagination(props: EuiDataGridProps, controls: string) {
   const { pagination } = props;
 
   if (pagination == null) {
@@ -211,15 +197,24 @@ function renderPagination(props: EuiDataGridProps) {
     return null;
   }
 
+  const accessibleName = {
+    ...(props['aria-label'] && { 'aria-label': props['aria-label'] }),
+    ...(props['aria-labelledby'] && {
+      'aria-labelledby': props['aria-labelledby'],
+    }),
+  };
+
   return (
     <div className="euiDataGrid__pagination">
       <EuiTablePagination
+        controls={controls}
         activePage={pageIndex}
         itemsPerPage={pageSize}
         itemsPerPageOptions={pageSizeOptions}
         pageCount={pageCount}
         onChangePage={onChangePage}
         onChangeItemsPerPage={onChangeItemsPerPage}
+        {...accessibleName}
       />
     </div>
   );
@@ -817,6 +812,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [pagination]
   );
 
+  const tableId = htmlIdGenerator()();
+
   return (
     <DataGridContext.Provider value={datagridContext}>
       <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
@@ -874,6 +871,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     data-test-subj="dataGridWrapper"
                     className="euiDataGrid__content"
                     role="grid"
+                    id={tableId}
                     {...wrappingDivFocusProps}
                     {...gridAriaProps}>
                     <EuiMutationObserver
@@ -924,7 +922,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             )}
           </EuiResizeObserver>
 
-          {renderPagination(props)}
+          {renderPagination(props, tableId)}
           <p id={interactiveCellId} hidden>
             <EuiI18n
               token="euiDataGrid.screenReaderNotice"
