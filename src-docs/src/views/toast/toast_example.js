@@ -31,7 +31,7 @@ const toastListSnippet = [
       text: <p><!-- Content --></p>,
     }
   ]}
-  dismissToast={()=>{}}
+  dismissToast={dismissToast}
   toastLifeTimeMs={6000}/>`,
 ];
 
