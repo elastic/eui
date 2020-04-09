@@ -1,5 +1,16 @@
 # Documentation guidelines
 
+Always remember to update [documentation site][docs] via the `src-docs` folder and the `CHANGELOG.md` in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no differently than how you would treat tests.
+
+Here are our formatting guidelines for writing documentation:
+
+- Use sentence case, always, for page and section titles. Example: `This component does something`
+- When referencing the component name, wrap it in `<strong>` tags. Example: `<strong>EuiComponent</strong>`
+- When referencing the component name, always include the `Eui` prefix unless you are referencing the generic term. Example: `EuiFlyout` vs `flyout`
+- Wrap references to prop names and elements in `<EuiCode>` blocks. Example: `<EuiCode>propName</EuiCode>`
+- If the code reference is more than a single prop name or value, add the language type. Example: `<EuiCode language="js">propName=true</EuiCode>`
+- When referencing another EUI component, wrap the reference in a link to the component. Example: `<Link to="/component/url><strong>EuiComponent</strong><Link>`
+
 ## Links
 
 ### Linking between EUI doc pages/components
@@ -36,3 +47,79 @@ import {
 
 <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_shadow.scss">View the Sass code for shadow mixins</EuiLink>.
 ```
+
+## Adding snippets
+
+There are a couple themes to keep in mind when adding snippets:
+
+### Ask yourself
+- Does this snippet provide the consumer with everything it needs for the component to work?
+- Does this snippet provide the details of a specific object the component needs to work?
+- If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
+
+### Stay consistent
+- Don't use `this.`, but write the snippet like a **Function Component**.
+- Use descriptive JS variables in place of **consumer generated** strings, functions, states and node prop types.
+- All other props, like enums, should be written with proper value types.
+
+``` js
+<EuiPopover
+  id={popoverId}
+  button={button}
+  isOpen={isPopoverOpen}
+  closePopover={closePopover}
+  anchorPosition="downLeft"
+>
+  <!-- Popover content -->
+</EuiPopover>
+```
+
+- If the demo code provides lots of examples, this is probably mostly for us maintainers to manage all the different states. However, **the consumer really just needs a single basic snippet**. In some cases, you can add a second one with the **most commonly used props**. The basic example should always come first.
+
+```js
+<EuiLink href="#"><!-- Link text --></EuiLink>
+```
+
+```js
+<EuiLink href="#" color="secondary">
+  <!-- Colored link text -->
+</EuiLink>
+```
+
+
+- Use HTML comments to suggest what the `children` might be.
+
+``` js
+<EuiText color="danger"><!-- Raw HTML content --></EuiText>
+```
+
+- The snippet should illustrate when a component requires its children to be wrapped with a specific tag.
+
+``` js
+<EuiCallOut>
+  <p><!-- Content --></p>
+</EuiCallOut>
+```
+
+- When a component contains a single element child the snippet should illustrate it. Enforce best practices by providing a description.
+
+``` js
+<EuiTitle>
+  <h2><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
+</EuiTitle>
+```
+
+- When a prop receives an array of objects, display only one object and show all the required keys.
+
+``` js
+<EuiSteps
+  steps={[
+    {
+      title: 'Step 1',
+      children: <p>Do this first</p>,
+    },
+  ]}
+/>
+```
+
+[docs]: https://elastic.github.io/eui/

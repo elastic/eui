@@ -30,24 +30,16 @@ EUI has strict quality and testing standards due to its large downstream footpri
 
 If you have a preference, let us know when you make your PR, but never feel guilty about just handing it off. We're here to help.
 
-### Adding icons
+## Adding icons
 
 EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
 
 If you are willing and able to design the icon yourself, then please refer to the [Creating icons][creating-icons] section of the wiki for design guidelines and instructions on creating your pull request.
 
+
 ## Documentation
 
-Always remember to update [documentation site][docs] via the `src-docs` folder and the [`CHANGELOG.md`](CHANGELOG.md) in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no differently than how you would treat tests.
-
-Here are our formatting guidelines for writing documentation:
-
-- Use sentence case, always, for page and section titles. Example: `This component does something`
-- When referencing the component name, wrap it in `<strong>` tags. Example: `<strong>EuiComponent</strong>`
-- When referencing the component name, always include the `Eui` prefix unless you are referencing the generic term. Example: `EuiFlyout` vs `flyout`
-- Wrap references to prop names and elements in `<EuiCode>` blocks. Example: `<EuiCode>propName</EuiCode>`
-- If the code reference is more than a single prop name or value, add the language type. Example: `<EuiCode language="js">propName=true</EuiCode>`
-- When referencing another EUI component, wrap the reference in a link to the component. Example: `<Link to="/component/url><strong>EuiComponent</strong><Link>`
+### 👉Refer to the [Documentation Guidelines][documentation-guidelines] for more instruction on writing docs.
 
 ## Changelog
 
@@ -60,12 +52,13 @@ Any updates to the `src/` folder require an entry in the `CHANGELOG.md` file. Do
 * Avoid documenting internal implementation changes that don't affect the public interface
 * Write your entry in the past tense, starting with a verb (e.g. Added... , Fixed...)
 
+
 ## Releases
 
 When we are ready to create a new release, we follow the [Release Process][docs-releases] documentation.
 
 [creating-icons]: wiki/creating-icons.md
-[docs]: https://elastic.github.io/eui/
 [docs-components]: wiki/component-development.md
 [docs-releases]: wiki/releasing-versions.md
 [icons]: https://elastic.github.io/eui/#/display/icons
+[documentation-guidelines]: wiki/documentation-guidelines.md
