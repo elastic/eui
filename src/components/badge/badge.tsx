@@ -124,7 +124,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 }) => {
   checkValidColor(color);
 
-  let optionalCustomStyles: object | undefined = undefined;
+  let optionalCustomStyles: object | undefined = style;
   let textColor = null;
   // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
   const wcagContrastBase = 4.5; // WCAG AA contrast level
@@ -142,7 +142,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     optionalCustomStyles = {
       backgroundColor: colorHex,
       color: textColor,
-      ...style,
+      ...optionalCustomStyles,
     };
   } else if (color !== 'hollow') {
     // This is a custom color that is neither from the base palette nor hollow
@@ -170,7 +170,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     optionalCustomStyles = {
       backgroundColor: color,
       color: textColor,
-      ...style,
+      ...optionalCustomStyles,
     };
   }
 
