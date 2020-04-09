@@ -64,7 +64,7 @@ const commentActionsSnippet = `<EuiComment username="janed" actions={customActio
 </EuiComment>`;
 
 export const CommentExample = {
-  title: 'Comment',
+  title: 'Comment just to check truncation',
   isNew: true,
   sections: [
     {
