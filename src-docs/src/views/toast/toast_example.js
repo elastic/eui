@@ -25,10 +25,10 @@ const toastListSnippet = [
   toasts={[
     {
       id: 1,
-      title: "First Toast"
-    },{
-      id: 2,
-      title: "Second Toast"
+      title: "Exapmle Toast",
+      color: 'danger',
+      iconType: 'user',
+      text: <p><!-- Content --></p>,
     }
   ]}
   dismissToast={()=>{}}
@@ -42,8 +42,8 @@ const defaultToastSnippet = [
   `<EuiToast
   title="Default toast"
   onClose={() => {}}}>
-  <!-- Content -->
-</EuiToast>`,
+  <!-- Raw HTML content -->
+  </EuiToast>`,
 ];
 
 import Info from './info';
@@ -54,8 +54,8 @@ const infoToastSnippet = [
   title="Info toast"
   type="info"
   onClose={() => {}}}>
-  <!-- Content -->
-</EuiToast>`,
+  <!-- Raw HTML content -->
+  </EuiToast>`,
 ];
 
 import Success from './success';
@@ -65,9 +65,10 @@ const successToastSnippet = [
   `<EuiToast
   title="Success toast"
   color="success"
-  iconType="check">
-  <!-- Content -->
-</EuiToast>`,
+  iconType="check"
+  onClose={() => {}}}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
 ];
 
 import Warning from './warning';
@@ -77,9 +78,10 @@ const warningToastSnippet = [
   `<EuiToast
   title="Warning toast"
   color="warning"
-  iconType="help">
-  <!-- Content -->
-</EuiToast>`,
+  iconType="help"
+  onClose={() => {}}}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
 ];
 
 import Danger from './danger';
@@ -89,9 +91,10 @@ const dangerToastSnippet = [
   `<EuiToast
   title="Danger toast"
   color="danger"
-  iconType="alert">
-  <!-- Content -->
-</EuiToast>`,
+  iconType="alert"
+  onClose={() => {}}}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
 ];
 
 export const ToastExample = {
