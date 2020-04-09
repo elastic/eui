@@ -1,6 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- `EuiFieldSearch` now tracks input value internaly ([#3270](https://github.com/elastic/eui/pull/3270))
 - Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions ([#3115](https://github.com/elastic/eui/pull/3115))
 - Added support for `EuiCodeEditor` to set `readonly` and `id` on `<textarea />` ([#3212](https://github.com/elastic/eui/pull/3212))
 - Added `EuiComment` component ([#3179](https://github.com/elastic/eui/pull/3179))
@@ -18,6 +17,7 @@
 - Fixed `EuiIcon`'s icon `type` definition to allow custom React components ([#3252](https://github.com/elastic/eui/pull/3252))
 - Fixed `initialSelectedTab` properties used in `EuiDatePopoverContent` ([#3254](https://github.com/elastic/eui/pull/3254))
 - Fixed `EuiSideNavItem` overriding custom `className` of item and icon ([#3283](https://github.com/elastic/eui/pull/3283))
+- Fixed `EuiFieldSearch` clear button inconsistencies ([#3270](https://github.com/elastic/eui/pull/3270))
 
 ## [`22.3.0`](https://github.com/elastic/eui/tree/v22.3.0)
 
