@@ -1,4 +1,4 @@
-import React, { Component, InputHTMLAttributes } from 'react';
+import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
 import { ENTER } from '../../../services/key_codes';
@@ -53,13 +53,24 @@ export interface EuiFieldSearchProps
   append?: EuiFormControlLayoutProps['append'];
 }
 
-export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
+interface EuiFieldSearchState {
+  value: string;
+}
+
+export class EuiFieldSearch extends Component<
+  EuiFieldSearchProps,
+  EuiFieldSearchState
+> {
   static defaultProps = {
     fullWidth: false,
     isLoading: false,
     incremental: false,
     compressed: false,
     isClearable: true,
+  };
+
+  state = {
+    value: this.props.value || '',
   };
 
   inputElement: HTMLInputElement | null = null;
@@ -124,6 +135,7 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
       // set focus on the search field
       this.inputElement.focus();
     }
+    this.setState({ value: '' });
   };
 
   componentWillUnmount() {
@@ -138,10 +150,12 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
   };
 
   onKeyUp = (
-    event: React.KeyboardEvent<HTMLInputElement>,
+    event: KeyboardEvent<HTMLInputElement>,
     incremental?: boolean,
     onSearch?: (value: string) => void
   ) => {
+    this.setState({ value: (event.target as HTMLInputElement).value });
+
     if (this.props.onKeyUp) {
       this.props.onKeyUp(event);
       if (event.defaultPrevented) {
@@ -159,7 +173,6 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
       id,
       name,
       placeholder,
-      value,
       isInvalid,
       fullWidth,
       isLoading,
@@ -172,6 +185,9 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
       prepend,
       ...rest
     } = this.props;
+
+    let value = this.props.value;
+    if (typeof this.props.value !== 'string') value = this.state.value;
 
     const classes = classNames(
       'euiFieldSearch',
@@ -204,7 +220,6 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
             name={name}
             placeholder={placeholder}
             className={classes}
-            value={value}
             onKeyUp={e => this.onKeyUp(e, incremental, onSearch)}
             ref={this.setRef}
             {...rest}
