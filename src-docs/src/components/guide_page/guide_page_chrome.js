@@ -259,13 +259,11 @@ export class GuidePageChrome extends Component {
         let visibleName = name;
         if (searchTerm) {
           visibleName = (
-            <>
-              <EuiHighlight
-                className="guideSideNav__item--inSearch"
-                search={searchTerm}>
-                {name}
-              </EuiHighlight>
-            </>
+            <EuiHighlight
+              className="guideSideNav__item--inSearch"
+              search={searchTerm}>
+              {name}
+            </EuiHighlight>
           );
         }
 
