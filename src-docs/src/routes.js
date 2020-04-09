@@ -71,6 +71,8 @@ import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
 
+import { CommentExample } from './views/comment/comment_example';
+
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
 import { ControlBarExample } from './views/control_bar/control_bar_example';
@@ -245,7 +247,7 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta } = example;
+  const { title, intro, sections, beta, isNew } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -269,6 +271,7 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections,
+    isNew,
   };
 };
 
@@ -368,6 +371,7 @@ const navigation = [
       CallOutExample,
       CardExample,
       CodeExample,
+      CommentExample,
       DescriptionListExample,
       DragAndDropExample,
       EmptyPromptExample,

@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiComment is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiComment testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <figure
+    class="euiCommentEvent euiCommentEvent--regular"
+  >
+    <figcaption
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+      </div>
+    </figcaption>
+  </figure>
+</div>
+`;
+
+exports[`EuiComment props event is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <figure
+    class="euiCommentEvent euiCommentEvent--regular"
+  >
+    <figcaption
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        <div
+          class="euiCommentEvent__headerEvent"
+        >
+          commented
+        </div>
+      </div>
+    </figcaption>
+  </figure>
+</div>
+`;
+
+exports[`EuiComment props timelineIcon is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--regular"
+      >
+        <div
+          aria-label="Mario"
+          class="euiAvatar euiAvatar--l euiAvatar--user"
+          style="background-image:none;background-color:#f1d86f;color:#000000"
+          title="Mario"
+        >
+          <span
+            aria-hidden="true"
+          >
+            M
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figure
+    class="euiCommentEvent euiCommentEvent--regular"
+  >
+    <figcaption
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+      </div>
+    </figcaption>
+  </figure>
+</div>
+`;
+
+exports[`EuiComment props timestamp is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <figure
+    class="euiCommentEvent euiCommentEvent--regular"
+  >
+    <figcaption
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+        <div
+          class="euiCommentEvent__headerTimestamp"
+        >
+          <time>
+            21 days ago
+          </time>
+        </div>
+      </div>
+    </figcaption>
+  </figure>
+</div>
+`;
+
+exports[`EuiComment props type is rendered 1`] = `
+<div
+  class="euiComment euiComment--update"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--update"
+      >
+        <div
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCommentEvent euiCommentEvent--update"
+  >
+    <div
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiComment renders a body 1`] = `
+<div
+  class="euiComment euiComment--hasBody"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+      >
+        <div
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <figure
+    class="euiCommentEvent euiCommentEvent--regular"
+  >
+    <figcaption
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+      </div>
+    </figcaption>
+    <div
+      class="euiCommentEvent__body"
+    >
+      <p>
+        This is the body.
+      </p>
+    </div>
+  </figure>
+</div>
+`;

@@ -92,6 +92,7 @@ export function EuiSideNavItem<
   children,
   renderItem: RenderItem = DefaultRenderItem,
   depth = 0,
+  className,
   ...rest
 }: EuiSideNavItemProps<T>) {
   let childItems;
@@ -104,17 +105,21 @@ export function EuiSideNavItem<
 
   if (icon) {
     buttonIcon = cloneElement(icon, {
-      className: 'euiSideNavItemButton__icon',
+      className: classNames('euiSideNavItemButton__icon', icon.props.className),
     });
   }
 
-  const classes = classNames('euiSideNavItem', {
-    'euiSideNavItem--root': depth === 0,
-    'euiSideNavItem--rootIcon': depth === 0 && icon,
-    'euiSideNavItem--trunk': depth === 1,
-    'euiSideNavItem--branch': depth > 1,
-    'euiSideNavItem--hasChildItems': !!childItems,
-  });
+  const classes = classNames(
+    'euiSideNavItem',
+    {
+      'euiSideNavItem--root': depth === 0,
+      'euiSideNavItem--rootIcon': depth === 0 && icon,
+      'euiSideNavItem--trunk': depth === 1,
+      'euiSideNavItem--branch': depth > 1,
+      'euiSideNavItem--hasChildItems': !!childItems,
+    },
+    className
+  );
 
   const buttonClasses = classNames('euiSideNavItemButton', {
     'euiSideNavItemButton--isClickable': onClick || href,

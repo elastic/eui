@@ -32,6 +32,7 @@ const collapsibleNavAllHtml = renderToHtml(CollapsibleNavAll);
 
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
+  isNew: true,
   intro: (
     <EuiText>
       <p>
