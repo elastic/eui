@@ -17,10 +17,20 @@ import {
 import ToolTip from './tool_tip';
 const toolTipSource = require('!!raw-loader!./tool_tip');
 const toolTipHtml = renderToHtml(ToolTip);
+const tooltipSnippet = `<EuiToolTip position="top" content="Here is some tooltip text">
+  <!-- An inline element to trigger the tooltip -->
+</EuiToolTip>
+`;
 
 import IconTip from './icon_tip';
 const infoTipSource = require('!!raw-loader!./icon_tip');
 const infoTipHtml = renderToHtml(IconTip);
+const infoTipSnippet = `<EuiIconTip
+  content="Here is another tooltip text"
+  position="top"
+  type="iInCircle"
+/>
+`;
 
 export const ToolTipExample = {
   title: 'Tooltip',
@@ -80,7 +90,9 @@ export const ToolTipExample = {
           code: toolTipHtml,
         },
       ],
+
       props: { EuiToolTip },
+      snippet: tooltipSnippet,
       demo: <ToolTip />,
     },
     {
@@ -112,6 +124,7 @@ export const ToolTipExample = {
         </Fragment>
       ),
       props: { EuiToolTip, EuiIconTip },
+      snippet: infoTipSnippet,
       demo: <IconTip />,
     },
   ],
