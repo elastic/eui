@@ -26,7 +26,7 @@ import IconTip from './icon_tip';
 const infoTipSource = require('!!raw-loader!./icon_tip');
 const infoTipHtml = renderToHtml(IconTip);
 const infoTipSnippet = `<EuiIconTip
-  content="Here is another tooltip text"
+  content="Tooltip text for the icon"
   position="top"
   type="iInCircle"
 />
