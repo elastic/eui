@@ -1,5 +1,8 @@
 import { CSSProperties } from 'react';
 
+export const WARNING_MESSAGE =
+  'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.';
+
 export const resolveWidthAsStyle = (
   style: CSSProperties = {},
   width?: string | number
@@ -13,9 +16,7 @@ export const resolveWidthAsStyle = (
     attrWidth = `${attrWidth}px`;
   }
   if (styleWidth && attrWidth) {
-    console.warn(
-      'Two `width` properties were provided. Provide only one of `style.width` or `width` to avoid conflicts.'
-    );
+    console.warn(WARNING_MESSAGE);
   }
   return { ...styleRest, width: attrWidth || styleWidth };
 };

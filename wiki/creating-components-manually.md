@@ -34,15 +34,75 @@ The complexity of the component should determine how many examples you need to c
 ### Adding snippets
 There are a couple themes to keep in mind when adding snippets:
 
-1. **Ask yourself**
-   a. Does this snippet provide the consumer with everything it needs for the component to work?
-   b. Does this snippet provide the details of a specific object the component needs to work?
-   c. If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
-2. **Stay consistent**
-   a. When using text should it display actual strings or comments?
-   b. Don't use `this.` for variables, only for `this.state` or functions
-3. If the demo code provides lots of examples, this is probably mostly for us maintainers to manage all the different states. However, **the consumer really just needs a single basic snippet** with maybe a few self-explanatory props added that can be removed by the consumer. When there are more than 2 or 3 snippets it's hard to know what the differences are among them.
+#### Ask yourself
+- Does this snippet provide the consumer with everything it needs for the component to work?
+- Does this snippet provide the details of a specific object the component needs to work?
+- If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
 
+#### Stay consistent
+- Don't use `this.`, but write the snippet like a **Function Component**.
+- Use descriptive JS variables in place of **consumer generated** strings, functions, states and node prop types.
+- All other props, like enums, should be written with proper value types.
+
+``` js
+<EuiPopover
+  id={popoverId}
+  button={button}
+  isOpen={isPopoverOpen}
+  closePopover={closePopover}
+  anchorPosition="downLeft"
+>
+  <!-- Popover content -->
+</EuiPopover>
+```
+
+- If the demo code provides lots of examples, this is probably mostly for us maintainers to manage all the different states. However, **the consumer really just needs a single basic snippet**. In some cases, you can add a second one with the **most commonly used props**. The basic example should always come first.
+
+```js
+<EuiLink href="#"><!-- Link text --></EuiLink>
+```
+
+```js
+<EuiLink href="#" color="secondary">
+  <!-- Colored link text -->
+</EuiLink>
+```
+
+
+- Use HTML comments to suggest what the `children` might be.
+
+``` js
+<EuiText color="danger"><!-- Raw HTML content --></EuiText>
+```
+
+- The snippet should illustrate when a component requires its children to be wrapped with a specific tag.
+
+``` js
+<EuiCallOut>
+  <p><!-- Content --></p>
+</EuiCallOut>
+```
+
+- When a component contains a single element child the snippet should illustrate it. Enforce best practices by providing a description.
+
+``` js
+<EuiTitle>
+  <h2><!-- Defaults to medium size. Change the heading level based on your context. --></h2> 
+</EuiTitle>
+```
+
+- When a prop receives an array of objects, display only one object and show all the required keys.
+
+``` js
+<EuiSteps
+  steps={[
+    {
+      title: 'Step 1',
+      children: <p>Do this first</p>,
+    },
+  ]}
+/>
+```
 
 [docs]: https://elastic.github.io/eui/
 [docs-logical-group]: creating-components.md#logically-grouped-components
