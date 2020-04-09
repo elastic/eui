@@ -66,7 +66,7 @@ const successToastSnippet = [
   title="Success toast"
   color="success"
   iconType="check"
-  onClose={() => {}}}>
+  onClose={closeToast}>
   <!-- Raw HTML content -->
   </EuiToast>`,
 ];
