@@ -3,6 +3,9 @@
 - Added support for `href`, `onClick`, and related props in `EuiBasicTable` default actions ([#3115](https://github.com/elastic/eui/pull/3115))
 - Added support for `EuiCodeEditor` to set `readonly` and `id` on `<textarea />` ([#3212](https://github.com/elastic/eui/pull/3212))
 - Added `EuiComment` component ([#3179](https://github.com/elastic/eui/pull/3179))
+- Added `EuiTour`, `EuiTourStep`, and `useEuiTour` components ([#2766](https://github.com/elastic/eui/pull/2766))
+- Added `EuiBeacon` component ([#2766](https://github.com/elastic/eui/pull/2766))
+- Added `offset` and `arrowChildren` props to `EuiPopover` for anchor element customization ([#2766](https://github.com/elastic/eui/pull/2766))
 
 **Deprecation**
 
