@@ -17,10 +17,20 @@ import {
 import ToolTip from './tool_tip';
 const toolTipSource = require('!!raw-loader!./tool_tip');
 const toolTipHtml = renderToHtml(ToolTip);
-const tooltipSnippet = `<EuiToolTip position="top" content="Here is some tooltip text">
+const tooltipSnippet = [
+  `<EuiToolTip position="top" content="Tooltip text">
   <!-- An inline element to trigger the tooltip -->
 </EuiToolTip>
-`;
+`,
+  `<EuiToolTip title="Tooltip title" content="Tooltip text">
+  <!-- An inline element to trigger the tooltip -->
+</EuiToolTip>
+`,
+  `<EuiToolTip content="A tooltip with a long delay" delay="long">
+  <!-- An inline element to trigger the tooltip -->
+</EuiToolTip>
+`,
+];
 
 import IconTip from './icon_tip';
 const infoTipSource = require('!!raw-loader!./icon_tip');
