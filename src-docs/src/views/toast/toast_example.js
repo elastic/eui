@@ -41,7 +41,7 @@ const defaultHtml = renderToHtml(Default);
 const defaultToastSnippet = [
   `<EuiToast
   title="Default toast"
-  onClose={() => {}}}>
+  onClose={closeToast}>
   <!-- Raw HTML content -->
   </EuiToast>`,
 ];
