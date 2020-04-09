@@ -116,27 +116,6 @@ module.exports = {
     // but being explicit is still clearer.
     "@typescript-eslint/no-inferrable-types": "off",
   },
-  overrides: [
-    /**
-     * Files that require Apache 2.0 headers, settings
-     * are overridden below for files that require Elastic
-     * Licence headers
-     */
-    {
-      files: [
-        'src-docs/**/*.{ts,tsx,js}'
-      ],
-      rules: {
-        "local/require-license-header": 0,
-        // "local/require-license-header": [
-        //   'warn',
-        //   {
-        //     license: APACHE_2_0_LICENSE_HEADER,
-        //   },
-        // ],
-      },
-    }
-  ],
   env: {
     jest: true
   }
