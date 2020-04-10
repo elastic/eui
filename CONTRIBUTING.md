@@ -32,25 +32,13 @@ If you have a preference, let us know when you make your PR, but never feel guil
 
 ## Helpful documents
 
-* [Component design][component-design]
-* [Component development][component-development]
-  * [Creating components manually][creating-components-manually]
-  * [Creating components with Yeoman][creating-components-yeoman]
-* [Creating icons][icons]
-* [Theming][theming]
-* [Testing][testing]
-  * [Accessibility Testing][a11y-testing]
-* [Documentation][docs-guidelines]
-* [Releasing versions][releasing-versions]
-
-
-[component-design]: wiki/component-design.md
-[component-development]: wiki/component-development.md
-[creating-components-manually]: wiki/creating-components-manually.md
-[creating-components-yeoman]: wiki/creating-components-yeoman.md
-[icons]: wiki/creating-icons.md
-[testing]: wiki/testing.md
-[a11y-testing]: wiki/automated-accessibility-testing.md
-[docs-guidelines]: wiki/documentation-guidelines.md
-[theming]: wiki/theming.md
-[releasing-versions]: wiki/releasing-versions.md
+* [Component design](wiki/component-design.md)
+* [Component development](wiki/component-development.md)
+  * [Creating components manually](wiki/creating-components-manually.md)
+  * [Creating components with Yeoman](wiki/creating-components-yeoman.md)
+* [Creating icons](wiki/creating-icons.md)
+* [Theming](wiki/theming.md)
+* [Testing](wiki/testing.md)
+  * [Accessibility Testing](wiki/automated-accessibility-testing.md)
+* [Documentation](wiki/documentation-guidelines.md)
+* [Releasing versions](wiki/releasing-versions.md)
