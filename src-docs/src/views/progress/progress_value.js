@@ -38,7 +38,7 @@ export default () => {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [timer]);
 
   return (
     <EuiFlexGroup alignItems="center">
