@@ -58,11 +58,12 @@ export class EuiAbsoluteTab extends Component<
     if (date === null) {
       return;
     }
-    const dateMoment = moment(date);
     onChange(typeof date === 'string' ? date : date.toISOString(), event);
+
+    const valueAsMoment = moment(date);
     this.setState({
-      valueAsMoment: dateMoment,
-      textInputValue: dateMoment.format(this.props.dateFormat),
+      valueAsMoment,
+      textInputValue: valueAsMoment.format(this.props.dateFormat),
       isTextInvalid: false,
     });
   };
