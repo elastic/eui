@@ -28,7 +28,7 @@ export interface EuiNavDrawerFlyoutProps
 
   /**
    * Passthrough function to be called when the flyout is closing
-   * See `EuiNavDrawer`
+   * @see `EuiNavDrawer`
    */
   onClose?: (shouldReturnFocus?: boolean) => void;
 

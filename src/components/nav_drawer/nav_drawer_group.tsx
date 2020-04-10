@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { EuiListGroup, EuiListGroupProps } from '../list_group/list_group';
 import { EuiListGroupItemProps } from '../list_group/list_group_item';
 import { toInitials } from '../../services';
-import { CommonProps } from '../common';
 
 export const ATTR_SELECTOR = 'data-name';
 
@@ -17,9 +16,7 @@ export type FlyoutMenuItem = EuiListGroupItemProps & {
   label: string;
 };
 
-export interface EuiNavDrawerGroupProps extends CommonProps {
-  className?: string;
-
+export interface EuiNavDrawerGroupProps extends EuiListGroupProps {
   listItems?: FlyoutMenuItem[];
 
   /**
@@ -34,11 +31,9 @@ export interface EuiNavDrawerGroupProps extends CommonProps {
 
   /**
    * Passthrough function to be called when the flyout is closing
-   * See `EuiNavDrawer`
+   * @see `EuiNavDrawer`
    */
   onClose?: () => void;
-
-  wrapText?: EuiListGroupProps['wrapText'];
 }
 
 export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
