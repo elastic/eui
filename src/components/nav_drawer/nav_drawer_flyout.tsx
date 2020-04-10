@@ -3,6 +3,7 @@ import React, {
   FunctionComponent,
   KeyboardEventHandler,
   HTMLAttributes,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -48,7 +49,7 @@ export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
   wrapText = false,
   ...rest
 }) => {
-  const [menuEl, setMenuEl] = useState<HTMLDivElement | null>();
+  const menuElementRef = useRef<HTMLDivElement>(null);
   const [
     tabbables,
     setTabbables,
@@ -68,8 +69,10 @@ export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
       handleClose();
     } else if (event.keyCode === keyCodes.TAB) {
       let tabs = tabbables;
-      if (!tabs && menuEl) {
-        tabs = tabbable(menuEl).filter(element => element.tagName !== 'DIV');
+      if (!tabs && menuElementRef.current) {
+        tabs = tabbable(menuElementRef.current).filter(
+          element => element.tagName !== 'DIV'
+        );
         setTabbables(tabs);
       }
       if (!tabs) {
@@ -96,7 +99,7 @@ export const EuiNavDrawerFlyout: FunctionComponent<EuiNavDrawerFlyoutProps> = ({
       className={classes}
       aria-labelledby={LABEL}
       onKeyDown={handleKeyDown}
-      ref={setMenuEl}
+      ref={menuElementRef}
       {...rest}>
       <EuiTitle className="euiNavDrawerFlyout__title" size="xxs">
         <div id={LABEL} tabIndex={-1}>
