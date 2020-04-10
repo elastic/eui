@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `22.5.0`.
+
+## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
+
 - Added `forceState` prop to control `EuiAccordion` state from outside ([#3240](https://github.com/elastic/eui/pull/3240))
 
 **Bug Fixes**
