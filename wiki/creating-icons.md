@@ -1,10 +1,12 @@
 # Creating icons
 
-Below you will find guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
+EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
+
+If you are willing and able to design the icon yourself, this document descibes the guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
 
 If you read through these guidelines or begin designing your icon and realize you're in too deep, then create an issue in this repo and request assistance. An EUI team member will reply and discuss options.
 
-_**Note**: The `EuiIcon` component accepts external references to icon files, so techincally speaking you do not have to add them to the EUI repo. In other words, you can store and reference your icon files within your application code._
+_**Note**: The `EuiIcon` component accepts external references to icon files, so you have the option to maintain the icon in your consuming applicaiton._
 
 ## Design the icon
 
@@ -86,6 +88,7 @@ _\* The Icons page actually contains several sections. In most cases, you will b
 _\** Run `yarn && yarn start` to view the EUI docs site locally._
 
 
+[icons]: https://elastic.github.io/eui/#/display/icons
 [docs]: https://elastic.github.io/eui/
 [sketch-SVGO-plugin]: [https://www.sketch.com/extensions/plugins/svgo-compressor/]
 [sketch-symbol-organizer-plugin]: [https://github.com/sonburn/symbol-organizer]
