@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
+import { resetServerContext } from 'react-beautiful-dnd';
 
 import { findTestSubject } from '../../test';
 import { requiredProps } from '../../test/required_props';
@@ -16,6 +17,10 @@ function snapshotDragDropContext(component: ReactWrapper) {
 }
 
 describe('EuiDroppable', () => {
+  afterEach(() => {
+    resetServerContext();
+  });
+
   test('is rendered', () => {
     const handler = jest.fn();
     jest.mock('react', () => {
@@ -86,26 +91,42 @@ describe('EuiDroppable', () => {
           useLayoutEffect: react.useEffect,
         };
       });
-      const handler = jest.fn();
-      const component = mount(
-        <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-          <EuiDroppable droppableId="testDroppable" cloneDraggables={true}>
-            <EuiDroppableContext.Consumer>
-              {({ cloneItems }) => (
-                <div data-test-subj="child">
-                  {cloneItems ? 'true' : 'false'}
-                </div>
-              )}
-            </EuiDroppableContext.Consumer>
-          </EuiDroppable>
-        </EuiDragDropContext>
-      );
 
       test('sets `cloneItems` on proprietary context', () => {
+        const handler = jest.fn();
+        const component = mount(
+          <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+            <EuiDroppable droppableId="testDroppable" cloneDraggables={true}>
+              <EuiDroppableContext.Consumer>
+                {({ cloneItems }) => (
+                  <div data-test-subj="child">
+                    {cloneItems ? 'true' : 'false'}
+                  </div>
+                )}
+              </EuiDroppableContext.Consumer>
+            </EuiDroppable>
+          </EuiDragDropContext>
+        );
+
         expect(findTestSubject(component, 'child').text()).toBe('true');
       });
 
       test('sets `isDropDisabled`', () => {
+        const handler = jest.fn();
+        const component = mount(
+          <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+            <EuiDroppable droppableId="testDroppable" cloneDraggables={true}>
+              <EuiDroppableContext.Consumer>
+                {({ cloneItems }) => (
+                  <div data-test-subj="child">
+                    {cloneItems ? 'true' : 'false'}
+                  </div>
+                )}
+              </EuiDroppableContext.Consumer>
+            </EuiDroppable>
+          </EuiDragDropContext>
+        );
+
         expect(component.find('.euiDroppable--isDisabled').length).toBe(1);
       });
     });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
 
@@ -37,44 +37,34 @@ const allOptions = [
   },
 ];
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLoading: false,
-      isPopoverOpen: false,
-      selectedOptions: [],
-      options: [],
-    };
-  }
-
-  onChange = selectedOptions => {
-    this.setState({
-      selectedOptions,
-    });
+export default () => {
+  const [selectedOptions, setSelected] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [options, setOptions] = useState([]);
+  let searchTimeout;
+  const onChange = selectedOptions => {
+    setSelected(selectedOptions);
   };
 
-  onSearchChange = searchValue => {
-    this.setState({
-      isLoading: true,
-      options: [],
-    });
+  const onSearchChange = useCallback(searchValue => {
+    setLoading(true);
+    setOptions([]);
 
-    clearTimeout(this.searchTimeout);
+    clearTimeout(searchTimeout);
 
-    this.searchTimeout = setTimeout(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    searchTimeout = setTimeout(() => {
       // Simulate a remotely-executed search.
-      this.setState({
-        isLoading: false,
-        options: allOptions.filter(option =>
+      setLoading(false);
+      setOptions(
+        allOptions.filter(option =>
           option.label.toLowerCase().includes(searchValue.toLowerCase())
-        ),
-      });
+        )
+      );
     }, 1200);
-  };
+  }, []);
 
-  onCreateOption = (searchValue, flattenedOptions) => {
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -93,36 +83,28 @@ export default class extends Component {
     ) {
       // Simulate creating this option on the server.
       allOptions.push(newOption);
-      this.setState(prevState => ({
-        options: prevState.options.concat(newOption),
-      }));
+      setOptions([...options, newOption]);
     }
 
     // Select the option.
-    this.setState(prevState => ({
-      selectedOptions: prevState.selectedOptions.concat(newOption),
-    }));
+    setSelected([...selectedOptions, newOption]);
   };
 
-  componentDidMount() {
+  useEffect(() => {
     // Simulate initial load.
-    this.onSearchChange('');
-  }
+    onSearchChange('');
+  }, [onSearchChange]);
 
-  render() {
-    const { selectedOptions, isLoading, options } = this.state;
-
-    return (
-      <EuiComboBox
-        placeholder="Search asynchronously"
-        async
-        options={options}
-        selectedOptions={selectedOptions}
-        isLoading={isLoading}
-        onChange={this.onChange}
-        onSearchChange={this.onSearchChange}
-        onCreateOption={this.onCreateOption}
-      />
-    );
-  }
-}
+  return (
+    <EuiComboBox
+      placeholder="Search asynchronously"
+      async
+      options={options}
+      selectedOptions={selectedOptions}
+      isLoading={isLoading}
+      onChange={onChange}
+      onSearchChange={onSearchChange}
+      onCreateOption={onCreateOption}
+    />
+  );
+};

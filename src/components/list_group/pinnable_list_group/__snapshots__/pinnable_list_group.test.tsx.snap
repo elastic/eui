@@ -67,6 +67,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -121,6 +122,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -148,6 +150,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -227,6 +230,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -281,6 +285,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -308,6 +313,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"

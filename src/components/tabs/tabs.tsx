@@ -34,28 +34,37 @@ export type EuiTabsProps = CommonProps &
     size?: EuiTabsSizes;
   };
 
-export const EuiTabs = ({
-  children,
-  className,
+export type EuiTabRef = HTMLDivElement;
 
-  display = 'default',
-  expand = false,
-  size = 'm',
-  ...rest
-}: PropsWithChildren<EuiTabsProps>) => {
-  const classes = classNames(
-    'euiTabs',
-    displayToClassNameMap[display],
-    sizeToClassNameMap[size],
+export const EuiTabs = React.forwardRef<
+  EuiTabRef,
+  PropsWithChildren<EuiTabsProps>
+>(
+  (
     {
-      'euiTabs--expand': expand,
-    },
-    className
-  );
+      children,
+      className,
+      display = 'default',
+      expand = false,
+      size = 'm',
+      ...rest
+    }: PropsWithChildren<EuiTabsProps>,
+    ref
+  ) => {
+    const classes = classNames(
+      'euiTabs',
+      displayToClassNameMap[display],
+      sizeToClassNameMap[size],
+      {
+        'euiTabs--expand': expand,
+      },
+      className
+    );
 
-  return (
-    <div role="tablist" className={classes} {...rest}>
-      {children}
-    </div>
-  );
-};
+    return (
+      <div ref={ref} role="tablist" className={classes} {...rest}>
+        {children}
+      </div>
+    );
+  }
+);

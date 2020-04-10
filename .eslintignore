@@ -9,3 +9,4 @@ eui.d.ts
 **/assets/**/*.js
 src-docs/src/views/icon/icon_example.js
 src-framer/code/canvas.tsx
+packages/react-datepicker/examples
