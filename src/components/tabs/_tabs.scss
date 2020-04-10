@@ -89,7 +89,7 @@
 
   .euiTabs--condensed & {
     font-weight: $euiFontWeightSemiBold;
-    padding: $euiSizeS 4px;
+    padding: $euiSizeS $euiSizeXS;
 
     &:focus {
       background-color: $euiFocusBackgroundColor;
