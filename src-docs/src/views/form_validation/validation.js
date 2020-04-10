@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiButton,
@@ -10,72 +10,62 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [showErrors, setShowErrors] = useState(true);
 
-    this.state = {
-      showErrors: true,
-    };
+  const onButtonClick = () => {
+    setShowErrors(!showErrors);
+  };
+
+  const button = (
+    <EuiButton fill color="danger" onClick={onButtonClick}>
+      Toggle errors
+    </EuiButton>
+  );
+
+  let errors;
+
+  if (showErrors) {
+    errors = [
+      "Here's an example of an error",
+      'You might have more than one error, so pass an array.',
+    ];
   }
 
-  onButtonClick() {
-    this.setState({
-      showErrors: !this.state.showErrors,
-    });
-  }
+  return (
+    <Fragment>
+      <EuiForm isInvalid={showErrors} error={errors}>
+        <EuiFormRow label="Validation only" isInvalid={showErrors}>
+          <EuiFieldText name="first" isInvalid={showErrors} />
+        </EuiFormRow>
 
-  render() {
-    const button = (
-      <EuiButton fill color="danger" onClick={this.onButtonClick.bind(this)}>
-        Toggle errors
-      </EuiButton>
-    );
+        <EuiFormRow
+          label="Validation with help text and errors"
+          helpText="I am some friendly help text."
+          isInvalid={showErrors}
+          error={errors}>
+          <EuiFieldText name="text" isInvalid={showErrors} />
+        </EuiFormRow>
 
-    let errors;
+        <EuiFormRow label="Text area" isInvalid={showErrors}>
+          <EuiTextArea name="area" isInvalid={showErrors} />
+        </EuiFormRow>
 
-    if (this.state.showErrors) {
-      errors = [
-        "Here's an example of an error",
-        'You might have more than one error, so pass an array.',
-      ];
-    }
+        <EuiFormRow label="Select" isInvalid={showErrors}>
+          <EuiSelect
+            options={[
+              { value: 'option_one', text: 'Option one' },
+              { value: 'option_two', text: 'Option two' },
+              { value: 'option_three', text: 'Option three' },
+            ]}
+            isInvalid={showErrors}
+          />
+        </EuiFormRow>
 
-    return (
-      <Fragment>
-        <EuiForm isInvalid={this.state.showErrors} error={errors}>
-          <EuiFormRow label="Validation only" isInvalid={this.state.showErrors}>
-            <EuiFieldText name="first" isInvalid={this.state.showErrors} />
-          </EuiFormRow>
+        <EuiSpacer />
 
-          <EuiFormRow
-            label="Validation with help text and errors"
-            helpText="I am some friendly help text."
-            isInvalid={this.state.showErrors}
-            error={errors}>
-            <EuiFieldText name="text" isInvalid={this.state.showErrors} />
-          </EuiFormRow>
-
-          <EuiFormRow label="Text area" isInvalid={this.state.showErrors}>
-            <EuiTextArea name="area" isInvalid={this.state.showErrors} />
-          </EuiFormRow>
-
-          <EuiFormRow label="Select" isInvalid={this.state.showErrors}>
-            <EuiSelect
-              options={[
-                { value: 'option_one', text: 'Option one' },
-                { value: 'option_two', text: 'Option two' },
-                { value: 'option_three', text: 'Option three' },
-              ]}
-              isInvalid={this.state.showErrors}
-            />
-          </EuiFormRow>
-
-          <EuiSpacer />
-
-          {button}
-        </EuiForm>
-      </Fragment>
-    );
-  }
-}
+        {button}
+      </EuiForm>
+    </Fragment>
+  );
+};
