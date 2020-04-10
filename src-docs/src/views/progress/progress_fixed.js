@@ -54,7 +54,7 @@ export default () => {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [timer]);
 
   let progress2 = null;
 
