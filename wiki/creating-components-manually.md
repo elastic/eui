@@ -25,8 +25,7 @@ This makes your React component available for import into your project.
 3. Add the route to this file in `src-docs/src/services/routes/routes.js`.
 4. In the `{component name}_example.js` file you created, define examples which demonstrate the component and describe its role from a UI perspective.
 
-### 👉 Refer to the [Documentation Guidelines][documentation-guidelines] for more instruction on writing docs.
+### 👉 Refer to the [Documentation Guidelines](documentation-guidelines.md) for more instruction on writing docs.
 
 [docs]: https://elastic.github.io/eui/
 [docs-logical-group]: component-development.md#logically-grouped-components
-[documentation-guidelines]: documentation-guidelines.md
