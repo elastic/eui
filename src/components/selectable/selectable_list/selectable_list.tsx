@@ -97,7 +97,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   setListRef = (ref: FixedSizeList | null) => {
     this.listRef = ref;
 
-    if (ref && this.props.activeOptionIndex && this.props.searchable !== true) {
+    if (ref && this.props.activeOptionIndex) {
       ref.scrollToItem(this.props.activeOptionIndex, 'auto');
     }
   };
@@ -146,11 +146,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       );
     }
 
-    if (
-      this.listRef &&
-      typeof this.props.activeOptionIndex !== 'undefined' &&
-      this.props.searchable !== true
-    ) {
+    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
       this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
     }
   }
