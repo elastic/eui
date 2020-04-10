@@ -186,7 +186,7 @@
     "shelljs": "^0.8.1",
     "start-server-and-test": "^1.1.4",
     "style-loader": "^0.19.0",
-    "typescript": "3.5.3",
+    "typescript": "3.7.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.0.1",
     "wdio-chromedriver-service": "^0.1.2",
