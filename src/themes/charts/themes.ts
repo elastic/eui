@@ -70,8 +70,10 @@ function createTheme(colors: any) {
         textColor: colors.euiColorDarkestShade.rgba,
       },
       outerSizeRatio: 1,
-      // emptySizeRatio: 0.4,
+      // emptySizeRatio: 0.4, Use for Donut charts
       circlePadding: 4,
+      sectorLineStroke: colors.euiColorEmptyShade.rgba,
+      sectorLineWidth: 1.5,
     },
     theme: {
       chartMargins: {

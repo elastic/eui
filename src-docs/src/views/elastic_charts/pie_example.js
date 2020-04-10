@@ -13,6 +13,7 @@ import {
 } from '../../../../src/components';
 
 import PieChart from './pie';
+import PieSlices from './pie_slices';
 
 const introCards = [
   {
@@ -63,6 +64,7 @@ const introCards = [
 
 export const ElasticChartsPieExample = {
   title: 'Part to whole comparisons',
+  isNew: true,
   intro: (
     <Fragment>
       <ExternalBadge />
@@ -171,7 +173,7 @@ export const ElasticChartsPieExample = {
           </p>
         </>
       ),
-      // demo: <PieChart />,
+      demo: <PieSlices />,
     },
     {
       title: 'Treemaps and other variations/alternatives',
