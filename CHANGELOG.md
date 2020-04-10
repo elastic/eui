@@ -13,6 +13,7 @@
 - Fixed the `img` element in `EuiIcon` using custom SVGs to have an `alt` attribute with an empty string, rather than no `alt` attribute at all ([#3245](https://github.com/elastic/eui/pull/3245))
 - Added overflows to EuiDataGrid toolbar dropdowns when there are many columns ([#3238](https://github.com/elastic/eui/pull/3238))
 - Fixed `EuiIcon`'s icon `type` definition to allow custom React components ([#3252](https://github.com/elastic/eui/pull/3252))
+- Fixed components with `href` usage of `rel` ([#3258](https://github.com/elastic/eui/pull/3258))
 
 ## [`22.3.0`](https://github.com/elastic/eui/tree/v22.3.0)
 
