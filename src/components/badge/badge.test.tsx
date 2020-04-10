@@ -86,6 +86,21 @@ describe('EuiBadge', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is rendered with href and rel provided', () => {
+    const component = render(
+      <EuiBadge
+        {...requiredProps}
+        iconOnClick={jest.fn()}
+        iconOnClickAriaLabel="Example of onclick event for icon within the anchor"
+        href="/#/"
+        rel="noopener">
+        Content
+      </EuiBadge>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('iconType', () => {
       it('is rendered', () => {

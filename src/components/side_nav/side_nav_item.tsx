@@ -10,8 +10,12 @@ import { CommonProps } from '../common';
 
 import { EuiIcon } from '../icon';
 
+import { getSecureRelForTarget } from '../../services';
+
 type ItemProps = CommonProps & {
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLElement>;
   children: ReactNode;
 };
@@ -35,6 +39,8 @@ type OmitEuiSideNavItemProps<T> = {
 
 interface GuaranteedRenderItemProps {
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: ItemProps['onClick'];
   className: string;
   children: ReactNode;
@@ -50,14 +56,23 @@ export type EuiSideNavItemProps<T> = T extends { renderItem: Function }
 
 const DefaultRenderItem = ({
   href,
+  target,
+  rel,
   onClick,
   className,
   children,
   ...rest
 }: ItemProps) => {
   if (href) {
+    const secureRel = getSecureRelForTarget({ href, rel, target });
     return (
-      <a className={className} href={href} onClick={onClick} {...rest}>
+      <a
+        className={className}
+        href={href}
+        target={target}
+        rel={secureRel}
+        onClick={onClick}
+        {...rest}>
         {children}
       </a>
     );
@@ -88,6 +103,8 @@ export function EuiSideNavItem<
   icon,
   onClick,
   href,
+  rel,
+  target,
   items,
   children,
   renderItem: RenderItem = DefaultRenderItem,
@@ -145,6 +162,8 @@ export function EuiSideNavItem<
 
   const renderItemProps: GuaranteedRenderItemProps = {
     href,
+    rel,
+    target,
     onClick,
     className: buttonClasses,
     children: buttonContent,

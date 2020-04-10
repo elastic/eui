@@ -38,12 +38,34 @@ exports[`EuiBadge is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiBadge is rendered with href and rel provided 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft testClass1 testClass2"
+  style="background-color:#d3dae6;color:#000"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <a
+      aria-label="aria-label"
+      class="euiBadge__childButton"
+      data-test-subj="test subject string"
+      href="/#/"
+      rel="noopener noreferrer"
+    >
+      Content
+    </a>
+  </span>
+</span>
+`;
+
 exports[`EuiBadge is rendered with href provided 1`] = `
 <a
   aria-label="aria-label"
   class="euiBadge euiBadge-isClickable euiBadge--iconLeft testClass1 testClass2"
   data-test-subj="test subject string"
   href="/#/"
+  rel="noreferrer"
   style="background-color:#d3dae6;color:#000"
 >
   <span
@@ -71,6 +93,7 @@ exports[`EuiBadge is rendered with iconOnClick and href provided 1`] = `
       class="euiBadge__childButton"
       data-test-subj="test subject string"
       href="/#/"
+      rel="noreferrer"
     >
       Content
     </a>

@@ -9,7 +9,11 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import chroma from 'chroma-js';
-import { euiPaletteColorBlindBehindText, isValidHex } from '../../services';
+import {
+  euiPaletteColorBlindBehindText,
+  isValidHex,
+  getSecureRelForTarget,
+} from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
 
@@ -30,6 +34,7 @@ type WithButtonProps = {
 type WithAnchorProps = {
   href: string;
   target?: string;
+  rel?: string;
 } & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
@@ -118,6 +123,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   iconOnClickAriaLabel,
   closeButtonProps,
   href,
+  rel,
   target,
   ...rest
 }) => {
@@ -187,6 +193,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const relObj: {
     href?: string;
     target?: string;
+    rel?: string;
     onClick?:
       | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
       | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void);
@@ -195,6 +202,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   if (href && !isDisabled) {
     relObj.href = href;
     relObj.target = target;
+    relObj.rel = getSecureRelForTarget({ href, target, rel });
   } else if (onClick) {
     relObj.onClick = onClick;
   }

@@ -15,6 +15,8 @@ export interface EuiSideNavItemType<T> {
    * Is an optional string to be passed as the navigation item's `href` prop, and by default it will force rendering of the item as an `<a>`.
    */
   href?: string;
+  target?: string;
+  rel?: string;
   /**
    * React node which will be rendered as a small icon to the left of the navigation item text.
    */

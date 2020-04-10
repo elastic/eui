@@ -113,6 +113,14 @@ describe('EuiListGroupItem', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('is rendered with rel', () => {
+        const component = render(
+          <EuiListGroupItem label="Label" href="#" rel="noreferrer" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('onClick', () => {
