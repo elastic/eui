@@ -12,23 +12,21 @@ const idPrefix = htmlIdGenerator()();
 
 export default () => {
   const [trigger, setTrigger] = useState('closed');
-  const [toggleIdSelected, setID] = useState(`${idPrefix}1`);
+  const [toggleIdSelected, setID] = useState(`${idPrefix}--closed`);
   const toggleButtons = [
     {
       id: `${idPrefix}--open`,
       label: 'Open',
     },
     {
-      id: `${idPrefix}--close`,
+      id: `${idPrefix}--closed`,
       label: 'Close',
     },
   ];
 
-  const onChange = () => {
-    setTrigger(trigger === 'open' ? 'closed' : 'open');
-    setID(
-      toggleIdSelected === `${idPrefix}0` ? `${idPrefix}1` : `${idPrefix}0`
-    );
+  const onChange = id => {
+    setTrigger(id === toggleButtons[0].id ? 'open' : 'closed');
+    setID(id);
   };
 
   return (
