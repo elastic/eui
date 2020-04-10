@@ -28,5 +28,5 @@ This makes your React component available for import into your project.
 ### 👉 Refer to the [Documentation Guidelines][documentation-guidelines] for more instruction on writing docs.
 
 [docs]: https://elastic.github.io/eui/
-[docs-logical-group]: creating-components.md#logically-grouped-components
+[docs-logical-group]: component-development.md#logically-grouped-components
 [documentation-guidelines]: documentation-guidelines.md

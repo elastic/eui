@@ -88,6 +88,7 @@ _\* The Icons page actually contains several sections. In most cases, you will b
 _\** Run `yarn && yarn start` to view the EUI docs site locally._
 
 
+[icons]: https://elastic.github.io/eui/#/display/icons
 [docs]: https://elastic.github.io/eui/
 [sketch-SVGO-plugin]: [https://www.sketch.com/extensions/plugins/svgo-compressor/]
 [sketch-symbol-organizer-plugin]: [https://github.com/sonburn/symbol-organizer]
