@@ -30,35 +30,27 @@ EUI has strict quality and testing standards due to its large downstream footpri
 
 If you have a preference, let us know when you make your PR, but never feel guilty about just handing it off. We're here to help.
 
-## Adding icons
+## Helpful documents
 
-EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
-
-If you are willing and able to design the icon yourself, then please refer to the [Creating icons][creating-icons] section of the wiki for design guidelines and instructions on creating your pull request.
-
-
-## Documentation
-
-### 👉Refer to the [Documentation Guidelines][documentation-guidelines] for more instruction on writing docs.
-
-## Changelog
-
-Any updates to the `src/` folder require an entry in the `CHANGELOG.md` file. Documentation-only changes do not. Here are our guidelines for updating the file:
-
-* Append your changes to the `master` sub-heading of [`CHANGELOG.md`](CHANGELOG.md).
-* Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API
-* In the list item, always link to any relevant pull requests
-* Add a summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
-* Avoid documenting internal implementation changes that don't affect the public interface
-* Write your entry in the past tense, starting with a verb (e.g. Added... , Fixed...)
+* [Component design][component-design]
+* [Component development][component-development]
+  * [Creating components manually][creating-components-manually]
+  * [Creating components with Yeoman][creating-components-yeoman]
+* [Creating icons][icons]
+* [Theming][theming]
+* [Testing][testing]
+  * [Accessibility Testing][a11y-testing]
+* [Documentation][docs-guidelines]
+* [Releasing versions][releasing-versions]
 
 
-## Releases
-
-When we are ready to create a new release, we follow the [Release Process][docs-releases] documentation.
-
-[creating-icons]: wiki/creating-icons.md
-[docs-components]: wiki/component-development.md
-[docs-releases]: wiki/releasing-versions.md
-[icons]: https://elastic.github.io/eui/#/display/icons
-[documentation-guidelines]: wiki/documentation-guidelines.md
+[component-design]: wiki/component-design.md
+[component-development]: wiki/component-development.md
+[creating-components-manually]: wiki/creating-components-manually.md
+[creating-components-yeoman]: wiki/creating-components-yeoman.md
+[icons]: wiki/creating-icons.md
+[testing]: wiki/testing.md
+[a11y-testing]: wiki/automated-accessibility-testing.md
+[docs-guidelines]: wiki/documentation-guidelines.md
+[theming]: wiki/theming.md
+[releasing-versions]: wiki/releasing-versions.md

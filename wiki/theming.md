@@ -36,7 +36,7 @@ components load after it.
 
 #### Make your theme available in the docs
 
-Lastly, make sure to include your theme in the /src-docs/index.js file so that it's available
+Lastly, make sure to include your theme in the `/src-docs/index.js` file so that it's available
 through the theme selector.
 
 ## Theming tips

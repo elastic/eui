@@ -2,6 +2,14 @@
 
 Always remember to update [documentation site][docs] via the `src-docs` folder and the `CHANGELOG.md` in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no differently than how you would treat tests.
 
+The complexity of the component should determine how many examples you need to create, and how complex they should be. In general, your examples should demonstrate:
+
+* The most common use-cases for the component.
+* How the component handles edge cases, e.g. overflowing content, text-based vs. element-based content.
+* The various states of the component, e.g. disabled, selected, empty of content, error state.
+
+## Writing docs
+
 Here are our formatting guidelines for writing documentation:
 
 - Use sentence case, always, for page and section titles. Example: `This component does something`
@@ -11,15 +19,13 @@ Here are our formatting guidelines for writing documentation:
 - If the code reference is more than a single prop name or value, add the language type. Example: `<EuiCode language="js">propName=true</EuiCode>`
 - When referencing another EUI component, wrap the reference in a link to the component. Example: `<Link to="/component/url><strong>EuiComponent</strong><Link>`
 
-## Links
-
-### Linking between EUI doc pages/components
+## Linking between EUI doc pages/components
 
 In instances where you would like to provide a link to another EUI component
 referenced in a given component description or example, take advantage of `react-router`,
 which is used for routing in EUI docs. Aside from the benefit of shorter path names, `react-router` will take the environment into account and provide the correct URL for both development and production locations.
 
-#### Basic example:
+### Basic example:
 
 ```js
 import {
@@ -121,5 +127,16 @@ There are a couple themes to keep in mind when adding snippets:
   ]}
 />
 ```
+
+## Changelog
+
+Any updates to the `src/` folder require an entry in the [CHANGELOG.md](../CHANGELOG.md) file. Documentation-only changes do not. Here are our guidelines for updating the file:
+
+* Append your changes to the `master` sub-heading of `CHANGELOG.md`.
+* Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API
+* In the list item, always link to any relevant pull requests
+* Add a summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
+* Avoid documenting internal implementation changes that don't affect the public interface
+* Write your entry in the **past tense**, starting with a verb (e.g. Added... , Fixed...)
 
 [docs]: https://elastic.github.io/eui/

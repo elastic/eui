@@ -57,9 +57,6 @@ As a single source of truth, the framework allows our designers to make changes 
 directly in the code. And unit test coverage for the UI components allows us to deliver a stable
 "API for user interfaces".
 
-## Contributing
-
-You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Wiki
 
@@ -68,14 +65,19 @@ You can find documentation around creating and submitting new components in [CON
 * [Consuming EUI][consuming]
 * [Using EUI with react-router][react-router]
 
-### Maintenance
+### Maintenance / Contributing
+
+[CONTRIBUTING.md](CONTRIBUTING.md)
 
 * [Component design][component-design]
 * [Component development][component-development]
   * [Creating components manually][creating-components-manually]
   * [Creating components with Yeoman][creating-components-yeoman]
-  * [Testing][testing]
+* [Creating icons][icons]
 * [Theming][theming]
+* [Testing][testing]
+  * [Accessibility Testing][a11y-testing]
+* [Documentation][docs-guidelines]
 * [Releasing versions][releasing-versions]
 
 ## License
@@ -89,8 +91,11 @@ You can find documentation around creating and submitting new components in [CON
 [component-development]: wiki/component-development.md
 [creating-components-manually]: wiki/creating-components-manually.md
 [creating-components-yeoman]: wiki/creating-components-yeoman.md
-[releasing-versions]: wiki/releasing-versions.md
+[icons]: wiki/creating-icons.md
 [testing]: wiki/testing.md
+[a11y-testing]: wiki/automated-accessibility-testing.md
+[docs-guidelines]: wiki/documentation-guidelines.md
 [theming]: wiki/theming.md
 [react-router]: wiki/react-router.md
+[releasing-versions]: wiki/releasing-versions.md
 [docs]: https://elastic.github.io/eui/
