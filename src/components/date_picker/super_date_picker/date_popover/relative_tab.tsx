@@ -25,13 +25,13 @@ import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
 import { RelativeParts, TimeUnitId } from '../../types';
 import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
-import { ReactDatePickerProps } from '../../react-datepicker'; // eslint-disable-line import/no-unresolved
+import { EuiDatePopoverContentProps } from './date_popover_content';
 
 export interface EuiRelativeTabProps {
   dateFormat: string;
   locale?: LocaleSpecifier;
   value: string;
-  onChange: NonNullable<ReactDatePickerProps['onChange']>;
+  onChange: EuiDatePopoverContentProps['onChange'];
   roundUp?: boolean;
   position: 'start' | 'end';
 }

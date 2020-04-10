@@ -101,7 +101,7 @@ export interface ReactDatePickerProps {
    * What to do when the input changes
    */
   onChange?(
-    date: moment.Moment | string | null,
+    date: moment.Moment | null,
     event?: React.SyntheticEvent<any> | undefined
   ): void;
   onChangeRaw?(event: React.FocusEvent<HTMLInputElement>): void;

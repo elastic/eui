@@ -13,12 +13,14 @@ import {
   toAbsoluteString,
   toRelativeString,
 } from '../date_modes';
-import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
-import { ReactDatePickerProps } from '../../react-datepicker'; // eslint-disable-line import/no-unresolved
+import { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverContentProps {
   value: string;
-  onChange: NonNullable<ReactDatePickerProps['onChange']>;
+  onChange(
+    date: Moment | string | null,
+    event?: React.SyntheticEvent<any> | undefined
+  ): void;
   roundUp?: boolean;
   dateFormat: string;
   timeFormat: string;
