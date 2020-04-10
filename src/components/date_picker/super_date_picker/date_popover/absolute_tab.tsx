@@ -7,14 +7,14 @@ import dateMath from '@elastic/datemath';
 import { EuiDatePicker } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { toSentenceCase } from '../../../../services/string/to_case';
-import { ReactDatePickerProps } from '../../react-datepicker'; // eslint-disable-line import/no-unresolved
+import { EuiDatePopoverContentProps } from './date_popover_content';
 
 export interface EuiAbsoluteTabProps {
   dateFormat: string;
   timeFormat: string;
   locale?: LocaleSpecifier;
   value: string;
-  onChange: NonNullable<ReactDatePickerProps['onChange']>;
+  onChange: EuiDatePopoverContentProps['onChange'];
   roundUp: boolean;
   position: 'start' | 'end';
 }
@@ -53,13 +53,13 @@ export class EuiAbsoluteTab extends Component<
     };
   }
 
-  handleChange: ReactDatePickerProps['onChange'] = (date, event) => {
+  handleChange: EuiDatePopoverContentProps['onChange'] = (date, event) => {
     const { onChange } = this.props;
     if (date === null) {
       return;
     }
     const dateMoment = moment(date);
-    onChange(date, event);
+    onChange(typeof date === 'string' ? date : date.toISOString(), event);
     this.setState({
       valueAsMoment: dateMoment,
       textInputValue: dateMoment.format(this.props.dateFormat),
