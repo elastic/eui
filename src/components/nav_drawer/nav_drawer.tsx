@@ -4,6 +4,7 @@ import React, {
   createRef,
   MouseEventHandler,
   isValidElement,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
@@ -21,7 +22,9 @@ import { CommonProps } from '../common';
 
 const MENU_ELEMENT_ID = 'navDrawerMenu';
 
-export interface EuiNavDrawerProps extends CommonProps {
+export interface EuiNavDrawerProps
+  extends CommonProps,
+    HTMLAttributes<HTMLElement> {
   children?: ReactNode | ReactNode[];
 
   /**
