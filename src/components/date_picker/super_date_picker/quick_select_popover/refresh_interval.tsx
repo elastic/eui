@@ -205,7 +205,7 @@ export class EuiRefreshInterval extends Component<
               onClick={this.toggleRefresh}
               disabled={value === '' || value <= 0}
               data-test-subj="superDatePickerToggleRefreshButton"
-              aria-describedby={`${refreshSelectionId} ${legendId}`}>
+              aria-describedby={refreshSelectionId}>
               {isPaused ? (
                 <EuiI18n token="euiRefreshInterval.start" default="Start" />
               ) : (
