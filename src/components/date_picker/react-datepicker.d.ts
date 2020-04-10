@@ -102,21 +102,18 @@ export interface ReactDatePickerProps {
    */
   onChange?(
     date: moment.Moment | null,
-    event?: React.SyntheticEvent<any> | undefined
+    event?: React.SyntheticEvent<any>
   ): void;
   onChangeRaw?(event: React.FocusEvent<HTMLInputElement>): void;
   onClickOutside?(event: React.MouseEvent<HTMLDivElement>): void;
   onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
   onKeyDown?(event: React.KeyboardEvent<HTMLDivElement>): void;
   onMonthChange?(date: moment.Moment): void;
-  onSelect?(
-    date: moment.Moment,
-    event: React.SyntheticEvent<any> | undefined
-  ): void;
+  onSelect?(date: moment.Moment, event?: React.SyntheticEvent<any>): void;
   onWeekSelect?(
     firstDayOfWeek: moment.Moment,
     weekNumber: string | number,
-    event: React.SyntheticEvent<any> | undefined
+    event?: React.SyntheticEvent<any>
   ): void;
   onYearChange?(date: moment.Moment): void;
   openToDate?: moment.Moment;

@@ -19,7 +19,7 @@ export interface EuiDatePopoverContentProps {
   value: string;
   onChange(
     date: Moment | string | null,
-    event?: React.SyntheticEvent<any> | undefined
+    event?: React.SyntheticEvent<any>
   ): void;
   roundUp?: boolean;
   dateFormat: string;
