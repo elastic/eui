@@ -108,15 +108,19 @@ export class EuiTabbedContent extends Component<
     }
   }
 
+  focusTab = () => {
+    const targetTab: HTMLDivElement | null = this.tabsRef.current!.querySelector(
+      `#${this.state.selectedTabId}`
+    );
+    targetTab!.focus();
+  };
+
   initializeFocus = () => {
     if (!this.state.inFocus && this.props.autoFocus === 'selected') {
       // Must wait for setState to finish before calling `.focus()`
       // as the focus call triggers a blur on the first tab
       this.setState({ inFocus: true }, () => {
-        const targetTab: HTMLDivElement | null = this.tabsRef.current!.querySelector(
-          `#${this.state.selectedTabId}`
-        );
-        targetTab!.focus();
+        this.focusTab();
       });
     }
   };
@@ -142,7 +146,9 @@ export class EuiTabbedContent extends Component<
 
     // Only track selection state if it's not controlled externally.
     if (!externalSelectedTab) {
-      this.setState({ selectedTabId: selectedTab.id });
+      this.setState({ selectedTabId: selectedTab.id }, () => {
+        this.focusTab();
+      });
     }
   };
 

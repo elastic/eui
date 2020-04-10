@@ -43,6 +43,27 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+.guideSideNav__item {
+  // Hate to do this, but it's the only way to get the badge to display correctly
+  .euiSideNavItemButton__label {
+    // By using the `icon` display of EuiSideNavItem, it will continue to:
+    // a) truncate properly
+    // b) not underline the badge when selected
+    // But it shows to the left of the label instead of right, so we have to shift the order of the label
+    order: -1;
+  }
+
+  .guideSideNav__newBadge {
+    margin-left: $euiSizeXS;
+    margin-right: $euiSizeXS;
+  }
+
+  // Shift the margin on the badge when selected and the dropdown arrow no longer shows
+  .euiSideNavItemButton-isSelected .guideSideNav__newBadge {
+    margin-right: 0;
+  }
+}
+
 .guideSideNav__item--inSearch {
   color: $euiColorDarkShade;
 }
