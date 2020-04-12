@@ -8,6 +8,7 @@ No public interface changes since `22.5.0`.
 
 **Bug Fixes**
 
+- Fixed EuiI8n hasPropName utility errors on null values ([#3303](https://github.com/elastic/eui/pull/3303))
 - Fixed the inline styles being overwritten by consumer-passed inline styles in EuiBadge ([#3284](https://github.com/elastic/eui/pull/3284))
 
 ## [`22.4.0`](https://github.com/elastic/eui/tree/v22.4.0)
