@@ -612,7 +612,7 @@
 
 **Bug fixes**
 
-- Re-Enabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
+- Re-enabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
 - Fixed `EuiNavDrawer` collapse/expand button height issue
  ([#2463](https://github.com/elastic/eui/pull/2463))
 
