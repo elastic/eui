@@ -9,7 +9,7 @@ import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form
 import { EuiErrorBoundary } from '../error_boundary';
 
 import { EuiI18nConsumer } from '../context';
-import { CommonProps } from '../common';
+import { ApplyClassComponentDefaults, CommonProps } from '../common';
 
 // @ts-ignore the type is provided by react-datepicker.d.ts
 import { ReactDatePicker as _ReactDatePicker } from '../../../packages';
@@ -72,9 +72,13 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   showIcon?: boolean;
 }
 
-export type EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
+type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
 
-export class EuiDatePicker extends Component<EuiDatePickerProps> {
+export type EuiDatePickerProps = ApplyClassComponentDefaults<
+  typeof EuiDatePicker
+>;
+
+export class EuiDatePicker extends Component<_EuiDatePickerProps> {
   static defaultProps = {
     adjustDateOnChange: true,
     dateFormat: euiDatePickerDefaultDateFormat,

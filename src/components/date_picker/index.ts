@@ -19,6 +19,7 @@ export {
   RelativeDateMode,
   NowDateMode,
   DateMode,
+  OnRefreshChangeProps,
   ShortDate,
   RelativeParts,
   RelativeOption,

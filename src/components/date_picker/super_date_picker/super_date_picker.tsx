@@ -33,12 +33,12 @@ import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export { prettyDuration, commonDurationRanges };
 
-interface OnTimeChangeProps extends DurationRange {
+export interface OnTimeChangeProps extends DurationRange {
   isInvalid: boolean;
   isQuickSelection: boolean;
 }
 
-interface OnRefreshProps extends DurationRange {
+export interface OnRefreshProps extends DurationRange {
   refreshInterval: number;
 }
 

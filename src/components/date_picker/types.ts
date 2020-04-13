@@ -49,10 +49,12 @@ export interface RelativeOption {
   value: TimeUnitId | TimeUnitFromNowId;
 }
 
-export type ApplyRefreshInterval = (args: {
-  isPaused?: boolean;
+export type OnRefreshChangeProps = {
+  isPaused: boolean;
   refreshInterval: number;
-}) => void;
+};
+
+export type ApplyRefreshInterval = (args: OnRefreshChangeProps) => void;
 
 export interface QuickSelect {
   timeTense: string;

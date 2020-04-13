@@ -5,6 +5,8 @@ export { AsyncInterval } from './async_interval';
 export {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
+  OnTimeChangeProps,
+  OnRefreshProps,
 } from './super_date_picker';
 
 export {
