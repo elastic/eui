@@ -40,7 +40,7 @@ export interface EuiNavDrawerProps
   /**
    * Adds fixed toggle button to bottom of menu area
    */
-  showExpandButton: boolean;
+  showExpandButton?: boolean;
 
   /**
    * Display tooltips on side nav items
