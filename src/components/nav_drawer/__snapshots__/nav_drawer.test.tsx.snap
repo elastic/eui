@@ -109,6 +109,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Canvas"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -133,6 +134,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Discover"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -157,6 +159,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Visualize"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -181,6 +184,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Dashboard"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -205,6 +209,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Machine learning"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -229,6 +234,7 @@ exports[`EuiNavDrawer is rendered 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Custom Plugin (no icon)"
                 href="#"
+                rel="noreferrer"
               >
                 <span
                   class="euiListGroupItem__icon euiNavDrawerGroup__itemDefaultIcon"
@@ -316,6 +322,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Canvas"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -340,6 +347,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Discover"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -364,6 +372,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Visualize"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -388,6 +397,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Dashboard"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -412,6 +422,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Machine learning"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -436,6 +447,7 @@ exports[`EuiNavDrawer renders with falsy children 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Custom Plugin (no icon)"
                 href="#"
+                rel="noreferrer"
               >
                 <span
                   class="euiListGroupItem__icon euiNavDrawerGroup__itemDefaultIcon"
@@ -577,6 +589,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Canvas"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -601,6 +614,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Discover"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -625,6 +639,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Visualize"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -649,6 +664,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Dashboard"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -673,6 +689,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Machine learning"
                 href="#"
+                rel="noreferrer"
               >
                 <div
                   class="euiListGroupItem__icon"
@@ -697,6 +714,7 @@ exports[`EuiNavDrawer renders with fragments 1`] = `
                 class="euiListGroupItem__button"
                 data-name="Custom Plugin (no icon)"
                 href="#"
+                rel="noreferrer"
               >
                 <span
                   class="euiListGroupItem__icon euiNavDrawerGroup__itemDefaultIcon"

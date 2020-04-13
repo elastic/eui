@@ -126,7 +126,7 @@ All event handlers should take the form `onEvent` and accurately describe when i
 Try to leverage the `children` prop wherever possible. This will create a simpler more uniform
 API throughout our components.
 
-We also [require some props](../src/test/reqiured_props.js) to be supported by all components, as
+We also [require some props](../src/test/required_props.ts) to be supported by all components, as
 reflected in our tests; for example, `className`. These are easily added via the `CommonProps` mentioned above.
 
 [component-development]: component-development.md

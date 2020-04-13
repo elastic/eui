@@ -110,6 +110,7 @@ describe('EuiSideNav', () => {
           },
         ];
 
+        // eslint-disable-next-line local/href-with-rel
         const renderItem: RenderItem<{}> = ({ href, className, children }) => (
           <a data-test-id="my-custom-element" href={href} className={className}>
             {children}
