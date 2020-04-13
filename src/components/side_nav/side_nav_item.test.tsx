@@ -46,4 +46,26 @@ describe('EuiSideNavItem', () => {
       expect(component).toMatchSnapshot();
     });
   });
+
+  describe('href', () => {
+    test('is rendered', () => {
+      const component = render(
+        <EuiSideNavItem href="#">
+          <button />
+        </EuiSideNavItem>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('is rendered with rel', () => {
+      const component = render(
+        <EuiSideNavItem href="#" rel="noopener">
+          <button />
+        </EuiSideNavItem>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

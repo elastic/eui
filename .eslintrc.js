@@ -36,6 +36,7 @@ module.exports = {
   rules: {
     "prefer-template": "error",
     "local/i18n": "error",
+    "local/href-with-rel": "error",
     "no-use-before-define": "off",
     "quotes": ["warn", "single", "avoid-escape"],
 
