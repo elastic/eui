@@ -45,7 +45,7 @@ export interface EuiNavDrawerProps
   /**
    * Display tooltips on side nav items
    */
-  showToolTips: boolean;
+  showToolTips?: boolean;
 }
 
 interface EuiNavDrawerState {
