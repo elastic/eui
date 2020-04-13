@@ -2,15 +2,16 @@ import React from 'react';
 import { render } from 'enzyme';
 
 import { EuiNavDrawer } from './nav_drawer';
-import { EuiNavDrawerGroup } from './nav_drawer_group';
+import { EuiNavDrawerGroup, FlyoutMenuItem } from './nav_drawer_group';
+import { EuiListGroupItemProps } from '../list_group';
 
-const extraAction = {
+const extraAction: EuiListGroupItemProps['extraAction'] = {
   color: 'subdued',
   iconType: 'pin',
   iconSize: 's',
 };
 
-const topLinks = [
+const topLinks: FlyoutMenuItem[] = [
   {
     label: 'Recently viewed',
     iconType: 'clock',
@@ -74,7 +75,7 @@ const topLinks = [
   },
 ];
 
-const exploreLinks = [
+const exploreLinks: FlyoutMenuItem[] = [
   {
     label: 'Canvas',
     href: '#',
