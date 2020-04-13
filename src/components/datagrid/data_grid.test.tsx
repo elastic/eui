@@ -236,6 +236,7 @@ function sortByColumn(
       columnSorter
         .find('EuiSwitch')
         .props()
+        // @ts-ignore-next-line
         .onChange();
     });
 

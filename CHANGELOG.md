@@ -2583,6 +2583,7 @@
 **Breaking changes**
 
 - Support values on radio inputs. This is breaking because now the second argument to the radio `onChange` callback is the value, which bumps the change event to the third argument ([#613](https://github.com/elastic/eui/pull/613))
+- Upgraded `TypeScript` to 3.7.2, `react` to 16.9.34, `react-dom` to 16.9.6 ([#3295](https://github.com/elastic/eui/pull/3295))
 
 ## [`0.0.38`](https://github.com/elastic/eui/tree/v0.0.38)
 
