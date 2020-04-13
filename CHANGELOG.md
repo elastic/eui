@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `22.5.0`.
+- Converted `NavDrawer`, `NavDrawerGroup`, and `NavDrawerFlyout` to TypeScript ([#3268](https://github.com/elastic/eui/pull/3268))
 
 ## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
 

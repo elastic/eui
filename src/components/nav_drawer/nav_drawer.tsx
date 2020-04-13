@@ -1,31 +1,87 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  Component,
+  ReactNode,
+  createRef,
+  MouseEventHandler,
+  isValidElement,
+  HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiNavDrawerFlyout } from './nav_drawer_flyout';
-import { EuiNavDrawerGroup, ATTR_SELECTOR } from './nav_drawer_group';
+import {
+  EuiNavDrawerGroup,
+  ATTR_SELECTOR,
+  FlyoutMenuItem,
+} from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { throttle } from '../color_picker/utils';
+import { CommonProps } from '../common';
 
 const MENU_ELEMENT_ID = 'navDrawerMenu';
 
-export class EuiNavDrawer extends Component {
-  constructor(props) {
-    super(props);
-    this.expandButtonRef;
+export interface EuiNavDrawerProps
+  extends CommonProps,
+    HTMLAttributes<HTMLElement> {
+  children?: ReactNode | ReactNode[];
 
-    this.state = {
-      isLocked: props.isLocked,
-      isCollapsed: !props.isLocked,
-      flyoutIsCollapsed: true,
-      outsideClickDisabled: true,
-      isManagingFocus: false,
-      toolTipsEnabled: true,
-      focusReturnRef: null,
-    };
-  }
+  /**
+   * Keep drawer locked open by default
+   */
+  isLocked?: boolean;
+
+  /**
+   * Returns the current state of isLocked
+   */
+  onIsLockedUpdate?: (isLocked: boolean) => void;
+
+  /**
+   * Adds fixed toggle button to bottom of menu area
+   */
+  showExpandButton?: boolean;
+
+  /**
+   * Display tooltips on side nav items
+   */
+  showToolTips?: boolean;
+}
+
+interface EuiNavDrawerState {
+  flyoutIsCollapsed: boolean;
+  flyoutListItems: FlyoutMenuItem[] | null;
+  focusReturnRef: ReactNode | null;
+  isCollapsed: boolean;
+  isLocked: boolean;
+  isManagingFocus: boolean;
+  navFlyoutTitle: string | undefined;
+  outsideClickDisabled: boolean;
+  toolTipsEnabled: boolean;
+}
+
+export class EuiNavDrawer extends Component<
+  EuiNavDrawerProps,
+  EuiNavDrawerState
+> {
+  static defaultProps = {
+    showExpandButton: true,
+    showToolTips: true,
+  };
+
+  state: EuiNavDrawerState = {
+    flyoutIsCollapsed: true,
+    flyoutListItems: null,
+    focusReturnRef: null,
+    isCollapsed: !this.props.isLocked,
+    isLocked: Boolean(this.props.isLocked),
+    isManagingFocus: false,
+    navFlyoutTitle: undefined,
+    outsideClickDisabled: true,
+    toolTipsEnabled: true,
+  };
+
+  expandButtonRef = createRef<HTMLButtonElement>();
 
   componentDidMount() {
     if (this.props.isLocked) {
@@ -37,7 +93,7 @@ export class EuiNavDrawer extends Component {
     window.removeEventListener('resize', this.functionToCallOnWindowResize);
   }
 
-  returnOnIsLockedUpdate = isLockedState => {
+  returnOnIsLockedUpdate = (isLockedState: EuiNavDrawerState['isLocked']) => {
     if (this.props.onIsLockedUpdate) {
       this.props.onIsLockedUpdate(isLockedState);
     }
@@ -52,16 +108,18 @@ export class EuiNavDrawer extends Component {
   }, 50);
 
   sideNavLockClicked = () => {
-    if (this.state.isLocked) {
+    const { isLocked } = this.state;
+
+    if (isLocked) {
       window.removeEventListener('resize', this.functionToCallOnWindowResize);
     } else {
       window.addEventListener('resize', this.functionToCallOnWindowResize);
     }
 
-    this.returnOnIsLockedUpdate(!this.state.isLocked);
+    this.returnOnIsLockedUpdate(!isLocked);
 
     this.setState({
-      isLocked: !this.state.isLocked,
+      isLocked: !isLocked,
       isCollapsed: false,
       outsideClickDisabled: true,
     });
@@ -93,8 +151,8 @@ export class EuiNavDrawer extends Component {
     this.collapseFlyout();
 
     requestAnimationFrame(() => {
-      if (this.expandButtonRef) {
-        this.expandButtonRef.focus();
+      if (this.expandButtonRef.current) {
+        this.expandButtonRef.current.focus();
       }
     });
   };
@@ -124,31 +182,34 @@ export class EuiNavDrawer extends Component {
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
     setTimeout(() => {
-      document.getElementById('navDrawerMenu').scrollTop = 0;
+      const element = document.getElementById('navDrawerMenu');
+      if (element) {
+        element.scrollTop = 0;
+      }
     }, 50);
 
     // In case it was locked before, remove the window resize listener
     window.removeEventListener('resize', this.functionToCallOnWindowResize);
   };
 
-  expandFlyout = (links, title, item) => {
-    const content = links;
-
+  expandFlyout = (
+    links: FlyoutMenuItem[],
+    title: string,
+    item: FlyoutMenuItem
+  ) => {
     if (this.state.navFlyoutTitle === title) {
       this.collapseFlyout();
     } else {
       this.setState(
-        ({ isLocked }) => {
-          return {
-            flyoutIsCollapsed: false,
-            navFlyoutTitle: title,
-            navFlyoutContent: content,
-            isCollapsed: isLocked ? false : true,
-            toolTipsEnabled: false,
-            outsideClickDisabled: false,
-            focusReturnRef: item.label,
-          };
-        },
+        ({ isLocked }) => ({
+          flyoutIsCollapsed: false,
+          flyoutListItems: links,
+          focusReturnRef: item.label,
+          isCollapsed: isLocked ? false : true,
+          navFlyoutTitle: title,
+          outsideClickDisabled: false,
+          toolTipsEnabled: false,
+        }),
         () => {
           // Ideally this uses React `ref` instead of `querySelector`, but the menu composition
           // does not allow for deep `ref` element management at present
@@ -163,12 +224,12 @@ export class EuiNavDrawer extends Component {
   };
 
   collapseFlyout = (shouldReturnFocus = true) => {
-    const focusReturn = this.state.focusReturnRef;
+    const { focusReturnRef: focusReturn } = this.state;
     this.setState(
       {
         flyoutIsCollapsed: true,
-        navFlyoutTitle: null,
-        navFlyoutContent: null,
+        navFlyoutTitle: undefined,
+        flyoutListItems: null,
         toolTipsEnabled: this.state.isLocked ? false : true,
         focusReturnRef: null,
       },
@@ -177,8 +238,10 @@ export class EuiNavDrawer extends Component {
         // does not allow for deep `ref` element management at present
         const element = document.querySelector(
           `#${MENU_ELEMENT_ID} [${ATTR_SELECTOR}='${focusReturn}']`
-        );
-        if (!element) return;
+        ) as HTMLElement;
+        if (!element) {
+          return;
+        }
         requestAnimationFrame(() => {
           element.setAttribute('aria-expanded', 'false');
         });
@@ -195,14 +258,14 @@ export class EuiNavDrawer extends Component {
     this.collapseFlyout(false);
   };
 
-  handleDrawerMenuClick = e => {
+  handleDrawerMenuClick: MouseEventHandler<HTMLDivElement> = event => {
     // walk up e.target until either:
     // 1. a[href] - close the menu
     // 2. document.body - do nothing
 
-    let element = e.target;
+    let element = event.target as HTMLElement | null;
     while (
-      element !== undefined &&
+      element !== null &&
       element !== document.body &&
       (element.tagName !== 'A' || element.getAttribute('href') === undefined)
     ) {
@@ -215,23 +278,27 @@ export class EuiNavDrawer extends Component {
     }
   };
 
-  modifyChildren = children => {
+  modifyChildren = (children: ReactNode | ReactNode[]): ReactNode => {
     // Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
     // Filter out falsy items
     const filteredChildren = React.Children.toArray(children);
     return React.Children.map(filteredChildren, child => {
-      // Allow for Fragments by recursive modification
-      if (child.type === React.Fragment) {
-        return this.modifyChildren(child.props.children);
-      } else if (child.type === EuiNavDrawerGroup) {
+      if (isValidElement(child)) {
+        // Allow for Fragments by recursive modification
+        if (child.type === React.Fragment) {
+          return this.modifyChildren(child.props.children);
+        }
+
         // Check if child is an EuiNavDrawerGroup and if it does have a flyout, add the expand function
-        return React.cloneElement(child, {
-          flyoutMenuButtonClick: this.expandFlyout,
-          showToolTips: this.state.toolTipsEnabled && this.props.showToolTips,
-        });
-      } else {
-        return child;
+        if (child.type === EuiNavDrawerGroup) {
+          return React.cloneElement(child, {
+            flyoutMenuButtonClick: this.expandFlyout,
+            showToolTips: this.state.toolTipsEnabled && this.props.showToolTips,
+          });
+        }
       }
+
+      return child;
     });
   };
 
@@ -241,7 +308,6 @@ export class EuiNavDrawer extends Component {
       className,
       showExpandButton,
       showToolTips,
-      isCollapsed,
       isLocked,
       onIsLockedUpdate,
       ...rest
@@ -284,36 +350,36 @@ export class EuiNavDrawer extends Component {
               sideNavLockAriaLabel,
               sideNavLockExpanded,
               sideNavLockCollapsed,
-            ]) => (
+            ]: string[]) => (
               <EuiListGroupItem
-                buttonRef={node => (this.expandButtonRef = node)}
-                label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
-                iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
-                size="s"
+                buttonRef={this.expandButtonRef}
                 className={
                   this.state.isCollapsed
                     ? 'navDrawerExpandButton-isCollapsed'
                     : 'navDrawerExpandButton-isExpanded'
                 }
-                showToolTip={this.state.isCollapsed}
-                extraAction={{
-                  className: 'euiNavDrawer__expandButtonLockAction',
-                  color: 'text',
-                  onClick: this.sideNavLockClicked,
-                  iconType: this.state.isLocked ? 'lock' : 'lockOpen',
-                  iconSize: 's',
-                  'aria-label': sideNavLockAriaLabel,
-                  title: this.state.isLocked
-                    ? sideNavLockExpanded
-                    : sideNavLockCollapsed,
-                  'aria-pressed': this.state.isLocked ? true : false,
-                }}
-                onClick={this.collapseButtonClick}
                 data-test-subj={
                   this.state.isCollapsed
                     ? 'navDrawerExpandButton-isCollapsed'
                     : 'navDrawerExpandButton-isExpanded'
                 }
+                extraAction={{
+                  'aria-label': sideNavLockAriaLabel,
+                  'aria-pressed': this.state.isLocked ? true : false,
+                  className: 'euiNavDrawer__expandButtonLockAction',
+                  color: 'text',
+                  iconType: this.state.isLocked ? 'lock' : 'lockOpen',
+                  iconSize: 's',
+                  onClick: this.sideNavLockClicked,
+                  title: this.state.isLocked
+                    ? sideNavLockExpanded
+                    : sideNavLockCollapsed,
+                }}
+                iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
+                label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
+                onClick={this.collapseButtonClick}
+                showToolTip={this.state.isCollapsed}
+                size="s"
               />
             )}
           </EuiI18n>
@@ -324,16 +390,15 @@ export class EuiNavDrawer extends Component {
     const flyoutContent = (
       <EuiNavDrawerFlyout
         id="navDrawerFlyout"
-        title={this.state.navFlyoutTitle}
         isCollapsed={this.state.flyoutIsCollapsed}
-        listItems={this.state.navFlyoutContent}
-        wrapText
+        listItems={this.state.flyoutListItems}
         onClose={this.collapseFlyout}
+        title={this.state.navFlyoutTitle}
+        wrapText
       />
     );
 
-    // Add an onClick that expands the flyout sub menu for any list items (links)
-    // that have a flyoutMenu prop (sub links)
+    // Add an onClick that expands the flyout sub menu for any list items (links) that have a flyoutMenu prop (sub links)
     let modifiedChildren = children;
 
     modifiedChildren = this.modifyChildren(this.props.children);
@@ -365,33 +430,3 @@ export class EuiNavDrawer extends Component {
     );
   }
 }
-
-EuiNavDrawer.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-
-  /**
-   * Adds fixed toggle button to bottom of menu area
-   */
-  showExpandButton: PropTypes.bool,
-
-  /**
-   * Display tooltips on side nav items
-   */
-  showToolTips: PropTypes.bool,
-
-  /**
-   * Keep drawer locked open by default
-   */
-  isLocked: PropTypes.bool,
-
-  /**
-   * Returns the current state of isLocked
-   */
-  onIsLockedUpdate: PropTypes.func,
-};
-
-EuiNavDrawer.defaultProps = {
-  showExpandButton: true,
-  showToolTips: true,
-};

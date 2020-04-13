@@ -1,38 +1,65 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { EuiListGroup } from '../list_group/list_group';
+import { EuiListGroup, EuiListGroupProps } from '../list_group/list_group';
+import { EuiListGroupItemProps } from '../list_group/list_group_item';
 import { toInitials } from '../../services';
 
 export const ATTR_SELECTOR = 'data-name';
 
-export const EuiNavDrawerGroup = ({
+export type FlyoutMenuItem = EuiListGroupItemProps & {
+  'data-name'?: ReactNode | ReactNode[];
+  flyoutMenu?: {
+    title: string;
+    listItems: FlyoutMenuItem[];
+  };
+  label: string;
+};
+
+export interface EuiNavDrawerGroupProps extends EuiListGroupProps {
+  listItems?: FlyoutMenuItem[];
+
+  /**
+   * While not normally required, it is required to pass a function for handling
+   * of the flyout menu button click
+   */
+  flyoutMenuButtonClick?: (
+    links: FlyoutMenuItem[],
+    title: string,
+    item: FlyoutMenuItem
+  ) => void;
+
+  /**
+   * Passthrough function to be called when the flyout is closing
+   * @see `EuiNavDrawer`
+   */
+  onClose?: () => void;
+}
+
+export const EuiNavDrawerGroup: FunctionComponent<EuiNavDrawerGroupProps> = ({
   className,
   listItems,
   flyoutMenuButtonClick,
   onClose = () => {},
   ...rest
 }) => {
-  const classes = classNames('euiNavDrawerGroup', className);
-
-  const listItemsExists = listItems && !!listItems.length;
-
   // Alter listItems object with prop flyoutMenu and extra props
-  const newListItems = !listItemsExists
+  const newListItems = !(listItems && !!listItems.length)
     ? undefined
     : listItems.map(item => {
         // If the flyout menu exists, pass back the list of times and the title with the onClick handler of the item
-        const { flyoutMenu, onClick, ...itemProps } = item;
+        const { flyoutMenu, ...itemProps } = item;
         if (flyoutMenu && flyoutMenuButtonClick) {
           const items = [...flyoutMenu.listItems];
           const title = `${flyoutMenu.title}`;
-          itemProps.onClick = () => flyoutMenuButtonClick(items, title, item);
+          itemProps.onClick = () => {
+            flyoutMenuButtonClick(items, title, item);
+          };
           itemProps['aria-expanded'] = false;
         } else {
-          itemProps.onClick = (...args) => {
-            if (onClick) {
-              onClick(...args);
+          itemProps.onClick = event => {
+            if (item.onClick) {
+              item.onClick(event);
             }
             onClose();
           };
@@ -62,28 +89,10 @@ export const EuiNavDrawerGroup = ({
       });
 
   return (
-    <EuiListGroup className={classes} listItems={newListItems} {...rest} />
+    <EuiListGroup
+      className={classNames('euiNavDrawerGroup', className)}
+      listItems={newListItems}
+      {...rest}
+    />
   );
-};
-
-EuiNavDrawerGroup.propTypes = {
-  listItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      ...EuiListGroup.propTypes.listItems[0],
-      flyoutMenu: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        listItems: EuiListGroup.propTypes.listItems.isRequired,
-      }),
-    })
-  ),
-  /**
-   * While not normally required, it is required to pass a function for handling
-   * of the flyout menu button click
-   */
-  flyoutMenuButtonClick: PropTypes.func,
-  /**
-   * Passthrough function to be called when the flyout is closing
-   * See ./nav_drawer.js
-   */
-  onClose: PropTypes.func,
 };
