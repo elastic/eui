@@ -227,18 +227,21 @@
     color: $euiCodeBlockSectionColor;
   }
 
-  .hljs-addition {
-    background-color: $euiCodeBlockAdditionBackgroundColor;
-    color: $euiCodeBlockAdditionColor;
+  .hljs-addition,
+  .hljs-deletion {
     display: inline-block;
+    padding-left: $euiSizeXS;
     width: 100%;
   }
 
+  .hljs-addition {
+    border-left: $euiBorderWidthThick solid $euiCodeBlockAdditionBorderColor;
+    color: $euiCodeBlockAdditionColor;
+  }
+
   .hljs-deletion {
-    background-color: $euiCodeBlockDeletionBackgroundColor;
+    border-left: $euiBorderWidthThick solid $euiCodeBlockDeletionBorderColor;
     color: $euiCodeBlockDeletionColor;
-    display: inline-block;
-    width: 100%;
   }
 
   .hljs-selector-class {
