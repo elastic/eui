@@ -128,7 +128,7 @@ const popoverBlockSnippet = `<EuiPopover
   isOpen={isPopoverOpen}
   closePopover={closePopover}
   display="block">
-  <!-- Content for popover displaying in block -->
+  <!-- Content for popover with display block anchor -->
 </EuiPopover>`;
 
 const inputPopoverSnippet = `<EuiInputPopover
