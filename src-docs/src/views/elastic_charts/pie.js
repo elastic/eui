@@ -56,7 +56,7 @@ export default () => {
                   {
                     groupByRollup: d => d.status,
                     shape: {
-                      fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
+                      fillColor: d => euiPaletteColorBlind()[d.sortIndex],
                     },
                   },
                 ]}
@@ -88,7 +88,7 @@ export default () => {
       {
         groupByRollup: d => d.status,
         shape: {
-          fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
+          fillColor: d => euiPaletteColorBlind()[d.sortIndex],
         },
       },
     ]}
@@ -143,7 +143,7 @@ export default () => {
                   {
                     groupByRollup: d => d.language,
                     shape: {
-                      fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
+                      fillColor: d => euiPaletteColorBlind()[d.sortIndex],
                     },
                   },
                 ]}
@@ -181,7 +181,7 @@ export default () => {
       {
         groupByRollup: d => d.language,
         shape: {
-          fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
+          fillColor: d => euiPaletteColorBlind()[d.sortIndex],
         },
       },
     ]}
@@ -224,7 +224,7 @@ export default () => {
             {
               groupByRollup: d => d.browser,
               shape: {
-                fillColor: d => euiPaletteColorBlind(10)[d.sortIndex],
+                fillColor: d => euiPaletteColorBlind()[d.sortIndex],
               },
             },
           ]}

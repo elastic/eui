@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { ExternalBadge } from './shared';
+import pieSliceOrderImg from '../../images/pie_slice_order.png';
 
 import {
   EuiSpacer,
@@ -10,6 +11,9 @@ import {
   EuiLink,
   EuiIconTip,
   EuiToolTip,
+  EuiCallOut,
+  EuiCode,
+  EuiImage,
 } from '../../../../src/components';
 
 import PieChart from './pie';
@@ -61,6 +65,42 @@ const introCards = [
     ),
   },
 ];
+
+const unsupportedTooltip = (
+  <EuiIconTip
+    type="iInCircle"
+    color="subdued"
+    content="Elastic Charts doesn’t provide this functionality yet."
+    iconProps={{
+      className: 'eui-alignTop',
+    }}
+  />
+);
+
+const orderingTooltip = (
+  <EuiIconTip
+    type="iInCircle"
+    color="subdued"
+    content={
+      <EuiImage
+        url={pieSliceOrderImg}
+        alt="Photo of a page in the book referencing the ordering of largest slice on top."
+        caption={
+          <small>
+            <em>
+              The Wall Street Journal Guide to Information Graphics: The Dos and
+              Don&apos;ts of Presenting Data, Facts, and Figures
+            </em>{' '}
+            by Dona M. Wong
+          </small>
+        }
+      />
+    }
+    iconProps={{
+      className: 'eui-alignTop',
+    }}
+  />
+);
 
 export const ElasticChartsPieExample = {
   title: 'Part to whole comparisons',
@@ -131,19 +171,63 @@ export const ElasticChartsPieExample = {
             </EuiToolTip>{' '}
             are the same for pie charts. The empty center of donut charts can
             provide a place to display additional/related information
-            <EuiIconTip
-              type="iInCircle"
-              color="subdued"
-              content="Elastic charts doesn’t provide this functionality yet."
-              iconProps={{
-                className: 'eui-alignTop',
-              }}
-            />
-            .
+            {unsupportedTooltip}.
           </p>
+          <EuiCallOut
+            color="warning"
+            title={
+              <>
+                Elastic Charts&apos; partition charts do not currently support
+                the <EuiCode>{'<Settings />'}</EuiCode> component.
+              </>
+            }>
+            <p>
+              {' '}
+              EUI then provides a separate key for use with
+              <EuiCode language="ts">
+                {'Partition.config={{...EUI_CHARTS_THEME_LIGHT.pie}}'}
+              </EuiCode>
+              . The chart colors also need to be passed a different way via{' '}
+              <EuiCode language="ts">
+                {
+                  'Partition.layers.shape.fillColor={d => euiPaletteColorBlind()[d.sortIndex]}'
+                }
+              </EuiCode>
+              . See the snippet for full details.
+            </p>
+          </EuiCallOut>
         </>
       ),
       demo: <PieChart />,
+      snippet: `import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
+
+const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_LIGHT.pie;
+
+<Chart size={{height: 200}}>
+  <Partition
+    data={[
+      {
+        category: 'Name',
+        percent: 50,
+      },
+    ]}
+    valueAccessor={d => Number(d.percent)}
+    valueFormatter={() => ''} // Hide the slice value if data values are already in percentages
+    layers={[
+      {
+        groupByRollup: d => d.language,
+        shape: {
+          fillColor: d => euiPaletteColorBlind()[d.sortIndex],
+        },
+      },
+    ]}
+    config={{
+      ...euiPieConfig,
+      emptySizeRatio: 0.4, // To create a donut chart
+      clockwiseSectors: false, // For correct slice order
+    }}
+  />
+</Chart>`,
     },
     {
       title: 'Slices and labelling',
@@ -151,10 +235,21 @@ export const ElasticChartsPieExample = {
         <>
           <p>
             Try to keep the labels <strong>within the slices</strong> (or just
-            outside) and consider appending their values. However, if there are
-            many small slices or long labels, use a legend, especially one that
-            displays the values in a table format with right aligned values.
+            outside)
+            <EuiIconTip
+              type="iInCircle"
+              color="subdued"
+              content="Elastic charts will do this automatically."
+              iconProps={{
+                className: 'eui-alignTop',
+              }}
+            />{' '}
+            and consider appending their values . However, if there are many
+            small slices or long labels, use a legend{unsupportedTooltip},
+            especially one that displays the values in a table format with right
+            aligned values.
           </p>
+          <h3>Other slices</h3>
           <p>
             Again, pie charts should have no more than six slices. However, it
             can be beneficial to <strong>group smaller/overflow slices</strong>{' '}
@@ -164,12 +259,12 @@ export const ElasticChartsPieExample = {
           </p>
           <h3>Slice order</h3>
           <p>
-            The order of the slices should alway{' '}
-            <strong>start from the 12 o’clock position</strong> and continue
-            clockwise. Categorical slices that have no inherent order are best
-            displayed in order of size. While categories that do have a natural
-            order, must follow this natural order, be it low to high or good to
-            bad.
+            The order of the slices should always{' '}
+            <strong>start from the 12 o’clock position</strong>, showing the
+            largest slice in the clockwise position then the rest ordering
+            counterclockwise in descending order.{orderingTooltip} However,
+            categories that have a natural order, should follow this natural
+            order, be it low to high or good to bad.{unsupportedTooltip}
           </p>
         </>
       ),
