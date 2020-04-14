@@ -20,7 +20,8 @@ export default () => {
             Toggle nav
           </EuiButton>
         }
-        isDocked={navIsDocked}
+        isDocked={navIsOpen}
+        showButtonIfDocked={true}
         onClose={() => setNavIsOpen(false)}>
         <div style={{ padding: 16 }}>
           <EuiTitle>
@@ -40,8 +41,8 @@ export default () => {
       {navIsDocked && (
         <EuiText size="s" color="subdued">
           <p>
-            The button gets hidden by default when nav is docked unless you set{' '}
-            <EuiCode language="js">hideButtonIfDocked = false</EuiCode>.
+            The button gets hidden by default when the nav is docked unless you
+            set <EuiCode language="js">showButtonIfDocked = true</EuiCode>.
           </p>
         </EuiText>
       )}

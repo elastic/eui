@@ -63,12 +63,12 @@ describe('EuiCollapsibleNav', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('hideButtonIfDocked', () => {
+    test('showButtonIfDocked', () => {
       const component = render(
         <EuiCollapsibleNav
           id="id"
           button={<button />}
-          hideButtonIfDocked={false}
+          showButtonIfDocked={true}
         />
       );
 

@@ -53,7 +53,7 @@ export type EuiCollapsibleNavProps = CommonProps &
     /**
      * Removes display of toggle button when in docked state
      */
-    hideButtonIfDocked?: boolean;
+    showButtonIfDocked?: boolean;
     onClose?: () => void;
   };
 
@@ -64,7 +64,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   isOpen = false,
   onClose,
   button,
-  hideButtonIfDocked = true,
+  showButtonIfDocked = false,
   id,
   ...rest
 }) => {
@@ -124,19 +124,20 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   }
 
   // Show a trigger button if one was passed but
-  // not if hideButtonIfDocked and navIsDocked
+  // not if navIsDocked and showButtonIfDocked is false
   const trigger =
-    button &&
-    !(hideButtonIfDocked && navIsDocked) &&
-    cloneElement(button as ReactElement, {
-      'aria-controls': flyoutID,
-      'aria-expanded': isOpen,
-      'aria-pressed': isOpen,
-      className: classNames(
-        button.props.className,
-        'euiCollapsibleNav__toggle'
-      ),
-    });
+    navIsDocked && !showButtonIfDocked
+      ? undefined
+      : button &&
+        cloneElement(button as ReactElement, {
+          'aria-controls': flyoutID,
+          'aria-expanded': isOpen,
+          'aria-pressed': isOpen,
+          className: classNames(
+            button.props.className,
+            'euiCollapsibleNav__toggle'
+          ),
+        });
 
   const flyout = (
     <>

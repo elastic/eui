@@ -11,15 +11,6 @@ exports[`EuiCollapsibleNav props button 1`] = `
 />
 `;
 
-exports[`EuiCollapsibleNav props hideButtonIfDocked 1`] = `
-<button
-  aria-controls="id"
-  aria-expanded="false"
-  aria-pressed="false"
-  class="euiCollapsibleNav__toggle"
-/>
-`;
-
 exports[`EuiCollapsibleNav props isDocked 1`] = `
 <div>
   <div
@@ -120,3 +111,12 @@ Array [
 `;
 
 exports[`EuiCollapsibleNav props onClose 1`] = `null`;
+
+exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
+<button
+  aria-controls="id"
+  aria-expanded="false"
+  aria-pressed="false"
+  class="euiCollapsibleNav__toggle"
+/>
+`;
