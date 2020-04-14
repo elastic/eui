@@ -9,6 +9,14 @@ import { EuiHealth } from '../../../../src/components';
 import Health from './health';
 const healthSource = require('!!raw-loader!./health');
 const healthHtml = renderToHtml(Health);
+const healthSnippet = [
+  `<EuiHealth color="subdued">Unknown</EuiHealth>
+`,
+  `<EuiHealth color="#33CC33">Custom color as hex</EuiHealth>
+`,
+  `<EuiHealth color="rgba(255, 0, 0, 0.2)">any valid CSS color code</EuiHealth>
+`,
+];
 
 export const HealthExample = {
   title: 'Health',
@@ -34,6 +42,7 @@ export const HealthExample = {
           situations.
         </p>
       ),
+      snippet: healthSnippet,
       props: { EuiHealth },
       demo: <Health />,
     },
