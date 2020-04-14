@@ -3,6 +3,9 @@
 - Converted `NavDrawer`, `NavDrawerGroup`, and `NavDrawerFlyout` to TypeScript ([#3268](https://github.com/elastic/eui/pull/3268))
 - Converted `EuiDatePicker`, `EuiDatePickerRange`, `EuiSuperDatePicker`, and `EuiSuperUpdateButton` to TypeScript ([#2891](https://github.com/elastic/eui/pull/2891))
 - Improved condensed `EuiTabs` focus states ([#3299](https://github.com/elastic/eui/pull/3299))
+- Added `EuiTour`, `EuiTourStep`, and `useEuiTour` components ([#2766](https://github.com/elastic/eui/pull/2766))
+- Added `EuiBeacon` component ([#2766](https://github.com/elastic/eui/pull/2766))
+- Added `offset` and `arrowChildren` props to `EuiPopover` for anchor element customization ([#2766](https://github.com/elastic/eui/pull/2766))
 
 ## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
 

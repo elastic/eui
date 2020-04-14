@@ -17,6 +17,8 @@ export {
   EuiBadgeGroup,
 } from './badge';
 
+export { EuiBeacon } from './beacon';
+
 export { EuiBottomBar } from './bottom_bar';
 
 export { EuiBreadcrumbs } from './breadcrumbs';
@@ -290,6 +292,8 @@ export {
 } from './table';
 
 export { EuiToken } from './token';
+
+export { EuiTour, EuiTourStep, useEuiTour } from './tour';
 
 export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
 
