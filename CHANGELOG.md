@@ -7,6 +7,10 @@
 - Added `EuiBeacon` component ([#2766](https://github.com/elastic/eui/pull/2766))
 - Added `offset` and `arrowChildren` props to `EuiPopover` for anchor element customization ([#2766](https://github.com/elastic/eui/pull/2766))
 
+**Bug Fixes**
+
+- Fixed `EuiProgress` `max` property to allow `undefined` ([#3198](https://github.com/elastic/eui/pull/3198))
+
 ## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
 
 - Added `forceState` prop to control `EuiAccordion` state from outside ([#3240](https://github.com/elastic/eui/pull/3240))
