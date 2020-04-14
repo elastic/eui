@@ -36,9 +36,9 @@ export class AppView extends Component {
   }
 
   renderContent() {
-    const { children, currentRoute, toggleLocale, locale, routes } = this.props;
+    const { children, toggleLocale, locale } = this.props;
 
-    const { navigation } = routes;
+    // const { navigation } = routes;
 
     const mappingFuncs = {
       'en-xa': translateUsingPseudoLocale,
@@ -55,10 +55,10 @@ export class AppView extends Component {
         <EuiPageBody>
           <EuiErrorBoundary>
             <GuidePageChrome
-              currentRoute={currentRoute}
+              // currentRoute={currentRoute}
               onToggleLocale={toggleLocale}
               selectedLocale={locale}
-              navigation={navigation}
+              // navigation={navigation}
             />
           </EuiErrorBoundary>
 
@@ -93,33 +93,33 @@ export class AppView extends Component {
       return;
     }
 
-    const { routes, currentRoute } = this.props;
+    // const { routes, currentRoute } = this.props;
 
-    if (e.keyCode === keyCodes.LEFT) {
-      pushRoute(routes.getPreviousRoute);
-      return;
-    }
+    // if (e.keyCode === keyCodes.LEFT) {
+    //   pushRoute(routes.getPreviousRoute);
+    //   return;
+    // }
 
-    if (e.keyCode === keyCodes.RIGHT) {
-      pushRoute(routes.getNextRoute);
-    }
+    // if (e.keyCode === keyCodes.RIGHT) {
+    //   pushRoute(routes.getNextRoute);
+    // }
 
-    function pushRoute(getRoute) {
-      const route = getRoute(currentRoute.name);
+    // function pushRoute(getRoute) {
+    //   const route = getRoute(currentRoute.name);
 
-      if (route) {
-        routes.history.push(route.path);
-      }
-    }
+    //   if (route) {
+    //     routes.history.push(route.path);
+    //   }
+    // }
   };
 }
 
 AppView.propTypes = {
   children: PropTypes.any,
-  currentRoute: PropTypes.object.isRequired,
+  // currentRoute: PropTypes.object.isRequired,
   locale: PropTypes.string.isRequired,
   toggleLocale: PropTypes.func.isRequired,
-  routes: PropTypes.object.isRequired,
+  // routes: PropTypes.object.isRequired,
 };
 
 AppView.defaultProps = {

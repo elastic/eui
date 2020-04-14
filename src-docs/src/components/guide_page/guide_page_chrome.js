@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import {
   EuiFieldSearch,
@@ -21,6 +20,7 @@ import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
+import { navigation } from '../../../../src-docs/src/routes';
 
 const scrollTo = position => {
   $('html, body').animate(
@@ -295,8 +295,7 @@ export class GuidePageChrome extends Component {
   };
 
   render() {
-    const sideNav = this.renderSideNav(this.props.navigation);
-
+    const sideNav = this.renderSideNav(navigation);
     let sideNavContent;
 
     if (sideNav.length) {

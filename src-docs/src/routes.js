@@ -1,7 +1,6 @@
 import React, { createElement } from 'react';
 
-import { useRouterHistory } from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory';
+import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection } from './components';
 
@@ -275,7 +274,7 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const navigation = [
+export const navigation = [
   {
     name: 'Guidelines',
     items: [
@@ -467,7 +466,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: useRouterHistory(createHashHistory)(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: path => {

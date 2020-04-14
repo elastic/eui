@@ -6,11 +6,9 @@ import { getRoutes, getLocale } from '../store';
 
 import { toggleLocale } from '../actions';
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
-    currentRoute: ownProps.routes[1],
     locale: getLocale(state),
-    routes: getRoutes(state),
   };
 }
 

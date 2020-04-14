@@ -4,8 +4,7 @@ import 'core-js/modules/es7.object.entries';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import configureStore from './store/configure_store';
 
@@ -29,7 +28,6 @@ registerTheme('amsterdam-dark', [themeAmsterdamDark]);
 // Set up app
 
 const store = configureStore();
-const routerHistory = syncHistoryWithStore(Routes.history, store);
 
 const childRoutes = [].concat(Routes.getAppRoutes());
 childRoutes.push({
@@ -74,8 +72,14 @@ const syncTitleWithRoutes = routesList => {
 syncTitleWithRoutes(routes);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={routerHistory} routes={routes} />
-  </Provider>,
+  <Router>
+    <Provider store={store}>
+      <Route path="/">
+        <AppContainer>
+          <HomeView />
+        </AppContainer>
+      </Route>
+    </Provider>
+  </Router>,
   document.getElementById('guide')
 );
