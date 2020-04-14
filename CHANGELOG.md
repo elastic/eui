@@ -7,6 +7,10 @@
 - Added `EuiBeacon` component ([#2766](https://github.com/elastic/eui/pull/2766))
 - Added `offset` and `arrowChildren` props to `EuiPopover` for anchor element customization ([#2766](https://github.com/elastic/eui/pull/2766))
 
+**Bug Fixes**
+
+- Fixed `EuiProgress` `max` property to allow `undefined` ([#3198](https://github.com/elastic/eui/pull/3198))
+
 ## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
 
 - Added `forceState` prop to control `EuiAccordion` state from outside ([#3240](https://github.com/elastic/eui/pull/3240))
@@ -43,7 +47,6 @@
 - Removed dependency on option list for custom option of `EuiComboBox` ([#3183](https://github.com/elastic/eui/pull/3183))
 - Fixed `EuiPopover` arrow position in Android and Linux ([#3188](https://github.com/elastic/eui/pull/3188))
 - Improved `htmlIdGenerator` when supplying both `prefix` and `suffix` ([#3076](https://github.com/elastic/eui/pull/3076))
-- Fix `EuiProgress` max property to allow `undefined` ([#3198](https://github.com/elastic/eui/pull/3198))
 - Updated pagination prop descriptions for `EuiInMemoryTable` ([#3142](https://github.com/elastic/eui/pull/3142))
 - Added `title` and `aria` attributes to `EuiToken`'s icon element ([#3195](https://github.com/elastic/eui/pull/3195))
 - Added new Elasticsearch token types ([#2758](https://github.com/elastic/eui/pull/2758))
