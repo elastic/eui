@@ -49,7 +49,7 @@ First, you'll be prompted for what kind of documentation to create:
 
 | Choice             | Description                                               |
 |--------------------|-----------------------------------------------------------|
-| Component documention page               | A new page for documenting a component |
+| Component documentation page               | A new page for documenting a component |
 | Add example to an existing page         | A new subsection of an existing documentation page   |
 | Sandbox            | An empty document where you can do pretty much anything   |
 

@@ -100,6 +100,16 @@ import AccordionGrow from './accordion_grow';
 const accordionGrowSource = require('!!raw-loader!./accordion_grow');
 const accordionGrowHtml = renderToHtml(AccordionGrow);
 
+import AccordionForceState from './accordion_forceState';
+const accordionForceStateSource = require('!!raw-loader!./accordion_forceState');
+const accordionForceStateHtml = renderToHtml(AccordionForceState);
+const accordionForceStateSnippet = `<EuiAccordion
+  id={accordionId}
+  forceState="open"
+  buttonContent="Controlled via outside prop">
+    <!-- Content to show when expanded -->
+</EuiAccordion>`;
+
 export const AccordionExample = {
   title: 'Accordion',
   intro: (
@@ -279,6 +289,7 @@ export const AccordionExample = {
       snippet: accordionCallbackSnippet,
       demo: <AccordionCallback />,
     },
+
     {
       title: 'Accordion content can dynamically change height',
       source: [
@@ -319,6 +330,27 @@ export const AccordionExample = {
         </p>
       ),
       demo: <AccordionForm />,
+    },
+    {
+      title: 'Force accordion state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionForceStateSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: accordionForceStateHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use the <EuiCode>forceState</EuiCode> prop to control open and close
+          state.
+        </p>
+      ),
+      snippet: accordionForceStateSnippet,
+      demo: <AccordionForceState />,
     },
   ],
 };

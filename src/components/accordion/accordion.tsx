@@ -54,6 +54,10 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
      * Placing on the `right` doesn't work with `extraAction` and so it will be ignored
      */
     arrowDisplay?: 'left' | 'right' | 'none';
+    /**
+     * Control the opening of accordin via prop
+     */
+    forceState?: 'closed' | 'open';
   };
 
 export class EuiAccordion extends Component<
@@ -70,13 +74,17 @@ export class EuiAccordion extends Component<
   childWrapper: HTMLDivElement | null = null;
 
   state = {
-    isOpen: this.props.initialIsOpen,
+    isOpen: this.props.forceState
+      ? this.props.forceState === 'open'
+      : this.props.initialIsOpen,
   };
 
   setChildContentHeight = () => {
+    const { forceState } = this.props;
     requestAnimationFrame(() => {
       const height =
-        this.childContent && this.state.isOpen
+        this.childContent &&
+        (forceState ? forceState === 'open' : this.state.isOpen)
           ? this.childContent.clientHeight
           : 0;
       this.childWrapper &&
@@ -93,6 +101,8 @@ export class EuiAccordion extends Component<
   }
 
   onToggle = () => {
+    const { forceState } = this.props;
+    if (forceState) return this.setState({ isOpen: forceState === 'open' });
     this.setState(
       prevState => ({
         isOpen: !prevState.isOpen,
@@ -119,13 +129,16 @@ export class EuiAccordion extends Component<
       paddingSize,
       initialIsOpen,
       arrowDisplay,
+      forceState,
       ...rest
     } = this.props;
+
+    const isOpen = forceState ? forceState === 'open' : this.state.isOpen;
 
     const classes = classNames(
       'euiAccordion',
       {
-        'euiAccordion-isOpen': this.state.isOpen,
+        'euiAccordion-isOpen': isOpen,
       },
       className
     );
@@ -143,7 +156,7 @@ export class EuiAccordion extends Component<
     );
 
     const iconClasses = classNames('euiAccordion__icon', {
-      'euiAccordion__icon-isOpen': this.state.isOpen,
+      'euiAccordion__icon-isOpen': isOpen,
     });
 
     let icon;
@@ -168,7 +181,7 @@ export class EuiAccordion extends Component<
         <div className="euiAccordion__triggerWrapper">
           <button
             aria-controls={id}
-            aria-expanded={!!this.state.isOpen}
+            aria-expanded={isOpen}
             onClick={this.onToggle}
             className={buttonClasses}
             type="button">

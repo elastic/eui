@@ -38,6 +38,13 @@ describe('EuiI18n', () => {
 
         expect(renderCallback).toHaveBeenCalledWith(values);
       });
+
+      it('renders when value is null', () => {
+        const component = mount(
+          <EuiI18n token="test" default="{arg}" values={{ arg: null }} />
+        );
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('render prop with single token', () => {

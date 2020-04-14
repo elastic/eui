@@ -121,7 +121,7 @@ export const registerRouter = reactRouter => {
 };
 
 /**
- * The logic for generating hrefs and onClick handlers from the `to` prop is largely borrowed from
+ * The logic for generating href and onClick handlers from the `to` prop is largely borrowed from
  * https://github.com/ReactTraining/react-router/blob/v3/modules/Link.js.
  */
 export const getRouterLinkProps = to => {
@@ -213,7 +213,7 @@ export const registerRouter = reactRouter => {
 };
 
 /**
- * The logic for generating hrefs and onClick handlers from the `to` prop is largely borrowed from
+ * The logic for generating href and onClick handlers from the `to` prop is largely borrowed from
  * https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js.
  */
 export const getRouterLinkProps = to => {
