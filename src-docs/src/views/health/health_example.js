@@ -10,8 +10,8 @@ import Health from './health';
 const healthSource = require('!!raw-loader!./health');
 const healthHtml = renderToHtml(Health);
 const healthSnippet = [
-  `<EuiHealth color="success">Healthy</EuiHealth>`,
-  `<EuiHealth color="#33CC33">Custom color as hex</EuiHealth>`,
+  '<EuiHealth color="success">Healthy</EuiHealth>',
+  '<EuiHealth color="#33CC33">Custom color as hex</EuiHealth>',
 ];
 
 export const HealthExample = {
