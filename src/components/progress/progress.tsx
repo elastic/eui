@@ -46,14 +46,11 @@ export type EuiProgressProps = CommonProps & {
   position?: EuiProgressPosition;
 };
 
-type Indeterminate = EuiProgressProps &
-  HTMLAttributes<HTMLDivElement> & {
-    max?: undefined;
-  };
+type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
   ProgressHTMLAttributes<HTMLProgressElement> & {
-    max: number | undefined;
+    max?: number;
   };
 
 export const EuiProgress: FunctionComponent<
