@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { createDataStore } from '../data_store';
 
@@ -158,66 +158,53 @@ const toggleButtons = [
   },
 ];
 
-export class Table extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      layout: 'fixed',
-      toggleIdSelected: `${idPrefix}0`,
-    };
-  }
+export const Table = () => {
+  const [layout, setLayout] = useState('fixed');
+  const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
 
-  onChange = optionId => {
-    this.setState({
-      toggleIdSelected: optionId,
-      layout: toggleButtons.find(x => x.id === optionId).value,
-    });
+  const onChange = optionId => {
+    setToggleIdSelected(optionId);
+    setLayout(toggleButtons.find(x => x.id === optionId).value);
   };
 
-  toggleTableLayout = () => {
-    this.setState(prevState => ({ autoLayout: !prevState.autoLayout }));
-  };
+  let callOutText;
 
-  render() {
-    let callOutText;
-
-    switch (this.state.layout) {
-      case 'fixed':
-        callOutText = 'First Name has truncateText set to true';
-        break;
-      case 'auto':
-        callOutText =
-          'First Name has truncateText set to true which is not applied since tableLayout is set to auto';
-        break;
-      case 'custom':
-        callOutText =
-          'First Name has truncateText set to true and width set to 20%';
-        break;
-    }
-
-    return (
-      <div>
-        <EuiButtonGroup
-          legend="Table layout group"
-          options={toggleButtons}
-          idSelected={this.state.toggleIdSelected}
-          onChange={this.onChange}
-        />
-        <EuiSpacer size="m" />
-        <EuiCallOut
-          size="s"
-          color={this.state.layout === 'auto' ? 'warning' : 'primary'}
-          title={callOutText}
-        />
-        <EuiSpacer size="m" />
-        <EuiBasicTable
-          items={items}
-          columns={this.state.layout === 'custom' ? customColumns : columns}
-          tableLayout={this.state.layout === 'auto' ? 'auto' : 'fixed'}
-          rowProps={getRowProps}
-          cellProps={getCellProps}
-        />
-      </div>
-    );
+  switch (layout) {
+    case 'fixed':
+      callOutText = 'First Name has truncateText set to true';
+      break;
+    case 'auto':
+      callOutText =
+        'First Name has truncateText set to true which is not applied since tableLayout is set to auto';
+      break;
+    case 'custom':
+      callOutText =
+        'First Name has truncateText set to true and width set to 20%';
+      break;
   }
-}
+
+  return (
+    <div>
+      <EuiButtonGroup
+        legend="Table layout group"
+        options={toggleButtons}
+        idSelected={toggleIdSelected}
+        onChange={onChange}
+      />
+      <EuiSpacer size="m" />
+      <EuiCallOut
+        size="s"
+        color={layout === 'auto' ? 'warning' : 'primary'}
+        title={callOutText}
+      />
+      <EuiSpacer size="m" />
+      <EuiBasicTable
+        items={items}
+        columns={layout === 'custom' ? customColumns : columns}
+        tableLayout={layout === 'auto' ? 'auto' : 'fixed'}
+        rowProps={getRowProps}
+        cellProps={getCellProps}
+      />
+    </div>
+  );
+};
