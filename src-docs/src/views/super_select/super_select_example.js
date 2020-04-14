@@ -52,8 +52,8 @@ const superSelectStatesSnippet = `<EuiSuperSelect
   onChange={onChange}
   compressed={true}
   fullWidth={true}
-  append={append}
   prepend={prepend}
+  append={append}
 />
 `;
 
