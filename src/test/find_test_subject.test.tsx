@@ -50,6 +50,7 @@ describe('findTestSubject', () => {
     test('throws an error if unsupported matcher is provided', () => {
       const TestComponent = () => <div data-test-subj="test" />;
       const component = mount(<TestComponent />);
+      // @ts-ignore intentional error
       expect(() => findTestSubject(component, 'test', '===')).toThrow();
     });
   });
