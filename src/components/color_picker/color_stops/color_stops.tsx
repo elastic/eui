@@ -77,7 +77,7 @@ function getValidStops(colorStops: ColorStop[]) {
 function getRangeMin(colorStops: ColorStop[], min?: number) {
   const rangeMin = min || DEFAULT_MIN;
   const stops = getValidStops(colorStops);
-  const first = Math.min.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+  const first = Math.min(...stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (first < rangeMin) {
     if (stops.length === 1) {
@@ -91,7 +91,7 @@ function getRangeMin(colorStops: ColorStop[], min?: number) {
 function getRangeMax(colorStops: ColorStop[], max?: number) {
   const rangeMax = max || DEFAULT_MAX;
   const stops = getValidStops(colorStops);
-  const last = Math.max.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+  const last = Math.max(...stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (last > rangeMax) {
     if (stops.length === 1) {

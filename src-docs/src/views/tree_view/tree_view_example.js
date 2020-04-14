@@ -16,6 +16,36 @@ const treeViewHtml = renderToHtml(TreeView);
 const treeViewCompressedSource = require('!!raw-loader!./compressed');
 const treeViewCompressedHtml = renderToHtml(TreeViewCompressed);
 
+const treeViewSnippet = [
+  `<EuiTreeView 
+  items={[
+    {
+      label: 'Item One',
+      id: 'item_one', 
+      icon: <EuiIcon type="arrowRight" />,
+      iconWhenExpanded: <EuiIcon type="arrowDown" />,
+      isExpanded: true,
+      children: [
+        {
+          label: 'Item A',
+          id: 'item_a',
+          icon: <EuiIcon type="document" />,
+        },
+        {
+          label: 'Item B',
+          id: 'item_b',
+          icon: <EuiIcon type="document" />,
+        },
+      ],
+    },
+    {
+      label: 'Item Two',
+      id: 'item_two',
+    }
+  ]}  
+/>`,
+];
+
 export const TreeViewExample = {
   title: 'Tree view',
   sections: [
@@ -51,6 +81,7 @@ export const TreeViewExample = {
       ),
       components: { EuiTreeView },
       demo: <TreeView />,
+      snippet: treeViewSnippet,
       props: { EuiTreeView, EuiTreeViewNode },
     },
     {

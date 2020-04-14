@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
-import makeId from '../form_row/make_id';
+import { htmlIdGenerator } from '../../../services/accessibility';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
@@ -93,7 +93,7 @@ export class EuiRange extends Component<EuiRangeProps> {
   preventPopoverClose: boolean = false;
 
   state = {
-    id: this.props.id || makeId(),
+    id: this.props.id || htmlIdGenerator()(),
     isPopoverOpen: false,
   };
 

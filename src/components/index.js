@@ -17,6 +17,8 @@ export {
   EuiBadgeGroup,
 } from './badge';
 
+export { EuiBeacon } from './beacon';
+
 export { EuiBottomBar } from './bottom_bar';
 
 export { EuiBreadcrumbs } from './breadcrumbs';
@@ -48,6 +50,8 @@ export {
 } from './color_picker';
 
 export { EuiComboBox } from './combo_box';
+
+export { EuiComment } from './comment';
 
 export { EuiContext, EuiI18nConsumer } from './context';
 
@@ -288,6 +292,8 @@ export {
 } from './table';
 
 export { EuiToken } from './token';
+
+export { EuiTour, EuiTourStep, useEuiTour } from './tour';
 
 export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
 

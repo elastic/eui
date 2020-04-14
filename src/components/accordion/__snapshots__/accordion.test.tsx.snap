@@ -3,7 +3,7 @@
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="8"
+  id="9"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -14,7 +14,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="8"
+        aria-controls="9"
         aria-expanded={false}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -42,7 +42,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="8"
+      id="9"
     >
       <EuiResizeObserver
         onResize={[Function]}
@@ -61,7 +61,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="7"
+  id="8"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -72,7 +72,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="7"
+        aria-controls="8"
         aria-expanded={true}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -100,7 +100,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="7"
+      id="8"
     >
       <EuiResizeObserver
         onResize={[Function]}
@@ -358,6 +358,49 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
       <div
         class=""
       />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props forceState is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="7"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span
+        class="euiIEFlexWrapFix"
+      />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="7"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <p>
+          You can not see me
+        </p>
+      </div>
     </div>
   </div>
 </div>

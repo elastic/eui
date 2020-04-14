@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import makeId from '../form_row/make_id';
+import { htmlIdGenerator } from '../../../services/accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -100,7 +100,7 @@ export const EuiSuperSelectControl: <T extends string>(
     side: 'right',
   };
 
-  const screenReaderId = makeId();
+  const screenReaderId = htmlIdGenerator()();
 
   return (
     <Fragment>

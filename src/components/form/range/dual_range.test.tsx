@@ -4,7 +4,9 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiDualRange } from './dual_range';
 
-jest.mock('../form_row/make_id', () => () => 'generated-id');
+jest.mock('./../../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 const props = {
   onChange: () => {},

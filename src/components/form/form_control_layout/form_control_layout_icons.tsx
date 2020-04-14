@@ -104,7 +104,6 @@ export class EuiFormControlLayoutIcons extends Component<
 
   renderClearButton() {
     const { clear } = this.props;
-
     if (!clear) {
       return null;
     }

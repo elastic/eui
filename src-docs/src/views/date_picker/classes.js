@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import moment from 'moment';
 
@@ -8,70 +8,58 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
 
-    this.state = {
-      startDate: moment(),
-    };
+  const handleChange = date => {
+    setStartDate(date);
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  return (
+    <div>
+      <EuiFormRow label="className example">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          className="dpTest__purpleInput"
+        />
+      </EuiFormRow>
 
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    });
-  }
+      <EuiSpacer size="m" />
 
-  render() {
-    return (
-      <div>
-        <EuiFormRow label="className example">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            className="dpTest__purpleInput"
-          />
-        </EuiFormRow>
+      <EuiFormRow label="calendarClassName example">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          calendarClassName="dpTest__purpleCal"
+        />
+      </EuiFormRow>
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiFormRow label="calendarClassName example">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            calendarClassName="dpTest__purpleCal"
-          />
-        </EuiFormRow>
+      <EuiFormRow label="dayClassName example">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          dayClassName={date =>
+            date.date() < Math.random() * 31 ? 'dpTest__purpleDay' : undefined
+          }
+        />
+      </EuiFormRow>
 
-        <EuiSpacer size="m" />
+      <EuiSpacer size="m" />
 
-        <EuiFormRow label="dayClassName example">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            dayClassName={date =>
-              date.date() < Math.random() * 31 ? 'dpTest__purpleDay' : undefined
-            }
-          />
-        </EuiFormRow>
-
-        <EuiSpacer size="m" />
-
-        <EuiFormRow label="popperClassName example">
-          <EuiDatePicker
-            selected={this.state.startDate}
-            showTimeSelect
-            onChange={this.handleChange}
-            popperClassName="dpTest__purplePopper"
-          />
-        </EuiFormRow>
-      </div>
-    );
-  }
-}
+      <EuiFormRow label="popperClassName example">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          popperClassName="dpTest__purplePopper"
+        />
+      </EuiFormRow>
+    </div>
+  );
+};

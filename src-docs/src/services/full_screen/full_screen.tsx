@@ -14,10 +14,12 @@ export const GuideFullScreen: FunctionComponent<{
   children: (setFullScreen: (isFullScreen: boolean) => void) => ReactElement;
   buttonText?: ReactNode;
   isFullScreen?: boolean;
+  onOpen?: () => void;
 }> = ({
   children,
   isFullScreen = false,
   buttonText = 'Show fullscreen demo',
+  onOpen,
 }) => {
   const [fullScreen, setFullScreen] = useState(isFullScreen);
 
@@ -31,9 +33,16 @@ export const GuideFullScreen: FunctionComponent<{
     };
   }, [fullScreen]);
 
+  const openFullScreen = () => {
+    setFullScreen(true);
+    if (onOpen) {
+      onOpen();
+    }
+  };
+
   return (
     <Fragment>
-      <EuiButton onClick={() => setFullScreen(true)} iconType="fullScreen">
+      <EuiButton onClick={openFullScreen} iconType="fullScreen">
         {buttonText}
       </EuiButton>
 

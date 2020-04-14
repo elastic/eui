@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiFieldText,
@@ -8,47 +8,37 @@ import {
   EuiCode,
   EuiFormRow,
 } from '../../../../src/components';
+
 import { htmlIdGenerator } from '../../../../src/services';
 
-export class HtmlIdGeneratorSuffix extends Component {
-  constructor(props) {
-    super(props);
+export const HtmlIdGeneratorSuffix = () => {
+  const [suffix, setSuffix] = useState('Id');
+  const [customId, setCustomId] = useState(htmlIdGenerator()('Id'));
 
-    this.state = {
-      suffix: 'Id',
-      id1: htmlIdGenerator()('Id'),
-    };
-  }
-
-  onSuffixChange = e => {
+  const onSuffixChange = e => {
     const suffix = e.target.value;
-    this.setState({
-      suffix,
-      id1: htmlIdGenerator()(suffix),
-    });
+    setSuffix(suffix);
+    setCustomId(htmlIdGenerator()(suffix));
   };
 
-  render() {
-    const { suffix, id1 } = this.state;
-    return (
-      <Fragment>
-        <EuiFlexGroup
-          justifyContent="flexStart"
-          gutterSize="m"
-          alignItems="center">
-          <EuiFlexItem grow={false}>
-            <EuiFormRow label="Suffix">
-              <EuiFieldText
-                value={suffix}
-                onChange={this.onSuffixChange}
-                placeholder="Enter suffix"
-              />
-            </EuiFormRow>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="xl" />
-        <EuiCode>{id1} </EuiCode>
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <EuiFlexGroup
+        justifyContent="flexStart"
+        gutterSize="m"
+        alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Suffix">
+            <EuiFieldText
+              value={suffix}
+              onChange={onSuffixChange}
+              placeholder="Enter suffix"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiCode>{customId} </EuiCode>
+    </Fragment>
+  );
+};

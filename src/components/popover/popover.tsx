@@ -117,6 +117,18 @@ export interface EuiPopoverProps {
    * Function callback for when the focus trap is deactivated
    */
   onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
+
+  style?: CSSProperties;
+
+  /**
+   * Distance away from the anchor that the popover will render.
+   */
+  offset?: number;
+
+  /**
+   * Element to pass as the child element of the arrow. Use case is typically limited to an accompanying `EuiBeacon`
+   */
+  arrowChildren?: ReactNode;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -477,7 +489,10 @@ export class EuiPopover extends Component<Props, State> {
       align: getPopoverAlignFromAnchorPosition(anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: !this.props.attachToAnchor && this.props.hasArrow ? 16 : 8,
+      offset:
+        !this.props.attachToAnchor && this.props.hasArrow
+          ? 16 + (this.props.offset || 0)
+          : 8 + (this.props.offset || 0),
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
@@ -501,6 +516,7 @@ export class EuiPopover extends Component<Props, State> {
           ? anchorBoundingBox.left
           : left,
       zIndex,
+      ...this.props.style,
     };
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
@@ -567,6 +583,7 @@ export class EuiPopover extends Component<Props, State> {
       panelRef,
       popoverRef,
       hasArrow,
+      arrowChildren,
       repositionOnScroll,
       zIndex,
       initialFocus,
@@ -654,7 +671,9 @@ export class EuiPopover extends Component<Props, State> {
               aria-modal="true"
               aria-describedby={descriptionId}
               style={this.state.popoverStyles}>
-              <div className={arrowClassNames} style={this.state.arrowStyles} />
+              <div className={arrowClassNames} style={this.state.arrowStyles}>
+                {arrowChildren}
+              </div>
               {focusTrapScreenReaderText}
               <EuiMutationObserver
                 observerOptions={{

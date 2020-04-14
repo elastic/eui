@@ -19,7 +19,6 @@ describe('testResizeObservers', () => {
       HTMLElement.prototype.getBoundingClientRect;
     HTMLElement.prototype.getBoundingClientRect = function() {
       // use the length of the element's HTML to represent its height
-      // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
       return { width: 100, height: this.innerHTML.length } as ReturnType<
         GetBoundingClientRect
       >;

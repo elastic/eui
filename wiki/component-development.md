@@ -84,7 +84,7 @@ Many of our components use `rest parameters` and the `spread` operator to pass p
 
 A `Foo` component that passes `...rest` through to a `button` element would have the props interface
 
-```
+```ts
 // passes extra props to a button
 interface FooProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string
@@ -93,7 +93,7 @@ interface FooProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 Some DOM elements (e.g. `div`, `span`) do not have attributes beyond the basic ones provided by all HTML elements. In these cases there isn't a specific `*HTMLAttributes<T>` interface, and you should use `HTMLAttributes<HTMLDivElement>`.
 
-```
+```ts
 // passes extra props to a div
 interface FooProps extends HTMLAttributes<HTMLDivElement> {
   title: string
@@ -102,7 +102,7 @@ interface FooProps extends HTMLAttributes<HTMLDivElement> {
 
 If your component forwards the `ref` through to an underlying element, the interface is further extended with `DetailedHTMLProps`
 
-```
+```ts
 // passes extra props and forwards the ref to a button
 interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   title: string
