@@ -19,7 +19,7 @@ export default () => {
     } else {
       setValue(value);
       const diff = Math.round(Math.random() * 10);
-      this.timer = setTimeout(() => progress(value + diff), 250);
+      timer = setTimeout(() => progress(value + diff), 250);
     }
   };
   const toggleProgress = () => {
