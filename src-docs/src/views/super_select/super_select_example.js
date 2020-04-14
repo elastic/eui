@@ -13,11 +13,11 @@ const superSelectBasicSnippet = `<EuiSuperSelect
   options={[
     {
       value: 'warning',
-      inputDisplay:: inputDisplay,
+      inputDisplay: inputDisplay,
     },
   ]}
   valueOfSelected={value}
-  onChange={value => onChange(value)}
+  onChange={onChange}
 />
 `;
 
@@ -29,11 +29,11 @@ const superSelectComplexSnippet = `<EuiSuperSelect
     {
       value: 'option_one',
       inputDisplay: 'Option one',
-      dropdownDisplay: dropdownDisplay
+      dropdownDisplay: dropdownDisplay,
     },
   ]}
   valueOfSelected={value}
-  onChange={value => onChange(value)}
+  onChange={onChange}
   hasDividers
 />
 `;
@@ -49,15 +49,11 @@ const superSelectStatesSnippet = `<EuiSuperSelect
     },
   ]}
   valueOfSelected={value}
-  onChange={value => onChange(value)}
-  isLoading={false}
+  onChange={onChange}
   compressed={true}
   fullWidth={true}
-  append="append"
-  prepend="append"
-  isInvalid={false}
-  isDisabled={false}
-  readOnly={false}
+  append={append}
+  prepend={prepend}
 />
 `;
 
