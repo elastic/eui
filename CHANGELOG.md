@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug Fixes**
+
+- Fixed `EuiInMemoryTable` `isClearable` property to initiate reset ([#3198](https://github.com/elastic/eui/pull/3198))
+
 **Breaking changes**
 
 - Upgraded `TypeScript` to 3.7.2 ([#3295](https://github.com/elastic/eui/pull/3295))
