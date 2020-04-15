@@ -16,7 +16,7 @@ import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
 const responsiveSnippet = [
-  `<EuiHideFor sizes={['xs', 's', 'm', 'l']}>
+  `<EuiHideFor sizes={['xs', 's']}>
   <!-- Content to hide from xs and s screens -->
 </EuiHideFor>`,
   `<EuiShowFor sizes={['m', 'l', 'xl']} display="block">
