@@ -21,8 +21,6 @@ export default () => {
             Toggle nav
           </EuiButton>
         }
-        dockedBreakpoint={600}
-        showButtonIfDocked={true}
         onClose={() => setNavIsOpen(false)}>
         <div style={{ padding: 16 }}>
           <EuiTitle>
