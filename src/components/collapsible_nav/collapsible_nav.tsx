@@ -116,9 +116,8 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   };
 
   const collapse = () => {
-    // The consuming component can store the docked status as `true` even
-    // when the window is not large enough to dock. So only skip collapsing if both are true.
-    if (windowIsLargeEnoughToDock && navIsDocked) {
+    // Skip collapsing if it is docked
+    if (navIsDocked) {
       return;
     } else {
       onClose && onClose();
