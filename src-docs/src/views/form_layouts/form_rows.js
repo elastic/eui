@@ -37,21 +37,6 @@ export default () => {
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
     [`${idPrefix}1`]: true,
   });
-  // const [radios, setRadios] = useState([
-  //   {
-  //     id: `${idPrefix}4`,
-  //     label: 'Option one',
-  //   },
-  //   {
-  //     id: `${idPrefix}5`,
-  //     label: 'Option two is selected by default',
-  //   },
-  //   {
-  //     id: `${idPrefix}6`,
-  //     label: 'Option three',
-  //   },
-  // ]);
-  // const [radioIdSelected, setRadioIdSelected] = useState(`${idPrefix}5`);
 
   const onSwitchChange = () => {
     setIsSwitchChecked(!isSwitchChecked);
@@ -67,10 +52,6 @@ export default () => {
 
     setCheckboxIdToSelectedMap(newCheckboxIdToSelectedMap);
   };
-
-  // const onRadioChange = optionId => {
-  //   setRadioIdSelected(optionId);
-  // };
 
   return (
     <EuiForm component="form">
