@@ -17,10 +17,10 @@ const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
 const responsiveSnippet = [
   `<EuiHideFor sizes={['xs', 's', 'm', 'l']}>
-  <div><!--Hiding from xs, s, m, l screens--></div>
+  <!--<div>Hiding from xs, s, m, l screens</div>-->
 </EuiHideFor>`,
   `<EuiShowFor sizes={['m', 'l', 'xl']} display="block">
-    <div><!--Showing for m, l, xl screen only as block--></div>
+    <!--<div>Showing for m, l, xl screen only as block</div>-->
 </EuiShowFor>`,
 ];
 function renderSizes(size, index) {
