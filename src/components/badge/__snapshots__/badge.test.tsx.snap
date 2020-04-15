@@ -38,12 +38,34 @@ exports[`EuiBadge is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiBadge is rendered with href and rel provided 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft testClass1 testClass2"
+  style="background-color:#d3dae6;color:#000"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <a
+      aria-label="aria-label"
+      class="euiBadge__childButton"
+      data-test-subj="test subject string"
+      href="/#/"
+      rel="noopener noreferrer"
+    >
+      Content
+    </a>
+  </span>
+</span>
+`;
+
 exports[`EuiBadge is rendered with href provided 1`] = `
 <a
   aria-label="aria-label"
   class="euiBadge euiBadge-isClickable euiBadge--iconLeft testClass1 testClass2"
   data-test-subj="test subject string"
   href="/#/"
+  rel="noreferrer"
   style="background-color:#d3dae6;color:#000"
 >
   <span
@@ -71,6 +93,7 @@ exports[`EuiBadge is rendered with iconOnClick and href provided 1`] = `
       class="euiBadge__childButton"
       data-test-subj="test subject string"
       href="/#/"
+      rel="noreferrer"
     >
       Content
     </a>
@@ -296,6 +319,142 @@ exports[`EuiBadge props iconType is rendered 1`] = `
       class="euiBadge__icon"
       data-euiicon-type="user"
     />
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#d3dae6;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with accent 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#ee789d;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with danger 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#ff7e62;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with default 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#d3dae6;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with hollow 1`] = `
+<span
+  class="euiBadge euiBadge--hollow euiBadge--iconLeft"
+  style="border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with primary 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#79aad9;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with secondary 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#6dccb1;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with warning 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#f1d86f;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
   </span>
 </span>
 `;

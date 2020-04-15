@@ -16,6 +16,8 @@ import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
 
+import { getSecureRelForTarget } from '../../services';
+
 type ItemSize = 'xs' | 's' | 'm' | 'l';
 const sizeToClassNameMap: { [size in ItemSize]: string } = {
   xs: 'euiListGroupItem--xSmall',
@@ -74,6 +76,10 @@ export type EuiListGroupItemProps = CommonProps &
      */
     href?: string;
 
+    target?: string;
+
+    rel?: string;
+
     /**
      * Adds `EuiIcon` of `EuiIcon.type`
      */
@@ -113,7 +119,7 @@ export type EuiListGroupItemProps = CommonProps &
      * Pass-through ref reference specifically for targeting
      * instances where the item content is rendered as a `button`
      */
-    buttonRef?: React.RefObject<HTMLButtonElement>;
+    buttonRef?: React.Ref<HTMLButtonElement>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -121,6 +127,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   isActive = false,
   isDisabled = false,
   href,
+  target,
+  rel,
   className,
   iconType,
   icon,
@@ -204,11 +212,15 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   // Handle the variety of interaction behavior
   let itemContent;
 
+  const secureRel = getSecureRelForTarget({ href, rel, target });
+
   if (href && !isDisabled) {
     itemContent = (
       <a
         className="euiListGroupItem__button"
         href={href}
+        target={target}
+        rel={secureRel}
         onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
         {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {iconNode}

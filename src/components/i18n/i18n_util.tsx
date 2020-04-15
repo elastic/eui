@@ -14,7 +14,9 @@ function isPrimitive(value: ReactChild) {
 type Child = string | { propName: string } | ReactChild | undefined;
 
 function hasPropName(child: Child): child is { propName: string } {
-  return typeof child === 'object' && child.hasOwnProperty('propName');
+  return child
+    ? typeof child === 'object' && child.hasOwnProperty('propName')
+    : false;
 }
 
 /**

@@ -96,7 +96,7 @@ interface FindPopoverPositionResult {
  *  function return value will include an `arrow` param with position details
  *
  * @returns {FindPopoverPositionResult} absolute page coordinates for the
- * popover, and the placements's relation to the anchor or undefined
+ * popover, and the placement's relation to the anchor or undefined
  * there's no room.
  */
 export function findPopoverPosition({
@@ -171,7 +171,7 @@ export function findPopoverPosition({
       iterationAlignments.push(undefined, undefined); // discard desired alignment on cross-axis
     }
   } else {
-    // position is forced, if it conficts with the alignment then reset align to `null`
+    // position is forced, if it conflicts with the alignment then reset align to `null`
     // e.g. original placement request for `downLeft` is moved to the `left` side, future calls
     // will position and align `left`, and `leftLeft` is not a valid placement
     if (
