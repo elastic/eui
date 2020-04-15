@@ -66,7 +66,6 @@ export const Table = () => {
   };
 
   const renderDeleteButton = () => {
-    console.log(selectedItems);
     if (selectedItems.length === 0) {
       return;
     }
