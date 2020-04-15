@@ -23,6 +23,7 @@ const responsiveSnippet = [
     <!-- <div>Content only showing for l and xl screens and displaying in block</div> -->
 </EuiShowFor>`,
 ];
+
 function renderSizes(size, index) {
   let code = `'${size}': ${sizes.euiBreakpoints[size]}px`;
 
