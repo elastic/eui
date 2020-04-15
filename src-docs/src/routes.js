@@ -49,6 +49,8 @@ import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
 
+import { BeaconExample } from './views/beacon/beacon_example';
+
 import { BottomBarExample } from './views/bottom_bar/bottom_bar_example';
 
 import { BreadcrumbsExample } from './views/breadcrumbs/breadcrumbs_example';
@@ -203,6 +205,8 @@ import { ToastExample } from './views/toast/toast_example';
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
 import { ToggleExample } from './views/toggle/toggle_example';
+
+import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
@@ -382,6 +386,7 @@ const navigation = [
       TitleExample,
       ToastExample,
       ToolTipExample,
+      TourExample,
     ].map(example => createExample(example)),
   },
   {
@@ -418,6 +423,7 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      BeaconExample,
       IsColorDarkExample,
       ColorPaletteExample,
       CopyExample,

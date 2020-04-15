@@ -50,7 +50,7 @@ type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
   ProgressHTMLAttributes<HTMLProgressElement> & {
-    max: number;
+    max?: number;
   };
 
 export const EuiProgress: FunctionComponent<

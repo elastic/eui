@@ -253,6 +253,59 @@ describe('EuiPopover', () => {
         expect(component.render()).toMatchSnapshot();
       });
     });
+
+    describe('offset', () => {
+      test('with arrow', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              offset={10}
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+
+      test('without arrow', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              offset={10}
+              hasArrow={false}
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+    });
+
+    describe('arrowChildren', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              arrowChildren={<span />}
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+    });
   });
 
   describe('listener cleanup', () => {

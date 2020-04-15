@@ -40,7 +40,7 @@ export type EuiMegaMenuProps = {
 };
 ```
 
-For the default props we can just specify the enum values we want to use in the constructor and then use the maps to generate the classname for the component:
+For the default props we can just specify the enum values we want to use in the constructor and then use the maps to generate the className for the component:
 
 ```tsx
 export const EuiMegaMenu: FunctionComponent<EuiMegaMenuProps> = ({
