@@ -47,6 +47,7 @@ export class EuiObserver<Props extends BaseProps> extends Component<Props> {
   };
 
   render() {
-    return this.props.children(this.updateChildNode);
+    const props: BaseProps = this.props;
+    return props.children(this.updateChildNode);
   }
 }

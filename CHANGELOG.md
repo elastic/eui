@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `22.6.0`.
+**Breaking changes**
+
+- Upgraded `TypeScript` to 3.7.2 ([#3295](https://github.com/elastic/eui/pull/3295))
 
 ## [`22.6.0`](https://github.com/elastic/eui/tree/v22.6.0)
 
