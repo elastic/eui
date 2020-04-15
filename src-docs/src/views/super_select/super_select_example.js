@@ -13,6 +13,17 @@ const superSelectHtml = renderToHtml(SuperSelect);
 import SuperSelectBasic from './super_select_basic';
 const superSelectBasicSource = require('!!raw-loader!./super_select_basic');
 const superSelectBasicHtml = renderToHtml(SuperSelectBasic);
+// const superSelectBasicSnippet = `<EuiSuperSelect
+//   options={[
+//     {
+//       value: 'warning',
+//       inputDisplay: inputDisplay,
+//     },
+//   ]}
+//   valueOfSelected={value}
+//   onChange={onChange}
+// />
+// `;
 
 import SuperSelectComplex from './super_select_complex';
 const superSelectComplexSource = require('!!raw-loader!./super_select_complex');

@@ -51,6 +51,8 @@ export { EuiComboBox } from './combo_box';
 
 export { EuiComment } from './comment';
 
+export { EuiCommentList } from './comment';
+
 export { EuiContext, EuiI18nConsumer } from './context';
 
 export {

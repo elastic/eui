@@ -6,7 +6,11 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiComment } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiComment,
+  EuiCommentList,
+} from '../../../../src/components';
 
 import Comment from './comment';
 const commentSource = require('!!raw-loader!./comment');
@@ -23,6 +27,10 @@ const commentTimelineIconsHtml = renderToHtml(CommentTimelineIcons);
 import CommentActions from './comment_actions';
 const commentActionsSource = require('!!raw-loader!./comment_actions');
 const commentActionsHtml = renderToHtml(CommentActions);
+
+import CommentList from './comment_list';
+const commentListSource = require('!!raw-loader!./comment_list');
+const commentListHtml = renderToHtml(CommentList);
 
 const commentSnippet = `<EuiComment username="janed">
   {body}
@@ -212,6 +220,27 @@ export const CommentExample = {
       props: { EuiComment },
       snippet: commentActionsSnippet,
       demo: <CommentActions />,
+    },
+    {
+      title: 'Comment List',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: commentListSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: commentListHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>Comment List description</p>
+        </div>
+      ),
+      props: { EuiCommentList },
+      // snippet: commentActionsSnippet,
+      demo: <CommentList />,
     },
   ],
 };
