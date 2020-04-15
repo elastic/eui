@@ -1,11 +1,21 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Breaking changes**
+
+- Upgraded `TypeScript` to 3.7.2 ([#3295](https://github.com/elastic/eui/pull/3295))
+
+## [`22.6.0`](https://github.com/elastic/eui/tree/v22.6.0)
+
 - Converted `NavDrawer`, `NavDrawerGroup`, and `NavDrawerFlyout` to TypeScript ([#3268](https://github.com/elastic/eui/pull/3268))
 - Converted `EuiDatePicker`, `EuiDatePickerRange`, `EuiSuperDatePicker`, and `EuiSuperUpdateButton` to TypeScript ([#2891](https://github.com/elastic/eui/pull/2891))
 - Improved condensed `EuiTabs` focus states ([#3299](https://github.com/elastic/eui/pull/3299))
 - Added `EuiTour`, `EuiTourStep`, and `useEuiTour` components ([#2766](https://github.com/elastic/eui/pull/2766))
 - Added `EuiBeacon` component ([#2766](https://github.com/elastic/eui/pull/2766))
 - Added `offset` and `arrowChildren` props to `EuiPopover` for anchor element customization ([#2766](https://github.com/elastic/eui/pull/2766))
+
+**Bug Fixes**
+
+- Fixed `EuiProgress` `max` property to allow `undefined` ([#3198](https://github.com/elastic/eui/pull/3198))
 
 ## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
 

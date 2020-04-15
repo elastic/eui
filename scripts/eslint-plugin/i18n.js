@@ -197,7 +197,6 @@ module.exports = {
           for (let i = 0; i < attributes.defaults.expression.elements.length; i++) {
             const defaultNode = attributes.defaults.expression.elements[i];
             if (defaultNode.type !== 'Literal' || typeof defaultNode.value !== 'string') {
-              console.log('::', defaultNode.value, typeof defaultNode.value);
               context.report({
                 node,
                 loc: defaultNode.loc,

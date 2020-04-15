@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiIcon,
@@ -7,79 +7,67 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-class EuiTabsExample extends Component {
-  constructor(props) {
-    super(props);
+const tabs = [
+  {
+    id: 'cobalt',
+    name: 'Cobalt',
+    disabled: false,
+  },
+  {
+    id: 'dextrose',
+    name: 'Dextrose',
+    disabled: false,
+  },
+  {
+    id: 'hydrogen',
+    name: (
+      <span>
+        <EuiIcon type="heatmap" />
+        &nbsp;Hydrogen
+      </span>
+    ),
+    disabled: true,
+  },
+  {
+    id: 'monosodium_glutammate',
+    name: 'Monosodium Glutamate',
+    disabled: false,
+  },
+  {
+    id: 'elastic_link',
+    name: 'Elastic Website',
+    disabled: false,
+    href: 'https://www.elastic.co/',
+  },
+];
 
-    this.tabs = [
-      {
-        id: 'cobalt',
-        name: 'Cobalt',
-        disabled: false,
-      },
-      {
-        id: 'dextrose',
-        name: 'Dextrose',
-        disabled: false,
-      },
-      {
-        id: 'hydrogen',
-        name: (
-          <span>
-            <EuiIcon type="heatmap" />
-            &nbsp;Hydrogen
-          </span>
-        ),
-        disabled: true,
-      },
-      {
-        id: 'monosodium_glutammate',
-        name: 'Monosodium Glutamate',
-        disabled: false,
-      },
-      {
-        id: 'elastic_link',
-        name: 'Elastic Website',
-        disabled: false,
-        href: 'https://www.elastic.co/',
-      },
-    ];
+export default () => {
+  const [selectedTabId, setSelectedTabId] = useState('cobalt');
 
-    this.state = {
-      selectedTabId: 'cobalt',
-    };
-  }
-
-  onSelectedTabChanged = id => {
-    this.setState({
-      selectedTabId: id,
-    });
+  const onSelectedTabChanged = id => {
+    setSelectedTabId(id);
   };
 
-  renderTabs() {
-    return this.tabs.map((tab, index) => (
+  const renderTabs = () => {
+    return tabs.map((tab, index) => (
       <EuiTab
         {...tab.href && { href: tab.href, target: '_blank' }}
-        onClick={() => this.onSelectedTabChanged(tab.id)}
-        isSelected={tab.id === this.state.selectedTabId}
+        onClick={() => onSelectedTabChanged(tab.id)}
+        isSelected={tab.id === selectedTabId}
         disabled={tab.disabled}
         key={index}>
         {tab.name}
       </EuiTab>
     ));
-  }
+  };
 
-  render() {
-    return (
-      <Fragment>
-        <EuiTabs>{this.renderTabs()}</EuiTabs>
+  return (
+    <Fragment>
+      <EuiTabs>{renderTabs()}</EuiTabs>
 
-        <EuiSpacer />
+      <EuiSpacer />
 
-        <EuiTabs size="s">{this.renderTabs()}</EuiTabs>
-      </Fragment>
-    );
-  }
-}
-
-export default EuiTabsExample;
+      <EuiTabs size="s">{renderTabs()}</EuiTabs>
+    </Fragment>
+  );
+};
