@@ -15,12 +15,13 @@ export default () => {
     <>
       <EuiCollapsibleNav
         isOpen={navIsOpen}
+        isDocked={navIsDocked}
         button={
           <EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>
             Toggle nav
           </EuiButton>
         }
-        isDocked={navIsOpen}
+        dockedBreakpoint={600}
         showButtonIfDocked={true}
         onClose={() => setNavIsOpen(false)}>
         <div style={{ padding: 16 }}>
