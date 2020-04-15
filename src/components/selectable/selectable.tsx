@@ -309,6 +309,10 @@ export class EuiSelectable extends Component<
     } = this.props;
 
     const { searchValue, visibleOptions, activeOptionIndex } = this.state;
+
+    // Some messy destructuring here to remove aria-label/describedby from searchProps and listProps
+    // Made messier by some TS requirements
+    // The aria attributes are then used in getAccessibleName() to place them where they need to go
     const unknownAccessibleName = {
       'aria-label': undefined,
       'aria-describedby': undefined,
