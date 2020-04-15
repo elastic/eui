@@ -135,6 +135,22 @@ exports[`EuiI18n default rendering rendering to dom renders a string with placeh
 </EuiI18n>
 `;
 
+exports[`EuiI18n default rendering rendering to dom renders when value is null 1`] = `
+<EuiI18n
+  default="{arg}"
+  token="test"
+  values={
+    Object {
+      "arg": null,
+    }
+  }
+>
+  <Component
+    arg={null}
+  />
+</EuiI18n>
+`;
+
 exports[`EuiI18n reading values from context mappingFunc calls the mapping function with the source string 1`] = `
 <EuiContext
   i18n={

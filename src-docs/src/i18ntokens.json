@@ -1061,15 +1061,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 115,
+        "line": 140,
         "column": 12
       },
       "end": {
-        "line": 117,
+        "line": 142,
         "column": 43
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
   },
   {
     "token": "euiRelativeTab.roundingLabel",
@@ -1077,15 +1077,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 134,
+        "line": 159,
         "column": 8
       },
       "end": {
-        "line": 137,
-        "column": 72
+        "line": 162,
+        "column": 75
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
   },
   {
     "token": "euiRelativeTab.relativeDate",
@@ -1093,15 +1093,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 155,
+        "line": 180,
         "column": 14
       },
       "end": {
-        "line": 159,
+        "line": 184,
         "column": 16
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
   },
   {
     "token": "euiRelativeTab.fullDescription",
@@ -1109,15 +1109,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 190,
         "column": 12
       },
       "end": {
-        "line": 169,
+        "line": 194,
         "column": 14
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.js"
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
   },
   {
     "token": "euiCommonlyUsedTimeRanges.legend",
@@ -1125,15 +1125,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 40,
+        "line": 44,
         "column": 10
       },
       "end": {
-        "line": 43,
+        "line": 47,
         "column": 12
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/commonly_used_time_ranges.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/commonly_used_time_ranges.tsx"
   },
   {
     "token": "euiQuickSelect.legendText",
@@ -1141,15 +1141,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 136,
+        "line": 167,
         "column": 8
       },
       "end": {
-        "line": 138,
+        "line": 169,
         "column": 46
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.quickSelectTitle",
@@ -1157,15 +1157,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 155,
+        "line": 186,
         "column": 12
       },
       "end": {
-        "line": 157,
+        "line": 188,
         "column": 37
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.previousLabel",
@@ -1173,15 +1173,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 168,
+        "line": 199,
         "column": 16
       },
       "end": {
-        "line": 170,
+        "line": 201,
         "column": 49
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.nextLabel",
@@ -1189,15 +1189,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 183,
+        "line": 214,
         "column": 16
       },
       "end": {
-        "line": 185,
+        "line": 216,
         "column": 45
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.tenseLabel",
@@ -1205,15 +1205,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 203,
+        "line": 234,
         "column": 12
       },
       "end": {
-        "line": 203,
+        "line": 234,
         "column": 76
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.valueLabel",
@@ -1221,15 +1221,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 218,
+        "line": 249,
         "column": 12
       },
       "end": {
-        "line": 218,
+        "line": 249,
         "column": 76
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.unitLabel",
@@ -1237,15 +1237,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 232,
+        "line": 263,
         "column": 12
       },
       "end": {
-        "line": 232,
+        "line": 263,
         "column": 74
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.applyButton",
@@ -1253,15 +1253,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 253,
+        "line": 284,
         "column": 14
       },
       "end": {
-        "line": 253,
+        "line": 284,
         "column": 76
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.fullDescription",
@@ -1269,15 +1269,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 260,
+        "line": 291,
         "column": 12
       },
       "end": {
-        "line": 270,
+        "line": 299,
         "column": 14
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiRefreshInterval.legend",
@@ -1285,15 +1285,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 146,
+        "line": 169,
         "column": 12
       },
       "end": {
-        "line": 149,
+        "line": 172,
         "column": 14
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
   },
   {
     "token": "euiRefreshInterval.start",
@@ -1301,15 +1301,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 187,
+        "line": 210,
         "column": 16
       },
       "end": {
-        "line": 187,
+        "line": 210,
         "column": 76
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
   },
   {
     "token": "euiRefreshInterval.stop",
@@ -1317,31 +1317,31 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 189,
+        "line": 212,
         "column": 16
       },
       "end": {
-        "line": 189,
+        "line": 212,
         "column": 74
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
   },
   {
     "token": "euiRefreshInterval.fullDescription",
-    "defString": "Currently set to {optionValue} {optionText}.",
+    "defString": "Refresh interval currently set to {optionValue} {optionText}.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 196,
+        "line": 219,
         "column": 12
       },
       "end": {
-        "line": 205,
+        "line": 226,
         "column": 14
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.js"
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
   },
   {
     "token": "euiSuperDatePicker.showDatesButtonLabel",
@@ -1349,15 +1349,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 349,
+        "line": 382,
         "column": 14
       },
       "end": {
-        "line": 352,
+        "line": 385,
         "column": 16
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/super_date_picker.js"
+    "filepath": "src/components/date_picker/super_date_picker/super_date_picker.tsx"
   },
   {
     "token": "euiSuperUpdateButton.refreshButtonLabel",
@@ -1365,15 +1365,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
+        "line": 93,
         "column": 6
       },
       "end": {
-        "line": 89,
+        "line": 96,
         "column": 8
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
   },
   {
     "token": "euiSuperUpdateButton.updatingButtonLabel",
@@ -1381,15 +1381,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 93,
+        "line": 100,
         "column": 8
       },
       "end": {
-        "line": 96,
+        "line": 103,
         "column": 10
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
   },
   {
     "token": "euiSuperUpdateButton.updateButtonLabel",
@@ -1397,35 +1397,19 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 105,
         "column": 8
       },
       "end": {
-        "line": 101,
+        "line": 108,
         "column": 10
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
   },
   {
     "token": "euiSuperUpdateButton.cannotUpdateTooltip",
     "defString": "Cannot update",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 108,
-        "column": 8
-      },
-      "end": {
-        "line": 111,
-        "column": 10
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
-  },
-  {
-    "token": "euiSuperUpdateButton.clickToApplyTooltip",
-    "defString": "Click to apply",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1437,7 +1421,23 @@
         "column": 10
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiSuperUpdateButton.clickToApplyTooltip",
+    "defString": "Click to apply",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 122,
+        "column": 8
+      },
+      "end": {
+        "line": 125,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
   },
   {
     "token": "euiFilterButton.filterBadge",
@@ -1749,11 +1749,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 625,
+        "line": 642,
         "column": 14
       },
       "end": {
-        "line": 628,
+        "line": 645,
         "column": 16
       }
     },
@@ -2094,6 +2094,70 @@
       }
     },
     "filepath": "src/components/toast/toast.tsx"
+  },
+  {
+    "token": "euiTourStepIndicator.isActive",
+    "defString": "active",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 38,
+        "column": 6
+      },
+      "end": {
+        "line": 38,
+        "column": 70
+      }
+    },
+    "filepath": "src/components/tour/tour_step_indicator.tsx"
+  },
+  {
+    "token": "euiTourStepIndicator.isComplete",
+    "defString": "complete",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 52,
+        "column": 6
+      },
+      "end": {
+        "line": 52,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/tour/tour_step_indicator.tsx"
+  },
+  {
+    "token": "euiTourStepIndicator.isIncomplete",
+    "defString": "incomplete",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 65,
+        "column": 6
+      },
+      "end": {
+        "line": 65,
+        "column": 78
+      }
+    },
+    "filepath": "src/components/tour/tour_step_indicator.tsx"
+  },
+  {
+    "token": "euiTourStepIndicator.ariaLabel",
+    "defString": "({\n  status\n}: {\n  status: EuiTourStepStatus;\n}) => {\n  return `Step ${number} ${status}`;\n};",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 79,
+        "column": 4
+      },
+      "end": {
+        "line": 84,
+        "column": 26
+      }
+    },
+    "filepath": "src/components/tour/tour_step_indicator.tsx"
   },
   {
     "token": "euiTreeView.listNavigationInstructions",

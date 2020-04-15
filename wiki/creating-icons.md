@@ -2,11 +2,11 @@
 
 EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
 
-If you are willing and able to design the icon yourself, this document descibes the guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
+If you are willing and able to design the icon yourself, this document describes the guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
 
 If you read through these guidelines or begin designing your icon and realize you're in too deep, then create an issue in this repo and request assistance. An EUI team member will reply and discuss options.
 
-_**Note**: The `EuiIcon` component accepts external references to icon files, so you have the option to maintain the icon in your consuming applicaiton._
+_**Note**: The `EuiIcon` component accepts external references to icon files, so you have the option to maintain the icon in your consuming application._
 
 ## Design the icon
 
@@ -35,7 +35,7 @@ This is where things get more opinionated. To maintain a cohesive, high quality 
 ![Guides](https://user-images.githubusercontent.com/446285/63458958-5624f580-c419-11e9-89cf-45fa1b596329.png)
 
 #### _For Sketch users_
-_As a reference, you can downlaod and view the `icons.sketch` file via the **Sketch libraries** link atop the [EUI documentation site][docs] site. The Symbols page within this file contains artboards for the vast majority of EUI glyphs._
+_As a reference, you can download and view the `icons.sketch` file via the **Sketch libraries** link atop the [EUI documentation site][docs] site. The Symbols page within this file contains artboards for the vast majority of EUI glyphs._
 
 #### _For non-Sketch users_
 _While we use Sketch to maintain our internal design library, you can use any design tool to produce the SVG file._
@@ -77,7 +77,7 @@ If everything looks good, then commit your changes, push up your branch, and ope
 Opening a PR will notify the EUI team that your work is ready for review. Please include a screenshot in the description and reference the issue that your PR fixes.
 
 ### Ship it
-Once youre PR is approved, you will be able to merge it and give yourself a well-deserved pat on the back. Finally, stay tuned for the next release of EUI at which point your icon will become available to the masses and appear on the EUI docs site.
+Once your PR is approved, you will be able to merge it and give yourself a well-deserved pat on the back. Finally, stay tuned for the next release of EUI at which point your icon will become available to the masses and appear on the EUI docs site.
 
 :trophy: _**Welcome to the Official EUI Icon Design Club**_ :beers:
 

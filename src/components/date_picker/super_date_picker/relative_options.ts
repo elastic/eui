@@ -1,4 +1,6 @@
-export const relativeOptions = [
+import { RelativeOption, TimeUnitId } from '../types';
+
+export const relativeOptions: RelativeOption[] = [
   { text: 'Seconds ago', value: 's' },
   { text: 'Minutes ago', value: 'm' },
   { text: 'Hours ago', value: 'h' },
@@ -16,11 +18,8 @@ export const relativeOptions = [
   { text: 'Years from now', value: 'y+' },
 ];
 
-export const relativeUnitsFromLargestToSmallest = relativeOptions
-  .filter(({ value }) => {
-    return !value.includes('+');
-  })
-  .map(({ value }) => {
-    return value;
-  })
-  .reverse();
+const timeUnitIds = relativeOptions
+  .map(({ value }) => value)
+  .filter(value => !value.includes('+')) as TimeUnitId[];
+
+export const relativeUnitsFromLargestToSmallest = timeUnitIds.reverse();

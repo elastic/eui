@@ -119,7 +119,7 @@ export type EuiListGroupItemProps = CommonProps &
      * Pass-through ref reference specifically for targeting
      * instances where the item content is rendered as a `button`
      */
-    buttonRef?: React.RefObject<HTMLButtonElement>;
+    buttonRef?: React.Ref<HTMLButtonElement>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
