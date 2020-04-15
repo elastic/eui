@@ -19,7 +19,7 @@ const responsiveSnippet = [
   `<EuiHideFor sizes={['xs', 's']}>
   <!-- Content to hide from xs and s screens -->
 </EuiHideFor>`,
-  `<EuiShowFor sizes={['m', 'l', 'xl']} display="block">
+  `<EuiShowFor sizes={['l', 'xl']} display="block">
     <!--<div>Showing for m, l, xl screen only as block</div>-->
 </EuiShowFor>`,
 ];
