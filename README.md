@@ -1,6 +1,8 @@
 🚨 **WARNING** While open source, the intended consumers of this repository are Elastic products. Read the [FAQ][faq] for details.
 
 # Elastic UI Framework
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Felastic%2Feui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Felastic%2Feui?ref=badge_shield)
+
 
 > The Elastic UI Framework is a collection of React UI components for quickly building user interfaces
 > at Elastic. Not using React? No problem! You can still use the CSS behind each component.
@@ -83,3 +85,6 @@ You can find documentation around creating and submitting new components in [CON
 [theming]: wiki/theming.md
 [react-router]: wiki/react-router.md
 [docs]: https://elastic.github.io/eui/
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Felastic%2Feui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Felastic%2Feui?ref=badge_large)
