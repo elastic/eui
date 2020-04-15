@@ -2,7 +2,6 @@
 
 exports[`EuiSelectableListItem is rendered 1`] = `
 <div
-  aria-label="aria-label"
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
@@ -14,7 +13,8 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 
 exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -24,7 +24,8 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
 
 exports[`EuiSelectableListItem props allowExclusions 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -34,7 +35,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
 
 exports[`EuiSelectableListItem props bordered 1`] = `
 <div
-  class="euiSelectableList euiSelectableList-bordered"
+  class="euiSelectableList euiSelectableList-bordered testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -44,7 +46,8 @@ exports[`EuiSelectableListItem props bordered 1`] = `
 
 exports[`EuiSelectableListItem props height is forced 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -54,7 +57,8 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
 
 exports[`EuiSelectableListItem props height is full 1`] = `
 <div
-  class="euiSelectableList euiSelectableList-fullHeight"
+  class="euiSelectableList euiSelectableList-fullHeight testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;height:0;width:0"
@@ -64,7 +68,8 @@ exports[`EuiSelectableListItem props height is full 1`] = `
 
 exports[`EuiSelectableListItem props renderOption 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -74,7 +79,8 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
 
 exports[`EuiSelectableListItem props rowHeight 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -84,7 +90,8 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
 
 exports[`EuiSelectableListItem props searchValue 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -94,7 +101,8 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
 
 exports[`EuiSelectableListItem props searchValue 2`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -104,7 +112,8 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
 
 exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -114,7 +123,8 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 
 exports[`EuiSelectableListItem props singleSelection can be forced so that at least one must be selected 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -124,7 +134,8 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
 
 exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"
@@ -134,7 +145,8 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
 
 exports[`EuiSelectableListItem props visibleOptions 1`] = `
 <div
-  class="euiSelectableList"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     style="overflow:visible;width:0"

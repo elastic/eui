@@ -1,7 +1,6 @@
 import React, { Component, HTMLAttributes, ReactNode, memo } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { htmlIdGenerator } from '../../../services';
 import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
@@ -81,8 +80,9 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
    * and not just on and undefined
    */
   allowExclusions?: boolean;
-  rootId?: (appendix?: string) => string;
   searchable?: boolean;
+  makeOptionId: (index: number | undefined) => string;
+  listId: string;
 };
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
@@ -91,17 +91,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     searchValue: '',
   };
 
-  rootId = this.props.rootId || htmlIdGenerator();
   listRef: FixedSizeList | null = null;
   listBoxRef: HTMLUListElement | null = null;
-
-  makeOptionId(index: number | undefined) {
-    if (typeof index === 'undefined') {
-      return '';
-    }
-
-    return this.rootId(`_option-${index}`);
-  }
 
   setListRef = (ref: FixedSizeList | null) => {
     this.listRef = ref;
@@ -113,18 +104,32 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
 
   setListBoxRef = (ref: HTMLUListElement | null) => {
     this.listBoxRef = ref;
+    const {
+      listId,
+      searchable,
+      singleSelection,
+      'aria-label': ariaLabel,
+      'aria-describedby': ariaDescribedby,
+    } = this.props;
 
     if (ref) {
-      ref.setAttribute('id', this.rootId('listbox'));
-      ref.setAttribute('role', 'listBox');
+      ref.setAttribute('id', listId);
+      ref.setAttribute('role', 'listbox');
 
-      if (this.props.searchable !== true) {
+      if (searchable !== true) {
         ref.setAttribute('tabindex', '0');
       }
 
+      if (typeof ariaLabel === 'string') {
+        ref.setAttribute('aria-label', ariaLabel);
+      } else if (typeof ariaDescribedby === 'string') {
+        ref.setAttribute('aria-describedby', ariaDescribedby);
+      }
+
       if (
-        this.props.singleSelection !== 'always' &&
-        this.props.singleSelection !== true
+        singleSelection !== 'always' &&
+        singleSelection !== true &&
+        searchable !== true
       ) {
         ref.setAttribute('aria-multiselectable', 'true');
       }
@@ -134,10 +139,10 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   componentDidUpdate() {
     const { activeOptionIndex } = this.props;
 
-    if (this.listBoxRef) {
+    if (this.listBoxRef && this.props.searchable !== true) {
       this.listBoxRef.setAttribute(
         'aria-activedescendant',
-        `${this.makeOptionId(activeOptionIndex)}`
+        `${this.props.makeOptionId(activeOptionIndex)}`
       );
     }
 
@@ -180,7 +185,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
 
     return (
       <EuiSelectableListItem
-        id={this.makeOptionId(index)}
+        id={this.props.makeOptionId(index)}
         style={style}
         key={key || label.toLowerCase()}
         onClick={() => this.onAddOrRemoveOption(option)}
@@ -213,13 +218,15 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       windowProps,
       rowHeight,
       activeOptionIndex,
-      rootId,
+      makeOptionId,
       showIcons,
       singleSelection,
       visibleOptions,
       allowExclusions,
       bordered,
       searchable,
+      listId,
+      'aria-label': ariaLabel,
       ...rest
     } = this.props;
 
@@ -262,6 +269,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
             <FixedSizeList
               ref={this.setListRef}
               className="euiSelectableList__list"
+              data-skip-axe="scrollable-region-focusable"
               width={width}
               height={calculatedHeight || height}
               itemCount={optionArray.length}

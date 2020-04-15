@@ -104,6 +104,7 @@ export const SelectableExample = {
       },
       demo: <Selectable />,
       snippet: `<EuiSelectable
+  aria-label="Basic example"
   options={[{ label: '' }, { label: '' }]}
   onChange={() => this.onChange(options)}
   listProps={{ bordered: true }}>
@@ -141,6 +142,7 @@ export const SelectableExample = {
       props: { EuiSelectable },
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
+  aria-label="Searchable example"
   searchable
   searchProps={{
     'data-test-subj': dataTestSubj,
@@ -183,12 +185,13 @@ export const SelectableExample = {
       demo: <SelectableSingle />,
       snippet: `
       <EuiSelectable
-        options={options}
-        onChange={this.onChange}
-        singleSelection={true}
-        listProps={{ bordered: true }}>
-        {list => list}
-      </EuiSelectable>
+  aria-label="Single selection example"
+  options={options}
+  onChange={this.onChange}
+  singleSelection={true}
+  listProps={{ bordered: true }}>
+  {list => list}
+</EuiSelectable>
     `,
     },
     {
@@ -255,6 +258,7 @@ export const SelectableExample = {
       props: { EuiSelectable },
       demo: <SelectableExclusion />,
       snippet: `<EuiSelectable
+  aria-label="Example supporting exclusions"
   allowExclusions
   options={[]}
   onChange={() => this.onChange(options)}>

@@ -122,6 +122,7 @@ export default class extends Component {
             onClose={this.closeFlyout}
             aria-labelledby="flyoutTitle">
             <EuiSelectable
+              aria-label="Popover example"
               searchable
               options={countries}
               onChange={this.onFlyoutChange}
@@ -158,6 +159,7 @@ export default class extends Component {
         <EuiSpacer />
 
         <EuiSelectable
+          aria-label="Bordered selectable example"
           options={options}
           onChange={() => {}}
           style={{ width: 300 }}

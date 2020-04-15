@@ -9,6 +9,7 @@ export default () => {
   return (
     <Fragment>
       <EuiSelectable
+        aria-label="Searchable example"
         searchable
         searchProps={{
           'data-test-subj': 'selectableSearchHere',

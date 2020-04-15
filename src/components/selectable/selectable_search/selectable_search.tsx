@@ -1,15 +1,11 @@
-import React, { Component, InputHTMLAttributes } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
 import { getMatchingOptions } from '../matching_options';
 import { EuiSelectableOption } from '../selectable_option';
-import { EuiI18n } from '../../i18n';
 
-export type EuiSelectableSearchProps = Omit<
-  InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps,
-  'onChange'
-> &
+export type EuiSelectableSearchProps = Omit<EuiFieldSearchProps, 'onChange'> &
   CommonProps & {
     /**
      * Passes back (matchingOptions, searchValue)
@@ -20,6 +16,7 @@ export type EuiSelectableSearchProps = Omit<
     ) => void;
     options: EuiSelectableOption[];
     defaultValue: string;
+    listId: string;
   };
 
 export interface EuiSelectableSearchState {
@@ -63,26 +60,35 @@ export class EuiSelectableSearch extends Component<
   };
 
   render() {
-    const { className, onChange, options, defaultValue, ...rest } = this.props;
+    const {
+      className,
+      onChange,
+      options,
+      defaultValue,
+      listId,
+      placeholder,
+      ...rest
+    } = this.props;
 
     const classes = classNames('euiSelectableSearch', className);
 
     return (
-      <EuiI18n
-        token="euiSelectableSearch.placeholderName"
-        default="Filter options">
-        {(placeholderName: string) => (
-          <EuiFieldSearch
-            className={classes}
-            placeholder={placeholderName}
-            onSearch={this.onSearchChange}
-            incremental
-            defaultValue={defaultValue}
-            fullWidth
-            {...rest}
-          />
-        )}
-      </EuiI18n>
+      <EuiFieldSearch
+        className={classes}
+        placeholder={placeholder}
+        onSearch={this.onSearchChange}
+        incremental
+        defaultValue={defaultValue}
+        fullWidth
+        autoComplete="off"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded="true"
+        aria-controls={listId}
+        aria-owns={listId} // legacy attribute but shims support for nearly everything atm
+        aria-haspopup="listbox"
+        {...rest}
+      />
     );
   }
 }
