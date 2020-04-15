@@ -55,9 +55,14 @@ export type EuiCollapsibleNavProps = CommonProps &
      */
     button?: ReactElement;
     /**
-     * Removes display of toggle button when in docked state
+     * Keeps the display of toggle button when in docked state
      */
     showButtonIfDocked?: boolean;
+    /**
+     * Keeps the display of floating close button.
+     * If `false`, you must then keep the `button` displayed at all breakpoints.
+     */
+    showCloseButton?: boolean;
     onClose?: () => void;
   };
 
@@ -66,10 +71,11 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   className,
   isDocked = false,
   isOpen = false,
-  onClose,
   button,
   showButtonIfDocked = false,
   dockedBreakpoint = 992,
+  showCloseButton = true,
+  onClose,
   id,
   ...rest
 }) => {
@@ -146,6 +152,18 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           ),
         });
 
+  const closeButton = showCloseButton && (
+    <EuiButtonEmpty
+      onClick={collapse}
+      size="xs"
+      iconType="cross"
+      className="euiCollapsibleNav__closeButton">
+      <span className="euiCollapsibleNav__closeButtonLabel">
+        <EuiI18n token="euiCollapsibleNav.closeButtonLabel" default="close" />
+      </span>
+    </EuiButtonEmpty>
+  );
+
   const flyout = (
     <>
       <EuiWindowEvent event="keydown" handler={onKeyDown} />
@@ -154,17 +172,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       <EuiFocusTrap disabled={navIsDocked} clickOutsideDisables={true}>
         <nav id={flyoutID} className={classes} {...rest}>
           {children}
-
-          <EuiButtonEmpty
-            onClick={collapse}
-            size="xs"
-            iconType="cross"
-            className="euiCollapsibleNav__closeButton">
-            <EuiI18n
-              token="euiCollapsibleNav.closeButtonLabel"
-              default="close"
-            />
-          </EuiButtonEmpty>
+          {closeButton}
         </nav>
       </EuiFocusTrap>
     </>
