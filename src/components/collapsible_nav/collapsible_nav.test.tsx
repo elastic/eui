@@ -49,6 +49,14 @@ describe('EuiCollapsibleNav', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('dockedBreakpoint', () => {
+      const component = render(
+        <EuiCollapsibleNav id="id" dockedBreakpoint={500} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('isOpen', () => {
       const component = render(<EuiCollapsibleNav id="id" isOpen={true} />);
 

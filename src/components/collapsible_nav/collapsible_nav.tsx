@@ -43,6 +43,10 @@ export type EuiCollapsibleNavProps = CommonProps &
      */
     isDocked?: boolean;
     /**
+     * Pixel value for customizing the minimum window width for enabling docking
+     */
+    dockedBreakpoint?: number;
+    /**
      * Shows the navigation flyout
      */
     isOpen?: boolean;
@@ -65,17 +69,18 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   onClose,
   button,
   showButtonIfDocked = false,
+  dockedBreakpoint = 992,
   id,
   ...rest
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    window.innerWidth >= 992
+    window.innerWidth >= dockedBreakpoint
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
 
   const functionToCallOnWindowResize = throttle(() => {
-    if (window.innerWidth < 992) {
+    if (window.innerWidth < dockedBreakpoint) {
       setWindowIsLargeEnoughToDock(false);
     } else {
       setWindowIsLargeEnoughToDock(true);
@@ -85,15 +90,17 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   // Watch for docked status and appropriately add/remove body classes and resize handlers
   useEffect(() => {
-    if (isDocked) {
+    window.addEventListener('resize', functionToCallOnWindowResize);
+
+    if (navIsDocked) {
       document.body.classList.add('euiBody--collapsibleNavIsDocked');
-      window.addEventListener('resize', functionToCallOnWindowResize);
     }
+
     return () => {
       document.body.classList.remove('euiBody--collapsibleNavIsDocked');
       window.removeEventListener('resize', functionToCallOnWindowResize);
     };
-  }, [isDocked, functionToCallOnWindowResize]);
+  }, [navIsDocked, functionToCallOnWindowResize]);
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.keyCode === keyCodes.ESCAPE) {

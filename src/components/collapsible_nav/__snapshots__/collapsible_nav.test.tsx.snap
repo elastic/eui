@@ -11,6 +11,8 @@ exports[`EuiCollapsibleNav props button 1`] = `
 />
 `;
 
+exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `null`;
+
 exports[`EuiCollapsibleNav props isDocked 1`] = `
 <div>
   <div
