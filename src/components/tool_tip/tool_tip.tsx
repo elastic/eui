@@ -233,7 +233,7 @@ export class EuiToolTip extends Component<Props, State> {
 
   hideToolTip = () => {
     if (this._isMounted) {
-      this.setState({ visible: false });
+      this.setState({ visible: false, hasFocus: false });
     }
   };
 
@@ -242,6 +242,7 @@ export class EuiToolTip extends Component<Props, State> {
       hasFocus: true,
     });
     this.showToolTip();
+    window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
   };
 
   onBlur = () => {
@@ -250,6 +251,11 @@ export class EuiToolTip extends Component<Props, State> {
     });
     this.hideToolTip();
   };
+
+  hasFocusMouseMoveListener = () => {
+    this.hideToolTip();
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
+  }
 
   onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
@@ -328,8 +334,8 @@ export class EuiToolTip extends Component<Props, State> {
          * element has focus.
          */}
         {cloneElement(children, {
-          onFocus: this.showToolTip,
-          onBlur: this.hideToolTip,
+          onFocus: this.onFocus,
+          onBlur: this.onBlur,
           ...(visible && { 'aria-describedby': this.state.id }),
         })}
       </span>
