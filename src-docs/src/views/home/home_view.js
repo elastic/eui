@@ -195,7 +195,7 @@ export const HomeView = () => (
           Theming involves changing fewer than a dozen lines of code. This means
           strict variable usage.
         </dd>
-        <dt>EUI is flexible.</dt>
+        <dt>EUI is flexible and composable.</dt>
         <dd>
           Configurable enough to meet the needs of a wide array of contexts
           while maintaining brand and low-level consistency.
