@@ -7,10 +7,7 @@
   left: 0;
   width: $euiCollapsibleNavWidth;
   max-width: 80vw;
-
-  &:not(.euiCollapsibleNav--isDocked) {
-    animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
-  }
+  animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
 }
 
 .euiCollapsibleNav__closeButton {
