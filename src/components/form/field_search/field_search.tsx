@@ -155,6 +155,12 @@ export class EuiFieldSearch extends Component<
       this.inputElement.focus();
     }
     this.setState({ value: '' });
+
+    const { incremental, onSearch } = this.props;
+
+    if (onSearch && incremental) {
+      onSearch('');
+    }
   };
 
   componentWillUnmount() {
