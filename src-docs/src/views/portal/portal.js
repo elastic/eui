@@ -1,44 +1,30 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiPortal, EuiButton, EuiBottomBar } from '../../../../src/components';
 
-export class Portal extends Component {
-  constructor(props) {
-    super(props);
+export const Portal = () => {
+  const [isPortalVisible, setIsPortalVisible] = useState(false);
 
-    this.state = {
-      isPortalVisible: false,
-    };
+  const togglePortal = () => {
+    setIsPortalVisible(!isPortalVisible);
+  };
 
-    this.togglePortal = this.togglePortal.bind(this);
-  }
+  let portal;
 
-  togglePortal() {
-    this.setState(prevState => ({
-      isPortalVisible: !prevState.isPortalVisible,
-    }));
-  }
-
-  render() {
-    let portal;
-
-    if (this.state.isPortalVisible) {
-      portal = (
-        <EuiPortal>
-          <EuiBottomBar>
-            <p>
-              This element is appended to the body in the DOM if you inspect
-            </p>
-          </EuiBottomBar>
-        </EuiPortal>
-      );
-    }
-    return (
-      <div>
-        <EuiButton onClick={this.togglePortal}>Toggle portal</EuiButton>
-
-        {portal}
-      </div>
+  if (isPortalVisible) {
+    portal = (
+      <EuiPortal>
+        <EuiBottomBar>
+          <p>This element is appended to the body in the DOM if you inspect</p>
+        </EuiBottomBar>
+      </EuiPortal>
     );
   }
-}
+  return (
+    <div>
+      <EuiButton onClick={togglePortal}>Toggle portal</EuiButton>
+
+      {portal}
+    </div>
+  );
+};
