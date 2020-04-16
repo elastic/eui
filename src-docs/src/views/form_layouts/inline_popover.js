@@ -115,7 +115,7 @@ export default () => {
         ownFocus
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={closePopover.bind(this)}>
+        closePopover={closePopover}>
         <div style={{ width: 500 }}>{formSample}</div>
       </EuiPopover>
       &emsp;
