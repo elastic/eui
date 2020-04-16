@@ -89,7 +89,7 @@ export interface EuiTourStepProps
   stepsTotal: number;
 
   /**
-   * Optional, standard DOM `style` attribute
+   * Optional, standard DOM `style` attribute. Passed to the EuiPopover panel.
    */
   style?: CSSProperties;
 
@@ -214,7 +214,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       closePopover={closePopover}
       isOpen={isStepOpen}
       panelClassName={classes}
-      style={newStyle || style}
+      panelStyle={newStyle || style}
       offset={hasBeacon ? 10 : 0}
       arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
       withTitle

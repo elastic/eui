@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   EuiCode,
@@ -13,161 +13,96 @@ import {
   EuiLink,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+export default () => {
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
-
-    const idPrefix = htmlIdGenerator()();
-
-    this.state = {
-      isSwitchChecked: false,
-      checkboxes: [
-        {
-          id: `${idPrefix}0`,
-          label: 'Option one',
-        },
-        {
-          id: `${idPrefix}1`,
-          label: 'Option two is checked by default',
-        },
-        {
-          id: `${idPrefix}2`,
-          label: 'Option three',
-        },
-      ],
-      checkboxIdToSelectedMap: {
-        [`${idPrefix}1`]: true,
-      },
-      radios: [
-        {
-          id: `${idPrefix}4`,
-          label: 'Option one',
-        },
-        {
-          id: `${idPrefix}5`,
-          label: 'Option two is selected by default',
-        },
-        {
-          id: `${idPrefix}6`,
-          label: 'Option three',
-        },
-      ],
-      radioIdSelected: `${idPrefix}5`,
-    };
-  }
-
-  onSwitchChange = () => {
-    this.setState({
-      isSwitchChecked: !this.state.isSwitchChecked,
-    });
+  const onSwitchChange = () => {
+    setIsSwitchChecked(!isSwitchChecked);
   };
 
-  onCheckboxChange = optionId => {
-    const newCheckboxIdToSelectedMap = {
-      ...this.state.checkboxIdToSelectedMap,
-      ...{
-        [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-      },
-    };
+  return (
+    <EuiForm>
+      <EuiDescribedFormGroup
+        title={<h3>Single text field</h3>}
+        description={
+          <Fragment>
+            A single text field that can be used to display additional text. It
+            can have{' '}
+            <EuiLink href="http://www.elastic.co" target="_blank">
+              links
+            </EuiLink>{' '}
+            or any other type of content.
+          </Fragment>
+        }>
+        <EuiFormRow label="Text field">
+          <EuiFieldText name="first" aria-label="Example" />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
 
-    this.setState({
-      checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
-    });
-  };
+      <EuiDescribedFormGroup title={<h3>No description</h3>}>
+        <EuiFormRow label="Text field">
+          <EuiFieldText name="first" />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
 
-  onRadioChange = optionId => {
-    this.setState({
-      radioIdSelected: optionId,
-    });
-  };
+      <EuiDescribedFormGroup
+        title={<h3>Multiple fields</h3>}
+        description="Here are three form rows. The first form row does not have a title.">
+        <EuiFormRow
+          hasEmptyLabelSpace
+          helpText={<span>This is a help text</span>}>
+          <EuiSelect
+            hasNoInitialSelection
+            options={[
+              { value: 'option_one', text: 'Option one' },
+              { value: 'option_two', text: 'Option two' },
+              { value: 'option_three', text: 'Option three' },
+            ]}
+            aria-label="An example of a form element without a visible label"
+          />
+        </EuiFormRow>
 
-  render() {
-    return (
-      <EuiForm>
-        <EuiDescribedFormGroup
-          title={<h3>Single text field</h3>}
-          description={
-            <Fragment>
-              A single text field that can be used to display additional text.
-              It can have{' '}
-              <EuiLink href="http://www.elastic.co" target="_blank">
-                links
-              </EuiLink>{' '}
-              or any other type of content.
-            </Fragment>
-          }>
-          <EuiFormRow label="Text field">
-            <EuiFieldText name="first" aria-label="Example" />
-          </EuiFormRow>
-        </EuiDescribedFormGroup>
+        <EuiFormRow label="File picker">
+          <EuiFilePicker />
+        </EuiFormRow>
 
-        <EuiDescribedFormGroup title={<h3>No description</h3>}>
-          <EuiFormRow label="Text field">
-            <EuiFieldText name="first" />
-          </EuiFormRow>
-        </EuiDescribedFormGroup>
+        <EuiFormRow label="Range">
+          <EuiRange min={0} max={100} name="range" id="range" />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
 
-        <EuiDescribedFormGroup
-          title={<h3>Multiple fields</h3>}
-          description="Here are three form rows. The first form row does not have a title.">
-          <EuiFormRow
-            hasEmptyLabelSpace
-            helpText={<span>This is a help text</span>}>
-            <EuiSelect
-              hasNoInitialSelection
-              options={[
-                { value: 'option_one', text: 'Option one' },
-                { value: 'option_two', text: 'Option two' },
-                { value: 'option_three', text: 'Option three' },
-              ]}
-              aria-label="An example of a form element without a visible label"
-            />
-          </EuiFormRow>
-
-          <EuiFormRow label="File picker">
-            <EuiFilePicker />
-          </EuiFormRow>
-
-          <EuiFormRow label="Range">
-            <EuiRange min={0} max={100} name="range" id="range" />
-          </EuiFormRow>
-        </EuiDescribedFormGroup>
-
-        <EuiDescribedFormGroup
-          title={<h2>Full width</h2>}
-          titleSize="xxxs"
-          description={
-            <Fragment>
-              By default, <strong>EuiDescribedFormGroup</strong> will be double
-              the default width of form elements. However, you can pass{' '}
-              <EuiCode>fullWidth</EuiCode> prop to this, the individual field
-              and row components to expand to their container.
-            </Fragment>
-          }
+      <EuiDescribedFormGroup
+        title={<h2>Full width</h2>}
+        titleSize="xxxs"
+        description={
+          <Fragment>
+            By default, <strong>EuiDescribedFormGroup</strong> will be double
+            the default width of form elements. However, you can pass{' '}
+            <EuiCode>fullWidth</EuiCode> prop to this, the individual field and
+            row components to expand to their container.
+          </Fragment>
+        }
+        fullWidth>
+        <EuiFormRow
+          label="Use a switch instead of a single checkbox"
+          hasChildLabel={false}
           fullWidth>
-          <EuiFormRow
-            label="Use a switch instead of a single checkbox"
-            hasChildLabel={false}
-            fullWidth>
-            <EuiSwitch
-              name="switch"
-              label="Should we do this?"
-              checked={this.state.isSwitchChecked}
-              onChange={this.onSwitchChange}
-            />
-          </EuiFormRow>
+          <EuiSwitch
+            name="switch"
+            label="Should we do this?"
+            checked={isSwitchChecked}
+            onChange={onSwitchChange}
+          />
+        </EuiFormRow>
 
-          <EuiFormRow fullWidth>
-            <EuiFieldText
-              name="second"
-              fullWidth
-              aria-label="An example of EuiTextField with fullWidth"
-            />
-          </EuiFormRow>
-        </EuiDescribedFormGroup>
-      </EuiForm>
-    );
-  }
-}
+        <EuiFormRow fullWidth>
+          <EuiFieldText
+            name="second"
+            fullWidth
+            aria-label="An example of EuiTextField with fullWidth"
+          />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
+    </EuiForm>
+  );
+};

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiBadge,
@@ -10,43 +10,33 @@ import {
 import { EuiSelectable } from '../../../../src/components/selectable';
 import { createDataStore } from '../tables/data_store';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
-
-    this.countries = createDataStore().countries.map(country => {
-      return {
-        id: country.code,
-        label: `${country.name}`,
-        prepend: country.flag,
-        append: <EuiBadge>{country.code}</EuiBadge>,
-      };
-    });
-
-    this.countries.unshift({
-      label: 'Country options',
-      isGroupLabel: true,
-    });
-
-    this.state = {
-      options: this.countries,
-      useCustomContent: false,
+export default () => {
+  const countries = createDataStore().countries.map(country => {
+    return {
+      id: country.code,
+      label: `${country.name}`,
+      prepend: country.flag,
+      append: <EuiBadge>{country.code}</EuiBadge>,
     };
-  }
+  });
 
-  onChange = options => {
-    this.setState({
-      options,
-    });
+  countries.unshift({
+    label: 'Country options',
+    isGroupLabel: true,
+  });
+
+  const [options, setOptions] = useState(countries);
+  const [useCustomContent, setUseCustomContent] = useState(countries);
+
+  const onChange = options => {
+    setOptions(options);
   };
 
-  onCustom = e => {
-    this.setState({
-      useCustomContent: e.currentTarget.checked,
-    });
+  const onCustom = e => {
+    setUseCustomContent(e.currentTarget.checked);
   };
 
-  renderCountryOption = (option, searchValue) => {
+  const renderCountryOption = (option, searchValue) => {
     return (
       <Fragment>
         <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
@@ -58,44 +48,40 @@ export default class extends Component {
     );
   };
 
-  render() {
-    const { options, useCustomContent } = this.state;
-
-    let customProps;
-    if (useCustomContent) {
-      customProps = {
-        height: 240,
-        renderOption: this.renderCountryOption,
-        listProps: {
-          rowHeight: 50,
-          showIcons: false,
-        },
-      };
-    }
-
-    return (
-      <Fragment>
-        <EuiSwitch
-          label="Custom content with no icons"
-          checked={useCustomContent}
-          onChange={this.onCustom}
-        />
-
-        <EuiSpacer />
-
-        <EuiSelectable
-          searchable
-          options={options}
-          onChange={this.onChange}
-          {...customProps}>
-          {(list, search) => (
-            <Fragment>
-              {search}
-              {list}
-            </Fragment>
-          )}
-        </EuiSelectable>
-      </Fragment>
-    );
+  let customProps;
+  if (useCustomContent) {
+    customProps = {
+      height: 240,
+      renderOption: renderCountryOption,
+      listProps: {
+        rowHeight: 50,
+        showIcons: false,
+      },
+    };
   }
-}
+
+  return (
+    <Fragment>
+      <EuiSwitch
+        label="Custom content with no icons"
+        checked={useCustomContent}
+        onChange={onCustom}
+      />
+
+      <EuiSpacer />
+
+      <EuiSelectable
+        searchable
+        options={options}
+        onChange={onChange}
+        {...customProps}>
+        {(list, search) => (
+          <Fragment>
+            {search}
+            {list}
+          </Fragment>
+        )}
+      </EuiSelectable>
+    </Fragment>
+  );
+};

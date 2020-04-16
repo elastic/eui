@@ -120,6 +120,11 @@ export interface EuiPopoverProps {
 
   panelRef?: RefCallback<HTMLElement | null>;
 
+  /**
+   * Optional, standard DOM `style` attribute. Passed to the EuiPanel.
+   */
+  panelStyle?: CSSProperties;
+
   popoverRef?: Ref<HTMLDivElement>;
 
   /** When `true`, the popover's position is re-calculated when the user
@@ -136,8 +141,6 @@ export interface EuiPopoverProps {
    * Function callback for when the focus trap is deactivated
    */
   onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
-
-  style?: CSSProperties;
 
   /**
    * Distance away from the anchor that the popover will render.
@@ -529,13 +532,13 @@ export class EuiPopover extends Component<Props, State> {
         : zIndexProp;
 
     const popoverStyles = {
+      ...this.props.panelStyle,
       top,
       left:
         this.props.attachToAnchor && anchorBoundingBox
           ? anchorBoundingBox.left
           : left,
       zIndex,
-      ...this.props.style,
     };
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
@@ -600,6 +603,7 @@ export class EuiPopover extends Component<Props, State> {
       panelClassName,
       panelPaddingSize,
       panelRef,
+      panelStyle,
       popoverRef,
       hasArrow,
       arrowChildren,

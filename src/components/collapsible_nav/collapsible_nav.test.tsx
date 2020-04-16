@@ -27,9 +27,13 @@ jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: (props: any) => <div {...props} />,
 }));
 
+const propsNeededToRender = { id: 'id', isOpen: true };
+
 describe('EuiCollapsibleNav', () => {
   test('is rendered', () => {
-    const component = render(<EuiCollapsibleNav id="id" {...requiredProps} />);
+    const component = render(
+      <EuiCollapsibleNav {...propsNeededToRender} {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });
@@ -37,42 +41,61 @@ describe('EuiCollapsibleNav', () => {
   describe('props', () => {
     test('onClose', () => {
       const component = render(
-        <EuiCollapsibleNav id="id" onClose={() => {}} />
+        <EuiCollapsibleNav {...propsNeededToRender} onClose={() => {}} />
       );
 
       expect(component).toMatchSnapshot();
     });
 
     test('isDocked', () => {
-      const component = render(<EuiCollapsibleNav id="id" isDocked={true} />);
+      const component = render(
+        <EuiCollapsibleNav {...propsNeededToRender} isDocked={true} />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
-    test('isOpen', () => {
-      const component = render(<EuiCollapsibleNav id="id" isOpen={true} />);
+    test('dockedBreakpoint', () => {
+      const component = render(
+        <EuiCollapsibleNav {...propsNeededToRender} dockedBreakpoint={500} />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('button', () => {
       const component = render(
-        <EuiCollapsibleNav id="id" button={<button />} />
+        <EuiCollapsibleNav {...propsNeededToRender} button={<button />} />
       );
 
       expect(component).toMatchSnapshot();
     });
 
-    test('hideButtonIfDocked', () => {
+    test('showCloseButton can be false', () => {
+      const component = render(
+        <EuiCollapsibleNav {...propsNeededToRender} showCloseButton={false} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('showButtonIfDocked', () => {
       const component = render(
         <EuiCollapsibleNav
-          id="id"
+          {...propsNeededToRender}
           button={<button />}
-          hideButtonIfDocked={false}
+          isDocked={true}
+          showButtonIfDocked={true}
         />
       );
 
       expect(component).toMatchSnapshot();
     });
+  });
+
+  test('does not render if isOpen is false', () => {
+    const component = render(<EuiCollapsibleNav id="id" />);
+
+    expect(component).toMatchSnapshot();
   });
 });

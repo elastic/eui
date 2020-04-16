@@ -40,7 +40,6 @@ exports[`EuiTourStep can set a minWidth 1`] = `
   class="euiPopover euiPopover--anchorLeftUp euiPopover--withTitle"
   data-test-subj="test subject string"
   offset="10"
-  style="min-width:240px"
 >
   <div
     class="euiPopover__anchor"
