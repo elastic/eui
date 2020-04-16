@@ -248,6 +248,11 @@ export class EuiToolTip extends Component<Props, State> {
     }
   };
 
+  hasFocusMouseMoveListener = () => {
+    this.hideToolTip();
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
+  };
+
   onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
@@ -326,8 +331,8 @@ export class EuiToolTip extends Component<Props, State> {
          * element has focus.
          */}
         {cloneElement(children, {
-          onFocus: this.showToolTip,
-          onBlur: this.hideToolTip,
+          onFocus: this.onFocus,
+          onBlur: this.onBlur,
           ...(visible && { 'aria-describedby': this.state.id }),
         })}
       </span>
