@@ -40,6 +40,7 @@ import {
   EuiFieldText,
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
+  EuiFormRow,
   EuiRange,
 } from '../form';
 import { EuiI18n } from '../i18n';
@@ -140,6 +141,10 @@ export interface EuiColorPickerProps
    * Default is to display the last format entered by the user
    */
   format?: 'hex' | 'rgba';
+  /**
+   * Placement option for a popover panel color value input.
+   */
+  inputDisplay?: 'top' | 'bottom' | 'none';
 }
 
 function isKeyboardEvent(
@@ -201,6 +206,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   append,
   showAlpha = false,
   format,
+  inputDisplay = 'none',
 }) => {
   const preferredFormat = useMemo(() => {
     if (format) return format;
@@ -248,7 +254,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const classes = classNames('euiColorPicker', className);
   const popoverClass = 'euiColorPicker__popoverAnchor';
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
-    'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker',
+    'euiColorPicker__popoverPanel--pickerOnly':
+      mode === 'picker' && inputDisplay !== 'bottom',
     'euiColorPicker__popoverPanel--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
@@ -414,8 +421,44 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
+  const inlineInput = inputDisplay !== 'none' && (
+    <EuiI18n
+      tokens={[
+        'euiColorPicker.colorLabel',
+        'euiColorPicker.colorErrorMessage',
+        'euiColorPicker.transparent',
+      ]}
+      defaults={['Color value', 'Invalid color value', 'Transparent']}>
+      {([colorLabel, colorErrorMessage, transparent]: string[]) => (
+        <EuiFormRow
+          display="rowCompressed"
+          isInvalid={isInvalid}
+          error={isInvalid ? colorErrorMessage : null}>
+          <EuiFieldText
+            compressed={true}
+            value={color ? color.toUpperCase() : HEX_FALLBACK}
+            placeholder={!color ? transparent : undefined}
+            onChange={handleColorInput}
+            isInvalid={isInvalid}
+            disabled={disabled}
+            readOnly={readOnly}
+            aria-label={colorLabel}
+            autoComplete="off"
+            data-test-subj={`${inputDisplay}ColorPickerInput`}
+          />
+        </EuiFormRow>
+      )}
+    </EuiI18n>
+  );
+
   const composite = (
-    <React.Fragment>
+    <>
+      {inputDisplay === 'top' && (
+        <>
+          {inlineInput}
+          <EuiSpacer size="s" />
+        </>
+      )}
       {mode !== 'swatch' && (
         <div onKeyDown={handleOnKeyDown}>
           <EuiSaturation
@@ -456,8 +499,14 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           ))}
         </EuiFlexGroup>
       )}
+      {inputDisplay === 'bottom' && (
+        <>
+          {mode !== 'picker' && <EuiSpacer size="s" />}
+          {inlineInput}
+        </>
+      )}
       {showAlpha && (
-        <React.Fragment>
+        <>
           <EuiSpacer size="s" />
           <EuiI18n
             token="euiColorPicker.alphaLabel"
@@ -477,9 +526,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
               />
             )}
           </EuiI18n>
-        </React.Fragment>
+        </>
       )}
-    </React.Fragment>
+    </>
   );
 
   let buttonOrInput;
@@ -514,18 +563,23 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             color: colorStyle,
           }}>
           <EuiI18n
-            tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
+            tokens={[
+              'euiColorPicker.openLabel',
+              'euiColorPicker.closeLabel',
+              'euiColorPicker.transparent',
+            ]}
             defaults={[
               'Press the escape key to close the popover',
               'Press the down key to open a popover containing color options',
+              'Transparent',
             ]}>
-            {([openLabel, closeLabel]: string[]) => (
+            {([openLabel, closeLabel, transparent]: string[]) => (
               <EuiFieldText
                 className={inputClasses}
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
                 value={color ? color.toUpperCase() : HEX_FALLBACK}
-                placeholder={!color ? 'Transparent' : undefined}
+                placeholder={!color ? transparent : undefined}
                 id={id}
                 onChange={handleColorInput}
                 icon={chromaColor ? 'swatchInput' : 'stopSlash'}

@@ -31,7 +31,6 @@ import { CommonProps } from '../../common';
 import {
   getPositionFromStop,
   getStopFromMouseLocation,
-  isColorInvalid,
   isStopInvalid,
 } from './utils';
 import { useMouseMove, getChromaColor } from '../utils';
@@ -40,7 +39,7 @@ import { keyCodes } from '../../../services';
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiFieldNumber, EuiFieldText, EuiFormRow } from '../../form';
+import { EuiFieldNumber, EuiFormRow } from '../../form';
 import { EuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -110,9 +109,6 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     return chromaColor ? chromaColor.css() : undefined;
   }, [color, colorPickerShowAlpha]);
   const [hasFocus, setHasFocus] = useState(isPopoverOpen);
-  const [colorIsInvalid, setColorIsInvalid] = useState(
-    isColorInvalid(color, colorPickerShowAlpha)
-  );
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
   const [numberInputRef, setNumberInputRef] = useState();
   const popoverRef = useRef<EuiPopover>(null);
@@ -151,12 +147,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   const setHasFocusFalse = () => setHasFocus(false);
 
   const handleColorChange = (value: ColorStop['color']) => {
-    setColorIsInvalid(isColorInvalid(value, colorPickerShowAlpha));
     onChange({ stop, color: value });
   };
-
-  const handleColorInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    handleColorChange(e.target.value);
 
   const handleStopChange = (value: ColorStop['stop']) => {
     const willBeInvalid = value > localMax || value < localMin;
@@ -382,34 +374,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               swatches={colorPickerSwatches}
               display="inline"
               showAlpha={colorPickerShowAlpha}
+              inputDisplay={colorPickerMode === 'swatch' ? 'none' : 'bottom'}
             />
-          </React.Fragment>
-        )}
-        {colorPickerMode !== 'swatch' && (
-          <React.Fragment>
-            <EuiSpacer size="s" />
-            <EuiI18n
-              tokens={[
-                'euiColorStopThumb.hexLabel',
-                'euiColorStopThumb.hexErrorMessage',
-              ]}
-              defaults={['Color', 'Invalid color value']}>
-              {([hexLabel, hexErrorMessage]: React.ReactChild[]) => (
-                <EuiFormRow
-                  label={hexLabel}
-                  display="rowCompressed"
-                  isInvalid={colorIsInvalid}
-                  error={colorIsInvalid ? hexErrorMessage : null}>
-                  <EuiFieldText
-                    compressed={true}
-                    readOnly={readOnly}
-                    value={color}
-                    isInvalid={colorIsInvalid}
-                    onChange={handleColorInputChange}
-                  />
-                </EuiFormRow>
-              )}
-            </EuiI18n>
           </React.Fragment>
         )}
       </div>
