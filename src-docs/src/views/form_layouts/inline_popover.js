@@ -124,7 +124,7 @@ export default () => {
         ownFocus
         button={button2}
         isOpen={isPopover2Open}
-        closePopover={closePopover2.bind(this)}>
+        closePopover={closePopover2}>
         <div style={{ width: '300px' }}>{formSample2}</div>
       </EuiPopover>
     </div>
