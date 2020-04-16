@@ -60,7 +60,7 @@ export default () => {
     <EuiButton
       iconType="arrowDown"
       iconSide="right"
-      onClick={onButtonClick.bind(this)}>
+      onClick={onButtonClick}>
       Show popover
     </EuiButton>
   );
