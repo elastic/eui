@@ -214,6 +214,8 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   render() {
     const { query, queryText, error } = this.state;
     const { box, filters, toolsLeft, toolsRight } = this.props;
+    const boxContent = box;
+    delete boxContent!.schema;
 
     const toolsLeftEl = this.renderTools(toolsLeft);
 
@@ -236,7 +238,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
         {toolsLeftEl}
         <EuiFlexItem className="euiSearchBar__searchHolder" grow={true}>
           <EuiSearchBox
-            {...box}
+            {...boxContent}
             query={queryText}
             onSearch={this.onSearch}
             isInvalid={error != null}
