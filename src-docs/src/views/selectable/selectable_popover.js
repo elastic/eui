@@ -57,10 +57,7 @@ export default () => {
   };
 
   const button = (
-    <EuiButton
-      iconType="arrowDown"
-      iconSide="right"
-      onClick={onButtonClick}>
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
       Show popover
     </EuiButton>
   );
