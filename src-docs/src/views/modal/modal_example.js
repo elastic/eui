@@ -40,7 +40,7 @@ const modalSnippet = `<EuiModal onClose={closeModal}>
 
 const confirmModalSnippet = [
   `<EuiConfirmModal
-  title="Modal title goes here"
+  title={title}
   onCancel={closeModal}
   onConfirm={closeModal}
   cancelButtonText={cancelText}
