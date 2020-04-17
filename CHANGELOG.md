@@ -2,6 +2,7 @@
 
 - Added `showCloseButton` and `dockedBreakpoint` flexibility to `EuiCollapsibleNav` ([#3330](https://github.com/elastic/eui/pull/3330))
 - Added `panelStyle` prop to `EuiPopover` to distinguish style object configuration ([#3329](https://github.com/elastic/eui/pull/3329))
+- Added `titleSize` prop to `EuiStep` ([#3340](https://github.com/elastic/eui/pull/3340))
 
 **Bug Fixes**
 
