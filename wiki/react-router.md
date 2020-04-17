@@ -310,7 +310,7 @@ const isModifiedEvent = (event) =>
 
 const isLeftClickEvent = (event) => event.button === 0;
 
-export default function EuiCustomLink({ to, ...props }) {
+export default function EuiCustomLink({ to, ...rest }) {
   // This is the key!
   const history = useHistory();
 
@@ -338,7 +338,8 @@ export default function EuiCustomLink({ to, ...props }) {
   // Generate the correct link href (with basename accounted for)
   const href = history.createHref({ pathname: to });
 
-  return <EuiLink {...props} href={href} onClick={onClick} />;
+  const props = { ...rest, href, onClick };
+  return <EuiLink {...props} />;
 }
 ```
 
