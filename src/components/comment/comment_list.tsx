@@ -6,7 +6,7 @@ import { EuiComment, EuiCommentProps } from './comment';
 export type EuiCommentListProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
-     * List of comments to render.
+     * List of comments to render. See #EuiComment
      */
     comments?: EuiCommentProps[];
   };
@@ -22,7 +22,7 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   let childrenOrComments = null;
 
   if (comments) {
-    childrenOrComments = comments.map((item: EuiCommentProps, index) => (
+    childrenOrComments = comments.map((item, index) => (
       <EuiComment
         event={item.event}
         timestamp={item.timestamp}

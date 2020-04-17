@@ -71,11 +71,46 @@ const commentActionsSnippet = `<EuiComment username="janed" actions={customActio
   {body}
 </EuiComment>`;
 
-export const CommentExample = {
-  title: 'Comment',
+const commentListSnippet = `<EuiCommentList 
+  comments={[
+    {
+      username: username,
+      event: event,
+      timestamp: timestamp,
+      children: body,
+    },
+]}
+/>`;
+
+export const CommentListExample = {
+  title: 'Comment List',
   isNew: true,
   sections: [
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: commentListSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: commentListHtml,
+        },
+      ],
+      text: (
+        <div>
+          Use <strong>EuiCommentList</strong> to display a list of{' '}
+          <strong>EuiComments</strong>. Pass an array of{' '}
+          <strong>EuiComment</strong> objects and{' '}
+          <strong>EuiCommentList</strong> will generate a comment thread.
+        </div>
+      ),
+      props: { EuiCommentList, EuiComment },
+      snippet: commentListSnippet,
+      demo: <CommentList />,
+    },
+    {
+      title: 'Comment',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -220,27 +255,6 @@ export const CommentExample = {
       props: { EuiComment },
       snippet: commentActionsSnippet,
       demo: <CommentActions />,
-    },
-    {
-      title: 'Comment List',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: commentListSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: commentListHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>Comment List description</p>
-        </div>
-      ),
-      props: { EuiCommentList },
-      // snippet: commentActionsSnippet,
-      demo: <CommentList />,
     },
   ],
 };

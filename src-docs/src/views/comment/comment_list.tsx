@@ -1,11 +1,10 @@
 import React from 'react';
-import { EuiComment } from '../../../../src/components/comment';
 import { EuiCommentList } from '../../../../src/components/comment';
 import { EuiAvatar } from '../../../../src/components/avatar';
-import { EuiBadge } from '../../../../src/components/badge';
-// import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';
+import { EuiBadge } from '../../../../src/components/badge';
+import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 
 const body = (
   <EuiText size="s">
@@ -14,6 +13,36 @@ const body = (
       western spiral arm of the Galaxy lies a small unregarded yellow sun.
     </p>
   </EuiText>
+);
+
+const copyAction = (
+  <EuiButtonIcon
+    title="Custom action"
+    aria-label="Custom action"
+    color="subdued"
+    iconType="copy"
+  />
+);
+
+const complexEvent = (
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
+    <EuiFlexItem grow={false}>added tags</EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="primary">sample</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="secondary">review</EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
+const complexUsername = (
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
+    <EuiFlexItem grow={false}>
+      <EuiAvatar size="s" type="space" name="Pedro" />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>pedror</EuiFlexItem>
+  </EuiFlexGroup>
 );
 
 const longBody = (
@@ -27,15 +56,6 @@ const longBody = (
       unhappy.
     </p>
   </EuiText>
-);
-
-const copyAction = (
-  <EuiButtonIcon
-    title="Custom action"
-    aria-label="Custom action"
-    color="subdued"
-    iconType="copy"
-  />
 );
 
 const avatar = (
@@ -52,52 +72,42 @@ const comments = [
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
     children: body,
+    actions: copyAction,
   },
   {
     username: 'juanab',
     type: 'update',
-    piensa: 'hello',
     actions: copyAction,
     event: 'pushed incident X0Z235',
     timestamp: 'on Jan 3, 2020',
-    // timelineIcon: avatar,
-    timelineIcon: (
-      <EuiAvatar
-        imageUrl="https://source.unsplash.com/64x64/?woman"
-        size="l"
-        name="Juana"
-      />
-    ),
+    timelineIcon: avatar,
+  },
+  {
+    username: 'pancho1',
+    type: 'update',
+    event: 'edited case',
+    timestamp: 'on Jan 9, 2020',
+  },
+  {
+    username: complexUsername,
+    type: 'update',
+    actions: copyAction,
+    event: complexEvent,
+    timestamp: 'on Jan 11, 2020',
+    timelineIcon: 'tag',
+  },
+  {
+    username: 'elohar',
+    event: 'added a comment',
+    timestamp: 'on Jan 14, 2020',
+    timelineIcon: <EuiAvatar size="l" name="Eloha" />,
+    children: longBody,
+    actions: copyAction,
   },
 ];
 
 export default () => (
   <div>
-    <EuiCommentList comments={comments} />
-    <EuiCommentList comments={comments} />
-    <EuiCommentList comments={comments} />
-    <EuiCommentList comments={comments} />
-    <EuiCommentList>
-      <EuiComment
-        username="andred"
-        event="added a comment"
-        timestamp="yesterday">
-        {body}
-      </EuiComment>
-      <EuiComment
-        username="luisg"
-        type="update"
-        event="edited case"
-        timestamp="22 hours ago"
-      />
-      <EuiComment
-        username="milal"
-        type="update"
-        event="edited case"
-        timestamp="6 hours ago">
-        {body}
-      </EuiComment>
-    </EuiCommentList>
     <EuiCommentList comments={comments} />
   </div>
 );
