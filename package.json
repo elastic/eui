@@ -90,10 +90,11 @@
     "@types/classnames": "^2.2.6",
     "@types/highlight.js": "^9.12.3",
     "@types/jest": "^24.0.6",
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "@types/react-is": "^16.7.1",
     "@types/resize-observer-browser": "^0.1.1",
+    "@types/node": "10.17.5",
     "@types/tabbable": "^3.1.0",
     "@types/uuid": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
@@ -186,7 +187,7 @@
     "shelljs": "^0.8.1",
     "start-server-and-test": "^1.1.4",
     "style-loader": "^0.19.0",
-    "typescript": "3.5.3",
+    "typescript": "3.7.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.0.1",
     "wdio-chromedriver-service": "^0.1.2",
@@ -210,6 +211,6 @@
     "prop-types": "^15.5.0",
     "react": "^16.12",
     "react-dom": "^16.12",
-    "typescript": "^3.5.3"
+    "typescript": "^3.7.2"
   }
 }
