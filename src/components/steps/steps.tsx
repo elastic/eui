@@ -46,7 +46,7 @@ function renderSteps(
   headingElement: string
 ) {
   return steps.map((step, index) => {
-    const { className, children, title, status, ...rest } = step;
+    const { className, children, title, titleSize, status, ...rest } = step;
 
     return (
       <EuiStep
@@ -55,6 +55,7 @@ function renderSteps(
         headingElement={headingElement}
         step={firstStepNumber + index}
         title={title}
+        titleSize={titleSize}
         status={status}
         {...rest}>
         {children}

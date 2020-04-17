@@ -22,7 +22,7 @@ import { CommonProps } from '../common';
 
 import classNames from 'classnames';
 
-import { EuiTitle } from '../title';
+import { EuiTitle, EuiTitleSize } from '../title';
 
 import { EuiStepStatus, EuiStepNumber } from './step_number';
 
@@ -43,6 +43,10 @@ export interface EuiStepProps {
    * May replace the number provided in props.step with alternate styling.
    */
   status?: EuiStepStatus;
+  /**
+   * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
+   */
+  titleSize?: EuiTitleSize;
 }
 
 export type StandaloneEuiStepProps = CommonProps &
@@ -55,6 +59,7 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
   headingElement = 'p',
   step = 1,
   title,
+  titleSize = 's',
   status,
   ...rest
 }) => {
@@ -81,7 +86,7 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
           )}
         </EuiI18n>
 
-        <EuiTitle size="s" className="euiStep__title">
+        <EuiTitle size={titleSize} className="euiStep__title">
           {React.createElement(headingElement, null, title)}
         </EuiTitle>
       </div>
