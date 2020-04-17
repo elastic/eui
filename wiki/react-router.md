@@ -304,7 +304,6 @@ import React from 'react';
 import { EuiLink } from '@elastic/eui';
 import { useHistory } from 'react-router';
 
-// Most of the content of this files are from https://github.com/elastic/eui/pull/1976.
 const isModifiedEvent = (event) =>
   !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
