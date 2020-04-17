@@ -3,6 +3,7 @@
 **Bug Fixes**
 
 - Fixed `EuiInMemoryTable` `isClearable` property to initiate reset ([#3328](https://github.com/elastic/eui/pull/3328))
+- Removed schema="[object Object]" form `EuiInMemoryTable` ([#3337](https://github.com/elastic/eui/pull/3337))
 
 **Breaking changes**
 
