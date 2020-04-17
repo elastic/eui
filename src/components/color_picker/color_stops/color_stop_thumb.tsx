@@ -31,6 +31,7 @@ import { CommonProps } from '../../common';
 import {
   getPositionFromStop,
   getStopFromMouseLocation,
+  isColorInvalid,
   isStopInvalid,
 } from './utils';
 import { useMouseMove, getChromaColor } from '../utils';
@@ -110,6 +111,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   }, [color, colorPickerShowAlpha]);
   const [hasFocus, setHasFocus] = useState(isPopoverOpen);
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
+  const [colorIsInvalid, setColorIsInvalid] = useState(
+    isColorInvalid(color, colorPickerShowAlpha)
+  );
   const [numberInputRef, setNumberInputRef] = useState();
   const popoverRef = useRef<EuiPopover>(null);
 
@@ -147,6 +151,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   const setHasFocusFalse = () => setHasFocus(false);
 
   const handleColorChange = (value: ColorStop['color']) => {
+    setColorIsInvalid(isColorInvalid(value, colorPickerShowAlpha));
     onChange({ stop, color: value });
   };
 
@@ -374,6 +379,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               swatches={colorPickerSwatches}
               display="inline"
               showAlpha={colorPickerShowAlpha}
+              isInvalid={colorIsInvalid}
               inputDisplay={colorPickerMode === 'swatch' ? 'none' : 'bottom'}
             />
           </React.Fragment>
