@@ -7,10 +7,7 @@
   left: 0;
   width: $euiCollapsibleNavWidth;
   max-width: 80vw;
-
-  &:not(.euiCollapsibleNav--isDocked) {
-    animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
-  }
+  animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
 }
 
 .euiCollapsibleNav__closeButton {
@@ -20,25 +17,31 @@
   margin-right: -25%;
 }
 
-@include euiBreakpoint('l', 'xl') {
-  // The addition of this class is handled through JS as well
-  // but adding under the breakpoint mixin is an additional fail-safe
-  .euiCollapsibleNav.euiCollapsibleNav--isDocked {
-    @include euiBottomShadowMedium;
+// The addition of this class is handled through JS
+// via the `dockingBreakpoint` and `isDocked` combination
+.euiCollapsibleNav.euiCollapsibleNav--isDocked {
+  @include euiBottomShadowMedium;
 
-    .euiCollapsibleNav__closeButton {
-      display: none;
-    }
-  }
-
-  .euiCollapsibleNav__toggle--navIsDocked {
+  .euiCollapsibleNav__closeButton {
     display: none;
   }
+}
 
-  .euiBody--collapsibleNavIsDocked {
-    // Shrink the content from the left so it's no longer overlapped by the nav drawer (ALWAYS)
-    padding-left: $euiCollapsibleNavWidth !important; // sass-lint:disable-line no-important
-    transition: padding $euiAnimSpeedFast $euiAnimSlightResistance;
+.euiBody--collapsibleNavIsDocked {
+  // Shrink the content from the left so it's no longer overlapped by the nav drawer (ALWAYS)
+  padding-left: $euiCollapsibleNavWidth !important; // sass-lint:disable-line no-important
+  transition: padding $euiAnimSpeedFast $euiAnimSlightResistance;
+}
+
+@include euiBreakpoint('xs') {
+  // At tiny screens, reduce the close button to a simple `x`
+  .euiCollapsibleNav__closeButton {
+    margin-right: -15%;
+  }
+
+  .euiCollapsibleNav__closeButtonLabel {
+    // But be sure the text can still be read by a screenreader
+    @include euiScreenReaderOnly;
   }
 }
 

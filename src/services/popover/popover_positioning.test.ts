@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import {
   findPopoverPosition,
   getAvailableSpace,
@@ -37,7 +56,9 @@ describe('popover_positioning', () => {
     const origGetBoundingClientRect =
       HTMLElement.prototype.getBoundingClientRect;
     beforeEach(
-      () => (HTMLElement.prototype.getBoundingClientRect = () => clientRect)
+      () =>
+        (HTMLElement.prototype.getBoundingClientRect = () =>
+          (clientRect as unknown) as DOMRect)
     );
     afterEach(
       () =>
@@ -457,13 +478,16 @@ describe('popover_positioning', () => {
     describe('placement in desired position', () => {
       it('finds space in the requested position', () => {
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(0, 1024, 768, 0);
+        container.getBoundingClientRect = () =>
+          (makeBB(0, 1024, 768, 0) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -485,14 +509,17 @@ describe('popover_positioning', () => {
     describe('placement falls back to position on same axis', () => {
       it('finds space in the requested position', () => {
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
         // give the container limited space on both left and top, forcing to bottom-right
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(50, 300, 768, 30);
+        container.getBoundingClientRect = () =>
+          (makeBB(50, 300, 768, 30) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -514,14 +541,17 @@ describe('popover_positioning', () => {
     describe('placement falls back to first complementary position', () => {
       it('finds space in the requested position', () => {
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
         // give the container limited space on both left and right, forcing to top
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
+        container.getBoundingClientRect = () =>
+          (makeBB(0, 160, 768, 40) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -541,14 +571,17 @@ describe('popover_positioning', () => {
 
       it('ignores any specified alignment', () => {
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
         // give the container limited space on both left and right, forcing to top
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
+        container.getBoundingClientRect = () =>
+          (makeBB(0, 160, 768, 40) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -569,14 +602,17 @@ describe('popover_positioning', () => {
 
       it('respects forcePosition value', () => {
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
         // give the container limited space on both left and right, forcing to top
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
+        container.getBoundingClientRect = () =>
+          (makeBB(0, 160, 768, 40) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -599,14 +635,17 @@ describe('popover_positioning', () => {
     describe('placement falls back to second complementary position', () => {
       it('finds space in the requested position', () => {
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
         // give the container limited space on both left, right, and top, forcing to bottom
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(100, 160, 768, 40);
+        container.getBoundingClientRect = () =>
+          (makeBB(100, 160, 768, 40) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -633,13 +672,16 @@ describe('popover_positioning', () => {
         window.pageXOffset = 15;
 
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(0, 1024, 768, 0);
+        container.getBoundingClientRect = () =>
+          (makeBB(0, 1024, 768, 0) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -661,13 +703,16 @@ describe('popover_positioning', () => {
     describe('disable positioning on the cross-axis', () => {
       it('forces the popover to stay on the primary axis', () => {
         const anchor = document.createElement('div');
-        anchor.getBoundingClientRect = () => makeBB(450, 150, 550, 50);
+        anchor.getBoundingClientRect = () =>
+          (makeBB(450, 150, 550, 50) as unknown) as DOMRect;
 
         const popover = document.createElement('div');
-        popover.getBoundingClientRect = () => makeBB(0, 30, 100, 0);
+        popover.getBoundingClientRect = () =>
+          (makeBB(0, 30, 100, 0) as unknown) as DOMRect;
 
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(400, 1024, 600, 0);
+        container.getBoundingClientRect = () =>
+          (makeBB(400, 1024, 600, 0) as unknown) as DOMRect;
 
         expect(
           findPopoverPosition({
@@ -688,10 +733,12 @@ describe('popover_positioning', () => {
 
     it('returns anchorBoundingBox if param is specified', () => {
       const anchor = document.createElement('div');
-      anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+      anchor.getBoundingClientRect = () =>
+        (makeBB(100, 150, 120, 50) as unknown) as DOMRect;
 
       const popover = document.createElement('div');
-      popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+      popover.getBoundingClientRect = () =>
+        (makeBB(0, 30, 50, 0) as unknown) as DOMRect;
 
       expect(
         findPopoverPosition({
