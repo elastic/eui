@@ -310,6 +310,11 @@ const isModifiedEvent = (event) =>
 
 const isLeftClickEvent = (event) => event.button === 0;
 
+const isTargetBlank = (event) => {
+  const target = event.target.getAttribute('target');
+  return target && target !== '_self';
+};
+
 export default function EuiCustomLink({ to, ...rest }) {
   // This is the key!
   const history = useHistory();
@@ -319,12 +324,8 @@ export default function EuiCustomLink({ to, ...rest }) {
       return;
     }
 
-    // If target prop is set (e.g. to "_blank"), let browser handle link.
-    if (event.target.getAttribute('target')) {
-      return;
-    }
-
-    if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
+    // Let the browser handle links that open new tabs/windows
+    if (isModifiedEvent(event) || !isLeftClickEvent(event) || isTargetBlank(event)) {
       return;
     }
 
