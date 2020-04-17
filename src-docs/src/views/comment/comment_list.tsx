@@ -1,5 +1,8 @@
 import React from 'react';
-import { EuiCommentList } from '../../../../src/components/comment';
+import {
+  EuiCommentList,
+  EuiCommentProps,
+} from '../../../../src/components/comment_list';
 import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';
@@ -66,7 +69,7 @@ const avatar = (
   />
 );
 
-const comments = [
+const comments: EuiCommentProps[] = [
   {
     username: 'janed',
     event: 'added a comment',
