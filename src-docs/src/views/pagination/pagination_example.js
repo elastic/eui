@@ -16,8 +16,8 @@ const manyPagesSource = require('!!raw-loader!./many_pages');
 const manyPagesHtml = renderToHtml(ManyPages);
 const manyPagesSnippet = `<EuiPagination
   pageCount={higherThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -26,8 +26,8 @@ const fewPagesSource = require('!!raw-loader!./few_pages');
 const fewPagesHtml = renderToHtml(FewPages);
 const fewPagesSnippet = `<EuiPagination
   pageCount={lowerThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -38,8 +38,8 @@ const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
   <EuiFlexItem grow={false}>
     <EuiPagination
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -52,8 +52,8 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
   <EuiFlexItem grow={false}>
     <EuiPopover
       button={button}
-      isOpen={this.state.isPopoverOpen}
-      closePopover={this.closePopover}>
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}>
       <EuiContextMenuPanel items={items} />
     </EuiPopover>
   </EuiFlexItem>
@@ -61,8 +61,8 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
   <EuiFlexItem grow={false}>
     <EuiPagination
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -73,8 +73,8 @@ const compressedSource = require('!!raw-loader!./compressed');
 const compressedHtml = renderToHtml(Compressed);
 const compressedSnippet = `<EuiPagination
   pageCount={pageCount}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
   compressed
 />
 `;

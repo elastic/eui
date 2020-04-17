@@ -1,5 +1,35 @@
 [
   {
+    "version": "22.6.0",
+    "changes": [
+      {
+        "token": "euiRefreshInterval.fullDescription",
+        "changeType": "modified",
+        "value": "Refresh interval currently set to {optionValue} {optionText}."
+      },
+      {
+        "token": "euiTourStepIndicator.isActive",
+        "changeType": "added",
+        "value": "active"
+      },
+      {
+        "token": "euiTourStepIndicator.isComplete",
+        "changeType": "added",
+        "value": "complete"
+      },
+      {
+        "token": "euiTourStepIndicator.isIncomplete",
+        "changeType": "added",
+        "value": "incomplete"
+      },
+      {
+        "token": "euiTourStepIndicator.ariaLabel",
+        "changeType": "added",
+        "value": "({\n  status\n}: {\n  status: EuiTourStepStatus;\n}) => {\n  return `Step ${number} ${status}`;\n};"
+      }
+    ]
+  },
+  {
     "version": "22.2.0",
     "changes": [
       {

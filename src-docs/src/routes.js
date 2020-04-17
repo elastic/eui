@@ -278,7 +278,7 @@ export const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createExample(AccessibilityGuidelines, 'Accesibility'),
+      createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Buttons',
         component: ButtonGuidelines,

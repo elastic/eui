@@ -7,5 +7,6 @@ module.exports = {
       '^!!raw-loader!',
     ]}],
     '@typescript-eslint/no-var-requires': 'off',
+    'local/require-license-header': 'off',
   }
 }
