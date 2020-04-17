@@ -335,7 +335,10 @@ export default function EuiCustomLink({ to, ...props }) {
     history.push(to);
   }
 
-  return <EuiLink {...props} href={to} onClick={onClick} />;
+  // Generate the correct link href (with basename accounted for)
+  const href = history.createHref({ pathname: to });
+
+  return <EuiLink {...props} href={href} onClick={onClick} />;
 }
 ```
 
