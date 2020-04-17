@@ -110,10 +110,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     return chromaColor ? chromaColor.css() : undefined;
   }, [color, colorPickerShowAlpha]);
   const [hasFocus, setHasFocus] = useState(isPopoverOpen);
-  const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
   const [colorIsInvalid, setColorIsInvalid] = useState(
     isColorInvalid(color, colorPickerShowAlpha)
   );
+  const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
   const [numberInputRef, setNumberInputRef] = useState();
   const popoverRef = useRef<EuiPopover>(null);
 
