@@ -14,9 +14,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export const AppContainer = connect(
-  mapStateToProps,
-  {
-    toggleLocale,
-  }
-)(AppView);
+export const AppContainer = connect(mapStateToProps, {
+  toggleLocale,
+})(AppView);
