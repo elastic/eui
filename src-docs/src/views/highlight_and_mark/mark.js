@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import { EuiMark } from '../../../../src/components';
 
-export function Mark() {
+export const Mark = () => {
   return (
     <Fragment>
       The quick brown fox
@@ -10,4 +10,4 @@ export function Mark() {
       the lazy dog
     </Fragment>
   );
-}
+};
