@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiToggle } from '../../../../src/components';
 
-export default function() {
+export default () => {
   const [toggleOn, setToggleValue] = useState(false);
 
   const onToggleChange = e => {
@@ -16,4 +16,4 @@ export default function() {
       </EuiToggle>
     </div>
   );
-}
+};

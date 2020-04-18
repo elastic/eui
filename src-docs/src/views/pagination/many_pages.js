@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiPagination } from '../../../../src/components';
 
-export default function() {
+export default () => {
   const [activePage, setActivePage] = useState(0);
   const PAGE_COUNT = 22;
 
@@ -17,4 +17,4 @@ export default function() {
       onPageClick={activePage => goToPage(activePage)}
     />
   );
-}
+};
