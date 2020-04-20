@@ -478,7 +478,7 @@ export const ColorPickerExample = {
             labeling.
           </p>
           <p>
-            Additionally, use the <EuiCode>inputDisplay</EuiCode> prop to show a
+            Additionally, use the <EuiCode>secondaryInputDisplay</EuiCode> prop to show a
             secondary or alternative color value input. Options include{' '}
             <EuiCode>top</EuiCode> and <EuiCode>bottom</EuiCode> placement.
           </p>
