@@ -33,8 +33,7 @@ const prettyDurationSnippet = [
 }
 <EuiText>
    <p>{prettyDuration(example.start, example.end, example.quickRanges, example.dateFormat)}</p>
-</EuiText>
-`,
+</EuiText>`,
   `let example = {
     start: 'now-17m',
     end: 'now-1m',
@@ -43,8 +42,7 @@ const prettyDurationSnippet = [
 }
 <EuiText>
    <p>{prettyDuration(example.start, example.end, example.quickRanges, example.dateFormat)}</p>
-</EuiText>
-`,
+</EuiText>`,
   `let example = {
     start: 'now-15m',
     end: 'now',
@@ -59,8 +57,7 @@ const prettyDurationSnippet = [
   }
 <EuiText>
    <p>{prettyDuration(example.start, example.end, example.quickRanges, example.dateFormat)}</p>
-</EuiText>
-`,
+</EuiText>`,
 ];
 
 export const PrettyDurationExample = {
