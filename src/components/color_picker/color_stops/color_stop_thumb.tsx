@@ -369,23 +369,20 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
-        {!readOnly && (
-          <React.Fragment>
-            <EuiSpacer size="m" />
-            <EuiColorPicker
-              onChange={handleColorChange}
-              color={color}
-              mode={colorPickerMode}
-              swatches={colorPickerSwatches}
-              display="inline"
-              showAlpha={colorPickerShowAlpha}
-              isInvalid={colorIsInvalid}
-              secondaryInputDisplay={
-                colorPickerMode === 'swatch' ? 'none' : 'bottom'
-              }
-            />
-          </React.Fragment>
-        )}
+        {!readOnly && <EuiSpacer size="m" />}
+        <EuiColorPicker
+          readOnly={readOnly}
+          onChange={handleColorChange}
+          color={color}
+          mode={readOnly ? 'secondaryInput' : colorPickerMode}
+          swatches={colorPickerSwatches}
+          display="inline"
+          showAlpha={colorPickerShowAlpha}
+          isInvalid={colorIsInvalid}
+          secondaryInputDisplay={
+            colorPickerMode === 'swatch' ? 'none' : 'bottom'
+          }
+        />
       </div>
     </EuiPopover>
   );

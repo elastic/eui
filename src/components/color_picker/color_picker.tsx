@@ -60,7 +60,7 @@ import {
 } from './utils';
 
 type EuiColorPickerDisplay = 'default' | 'inline';
-type EuiColorPickerMode = 'default' | 'swatch' | 'picker';
+type EuiColorPickerMode = 'default' | 'swatch' | 'picker' | 'secondaryInput';
 
 export interface EuiColorPickerOutput {
   rgba: ColorSpaces['rgba'];
@@ -107,7 +107,7 @@ export interface EuiColorPickerProps
    */
   isInvalid?: boolean;
   /**
-   * Choose between swatches with gradient picker (default), swatches only, or gradient picker only.
+   * Choose between swatches with gradient picker (default), swatches only, gradient picker only, or secondary input only.
    */
   mode?: EuiColorPickerMode;
   /**
@@ -451,6 +451,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     </EuiI18n>
   );
 
+  const showSecondaryInputOnly = mode === 'secondaryInput';
+  const showPicker = mode !== 'swatch' && !showSecondaryInputOnly;
+  const showSwatches = mode !== 'picker' && !showSecondaryInputOnly;
+
   const composite = (
     <>
       {secondaryInputDisplay === 'top' && (
@@ -459,7 +463,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           <EuiSpacer size="s" />
         </>
       )}
-      {mode !== 'swatch' && (
+      {showPicker && (
         <div onKeyDown={handleOnKeyDown}>
           <EuiSaturation
             id={id}
@@ -476,7 +480,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           />
         </div>
       )}
-      {mode !== 'picker' && (
+      {showSwatches && (
         <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
           {swatches.map((swatch, index) => (
             <EuiFlexItem grow={false} key={swatch}>
