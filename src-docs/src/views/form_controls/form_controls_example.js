@@ -130,20 +130,6 @@ const checkboxSnippet = [
   indeterminate={indeterminate}
   onChange={onChangeIndeterminate}
 />`,
-  `<EuiCheckbox
-  id={checkboxId}
-  label="I am a disabled checkbox"
-  checked={checked}
-  onChange={onChange}
-  disabled
-/>`,
-  `<EuiCheckbox
-  id={checkboxId}
-  label="I am a compressed checkbox"
-  checked={checked}
-  onChange={onChange}
-  compressed
-/>`,
 ];
 
 import CheckboxGroup from './checkbox_group';
@@ -159,18 +145,6 @@ const radioSnippet = [
   checked={checked}
   onChange={onChange}
 />`,
-  `<EuiRadio
-  label="I am a disabled radio"
-  checked={checked}
-  onChange={onChange}
-  disabled
-/>`,
-  `<EuiRadio
-  label="I am a compressed radio"
-  checked={checked}
-  onChange={onChange}
-  compressed
-/>`,
 ];
 
 import RadioGroup from './radio_group';
@@ -185,38 +159,6 @@ const switchSnippet = [
   label="I am a switch"
   checked={checked}
   onChange={onChange}
-/>`,
-  `<EuiSwitch
-  label="I am a disabled switch"
-  checked={checked}
-  onChange={onChange}
-  disabled
-/>`,
-  `<EuiSwitch
-  showLabel={false}
-  label="I am a switch without a visible label"
-  checked={checked}
-  onChange={onChange}
-/>`,
-  `<EuiSwitch
-  label="I am a compressed switch"
-  checked={checked}
-  onChange={onChange}
-  compressed
-/>`,
-  `<EuiSwitch
-  label="I am a compressed, disabled switch"
-  checked={checked}
-  onChange={onChange}
-  compressed
-  disabled
-/>`,
-  `<EuiSwitch
-  showLabel={false}
-  label="I am a compressed switch without a visible label"
-  checked={checked}
-  onChange={onChange}
-  compressed
 />`,
 ];
 
