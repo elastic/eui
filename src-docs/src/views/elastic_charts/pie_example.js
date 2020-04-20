@@ -245,9 +245,8 @@ const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_
               }}
             />{' '}
             and consider appending their values . However, if there are many
-            small slices or long labels, use a legend{unsupportedTooltip},
-            especially one that displays the values in a table format with right
-            aligned values.
+            small slices or long labels, use a legend, especially one that
+            displays the values in a table format with right aligned values.
           </p>
           <h3>Other slices</h3>
           <p>

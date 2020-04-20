@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { Fragment, useState, useContext } from 'react';
-import { Chart, Partition } from '@elastic/charts';
+import { Chart, Partition, Settings } from '@elastic/charts';
 import { ThemeContext } from '../../components';
 
 import {
@@ -70,6 +70,9 @@ export default () => {
   const [sliceOrderConfig, setSliceOrderConfig] = useState({
     clockwiseSectors: false,
   });
+  const [sliceOrderConfigText, setSliceOrderConfigText] = useState(
+    'clockwiseSectors: false,'
+  );
 
   const [pieTypeIdSelected, setPieTypeIdSelected] = useState(
     pieTypeRadios[0].id
@@ -92,12 +95,13 @@ export default () => {
       .label;
     if (sliceOrderLabel.includes('Counter')) {
       setSliceOrderConfig({ clockwiseSectors: false });
-    } else if (sliceOrderLabel.includes('special')) {
-      setSliceOrderConfig({});
+      setSliceOrderConfigText('clockwiseSectors: false,');
     } else if (sliceOrderLabel.includes('Clockwise')) {
       setSliceOrderConfig({ specialFirstInnermostSector: false });
+      setSliceOrderConfigText('specialFirstInnermostSector: false,');
     } else if (sliceOrderLabel.includes('natural')) {
       setSliceOrderConfig({});
+      setSliceOrderConfigText('');
     } else {
       console.warn("Couldn't find the right slice order type");
     }
@@ -109,7 +113,7 @@ export default () => {
   };
 
   const isBadChart = numSlices > 5 && !grouped;
-  const isComplicatedChart = showLegend;
+  const isComplicatedChart = false;
 
   const customTitle = (
     <EuiTextAlign textAlign="center">
@@ -143,6 +147,7 @@ export default () => {
       {customTitle}
       <div style={{ position: 'relative' }}>
         <Chart size={{ height: 200 }}>
+          <Settings showLegend={showLegend} showLegendExtra />
           <Partition
             id="donutByLanguage"
             data={pieData()}
@@ -198,10 +203,9 @@ export default () => {
             />
             <EuiSpacer size="s" />
             <EuiSwitch
-              label="Show legend (unsupported)"
+              label="Show legend"
               checked={showLegend}
               onChange={e => setShowLegend(e.target.checked)}
-              disabled
             />
           </ChartCard>
         </EuiFlexItem>
@@ -232,9 +236,9 @@ export default () => {
             <EuiFormRow>
               <EuiSwitch
                 label="Group 'Other' slices"
-                checked={numSlices <= 6 ? false : grouped}
+                checked={numSlices <= 5 ? false : grouped}
                 onChange={onGroupChange}
-                disabled={numSlices <= 6}
+                disabled={numSlices <= 5}
               />
             </EuiFormRow>
           </ChartCard>
@@ -265,18 +269,46 @@ export default () => {
 
       <div className="eui-textCenter">
         <EuiCopy
-          textToCopy={`${
-            customTitle
-              ? `<EuiTitle size="xxs">
-  <h4>
-    <EuiIcon type="dot" color={highlightColor} /> My number of issues
-    compared to others
-  </h4>
-</EuiTitle>`
-              : ''
-          }
+          textToCopy={`<EuiTitle size="xxs">
+  <h4>Distribution of the top ${numSlices} browsers from 2019</h4>
+</EuiTitle>
 <Chart size={{height: 200}}>
-  <>
+  ${showLegend ? '<Settings showLegend />' : ''}
+  <Partition
+    id={chartID}
+    data={[
+      {
+        browser: 'Chrome',
+        percent: 61.72,
+      },
+      ...
+      ${
+        grouped && numSlices > 5
+          ? `{
+        browser: 'Other',
+        percent: totalOfOtherSlices
+      }`
+          : ''
+      }
+    ]}
+    valueAccessor={d => Number(d.percent)}
+    ${showValues ? '' : "valueFormatter={() => ''}"}
+    layers={[
+      {
+        groupByRollup: d => d.browser,
+        shape: {
+          fillColor: d => euiPaletteColorBlind()[d.sortIndex],
+        },
+      },
+    ]}
+    config={{
+      ...(isDarkTheme
+        ? EUI_CHARTS_THEME_DARK.pie
+        : EUI_CHARTS_THEME_LIGHT.pie),
+      ${pieTypeIdSelected.includes('Donut') ? 'emptySizeRatio: 0.4,' : ''}
+      ${sliceOrderConfigText}
+    }}
+  />
 </Chart>`}>
           {copy => (
             <EuiButton
