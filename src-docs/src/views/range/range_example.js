@@ -121,16 +121,16 @@ export const RangeControlExample = {
   min={100}
   max={200}
   step={0.05}
-  value={this.state.value}
-  onChange={this.onChange}
+  value={value}
+  onChange={handleChange}
   showLabels
 />`,
         `// Show tooltip
 <EuiRange
   min={100}
   max={200}
-  value={this.state.value}
-  onChange={this.onChange}
+  value={value}
+  onChange={handleChange}
   showLabels
   showValue
 />`,
@@ -138,8 +138,8 @@ export const RangeControlExample = {
 <EuiRange
   min={100}
   max={200}
-  value={this.state.value}
-  onChange={this.onChange}
+  value={value}
+  onChange={handleChange}
   showLabels
   showRange
   showValue
@@ -197,8 +197,8 @@ export const RangeControlExample = {
   min={100}
   max={200}
   step={10}
-  value={this.state.value}
-  onChange={this.onChange}
+  value={value}
+  onChange={handleChange}
   showLabels
 />`,
     },
@@ -359,14 +359,14 @@ export const RangeControlExample = {
       snippet: [
         `<EuiRange
   id=""
-  value={}
-  onChange={() => {}}
+  value={value}
+  onChange={handleChange}
   showInput="inputWithPopover"
 />`,
         `<EuiDualRange
   id=""
-  value={}
-  onChange={() => {}}
+  value={value}
+  onChange={handleChange}
   showInput="inputWithPopover"
 />`,
       ],
@@ -395,8 +395,8 @@ export const RangeControlExample = {
       snippet: [
         `<EuiRange
   id=""
-  value={}
-  onChange={() => {}}
+  value={value}
+  onChange={handleChange}
   fullWidth
   disabled
   showTicks
@@ -410,8 +410,8 @@ export const RangeControlExample = {
 />`,
         `<EuiDualRange
   id=""
-  value={}
-  onChange={() => {}}
+  value={value}
+  onChange={handleChange}
   fullWidth
   disabled
   showLabels
