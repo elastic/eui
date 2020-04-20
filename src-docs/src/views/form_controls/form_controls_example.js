@@ -39,9 +39,6 @@ const fieldSearchSnippet = [
   value={value}
   isClearable={isClearable}
   onChange={onChange}
-  compressed={false}
-  isLoading={true}
-  aria-label="Use aria labels when no actual label is in use"
 />`,
 ];
 
@@ -53,9 +50,6 @@ const fieldTextSnippet = [
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
-  readOnly={false}
-  prepend={prepend}
-  append={append}
 />`,
 ];
 
@@ -67,9 +61,6 @@ const fieldNumberSnippet = [
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
-  min={1}
-  max={25}
-  step={2}
 />`,
 ];
 
@@ -81,7 +72,6 @@ const fieldPasswordSnippet = [
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
-  fullWidth={true}
 />`,
 ];
 
@@ -93,7 +83,6 @@ const textAreaSnippet = [
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
-  isInvalid={false}
 />`,
 ];
 
@@ -117,7 +106,7 @@ const selectSnippet = [
   options={[
     {
       value: 'option_one',
-      text: 'Option one'
+      text: 'Option one',
     }
   ]}
   value={value}
@@ -135,23 +124,20 @@ const checkboxSnippet = [
   checked={checked}
   onChange={onChange}
 />`,
-  `//Indeterminate Checkbox
-<EuiCheckbox
+  `<EuiCheckbox
   id={checkboxId}
   label="I am an indeterminate checkbox"
   indeterminate={indeterminate}
   onChange={onChangeIndeterminate}
 />`,
-  `//Disabled Checkbox
-<EuiCheckbox
+  `<EuiCheckbox
   id={checkboxId}
   label="I am a disabled checkbox"
   checked={checked}
   onChange={onChange}
   disabled
 />`,
-  `//Compressed Checkbox
-<EuiCheckbox
+  `<EuiCheckbox
   id={checkboxId}
   label="I am a compressed checkbox"
   checked={checked}
@@ -174,16 +160,14 @@ const radioSnippet = [
   checked={checked}
   onChange={onChange}
 />`,
-  `//Disabled Radio Button
-<EuiRadio
+  `<EuiRadio
   id={radioId}
   label="I am a disabled radio"
   checked={checked}
   onChange={onChange}
   disabled
 />`,
-  `//Compressed Radio Button
-<EuiRadio
+  `<EuiRadio
   id={radioId}
   label="I am a compressed radio"
   checked={checked}
@@ -205,37 +189,32 @@ const switchSnippet = [
   checked={checked}
   onChange={onChange}
 />`,
-  `//Disabled Switch
-<EuiSwitch
+  `<EuiSwitch
   label="I am a disabled switch"
   checked={checked}
   onChange={onChange}
   disabled
 />`,
-  `//Switch without visible label
-<EuiSwitch
+  `<EuiSwitch
   showLabel={false}
   label="I am a switch without a visible label"
   checked={checked}
   onChange={onChange}
 />`,
-  `//Compressed switch
-<EuiSwitch
+  `<EuiSwitch
   label="I am a compressed switch"
   checked={checked}
   onChange={onChange}
   compressed
 />`,
-  `//Compressed and disabled Switch
-<EuiSwitch
+  `<EuiSwitch
   label="I am a compressed, disabled switch"
   checked={checked}
   onChange={onChange}
   compressed
   disabled
 />`,
-  `//Compressed switch without a visible label
-<EuiSwitch
+  `<EuiSwitch
   showLabel={false}
   label="I am a compressed switch without a visible label"
   checked={checked}
@@ -460,13 +439,9 @@ export const FormControlsExample = {
       id: id1,
       label: 'Option one',
     },
-    {
-      id: id2,
-      label: 'Option two',
-    }
   ]}
   idToSelectedMap={{ id1: true }}
-  onChange={(id) => {}}
+  onChange={onChange}
 />`,
     },
     {
@@ -509,14 +484,10 @@ export const FormControlsExample = {
       id: id1,
       label: 'Option one',
     },
-    {
-      id: id2,
-      label: 'Option two',
-    }
   ]}
   idSelected={id1}
-  onChange={(id) => {}}
-  name={groupName}
+  onChange={onChange}
+  name="radio group"
   legend={{
     children: 'A legend',
   }}
@@ -588,10 +559,10 @@ export const FormControlsExample = {
       demo: <Fieldset />,
       snippet: [
         `<EuiFormFieldset legend={{ children: 'Legend' }}>
-  /* Controls */
+  <!-- Controls -->
 </EuiFormFieldset>`,
         `<EuiFormFieldset legend={{ children: 'Hidden legend', display: 'hidden' }}>
-  /* Controls */
+  <!-- Controls -->
 </EuiFormFieldset>`,
       ],
     },
@@ -634,20 +605,8 @@ export const FormControlsExample = {
   append="px"
 />`,
         `<EuiFieldText
-  prepend={
-    <EuiPopover
-      button={
-        <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
-          Popover
-        </EuiButtonEmpty>
-      }
-      closePopover={() => {}}
-    />
-  }
-  append={[
-    <EuiButtonIcon iconType="gear" />,
-    "Label",
-  ]}
+  prepend={prepend}
+  append={append}
 />`,
       ],
     },
