@@ -42,16 +42,7 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
 
   if (comments) {
     commentElements = comments.map((item, index) => (
-      <EuiComment
-        event={item.event}
-        timestamp={item.timestamp}
-        timelineIcon={item.timelineIcon}
-        key={index}
-        children={item.children}
-        username={item.username}
-        type={item.type}
-        actions={item.actions}
-      />
+      <EuiComment key={index} {...item} />
     ));
   }
 
