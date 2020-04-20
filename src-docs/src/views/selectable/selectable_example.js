@@ -105,7 +105,7 @@ export const SelectableExample = {
       demo: <Selectable />,
       snippet: `<EuiSelectable
   options={[{ label: '' }, { label: '' }]}
-  onChange={() => this.onChange(options)}
+  onChange={newOptions => setOptions(newOptions)}
   listProps={{ bordered: true }}>
   {list => list}
 </EuiSelectable>`,
@@ -146,7 +146,7 @@ export const SelectableExample = {
     'data-test-subj': dataTestSubj,
   }}
   options={[]}
-  onChange={() => this.onChange(options)}>
+  onChange={newOptions => setOptions(newOptions)}>
   {(list, search) => (
     <Fragment>
       {search}
@@ -184,7 +184,7 @@ export const SelectableExample = {
       snippet: `
       <EuiSelectable
         options={options}
-        onChange={this.onChange}
+        onChange={newOptions => setOptions(newOptions)}
         singleSelection={true}
         listProps={{ bordered: true }}>
         {list => list}
@@ -257,7 +257,7 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   allowExclusions
   options={[]}
-  onChange={() => this.onChange(options)}>
+  onChange={newOptions => setOptions(newOptions)}>
   {list => list}
 </EuiSelectable>`,
     },
@@ -350,9 +350,9 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   searchable
   options={[]}
-  onChange={() => this.onChange(options)}
+  onChange={newOptions => setOptions(newOptions)}
   height={240}
-  renderOption={this.renderCountryOption}
+  renderOption={renderCountryOption}
   listProps={{
     rowHeight: 50,
     showIcons: false,
