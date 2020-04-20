@@ -45,6 +45,7 @@ exports[`EuiDatePicker is rendered 2`] = `
   onMonthChange={[Function]}
   onSelect={[Function]}
   onYearChange={[Function]}
+  popperPlacement="bottom-start"
   preventOpenOnFocus={false}
   previousMonthButtonLabel="Previous Month"
   readOnly={false}

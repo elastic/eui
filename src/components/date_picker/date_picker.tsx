@@ -39,6 +39,19 @@ export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 
 const DatePicker = _ReactDatePicker as typeof ReactDatePicker;
 
+export type EuiDatePickerPopperPlacement =
+  | 'bottom'
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'left'
+  | 'left-end'
+  | 'right'
+  | 'right-end'
+  | 'right-start'
+  | 'top'
+  | 'top-end'
+  | 'top-start';
+
 interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   /**
    * Applies classes to the numbered days provided. Check docs for example.
@@ -89,6 +102,11 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
    * Show the icon in input
    */
   showIcon?: boolean;
+
+  /**
+   * Open the popper in one of the positions
+   */
+  popperPlacement?: EuiDatePickerPopperPlacement;
 }
 
 type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
@@ -109,6 +127,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     showIcon: true,
     showTimeSelect: false,
     timeFormat: euiDatePickerDefaultTimeFormat,
+    popperPlacement: 'bottom-start',
   };
 
   render() {
@@ -138,6 +157,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       openToDate,
       placeholder,
       popperClassName,
+      popperPlacement,
       selected,
       shadow,
       shouldCloseOnSelect,
@@ -262,6 +282,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
                       utcOffset={utcOffset}
                       yearDropdownItemNumber={7}
                       accessibleMode
+                      popperPlacement={popperPlacement}
                       {...rest}
                     />
                   );
