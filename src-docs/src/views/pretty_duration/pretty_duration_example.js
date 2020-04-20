@@ -15,6 +15,53 @@ import {
 import PrettyDuration from './pretty_duration';
 const prettyDurationSource = require('!!raw-loader!./pretty_duration');
 const prettyDurationHtml = renderToHtml(PrettyDuration);
+const prettyDurationSnippet = [
+  `let example = {
+    start: '2018-01-17T18:57:57.149Z',
+    end: '2018-01-17T20:00:00.000Z',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY, HH:mm:ss.SSS',
+}
+<EuiText>
+   <p>{prettyDuration(example.start, example.end, example.quickRanges, example.dateFormat)}</p>
+</EuiText>`,
+  `let example = {
+    start: '2018-01-17T18:57:57.149Z',
+    end: 'now-2h',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY @ HH:mm:ss.SSS',
+}
+<EuiText>
+   <p>{prettyDuration(example.start, example.end, example.quickRanges, example.dateFormat)}</p>
+</EuiText>
+`,
+  `let example = {
+    start: 'now-17m',
+    end: 'now-1m',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY @ HH:mm:ss.SSS',
+}
+<EuiText>
+   <p>{prettyDuration(example.start, example.end, example.quickRanges, example.dateFormat)}</p>
+</EuiText>
+`,
+  `let example = {
+    start: 'now-15m',
+    end: 'now',
+    quickRanges: [
+      {
+        start: 'now-15m',
+        end: 'now',
+        label: 'quick range 15 minutes custom display',
+      },
+    ],
+    dateFormat: 'MMMM Do YYYY, HH:mm:ss.SSS',
+  }
+<EuiText>
+   <p>{prettyDuration(example.start, example.end, example.quickRanges, example.dateFormat)}</p>
+</EuiText>
+`,
+];
 
 export const PrettyDurationExample = {
   title: 'Pretty duration',
@@ -65,6 +112,7 @@ export const PrettyDurationExample = {
           </p>
         </Fragment>
       ),
+      snippet: prettyDurationSnippet,
       demo: <PrettyDuration />,
     },
   ],
