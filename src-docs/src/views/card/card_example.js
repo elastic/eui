@@ -81,9 +81,9 @@ export const CardExample = {
       demo: <Card />,
       snippet: `<EuiCard
   icon={<EuiIcon size="xxl" type={} />}
-  title=""
-  description=""
-  onClick={}
+  title="Add a title"
+  description=" "
+  onClick={handleClick}
 />`,
     },
     {
@@ -124,9 +124,9 @@ export const CardExample = {
       snippet: `<EuiCard
   layout="horizontal"
   icon={<EuiIcon size="xl" type={} />}
-  title=""
+  title="Add a title"
   description=""
-  onClick={}
+  onClick={handleClick}
 />`,
     },
     {
@@ -163,9 +163,9 @@ export const CardExample = {
       snippet: `<EuiCard
   textAlign="left"
   image="https://source.unsplash.com/400x200/?Nature"
-  title=""
+  title="Add a title"
   description=""
-  onClick={}
+  onClick={handleClick}
 />`,
     },
     {
@@ -205,7 +205,7 @@ export const CardExample = {
       demo: <CardFooter />,
       snippet: `<EuiCard
   icon={<EuiIcon size="xxl" type="" />}
-  title=""
+  title="Add a title"
   description=""
   footer={
     <div>
@@ -246,9 +246,9 @@ export const CardExample = {
       demo: <CardBeta />,
       snippet: `<EuiCard
   icon={<EuiIcon size="xxl" type={} />}
-  title=""
+  title="Add a title"
   description=""
-  onClick={}
+  onClick={handleClick}
   betaBadgeLabel=""
   betaBadgeTooltipContent=""
 />`,
@@ -287,12 +287,12 @@ export const CardExample = {
       demo: <CardSelectable />,
       snippet: `<EuiCard
   icon={<EuiIcon />}
-  title=""
+  title="Add a title"
   description=""
   selectable={{
-    onClick: this.cardClicked,
-    isSelected: this.state.cardIsSelected,
-    isDisabled: this.state.cardIsDisabled,
+    onClick: cardClicked,
+    isSelected: cardIsSelected,
+    isDisabled: cardIsDisabled,
   }}
   footer={<EuiButtonEmpty
     onClick={e => {
@@ -364,7 +364,7 @@ export const CardExample = {
       demo: <CardChildren />,
       snippet: `<EuiCard
   textAlign="left"
-  title=""
+  title="Add a title"
   description="">
   <EuiText size="s">
     <ul>
