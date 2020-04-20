@@ -102,7 +102,7 @@ const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
 const filePickerSnippet = [
   `<EuiFilePicker
-  id=" "
+  id={filePickerId}
   multiple
   initialPromptText="content that appears in the dropzone if no file is attached"
   onChange={onChange}
