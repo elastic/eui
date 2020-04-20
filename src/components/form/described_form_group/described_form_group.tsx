@@ -62,9 +62,7 @@ export type EuiDescribedFormGroupProps = CommonProps &
     description?: ReactNode;
   };
 
-export const EuiDescribedFormGroup: React.FunctionComponent<
-  EuiDescribedFormGroupProps
-> = ({
+export const EuiDescribedFormGroup: React.FunctionComponent<EuiDescribedFormGroupProps> = ({
   children,
   className,
   gutterSize = 'l',

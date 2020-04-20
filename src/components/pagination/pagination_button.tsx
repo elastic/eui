@@ -66,5 +66,5 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
     ...rest,
   };
 
-  return <EuiButtonEmpty {...props as EuiButtonEmptyProps} />;
+  return <EuiButtonEmpty {...(props as EuiButtonEmptyProps)} />;
 };

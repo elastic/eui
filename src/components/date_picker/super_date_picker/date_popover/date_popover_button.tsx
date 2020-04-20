@@ -51,9 +51,7 @@ export interface EuiDatePopoverButtonProps {
   value: string;
 }
 
-export const EuiDatePopoverButton: FunctionComponent<
-  EuiDatePopoverButtonProps
-> = props => {
+export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> = props => {
   const {
     position,
     isDisabled,

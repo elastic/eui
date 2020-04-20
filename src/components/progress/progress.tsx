@@ -72,9 +72,10 @@ type Determinate = EuiProgressProps &
     max?: number;
   };
 
-export const EuiProgress: FunctionComponent<
-  ExclusiveUnion<Determinate, Indeterminate>
-> = ({
+export const EuiProgress: FunctionComponent<ExclusiveUnion<
+  Determinate,
+  Indeterminate
+>> = ({
   className,
   color = 'secondary',
   size = 'm',
@@ -104,12 +105,12 @@ export const EuiProgress: FunctionComponent<
         className={classes}
         max={max}
         value={value}
-        {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
+        {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
       />
     );
   } else {
     return (
-      <div className={classes} {...rest as HTMLAttributes<HTMLDivElement>} />
+      <div className={classes} {...(rest as HTMLAttributes<HTMLDivElement>)} />
     );
   }
 };

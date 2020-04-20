@@ -125,7 +125,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
         onClick={onClick}
-        {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+        {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
         {optionalBetaBadge}
         {children}
       </button>
@@ -136,7 +136,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     <div
       ref={panelRef as Ref<HTMLDivElement>}
       className={classes}
-      {...rest as HTMLAttributes<HTMLDivElement>}>
+      {...(rest as HTMLAttributes<HTMLDivElement>)}>
       {optionalBetaBadge}
       {children}
     </div>

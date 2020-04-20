@@ -38,9 +38,9 @@ function renderHorizontalSteps(steps: ContainedEuiStepHorizontalProps[]) {
   });
 }
 
-export const EuiStepsHorizontal: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsHorizontalProps
-> = ({ className, steps, ...rest }) => {
+export const EuiStepsHorizontal: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiStepsHorizontalProps> = ({ className, steps, ...rest }) => {
   const classes = classNames('euiStepsHorizontal', className);
 
   return (

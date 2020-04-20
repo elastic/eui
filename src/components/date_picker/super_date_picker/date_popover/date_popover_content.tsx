@@ -47,9 +47,7 @@ export interface EuiDatePopoverContentProps {
   position: 'start' | 'end';
 }
 
-export const EuiDatePopoverContent: FunctionComponent<
-  EuiDatePopoverContentProps
-> = ({
+export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps> = ({
   value,
   roundUp = false,
   onChange,

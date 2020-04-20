@@ -149,13 +149,16 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
 
   if (onClick) {
     return (
-      <button onClick={onClick} className={classes} {...rest as PropsForButton}>
+      <button
+        onClick={onClick}
+        className={classes}
+        {...(rest as PropsForButton)}>
         {innerContent}
       </button>
     );
   } else {
     return (
-      <div className={classes} {...rest as PropsForDiv}>
+      <div className={classes} {...(rest as PropsForDiv)}>
         {innerContent}
       </div>
     );

@@ -197,7 +197,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                       className="euiSelectableList__groupLabel"
                       key={rowKey}
                       style={style}
-                      {...optionRest as HTMLAttributes<HTMLDivElement>}>
+                      {...(optionRest as HTMLAttributes<HTMLDivElement>)}>
                       {prepend}
                       {label}
                       {append}
@@ -218,7 +218,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                     disabled={disabled}
                     prepend={prepend}
                     append={append}
-                    {...optionRest as EuiSelectableListItemProps}>
+                    {...(optionRest as EuiSelectableListItemProps)}>
                     {renderOption ? (
                       renderOption(option, searchValue)
                     ) : (

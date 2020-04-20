@@ -53,7 +53,7 @@ type ExcludeEuiSideNavItemProps<T> = Pick<
   Exclude<keyof T, keyof SideNavItemProps | 'renderItem'>
 >;
 type OmitEuiSideNavItemProps<T> = {
-  [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K]
+  [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K];
 };
 
 interface GuaranteedRenderItemProps {

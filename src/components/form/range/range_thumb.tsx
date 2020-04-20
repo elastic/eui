@@ -74,9 +74,9 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
       onMouseDown={onMouseDown}
       disabled={disabled}
       {...commonAttrs}
-      {...rest as HTMLAttributes<HTMLButtonElement>}
+      {...(rest as HTMLAttributes<HTMLButtonElement>)}
     />
   ) : (
-    <div {...commonAttrs} {...rest as HTMLAttributes<HTMLDivElement>} />
+    <div {...commonAttrs} {...(rest as HTMLAttributes<HTMLDivElement>)} />
   );
 };

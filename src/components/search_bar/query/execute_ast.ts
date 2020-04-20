@@ -107,15 +107,12 @@ const fieldClauseMatcher = <T>(
 // You might think that we could specify `item: T` here and do something
 // with `keyof`, but that wouldn't work with `nested.field.name`
 const extractStringFieldsFromItem = (item: any) => {
-  return Object.keys(item).reduce(
-    (fields, key) => {
-      if (isString(item[key])) {
-        fields.push(key);
-      }
-      return fields;
-    },
-    [] as string[]
-  );
+  return Object.keys(item).reduce((fields, key) => {
+    if (isString(item[key])) {
+      fields.push(key);
+    }
+    return fields;
+  }, [] as string[]);
 };
 
 const termClauseMatcher = <T>(

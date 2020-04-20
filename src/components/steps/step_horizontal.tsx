@@ -53,9 +53,9 @@ export interface EuiStepHorizontalProps {
   status?: EuiStepStatus;
 }
 
-export const EuiStepHorizontal: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepHorizontalProps
-> = ({
+export const EuiStepHorizontal: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiStepHorizontalProps> = ({
   className,
   step = 1,
   title,

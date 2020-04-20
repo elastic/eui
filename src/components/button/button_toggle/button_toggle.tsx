@@ -144,10 +144,10 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
         color={color}
         disabled={isDisabled}
         size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
-        {...rest as Extract<
+        {...(rest as Extract<
           EuiButtonTogglePropsForAnchor,
           EuiButtonTogglePropsForButtonToggle
-        >}>
+        >)}>
         {buttonContent}
       </EuiButton>
     </EuiToggle>

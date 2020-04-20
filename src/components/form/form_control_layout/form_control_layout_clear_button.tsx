@@ -27,9 +27,11 @@ import { EuiI18n } from '../../i18n';
 export type EuiFormControlLayoutClearButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const EuiFormControlLayoutClearButton: FunctionComponent<
-  EuiFormControlLayoutClearButtonProps
-> = ({ className, onClick, ...rest }) => {
+export const EuiFormControlLayoutClearButton: FunctionComponent<EuiFormControlLayoutClearButtonProps> = ({
+  className,
+  onClick,
+  ...rest
+}) => {
   const classes = classNames('euiFormControlLayoutClearButton', className);
 
   return (

@@ -33,7 +33,10 @@ const items = times(10, id => {
     id,
     status: random.oneOf(['open', 'closed']),
     type: random.oneOf(types),
-    tag: random.setOf(tags.map(tag => tag.name), { min: 0, max: 3 }),
+    tag: random.setOf(
+      tags.map(tag => tag.name),
+      { min: 0, max: 3 }
+    ),
     active: random.boolean(),
     owner: random.oneOf(users),
     followers: random.integer({ min: 0, max: 20 }),

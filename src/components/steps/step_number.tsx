@@ -54,11 +54,11 @@ export interface EuiStepNumberProps {
   isHollow?: boolean;
 }
 
-export const EuiStepNumber: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepNumberProps
+export const EuiStepNumber: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiStepNumberProps> = ({ className, status, number, isHollow, ...rest }) => {
   // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
   // tslint:disable-next-line:variable-name
-> = ({ className, status, number, isHollow, ...rest }) => {
   const classes = classNames(
     'euiStepNumber',
     status ? statusToClassNameMap[status] : undefined,

@@ -571,9 +571,9 @@ export class EuiComboBox<T> extends Component<
       this.closeList();
 
       if (this.props.onBlur) {
-        this.props.onBlur((event as unknown) as React.FocusEvent<
-          HTMLDivElement
-        >);
+        this.props.onBlur(
+          (event as unknown) as React.FocusEvent<HTMLDivElement>
+        );
       }
       this.setState({ hasFocus: false });
 

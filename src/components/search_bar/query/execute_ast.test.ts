@@ -181,27 +181,39 @@ describe('execute ast', () => {
   });
 
   test('is clause - applied', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.must('open')]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john');
   });
 
   test('is clause - not applied', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.mustNot('open')]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
   });
 
   test('is clause - applied - missing field', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.must('closed')]), items);
     expect(result).toHaveLength(0);
   });
 
   test('is clause - not applied - missing field', () => {
-    const items = [{ name: 'john', open: true }, { name: 'joe', open: false }];
+    const items = [
+      { name: 'john', open: true },
+      { name: 'joe', open: false },
+    ];
     const result = executeAst(AST.create([AST.Is.mustNot('closed')]), items);
     expect(result).toHaveLength(2);
   });

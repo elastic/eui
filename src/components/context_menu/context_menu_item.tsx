@@ -70,7 +70,7 @@ type Props = CommonProps &
   EuiContextMenuItemProps;
 
 const layoutAlignToClassNames: {
-  [align in EuiContextMenuItemLayoutAlignment]: string | null
+  [align in EuiContextMenuItemLayoutAlignment]: string | null;
 } = {
   center: null,
   top: 'euiContextMenu__itemLayout--top',
@@ -154,7 +154,7 @@ export class EuiContextMenuItem extends Component<Props> {
           target={target}
           rel={secureRel}
           ref={buttonRef as Ref<HTMLAnchorElement>}
-          {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
+          {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
           {buttonInner}
         </a>
       );

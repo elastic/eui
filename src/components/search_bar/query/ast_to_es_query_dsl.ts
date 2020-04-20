@@ -364,37 +364,34 @@ export const astToEsQueryDsl = (ast: _AST, options = {}): QueryContainer => {
     // there is at least one GroupClause, wrap the above clauses in another layer and append the ORs
     const must = groupClauses.reduce(
       (must, groupClause) => {
-        const clauses = groupClause.value.reduce(
-          (clauses, clause) => {
-            if (AST.Term.isInstance(clause)) {
-              clauses.push(
-                clausesToEsQueryDsl({
-                  terms: collectTerms([clause]),
-                  fields: EMPTY_FIELDS,
-                  is: [],
-                })
-              );
-            } else if (AST.Field.isInstance(clause)) {
-              clauses.push(
-                clausesToEsQueryDsl({
-                  terms: EMPTY_TERMS,
-                  fields: collectFields([clause]),
-                  is: [],
-                })
-              );
-            } else if (AST.Is.isInstance(clause)) {
-              clauses.push(
-                clausesToEsQueryDsl({
-                  terms: EMPTY_TERMS,
-                  fields: EMPTY_FIELDS,
-                  is: [clause],
-                })
-              );
-            }
-            return clauses;
-          },
-          [] as BoolQuery[]
-        );
+        const clauses = groupClause.value.reduce((clauses, clause) => {
+          if (AST.Term.isInstance(clause)) {
+            clauses.push(
+              clausesToEsQueryDsl({
+                terms: collectTerms([clause]),
+                fields: EMPTY_FIELDS,
+                is: [],
+              })
+            );
+          } else if (AST.Field.isInstance(clause)) {
+            clauses.push(
+              clausesToEsQueryDsl({
+                terms: EMPTY_TERMS,
+                fields: collectFields([clause]),
+                is: [],
+              })
+            );
+          } else if (AST.Is.isInstance(clause)) {
+            clauses.push(
+              clausesToEsQueryDsl({
+                terms: EMPTY_TERMS,
+                fields: EMPTY_FIELDS,
+                is: [clause],
+              })
+            );
+          }
+          return clauses;
+        }, [] as BoolQuery[]);
 
         must.push({
           bool: {

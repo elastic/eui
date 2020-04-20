@@ -215,7 +215,7 @@ export const EuiButton: FunctionComponent<Props> = ({
       disabled={isDisabled}
       {...relObj}
       ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
-      {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}>
+      {...(rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>)}>
       {innerNode}
     </Element>
   );

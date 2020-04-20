@@ -105,9 +105,13 @@ const ObservedCell: FunctionComponent<{
   );
 };
 
-export const EuiDataGridInMemoryRenderer: FunctionComponent<
-  EuiDataGridInMemoryRendererProps
-> = ({ inMemory, columns, rowCount, renderCellValue, onCellRender }) => {
+export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryRendererProps> = ({
+  inMemory,
+  columns,
+  rowCount,
+  renderCellValue,
+  onCellRender,
+}) => {
   const [documentFragment] = useState(() => document.createDocumentFragment());
 
   const rows = useMemo(() => {

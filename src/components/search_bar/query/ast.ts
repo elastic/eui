@@ -413,26 +413,23 @@ export class _AST {
     if (!existingClause) {
       return new _AST([...this._clauses]);
     }
-    const clauses = this._clauses.reduce(
-      (clauses, clause) => {
-        if (clause !== existingClause) {
-          clauses.push(clause);
-          return clauses;
-        }
-        const filteredValue = (clause.value as Value[]).filter(
-          val => !valuesEqual(val, value)
-        );
-        if (filteredValue.length === 0) {
-          return clauses;
-        }
-        clauses.push({
-          ...clause,
-          value: filteredValue,
-        });
+    const clauses = this._clauses.reduce((clauses, clause) => {
+      if (clause !== existingClause) {
+        clauses.push(clause);
         return clauses;
-      },
-      [] as Clause[]
-    );
+      }
+      const filteredValue = (clause.value as Value[]).filter(
+        val => !valuesEqual(val, value)
+      );
+      if (filteredValue.length === 0) {
+        return clauses;
+      }
+      clauses.push({
+        ...clause,
+        value: filteredValue,
+      });
+      return clauses;
+    }, [] as Clause[]);
     return new _AST(clauses);
   }
 
@@ -537,47 +534,44 @@ export class _AST {
    */
   addClause(newClause: Clause) {
     let added = false;
-    const newClauses = this._clauses.reduce(
-      (clauses, clause) => {
-        if (newClause.type !== clause.type) {
-          clauses.push(clause);
-          return clauses;
-        }
-
-        switch (newClause.type) {
-          case Term.TYPE:
-            if (newClause.value !== (clause as TermClause).value) {
-              clauses.push(clause);
-              return clauses;
-            }
-            break;
-
-          case Field.TYPE:
-            if (
-              newClause.field !== (clause as FieldClause).field ||
-              newClause.value !== (clause as FieldClause).value
-            ) {
-              clauses.push(clause);
-              return clauses;
-            }
-            break;
-
-          case Is.TYPE:
-            if (newClause.flag !== (clause as IsClause).flag) {
-              clauses.push(clause);
-              return clauses;
-            }
-            break;
-
-          default:
-            throw new Error(`unknown clause type [${newClause.type}]`);
-        }
-        added = true;
-        clauses.push(newClause);
+    const newClauses = this._clauses.reduce((clauses, clause) => {
+      if (newClause.type !== clause.type) {
+        clauses.push(clause);
         return clauses;
-      },
-      [] as Clause[]
-    );
+      }
+
+      switch (newClause.type) {
+        case Term.TYPE:
+          if (newClause.value !== (clause as TermClause).value) {
+            clauses.push(clause);
+            return clauses;
+          }
+          break;
+
+        case Field.TYPE:
+          if (
+            newClause.field !== (clause as FieldClause).field ||
+            newClause.value !== (clause as FieldClause).value
+          ) {
+            clauses.push(clause);
+            return clauses;
+          }
+          break;
+
+        case Is.TYPE:
+          if (newClause.flag !== (clause as IsClause).flag) {
+            clauses.push(clause);
+            return clauses;
+          }
+          break;
+
+        default:
+          throw new Error(`unknown clause type [${newClause.type}]`);
+      }
+      added = true;
+      clauses.push(newClause);
+      return clauses;
+    }, [] as Clause[]);
 
     if (!added) {
       newClauses.push(newClause);

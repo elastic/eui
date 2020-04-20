@@ -661,7 +661,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           src={icon}
           className={classes}
           tabIndex={tabIndex}
-          {...rest as HTMLAttributes<HTMLImageElement>}
+          {...(rest as HTMLAttributes<HTMLImageElement>)}
         />
       );
     } else {

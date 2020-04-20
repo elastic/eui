@@ -56,7 +56,10 @@ export default () => {
         value={dualValue}
         onChange={value => onDualChange(value)}
         showTicks
-        ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
+        ticks={[
+          { label: '20kb', value: 20 },
+          { label: '100kb', value: 100 },
+        ]}
         showInput
         levels={levels}
         aria-label="An example of EuiDualRange with levels prop"

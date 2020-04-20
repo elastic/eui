@@ -197,7 +197,5 @@ export interface ReactDatePickerProps {
   withPortal?: boolean;
   yearDropdownItemNumber?: number;
 }
-declare const ReactDatePicker: React.ClassicComponentClass<
-  ReactDatePickerProps
->;
+declare const ReactDatePicker: React.ClassicComponentClass<ReactDatePickerProps>;
 export default ReactDatePicker;

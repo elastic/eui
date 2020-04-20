@@ -71,7 +71,7 @@ export interface Node {
 export type EuiTreeViewDisplayOptions = 'default' | 'compressed';
 
 const displayToClassNameMap: {
-  [option in EuiTreeViewDisplayOptions]: string | null
+  [option in EuiTreeViewDisplayOptions]: string | null;
 } = {
   default: null,
   compressed: 'euiTreeView--compressed',
@@ -295,9 +295,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                           'aria-label': ariaLabel,
                         }
                       : {
-                          'aria-labelledby': `${buttonId} ${
-                            rest['aria-labelledby']
-                          }`,
+                          'aria-labelledby': `${buttonId} ${rest['aria-labelledby']}`,
                         };
 
                     const nodeClasses = classNames(
@@ -322,14 +320,10 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                         <li className={nodeClasses}>
                           <button
                             id={buttonId}
-                            aria-controls={`euiNestedTreeView-${
-                              this.state.treeID
-                            }`}
+                            aria-controls={`euiNestedTreeView-${this.state.treeID}`}
                             aria-expanded={this.isNodeOpen(node)}
                             ref={ref => this.setButtonRef(ref, index)}
-                            data-test-subj={`euiTreeViewButton-${
-                              this.state.treeID
-                            }`}
+                            data-test-subj={`euiTreeViewButton-${this.state.treeID}`}
                             onKeyDown={(event: React.KeyboardEvent) =>
                               this.onKeyDown(event, node)
                             }

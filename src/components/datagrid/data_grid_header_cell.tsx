@@ -45,9 +45,7 @@ export interface EuiDataGridHeaderCellProps
   className?: string;
 }
 
-export const EuiDataGridHeaderCell: FunctionComponent<
-  EuiDataGridHeaderCellProps
-> = props => {
+export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = props => {
   const {
     column,
     index,
@@ -127,9 +125,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
       const tababbles = tabbable(headerRef.current);
       if (tababbles.length > 1) {
         console.warn(
-          `EuiDataGridHeaderCell expects at most 1 tabbable element, ${
-            tababbles.length
-          } found instead`
+          `EuiDataGridHeaderCell expects at most 1 tabbable element, ${tababbles.length} found instead`
         );
       }
       for (let i = 0; i < tababbles.length; i++) {

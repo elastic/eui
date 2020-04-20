@@ -98,7 +98,10 @@ describe('EuiDualRange', () => {
           {...props}
           value={[20, 100]}
           showTicks
-          ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
+          ticks={[
+            { label: '20kb', value: 20 },
+            { label: '100kb', value: 100 },
+          ]}
         />
       );
 

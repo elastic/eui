@@ -34,11 +34,16 @@ export interface EuiTableHeaderCellCheckboxProps {
   scope?: EuiTableHeaderCellCheckboxScope;
 }
 
-export const EuiTableHeaderCellCheckbox: FunctionComponent<
-  CommonProps &
-    ThHTMLAttributes<HTMLTableHeaderCellElement> &
-    EuiTableHeaderCellCheckboxProps
-> = ({ children, className, scope = 'col', style, width, ...rest }) => {
+export const EuiTableHeaderCellCheckbox: FunctionComponent<CommonProps &
+  ThHTMLAttributes<HTMLTableHeaderCellElement> &
+  EuiTableHeaderCellCheckboxProps> = ({
+  children,
+  className,
+  scope = 'col',
+  style,
+  width,
+  ...rest
+}) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);
   const styleObj = resolveWidthAsStyle(style, width);
 

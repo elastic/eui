@@ -55,9 +55,9 @@ export interface EuiFacetButtonProps {
   quantity?: number;
 }
 
-export const EuiFacetButton: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps
-> = ({
+export const EuiFacetButton: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLButtonElement> &
+  EuiFacetButtonProps> = ({
   children,
   className,
   icon,

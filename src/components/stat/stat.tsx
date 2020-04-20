@@ -78,9 +78,9 @@ export interface EuiStatProps {
   titleSize?: EuiTitleSize;
 }
 
-export const EuiStat: FunctionComponent<
-  CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiStatProps
-> = ({
+export const EuiStat: FunctionComponent<CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
+  EuiStatProps> = ({
   children,
   className,
   description,

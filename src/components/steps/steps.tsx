@@ -63,9 +63,9 @@ function renderSteps(
   });
 }
 
-export const EuiSteps: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsProps
-> = ({
+export const EuiSteps: FunctionComponent<CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiStepsProps> = ({
   className,
   firstStepNumber = 1,
   headingElement = 'p',

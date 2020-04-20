@@ -93,9 +93,7 @@ export const ChartTypeCard = props => {
   return (
     <ChartCard
       title="Chart types"
-      description={`${
-        props.type
-      } charts can be displayed as any x/y series type.`}>
+      description={`${props.type} charts can be displayed as any x/y series type.`}>
       <EuiRadioGroup
         compressed
         options={toggleButtonsIcons}

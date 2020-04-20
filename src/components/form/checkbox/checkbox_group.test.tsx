@@ -48,7 +48,10 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
     const component = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
-        options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
+        options={[
+          { id: '1', label: 'kibana' },
+          { id: '2', label: 'elastic' },
+        ]}
       />
     );
 
@@ -59,7 +62,10 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
     const component = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
-        options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
+        options={[
+          { id: '1', label: 'kibana' },
+          { id: '2', label: 'elastic' },
+        ]}
         idToSelectedMap={{
           '1': true,
           '2': false,
@@ -74,7 +80,10 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
     const component = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
-        options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
+        options={[
+          { id: '1', label: 'kibana' },
+          { id: '2', label: 'elastic' },
+        ]}
         idToSelectedMap={{
           '1': true,
           '2': false,

@@ -160,7 +160,8 @@ export type EuiDataGridProps = Omit<
          * must provide either aria-label OR aria-labelledby as a title for the grid
          */
         'aria-labelledby': string;
-      });
+      }
+  );
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -175,7 +176,7 @@ const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
 };
 
 const rowHoverToClassMap: {
-  [rowHighlight in EuiDataGridStyleRowHover]: string
+  [rowHighlight in EuiDataGridStyleRowHover]: string;
 } = {
   highlight: 'euiDataGrid--rowHoverHighlight',
   none: '',
@@ -188,7 +189,7 @@ const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
 };
 
 const cellPaddingsToClassMap: {
-  [cellPaddings in EuiDataGridStyleCellPaddings]: string
+  [cellPaddings in EuiDataGridStyleCellPaddings]: string;
 } = {
   s: 'euiDataGrid--paddingSmall',
   m: '',

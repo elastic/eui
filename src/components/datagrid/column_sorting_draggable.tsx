@@ -42,9 +42,15 @@ export interface EuiDataGridColumnSortingDraggableProps {
   schemaDetectors: EuiDataGridSchemaDetector[];
 }
 
-export const EuiDataGridColumnSortingDraggable: FunctionComponent<
-  EuiDataGridColumnSortingDraggableProps
-> = ({ id, direction, index, sorting, schema, schemaDetectors, ...rest }) => {
+export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridColumnSortingDraggableProps> = ({
+  id,
+  direction,
+  index,
+  sorting,
+  schema,
+  schemaDetectors,
+  ...rest
+}) => {
   const schemaDetails =
     schema.hasOwnProperty(id) && schema[id].columnType != null
       ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
