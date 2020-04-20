@@ -149,7 +149,7 @@ const checkboxSnippet = [
 />`,
   `//Disabled Checkbox
 <EuiCheckbox
-  id=" "
+  id={checkboxId}
   label="I am a disabled checkbox"
   checked={checked}
   onChange={onChange}
