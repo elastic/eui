@@ -33,34 +33,104 @@ import {
 import FieldSearch from './field_search';
 const fieldSearchSource = require('!!raw-loader!./field_search');
 const fieldSearchHtml = renderToHtml(FieldSearch);
+const fieldSearchSnippet = [
+  `<EuiFieldSearch
+  placeholder="Search this"
+  value={value}
+  isClearable={isClearable}
+  onChange={onChange}
+/>`,
+];
 
 import FieldText from './field_text';
 const fieldTextSource = require('!!raw-loader!./field_text');
 const fieldTextHtml = renderToHtml(FieldText);
+const fieldTextSnippet = [
+  `<EuiFieldText
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+/>`,
+];
 
 import FieldNumber from './field_number';
 const fieldNumberSource = require('!!raw-loader!./field_number');
 const fieldNumberHtml = renderToHtml(FieldNumber);
+const fieldNumberSnippet = [
+  `<EuiFieldNumber
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+/>`,
+];
 
 import FieldPassword from './field_password';
 const fieldPasswordSource = require('!!raw-loader!./field_password');
 const fieldPasswordHtml = renderToHtml(FieldPassword);
+const fieldPasswordSnippet = [
+  `<EuiFieldPassword
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+/>`,
+];
 
 import TextArea from './text_area';
 const textAreaSource = require('!!raw-loader!./text_area');
 const textAreaHtml = renderToHtml(TextArea);
+const textAreaSnippet = [
+  `<EuiTextArea
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+/>`,
+];
 
 import { FilePicker } from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
+const filePickerSnippet = [
+  `<EuiFilePicker
+  id={filePickerId}
+  multiple
+  initialPromptText="content that appears in the dropzone if no file is attached"
+  onChange={onChange}
+/>`,
+];
 
 import Select from './select';
 const selectSource = require('!!raw-loader!./select');
 const selectHtml = renderToHtml(Select);
+const selectSnippet = [
+  `<EuiSelect
+  options={[
+    {
+      value: 'option_one',
+      text: 'Option one',
+    }
+  ]}
+  value={value}
+  onChange={onChange}
+/>`,
+];
 
 import Checkbox from './checkbox';
 const checkboxSource = require('!!raw-loader!./checkbox');
 const checkboxHtml = renderToHtml(Checkbox);
+const checkboxSnippet = [
+  `<EuiCheckbox
+  id={checkboxId}
+  label="I am a checkbox"
+  checked={checked}
+  onChange={onChange}
+/>`,
+  `<EuiCheckbox
+  id={checkboxId}
+  label="I am an indeterminate checkbox"
+  indeterminate={indeterminate}
+  onChange={onChangeIndeterminate}
+/>`,
+];
 
 import CheckboxGroup from './checkbox_group';
 const checkboxGroupSource = require('!!raw-loader!./checkbox_group');
@@ -69,6 +139,13 @@ const checkboxGroupHtml = renderToHtml(CheckboxGroup);
 import Radio from './radio';
 const radioSource = require('!!raw-loader!./radio');
 const radioHtml = renderToHtml(Radio);
+const radioSnippet = [
+  `<EuiRadio
+  label="I am a radio"
+  checked={checked}
+  onChange={onChange}
+/>`,
+];
 
 import RadioGroup from './radio_group';
 const radioGroupSource = require('!!raw-loader!./radio_group');
@@ -77,6 +154,13 @@ const radioGroupHtml = renderToHtml(RadioGroup);
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
 const switchHtml = renderToHtml(Switch);
+const switchSnippet = [
+  `<EuiSwitch
+  label="I am a switch"
+  checked={checked}
+  onChange={onChange}
+/>`,
+];
 
 import PrependAppend from './prepend_append';
 const PrependAppendSource = require('!!raw-loader!./prepend_append');
@@ -109,6 +193,7 @@ export const FormControlsExample = {
           code: fieldTextHtml,
         },
       ],
+      snippet: fieldTextSnippet,
       props: {
         EuiFieldText,
       },
@@ -126,6 +211,7 @@ export const FormControlsExample = {
           code: fieldSearchHtml,
         },
       ],
+      snippet: fieldSearchSnippet,
       props: {
         EuiFieldSearch,
       },
@@ -143,6 +229,7 @@ export const FormControlsExample = {
           code: fieldNumberHtml,
         },
       ],
+      snippet: fieldNumberSnippet,
       props: {
         EuiFieldNumber,
       },
@@ -160,6 +247,7 @@ export const FormControlsExample = {
           code: fieldPasswordHtml,
         },
       ],
+      snippet: fieldPasswordSnippet,
       props: {
         EuiFieldPassword,
       },
@@ -194,6 +282,7 @@ export const FormControlsExample = {
           restrictions on how items are rendered.
         </p>
       ),
+      snippet: selectSnippet,
       props: {
         EuiSelect,
       },
@@ -211,6 +300,7 @@ export const FormControlsExample = {
           code: textAreaHtml,
         },
       ],
+      snippet: textAreaSnippet,
       props: {
         EuiTextArea,
       },
@@ -244,6 +334,7 @@ export const FormControlsExample = {
         </p>
       ),
       components: { EuiFilePicker },
+      snippet: filePickerSnippet,
       demo: <FilePicker />,
       props: { EuiFilePicker },
     },
@@ -259,6 +350,7 @@ export const FormControlsExample = {
           code: checkboxHtml,
         },
       ],
+      snippet: checkboxSnippet,
       props: {
         EuiCheckbox,
       },
@@ -286,13 +378,9 @@ export const FormControlsExample = {
       id: id1,
       label: 'Option one',
     },
-    {
-      id: id2,
-      label: 'Option two',
-    }
   ]}
   idToSelectedMap={{ id1: true }}
-  onChange={(id) => {}}
+  onChange={onChange}
 />`,
     },
     {
@@ -307,6 +395,7 @@ export const FormControlsExample = {
           code: radioHtml,
         },
       ],
+      snippet: radioSnippet,
       props: {
         EuiRadio,
       },
@@ -334,14 +423,10 @@ export const FormControlsExample = {
       id: id1,
       label: 'Option one',
     },
-    {
-      id: id2,
-      label: 'Option two',
-    }
   ]}
   idSelected={id1}
-  onChange={(id) => {}}
-  name={groupName}
+  onChange={onChange}
+  name="radio group"
   legend={{
     children: 'A legend',
   }}
@@ -359,6 +444,7 @@ export const FormControlsExample = {
           code: switchHtml,
         },
       ],
+      snippet: switchSnippet,
       props: {
         EuiSwitch,
       },
@@ -412,10 +498,10 @@ export const FormControlsExample = {
       demo: <Fieldset />,
       snippet: [
         `<EuiFormFieldset legend={{ children: 'Legend' }}>
-  /* Controls */
+  <!-- Controls -->
 </EuiFormFieldset>`,
         `<EuiFormFieldset legend={{ children: 'Hidden legend', display: 'hidden' }}>
-  /* Controls */
+  <!-- Controls -->
 </EuiFormFieldset>`,
       ],
     },
@@ -458,20 +544,8 @@ export const FormControlsExample = {
   append="px"
 />`,
         `<EuiFieldText
-  prepend={
-    <EuiPopover
-      button={
-        <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
-          Popover
-        </EuiButtonEmpty>
-      }
-      closePopover={() => {}}
-    />
-  }
-  append={[
-    <EuiButtonIcon iconType="gear" />,
-    "Label",
-  ]}
+  prepend={prepend}
+  append={append}
 />`,
       ],
     },
