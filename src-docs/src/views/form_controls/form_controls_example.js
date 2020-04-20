@@ -142,7 +142,7 @@ const checkboxSnippet = [
 />`,
   `//Indeterminate Checkbox
 <EuiCheckbox
-  id=" "
+  id={checkboxId}
   label="I am an indeterminate checkbox"
   indeterminate={indeterminate}
   onChange={onChangeIndeterminate}
