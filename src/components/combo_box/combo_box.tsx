@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 /**
  * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
  * from the tab order with tabindex={-1} so that we can control the keyboard navigation interface.
@@ -115,7 +134,7 @@ interface _EuiComboBoxProps<T>
    * `startsWith`: moves items that start with search value to top of the list;
    * `none`: don't change the sort order of initial object
    */
-  sortMatchesBy?: 'none' | 'startsWith';
+  sortMatchesBy: 'none' | 'startsWith';
   /**
    * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
@@ -126,6 +145,10 @@ interface _EuiComboBoxProps<T>
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
+  /**
+   * A special character to use as a value separator. Typically a comma `,`
+   */
+  delimiter?: string;
 }
 
 /**
@@ -174,9 +197,9 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
-    prepend: null,
-    append: null,
-    sortMatchesBy: 'none',
+    prepend: undefined,
+    append: undefined,
+    sortMatchesBy: 'none' as const,
   };
 
   state: EuiComboBoxState<T> = {
@@ -400,7 +423,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  addCustomOption = (isContainerBlur: boolean) => {
+  addCustomOption = (isContainerBlur: boolean, searchValue: string) => {
     const {
       onCreateOption,
       options,
@@ -408,7 +431,7 @@ export class EuiComboBox<T> extends Component<
       singleSelection,
     } = this.props;
 
-    const { searchValue, matchingOptions } = this.state;
+    const { matchingOptions } = this.state;
 
     if (this.doesSearchMatchOnlyOption()) {
       this.onAddOption(matchingOptions[0], isContainerBlur);
@@ -468,7 +491,21 @@ export class EuiComboBox<T> extends Component<
     if (async) {
       return false;
     }
-    return flattenOptionGroups(options).length === selectedOptions.length;
+
+    const flattenOptions = flattenOptionGroups(options).map(option => {
+      return { ...option, label: option.label.trim().toLowerCase() };
+    });
+
+    let numberOfSelectedOptions = 0;
+    selectedOptions.forEach(({ label }) => {
+      const trimmedLabel = label.trim().toLowerCase();
+      if (
+        flattenOptions.findIndex(option => option.label === trimmedLabel) !== -1
+      )
+        numberOfSelectedOptions += 1;
+    });
+
+    return flattenOptions.length === numberOfSelectedOptions;
   };
 
   isSingleSelectionCustomOption = () => {
@@ -495,6 +532,18 @@ export class EuiComboBox<T> extends Component<
       this.openList();
     }
     this.setState({ hasFocus: true });
+  };
+
+  setCustomOptions = (isContainerBlur: boolean) => {
+    const { searchValue } = this.state;
+    const { delimiter } = this.props;
+    if (delimiter) {
+      searchValue.split(delimiter).forEach((option: string) => {
+        if (option.length > 0) this.addCustomOption(true, option);
+      });
+    } else {
+      this.addCustomOption(isContainerBlur, searchValue);
+    }
   };
 
   onContainerBlur: EventListener = event => {
@@ -531,7 +580,7 @@ export class EuiComboBox<T> extends Component<
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
       if (!this.hasActiveOption()) {
-        this.addCustomOption(true);
+        this.setCustomOptions(true);
       }
     }
   };
@@ -576,7 +625,7 @@ export class EuiComboBox<T> extends Component<
             this.state.matchingOptions[this.state.activeOptionIndex]
           );
         } else {
-          this.addCustomOption(false);
+          this.setCustomOptions(false);
         }
         break;
 
@@ -708,7 +757,8 @@ export class EuiComboBox<T> extends Component<
   onSearchChange: NonNullable<
     EuiComboBoxInputProps<T>['onChange']
   > = searchValue => {
-    const { onSearchChange } = this.props;
+    const { onSearchChange, delimiter } = this.props;
+
     if (onSearchChange) {
       const hasMatchingOptions = this.state.matchingOptions.length > 0;
       onSearchChange(searchValue, hasMatchingOptions);
@@ -717,6 +767,11 @@ export class EuiComboBox<T> extends Component<
     this.setState({ searchValue }, () => {
       if (searchValue && this.state.isListOpen === false) this.openList();
     });
+    if (delimiter && searchValue.endsWith(delimiter)) {
+      searchValue.split(delimiter).forEach(value => {
+        if (value.length > 0) this.addCustomOption(false, value);
+      });
+    }
   };
 
   componentDidMount() {
@@ -848,8 +903,9 @@ export class EuiComboBox<T> extends Component<
       selectedOptions,
       singleSelection,
       prepend,
-      append,
       sortMatchesBy,
+      delimiter,
+      append,
       ...rest
     } = this.props;
     const {
@@ -936,6 +992,7 @@ export class EuiComboBox<T> extends Component<
             selectedOptions={selectedOptions}
             updatePosition={this.updatePosition}
             width={width}
+            delimiter={delimiter}
           />
         </EuiPortal>
       );

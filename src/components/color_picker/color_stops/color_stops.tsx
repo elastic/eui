@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   FunctionComponent,
   useCallback,
@@ -77,7 +96,7 @@ function getValidStops(colorStops: ColorStop[]) {
 function getRangeMin(colorStops: ColorStop[], min?: number) {
   const rangeMin = min || DEFAULT_MIN;
   const stops = getValidStops(colorStops);
-  const first = Math.min.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+  const first = Math.min(...stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (first < rangeMin) {
     if (stops.length === 1) {
@@ -91,7 +110,7 @@ function getRangeMin(colorStops: ColorStop[], min?: number) {
 function getRangeMax(colorStops: ColorStop[], max?: number) {
   const rangeMax = max || DEFAULT_MAX;
   const stops = getValidStops(colorStops);
-  const last = Math.max.apply(Math, stops); // https://johnresig.com/blog/fast-javascript-maxmin/
+  const last = Math.max(...stops); // https://johnresig.com/blog/fast-javascript-maxmin/
 
   if (last > rangeMax) {
     if (stops.length === 1) {

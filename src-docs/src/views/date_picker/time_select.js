@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import moment from 'moment';
 
@@ -8,71 +8,59 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
 
-    this.state = {
-      startDate: moment(),
-    };
+  const handleChange = date => {
+    setStartDate(date);
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  return (
+    <div>
+      <EuiFormRow label="Time select on">
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate}
+          onChange={handleChange}
+        />
+      </EuiFormRow>
 
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    });
-  }
+      <EuiSpacer />
 
-  render() {
-    return (
-      <div>
-        <EuiFormRow label="Time select on">
-          <EuiDatePicker
-            showTimeSelect
-            selected={this.state.startDate}
-            onChange={this.handleChange}
-          />
-        </EuiFormRow>
+      <EuiFormRow label="Only time select, 24 hour clock">
+        <EuiDatePicker
+          showTimeSelect
+          showTimeSelectOnly
+          selected={startDate}
+          onChange={handleChange}
+          dateFormat="HH:mm"
+          timeFormat="HH:mm"
+        />
+      </EuiFormRow>
 
-        <EuiSpacer />
+      <EuiSpacer />
 
-        <EuiFormRow label="Only time select, 24 hour clock">
-          <EuiDatePicker
-            showTimeSelect
-            showTimeSelectOnly
-            selected={this.state.startDate}
-            onChange={this.handleChange}
-            dateFormat="HH:mm"
-            timeFormat="HH:mm"
-          />
-        </EuiFormRow>
-
-        <EuiSpacer />
-
-        <EuiFormRow label="Inject additional times into the list">
-          <EuiDatePicker
-            showTimeSelect
-            showTimeSelectOnly
-            selected={this.state.startDate}
-            onChange={this.handleChange}
-            dateFormat="hh:mm a"
-            timeFormat="hh:mm a"
-            injectTimes={[
-              moment()
-                .hours(0)
-                .minutes(1),
-              moment()
-                .hours(0)
-                .minutes(5),
-              moment()
-                .hours(23)
-                .minutes(59),
-            ]}
-          />
-        </EuiFormRow>
-      </div>
-    );
-  }
-}
+      <EuiFormRow label="Inject additional times into the list">
+        <EuiDatePicker
+          showTimeSelect
+          showTimeSelectOnly
+          selected={startDate}
+          onChange={handleChange}
+          dateFormat="hh:mm a"
+          timeFormat="hh:mm a"
+          injectTimes={[
+            moment()
+              .hours(0)
+              .minutes(1),
+            moment()
+              .hours(0)
+              .minutes(5),
+            moment()
+              .hours(23)
+              .minutes(59),
+          ]}
+        />
+      </EuiFormRow>
+    </div>
+  );
+};

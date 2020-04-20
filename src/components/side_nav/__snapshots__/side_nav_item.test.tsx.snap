@@ -1,5 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSideNavItem href is rendered 1`] = `
+<div
+  class="euiSideNavItem euiSideNavItem--root"
+>
+  <a
+    class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+    href="#"
+    rel="noreferrer"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label"
+      >
+        <button />
+      </span>
+    </span>
+  </a>
+</div>
+`;
+
+exports[`EuiSideNavItem href is rendered with rel 1`] = `
+<div
+  class="euiSideNavItem euiSideNavItem--root"
+>
+  <a
+    class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+    href="#"
+    rel="noopener noreferrer"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label"
+      >
+        <button />
+      </span>
+    </span>
+  </a>
+</div>
+`;
+
 exports[`EuiSideNavItem is rendered 1`] = `
 <div
   class="euiSideNavItem euiSideNavItem--root"

@@ -15,6 +15,14 @@ import {
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
+const responsiveSnippet = [
+  `<EuiHideFor sizes={['xs', 's']}>
+  <!-- Content to hide from xs and s screens -->
+</EuiHideFor>`,
+  `<EuiShowFor sizes={['l', 'xl']} display="block">
+  <!-- <div>Content only showing for l and xl screens and displaying in block</div> -->
+</EuiShowFor>`,
+];
 
 function renderSizes(size, index) {
   let code = `'${size}': ${sizes.euiBreakpoints[size]}px`;
@@ -48,14 +56,15 @@ export const ResponsiveExample = {
         <div>
           <p>
             Pass an array of named breakpoints to either the{' '}
-            <EuiCode>EuiShowFor</EuiCode> or <EuiCode>EuiHideFor</EuiCode>{' '}
+            <strong>EuiShowFor</strong> or <strong>EuiHideFor</strong>{' '}
             components to make them responsive.
           </p>
 
           <p>
-            The sizing correlates with our <EuiCode>$euiBreakpoints</EuiCode>{' '}
-            SASS map. The named breakpoint starts at the pixel value provided
-            and ends before the next one.
+            The sizing correlates with our{' '}
+            <EuiCode language="scss">$euiBreakpoints</EuiCode> SASS map. The
+            named breakpoint starts at the pixel value provided and ends before
+            the next one.
           </p>
 
           <EuiCodeBlock language="scss" paddingSize="s">
@@ -65,6 +74,7 @@ export const ResponsiveExample = {
           </EuiCodeBlock>
         </div>
       ),
+      snippet: responsiveSnippet,
       props: { EuiShowFor, EuiHideFor },
       demo: <Responsive />,
     },

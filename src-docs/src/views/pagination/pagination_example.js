@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -15,8 +16,8 @@ const manyPagesSource = require('!!raw-loader!./many_pages');
 const manyPagesHtml = renderToHtml(ManyPages);
 const manyPagesSnippet = `<EuiPagination
   pageCount={higherThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -25,8 +26,8 @@ const fewPagesSource = require('!!raw-loader!./few_pages');
 const fewPagesHtml = renderToHtml(FewPages);
 const fewPagesSnippet = `<EuiPagination
   pageCount={lowerThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -37,8 +38,8 @@ const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
   <EuiFlexItem grow={false}>
     <EuiPagination
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -51,8 +52,8 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
   <EuiFlexItem grow={false}>
     <EuiPopover
       button={button}
-      isOpen={this.state.isPopoverOpen}
-      closePopover={this.closePopover}>
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}>
       <EuiContextMenuPanel items={items} />
     </EuiPopover>
   </EuiFlexItem>
@@ -60,8 +61,8 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
   <EuiFlexItem grow={false}>
     <EuiPagination
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -72,8 +73,8 @@ const compressedSource = require('!!raw-loader!./compressed');
 const compressedHtml = renderToHtml(Compressed);
 const compressedSnippet = `<EuiPagination
   pageCount={pageCount}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
   compressed
 />
 `;
@@ -138,8 +139,11 @@ export const PaginationExample = {
       ],
       text: (
         <p>
-          You can use <EuiCode>FlexGroup</EuiCode> to set up this pagination
-          layout.
+          You can use{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>{' '}
+          to set up this pagination layout.
         </p>
       ),
       snippet: centeredPaginationSnippet,
@@ -180,8 +184,12 @@ export const PaginationExample = {
       ],
       text: (
         <p>
-          You can use <EuiCode>FlexGroup</EuiCode> to set up this pagination
-          layout, commonly used with Tables.
+          You can use{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>{' '}
+          to set up this pagination layout, commonly used with{' '}
+          <Link to="/tabular-content/tables">tables</Link>.
         </p>
       ),
       snippet: customizablePaginationSnippet,

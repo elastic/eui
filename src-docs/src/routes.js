@@ -49,6 +49,8 @@ import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
 
+import { BeaconExample } from './views/beacon/beacon_example';
+
 import { BottomBarExample } from './views/bottom_bar/bottom_bar_example';
 
 import { BreadcrumbsExample } from './views/breadcrumbs/breadcrumbs_example';
@@ -63,9 +65,13 @@ import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
+import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
+
 import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
+
+import { CommentExample } from './views/comment/comment_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
@@ -76,12 +82,12 @@ import { CopyExample } from './views/copy/copy_example';
 import { DataGridExample } from './views/datagrid/datagrid_example';
 import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
 import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
+import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
-import { DelayHideExample } from './views/delay_hide/delay_hide_example';
 import { DelayRenderExample } from './views/delay_render/delay_render_example';
 
 import { DescriptionListExample } from './views/description_list/description_list_example';
@@ -120,6 +126,8 @@ import { HighlightAndMarkExample } from './views/highlight_and_mark/highlight_an
 
 import { HorizontalRuleExample } from './views/horizontal_rule/horizontal_rule_example';
 
+import { HtmlIdGeneratorExample } from './views/html_id_generator/html_id_generator_example';
+
 import { I18nExample } from './views/i18n/i18n_example';
 
 import { IconExample } from './views/icon/icon_example';
@@ -143,6 +151,8 @@ import { MutationObserverExample } from './views/mutation_observer/mutation_obse
 import { NavDrawerExample } from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
+
+import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
 
@@ -184,6 +194,8 @@ import { SuperDatePickerExample } from './views/super_date_picker/super_date_pic
 
 import { TableExample } from './views/tables/tables_example';
 
+import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
+
 import { TabsExample } from './views/tabs/tabs_example';
 
 import { TextExample } from './views/text/text_example';
@@ -195,6 +207,8 @@ import { ToastExample } from './views/toast/toast_example';
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
 import { ToggleExample } from './views/toggle/toggle_example';
+
+import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
@@ -235,7 +249,7 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta } = example;
+  const { title, intro, sections, beta, isNew } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -259,6 +273,7 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections,
+    isNew,
   };
 };
 
@@ -266,7 +281,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createExample(AccessibilityGuidelines, 'Accesibility'),
+      createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Buttons',
         component: ButtonGuidelines,
@@ -324,6 +339,7 @@ const navigation = [
     items: [
       BreadcrumbsExample,
       ButtonExample,
+      CollapsibleNavExample,
       ContextMenuExample,
       ControlBarExample,
       FacetExample,
@@ -342,9 +358,11 @@ const navigation = [
       DataGridExample,
       DataGridMemoryExample,
       DataGridSchemaExample,
+      DataGridFocusExample,
       DataGridStylingExample,
       DataGridControlColumnsExample,
       TableExample,
+      TableInMemoryExample,
     ].map(example => createExample(example)),
   },
   {
@@ -356,6 +374,7 @@ const navigation = [
       CallOutExample,
       CardExample,
       CodeExample,
+      CommentExample,
       DescriptionListExample,
       DragAndDropExample,
       EmptyPromptExample,
@@ -370,6 +389,7 @@ const navigation = [
       TitleExample,
       ToastExample,
       ToolTipExample,
+      TourExample,
     ].map(example => createExample(example)),
   },
   {
@@ -406,21 +426,23 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      BeaconExample,
+      IsColorDarkExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
-      DelayHideExample,
       DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightAndMarkExample,
+      HtmlIdGeneratorExample,
       InnerTextExample,
       I18nExample,
-      IsColorDarkExample,
-      PrettyDurationExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
+      OverlayMaskExample,
       PortalExample,
+      PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
       ToggleExample,

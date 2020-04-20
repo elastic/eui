@@ -1,36 +1,26 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiDualRange } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [value, setValue] = useState(['', '']);
 
-    this.state = {
-      value: ['', ''],
-    };
-  }
-
-  onChange = value => {
-    this.setState({
-      value,
-    });
+  const onChange = value => {
+    setValue(value);
   };
 
-  render() {
-    return (
-      <EuiDualRange
-        id={makeId()}
-        min={-100}
-        max={200}
-        step={10}
-        value={this.state.value}
-        onChange={this.onChange}
-        showLabels
-        aria-label="An example of EuiDualRange"
-      />
-    );
-  }
-}
+  return (
+    <EuiDualRange
+      id={htmlIdGenerator()()}
+      min={-100}
+      max={200}
+      step={10}
+      value={value}
+      onChange={onChange}
+      showLabels
+      aria-label="An example of EuiDualRange"
+    />
+  );
+};

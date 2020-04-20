@@ -3,7 +3,7 @@
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="8"
+  id="9"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -14,7 +14,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="8"
+        aria-controls="9"
         aria-expanded={false}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -35,31 +35,24 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             />
           </EuiIcon>
         </span>
-        <span />
+        <span
+          className="euiIEFlexWrapFix"
+        />
       </button>
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="8"
+      id="9"
     >
-      <EuiMutationObserver
-        observerOptions={
-          Object {
-            "attributeFilter": Array [
-              "style",
-            ],
-            "childList": true,
-            "subtree": true,
-          }
-        }
-        onMutation={[Function]}
+      <EuiResizeObserver
+        onResize={[Function]}
       >
         <div>
           <div
             className=""
           />
         </div>
-      </EuiMutationObserver>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiAccordion>
@@ -68,7 +61,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="7"
+  id="8"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -79,7 +72,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="7"
+        aria-controls="8"
         aria-expanded={true}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -100,31 +93,24 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             />
           </EuiIcon>
         </span>
-        <span />
+        <span
+          className="euiIEFlexWrapFix"
+        />
       </button>
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="7"
+      id="8"
     >
-      <EuiMutationObserver
-        observerOptions={
-          Object {
-            "attributeFilter": Array [
-              "style",
-            ],
-            "childList": true,
-            "subtree": true,
-          }
-        }
-        onMutation={[Function]}
+      <EuiResizeObserver
+        onResize={[Function]}
       >
         <div>
           <div
             className=""
           />
         </div>
-      </EuiMutationObserver>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiAccordion>
@@ -153,7 +139,9 @@ exports[`EuiAccordion is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div
@@ -182,7 +170,9 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
       class="euiAccordion__button"
       type="button"
     >
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div
@@ -223,7 +213,9 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div
@@ -264,7 +256,9 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span>
+      <span
+        class="euiIEFlexWrapFix"
+      >
         <div>
           Button content
         </div>
@@ -306,7 +300,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         />
       </span>
       <span
-        class="button content class name"
+        class="euiIEFlexWrapFix button content class name"
       />
     </button>
   </div>
@@ -344,7 +338,9 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
     <div
       class="euiAccordion__optionalAction"
@@ -362,6 +358,49 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
       <div
         class=""
       />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props forceState is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="7"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <div
+          class="euiAccordion__icon"
+          data-euiicon-type="arrowRight"
+        />
+      </span>
+      <span
+        class="euiIEFlexWrapFix"
+      />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="7"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <p>
+          You can not see me
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -388,7 +427,9 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
           data-euiicon-type="arrowRight"
         />
       </span>
-      <span />
+      <span
+        class="euiIEFlexWrapFix"
+      />
     </button>
   </div>
   <div

@@ -7,7 +7,6 @@ import {
   EuiIcon,
   EuiPanel,
   EuiText,
-  EuiCode,
   EuiSpacer,
   EuiButton,
 } from '../../../../src/components';
@@ -51,8 +50,8 @@ export default () => (
 
     <EuiText>
       <p>
-        Any component that utlizes <EuiCode>EuiIcon</EuiCode> can use custom
-        SVGs as well
+        Any component that utlizes <strong>EuiIcon</strong> can use custom SVGs
+        as well
       </p>
     </EuiText>
 

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { times } from '../../../../src/services/utils';
 import { Random } from '../../../../src/services/random';
 import {
@@ -56,36 +56,25 @@ const loadTags = () => {
 
 const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
-export class ControlledSearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: initialQuery,
-      error: null,
-      incremental: false,
-    };
-  }
+export const ControlledSearchBar = () => {
+  const [query, setQuery] = useState(initialQuery);
+  const [error, setError] = useState(null);
+  const [incremental, setIncremental] = useState(false);
 
-  onChange = ({ query, error }) => {
+  const onChange = ({ query, error }) => {
     if (error) {
-      this.setState({ error });
+      setError(error);
     } else {
-      this.setState({
-        error: null,
-        query,
-      });
+      setError(null);
+      setQuery(query);
     }
   };
 
-  toggleIncremental = () => {
-    this.setState(prevState => ({ incremental: !prevState.incremental }));
+  const toggleIncremental = () => {
+    setIncremental(!incremental);
   };
 
-  setQuery = query => {
-    this.setState({ query });
-  };
-
-  renderBookmarks() {
+  const renderBookmarks = () => {
     return (
       <Fragment>
         <p>Enter a query, or select one from a bookmark</p>
@@ -94,14 +83,14 @@ export class ControlledSearchBar extends Component {
           <EuiFlexItem grow={false}>
             <EuiButton
               size="s"
-              onClick={() => this.setQuery('status:open owner:dewey')}>
+              onClick={() => setQuery('status:open owner:dewey')}>
               mine, open
             </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton
               size="s"
-              onClick={() => this.setQuery('status:closed owner:dewey')}>
+              onClick={() => setQuery('status:closed owner:dewey')}>
               mine, closed
             </EuiButton>
           </EuiFlexItem>
@@ -109,11 +98,9 @@ export class ControlledSearchBar extends Component {
         <EuiSpacer size="m" />
       </Fragment>
     );
-  }
+  };
 
-  renderSearch() {
-    const { incremental } = this.state;
-
+  const renderSearch = () => {
     const filters = [
       {
         type: 'field_value_toggle_group',
@@ -195,20 +182,19 @@ export class ControlledSearchBar extends Component {
 
     return (
       <EuiSearchBar
-        query={this.state.query}
+        query={query}
         box={{
           placeholder: 'e.g. type:visualization -is:active joe',
           incremental,
           schema,
         }}
         filters={filters}
-        onChange={this.onChange}
+        onChange={onChange}
       />
     );
-  }
+  };
 
-  renderError() {
-    const { error } = this.state;
+  const renderError = () => {
     if (!error) {
       return;
     }
@@ -222,9 +208,9 @@ export class ControlledSearchBar extends Component {
         <EuiSpacer size="l" />
       </Fragment>
     );
-  }
+  };
 
-  renderTable() {
+  const renderTable = () => {
     const columns = [
       {
         name: 'Type',
@@ -263,41 +249,37 @@ export class ControlledSearchBar extends Component {
       },
     ];
 
-    const queriedItems = EuiSearchBar.Query.execute(this.state.query, items, {
+    const queriedItems = EuiSearchBar.Query.execute(query, items, {
       defaultFields: ['owner', 'tag', 'type'],
     });
 
     return <EuiBasicTable items={queriedItems} columns={columns} />;
-  }
+  };
 
-  render() {
-    const { incremental } = this.state;
+  const content = renderError() || (
+    <EuiFlexGroup>
+      <EuiFlexItem grow={6}>{renderTable()}</EuiFlexItem>
+    </EuiFlexGroup>
+  );
 
-    const content = this.renderError() || (
+  return (
+    <Fragment>
       <EuiFlexGroup>
-        <EuiFlexItem grow={6}>{this.renderTable()}</EuiFlexItem>
+        <EuiFlexItem>{renderBookmarks()}</EuiFlexItem>
       </EuiFlexGroup>
-    );
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem>{renderSearch()}</EuiFlexItem>
 
-    return (
-      <Fragment>
-        <EuiFlexGroup>
-          <EuiFlexItem>{this.renderBookmarks()}</EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiFlexGroup alignItems="center">
-          <EuiFlexItem>{this.renderSearch()}</EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Incremental"
-              checked={incremental}
-              onChange={this.toggleIncremental}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="l" />
-        {content}
-      </Fragment>
-    );
-  }
-}
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Incremental"
+            checked={incremental}
+            onChange={toggleIncremental}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="l" />
+      {content}
+    </Fragment>
+  );
+};

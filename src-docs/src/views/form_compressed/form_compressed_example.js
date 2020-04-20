@@ -67,9 +67,9 @@ export const FormCompressedExample = {
       text: (
         <p>
           To use compressed forms, pass{' '}
-          <EuiCode>display=&quot;rowCompressed&quot;</EuiCode> to the
-          EuiFormRows and <EuiCode>compressed=true</EuiCode> to the form
-          controls themselves.
+          <EuiCode language="js">display=&quot;rowCompressed&quot;</EuiCode> to
+          the EuiFormRows and <EuiCode language="js">compressed=true</EuiCode>{' '}
+          to the form controls themselves.
         </p>
       ),
       props: {
@@ -102,13 +102,15 @@ export const FormCompressedExample = {
           <p>
             Editor-style controls can be displayed in a two column layout for
             even better use of limited space, just pass{' '}
-            <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
-            labels and inputs side by side.
+            <EuiCode language="js">
+              display=&quot;columnCompressed&quot;
+            </EuiCode>{' '}
+            to align the labels and inputs side by side.
           </p>
           <p>
             <strong>EuiSwitches</strong> are a special case in which so you must
-            pass <EuiCode>columnCompressedSwitch</EuiCode> to the EuiFormRow as
-            the display property.
+            pass <EuiCode language="js">{'"columnCompressedSwitch"'}</EuiCode>{' '}
+            to the EuiFormRow as the display property.
           </p>
         </Fragment>
       ),
@@ -150,8 +152,11 @@ export const FormCompressedExample = {
             overload the UI with expansive help text. If it&apos;s short and
             part of the validation, use <EuiCode>helpText</EuiCode>. However, if
             it&apos;s an explanation of the control, consider wraping the label
-            with an <Link to="/display/tooltip">EuiToolTip</Link> and appending
-            the <EuiCode>questionInCircle</EuiCode> icon to it.
+            with an{' '}
+            <Link to="/display/tooltip">
+              <strong>EuiToolTip</strong>
+            </Link>{' '}
+            and appending the <EuiCode>questionInCircle</EuiCode> icon to it.
           </p>
         </Fragment>
       ),

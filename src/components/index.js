@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 export { EuiAccordion } from './accordion';
 
 export { EuiAspectRatio } from './aspect_ratio';
@@ -16,6 +35,8 @@ export {
   EuiNotificationBadge,
   EuiBadgeGroup,
 } from './badge';
+
+export { EuiBeacon } from './beacon';
 
 export { EuiBottomBar } from './bottom_bar';
 
@@ -37,6 +58,8 @@ export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
 export { EuiCodeEditor } from './code_editor';
 
+export { EuiCollapsibleNav, EuiCollapsibleNavGroup } from './collapsible_nav';
+
 export {
   EuiColorPicker,
   EuiColorPickerSwatch,
@@ -46,6 +69,8 @@ export {
 } from './color_picker';
 
 export { EuiComboBox } from './combo_box';
+
+export { EuiComment } from './comment';
 
 export { EuiContext, EuiI18nConsumer } from './context';
 
@@ -181,7 +206,11 @@ export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';
 
 export { EuiLink } from './link';
 
-export { EuiListGroup, EuiListGroupItem } from './list_group';
+export {
+  EuiListGroup,
+  EuiListGroupItem,
+  EuiPinnableListGroup,
+} from './list_group';
 
 export { EuiMark } from './mark';
 
@@ -282,6 +311,8 @@ export {
 } from './table';
 
 export { EuiToken } from './token';
+
+export { EuiTour, EuiTourStep, useEuiTour } from './tour';
 
 export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
 

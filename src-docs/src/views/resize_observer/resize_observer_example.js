@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -15,10 +16,9 @@ const resizeObserverHookSource = require('!!raw-loader!./resize_observer_hook');
 const resizeObserverHookHtml = renderToHtml(ResizeObserverHook);
 
 export const ResizeObserverExample = {
-  title: 'ResizeObserver',
+  title: 'Resize observer',
   sections: [
     {
-      title: 'ResizeObserver',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -32,28 +32,31 @@ export const ResizeObserverExample = {
       text: (
         <React.Fragment>
           <p>
-            <EuiCode>ResizeObserver</EuiCode> is a wrapper around the
+            <strong>EuiResizeObserver</strong> is a wrapper around the
             <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver">
               {' '}
               Resizer Observer API{' '}
             </EuiLink>
             which allows watching for changes to the content rectangle of DOM
-            elements. Unlike <EuiCode>MutationObserver</EuiCode>,{' '}
-            <EuiCode>ResizeObserver</EuiCode> does not take parameters, but it
-            does fire a more efficient and informative callback when resize
+            elements. Unlike{' '}
+            <Link to="/utilities/mutation-observer">
+              <strong>EuiMutationObserver</strong>
+            </Link>
+            , <strong>EuiResizeObserver</strong> does not take parameters, but
+            it does fire a more efficient and informative callback when resize
             events occur.
           </p>
           <p>
-            This is a render prop component, <EuiCode>ResizeObserver</EuiCode>{' '}
+            This is a render prop component, <strong>EuiResizeObserver</strong>{' '}
             will pass a <EuiCode>ref</EuiCode>
             callback which you must put on the element you wish to observe.
           </p>
           <p>
             Due to limited browser support (currently not in Safari and IE11),{' '}
-            <EuiCode>EuiResizeObserver</EuiCode> will fallback to using the{' '}
+            <strong>EuiResizeObserver</strong> will fallback to using the{' '}
             <EuiCode>MutationObserver</EuiCode> API with a default set of
             parameters that approximate the results of{' '}
-            <EuiCode>MutationObserver</EuiCode>.
+            <strong>EuiMutationObserver</strong>.
           </p>
         </React.Fragment>
       ),

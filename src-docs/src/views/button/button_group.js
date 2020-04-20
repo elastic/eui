@@ -6,16 +6,16 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 import { EuiPanel } from '../../../../src/components/panel/panel';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
-    const idPrefix = makeId();
-    const idPrefix2 = makeId();
-    const idPrefix3 = makeId();
+    const idPrefix = htmlIdGenerator()();
+    const idPrefix2 = htmlIdGenerator()();
+    const idPrefix3 = htmlIdGenerator()();
 
     this.toggleButtons = [
       {

@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
@@ -42,7 +61,8 @@ import { EuiIcon } from '../icon';
 import { EuiKeyboardAccessible, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
-import makeId from '../form/form_row/make_id';
+
+import { htmlIdGenerator } from '../../services/accessibility';
 import { Action } from './action_types';
 import {
   EuiTableActionsColumnType,
@@ -53,6 +73,7 @@ import {
   ItemId,
   EuiTableSelectionType,
   EuiTableSortingType,
+  ItemIdResolved,
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
@@ -616,7 +637,7 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
         {(selectAllRows: string) => (
           <EuiCheckbox
-            id={`_selection_column-checkbox_${makeId()}`}
+            id={`_selection_column-checkbox_${htmlIdGenerator()()}`}
             type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}
@@ -863,7 +884,7 @@ export class EuiBasicTable<T = any> extends Component<
     const cells = [];
 
     const { itemId: itemIdCallback } = this.props;
-    const itemId = getItemId(item, itemIdCallback) || rowIndex;
+    const itemId: ItemIdResolved = getItemId(item, itemIdCallback) || rowIndex;
     const selected = !selection
       ? false
       : this.state.selection &&
@@ -1021,7 +1042,7 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderItemActionsCell(
-    itemId: ItemId<T>,
+    itemId: ItemIdResolved,
     item: T,
     column: EuiTableActionsColumnType<T>,
     columnIndex: number
@@ -1030,10 +1051,12 @@ export class EuiBasicTable<T = any> extends Component<
       this.state.selection.length === 0 &&
       (!action.enabled || action.enabled(item));
 
-    let actualActions = column.actions;
-    if (column.actions.length > 2) {
+    let actualActions = column.actions.filter(
+      (action: Action<T>) => !action.available || action.available(item)
+    );
+    if (actualActions.length > 2) {
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = column.actions.filter(o => o.isPrimary);
+      const primaryActions = actualActions.filter(o => o.isPrimary);
       actualActions = primaryActions.slice(0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we

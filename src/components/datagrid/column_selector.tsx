@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Fragment,
   useState,
@@ -157,70 +176,71 @@ export const useColumnSelector = (
             </EuiI18n>
           </EuiPopoverTitle>
         )}
-        <EuiDragDropContext onDragEnd={onDragEnd}>
-          <EuiDroppable
-            droppableId="columnOrder"
-            isDropDisabled={!isDragEnabled}
-            className="euiDataGridColumnSelector">
-            <Fragment>
-              {filteredColumns.map((id, index) => (
-                <EuiDraggable
-                  key={id}
-                  draggableId={id}
-                  index={index}
-                  isDragDisabled={!isDragEnabled}>
-                  {(provided, state) => (
-                    <div
-                      className={`euiDataGridColumnSelector__item ${state.isDragging &&
-                        'euiDataGridColumnSelector__item-isDragging'}`}>
-                      <EuiFlexGroup gutterSize="m" alignItems="center">
-                        <EuiFlexItem>
-                          {allowColumnHiding ? (
-                            <EuiSwitch
-                              name={id}
-                              label={id}
-                              checked={visibleColumnIds.has(id)}
-                              compressed
-                              className="euiSwitch--mini"
-                              onChange={event => {
-                                const {
-                                  target: { checked },
-                                } = event;
-                                const nextVisibleColumns = sortedColumns.filter(
-                                  columnId =>
-                                    checked
-                                      ? visibleColumnIds.has(columnId) ||
-                                        id === columnId
-                                      : visibleColumnIds.has(columnId) &&
-                                        id !== columnId
-                                );
-                                setVisibleColumns(nextVisibleColumns);
-                              }}
-                            />
-                          ) : (
-                            <span className="euiDataGridColumnSelector__itemLabel">
-                              {id}
-                            </span>
-                          )}
-                        </EuiFlexItem>
-                        {isDragEnabled && (
-                          <EuiFlexItem grow={false}>
-                            <EuiIcon type="grab" color="subdued" />
+        <div className="euiDataGrid__controlScroll">
+          <EuiDragDropContext onDragEnd={onDragEnd}>
+            <EuiDroppable
+              droppableId="columnOrder"
+              isDropDisabled={!isDragEnabled}>
+              <Fragment>
+                {filteredColumns.map((id, index) => (
+                  <EuiDraggable
+                    key={id}
+                    draggableId={id}
+                    index={index}
+                    isDragDisabled={!isDragEnabled}>
+                    {(provided, state) => (
+                      <div
+                        className={`euiDataGridColumnSelector__item ${state.isDragging &&
+                          'euiDataGridColumnSelector__item-isDragging'}`}>
+                        <EuiFlexGroup gutterSize="m" alignItems="center">
+                          <EuiFlexItem>
+                            {allowColumnHiding ? (
+                              <EuiSwitch
+                                name={id}
+                                label={id}
+                                checked={visibleColumnIds.has(id)}
+                                compressed
+                                className="euiSwitch--mini"
+                                onChange={event => {
+                                  const {
+                                    target: { checked },
+                                  } = event;
+                                  const nextVisibleColumns = sortedColumns.filter(
+                                    columnId =>
+                                      checked
+                                        ? visibleColumnIds.has(columnId) ||
+                                          id === columnId
+                                        : visibleColumnIds.has(columnId) &&
+                                          id !== columnId
+                                  );
+                                  setVisibleColumns(nextVisibleColumns);
+                                }}
+                              />
+                            ) : (
+                              <span className="euiDataGridColumnSelector__itemLabel">
+                                {id}
+                              </span>
+                            )}
                           </EuiFlexItem>
-                        )}
-                      </EuiFlexGroup>
-                    </div>
-                  )}
-                </EuiDraggable>
-              ))}
-            </Fragment>
-          </EuiDroppable>
-        </EuiDragDropContext>
+                          {isDragEnabled && (
+                            <EuiFlexItem grow={false}>
+                              <EuiIcon type="grab" color="subdued" />
+                            </EuiFlexItem>
+                          )}
+                        </EuiFlexGroup>
+                      </div>
+                    )}
+                  </EuiDraggable>
+                ))}
+              </Fragment>
+            </EuiDroppable>
+          </EuiDragDropContext>
+        </div>
       </div>
       {allowColumnHiding && (
         <EuiPopoverFooter>
           <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween">
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
                 flush="left"
@@ -231,7 +251,7 @@ export const useColumnSelector = (
                 />
               </EuiButtonEmpty>
             </EuiFlexItem>
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
                 flush="right"
