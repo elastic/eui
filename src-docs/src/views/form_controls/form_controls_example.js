@@ -106,7 +106,6 @@ const filePickerSnippet = [
   multiple
   initialPromptText="content that appears in the dropzone if no file is attached"
   onChange={onChange}
-  display={large ? 'large' : 'default'}
 />`,
 ];
 
@@ -119,11 +118,7 @@ const selectSnippet = [
     {
       value: 'option_one',
       text: 'Option one'
-    },
-    {
-      value: 'option_two',
-       text: 'Option two'
-    },
+    }
   ]}
   value={value}
   onChange={onChange}
@@ -135,7 +130,7 @@ const checkboxSource = require('!!raw-loader!./checkbox');
 const checkboxHtml = renderToHtml(Checkbox);
 const checkboxSnippet = [
   `<EuiCheckbox
-  id=" "
+  id={checkboxId}
   label="I am a checkbox"
   checked={checked}
   onChange={onChange}
@@ -174,14 +169,14 @@ const radioSource = require('!!raw-loader!./radio');
 const radioHtml = renderToHtml(Radio);
 const radioSnippet = [
   `<EuiRadio
-  id=" "
+  id={radioId}
   label="I am a radio"
   checked={checked}
   onChange={onChange}
 />`,
   `//Disabled Radio Button
 <EuiRadio
-  id=" "
+  id={radioId}
   label="I am a disabled radio"
   checked={checked}
   onChange={onChange}
@@ -189,7 +184,7 @@ const radioSnippet = [
 />`,
   `//Compressed Radio Button
 <EuiRadio
-  id=" "
+  id={radioId}
   label="I am a compressed radio"
   checked={checked}
   onChange={onChange}
