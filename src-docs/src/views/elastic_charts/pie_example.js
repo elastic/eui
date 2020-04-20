@@ -29,6 +29,8 @@ import Treemaps from './treemap';
 const treemapsSource = require('!!raw-loader!./treemap');
 const treemapsHtml = renderToHtml(Treemaps);
 
+import PieAlts from './pie_alts';
+
 const introCards = [
   {
     title: 'Use',
@@ -338,8 +340,8 @@ const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_
             </li>
             <li>You have more than 6 slices, consider a stacked bar chart</li>
             <li>
-              You need multiple pie charts to compare multiple data sets: Use
-              part-to-whole bar charts
+              You need multiple pie charts to compare multiple data sets, use
+              part-to-whole bar charts with percentages
             </li>
             <li>You have negative values</li>
           </ul>
@@ -351,13 +353,9 @@ const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_
             </EuiLink>
             .
           </p>
-          <p>
-            A previously mentioned, there are some better and basic alternatives
-            to pie/donut charts such as:
-          </p>
         </>
       ),
-      // demo: <PieChart />,
+      demo: <PieAlts />,
     },
   ],
 };
