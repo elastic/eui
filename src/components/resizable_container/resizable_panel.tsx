@@ -24,18 +24,22 @@ import React, {
   useRef,
   useState,
   FunctionComponent,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { usePanelContext } from './context';
+import { useEuiResizablePanelContext } from './context';
 import { htmlIdGenerator } from '../../services';
 
-interface Controls {
+interface EuiResizablePanelControls {
   isHorizontal: boolean;
 }
 
-export interface PanelProps extends CommonProps {
+export interface EuiResizablePanelProps
+  extends HTMLAttributes<HTMLDivElement>,
+    CommonProps,
+    EuiResizablePanelControls {
   /**
    * Specify minimum panel size in pixels or percents,
    * for example "300px" or "30%"
@@ -72,7 +76,7 @@ export interface PanelProps extends CommonProps {
 
 const generatePanelId = htmlIdGenerator('resizable-panel');
 
-export const Panel: FunctionComponent<PanelProps & Controls> = ({
+export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   children,
   className,
   id,
@@ -87,7 +91,7 @@ export const Panel: FunctionComponent<PanelProps & Controls> = ({
   const [innerSize, setInnerSize] = useState(
     initialSize && !size ? initialSize : 0
   );
-  const { registry } = usePanelContext();
+  const { registry } = useEuiResizablePanelContext();
   const divRef = useRef<HTMLDivElement>(null);
   const panelId = useRef(id || generatePanelId());
 
@@ -147,6 +151,10 @@ export const Panel: FunctionComponent<PanelProps & Controls> = ({
   );
 };
 
-export function paneWithControls(controls: Controls) {
-  return (props: PanelProps) => <Panel {...controls} {...props} />;
+export function euiResizablePanelWithControls(
+  controls: EuiResizablePanelControls
+) {
+  return (props: EuiResizablePanelProps) => (
+    <EuiResizablePanel {...controls} {...props} />
+  );
 }

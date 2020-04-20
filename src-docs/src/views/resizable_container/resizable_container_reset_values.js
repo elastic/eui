@@ -66,7 +66,7 @@ export default () => {
         <EuiFlexItem>
           <EuiButton
             fill={savedSizes === sizes}
-            iconType={savedSizes === sizes && 'check'}
+            iconType={savedSizes === sizes ? 'check' : undefined}
             onClick={onSaveToLocalStorage}>
             {'Store in localStorage'}
           </EuiButton>
@@ -78,9 +78,9 @@ export default () => {
       <EuiResizableContainer
         style={{ height: '400px' }}
         onPanelWidthChange={onPanelWidthChange}>
-        {(Panel, Resizer) => (
+        {(EuiResizablePanel, EuiResizableButton) => (
           <>
-            <Panel
+            <EuiResizablePanel
               id={firstPanelId}
               size={sizes[firstPanelId]}
               minSize="30%"
@@ -88,11 +88,11 @@ export default () => {
               <EuiText>
                 <p>{text}</p>
               </EuiText>
-            </Panel>
+            </EuiResizablePanel>
 
-            <Resizer size="l" />
+            <EuiResizableButton size="l" />
 
-            <Panel
+            <EuiResizablePanel
               id={secondPanelId}
               size={sizes[secondPanelId]}
               minSize="200px"
@@ -100,7 +100,7 @@ export default () => {
               <EuiText>
                 <p>{text}</p>
               </EuiText>
-            </Panel>
+            </EuiResizablePanel>
           </>
         )}
       </EuiResizableContainer>

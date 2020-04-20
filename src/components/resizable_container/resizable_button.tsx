@@ -17,52 +17,63 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
 
-export type ResizerMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
-export type ResizerKeyDownEvent = React.KeyboardEvent<HTMLButtonElement>;
+export type EuiResizableButtonMouseEvent = React.MouseEvent<
+  HTMLButtonElement,
+  MouseEvent
+>;
+export type EuiResizableButtonKeyDownEvent = React.KeyboardEvent<
+  HTMLButtonElement
+>;
 
-export type ResizerSize = 'none' | 's' | 'm' | 'l';
+export type EuiResizableButtonSize = 'none' | 's' | 'm' | 'l' | 'xl';
 
-interface Controls {
-  onKeyDown: (eve: ResizerKeyDownEvent) => void;
-  onMouseDown: (eve: ResizerMouseEvent) => void;
+interface EuiResizableButtonControls {
+  onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
+  onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
   isHorizontal: boolean;
 }
 
-interface Props extends CommonProps {
+export interface EuiResizableButtonProps
+  extends Omit<
+      HTMLAttributes<HTMLButtonElement>,
+      keyof EuiResizableButtonControls
+    >,
+    CommonProps,
+    EuiResizableButtonControls {
   /**
    * The size of the Resizer (the space between panels)
    */
-  size?: ResizerSize;
+  size?: EuiResizableButtonSize;
 }
 
 const sizeToClassNameMap = {
   none: null,
-  s: 'euiResizer--sizeSmall',
-  m: 'euiResizer--sizeMedium',
-  l: 'euiResizer--sizeLarge',
-  xl: 'euiResizer--sizeExtraLarge',
+  s: 'euiResizableButton--sizeSmall',
+  m: 'euiResizableButton--sizeMedium',
+  l: 'euiResizableButton--sizeLarge',
+  xl: 'euiResizableButton--sizeExtraLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const Resizer: FunctionComponent<Props & Controls> = ({
+export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   isHorizontal,
   className,
   size = 'm',
   ...rest
 }) => {
   const classes = classNames(
-    'euiResizer',
+    'euiResizableButton',
     size ? sizeToClassNameMap[size] : null,
     {
-      'euiResizer--vertical': !isHorizontal,
-      'euiResizer--horizontal': isHorizontal,
+      'euiResizableButton--vertical': !isHorizontal,
+      'euiResizableButton--horizontal': isHorizontal,
     },
     className
   );
@@ -70,8 +81,8 @@ export const Resizer: FunctionComponent<Props & Controls> = ({
   return (
     <EuiI18n
       tokens={[
-        'euiResizer.horizontalResizerAriaLabel',
-        'euiResizer.verticalResizerAriaLabel',
+        'euiResizableButton.horizontalResizerAriaLabel',
+        'euiResizableButton.verticalResizerAriaLabel',
       ]}
       defaults={[
         'Press left/right to adjust panels size',
@@ -84,6 +95,7 @@ export const Resizer: FunctionComponent<Props & Controls> = ({
           }
           className={classes}
           data-test-subj="splitPanelResizer"
+          type="button"
           {...rest}
         />
       )}
@@ -91,6 +103,10 @@ export const Resizer: FunctionComponent<Props & Controls> = ({
   );
 };
 
-export function resizerWithControls(controls: Controls) {
-  return (props: CommonProps) => <Resizer {...controls} {...props} />;
+export function euiResizableButtonWithControls(
+  controls: EuiResizableButtonControls
+) {
+  return (props: CommonProps) => (
+    <EuiResizableButton {...controls} {...props} />
+  );
 }

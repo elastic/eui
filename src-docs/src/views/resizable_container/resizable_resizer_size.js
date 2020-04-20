@@ -4,61 +4,61 @@ import { EuiText, EuiCode, EuiResizableContainer } from '../../../../src';
 
 export default () => (
   <EuiResizableContainer style={{ height: '200px' }}>
-    {(Panel, Resizer) => (
+    {(EuiResizablePanel, EuiResizableButton) => (
       <>
-        <Panel initialSize={35} minSize="100px" scrollable>
+        <EuiResizablePanel initialSize={35} minSize="100px" scrollable>
           <EuiText size="s">
             <p>
-              The <EuiCode>Resizer</EuiCode> to the right of this{' '}
-              <EuiCode>Panel</EuiCode> uses size <EuiCode>xl</EuiCode>
+              The <strong>EuiResizableButton</strong> to the right of this{' '}
+              <strong>EuiResizablePanel</strong> uses size <EuiCode>xl</EuiCode>
             </p>
           </EuiText>
-        </Panel>
+        </EuiResizablePanel>
 
-        <Resizer size="xl" />
+        <EuiResizableButton size="xl" />
 
-        <Panel initialSize={25} scrollable>
+        <EuiResizablePanel initialSize={25} scrollable>
           <EuiText size="s">
             <p>
-              The <EuiCode>Resizer</EuiCode> to the right of this{' '}
-              <EuiCode>Panel</EuiCode> uses size <EuiCode>l</EuiCode>
+              The <strong>EuiResizableButton</strong> to the right of this{' '}
+              <strong>EuiResizablePanel</strong> uses size <EuiCode>l</EuiCode>
             </p>
           </EuiText>
-        </Panel>
+        </EuiResizablePanel>
 
-        <Resizer size="l" />
+        <EuiResizableButton size="l" />
 
-        <Panel initialSize={15} scrollable>
+        <EuiResizablePanel initialSize={15} scrollable>
           <EuiText size="s">
             <p>
-              The <EuiCode>Resizer</EuiCode> to the right of this{' '}
-              <EuiCode>Panel</EuiCode> uses size <EuiCode>m</EuiCode>, which is
-              the <strong>default</strong> size.
+              The <strong>EuiResizableButton</strong> to the right of this{' '}
+              <strong>EuiResizablePanel</strong> uses size <EuiCode>m</EuiCode>,
+              which is the <strong>default</strong> size.
             </p>
           </EuiText>
-        </Panel>
+        </EuiResizablePanel>
 
-        <Resizer size="m" />
+        <EuiResizableButton size="m" />
 
-        <Panel initialSize={15} scrollable>
+        <EuiResizablePanel initialSize={15} scrollable>
           <EuiText size="s">
             <p>
-              The <EuiCode>Resizer</EuiCode> to the right of this{' '}
-              <EuiCode>Panel</EuiCode> uses size <EuiCode>s</EuiCode>
+              The <strong>EuiResizableButton</strong> to the right of this{' '}
+              <strong>EuiResizablePanel</strong> uses size <EuiCode>s</EuiCode>
             </p>
           </EuiText>
-        </Panel>
+        </EuiResizablePanel>
 
-        <Resizer size="s" />
+        <EuiResizableButton size="s" />
 
-        <Panel initialSize={10} minSize="100px" scrollable>
+        <EuiResizablePanel initialSize={10} minSize="100px" scrollable>
           <EuiText size="s">
             <p>
-              This is the last <EuiCode>Panel</EuiCode>, so it is not followed
-              by a <EuiCode>Resizer</EuiCode>
+              This is the last <strong>EuiResizablePanel</strong>, so it is not
+              followed by a <strong>EuiResizableButton</strong>
             </p>
           </EuiText>
-        </Panel>
+        </EuiResizablePanel>
       </>
     )}
   </EuiResizableContainer>

@@ -24,13 +24,24 @@ import React, {
   useCallback,
   CSSProperties,
   FunctionComponent,
+  HTMLAttributes,
+  ComponentType,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { PanelContextProvider, PanelRegistry } from './context';
-import { resizerWithControls } from './resizer';
-import { PanelProps, paneWithControls } from './panel';
+import {
+  EuiResizablePanelContextProvider,
+  EuiResizablePanelRegistry,
+} from './context';
+import {
+  EuiResizableButtonProps,
+  euiResizableButtonWithControls,
+} from './resizable_button';
+import {
+  EuiResizablePanelProps,
+  euiResizablePanelWithControls,
+} from './resizable_panel';
 import { useContainerCallbacks } from './helpers';
 
 const containerDirections = {
@@ -38,7 +49,9 @@ const containerDirections = {
   horizontal: 'horizontal',
 };
 
-export interface Props extends CommonProps {
+export interface EuiResizableContainerProps
+  extends HTMLAttributes<HTMLDivElement>,
+    CommonProps {
   /**
    * Specify the container direction
    */
@@ -48,8 +61,8 @@ export interface Props extends CommonProps {
    * and returns a component tree
    */
   children: (
-    Panel: React.ComponentType<PanelProps>,
-    Resizer: React.ComponentType<CommonProps>
+    Panel: ComponentType<EuiResizablePanelProps>,
+    Resizer: ComponentType<EuiResizableButtonProps>
   ) => ReactNode;
   /**
    * Pure function which accepts an object where keys are IDs of panels, which sizes were changed,
@@ -59,7 +72,7 @@ export interface Props extends CommonProps {
   style?: CSSProperties;
 }
 
-export interface State {
+export interface EuiResizableContainerState {
   isDragging: boolean;
   currentResizerPos: number;
   previousPanelId: string | null;
@@ -67,7 +80,7 @@ export interface State {
   resizersSize: number;
 }
 
-const initialState: State = {
+const initialState: EuiResizableContainerState = {
   isDragging: false,
   currentResizerPos: -1,
   previousPanelId: null,
@@ -75,16 +88,18 @@ const initialState: State = {
   resizersSize: 0,
 };
 
-export const EuiResizableContainer: FunctionComponent<Props> = ({
+export const EuiResizableContainer: FunctionComponent<
+  EuiResizableContainerProps
+> = ({
   direction = 'horizontal',
   children,
   className,
   onPanelWidthChange,
   ...rest
 }) => {
-  const registryRef = useRef(new PanelRegistry());
+  const registryRef = useRef(new EuiResizablePanelRegistry());
   const containerRef = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<EuiResizableContainerState>(initialState);
   const isHorizontal = direction === containerDirections.horizontal;
 
   const classes = classNames(
@@ -105,8 +120,8 @@ export const EuiResizableContainer: FunctionComponent<Props> = ({
     onPanelWidthChange,
   });
 
-  const Resizer = useCallback(
-    resizerWithControls({
+  const EuiResizableButton = useCallback(
+    euiResizableButtonWithControls({
       onKeyDown,
       onMouseDown,
       isHorizontal,
@@ -114,8 +129,8 @@ export const EuiResizableContainer: FunctionComponent<Props> = ({
     [onKeyDown, onMouseDown, isHorizontal]
   );
 
-  const Panel = useCallback(
-    paneWithControls({
+  const EuiResizablePanel = useCallback(
+    euiResizablePanelWithControls({
       isHorizontal,
     }),
     [isHorizontal]
@@ -126,15 +141,15 @@ export const EuiResizableContainer: FunctionComponent<Props> = ({
   }, []);
 
   return (
-    <PanelContextProvider registry={registryRef.current}>
+    <EuiResizablePanelContextProvider registry={registryRef.current}>
       <div
         className={classes}
         ref={containerRef}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
         {...rest}>
-        {children(Panel, Resizer)}
+        {children(EuiResizablePanel, EuiResizableButton)}
       </div>
-    </PanelContextProvider>
+    </EuiResizablePanelContextProvider>
   );
 };

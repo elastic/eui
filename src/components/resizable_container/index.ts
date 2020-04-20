@@ -17,4 +17,7 @@
  * under the License.
  */
 
-export { EuiResizableContainer } from './resizable_container';
+export {
+  EuiResizableContainer,
+  EuiResizableContainerProps,
+} from './resizable_container';

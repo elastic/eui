@@ -20,16 +20,19 @@
 import { useCallback, MouseEvent } from 'react';
 
 import { keyCodes } from '../../services';
-import { ResizerMouseEvent, ResizerKeyDownEvent } from './resizer';
-import { PanelRegistry } from './context';
-import { State } from './resizable_container';
+import {
+  EuiResizableButtonMouseEvent,
+  EuiResizableButtonKeyDownEvent,
+} from './resizable_button';
+import { EuiResizablePanelRegistry } from './context';
+import { EuiResizableContainerState } from './resizable_container';
 
 interface Params {
   isHorizontal: boolean;
-  state: State;
-  setState: React.Dispatch<React.SetStateAction<State>>;
+  state: EuiResizableContainerState;
+  setState: React.Dispatch<React.SetStateAction<EuiResizableContainerState>>;
   containerRef: React.RefObject<HTMLDivElement>;
-  registryRef: React.MutableRefObject<PanelRegistry>;
+  registryRef: React.MutableRefObject<EuiResizablePanelRegistry>;
   onPanelWidthChange?: ({  }: { [key: string]: number }) => any;
 }
 
@@ -55,7 +58,7 @@ export const useContainerCallbacks = ({
   const getResizerButtonsSize = useCallback(() => {
     // get sum of all of resizer button sizes to proper calculate panels ratio
     const allResizers = containerRef.current!.getElementsByClassName(
-      'euiResizer'
+      'euiResizableButton'
     ) as HTMLCollectionOf<HTMLButtonElement>;
     const size = isHorizontal
       ? allResizers[0].offsetWidth
@@ -65,7 +68,7 @@ export const useContainerCallbacks = ({
   }, [containerRef, isHorizontal]);
 
   const onMouseDown = useCallback(
-    ({ clientY, clientX, currentTarget }: ResizerMouseEvent) => {
+    ({ clientY, clientX, currentTarget }: EuiResizableButtonMouseEvent) => {
       setState(prevState => ({
         ...prevState,
         isDragging: true,
@@ -79,7 +82,7 @@ export const useContainerCallbacks = ({
   );
 
   const onKeyDown = useCallback(
-    (ev: ResizerKeyDownEvent) => {
+    (ev: EuiResizableButtonKeyDownEvent) => {
       const { keyCode, currentTarget } = ev;
       const shouldResizeHorizontalPanel =
         isHorizontal &&

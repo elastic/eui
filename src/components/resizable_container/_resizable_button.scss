@@ -1,5 +1,5 @@
   //Mimics the "grab" icon with CSS psuedo-elements. The "grab" icon transforms into a 2px straight line on :hover and :focus.
-.euiResizer {
+.euiResizableButton {
   position: relative;
 
   &:before,
@@ -10,10 +10,10 @@
     top: 50%;
     left: 50%;
     background-color: $euiColorDarkestShade;
-    transition: width $euiResizerTransitionSpeed ease, height $euiResizerTransitionSpeed ease, transform $euiResizerTransitionSpeed ease,      background-color $euiResizerTransitionSpeed ease;
+    transition: width $euiResizableButtonTransitionSpeed ease, height $euiResizableButtonTransitionSpeed ease, transform $euiResizableButtonTransitionSpeed ease,      background-color $euiResizableButtonTransitionSpeed ease;
   }
 
-  &.euiResizer--horizontal {
+  &.euiResizableButton--horizontal {
     cursor: col-resize;
 
     &:before,
@@ -31,7 +31,7 @@
     }
   }
 
-  &.euiResizer--vertical {
+  &.euiResizableButton--vertical {
     cursor: row-resize;
 
     &:before,
@@ -54,7 +54,7 @@
     &:before,
     &:after {
       background-color: $euiColorMediumShade;
-      transition-delay: $euiResizerTransitionSpeed; //Delay transition on hover so animation is not accidentally triggered on mouse over
+      transition-delay: $euiResizableButtonTransitionSpeed; //Delay transition on hover so animation is not accidentally triggered on mouse over
     }
   }
 
@@ -66,14 +66,14 @@
     &:after {
       background-color: $euiColorPrimary;
       // Overrides default transition so that "grab" icon background-color doesn't animate
-      transition: width $euiResizerTransitionSpeed ease, height $euiResizerTransitionSpeed ease, transform $euiResizerTransitionSpeed ease;
+      transition: width $euiResizableButtonTransitionSpeed ease, height $euiResizableButtonTransitionSpeed ease, transform $euiResizableButtonTransitionSpeed ease;
     }
   }
 
   //Morph the "grab" icon into a fluid 2px straight line on :hover and :focus
   &:hover,
   &:focus {
-    &.euiResizer--horizontal {
+    &.euiResizableButton--horizontal {
       &:before,
       &:after {
         height: 100%;
@@ -88,7 +88,7 @@
       }
     }
 
-    &.euiResizer--vertical {
+    &.euiResizableButton--vertical {
       &:before,
       &:after {
         width: 100%;
@@ -106,13 +106,13 @@
 }
 
 //Generate modifier classes that control the size of the resizer
-@each $modifier, $amount in $euiResizerSizeModifiers {
-  .euiResizer--#{$modifier} {
-    &.euiResizer--vertical {
+@each $modifier, $amount in $euiResizableButtonSizeModifiers {
+  .euiResizableButton--#{$modifier} {
+    &.euiResizableButton--vertical {
       height: $amount;
     }
 
-    &.euiResizer--horizontal {
+    &.euiResizableButton--horizontal {
       width: $amount;
     }
   }

@@ -12,8 +12,8 @@ import {
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
-import { Panel } from '../../../../src/components/resizable_container/panel';
-import { Resizer } from '../../../../src/components/resizable_container/resizer';
+import { EuiResizablePanel } from '../../../../src/components/resizable_container/resizable_panel';
+import { EuiResizableButton } from '../../../../src/components/resizable_container/resizable_button';
 
 import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
@@ -45,16 +45,16 @@ export const ResizableContainerExample = {
         <EuiText size="s">
           <p>
             This component is handy for various resizable containers.
-            <EuiCode>{'<EuiResizableContainer />'}</EuiCode> uses{' '}
+            <strong>EuiResizableContainer</strong> uses{' '}
             <EuiLink
               href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
               external>
               React Render Props
             </EuiLink>{' '}
-            technique to provide <EuiCode>{'<Panel />'}</EuiCode> and{' '}
-            <EuiCode>{'<Resizer />'}</EuiCode> components for you layot. Wrap
-            parts of your content with the <EuiCode>{'<Panel />'}</EuiCode>{' '}
-            component and put the <EuiCode>{'<Resizer />'}</EuiCode> component
+            technique to provide <strong>EuiResizablePanel</strong> and{' '}
+            <strong>EuiResizableButton</strong> components for you layot. Wrap
+            parts of your content with the <strong>EuiResizablePanel</strong>{' '}
+            component and put the <strong>EuiResizableButton</strong> component
             between.
           </p>
         </EuiText>
@@ -99,7 +99,7 @@ export const ResizableContainerExample = {
           </ul>
         </div>
       ),
-      props: { EuiResizableContainer, Panel, Resizer },
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerBasic />,
     },
     {
@@ -138,7 +138,7 @@ export const ResizableContainerExample = {
           </EuiCallOut>
         </div>
       ),
-      props: { EuiResizableContainer, Panel, Resizer },
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerResetValues />,
     },
     {
@@ -159,7 +159,7 @@ export const ResizableContainerExample = {
           or even more..
         </p>
       ),
-      props: { EuiResizableContainer, Panel, Resizer },
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerThreePanels />,
     },
     {
@@ -175,7 +175,7 @@ export const ResizableContainerExample = {
       ],
       title: 'Vertical container',
       text: <p>Vertical resizable container</p>,
-      props: { EuiResizableContainer, Panel, Resizer },
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: (
         <div className="guideDemo__highlightSpacer">
           <ResizableContainerVertical />
@@ -199,15 +199,15 @@ export const ResizableContainerExample = {
           <p>
             Now say that five times fast. You can control the space between
             panels by modifying the <EuiCode>size</EuiCode> of the{' '}
-            <EuiCode>Resizer</EuiCode> component. The available sizes are{' '}
-            <EuiCode>xl</EuiCode>, <EuiCode>l</EuiCode>, <EuiCode>m</EuiCode>,
-            and <EuiCode>s</EuiCode>. You should avoid using different sizes
-            within the same <EuiCode>EuiResizableContainer</EuiCode>, as shown
-            in the demo below.
+            <strong>EuiResizableButton</strong> component. The available sizes
+            are <EuiCode>xl</EuiCode>, <EuiCode>l</EuiCode>,{' '}
+            <EuiCode>m</EuiCode>, and <EuiCode>s</EuiCode>. You should avoid
+            using different sizes within the same{' '}
+            <strong>EuiResizableContainer</strong>, as shown in the demo below.
           </p>
         </div>
       ),
-      props: { EuiResizableContainer, Panel, Resizer },
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableResizerSize />,
     },
   ],

@@ -19,16 +19,16 @@
 
 import React, { createContext, useContext } from 'react';
 
-export interface PanelController {
+export interface EuiResizablePanelController {
   id: string;
   setSize: (panelSize: number) => void;
   getSizePx: () => number;
 }
 
-export class PanelRegistry {
-  private panels: { [key: string]: PanelController } = {};
+export class EuiResizablePanelRegistry {
+  private panels: { [key: string]: EuiResizablePanelController } = {};
 
-  registerPanel(panel: PanelController) {
+  registerPanel(panel: EuiResizablePanelController) {
     this.panels[panel.id] = panel;
   }
 
@@ -37,26 +37,31 @@ export class PanelRegistry {
   }
 }
 
-const PanelContext = createContext({ registry: new PanelRegistry() });
+const EuiResizablePanelContext = createContext({
+  registry: new EuiResizablePanelRegistry(),
+});
 
 interface ContextProps {
   children: any;
-  registry: PanelRegistry;
+  registry: EuiResizablePanelRegistry;
 }
 
-export function PanelContextProvider({ children, registry }: ContextProps) {
+export function EuiResizablePanelContextProvider({
+  children,
+  registry,
+}: ContextProps) {
   return (
-    <PanelContext.Provider value={{ registry }}>
+    <EuiResizablePanelContext.Provider value={{ registry }}>
       {children}
-    </PanelContext.Provider>
+    </EuiResizablePanelContext.Provider>
   );
 }
 
-export const usePanelContext = () => {
-  const context = useContext(PanelContext);
+export const useEuiResizablePanelContext = () => {
+  const context = useContext(EuiResizablePanelContext);
   if (context === undefined) {
     throw new Error(
-      'usePanelContext must be used within a <PanelContextProvider />'
+      'useEuiResizablePanelContext must be used within a <EuiResizablePanelContextProvider />'
     );
   }
   return context;
