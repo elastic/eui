@@ -155,20 +155,17 @@ const radioSource = require('!!raw-loader!./radio');
 const radioHtml = renderToHtml(Radio);
 const radioSnippet = [
   `<EuiRadio
-  id={radioId}
   label="I am a radio"
   checked={checked}
   onChange={onChange}
 />`,
   `<EuiRadio
-  id={radioId}
   label="I am a disabled radio"
   checked={checked}
   onChange={onChange}
   disabled
 />`,
   `<EuiRadio
-  id={radioId}
   label="I am a compressed radio"
   checked={checked}
   onChange={onChange}
