@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../components';
-import { Chart, Partition, PartitionLayout } from '@elastic/charts';
-import { BROWSER_DATA_2019, BROWSER_DATA_2019_OTHER, SEASONS } from './data';
+import { Chart, Partition } from '@elastic/charts';
 import { euiPaletteColorBlind } from '../../../../src/services';
 
 import {
@@ -13,10 +12,6 @@ import {
   EuiFlexItem,
   EuiTitle,
   EuiSpacer,
-  EuiTextAlign,
-  EuiText,
-  EuiCopy,
-  EuiButtonEmpty,
 } from '../../../../src/components';
 
 export default () => {
