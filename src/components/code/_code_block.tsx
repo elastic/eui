@@ -30,7 +30,7 @@ import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiFocusTrap } from '../focus_trap';
 
-import { keyCodes } from '../../services';
+import { keyCodes, htmlIdGenerator } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
@@ -339,10 +339,16 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
       return fullScreenDisplay;
     };
 
+    /**
+     * Generates a new key that will help React identify that the code snippet has changed
+     * So it will be possible to copy the new content
+     */
+    const key = htmlIdGenerator()();
+
     return (
       <>
         {createPortal(children, this.codeTarget)}
-        <EuiInnerText fallback="">
+        <EuiInnerText fallback="" key={key}>
           {(innerTextRef, innerText) => {
             const codeBlockControls = getCodeBlockControls(innerText);
             return (
