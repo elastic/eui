@@ -55,7 +55,7 @@ const badgeButtonSnippet = [
   color="hollow"
   iconOnClick={onBadgeIconClick}
   iconOnClickAriaLabel="Aria label applied to icon button"
-  />
+/>
   Text with clickable icon
 </EuiBadge>`,
   `<EuiBadge
@@ -66,7 +66,7 @@ const badgeButtonSnippet = [
   onClickAriaLabel="Aria label applied to text button"
   iconOnClick={onBadgeIconClick}
   iconOnClickAriaLabel="Aria label applied to icon button"
-  />
+/>
   Clickable text with clickable icon
 </EuiBadge>`,
 ];
