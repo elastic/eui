@@ -33,34 +33,137 @@ import {
 import FieldSearch from './field_search';
 const fieldSearchSource = require('!!raw-loader!./field_search');
 const fieldSearchHtml = renderToHtml(FieldSearch);
+const fieldSearchSnippet = [
+  `<EuiFieldSearch
+  placeholder="Search this"
+  value={value}
+  isClearable={isClearable}
+  onChange={onChange}
+  compressed={false}
+  isLoading={true}
+  aria-label="Use aria labels when no actual label is in use"
+/>`,
+];
 
 import FieldText from './field_text';
 const fieldTextSource = require('!!raw-loader!./field_text');
 const fieldTextHtml = renderToHtml(FieldText);
+const fieldTextSnippet = [
+  `<EuiFieldText
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+  readOnly={false}
+  prepend={prepend}
+  append={append}
+/>`,
+];
 
 import FieldNumber from './field_number';
 const fieldNumberSource = require('!!raw-loader!./field_number');
 const fieldNumberHtml = renderToHtml(FieldNumber);
+const fieldNumberSnippet = [
+  `<EuiFieldNumber
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+  min={1}
+  max={25}
+  step={2}
+/>`,
+];
 
 import FieldPassword from './field_password';
 const fieldPasswordSource = require('!!raw-loader!./field_password');
 const fieldPasswordHtml = renderToHtml(FieldPassword);
+const fieldPasswordSnippet = [
+  `<EuiFieldPassword
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+  fullWidth={true}
+/>`,
+];
 
 import TextArea from './text_area';
 const textAreaSource = require('!!raw-loader!./text_area');
 const textAreaHtml = renderToHtml(TextArea);
+const textAreaSnippet = [
+  `<EuiTextArea
+  placeholder="Placeholder text"
+  value={value}
+  onChange={onChange}
+  isInvalid={false}
+/>`,
+];
 
 import { FilePicker } from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
+const filePickerSnippet = [
+  `<EuiFilePicker
+  id=" "
+  multiple
+  initialPromptText="content that appears in the dropzone if no file is attached"
+  onChange={onChange}
+  display={large ? 'large' : 'default'}
+/>`,
+];
 
 import Select from './select';
 const selectSource = require('!!raw-loader!./select');
 const selectHtml = renderToHtml(Select);
+const selectSnippet = [
+  `<EuiSelect
+  options={[
+    {
+      value: 'option_one',
+      text: 'Option one'
+    },
+    {
+      value: 'option_two',
+       text: 'Option two'
+    },
+  ]}
+  value={value}
+  onChange={onChange}
+/>`,
+];
 
 import Checkbox from './checkbox';
 const checkboxSource = require('!!raw-loader!./checkbox');
 const checkboxHtml = renderToHtml(Checkbox);
+const checkboxSnippet = [
+  `<EuiCheckbox
+  id=" "
+  label="I am a checkbox"
+  checked={checked}
+  onChange={onChange}
+/>`,
+  `//Indeterminate Checkbox
+<EuiCheckbox
+  id=" "
+  label="I am an indeterminate checkbox"
+  indeterminate={indeterminate}
+  onChange={onChangeIndeterminate}
+/>`,
+  `//Disabled Checkbox
+<EuiCheckbox
+  id=" "
+  label="I am a disabled checkbox"
+  checked={checked}
+  onChange={onChange}
+  disabled
+/>`,
+  `//Compressed Checkbox
+<EuiCheckbox
+  id=" "
+  label="I am a compressed checkbox"
+  checked={checked}
+  onChange={onChange}
+  compressed
+/>`,
+];
 
 import CheckboxGroup from './checkbox_group';
 const checkboxGroupSource = require('!!raw-loader!./checkbox_group');
@@ -69,6 +172,30 @@ const checkboxGroupHtml = renderToHtml(CheckboxGroup);
 import Radio from './radio';
 const radioSource = require('!!raw-loader!./radio');
 const radioHtml = renderToHtml(Radio);
+const radioSnippet = [
+  `<EuiRadio
+  id=" "
+  label="I am a radio"
+  checked={checked}
+  onChange={onChange}
+/>`,
+  `//Disabled Radio Button
+<EuiRadio
+  id=" "
+  label="I am a disabled radio"
+  checked={checked}
+  onChange={onChange}
+  disabled
+/>`,
+  `//Compressed Radio Button
+<EuiRadio
+  id=" "
+  label="I am a compressed radio"
+  checked={checked}
+  onChange={onChange}
+  compressed
+/>`,
+];
 
 import RadioGroup from './radio_group';
 const radioGroupSource = require('!!raw-loader!./radio_group');
@@ -77,6 +204,50 @@ const radioGroupHtml = renderToHtml(RadioGroup);
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
 const switchHtml = renderToHtml(Switch);
+const switchSnippet = [
+  `<EuiSwitch
+  label="I am a switch"
+  checked={checked}
+  onChange={onChange}
+/>`,
+  `//Disabled Switch
+<EuiSwitch
+  label="I am a disabled switch"
+  checked={checked}
+  onChange={onChange}
+  disabled
+/>`,
+  `//Switch without visible label
+<EuiSwitch
+  showLabel={false}
+  label="I am a switch without a visible label"
+  checked={checked}
+  onChange={onChange}
+/>`,
+  `//Compressed switch
+<EuiSwitch
+  label="I am a compressed switch"
+  checked={checked}
+  onChange={onChange}
+  compressed
+/>`,
+  `//Compressed and disabled Switch
+<EuiSwitch
+  label="I am a compressed, disabled switch"
+  checked={checked}
+  onChange={onChange}
+  compressed
+  disabled
+/>`,
+  `//Compressed switch without a visible label
+<EuiSwitch
+  showLabel={false}
+  label="I am a compressed switch without a visible label"
+  checked={checked}
+  onChange={onChange}
+  compressed
+/>`,
+];
 
 import PrependAppend from './prepend_append';
 const PrependAppendSource = require('!!raw-loader!./prepend_append');
@@ -109,6 +280,7 @@ export const FormControlsExample = {
           code: fieldTextHtml,
         },
       ],
+      snippet: fieldTextSnippet,
       props: {
         EuiFieldText,
       },
@@ -126,6 +298,7 @@ export const FormControlsExample = {
           code: fieldSearchHtml,
         },
       ],
+      snippet: fieldSearchSnippet,
       props: {
         EuiFieldSearch,
       },
@@ -143,6 +316,7 @@ export const FormControlsExample = {
           code: fieldNumberHtml,
         },
       ],
+      snippet: fieldNumberSnippet,
       props: {
         EuiFieldNumber,
       },
@@ -160,6 +334,7 @@ export const FormControlsExample = {
           code: fieldPasswordHtml,
         },
       ],
+      snippet: fieldPasswordSnippet,
       props: {
         EuiFieldPassword,
       },
@@ -194,6 +369,7 @@ export const FormControlsExample = {
           restrictions on how items are rendered.
         </p>
       ),
+      snippet: selectSnippet,
       props: {
         EuiSelect,
       },
@@ -211,6 +387,7 @@ export const FormControlsExample = {
           code: textAreaHtml,
         },
       ],
+      snippet: textAreaSnippet,
       props: {
         EuiTextArea,
       },
@@ -244,6 +421,7 @@ export const FormControlsExample = {
         </p>
       ),
       components: { EuiFilePicker },
+      snippet: filePickerSnippet,
       demo: <FilePicker />,
       props: { EuiFilePicker },
     },
@@ -259,6 +437,7 @@ export const FormControlsExample = {
           code: checkboxHtml,
         },
       ],
+      snippet: checkboxSnippet,
       props: {
         EuiCheckbox,
       },
@@ -307,6 +486,7 @@ export const FormControlsExample = {
           code: radioHtml,
         },
       ],
+      snippet: radioSnippet,
       props: {
         EuiRadio,
       },
@@ -359,6 +539,7 @@ export const FormControlsExample = {
           code: switchHtml,
         },
       ],
+      snippet: switchSnippet,
       props: {
         EuiSwitch,
       },
