@@ -13,10 +13,10 @@ const toggleSource = require('!!raw-loader!./toggle');
 const toggleHtml = renderToHtml(Toggle);
 const toggleSnippet = [
   `<EuiToggle
- onChange={onToggleChange}
- label="Is toggle on?"
- >
- {toggleOn ? 'On' : 'Off'}
+  onChange={onToggleChange}
+  label="Is toggle on?"
+>
+  {toggleOn ? 'On' : 'Off'}
 </EuiToggle>`,
 ];
 
