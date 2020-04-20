@@ -24,7 +24,7 @@ const panelSnippet = `<EuiPanel paddingSize="none">
   <!-- Panel with no padding -->
 </EuiPanel>`;
 
-const panelHoverSnippet = `<EuiPanel onClick={this.handleClick}>
+const panelHoverSnippet = `<EuiPanel onClick={handleClick}>
   <!-- Panel with onClick handler -->
 </EuiPanel>`;
 
