@@ -277,6 +277,81 @@ export const GITHUB_DATASET = [
   },
 ];
 
+export const GITHUB_DATASET_MOD = [
+  {
+    total: 'Total',
+    vizType: 'Data Table',
+    issueType: 'Bug',
+    count: 24,
+  },
+  {
+    total: 'Total',
+    vizType: 'Data Table',
+    issueType: 'Request',
+    count: 22,
+  },
+  {
+    total: 'Total',
+    vizType: 'Tagcloud',
+    issueType: 'Bug',
+    count: 19,
+  },
+  {
+    total: 'Total',
+    vizType: 'Tagcloud',
+    issueType: 'Request',
+    count: 13,
+  },
+  {
+    total: 'Total',
+    vizType: 'TSVB',
+    issueType: 'Bug',
+    count: 86,
+  },
+  {
+    total: 'Total',
+    vizType: 'TSVB',
+    issueType: 'Request',
+    count: 123,
+  },
+  {
+    total: 'Total',
+    vizType: 'Timelion',
+    issueType: 'Bug',
+    count: 58,
+  },
+  {
+    total: 'Total',
+    vizType: 'Timelion',
+    issueType: 'Request',
+    count: 93,
+  },
+  {
+    total: 'Total',
+    vizType: 'Vega vis',
+    issueType: 'Bug',
+    count: 11,
+  },
+  {
+    total: 'Total',
+    vizType: 'Vega vis',
+    issueType: 'Request',
+    count: 38,
+  },
+  {
+    total: 'Total',
+    vizType: 'Other',
+    issueType: 'Bug',
+    count: 10,
+  },
+  {
+    total: 'Total',
+    vizType: 'Other',
+    issueType: 'Request',
+    count: 18,
+  },
+];
+
 export const BROWSER_DATA_2019 = [
   {
     browser: 'Chrome',

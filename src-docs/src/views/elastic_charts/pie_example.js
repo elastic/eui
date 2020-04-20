@@ -1,4 +1,7 @@
 import React, { Fragment } from 'react';
+import { renderToHtml } from '../../services';
+import { GuideSectionTypes } from '../../components';
+
 import { ExternalBadge } from './shared';
 import pieSliceOrderImg from '../../images/pie_slice_order.png';
 
@@ -17,7 +20,14 @@ import {
 } from '../../../../src/components';
 
 import PieChart from './pie';
+const pieSource = require('!!raw-loader!./pie');
+const pieHtml = renderToHtml(PieChart);
+
 import PieSlices from './pie_slices';
+
+import Treemaps from './treemap';
+const treemapsSource = require('!!raw-loader!./treemap');
+const treemapsHtml = renderToHtml(Treemaps);
 
 const introCards = [
   {
@@ -137,6 +147,16 @@ export const ElasticChartsPieExample = {
   sections: [
     {
       title: 'Pie and donut charts',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pieSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: pieHtml,
+        },
+      ],
       text: (
         <>
           <p>
@@ -171,7 +191,15 @@ export const ElasticChartsPieExample = {
             </EuiToolTip>{' '}
             are the same for pie charts. The empty center of donut charts can
             provide a place to display additional/related information
-            {unsupportedTooltip}.
+            <EuiIconTip
+              type="iInCircle"
+              color="subdued"
+              content="Elastic Charts doesn’t provide this functionality directly, but there is a workaround. See the 'Sunbursts and treemaps' example further down the page."
+              iconProps={{
+                className: 'eui-alignTop',
+              }}
+            />
+            .
           </p>
           <EuiCallOut
             color="warning"
@@ -270,7 +298,36 @@ const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_
       demo: <PieSlices />,
     },
     {
-      title: 'Treemaps and other variations/alternatives',
+      title: 'Sunbursts and treemaps',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: treemapsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: treemapsHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Multi-level pie charts(also known as sunbursts) and treemaps are
+            great for visualizing hierarchical relationships and for quickly
+            referencing the overall data comparison. However, they’re terrible
+            for displaying a true understanding of the values.
+          </p>
+          <p>
+            Below are some basic examples and how EUI supports them with
+            theming. However, this site will not document the best uses of these
+            chart types. For more guidance, see...
+          </p>
+        </>
+      ),
+      demo: <Treemaps />,
+    },
+    {
+      title: 'Alternatives',
       text: (
         <>
           <p>Definitely don’t use pie charts when:</p>
@@ -293,12 +350,6 @@ const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_
               errors in understanding
             </EuiLink>
             .
-          </p>
-          <p>
-            Multi-level (also known as sunbursts) are great for visualizing
-            hierarchical relationships and for quickly referencing the overall
-            data comparison. However, they’re terrible for displaying a true
-            understanding of the values.
           </p>
           <p>
             A previously mentioned, there are some better and basic alternatives
