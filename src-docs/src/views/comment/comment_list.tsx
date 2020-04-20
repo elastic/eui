@@ -109,8 +109,4 @@ const comments: EuiCommentProps[] = [
   },
 ];
 
-export default () => (
-  <div>
-    <EuiCommentList comments={comments} />
-  </div>
-);
+export default () => <EuiCommentList comments={comments} />;

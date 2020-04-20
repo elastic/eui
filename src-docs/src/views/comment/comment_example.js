@@ -83,7 +83,7 @@ const commentListSnippet = `<EuiCommentList
 />`;
 
 export const CommentListExample = {
-  title: 'Comment List',
+  title: 'Comment list',
   isNew: true,
   sections: [
     {

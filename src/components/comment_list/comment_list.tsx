@@ -38,10 +38,10 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
 }) => {
   const classes = classNames('euiCommentList', className);
 
-  let childrenOrComments = null;
+  let commentElements = null;
 
   if (comments) {
-    childrenOrComments = comments.map((item, index) => (
+    commentElements = comments.map((item, index) => (
       <EuiComment
         event={item.event}
         timestamp={item.timestamp}
@@ -53,13 +53,12 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
         actions={item.actions}
       />
     ));
-  } else {
-    childrenOrComments = children;
   }
 
   return (
     <div className={classes} {...rest}>
-      {childrenOrComments}
+      {commentElements}
+      {children}
     </div>
   );
 };
