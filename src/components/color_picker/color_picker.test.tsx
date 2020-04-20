@@ -335,11 +335,11 @@ test('picker mode does not render swatches', () => {
   expect(swatches.length).toBe(0);
 });
 
-test('inputDisplay `top` has a popover panel input', () => {
+test('secondaryInputDisplay `top` has a popover panel input', () => {
   const colorPicker = mount(
     <EuiColorPicker
       onChange={onChange}
-      inputDisplay="top"
+      secondaryInputDisplay="top"
       color="#ffeedd"
       {...requiredProps}
     />
@@ -352,11 +352,11 @@ test('inputDisplay `top` has a popover panel input', () => {
   expect(inputBottom.length).toBe(0);
 });
 
-test('inputDisplay `bottom` has a popover panel input', () => {
+test('secondaryInputDisplay `bottom` has a popover panel input', () => {
   const colorPicker = mount(
     <EuiColorPicker
       onChange={onChange}
-      inputDisplay="bottom"
+      secondaryInputDisplay="bottom"
       color="#ffeedd"
       {...requiredProps}
     />

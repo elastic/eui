@@ -142,9 +142,9 @@ export interface EuiColorPickerProps
    */
   format?: 'hex' | 'rgba';
   /**
-   * Placement option for a popover panel color value input.
+   * Placement option for a secondary color value input.
    */
-  inputDisplay?: 'top' | 'bottom' | 'none';
+  secondaryInputDisplay?: 'top' | 'bottom' | 'none';
 }
 
 function isKeyboardEvent(
@@ -206,7 +206,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   append,
   showAlpha = false,
   format,
-  inputDisplay = 'none',
+  secondaryInputDisplay = 'none',
 }) => {
   const preferredFormat = useMemo(() => {
     if (format) return format;
@@ -255,7 +255,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const popoverClass = 'euiColorPicker__popoverAnchor';
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
     'euiColorPicker__popoverPanel--pickerOnly':
-      mode === 'picker' && inputDisplay !== 'bottom',
+      mode === 'picker' && secondaryInputDisplay !== 'bottom',
     'euiColorPicker__popoverPanel--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
@@ -421,7 +421,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const inlineInput = inputDisplay !== 'none' && (
+  const inlineInput = secondaryInputDisplay !== 'none' && (
     <EuiI18n
       tokens={[
         'euiColorPicker.colorLabel',
@@ -444,7 +444,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             readOnly={readOnly}
             aria-label={colorLabel}
             autoComplete="off"
-            data-test-subj={`${inputDisplay}ColorPickerInput`}
+            data-test-subj={`${secondaryInputDisplay}ColorPickerInput`}
           />
         </EuiFormRow>
       )}
@@ -453,7 +453,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const composite = (
     <>
-      {inputDisplay === 'top' && (
+      {secondaryInputDisplay === 'top' && (
         <>
           {inlineInput}
           <EuiSpacer size="s" />
@@ -499,7 +499,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           ))}
         </EuiFlexGroup>
       )}
-      {inputDisplay === 'bottom' && (
+      {secondaryInputDisplay === 'bottom' && (
         <>
           {mode !== 'picker' && <EuiSpacer size="s" />}
           {inlineInput}

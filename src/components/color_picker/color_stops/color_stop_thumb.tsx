@@ -380,7 +380,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               display="inline"
               showAlpha={colorPickerShowAlpha}
               isInvalid={colorIsInvalid}
-              inputDisplay={colorPickerMode === 'swatch' ? 'none' : 'bottom'}
+              secondaryInputDisplay={
+                colorPickerMode === 'swatch' ? 'none' : 'bottom'
+              }
             />
           </React.Fragment>
         )}

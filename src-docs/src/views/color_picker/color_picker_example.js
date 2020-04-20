@@ -122,7 +122,7 @@ const customButtonHtml = renderToHtml(CustomButton);
 const customButtonSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
-  inputDisplay="top"
+  secondaryInputDisplay="top"
   button={
     <EuiColorPickerSwatch
       color={chosenColor}
@@ -136,7 +136,7 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
-  inputDisplay="bottom"
+  secondaryInputDisplay="bottom"
   button={
     <EuiBadge
       color={chosenColor ? chosenColor : 'hollow'}
@@ -479,7 +479,7 @@ export const ColorPickerExample = {
           </p>
           <p>
             Additionally, use the <EuiCode>inputDisplay</EuiCode> prop to show a
-            color value input inside the popover panel. Options include{' '}
+            secondary or alternative color value input. Options include{' '}
             <EuiCode>top</EuiCode> and <EuiCode>bottom</EuiCode> placement.
           </p>
         </>
