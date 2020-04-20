@@ -157,7 +157,7 @@ const checkboxSnippet = [
 />`,
   `//Compressed Checkbox
 <EuiCheckbox
-  id=" "
+  id={checkboxId}
   label="I am a compressed checkbox"
   checked={checked}
   onChange={onChange}
