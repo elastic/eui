@@ -23,6 +23,7 @@ export const CustomButton = () => {
         <EuiColorPicker
           onChange={handleColorChange}
           color={color}
+          secondaryInputDisplay="top"
           button={
             <EuiColorPickerSwatch
               color={selectedColor}
@@ -36,6 +37,7 @@ export const CustomButton = () => {
         onChange={handleColorChange}
         color={color}
         isInvalid={!!errors}
+        secondaryInputDisplay="bottom"
         button={
           <EuiBadge
             color={selectedColor ? selectedColor : 'hollow'}
