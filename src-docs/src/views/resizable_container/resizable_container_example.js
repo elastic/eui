@@ -39,6 +39,7 @@ const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
 
 export const ResizableContainerExample = {
   title: 'Resizable Container',
+  isNew: true,
   intro: (
     <Fragment>
       <EuiCallOut title="Consuming" color="warning">
