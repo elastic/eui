@@ -181,6 +181,26 @@ export const StepsExample = {
       demo: <Status />,
     },
     {
+      title: 'Custom title sizes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: stepsTitleSizesSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: stepsTitleSizesHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>Description</p>
+        </Fragment>
+      ),
+      demo: <StepsTitleSizes />,
+      snippet: stepsTitleSizesSnippet,
+    },
+    {
       title: 'Horizontal steps',
       source: [
         {
@@ -209,26 +229,6 @@ export const StepsExample = {
       demo: <StepsHorizontal />,
       snippet: stepsHorizontalSnippet,
       props: { EuiStepsHorizontal, EuiStepHorizontal },
-    },
-    {
-      title: 'Custom title sizes',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: stepsTitleSizesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stepsTitleSizesHtml,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>Description</p>
-        </Fragment>
-      ),
-      demo: <StepsTitleSizes />,
-      snippet: stepsTitleSizesSnippet,
     },
   ],
 };

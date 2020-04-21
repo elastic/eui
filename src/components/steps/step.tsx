@@ -46,9 +46,7 @@ export interface EuiStepProps {
   /**
    * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
    */
-  // titleSize?: EuiTitleSize;
-  titleSize?: Omit<EuiTitleProps['size'], 'xxxs'>;
-  // titleSize?: Omit<EuiTitleSize, 'xxxs'>;
+  titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
 }
 
 export type StandaloneEuiStepProps = CommonProps &
@@ -65,7 +63,13 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
   status,
   ...rest
 }) => {
-  const classes = classNames('euiStep', className);
+  const classes = classNames(
+    'euiStep',
+    {
+      'euiStep--small': titleSize === 'xs',
+    },
+    className
+  );
 
   return (
     <div className={classes} {...rest}>

@@ -68,7 +68,7 @@ export interface EuiCollapsibleNavGroupInterface extends CommonProps {
   /**
    * Title sizing equivelant to EuiTitle, but only `s` and smaller
    */
-  titleSize?: Omit<EuiTitleProps['size'], 'l' | 'm'>;
+  titleSize?: Exclude<EuiTitleProps['size'], 'l' | 'm'>;
 }
 
 type GroupAsAccordion = EuiCollapsibleNavGroupInterface &

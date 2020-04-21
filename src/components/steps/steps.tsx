@@ -23,6 +23,8 @@ import classNames from 'classnames';
 
 import { StandaloneEuiStepProps, EuiStep } from './step';
 
+import { EuiTitleProps, EuiTitleSize } from '../title';
+
 export type EuiContainedStepProps = Omit<StandaloneEuiStepProps, 'step'>;
 
 export interface EuiStepsProps {
@@ -38,12 +40,17 @@ export interface EuiStepsProps {
    * The HTML tag used for the title
    */
   headingElement?: string;
+  /**
+   * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
+   */
+  parentTitleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
 }
 
 function renderSteps(
   steps: EuiContainedStepProps[],
   firstStepNumber: number,
-  headingElement: string
+  headingElement: string,
+  parentTitleSize: EuiTitleSize | undefined
 ) {
   return steps.map((step, index) => {
     const { className, children, title, titleSize, status, ...rest } = step;
@@ -55,7 +62,7 @@ function renderSteps(
         headingElement={headingElement}
         step={firstStepNumber + index}
         title={title}
-        titleSize={titleSize}
+        titleSize={titleSize ? titleSize : parentTitleSize}
         status={status}
         {...rest}>
         {children}
@@ -70,6 +77,7 @@ export const EuiSteps: FunctionComponent<
   className,
   firstStepNumber = 1,
   headingElement = 'p',
+  parentTitleSize = 's',
   steps,
   ...rest
 }) => {
@@ -77,7 +85,7 @@ export const EuiSteps: FunctionComponent<
 
   return (
     <div className={classes} {...rest}>
-      {renderSteps(steps, firstStepNumber, headingElement)}
+      {renderSteps(steps, firstStepNumber, headingElement, parentTitleSize)}
     </div>
   );
 };
