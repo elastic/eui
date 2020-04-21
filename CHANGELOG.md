@@ -10,6 +10,7 @@
 - Fixed `EuiInMemoryTable` `isClearable` property to initiate reset ([#3328](https://github.com/elastic/eui/pull/3328))
 - Fixed `EuiCollapsibleNav` docked states on mobile ([#3330](https://github.com/elastic/eui/pull/3330))
 - Fixed `EuiPopover` positioning from being overridden by `style` prop ([#3329](https://github.com/elastic/eui/pull/3329))
+- Fixed alignment of popover of end date of `EuiDatePickerRange` ([#3359](https://github.com/elastic/eui/pull/3359))
 
 **Breaking changes**
 
