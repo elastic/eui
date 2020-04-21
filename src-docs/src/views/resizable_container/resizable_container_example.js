@@ -38,14 +38,14 @@ const ResizableContainerResetValuesHtml = renderToHtml(
 const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
 
 export const ResizableContainerExample = {
-  title: 'Resizable Container',
+  title: 'Resizable container',
   isNew: true,
   intro: (
     <Fragment>
       <EuiCallOut title="Consuming" color="warning">
         <EuiText size="s">
           <p>
-            This component is handy for various resizable containers.
+            This component is handy for various resizable containers.{' '}
             <strong>EuiResizableContainer</strong> uses{' '}
             <EuiLink
               href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
@@ -53,7 +53,7 @@ export const ResizableContainerExample = {
               React Render Props
             </EuiLink>{' '}
             technique to provide <strong>EuiResizablePanel</strong> and{' '}
-            <strong>EuiResizableButton</strong> components for you layot. Wrap
+            <strong>EuiResizableButton</strong> components for you layout. Wrap
             parts of your content with the <strong>EuiResizablePanel</strong>{' '}
             component and put the <strong>EuiResizableButton</strong> component
             between.
@@ -76,7 +76,7 @@ export const ResizableContainerExample = {
           code: ResizableContainerHtml,
         },
       ],
-      title: 'Horizontal resizable container',
+      title: 'Horizontal resizing',
       text: (
         <div>
           <p>
@@ -114,7 +114,7 @@ export const ResizableContainerExample = {
           code: ResizableContainerResetValuesHtml,
         },
       ],
-      title: 'Horizontal resizable container with controlled sizes',
+      title: 'Horizontal resizing with controlled widths',
       text: (
         <div>
           <p>
@@ -127,13 +127,12 @@ export const ResizableContainerExample = {
             track their sizes.
           </p>
 
-          <EuiCallOut title="Note" color="warning">
+          <EuiCallOut title="Required properties" color="warning">
             <EuiText size="s">
               <p>
-                It is obligatory to specify either{' '}
-                <EuiCode>initialSize</EuiCode> or <EuiCode>size</EuiCode> (the
-                last one should be used in case you want to handle sizes
-                outside)
+                Either <EuiCode>initialSize</EuiCode> or <EuiCode>size</EuiCode>{' '}
+                must be specified. The <EuiCode>size</EuiCode> prop is for cases
+                where a parent component will control sizing updates.
               </p>
             </EuiText>
           </EuiCallOut>
@@ -153,11 +152,12 @@ export const ResizableContainerExample = {
           code: ResizableContainerThreePanelsHtml,
         },
       ],
-      title: 'Horizontal resizable container with three panels',
+      title: 'Horizontal resizing with three panels',
       text: (
         <p>
-          There are no limits for panels amount. Perhaps you will need to use 3
-          or even more..
+          The <strong>EuiResizablePanel</strong> and{' '}
+          <strong>EuiResizableButton</strong> components can each be used
+          multiple times to create a more complex layout.
         </p>
       ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
@@ -174,8 +174,14 @@ export const ResizableContainerExample = {
           code: ResizableContainerVericalHtml,
         },
       ],
-      title: 'Vertical container',
-      text: <p>Vertical resizable container</p>,
+      title: 'Vertical resizing',
+      text: (
+        <p>
+          Set <EuiCode>direction=vertical</EuiCode> on{' '}
+          <strong>EuiResizableContainer</strong> to set a vertical orientation
+          of the resizable panels.
+        </p>
+      ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: (
         <div className="guideDemo__highlightSpacer">
@@ -194,12 +200,12 @@ export const ResizableContainerExample = {
           code: ResizableResizerSizeHtml,
         },
       ],
-      title: 'Resizable Resizer Size',
+      title: 'Resizable button spacing',
       text: (
         <div>
           <p>
-            Now say that five times fast. You can control the space between
-            panels by modifying the <EuiCode>size</EuiCode> of the{' '}
+            You can control the space between panels by modifying the{' '}
+            <EuiCode>size</EuiCode> prop of the{' '}
             <strong>EuiResizableButton</strong> component. The available sizes
             are <EuiCode>xl</EuiCode>, <EuiCode>l</EuiCode>,{' '}
             <EuiCode>m</EuiCode>, and <EuiCode>s</EuiCode>. You should avoid

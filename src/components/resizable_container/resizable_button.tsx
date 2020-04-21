@@ -31,7 +31,7 @@ export type EuiResizableButtonKeyDownEvent = React.KeyboardEvent<
   HTMLButtonElement
 >;
 
-export type EuiResizableButtonSize = 'none' | 's' | 'm' | 'l' | 'xl';
+export type EuiResizableButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
@@ -53,7 +53,6 @@ export interface EuiResizableButtonProps
 }
 
 const sizeToClassNameMap = {
-  none: null,
   s: 'euiResizableButton--sizeSmall',
   m: 'euiResizableButton--sizeMedium',
   l: 'euiResizableButton--sizeLarge',
