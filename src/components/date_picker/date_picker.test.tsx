@@ -36,12 +36,6 @@ describe('EuiDatePicker', () => {
   });
 
   describe('popoverPlacement', () => {
-    test('defaults to bottom-start', () => {
-      const component = mount(<EuiDatePicker {...requiredProps} />);
-
-      expect(component).toMatchSnapshot();
-    });
-
     test('top-end is rendered', () => {
       const component = mount(
         <EuiDatePicker {...requiredProps} popoverPlacement="top-end" />
