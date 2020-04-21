@@ -39,18 +39,7 @@ export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 
 const DatePicker = _ReactDatePicker as typeof ReactDatePicker;
 
-export type EuiDatePickerPopoverPlacement =
-  | 'bottom'
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'left'
-  | 'left-end'
-  | 'right'
-  | 'right-end'
-  | 'right-start'
-  | 'top'
-  | 'top-end'
-  | 'top-start';
+export type EuiDatePickerPopoverPlacement = ReactDatePickerProps['popperPlacement'];
 
 interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   /**
@@ -104,7 +93,7 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   showIcon?: boolean;
 
   /**
-   * Open the popper in one of the positions
+   * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
    */
   popoverPlacement?: EuiDatePickerPopoverPlacement;
 }
