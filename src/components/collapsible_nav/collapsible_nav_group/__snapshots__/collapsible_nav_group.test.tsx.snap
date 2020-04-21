@@ -61,7 +61,6 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          aria-hidden="true"
           data-euiicon-type="bolt"
           data-test-subj="DTS"
         />
@@ -99,7 +98,6 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          aria-hidden="true"
           data-euiicon-type="bolt"
         />
       </div>
@@ -136,7 +134,6 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          aria-hidden="true"
           data-euiicon-type="bolt"
         />
       </div>

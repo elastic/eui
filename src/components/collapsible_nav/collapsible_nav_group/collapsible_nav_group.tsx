@@ -156,12 +156,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     <EuiFlexGroup gutterSize="m" alignItems="center" responsive={false}>
       {iconType && (
         <EuiFlexItem grow={false}>
-          <EuiIcon
-            aria-hidden="true"
-            {...iconProps}
-            type={iconType}
-            size={iconSize}
-          />
+          <EuiIcon {...iconProps} type={iconType} size={iconSize} />
         </EuiFlexItem>
       )}
 
