@@ -62,6 +62,21 @@ describe('EuiCollapsibleNavGroup', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('iconProps renders data-test-subj', () => {
+      const component = render(
+        <EuiCollapsibleNavGroup
+          title="Title"
+          iconProps={{
+            'data-test-subj': 'DTS',
+          }}
+          iconType="bolt"
+          id="id"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('background', () => {
       BACKGROUNDS.forEach(color => {
         test(`${color} is rendered`, () => {
