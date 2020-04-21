@@ -76,15 +76,5 @@ describe('EuiDatePicker', () => {
 
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
-
-    test('inherits locale from context', () => {
-      const component = mount(
-        <EuiContext i18n={{ locale: 'fr' }}>
-          <EuiDatePicker {...requiredProps} inline selected={selectedDate} />
-        </EuiContext>
-      );
-
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
-    });
   });
 });
