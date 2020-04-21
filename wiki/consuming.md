@@ -100,6 +100,18 @@ ReactDOM.render(
 
 If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` instead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
 
+## Customizing with `className`
+
+We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`. All components allow you to pass a custom `className` prop directly to the component which will then append this to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles so long as your styles are imported **after** the EUI import.
+
+```html
+<EuiButton className="myCustomClass__button" />
+
+// Renders as:
+
+<button class="euiButton myCustomClass__button" />
+```
+
 ## Using the `test-env` build
 
 EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
