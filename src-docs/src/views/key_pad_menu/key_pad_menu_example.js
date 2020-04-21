@@ -17,7 +17,6 @@ const keyPadMenuSnippet = `<EuiKeyPadMenu>
   <EuiKeyPadMenuItem label={label1} href="#">
     <EuiIcon type={icon1} size="l" />
   </EuiKeyPadMenuItem>
-
   <EuiKeyPadMenuItem label={label2} href="#">
     <EuiIcon type={icon2} size="l" />
   </EuiKeyPadMenuItem>
@@ -29,7 +28,7 @@ const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_but
 const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
 const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItem
   label={label}
-  onClick={this.handleClick}>
+  onClick={handleClick}>
   <EuiIcon type={icon} size="l" />
 </EuiKeyPadMenuItem>
 `;

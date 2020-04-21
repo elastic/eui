@@ -44,7 +44,7 @@ const badgeButtonHtml = renderToHtml(BadgeButton);
 const badgeButtonSnippet = [
   `<EuiBadge
   color="primary"
-  onClick={this.onBadgeClick}
+  onClick={onBadgeClick}
   onClickAriaLabel="Aria label applied to text button"
 />
   Clickable text
@@ -53,20 +53,20 @@ const badgeButtonSnippet = [
   iconType="cross"
   iconSide="right"
   color="hollow"
-  iconOnClick={this.onBadgeIconClick}
+  iconOnClick={onBadgeIconClick}
   iconOnClickAriaLabel="Aria label applied to icon button"
-  />
+/>
   Text with clickable icon
 </EuiBadge>`,
   `<EuiBadge
   iconType="cross"
   iconSide="right"
   color="secondary"
-  onClick={this.onBadgeClick}
+  onClick={onBadgeClick}
   onClickAriaLabel="Aria label applied to text button"
-  iconOnClick={this.onBadgeIconClick}
+  iconOnClick={onBadgeIconClick}
   iconOnClickAriaLabel="Aria label applied to icon button"
-  />
+/>
   Clickable text with clickable icon
 </EuiBadge>`,
 ];

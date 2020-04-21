@@ -11,6 +11,14 @@ import { EuiCode, EuiToggle, EuiCallOut } from '../../../../src/components';
 import Toggle from './toggle';
 const toggleSource = require('!!raw-loader!./toggle');
 const toggleHtml = renderToHtml(Toggle);
+const toggleSnippet = [
+  `<EuiToggle
+  onChange={onToggleChange}
+  label="Is toggle on?"
+>
+  {toggleOn ? 'On' : 'Off'}
+</EuiToggle>`,
+];
 
 export const ToggleExample = {
   title: 'Toggle',
@@ -57,6 +65,7 @@ export const ToggleExample = {
         </div>
       ),
       components: { EuiToggle },
+      snippet: toggleSnippet,
       demo: <Toggle />,
       props: { EuiToggle },
     },

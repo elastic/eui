@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCommentList is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiCommentList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiComment"
+  >
+    <div
+      class="euiCommentTimeline"
+    >
+      <div
+        class="euiCommentTimeline__content"
+      >
+        <div
+          class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+        >
+          <div
+            data-euiicon-type="user"
+          />
+        </div>
+      </div>
+    </div>
+    <figure
+      class="euiCommentEvent euiCommentEvent--regular"
+    >
+      <figcaption
+        class="euiCommentEvent__header"
+      >
+        <div
+          class="euiCommentEvent__headerData"
+        >
+          <div
+            class="euiCommentEvent__headerUsername"
+          >
+            janed
+          </div>
+          <div
+            class="euiCommentEvent__headerEvent"
+          />
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+`;
