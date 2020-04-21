@@ -315,7 +315,8 @@ export class EuiToolTip extends Component<Props, State> {
         ref={anchor => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
-        onMouseOut={this.onMouseOut}>
+        onMouseOut={this.onMouseOut}
+        onKeyUp={e => this.onKeyUp(e)}>
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element
