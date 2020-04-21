@@ -82,7 +82,7 @@ export interface ReactDatePickerProps {
   disabled?: boolean;
   disabledKeyboardNavigation?: boolean;
   dropdownMode?: 'scroll' | 'select';
-  endDate?: moment.Moment;
+  endDate?: moment.Moment | null;
   excludeDates?: moment.Moment[];
   excludeTimes?: moment.Moment[];
   filterDate?(date: moment.Moment): boolean;
@@ -190,7 +190,7 @@ export interface ReactDatePickerProps {
   showTimeSelectOnly?: boolean;
   showWeekNumbers?: boolean;
   showYearDropdown?: boolean;
-  startDate?: moment.Moment;
+  startDate?: moment.Moment | null;
   startOpen?: boolean;
   tabIndex?: number;
   timeCaption?: string;
