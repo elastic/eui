@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { EuiComment } from '../../../../src/components/comment';
+import { EuiComment } from '../../../../src/components/comment_list';
 import { EuiText } from '../../../../src/components/text';
 import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiCode } from '../../../../src/components/code';
