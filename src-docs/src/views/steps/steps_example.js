@@ -70,6 +70,14 @@ const statusSnippet = `<EuiSteps
   ]}
 />`;
 
+import StepsTitleSizes from './steps_title_sizes';
+const stepsTitleSizesSource = require('!!raw-loader!./steps_title_sizes');
+const stepsTitleSizesHtml = renderToHtml(StepsTitleSizes);
+const stepsTitleSizesSnippet = `<EuiSteps steps={[{
+  title: 'Completed step',
+}]} />
+`;
+
 export const StepsExample = {
   title: 'Steps',
   sections: [
@@ -201,6 +209,26 @@ export const StepsExample = {
       demo: <StepsHorizontal />,
       snippet: stepsHorizontalSnippet,
       props: { EuiStepsHorizontal, EuiStepHorizontal },
+    },
+    {
+      title: 'Custom title sizes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: stepsTitleSizesSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: stepsTitleSizesHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>Description</p>
+        </Fragment>
+      ),
+      demo: <StepsTitleSizes />,
+      snippet: stepsTitleSizesSnippet,
     },
   ],
 };
