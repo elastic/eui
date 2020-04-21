@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `23.0.0`.
+
+## [`23.0.0`](https://github.com/elastic/eui/tree/v23.0.0)
+
 - Added `showCloseButton` and `dockedBreakpoint` flexibility to `EuiCollapsibleNav` ([#3330](https://github.com/elastic/eui/pull/3330))
 - Added `panelStyle` prop to `EuiPopover` to distinguish style object configuration ([#3329](https://github.com/elastic/eui/pull/3329))
 - Added `popoverPlacement` prop in `EuiDatePicker` ([#3359](https://github.com/elastic/eui/pull/3359))
