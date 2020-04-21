@@ -237,24 +237,15 @@ export class EuiToolTip extends Component<Props, State> {
     }
   };
 
-  onFocus = () => {
-    this.setState({
-      hasFocus: true,
-    });
-    this.showToolTip();
-    window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
-  };
-
-  onBlur = () => {
-    this.setState({
-      hasFocus: false,
-    });
-    this.hideToolTip();
-  };
-
   hasFocusMouseMoveListener = () => {
     this.hideToolTip();
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
+  };
+
+  onKeyUp = (e: { keyCode: number }) => {
+    if (e.keyCode === 9) {
+      window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
+    }
   };
 
   onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -334,8 +325,8 @@ export class EuiToolTip extends Component<Props, State> {
          * element has focus.
          */}
         {cloneElement(children, {
-          onFocus: this.onFocus,
-          onBlur: this.onBlur,
+          onFocus: this.showToolTip,
+          onBlur: this.hideToolTip,
           ...(visible && { 'aria-describedby': this.state.id }),
         })}
       </span>
