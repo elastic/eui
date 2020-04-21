@@ -18,11 +18,19 @@
     background-repeat: no-repeat;
     background-position: left $euiSizeXXL;
   }
+
+  &--small {
+    &:not(:last-of-type) {
+      background-position: left -#{$euiSizeXS} top $euiSizeXXL;
+    }
+  }
 }
 
 .euiStep__titleWrapper {
+  @include euiBreakpoint('m', 'l', 'xl') {
+    align-items: center;
+  }
   display: flex;
-  align-items: center;
 }
 
 .euiStep__circle {

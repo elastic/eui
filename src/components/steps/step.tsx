@@ -70,6 +70,9 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
     },
     className
   );
+  const numberClasses = classNames('euiStep__circle', {
+    'euiStepNumber--small': titleSize === 'xs',
+  });
 
   return (
     <div className={classes} {...rest}>
@@ -83,7 +86,7 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
           values={{ status }}>
           {(ariaLabel: string) => (
             <EuiStepNumber
-              className="euiStep__circle"
+              className={numberClasses}
               aria-label={`${ariaLabel} ${step}`}
               number={step}
               status={status}

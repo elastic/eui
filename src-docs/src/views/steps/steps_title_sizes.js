@@ -24,6 +24,11 @@ const firstSetOfSteps = [
   {
     title: 'Step 4',
     children: <p>Then this</p>,
+    titleSize: 's',
+  },
+  {
+    title: 'Step 5',
+    children: <p>Then this</p>,
   },
 ];
 
