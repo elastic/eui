@@ -350,26 +350,28 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               )}
             </EuiI18n>
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiFormRow display="rowCompressed" hasEmptyLabelSpace={true}>
-              <EuiI18n
-                token="euiColorStopThumb.removeLabel"
-                default="Remove this stop">
-                {(removeLabel: string) => (
-                  <EuiButtonIcon
-                    iconType="trash"
-                    color="danger"
-                    aria-label={removeLabel}
-                    title={removeLabel}
-                    disabled={!onRemove || readOnly}
-                    onClick={handleOnRemove}
-                  />
-                )}
-              </EuiI18n>
-            </EuiFormRow>
-          </EuiFlexItem>
+          {!readOnly && (
+            <EuiFlexItem grow={false}>
+              <EuiFormRow display="rowCompressed" hasEmptyLabelSpace={true}>
+                <EuiI18n
+                  token="euiColorStopThumb.removeLabel"
+                  default="Remove this stop">
+                  {(removeLabel: string) => (
+                    <EuiButtonIcon
+                      iconType="trash"
+                      color="danger"
+                      aria-label={removeLabel}
+                      title={removeLabel}
+                      disabled={!onRemove}
+                      onClick={handleOnRemove}
+                    />
+                  )}
+                </EuiI18n>
+              </EuiFormRow>
+            </EuiFlexItem>
+          )}
         </EuiFlexGroup>
-        {!readOnly && <EuiSpacer size="m" />}
+        {!readOnly && <EuiSpacer size="s" />}
         <EuiColorPicker
           readOnly={readOnly}
           onChange={handleColorChange}
