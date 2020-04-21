@@ -39,8 +39,6 @@ export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 
 const DatePicker = _ReactDatePicker as typeof ReactDatePicker;
 
-export type EuiDatePickerPopoverPlacement = ReactDatePickerProps['popperPlacement'];
-
 interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   /**
    * Applies classes to the numbered days provided. Check docs for example.
