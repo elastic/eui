@@ -70,7 +70,7 @@ export {
 
 export { EuiComboBox } from './combo_box';
 
-export { EuiComment } from './comment';
+export { EuiComment, EuiCommentList } from './comment_list';
 
 export { EuiContext, EuiI18nConsumer } from './context';
 

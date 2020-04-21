@@ -6,7 +6,11 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiComment } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiComment,
+  EuiCommentList,
+} from '../../../../src/components';
 
 import Comment from './comment';
 const commentSource = require('!!raw-loader!./comment');
@@ -23,6 +27,10 @@ const commentTimelineIconsHtml = renderToHtml(CommentTimelineIcons);
 import CommentActions from './comment_actions';
 const commentActionsSource = require('!!raw-loader!./comment_actions');
 const commentActionsHtml = renderToHtml(CommentActions);
+
+import CommentList from './comment_list';
+const commentListSource = require('!!raw-loader!./comment_list');
+const commentListHtml = renderToHtml(CommentList);
 
 const commentSnippet = `<EuiComment username="janed">
   {body}
@@ -63,11 +71,46 @@ const commentActionsSnippet = `<EuiComment username="janed" actions={customActio
   {body}
 </EuiComment>`;
 
-export const CommentExample = {
-  title: 'Comment',
+const commentListSnippet = `<EuiCommentList 
+  comments={[
+    {
+      username: username,
+      event: event,
+      timestamp: timestamp,
+      children: body,
+    },
+]}
+/>`;
+
+export const CommentListExample = {
+  title: 'Comment list',
   isNew: true,
   sections: [
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: commentListSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: commentListHtml,
+        },
+      ],
+      text: (
+        <div>
+          Use <strong>EuiCommentList</strong> to display a list of{' '}
+          <strong>EuiComments</strong>. Pass an array of{' '}
+          <strong>EuiComment</strong> objects and{' '}
+          <strong>EuiCommentList</strong> will generate a comment thread.
+        </div>
+      ),
+      props: { EuiCommentList, EuiComment },
+      snippet: commentListSnippet,
+      demo: <CommentList />,
+    },
+    {
+      title: 'Comment',
       source: [
         {
           type: GuideSectionTypes.JS,
