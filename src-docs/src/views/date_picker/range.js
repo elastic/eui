@@ -52,7 +52,6 @@ export default class extends Component {
             isInvalid={this.state.startDate > this.state.endDate}
             aria-label="End date"
             showTimeSelect
-            popperPlacement="bottom-end"
           />
         }
       />
