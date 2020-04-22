@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+// const CircularDependencyPlugin = require('circular-dependency-plugin');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const getPort = require('get-port');
@@ -86,10 +86,10 @@ const webpackConfig = {
       showErrors: true,
     }),
 
-    new CircularDependencyPlugin({
-      exclude: /node_modules/,
-      failOnError: true,
-    }),
+    // new CircularDependencyPlugin({
+    //   exclude: /node_modules/,
+    //   failOnError: false,
+    // }),
 
     // run TypeScript during webpack build
     // new ForkTsCheckerWebpackPlugin({
