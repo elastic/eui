@@ -108,8 +108,9 @@ interface State<T> {
     items: T[];
     sortName: ReactNode;
     sortDirection?: Direction;
+    search?: Search | undefined;
   };
-  search: Search | undefined;
+  search?: Search | undefined;
   query: Query | null;
   pageIndex: number;
   pageSize?: number;
@@ -126,6 +127,17 @@ const getInitialQuery = (search: Search | undefined) => {
     query = '';
   } else {
     query = (search as EuiSearchBarProps).defaultQuery || '';
+  }
+
+  return isString(query) ? EuiSearchBar.Query.parse(query) : query;
+};
+
+const getQueryFromSearch = (search: Search | undefined) => {
+  let query: Query | string;
+  if (!search) {
+    query = '';
+  } else {
+    query = (search as EuiSearchBarProps).query || '';
   }
 
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
@@ -260,10 +272,10 @@ export class EuiInMemoryTable<T> extends Component<
       };
     }
 
-    if (nextProps.search !== prevState.search) {
+    if (nextProps.search !== prevState.prevProps.search) {
       return {
         search: nextProps.search,
-        query: getInitialQuery(nextProps.search),
+        query: getQueryFromSearch(nextProps.search),
       };
     }
     return null;
@@ -286,6 +298,7 @@ export class EuiInMemoryTable<T> extends Component<
         items: props.items,
         sortName,
         sortDirection,
+        search,
       },
       search: search,
       query: getInitialQuery(search),
