@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `23.0.0`.
+- Added `ReactElement` to `EuiCard` `image` property to allow custom component
 
 ## [`23.0.0`](https://github.com/elastic/eui/tree/v23.0.0)
 
