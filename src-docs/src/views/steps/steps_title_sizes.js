@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCode, EuiSpacer, EuiSteps } from '../../../../src/components';
+import { EuiCode, EuiSteps } from '../../../../src/components';
 
 const firstSetOfSteps = [
   {
@@ -23,21 +23,8 @@ const firstSetOfSteps = [
   },
 ];
 
-const secondSetOfSteps = [
-  {
-    title: 'Step 1',
-    children: <p>This step has the default sizing</p>,
-  },
-  {
-    title: 'Step 2',
-    children: <p>This step has the default sizing</p>,
-  },
-];
-
 export default () => (
   <div>
     <EuiSteps titleSize="xs" steps={firstSetOfSteps} />
-    <EuiSpacer size="m" />
-    <EuiSteps steps={secondSetOfSteps} />
   </div>
 );
