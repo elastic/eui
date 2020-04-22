@@ -154,8 +154,8 @@ export const CardExample = {
                 Make sure that all images are the{' '}
                 <strong>same proportions</strong> when used in a singular row.
                 <br />
-                If custom component is passed to <EuiCode>image</EuiCode> prop
-                and it consists solely of inline elements and no{' '}
+                If an element is passed as the <EuiCode>image</EuiCode> prop and
+                it consists solely of inline elements and no{' '}
                 <EuiCode>{'<img />'}</EuiCode> elements, please make sure to
                 provide <EuiCode>{'{ width: 100%; }'}</EuiCode> styling.
               </span>
