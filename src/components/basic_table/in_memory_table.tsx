@@ -109,6 +109,7 @@ interface State<T> {
     sortName: ReactNode;
     sortDirection?: Direction;
   };
+  search: Search | undefined;
   query: Query | null;
   pageIndex: number;
   pageSize?: number;
@@ -258,6 +259,13 @@ export class EuiInMemoryTable<T> extends Component<
         sortDirection,
       };
     }
+
+    if (nextProps.search !== prevState.search) {
+      return {
+        search: nextProps.search,
+        query: getInitialQuery(nextProps.search),
+      };
+    }
     return null;
   }
 
@@ -279,6 +287,7 @@ export class EuiInMemoryTable<T> extends Component<
         sortName,
         sortDirection,
       },
+      search: search,
       query: getInitialQuery(search),
       pageIndex: pageIndex || 0,
       pageSize,
