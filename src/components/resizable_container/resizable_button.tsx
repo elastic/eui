@@ -45,7 +45,7 @@ export interface EuiResizableButtonProps
       keyof EuiResizableButtonControls
     >,
     CommonProps,
-    EuiResizableButtonControls {
+    Partial<EuiResizableButtonControls> {
   /**
    * The size of the Resizer (the space between panels)
    */

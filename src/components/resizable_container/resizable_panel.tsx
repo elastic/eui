@@ -39,7 +39,7 @@ interface EuiResizablePanelControls {
 export interface EuiResizablePanelProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps,
-    EuiResizablePanelControls {
+    Partial<EuiResizablePanelControls> {
   /**
    * Specify minimum panel size in pixels or percents,
    * for example "300px" or "30%"
