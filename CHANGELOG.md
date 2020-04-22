@@ -11,6 +11,8 @@
 - Removed `schema` attribute form `<input/>` in `EuiInMemoryTable` ([#3337](https://github.com/elastic/eui/pull/3337))
 - Fixed `EuiCollapsibleNav` docked states on mobile ([#3330](https://github.com/elastic/eui/pull/3330))
 - Fixed `EuiPopover` positioning from being overridden by `style` prop ([#3329](https://github.com/elastic/eui/pull/3329))
+- Removed additional padding applied to body to account for `EuiHeader` when fixed ([]()).
+- Fixed `EuiDescribedFormGroup` issue that prevented it from shrinking down properly in smaller viewports ([]()). 
 
 **Breaking changes**
 
