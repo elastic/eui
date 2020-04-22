@@ -120,6 +120,10 @@
   .euiCard__image {
     // Without a border, the image should stand on it's own so it needs to have all corners rounded
     border-radius: $euiBorderRadius;
+
+    & img {
+      width: 100%;
+    }
   }
 }
 
@@ -148,6 +152,10 @@
     // match border radius, minus 1px because it's inside a border
     border-top-left-radius: $euiBorderRadius - 1px;
     border-top-right-radius: $euiBorderRadius - 1px;
+
+    & img {
+      width: 100%;
+    }
 
     // IF both exist, position the icon centered on top of image
     + .euiCard__icon {
