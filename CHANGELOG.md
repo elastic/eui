@@ -10,6 +10,7 @@ No public interface changes since `23.0.0`.
 - Extended `EuiDatePicker`'s `startDate` and `endDate` types to accept `null` values for better interoperability ([#3343](https://github.com/elastic/eui/pull/3343))
 - Added `EuiCommentList` component ([#3344](https://github.com/elastic/eui/pull/3344))
 - Added secondary color value input element to `EuiColorPicker` ([#3336](https://github.com/elastic/eui/pull/3336))
+- Removed additional padding applied to `$euiHeaderHeightCompensation` when `EuiHeader` is fixed ([#3369](https://github.com/elastic/eui/pull/3369))
 
 **Bug Fixes**
 
@@ -19,6 +20,7 @@ No public interface changes since `23.0.0`.
 - Fixed `EuiPopover` positioning from being overridden by `style` prop ([#3329](https://github.com/elastic/eui/pull/3329))
 - Fixed `EuiCodeBlock` not copying updated content ([#3351](https://github.com/elastic/eui/pull/3351))
 - Fixed alignment of popover of end date of `EuiDatePickerRange` ([#3359](https://github.com/elastic/eui/pull/3359))
+- Fixed `EuiDescribedFormGroup` issue that prevented it from shrinking down properly in smaller viewports ([#3369](https://github.com/elastic/eui/pull/3369))
 
 **Breaking changes**
 
