@@ -33,6 +33,19 @@
 import * as React from 'react';
 import * as moment from 'moment';
 
+type popperPlacement =
+  | 'bottom'
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'left'
+  | 'left-end'
+  | 'right'
+  | 'right-end'
+  | 'right-start'
+  | 'top'
+  | 'top-end'
+  | 'top-start';
+
 export interface ReactDatePickerProps {
   /**
    * Whether changes to Year and Month (via dropdowns) should trigger `onChange`
@@ -69,7 +82,7 @@ export interface ReactDatePickerProps {
   disabled?: boolean;
   disabledKeyboardNavigation?: boolean;
   dropdownMode?: 'scroll' | 'select';
-  endDate?: moment.Moment;
+  endDate?: moment.Moment | null;
   excludeDates?: moment.Moment[];
   excludeTimes?: moment.Moment[];
   filterDate?(date: moment.Moment): boolean;
@@ -144,7 +157,7 @@ export interface ReactDatePickerProps {
    */
   popperClassName?: string;
   popperContainer?(props: { children: React.ReactNode[] }): React.ReactNode;
-  popperPlacement?: string;
+  popperPlacement?: popperPlacement;
   preventOpenOnFocus?: boolean;
   readOnly?: boolean;
   required?: boolean;
@@ -177,7 +190,7 @@ export interface ReactDatePickerProps {
   showTimeSelectOnly?: boolean;
   showWeekNumbers?: boolean;
   showYearDropdown?: boolean;
-  startDate?: moment.Moment;
+  startDate?: moment.Moment | null;
   startOpen?: boolean;
   tabIndex?: number;
   timeCaption?: string;
