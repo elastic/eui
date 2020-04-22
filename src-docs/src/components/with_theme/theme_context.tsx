@@ -1,5 +1,8 @@
 import React from 'react';
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
+import EuiLightTheme from '../../../../src/theme_light';
+import EuiDarkTheme from '../../../../src/theme_dark';
 // @ts-ignore
 import { applyTheme } from '../../services';
 
@@ -38,14 +41,17 @@ export class ThemeProvider extends React.Component<object, State> {
   render() {
     const { children } = this.props;
     const { theme } = this.state;
+    const fullTheme = theme === 'light' ? EuiLightTheme : EuiDarkTheme;
     return (
-      <ThemeContext.Provider
-        value={{
-          theme,
-          changeTheme: this.changeTheme,
-        }}>
-        {children}
-      </ThemeContext.Provider>
+      <EmotionThemeProvider theme={{ name: theme, ...fullTheme }}>
+        <ThemeContext.Provider
+          value={{
+            theme,
+            changeTheme: this.changeTheme,
+          }}>
+          {children}
+        </ThemeContext.Provider>
+      </EmotionThemeProvider>
     );
   }
 }

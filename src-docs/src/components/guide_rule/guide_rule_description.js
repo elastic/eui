@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { css } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
 import { EuiText } from '../../../../src/components';
 
 export const GuideRuleDescription = ({
   children,
-  className,
   heading,
   description,
   ...rest
 }) => {
-  const classes = classNames('guideRule__description', className);
+  const theme = useTheme();
+  const guideRule_Description = css`
+    margin-bottom: ${theme.sizes.euiSizeXL}px;
+  `;
 
   let headingNode;
 
@@ -19,7 +22,7 @@ export const GuideRuleDescription = ({
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div css={guideRule_Description} {...rest}>
       <EuiText grow={false}>
         {headingNode}
         <p>{description}</p>

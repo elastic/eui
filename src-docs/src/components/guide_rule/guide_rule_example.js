@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { css } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
 import { EuiFlexItem, EuiPanel } from '../../../../src/components';
-
-const typeToClassNameMap = {
-  do: 'guideRule__example--do',
-  dont: 'guideRule__example--dont',
-};
 
 const typeToSubtitleTextMap = {
   do: 'Do',
@@ -15,7 +11,6 @@ const typeToSubtitleTextMap = {
 
 export const GuideRuleExample = ({
   children,
-  className,
   type,
   text,
   panel,
@@ -25,14 +20,46 @@ export const GuideRuleExample = ({
   panelStyles,
   ...rest
 }) => {
-  const classes = classNames(
-    'guideRule__example',
-    typeToClassNameMap[type],
-    {
-      'guideRule__example--frame': frame,
-    },
-    className
-  );
+  const theme = useTheme();
+
+  const guideRuleExample = css`
+    pre {
+      margin-bottom: 0;
+      padding: 0;
+    }
+  `;
+
+  const guideRuleExamplePanel = css`
+    border-bottom: 2px solid;
+    margin-bottom: ${theme.sizes.euiSizeS}px;
+    flex-grow: 1; /* 1 */
+
+    ${!panel && `padding-bottom: ${theme.sizes.euiSize}px;`}
+
+    ${type === 'do' && `border-bottom-color: ${theme.colors.euiColorSuccess};`}
+
+    ${type === 'dont' && `border-bottom-color: ${theme.colors.euiColorDanger};`}
+
+    ${frame &&
+      `padding: ${theme.sizes.euiSizeL}px;
+      background-color: ${theme.colors.euiColorLightestShade};
+      display: flex;
+      align-items: center;
+      justify-content: space-around;`}
+  `;
+
+  const guideRuleExampleCaption = css`
+    @include euiFontSizeS; // TODO
+    font-size: ${theme.typography.euiFontSizeS}px; // TODO
+    line-height: ${theme.typography.euiLineHeight}; // TODO
+    max-height: ${theme.typography.euiFontSizeS *
+      theme.typography.euiLineHeight}px; /* 1 */
+    overflow-y: visible; /* 1 */
+
+    ${type === 'do' && `color: ${theme.colors.euiColorSuccessText};`}
+
+    ${type === 'dont' && `color: ${theme.colors.euiColorDanger};`}
+  `;
 
   const ChildrenComponent = panel ? EuiPanel : 'div';
 
@@ -41,15 +68,13 @@ export const GuideRuleExample = ({
   return (
     <EuiFlexItem
       component="figure"
-      className={classes}
+      css={guideRuleExample}
       style={styles}
       {...rest}>
-      <ChildrenComponent
-        className="guideRule__example__panel"
-        style={panelStyles}>
+      <ChildrenComponent css={guideRuleExamplePanel} style={panelStyles}>
         {children}
       </ChildrenComponent>
-      <figcaption className="guideRule__caption">
+      <figcaption css={guideRuleExampleCaption}>
         {text || typeToSubtitleTextMap[type]}
       </figcaption>
     </EuiFlexItem>
