@@ -11,7 +11,7 @@ import {
   EuiContext,
 } from '../../../src/components';
 
-import { keyCodes } from '../../../src/services';
+// import { keyCodes } from '../../../src/services';
 
 export class AppView extends Component {
   constructor(...args) {

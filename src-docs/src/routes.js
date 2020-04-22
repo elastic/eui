@@ -1,6 +1,6 @@
 import React, { createElement } from 'react';
 
-import { createHashHistory } from 'history';
+// import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection } from './components';
 

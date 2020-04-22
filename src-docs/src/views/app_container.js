@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { AppView } from './app_view';
 
-import { getRoutes, getLocale } from '../store';
+import { getLocale } from '../store';
 
 import { toggleLocale } from '../actions';
 

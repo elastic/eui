@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { routerReducer } from 'react-router-redux';
+// import { routerReducer } from 'react-router-redux';
 
 import Routes from '../routes';
 
