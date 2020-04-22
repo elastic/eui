@@ -55,7 +55,7 @@ export interface EuiStepNumberProps {
    */
   isHollow?: boolean;
   /**
-   * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
+   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
    */
   titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
 }
