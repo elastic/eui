@@ -19,8 +19,8 @@ No public interface changes since `23.0.0`.
 - Fixed `EuiPopover` positioning from being overridden by `style` prop ([#3329](https://github.com/elastic/eui/pull/3329))
 - Fixed `EuiCodeBlock` not copying updated content ([#3351](https://github.com/elastic/eui/pull/3351))
 - Fixed alignment of popover of end date of `EuiDatePickerRange` ([#3359](https://github.com/elastic/eui/pull/3359))
-- Removed additional padding applied to body to account for `EuiHeader` when fixed ([]())
-- Fixed `EuiDescribedFormGroup` issue that prevented it from shrinking down properly in smaller viewports ([]())
+- Removed additional padding applied to body to account for `EuiHeader` when fixed ([#3369](https://github.com/elastic/eui/pull/3369))
+- Fixed `EuiDescribedFormGroup` issue that prevented it from shrinking down properly in smaller viewports ([#3369](https://github.com/elastic/eui/pull/3369))
 
 **Breaking changes**
 
