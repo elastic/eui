@@ -1,6 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `titleSize` prop to `EuiStep` ([#3340](https://github.com/elastic/eui/pull/3340))
+- Added `titleSize` prop to `EuiStep` and `EuiSteps` ([#3340](https://github.com/elastic/eui/pull/3340))
+
+## [`23.1.0`](https://github.com/elastic/eui/tree/v23.1.0)
+
+- Removed additional padding applied to `$euiHeaderHeightCompensation` when `EuiHeader` is fixed ([#3369](https://github.com/elastic/eui/pull/3369))
+
+**Bug Fixes**
+
+- Fixed `EuiDescribedFormGroup` issue that prevented it from shrinking down properly in smaller viewports ([#3369](https://github.com/elastic/eui/pull/3369))
 
 ## [`23.0.0`](https://github.com/elastic/eui/tree/v23.0.0)
 
@@ -17,6 +25,7 @@
 - Removed `schema` attribute form `<input/>` in `EuiInMemoryTable` ([#3337](https://github.com/elastic/eui/pull/3337))
 - Fixed `EuiCollapsibleNav` docked states on mobile ([#3330](https://github.com/elastic/eui/pull/3330))
 - Fixed `EuiPopover` positioning from being overridden by `style` prop ([#3329](https://github.com/elastic/eui/pull/3329))
+- Fixed `EuiCodeBlock` not copying updated content ([#3351](https://github.com/elastic/eui/pull/3351))
 - Fixed alignment of popover of end date of `EuiDatePickerRange` ([#3359](https://github.com/elastic/eui/pull/3359))
 
 **Breaking changes**
