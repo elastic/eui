@@ -43,17 +43,17 @@ export interface EuiStepsProps {
   /**
    * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
    */
-  parentTitleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
+  titleSize?: StandaloneEuiStepProps['titleSize'];
 }
 
 function renderSteps(
   steps: EuiContainedStepProps[],
   firstStepNumber: number,
   headingElement: string,
-  parentTitleSize: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>
+  titleSize?: StandaloneEuiStepProps['titleSize']
 ) {
   return steps.map((step, index) => {
-    const { className, children, title, titleSize, status, ...rest } = step;
+    const { className, children, title, status, ...rest } = step;
 
     return (
       <EuiStep
@@ -62,7 +62,7 @@ function renderSteps(
         headingElement={headingElement}
         step={firstStepNumber + index}
         title={title}
-        titleSize={titleSize ? titleSize : parentTitleSize}
+        titleSize={titleSize}
         status={status}
         {...rest}>
         {children}
@@ -77,7 +77,7 @@ export const EuiSteps: FunctionComponent<
   className,
   firstStepNumber = 1,
   headingElement = 'p',
-  parentTitleSize = 's',
+  titleSize,
   steps,
   ...rest
 }) => {
@@ -85,7 +85,7 @@ export const EuiSteps: FunctionComponent<
 
   return (
     <div className={classes} {...rest}>
-      {renderSteps(steps, firstStepNumber, headingElement, parentTitleSize)}
+      {renderSteps(steps, firstStepNumber, headingElement, titleSize)}
     </div>
   );
 };
