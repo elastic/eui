@@ -67,8 +67,8 @@ export const FilterGroupExample = {
       demo: <FilterGroupSimple />,
       snippet: `<EuiFilterGroup>
   <EuiFilterButton
-    hasActiveFilters={this.state.isFilterOn}
-    onClick={this.toggleFilter}
+    hasActiveFilters={isFilterOn}
+    onClick={toggleFilter}
   >
     Single filter
   </EuiFilterButton>
@@ -113,8 +113,8 @@ export const FilterGroupExample = {
     button={
       <EuiFilterButton
         iconType="arrowDown"
-        onClick={this.onButtonClick}
-        isSelected={this.state.isPopoverOpen}
+        onClick={onButtonClick}
+        isSelected={isPopoverOpen}
         numFilters={items.length}
         hasActiveFilters={true}
         numActiveFilters={2}
@@ -122,8 +122,8 @@ export const FilterGroupExample = {
         Filters
       </EuiFilterButton>
     }
-    isOpen={this.state.isPopoverOpen}
-    closePopover={this.closePopover}
+    isOpen={isPopoverOpen}
+    closePopover={closePopover}
   >
     ...
   </EuiPopover>

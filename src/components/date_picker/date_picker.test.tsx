@@ -35,6 +35,16 @@ describe('EuiDatePicker', () => {
     expect(component.find('ContextConsumer').shallow()).toMatchSnapshot(); // snapshot of DatePicker usage
   });
 
+  describe('popoverPlacement', () => {
+    test('top-end is rendered', () => {
+      const component = mount(
+        <EuiDatePicker {...requiredProps} popoverPlacement="top-end" />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('localization', () => {
     const selectedDate = moment('2019-07-01T00:00:00-0700').locale('fr');
 

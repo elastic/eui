@@ -40,10 +40,10 @@ const suggestItemSnippet = [
 
 const suggestSnippet = [
   `<EuiSuggest
-  status={this.state.status}
-  tooltipContent={this.state.tooltipContent}
-  onInputChange={this.getInputValue}
-  onItemClick={this.onItemClick}
+  status={status}
+  tooltipContent={tooltipContent}
+  onInputChange={getInputValue}
+  onItemClick={onItemClick}
   suggestions={[
     {
       type: { iconType: 'kqlField', color: 'tint4' },

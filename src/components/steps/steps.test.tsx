@@ -54,6 +54,14 @@ describe('EuiSteps', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('renders steps with parentTitleSize', () => {
+    const component = render(
+      <EuiSteps {...requiredProps} steps={steps} parentTitleSize="xs" />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('renders step title inside "headingElement" element', () => {
     const component = render(
       <EuiSteps {...requiredProps} steps={steps} headingElement="h2" />

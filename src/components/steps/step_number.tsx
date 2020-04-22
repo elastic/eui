@@ -22,6 +22,8 @@ import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
 
+import { EuiTitleProps } from '../title';
+
 import { EuiI18n } from '../i18n';
 import { CommonProps, keysOf } from '../common';
 
@@ -52,13 +54,17 @@ export interface EuiStepNumberProps {
    * Uses a border and removes the step number
    */
   isHollow?: boolean;
+  /**
+   * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
+   */
+  titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
 }
 
 export const EuiStepNumber: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepNumberProps
   // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
   // tslint:disable-next-line:variable-name
-> = ({ className, status, number, isHollow, ...rest }) => {
+> = ({ className, status, number, isHollow, titleSize, ...rest }) => {
   const classes = classNames(
     'euiStepNumber',
     status ? statusToClassNameMap[status] : undefined,
@@ -76,6 +82,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="check"
             className="euiStepNumber__icon"
+            size={titleSize === 'xs' ? 's' : 'm'}
             aria-label={isComplete}
           />
         )}
@@ -88,6 +95,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="alert"
             className="euiStepNumber__icon"
+            size={titleSize === 'xs' ? 's' : 'm'}
             aria-label={hasWarnings}
           />
         )}
@@ -100,6 +108,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="cross"
             className="euiStepNumber__icon"
+            size={titleSize === 'xs' ? 's' : 'm'}
             aria-label={hasErrors}
           />
         )}

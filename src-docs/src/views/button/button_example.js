@@ -82,9 +82,9 @@ const buttonToggleSource = require('!!raw-loader!./button_toggle');
 const buttonToggleHtml = renderToHtml(ButtonToggle);
 const buttonToggleSnippet = `<EuiButtonToggle
   label={label}
-  iconType={this.state.toggleOn ? onIcon : offIcon}
-  onChange={this.onToggleChange}
-  isSelected={this.state.toggleOn}
+  iconType={toggleOn ? onIcon : offIcon}
+  onChange={onToggleChange}
+  isSelected={toggleOn}
 />`;
 
 import ButtonGroup from './button_group';
@@ -93,15 +93,15 @@ const buttonGroupHtml = renderToHtml(ButtonGroup);
 const buttonGroupSnippet = [
   `<EuiButtonGroup
   legend={legend}
-  options={this.toggleButtons}
-  idSelected={this.state.toggleIdSelected}
-  onChange={this.onChange}
+  options={toggleButtons}
+  idSelected={toggleIdSelected}
+  onChange={onChange}
 />`,
   `<EuiButtonGroup
   legend={legend}
-  options={this.toggleButtonsIconsMulti}
-  idToSelectedMap={this.state.toggleIconIdToSelectedMap}
-  onChange={this.onChangeIconsMulti}
+  options={toggleButtonsIconsMulti}
+  idToSelectedMap={toggleIconIdToSelectedMap}
+  onChange={onChangeIconsMulti}
   type="multi"
   isIconOnly
 />`,

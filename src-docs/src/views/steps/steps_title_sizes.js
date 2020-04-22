@@ -1,39 +1,43 @@
 import React from 'react';
 
-import {
-  EuiCode,
-  EuiSpacer,
-  EuiSteps,
-  EuiText,
-} from '../../../../src/components';
+import { EuiCode, EuiSpacer, EuiSteps } from '../../../../src/components';
 
 const firstSetOfSteps = [
   {
-    title:
-      'Step 1 with a long title to check what happens during wrapping which should have been fixed.',
-    children: <p>Do this first</p>,
+    title: 'Step 1',
+    children: (
+      <p>
+        This step has title size at <EuiCode>xs</EuiCode> and therefore a
+        smaller step circle
+      </p>
+    ),
   },
   {
     title: 'Step 2',
-    children: <p>Then this</p>,
+    children: (
+      <p>
+        This step has title size at <EuiCode>xs</EuiCode> and therefore a
+        smaller step circle
+      </p>
+    ),
+  },
+];
+
+const secondSetOfSteps = [
+  {
+    title: 'Step 1',
+    children: <p>This step has the default sizing</p>,
   },
   {
-    title: 'Step 3',
-    children: <p>Then this</p>,
-  },
-  {
-    title: 'Step 4',
-    children: <p>Then this</p>,
-    titleSize: 's',
-  },
-  {
-    title: 'Step 5',
-    children: <p>Then this</p>,
+    title: 'Step 2',
+    children: <p>This step has the default sizing</p>,
   },
 ];
 
 export default () => (
   <div>
     <EuiSteps parentTitleSize="xs" steps={firstSetOfSteps} />
+    <EuiSpacer size="m" />
+    <EuiSteps steps={secondSetOfSteps} />
   </div>
 );

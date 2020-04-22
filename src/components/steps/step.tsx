@@ -44,7 +44,7 @@ export interface EuiStepProps {
    */
   status?: EuiStepStatus;
   /**
-   * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
+   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
    */
   titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
 }
@@ -90,6 +90,7 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
               aria-label={`${ariaLabel} ${step}`}
               number={step}
               status={status}
+              titleSize={titleSize}
               isHollow={status === 'incomplete'}
             />
           )}

@@ -8,6 +8,10 @@
 
   &--small {
     @include createStepsNumber($euiStepNumberSmallSize, $euiSizeM);
+
+    .euiStepNumber__icon {
+      top: -1px;
+    }
   }
 
   &--complete {
