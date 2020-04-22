@@ -120,10 +120,6 @@
   .euiCard__image {
     // Without a border, the image should stand on it's own so it needs to have all corners rounded
     border-radius: $euiBorderRadius;
-
-    & img {
-      width: 100%;
-    }
   }
 }
 
@@ -153,7 +149,7 @@
     border-top-left-radius: $euiBorderRadius - 1px;
     border-top-right-radius: $euiBorderRadius - 1px;
 
-    & img {
+    img {
       width: 100%;
     }
 
