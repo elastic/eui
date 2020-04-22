@@ -14,8 +14,7 @@
   }
 
   .euiDescribedFormGroup__fields {
-    width: $euiFormMaxWidth;
-    max-width: 100%;
+    min-width: 0;
   }
 
   .euiDescribedFormGroup__fieldPadding {
