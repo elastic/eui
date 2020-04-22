@@ -126,7 +126,10 @@ const getInitialQuery = (search: Search | undefined) => {
   if (!search) {
     query = '';
   } else {
-    query = (search as EuiSearchBarProps).defaultQuery || '';
+    query =
+      (search as EuiSearchBarProps).defaultQuery ||
+      (search as EuiSearchBarProps).query ||
+      '';
   }
 
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
@@ -274,7 +277,10 @@ export class EuiInMemoryTable<T> extends Component<
 
     if (nextProps.search !== prevState.prevProps.search) {
       return {
-        search: nextProps.search,
+        prevProps: {
+          ...prevState.prevProps,
+          search: nextProps.search,
+        },
         query: getQueryFromSearch(nextProps.search),
       };
     }
