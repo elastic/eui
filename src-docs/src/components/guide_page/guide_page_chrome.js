@@ -20,6 +20,7 @@ import {
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
+import { EuiBadge } from '../../../../src/components/badge';
 
 const scrollTo = position => {
   $('html, body').animate(
@@ -243,8 +244,17 @@ export class GuidePageChrome extends Component {
       });
 
       const items = matchingItems.map(item => {
-        const { name, path, sections } = item;
+        const { name, path, sections, isNew } = item;
         const href = `#/${path}`;
+
+        let newBadge;
+        if (isNew) {
+          newBadge = (
+            <EuiBadge color="accent" className="guideSideNav__newBadge">
+              NEW
+            </EuiBadge>
+          );
+        }
 
         let visibleName = name;
         if (searchTerm) {
@@ -265,6 +275,8 @@ export class GuidePageChrome extends Component {
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item === this.props.currentRoute,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
+          className: 'guideSideNav__item',
+          icon: newBadge,
         };
       });
 

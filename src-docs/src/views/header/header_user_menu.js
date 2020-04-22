@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiAvatar,
@@ -11,81 +11,69 @@ import {
   EuiPopover,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.state = {
-      isOpen: false,
-    };
-  }
-
-  onMenuButtonClick = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+  const onMenuButtonClick = () => {
+    setIsOpen(!isOpen);
   };
 
-  closeMenu = () => {
-    this.setState({
-      isOpen: false,
-    });
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
-  render() {
-    const button = (
-      <EuiHeaderSectionItemButton
-        aria-controls="headerUserMenu"
-        aria-expanded={this.state.isOpen}
-        aria-haspopup="true"
-        aria-label="Account menu"
-        onClick={this.onMenuButtonClick}>
-        <EuiAvatar name="John Username" size="s" />
-      </EuiHeaderSectionItemButton>
-    );
+  const button = (
+    <EuiHeaderSectionItemButton
+      aria-controls="headerUserMenu"
+      aria-expanded={isOpen}
+      aria-haspopup="true"
+      aria-label="Account menu"
+      onClick={onMenuButtonClick}>
+      <EuiAvatar name="John Username" size="s" />
+    </EuiHeaderSectionItemButton>
+  );
 
-    return (
-      <EuiPopover
-        id="headerUserMenu"
-        ownFocus
-        button={button}
-        isOpen={this.state.isOpen}
-        anchorPosition="downRight"
-        closePopover={this.closeMenu}
-        panelPaddingSize="none">
-        <div style={{ width: 320 }}>
-          <EuiFlexGroup
-            gutterSize="m"
-            className="euiHeaderProfile"
-            responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiAvatar name="John Username" size="xl" />
-            </EuiFlexItem>
+  return (
+    <EuiPopover
+      id="headerUserMenu"
+      ownFocus
+      button={button}
+      isOpen={isOpen}
+      anchorPosition="downRight"
+      closePopover={closeMenu}
+      panelPaddingSize="none">
+      <div style={{ width: 320 }}>
+        <EuiFlexGroup
+          gutterSize="m"
+          className="euiHeaderProfile"
+          responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiAvatar name="John Username" size="xl" />
+          </EuiFlexItem>
 
-            <EuiFlexItem>
-              <EuiText>
-                <p>John Username</p>
-              </EuiText>
+          <EuiFlexItem>
+            <EuiText>
+              <p>John Username</p>
+            </EuiText>
 
-              <EuiSpacer size="m" />
+            <EuiSpacer size="m" />
 
-              <EuiFlexGroup>
-                <EuiFlexItem>
-                  <EuiFlexGroup justifyContent="spaceBetween">
-                    <EuiFlexItem grow={false}>
-                      <EuiLink href="">Edit profile</EuiLink>
-                    </EuiFlexItem>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiFlexGroup justifyContent="spaceBetween">
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Edit profile</EuiLink>
+                  </EuiFlexItem>
 
-                    <EuiFlexItem grow={false}>
-                      <EuiLink href="">Log out</EuiLink>
-                    </EuiFlexItem>
-                  </EuiFlexGroup>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </div>
-      </EuiPopover>
-    );
-  }
-}
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Log out</EuiLink>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </div>
+    </EuiPopover>
+  );
+};

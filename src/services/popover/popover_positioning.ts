@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import { EuiPopoverPosition } from './types';
 
 type Dimension = 'height' | 'width';
@@ -96,7 +115,7 @@ interface FindPopoverPositionResult {
  *  function return value will include an `arrow` param with position details
  *
  * @returns {FindPopoverPositionResult} absolute page coordinates for the
- * popover, and the placements's relation to the anchor or undefined
+ * popover, and the placement's relation to the anchor or undefined
  * there's no room.
  */
 export function findPopoverPosition({
@@ -171,7 +190,7 @@ export function findPopoverPosition({
       iterationAlignments.push(undefined, undefined); // discard desired alignment on cross-axis
     }
   } else {
-    // position is forced, if it conficts with the alignment then reset align to `null`
+    // position is forced, if it conflicts with the alignment then reset align to `null`
     // e.g. original placement request for `downLeft` is moved to the `left` side, future calls
     // will position and align `left`, and `leftLeft` is not a valid placement
     if (

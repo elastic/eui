@@ -4,11 +4,19 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiTitle } from '../../../../src/components';
+import { EuiTitle } from '../../../../src/components';
 
 import Title from './title';
 const titleSource = require('!!raw-loader!./title');
 const titleHtml = renderToHtml(Title);
+const titleSnippet = [
+  `<EuiTitle>
+  <h2><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
+</EuiTitle>`,
+  `<EuiTitle size="s">
+  <h2><!-- Small title but heading level can be anything based on your context. --></h2>
+</EuiTitle>`,
+];
 
 export const TitleExample = {
   title: 'Title',
@@ -26,12 +34,13 @@ export const TitleExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiTitle</EuiCode> styles the page, section, and content
+          <strong>EuiTitle</strong> styles the page, section, and content
           headings we use in Kibana. They can contain any markup, but usually
-          contain a heading tag of some sort. Unlike <EuiCode>EuiText</EuiCode>
+          contain a heading tag of some sort. Unlike <strong>EuiText</strong>{' '}
           they are margin neutral and more suitable for general layout design.
         </p>
       ),
+      snippet: titleSnippet,
       props: { EuiTitle },
       demo: <Title />,
     },

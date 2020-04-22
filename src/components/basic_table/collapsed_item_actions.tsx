@@ -1,15 +1,30 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component, FocusEvent, ReactNode, ReactElement } from 'react';
+import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { EuiI18n } from '../i18n';
-import {
-  Action,
-  CustomItemAction,
-  DefaultItemIconButtonAction,
-} from './action_types';
-import { EuiIconType } from '../icon/icon';
+import { Action, CustomItemAction } from './action_types';
 import { ItemIdResolved } from './table_types';
 
 export interface CollapsedItemActionsProps<T> {
@@ -122,14 +137,27 @@ export class CollapsedItemActions<T> extends Component<
             </EuiContextMenuItem>
           );
         } else {
-          const { onClick, name, 'data-test-subj': dataTestSubj } = action;
+          const {
+            onClick,
+            name,
+            href,
+            target,
+            'data-test-subj': dataTestSubj,
+          } = action;
+
+          const buttonIcon = action.icon;
+          let icon;
+          if (buttonIcon) {
+            icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
+          }
+
           controls.push(
             <EuiContextMenuItem
               key={key}
               disabled={!enabled}
-              icon={
-                (action as DefaultItemIconButtonAction<T>).icon as EuiIconType
-              }
+              href={href}
+              target={target}
+              icon={icon}
               data-test-subj={dataTestSubj}
               onClick={this.onClickItem.bind(
                 null,

@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 /**
  * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
  * from the tab order with tabindex={-1} so that we can control the keyboard navigation interface.
@@ -472,7 +491,21 @@ export class EuiComboBox<T> extends Component<
     if (async) {
       return false;
     }
-    return flattenOptionGroups(options).length === selectedOptions.length;
+
+    const flattenOptions = flattenOptionGroups(options).map(option => {
+      return { ...option, label: option.label.trim().toLowerCase() };
+    });
+
+    let numberOfSelectedOptions = 0;
+    selectedOptions.forEach(({ label }) => {
+      const trimmedLabel = label.trim().toLowerCase();
+      if (
+        flattenOptions.findIndex(option => option.label === trimmedLabel) !== -1
+      )
+        numberOfSelectedOptions += 1;
+    });
+
+    return flattenOptions.length === numberOfSelectedOptions;
   };
 
   isSingleSelectionCustomOption = () => {

@@ -129,6 +129,7 @@ const customButtonHtml = renderToHtml(CustomButton);
 const customButtonSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
+  secondaryInputDisplay="top"
   button={
     <EuiColorPickerSwatch
       color={chosenColor}
@@ -142,6 +143,7 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
+  secondaryInputDisplay="bottom"
   button={
     <EuiBadge
       color={chosenColor ? chosenColor : 'hollow'}
@@ -248,15 +250,15 @@ const stopKitchenSinkSnippet = `<EuiColorStops
 `;
 
 export const ColorPickerExample = {
-  title: 'Color Selection',
+  title: 'Color selection',
   intro: (
     <React.Fragment>
       <EuiText>
         <p>
           Three components exist to aid color selection:{' '}
-          <EuiCode>EuiColorPicker</EuiCode>,{' '}
-          <EuiCode>EuiColorPalettePicker</EuiCode> and{' '}
-          <EuiCode>EuiColorStops</EuiCode>.
+          <strong>EuiColorPicker</strong>,{' '}
+          <strong>EuiColorPalettePicker</strong> and{' '}
+          <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
       <EuiSpacer />
@@ -357,10 +359,10 @@ export const ColorPickerExample = {
         <React.Fragment>
           <EuiText>
             <p>
-              Use <EuiCode>EuiColorStops</EuiCode> to define color stops for
-              data driven styling. Stops are numbers within the provided range.
-              The color segment spans from the given stop number (inclusive) to
-              the next stop number (exclusive).
+              Use <strong>EuiColorStops</strong> to define color stops for data
+              driven styling. Stops are numbers within the provided range. The
+              color segment spans from the given stop number (inclusive) to the
+              next stop number (exclusive).
             </p>
           </EuiText>
         </React.Fragment>
@@ -389,11 +391,12 @@ export const ColorPickerExample = {
         <React.Fragment>
           <EuiText>
             <p>
-              Typical use of <EuiCode>EuiColorStops</EuiCode> (as above) will
-              have defined `min` and `max` range values. It is also possible to
-              leave the range open-ended for cases where the target data set is
-              unknown or maleable. In this case, a user{"'"}s added values will
-              define `min` and `max` and users will have more freedom over
+              Typical use of <strong>EuiColorStops</strong> (as above) will have
+              defined <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> range
+              values. It is also possible to leave the range open-ended for
+              cases where the target data set is unknown or maleable. In this
+              case, a user{"'"}s added values will define <EuiCode>min</EuiCode>{' '}
+              and <EuiCode>max</EuiCode> and users will have more freedom over
               resetting the values on the fly.
             </p>
           </EuiText>
@@ -456,9 +459,9 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          To allow color opacity via alpha channel, set the{' '}
-          <EuiCode>showAlpha</EuiCode> prop to `true`. This will also display a
-          range slider allowing manual opacity updates.
+          To allow color opacity via alpha channel, set{' '}
+          <EuiCode language="js">showAlpha=true</EuiCode>. This will also
+          display a range slider allowing manual opacity updates.
         </p>
       ),
       snippet: alphaSnippet,
@@ -501,9 +504,10 @@ export const ColorPickerExample = {
       text: (
         <p>
           By default, both swatch selection and the gradient color map will be
-          rendered. Use the <EuiCode>mode</EuiCode> prop to pass `swatch` for
-          swatch-only selection, or pass `picker` for gradient map and hue
-          slider selection without swatches.
+          rendered. Use the <EuiCode>mode</EuiCode> prop to pass{' '}
+          <EuiCode>swatch</EuiCode> for swatch-only selection, or pass{' '}
+          <EuiCode>picker</EuiCode> for gradient map and hue slider selection
+          without swatches.
         </p>
       ),
       snippet: [
@@ -527,12 +531,21 @@ export const ColorPickerExample = {
         },
       ],
       text: (
-        <p>
-          Available only in <EuiCode>EuiColorPicker</EuiCode>. You can
-          optionally use a custom button as the trigger for selection using the{' '}
-          <EuiCode>button</EuiCode> prop. Please remember to add accessibility
-          to this component, using proper button markup and aria labeling.
-        </p>
+        <>
+          <p>
+            Available only in <strong>EuiColorPicker</strong>. You can
+            optionally use a custom button as the trigger for selection using
+            the <EuiCode>button</EuiCode> prop. Please remember to add
+            accessibility to this component, using proper button markup and aria
+            labeling.
+          </p>
+          <p>
+            Additionally, use the <EuiCode>secondaryInputDisplay</EuiCode> prop
+            to show a secondary or alternative color value input. Options
+            include <EuiCode>top</EuiCode> and <EuiCode>bottom</EuiCode>{' '}
+            placement.
+          </p>
+        </>
       ),
       snippet: [customButtonSnippet, customBadgeSnippet],
       demo: <CustomButton />,
@@ -551,9 +564,9 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          Available only in <EuiCode>EuiColorPicker</EuiCode>. Set the{' '}
-          <EuiCode>display</EuiCode> prop to `inline` to display the color
-          picker without an input or popover. Note that the{' '}
+          Available only in <strong>EuiColorPicker</strong>. Set the{' '}
+          <EuiCode>display</EuiCode> prop to <EuiCode>inline</EuiCode> to
+          display the color picker without an input or popover. Note that the{' '}
           <EuiCode>button</EuiCode> prop will be ignored in this case.
         </p>
       ),

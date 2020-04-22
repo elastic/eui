@@ -1,8 +1,4 @@
 import React from 'react';
-import lightColors from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_colors.scss';
-import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
-import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
-import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
 import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_z_index.scss';
 import animations from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_animations.scss';
@@ -12,6 +8,8 @@ import { rgbToHex } from '../../../../src/services';
 import { Link } from 'react-router';
 
 import { GuidePage, GuideRuleTitle } from '../../components';
+import { getSassVars } from './_get_sass_vars';
+import { allowedColors } from './colors/_utilities';
 
 import {
   EuiText,
@@ -27,23 +25,7 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-const euiColors = [
-  'euiColorEmptyShade',
-  'euiColorLightestShade',
-  'euiColorLightShade',
-  'euiColorMediumShade',
-  'euiColorDarkShade',
-  'euiColorDarkestShade',
-  'euiColorFullShade',
-  'euiColorPrimary',
-  'euiColorSecondary',
-  'euiColorAccent',
-  'euiColorDanger',
-  'euiColorWarning',
-  'euiColorSuccess',
-  'euiColorGhost',
-  'euiColorInk',
-];
+const euiColors = [...allowedColors, 'euiColorGhost', 'euiColorInk'];
 
 const euiTextColors = ['euiTextColor', 'euiColorDarkShade', 'euiLinkColor'];
 
@@ -365,16 +347,7 @@ const contrastExample = `// Make sure text passes a contrast check
 `;
 
 export const SassGuidelines = ({ selectedTheme }) => {
-  let palette;
-  if (selectedTheme === 'amsterdam-dark') {
-    palette = darkAmsterdamColors;
-  } else if (selectedTheme === 'amsterdam-light') {
-    palette = { ...lightColors, ...lightAmsterdamColors };
-  } else if (selectedTheme === 'dark') {
-    palette = darkColors;
-  } else {
-    palette = lightColors;
-  }
+  const palette = getSassVars(selectedTheme);
 
   return (
     <GuidePage title="Sass guidelines">
