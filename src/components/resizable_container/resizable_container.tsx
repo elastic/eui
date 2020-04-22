@@ -124,6 +124,7 @@ export const EuiResizableContainer: FunctionComponent<
     euiResizableButtonWithControls({
       onKeyDown,
       onMouseDown,
+      onTouchStart: onMouseDown,
       isHorizontal,
     }),
     [onKeyDown, onMouseDown, isHorizontal]
@@ -147,6 +148,8 @@ export const EuiResizableContainer: FunctionComponent<
         ref={containerRef}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
+        onTouchMove={onMouseMove}
+        onTouchEnd={onMouseUp}
         {...rest}>
         {children(EuiResizablePanel, EuiResizableButton)}
       </div>

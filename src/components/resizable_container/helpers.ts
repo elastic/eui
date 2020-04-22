@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { useCallback, MouseEvent } from 'react';
+import { useCallback, MouseEvent, TouchEvent } from 'react';
 
 import { keyCodes } from '../../services';
 import {
@@ -36,7 +36,11 @@ interface Params {
   onPanelWidthChange?: ({  }: { [key: string]: number }) => any;
 }
 
-type onMouseMove = (event: MouseEvent) => void;
+type onMouseMove = (event: MouseEvent | TouchEvent) => void;
+
+function isMouseEvent(event: MouseEvent | TouchEvent): event is MouseEvent {
+  return typeof event === 'object' && 'pageX' in event && 'pageY' in event;
+}
 
 const pxToPercent = (proportion: number, whole: number) =>
   (proportion / whole) * 100;
@@ -68,7 +72,14 @@ export const useContainerCallbacks = ({
   }, [containerRef, isHorizontal]);
 
   const onMouseDown = useCallback(
-    ({ clientY, clientX, currentTarget }: EuiResizableButtonMouseEvent) => {
+    (event: EuiResizableButtonMouseEvent) => {
+      const currentTarget = event.currentTarget;
+      const clientX = isMouseEvent(event)
+        ? event.clientX
+        : event.touches[0].clientX;
+      const clientY = isMouseEvent(event)
+        ? event.clientY
+        : event.touches[0].clientY;
       setState(prevState => ({
         ...prevState,
         isDragging: true,
@@ -143,7 +154,12 @@ export const useContainerCallbacks = ({
   const onMouseMove: onMouseMove = useCallback(
     event => {
       if (state.isDragging && state.previousPanelId && state.nextPanelId) {
-        const { clientX, clientY } = event;
+        const clientX = isMouseEvent(event)
+          ? event.clientX
+          : event.touches[0].clientX;
+        const clientY = isMouseEvent(event)
+          ? event.clientY
+          : event.touches[0].clientY;
         const x = isHorizontal ? clientX : clientY;
         const { current: registry } = registryRef;
         const [prevPanel, nextPanel] = registry.getResizerSiblings(

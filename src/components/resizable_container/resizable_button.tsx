@@ -17,25 +17,29 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  KeyboardEvent,
+  MouseEvent,
+  TouchEvent,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
 
-export type EuiResizableButtonMouseEvent = React.MouseEvent<
-  HTMLButtonElement,
-  MouseEvent
->;
-export type EuiResizableButtonKeyDownEvent = React.KeyboardEvent<
-  HTMLButtonElement
->;
+export type EuiResizableButtonMouseEvent =
+  | MouseEvent<HTMLButtonElement>
+  | TouchEvent<HTMLButtonElement>;
+export type EuiResizableButtonKeyDownEvent = KeyboardEvent<HTMLButtonElement>;
 
 export type EuiResizableButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
   onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
+  onTouchStart: (eve: EuiResizableButtonMouseEvent) => void;
   isHorizontal: boolean;
 }
 
