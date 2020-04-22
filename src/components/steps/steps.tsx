@@ -23,8 +23,6 @@ import classNames from 'classnames';
 
 import { StandaloneEuiStepProps, EuiStep } from './step';
 
-import { EuiTitleProps } from '../title';
-
 export type EuiContainedStepProps = Omit<StandaloneEuiStepProps, 'step'>;
 
 export interface EuiStepsProps {

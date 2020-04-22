@@ -54,9 +54,9 @@ describe('EuiSteps', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('renders steps with parentTitleSize', () => {
+  test('renders steps with titleSize', () => {
     const component = render(
-      <EuiSteps {...requiredProps} steps={steps} parentTitleSize="xs" />
+      <EuiSteps {...requiredProps} steps={steps} titleSize="xs" />
     );
 
     expect(component).toMatchSnapshot();

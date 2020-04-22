@@ -195,10 +195,9 @@ export const StepsExample = {
       text: (
         <Fragment>
           <p>
-            You can set a different title size for <strong>EuiSteps</strong> by
-            using <EuiCode>parentTitleSize</EuiCode> or individually using
-            <EuiCode>titleSize</EuiCode> on <strong>EuiStep</strong>. If a title
-            size is set for both <strong>EuiSteps</strong> and directly in{' '}
+            You can set a different title size using{' '}
+            <EuiCode>titleSize</EuiCode>. If <EuiCode>titleSize</EuiCode> size
+            is set in both <strong>EuiSteps</strong> and{' '}
             <strong>EuiStep</strong>, the latter value will override the former.
             Additionally, the title size <EuiCode>xs</EuiCode> will
             automatically generate smaller steps circles.

@@ -7,8 +7,8 @@ const firstSetOfSteps = [
     title: 'Step 1',
     children: (
       <p>
-        This step has title size at <EuiCode>xs</EuiCode> and therefore a
-        smaller step circle
+        Steps with <EuiCode>titleSize</EuiCode> set to <EuiCode>xs</EuiCode>{' '}
+        like this one, get a smaller step circle
       </p>
     ),
   },
@@ -16,8 +16,8 @@ const firstSetOfSteps = [
     title: 'Step 2',
     children: (
       <p>
-        This step has title size at <EuiCode>xs</EuiCode> and therefore a
-        smaller step circle
+        Steps with <EuiCode>titleSize</EuiCode> set to <EuiCode>xs</EuiCode>{' '}
+        like this one, get a smaller step circle
       </p>
     ),
   },
@@ -36,7 +36,7 @@ const secondSetOfSteps = [
 
 export default () => (
   <div>
-    <EuiSteps parentTitleSize="xs" steps={firstSetOfSteps} />
+    <EuiSteps titleSize="xs" steps={firstSetOfSteps} />
     <EuiSpacer size="m" />
     <EuiSteps steps={secondSetOfSteps} />
   </div>

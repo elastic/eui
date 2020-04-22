@@ -22,7 +22,7 @@ import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
 
-import { EuiTitleProps } from '../title';
+import { StandaloneEuiStepProps } from './step';
 
 import { EuiI18n } from '../i18n';
 import { CommonProps, keysOf } from '../common';
@@ -57,7 +57,7 @@ export interface EuiStepNumberProps {
   /**
    * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
    */
-  titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
+  titleSize?: StandaloneEuiStepProps['titleSize'];
 }
 
 export const EuiStepNumber: FunctionComponent<
@@ -74,6 +74,8 @@ export const EuiStepNumber: FunctionComponent<
     className
   );
 
+  const iconSize = titleSize === 'xs' ? 's' : 'm';
+
   let numberOrIcon;
   if (status === 'complete') {
     numberOrIcon = (
@@ -82,7 +84,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="check"
             className="euiStepNumber__icon"
-            size={titleSize === 'xs' ? 's' : 'm'}
+            size={iconSize}
             aria-label={isComplete}
           />
         )}
@@ -95,7 +97,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="alert"
             className="euiStepNumber__icon"
-            size={titleSize === 'xs' ? 's' : 'm'}
+            size={iconSize}
             aria-label={hasWarnings}
           />
         )}
@@ -108,7 +110,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="cross"
             className="euiStepNumber__icon"
-            size={titleSize === 'xs' ? 's' : 'm'}
+            size={iconSize}
             aria-label={hasErrors}
           />
         )}

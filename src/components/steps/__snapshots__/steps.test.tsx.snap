@@ -255,7 +255,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
 </div>
 `;
 
-exports[`EuiSteps renders steps with parentTitleSize 1`] = `
+exports[`EuiSteps renders steps with titleSize 1`] = `
 <div
   aria-label="aria-label"
   class="euiSteps testClass1 testClass2"
