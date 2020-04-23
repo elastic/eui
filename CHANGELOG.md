@@ -1,10 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Applied `max-width: 100%` to `EuiPageBody` so inner flex-based items don't overflow their containers  ([#3375](https://github.com/elastic/eui/pull/3375))
 - Handled `ref` passed to `EuiHeaderSectionItemButton` ([#3378](https://github.com/elastic/eui/pull/3378))
+
+**Bug Fixes**
+
+- Fixed z-index issue in `EuiDatePicker` where it's popover would sit beneath other DOM siblings that had z-index applied ([#3376](https://github.com/elastic/eui/pull/3376))
 - Added `download` glyph to `EuiIcon` ([#3364](https://github.com/elastic/eui/pull/3364))
 - Applies `max-width: 100%` to `EuiPageBody` so inner flex-based items don't overflow their containers  ([#3375](https://github.com/elastic/eui/pull/3375))
 - Added `ReactElement` to `EuiCard` `image` prop type to allow custom component ([#3370](https://github.com/elastic/eui/pull/3370))
-
 
 ## [`23.1.0`](https://github.com/elastic/eui/tree/v23.1.0)
 
