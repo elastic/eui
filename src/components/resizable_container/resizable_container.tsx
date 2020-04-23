@@ -148,6 +148,7 @@ export const EuiResizableContainer: FunctionComponent<
         ref={containerRef}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
+        onMouseLeave={onMouseUp}
         onTouchMove={onMouseMove}
         onTouchEnd={onMouseUp}
         {...rest}>
