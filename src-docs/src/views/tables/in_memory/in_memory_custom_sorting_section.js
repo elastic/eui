@@ -31,10 +31,6 @@ export const customSortingSection = {
         <EuiCode>false</EuiCode>. The function is used to extract or calculate
         the intended sort value for each <EuiCode>item</EuiCode>.
       </p>
-      <p>
-        <strong>EuiMemoryTable</strong> relies on referential integrity of a
-        column&apos;s <EuiCode>name</EuiCode> field to sort on that column.
-      </p>
     </div>
   ),
   props: propsInfo,
