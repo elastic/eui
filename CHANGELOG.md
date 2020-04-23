@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Removed additional padding applied to `$euiHeaderHeightCompensation` when `EuiHeader` is fixed ([#3369](https://github.com/elastic/eui/pull/3369))
+- Handled `ref` passed to `EuiHeaderSectionItemButton` ([#3378](https://github.com/elastic/eui/pull/3378))
 
 **Bug Fixes**
 
