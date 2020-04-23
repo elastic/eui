@@ -36,12 +36,7 @@ const simpleSource = require('!!raw-loader!./simple');
 const simpleHtml = renderToHtml(Simple);
 const simpleSnippet = `<EuiEmptyPrompt
   title={<h2>You have no spice</h2>}
-  actions={[
-    <EuiButton color="primary" fill>
-      Harvest spice
-    </EuiButton>,
-    <EuiButtonEmpty color="danger">Sabotage all spice fields</EuiButtonEmpty>,
-  ]}
+  actions={multipleActions}
 />`;
 
 export const EmptyPromptExample = {
