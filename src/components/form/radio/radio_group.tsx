@@ -86,7 +86,7 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
         disabled={disabled || isOptionDisabled}
         onChange={onChange.bind(null, option.id, option.value)}
         compressed={compressed}
-        {...optionRest}
+        {...optionRest as EuiRadioProps}
       />
     );
   });
