@@ -29,7 +29,7 @@ const customSnippet = `<EuiEmptyPrompt
   titleSize="xs"
   body={bodyContent}
   actions={
-    <EuiButton  size="s" color="primary" fill>
+    <EuiButton size="s" color="primary" fill>
       Harvest spice
     </EuiButton>
   }
