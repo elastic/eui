@@ -108,9 +108,9 @@ interface State<T> {
     items: T[];
     sortName: ReactNode;
     sortDirection?: Direction;
-    search?: Search | undefined;
+    search?: Search;
   };
-  search?: Search | undefined;
+  search?: Search;
   query: Query | null;
   pageIndex: number;
   pageSize?: number;
@@ -121,26 +121,20 @@ interface State<T> {
   hidePerPageOptions: boolean | undefined;
 }
 
-const getInitialQuery = (search: Search | undefined) => {
+const getQueryFromSearch = (
+  search: Search | undefined,
+  defaultQuery: boolean
+) => {
   let query: Query | string;
   if (!search) {
     query = '';
   } else {
     query =
-      (search as EuiSearchBarProps).defaultQuery ||
-      (search as EuiSearchBarProps).query ||
-      '';
-  }
-
-  return isString(query) ? EuiSearchBar.Query.parse(query) : query;
-};
-
-const getQueryFromSearch = (search: Search | undefined) => {
-  let query: Query | string;
-  if (!search) {
-    query = '';
-  } else {
-    query = (search as EuiSearchBarProps).query || '';
+      (defaultQuery
+        ? (search as EuiSearchBarProps).defaultQuery ||
+          (search as EuiSearchBarProps).query ||
+          ''
+        : (search as EuiSearchBarProps).query) || '';
   }
 
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
@@ -275,13 +269,16 @@ export class EuiInMemoryTable<T> extends Component<
       };
     }
 
-    if (nextProps.search !== prevState.prevProps.search) {
+    if (
+      (nextProps.search as EuiSearchBarProps) !==
+      (prevState.prevProps.search as EuiSearchBarProps)
+    ) {
       return {
         prevProps: {
           ...prevState.prevProps,
           search: nextProps.search,
         },
-        query: getQueryFromSearch(nextProps.search),
+        query: getQueryFromSearch(nextProps.search, false),
       };
     }
     return null;
@@ -307,7 +304,7 @@ export class EuiInMemoryTable<T> extends Component<
         search,
       },
       search: search,
-      query: getInitialQuery(search),
+      query: getQueryFromSearch(search, true),
       pageIndex: pageIndex || 0,
       pageSize,
       pageSizeOptions,
