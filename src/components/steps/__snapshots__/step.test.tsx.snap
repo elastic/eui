@@ -243,3 +243,32 @@ exports[`EuiStep props step 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiStep props titleSize 1`] = `
+<div
+  class="euiStep euiStep--small"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="Step 1"
+      class="euiStepNumber euiStep__circle euiStepNumber--small"
+    >
+      1
+    </div>
+    <p
+      class="euiTitle euiTitle--xsmall euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;

@@ -39,6 +39,14 @@ describe('EuiStepNumber', () => {
       });
     });
 
+    describe('has titleSize', () => {
+      it('is rendered', () => {
+        const component = render(<EuiStepNumber titleSize="xs" number={1} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('status', () => {
       STATUS.forEach(status => {
         test(`${status} is rendered`, () => {
