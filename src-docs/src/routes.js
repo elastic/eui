@@ -239,6 +239,8 @@ const slugify = str => {
   return parts.join('-');
 };
 
+const Routes = [];
+
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
@@ -266,6 +268,7 @@ const createExample = (example, customTitle) => {
     </EuiErrorBoundary>
   );
 
+  Routes.push({ component, path: slugify(customTitle || title) });
   return {
     name: customTitle || title,
     component,
@@ -467,7 +470,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 
 export default {
   navigation,
-
+  Routes,
   getRouteForPath: path => {
     // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
     const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;

@@ -4,7 +4,7 @@ import 'core-js/modules/es7.object.entries';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import configureStore from './store/configure_store';
 
@@ -72,14 +72,18 @@ const syncTitleWithRoutes = routesList => {
 syncTitleWithRoutes(routes);
 
 ReactDOM.render(
-  <Router>
-    <Provider store={store}>
-      <Route path="/">
-        <AppContainer>
-          <HomeView />
-        </AppContainer>
-      </Route>
-    </Provider>
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <AppContainer>
+        <Switch>
+          {Routes.Routes.map(({ path, component }) => {
+            return <Route exact path={`/${path}`} component={component} />;
+          })}
+          <Route exact path="/" component={HomeView} />
+          <Route path="/" component={NotFoundView} />
+        </Switch>
+      </AppContainer>
+    </Router>
+  </Provider>,
   document.getElementById('guide')
 );
