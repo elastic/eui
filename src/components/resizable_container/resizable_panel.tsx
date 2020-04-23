@@ -97,7 +97,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   const classes = classNames(
     {
-      euiScrollablePanel: scrollable,
+      euiResizablePanel: scrollable,
     },
     className
   );

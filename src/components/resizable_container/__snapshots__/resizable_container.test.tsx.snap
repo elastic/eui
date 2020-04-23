@@ -136,7 +136,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiScrollablePanel"
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
     tabindex="0"
@@ -150,7 +150,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     type="button"
   />
   <div
-    class="euiScrollablePanel"
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
     tabindex="0"

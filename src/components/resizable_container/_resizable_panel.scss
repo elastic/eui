@@ -1,0 +1,9 @@
+.euiResizablePanel {
+  @include euiScrollBar;
+  overflow-y: auto;
+
+  &:focus {
+    @include euiOverflowShadow;
+    @include euiScrollBar($euiColorPrimary, 0);
+  }
+}
