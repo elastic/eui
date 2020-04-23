@@ -28,11 +28,7 @@ const customSnippet = `<EuiEmptyPrompt
   title={<h2>You have no spice</h2>}
   titleSize="xs"
   body={bodyContent}
-  actions={
-    <EuiButton size="s" color="primary" fill>
-      Harvest spice
-    </EuiButton>
-  }
+  actions={actions}
 />`;
 
 import Simple from './simple';
