@@ -19,7 +19,7 @@
 
 import React, {
   FunctionComponent,
-  HTMLAttributes,
+  ButtonHTMLAttributes,
   KeyboardEvent,
   MouseEvent,
   TouchEvent,
@@ -45,7 +45,7 @@ interface EuiResizableButtonControls {
 
 export interface EuiResizableButtonProps
   extends Omit<
-      HTMLAttributes<HTMLButtonElement>,
+      ButtonHTMLAttributes<HTMLButtonElement>,
       keyof EuiResizableButtonControls
     >,
     CommonProps,
