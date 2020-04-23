@@ -100,6 +100,7 @@ const typeToPathMap = {
   documentEdit: 'documentEdit',
   documents: 'documents',
   dot: 'dot',
+  download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
   editorAlignRight: 'editor_align_right',
