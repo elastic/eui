@@ -139,6 +139,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     class="euiScrollablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
+    tabindex="0"
   >
     Testing
   </div>
@@ -152,6 +153,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     class="euiScrollablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
+    tabindex="0"
   >
     123
   </div>

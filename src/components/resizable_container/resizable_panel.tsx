@@ -145,6 +145,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       id={panelId.current}
       ref={divRef}
       style={styles}
+      tabIndex={scrollable ? 0 : undefined}
       {...rest}>
       {children}
     </div>
