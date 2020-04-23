@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  isValidElement,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
@@ -89,9 +94,9 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   icon?: ReactElement<EuiIconProps>;
 
   /**
-   * Accepts a url in string form
+   * Accepts a url in string form or ReactElement for a custom image component
    */
-  image?: string;
+  image?: string | ReactElement;
 
   /**
    * Content to be rendered between the description and the footer
@@ -229,7 +234,15 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let imageNode;
   if (image && layout === 'vertical') {
-    imageNode = <img className="euiCard__image" src={image} alt="" />;
+    if (isValidElement(image) || typeof image === 'string') {
+      imageNode = (
+        <div className="euiCard__image">
+          {isValidElement(image) ? image : <img src={image} alt="" />}
+        </div>
+      );
+    } else {
+      imageNode = null;
+    }
   }
 
   let iconNode;
