@@ -181,17 +181,19 @@ export const useContainerCallbacks = ({
           containerSize - state.resizersSize
         );
 
-        if (onPanelWidthChange) {
-          onPanelWidthChange({
-            [state.previousPanelId]: prevPanelSize,
-            [state.nextPanelId]: nextPanelSize,
-          });
-        } else {
-          prevPanel.setSize(prevPanelSize);
-          nextPanel.setSize(nextPanelSize);
-        }
+        if (prevPanelSize > 0 && nextPanelSize > 0) {
+          if (onPanelWidthChange) {
+            onPanelWidthChange({
+              [state.previousPanelId]: prevPanelSize,
+              [state.nextPanelId]: nextPanelSize,
+            });
+          } else {
+            prevPanel.setSize(prevPanelSize);
+            nextPanel.setSize(nextPanelSize);
+          }
 
-        setState({ ...state, currentResizerPos: x });
+          setState({ ...state, currentResizerPos: x });
+        }
       }
     },
     [
