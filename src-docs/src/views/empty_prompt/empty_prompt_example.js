@@ -13,11 +13,7 @@ const emptyPromptSnippet = `<EuiEmptyPrompt
   iconType="editorStrike"
   title={<h2>You have no spice</h2>}
   body={bodyContent}
-  actions={
-    <EuiButton color="primary" fill>
-      Harvest spice
-    </EuiButton>
-  }
+  actions={actions}
 />`;
 
 import Custom from './custom';
