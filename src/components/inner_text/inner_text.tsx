@@ -60,6 +60,7 @@ export function useInnerText(
       observer.observe(ref, {
         characterData: true,
         subtree: true,
+        childList: true,
       });
     }
     return () => {

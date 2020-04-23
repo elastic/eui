@@ -89,6 +89,11 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
    * Show the icon in input
    */
   showIcon?: boolean;
+
+  /**
+   * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
+   */
+  popoverPlacement?: ReactDatePickerProps['popperPlacement'];
 }
 
 type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
@@ -109,6 +114,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     showIcon: true,
     showTimeSelect: false,
     timeFormat: euiDatePickerDefaultTimeFormat,
+    popoverPlacement: 'bottom-start',
   };
 
   render() {
@@ -138,6 +144,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       openToDate,
       placeholder,
       popperClassName,
+      popoverPlacement,
       selected,
       shadow,
       shouldCloseOnSelect,
@@ -262,6 +269,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
                       utcOffset={utcOffset}
                       yearDropdownItemNumber={7}
                       accessibleMode
+                      popperPlacement={popoverPlacement}
                       {...rest}
                     />
                   );

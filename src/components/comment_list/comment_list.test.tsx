@@ -17,8 +17,24 @@
  * under the License.
  */
 
-export { EuiComment, EuiCommentProps } from './comment';
+import React from 'react';
+import { render } from 'enzyme';
+import { requiredProps } from '../../test/required_props';
 
-export { EuiCommentEvent, EuiCommentType } from './comment_event';
+import { EuiCommentList } from './comment_list';
 
-export { EuiCommentTimeline } from './comment_timeline';
+const comments = [
+  {
+    username: 'janed',
+  },
+];
+
+describe('EuiCommentList', () => {
+  test('is rendered', () => {
+    const component = render(
+      <EuiCommentList comments={comments} {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+});
