@@ -11,6 +11,7 @@ export default () => (
         <EuiResizablePanel initialSize={50} minSize="30%" scrollable>
           <EuiText>
             <p>{text}</p>
+            <a href="">Hello world</a>
           </EuiText>
         </EuiResizablePanel>
 
