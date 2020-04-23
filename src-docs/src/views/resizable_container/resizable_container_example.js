@@ -46,7 +46,7 @@ export const ResizableContainerExample = {
         <EuiText size="s">
           <p>
             This component is handy for various resizable containers.{' '}
-            <strong>EuiResizableContainer</strong> uses{' '}
+            <strong>EuiResizableContainer</strong> uses the{' '}
             <EuiLink
               href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
               external>
@@ -94,7 +94,7 @@ export const ResizableContainerExample = {
               incapsulated, you don&#39;t worry about it.
             </li>
             <li>
-              add <EuiCode>scrollable</EuiCode> prop to a panel to appear a nice
+              add <EuiCode>scrollable</EuiCode> prop to a panel to show a nice
               scrollbar for overflowed content
             </li>
           </ul>
