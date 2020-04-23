@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Applies `max-width: 100%` to `EuiPageBody` so inner flex-based items don't overflow their containers  ([#3375](https://github.com/elastic/eui/pull/3375))
 - Added `ReactElement` to `EuiCard` `image` property to allow custom component
+
 
 ## [`23.1.0`](https://github.com/elastic/eui/tree/v23.1.0)
 
