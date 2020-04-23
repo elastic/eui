@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
+import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -38,31 +38,39 @@ type Props = CommonProps &
     notificationColor?: EuiNotificationBadgeProps['color'];
   };
 
-export const EuiHeaderSectionItemButton: FunctionComponent<Props> = ({
-  onClick,
-  children,
-  className,
-  notification,
-  notificationColor,
-  ...rest
-}) => {
-  const classes = classNames('euiHeaderSectionItem__button', className);
+export type EuiHeaderSectionItemButtonRef = HTMLButtonElement;
 
-  let notificationBadge;
-  if (notification) {
-    notificationBadge = (
-      <EuiNotificationBadge
-        className="euiHeaderSectionItemButton__notification"
-        color={notificationColor}>
-        {notification}
-      </EuiNotificationBadge>
+export const EuiHeaderSectionItemButton = React.forwardRef<
+  EuiHeaderSectionItemButtonRef,
+  PropsWithChildren<Props>
+>(
+  (
+    { onClick, children, className, notification, notificationColor, ...rest },
+    ref
+  ) => {
+    const classes = classNames('euiHeaderSectionItem__button', className);
+
+    let notificationBadge;
+    if (notification) {
+      notificationBadge = (
+        <EuiNotificationBadge
+          className="euiHeaderSectionItemButton__notification"
+          color={notificationColor}>
+          {notification}
+        </EuiNotificationBadge>
+      );
+    }
+
+    return (
+      <button
+        className={classes}
+        ref={ref}
+        onClick={onClick}
+        type="button"
+        {...rest}>
+        {children}
+        {notificationBadge}
+      </button>
     );
   }
-
-  return (
-    <button className={classes} onClick={onClick} type="button" {...rest}>
-      {children}
-      {notificationBadge}
-    </button>
-  );
-};
+);
