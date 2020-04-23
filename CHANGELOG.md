@@ -2,6 +2,7 @@
 
 - Applied `max-width: 100%` to `EuiPageBody` so inner flex-based items don't overflow their containers  ([#3375](https://github.com/elastic/eui/pull/3375))
 - Added `titleSize` prop to `EuiStep` and `EuiSteps` ([#3340](https://github.com/elastic/eui/pull/3340))
+- Handled `ref` passed to `EuiHeaderSectionItemButton` ([#3378](https://github.com/elastic/eui/pull/3378))
 
 **Bug Fixes**
 
@@ -9,7 +10,6 @@
 - Added `download` glyph to `EuiIcon` ([#3364](https://github.com/elastic/eui/pull/3364))
 - Applies `max-width: 100%` to `EuiPageBody` so inner flex-based items don't overflow their containers  ([#3375](https://github.com/elastic/eui/pull/3375))
 - Added `ReactElement` to `EuiCard` `image` prop type to allow custom component ([#3370](https://github.com/elastic/eui/pull/3370))
-
 
 ## [`23.1.0`](https://github.com/elastic/eui/tree/v23.1.0)
 
