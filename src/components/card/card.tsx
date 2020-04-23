@@ -94,7 +94,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   icon?: ReactElement<EuiIconProps>;
 
   /**
-   * Accepts a url in string form or ReactElement for custom image component
+   * Accepts a url in string form or ReactElement for a custom image component
    */
   image?: string | ReactElement;
 
