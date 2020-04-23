@@ -131,6 +131,7 @@ export const useContainerCallbacks = ({
           containerSize - resizersSize
         );
 
+        setState({ ...state, isDragging: false });
         if (onPanelWidthChange) {
           onPanelWidthChange({
             [prevPanelId]: prevPanelSize,
@@ -142,6 +143,9 @@ export const useContainerCallbacks = ({
         }
       }
     },
+    // `setState` is safe to omit from `useCallback`
+    // (https://reactjs.org/docs/hooks-reference.html#usestate)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       getContainerSize,
       getResizerButtonsSize,
