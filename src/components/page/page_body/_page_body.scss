@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: stretch;
   flex: 1 1 100%;
+  // Make sure that inner flex layouts don't get larger than this container
+  max-width: 100%;
 
   &--restrictWidth-default,
   &--restrictWidth-custom {
