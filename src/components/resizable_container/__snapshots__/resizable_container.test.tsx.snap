@@ -14,7 +14,7 @@ exports[`EuiResizableContainer can adjust button spacing 1`] = `
     Testing
   </div>
   <button
-    aria-label="Press left/right to adjust panels size"
+    aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeSmall euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
     type="button"
@@ -43,7 +43,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
     Testing
   </div>
   <button
-    aria-label="Press left/right to adjust panels size"
+    aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
     type="button"
@@ -72,7 +72,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
     Testing
   </div>
   <button
-    aria-label="Press up/down to adjust panels size"
+    aria-label="Press up or down to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--vertical"
     data-test-subj="splitPanelResizer"
     type="button"
@@ -101,7 +101,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     Testing
   </div>
   <button
-    aria-label="Press left/right to adjust panels size"
+    aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
     type="button"
@@ -114,7 +114,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     123
   </div>
   <button
-    aria-label="Press left/right to adjust panels size"
+    aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
     type="button"
@@ -144,7 +144,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     Testing
   </div>
   <button
-    aria-label="Press left/right to adjust panels size"
+    aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
     type="button"
@@ -174,7 +174,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
     Testing
   </div>
   <button
-    aria-label="Press left/right to adjust panels size"
+    aria-label="Press left or right to adjust panels size"
     class="euiResizableButton euiResizableButton--sizeMedium euiResizableButton--horizontal"
     data-test-subj="splitPanelResizer"
     type="button"
