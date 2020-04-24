@@ -41,9 +41,25 @@ export const KitchenSink = () => {
     },
     {
       value: 'basicExample4',
-      title: 'Liner Gradient',
-      palette:
-        'linear-gradient(to right, rgb(0, 104, 55) 0%, rgb(45, 161, 84) 14%, rgb(134, 203, 102) 28%, rgb(205, 233, 131) 42%, rgb(255, 254, 189) 57%, rgb(253, 210, 127) 71%, rgb(248, 139, 81) 85%, rgb(164, 0, 37) 100%)',
+      title: 'Linear Gradient',
+      palette: [
+        {
+          stop: 100,
+          color: '#54B399',
+        },
+        {
+          stop: 250,
+          color: '#D36086',
+        },
+        {
+          stop: 350,
+          color: '#9170B8',
+        },
+        {
+          stop: 470,
+          color: '#F5A700',
+        },
+      ],
       type: 'gradient',
     },
   ];

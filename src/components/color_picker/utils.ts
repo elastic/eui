@@ -156,3 +156,47 @@ export const getChromaColor = (input?: string | null, allowOpacity = false) => {
   }
   return null;
 };
+
+// Given an array of objects with key value pairs stop/color or
+// given just an array of objects with hex colors returns a css linear-gradient
+export const getLinearGradient = (palette: any) => {
+  const intervals = palette.length;
+
+  const paletteHasStops = palette.some((item: any) => {
+    return typeof item === 'object';
+  });
+
+  let linearGradient;
+
+  if (paletteHasStops) {
+    linearGradient = `linear-gradient(to right, ${palette[0].color} 0%,`;
+
+    const divider = 100 / palette[palette.length - 1].stop;
+
+    for (let i = 1; i < intervals - 1; i++) {
+      linearGradient = `${linearGradient} ${palette[i].color}\ ${Math.round(
+        palette[i].stop * divider
+      )}%,`;
+    }
+
+    const linearGradientStyle = `${linearGradient} ${
+      palette[palette.length - 1].color
+    } 100%)`;
+
+    return linearGradientStyle;
+  } else {
+    linearGradient = `linear-gradient(to right, ${palette[0]} 0%,`;
+
+    for (let i = 1; i < intervals - 1; i++) {
+      linearGradient = `${linearGradient} ${palette[i]}\ ${Math.floor(
+        (100 * i) / (intervals - 1)
+      )}%,`;
+    }
+
+    const linearGradientStyle = `${linearGradient} ${
+      palette[palette.length - 1]
+    } 100%)`;
+
+    return linearGradientStyle;
+  }
+};

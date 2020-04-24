@@ -23,14 +23,16 @@ import {
   EuiSuperSelect,
   EuiSuperSelectProps,
   EuiFormControlLayoutProps,
-} from '../form';
+} from '../../form';
 
-import { EuiText } from '../text';
+import { EuiText } from '../../text';
 
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { CommonProps } from '../common';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { CommonProps } from '../../common';
 
-import { EuiIcon } from '../icon';
+import { EuiIcon } from '../../icon';
+
+import { getLinearGradient } from '../utils';
 
 export type EuiColorPalettePickerProps = CommonProps & {
   /**
@@ -53,14 +55,6 @@ export type EuiColorPalettePickerProps = CommonProps & {
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
-  /**
-   * Whether to render the alpha channel (opacity) value range slider.
-   */
-  /**
-   * Will format the text input in the provided format when possible (hue and saturation selection)
-   * Exceptions: Manual text input and swatches will display as-authored
-   * Default is to display the last format entered by the user
-   */
   valueOfSelected?: any;
 
   /**
@@ -68,7 +62,7 @@ export type EuiColorPalettePickerProps = CommonProps & {
    */
   onChange?: (options: any) => void;
   /**
-   * An array of objects. `value`: a unique value | `title`: the name of your palette (not required) | `type`: specify if your palette is a `gradient` or `stops` | `palette`: if your palette is a gradient pass a CSS linear gradient or if it's stops pass an array of hexadecimals
+   * An array of objects. `value`: a unique value | `title`: the name of your palette (not required) | `type`: specify if your palette is a `gradient` or `stops` | `palette`: pass an array of hexadecimals
    */
   palettes: EuiSuperSelectProps<any>['options'];
 };
@@ -89,24 +83,31 @@ export const EuiColorPalettePicker: FunctionComponent<
   prepend,
   ...rest
 }) => {
-  const getPalette = (palettes: any, type: string) =>
-    type === 'stops' ? (
-      <div className="euiColorPalettePicker__colorContainer">
-        {palettes.map((hexCode: string) => (
-          <span
-            title={hexCode}
-            style={{ backgroundColor: hexCode }}
-            key={hexCode}
-            className={'euiColorPalettePicker__colorStop'}
-          />
-        ))}
-      </div>
-    ) : (
-      <div
-        className="euiColorPalettePicker__colorContainer"
-        style={{ background: palettes }}
-      />
-    );
+  const getPalette = (palette: [], type: string) => {
+    if (type === 'stops') {
+      return (
+        <div className="euiColorPalettePicker__colorContainer">
+          {palette.map((hexCode: string, index: number) => (
+            <span
+              title={hexCode}
+              style={{ backgroundColor: hexCode }}
+              key={`${hexCode}-${index}`}
+              className={'euiColorPalettePicker__colorStop'}
+            />
+          ))}
+        </div>
+      );
+    } else {
+      const background = getLinearGradient(palette);
+
+      return (
+        <div
+          className="euiColorPalettePicker__colorContainer"
+          style={{ background }}
+        />
+      );
+    }
+  };
 
   const getButton = (title: any) => (
     <EuiFlexGroup gutterSize="xs">
