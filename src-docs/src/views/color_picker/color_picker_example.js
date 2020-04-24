@@ -301,7 +301,7 @@ export const ColorPickerExample = {
       demo: <ColorPicker />,
     },
     {
-      title: 'Color Palette picker',
+      title: 'Color palette picker',
       text: (
         <React.Fragment>
           <EuiText>
