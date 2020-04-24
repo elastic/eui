@@ -208,7 +208,8 @@ export const ElasticChartsPieExample = {
             title={
               <>
                 Elastic Charts&apos; partition charts do not currently support
-                the <EuiCode>{'<Settings />'}</EuiCode> component.
+                theming through the <EuiCode>{'<Settings />'}</EuiCode>{' '}
+                component.
               </>
             }>
             <p>
@@ -332,16 +333,19 @@ const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_
       title: 'Alternatives',
       text: (
         <>
-          <p>Definitely don’t use pie charts when:</p>
+          <p>
+            Most pie/donut/sunburst chart data can be <strong>better</strong>{' '}
+            explained using bar charts with different configurations. Though,
+            you should definitely <strong>not</strong> use pie charts when:
+          </p>
           <ul>
             <li>
-              You want users to compare the size of slices, use a bar chart
-              instead
+              You want users to <strong>compare</strong> the size of slices
             </li>
-            <li>You have more than 6 slices, consider a stacked bar chart</li>
+            <li>You have more than 6 slices</li>
             <li>
               You need multiple pie charts to compare multiple data sets, use
-              part-to-whole bar charts with percentages
+              part-to-whole bar charts with <strong>percentages</strong>
             </li>
             <li>You have negative values</li>
           </ul>

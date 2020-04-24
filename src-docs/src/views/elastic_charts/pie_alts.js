@@ -3,7 +3,7 @@ import React, { useState, Fragment, useContext } from 'react';
 import _ from 'lodash';
 
 import { ThemeContext } from '../../components';
-import { Chart, Settings, Axis } from '@elastic/charts';
+import { Chart, Settings, Axis, BarSeries } from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -21,7 +21,7 @@ import {
 } from '../../../../src/components';
 
 import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from './data';
-import { CHART_COMPONENTS, ChartCard } from './shared';
+import { ChartCard } from './shared';
 import {
   euiPaletteForTemperature,
   euiPaletteColorBlind,
@@ -36,14 +36,11 @@ export default () => {
   const [formatted, setFormatted] = useState(false);
   const [formattedData, setFormattedData] = useState(false);
   const [grouped, setGrouped] = useState(false);
-  const [chartType] = useState('BarSeries');
 
   const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
-
-  const ChartType = CHART_COMPONENTS[chartType];
 
   let color = euiPaletteColorBlind(2, 'group').slice(18, 20);
   if (formatted) {
@@ -88,22 +85,28 @@ export default () => {
   let isMisleadingChart = false;
   let isBadChart = false;
   let description =
-    'This chart is a good alternative to the standard mutli-tier pie (or sunburst) chart. It clearly represents the actual values and can easily see the ___.';
-  let title = 'Good chart';
+    'This chart is a good alternative to the standard mutli-tier pie (or sunburst) chart. It clearly represents the actual values while maintaining visual comparison.';
+  let title = 'Good alternative';
 
   if (formatted && !stacked) {
     isBadChart = true;
     title = 'Bad chart';
-    description = 'This means nothing';
+    description = 'This means nothing.';
   } else if (formatted) {
     if (formattedData) {
       description =
-        'With every category having the same total (usually already percentages), the chart is accurately representative of the data';
+        'With every category having the same total (usually already percentages), the chart is accurately representative of the data.';
     } else {
       isMisleadingChart = true;
       title = 'Misleading chart';
-      description =
-        'Showing percentages while the totals for each category are not the same can misrepresent the relative values. Use the toggle to see a better data set.';
+      description = (
+        <span>
+          Showing percentages while the{' '}
+          <strong>totals for each category are not the same</strong> can
+          misrepresent the relative values. Use the toggle to see a better data
+          set.
+        </span>
+      );
     }
   } else if (grouped) {
     description =
@@ -122,7 +125,7 @@ export default () => {
 
           <Chart size={{ height: 300 }}>
             <Settings theme={theme} rotation={rotated ? 90 : 0} />
-            <ChartType
+            <BarSeries
               id="rain"
               name="Rain"
               data={data}
@@ -160,7 +163,7 @@ export default () => {
               legendPosition="right"
               rotation={rotated ? 90 : 0}
             />
-            <ChartType
+            <BarSeries
               id="issues"
               name="Issues"
               data={data}
@@ -186,12 +189,24 @@ export default () => {
 
       <EuiFlexGrid columns={3}>
         <EuiFlexItem>
+          <ChartCard title={title} description={description}>
+            {formatted && stacked && (
+              <EuiSwitch
+                label="Use percentage data"
+                checked={formattedData}
+                onChange={e => setFormattedData(e.target.checked)}
+              />
+            )}
+          </ChartCard>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
           <ChartCard
             textAlign="left"
-            title="Toggles"
-            description="Compare understanding with that of the sunburst or treemap chart.">
+            title="Bar chart options"
+            description="Compare how the following options change the understanding of the data with that of the sunburst or treemap chart.">
             <EuiSwitch
-              label="Stacked"
+              label="Stacked bar chart"
               checked={stacked}
               onChange={e => setStacked(e.target.checked)}
             />
@@ -207,18 +222,6 @@ export default () => {
               checked={formatted}
               onChange={e => setFormatted(e.target.checked)}
             />
-          </ChartCard>
-        </EuiFlexItem>
-
-        <EuiFlexItem>
-          <ChartCard title={title} description={description}>
-            {formatted && stacked && (
-              <EuiSwitch
-                label="Use percentage data"
-                checked={formattedData}
-                onChange={e => setFormattedData(e.target.checked)}
-              />
-            )}
           </ChartCard>
         </EuiFlexItem>
 
@@ -249,31 +252,47 @@ export default () => {
   <Settings
     theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
     rotation={${rotated ? 90 : 0}}
-    showLegend={true}
-    legendPosition="right"
+    showLegend={${usesRainData ? 'false' : 'true'}}
+    ${usesRainData ? '' : 'legendPosition="right"'}
   />
-  <${chartType}
+  <BarSeries
     id="issues"
     name="Issues"
     data={${
-      ordered
-        ? "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['count'], ['desc'])"
-        : "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['vizType'], ['asc'])"
+      usesRainData
+        ? "[{season: 'Spring', days: 68, precipitation: 'rain'},{season: 'Summer',days: 46,precipitation: 'none'}]"
+        : "[{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}]"
     }}
-    xAccessor="vizType"
-    yAccessors={['count']}
-    splitSeriesAccessors={['issueType']}
-    ${stacked ? "stackAccessors={['issueType']}" : ''}
+    xAccessor="${usesRainData ? 'season' : 'vizType'}"
+    yAccessors={[${usesRainData ? "'days'" : "'count'"}]}
+    splitSeriesAccessors={[${usesRainData ? "'precipitation'" : "'issueType'"}]}
+    ${formatted ? 'stackAsPercentage={true}' : ''}
+    ${
+      stacked
+        ? `stackAccessors={[${
+            usesRainData ? "'precipitation'" : "'issueType'"
+          }]}`
+        : ''
+    }
+    color={${
+      formatted
+        ? 'euiPaletteForTemperature(3).reverse()'
+        : "euiPaletteColorBlind(2, 'group').slice(18, 20)"
+    }}
   />
   <Axis
     id="bottom-axis"
-    position={${rotated ? 'left' : 'bottom'}}
+    position={${rotated ? "'left'" : "'bottom'"}}
   />
   <Axis
     id="left-axis"
     showGridLines
-    position={${rotated ? 'bottom' : 'left'}}
-    ${formatted ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}' : ''}
+    position={${rotated ? "'bottom'" : "'left'"}}
+    ${
+      formatted
+        ? 'tickFormat={tick => `${Number(tick * 100).toFixed(0)}%`}'
+        : ''
+    }
   />
 </Chart>`}>
           {copy => (

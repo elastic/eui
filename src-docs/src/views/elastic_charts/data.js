@@ -471,33 +471,6 @@ export const BROWSER_DATA_2019 = [
   },
 ];
 
-export const BROWSER_DATA_2019_OTHER = [
-  {
-    browser: 'Chrome',
-    percent: 61.72,
-  },
-  {
-    browser: 'Safari',
-    percent: 15.23,
-  },
-  {
-    browser: 'Firefox',
-    percent: 4.66,
-  },
-  {
-    browser: 'Samsung Internet',
-    percent: '3.64',
-  },
-  {
-    browser: 'UC Browser',
-    percent: '3.83',
-  },
-  {
-    browser: 'Other',
-    percent: '10.92',
-  },
-];
-
 export const DAYS_OF_RAIN = [
   {
     season: 'Spring',
