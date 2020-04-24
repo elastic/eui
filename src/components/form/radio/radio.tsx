@@ -39,7 +39,7 @@ export interface RadioProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-interface idWithLable extends RadioProps {
+interface idWithLabel extends RadioProps {
   label: ReactNode;
   id: string;
 }
@@ -50,7 +50,7 @@ interface withId extends RadioProps {
 
 export type EuiRadioProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
-  ExclusiveUnion<ExclusiveUnion<RadioProps, idWithLable>, withId>;
+  ExclusiveUnion<ExclusiveUnion<RadioProps, idWithLabel>, withId>;
 
 export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   className,
