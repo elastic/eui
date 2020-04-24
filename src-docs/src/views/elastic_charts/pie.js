@@ -54,8 +54,8 @@ export default () => {
               ]}
               config={{
                 ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.pie
-                  : EUI_CHARTS_THEME_LIGHT.pie),
+                  ? EUI_CHARTS_THEME_DARK.partition
+                  : EUI_CHARTS_THEME_LIGHT.partition),
                 clockwiseSectors: false,
               }}
             />
@@ -95,8 +95,8 @@ export default () => {
               ]}
               config={{
                 ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.pie
-                  : EUI_CHARTS_THEME_LIGHT.pie),
+                  ? EUI_CHARTS_THEME_DARK.partition
+                  : EUI_CHARTS_THEME_LIGHT.partition),
                 emptySizeRatio: 0.4,
                 clockwiseSectors: false,
               }}

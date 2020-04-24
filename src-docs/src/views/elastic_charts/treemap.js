@@ -47,8 +47,8 @@ export default () => {
                   groupByRollup: d => d.total,
                   shape: {
                     fillColor: isDarkTheme
-                      ? EUI_CHARTS_THEME_DARK.pie.sectorLineStroke
-                      : EUI_CHARTS_THEME_LIGHT.pie.sectorLineStroke,
+                      ? EUI_CHARTS_THEME_DARK.partition.sectorLineStroke
+                      : EUI_CHARTS_THEME_LIGHT.partition.sectorLineStroke,
                   },
                   hideInLegend: true,
                 },
@@ -68,13 +68,13 @@ export default () => {
               ]}
               config={{
                 ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.pie
-                  : EUI_CHARTS_THEME_LIGHT.pie),
+                  ? EUI_CHARTS_THEME_DARK.partition
+                  : EUI_CHARTS_THEME_LIGHT.partition),
                 clockwiseSectors: false,
                 fillLabel: {
                   ...(isDarkTheme
-                    ? EUI_CHARTS_THEME_DARK.pie.fillLabel
-                    : EUI_CHARTS_THEME_LIGHT.pie.fillLabel),
+                    ? EUI_CHARTS_THEME_DARK.partition.fillLabel
+                    : EUI_CHARTS_THEME_LIGHT.partition.fillLabel),
                   textInvertible: true,
                 },
               }}
@@ -111,8 +111,8 @@ export default () => {
               config={{
                 partitionLayout: PartitionLayout.treemap,
                 ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.pie
-                  : EUI_CHARTS_THEME_LIGHT.pie),
+                  ? EUI_CHARTS_THEME_DARK.partition
+                  : EUI_CHARTS_THEME_LIGHT.partition),
               }}
             />
           </Chart>

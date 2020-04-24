@@ -36,7 +36,7 @@ const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
-  pie: PartitionConfig;
+  partition: Partial<Omit<PartitionConfig, 'fillLabel' | 'linkLabel'>>;
 }
 
 function createTheme(colors: any) {
@@ -54,7 +54,7 @@ function createTheme(colors: any) {
         padding: 0,
       },
     },
-    pie: {
+    partition: {
       fontFamily: fontFamily,
       minFontSize: 8,
       maxFontSize: 16,
@@ -70,7 +70,6 @@ function createTheme(colors: any) {
         textColor: colors.euiColorDarkestShade.rgba,
       },
       outerSizeRatio: 1,
-      // emptySizeRatio: 0.4, Use for Donut charts
       circlePadding: 4,
       sectorLineStroke: colors.euiColorEmptyShade.rgba,
       sectorLineWidth: 1.5,

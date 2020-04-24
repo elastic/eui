@@ -216,7 +216,7 @@ export const ElasticChartsPieExample = {
               {' '}
               EUI then provides a separate key for use with
               <EuiCode language="ts">
-                {'Partition.config={{...EUI_CHARTS_THEME_LIGHT.pie}}'}
+                {'Partition.config={{...EUI_CHARTS_THEME_LIGHT.partition}}'}
               </EuiCode>
               . The chart colors also need to be passed a different way via{' '}
               <EuiCode language="ts">
@@ -232,7 +232,7 @@ export const ElasticChartsPieExample = {
       demo: <PieChart />,
       snippet: `import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
 
-const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_LIGHT.pie;
+const euiPartitionConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.partition : EUI_CHARTS_THEME_LIGHT.partition;
 
 <Chart size={{height: 200}}>
   <Partition
@@ -253,7 +253,7 @@ const euiPieConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.pie : EUI_CHARTS_THEME_
       },
     ]}
     config={{
-      ...euiPieConfig,
+      ...euiPartitionConfig,
       emptySizeRatio: 0.4, // To create a donut chart
       clockwiseSectors: false, // For correct slice order
     }}
