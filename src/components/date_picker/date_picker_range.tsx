@@ -65,7 +65,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   className,
   startDateControl,
   endDateControl,
-  iconType = true,
+  iconType = false,
   fullWidth,
   isCustom,
   readOnly,
@@ -100,7 +100,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     startControl = cloneElement(
       startDateControl as ReactElement<EuiDatePickerProps>,
       {
-        showIcon: false,
+        showIcon: true,
         fullWidth: fullWidth,
         readOnly: readOnly,
       }
