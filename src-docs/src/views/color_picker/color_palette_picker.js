@@ -7,27 +7,21 @@ import {
   euiPaletteForStatus,
 } from '../../../../src/services';
 
-const basicExample = [
+const palettesExample = [
   {
-    value: 'basicExample1',
-    title: 'EUI basicPalette Cool',
+    value: 'palette1',
+    title: 'EUI Color Blind',
     palette: euiPaletteColorBlind(),
     type: 'stops',
   },
   {
-    value: 'basicExample2',
-    title: 'Paul Tor 14',
-    palette: ['red', 'blue'],
+    value: 'palette2',
+    title: 'Summer Colors',
+    palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'stops',
   },
   {
-    value: 'basicExample3',
-    title: 'EUI basicPalette for Status',
-    palette: euiPaletteForStatus(),
-    type: 'stops',
-  },
-  {
-    value: 'basicExample4',
+    value: 'palette4',
     title: 'Linear Gradient',
     palette: [
       {
@@ -50,10 +44,16 @@ const basicExample = [
     type: 'gradient',
   },
   {
-    value: 'basicExample5',
+    value: 'palette5',
     title: 'Linear For Status',
     palette: euiPaletteForStatus(),
     type: 'gradient',
+  },
+  {
+    value: 'palette6',
+    title: 'Electric Pop',
+    palette: ['#ff3f3f', '#ffcc06', '#0a9ad7', '#030000', '#fdf2dd'],
+    type: 'stops',
   },
   {
     title: 'Custom Option',
@@ -62,7 +62,7 @@ const basicExample = [
 ];
 
 export const ColorPalettePicker = () => {
-  const [basicPalette, setBasicPalette] = useState('basicExample1');
+  const [basicPalette, setBasicPalette] = useState('palette1');
 
   const onBasicPaletteChange = value => {
     setBasicPalette(value);
@@ -72,7 +72,7 @@ export const ColorPalettePicker = () => {
     <>
       <EuiFormRow label="Basic palette picker">
         <EuiColorPalettePicker
-          palettes={basicExample}
+          palettes={palettesExample}
           onChange={onBasicPaletteChange}
           valueOfSelected={basicPalette}
         />

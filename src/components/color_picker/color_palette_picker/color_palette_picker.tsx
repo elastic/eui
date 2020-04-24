@@ -88,7 +88,7 @@ export const EuiColorPalettePicker: FunctionComponent<
       return (
         <div className="euiColorPalettePicker__colorContainer">
           {palette.map((hexCode: string, index: number) => (
-            <span
+            <div
               title={hexCode}
               style={{ backgroundColor: hexCode }}
               key={`${hexCode}-${index}`}

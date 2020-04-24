@@ -306,10 +306,9 @@ export const ColorPickerExample = {
         <React.Fragment>
           <EuiText>
             <p>
-              Use <EuiCode>ColorPalettePicker</EuiCode> to apply color to data
-              like maps, bar charts or any other type of data visualization.
-              This component is perfect to assign colors automatically without
-              mapping the colors to a value or category.
+              Use <strong>EuiColorPalettePicker</strong> to select palettes to
+              further apply to data like maps, bar charts, or any other type of
+              data visualization.
             </p>
             <p>To display palettes simply pass an array of objects with:</p>
             <ul>
@@ -326,16 +325,9 @@ export const ColorPickerExample = {
                 or <EuiCode>stops</EuiCode>
               </li>
               <li>
-                <EuiCode>palette</EuiCode>: if your palette is a gradient a CSS
-                linear gradient or if it&apos;s <EuiCode>stops</EuiCode> pass an
-                array of hexadecimals
+                <EuiCode>palette</EuiCode>: pass an array of hex colors
               </li>
             </ul>
-            <p>
-              When you need to create a custom palette it&apos;s recommended to
-              prepend a button and trigger an <EuiCode>EuiModal</EuiCode> with
-              all the logic to create the palette.
-            </p>
           </EuiText>
         </React.Fragment>
       ),

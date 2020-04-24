@@ -6,11 +6,11 @@
     overflow: hidden;
     height: $euiSizeS;
     border: $euiBorderThin;
+    margin: 2px;
   }
 
   &__colorStop {
     flex: 1;
-    width: auto;
     height: $euiSizeS;
   }
 
