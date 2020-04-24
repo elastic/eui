@@ -1,5 +1,6 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, Fragment, useContext } from 'react';
-import { orderBy } from 'lodash';
+import _ from 'lodash';
 
 import { ThemeContext } from '../../components';
 import { Chart, Settings, Axis } from '@elastic/charts';
@@ -19,43 +20,23 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import { GITHUB_DATASET, GITHUB_DATASET_MOD } from './data';
+import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from './data';
 import { CHART_COMPONENTS, ChartCard } from './shared';
+import {
+  euiPaletteForTemperature,
+  euiPaletteColorBlind,
+} from '../../../../src/services';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
 
-  const [multi, setMulti] = useState(true);
   const [stacked, setStacked] = useState(true);
   const [rotated, setRotated] = useState(true);
   const [ordered, setOrdered] = useState(true);
-  const [formatted, setFormatted] = useState(true);
+  const [formatted, setFormatted] = useState(false);
+  const [formattedData, setFormattedData] = useState(false);
   const [grouped, setGrouped] = useState(false);
   const [chartType] = useState('BarSeries');
-
-  const onMultiChange = e => {
-    setMulti(e.target.checked);
-  };
-
-  const onGroupedChange = e => {
-    setGrouped(e.target.checked);
-  };
-
-  const onStackedChange = e => {
-    setStacked(e.target.checked);
-  };
-
-  const onRotatedChange = e => {
-    setRotated(e.target.checked);
-  };
-
-  const onOrderedChange = e => {
-    setOrdered(e.target.checked);
-  };
-
-  const onFormatChange = e => {
-    setFormatted(e.target.checked);
-  };
 
   const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
@@ -64,11 +45,38 @@ export default () => {
 
   const ChartType = CHART_COMPONENTS[chartType];
 
-  const DATASET = grouped ? GITHUB_DATASET_MOD : GITHUB_DATASET;
-  const canBeFormatted = multi && stacked;
+  let color = euiPaletteColorBlind(2, 'group').slice(18, 20);
+  if (formatted) {
+    color = euiPaletteForTemperature(3).reverse();
+  }
+
+  let data;
+  let usesRainData;
+  if (formatted && formattedData) {
+    data = ordered
+      ? _.orderBy(DAYS_OF_RAIN, ['precipitation', 'days'], ['desc', 'asc'])
+      : DAYS_OF_RAIN;
+    usesRainData = true;
+    color = euiPaletteForTemperature(3);
+  } else {
+    const DATASET = grouped ? GITHUB_DATASET_MOD : GITHUB_DATASET;
+    data = _.orderBy(DATASET, 'issueType', 'asc');
+
+    if (ordered) {
+      const totals = _.mapValues(_.groupBy(DATASET, 'vizType'), groups =>
+        _.sumBy(groups, 'count')
+      );
+
+      data = _.orderBy(DATASET, 'issueType', 'desc');
+      const sortedData = _.sortBy(data, [
+        ({ vizType }) => totals[vizType],
+      ]).reverse();
+      data = sortedData;
+    }
+  }
 
   const tickFormat = tick => {
-    if (canBeFormatted && formatted) {
+    if (formatted) {
       return `${Number(tick * 100).toFixed(0)}%`;
     } else if (!grouped && String(tick).length > 1) {
       return String(tick).substring(0, String(tick).length - 3);
@@ -77,47 +85,102 @@ export default () => {
     }
   };
 
+  let isMisleadingChart = false;
+  let isBadChart = false;
+  let description =
+    'This chart is a good alternative to the standard mutli-tier pie (or sunburst) chart. It clearly represents the actual values and can easily see the ___.';
+  let title = 'Good chart';
+
+  if (formatted && !stacked) {
+    isBadChart = true;
+    title = 'Bad chart';
+    description = 'This means nothing';
+  } else if (formatted) {
+    if (formattedData) {
+      description =
+        'With every category having the same total (usually already percentages), the chart is accurately representative of the data';
+    } else {
+      isMisleadingChart = true;
+      title = 'Misleading chart';
+      description =
+        'Showing percentages while the totals for each category are not the same can misrepresent the relative values. Use the toggle to see a better data set.';
+    }
+  } else if (grouped) {
+    description =
+      'Grouping "Other" is still valid to concentrate on the top values while still including all possible values to completely represent the whole.';
+  }
+
   return (
     <Fragment>
-      <EuiTitle size="xxs">
-        <h3>
-          {canBeFormatted && formatted ? 'Percentage' : 'Number'} of GitHub
-          issues per visualization type
-          {multi && ' by type of issue'}
-        </h3>
-      </EuiTitle>
+      {usesRainData ? (
+        <>
+          <EuiTitle size="xxs">
+            <h3>Percentage of rainfall per season</h3>
+          </EuiTitle>
 
-      <EuiSpacer size="s" />
+          <EuiSpacer size="s" />
 
-      <Chart size={{ height: 300 }}>
-        <Settings
-          theme={theme}
-          showLegend={multi}
-          legendPosition="right"
-          rotation={rotated ? 90 : 0}
-        />
-        <ChartType
-          id="issues"
-          name="Issues"
-          data={
-            ordered
-              ? orderBy(DATASET, ['count'], ['desc'])
-              : orderBy(DATASET, ['vizType'], ['asc'])
-          }
-          xAccessor="vizType"
-          yAccessors={['count']}
-          splitSeriesAccessors={multi ? ['issueType'] : undefined}
-          stackAccessors={stacked ? ['issueType'] : undefined}
-          stackAsPercentage={canBeFormatted && formatted}
-        />
-        <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
-        <Axis
-          id="left-axis"
-          position={rotated ? 'bottom' : 'left'}
-          tickFormat={tickFormat}
-          showGridLines
-        />
-      </Chart>
+          <Chart size={{ height: 300 }}>
+            <Settings theme={theme} rotation={rotated ? 90 : 0} />
+            <ChartType
+              id="rain"
+              name="Rain"
+              data={data}
+              xAccessor="season"
+              yAccessors={['days']}
+              splitSeriesAccessors={['precipitation']}
+              stackAccessors={stacked ? ['precipitation'] : undefined}
+              stackAsPercentage={formatted}
+              color={color}
+            />
+            <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
+            <Axis
+              id="left-axis"
+              position={rotated ? 'bottom' : 'left'}
+              tickFormat={tickFormat}
+              showGridLines
+            />
+          </Chart>
+        </>
+      ) : (
+        <>
+          <EuiTitle size="xxs">
+            <h3>
+              {formatted ? 'Percentage' : 'Number'} of GitHub issues per
+              visualization type
+            </h3>
+          </EuiTitle>
+
+          <EuiSpacer size="s" />
+
+          <Chart size={{ height: 300 }}>
+            <Settings
+              theme={theme}
+              showLegend={true}
+              legendPosition="right"
+              rotation={rotated ? 90 : 0}
+            />
+            <ChartType
+              id="issues"
+              name="Issues"
+              data={data}
+              xAccessor="vizType"
+              yAccessors={['count']}
+              splitSeriesAccessors={['issueType']}
+              stackAccessors={stacked ? ['issueType'] : undefined}
+              stackAsPercentage={formatted}
+              color={color}
+            />
+            <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
+            <Axis
+              id="left-axis"
+              position={rotated ? 'bottom' : 'left'}
+              tickFormat={tickFormat}
+              showGridLines
+            />
+          </Chart>
+        </>
+      )}
 
       <EuiSpacer />
 
@@ -125,39 +188,37 @@ export default () => {
         <EuiFlexItem>
           <ChartCard
             textAlign="left"
-            title="Multi level"
+            title="Toggles"
             description="Compare understanding with that of the sunburst or treemap chart.">
-            <EuiSwitch
-              label="Show multi-series"
-              checked={multi}
-              onChange={onMultiChange}
-            />
-            <EuiSpacer size="s" />
             <EuiSwitch
               label="Stacked"
               checked={stacked}
-              onChange={onStackedChange}
-              disabled={!multi}
+              onChange={e => setStacked(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
-              label="Show 'Other'"
+              label="Group 'Other' slices"
               checked={grouped}
-              onChange={onGroupedChange}
+              onChange={e => setGrouped(e.target.checked)}
+            />
+            <EuiSpacer size="s" />
+            <EuiSwitch
+              label="Show as percentages"
+              checked={formatted}
+              onChange={e => setFormatted(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <ChartCard
-            title="Percentages"
-            description="Pass values as percentages to whole to compare many.">
-            <EuiSwitch
-              label="Show as percentages"
-              checked={canBeFormatted && formatted}
-              onChange={onFormatChange}
-              disabled={!canBeFormatted}
-            />
+          <ChartCard title={title} description={description}>
+            {formatted && stacked && (
+              <EuiSwitch
+                label="Use percentage data"
+                checked={formattedData}
+                onChange={e => setFormattedData(e.target.checked)}
+              />
+            )}
           </ChartCard>
         </EuiFlexItem>
 
@@ -168,13 +229,13 @@ export default () => {
             <EuiSwitch
               label="Order by count descending"
               checked={ordered}
-              onChange={onOrderedChange}
+              onChange={e => setOrdered(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Rotate 90deg"
               checked={rotated}
-              onChange={onRotatedChange}
+              onChange={e => setRotated(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -188,8 +249,8 @@ export default () => {
   <Settings
     theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
     rotation={${rotated ? 90 : 0}}
-    showLegend={${multi}}
-    ${multi ? 'legendPosition="right"' : ''}
+    showLegend={true}
+    legendPosition="right"
   />
   <${chartType}
     id="issues"
@@ -201,7 +262,7 @@ export default () => {
     }}
     xAccessor="vizType"
     yAccessors={['count']}
-    ${multi ? "splitSeriesAccessors={['issueType']}" : ''}
+    splitSeriesAccessors={['issueType']}
     ${stacked ? "stackAccessors={['issueType']}" : ''}
   />
   <Axis
@@ -216,8 +277,16 @@ export default () => {
   />
 </Chart>`}>
           {copy => (
-            <EuiButton fill onClick={copy} iconType="copyClipboard">
-              Copy code of current configuration
+            <EuiButton
+              disabled={isMisleadingChart || isBadChart}
+              fill
+              onClick={copy}
+              iconType="copyClipboard">
+              {isBadChart || isMisleadingChart
+                ? isMisleadingChart
+                  ? 'This chart is misleading'
+                  : "Bad chart, don't copy"
+                : 'Copy code of current configuration'}
             </EuiButton>
           )}
         </EuiCopy>

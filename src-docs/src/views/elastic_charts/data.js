@@ -498,21 +498,45 @@ export const BROWSER_DATA_2019_OTHER = [
   },
 ];
 
-export const SEASONS = [
+export const DAYS_OF_RAIN = [
   {
     season: 'Spring',
-    inches: 10.19,
+    days: 68,
+    precipitation: 'rain',
   },
   {
     season: 'Summer',
-    inches: 8.23,
+    days: 46,
+    precipitation: 'rain',
   },
   {
     season: 'Fall',
-    inches: 11.45,
+    days: 72,
+    precipitation: 'rain',
   },
   {
     season: 'Winter',
-    inches: 3.89,
+    days: 24,
+    precipitation: 'rain',
+  },
+  {
+    season: 'Spring',
+    days: 22,
+    precipitation: 'none',
+  },
+  {
+    season: 'Summer',
+    days: 44,
+    precipitation: 'none',
+  },
+  {
+    season: 'Fall',
+    days: 18,
+    precipitation: 'none',
+  },
+  {
+    season: 'Winter',
+    days: 66,
+    precipitation: 'none',
   },
 ];
