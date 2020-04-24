@@ -83,8 +83,7 @@ export default () => {
             <EuiResizablePanel
               id={firstPanelId}
               size={sizes[firstPanelId]}
-              minSize="30%"
-              scrollable>
+              minSize="30%">
               <EuiText>
                 <p>{text}</p>
               </EuiText>
@@ -95,8 +94,7 @@ export default () => {
             <EuiResizablePanel
               id={secondPanelId}
               size={sizes[secondPanelId]}
-              minSize="200px"
-              scrollable>
+              minSize="200px">
               <EuiText>
                 <p>{text}</p>
               </EuiText>

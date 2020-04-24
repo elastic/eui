@@ -37,6 +37,26 @@ const ResizableContainerResetValuesHtml = renderToHtml(
 );
 const ResizableResizerSizeHtml = renderToHtml(ResizableResizerSize);
 
+const snippet = `<EuiResizableContainer style={{ height: '400px' }}>
+  {(EuiResizablePanel, EuiResizableButton) => (
+    <>
+      <EuiResizablePanel initialSize={50} minSize="200px">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+
+      <EuiResizableButton />
+
+      <EuiResizablePanel initialSize={50} minSize="200px">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+    </>
+  )}
+</EuiResizableContainer>`;
+
 export const ResizableContainerExample = {
   title: 'Resizable container',
   isNew: true,
@@ -94,13 +114,14 @@ export const ResizableContainerExample = {
               incapsulated, you don&#39;t worry about it.
             </li>
             <li>
-              add <EuiCode>scrollable</EuiCode> prop to a panel to show a nice
-              scrollbar for overflowed content
+              add <EuiCode>scrollable=false</EuiCode> prop to a panel to
+              eliminate overflow scrolling
             </li>
           </ul>
         </div>
       ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
+      snippet,
       demo: <ResizableContainerBasic />,
     },
     {

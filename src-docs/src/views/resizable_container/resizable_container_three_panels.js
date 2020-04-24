@@ -8,10 +8,7 @@ export default () => (
   <EuiResizableContainer style={{ height: '400px' }}>
     {(EuiResizablePanel, EuiResizableButton) => (
       <>
-        <EuiResizablePanel
-          initialSize={100 / 3}
-          minSize="50px"
-          scrollable={true}>
+        <EuiResizablePanel initialSize={100 / 3} minSize="50px">
           <EuiText>
             <p>{text}</p>
           </EuiText>
@@ -19,7 +16,7 @@ export default () => (
 
         <EuiResizableButton size="l" />
 
-        <EuiResizablePanel initialSize={100 / 3} scrollable={true}>
+        <EuiResizablePanel initialSize={100 / 3}>
           <EuiText>
             <p>{text}</p>
           </EuiText>
@@ -27,10 +24,7 @@ export default () => (
 
         <EuiResizableButton size="l" />
 
-        <EuiResizablePanel
-          initialSize={100 / 3}
-          minSize="10%"
-          scrollable={true}>
+        <EuiResizablePanel initialSize={100 / 3} minSize="10%">
           <EuiText>
             <p>{text}</p>
           </EuiText>

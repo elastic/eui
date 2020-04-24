@@ -7,7 +7,7 @@ exports[`EuiResizableContainer can adjust button spacing 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
   >
@@ -20,7 +20,7 @@ exports[`EuiResizableContainer can adjust button spacing 1`] = `
     type="button"
   />
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
   >
@@ -36,7 +36,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
   >
@@ -49,7 +49,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
     type="button"
   />
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
   >
@@ -65,7 +65,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:100%;height:50%;min-width:0;min-height:0px"
   >
@@ -78,7 +78,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
     type="button"
   />
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:100%;height:50%;min-width:0;min-height:0px"
   >
@@ -94,7 +94,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:33%;height:100%;min-width:0px;min-height:0"
   >
@@ -107,7 +107,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     type="button"
   />
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:33%;height:100%;min-width:0px;min-height:0"
   >
@@ -120,7 +120,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     type="button"
   />
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:33%;height:100%;min-width:0px;min-height:0"
   >
@@ -139,7 +139,6 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
-    tabindex="0"
   >
     Testing
   </div>
@@ -153,7 +152,6 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
-    tabindex="0"
   >
     123
   </div>
@@ -167,7 +165,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
   >
@@ -180,7 +178,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
     type="button"
   />
   <div
-    class=""
+    class="euiResizablePanel"
     id="generated-id"
     style="width:50%;height:100%;min-width:0px;min-height:0"
   >
