@@ -81,6 +81,9 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     className
   );
 
+  const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
+    e.currentTarget.focus();
+
   return (
     <EuiI18n
       tokens={[
@@ -99,6 +102,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           className={classes}
           data-test-subj="splitPanelResizer"
           type="button"
+          onClick={setFocus}
           {...rest}
         />
       )}

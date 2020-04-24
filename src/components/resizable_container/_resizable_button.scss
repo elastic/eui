@@ -25,11 +25,11 @@
     }
 
     &:before {
-      transform: translate3d(-2px, -50%, 0);
+      transform: translate(-2px, -50%);
     }
 
     &:after {
-      transform: translate3d(1px, -50%, 0);
+      transform: translate(1px, -50%);
     }
   }
 
@@ -43,11 +43,11 @@
     }
 
     &:before {
-      transform: translate3d(-50%, -2px, 0);
+      transform: translate(-50%, -2px);
     }
 
     &:after {
-      transform: translate3d(-50%, 1px, 0);
+      transform: translate(-50%, 1px);
     }
   }
 
@@ -82,11 +82,11 @@
       }
 
       &:before {
-        transform: translate3d(-1px, -50%, 0);
+        transform: translate(-1px, -50%);
       }
 
       &:after {
-        transform: translate3d(0, -50%, 0);
+        transform: translate(0, -50%);
       }
     }
 
@@ -97,11 +97,11 @@
       }
 
       &:before {
-        transform: translate3d(-50%, -1px, 0);
+        transform: translate(-50%, -1px);
       }
 
       &:after {
-        transform: translate3d(-50%, 0, 0);
+        transform: translate(-50%, 0);
       }
     }
   }
