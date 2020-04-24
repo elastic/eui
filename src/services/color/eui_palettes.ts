@@ -53,11 +53,20 @@ export const euiPaletteColorBlind = function(
   /**
    * Specifies if the direction of the color variations
    */
-  direction: 'lighter' | 'darker' | 'both' = 'lighter'
+  direction: 'lighter' | 'darker' | 'both' = 'lighter',
+  /**
+   * Use the default sort order, or re-sort them based on the color wheel (natural)
+   */
+  sortBy: 'default' | 'natural' = 'default',
+  /**
+   * Shift the sorting order by a certain number when used in conjunction with `'natural'` `sortBy`.
+   * Defaults to a number close to green.
+   */
+  sortShift: string = '-100'
 ): EuiPalette {
   let colors: string[] = [];
 
-  const base = [
+  let base = [
     '#54B399', // 0 green
     '#6092C0', // 1 blue
     '#D36086', // 2 dark pink
@@ -69,6 +78,20 @@ export const euiPaletteColorBlind = function(
     '#AA6556', // 8 brown
     '#E7664C', // 9 red
   ];
+
+  if (sortBy === 'natural') {
+    // Sort the colors based on the color wheel, but shifting the values based on sortShift
+    base = [...base].sort(function(a, b) {
+      return (
+        chroma(a)
+          .set('hsl.h', sortShift)
+          .hsl()[0] -
+        chroma(b)
+          .set('hsl.h', sortShift)
+          .hsl()[0]
+      );
+    });
+  }
 
   if (rotations > 1) {
     const palettes = base.map(color => {

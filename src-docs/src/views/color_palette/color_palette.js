@@ -32,6 +32,12 @@ const customPalettes = [
     palette: euiPaletteColorBlind(3, 'group', 'both'),
     code: "euiPaletteColorBlind(3, 'group', 'both')",
   },
+  {
+    title:
+      "The default sort order is close but not exactly aligned with the color wheel. To sort this better add the 'natural' sort param.",
+    palette: euiPaletteColorBlind(1, 'append', 'both', 'natural'),
+    code: "euiPaletteColorBlind(1, 'append', 'both', 'natural')",
+  },
 ];
 
 export default () => (
