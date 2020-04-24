@@ -19,11 +19,7 @@
 
 import React, { FunctionComponent } from 'react';
 
-import {
-  EuiSuperSelect,
-  EuiSuperSelectProps,
-  EuiFormControlLayoutProps,
-} from '../../form';
+import { EuiSuperSelect, EuiFormControlLayoutProps } from '../../form';
 
 import { EuiText } from '../../text';
 
@@ -55,7 +51,7 @@ export type EuiColorPalettePickerProps = CommonProps & {
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
-  valueOfSelected?: any;
+  valueOfSelected?: string;
 
   /**
    * You must pass an `onChange` function to handle the update of the value
@@ -64,7 +60,7 @@ export type EuiColorPalettePickerProps = CommonProps & {
   /**
    * An array of objects. `value`: a unique value | `title`: the name of your palette (not required) | `type`: specify if your palette is a `gradient` or `stops` | `palette`: pass an array of hexadecimals
    */
-  palettes: EuiSuperSelectProps<any>['options'];
+  palettes: any[];
 };
 
 export const EuiColorPalettePicker: FunctionComponent<

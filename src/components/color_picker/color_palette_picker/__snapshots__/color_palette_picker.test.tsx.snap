@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiColorPalettePicker is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <input
+      type="hidden"
+      value="palette1"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: 
+          <div
+            class="euiColorPalettePicker__colorContainer"
+          >
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#1fb0b2"
+              title="#1fb0b2"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#ffdb6d"
+              title="#ffdb6d"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#ee9191"
+              title="#ee9191"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#ffffff"
+              title="#ffffff"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#888094"
+              title="#888094"
+            />
+          </div>
+          , is selected
+        </span>
+        <button
+          aria-haspopup="true"
+          aria-label="aria-label"
+          aria-labelledby="undefined generated-id"
+          aria-selected="true"
+          class="euiSuperSelectControl testClass1 testClass2"
+          data-test-subj="test subject string"
+          role="option"
+          type="button"
+        >
+          <div
+            class="euiColorPalettePicker__colorContainer"
+          >
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#1fb0b2"
+              title="#1fb0b2"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#ffdb6d"
+              title="#ffdb6d"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#ee9191"
+              title="#ee9191"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#ffffff"
+              title="#ffffff"
+            />
+            <div
+              class="euiColorPalettePicker__colorStop"
+              style="background-color:#888094"
+              title="#888094"
+            />
+          </div>
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <div
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
