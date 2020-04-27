@@ -75,6 +75,8 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
     const {
       disabled: isOptionDisabled,
       className: optionClass,
+      id,
+      label,
       ...optionRest
     } = option;
     return (
@@ -82,11 +84,13 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
         className={classNames('euiRadioGroup__item', optionClass)}
         key={index}
         name={name}
-        checked={option.id === idSelected}
+        checked={id === idSelected}
         disabled={disabled || isOptionDisabled}
-        onChange={onChange.bind(null, option.id, option.value)}
+        onChange={onChange.bind(null, id, option.value)}
         compressed={compressed}
-        {...optionRest as EuiRadioProps}
+        id={id}
+        label={label}
+        {...optionRest}
       />
     );
   });
