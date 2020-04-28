@@ -23,6 +23,7 @@ export interface EuiResizablePanelController {
   id: string;
   setSize: (panelSize: number) => void;
   getSizePx: () => number;
+  minSize: string;
 }
 
 export class EuiResizablePanelRegistry {

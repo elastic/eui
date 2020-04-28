@@ -136,6 +136,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
           ? divRef.current!.getBoundingClientRect().width
           : divRef.current!.getBoundingClientRect().height;
       },
+      minSize,
     });
   }, [initialSize, isHorizontal, minSize, registry, size]);
 
