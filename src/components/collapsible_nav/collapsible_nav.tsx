@@ -100,13 +100,16 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
     if (navIsDocked) {
       document.body.classList.add('euiBody--collapsibleNavIsDocked');
+    } else if (isOpen) {
+      document.body.classList.add('euiBody--collapsibleNavIsOpen');
     }
 
     return () => {
       document.body.classList.remove('euiBody--collapsibleNavIsDocked');
+      document.body.classList.remove('euiBody--collapsibleNavIsOpen');
       window.removeEventListener('resize', functionToCallOnWindowResize);
     };
-  }, [navIsDocked, functionToCallOnWindowResize]);
+  }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.keyCode === keyCodes.ESCAPE) {
