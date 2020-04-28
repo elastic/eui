@@ -56,6 +56,7 @@ const palettes = [
     type: 'stops',
   },
   {
+    value: 'customOption',
     title: 'Custom Option',
     type: 'button',
   },
