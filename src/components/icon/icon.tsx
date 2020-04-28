@@ -1,7 +1,26 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   PureComponent,
   HTMLAttributes,
-  ReactElement,
+  ComponentType,
   SVGAttributes,
 } from 'react';
 import classNames from 'classnames';
@@ -81,6 +100,7 @@ const typeToPathMap = {
   documentEdit: 'documentEdit',
   documents: 'documents',
   dot: 'dot',
+  download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
   editorAlignRight: 'editor_align_right',
@@ -142,6 +162,7 @@ const typeToPathMap = {
   heartbeatApp: 'app_heartbeat',
   heatmap: 'heatmap',
   help: 'help',
+  home: 'home',
   iInCircle: 'iInCircle',
   image: 'image',
   importAction: 'import',
@@ -241,6 +262,7 @@ const typeToPathMap = {
   managementApp: 'app_management',
   mapMarker: 'map_marker',
   memory: 'memory',
+  menu: 'menu',
   menuLeft: 'menuLeft',
   menuRight: 'menuRight',
   merge: 'merge',
@@ -394,13 +416,26 @@ const typeToPathMap = {
   tokenShape: 'tokens/tokenShape',
   tokenGeo: 'tokens/tokenGeo',
   tokenRange: 'tokens/tokenRange',
+  tokenBinary: 'tokens/tokenBinary',
+  tokenJoin: 'tokens/tokenJoin',
+  tokenPercolator: 'tokens/tokenPercolator',
+  tokenFlattened: 'tokens/tokenFlattened',
+  tokenRankFeature: 'tokens/tokenRankFeature',
+  tokenRankFeatures: 'tokens/tokenRankFeatures',
+  tokenKeyword: 'tokens/tokenKeyword',
+  tokenCompletionSuggester: 'tokens/tokenCompletionSuggester',
+  tokenDenseVector: 'tokens/tokenDenseVector',
+  tokenText: 'tokens/tokenText',
+  tokenTokenCount: 'tokens/tokenTokenCount',
+  tokenSearchType: 'tokens/tokenSearchType',
+  tokenHistogram: 'tokens/tokenHistogram',
 };
 
 export const TYPES = keysOf(typeToPathMap);
 
 export type EuiIconType = keyof typeof typeToPathMap;
 
-export type IconType = EuiIconType | string | ReactElement;
+export type IconType = EuiIconType | string | ComponentType;
 
 const colorToClassMap = {
   default: null,
@@ -442,7 +477,7 @@ export type IconSize = keyof typeof sizeToClassNameMap;
 export type EuiIconProps = CommonProps &
   Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
     /**
-     * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
+     * `Enum` is any of the named icons listed in the docs, `string` is usually a URL to an SVG file, and `elementType` is any React SVG component
      */
     type: IconType;
     /**
@@ -473,7 +508,7 @@ export type EuiIconProps = CommonProps &
   };
 
 interface State {
-  icon: undefined | ReactElement | string;
+  icon: undefined | ComponentType | string;
   iconTitle: undefined | string;
   isLoading: boolean;
 }
@@ -610,7 +645,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       className
     );
 
-    const icon = this.state.icon || empty;
+    const icon = this.state.icon || (empty as ComponentType);
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
@@ -623,7 +658,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     if (typeof icon === 'string') {
       return (
         <img
-          alt={title}
+          alt={title ? title : ''}
           src={icon}
           className={classes}
           tabIndex={tabIndex}

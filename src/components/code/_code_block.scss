@@ -9,6 +9,13 @@
     height: 100%;
     overflow: auto;
     display: block;
+  }
+
+  .euiCodeBlock__pre--whiteSpacePre {
+    white-space: pre;
+  }
+
+  .euiCodeBlock__pre--whiteSpacePreWrap {
     white-space: pre-wrap;
   }
 

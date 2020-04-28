@@ -98,7 +98,19 @@ ReactDOM.render(
 
 ### "Module build failed" or "Module parse failed: Unexpected token" error
 
-If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` intead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
+If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` instead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
+
+## Customizing with `className`
+
+We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`. All components allow you to pass a custom `className` prop directly to the component which will then append this to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles so long as your styles are imported **after** the EUI import.
+
+```html
+<EuiButton className="myCustomClass__button" />
+
+// Renders as:
+
+<button class="euiButton myCustomClass__button" />
+```
 
 ## Using the `test-env` build
 
@@ -118,4 +130,4 @@ This eliminates the need to polyfill or transform the EUI build for an environme
 
 ### Mocked component files
 
-Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](testing).
+Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](testing.md).

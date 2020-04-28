@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSuperUpdateButton is rendered 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="primary"
+    fill={true}
+    iconType="refresh"
+    isDisabled={false}
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+  >
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton isDisabled 1`] = `
+<EuiToolTip
+  content={
+    <EuiI18n
+      default="Cannot update"
+      token="euiSuperUpdateButton.cannotUpdateTooltip"
+    />
+  }
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="primary"
+    fill={true}
+    iconType="refresh"
+    isDisabled={true}
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+  >
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton isLoading 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="secondary"
+    fill={true}
+    iconType="kqlFunction"
+    isDisabled={false}
+    isLoading={true}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+  >
+    <EuiI18n
+      default="Updating"
+      token="euiSuperUpdateButton.updatingButtonLabel"
+    />
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton needsUpdate 1`] = `
+<EuiToolTip
+  content={
+    <EuiI18n
+      default="Click to apply"
+      token="euiSuperUpdateButton.clickToApplyTooltip"
+    />
+  }
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="secondary"
+    fill={true}
+    iconType="kqlFunction"
+    isDisabled={false}
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+  >
+    <EuiI18n
+      default="Update"
+      token="euiSuperUpdateButton.updateButtonLabel"
+    />
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton showTooltip 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="primary"
+    fill={true}
+    iconType="refresh"
+    isDisabled={false}
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+  >
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
+  </EuiButton>
+</EuiToolTip>
+`;

@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Fragment,
   FunctionComponent,
@@ -9,7 +28,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import makeId from '../form_row/make_id';
+import { htmlIdGenerator } from '../../../services/accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -37,6 +56,18 @@ export interface EuiSuperSelectControlProps<T>
   value?: T;
 
   options?: Array<EuiSuperSelectOption<T>>;
+
+  /**
+   * Creates an input group with element(s) coming before input.
+   * `string` | `ReactElement` or an array of these
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+
+  /**
+   * Creates an input group with element(s) coming after input.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
 }
 
 export const EuiSuperSelectControl: <T extends string>(
@@ -52,6 +83,8 @@ export const EuiSuperSelectControl: <T extends string>(
   defaultValue,
   compressed = false,
   value,
+  prepend,
+  append,
   ...rest
 }) => {
   const classes = classNames(
@@ -59,6 +92,7 @@ export const EuiSuperSelectControl: <T extends string>(
     {
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,
+      'euiSuperSelectControl--inGroup': prepend || append,
       'euiSuperSelectControl-isLoading': isLoading,
       'euiSuperSelectControl-isInvalid': isInvalid,
     },
@@ -85,7 +119,7 @@ export const EuiSuperSelectControl: <T extends string>(
     side: 'right',
   };
 
-  const screenReaderId = makeId();
+  const screenReaderId = htmlIdGenerator()();
 
   return (
     <Fragment>
@@ -101,7 +135,9 @@ export const EuiSuperSelectControl: <T extends string>(
         icon={icon}
         fullWidth={fullWidth}
         isLoading={isLoading}
-        compressed={compressed}>
+        compressed={compressed}
+        prepend={prepend}
+        append={append}>
         {/*
           This is read when the user tabs in. The comma is important,
           otherwise the screen reader often combines the text.
@@ -115,7 +151,6 @@ export const EuiSuperSelectControl: <T extends string>(
             />
           </span>
         </EuiScreenReaderOnly>
-
         <button
           role="option"
           type="button"

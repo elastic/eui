@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { defaults } from 'lodash';
 import classNames from 'classnames';
@@ -89,6 +108,13 @@ export interface TokenProps {
    * Size of the token
    */
   size?: TokenSize;
+  /**
+   * The icon's title. Required for accessibility
+   */
+  title?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
 }
 
 export type EuiTokenProps = CommonProps &
@@ -103,6 +129,10 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   size = 's',
   style = {},
   className,
+  title,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
   ...rest
 }) => {
   // Set the icon size to the same as the passed size
@@ -171,7 +201,14 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   return (
     <span className={classes} style={style} {...rest}>
-      <EuiIcon type={iconType} size={finalSize} />
+      <EuiIcon
+        type={iconType}
+        size={finalSize}
+        title={title}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+        aria-describedby={ariaDescribedby}
+      />
     </span>
   );
 };

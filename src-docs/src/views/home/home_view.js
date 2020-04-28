@@ -184,26 +184,28 @@ export const HomeView = () => (
     <EuiSpacer />
     <EuiText grow={false}>
       <h2>Design goals</h2>
-      <p>EUI has the following primary goals...</p>
       <dl>
         <dt>EUI is accessible to everyone.</dt>
         <dd>
-          Use high contrast, color-blind safe palettes and proper aria labels.
+          Uses high contrast, color-blind safe palettes and tested with most
+          assistive technology.
         </dd>
         <dt>EUI is themable.</dt>
         <dd>
-          Theming should involve changing fewer than a dozen lines of code. This
-          means strict variable usage.
+          Theming involves changing fewer than a dozen lines of code. This means
+          strict variable usage.
+        </dd>
+        <dt>EUI is flexible and composable.</dt>
+        <dd>
+          Configurable enough to meet the needs of a wide array of contexts
+          while maintaining brand and low-level consistency.
         </dd>
         <dt>EUI is responsive.</dt>
-        <dd>
-          Currently we target mobile, laptop, desktop, and wide desktop
-          breakpoints.
-        </dd>
+        <dd>Supports multiple window sizes from large desktop to mobile.</dd>
+        <dt>EUI is well documented and tested.</dt>
+        <dd>Code is friendly to the novice and expert alike.</dd>
         <dt>EUI is playful.</dt>
-        <dd>Consistent use of animation can bring life to our design.</dd>
-        <dt>EUI is documented and has tests.</dt>
-        <dd>Make sure the code is friendly to the novice and expert alike.</dd>
+        <dd>Simple and consistent use of animation brings life.</dd>
       </dl>
     </EuiText>
   </div>

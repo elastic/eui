@@ -1,6 +1,24 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component } from 'react';
-import { EuiFieldSearch } from '../form';
-import { CommonProps } from '../common';
+import { EuiFieldSearch, EuiFieldSearchProps } from '../form';
 
 export interface SchemaType {
   strict?: boolean;
@@ -8,20 +26,10 @@ export interface SchemaType {
   flags?: string[];
 }
 
-export interface SearchBoxConfigProps extends CommonProps {
-  placeholder?: string;
-  incremental?: boolean;
-  // Boolean values are not meaningful to this component, but are allowed so that other
-  // components can use e.g. a true value to mean "auto-derive a schema". See EuiInMemoryTable.
-  // Admittedly, this is a bit of a hack.
-  schema?: SchemaType | boolean;
-}
-
-export interface EuiSearchBoxProps extends SearchBoxConfigProps {
+export interface EuiSearchBoxProps extends EuiFieldSearchProps {
   query: string;
+  // This is optional in EuiFieldSearchProps
   onSearch: (queryText: string) => void;
-  isInvalid?: boolean;
-  title?: string;
 }
 
 type DefaultProps = Pick<EuiSearchBoxProps, 'placeholder' | 'incremental'>;
@@ -41,15 +49,7 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
   }
 
   render() {
-    const {
-      placeholder,
-      query,
-      incremental,
-      onSearch,
-      isInvalid,
-      title,
-      ...rest
-    } = this.props;
+    const { query, incremental, ...rest } = this.props;
 
     let ariaLabel;
     if (incremental) {
@@ -64,13 +64,9 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
       <EuiFieldSearch
         inputRef={input => (this.inputElement = input)}
         fullWidth
-        placeholder={placeholder}
         defaultValue={query}
         incremental={incremental}
-        onSearch={query => onSearch(query)}
-        isInvalid={isInvalid}
         aria-label={ariaLabel}
-        title={title}
         {...rest}
       />
     );

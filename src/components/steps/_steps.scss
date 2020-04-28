@@ -18,6 +18,20 @@
     background-repeat: no-repeat;
     background-position: left $euiSizeXXL;
   }
+
+  &--small {
+    &:not(:last-of-type) {
+      background-position: left -#{$euiSizeXS} top $euiSizeXL;
+    }
+
+    .euiStep__content {
+      // Align the content's contents with the title
+      padding-left: ($euiStepNumberSmallSize / 2) + $euiStepNumberMargin;
+
+      // Align content border to horizontal center of step number
+      margin-left: ($euiStepNumberSmallSize / 2);
+    }
+  }
 }
 
 .euiStep__titleWrapper {

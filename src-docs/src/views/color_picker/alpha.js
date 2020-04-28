@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
-import { useColorPicker } from './utils';
+import { useColorPickerState } from '../../../../src/services';
 
 export const Alpha = () => {
-  const [color, setColor, errors] = useColorPicker('#D36086');
-  const [color2, setColor2, errors2] = useColorPicker('211, 96, 134');
+  const [color, setColor, errors] = useColorPickerState('#D36086');
+  const [color2, setColor2, errors2] = useColorPickerState('211, 96, 134');
 
   const customSwatches = [
     '#54B399',
