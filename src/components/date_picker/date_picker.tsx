@@ -71,6 +71,10 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   onClear?: MouseEventHandler<HTMLButtonElement>;
 
   /**
+   * Which icon in input
+   */
+  optionalIcon?: EuiFormControlLayoutIconsProps['icon'];
+  /**
    * Opens to this date (in moment format) on first press, regardless of selection
    */
   openToDate?: Moment;
@@ -156,6 +160,8 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       ...rest
     } = this.props;
 
+    let { optionalIcon } = this.props;
+
     const classes = classNames('euiDatePicker', {
       'euiDatePicker--shadow': shadow,
       'euiDatePicker--inline': inline,
@@ -173,13 +179,14 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       className
     );
 
-    let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
-    if (inline || customInput || !showIcon) {
-      optionalIcon = undefined;
-    } else if (showTimeSelectOnly) {
-      optionalIcon = 'clock';
-    } else {
-      optionalIcon = 'calendar';
+    if (!optionalIcon) {
+      if (inline || customInput || !showIcon) {
+        optionalIcon = undefined;
+      } else if (showTimeSelectOnly) {
+        optionalIcon = 'clock';
+      } else {
+        optionalIcon = 'calendar';
+      }
     }
 
     // In case the consumer did not alter the default date format but wants
