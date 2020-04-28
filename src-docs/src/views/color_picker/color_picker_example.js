@@ -27,7 +27,18 @@ const colorPickerSnippet = `<EuiColorPicker
 import { ColorPalettePicker } from './color_palette_picker';
 const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
 const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
-const colorPalettePickerSnippet = `<EuiColorPalettePicker />
+const colorPalettePickerSnippet = `<EuiColorPalettePicker 
+  palettes={[
+    {
+      value: 'palette1',
+      title: 'Palette 1',
+      palette: ['#ff3f3f', '#ffcc06'],
+      type: 'stops',
+    },
+  ]}
+  onChange={onPaletteChange}
+  valueOfSelected={palette}
+/>
 `;
 
 import { ColorStops } from './color_stops';
@@ -321,11 +332,17 @@ export const ColorPickerExample = {
               </li>
               <li>
                 <EuiCode>type</EuiCode>: specify if your palette is a{' '}
-                <EuiCode>gradient</EuiCode>
-                or <EuiCode>stops</EuiCode>
+                <EuiCode>{'"gradient"'}</EuiCode>
+                or <EuiCode>{'"stops"'}</EuiCode>
               </li>
               <li>
-                <EuiCode>palette</EuiCode>: pass an array of hex colors
+                <EuiCode>palette</EuiCode>: an array of hex colors{' '}
+                <EuiCode language="js">{'["#1fb0b2", "#ffdb6d"]'}</EuiCode>. For
+                <EuiCode language="js">{'type: "gradient"'}</EuiCode> you can
+                specify the stops{' '}
+                <EuiCode language="js">
+                  {'{ stop: 100, color: "#54B399" }'}
+                </EuiCode>
               </li>
             </ul>
           </EuiText>

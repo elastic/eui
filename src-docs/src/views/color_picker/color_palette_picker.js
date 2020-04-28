@@ -3,8 +3,8 @@ import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
 } from '../../../../src/services';
-
-import { EuiColorPalettePicker, EuiFormRow } from '../../../../src/components';
+import { EuiColorPalettePicker } from '../../../../src/components';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 const palettes = [
   {
@@ -68,12 +68,12 @@ export const ColorPalettePicker = () => {
   };
 
   return (
-    <EuiFormRow label="Select a palette:">
+    <DisplayToggles canPrepend={true} canAppend={true}>
       <EuiColorPalettePicker
         palettes={palettes}
         onChange={onPaletteChange}
         valueOfSelected={palette}
       />
-    </EuiFormRow>
+    </DisplayToggles>
   );
 };
