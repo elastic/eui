@@ -26,7 +26,11 @@ export default () => {
   /**
    * Create a 3 rotation palette (one for each level)
    */
-  const groupedPalette = euiPaletteColorBlind(3, 'group');
+  const groupedPalette = euiPaletteColorBlind({
+    rotations: 3,
+    order: 'group',
+    sortBy: 'natural',
+  });
 
   return (
     <div>

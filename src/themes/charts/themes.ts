@@ -25,6 +25,8 @@ import {
   PartitionConfig,
 } from '@elastic/charts';
 
+import { RecursivePartial } from '../../components/common';
+
 // @ts-ignore
 import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
 // @ts-ignore
@@ -36,10 +38,10 @@ const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
-  partition: Partial<Omit<PartitionConfig, 'fillLabel' | 'linkLabel'>>;
+  partition: RecursivePartial<PartitionConfig>;
 }
 
-function createTheme(colors: any) {
+function createTheme(colors: any): EuiChartThemeType {
   return {
     lineAnnotation: {
       line: {

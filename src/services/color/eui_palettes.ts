@@ -41,29 +41,37 @@ const euiPalette = function(
   return colorPalette(colors, steps, diverge, categorical);
 };
 
-export const euiPaletteColorBlind = function(
+export interface EuiPaletteColorBlindProps {
   /**
    * How many variations of the series is needed
    */
-  rotations: number = 1,
+  rotations?: number;
   /**
    * Order similar colors as `group`s or just `append` each variation
    */
-  order: 'append' | 'group' = 'append',
+  order?: 'append' | 'group';
   /**
    * Specifies if the direction of the color variations
    */
-  direction: 'lighter' | 'darker' | 'both' = 'lighter',
+  direction?: 'lighter' | 'darker' | 'both';
   /**
    * Use the default sort order, or re-sort them based on the color wheel (natural)
    */
-  sortBy: 'default' | 'natural' = 'default',
+  sortBy?: 'default' | 'natural';
   /**
    * Shift the sorting order by a certain number when used in conjunction with `'natural'` `sortBy`.
    * Defaults to a number close to green.
    */
-  sortShift: string = '-100'
-): EuiPalette {
+  sortShift?: string;
+}
+
+export const euiPaletteColorBlind = ({
+  rotations = 1,
+  order = 'append',
+  direction = 'lighter',
+  sortBy = 'default',
+  sortShift = '-100',
+}: EuiPaletteColorBlindProps = {}): EuiPalette => {
   let colors: string[] = [];
 
   let base = [
@@ -130,8 +138,10 @@ export const euiPaletteColorBlind = function(
  * Color blind palette with text is meant for use when text is applied on top of the color.
  * It increases the brightness of the color to give the text more contrast.
  */
-export const euiPaletteColorBlindBehindText = function(): EuiPalette {
-  const originalPalette = euiPaletteColorBlind();
+export const euiPaletteColorBlindBehindText = (
+  paletteProps: EuiPaletteColorBlindProps = {}
+) => {
+  const originalPalette = euiPaletteColorBlind(paletteProps);
   const newPalette = originalPalette.map(color =>
     chroma(color)
       .brighten(0.5)

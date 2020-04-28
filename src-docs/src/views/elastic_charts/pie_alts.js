@@ -42,7 +42,10 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  let color = euiPaletteColorBlind(2, 'group').slice(18, 20);
+  let color = euiPaletteColorBlind({ rotations: 2, order: 'group' }).slice(
+    18,
+    20
+  );
   if (formatted) {
     color = euiPaletteForTemperature(3).reverse();
   }
@@ -277,7 +280,7 @@ export default () => {
     color={${
       formatted
         ? 'euiPaletteForTemperature(3).reverse()'
-        : "euiPaletteColorBlind(2, 'group').slice(18, 20)"
+        : "euiPaletteColorBlind({ rotations: 2, order: 'group' }).slice(18, 20)"
     }}
   />
   <Axis
