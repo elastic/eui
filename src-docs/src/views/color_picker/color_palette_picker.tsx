@@ -3,7 +3,8 @@ import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
 } from '../../../../src/services';
-import { EuiColorPalettePicker } from '../../../../src/components';
+import { EuiColorPalettePicker } from '../../../../src/components/color_picker/color_palette_picker';
+// @ts-ignore
 import { DisplayToggles } from '../form_controls/display_toggles';
 
 const palettes = [
@@ -45,7 +46,7 @@ const palettes = [
   {
     value: 'palette5',
     title: 'For Status (gradient)',
-    palette: euiPaletteForStatus(),
+    palette: euiPaletteForStatus(5),
     type: 'gradient',
   },
   {
@@ -63,7 +64,7 @@ const palettes = [
 export const ColorPalettePicker = () => {
   const [palette, setPalette] = useState('palette1');
 
-  const onPaletteChange = value => {
+  const onPaletteChange = (value: any) => {
     setPalette(value);
   };
 

@@ -26,8 +26,6 @@ import { EuiText } from '../../text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { CommonProps } from '../../common';
 
-import { EuiIcon } from '../../icon';
-
 import { getLinearGradient } from '../utils';
 
 export type EuiColorPalettePickerProps = CommonProps & {
@@ -105,18 +103,7 @@ export const EuiColorPalettePicker: FunctionComponent<
     }
   };
 
-  const getButton = (title: any) => (
-    <EuiFlexGroup gutterSize="xs">
-      <EuiFlexItem>
-        <EuiText size="xs">
-          <span>{title}</span>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiIcon type="gear" />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  );
+  const getButton = (title: any) => title;
 
   const paletteOptions = palettes.map((item: any) => {
     return {
