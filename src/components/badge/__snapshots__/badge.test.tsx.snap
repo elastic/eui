@@ -122,19 +122,19 @@ exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
 
 exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
 <span
+  aria-label="aria-label"
   class="euiBadge euiBadge--iconLeft testClass1 testClass2"
+  data-test-subj="test subject string"
   style="background-color:#d3dae6;color:#000"
 >
   <span
     class="euiBadge__content"
   >
-    <button
-      aria-label="aria-label"
-      class="euiBadge__childButton"
-      data-test-subj="test subject string"
+    <span
+      class="euiBadge__text"
     >
       Content
-    </button>
+    </span>
   </span>
 </span>
 `;

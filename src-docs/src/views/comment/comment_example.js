@@ -56,12 +56,7 @@ const commentTimelineIconsSnippet = [
 `,
   `<EuiComment timelineIcon="tag" username="janed" />
 `,
-  `<EuiComment timelineIcon={
-    <EuiAvatar
-      name="Jane D"
-      size="l"
-    />
-  } username="janed">
+  `<EuiComment timelineIcon={avatar} username="janed">
   {body}
 </EuiComment>
 `,
