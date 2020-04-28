@@ -2,12 +2,15 @@ import React from 'react';
 
 import { Link } from 'react-router';
 
-import imageIcons from '../../images/icons.jpg';
+import imageIcons from '../../images/icons.svg';
 import imageButtons from '../../images/buttons.svg';
 import imageTables from '../../images/tables.svg';
 import imageForms from '../../images/forms.svg';
 import imageFlexgrid from '../../images/flexgrid.svg';
 import imageCards from '../../images/cards.svg';
+import imagePages from '../../images/page.svg';
+import imageText from '../../images/text.svg';
+import imageCharts from '../../images/charts.svg';
 import logoFigma from '../../images/logo-figma.svg';
 
 import {
@@ -146,20 +149,29 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          href="#/display/text"
+          textAlign="left"
+          image={imageText}
+          title="Text"
+          description="Simple HTML text like paragraphs and lists are wrapped in a single text component for styling"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
+          href="#/layout/page"
+          textAlign="left"
+          image={imagePages}
+          title="Pages"
+          description="Layout your whole application page with this component and its series of child components"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
           href="#/layout/flex"
           textAlign="left"
           image={imageFlexgrid}
           title="Flexible layouts"
           description="Create layouts by using flex groups, grids, and items"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/tabular-content/tables"
-          textAlign="left"
-          image={imageTables}
-          title="Tables"
-          description="Build tables from individual components or high level wrappers"
         />
       </EuiFlexItem>
       <EuiFlexItem>
@@ -178,6 +190,24 @@ export const HomeView = () => (
           image={imageForms}
           title="Forms"
           description="Input tags, layouts, and validation for your forms"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
+          href="#/tabular-content/tables"
+          textAlign="left"
+          image={imageTables}
+          title="Tables"
+          description="Build tables from individual components or high level wrappers"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
+          href="#/elastic-charts/creating-charts"
+          textAlign="left"
+          image={imageCharts}
+          title="Charts"
+          description="Learn charting best practices and how to integrate EUI with the Elastic Charts library"
         />
       </EuiFlexItem>
     </EuiFlexGrid>
