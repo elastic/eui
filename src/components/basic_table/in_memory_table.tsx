@@ -394,10 +394,14 @@ export class EuiInMemoryTable<T> extends Component<
     }
 
     // Reset pagination state.
-    this.setState({
+    this.setState(state => ({
+      prevProps: {
+        ...state.prevProps,
+        search,
+      },
       query,
       pageIndex: 0,
-    });
+    }));
   };
 
   renderSearchBar() {
