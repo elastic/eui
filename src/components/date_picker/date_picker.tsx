@@ -91,6 +91,11 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   showIcon?: boolean;
 
   /**
+   * Pass an icon type to change the default `calendar` or `clock` icon
+   */
+  iconType?: EuiFormControlLayoutIconsProps['icon'];
+
+  /**
    * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
    */
   popoverPlacement?: ReactDatePickerProps['popperPlacement'];
@@ -129,6 +134,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       excludeDates,
       filterDate,
       fullWidth,
+      iconType,
       injectTimes,
       inline,
       inputRef,
@@ -176,6 +182,8 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
     if (inline || customInput || !showIcon) {
       optionalIcon = undefined;
+    } else if (iconType) {
+      optionalIcon = iconType;
     } else if (showTimeSelectOnly) {
       optionalIcon = 'clock';
     } else {

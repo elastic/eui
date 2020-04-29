@@ -6,13 +6,6 @@ exports[`EuiDatePickerRange is rendered 1`] = `
   class="euiDatePickerRange testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span
-    class="euiDatePickerRange__icon"
-  >
-    <div
-      data-euiicon-type="calendar"
-    />
-  </span>
   <span>
     <span
       class="euiDatePicker euiDatePicker--shadow"
@@ -31,11 +24,24 @@ exports[`EuiDatePickerRange is rendered 1`] = `
             >
               <input
                 aria-label=""
-                class="euiDatePicker euiFieldText"
+                class="euiDatePicker euiFieldText euiFieldText--withIcon"
                 type="text"
                 value=""
               />
             </div>
+          </div>
+          <div
+            class="euiFormControlLayoutIcons"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <div
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="calendar"
+              />
+            </span>
           </div>
         </div>
       </div>

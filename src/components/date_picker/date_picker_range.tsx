@@ -27,7 +27,7 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
-import { EuiIcon, IconType } from '../icon';
+import { IconType } from '../icon';
 import { CommonProps } from '../common';
 import { EuiDatePickerProps } from './date_picker';
 
@@ -80,19 +80,6 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     className
   );
 
-  // Set the icon for the entire group instead of per control
-  let optionalIcon;
-  if (iconType) {
-    const icon = typeof iconType === 'string' ? iconType : 'calendar';
-    optionalIcon = (
-      <span className="euiDatePickerRange__icon">
-        <EuiIcon type={icon} />
-      </span>
-    );
-  } else {
-    optionalIcon = null;
-  }
-
   let startControl = startDateControl;
   let endControl = endDateControl;
 
@@ -100,9 +87,10 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     startControl = cloneElement(
       startDateControl as ReactElement<EuiDatePickerProps>,
       {
-        showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
+        iconType: typeof iconType === 'boolean' ? undefined : iconType,
+        showIcon: !!iconType,
       }
     );
 
@@ -123,7 +111,6 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         children
       ) : (
         <Fragment>
-          {optionalIcon}
           {startControl}
           <EuiText
             className="euiDatePickerRange__delimeter"
