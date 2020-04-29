@@ -33,24 +33,29 @@ export class EuiResizablePanelRegistry {
     this.panels[panel.id] = panel;
   }
 
+  deregisterPanel(id: EuiResizablePanelController['id']) {
+    delete this.panels[id];
+  }
+
   getResizerSiblings(prevPanelId: string, nextPanelId: string) {
     return [this.panels[prevPanelId], this.panels[nextPanelId]];
   }
 }
 
-const EuiResizablePanelContext = createContext({
-  registry: new EuiResizablePanelRegistry(),
-});
-
 interface ContextProps {
+  registry?: EuiResizablePanelRegistry;
+}
+
+const EuiResizablePanelContext = createContext<ContextProps>({});
+
+interface ContextProviderProps extends Required<ContextProps> {
   children: any;
-  registry: EuiResizablePanelRegistry;
 }
 
 export function EuiResizablePanelContextProvider({
   children,
   registry,
-}: ContextProps) {
+}: ContextProviderProps) {
   return (
     <EuiResizablePanelContext.Provider value={{ registry }}>
       {children}
@@ -60,7 +65,7 @@ export function EuiResizablePanelContextProvider({
 
 export const useEuiResizablePanelContext = () => {
   const context = useContext(EuiResizablePanelContext);
-  if (context === undefined) {
+  if (!context.registry) {
     throw new Error(
       'useEuiResizablePanelContext must be used within a <EuiResizablePanelContextProvider />'
     );

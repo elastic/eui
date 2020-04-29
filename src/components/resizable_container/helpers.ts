@@ -45,6 +45,22 @@ function isMouseEvent(event: MouseEvent | TouchEvent): event is MouseEvent {
 const pxToPercent = (proportion: number, whole: number) =>
   (proportion / whole) * 100;
 
+const getPanelMinSize = (
+  panelMinSize: string,
+  containerSize: number,
+  resizerSize: number
+) => {
+  let panelMinSizePercent = 0;
+  const panelMinSizeInt = parseInt(panelMinSize);
+  if (panelMinSize.indexOf('px') > -1) {
+    panelMinSizePercent = pxToPercent(panelMinSizeInt, containerSize);
+  } else if (panelMinSize.indexOf('%') > -1) {
+    panelMinSizePercent =
+      panelMinSizeInt + (resizerSize / containerSize) * panelMinSizeInt;
+  }
+  return panelMinSizePercent;
+};
+
 export const useContainerCallbacks = ({
   isHorizontal,
   state,
@@ -58,22 +74,6 @@ export const useContainerCallbacks = ({
       ? containerRef.current!.getBoundingClientRect().width
       : containerRef.current!.getBoundingClientRect().height;
   }, [containerRef, isHorizontal]);
-
-  const getPanelMinSize = (
-    panelMinSize: string,
-    containerSize: number,
-    resizerSize: number
-  ) => {
-    let panelMinSizePercent = 0;
-    const panelMinSizeInt = parseInt(panelMinSize);
-    if (panelMinSize.indexOf('px') > -1) {
-      panelMinSizePercent = pxToPercent(panelMinSizeInt, containerSize);
-    } else if (panelMinSize.indexOf('%') > -1) {
-      panelMinSizePercent =
-        panelMinSizeInt + (resizerSize / containerSize) * panelMinSizeInt;
-    }
-    return panelMinSizePercent;
-  };
 
   const getResizerButtonsSize = useCallback(() => {
     // get sum of all of resizer button sizes to proper calculate panels ratio
@@ -207,8 +207,6 @@ export const useContainerCallbacks = ({
           containerSize
         );
 
-        console.log(prevPanelMin, nextPanelMin);
-        console.log(prevPanelSize, nextPanelSize);
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
           if (onPanelWidthChange) {
             onPanelWidthChange({
