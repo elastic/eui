@@ -117,6 +117,12 @@ export interface EuiPopoverProps {
    * Function callback for when the focus trap is deactivated
    */
   onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
+
+  /**
+   * Minimum distance between the popover and the bounding container.
+   * Default is 16
+   */
+  buffer?: number;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -483,6 +489,7 @@ export class EuiPopover extends Component<Props, State> {
         arrowBuffer: 10,
       },
       returnBoundingBox: this.props.attachToAnchor,
+      buffer: this.props.buffer,
     });
 
     // the popover's z-index must inherit from the button
@@ -573,6 +580,7 @@ export class EuiPopover extends Component<Props, State> {
       attachToAnchor,
       display,
       onTrapDeactivation,
+      buffer,
       ...rest
     } = this.props;
 

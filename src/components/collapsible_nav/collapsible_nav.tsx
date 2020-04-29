@@ -13,7 +13,7 @@ import { EuiWindowEvent, keyCodes, htmlIdGenerator } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { CommonProps } from '../common';
-import { EuiButtonEmpty } from '../button';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
 
 export type EuiCollapsibleNavProps = CommonProps &
@@ -44,6 +44,10 @@ export type EuiCollapsibleNavProps = CommonProps &
      * If `false`, you must then keep the `button` displayed at all breakpoints.
      */
     showCloseButton?: boolean;
+    /**
+     * Extend the props of the close button, an EuiButtonEmpty
+     */
+    closeButtonProps?: EuiButtonEmptyProps;
     onClose?: () => void;
   };
 
@@ -56,6 +60,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   showButtonIfDocked = false,
   dockedBreakpoint = 992,
   showCloseButton = true,
+  closeButtonProps,
   onClose,
   id,
   ...rest
@@ -81,13 +86,16 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
     if (navIsDocked) {
       document.body.classList.add('euiBody--collapsibleNavIsDocked');
+    } else if (isOpen) {
+      document.body.classList.add('euiBody--collapsibleNavIsOpen');
     }
 
     return () => {
       document.body.classList.remove('euiBody--collapsibleNavIsDocked');
+      document.body.classList.remove('euiBody--collapsibleNavIsOpen');
       window.removeEventListener('resize', functionToCallOnWindowResize);
     };
-  }, [navIsDocked, functionToCallOnWindowResize]);
+  }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.keyCode === keyCodes.ESCAPE) {
@@ -137,7 +145,11 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       onClick={collapse}
       size="xs"
       iconType="cross"
-      className="euiCollapsibleNav__closeButton">
+      {...closeButtonProps}
+      className={classNames(
+        'euiCollapsibleNav__closeButton',
+        closeButtonProps && closeButtonProps.className
+      )}>
       <span className="euiCollapsibleNav__closeButtonLabel">
         <EuiI18n token="euiCollapsibleNav.closeButtonLabel" default="close" />
       </span>
