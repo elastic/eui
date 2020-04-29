@@ -124,9 +124,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   };
 
   useEffect(() => {
+    const id = panelId.current;
     registry &&
       registry.registerPanel({
-        id: panelId.current,
+        id,
         setSize(panelSize) {
           if (initialSize && !size) {
             setInnerSize(panelSize);
@@ -139,6 +140,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
         },
         minSize,
       });
+    return () => {
+      registry && registry.deregisterPanel(id);
+    };
   }, [initialSize, isHorizontal, minSize, registry, size]);
 
   return (
