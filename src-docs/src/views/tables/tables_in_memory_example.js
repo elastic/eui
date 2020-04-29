@@ -2,6 +2,7 @@ import {
   section as inMemorySection,
   selectionSection as inMemorySelectionSection,
   searchSection as inMemorySearchSection,
+  searchExternalSection as inMemorySearchExternalSection,
   searchCallbackSection as inMemorySearchCallbackSection,
   customSortingSection as inMemoryCustomSortingSection,
 } from './in_memory';
@@ -13,6 +14,7 @@ export const TableInMemoryExample = {
     inMemorySelectionSection,
     inMemorySearchSection,
     inMemorySearchCallbackSection,
+    inMemorySearchExternalSection,
     inMemoryCustomSortingSection,
   ],
 };
