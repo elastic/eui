@@ -115,7 +115,8 @@
 
 @mixin euiFormControlIsLoading($isNextToIcon: false) {
   @at-root {
-    #{&}-isLoading {
+    #{&}-isLoading,
+    #{&}-isLoading#{&}--compressed {
       @if ($isNextToIcon) {
         @include euiFormControlLayoutPadding(2);
       } @else {
