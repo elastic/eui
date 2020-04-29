@@ -25,6 +25,6 @@
 .euiBody--collapsibleNavIsOpen,
 .euiBody--hasFlyout {
   .euiHeader--fixed {
-    z-index: $euiZMask + 1;
+    z-index: $euiZModal + 1;
   }
 }
