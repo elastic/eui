@@ -132,11 +132,9 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
 
     if (code.current) {
-      // @ts-ignore
       code.current.innerHTML = html;
     }
     if (codeFullScreen.current) {
-      // @ts-ignore
       codeFullScreen.current.innerHTML = html;
     }
 
