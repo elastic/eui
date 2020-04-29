@@ -21,6 +21,7 @@
 // via the `dockingBreakpoint` and `isDocked` combination
 .euiCollapsibleNav.euiCollapsibleNav--isDocked {
   @include euiBottomShadowMedium;
+  z-index: $euiZHeader; // When docked, make it the same level as the header
 
   .euiCollapsibleNav__closeButton {
     display: none;
