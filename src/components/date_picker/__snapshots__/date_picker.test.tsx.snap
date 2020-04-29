@@ -45,6 +45,7 @@ exports[`EuiDatePicker is rendered 2`] = `
   onMonthChange={[Function]}
   onSelect={[Function]}
   onYearChange={[Function]}
+  popperPlacement="bottom-start"
   preventOpenOnFocus={false}
   previousMonthButtonLabel="Previous Month"
   readOnly={false}
@@ -799,4 +800,178 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
     </div>
   </span>
 </span>
+`;
+
+exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
+<EuiDatePicker
+  adjustDateOnChange={true}
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+  dateFormat="MM/DD/YYYY"
+  fullWidth={false}
+  inputRef={[Function]}
+  isLoading={false}
+  popoverPlacement="top-end"
+  shadow={true}
+  shouldCloseOnSelect={true}
+  showIcon={true}
+  showTimeSelect={false}
+  timeFormat="hh:mm A"
+>
+  <span>
+    <span
+      className="euiDatePicker euiDatePicker--shadow"
+    >
+      <EuiFormControlLayout
+        fullWidth={false}
+        icon="calendar"
+        isLoading={false}
+      >
+        <div
+          className="euiFormControlLayout"
+        >
+          <div
+            className="euiFormControlLayout__childrenWrapper"
+          >
+            <EuiValidatableControl>
+              <DatePicker
+                accessibleMode={true}
+                adjustDateOnChange={true}
+                allowSameDay={false}
+                aria-label="aria-label"
+                className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
+                data-test-subj="test subject string"
+                dateFormat="MM/DD/YYYY"
+                dateFormatCalendar="MMMM YYYY"
+                disabled={false}
+                disabledKeyboardNavigation={false}
+                dropdownMode="scroll"
+                monthsShown={1}
+                nextMonthButtonLabel="Next month"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClickOutside={[Function]}
+                onFocus={[Function]}
+                onInputClick={[Function]}
+                onInputError={[Function]}
+                onKeyDown={[Function]}
+                onMonthChange={[Function]}
+                onSelect={[Function]}
+                onYearChange={[Function]}
+                popperPlacement="top-end"
+                preventOpenOnFocus={false}
+                previousMonthButtonLabel="Previous Month"
+                readOnly={false}
+                renderDayContents={[Function]}
+                shouldCloseOnSelect={true}
+                showMonthDropdown={true}
+                showTimeSelect={false}
+                showYearDropdown={true}
+                timeCaption="Time"
+                timeFormat="hh:mm A"
+                timeIntervals={30}
+                withPortal={false}
+                yearDropdownItemNumber={7}
+              >
+                <PopperComponent
+                  hidePopper={true}
+                  popperComponent={null}
+                  popperModifiers={
+                    Object {
+                      "preventOverflow": Object {
+                        "boundariesElement": "viewport",
+                        "enabled": true,
+                        "escapeWithReference": true,
+                      },
+                    }
+                  }
+                  popperPlacement="top-end"
+                  popperProps={Object {}}
+                  targetComponent={
+                    <div
+                      className="react-datepicker__input-container"
+                    >
+                      <input
+                        aria-label=""
+                        className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        readOnly={false}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  }
+                >
+                  <Manager>
+                    <Reference>
+                      <InnerReference
+                        getReferenceRef={[Function]}
+                      >
+                        <div
+                          className="react-datepicker-wrapper"
+                        >
+                          <div
+                            className="react-datepicker__input-container"
+                          >
+                            <input
+                              aria-label=""
+                              className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
+                              disabled={false}
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              readOnly={false}
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </InnerReference>
+                    </Reference>
+                  </Manager>
+                </PopperComponent>
+              </DatePicker>
+            </EuiValidatableControl>
+            <EuiFormControlLayoutIcons
+              icon="calendar"
+              isLoading={false}
+            >
+              <div
+                className="euiFormControlLayoutIcons"
+              >
+                <EuiFormControlLayoutCustomIcon
+                  type="calendar"
+                >
+                  <span
+                    className="euiFormControlLayoutCustomIcon"
+                  >
+                    <EuiIcon
+                      aria-hidden="true"
+                      className="euiFormControlLayoutCustomIcon__icon"
+                      type="calendar"
+                    >
+                      <div
+                        aria-hidden="true"
+                        className="euiFormControlLayoutCustomIcon__icon"
+                        data-euiicon-type="calendar"
+                      />
+                    </EuiIcon>
+                  </span>
+                </EuiFormControlLayoutCustomIcon>
+              </div>
+            </EuiFormControlLayoutIcons>
+          </div>
+        </div>
+      </EuiFormControlLayout>
+    </span>
+  </span>
+</EuiDatePicker>
 `;

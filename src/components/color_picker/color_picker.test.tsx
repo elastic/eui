@@ -283,7 +283,7 @@ test('Setting a new alpha value calls onChange', () => {
   });
 });
 
-test('default mode does redners child components', () => {
+test('default mode does renders child components', () => {
   const colorPicker = mount(
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
@@ -333,4 +333,38 @@ test('picker mode does not render swatches', () => {
   expect(hue.length).toBe(1);
   const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
   expect(swatches.length).toBe(0);
+});
+
+test('secondaryInputDisplay `top` has a popover panel input', () => {
+  const colorPicker = mount(
+    <EuiColorPicker
+      onChange={onChange}
+      secondaryInputDisplay="top"
+      color="#ffeedd"
+      {...requiredProps}
+    />
+  );
+
+  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  const inputTop = findTestSubject(colorPicker, 'topColorPickerInput');
+  const inputBottom = findTestSubject(colorPicker, 'bottomColorPickerInput');
+  expect(inputTop.length).toBe(1);
+  expect(inputBottom.length).toBe(0);
+});
+
+test('secondaryInputDisplay `bottom` has a popover panel input', () => {
+  const colorPicker = mount(
+    <EuiColorPicker
+      onChange={onChange}
+      secondaryInputDisplay="bottom"
+      color="#ffeedd"
+      {...requiredProps}
+    />
+  );
+
+  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  const inputTop = findTestSubject(colorPicker, 'topColorPickerInput');
+  const inputBottom = findTestSubject(colorPicker, 'bottomColorPickerInput');
+  expect(inputTop.length).toBe(0);
+  expect(inputBottom.length).toBe(1);
 });

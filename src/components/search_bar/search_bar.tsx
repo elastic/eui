@@ -213,7 +213,12 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
   render() {
     const { query, queryText, error } = this.state;
-    const { box, filters, toolsLeft, toolsRight } = this.props;
+    const {
+      box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
+      filters,
+      toolsLeft,
+      toolsRight,
+    } = this.props;
 
     const toolsLeftEl = this.renderTools(toolsLeft);
 

@@ -24,7 +24,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, ExclusiveUnion } from '../../common';
 
 export interface RadioProps {
   autoFocus?: boolean;
@@ -32,7 +32,6 @@ export interface RadioProps {
    * When `true` creates a shorter height radio row
    */
   compressed?: boolean;
-  label?: ReactNode;
   name?: string;
   value?: string;
   checked?: boolean;
@@ -40,10 +39,18 @@ export interface RadioProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export interface EuiRadioProps
-  extends CommonProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
-    RadioProps {}
+interface idWithLabel extends RadioProps {
+  label: ReactNode;
+  id: string;
+}
+
+interface withId extends RadioProps {
+  id: string;
+}
+
+export type EuiRadioProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
+  ExclusiveUnion<ExclusiveUnion<RadioProps, idWithLabel>, withId>;
 
 export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   className,

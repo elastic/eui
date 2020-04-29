@@ -89,6 +89,16 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
    * Show the icon in input
    */
   showIcon?: boolean;
+
+  /**
+   * Pass an icon type to change the default `calendar` or `clock` icon
+   */
+  iconType?: EuiFormControlLayoutIconsProps['icon'];
+
+  /**
+   * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
+   */
+  popoverPlacement?: ReactDatePickerProps['popperPlacement'];
 }
 
 type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
@@ -109,6 +119,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     showIcon: true,
     showTimeSelect: false,
     timeFormat: euiDatePickerDefaultTimeFormat,
+    popoverPlacement: 'bottom-start',
   };
 
   render() {
@@ -123,6 +134,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       excludeDates,
       filterDate,
       fullWidth,
+      iconType,
       injectTimes,
       inline,
       inputRef,
@@ -138,6 +150,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       openToDate,
       placeholder,
       popperClassName,
+      popoverPlacement,
       selected,
       shadow,
       shouldCloseOnSelect,
@@ -169,6 +182,8 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
     if (inline || customInput || !showIcon) {
       optionalIcon = undefined;
+    } else if (iconType) {
+      optionalIcon = iconType;
     } else if (showTimeSelectOnly) {
       optionalIcon = 'clock';
     } else {
@@ -262,6 +277,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
                       utcOffset={utcOffset}
                       yearDropdownItemNumber={7}
                       accessibleMode
+                      popperPlacement={popoverPlacement}
                       {...rest}
                     />
                   );
