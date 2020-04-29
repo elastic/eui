@@ -32,6 +32,7 @@ import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
+import { EuiI18n } from '../i18n';
 
 export type EuiFlyoutSize = 's' | 'm' | 'l';
 
@@ -59,6 +60,7 @@ export interface EuiFlyoutProps
   ownFocus?: boolean;
   /**
    * Specify an aria-label for the close button of the flyout.
+   * Default is `'Close this dialog'`.
    */
   closeButtonAriaLabel?: string;
   /**
@@ -80,7 +82,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   onClose,
   ownFocus = false,
   size = 'm',
-  closeButtonAriaLabel = 'Closes this dialog',
+  closeButtonAriaLabel,
   maxWidth = false,
   style,
   ...rest
@@ -119,14 +121,18 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   let closeButton;
   if (onClose && !hideCloseButton) {
     closeButton = (
-      <EuiButtonIcon
-        className="euiFlyout__closeButton"
-        iconType="cross"
-        color="text"
-        aria-label={closeButtonAriaLabel}
-        onClick={onClose}
-        data-test-subj="euiFlyoutCloseButton"
-      />
+      <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
+        {(closeAriaLabel: string) => (
+          <EuiButtonIcon
+            className="euiFlyout__closeButton"
+            iconType="cross"
+            color="text"
+            aria-label={closeButtonAriaLabel || closeAriaLabel}
+            onClick={onClose}
+            data-test-subj="euiFlyoutCloseButton"
+          />
+        )}
+      </EuiI18n>
     );
   }
 
