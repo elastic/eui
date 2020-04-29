@@ -22,12 +22,14 @@ import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import cheerio from 'cheerio';
 
-import { EuiIcon, SIZES, TYPES, COLORS } from './icon';
+import { EuiIcon, SIZES, TYPES, COLORS, clearIconComponentCache } from './icon';
 import { PropsOf } from '../common';
 
 jest.mock('./icon', () => {
   return require.requireActual('./icon');
 });
+
+beforeEach(() => clearIconComponentCache());
 
 const prettyHtml = cheerio.load('');
 
