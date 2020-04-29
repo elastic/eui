@@ -49,7 +49,7 @@ describe('EuiFlyout', () => {
         const label = component
           .find('[data-test-subj="euiFlyoutCloseButton"]')
           .prop('aria-label');
-        expect(label).toBe('Closes this dialog');
+        expect(label).toBe('Close this dialog');
       });
 
       test('sets a custom label for the close button', () => {
