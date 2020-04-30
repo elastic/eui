@@ -16,7 +16,7 @@ This provides a walkthrough of the patching & backport release process; examples
   * create a new branch from the versioned tag, the name is unimportant but I use the target version without a leading `v` - `git checkout -b 22.3.1`
 * Run `yarn` to ensure you have the correct dependencies for that point in time installed
 * Apply the commit(s) with the desired changes
-  * GH issue references #3369, #3378, #3330, and #3398
+  * GitHub issue references #3369, #3378, #3330, and #3398
   * We always use squash merges, so each PR has a single commit hash to include
     * For each PR, find the merge commit
     * For example, #3369's merge message is
