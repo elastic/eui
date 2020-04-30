@@ -15,10 +15,16 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: $euiZLevel7;
   }
 }
 
 .euiBody--headerIsFixed {
   padding-top: $euiHeaderHeightCompensation;
+}
+
+.euiBody--collapsibleNavIsOpen,
+.euiBody--hasFlyout {
+  .euiHeader--fixed {
+    z-index: $euiZModal + 1;
+  }
 }
