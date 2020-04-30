@@ -39,7 +39,7 @@ This provides a walkthrough of the patching & backport release process; examples
         * `npm publish --otp=your-one-time-password`
 * Update `master`'s changelog to include this release
     * On the branch you used to build & release, copy the relevant changelog section - e.g. contents of `## [`22.3.1`](https://github.com/elastic/eui/tree/v22.3.1)`
-    * Checkoug `master` - `git checkout master`
+    * Checkout `master` - `git checkout master`
     * Paste the changelog section at the correct location in _CHANGELOG.md_
         * Include an extra line at the top of this section describing it as a backport, e.g. **Note: this release is a backport containing changes originally made in `23.0.0`, `23.1.0`, and `23.2.0`**
     * Commit the changelog entry to master and push - `git commit -anm "changelog" && git push`
