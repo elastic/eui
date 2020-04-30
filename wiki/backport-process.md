@@ -8,7 +8,7 @@ When preparing for a backport a GitHub issue should be created in EUI referencin
 
 ### Patch process
 
-This provides a walkthrough of the patching & backport release process; examples are taken from the release of x.x.x based on https://github.com/elastic/eui/issues/3386
+This provides a walkthrough of the patching & backport release process; examples are taken from the release of v22.3.1 based on https://github.com/elastic/eui/issues/3386
 
 * Update your local repo's knowledge of commits so they can be referenced - `git checkout master && git pull`
 * Identify the target version of EUI to patch; GH issue says the new version should be `22.3.1` and I confirmed the patch's base is `22.3.0`
