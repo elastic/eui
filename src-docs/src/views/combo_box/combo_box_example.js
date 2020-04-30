@@ -45,10 +45,10 @@ const colorsSnippet = `<EuiComboBox
       color: "#ff0000",
     },
   ]}
+  selectedOptions={selectedOptions}
   onChange={onChange}
   onCreateOption={onCreateOption}
   isClearable={true}
-  isDisabled
 />`;
 
 import RenderOption from './render_option';
@@ -100,14 +100,14 @@ import CustomOptionsOnly from './custom_options_only';
 const customOptionsOnlySource = require('!!raw-loader!./custom_options_only');
 const customOptionsOnlyHtml = renderToHtml(CustomOptionsOnly);
 const customOptionsOnlySnippet = `<EuiComboBox
-    noSuggestions
-    placeholder="Create some tags (letters only)"
-    selectedOptions={selectedOptions}
-    onCreateOption={onCreateOption}
-    onChange={onChange}
-    onSearchChange={onSearchChange}
-    isInvalid={isInvalid}
-  />`;
+  noSuggestions
+  placeholder="Create some tags (letters only)"
+  selectedOptions={selectedOptions}
+  onCreateOption={onCreateOption}
+  onChange={onChange}
+  onSearchChange={onSearchChange}
+  isInvalid={isInvalid}
+/>`;
 
 import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
@@ -141,7 +141,6 @@ const disabledSnippet = `<EuiComboBox
   options={options}
   onChange={onChange}
   onCreateOption={onCreateOption}
-  isClearable={true}
   isDisabled
 />`;
 
