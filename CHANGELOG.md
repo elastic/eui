@@ -9,6 +9,7 @@
 - Added `buffer` prop to `EuiPopover` for altering minimum distance to container edges ([#3398](https://github.com/elastic/eui/pull/3398))
 - Allowed `search` prop changes to update `EuiInMemoryTable` internal query state ([#3371](https://github.com/elastic/eui/pull/3371))
 - Added `EuiResizableContainer` component ([#2701](https://github.com/elastic/eui/pull/2701))
+- Added caching layer on `EuiIcon` to prevent delays and flickering when rendering an already fetched icon ([#3404](https://github.com/elastic/eui/pull/3404))
 
 **Bug Fixes**
 
