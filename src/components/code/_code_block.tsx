@@ -118,10 +118,6 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   }, []);
 
   useEffect(() => {
-    highlight();
-  });
-
-  const highlight = () => {
     /**
      * because React maintains a mapping between its Virtual DOM representation and the actual
      * DOM elements (including text nodes), and hljs modifies the DOM structure which leads
@@ -147,7 +143,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
         hljs.highlightBlock(codeFullScreen.current);
       }
     }
-  };
+  });
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.keyCode === keyCodes.ESCAPE) {
