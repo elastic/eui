@@ -108,7 +108,9 @@ interface State<T> {
     items: T[];
     sortName: ReactNode;
     sortDirection?: Direction;
+    search?: Search;
   };
+  search?: Search;
   query: Query | null;
   pageIndex: number;
   pageSize?: number;
@@ -119,12 +121,20 @@ interface State<T> {
   hidePerPageOptions: boolean | undefined;
 }
 
-const getInitialQuery = (search: Search | undefined) => {
+const getQueryFromSearch = (
+  search: Search | undefined,
+  defaultQuery: boolean
+) => {
   let query: Query | string;
   if (!search) {
     query = '';
   } else {
-    query = (search as EuiSearchBarProps).defaultQuery || '';
+    query =
+      (defaultQuery
+        ? (search as EuiSearchBarProps).defaultQuery ||
+          (search as EuiSearchBarProps).query ||
+          ''
+        : (search as EuiSearchBarProps).query) || '';
   }
 
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
@@ -258,6 +268,19 @@ export class EuiInMemoryTable<T> extends Component<
         sortDirection,
       };
     }
+
+    if (
+      (nextProps.search as EuiSearchBarProps) !==
+      (prevState.prevProps.search as EuiSearchBarProps)
+    ) {
+      return {
+        prevProps: {
+          ...prevState.prevProps,
+          search: nextProps.search,
+        },
+        query: getQueryFromSearch(nextProps.search, false),
+      };
+    }
     return null;
   }
 
@@ -278,8 +301,10 @@ export class EuiInMemoryTable<T> extends Component<
         items: props.items,
         sortName,
         sortDirection,
+        search,
       },
-      query: getInitialQuery(search),
+      search: search,
+      query: getQueryFromSearch(search, true),
       pageIndex: pageIndex || 0,
       pageSize,
       pageSizeOptions,
@@ -369,10 +394,14 @@ export class EuiInMemoryTable<T> extends Component<
     }
 
     // Reset pagination state.
-    this.setState({
+    this.setState(state => ({
+      prevProps: {
+        ...state.prevProps,
+        search,
+      },
       query,
       pageIndex: 0,
-    });
+    }));
   };
 
   renderSearchBar() {
