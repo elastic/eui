@@ -11,7 +11,7 @@ When preparing for a backport a GitHub issue should be created in EUI referencin
 This provides a walkthrough of the patching & backport release process; examples are taken from the release of v22.3.1 based on https://github.com/elastic/eui/issues/3386
 
 * Update your local repo's knowledge of commits so they can be referenced - `git checkout master && git pull`
-* Identify the target version of EUI to patch; GH issue says the new version should be `22.3.1` and I confirmed the patch's base is `22.3.0`
+* Identify the target version of EUI to patch; GitHub issue says the new version should be `22.3.1` and I confirmed the patch's base is `22.3.0`
   * in the EUI git repo, checkout the release tag the patch is intended for - `git checkout v22.3.0`
   * create a new branch from the versioned tag, the name is unimportant but I use the target version without a leading `v` - `git checkout -b 22.3.1`
 * Run `yarn` to ensure you have the correct dependencies for that point in time installed
