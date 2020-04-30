@@ -29,5 +29,10 @@ export const EuiCodeBlockImpl = ({ children, inline }: any) => {
   );
 };
 
-export const FONT_SIZES = [];
-export const PADDING_SIZES = [];
+export const FONT_SIZES: Array<'s' | 'm' | 'l'> = ['s', 'm', 'l'];
+export const PADDING_SIZES: Array<'s' | 'm' | 'l' | 'none'> = [
+  'none',
+  's',
+  'm',
+  'l',
+];
