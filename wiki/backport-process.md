@@ -4,7 +4,7 @@ In general, we strongly encourage updating to the latest version of EUI to obtai
 
 ### Tracking issue
 
-When preparing for a backport a github issue in should be created in EUI referencing the relevant issues and/or PRs to be included - see https://github.com/elastic/eui/issues/3386 as an example. This issue is used to keep track of the patch's completion progress and to ensure the desired changes are included in the release.
+When preparing for a backport a GitHub issue should be created in EUI referencing the relevant issues and/or PRs to be included - see https://github.com/elastic/eui/issues/3386 as an example. This issue is used to keep track of the patch's completion progress and to ensure the desired changes are included in the release.
 
 ### Patch process
 
