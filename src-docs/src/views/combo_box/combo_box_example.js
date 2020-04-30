@@ -99,11 +99,7 @@ const disallowCustomOptionsSnippet = `<EuiComboBox
 import CustomOptionsOnly from './custom_options_only';
 const customOptionsOnlySource = require('!!raw-loader!./custom_options_only');
 const customOptionsOnlyHtml = renderToHtml(CustomOptionsOnly);
-const customOptionsOnlySnippet = `<EuiFormRow
-  label="Only custom options"
-  isInvalid={isInvalid}
-  error={isInvalid ? 'Only letters are allowed' : undefined}>
-  <EuiComboBox
+const customOptionsOnlySnippet = `<EuiComboBox
     noSuggestions
     placeholder="Create some tags (letters only)"
     selectedOptions={selectedOptions}
@@ -111,8 +107,7 @@ const customOptionsOnlySnippet = `<EuiFormRow
     onChange={onChange}
     onSearchChange={onSearchChange}
     isInvalid={isInvalid}
-  />
-</EuiFormRow>`;
+  />`;
 
 import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
