@@ -66,23 +66,27 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
 }) => {
   const diff = new Diff(); // options may be passed to constructor; see below
   const textDiff = diff.main(initialText, currentText); // produces diff array
-
+  console.log('textDiff', textDiff);
   const dataFormat = () => {
-    return [...textDiff]
-      .filter(el => el[0] !== 0)
-      .map(el => {
-        if (el[0] === -1) {
-          return {
-            type: 'delete',
-            content: el[1],
-          };
-        } else {
-          return {
-            type: 'insert',
-            content: el[1],
-          };
-        }
-      });
+    return [...textDiff].map(el => {
+      if (el[0] === 0) {
+        return {
+          type: 'no change',
+          content: el[1],
+        };
+      }
+      if (el[0] === -1) {
+        return {
+          type: 'delete',
+          content: el[1],
+        };
+      } else {
+        return {
+          type: 'insert',
+          content: el[1],
+        };
+      }
+    });
   };
 
   const classes = classNames(
