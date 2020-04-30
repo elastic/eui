@@ -17,7 +17,7 @@ import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
 import { FontSize, PaddingSize } from './code';
 
-export const fontSizeToClassNameMap = {
+const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
   l: 'euiCodeBlock--fontLarge',
@@ -25,9 +25,7 @@ export const fontSizeToClassNameMap = {
 
 export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
 
-export const paddingSizeToClassNameMap: {
-  [paddingSize in PaddingSize]: string
-} = {
+const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
   none: '',
   s: 'euiCodeBlock--paddingSmall',
   m: 'euiCodeBlock--paddingMedium',
