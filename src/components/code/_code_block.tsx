@@ -84,6 +84,7 @@ interface Props {
 
 interface State {
   isFullScreen: boolean;
+  mounted: boolean;
 }
 
 /**
@@ -104,10 +105,11 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
 
     this.state = {
       isFullScreen: false,
+      mounted: false,
     };
   }
 
-  codeTarget = document.createElement('div');
+  codeTarget!: HTMLDivElement; //Definite Assignment Assertions used, we need to set this in the componentDidMount() where we have the native DOM available.
   code: HTMLElement | null = null;
   codeFullScreen: HTMLElement | null = null;
 
@@ -119,6 +121,7 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
      * copy from that fragment into the target elements
      * (https://github.com/elastic/eui/issues/2322)
      */
+
     const html = this.codeTarget.innerHTML;
 
     if (this.code) {
@@ -159,15 +162,24 @@ export class EuiCodeBlockImpl extends Component<Props, State> {
     });
   };
 
+  /* eslint-disable react/no-did-mount-set-state */
   componentDidMount() {
-    this.highlight();
+    this.codeTarget = document.createElement('div');
+    this.setState({
+      mounted: true,
+    });
   }
+  /* eslint-enable react/no-did-mount-set-state */
 
   componentDidUpdate() {
     this.highlight();
   }
 
   render() {
+    if (this.state.mounted === false) {
+      return null;
+    }
+
     const {
       inline,
       children,

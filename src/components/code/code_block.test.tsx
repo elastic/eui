@@ -128,7 +128,7 @@ describe('EuiCodeBlock', () => {
 
       function App() {
         const [value, setValue] = useState('State 1');
-
+        // console.log([value, setValue], "value and setValue");
         useEffect(() => {
           takeSnapshot();
           setValue('State 2');
