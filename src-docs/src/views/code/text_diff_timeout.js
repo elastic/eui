@@ -5,20 +5,27 @@ import {
   EuiCode,
   EuiSpacer,
   EuiTextColor,
+  EuiRange,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const [del, setDel] = useState(0);
   const [ins, setIns] = useState(0);
-
+  const [value, setValue] = useState(5);
   const initialText =
     'One difference is that interface creates a new name that is used everywhere. Type aliases do create a new name — for instance, error text won’t use the alias name. In the code below, hovering over interfaced in code editor will show that it returns an Interface, but will show that aliased returns object literal type.Wish you happy';
+
   const currentText =
     'One difference is that interfaces create a new name that is used everywhere. Type aliases don’t create a new name — for instance, error messages won’t use the alias name. In the code below, hovering over interfaced in an editor will show that it returns an Interface, but will show that aliased returns object literal type.Hope you will be happy every day';
 
   const onGetDataFormat = data => {
     setDel([...data].filter(el => el.type === 'delete').length);
     setIns([...data].filter(el => el.type === 'insert').length);
+  };
+
+  const onTimeOut = text => {
+    console.log('text', text);
   };
 
   return (
@@ -29,8 +36,10 @@ export default () => {
         initialText={initialText}
         currentText={currentText}
         showDeletion={false}
-        disableTimeout={true}
         getDataFormat={onGetDataFormat}
+        timeout={value}
+        disableTimeout={false}
+        onTimeOut={onTimeOut}
       />
       <EuiSpacer />
       <EuiCode>
@@ -38,6 +47,17 @@ export default () => {
         <EuiTextColor color="danger"> {del} </EuiTextColor>
         Deletions
       </EuiCode>
+      <EuiSpacer />
+      <EuiRange
+        id={htmlIdGenerator()()}
+        min={0}
+        max={20}
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        showLabels
+        showValue
+        aria-label="An example of EuiRange with showValue prop"
+      />
     </>
   );
 };

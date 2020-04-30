@@ -30,11 +30,12 @@ export default () => {
         currentText={currentText}
         showDeletion={true}
         getDataFormat={onGetDataFormat}
+        disableTimeout={true}
       />
       <EuiSpacer />
       <EuiCode>
-        <EuiTextColor color="secondary">{ins} </EuiTextColor> Insertions,
-        <EuiTextColor color="danger"> {del}</EuiTextColor>
+        <EuiTextColor color="secondary"> {ins} </EuiTextColor> Insertions,
+        <EuiTextColor color="danger"> {del} </EuiTextColor>
         Deletions
       </EuiCode>
     </>

@@ -35,6 +35,10 @@ import NoDeletion from './text_diff_no_deletions';
 const noDeletionSource = require('!!raw-loader!./text_diff_no_deletions');
 const noDeletionHtml = renderToHtml(NoDeletion);
 
+import TextDiffTimeOut from './text_diff_timeout';
+const TextDiffTimeOutSource = require('!!raw-loader!./text_diff_timeout');
+const TextDiffTimeOutHtml = renderToHtml(TextDiffTimeOut);
+
 export const CodeExample = {
   title: 'Code',
   sections: [
@@ -145,6 +149,26 @@ export const CodeExample = {
         </p>
       ),
       demo: <NoDeletion />,
+      props: { EuiTextDiff },
+    },
+    {
+      title: 'Text Diff with timeout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: TextDiffTimeOutSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: TextDiffTimeOutHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>timeout</EuiCode> is used for setting timeout.
+        </p>
+      ),
+      demo: <TextDiffTimeOut />,
       props: { EuiTextDiff },
     },
   ],

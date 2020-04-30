@@ -1,10 +1,15 @@
-import { CommonProps } from '../common';
-
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useMemo,
+  useState,
+  useEffect,
+} from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
 import parse from 'html-react-parser';
 import { FontSize, PaddingSize } from './code';
+import { CommonProps } from '../common';
 
 export const fontSizeToClassNameMap = {
   s: 'euiTextDiff--fontSmall',
@@ -34,6 +39,9 @@ export interface EuiTextDiffSharedProps {
   fontSize?: FontSize;
   transparentBackground?: boolean;
   isCopyable?: boolean;
+  timeout?: number;
+  disableTimeout?: boolean;
+  onTimeOut?: (text: string) => void;
 }
 interface DataFormat {
   type: string;
@@ -62,11 +70,19 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
   currentText,
   showDeletion = true,
   getDataFormat,
+  disableTimeout = true,
+  onTimeOut,
+  timeout = 0.1,
   ...rest
 }) => {
+  const [initText, setInitialText] = useState(initialText);
+
   const diff = new Diff(); // options may be passed to constructor; see below
-  const textDiff = diff.main(initialText, currentText); // produces diff array
-  console.log('textDiff', textDiff);
+  const textDiff = useMemo(() => {
+    return diff.main(initText, currentText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initText, currentText]); // produces diff array
+
   const dataFormat = () => {
     return [...textDiff].map(el => {
       if (el[0] === 0) {
@@ -101,7 +117,21 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
   }
   const rendereredHtml = parse(htmlString);
 
-  if (getDataFormat) getDataFormat(dataFormat());
+  useEffect(() => {
+    if (!disableTimeout && onTimeOut) {
+      const timer = setTimeout(() => {
+        onTimeOut(currentText);
+        setInitialText(currentText);
+      }, +timeout * 1000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
+    if (getDataFormat) getDataFormat(dataFormat());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getDataFormat, textDiff]);
 
   return (
     <div className={classes} {...rest}>
