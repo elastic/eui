@@ -884,7 +884,11 @@ export class EuiBasicTable<T = any> extends Component<
     const cells = [];
 
     const { itemId: itemIdCallback } = this.props;
-    const itemId: ItemIdResolved = getItemId(item, itemIdCallback) || rowIndex;
+    const itemId: ItemIdResolved =
+      getItemId(item, itemIdCallback) !== null &&
+      typeof getItemId(item, itemIdCallback) !== 'undefined'
+        ? getItemId(item, itemIdCallback)
+        : rowIndex;
     const selected = !selection
       ? false
       : this.state.selection &&
