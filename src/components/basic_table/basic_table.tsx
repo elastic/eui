@@ -226,6 +226,7 @@ export type EuiBasicTableProps<T> = CommonProps &
 
 interface State<T> {
   selection: T[];
+  defaultSelectionRendered: boolean;
 }
 
 interface SortOptions {
@@ -284,12 +285,17 @@ export class EuiBasicTable<T = any> extends Component<
   private cleanups: Array<() => void> = [];
   private tbody: HTMLTableSectionElement | null = null;
 
-  state = {
-    selection: [],
-  };
+  constructor(props: EuiBasicTableProps<T>) {
+    super(props);
+    this.state = {
+      selection: [],
+      defaultSelectionRendered: false,
+    };
+  }
 
   componentDidMount() {
     if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
+    this.setDefaultSelection();
   }
 
   componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
@@ -300,10 +306,22 @@ export class EuiBasicTable<T = any> extends Component<
         this.removeLoadingListeners();
       }
     }
+    this.setDefaultSelection();
   }
 
   componentWillUnmount() {
     this.removeLoadingListeners();
+  }
+
+  setDefaultSelection() {
+    if (this.props.selection && !this.state.defaultSelectionRendered) {
+      const { items, selection } = this.props;
+      const defaultSelectedItems = items.filter(
+        item => selection!.selected && selection!.selected(item) && item
+      );
+      this.setState({ defaultSelectionRendered: true });
+      this.changeSelection(defaultSelectedItems);
+    }
   }
 
   private setTbody = (tbody: HTMLTableSectionElement | null) => {
@@ -375,6 +393,7 @@ export class EuiBasicTable<T = any> extends Component<
 
   clearSelection() {
     this.changeSelection([]);
+    this.setState({ defaultSelectionRendered: false });
   }
 
   onPageSizeChange(size: number) {
