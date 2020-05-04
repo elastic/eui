@@ -1,0 +1,4 @@
+.euiResizablePanel {
+  @include euiScrollBar;
+  overflow-y: auto;
+}
