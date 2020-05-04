@@ -55,7 +55,7 @@ export const Theming = () => {
     createPaletteOption(paletteName, index)
   );
 
-  const [barPalette, setBarPalette] = useState('5');
+  const [barPalette, setBarPalette] = useState('0');
   const onBarPaletteChange = value => {
     setBarPalette(value);
   };
@@ -75,16 +75,22 @@ export const Theming = () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const customColors = {
-    colors: {
-      vizColors: paletteData[paletteNames[Number(barPalette)]](5),
-    },
-  };
+  const customTheme =
+    Number(barPalette) > 0
+      ? [
+          {
+            colors: {
+              vizColors: paletteData[paletteNames[Number(barPalette)]](5),
+            },
+          },
+          theme,
+        ]
+      : theme;
 
   return (
     <Fragment>
       <Chart size={{ height: 200 }}>
-        <Settings theme={[customColors, theme]} showLegend={false} />
+        <Settings theme={customTheme} showLegend={false} />
         <BarSeries
           id="status"
           name="Status"
@@ -123,16 +129,21 @@ export const Theming = () => {
 };
 
 const createPaletteOption = function(paletteName, index) {
+  const options =
+    index > 0
+      ? 10
+      : {
+          sortBy: 'natural',
+        };
+
   return {
     value: String(index),
-    inputDisplay: createPalette(
-      paletteData[paletteNames[index]](index > 0 ? 10 : 1)
-    ),
+    inputDisplay: createPalette(paletteData[paletteNames[index]](options)),
     dropdownDisplay: (
       <Fragment>
         <strong>{paletteName}</strong>
         <EuiSpacer size="xs" />
-        {createPalette(paletteData[paletteNames[index]](index > 0 ? 10 : 1))}
+        {createPalette(paletteData[paletteNames[index]](options))}
       </Fragment>
     ),
   };

@@ -220,9 +220,7 @@ export const ElasticChartsPieExample = {
               </EuiCode>
               . The chart colors also need to be passed a different way via{' '}
               <EuiCode language="ts">
-                {
-                  'Partition.layers.shape.fillColor={d => euiPaletteColorBlind()[d.sortIndex]}'
-                }
+                {'Partition.layers.shape.fillColor'}
               </EuiCode>
               . See the snippet for full details.
             </p>
@@ -232,7 +230,8 @@ export const ElasticChartsPieExample = {
       demo: <PieChart />,
       snippet: `import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
 
-const euiPartitionConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.partition : EUI_CHARTS_THEME_LIGHT.partition;
+const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIGHT;
+const euiPartitionConfig = euiChartTheme.partition;
 
 <Chart size={{height: 200}}>
   <Partition
@@ -248,7 +247,7 @@ const euiPartitionConfig = isDarkTheme ? EUI_CHARTS_THEME_DARK.partition : EUI_C
       {
         groupByRollup: d => d.language,
         shape: {
-          fillColor: d => euiPaletteColorBlind()[d.sortIndex],
+          fillColor: d => euiChartTheme.theme.colors.vizColors[d.sortIndex],
         },
       },
     ]}

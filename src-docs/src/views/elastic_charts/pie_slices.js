@@ -26,11 +26,14 @@ import {
 } from '../../../../src/components';
 
 import { ChartCard } from './shared';
-import { euiPaletteColorBlind } from '../../../../src/services';
 import { BROWSER_DATA_2019 } from './data';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
+  const euiChartTheme = isDarkTheme
+    ? EUI_CHARTS_THEME_DARK
+    : EUI_CHARTS_THEME_LIGHT;
+  const euiPartitionConfig = euiChartTheme.partition;
 
   const sliceOrderRadiosIdPrefix = 'colorType';
   const sliceOrderRadios = [
@@ -157,14 +160,13 @@ export default () => {
               {
                 groupByRollup: d => d.browser,
                 shape: {
-                  fillColor: d => euiPaletteColorBlind()[d.sortIndex],
+                  fillColor: d =>
+                    euiChartTheme.theme.colors.vizColors[d.sortIndex],
                 },
               },
             ]}
             config={{
-              ...(isDarkTheme
-                ? EUI_CHARTS_THEME_DARK.partition
-                : EUI_CHARTS_THEME_LIGHT.partition),
+              ...euiPartitionConfig,
               emptySizeRatio: pieTypeIdSelected.includes('Donut') && 0.4,
               ...sliceOrderConfig,
             }}
@@ -297,14 +299,12 @@ export default () => {
       {
         groupByRollup: d => d.browser,
         shape: {
-          fillColor: d => euiPaletteColorBlind()[d.sortIndex],
+          fillColor: d => euiChartTheme.theme.colors.vizColors[d.sortIndex],
         },
       },
     ]}
     config={{
-      ...(isDarkTheme
-        ? EUI_CHARTS_THEME_DARK.pie
-        : EUI_CHARTS_THEME_LIGHT.pie),
+      ...euiPartitionConfig,
       ${pieTypeIdSelected.includes('Donut') ? 'emptySizeRatio: 0.4,' : ''}
       ${sliceOrderConfigText}
     }}

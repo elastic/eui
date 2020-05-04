@@ -157,7 +157,7 @@ function createTheme(colors: any): EuiChartThemeType {
         },
       },
       colors: {
-        vizColors: euiPaletteColorBlind(),
+        vizColors: euiPaletteColorBlind({ sortBy: 'natural' }),
         defaultVizColor: DEFAULT_VISUALIZATION_COLOR,
       },
       crosshair: {

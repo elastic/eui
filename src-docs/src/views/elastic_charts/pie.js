@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../components';
 import { Chart, Partition } from '@elastic/charts';
-import { euiPaletteColorBlind } from '../../../../src/services';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -21,6 +20,10 @@ export default () => {
    * Setup theme based on current light/dark theme
    */
   const isDarkTheme = themeContext.theme.includes('dark');
+  const euiChartTheme = isDarkTheme
+    ? EUI_CHARTS_THEME_DARK
+    : EUI_CHARTS_THEME_LIGHT;
+  const euiPartitionConfig = euiChartTheme.partition;
 
   return (
     <div>
@@ -48,14 +51,13 @@ export default () => {
                 {
                   groupByRollup: d => d.status,
                   shape: {
-                    fillColor: d => euiPaletteColorBlind()[d.sortIndex],
+                    fillColor: d =>
+                      euiChartTheme.theme.colors.vizColors[d.sortIndex],
                   },
                 },
               ]}
               config={{
-                ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.partition
-                  : EUI_CHARTS_THEME_LIGHT.partition),
+                ...euiPartitionConfig,
                 clockwiseSectors: false,
               }}
             />
@@ -89,14 +91,13 @@ export default () => {
                 {
                   groupByRollup: d => d.language,
                   shape: {
-                    fillColor: d => euiPaletteColorBlind()[d.sortIndex],
+                    fillColor: d =>
+                      euiChartTheme.theme.colors.vizColors[d.sortIndex],
                   },
                 },
               ]}
               config={{
-                ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.partition
-                  : EUI_CHARTS_THEME_LIGHT.partition),
+                ...euiPartitionConfig,
                 emptySizeRatio: 0.4,
                 clockwiseSectors: false,
               }}
