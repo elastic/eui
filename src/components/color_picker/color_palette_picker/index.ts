@@ -20,4 +20,5 @@
 export {
   EuiColorPalettePicker,
   EuiColorPalettePickerProps,
+  EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';

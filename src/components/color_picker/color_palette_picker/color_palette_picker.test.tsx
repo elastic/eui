@@ -20,19 +20,22 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { EuiColorPalettePicker } from './color_palette_picker';
+import {
+  EuiColorPalettePicker,
+  EuiColorPalettePickerPaletteProps,
+} from './color_palette_picker';
 import { requiredProps } from '../../../test';
 
 jest.mock('./../../../services/accessibility', () => ({
   htmlIdGenerator: () => () => 'generated-id',
 }));
 
-const palettes = [
+const palettes: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'palette1',
     title: 'Summer Colors',
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
-    type: 'stops',
+    type: 'fixed',
   },
   {
     value: 'palette2',
@@ -56,10 +59,6 @@ const palettes = [
       },
     ],
     type: 'gradient',
-  },
-  {
-    title: 'Custom Option',
-    type: 'button',
   },
 ];
 

@@ -3,22 +3,25 @@ import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
 } from '../../../../src/services';
-import { EuiColorPalettePicker } from '../../../../src/components/color_picker/color_palette_picker';
+import {
+  EuiColorPalettePicker,
+  EuiColorPalettePickerPaletteProps,
+} from '../../../../src/components/color_picker/color_palette_picker';
 // @ts-ignore
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-const palettes = [
+const palettes: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'palette1',
     title: 'EUI Color Blind (stops)',
     palette: euiPaletteColorBlind(),
-    type: 'stops',
+    type: 'fixed',
   },
   {
     value: 'palette2',
     title: 'Summer Colors (stops)',
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
-    type: 'stops',
+    type: 'fixed',
   },
   {
     value: 'palette4',
@@ -53,12 +56,7 @@ const palettes = [
     value: 'palette6',
     title: 'Electric Pop (stops)',
     palette: ['#ff3f3f', '#ffcc06', '#0a9ad7', '#030000', '#fdf2dd'],
-    type: 'stops',
-  },
-  {
-    value: 'customOption',
-    title: 'Custom Option',
-    type: 'button',
+    type: 'fixed',
   },
 ];
 

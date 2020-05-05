@@ -12,6 +12,7 @@ import {
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
+import { EuiColorPalettePickerPalette } from './props';
 
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -27,7 +28,7 @@ const colorPickerSnippet = `<EuiColorPicker
 import { ColorPalettePicker } from './color_palette_picker';
 const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
 const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
-const colorPalettePickerSnippet = `<EuiColorPalettePicker 
+const colorPalettePickerSnippet = `<EuiColorPalettePicker
   palettes={[
     {
       value: 'palette1',
@@ -358,7 +359,7 @@ export const ColorPickerExample = {
           code: colorPalettePickerHtml,
         },
       ],
-      props: { EuiColorPalettePicker },
+      props: { EuiColorPalettePicker, EuiColorPalettePickerPalette },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
     },
