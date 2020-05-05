@@ -119,7 +119,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     showIcon: true,
     showTimeSelect: false,
     timeFormat: euiDatePickerDefaultTimeFormat,
-    popoverPlacement: 'bottom-start' as const,
+    popoverPlacement: 'bottom-start' as _EuiDatePickerProps['popoverPlacement'],
   };
 
   render() {
