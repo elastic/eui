@@ -2,6 +2,7 @@
 
 exports[`EuiRangeTrack is rendered 1`] = `
 <div
+  aria-hidden="false"
   class="euiRangeTrack"
   style="margin-right:0.6em"
 >
