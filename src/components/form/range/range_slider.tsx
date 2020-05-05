@@ -38,7 +38,6 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     showRange?: boolean;
     showTicks?: boolean;
     disabled?: boolean;
-    showInput?: boolean | 'inputWithPopover';
     tabIndex?: number;
     onChange?: ChangeEventHandler<HTMLInputElement>;
   };
@@ -57,7 +56,6 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       tabIndex,
       value,
       style,
-      showInput,
       showTicks,
       showRange,
       hasFocus,
@@ -81,7 +79,6 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       <input
         ref={ref}
         type="range"
-        aria-hidden={showInput === true ? true : false}
         id={id}
         name={name}
         className={classes}

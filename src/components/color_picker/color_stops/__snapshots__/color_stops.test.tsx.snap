@@ -13,7 +13,6 @@ exports[`renders EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -125,7 +124,6 @@ exports[`renders compressed EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -237,7 +235,6 @@ exports[`renders disabled EuiColorStops 1`] = `
     Test:  Disabled. Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack euiRangeTrack--disabled"
   >
     <div
@@ -352,7 +349,6 @@ exports[`renders empty EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -389,7 +385,6 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -501,7 +496,6 @@ exports[`renders free-range EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -538,7 +532,6 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -650,7 +643,6 @@ exports[`renders max-only EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -687,7 +679,6 @@ exports[`renders min-only EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -724,7 +715,6 @@ exports[`renders readOnly EuiColorStops 1`] = `
     Test: Read-only.  Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div

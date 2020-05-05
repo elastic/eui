@@ -40,7 +40,6 @@ export interface EuiRangeTrackProps {
   ticks?: EuiRangeTick[];
   onChange?: MouseEventHandler<HTMLButtonElement>;
   levels?: EuiRangeLevel[];
-  showInput?: boolean | 'inputWithPopover';
 }
 
 export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
@@ -139,7 +138,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       onChange,
       value,
       compressed,
-      showInput,
+      ...rest
     } = this.props;
 
     // TODO: Move these to only re-calculate if no-value props have changed
@@ -169,10 +168,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     });
 
     return (
-      <div
-        className={trackClasses}
-        style={inputWrapperStyle}
-        aria-hidden={showInput === true ? true : false}>
+      <div className={trackClasses} style={inputWrapperStyle} {...rest}>
         {levels && !!levels.length && (
           <EuiRangeLevels
             compressed={compressed}
