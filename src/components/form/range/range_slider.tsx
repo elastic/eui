@@ -74,7 +74,6 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       },
       className
     );
-
     return (
       <input
         ref={ref}
