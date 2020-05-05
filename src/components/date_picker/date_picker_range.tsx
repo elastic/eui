@@ -100,7 +100,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
-        popoverPlacement: 'bottom-end',
+        popoverPlacement: 'bottom-end' as EuiDatePickerProps['popoverPlacement'],
       }
     );
   }
