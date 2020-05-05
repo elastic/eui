@@ -108,7 +108,7 @@ export type EuiDatePickerProps = ApplyClassComponentDefaults<
 >;
 
 export class EuiDatePicker extends Component<_EuiDatePickerProps> {
-  static defaultProps: Partial<_EuiDatePickerProps> = {
+  static defaultProps = {
     adjustDateOnChange: true,
     dateFormat: euiDatePickerDefaultDateFormat,
     fullWidth: false,
@@ -119,7 +119,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     showIcon: true,
     showTimeSelect: false,
     timeFormat: euiDatePickerDefaultTimeFormat,
-    popoverPlacement: 'bottom-start',
+    popoverPlacement: 'bottom-start' as const,
   };
 
   render() {
