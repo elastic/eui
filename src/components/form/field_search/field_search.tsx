@@ -20,7 +20,6 @@
 import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
-import { ENTER } from '../../../services/key_codes';
 import { CommonProps } from '../../common';
 
 import {
@@ -100,7 +99,7 @@ export class EuiFieldSearch extends Component<
     if (Browser.isEventSupported('search', this.inputElement)) {
       const onSearch = (event?: Event) => {
         if (this.props.onSearch) {
-          if (!event || !event.target) return;
+          if (!event || !event.target || event.defaultPrevented) return;
           this.props.onSearch((event.target as HTMLInputElement).value);
         }
       };
@@ -187,7 +186,7 @@ export class EuiFieldSearch extends Component<
         return;
       }
     }
-    if (onSearch && (incremental || event.keyCode === ENTER)) {
+    if (onSearch && incremental) {
       onSearch((event.target as HTMLInputElement).value);
     }
   };
