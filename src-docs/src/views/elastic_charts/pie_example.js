@@ -322,7 +322,11 @@ const euiPartitionConfig = euiChartTheme.partition;
           <p>
             Below are some basic examples and how EUI supports them with
             theming. However, this site will not document the best uses of these
-            chart types. For more guidance, see...
+            chart types. For more guidance, go to the{' '}
+            <EuiLink href="https://elastic.github.io/elastic-charts">
+              Elastic Charts documentation
+            </EuiLink>
+            .
           </p>
         </>
       ),

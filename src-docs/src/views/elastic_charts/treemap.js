@@ -92,6 +92,7 @@ export default () => {
               id="treemap"
               data={GITHUB_DATASET_MOD}
               valueAccessor={d => d.count}
+              valueGetter="percent"
               layers={[
                 {
                   groupByRollup: d => d.vizType,

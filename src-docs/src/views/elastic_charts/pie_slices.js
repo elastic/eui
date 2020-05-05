@@ -30,6 +30,7 @@ import { BROWSER_DATA_2019 } from './data';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
@@ -41,10 +42,6 @@ export default () => {
       id: `${sliceOrderRadiosIdPrefix}0`,
       label: 'Counterclockwise and special',
     },
-    // {
-    //   id: `${sliceOrderRadiosIdPrefix}1`,
-    //   label: 'Clockwise and special',
-    // },
     {
       id: `${sliceOrderRadiosIdPrefix}2`,
       label: 'Clockwise and descending',
@@ -86,8 +83,6 @@ export default () => {
   const [grouped, setGrouped] = useState(true);
   const [showLegend, setShowLegend] = useState(false);
   const [showValues, setShowValues] = useState(true);
-
-  const isDarkTheme = themeContext.theme.includes('dark');
 
   const onNumChartsChange = e => {
     setNumSlices(e.target.value);
@@ -156,6 +151,7 @@ export default () => {
             data={pieData()}
             valueAccessor={d => Number(d.percent)}
             valueFormatter={showValues ? undefined : () => ''}
+            valueGetter={showValues ? 'percent' : undefined}
             layers={[
               {
                 groupByRollup: d => d.browser,
@@ -295,6 +291,7 @@ export default () => {
     ]}
     valueAccessor={d => Number(d.percent)}
     ${showValues ? '' : "valueFormatter={() => ''}"}
+    ${showValues ? '' : 'valueGetter="percent"'}
     layers={[
       {
         groupByRollup: d => d.browser,

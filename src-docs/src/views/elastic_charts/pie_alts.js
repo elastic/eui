@@ -25,6 +25,7 @@ import { ChartCard } from './shared';
 import {
   euiPaletteForTemperature,
   euiPaletteColorBlind,
+  euiPaletteGray,
 } from '../../../../src/services';
 
 export default () => {
@@ -47,7 +48,10 @@ export default () => {
     20
   );
   if (formatted) {
-    color = euiPaletteForTemperature(3).reverse();
+    color = [
+      euiPaletteForTemperature()[0],
+      euiPaletteGray(5)[isDarkTheme ? 4 : 0],
+    ];
   }
 
   let data;
@@ -279,7 +283,7 @@ export default () => {
     }
     color={${
       formatted
-        ? 'euiPaletteForTemperature(3).reverse()'
+        ? '[euiPaletteForTemperature()[0], euiPaletteGray(5)[isDarkTheme ? 4 : 0]]'
         : "euiPaletteColorBlind({ rotations: 2, order: 'group' }).slice(18, 20)"
     }}
   />
