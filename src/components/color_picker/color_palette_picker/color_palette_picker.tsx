@@ -27,6 +27,29 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { CommonProps } from '../../common';
 
 import { getLinearGradient } from '../utils';
+import { ColorStop } from '../color_stops';
+
+export interface EuiColorPalettePickerPaletteProps {
+  /**
+   *  A unique value
+   */
+  value: string;
+  /**
+   *  The name of your palette
+   */
+  title?: string;
+  /**
+   * Specify if the palette is
+   * `fixed`: individual color blocks; or
+   * `gradient`: each color fades into the next
+   */
+  type: 'fixed' | 'gradient';
+  /**
+   * Array of color `strings` or `ColorStops` in the form of
+   * { stop: number, color: string }
+   */
+  palette: string[] | ColorStop[];
+}
 
 export type EuiColorPalettePickerProps = CommonProps & {
   /**
@@ -43,22 +66,20 @@ export type EuiColorPalettePickerProps = CommonProps & {
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
-
   /**
    * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
   valueOfSelected?: string;
-
   /**
    * You must pass an `onChange` function to handle the update of the value
    */
   onChange?: (options: any) => void;
   /**
-   * An array of objects. `value`: a unique value | `title`: the name of your palette (not required) | `type`: specify if your palette is a `gradient` or `stops` | `palette`: pass an array of hexadecimals
+   * An array of #EuiColorPalettePickerPalette objects
    */
-  palettes: any[];
+  palettes: EuiColorPalettePickerPaletteProps[];
 };
 
 export const EuiColorPalettePicker: FunctionComponent<
@@ -78,7 +99,7 @@ export const EuiColorPalettePicker: FunctionComponent<
   ...rest
 }) => {
   const getPalette = (palette: [], type: string) => {
-    if (type === 'stops') {
+    if (type === 'fixed') {
       return (
         <div className="euiColorPalettePicker__colorContainer">
           {palette.map((hexCode: string, index: number) => (
