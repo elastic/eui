@@ -10,7 +10,6 @@
   $iconPadding: $euiFormControlPadding;
   $marginBetweenIcons: $euiFormControlPadding / 2;
 
-
   @if ($compressed) {
     $iconPadding: $euiFormControlCompressedPadding;
   }
@@ -21,6 +20,8 @@
     padding-#{$side}: $iconPadding + $iconSize + $iconPadding;
   } @else if $numOfIcons == 2 {
     padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
+  } @else if $numOfIcons == 3 {
+    padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
   }
 }
 
@@ -114,7 +115,7 @@
 
 @mixin euiFormControlIsLoading($isNextToIcon: false) {
   @at-root {
-    #{&}-isLoading:not(#{&}--compressed) {
+    #{&}-isLoading {
       @if ($isNextToIcon) {
         @include euiFormControlLayoutPadding(2);
       } @else {
