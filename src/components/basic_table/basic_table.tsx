@@ -316,10 +316,10 @@ export class EuiBasicTable<T = any> extends Component<
   getInitialSelection() {
     if (
       this.props.selection &&
-      this.props.selection.selected &&
+      this.props.selection.initialSelected &&
       !this.state.defaultSelectionRendered
     ) {
-      this.changeSelection(this.props.selection.selected);
+      this.changeSelection(this.props.selection.initialSelected);
       this.setState({ defaultSelectionRendered: true });
     }
   }
