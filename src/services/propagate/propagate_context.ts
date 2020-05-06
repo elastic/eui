@@ -17,13 +17,7 @@
  * under the License.
  */
 
-import { createTheme } from './themes/create_theme';
-import euiColorsLight from './themes/eui/eui_colors_light';
+import { createContext } from 'react';
+import Propagate from './propagate';
 
-export default (theme?: any) => {
-  if (theme) {
-    theme.set('colors', euiColorsLight);
-    return theme;
-  }
-  return createTheme(euiColorsLight);
-};
+export default createContext<Propagate>(new Propagate());

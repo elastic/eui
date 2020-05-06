@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
+// import { useTheme } from 'emotion-theming';
+import usePropagate from '../../../../src/services/propagate/use_propagate';
 import { EuiText } from '../../../../src/components';
 
 export const GuideRuleDescription = ({
@@ -10,9 +11,11 @@ export const GuideRuleDescription = ({
   description,
   ...rest
 }) => {
-  const theme = useTheme();
+  // const theme = useTheme();
+  const [sizes] = usePropagate(['sizes']);
+
   const guideRule_Description = css`
-    margin-bottom: ${theme.sizes.euiSizeXL}px;
+    margin-bottom: ${sizes.euiSizeXL}px;
   `;
 
   let headingNode;

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
+// import { useTheme } from 'emotion-theming';
+import usePropagate from '../../../../src/services/propagate/use_propagate';
 import { EuiFlexItem, EuiPanel } from '../../../../src/components';
 
 const typeToSubtitleTextMap = {
@@ -20,7 +21,12 @@ export const GuideRuleExample = ({
   panelStyles,
   ...rest
 }) => {
-  const theme = useTheme();
+  // const theme = useTheme();
+  const [colors, sizes, typography] = usePropagate([
+    'colors',
+    'sizes',
+    'typography',
+  ]);
 
   const guideRuleExample = css`
     pre {
@@ -31,18 +37,18 @@ export const GuideRuleExample = ({
 
   const guideRuleExamplePanel = css`
     border-bottom: 2px solid;
-    margin-bottom: ${theme.sizes.euiSizeS}px;
+    margin-bottom: ${sizes.euiSizeS}px;
     flex-grow: 1; /* 1 */
 
-    ${!panel && `padding-bottom: ${theme.sizes.euiSize}px;`}
+    ${!panel && `padding-bottom: ${sizes.euiSize}px;`}
 
-    ${type === 'do' && `border-bottom-color: ${theme.colors.euiColorSuccess};`}
+    ${type === 'do' && `border-bottom-color: ${colors.euiColorSuccess};`}
 
-    ${type === 'dont' && `border-bottom-color: ${theme.colors.euiColorDanger};`}
+    ${type === 'dont' && `border-bottom-color: ${colors.euiColorDanger};`}
 
     ${frame &&
-      `padding: ${theme.sizes.euiSizeL}px;
-      background-color: ${theme.colors.euiColorLightestShade};
+      `padding: ${sizes.euiSizeL}px;
+      background-color: ${colors.euiColorLightestShade};
       display: flex;
       align-items: center;
       justify-content: space-around;`}
@@ -50,15 +56,14 @@ export const GuideRuleExample = ({
 
   const guideRuleExampleCaption = css`
     @include euiFontSizeS; // TODO
-    font-size: ${theme.typography.euiFontSizeS}px; // TODO
-    line-height: ${theme.typography.euiLineHeight}; // TODO
-    max-height: ${theme.typography.euiFontSizeS *
-      theme.typography.euiLineHeight}px; /* 1 */
+    font-size: ${typography.euiFontSizeS}px; // TODO
+    line-height: ${typography.euiLineHeight}; // TODO
+    max-height: ${typography.euiFontSizeS * typography.euiLineHeight}px; /* 1 */
     overflow-y: visible; /* 1 */
 
-    ${type === 'do' && `color: ${theme.colors.euiColorSuccessText};`}
+    ${type === 'do' && `color: ${colors.euiColorSuccessText};`}
 
-    ${type === 'dont' && `color: ${theme.colors.euiColorDanger};`}
+    ${type === 'dont' && `color: ${colors.euiColorDanger};`}
   `;
 
   const ChildrenComponent = panel ? EuiPanel : 'div';

@@ -17,12 +17,39 @@
  * under the License.
  */
 
-import { createBorders, sizes, typography } from '../global_styling/variables';
+import Propagate from '../services/propagate/propagate';
+import {
+  // createBorders,
+  sizes,
+  typography,
+} from '../global_styling/variables';
 export const createTheme = (colors: any) => {
-  return {
-    colors,
-    sizes,
-    typography,
-    borders: createBorders(colors),
-  };
+  const propagate = new Propagate();
+  propagate.set('colors', colors);
+  propagate.set('sizes', sizes);
+  propagate.set('typography', typography);
+
+  //propagate.set('euiBorderColor', ['euiPrimaryColor'], color => shade(color));
+  propagate.set('borders', ['colors'], colors => {
+    const euiBorderWidthThin = '1px';
+    const euiBorderWidthThick = '2px';
+
+    const euiBorderColor = colors.euiColorLightShade;
+    const euiBorderRadius = '4px';
+    const euiBorderThick = `${euiBorderWidthThick} solid ${euiBorderColor}`;
+    const euiBorderThin = `${euiBorderWidthThin} solid ${euiBorderColor}`;
+    const euiBorderEditable = `${euiBorderWidthThick} dotted ${euiBorderColor}`;
+
+    const borders = {
+      euiBorderWidthThin,
+      euiBorderWidthThick,
+      euiBorderColor,
+      euiBorderRadius,
+      euiBorderThick,
+      euiBorderThin,
+      euiBorderEditable,
+    };
+    return borders;
+  });
+  return propagate;
 };

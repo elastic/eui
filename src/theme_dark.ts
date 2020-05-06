@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import { createTheme } from './themes/create_theme';
+// import { createTheme } from './themes/create_theme';
 import euiColorsDark from './themes/eui/eui_colors_dark';
 
-export default createTheme(euiColorsDark);
+// export default createTheme(euiColorsDark);
+
+export default (theme: any) => {
+  theme.set('colors', euiColorsDark);
+  return theme;
+};
