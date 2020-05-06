@@ -99,11 +99,12 @@ const orderingTooltip = (
         alt="Photo of a page in the book referencing the ordering of largest slice on top."
         caption={
           <small>
+            Wong, Donna M.{' '}
             <em>
               The Wall Street Journal Guide to Information Graphics: The Dos and
-              Don&apos;ts of Presenting Data, Facts, and Figures
+              Don&apos;ts of Presenting Data, Facts, and Figures.
             </em>{' '}
-            by Dona M. Wong
+            W. W. Norton & Company, 2013.
           </small>
         }
       />
@@ -167,9 +168,9 @@ export const ElasticChartsPieExample = {
             where pie charts are useful. Like when:
           </p>
           <ul>
-            <li>there are a maximum of 6 slices (divisions);</li>
-            <li>the values are around 25%, 50% or 75%;</li>
-            <li>one of the categories is much bigger than the others.</li>
+            <li>There are a maximum of 6 slices (divisions)</li>
+            <li>The values are around 25%, 50% or 75%</li>
+            <li>One of the categories is much bigger than the others</li>
           </ul>
           <p>
             The guidelines for{' '}
@@ -207,9 +208,11 @@ export const ElasticChartsPieExample = {
             color="warning"
             title={
               <>
-                Elastic Charts&apos; partition charts do not currently support
-                theming through the <EuiCode>{'<Settings />'}</EuiCode>{' '}
-                component.
+                Elastic Charts&apos;{' '}
+                <EuiLink href="https://github.com/elastic/elastic-charts/issues/518">
+                  partition charts do not currently support theming
+                </EuiLink>{' '}
+                through the <EuiCode>{'<Settings />'}</EuiCode> component.
               </>
             }>
             <p>
