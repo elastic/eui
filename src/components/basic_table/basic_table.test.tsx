@@ -505,37 +505,6 @@ describe('EuiBasicTable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('with pagination and selection', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      itemId: 'id',
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5,
-      },
-      selection: {
-        selected: user => user.id === '1',
-        onSelectionChange: () => undefined,
-      },
-      onChange: () => {},
-    };
-    const component = shallow(<EuiBasicTable {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
   describe('footers', () => {
     test('do not render without a column footer definition', () => {
       const props: EuiBasicTableProps<AgeItem> = {

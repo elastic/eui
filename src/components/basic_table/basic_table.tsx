@@ -295,7 +295,7 @@ export class EuiBasicTable<T = any> extends Component<
 
   componentDidMount() {
     if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
-    this.setDefaultSelection();
+    this.getInitialSelection();
   }
 
   componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
@@ -306,21 +306,21 @@ export class EuiBasicTable<T = any> extends Component<
         this.removeLoadingListeners();
       }
     }
-    this.setDefaultSelection();
+    this.getInitialSelection();
   }
 
   componentWillUnmount() {
     this.removeLoadingListeners();
   }
 
-  setDefaultSelection() {
-    if (this.props.selection && !this.state.defaultSelectionRendered) {
-      const { items, selection } = this.props;
-      const defaultSelectedItems = items.filter(
-        item => selection!.selected && selection!.selected(item) && item
-      );
+  getInitialSelection() {
+    if (
+      this.props.selection &&
+      this.props.selection.selected &&
+      !this.state.defaultSelectionRendered
+    ) {
+      this.changeSelection(this.props.selection.selected);
       this.setState({ defaultSelectionRendered: true });
-      this.changeSelection(defaultSelectedItems);
     }
   }
 
