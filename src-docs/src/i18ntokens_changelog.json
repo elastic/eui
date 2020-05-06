@@ -1,5 +1,15 @@
 [
   {
+    "version": "23.2.0",
+    "changes": [
+      {
+        "token": "euiFlyout.closeAriaLabel",
+        "changeType": "added",
+        "value": "Close this dialog"
+      }
+    ]
+  },
+  {
     "version": "22.6.0",
     "changes": [
       {
