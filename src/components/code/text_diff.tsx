@@ -82,14 +82,11 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
   timeout = 0.1,
   ...rest
 }) => {
-  const diff = useMemo(() => {
-    return new Diff({ timeout: disableTimeout ? 0 : timeout }); // options may be passed to constructor; see below
-  }, [timeout, disableTimeout]);
-
   const textDiff = useMemo(() => {
+    const diff = new Diff({ timeout: disableTimeout ? 0 : timeout }); // options may be passed to constructor
     return diff.main(initialText, currentText);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialText, currentText]); // produces diff array
+  }, [initialText, currentText, timeout, disableTimeout]); // produces diff array
 
   const dataFormat = () => {
     const result: dataFormat[] = [];
@@ -127,7 +124,7 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
     if (el[0] === 0) Element = NoChangeComponent as StatelessComponent;
     else if (el[0] === -1) Element = DeletionComponent as StatelessComponent;
     else Element = InsertComponent as StatelessComponent;
-    rendereredHtml.push(<Element>{el[1]}</Element>);
+    rendereredHtml.push(<Element key={i}>{el[1]}</Element>);
   }
 
   useEffect(() => {
