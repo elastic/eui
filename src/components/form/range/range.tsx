@@ -255,7 +255,7 @@ export class EuiRange extends Component<EuiRangeProps> {
           levels={levels}
           onChange={this.handleOnChange}
           value={value}
-          aria-hidden={showInput === true ? true : false}>
+          aria-hidden={showInput === true}>
           {showRange && this.isValid && (
             <EuiRangeHighlight
               compressed={compressed}

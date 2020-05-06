@@ -554,7 +554,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           levels={levels}
           onChange={this.handleSliderChange}
           value={value}
-          aria-hidden={showInput === true ? true : false}>
+          aria-hidden={showInput === true}>
           {showRange && this.isValid && (
             <EuiRangeHighlight
               compressed={compressed}
