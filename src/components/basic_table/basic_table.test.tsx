@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import {
@@ -462,7 +462,7 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const component = mount(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
