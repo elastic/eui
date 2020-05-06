@@ -162,9 +162,11 @@ phrase
   ) space? '"' { return Exp.string(phrase, location()); }
 
 phraseWord
-  = orWord
-  / word
-  / [()] // adding parens directly to "wordChar" makes it too aggresive as it consumes the closing paren
+  = [^\\\\" ]+
+  / '\\\\"'
+//  = orWord
+//  / word
+//  / [()] // adding parens directly to "wordChar" makes it too aggresive as it consumes the closing paren
 
 word
   = wordChar+ {
