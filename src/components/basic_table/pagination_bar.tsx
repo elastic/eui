@@ -57,7 +57,7 @@ export const PaginationBar = ({
     if (pageCount < pagination.pageIndex + 1) {
       onPageChange(pageCount - 1);
     }
-  });
+  }, [pageCount, onPageChange, pagination]);
 
   return (
     <div>
