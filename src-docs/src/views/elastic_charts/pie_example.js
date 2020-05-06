@@ -274,7 +274,7 @@ const euiPartitionConfig = euiChartTheme.partition;
                 className: 'eui-alignTop',
               }}
             />{' '}
-            and consider appending their values . However, if there are many
+            and consider appending their values. However, if there are many
             small slices or long labels, use a legend, especially one that
             displays the values in a table format with right aligned values.
           </p>
