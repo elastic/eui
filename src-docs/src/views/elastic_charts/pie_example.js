@@ -214,7 +214,7 @@ export const ElasticChartsPieExample = {
             }>
             <p>
               {' '}
-              EUI then provides a separate key for use with
+              EUI provides a separate key for use with
               <EuiCode language="ts">
                 {'Partition.config={{...EUI_CHARTS_THEME_LIGHT.partition}}'}
               </EuiCode>
