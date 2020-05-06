@@ -162,7 +162,7 @@ export const ElasticChartsPieExample = {
       text: (
         <>
           <p>
-            There are arguments that pie charts are not usually the best
+            A common argument is made that pie charts are not usually the best
             representation for understanding data. However there are situations
             where pie charts are useful. Like when:
           </p>
