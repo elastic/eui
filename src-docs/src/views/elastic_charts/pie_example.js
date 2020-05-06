@@ -317,7 +317,7 @@ const euiPartitionConfig = euiChartTheme.partition;
       text: (
         <>
           <p>
-            Multi-level pie charts(also known as sunbursts) and treemaps are
+            Multi-level pie charts (also known as sunbursts) and treemaps are
             great for visualizing hierarchical relationships and for quickly
             referencing the overall data comparison. However, they’re terrible
             for displaying a true understanding of the values.
