@@ -58,6 +58,11 @@ interface Props extends EuiTextDiffSharedProps {
   getDataFormat?: (data: DataFormat[]) => void;
 }
 
+interface dataFormat {
+  content: string;
+  type: string;
+}
+
 export type EuiTextDiffProps = CommonProps &
   Props &
   HTMLAttributes<HTMLElement>;
@@ -84,25 +89,26 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
   }, [initText, currentText]); // produces diff array
 
   const dataFormat = () => {
-    return [...textDiff].map(el => {
+    const result: dataFormat[] = [];
+    textDiff.forEach((el: any) => {
       if (el[0] === 0) {
-        return {
+        result.push({
           type: 'no change',
           content: el[1],
-        };
-      }
-      if (el[0] === -1) {
-        return {
+        });
+      } else if (el[0] === -1) {
+        result.push({
           type: 'delete',
           content: el[1],
-        };
+        });
       } else {
-        return {
+        result.push({
           type: 'insert',
           content: el[1],
-        };
+        });
       }
     });
+    return result;
   };
 
   const classes = classNames(
