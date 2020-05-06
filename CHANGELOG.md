@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `23.2.0`.
+**Bug Fixes**
+
+- Fixed `ApplyClassComponentDefaults` typescript utility to correctly determine defaulted properties' types ([#3425](https://github.com/elastic/eui/pull/3425))
 
 ## [`23.2.0`](https://github.com/elastic/eui/tree/v23.2.0)
 
