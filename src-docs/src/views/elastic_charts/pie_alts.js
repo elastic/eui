@@ -92,7 +92,7 @@ export default () => {
   let isMisleadingChart = false;
   let isBadChart = false;
   let description =
-    'This chart is a good alternative to the standard mutli-tier pie (or sunburst) chart. It clearly represents the actual values while maintaining visual comparison.';
+    'This chart is a good alternative to the standard multi-tier pie (or sunburst) chart. It clearly represents the actual values while maintaining visual comparison.';
   let title = 'Good alternative';
 
   if (formatted && !stacked) {
