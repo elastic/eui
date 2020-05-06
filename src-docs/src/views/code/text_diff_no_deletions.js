@@ -28,7 +28,6 @@ export default () => {
         paddingSize="m"
         initialText={initialText}
         currentText={currentText}
-        disableTimeout={true}
         getDataFormat={onGetDataFormat}
         DeletionComponent={() => null}
       />

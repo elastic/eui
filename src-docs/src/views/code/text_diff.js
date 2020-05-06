@@ -29,7 +29,6 @@ export default () => {
         initialText={initialText}
         currentText={currentText}
         getDataFormat={onGetDataFormat}
-        disableTimeout={true}
       />
       <EuiSpacer />
       <EuiCode>

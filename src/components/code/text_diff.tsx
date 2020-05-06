@@ -38,8 +38,10 @@ export interface EuiTextDiffSharedProps {
   fontSize?: FontSize;
   transparentBackground?: boolean;
   isCopyable?: boolean;
+  /**
+   * passing a timeout of value '0' disables the timeout state
+   */
   timeout?: number;
-  disableTimeout?: boolean;
 }
 
 interface DataFormat {
@@ -78,15 +80,14 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
   initialText,
   currentText,
   getDataFormat,
-  disableTimeout = false,
   timeout = 0.1,
   ...rest
 }) => {
   const textDiff = useMemo(() => {
-    const diff = new Diff({ timeout: disableTimeout ? 0 : timeout }); // options may be passed to constructor
+    const diff = new Diff({ timeout }); // options may be passed to constructor
     return diff.main(initialText, currentText);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialText, currentText, timeout, disableTimeout]); // produces diff array
+  }, [initialText, currentText, timeout]); // produces diff array
 
   const dataFormat = () => {
     const result: dataFormat[] = [];
