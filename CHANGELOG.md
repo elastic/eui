@@ -1,8 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `testenv` mock for `EuiCode` and `EuiCodeBlock` ([#3405](https://github.com/elastic/eui/pull/3405))
+
 **Bug Fixes**
 
-- Fixed `ApplyClassComponentDefaults` typescript utility to correctly determine defaulted properties' types ([#3425](https://github.com/elastic/eui/pull/3425))
+- Fixed `EuiCode` and `EuiCodeBlock` from erroring in environments without a DOM implementation ([#3405](https://github.com/elastic/eui/pull/3405))
+- Fixed `ApplyClassComponentDefaults` typescript utility to correctly determine defaulted properties' types ([#3430](https://github.com/elastic/eui/pull/3430))
 
 ## [`23.2.0`](https://github.com/elastic/eui/tree/v23.2.0)
 
