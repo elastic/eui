@@ -118,15 +118,19 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
     paddingSizeToClassNameMap[paddingSize]
   );
 
-  const rendereredHtml = [];
-  for (let i = 0; i < textDiff.length; i++) {
-    let Element: StatelessComponent;
-    const el = textDiff[i];
-    if (el[0] === 0) Element = NoChangeComponent as StatelessComponent;
-    else if (el[0] === -1) Element = DeletionComponent as StatelessComponent;
-    else Element = InsertComponent as StatelessComponent;
-    rendereredHtml.push(<Element key={i}>{el[1]}</Element>);
-  }
+  const rendereredHtml = useMemo(() => {
+    const html = [];
+    for (let i = 0; i < textDiff.length; i++) {
+      let Element: StatelessComponent;
+      const el = textDiff[i];
+      if (el[0] === 0) Element = NoChangeComponent as StatelessComponent;
+      else if (el[0] === -1) Element = DeletionComponent as StatelessComponent;
+      else Element = InsertComponent as StatelessComponent;
+      html.push(<Element key={i}>{el[1]}</Element>);
+    }
+
+    return html;
+  }, [textDiff, DeletionComponent, InsertComponent, NoChangeComponent]); // produces diff array
 
   useEffect(() => {
     if (getDataFormat) getDataFormat(dataFormat());
