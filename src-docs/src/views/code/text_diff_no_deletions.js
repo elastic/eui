@@ -30,6 +30,7 @@ export default () => {
         currentText={currentText}
         disableTimeout={true}
         getDataFormat={onGetDataFormat}
+        DeletionComponent={() => null}
       />
       <EuiSpacer />
       <EuiCode>
