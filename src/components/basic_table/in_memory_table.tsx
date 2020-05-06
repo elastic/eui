@@ -269,10 +269,14 @@ export class EuiInMemoryTable<T> extends Component<
       };
     }
 
-    if (
-      (nextProps.search as EuiSearchBarProps) !==
-      (prevState.prevProps.search as EuiSearchBarProps)
-    ) {
+    const nextQuery = nextProps.search
+      ? (nextProps.search as EuiSearchBarProps).query
+      : '';
+    const prevQuery = prevState.prevProps.search
+      ? (prevState.prevProps.search as EuiSearchBarProps).query
+      : '';
+
+    if (nextQuery !== prevQuery) {
       return {
         prevProps: {
           ...prevState.prevProps,
@@ -281,6 +285,7 @@ export class EuiInMemoryTable<T> extends Component<
         query: getQueryFromSearch(nextProps.search, false),
       };
     }
+
     return null;
   }
 
