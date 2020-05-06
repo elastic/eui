@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `aria-hidden = true` to `EuiRangeSlider` and `EuiRangeTrack` if `showInput = true` ([#3423](https://github.com/elastic/eui/pull/3423))
+- Added `testenv` mock for `EuiCode` and `EuiCodeBlock` ([#3405](https://github.com/elastic/eui/pull/3405))
+
+**Bug Fixes**
+
+- Fixed `EuiCode` and `EuiCodeBlock` from erroring in environments without a DOM implementation ([#3405](https://github.com/elastic/eui/pull/3405))
 
 ## [`23.2.0`](https://github.com/elastic/eui/tree/v23.2.0)
 
