@@ -13,19 +13,19 @@ import { DisplayToggles } from '../form_controls/display_toggles';
 const palettes: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'palette1',
-    title: 'EUI Color Blind (stops)',
+    title: 'EUI Color Blind (fixed)',
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
   {
     value: 'palette2',
-    title: 'Summer Colors (stops)',
+    title: 'Summer Colors (fixed)',
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'fixed',
   },
   {
     value: 'palette4',
-    title: 'Beautiful Gradient (gradient)',
+    title: 'Beautiful Gradient (gradient with stops)',
     palette: [
       {
         stop: 100,
@@ -54,8 +54,14 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
   },
   {
     value: 'palette6',
-    title: 'Electric Pop (stops)',
-    palette: ['#ff3f3f', '#ffcc06', '#0a9ad7', '#030000', '#fdf2dd'],
+    title: 'CSS color names (fixed)',
+    palette: ['red', 'gold', 'deepskyblue', 'black', 'linen'],
+    type: 'fixed',
+  },
+  {
+    value: 'palette7',
+    title: 'RGBA colors (fixed)',
+    palette: ['rgba(0, 0, 0, 0.5)', 'rgba(255, 255, 255, 0.2)'],
     type: 'fixed',
   },
 ];

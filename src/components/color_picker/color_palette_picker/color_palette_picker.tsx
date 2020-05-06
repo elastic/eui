@@ -26,7 +26,7 @@ import { EuiText } from '../../text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { CommonProps } from '../../common';
 
-import { getLinearGradient } from '../utils';
+import { getLinearGradient, getFixedLinearGradient } from '../utils';
 import { ColorStop } from '../color_stops';
 
 export interface EuiColorPalettePickerPaletteProps {
@@ -99,29 +99,17 @@ export const EuiColorPalettePicker: FunctionComponent<
   ...rest
 }) => {
   const getPalette = (palette: [], type: string) => {
-    if (type === 'fixed') {
-      return (
-        <div className="euiColorPalettePicker__colorContainer">
-          {palette.map((hexCode: string, index: number) => (
-            <div
-              title={hexCode}
-              style={{ backgroundColor: hexCode }}
-              key={`${hexCode}-${index}`}
-              className={'euiColorPalettePicker__colorStop'}
-            />
-          ))}
-        </div>
-      );
-    } else {
-      const background = getLinearGradient(palette);
+    const background =
+      type === 'fixed'
+        ? getFixedLinearGradient(palette)
+        : getLinearGradient(palette);
 
-      return (
-        <div
-          className="euiColorPalettePicker__colorContainer"
-          style={{ background }}
-        />
-      );
-    }
+    return (
+      <div
+        className="euiColorPalettePicker__colorContainer"
+        style={{ background }}
+      />
+    );
   };
 
   const getButton = (title: any) => title;

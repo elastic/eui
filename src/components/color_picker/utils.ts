@@ -157,25 +157,25 @@ export const getChromaColor = (input?: string | null, allowOpacity = false) => {
   return null;
 };
 
-// Given an array of objects with key value pairs stop/color or
-// given just an array of objects with hex colors returns a css linear-gradient
+// Given an array of objects with key value pairs stop/color
+// Or given just an array of hex colors returns a css linear-gradient
 export const getLinearGradient = (palette: any) => {
   const intervals = palette.length;
+
+  let linearGradient;
 
   const paletteHasStops = palette.some((item: any) => {
     return typeof item === 'object';
   });
 
-  let linearGradient;
-
   if (paletteHasStops) {
     linearGradient = `linear-gradient(to right, ${palette[0].color} 0%,`;
 
-    const divider = 100 / palette[palette.length - 1].stop;
+    const decimal = 100 / palette[palette.length - 1].stop;
 
     for (let i = 1; i < intervals - 1; i++) {
-      linearGradient = `${linearGradient} ${palette[i].color}\ ${Math.round(
-        palette[i].stop * divider
+      linearGradient = `${linearGradient} ${palette[i].color}\ ${Math.floor(
+        palette[i].stop * decimal
       )}%,`;
     }
 
@@ -199,4 +199,30 @@ export const getLinearGradient = (palette: any) => {
 
     return linearGradientStyle;
   }
+};
+
+// Given an array of hex values
+export const getFixedLinearGradient = (palette: any) => {
+  const intervals = palette.length;
+
+  let fixedLinearGradient;
+
+  for (let i = 0; i < intervals; i++) {
+    const initialColorStop = `${palette[0]} 0%, ${palette[0]}\ ${Math.floor(
+      (100 * 1) / intervals
+    )}%`;
+    const colorStop = `${palette[i]}\ ${Math.floor((100 * i) / intervals)}%, ${
+      palette[i]
+    }\ ${Math.floor((100 * (i + 1)) / intervals)}%`;
+
+    if (i === 0) {
+      fixedLinearGradient = `linear-gradient(to right, ${initialColorStop},`;
+    } else if (i === palette.length - 1) {
+      fixedLinearGradient = `${fixedLinearGradient} ${colorStop})`;
+    } else {
+      fixedLinearGradient = `${fixedLinearGradient} ${colorStop},`;
+    }
+  }
+
+  return fixedLinearGradient;
 };

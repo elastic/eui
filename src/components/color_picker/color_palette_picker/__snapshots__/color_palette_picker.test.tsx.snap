@@ -24,33 +24,8 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
           Select an option: 
           <div
             class="euiColorPalettePicker__colorContainer"
-          >
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#1fb0b2"
-              title="#1fb0b2"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#ffdb6d"
-              title="#ffdb6d"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#ee9191"
-              title="#ee9191"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#ffffff"
-              title="#ffffff"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#888094"
-              title="#888094"
-            />
-          </div>
+            style="background:linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)"
+          />
           , is selected
         </span>
         <button
@@ -65,33 +40,8 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
         >
           <div
             class="euiColorPalettePicker__colorContainer"
-          >
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#1fb0b2"
-              title="#1fb0b2"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#ffdb6d"
-              title="#ffdb6d"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#ee9191"
-              title="#ee9191"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#ffffff"
-              title="#ffffff"
-            />
-            <div
-              class="euiColorPalettePicker__colorStop"
-              style="background-color:#888094"
-              title="#888094"
-            />
-          </div>
+            style="background:linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)"
+          />
         </button>
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"

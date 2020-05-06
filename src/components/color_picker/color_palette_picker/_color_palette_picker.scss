@@ -5,9 +5,7 @@
     border-radius: $euiBorderRadius;
     overflow: hidden;
     height: $euiSizeS;
-    // border: $euiBorderThin;
-    margin: 2px;
-    box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .98);
+    box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .9);
 
   }
 

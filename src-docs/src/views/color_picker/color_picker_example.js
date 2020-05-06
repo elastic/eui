@@ -322,30 +322,6 @@ export const ColorPickerExample = {
               further apply to data like maps, bar charts, or any other type of
               data visualization.
             </p>
-            <p>To display palettes simply pass an array of objects with:</p>
-            <ul>
-              <li>
-                <EuiCode>value</EuiCode>: a unique value
-              </li>
-              <li>
-                <EuiCode>title</EuiCode>: the name of your palette (not
-                required)
-              </li>
-              <li>
-                <EuiCode>type</EuiCode>: specify if your palette is a{' '}
-                <EuiCode>{'"gradient"'}</EuiCode>
-                or <EuiCode>{'"stops"'}</EuiCode>
-              </li>
-              <li>
-                <EuiCode>palette</EuiCode>: an array of hex colors{' '}
-                <EuiCode language="js">{'["#1fb0b2", "#ffdb6d"]'}</EuiCode>. For
-                <EuiCode language="js">{'type: "gradient"'}</EuiCode> you can
-                specify the stops{' '}
-                <EuiCode language="js">
-                  {'{ stop: 100, color: "#54B399" }'}
-                </EuiCode>
-              </li>
-            </ul>
           </EuiText>
         </React.Fragment>
       ),
