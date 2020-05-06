@@ -4,6 +4,7 @@
 
 **Bug Fixes**
 
+- Fixed `EuiBasicTable` shows no items if all items of last page is deleted  ([#3422](https://github.com/elastic/eui/pull/3422))
 - Fixed `EuiCode` and `EuiCodeBlock` from erroring in environments without a DOM implementation ([#3405](https://github.com/elastic/eui/pull/3405))
 
 ## [`23.2.0`](https://github.com/elastic/eui/tree/v23.2.0)
