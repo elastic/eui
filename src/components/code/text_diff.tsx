@@ -2,12 +2,11 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useMemo,
-  useState,
   useEffect,
+  StatelessComponent,
 } from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
-import parse from 'html-react-parser';
 import { FontSize, PaddingSize } from './code';
 import { CommonProps } from '../common';
 
@@ -41,8 +40,8 @@ export interface EuiTextDiffSharedProps {
   isCopyable?: boolean;
   timeout?: number;
   disableTimeout?: boolean;
-  onTimeOut?: (text: string) => void;
 }
+
 interface DataFormat {
   type: string;
   content: any;
@@ -54,8 +53,10 @@ interface Props extends EuiTextDiffSharedProps {
   paddingSize: PaddingSize;
   currentText: string;
   initialText: string;
-  showDeletion?: boolean;
   getDataFormat?: (data: DataFormat[]) => void;
+  InsertComponent?: StatelessComponent;
+  DeletionComponent?: StatelessComponent;
+  NoChangeComponent?: StatelessComponent;
 }
 
 interface dataFormat {
@@ -70,23 +71,25 @@ export type EuiTextDiffProps = CommonProps &
 export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
   inline,
   fontSize,
+  InsertComponent = 'ins',
+  DeletionComponent = 'del',
+  NoChangeComponent = 'span',
   paddingSize,
   initialText,
   currentText,
-  showDeletion = true,
   getDataFormat,
-  disableTimeout = true,
-  onTimeOut,
+  disableTimeout = false,
   timeout = 0.1,
   ...rest
 }) => {
-  const [initText, setInitialText] = useState(initialText);
+  const diff = useMemo(() => {
+    return new Diff({ timeout: disableTimeout ? 0 : timeout }); // options may be passed to constructor; see below
+  }, [timeout, disableTimeout]);
 
-  const diff = new Diff(); // options may be passed to constructor; see below
   const textDiff = useMemo(() => {
-    return diff.main(initText, currentText);
+    return diff.main(initialText, currentText);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initText, currentText]); // produces diff array
+  }, [initialText, currentText]); // produces diff array
 
   const dataFormat = () => {
     const result: dataFormat[] = [];
@@ -116,25 +119,18 @@ export const EuiTextDiff: FunctionComponent<EuiTextDiffProps> = ({
     fontSizeToClassNameMap[fontSize],
     paddingSizeToClassNameMap[paddingSize]
   );
-  let htmlString = diff.prettyHtml(textDiff);
 
-  if (!showDeletion) {
-    htmlString = htmlString.replace(/<del>[A-z]*<\/del>/g, '');
+  const rendereredHtml = [];
+  for (let i = 0; i < textDiff.length; i++) {
+    let Element: StatelessComponent;
+    const el = textDiff[i];
+    if (el[0] === 0) Element = NoChangeComponent as StatelessComponent;
+    else if (el[0] === -1) Element = DeletionComponent as StatelessComponent;
+    else Element = InsertComponent as StatelessComponent;
+    rendereredHtml.push(<Element>{el[1]}</Element>);
   }
-  const rendereredHtml = parse(htmlString);
 
   useEffect(() => {
-    if (!disableTimeout && onTimeOut) {
-      const timer = setTimeout(() => {
-        onTimeOut(currentText);
-        setInitialText(currentText);
-      }, +timeout * 1000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-
     if (getDataFormat) getDataFormat(dataFormat());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getDataFormat, textDiff]);
