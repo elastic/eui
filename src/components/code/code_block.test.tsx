@@ -21,6 +21,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { mount, ReactWrapper } from 'enzyme';
 import html from 'html';
+import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCodeBlock } from './code_block';
@@ -130,8 +131,13 @@ describe('EuiCodeBlock', () => {
         const [value, setValue] = useState('State 1');
 
         useEffect(() => {
-          takeSnapshot();
-          setValue('State 2');
+          // Wait a tick for EuiCodeBlock internal state to update on mount
+          setTimeout(() => {
+            takeSnapshot();
+            act(() => {
+              setValue('State 2');
+            });
+          });
         }, []);
 
         useEffect(() => {
