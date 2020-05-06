@@ -190,9 +190,11 @@ export class EuiFieldSearch extends Component<
         return;
       }
     }
+
     if (
       onSearch &&
-      (incremental || (event.keyCode === ENTER && !isSearchSupported))
+      ((event.keyCode !== ENTER && incremental) ||
+        (event.keyCode === ENTER && !isSearchSupported))
     ) {
       onSearch((event.target as HTMLInputElement).value);
     }
