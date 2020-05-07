@@ -40,7 +40,7 @@ type Props = CommonProps &
 
 export type EuiHeaderSectionItemButtonRef = HTMLButtonElement;
 
-export const EuiHeaderSectionItemButton = React.forwardRef<
+const EuiHeaderSectionItemButton = React.forwardRef<
   EuiHeaderSectionItemButtonRef,
   PropsWithChildren<Props>
 >(
@@ -74,3 +74,6 @@ export const EuiHeaderSectionItemButton = React.forwardRef<
     );
   }
 );
+
+EuiHeaderSectionItemButton.displayName = 'EuiHeaderSectionItemButton';
+export { EuiHeaderSectionItemButton };
