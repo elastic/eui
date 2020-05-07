@@ -55,7 +55,10 @@ export type EuiTabsProps = CommonProps &
 
 export type EuiTabRef = HTMLDivElement;
 
-const EuiTabs = React.forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
+export const EuiTabs = React.forwardRef<
+  EuiTabRef,
+  PropsWithChildren<EuiTabsProps>
+>(
   (
     {
       children,
@@ -86,4 +89,3 @@ const EuiTabs = React.forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
 );
 
 EuiTabs.displayName = 'EuiTabs';
-export { EuiTabs };

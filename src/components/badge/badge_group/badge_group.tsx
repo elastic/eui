@@ -42,7 +42,7 @@ export interface EuiBadgeGroupProps {
   children?: ReactNode;
 }
 
-const EuiBadgeGroup = React.forwardRef<
+export const EuiBadgeGroup = React.forwardRef<
   HTMLDivElement,
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiBadgeGroupProps
 >(
@@ -67,4 +67,3 @@ const EuiBadgeGroup = React.forwardRef<
 );
 
 EuiBadgeGroup.displayName = 'EuiBadgeGroup';
-export { EuiBadgeGroup };
