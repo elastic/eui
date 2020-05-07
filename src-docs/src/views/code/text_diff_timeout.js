@@ -12,7 +12,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 export default () => {
   const [del, setDel] = useState(0);
   const [ins, setIns] = useState(0);
-  const [value, setValue] = useState(5);
+  const [value, setValue] = useState(0.00001);
   const initialText =
     'One difference is that interface creates a new name that is used everywhere. Type aliases do create a new name — for instance, error text won’t use the alias name. In the code below, hovering over interfaced in code editor will show that it returns an Interface, but will show that aliased returns object literal type.Wish you happy';
 
@@ -45,7 +45,8 @@ export default () => {
       <EuiRange
         id={htmlIdGenerator()()}
         min={0}
-        max={20}
+        max={0.001}
+        step={0.00001}
         value={value}
         onChange={e => setValue(e.target.value)}
         showLabels
