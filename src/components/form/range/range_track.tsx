@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { Component, MouseEventHandler } from 'react';
+import React, { Component, MouseEventHandler, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import range from 'lodash/range';
@@ -28,7 +28,8 @@ import { EuiRangeTicks, EuiRangeTick } from './range_ticks';
 
 export { LEVEL_COLORS };
 
-export interface EuiRangeTrackProps {
+export interface EuiRangeTrackProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   min: number;
   max: number;
   step?: number;
@@ -138,6 +139,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       onChange,
       value,
       compressed,
+      ...rest
     } = this.props;
 
     // TODO: Move these to only re-calculate if no-value props have changed
@@ -167,7 +169,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     });
 
     return (
-      <div className={trackClasses} style={inputWrapperStyle}>
+      <div className={trackClasses} style={inputWrapperStyle} {...rest}>
         {levels && !!levels.length && (
           <EuiRangeLevels
             compressed={compressed}
