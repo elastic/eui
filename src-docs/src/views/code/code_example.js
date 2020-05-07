@@ -7,7 +7,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiCodeBlockImpl,
-  EuiTextDiff,
+  useEuiTextDiff,
 } from '../../../../src/components';
 
 import Code from './code';
@@ -129,7 +129,7 @@ export const CodeExample = {
         </p>
       ),
       demo: <TextDiff />,
-      props: { EuiTextDiff },
+      props: { useEuiTextDiff },
     },
     {
       title: 'Text Diff without deletions',
@@ -149,7 +149,7 @@ export const CodeExample = {
         </p>
       ),
       demo: <NoDeletion />,
-      props: { EuiTextDiff },
+      props: { useEuiTextDiff },
     },
     {
       title: 'Text Diff with timeout',
@@ -169,7 +169,7 @@ export const CodeExample = {
         </p>
       ),
       demo: <TextDiffTimeOut />,
-      props: { EuiTextDiff },
+      props: { useEuiTextDiff },
     },
   ],
 };
