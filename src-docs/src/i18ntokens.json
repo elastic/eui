@@ -277,12 +277,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 240,
-        "column": 12
+        "line": 211,
+        "column": 10
       },
       "end": {
-        "line": 240,
-        "column": 68
+        "line": 211,
+        "column": 66
       }
     },
     "filepath": "src/components/code/_code_block.tsx"
