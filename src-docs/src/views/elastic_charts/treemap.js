@@ -93,12 +93,12 @@ export default () => {
               data={GITHUB_DATASET_MOD}
               valueAccessor={d => d.count}
               valueGetter="percent"
+              topGroove={0}
               layers={[
                 {
                   groupByRollup: d => d.vizType,
                   shape: {
-                    fillColor: d =>
-                      groupedPalette[d.sortIndex * 3 + d.sortIndex],
+                    fillColor: d => groupedPalette[d.sortIndex * 3],
                   },
                   fillLabel: {
                     valueFormatter: () => '',

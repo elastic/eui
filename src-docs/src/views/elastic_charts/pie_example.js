@@ -248,7 +248,7 @@ const euiPartitionConfig = euiChartTheme.partition;
     valueFormatter={() => ''} // Hide the slice value if data values are already in percentages
     layers={[
       {
-        groupByRollup: d => d.language,
+        groupByRollup: d => d.category,
         shape: {
           fillColor: d => euiChartTheme.theme.colors.vizColors[d.sortIndex],
         },
@@ -319,8 +319,8 @@ const euiPartitionConfig = euiChartTheme.partition;
           <p>
             Multi-level pie charts (also known as sunbursts) and treemaps are
             great for visualizing hierarchical relationships and for quickly
-            referencing the overall data comparison. However, they’re terrible
-            for displaying a true understanding of the values.
+            referencing the overall data comparison. However, they’re not meant
+            to represent trends or explicit/detailed value comparison.
           </p>
           <p>
             Below are some basic examples and how EUI supports them with
