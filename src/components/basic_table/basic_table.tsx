@@ -317,11 +317,16 @@ export class EuiBasicTable<T = any> extends Component<
     if (
       this.props.selection &&
       this.props.selection.initialSelected &&
-      !this.state.defaultSelectionRendered
+      !this.state.defaultSelectionRendered &&
+      this.props.items.length > 0
     ) {
       this.changeSelection(this.props.selection.initialSelected);
       this.setState({ defaultSelectionRendered: true });
     }
+  }
+
+  setSelection(newSelection: T[]) {
+    this.changeSelection(newSelection);
   }
 
   private setTbody = (tbody: HTMLTableSectionElement | null) => {
