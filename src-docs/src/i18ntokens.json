@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1026,
+        "line": 1029,
         "column": 8
       },
       "end": {
-        "line": 1026,
+        "line": 1029,
         "column": 79
       }
     },
@@ -293,11 +293,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 161,
+        "line": 173,
         "column": 8
       },
       "end": {
-        "line": 161,
+        "line": 173,
         "column": 78
       }
     },
@@ -1456,6 +1456,22 @@
     "filepath": "src/components/filter_group/filter_button.tsx"
   },
   {
+    "token": "euiFlyout.closeAriaLabel",
+    "defString": "Close this dialog",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 124,
+        "column": 6
+      },
+      "end": {
+        "line": 124,
+        "column": 76
+      }
+    },
+    "filepath": "src/components/flyout/flyout.tsx"
+  },
+  {
     "token": "euiFormControlLayoutClearButton.label",
     "defString": "Clear input",
     "highlighting": "string",
@@ -1749,11 +1765,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 665,
+        "line": 673,
         "column": 14
       },
       "end": {
-        "line": 668,
+        "line": 676,
         "column": 16
       }
     },
@@ -1861,11 +1877,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 82,
         "column": 6
       },
       "end": {
-        "line": 74,
+        "line": 82,
         "column": 67
       }
     },
@@ -1877,11 +1893,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
+        "line": 95,
         "column": 6
       },
       "end": {
-        "line": 86,
+        "line": 95,
         "column": 72
       }
     },
@@ -1893,11 +1909,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 108,
         "column": 6
       },
       "end": {
-        "line": 98,
+        "line": 108,
         "column": 68
       }
     },
@@ -1909,11 +1925,11 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 66,
+        "line": 80,
         "column": 8
       },
       "end": {
-        "line": 72,
+        "line": 86,
         "column": 30
       }
     },
