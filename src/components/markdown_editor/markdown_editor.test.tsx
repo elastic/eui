@@ -26,7 +26,12 @@ import { EuiMarkdownEditor } from './markdown_editor';
 describe('EuiMarkdownEditor', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiMarkdownEditor editorId="editorId" {...requiredProps} />
+      <EuiMarkdownEditor
+        editorId="editorId"
+        value=""
+        onChange={() => null}
+        {...requiredProps}
+      />
     );
 
     expect(component).toMatchSnapshot();

@@ -27,7 +27,7 @@ import { EuiToolTip } from '../tool_tip';
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     markdownActions?: any;
-    viewMarkdownPreview?: boolean;
+    isPreviewing?: boolean;
     onClickPreview?: any;
   };
 
@@ -90,7 +90,7 @@ export class EuiMarkdownEditorToolbar extends Component<
   };
 
   render() {
-    const { viewMarkdownPreview, onClickPreview } = this.props;
+    const { isPreviewing, onClickPreview } = this.props;
 
     return (
       <div className="euiMarkdownEditor__toolbar">
@@ -108,7 +108,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -120,7 +120,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -132,7 +132,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -140,7 +140,7 @@ export class EuiMarkdownEditorToolbar extends Component<
 
           <EuiFlexItem grow={false}>
             {/* The idea was to use the EuiButtonToggle but it doesn't work when pressing the enter key */}
-            {viewMarkdownPreview ? (
+            {isPreviewing ? (
               <EuiButtonEmpty
                 iconType="editorCodeBlock"
                 color="text"
