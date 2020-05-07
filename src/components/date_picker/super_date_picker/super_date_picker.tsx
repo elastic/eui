@@ -102,7 +102,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Callback for when the time changes.
    */
   onTimeChange: (props: OnTimeChangeProps) => void;
-  recentlyUsedRanges: Array<DurationRange>;
+  recentlyUsedRanges: DurationRange[];
 
   /**
    * Refresh interval in milliseconds
