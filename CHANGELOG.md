@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `23.3.0`.
+
+## [`23.3.0`](https://github.com/elastic/eui/tree/v23.3.0)
+
 - Added `aria-hidden = true` to `EuiRangeSlider` and `EuiRangeTrack` if `showInput = true` ([#3423](https://github.com/elastic/eui/pull/3423))
 - Added `testenv` mock for `EuiCode` and `EuiCodeBlock` ([#3405](https://github.com/elastic/eui/pull/3405))
 - Added `displayName` to components using `React.forwardRef` ([#3440](https://github.com/elastic/eui/pull/3440))
