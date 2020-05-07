@@ -1,7 +1,0 @@
-@include euiBreakpoint('xs', 's') {
-  .euiModal {
-    &.euiModal--confirmation {
-      @include euiBottomShadowLarge($euiShadowColorLarge, false, true);
-    }
-  }
-}
