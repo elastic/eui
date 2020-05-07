@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
@@ -14,6 +33,10 @@ export interface CommonProps {
 }
 
 export type NoArgCallback<T> = () => T;
+
+export const assertNever = (x: never): never => {
+  throw new Error(`Unexpected value ${x}`);
+};
 
 // utility types:
 export type OneOf<T, K extends keyof T> = Omit<T, K> &
@@ -33,6 +56,30 @@ export type PropsOf<C> = C extends SFC<infer SFCProps>
   : C extends Component<infer ComponentProps>
   ? ComponentProps
   : never;
+
+// Utility methods for ApplyClassComponentDefaults
+type ExtractDefaultProps<T> = T extends { defaultProps: infer D } ? D : never;
+type ExtractProps<
+  C extends new (...args: any) => any,
+  IT = InstanceType<C>
+> = IT extends Component<infer P> ? P : never;
+
+/**
+ * Because of how TypeScript's LibraryManagedAttributes is designed to handle defaultProps (https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#support-for-defaultprops-in-jsx)
+ * we can't directly export the props definition as the defaulted values are not made optional,
+ * because it isn't processed by LibraryManagedAttributes. To get around this, we:
+ * - remove the props which have default values applied
+ * - export (Props - Defaults) & Partial<Defaults>
+ */
+export type ApplyClassComponentDefaults<
+  C extends new (...args: any) => any,
+  D = ExtractDefaultProps<C>,
+  P = ExtractProps<C>
+> =
+  // definition of Props that are not defaulted
+  Omit<P, keyof D> &
+    // definition of Props, made optional, that are have keys in defaultProps
+    { [K in keyof D]?: K extends keyof P ? P[K] : never };
 
 /*
 https://github.com/Microsoft/TypeScript/issues/28339

@@ -17,8 +17,8 @@ const manyPagesHtml = renderToHtml(ManyPages);
 const manyPagesSnippet = `<EuiPagination
   aria-label="my pagination"
   pageCount={higherThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -28,8 +28,8 @@ const fewPagesHtml = renderToHtml(FewPages);
 const fewPagesSnippet = `<EuiPagination
   aria-label="my pagination"
   pageCount={lowerThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -41,8 +41,8 @@ const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
     <EuiPagination
       aria-label="my pagination"
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -55,8 +55,8 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
   <EuiFlexItem grow={false}>
     <EuiPopover
       button={button}
-      isOpen={this.state.isPopoverOpen}
-      closePopover={this.closePopover}>
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}>
       <EuiContextMenuPanel items={items} />
     </EuiPopover>
   </EuiFlexItem>
@@ -65,8 +65,8 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
     <EuiPagination
       aria-label="my pagination"
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -78,8 +78,8 @@ const compressedHtml = renderToHtml(Compressed);
 const compressedSnippet = `<EuiPagination
   aria-label="my pagination"
   pageCount={pageCount}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
   compressed
 />
 `;
