@@ -135,6 +135,7 @@ export default class extends Component {
   };
 
   renderOption = (option, searchValue, contentClassName) => {
+    console.log('renderOption');
     const { color, label, value } = option;
     const dotColor = this.visColors[this.visColorsBehindText.indexOf(color)];
     return (

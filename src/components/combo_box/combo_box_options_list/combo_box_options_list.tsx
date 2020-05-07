@@ -3,13 +3,11 @@ import React, {
   ComponentProps,
   ReactNode,
   RefCallback,
-  memo,
 } from 'react';
 import classNames from 'classnames';
 import {
   FixedSizeList,
   ListProps,
-  areEqual,
   ListChildComponentProps,
 } from 'react-window';
 
@@ -179,7 +177,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     }
   };
 
-  ListRow = memo(({ data, index, style }: ListChildComponentProps) => {
+  ListRow = ({ data, index, style }: ListChildComponentProps) => {
     const option = data[index];
     const { isGroupLabelOption, label, value, ...rest } = option;
     const {
@@ -237,7 +235,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         )}
       </EuiFilterSelectItem>
     );
-  }, areEqual);
+  };
 
   render() {
     const {
