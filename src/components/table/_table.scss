@@ -15,11 +15,6 @@
   &.euiTable--auto {
     table-layout: auto;
   }
-
-  // Focus can be programmatically set to tables
-  &:focus {
-    @include euiFocusRing;
-  }
 }
 
 .euiTableCaption {

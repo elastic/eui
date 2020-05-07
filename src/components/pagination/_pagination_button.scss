@@ -28,7 +28,7 @@
   font-size: $euiFontSizeS;
   padding: 0 $euiSizeS;
   height: $euiSizeL;
-  padding-top: 6px;
+  padding-top: $euiSizeM / 2;
 }
 
 @include euiBreakpoint('xs', 's') {
