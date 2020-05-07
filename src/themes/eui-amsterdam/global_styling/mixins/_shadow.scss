@@ -82,13 +82,13 @@
       0 2.7px -9px rgba($color, shadowOpacity(.13)),
       0 9.4px -24px rgba($color, shadowOpacity(.09)),
       0 21.8px -43px rgba($color, shadowOpacity(.08)),
-      0 60 -65px rgba($color, shadowOpacity(.06));
+      0 60px -65px rgba($color, shadowOpacity(.06));
   } @else {
     box-shadow:
       0 2.7px 9px rgba($color, shadowOpacity(.13)),
       0 9.4px 24px rgba($color, shadowOpacity(.09)),
       0 21.8px 43px rgba($color, shadowOpacity(.08)),
-      0 60 65px rgba($color, shadowOpacity(.06));
+      0 60px 65px rgba($color, shadowOpacity(.06));
 
   }
 
