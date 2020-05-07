@@ -5,6 +5,7 @@ import {
   EuiCode,
   EuiSpacer,
   EuiTextColor,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 export default () => {
@@ -26,7 +27,9 @@ export default () => {
 
   return (
     <>
-      {rendered}
+      <EuiCodeBlock language="text" fontSize="m" paddingSize="m">
+        {rendered}
+      </EuiCodeBlock>
       <EuiSpacer />
       <EuiCode>
         <EuiTextColor color="secondary"> {ins} </EuiTextColor> Insertions,

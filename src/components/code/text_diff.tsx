@@ -1,32 +1,9 @@
-import React, {
-  HTMLAttributes,
-  useMemo,
-  useEffect,
-  StatelessComponent,
-} from 'react';
+import React, { HTMLAttributes, useMemo, StatelessComponent } from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
-import { FontSize, PaddingSize } from './code';
 import { CommonProps } from '../common';
 
-export const fontSizeToClassNameMap = {
-  s: 'euiTextDiff--fontSmall',
-  m: 'euiTextDiff--fontMedium',
-  l: 'euiTextDiff--fontLarge',
-};
-
-export const paddingSizeToClassNameMap: {
-  [paddingSize in PaddingSize]: string
-} = {
-  none: '',
-  s: 'euiTextDiff--paddingSmall',
-  m: 'euiTextDiff--paddingMedium',
-  l: 'euiTextDiff--paddingLarge',
-};
-
 export interface EuiTextDiffSharedProps {
-  paddingSize?: PaddingSize;
-
   /**
    * Sets the syntax highlighting for a specific language
    * @see http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
@@ -34,7 +11,6 @@ export interface EuiTextDiffSharedProps {
    */
   language?: string;
   overflowHeight?: number;
-  fontSize?: FontSize;
   transparentBackground?: boolean;
   isCopyable?: boolean;
   /**
@@ -44,8 +20,6 @@ export interface EuiTextDiffSharedProps {
 }
 
 interface Props extends EuiTextDiffSharedProps {
-  fontSize: FontSize;
-  paddingSize: PaddingSize;
   currentText: string;
   initialText: string;
   InsertComponent?: StatelessComponent;
@@ -58,13 +32,11 @@ export type EuiTextDiffProps = CommonProps &
   HTMLAttributes<HTMLElement>;
 
 export const useEuiTextDiff: Function = ({
-  fontSize,
   InsertComponent = 'ins',
   DeletionComponent = 'del',
   NoChangeComponent = 'span',
-  paddingSize,
-  initialText,
-  currentText,
+  initialText = '',
+  currentText = '',
   timeout = 0.1,
   ...rest
 }) => {
@@ -75,11 +47,7 @@ export const useEuiTextDiff: Function = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialText, currentText, diff]); // produces diff array
 
-  const classes = classNames(
-    'euiTextDiff',
-    fontSizeToClassNameMap[fontSize],
-    paddingSizeToClassNameMap[paddingSize]
-  );
+  const classes = classNames('euiTextDiff');
 
   const rendereredHtml = useMemo(() => {
     const html = [];
@@ -87,10 +55,11 @@ export const useEuiTextDiff: Function = ({
       for (let i = 0; i < textDiff.length; i++) {
         let Element: StatelessComponent;
         const el = textDiff[i];
-        if (el[0] === 0) Element = NoChangeComponent as StatelessComponent;
+        if (el[0] === 0)
+          Element = (NoChangeComponent as unknown) as StatelessComponent;
         else if (el[0] === -1)
-          Element = DeletionComponent as StatelessComponent;
-        else Element = InsertComponent as StatelessComponent;
+          Element = (DeletionComponent as unknown) as StatelessComponent;
+        else Element = (InsertComponent as unknown) as StatelessComponent;
         html.push(<Element key={i}>{el[1]}</Element>);
       }
 
