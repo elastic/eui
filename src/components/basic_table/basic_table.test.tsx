@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import {
@@ -437,32 +437,6 @@ describe('EuiBasicTable', () => {
       onChange: () => {},
     };
     const component = shallow(<EuiBasicTable {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with default selection', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      itemId: 'id',
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
-      selection: {
-        initialSelected: [{ id: '1', name: 'name1' }],
-        onSelectionChange: () => undefined,
-      },
-      onChange: () => {},
-    };
-    const component = mount(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
