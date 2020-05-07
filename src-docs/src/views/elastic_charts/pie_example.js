@@ -341,8 +341,8 @@ const euiPartitionConfig = euiChartTheme.partition;
         <>
           <p>
             Most pie/donut/sunburst chart data can be <strong>better</strong>{' '}
-            explained using bar charts with different configurations.
-            You should definitely <strong>not</strong> use pie charts when:
+            explained using bar charts with different configurations. You should
+            definitely <strong>not</strong> use pie charts when:
           </p>
           <ul>
             <li>
