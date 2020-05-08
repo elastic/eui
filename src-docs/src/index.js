@@ -22,6 +22,11 @@ import themeDark from './theme_dark.scss';
 import themeAmsterdamLight from './theme_amsterdam_light.scss';
 import themeAmsterdamDark from './theme_amsterdam_dark.scss';
 
+if (process.env.NODE_ENV === 'development') {
+  const axe = require('react-axe');
+  axe(React, ReactDOM, 1000);
+}
+
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
 registerTheme('amsterdam-light', [themeAmsterdamLight]);
