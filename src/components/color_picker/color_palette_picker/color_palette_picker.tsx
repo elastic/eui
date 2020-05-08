@@ -42,13 +42,14 @@ export interface EuiColorPalettePickerPaletteProps {
    * Specify if the palette is
    * `fixed`: individual color blocks; or
    * `gradient`: each color fades into the next
+   * `text`: a text as an option. A title is required.
    */
-  type: 'fixed' | 'gradient';
+  type: 'fixed' | 'gradient' | 'text';
   /**
    * Array of color `strings` or `ColorStops` in the form of
    * { stop: number, color: string }
    */
-  palette: string[] | ColorStop[];
+  palette?: string[] | ColorStop[];
 }
 
 export type EuiColorPalettePickerProps = CommonProps & {
@@ -112,18 +113,18 @@ export const EuiColorPalettePicker: FunctionComponent<
     );
   };
 
-  const getButton = (title: any) => title;
+  const getText = (title: any) => title;
 
   const paletteOptions = palettes.map((item: any) => {
     return {
       value: String(item.value),
       inputDisplay:
-        item.type !== 'button'
+        item.type !== 'text'
           ? getPalette(item.palette, item.type)
-          : getButton(item.title),
+          : getText(item.title),
       dropdownDisplay: (
         <EuiFlexGroup gutterSize="xs" direction="column">
-          {item.title && item.type !== 'button' && (
+          {item.title && item.type !== 'text' && (
             <EuiFlexItem>
               <EuiText
                 size="xs"
@@ -134,9 +135,9 @@ export const EuiColorPalettePicker: FunctionComponent<
           )}
 
           <EuiFlexItem>
-            {item.type !== 'button'
+            {item.type !== 'text'
               ? getPalette(item.palette, item.type)
-              : getButton(item.title)}
+              : getText(item.title)}
           </EuiFlexItem>
         </EuiFlexGroup>
       ),

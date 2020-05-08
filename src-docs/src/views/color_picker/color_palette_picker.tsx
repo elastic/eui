@@ -64,6 +64,11 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     palette: ['rgba(0, 0, 0, 0.5)', 'rgba(255, 255, 255, 0.2)'],
     type: 'fixed',
   },
+  {
+    value: 'custom',
+    title: 'Just a text as an option',
+    type: 'text',
+  },
 ];
 
 export const ColorPalettePicker = () => {
