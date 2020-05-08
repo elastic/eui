@@ -11,12 +11,6 @@
   box-shadow:
     0 .8px .8px rgba($color, shadowOpacity(.04)),
     0 2.3px 2px rgba($color, shadowOpacity(.03)),
-    0 5.4px 5px rgba($color, shadowOpacity(.02)),
-    0 18px 17px rgba($color, shadowOpacity(.01));
-
-  @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiSlightShadow() will be depricated in a future version of EUI.';
-  }
 }
 
 @mixin euiBottomShadowSmall($color: $euiShadowColor, $opacity: 0) {
@@ -83,16 +77,15 @@
 ) {
   @if ($reverse) {
     box-shadow:
-      0 -2.7px 9px rgba($color, shadowOpacity(.13)),
-      0 -9.4px 24px rgba($color, shadowOpacity(.09)),
-      0 -21.8px 43px rgba($color, shadowOpacity(.08)),
-      0 -60px 65px rgba($color, shadowOpacity(.06));
+      0 2.7px -9px rgba($color, shadowOpacity(.13)),
+      0 9.4px -24px rgba($color, shadowOpacity(.09)),
+      0 21.8px -43px rgba($color, shadowOpacity(.08)),
   } @else {
     box-shadow:
       0 2.7px 9px rgba($color, shadowOpacity(.13)),
       0 9.4px 24px rgba($color, shadowOpacity(.09)),
       0 21.8px 43px rgba($color, shadowOpacity(.08)),
-      0 60px 65px rgba($color, shadowOpacity(.06));
+
   }
 
   @if ($opacity > 0) {
