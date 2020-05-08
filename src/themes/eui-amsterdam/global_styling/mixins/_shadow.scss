@@ -10,7 +10,7 @@
 @mixin euiSlightShadow($color: $euiShadowColor, $opacity: 0) {
   box-shadow:
     0 .8px .8px rgba($color, shadowOpacity(.04)),
-    0 2.3px 2px rgba($color, shadowOpacity(.03)),
+    0 2.3px 2px rgba($color, shadowOpacity(.03));
 }
 
 @mixin euiBottomShadowSmall($color: $euiShadowColor, $opacity: 0) {
@@ -79,12 +79,12 @@
     box-shadow:
       0 2.7px -9px rgba($color, shadowOpacity(.13)),
       0 9.4px -24px rgba($color, shadowOpacity(.09)),
-      0 21.8px -43px rgba($color, shadowOpacity(.08)),
+      0 21.8px -43px rgba($color, shadowOpacity(.08));
   } @else {
     box-shadow:
       0 2.7px 9px rgba($color, shadowOpacity(.13)),
       0 9.4px 24px rgba($color, shadowOpacity(.09)),
-      0 21.8px 43px rgba($color, shadowOpacity(.08)),
+      0 21.8px 43px rgba($color, shadowOpacity(.08));
 
   }
 
