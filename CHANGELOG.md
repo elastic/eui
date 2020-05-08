@@ -1,20 +1,25 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `aria-hidden = true` to `EuiRangeSlider` and `EuiRangeTrack` if `showInput = true` ([#3423](https://github.com/elastic/eui/pull/3423))
-- Added `testenv` mock for `EuiCode` and `EuiCodeBlock` ([#3405](https://github.com/elastic/eui/pull/3405))
 - Added `sortBy` and `sortShift` props to `euiPaletteColorBlind()` for sorting along the color wheel ([#3387](https://github.com/elastic/eui/pull/3387))
 - Added `partition` key to `EuiChartThemeType` for Partition chart support ([#3387](https://github.com/elastic/eui/pull/3387))
 - Updated `EuiImage`'s `caption` prop type from `string` to `ReactNode` ([#3387](https://github.com/elastic/eui/pull/3387))
-
-**Bug Fixes**
-
-- Fixed `EuiCode` and `EuiCodeBlock` from erroring in environments without a DOM implementation ([#3405](https://github.com/elastic/eui/pull/3405))
-- Fixed `ApplyClassComponentDefaults` typescript utility to correctly determine defaulted properties' types ([#3430](https://github.com/elastic/eui/pull/3430))
 
 **Breaking changes**
 
 - Changed parameters for `euiPaletteColorBlind()` to an object ([#3387](https://github.com/elastic/eui/pull/3387))
 - Changed the default palette of `EUI_CHARTS_THEME_LIGHT/DARK` themes to the naturally sorted `euiPaletteColorBlind()` ([#3387](https://github.com/elastic/eui/pull/3387))
+
+## [`23.3.0`](https://github.com/elastic/eui/tree/v23.3.0)
+
+- Added `aria-hidden = true` to `EuiRangeSlider` and `EuiRangeTrack` if `showInput = true` ([#3423](https://github.com/elastic/eui/pull/3423))
+- Added `testenv` mock for `EuiCode` and `EuiCodeBlock` ([#3405](https://github.com/elastic/eui/pull/3405))
+- Added `displayName` to components using `React.forwardRef` ([#3440](https://github.com/elastic/eui/pull/3440))
+
+**Bug Fixes**
+
+- Fixed `EuiCode` and `EuiCodeBlock` from erroring in environments without a DOM implementation ([#3405](https://github.com/elastic/eui/pull/3405))
+- Fixed `ApplyClassComponentDefaults` typescript utility to correctly determine defaulted properties' types ([#3430](https://github.com/elastic/eui/pull/3430))
+- Fixed `prettyDuration` return type to be `string`, use fallback value  ([#3438](https://github.com/elastic/eui/pull/3438))
 
 ## [`23.2.0`](https://github.com/elastic/eui/tree/v23.2.0)
 

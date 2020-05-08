@@ -208,7 +208,15 @@ export class GuideSection extends Component {
       }
     }
 
-    this.setState({ selectedTab, renderedCode });
+    this.setState({ selectedTab, renderedCode }, () => {
+      if (name === 'javascript') {
+        requestAnimationFrame(() => {
+          const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+          if (!pre) return;
+          pre.scrollTop = this.memoScroll;
+        });
+      }
+    });
   };
 
   renderTabs() {
@@ -433,13 +441,6 @@ export class GuideSection extends Component {
         )}
       </div>
     );
-  }
-
-  componentDidUpdate() {
-    if (this.state.selectedTab.name === 'javascript') {
-      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
-      pre.scrollTop = this.memoScroll;
-    }
   }
 
   renderCode(name) {
