@@ -993,10 +993,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@elastic/charts@^19.2.0":
-  version "19.2.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-19.2.0.tgz#45db8c80e4699e5088a1771f190171c1144c5242"
-  integrity sha512-uhk73OQPaxg7l54gfr+kv+c6jiEngewwH408OySzJbnH23z/5sIpLSziZhV33I6bs/LKDXQSqamC9Jh6Xcwk1A==
+"@elastic/charts@^19.3.0":
+  version "19.3.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-19.3.0.tgz#8ae1cd5c1c3cced860c48d79ec086810307f9f4d"
+  integrity sha512-D6vYl13uMH5vpbfD7qfB0bq4L/uUqUx5rNld6WhRUu21qaXszFSOzTcU+upiurG9f4NGQhoqNC75noT2u5l4Rg==
   dependencies:
     classnames "^2.2.6"
     d3-array "^1.2.4"
