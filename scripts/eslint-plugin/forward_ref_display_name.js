@@ -21,7 +21,7 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Enforce display name',
+      description: 'Enforce display name to forwardRef components',
     },
   },
   create: function(context) {
@@ -56,13 +56,7 @@ module.exports = {
           if (!isDisplayNameUsed(identifier)) {
             context.report({
               node: identifier,
-              message: 'Forward refs must use display name',
-              fix: function(fixer) {
-                fixer.insertTextAfter(
-                  identifier,
-                  `${identifier.name}.displayName = ${identifier.name}`
-                );
-              },
+              message: 'Forward ref components must use a display name',
             });
           }
         });
