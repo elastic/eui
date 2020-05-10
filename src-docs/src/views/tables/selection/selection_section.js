@@ -23,7 +23,8 @@ export const section = {
     <p>
       The following example shows how to configure selection via the{' '}
       <EuiCode>selection</EuiCode>
-      property.
+      property. Also the selection can be handled externally using the{' '}
+      <EuiCode>setSelection</EuiCode> property.
     </p>
   ),
   components: { EuiBasicTable },

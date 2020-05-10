@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useRef } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -9,6 +9,8 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
 } from '../../../../../src/components';
 
 /*
@@ -41,6 +43,8 @@ export const Table = () => {
   const [sortField, setSortField] = useState('firstName');
   const [sortDirection, setSortDirection] = useState('asc');
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isOnline, setIsOnline] = useState(false);
+  const tableRef = useRef();
 
   const onTableChange = ({ page = {}, sort = {} }) => {
     const { index: pageIndex, size: pageSize } = page;
@@ -51,6 +55,9 @@ export const Table = () => {
     setPageSize(pageSize);
     setSortField(sortField);
     setSortDirection(sortDirection);
+    if (isOnline) {
+      setIsOnline(!isOnline);
+    }
   };
 
   const onSelectionChange = selectedItems => {
@@ -176,17 +183,47 @@ export const Table = () => {
     },
   };
 
+  const initialSelectedUsers = store.users.filter(
+    user => user.online && user.id < 10
+  );
+
   const selection = {
     selectable: user => user.online,
     selectableMessage: selectable =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
+    initialSelected: initialSelectedUsers,
+  };
+
+  const onlineUsers = store.users.filter(user => user.online);
+
+  const toggleSelection = () => {
+    if (!isOnline) {
+      tableRef.current.setSelection(onlineUsers);
+    } else {
+      tableRef.current.setSelection([]);
+    }
+    setIsOnline(!isOnline);
   };
 
   return (
     <Fragment>
-      {deleteButton}
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Online users"
+            checked={isOnline}
+            onChange={toggleSelection}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem />
+        {deleteButton}
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
       <EuiBasicTable
+        ref={tableRef}
         items={pageOfItems}
         itemId="id"
         columns={columns}
