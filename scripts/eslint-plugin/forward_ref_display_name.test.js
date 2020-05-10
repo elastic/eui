@@ -35,7 +35,7 @@ const invalid = [
     code: 'const Component = React.forwardRef<ref>(() => {})',
     errors: [
       {
-        message: 'You must use display name',
+        message: 'Forward ref components must use a display name',
       },
     ],
   },
