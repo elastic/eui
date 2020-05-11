@@ -28,12 +28,11 @@ export const useEuiTextDiff = ({
   timeout = 0.1,
   ...rest
 }: EuiTextDiffProps) => {
-  const diff = new Diff({ timeout }); // options may be passed to constructor
-
   const textDiff = useMemo(() => {
+    const diff = new Diff({ timeout }); // options may be passed to constructor
+
     return diff.main(initialText, currentText);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialText, currentText, diff]); // produces diff array
+  }, [initialText, currentText, timeout]); // produces diff array
 
   const classes = classNames('euiTextDiff');
 
