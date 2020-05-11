@@ -3,28 +3,16 @@ import Diff from 'text-diff';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export interface EuiTextDiffSharedProps {
-  /**
-   * Sets the syntax highlighting for a specific language
-   * @see http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
-   * for options
-   */
-  language?: string;
-  overflowHeight?: number;
-  transparentBackground?: boolean;
-  isCopyable?: boolean;
-  /**
-   * passing a timeout of value '0' disables the timeout state
-   */
-  timeout?: number;
-}
-
-interface Props extends EuiTextDiffSharedProps {
+interface Props {
   currentText: string;
   initialText: string;
   InsertComponent?: StatelessComponent;
   DeletionComponent?: StatelessComponent;
   NoChangeComponent?: StatelessComponent;
+  /**
+   * passing a timeout of value '0' disables the timeout state
+   */
+  timeout?: number;
 }
 
 export type EuiTextDiffProps = CommonProps &
