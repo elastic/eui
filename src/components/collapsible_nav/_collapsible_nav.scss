@@ -14,7 +14,19 @@
   position: absolute;
   right: 0;
   top: $euiSize;
-  margin-right: -25%;
+  margin-right: -27%;
+  padding: $euiSizeM 0;
+  line-height: 1;
+  border-radius: $euiBorderRadius;
+
+  &:focus {
+    @include euiFocusRing;
+  }
+
+  &,
+  &:focus {
+    background: $euiColorEmptyShade;
+  }
 }
 
 // The addition of this class is handled through JS
