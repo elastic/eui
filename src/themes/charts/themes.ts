@@ -19,7 +19,13 @@
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
-import { PartialTheme, LineAnnotationStyle } from '@elastic/charts';
+import {
+  PartialTheme,
+  LineAnnotationStyle,
+  PartitionConfig,
+} from '@elastic/charts';
+
+import { RecursivePartial } from '../../components/common';
 
 // @ts-ignore
 import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
@@ -32,9 +38,10 @@ const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
+  partition: RecursivePartial<PartitionConfig>;
 }
 
-function createTheme(colors: any) {
+function createTheme(colors: any): EuiChartThemeType {
   return {
     lineAnnotation: {
       line: {
@@ -48,6 +55,26 @@ function createTheme(colors: any) {
         fill: colors.euiColorDarkShade.rgba,
         padding: 0,
       },
+    },
+    partition: {
+      fontFamily: fontFamily,
+      minFontSize: 8,
+      maxFontSize: 16,
+      fillLabel: {
+        textInvertible: false,
+        valueFont: {
+          fontWeight: 700,
+        },
+      },
+      linkLabel: {
+        maxCount: 5,
+        fontSize: 11,
+        textColor: colors.euiColorDarkestShade.rgba,
+      },
+      outerSizeRatio: 1,
+      circlePadding: 4,
+      sectorLineStroke: colors.euiColorEmptyShade.rgba,
+      sectorLineWidth: 1.5,
     },
     theme: {
       chartMargins: {
@@ -130,7 +157,7 @@ function createTheme(colors: any) {
         },
       },
       colors: {
-        vizColors: euiPaletteColorBlind(),
+        vizColors: euiPaletteColorBlind({ sortBy: 'natural' }),
         defaultVizColor: DEFAULT_VISUALIZATION_COLOR,
       },
       crosshair: {

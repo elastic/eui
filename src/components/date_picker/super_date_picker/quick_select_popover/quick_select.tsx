@@ -36,6 +36,7 @@ import { timeUnits } from '../time_units';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { ApplyTime, QuickSelect, TimeUnitId } from '../../types';
 import { keysOf } from '../../../common';
+import { parseTimeParts } from './quick_select_utils';
 
 const LAST = 'last';
 const NEXT = 'next';
@@ -48,43 +49,43 @@ const timeUnitsOptions = keysOf(timeUnits).map(key => {
   return { value: key, text: `${timeUnits[key]}s` };
 });
 
-const defaultQuickSelect: QuickSelect = {
-  timeTense: LAST,
-  timeValue: 15,
-  timeUnits: 'm',
-};
-
 type EuiQuickSelectState = QuickSelect;
 
 export interface EuiQuickSelectProps {
   applyTime: ApplyTime;
   start: string;
   end: string;
-  prevQuickSelect: EuiQuickSelectState;
+  prevQuickSelect?: EuiQuickSelectState;
 }
 
 export class EuiQuickSelect extends Component<
   EuiQuickSelectProps,
   EuiQuickSelectState
 > {
-  static defaultProps = {
-    prevQuickSelect: defaultQuickSelect,
-  };
+  constructor(props: EuiQuickSelectProps) {
+    super(props);
 
-  state: EuiQuickSelectState = {
-    timeTense:
-      this.props.prevQuickSelect && this.props.prevQuickSelect.timeTense
-        ? this.props.prevQuickSelect.timeTense
-        : defaultQuickSelect.timeTense,
-    timeValue:
-      this.props.prevQuickSelect && this.props.prevQuickSelect.timeValue
-        ? this.props.prevQuickSelect.timeValue
-        : defaultQuickSelect.timeValue,
-    timeUnits:
-      this.props.prevQuickSelect && this.props.prevQuickSelect.timeUnits
-        ? this.props.prevQuickSelect.timeUnits
-        : defaultQuickSelect.timeUnits,
-  };
+    const {
+      timeTense: timeTenseDefault,
+      timeUnits: timeUnitsDefault,
+      timeValue: timeValueDefault,
+    } = parseTimeParts(props.start, props.end);
+
+    this.state = {
+      timeTense:
+        props.prevQuickSelect && props.prevQuickSelect.timeTense
+          ? props.prevQuickSelect.timeTense
+          : timeTenseDefault,
+      timeValue:
+        props.prevQuickSelect && props.prevQuickSelect.timeValue
+          ? props.prevQuickSelect.timeValue
+          : timeValueDefault,
+      timeUnits:
+        props.prevQuickSelect && props.prevQuickSelect.timeUnits
+          ? props.prevQuickSelect.timeUnits
+          : timeUnitsDefault,
+    };
+  }
 
   generateId = htmlIdGenerator();
 
