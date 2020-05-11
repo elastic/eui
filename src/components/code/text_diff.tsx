@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useMemo, StatelessComponent } from 'react';
+import React, { HTMLAttributes, useMemo, ElementType } from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -6,9 +6,9 @@ import { CommonProps } from '../common';
 interface Props {
   currentText: string;
   initialText: string;
-  InsertComponent?: StatelessComponent;
-  DeletionComponent?: StatelessComponent;
-  NoChangeComponent?: StatelessComponent;
+  InsertComponent?: ElementType;
+  DeletionComponent?: ElementType;
+  NoChangeComponent?: ElementType;
   /**
    * passing a timeout of value '0' disables the timeout state
    */
@@ -20,9 +20,9 @@ export type EuiTextDiffProps = CommonProps &
   HTMLAttributes<HTMLElement>;
 
 export const useEuiTextDiff = ({
-  InsertComponent = ('ins' as unknown) as StatelessComponent<{}>,
-  DeletionComponent = ('del' as unknown) as StatelessComponent<{}>,
-  NoChangeComponent = ('span' as unknown) as StatelessComponent<{}>,
+  InsertComponent = 'ins',
+  DeletionComponent = 'del',
+  NoChangeComponent = 'span',
   initialText = '',
   currentText = '',
   timeout = 0.1,
@@ -41,13 +41,11 @@ export const useEuiTextDiff = ({
     const html = [];
     if (textDiff)
       for (let i = 0; i < textDiff.length; i++) {
-        let Element: StatelessComponent;
+        let Element: ElementType;
         const el = textDiff[i];
-        if (el[0] === 0)
-          Element = (NoChangeComponent as unknown) as StatelessComponent;
-        else if (el[0] === -1)
-          Element = (DeletionComponent as unknown) as StatelessComponent;
-        else Element = (InsertComponent as unknown) as StatelessComponent;
+        if (el[0] === 0) Element = NoChangeComponent;
+        else if (el[0] === -1) Element = DeletionComponent;
+        else Element = InsertComponent;
         html.push(<Element key={i}>{el[1]}</Element>);
       }
 
