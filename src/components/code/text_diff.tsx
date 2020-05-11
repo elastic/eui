@@ -19,15 +19,15 @@ export type EuiTextDiffProps = CommonProps &
   Props &
   HTMLAttributes<HTMLElement>;
 
-export const useEuiTextDiff: Function = ({
-  InsertComponent = 'ins',
-  DeletionComponent = 'del',
-  NoChangeComponent = 'span',
+export const useEuiTextDiff = ({
+  InsertComponent = ('ins' as unknown) as StatelessComponent<{}>,
+  DeletionComponent = ('del' as unknown) as StatelessComponent<{}>,
+  NoChangeComponent = ('span' as unknown) as StatelessComponent<{}>,
   initialText = '',
   currentText = '',
   timeout = 0.1,
   ...rest
-}) => {
+}: EuiTextDiffProps) => {
   const diff = new Diff({ timeout }); // options may be passed to constructor
 
   const textDiff = useMemo(() => {
