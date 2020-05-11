@@ -72,7 +72,10 @@ export class EuiAbsoluteTab extends Component<
     };
   }
 
-  handleChange: EuiDatePopoverContentProps['onChange'] = (date, event) => {
+  handleChange: (
+    date: Moment | string | null,
+    event?: React.SyntheticEvent<any>
+  ) => void = (date, event) => {
     const { onChange } = this.props;
     if (date === null) {
       return;
@@ -96,7 +99,7 @@ export class EuiAbsoluteTab extends Component<
     );
     const dateIsValid = valueAsMoment.isValid();
     if (dateIsValid) {
-      onChange(valueAsMoment, event);
+      onChange(valueAsMoment.toISOString(), event);
     }
     this.setState({
       textInputValue: event.target.value as string,

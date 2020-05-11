@@ -32,14 +32,11 @@ import {
   toAbsoluteString,
   toRelativeString,
 } from '../date_modes';
-import { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
+import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverContentProps {
   value: string;
-  onChange(
-    date: Moment | string | null,
-    event?: React.SyntheticEvent<any>
-  ): void;
+  onChange(date: string | null, event?: React.SyntheticEvent<any>): void;
   roundUp?: boolean;
   dateFormat: string;
   timeFormat: string;
