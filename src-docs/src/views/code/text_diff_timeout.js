@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   useEuiTextDiff,
@@ -26,13 +26,17 @@ export default () => {
     timeout: value,
   });
 
-  // textDiffObject.forEach(el => {
-  //   if (el[0] === 1) {
-  //     setIns(ins + 1);
-  //   } else if (el[0] === -1) {
-  //     setDel(del + 1);
-  //   }
-  // });
+  useEffect(() => {
+    console.log('textDiffObject', textDiffObject);
+    textDiffObject.forEach(el => {
+      if (el[0] === 1) {
+        setIns(add => add + 1);
+      } else if (el[0] === -1) {
+        setDel(sub => sub + 1);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   return (
     <>

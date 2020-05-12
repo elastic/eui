@@ -31,9 +31,9 @@ import TextDiff from './text_diff';
 const textDiffSource = require('!!raw-loader!./text_diff');
 const textDiffHtml = renderToHtml(TextDiff);
 
-import NoDeletion from './text_diff_no_deletions';
-const noDeletionSource = require('!!raw-loader!./text_diff_no_deletions');
-const noDeletionHtml = renderToHtml(NoDeletion);
+import TextDiffCustomComponents from './text_diff_custom_components';
+const customComponentsSource = require('!!raw-loader!./text_diff_custom_components');
+const customComponentsHtml = renderToHtml(TextDiffCustomComponents);
 
 import TextDiffTimeOut from './text_diff_timeout';
 const TextDiffTimeOutSource = require('!!raw-loader!./text_diff_timeout');
@@ -134,23 +134,27 @@ export const CodeExample = {
       props: { useEuiTextDiff },
     },
     {
-      title: 'Text Diff without deletions',
+      title: 'Text Diff with custom components',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: noDeletionSource,
+          code: customComponentsSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: noDeletionHtml,
+          code: customComponentsHtml,
         },
       ],
       text: (
         <p>
-          <EuiCode>showDeletion</EuiCode> is used for hiding/showing deletions.
+          Custom components such as{' '}
+          <EuiCode>
+            InsertComponent, DeletionComponent, NoChangeComponent{' '}
+          </EuiCode>
+          can be passed to the utiliy to render customized styles.
         </p>
       ),
-      demo: <NoDeletion />,
+      demo: <TextDiffCustomComponents />,
       props: { useEuiTextDiff },
     },
     {
