@@ -73,10 +73,8 @@ export default () => {
           </EuiModalBody>
 
           <EuiModalFooter>
-            <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
-
             <EuiButton onClick={closeModal} fill>
-              Save
+              Close
             </EuiButton>
           </EuiModalFooter>
         </EuiModal>
