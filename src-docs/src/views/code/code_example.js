@@ -125,7 +125,7 @@ export const CodeExample = {
       ],
       text: (
         <p>
-          <strong>EuiTextDiff</strong> is for making text comparisions.
+          <strong>useEuiTextDiff</strong> generates a set of changes between two strings. The hook returns both React elements for displaying the diff and an object representing the identified changes. 
         </p>
       ),
       demo: <TextDiff />,
