@@ -25,10 +25,8 @@ import { keysOf } from '../common';
 import { htmlIdGenerator, keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 
-import 'brace/theme/github';
-
 const DEFAULT_MODE = 'text';
-const DEFAULT_THEME = 'github';
+const DEFAULT_THEME = 'textmate';
 
 function setOrRemoveAttribute(
   element: HTMLTextAreaElement,

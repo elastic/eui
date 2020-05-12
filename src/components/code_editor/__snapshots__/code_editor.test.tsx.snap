@@ -87,7 +87,7 @@ exports[`EuiCodeEditor is rendered 1`] = `
     </p>
   </div>
   <div
-    class=" ace_editor ace-github testClass1 testClass2"
+    class=" ace_editor ace-tm testClass1 testClass2"
     id="htmlId"
     style="width: 500px; height: 500px;"
   >
@@ -203,7 +203,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
     </p>
   </div>
   <div
-    class=" ace_editor ace-github"
+    class=" ace_editor ace-tm"
     id="htmlId"
     style="width: 500px; height: 500px;"
   >
@@ -319,7 +319,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
     </p>
   </div>
   <div
-    class=" ace_editor ace-github"
+    class=" ace_editor ace-tm"
     id="htmlId"
     style="width: 500px; height: 500px;"
   >
@@ -435,7 +435,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
     </p>
   </div>
   <div
-    class=" ace_editor ace-github"
+    class=" ace_editor ace-tm"
     id="htmlId"
     style="width: 500px; height: 500px;"
   >
