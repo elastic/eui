@@ -50,7 +50,14 @@ export class EuiOverlayMask extends Component<Props> {
     this.overlayMaskNode = document.createElement('div');
     this.overlayMaskNode.className = classNames('euiOverlayMask', className);
     if (onClick) {
-      this.overlayMaskNode.addEventListener('click', onClick);
+      this.overlayMaskNode.addEventListener(
+        'click',
+        (e: React.MouseEvent | MouseEvent) => {
+          if (e.target === this.overlayMaskNode) {
+            onClick();
+          }
+        }
+      );
     }
     keysOf(rest).forEach(key => {
       if (typeof rest[key] !== 'string') {
