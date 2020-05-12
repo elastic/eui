@@ -165,6 +165,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       <EuiButtonEmpty
         onClick={collapse}
         size="xs"
+        textProps={{ className: 'euiCollapsibleNav__closeButtonText' }}
         iconType="cross"
         {...closeButtonProps}
         className={classNames(

@@ -25,6 +25,7 @@
 
   &,
   &:focus {
+    // Override default `EuiButtonEmpty` :focus background to ensure better contrast 
     background: $euiColorEmptyShade;
   }
 }
@@ -50,10 +51,10 @@
   // At tiny screens, reduce the close button to a simple `x`
   .euiCollapsibleNav__closeButton {
     margin-right: -15%;
+  }
 
-    .euiButtonEmpty__text {
-      margin-left: 0;
-    }
+  .euiCollapsibleNav__closeButtonText {
+    margin-left: 0;
   }
 
   .euiCollapsibleNav__closeButtonLabel {
