@@ -17,21 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useMemo } from 'react';
-import { Processor } from 'unified';
+export const MODE_EDITING = 'editing';
+export const MODE_VIEWING = 'viewing';
 
-interface EuiMarkdownFormatProps {
-  children: string;
-  processor: Processor;
-}
-
-export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
-  children,
-  processor,
-}) => {
-  const result = useMemo(() => processor.processSync(children), [
-    processor,
-    children,
-  ]);
-  return <div className="euiMarkdownFormat">{result.contents}</div>;
-};
+export type MARKDOWN_MODE = typeof MODE_EDITING | typeof MODE_VIEWING;

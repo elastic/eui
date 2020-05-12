@@ -23,11 +23,12 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { EuiI18n } from '../i18n';
 import { EuiToolTip } from '../tool_tip';
+import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     markdownActions?: any;
-    viewMarkdownPreview?: boolean;
+    viewMode?: MARKDOWN_MODE;
     onClickPreview?: any;
   };
 
@@ -90,7 +91,9 @@ export class EuiMarkdownEditorToolbar extends Component<
   };
 
   render() {
-    const { viewMarkdownPreview, onClickPreview } = this.props;
+    const { viewMode, onClickPreview } = this.props;
+
+    const isPreviewing = viewMode === MODE_VIEWING;
 
     return (
       <div className="euiMarkdownEditor__toolbar">
@@ -108,7 +111,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -120,7 +123,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -132,7 +135,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -140,7 +143,7 @@ export class EuiMarkdownEditorToolbar extends Component<
 
           <EuiFlexItem grow={false}>
             {/* The idea was to use the EuiButtonToggle but it doesn't work when pressing the enter key */}
-            {viewMarkdownPreview ? (
+            {isPreviewing ? (
               <EuiButtonEmpty
                 iconType="editorCodeBlock"
                 color="text"
