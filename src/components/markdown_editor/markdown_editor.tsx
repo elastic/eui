@@ -45,6 +45,7 @@ import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { EuiLink } from '../link';
 import { EuiCodeBlock } from '../code';
+import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 
 function storeMarkdownTree() {
   return function(tree: any, file: any) {
@@ -111,7 +112,7 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
   processingPluginList = defaultProcessingPlugins,
   ...rest
 }) => {
-  const [isPreviewing, setIsPreviewing] = useState(false);
+  const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
   const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [_editorId]);
 
   const markdownActions = useMemo(() => new MarkdownActions(editorId), [
@@ -128,12 +129,16 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
     [parsingPluginList, processingPluginList]
   );
 
+  const isPreviewing = viewMode === MODE_VIEWING;
+
   return (
     <div className={classes} {...rest}>
       <EuiMarkdownEditorToolbar
         markdownActions={markdownActions}
-        onClickPreview={() => setIsPreviewing(!isPreviewing)}
-        isPreviewing={isPreviewing}
+        onClickPreview={() =>
+          setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
+        }
+        viewMode={viewMode}
       />
 
       {isPreviewing ? (

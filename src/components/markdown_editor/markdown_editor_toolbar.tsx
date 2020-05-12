@@ -23,11 +23,12 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { EuiI18n } from '../i18n';
 import { EuiToolTip } from '../tool_tip';
+import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     markdownActions?: any;
-    isPreviewing?: boolean;
+    viewMode?: MARKDOWN_MODE;
     onClickPreview?: any;
   };
 
@@ -90,7 +91,9 @@ export class EuiMarkdownEditorToolbar extends Component<
   };
 
   render() {
-    const { isPreviewing, onClickPreview } = this.props;
+    const { viewMode, onClickPreview } = this.props;
+
+    const isPreviewing = viewMode === MODE_VIEWING;
 
     return (
       <div className="euiMarkdownEditor__toolbar">
