@@ -27,7 +27,6 @@ export default () => {
   });
 
   useEffect(() => {
-    console.log('textDiffObject', textDiffObject);
     textDiffObject.forEach(el => {
       if (el[0] === 1) {
         setIns(add => add + 1);
