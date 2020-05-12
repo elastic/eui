@@ -2,7 +2,9 @@
 
 exports[`EuiRangeTrack is rendered 1`] = `
 <div
-  class="euiRangeTrack"
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
   style="margin-right:0.6em"
 >
   <div

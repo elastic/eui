@@ -1,5 +1,34 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `sortBy` and `sortShift` props to `euiPaletteColorBlind()` for sorting along the color wheel ([#3387](https://github.com/elastic/eui/pull/3387))
+- Added `utcOffset` prop to `EuiSuperDatePicker` ([#3436](https://github.com/elastic/eui/pull/3436))
+- Added `partition` key to `EuiChartThemeType` for Partition chart support ([#3387](https://github.com/elastic/eui/pull/3387))
+- Updated `EuiImage`'s `caption` prop type from `string` to `ReactNode` ([#3387](https://github.com/elastic/eui/pull/3387))
+- Added `EuiColorPalettePicker` component ([#3192](https://github.com/elastic/eui/pull/3192))
+
+**Bug Fixes**
+
+- Fixed `EuiSuperDatePicker` quick selection menu overriding specified time range with default values ([#3446](https://github.com/elastic/eui/pull/3446))
+
+**Breaking changes**
+
+- Changed parameters for `euiPaletteColorBlind()` to an object ([#3387](https://github.com/elastic/eui/pull/3387))
+- Changed the default palette of `EUI_CHARTS_THEME_LIGHT/DARK` themes to the naturally sorted `euiPaletteColorBlind()` ([#3387](https://github.com/elastic/eui/pull/3387))
+
+## [`23.3.0`](https://github.com/elastic/eui/tree/v23.3.0)
+
+- Added `aria-hidden = true` to `EuiRangeSlider` and `EuiRangeTrack` if `showInput = true` ([#3423](https://github.com/elastic/eui/pull/3423))
+- Added `testenv` mock for `EuiCode` and `EuiCodeBlock` ([#3405](https://github.com/elastic/eui/pull/3405))
+- Added `displayName` to components using `React.forwardRef` ([#3440](https://github.com/elastic/eui/pull/3440))
+
+**Bug Fixes**
+
+- Fixed `EuiCode` and `EuiCodeBlock` from erroring in environments without a DOM implementation ([#3405](https://github.com/elastic/eui/pull/3405))
+- Fixed `ApplyClassComponentDefaults` typescript utility to correctly determine defaulted properties' types ([#3430](https://github.com/elastic/eui/pull/3430))
+- Fixed `prettyDuration` return type to be `string`, use fallback value  ([#3438](https://github.com/elastic/eui/pull/3438))
+
+## [`23.2.0`](https://github.com/elastic/eui/tree/v23.2.0)
+
 - Added `iconType` prop to `EuiDatePicker` ([#3383](https://github.com/elastic/eui/pull/3383))
 - Applied `max-width: 100%` to `EuiPageBody` so inner flex-based items don't overflow their containers  ([#3375](https://github.com/elastic/eui/pull/3375))
 - Added `titleSize` prop to `EuiStep` and `EuiSteps` ([#3340](https://github.com/elastic/eui/pull/3340))
@@ -13,6 +42,7 @@
 
 **Bug Fixes**
 
+- Fixed `EuiFieldSearch` to trigger `onSearch` single time instead of two times ([#3425](https://github.com/elastic/eui/pull/3425))
 - Fixed `EuiBasicTable` item selection when `id` is `0` ([#3417](https://github.com/elastic/eui/pull/3417))
 - Fixed `EuiNavDrawer` not closing on outside click after being unlocked ([#3415](https://github.com/elastic/eui/pull/3415))
 - Fixed `EuiBadge` `iconOnClick` props makes badge text clickable ([#3392](https://github.com/elastic/eui/pull/3392))

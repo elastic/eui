@@ -65,3 +65,5 @@ export const EuiBadgeGroup = React.forwardRef<
     );
   }
 );
+
+EuiBadgeGroup.displayName = 'EuiBadgeGroup';
