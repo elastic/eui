@@ -91,7 +91,10 @@ export default () => {
         onChange={changeExample1}
         options={[
           { value: 'count()', text: 'count()' },
-          { value: 'average()', text: 'average()' },
+          {
+            value: 'average()',
+            text: 'average()',
+          },
           { value: 'sum()', text: 'sum()' },
           { value: 'median()', text: 'median()' },
           { value: 'min()', text: 'min()' },

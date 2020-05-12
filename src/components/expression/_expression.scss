@@ -3,9 +3,10 @@
  *    but then wrap long words
  */
 .euiExpression {
-  @include euiTextBreakWord; /* 1 */
+  // @include euiTextBreakWord; /* 1 */
   @include euiFontSizeS;
   @include euiCodeFont;
+  @include euiTextTruncate;
 
   display: inline-block; /* 1 */
   text-align: left;
