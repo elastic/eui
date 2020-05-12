@@ -66,6 +66,10 @@ export type EuiExpressionProps = CommonProps & {
    * Turns the component into a button and adds an editable style border at the bottom
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Truncates text
+   */
+  truncate?: boolean;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -85,6 +89,7 @@ export const EuiExpression: React.FunctionComponent<
   valueProps,
   color = 'secondary',
   uppercase = true,
+  truncate = false,
   isActive = false,
   onClick,
   ...rest
@@ -96,6 +101,7 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isActive': isActive,
       'euiExpression-isClickable': onClick,
       'euiExpression-isUppercase': uppercase,
+      'euiExpression-isTruncate': truncate,
     },
     colorToClassNameMap[color]
   );

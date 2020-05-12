@@ -6,7 +6,6 @@
   // @include euiTextBreakWord; /* 1 */
   @include euiFontSizeS;
   @include euiCodeFont;
-  @include euiTextTruncate;
 
   display: inline-block; /* 1 */
   text-align: left;
@@ -25,7 +24,12 @@
 }
 
 .euiExpression-isUppercase .euiExpression__description {
+  @include euiTextTruncate;
   text-transform: uppercase;
+}
+
+.euiExpression-isTruncate {
+  @include euiTextTruncate;
 }
 
 .euiExpression-isClickable {
