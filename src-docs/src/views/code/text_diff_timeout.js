@@ -10,15 +10,13 @@ import {
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
 
+import initialText from '!!raw-loader!../../../../src/global_styling/variables/_colors.scss';
+import currentText from '!!raw-loader!../../../../src/themes/eui/eui_colors_dark.scss';
+
 export default () => {
   const [del, setDel] = useState(0);
   const [ins, setIns] = useState(0);
-  const [value, setValue] = useState(0.0001);
-  const initialText =
-    'One difference is that interface creates a new name that is used everywhere. Type aliases do create a new name — for instance, error text won’t use the alias name. In the code below, hovering over interfaced in code editor will show that it returns an Interface, but will show that aliased returns object literal type.Wish you happy';
-
-  const currentText =
-    'One difference is that inerfaces create a new name that is used everywhere. Type aliases don’t create a new name — for instance, error messages won’t use the alias name. In the code below, hovering over interfaced in an editor will show that it returns an Interface, but will show that aliased returns object literal type.Hope you will be happy every day';
+  const [value, setValue] = useState(0.5);
 
   const [rendered, textDiffObject] = useEuiTextDiff({
     fontSize: 'm',
@@ -38,6 +36,18 @@ export default () => {
 
   return (
     <>
+      <EuiRange
+        id={htmlIdGenerator()()}
+        min={0}
+        max={1}
+        step={0.1}
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        showLabels
+        showValue
+        aria-label="An example of EuiRange with showValue prop"
+      />
+      <EuiSpacer />
       <EuiCodeBlock language="text" fontSize="m" paddingSize="m">
         {rendered}
       </EuiCodeBlock>
@@ -47,18 +57,6 @@ export default () => {
         <EuiTextColor color="danger"> {del} </EuiTextColor>
         Deletions
       </EuiCode>
-      <EuiSpacer />
-      <EuiRange
-        id={htmlIdGenerator()()}
-        min={0}
-        max={0.01}
-        step={0.0001}
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        showLabels
-        showValue
-        aria-label="An example of EuiRange with showValue prop"
-      />
     </>
   );
 };
