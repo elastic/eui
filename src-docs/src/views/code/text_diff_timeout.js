@@ -42,6 +42,7 @@ export default () => {
         max={1}
         step={0.1}
         value={value}
+        valueAppend=" seconds"
         onChange={e => setValue(e.target.value)}
         showLabels
         showValue
