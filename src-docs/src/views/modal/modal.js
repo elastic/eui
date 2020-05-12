@@ -69,7 +69,7 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask>
+      <EuiOverlayMask onClick={closeModal}>
         <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
           <EuiModalHeader>
             <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
