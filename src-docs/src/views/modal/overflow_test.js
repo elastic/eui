@@ -22,7 +22,7 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask onClick={closeModal}>
+      <EuiOverlayMask>
         <EuiModal onClose={closeModal}>
           <EuiModalHeader>
             <EuiModalHeaderTitle>Overflow test</EuiModalHeaderTitle>

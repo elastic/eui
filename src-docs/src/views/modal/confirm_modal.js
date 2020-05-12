@@ -33,7 +33,7 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask onClick={closeModal}>
+      <EuiOverlayMask>
         <EuiConfirmModal
           title="Do this thing"
           onCancel={closeModal}
@@ -52,7 +52,7 @@ export default () => {
 
   if (isDestroyModalVisible) {
     destroyModal = (
-      <EuiOverlayMask onClick={closeDestroyModal}>
+      <EuiOverlayMask>
         <EuiConfirmModal
           title="Do this destructive thing"
           onCancel={closeDestroyModal}
@@ -72,7 +72,7 @@ export default () => {
 
   if (isEmptyModalVisible) {
     emptyModal = (
-      <EuiOverlayMask onClick={closeEmptyModal}>
+      <EuiOverlayMask>
         <EuiConfirmModal
           title="Do this thing"
           onCancel={closeEmptyModal}
@@ -89,7 +89,7 @@ export default () => {
 
   if (isButtonDisabledModalVisible) {
     buttonDisabledModal = (
-      <EuiOverlayMask onClick={closeButtonDisabledModal}>
+      <EuiOverlayMask>
         <EuiConfirmModal
           title="My button is disabled"
           onCancel={closeButtonDisabledModal}
