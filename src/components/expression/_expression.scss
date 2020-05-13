@@ -24,7 +24,6 @@
 }
 
 .euiExpression-isUppercase .euiExpression__description {
-  @include euiTextTruncate;
   text-transform: uppercase;
 }
 
