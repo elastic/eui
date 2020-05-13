@@ -173,14 +173,10 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           'euiCollapsibleNav__closeButton',
           closeButtonProps && closeButtonProps.className
         )}>
-        <EuiHideFor sizes={['xs']}>
-          <span>
             <EuiI18n
               token="euiCollapsibleNav.closeButtonLabel"
               default="close"
             />
-          </span>
-        </EuiHideFor>
       </EuiButtonEmpty>
     </EuiScreenReaderOnly>
   );
