@@ -68,11 +68,7 @@ Array [
             <span
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
-              <span
-                class="eui-hideFor--xs"
-              >
-                close
-              </span>
+              close
             </span>
           </span>
         </button>
@@ -127,11 +123,7 @@ Array [
             <span
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
-              <span
-                class="eui-hideFor--xs"
-              >
-                close
-              </span>
+              close
             </span>
           </span>
         </button>
@@ -188,11 +180,7 @@ Array [
             <span
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
-              <span
-                class="eui-hideFor--xs"
-              >
-                close
-              </span>
+              close
             </span>
           </span>
         </button>
@@ -243,11 +231,7 @@ Array [
             <span
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
-              <span
-                class="eui-hideFor--xs"
-              >
-                close
-              </span>
+              close
             </span>
           </span>
         </button>
@@ -296,11 +280,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
           <span
             class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
           >
-            <span
-              class="eui-hideFor--xs"
-            >
-              close
-            </span>
+            close
           </span>
         </span>
       </button>
@@ -350,11 +330,7 @@ Array [
             <span
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
-              <span
-                class="eui-hideFor--xs"
-              >
-                close
-              </span>
+              close
             </span>
           </span>
         </button>
@@ -410,11 +386,7 @@ Array [
             <span
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
-              <span
-                class="eui-hideFor--xs"
-              >
-                close
-              </span>
+              close
             </span>
           </span>
         </button>

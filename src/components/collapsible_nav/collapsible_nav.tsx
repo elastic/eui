@@ -35,7 +35,6 @@ import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiHideFor } from '../responsive/hide_for';
 
 export type EuiCollapsibleNavProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
@@ -173,10 +172,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           'euiCollapsibleNav__closeButton',
           closeButtonProps && closeButtonProps.className
         )}>
-            <EuiI18n
-              token="euiCollapsibleNav.closeButtonLabel"
-              default="close"
-            />
+        <EuiI18n token="euiCollapsibleNav.closeButtonLabel" default="close" />
       </EuiButtonEmpty>
     </EuiScreenReaderOnly>
   );
