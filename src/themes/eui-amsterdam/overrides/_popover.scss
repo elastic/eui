@@ -1,12 +1,14 @@
 .euiPopover__panel {
   .euiPopover__panelArrow {
     &:before {
-      filter: blur(4px);
+      filter: blur(3px);
     }
 
     &.euiPopover__panelArrow--top {
       &:before {
         bottom: -$euiPopoverArrowSize;
+        border-top-color: $euiColorInk;
+        opacity: .2;
         clip-path: polygon(-5px 0, calc(100% + 5px) 0, calc(100% + 5px) calc(100% + 5px), -5px calc(100% + 5px));
       }
 
@@ -18,6 +20,8 @@
     &.euiPopover__panelArrow--right {
       &:before {
         left: -$euiPopoverArrowSize;
+        border-right-color: $euiColorInk;
+        opacity: .2;
         clip-path: polygon(-5px -5px, calc(100% - 1px) -5px, calc(100% - 1px) calc(100% + 5px), -5px calc(100% + 5px));
       }
 
@@ -29,6 +33,8 @@
     &.euiPopover__panelArrow--bottom {
       &:before {
         top: -$euiPopoverArrowSize;
+        border-bottom-color: $euiColorInk;
+        opacity: .2;
         clip-path: polygon(-5px -5px, calc(100% + 5px) -5px, calc(100% + 5px) 100%, -5px 100%);
       }
 
@@ -40,6 +46,8 @@
     &.euiPopover__panelArrow--left {
       &:before {
         right: -$euiPopoverArrowSize;
+        border-left-color: $euiColorInk;
+        opacity: .2;
         clip-path: polygon(1px -5px, calc(100% + 5px) -5px, calc(100% + 5px) calc(100% + 5px), 1px calc(100% + 5px));
       }
 
