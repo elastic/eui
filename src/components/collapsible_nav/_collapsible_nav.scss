@@ -51,15 +51,10 @@
   // At tiny screens, reduce the close button to a simple `x`
   .euiCollapsibleNav__closeButton {
     margin-right: -15%;
-  }
 
-  .euiCollapsibleNav__closeButtonText {
-    margin-left: 0;
-  }
-
-  .euiCollapsibleNav__closeButtonLabel {
-    // But be sure the text can still be read by a screenreader
-    @include euiScreenReaderOnly;
+    .euiCollapsibleNav__closeButtonText {
+      margin-left: 0;
+    }
   }
 }
 
