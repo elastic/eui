@@ -143,6 +143,16 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('a null children', () => {
+      const component = render(
+        <EuiCard title="Card title" description="Card description">
+          {null}
+        </EuiCard>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('textAlign', () => {
       const component = render(
         <EuiCard
