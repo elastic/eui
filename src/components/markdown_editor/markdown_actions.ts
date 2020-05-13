@@ -17,19 +17,10 @@
  * under the License.
  */
 
-interface StyleArgsToUpdate {
-  prefix?: string;
-  suffix?: string;
-  blockPrefix?: string;
-  blockSuffix?: string;
-  multiline?: boolean;
-  replaceNext?: string;
-  prefixSpace?: boolean;
-  scanFor?: string;
-  surroundWithNewlines?: boolean;
-  orderedList?: boolean;
-  trimFirst?: boolean;
-}
+import {
+  EuiMarkdownEditorUiPlugin,
+  EuiMarkdownFormatting,
+} from './markdown_types';
 
 /**
  * Class for applying styles to a text editor. Accepts the HTML ID for the textarea
@@ -39,17 +30,21 @@ interface StyleArgsToUpdate {
  * @param {string} editorID
  */
 class MarkdownActions {
-  editorID: string;
-  styles: Record<string, StyleArgsToUpdate>;
+  styles: Record<string, EuiMarkdownFormatting>;
 
-  constructor(editorID: string) {
-    this.editorID = editorID;
-
+  constructor(public editorID: string, uiPlugins: EuiMarkdownEditorUiPlugin[]) {
     /**
      * This object is in the format:
      * [nameOfAction]: {[styles to apply]}
      */
     this.styles = {
+      ...uiPlugins.reduce<MarkdownActions['styles']>(
+        (mappedPlugins, { name, formatting }) => {
+          mappedPlugins[name] = formatting;
+          return mappedPlugins;
+        },
+        {}
+      ),
       mdBold: {
         prefix: '**',
         suffix: '**',

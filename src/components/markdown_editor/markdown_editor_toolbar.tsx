@@ -24,12 +24,14 @@ import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { EuiI18n } from '../i18n';
 import { EuiToolTip } from '../tool_tip';
 import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     markdownActions?: any;
     viewMode?: MARKDOWN_MODE;
     onClickPreview?: any;
+    uiPlugins: EuiMarkdownEditorUiPlugin[];
   };
 
 export class EuiMarkdownEditorToolbar extends Component<
@@ -91,7 +93,7 @@ export class EuiMarkdownEditorToolbar extends Component<
   };
 
   render() {
-    const { viewMode, onClickPreview } = this.props;
+    const { viewMode, onClickPreview, uiPlugins } = this.props;
 
     const isPreviewing = viewMode === MODE_VIEWING;
 
@@ -139,6 +141,22 @@ export class EuiMarkdownEditorToolbar extends Component<
                 />
               </EuiToolTip>
             ))}
+            {uiPlugins.length > 0 ? (
+              <>
+                <span className="euiMarkdownEditor__toolbar__divider" />
+                {uiPlugins.map(({ name, button }) => (
+                  <EuiToolTip key={name} content={button.label} delay="long">
+                    <EuiButtonIcon
+                      color="text"
+                      onClick={() => this.handleMdButtonClick(name)}
+                      iconType={button.iconType}
+                      aria-label={button.label}
+                      isDisabled={isPreviewing}
+                    />
+                  </EuiToolTip>
+                ))}
+              </>
+            ) : null}
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>

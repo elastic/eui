@@ -74,7 +74,7 @@
     "remark-emoji": "^2.1.0",
     "remark-highlight.js": "^5.2.0",
     "remark-parse": "^7.0.2",
-    "remark-rehype": "^5.0.0",
+    "remark-rehype": "^6.0.0",
     "resize-observer-polyfill": "^1.5.0",
     "tabbable": "^3.0.0",
     "unified": "^8.4.2",
