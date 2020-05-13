@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiText, EuiCode, EuiResizableContainer } from '../../../../src';
+import {
+  EuiText,
+  EuiCode,
+  EuiResizableContainer,
+} from '../../../../src/components';
 
 export default () => (
   <EuiResizableContainer style={{ height: '200px' }}>

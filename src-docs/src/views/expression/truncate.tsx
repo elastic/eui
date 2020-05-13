@@ -71,7 +71,7 @@ export default class extends Component<TruncateProps, TruncateState> {
       <EuiPopover
         button={
           <EuiExpression
-            truncate={true}
+            // truncate={true}
             style={{ maxWidth: '220px' }}
             description="Average of"
             value={this.state.value}
