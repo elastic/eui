@@ -46,9 +46,11 @@ module.exports = {
           }
         }
       },
-      Identifier(node) {
-        if (node.name === 'displayName') {
-          displayNameUsages.push(node.parent.object);
+      MemberExpression(node) {
+        if (node.property.type === 'Identifier') {
+          if (node.name === 'displayName') {
+            displayNameUsages.push(node.parent.object);
+          }
         }
       },
       'Program:exit'() {
