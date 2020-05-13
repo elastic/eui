@@ -45,6 +45,7 @@ export interface EuiDatePopoverContentProps {
   timeFormat: string;
   locale?: LocaleSpecifier;
   position: 'start' | 'end';
+  utcOffset?: number;
 }
 
 export const EuiDatePopoverContent: FunctionComponent<
@@ -57,6 +58,7 @@ export const EuiDatePopoverContent: FunctionComponent<
   timeFormat,
   locale,
   position,
+  utcOffset,
 }) => {
   const onTabClick: EuiTabbedContentProps['onTabClick'] = selectedTab => {
     switch (selectedTab.id) {
@@ -84,6 +86,7 @@ export const EuiDatePopoverContent: FunctionComponent<
           onChange={onChange}
           roundUp={roundUp}
           position={position}
+          utcOffset={utcOffset}
         />
       ),
       'data-test-subj': 'superDatePickerAbsoluteTab',

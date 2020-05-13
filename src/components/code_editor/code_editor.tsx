@@ -26,6 +26,7 @@ import { htmlIdGenerator, keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
 
 const DEFAULT_MODE = 'text';
+const DEFAULT_THEME = 'textmate';
 
 function setOrRemoveAttribute(
   element: HTMLTextAreaElement,
@@ -215,7 +216,7 @@ export class EuiCodeEditor extends Component<
       cursorStart,
       mode = DEFAULT_MODE,
       'data-test-subj': dataTestSubj = 'codeEditorContainer',
-      theme = 'github',
+      theme = DEFAULT_THEME,
       ...rest
     } = this.props;
 
