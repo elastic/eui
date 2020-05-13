@@ -6,6 +6,7 @@
 - Updated `EuiImage`'s `caption` prop type from `string` to `ReactNode` ([#3387](https://github.com/elastic/eui/pull/3387))
 - Improved contrast for `EuiCollapsibleNav` close button ([#3465](https://github.com/elastic/eui/pull/3465))
 - Fixed `EuiCodeEditor` console error when using the editor without import the default theme ([#3454](https://github.com/elastic/eui/pull/3454))
+- Added exports for `EuiSteps` types ([#3454](https://github.com/elastic/eui/pull/3454))
 
 **Bug Fixes**
 
