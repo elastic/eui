@@ -49,7 +49,7 @@ const truncateHtml = renderToHtml(Truncate);
 const truncateSnippet = `<EuiExpression
   description="description"
   value={value}
-  truncate={true}
+  textWrap="truncate"
 />`;
 
 export const ExpressionExample = {
