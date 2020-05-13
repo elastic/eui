@@ -1,5 +1,4 @@
 import React, { Component, HTMLAttributes } from 'react';
-import { CommonProps } from '../../../../src/components/common';
 import { EuiExpression } from '../../../../src/components/expression';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiPanel } from '../../../../src/components/panel';
@@ -9,7 +8,7 @@ import {
 } from '../../../../src/components/popover';
 import { EuiSelect } from '../../../../src/components/form/select';
 
-export type TruncateProps = HTMLAttributes<HTMLDivElement> & CommonProps & {};
+export type TruncateProps = HTMLAttributes<HTMLDivElement>;
 
 interface TruncateState {
   isOpen: boolean;
@@ -90,15 +89,15 @@ export default class extends Component<TruncateProps, TruncateState> {
     );
 
     return (
-      <EuiPanel
-        paddingSize="l"
-        style={{ paddingRight: '32px', width: '260px' }}>
-        {this.state.isOpen ? (
-          popOver
-        ) : (
-          <EuiToolTip content={this.state.value}>{popOver}</EuiToolTip>
-        )}
-      </EuiPanel>
+      <div>
+        <EuiPanel paddingSize="l" style={{ width: '272px' }}>
+          {this.state.isOpen ? (
+            popOver
+          ) : (
+            <EuiToolTip content={this.state.value}>{popOver}</EuiToolTip>
+          )}
+        </EuiPanel>
+      </div>
     );
   }
 }

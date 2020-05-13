@@ -46,18 +46,11 @@ const stringingSnippet = `<div>
 import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
 const truncateHtml = renderToHtml(Truncate);
-const truncateSnippet = `<div>
-<EuiExpression
-  description="description1"
-  value={value1}
-  onClick={handleClick1}
-/>
-<EuiExpression
-  description="description2"
-  value={value2}
-  onClick={handleClick2}
-/>
-</div>`;
+const truncateSnippet = `<EuiExpression
+  description="description"
+  value={value}
+  truncate={true}
+/>`;
 
 export const ExpressionExample = {
   title: 'Expression',
@@ -144,12 +137,12 @@ export const ExpressionExample = {
       ],
       text: (
         <p>
-          For scenarios where you might want to truncate the text in{' '}
-          <strong>EuiExpression</strong>. You can opt for this option when space
-          is limited (e.g. a flyout) and/or when the value in{' '}
-          <strong>EuiExpression</strong> can be quite long. When truncating, you
-          can compliment <strong>EuiExpression</strong> with a{' '}
-          <strong>EuiToolTip</strong> displaying its full value.
+          There might be cases where you need to truncate the text, to do so use
+          the <EuiCode>truncate</EuiCode> prop. You can opt for this option when
+          space is limited and <strong>EuiExpression</strong>&apos;s value can
+          be quite long. When truncating, you can complement{' '}
+          <strong>EuiExpression</strong> with an <strong>EuiToolTip</strong>{' '}
+          displaying its full value.
         </p>
       ),
       snippet: truncateSnippet,

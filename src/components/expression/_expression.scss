@@ -3,7 +3,7 @@
  *    but then wrap long words
  */
 .euiExpression {
-  // @include euiTextBreakWord; /* 1 */
+  @include euiTextBreakWord; /* 1 */
   @include euiFontSizeS;
   @include euiCodeFont;
 
@@ -30,6 +30,7 @@
 
 .euiExpression-isTruncate {
   @include euiTextTruncate;
+  vertical-align: bottom;
 }
 
 .euiExpression-isClickable {

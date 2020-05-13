@@ -70,12 +70,26 @@ describe('EuiExpression', () => {
         expect(render(component)).toMatchSnapshot();
       });
 
-      test('false renders inherted case', () => {
+      test('false renders inherited case', () => {
         const component = (
           <EuiExpression
             description="the answer is"
             value="42"
             uppercase={false}
+          />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('truncate', () => {
+      test('true truncates text', () => {
+        const component = (
+          <EuiExpression
+            description="the answer is"
+            value="42"
+            truncate={true}
           />
         );
 
