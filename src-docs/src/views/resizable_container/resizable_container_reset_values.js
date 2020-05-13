@@ -7,7 +7,7 @@ import {
   EuiResizableContainer,
   EuiButton,
   EuiSpacer,
-} from '../../../../src';
+} from '../../../../src/components';
 
 const text = require('!!raw-loader!./lorem.txt');
 
