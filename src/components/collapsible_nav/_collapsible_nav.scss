@@ -54,7 +54,7 @@
 
     .euiCollapsibleNav__closeButtonText {
       // But be sure the text can still be read by a screenreader
-      @include euiScreenReaderOnly
+      @include euiScreenReaderOnly;
     }
   }
 }
