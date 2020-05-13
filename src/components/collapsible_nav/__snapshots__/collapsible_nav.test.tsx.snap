@@ -69,7 +69,7 @@ Array [
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               <span
-                class="euiCollapsibleNav__closeButtonLabel"
+                class="eui-hideFor--xs"
               >
                 close
               </span>
@@ -128,7 +128,7 @@ Array [
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               <span
-                class="euiCollapsibleNav__closeButtonLabel"
+                class="eui-hideFor--xs"
               >
                 close
               </span>
@@ -189,7 +189,7 @@ Array [
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               <span
-                class="euiCollapsibleNav__closeButtonLabel"
+                class="eui-hideFor--xs"
               >
                 close
               </span>
@@ -244,7 +244,7 @@ Array [
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               <span
-                class="euiCollapsibleNav__closeButtonLabel"
+                class="eui-hideFor--xs"
               >
                 close
               </span>
@@ -297,7 +297,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
             class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
           >
             <span
-              class="euiCollapsibleNav__closeButtonLabel"
+              class="eui-hideFor--xs"
             >
               close
             </span>
@@ -351,7 +351,7 @@ Array [
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               <span
-                class="euiCollapsibleNav__closeButtonLabel"
+                class="eui-hideFor--xs"
               >
                 close
               </span>
@@ -411,7 +411,7 @@ Array [
               class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
             >
               <span
-                class="euiCollapsibleNav__closeButtonLabel"
+                class="eui-hideFor--xs"
               >
                 close
               </span>
