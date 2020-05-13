@@ -89,7 +89,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   description: NonNullable<ReactNode>;
 
   /**
-   * If provided, should be an `<EuiIcon>` node
+   * Accepts an `<EuiIcon>` node or `null`
    */
   icon?: ReactElement<EuiIconProps> | null;
 
