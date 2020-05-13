@@ -91,7 +91,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Requires a <EuiIcon> node
    */
-  icon?: ReactElement<EuiIconProps>;
+  icon?: ReactElement<EuiIconProps> | null;
 
   /**
    * Accepts a url in string form or ReactElement for a custom image component
@@ -101,7 +101,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Content to be rendered between the description and the footer
    */
-  children?: ReactNode | null;
+  children?: ReactNode;
 
   /**
    * Accepts any combination of elements

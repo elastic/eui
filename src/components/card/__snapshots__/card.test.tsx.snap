@@ -27,7 +27,7 @@ exports[`EuiCard is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCard props a null children 1`] = `
+exports[`EuiCard props a null icon 1`] = `
 <div
   class="euiCard euiCard--centerAligned"
 >
