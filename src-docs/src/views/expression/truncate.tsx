@@ -1,4 +1,4 @@
-import React, { Component, HTMLAttributes } from 'react';
+import React, { useState } from 'react';
 import { EuiExpression } from '../../../../src/components/expression';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiPanel } from '../../../../src/components/panel';
@@ -8,45 +8,26 @@ import {
 } from '../../../../src/components/popover';
 import { EuiSelect } from '../../../../src/components/form/select';
 
-export type TruncateProps = HTMLAttributes<HTMLDivElement>;
+export default () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState('products.discount_percentage');
 
-interface TruncateState {
-  isOpen: boolean;
-  value: string;
-}
+  const closePopover = () => setIsOpen(false);
 
-export default class extends Component<TruncateProps, TruncateState> {
-  state = {
-    isOpen: false,
-    value: 'products.discount_percentage',
+  const togglePopover = () => setIsOpen(isOpen => !isOpen);
+
+  const changeExample = (e: any) => {
+    setValue(e.target.value);
+    closePopover();
   };
 
-  togglePopover = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
-  closeExample = () => {
-    this.setState({
-      isOpen: false,
-    });
-  };
-
-  changeExample = (event: any) => {
-    this.setState({
-      value: event.target.value,
-    });
-    this.closeExample();
-  };
-
-  renderPopover = () => (
+  const renderPopover = () => (
     <div style={{ zIndex: 200 }}>
       <EuiPopoverTitle>Average of</EuiPopoverTitle>
       <EuiSelect
         compressed
-        value={this.state.value}
-        onChange={e => this.changeExample(e)}
+        value={value}
+        onChange={e => changeExample(e)}
         options={[
           {
             value: 'products.base_price',
@@ -66,40 +47,36 @@ export default class extends Component<TruncateProps, TruncateState> {
     </div>
   );
 
-  render() {
-    const popOver = (
-      <EuiPopover
-        button={
-          <EuiExpression
-            textWrap="truncate"
-            style={{ maxWidth: '220px' }}
-            description="Average of"
-            value={this.state.value}
-            isActive={this.state.isOpen}
-            onClick={() => this.togglePopover()}
-          />
-        }
-        isOpen={this.state.isOpen}
-        closePopover={() => this.closeExample()}
-        ownFocus
-        panelPaddingSize="s"
-        anchorPosition="downLeft">
-        {this.renderPopover()}
-      </EuiPopover>
-    );
+  const popOver = (
+    <EuiPopover
+      button={
+        <EuiExpression
+          textWrap="truncate"
+          style={{ maxWidth: '220px' }}
+          description="Average of"
+          value={value}
+          isActive={isOpen}
+          onClick={togglePopover}
+        />
+      }
+      isOpen={isOpen}
+      closePopover={closePopover}
+      ownFocus
+      panelPaddingSize="s"
+      anchorPosition="downLeft">
+      {renderPopover()}
+    </EuiPopover>
+  );
 
-    return (
-      <div>
-        <EuiPanel paddingSize="l" style={{ width: '272px' }}>
-          {this.state.isOpen ? (
-            popOver
-          ) : (
-            <EuiToolTip content={`AVERAGE OF ${this.state.value}`}>
-              {popOver}
-            </EuiToolTip>
-          )}
-        </EuiPanel>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <EuiPanel paddingSize="l" style={{ width: '272px' }}>
+        {isOpen ? (
+          popOver
+        ) : (
+          <EuiToolTip content={`AVERAGE OF ${value}`}>{popOver}</EuiToolTip>
+        )}
+      </EuiPanel>
+    </div>
+  );
+};
