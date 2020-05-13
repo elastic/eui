@@ -101,7 +101,7 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Content to be rendered between the description and the footer
    */
-  children?: ReactNode;
+  children?: ReactNode | null;
 
   /**
    * Accepts any combination of elements
