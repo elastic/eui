@@ -94,7 +94,9 @@ export default class extends Component<TruncateProps, TruncateState> {
           {this.state.isOpen ? (
             popOver
           ) : (
-            <EuiToolTip content={this.state.value}>{popOver}</EuiToolTip>
+            <EuiToolTip content={`AVERAGE OF ${this.state.value}`}>
+              {popOver}
+            </EuiToolTip>
           )}
         </EuiPanel>
       </div>
