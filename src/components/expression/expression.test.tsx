@@ -89,7 +89,7 @@ describe('EuiExpression', () => {
           <EuiExpression
             description="the answer is"
             value="42"
-            truncate={true}
+            textWrap="truncate"
           />
         );
 

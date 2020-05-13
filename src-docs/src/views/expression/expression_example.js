@@ -138,11 +138,11 @@ export const ExpressionExample = {
       text: (
         <p>
           There might be cases where you need to truncate the text, to do so use
-          the <EuiCode>truncate</EuiCode> prop. You can opt for this option when
-          space is limited and <strong>EuiExpression</strong>&apos;s value can
-          be quite long. When truncating, you can complement{' '}
-          <strong>EuiExpression</strong> with an <strong>EuiToolTip</strong>{' '}
-          displaying its full value.
+          pass <EuiCode>truncate</EuiCode> to the <EuiCode>textWrap</EuiCode>{' '}
+          prop. You can opt for this option when space is limited and{' '}
+          <strong>EuiExpression</strong>&apos;s value can be quite long. When
+          truncating, you can complement <strong>EuiExpression</strong> with an{' '}
+          <strong>EuiToolTip</strong> displaying its full value.
         </p>
       ),
       snippet: truncateSnippet,

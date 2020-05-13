@@ -35,6 +35,11 @@ const colorToClassNameMap = {
   danger: 'euiExpression--danger',
 };
 
+const textWrapToClassNameMap = {
+  'break-word': 'euiExpression-breakWord',
+  truncate: 'euiExpression-truncate',
+};
+
 export const COLORS = keysOf(colorToClassNameMap);
 
 export type ExpressionColor = keyof typeof colorToClassNameMap;
@@ -67,9 +72,9 @@ export type EuiExpressionProps = CommonProps & {
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /**
-   * Truncates text
+   * Expression's text wraps by default. To truncate it, pass 'truncate'.
    */
-  truncate?: boolean;
+  textWrap?: keyof typeof textWrapToClassNameMap;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -89,7 +94,7 @@ export const EuiExpression: React.FunctionComponent<
   valueProps,
   color = 'secondary',
   uppercase = true,
-  truncate = false,
+  textWrap = 'break-word',
   isActive = false,
   onClick,
   ...rest
@@ -101,8 +106,8 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isActive': isActive,
       'euiExpression-isClickable': onClick,
       'euiExpression-isUppercase': uppercase,
-      'euiExpression-isTruncate': truncate,
     },
+    textWrapToClassNameMap[textWrap],
     colorToClassNameMap[color]
   );
 

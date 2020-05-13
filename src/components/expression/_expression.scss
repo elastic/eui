@@ -3,7 +3,6 @@
  *    but then wrap long words
  */
 .euiExpression {
-  @include euiTextBreakWord; /* 1 */
   @include euiFontSizeS;
   @include euiCodeFont;
 
@@ -13,6 +12,7 @@
   transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
   color: $euiTextColor;
   border-bottom: 2px solid transparent;
+  vertical-align: bottom;
 
   &:focus {
     border-bottom-style: solid;
@@ -27,9 +27,12 @@
   text-transform: uppercase;
 }
 
-.euiExpression-isTruncate {
+.euiExpression-breakWord {
+  @include euiTextBreakWord; /* 1 */
+}
+
+.euiExpression-truncate {
   @include euiTextTruncate;
-  vertical-align: bottom;
 }
 
 .euiExpression-isClickable {

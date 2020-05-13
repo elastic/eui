@@ -5,7 +5,7 @@
 - Added `partition` key to `EuiChartThemeType` for Partition chart support ([#3387](https://github.com/elastic/eui/pull/3387))
 - Updated `EuiImage`'s `caption` prop type from `string` to `ReactNode` ([#3387](https://github.com/elastic/eui/pull/3387))
 - Fixed `EuiCodeEditor` console error when using the editor without import the default theme ([#3454](https://github.com/elastic/eui/pull/3454))
-- Added `truncate` prop to `EuiExpression` ([#3467](https://github.com/elastic/eui/pull/3467))
+- Added `textWrap` prop to `EuiExpression` ([#3467](https://github.com/elastic/eui/pull/3467))
 
 **Bug Fixes**
 
