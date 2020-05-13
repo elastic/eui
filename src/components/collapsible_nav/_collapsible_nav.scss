@@ -53,6 +53,7 @@
     margin-right: -15%;
 
     .euiCollapsibleNav__closeButtonText {
+      @include euiScreenReaderOnly
       margin-left: 0;
     }
   }
@@ -70,4 +71,3 @@
     transform: translateX(0%);
   }
 }
-
