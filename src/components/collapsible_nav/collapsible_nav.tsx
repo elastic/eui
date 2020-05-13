@@ -34,6 +34,7 @@ import { EuiOverlayMask } from '../overlay_mask';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 export type EuiCollapsibleNavProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
@@ -160,19 +161,20 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
         });
 
   const closeButton = showCloseButton && (
-    <EuiButtonEmpty
-      onClick={collapse}
-      size="xs"
-      iconType="cross"
-      {...closeButtonProps}
-      className={classNames(
-        'euiCollapsibleNav__closeButton',
-        closeButtonProps && closeButtonProps.className
-      )}>
-      <span className="euiCollapsibleNav__closeButtonLabel">
+    <EuiScreenReaderOnly showOnFocus>
+      <EuiButtonEmpty
+        onClick={collapse}
+        size="xs"
+        textProps={{ className: 'euiCollapsibleNav__closeButtonText' }}
+        iconType="cross"
+        {...closeButtonProps}
+        className={classNames(
+          'euiCollapsibleNav__closeButton',
+          closeButtonProps && closeButtonProps.className
+        )}>
         <EuiI18n token="euiCollapsibleNav.closeButtonLabel" default="close" />
-      </span>
-    </EuiButtonEmpty>
+      </EuiButtonEmpty>
+    </EuiScreenReaderOnly>
   );
 
   const flyout = (
