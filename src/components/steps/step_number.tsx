@@ -62,11 +62,14 @@ export interface EuiStepNumberProps
   titleSize?: EuiStepProps['titleSize'];
 }
 
-export const EuiStepNumber: FunctionComponent<
-  EuiStepNumberProps
-  // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
-  // tslint:disable-next-line:variable-name
-> = ({ className, status, number, isHollow, titleSize, ...rest }) => {
+export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
+  className,
+  status,
+  number,
+  isHollow,
+  titleSize,
+  ...rest
+}) => {
   const classes = classNames(
     'euiStepNumber',
     status ? statusToClassNameMap[status] : undefined,
