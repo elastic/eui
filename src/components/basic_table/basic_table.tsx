@@ -226,7 +226,6 @@ export type EuiBasicTableProps<T> = CommonProps &
 
 interface State<T> {
   selection: T[];
-  defaultSelectionRendered: boolean;
 }
 
 interface SortOptions {
@@ -288,14 +287,12 @@ export class EuiBasicTable<T = any> extends Component<
   constructor(props: EuiBasicTableProps<T>) {
     super(props);
     this.state = {
-      selection: [],
-      defaultSelectionRendered: false,
+      selection: this.getInitialSelection(),
     };
   }
 
   componentDidMount() {
     if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
-    this.getInitialSelection();
   }
 
   componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
@@ -306,7 +303,6 @@ export class EuiBasicTable<T = any> extends Component<
         this.removeLoadingListeners();
       }
     }
-    this.getInitialSelection();
   }
 
   componentWillUnmount() {
@@ -314,15 +310,10 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   getInitialSelection() {
-    if (
-      this.props.selection &&
-      this.props.selection.initialSelected &&
-      !this.state.defaultSelectionRendered &&
-      this.props.items.length > 0
-    ) {
-      this.changeSelection(this.props.selection.initialSelected);
-      this.setState({ defaultSelectionRendered: true });
+    if (this.props.selection && this.props.selection.initialSelected) {
+      return this.props.selection.initialSelected;
     }
+    return [];
   }
 
   setSelection(newSelection: T[]) {
@@ -398,7 +389,6 @@ export class EuiBasicTable<T = any> extends Component<
 
   clearSelection() {
     this.changeSelection([]);
-    this.setState({ defaultSelectionRendered: false });
   }
 
   onPageSizeChange(size: number) {
