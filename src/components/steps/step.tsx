@@ -28,7 +28,7 @@ import { EuiStepStatus, EuiStepNumber } from './step_number';
 
 import { EuiI18n } from '../i18n';
 
-export interface EuiStepProps {
+export interface EuiStepInterface {
   children: ReactNode;
   /**
    * The HTML tag used for the title
@@ -49,11 +49,11 @@ export interface EuiStepProps {
   titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
 }
 
-export type StandaloneEuiStepProps = CommonProps &
+export type EuiStepProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
-  EuiStepProps;
+  EuiStepInterface;
 
-export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
+export const EuiStep: FunctionComponent<EuiStepProps> = ({
   className,
   children,
   headingElement = 'p',
