@@ -2,13 +2,13 @@
   .euiPopover__panelArrow {
     &:before {
       filter: blur(3px);
+      opacity: .2;
     }
 
     &.euiPopover__panelArrow--top {
       &:before {
         bottom: -$euiPopoverArrowSize;
-        border-top-color: $euiColorInk;
-        opacity: .2;
+        border-top-color: $euiShadowColor;
         clip: rect(0, $euiPopoverArrowSize * 2 + 5px, $euiPopoverArrowSize + 5px, -5px);
       }
 
@@ -19,9 +19,7 @@
 
     &.euiPopover__panelArrow--right {
       &:before {
-        left: -$euiPopoverArrowSize;
-        border-right-color: $euiColorInk;
-        opacity: .2;
+        border-right-color: $euiShadowColor;
         clip: rect(-5px, $euiPopoverArrowSize, $euiPopoverArrowSize * 2 + 5px, -5px);
       }
 
@@ -32,9 +30,7 @@
 
     &.euiPopover__panelArrow--bottom {
       &:before {
-        top: -$euiPopoverArrowSize;
-        border-bottom-color: $euiColorInk;
-        opacity: .2;
+        border-bottom-color: $euiShadowColor;
         clip: rect(-5px, $euiPopoverArrowSize * 2 + 5px, $euiPopoverArrowSize, -5px);
       }
 
@@ -46,8 +42,7 @@
     &.euiPopover__panelArrow--left {
       &:before {
         right: -$euiPopoverArrowSize;
-        border-left-color: $euiColorInk;
-        opacity: .2;
+        border-left-color: $euiShadowColor;
         clip: rect(-5px, $euiPopoverArrowSize + 5px, $euiPopoverArrowSize * 2 + 5px, 0);
       }
 
