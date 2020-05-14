@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `23.3.1`.
+
+## [`23.3.1`](https://github.com/elastic/eui/tree/v23.3.1)
+
 **Bug Fixes**
 
 - Fixed `EuiSuperDatePicker` quick selection menu overriding specified time range with default values ([#3446](https://github.com/elastic/eui/pull/3446))
