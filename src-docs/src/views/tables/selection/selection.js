@@ -9,7 +9,6 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSwitch,
   EuiSpacer,
 } from '../../../../../src/components';
 
