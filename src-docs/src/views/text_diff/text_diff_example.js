@@ -61,7 +61,7 @@ export const TextDiffExample = {
           <EuiCode>
             InsertComponent, DeletionComponent, NoChangeComponent{' '}
           </EuiCode>
-          can be passed to the utiliy to render customized styles.
+          can be passed to the utility to render customized styles.
         </p>
       ),
       demo: <TextDiffCustomComponents />,
