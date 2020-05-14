@@ -17,34 +17,31 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, forwardRef } from 'react';
-import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import rule from './forward_ref_display_name.js';
+const RuleTester = require('eslint').RuleTester;
 
-export interface EuiRangeWrapperProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  fullWidth?: boolean;
-  compressed?: boolean;
-}
+const ruleTester = new RuleTester({
+  parser: 'babel-eslint',
+});
 
-export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
-  ({ children, className, fullWidth, compressed, ...rest }, ref) => {
-    const classes = classNames(
-      'euiRangeWrapper',
+const valid = [
+  `const Component = React.forwardRef<ref>(() => {})
+   Component.displayName = "EuiBadgeGroup"
+`,
+];
+
+const invalid = [
+  {
+    code: 'const Component = React.forwardRef<ref>(() => {})',
+    errors: [
       {
-        'euiRangeWrapper--fullWidth': fullWidth,
-        'euiRangeWrapper--compressed': compressed,
+        message: 'Forward ref components must use a display name',
       },
-      className
-    );
+    ],
+  },
+];
 
-    return (
-      <div className={classes} ref={ref} {...rest}>
-        {children}
-      </div>
-    );
-  }
-);
-
-EuiRangeWrapper.displayName = 'EuiRangeWrapper';
+ruleTester.run('forward_ref_display_name', rule, {
+  valid,
+  invalid,
+});
