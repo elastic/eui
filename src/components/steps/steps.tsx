@@ -21,11 +21,13 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
-import { StandaloneEuiStepProps, EuiStep } from './step';
+import { EuiStepProps, EuiStep } from './step';
 
-export type EuiContainedStepProps = Omit<StandaloneEuiStepProps, 'step'>;
+export type EuiContainedStepProps = Omit<EuiStepProps, 'step'>;
 
-export interface EuiStepsProps {
+export interface EuiStepsProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   /**
    * An array of `EuiStep` objects excluding the `step` prop
    */
@@ -41,14 +43,14 @@ export interface EuiStepsProps {
   /**
    * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
    */
-  titleSize?: StandaloneEuiStepProps['titleSize'];
+  titleSize?: EuiStepProps['titleSize'];
 }
 
 function renderSteps(
   steps: EuiContainedStepProps[],
   firstStepNumber: number,
   headingElement: string,
-  titleSize?: StandaloneEuiStepProps['titleSize']
+  titleSize?: EuiStepProps['titleSize']
 ) {
   return steps.map((step, index) => {
     const { className, children, title, status, ...rest } = step;
@@ -69,9 +71,7 @@ function renderSteps(
   });
 }
 
-export const EuiSteps: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsProps
-> = ({
+export const EuiSteps: FunctionComponent<EuiStepsProps> = ({
   className,
   firstStepNumber = 1,
   headingElement = 'p',
