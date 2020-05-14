@@ -1,15 +1,17 @@
 .euiPopover__panel {
   .euiPopover__panelArrow {
     &:before {
-      filter: blur(3px);
+      filter: blur($euiSizeXS - 1px);
+      opacity: .2;
     }
+
+    $arrowShadowCompensation: $euiSizeXS;
 
     &.euiPopover__panelArrow--top {
       &:before {
         bottom: -$euiPopoverArrowSize;
-        border-top-color: $euiColorInk;
-        opacity: .2;
-        clip: rect(0, $euiPopoverArrowSize * 2 + 5px, $euiPopoverArrowSize + 5px, -5px);
+        border-top-color: $euiShadowColor;
+        clip: rect(0, $euiPopoverArrowSize * 2 + $arrowShadowCompensation, $euiPopoverArrowSize + $arrowShadowCompensation, -$arrowShadowCompensation);
       }
 
       &:after {
@@ -19,10 +21,8 @@
 
     &.euiPopover__panelArrow--right {
       &:before {
-        left: -$euiPopoverArrowSize;
-        border-right-color: $euiColorInk;
-        opacity: .2;
-        clip: rect(-5px, $euiPopoverArrowSize, $euiPopoverArrowSize * 2 + 5px, -5px);
+        border-right-color: $euiShadowColor;
+        clip: rect(-$arrowShadowCompensation, $euiPopoverArrowSize, $euiPopoverArrowSize * 2 + $arrowShadowCompensation, -$arrowShadowCompensation);
       }
 
       &:after {
@@ -32,10 +32,8 @@
 
     &.euiPopover__panelArrow--bottom {
       &:before {
-        top: -$euiPopoverArrowSize;
-        border-bottom-color: $euiColorInk;
-        opacity: .2;
-        clip: rect(-5px, $euiPopoverArrowSize * 2 + 5px, $euiPopoverArrowSize, -5px);
+        border-bottom-color: $euiShadowColor;
+        clip: rect(-$arrowShadowCompensation, $euiPopoverArrowSize * 2 + $arrowShadowCompensation, $euiPopoverArrowSize, -$arrowShadowCompensation);
       }
 
       &:after {
@@ -46,9 +44,8 @@
     &.euiPopover__panelArrow--left {
       &:before {
         right: -$euiPopoverArrowSize;
-        border-left-color: $euiColorInk;
-        opacity: .2;
-        clip: rect(-5px, $euiPopoverArrowSize + 5px, $euiPopoverArrowSize * 2 + 5px, 0);
+        border-left-color: $euiShadowColor;
+        clip: rect(-$arrowShadowCompensation, $euiPopoverArrowSize + $arrowShadowCompensation, $euiPopoverArrowSize * 2 + $arrowShadowCompensation, 0);
       }
 
       &:after {
