@@ -18,12 +18,8 @@
 
 **Theme: Amsterdam**
 
-- Updates shadow styles to improve smoothness and their appearance on a variety of backgrounds ([#3428](https://github.com/elastic/eui/pull/3428))
-- The shadows now default to using black as their base color rather than a dark-tinted blueish color ([#3428](https://github.com/elastic/eui/pull/3428))
-- Sets a warning that the opacity variable will be deprecated ([#3428](https://github.com/elastic/eui/pull/3428))
-- Opacity values for dark themes are calculated based off a base value ([#3428](https://github.com/elastic/eui/pull/3428))
-- Removes borders from left side of flyouts ([#3477](https://github.com/elastic/eui/pull/3477))
-- Removes borders from popover arrows ([#3477](https://github.com/elastic/eui/pull/3477))
+- Updated shadow styles to improve smoothness, use black as the base color, and deprecated `opacity` value of shadow mixins. ([#3428](https://github.com/elastic/eui/pull/3428))
+- Removed borders `EuiFlyout` and `EuiPopover` ([#3477](https://github.com/elastic/eui/pull/3477))
 
 ## [`23.3.0`](https://github.com/elastic/eui/tree/v23.3.0)
 
