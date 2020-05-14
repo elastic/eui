@@ -535,12 +535,16 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 const generateId = htmlIdGenerator();
 
 let iconComponentCache: { [key: string]: ComponentType } = {};
-export const clearIconComponentCache = (icon?: EuiIconType) => {
-  if (icon != null) {
-    delete iconComponentCache[icon];
+export const clearIconComponentCache = (iconType?: EuiIconType) => {
+  if (iconType != null) {
+    delete iconComponentCache[iconType];
   } else {
     iconComponentCache = {};
   }
+};
+
+export const appendIconComponentCache = (iconType: EuiIconType, icon: EuiIcon) => {
+  iconComponentCache[iconType] = icon;
 };
 
 export class EuiIcon extends PureComponent<EuiIconProps, State> {
