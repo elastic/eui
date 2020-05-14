@@ -3,5 +3,5 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
     'local/require-license-header': 'off',
-  }
-}
+  },
+};
