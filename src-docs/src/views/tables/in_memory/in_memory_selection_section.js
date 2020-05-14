@@ -1,4 +1,5 @@
 import React from 'react';
+import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -22,7 +23,8 @@ export const selectionSection = {
     <p>
       The following example shows how to use <strong>EuiInMemoryTable</strong>{' '}
       along with item selection. It also shows how you can display messages,
-      errors and show loading indication.
+      errors and show loading indication. Also the selection can be handled
+      externally using the <EuiCode>setSelection</EuiCode> property.
     </p>
   ),
   demo: <Table />,
