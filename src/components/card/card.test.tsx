@@ -55,6 +55,18 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('a null icon', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          icon={null}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('horizontal', () => {
       const component = render(
         <EuiCard
