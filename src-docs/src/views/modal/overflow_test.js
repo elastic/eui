@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import {
   EuiButton,
-  EuiButtonEmpty,
   EuiModal,
   EuiModalBody,
   EuiModalFooter,
