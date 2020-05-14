@@ -47,10 +47,13 @@ module.exports = {
         }
       },
       MemberExpression(node) {
-        if (node.property.type === 'Identifier') {
-          if (node.name === 'displayName') {
-            displayNameUsages.push(node.parent.object);
-          }
+        const { property } = node;
+        if (
+          property &&
+          property.type === 'Identifier' &&
+          property.name === 'displayName'
+        ) {
+          displayNameUsages.push(node.object);
         }
       },
       'Program:exit'() {
