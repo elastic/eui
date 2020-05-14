@@ -24,6 +24,15 @@
 - Changed parameters for `euiPaletteColorBlind()` to an object ([#3387](https://github.com/elastic/eui/pull/3387))
 - Changed the default palette of `EUI_CHARTS_THEME_LIGHT/DARK` themes to the naturally sorted `euiPaletteColorBlind()` ([#3387](https://github.com/elastic/eui/pull/3387))
 
+## [`23.3.1`](https://github.com/elastic/eui/tree/v23.3.1)
+
+**Note: this release is a backport containing changes originally made in `24.0.0`**
+
+**Bug Fixes**
+
+- Fixed `EuiSuperDatePicker` quick selection menu overriding specified time range with default values ([#3446](https://github.com/elastic/eui/pull/3446))
+- Fixed `EuiDatePopoverContent` `onChange` event to only accept `string` date input  ([#3460](https://github.com/elastic/eui/pull/3460))
+
 ## [`23.3.0`](https://github.com/elastic/eui/tree/v23.3.0)
 
 - Added `aria-hidden = true` to `EuiRangeSlider` and `EuiRangeTrack` if `showInput = true` ([#3423](https://github.com/elastic/eui/pull/3423))
