@@ -43,7 +43,6 @@ export const Table = () => {
   const [sortField, setSortField] = useState('firstName');
   const [sortDirection, setSortDirection] = useState('asc');
   const [selectedItems, setSelectedItems] = useState([]);
-  const [isOnline, setIsOnline] = useState(false);
   const tableRef = useRef();
 
   const onTableChange = ({ page = {}, sort = {} }) => {
@@ -55,9 +54,6 @@ export const Table = () => {
     setPageSize(pageSize);
     setSortField(sortField);
     setSortDirection(sortDirection);
-    if (isOnline) {
-      setIsOnline(!isOnline);
-    }
   };
 
   const onSelectionChange = selectedItems => {
@@ -183,38 +179,25 @@ export const Table = () => {
     },
   };
 
-  const initialSelectedUsers = store.users.filter(
-    user => user.online && user.id < 10
-  );
+  const onlineUsers = store.users.filter(user => user.online);
 
   const selection = {
     selectable: user => user.online,
     selectableMessage: selectable =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
-    initialSelected: initialSelectedUsers,
+    initialSelected: onlineUsers,
   };
 
-  const onlineUsers = store.users.filter(user => user.online);
-
   const toggleSelection = () => {
-    if (!isOnline) {
-      tableRef.current.setSelection(onlineUsers);
-    } else {
-      tableRef.current.setSelection([]);
-    }
-    setIsOnline(!isOnline);
+    tableRef.current.setSelection(onlineUsers);
   };
 
   return (
     <Fragment>
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label="Select online users"
-            checked={isOnline}
-            onChange={toggleSelection}
-          />
+          <EuiButton onClick={toggleSelection}>Select online users</EuiButton>
         </EuiFlexItem>
         <EuiFlexItem />
         {deleteButton}
