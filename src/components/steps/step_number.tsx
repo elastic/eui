@@ -22,7 +22,7 @@ import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
 
-import { StandaloneEuiStepProps } from './step';
+import { EuiStepProps } from './step';
 
 import { EuiI18n } from '../i18n';
 import { CommonProps, keysOf } from '../common';
@@ -44,7 +44,9 @@ export type EuiStepStatus =
   | 'danger'
   | 'disabled';
 
-export interface EuiStepNumberProps {
+export interface EuiStepNumberProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   /**
    * May replace the number provided in props.number with alternate styling
    */
@@ -57,11 +59,11 @@ export interface EuiStepNumberProps {
   /**
    * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
    */
-  titleSize?: StandaloneEuiStepProps['titleSize'];
+  titleSize?: EuiStepProps['titleSize'];
 }
 
 export const EuiStepNumber: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepNumberProps
+  EuiStepNumberProps
   // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
   // tslint:disable-next-line:variable-name
 > = ({ className, status, number, isHollow, titleSize, ...rest }) => {
