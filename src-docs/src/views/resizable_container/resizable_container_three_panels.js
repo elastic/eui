@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiText, EuiResizableContainer } from '../../../../src';
+import { EuiText, EuiResizableContainer } from '../../../../src/components';
 
 const text = require('!!raw-loader!./lorem.txt');
 
