@@ -237,7 +237,7 @@ export const Table = () => {
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiSwitch
-            label="Online users"
+            label="Select online users"
             checked={isOnline}
             onChange={toggleSelection}
           />
