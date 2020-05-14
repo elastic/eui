@@ -1,0 +1,8 @@
+.guide {
+  background: $euiPageBackgroundColor;
+}
+
+.guidePageContent {
+  @include euiBottomShadowFlat;
+  border-left: none;
+}
