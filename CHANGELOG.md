@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added exports for `EuiSteps` and related components types ([#3471](https://github.com/elastic/eui/pull/3471))
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
@@ -11,6 +12,7 @@
 - Updated `EuiImage`'s `caption` prop type from `string` to `ReactNode` ([#3387](https://github.com/elastic/eui/pull/3387))
 - Improved contrast for `EuiCollapsibleNav` close button ([#3465](https://github.com/elastic/eui/pull/3465))
 - Fixed `EuiCodeEditor` console error when using the editor without import the default theme ([#3454](https://github.com/elastic/eui/pull/3454))
+- Added exports for `EuiSteps` and related components types ([#3471](https://github.com/elastic/eui/pull/3471))
 
 **Bug Fixes**
 
