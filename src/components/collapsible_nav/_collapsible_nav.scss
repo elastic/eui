@@ -14,7 +14,20 @@
   position: absolute;
   right: 0;
   top: $euiSize;
-  margin-right: -25%;
+  margin-right: -27%;
+  padding: $euiSizeM 0;
+  line-height: 1;
+  border-radius: $euiBorderRadius;
+
+  &:focus {
+    @include euiFocusRing;
+  }
+
+  &,
+  &:focus {
+    // Override default `EuiButtonEmpty` :focus background to ensure better contrast 
+    background: $euiColorEmptyShade;
+  }
 }
 
 // The addition of this class is handled through JS
@@ -38,11 +51,11 @@
   // At tiny screens, reduce the close button to a simple `x`
   .euiCollapsibleNav__closeButton {
     margin-right: -15%;
-  }
 
-  .euiCollapsibleNav__closeButtonLabel {
-    // But be sure the text can still be read by a screenreader
-    @include euiScreenReaderOnly;
+    .euiCollapsibleNav__closeButtonText {
+      // But be sure the text can still be read by a screenreader
+      @include euiScreenReaderOnly;
+    }
   }
 }
 
@@ -58,4 +71,3 @@
     transform: translateX(0%);
   }
 }
-
