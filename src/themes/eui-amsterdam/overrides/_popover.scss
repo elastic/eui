@@ -9,7 +9,7 @@
         bottom: -$euiPopoverArrowSize;
         border-top-color: $euiColorInk;
         opacity: .2;
-        clip-path: polygon(-5px 0, calc(100% + 5px) 0, calc(100% + 5px) calc(100% + 5px), -5px calc(100% + 5px));
+        clip: rect(0, $euiPopoverArrowSize * 2 + 5px, $euiPopoverArrowSize + 5px, -5px);
       }
 
       &:after {
@@ -22,7 +22,7 @@
         left: -$euiPopoverArrowSize;
         border-right-color: $euiColorInk;
         opacity: .2;
-        clip-path: polygon(-5px -5px, calc(100% - 1px) -5px, calc(100% - 1px) calc(100% + 5px), -5px calc(100% + 5px));
+        clip: rect(-5px, $euiPopoverArrowSize, $euiPopoverArrowSize * 2 + 5px, -5px);
       }
 
       &:after {
@@ -35,7 +35,7 @@
         top: -$euiPopoverArrowSize;
         border-bottom-color: $euiColorInk;
         opacity: .2;
-        clip-path: polygon(-5px -5px, calc(100% + 5px) -5px, calc(100% + 5px) 100%, -5px 100%);
+        clip: rect(-5px, $euiPopoverArrowSize * 2 + 5px, $euiPopoverArrowSize, -5px);
       }
 
       &:after {
@@ -48,7 +48,7 @@
         right: -$euiPopoverArrowSize;
         border-left-color: $euiColorInk;
         opacity: .2;
-        clip-path: polygon(1px -5px, calc(100% + 5px) -5px, calc(100% + 5px) calc(100% + 5px), 1px calc(100% + 5px));
+        clip: rect(-5px, $euiPopoverArrowSize + 5px, $euiPopoverArrowSize * 2 + 5px, 0);
       }
 
       &:after {
