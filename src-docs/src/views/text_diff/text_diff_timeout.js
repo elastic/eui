@@ -27,6 +27,9 @@ export default () => {
   });
 
   useEffect(() => {
+    setIns(0);
+    setDel(0);
+
     textDiffObject.forEach(el => {
       if (el[0] === 1) {
         setIns(add => add + 1);
