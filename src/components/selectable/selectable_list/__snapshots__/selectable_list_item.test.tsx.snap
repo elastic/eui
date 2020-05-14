@@ -70,7 +70,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
 
 exports[`EuiSelectableListItem props checked is on 1`] = `
 <button
-  class="euiSelectableListItem"
+  class="euiSelectableListItem euiSelectableListItem-checked"
   role="option"
   type="button"
 >

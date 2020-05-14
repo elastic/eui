@@ -84,6 +84,7 @@ export class EuiSelectableListItem extends Component<
     const classes = classNames(
       'euiSelectableListItem',
       {
+        'euiSelectableListItem-checked': checked === 'on',
         'euiSelectableListItem-isFocused': isFocused,
       },
       className
