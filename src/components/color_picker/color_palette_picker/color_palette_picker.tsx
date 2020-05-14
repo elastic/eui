@@ -63,15 +63,19 @@ export type EuiColorPalettePickerProps = CommonProps & {
   readOnly?: boolean;
   isInvalid?: boolean;
   /**
-   * Creates an input group with element(s) coming before input. It only shows when the `display` is set to `default`.
+   * Creates an input group with element(s) coming before input.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
   /**
-   * Creates an input group with element(s) coming after input. It only shows when the `display` is set to `default`.
+   * Creates an input group with element(s) coming after input.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
+  /**
+   *  Specify what should be displayed after a selection: a `palette` or `title`
+   */
+  selectionDisplay?: 'palette' | 'title';
   valueOfSelected?: string;
   /**
    * You must pass an `onChange` function to handle the update of the value
@@ -97,6 +101,7 @@ export const EuiColorPalettePicker: FunctionComponent<
   palettes,
   append,
   prepend,
+  selectionDisplay = 'palette',
   ...rest
 }) => {
   const getPalette = (palette: [], type: string) => {
@@ -115,13 +120,18 @@ export const EuiColorPalettePicker: FunctionComponent<
 
   const getText = (title: any) => title;
 
+  const getInputDisplay = (title: string, palette: [], type: string) => {
+    if (selectionDisplay === 'title') {
+      return getText(title);
+    } else {
+      return type === 'text' ? getText(title) : getPalette(palette, type);
+    }
+  };
+
   const paletteOptions = palettes.map((item: any) => {
     return {
       value: String(item.value),
-      inputDisplay:
-        item.type !== 'text'
-          ? getPalette(item.palette, item.type)
-          : getText(item.title),
+      inputDisplay: getInputDisplay(item.title, item.palette, item.type),
       dropdownDisplay: (
         <EuiFlexGroup gutterSize="xs" direction="column">
           {item.title && item.type !== 'text' && (
@@ -133,7 +143,6 @@ export const EuiColorPalettePicker: FunctionComponent<
               </EuiText>
             </EuiFlexItem>
           )}
-
           <EuiFlexItem>
             {item.type !== 'text'
               ? getPalette(item.palette, item.type)
