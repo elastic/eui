@@ -144,8 +144,9 @@
 }
 
 .guideSass__shadow {
-  padding: $euiSize;
+  padding: $euiSizeXXL;
   background: $euiColorEmptyShade;
+  border-radius: $euiBorderRadius;
 
   & + .guideSass__shadow {
     margin-top: $euiSizeXL;

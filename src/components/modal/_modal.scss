@@ -122,7 +122,7 @@
     border: none;
 
     &.euiModal--confirmation {
-      @include euiBottomShadowLarge($euiShadowColorLarge, .1, false, true);
+      @include euiBottomShadowLarge($euiShadowColorLarge, $reverse: true);
       top: auto;
     }
 
