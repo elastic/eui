@@ -127,6 +127,7 @@
 
 **Bug Fixes**
 
+- Fixed issue where multiple `EuiToolTip` components could be visible when element was focused ([#3335](https://github.com/elastic/eui/pull/3335))
 - Fixed EuiI8n hasPropName utility errors on null values ([#3303](https://github.com/elastic/eui/pull/3303))
 - Fixed the inline styles being overwritten by consumer-passed inline styles in EuiBadge ([#3284](https://github.com/elastic/eui/pull/3284))
 
