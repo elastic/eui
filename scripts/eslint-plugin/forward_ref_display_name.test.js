@@ -17,19 +17,31 @@
  * under the License.
  */
 
-export { EuiStep, EuiStepProps } from './step';
+import rule from './forward_ref_display_name.js';
+const RuleTester = require('eslint').RuleTester;
 
-export { EuiSteps, EuiStepsProps } from './steps';
+const ruleTester = new RuleTester({
+  parser: 'babel-eslint',
+});
 
-export { EuiSubSteps, EuiSubStepsProps } from './sub_steps';
+const valid = [
+  `const Component = React.forwardRef<ref>(() => {})
+   Component.displayName = "EuiBadgeGroup"
+`,
+];
 
-export {
-  EuiStepsHorizontal,
-  EuiStepsHorizontalProps,
-} from './steps_horizontal';
+const invalid = [
+  {
+    code: 'const Component = React.forwardRef<ref>(() => {})',
+    errors: [
+      {
+        message: 'Forward ref components must use a display name',
+      },
+    ],
+  },
+];
 
-export {
-  EuiStepStatus,
-  EuiStepNumber,
-  EuiStepNumberProps,
-} from './step_number';
+ruleTester.run('forward_ref_display_name', rule, {
+  valid,
+  invalid,
+});
