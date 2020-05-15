@@ -22,7 +22,7 @@ function CheckboxParser() {
       return true;
     }
 
-    const [match, lead, checkboxStatus, text] = checkboxMatch;
+    const [match, , checkboxStatus, text] = checkboxMatch;
     const isChecked = checkboxStatus.indexOf('x') !== -1;
 
     const position = eat.now();
@@ -57,18 +57,23 @@ const CheckboxMarkdownRenderer = ({ position, isChecked, children }) => {
       onChange={() => {
         const leadingMarkdown = markdown.substr(0, position.offset);
 
-        let isCurrentlyChecked = false;
-        let index = position.offset + 1;
+        let index = position.offset;
+        let leadIn = '';
+        let hasSeenBracket = false;
         for (; index < markdown.length; index++) {
           const char = markdown[index];
-          if (char === ']') break;
-          if (char === 'x') isCurrentlyChecked = true;
+          if (hasSeenBracket === false) {
+            if (char === '[') hasSeenBracket = true;
+            else leadIn += char;
+          } else {
+            if (char === ']') break;
+          }
         }
         index++; // still need to skip over the closing bracket
 
-        const checkMarkdown = `[${isCurrentlyChecked ? ' ' : 'x'}]`;
+        const checkMarkdown = `[${isChecked ? ' ' : 'x'}]`;
         const trailingMarkdown = markdown.substr(index);
-        const nextMarkdown = `${leadingMarkdown}${checkMarkdown}${trailingMarkdown}`;
+        const nextMarkdown = `${leadingMarkdown}${leadIn}${checkMarkdown}${trailingMarkdown}`;
 
         setMarkdown(nextMarkdown);
       }}
