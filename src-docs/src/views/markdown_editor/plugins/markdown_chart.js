@@ -110,11 +110,11 @@ function ChartParser() {
   tokenizeChart.notInLink = true;
 
   tokenizeChart.locator = function locateChart(value, fromIndex) {
-    return value.indexOf('!{chart', fromIndex - 1);
+    return value.indexOf('!{chart', fromIndex);
   };
 
   tokenizers.chart = tokenizeChart;
-  methods.push('chart');
+  methods.splice(methods.indexOf('text'), 0, 'chart');
 }
 
 const chartMarkdownHandler = (h, node) => {

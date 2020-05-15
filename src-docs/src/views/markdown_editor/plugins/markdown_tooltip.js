@@ -75,11 +75,11 @@ function TooltipParser() {
   tokenizeTooltip.notInLink = true;
 
   tokenizeTooltip.locator = function locateTooltip(value, fromIndex) {
-    return value.indexOf('!{tooltip', fromIndex - 1);
+    return value.indexOf('!{tooltip', fromIndex);
   };
 
   tokenizers.tooltip = tokenizeTooltip;
-  methods.push('tooltip');
+  methods.splice(methods.indexOf('text'), 0, 'tooltip');
 }
 
 const tooltipMarkdownHandler = (h, node) => {
