@@ -4,6 +4,14 @@
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
 
+**Deprecations**
+
+- Added a deprecation notice for `EuiNavDrawer` family of components. Advise usage of `EuiCollapsibleNav` instead ([#3487](https://github.com/elastic/eui/pull/3487))
+
+**Notes**
+
+- Removed `src-framer` files from the repository ([#3487](https://github.com/elastic/eui/pull/3487))
+
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
 - Added `null` as acceptable `icon` prop for `EuiCard` ([#3470](https://github.com/elastic/eui/pull/3470))
