@@ -58,7 +58,7 @@ const palettesExample1: EuiColorPalettePickerPaletteProps[] = [
   },
   {
     value: 'custom',
-    title: 'Just a text as an option',
+    title: 'Plain text as a custom option',
     type: 'text',
   },
 ];

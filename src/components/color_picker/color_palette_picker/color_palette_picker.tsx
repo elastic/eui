@@ -41,8 +41,8 @@ export interface EuiColorPalettePickerPaletteProps {
   /**
    * Specify if the palette is
    * `fixed`: individual color blocks; or
-   * `gradient`: each color fades into the next
-   * `text`: a text as an option (a title is required).
+   * `gradient`: each color fades into the next; or
+   * `text`: a text only option (a title is required).
    */
   type: 'fixed' | 'gradient' | 'text';
   /**
