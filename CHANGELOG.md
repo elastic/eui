@@ -8,7 +8,6 @@
 
 - Fixed issue where multiple `EuiToolTip` components could be visible when element was focused ([#3335](https://github.com/elastic/eui/pull/3335))
 
-
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
 - Added `null` as acceptable `icon` prop for `EuiCard` ([#3470](https://github.com/elastic/eui/pull/3470))
