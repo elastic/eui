@@ -21,9 +21,6 @@ import React, { FunctionComponent } from 'react';
 
 import { EuiSuperSelect } from '../../form';
 
-import { EuiText } from '../../text';
-
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { CommonProps } from '../../common';
 
 import { getLinearGradient, getFixedLinearGradient } from '../utils';
@@ -95,7 +92,7 @@ export const EuiColorPalettePicker: FunctionComponent<
 
     return (
       <div
-        className="euiColorPalettePicker__colorContainer"
+        className="euiColorPalettePicker__itemGradient"
         style={{ background }}
       />
     );
@@ -116,22 +113,14 @@ export const EuiColorPalettePicker: FunctionComponent<
       value: String(item.value),
       inputDisplay: getInputDisplay(item.title, item.palette, item.type),
       dropdownDisplay: (
-        <EuiFlexGroup gutterSize="xs" direction="column">
+        <div className="euiColorPalettePicker__item">
           {item.title && item.type !== 'text' && (
-            <EuiFlexItem>
-              <EuiText
-                size="xs"
-                className="euiColorPalettePicker__paletteTitle">
-                <span>{item.title}</span>
-              </EuiText>
-            </EuiFlexItem>
+            <div className="euiColorPalettePicker__itemTitle">{item.title}</div>
           )}
-          <EuiFlexItem>
-            {item.type !== 'text'
-              ? getPalette(item.palette, item.type)
-              : getText(item.title)}
-          </EuiFlexItem>
-        </EuiFlexGroup>
+          {item.type !== 'text'
+            ? getPalette(item.palette, item.type)
+            : getText(item.title)}
+        </div>
       ),
     };
   });

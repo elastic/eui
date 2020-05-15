@@ -23,7 +23,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
         >
           Select an option: 
           <div
-            class="euiColorPalettePicker__colorContainer"
+            class="euiColorPalettePicker__itemGradient"
             style="background:linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)"
           />
           , is selected
@@ -39,7 +39,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
           type="button"
         >
           <div
-            class="euiColorPalettePicker__colorContainer"
+            class="euiColorPalettePicker__itemGradient"
             style="background:linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)"
           />
         </button>

@@ -56,11 +56,6 @@ const palettesExample1: EuiColorPalettePickerPaletteProps[] = [
     palette: euiPaletteForStatus(5),
     type: 'gradient',
   },
-  {
-    value: 'custom',
-    title: 'Plain text as a custom option',
-    type: 'text',
-  },
 ];
 
 const palettesExample2: EuiColorPalettePickerPaletteProps[] = [
@@ -103,6 +98,11 @@ const palettesExample3: EuiColorPalettePickerPaletteProps[] = [
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
+  {
+    value: 'custom',
+    title: 'Plain text as a custom option',
+    type: 'text',
+  },
 ];
 
 export const ColorPalettePicker = () => {
@@ -134,7 +134,7 @@ export const ColorPalettePicker = () => {
           selectionDisplay="title"
         />
       </EuiFormRow>
-      <EuiFormRow label="Palettes with a text option">
+      <EuiFormRow label="Palettes and a plain text as a custom option">
         <EuiColorPalettePicker
           palettes={palettesExample3}
           onChange={setPalletteExample3}
