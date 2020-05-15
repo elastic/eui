@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPalettePositive,
 } from '../../../../src/services';
-// @ts-ignore
-import { EuiFormRow } from '../../../../src/components';
+import { EuiFormRow } from '../../../../src/components/form';
+import { EuiSpacer } from '../../../../src/components/spacer';
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
@@ -15,14 +17,14 @@ import { DisplayToggles } from '../form_controls/display_toggles';
 const palettesExample1: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'palletteExample1_1',
-    title: 'EUI Color Blind (fixed)',
+    title: 'EUI color blind (fixed)',
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
   {
     value: 'palletteExample1_2',
-    title: 'Summer Colors (fixed)',
-    palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
+    title: 'EUI palette for temperature (fixed)',
+    palette: euiPaletteForTemperature(5),
     type: 'fixed',
   },
   {
@@ -50,21 +52,9 @@ const palettesExample1: EuiColorPalettePickerPaletteProps[] = [
   },
   {
     value: 'palletteExample1_4',
-    title: 'For Status (gradient)',
+    title: 'EUI palette for status (gradient)',
     palette: euiPaletteForStatus(5),
     type: 'gradient',
-  },
-  {
-    value: 'palletteExample1_5',
-    title: 'CSS color names (fixed)',
-    palette: ['red', 'gold', 'deepskyblue', 'black', 'linen'],
-    type: 'fixed',
-  },
-  {
-    value: 'palletteExample1_6',
-    title: 'RGBA colors (fixed)',
-    palette: ['rgba(0, 0, 0, 0.5)', 'rgba(255, 255, 255, 0.2)'],
-    type: 'fixed',
   },
   {
     value: 'custom',
@@ -76,19 +66,19 @@ const palettesExample1: EuiColorPalettePickerPaletteProps[] = [
 const palettesExample2: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'palletteExample2_1',
-    title: 'EUI Color Blind',
+    title: 'EUI color blind',
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
   {
     value: 'palletteExample2_2',
-    title: 'Summer Colors',
-    palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
+    title: 'EUI palette for temperature',
+    palette: euiPaletteForTemperature(5),
     type: 'fixed',
   },
   {
     value: 'palletteExample2_3',
-    title: 'For Status',
+    title: 'EUI palette for status',
     palette: euiPaletteForStatus(5),
     type: 'fixed',
   },
@@ -97,19 +87,19 @@ const palettesExample2: EuiColorPalettePickerPaletteProps[] = [
 const palettesExample3: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'palletteExample3_1',
-    title: 'For Status',
+    title: 'EUI palette for status',
     palette: euiPaletteForStatus(5),
     type: 'fixed',
   },
   {
     value: 'palletteExample3_2',
-    title: 'Summer Colors',
-    palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
+    title: 'EUI palette positive',
+    palette: euiPalettePositive(5),
     type: 'fixed',
   },
   {
     value: 'palletteExample3_3',
-    title: 'EUI Color Blind',
+    title: 'EUI color blind',
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
@@ -128,15 +118,14 @@ export const ColorPalettePicker = () => {
 
   return (
     <>
-      <EuiFormRow label="Different type of palettes">
-        <DisplayToggles canPrepend={true} canAppend={true}>
-          <EuiColorPalettePicker
-            palettes={palettesExample1}
-            onChange={setPalletteExample1}
-            valueOfSelected={palletteExample1}
-          />
-        </DisplayToggles>
-      </EuiFormRow>
+      <DisplayToggles canPrepend={true} canAppend={true}>
+        <EuiColorPalettePicker
+          palettes={palettesExample1}
+          onChange={setPalletteExample1}
+          valueOfSelected={palletteExample1}
+        />
+      </DisplayToggles>
+      <EuiSpacer />
       <EuiFormRow label="Title selection display">
         <EuiColorPalettePicker
           palettes={palettesExample2}
