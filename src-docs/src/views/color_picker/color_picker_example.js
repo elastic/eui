@@ -33,7 +33,7 @@ const colorPalettePickerSnippet = `<EuiColorPalettePicker
     {
       value: 'palette1',
       title: 'Palette 1',
-      palette: ['#ff3f3f', '#ffcc06'],
+      palette: euiPaletteColorBlind(),
       type: 'fixed',
     },
   ]}

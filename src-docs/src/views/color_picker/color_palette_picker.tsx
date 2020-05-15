@@ -72,7 +72,7 @@ export const ColorPalettePicker = () => {
       <EuiSwitch
         label={
           <span>
-            Display selection as <EuiCode>title</EuiCode>
+            Display selected item as a <EuiCode>title</EuiCode>
           </span>
         }
         checked={selectionDisplay}
