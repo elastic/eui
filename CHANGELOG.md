@@ -4,7 +4,7 @@
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
 - Added `EuiColorPalettePicker` component ([#3192](https://github.com/elastic/eui/pull/3192))
-- 
+
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
 - Added `null` as acceptable `icon` prop for `EuiCard` ([#3470](https://github.com/elastic/eui/pull/3470))
