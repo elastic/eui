@@ -228,6 +228,7 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
+import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -420,6 +421,7 @@ const navigation = [
       ElasticChartsSparklinesExample,
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
+      ElasticChartsPieExample,
     ].map(example => createExample(example)),
   },
   {

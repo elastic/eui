@@ -32,19 +32,17 @@ import {
   toAbsoluteString,
   toRelativeString,
 } from '../date_modes';
-import { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
+import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverContentProps {
   value: string;
-  onChange(
-    date: Moment | string | null,
-    event?: React.SyntheticEvent<any>
-  ): void;
+  onChange(date: string | null, event?: React.SyntheticEvent<any>): void;
   roundUp?: boolean;
   dateFormat: string;
   timeFormat: string;
   locale?: LocaleSpecifier;
   position: 'start' | 'end';
+  utcOffset?: number;
 }
 
 export const EuiDatePopoverContent: FunctionComponent<
@@ -57,6 +55,7 @@ export const EuiDatePopoverContent: FunctionComponent<
   timeFormat,
   locale,
   position,
+  utcOffset,
 }) => {
   const onTabClick: EuiTabbedContentProps['onTabClick'] = selectedTab => {
     switch (selectedTab.id) {
@@ -84,6 +83,7 @@ export const EuiDatePopoverContent: FunctionComponent<
           onChange={onChange}
           roundUp={roundUp}
           position={position}
+          utcOffset={utcOffset}
         />
       ),
       'data-test-subj': 'superDatePickerAbsoluteTab',

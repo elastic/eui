@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import {
   EuiButton,
-  EuiButtonEmpty,
   EuiModal,
   EuiModalBody,
   EuiModalFooter,
@@ -22,7 +21,7 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask>
+      <EuiOverlayMask onClick={closeModal}>
         <EuiModal onClose={closeModal}>
           <EuiModalHeader>
             <EuiModalHeaderTitle>Overflow test</EuiModalHeaderTitle>
@@ -73,10 +72,8 @@ export default () => {
           </EuiModalBody>
 
           <EuiModalFooter>
-            <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
-
             <EuiButton onClick={closeModal} fill>
-              Save
+              Close
             </EuiButton>
           </EuiModalFooter>
         </EuiModal>

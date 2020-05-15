@@ -47,8 +47,14 @@ describe('EuiImage', () => {
   });
 
   test('is rendered with custom size', () => {
+    const component = render(<EuiImage alt="alt" size={50} url="/cat.jpg" />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('is rendered with a node as the caption', () => {
     const component = render(
-      <EuiImage alt="alt" size={50} url="/cat.jpg" {...requiredProps} />
+      <EuiImage alt="alt" caption={<span>caption</span>} url="/cat.jpg" />
     );
 
     expect(component).toMatchSnapshot();
