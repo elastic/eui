@@ -9,8 +9,8 @@ const tooltipPlugin = {
     iconType: 'flag',
   },
   formatting: {
-    prefix: '!{tooltip',
-    suffix: '}',
+    prefix: '!{tooltip[',
+    suffix: ']()}',
     trimFirst: true,
   },
 };
@@ -28,8 +28,8 @@ function TooltipParser() {
     if (nextChar !== '[') return false; // this isn't actually a tooltip
 
     let index = 9;
-    function readArg() {
-      if (value[index] !== '[') throw 'Expected left bracket';
+    function readArg(open, close) {
+      if (value[index] !== open) throw 'Expected left bracket';
       index++;
 
       let body = '';
@@ -38,12 +38,12 @@ function TooltipParser() {
       for (index; index < value.length; index++) {
         const char = value[index];
 
-        if (char === ']' && openBrackets === 0) {
+        if (char === close && openBrackets === 0) {
           index++;
           return body;
-        } else if (char === ']') {
+        } else if (char === close) {
           openBrackets--;
-        } else if (char === '[') {
+        } else if (char === open) {
           openBrackets++;
         }
 
@@ -52,10 +52,10 @@ function TooltipParser() {
 
       return '';
     }
-    const tooltipText = readArg();
-    const tooltipBody = readArg();
+    const tooltipAnchor = readArg('[', ']');
+    const tooltipText = readArg('(', ')');
 
-    if (!tooltipText || !tooltipBody) return false;
+    if (!tooltipText || !tooltipAnchor) return false;
 
     if (silent) {
       return true;
@@ -64,9 +64,9 @@ function TooltipParser() {
     const now = eat.now();
     now.column += 11 + tooltipText.length;
     now.offset += 11 + tooltipText.length;
-    const children = this.tokenizeInline(tooltipBody, now);
+    const children = this.tokenizeInline(tooltipAnchor, now);
 
-    return eat(`!{tooltip[${tooltipText}][${tooltipBody}]}`)({
+    return eat(`!{tooltip[${tooltipAnchor}](${tooltipText})}`)({
       type: 'tooltipPlugin',
       configuration: { content: tooltipText },
       children,
