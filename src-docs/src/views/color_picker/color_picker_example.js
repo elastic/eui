@@ -319,7 +319,7 @@ export const ColorPickerExample = {
           <EuiText>
             <p>
               Use <strong>EuiColorPalettePicker</strong> to select palettes to
-              further apply to data like maps, bar charts, or any other type of
+              apply colors to data like maps, bar charts, or any other type of
               data visualization.
             </p>
           </EuiText>

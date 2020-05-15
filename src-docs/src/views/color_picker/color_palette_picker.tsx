@@ -3,10 +3,10 @@ import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
   euiPaletteForTemperature,
-  euiPalettePositive,
 } from '../../../../src/services';
-import { EuiFormRow } from '../../../../src/components/form';
+import { EuiSwitch } from '../../../../src/components/form';
 import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiCode } from '../../../../src/components/code';
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
@@ -14,21 +14,21 @@ import {
 // @ts-ignore
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-const palettesExample1: EuiColorPalettePickerPaletteProps[] = [
+const palettes: EuiColorPalettePickerPaletteProps[] = [
   {
-    value: 'palletteExample1_1',
+    value: 'pallette_1',
     title: 'EUI color blind (fixed)',
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
   {
-    value: 'palletteExample1_2',
+    value: 'pallette_2',
     title: 'EUI palette for temperature (fixed)',
     palette: euiPaletteForTemperature(5),
     type: 'fixed',
   },
   {
-    value: 'palletteExample1_3',
+    value: 'pallette_3',
     title: 'Beautiful Gradient (gradient with stops)',
     palette: [
       {
@@ -51,52 +51,10 @@ const palettesExample1: EuiColorPalettePickerPaletteProps[] = [
     type: 'gradient',
   },
   {
-    value: 'palletteExample1_4',
+    value: 'pallette_4',
     title: 'EUI palette for status (gradient)',
     palette: euiPaletteForStatus(5),
     type: 'gradient',
-  },
-];
-
-const palettesExample2: EuiColorPalettePickerPaletteProps[] = [
-  {
-    value: 'palletteExample2_1',
-    title: 'EUI color blind',
-    palette: euiPaletteColorBlind(),
-    type: 'fixed',
-  },
-  {
-    value: 'palletteExample2_2',
-    title: 'EUI palette for temperature',
-    palette: euiPaletteForTemperature(5),
-    type: 'fixed',
-  },
-  {
-    value: 'palletteExample2_3',
-    title: 'EUI palette for status',
-    palette: euiPaletteForStatus(5),
-    type: 'fixed',
-  },
-];
-
-const palettesExample3: EuiColorPalettePickerPaletteProps[] = [
-  {
-    value: 'palletteExample3_1',
-    title: 'EUI palette for status',
-    palette: euiPaletteForStatus(5),
-    type: 'fixed',
-  },
-  {
-    value: 'palletteExample3_2',
-    title: 'EUI palette positive',
-    palette: euiPalettePositive(5),
-    type: 'fixed',
-  },
-  {
-    value: 'palletteExample3_3',
-    title: 'EUI color blind',
-    palette: euiPaletteColorBlind(),
-    type: 'fixed',
   },
   {
     value: 'custom',
@@ -106,41 +64,29 @@ const palettesExample3: EuiColorPalettePickerPaletteProps[] = [
 ];
 
 export const ColorPalettePicker = () => {
-  const [palletteExample1, setPalletteExample1] = useState(
-    'palletteExample1_1'
-  );
-  const [palletteExample2, setPalletteExample2] = useState(
-    'palletteExample2_1'
-  );
-  const [palletteExample3, setPalletteExample3] = useState(
-    'palletteExample3_1'
-  );
+  const [selectionDisplay, setSelectionDisplay] = useState(false);
+  const [pallette, setPallette] = useState('pallette_1');
 
   return (
     <>
+      <EuiSwitch
+        label={
+          <span>
+            Display selection as <EuiCode>title</EuiCode>
+          </span>
+        }
+        checked={selectionDisplay}
+        onChange={() => setSelectionDisplay(!selectionDisplay)}
+      />
+      <EuiSpacer />
       <DisplayToggles canPrepend={true} canAppend={true}>
         <EuiColorPalettePicker
-          palettes={palettesExample1}
-          onChange={setPalletteExample1}
-          valueOfSelected={palletteExample1}
+          palettes={palettes}
+          onChange={setPallette}
+          valueOfSelected={pallette}
+          selectionDisplay={selectionDisplay ? 'title' : 'palette'}
         />
       </DisplayToggles>
-      <EuiSpacer />
-      <EuiFormRow label="Title selection display">
-        <EuiColorPalettePicker
-          palettes={palettesExample2}
-          onChange={setPalletteExample2}
-          valueOfSelected={palletteExample2}
-          selectionDisplay="title"
-        />
-      </EuiFormRow>
-      <EuiFormRow label="Palettes and a plain text as a custom option">
-        <EuiColorPalettePicker
-          palettes={palettesExample3}
-          onChange={setPalletteExample3}
-          valueOfSelected={palletteExample3}
-        />
-      </EuiFormRow>
     </>
   );
 };
