@@ -5,8 +5,11 @@
 
 **Deprecations**
 
-- Added a deprecation notice for `EuiNavDrawer` family of components. Advise usage of `EuiCollapsibleNav` instead
-- Removed `src-framer` files from the repository
+- Added a deprecation notice for `EuiNavDrawer` family of components. Advise usage of `EuiCollapsibleNav` instead ([#3487](https://github.com/elastic/eui/pull/3487))
+
+**Notes**
+
+- Removed `src-framer` files from the repository ([#3487](https://github.com/elastic/eui/pull/3487))
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
