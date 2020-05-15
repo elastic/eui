@@ -10,7 +10,7 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
-} from '../../../../src/components/color_picker/color_palette_picker';
+} from '../../../../src/components/color_picker/';
 // @ts-ignore
 import { DisplayToggles } from '../form_controls/display_toggles';
 

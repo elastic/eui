@@ -19,7 +19,7 @@
 
 import React, { FunctionComponent } from 'react';
 
-import { EuiSuperSelect, EuiFormControlLayoutProps } from '../../form';
+import { EuiSuperSelect } from '../../form';
 
 import { EuiText } from '../../text';
 
@@ -28,6 +28,8 @@ import { CommonProps } from '../../common';
 
 import { getLinearGradient, getFixedLinearGradient } from '../utils';
 import { ColorStop } from '../color_stops';
+
+import { EuiSuperSelectProps } from '../../form/super_select';
 
 export interface EuiColorPalettePickerPaletteProps {
   /**
@@ -52,43 +54,24 @@ export interface EuiColorPalettePickerPaletteProps {
   palette?: string[] | ColorStop[];
 }
 
-export type EuiColorPalettePickerProps = CommonProps & {
-  /**
-   *  Use the compressed style for EuiColorPalette
-   */
-  compressed?: boolean;
-  disabled?: boolean;
-  fullWidth?: boolean;
-  id?: string;
-  readOnly?: boolean;
-  isInvalid?: boolean;
-  /**
-   * Creates an input group with element(s) coming before input.
-   * `string` | `ReactElement` or an array of these
-   */
-  prepend?: EuiFormControlLayoutProps['prepend'];
-  /**
-   * Creates an input group with element(s) coming after input.
-   * `string` | `ReactElement` or an array of these
-   */
-  append?: EuiFormControlLayoutProps['append'];
-  /**
-   *  Specify what should be displayed after a selection: a `palette` or `title`
-   */
-  selectionDisplay?: 'palette' | 'title';
-  valueOfSelected?: string;
-  /**
-   * You must pass an `onChange` function to handle the update of the value
-   */
-  onChange?: (options: any) => void;
-  /**
-   * An array of #EuiColorPalettePickerPalette objects
-   */
-  palettes: EuiColorPalettePickerPaletteProps[];
-};
+export type EuiColorPalettePickerProps<T extends string> = CommonProps &
+  Omit<
+    EuiSuperSelectProps<T>,
+    'options' | 'itemLayoutAlign' | 'hasDividers'
+  > & {
+    /**
+     *  Specify what should be displayed after a selection: a `palette` or `title`
+     */
+    selectionDisplay?: 'palette' | 'title';
+
+    /**
+     * An array of #EuiColorPalettePickerPalette objects
+     */
+    palettes: EuiColorPalettePickerPaletteProps[];
+  };
 
 export const EuiColorPalettePicker: FunctionComponent<
-  EuiColorPalettePickerProps
+  EuiColorPalettePickerProps<string>
 > = ({
   className,
   compressed = false,
