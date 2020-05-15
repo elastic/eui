@@ -9,7 +9,6 @@ import {
   EuiEmptyPrompt,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSwitch,
   EuiSpacer,
 } from '../../../../../src/components';
 import { Random } from '../../../../../src/services/random';
@@ -65,7 +64,6 @@ export const Table = () => {
 
   const [selection, setSelection] = useState([]);
   const [error, setError] = useState();
-  const [isOnline, setIsOnline] = useState(false);
   const tableRef = useRef();
 
   const loadUsers = () => {
@@ -214,33 +212,25 @@ export const Table = () => {
     pageSizeOptions: [3, 5, 8],
   };
 
+  const onlineUsers = store.users.filter(user => user.online);
+
   const selectionValue = {
     selectable: user => user.online,
     selectableMessage: selectable =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: selection => setSelection(selection),
+    initialSelected: onlineUsers,
   };
 
-  const onlineUsers = store.users.filter(user => user.online);
-
-  const toggleSelection = () => {
-    if (!isOnline) {
-      tableRef.current.setSelection(onlineUsers);
-    } else {
-      tableRef.current.setSelection([]);
-    }
-    setIsOnline(!isOnline);
+  const onSelection = () => {
+    tableRef.current.setSelection(onlineUsers);
   };
 
   return (
     <Fragment>
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label="Select online users"
-            checked={isOnline}
-            onChange={toggleSelection}
-          />
+          <EuiButton onClick={onSelection}>Select online users</EuiButton>
         </EuiFlexItem>
         <EuiFlexItem />
       </EuiFlexGroup>

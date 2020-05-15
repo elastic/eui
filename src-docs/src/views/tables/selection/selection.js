@@ -188,7 +188,7 @@ export const Table = () => {
     initialSelected: onlineUsers,
   };
 
-  const toggleSelection = () => {
+  const onSelection = () => {
     tableRef.current.setSelection(onlineUsers);
   };
 
@@ -196,7 +196,7 @@ export const Table = () => {
     <Fragment>
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiButton onClick={toggleSelection}>Select online users</EuiButton>
+          <EuiButton onClick={onSelection}>Select online users</EuiButton>
         </EuiFlexItem>
         <EuiFlexItem />
         {deleteButton}
