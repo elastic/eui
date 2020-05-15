@@ -543,7 +543,10 @@ export const clearIconComponentCache = (iconType?: EuiIconType) => {
   }
 };
 
-export const appendIconComponentCache = (iconType: EuiIconType, icon: EuiIcon) => {
+export const appendIconComponentCache = (
+  iconType: EuiIconType,
+  icon: ComponentType
+) => {
   iconComponentCache[iconType] = icon;
 };
 
