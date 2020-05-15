@@ -225,6 +225,7 @@ export type EuiBasicTableProps<T> = CommonProps &
   (BasicTableProps<T> | BasicTableWithPaginationProps<T>);
 
 interface State<T> {
+  initialSelectionRendered: boolean;
   selection: T[];
 }
 
@@ -287,12 +288,15 @@ export class EuiBasicTable<T = any> extends Component<
   constructor(props: EuiBasicTableProps<T>) {
     super(props);
     this.state = {
-      selection: this.getInitialSelection(),
+      // used for checking if  initial selection is rendered
+      initialSelectionRendered: false,
+      selection: [],
     };
   }
 
   componentDidMount() {
     if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
+    this.getInitialSelection();
   }
 
   componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
@@ -303,6 +307,7 @@ export class EuiBasicTable<T = any> extends Component<
         this.removeLoadingListeners();
       }
     }
+    this.getInitialSelection();
   }
 
   componentWillUnmount() {
@@ -310,10 +315,15 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   getInitialSelection() {
-    if (this.props.selection && this.props.selection.initialSelected) {
-      return this.props.selection.initialSelected;
+    if (
+      this.props.selection &&
+      this.props.selection.initialSelected &&
+      !this.state.initialSelectionRendered &&
+      this.props.items.length > 0
+    ) {
+      this.setState({ selection: this.props.selection.initialSelected });
+      this.setState({ initialSelectionRendered: true });
     }
-    return [];
   }
 
   setSelection(newSelection: T[]) {
