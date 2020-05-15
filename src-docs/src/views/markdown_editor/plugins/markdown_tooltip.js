@@ -35,7 +35,7 @@ function TooltipParser() {
       let body = '';
       let openBrackets = 0;
 
-      for (index; index < value.length; index++) {
+      for (; index < value.length; index++) {
         const char = value[index];
 
         if (char === close && openBrackets === 0) {
