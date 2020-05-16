@@ -284,10 +284,10 @@ const navigation = [
         name: 'Buttons',
         component: ButtonGuidelines,
       },
-      {
-        name: 'Colors',
-        component: ColorGuidelines,
-      },
+      // {
+      //   name: 'Colors',
+      //   component: ColorGuidelines,
+      // },
       {
         name: 'Forms',
         component: FormGuidelines,
@@ -296,18 +296,18 @@ const navigation = [
         name: 'Modals',
         component: ModalGuidelines,
       },
-      {
-        name: 'Sass',
-        component: SassGuidelines,
-      },
-      {
-        name: 'Text scales',
-        component: TextScales,
-      },
-      {
-        name: 'Toasts',
-        component: ToastGuidelines,
-      },
+      // {
+      //   name: 'Sass',
+      //   component: SassGuidelines,
+      // },
+      // {
+      //   name: 'Text scales',
+      //   component: TextScales,
+      // },
+      // {
+      //   name: 'Toasts',
+      //   component: ToastGuidelines,
+      // },
       {
         name: 'Writing',
         component: WritingGuidelines,

@@ -2,7 +2,7 @@
 import 'core-js/modules/es7.object.entries';
 import 'core-js/modules/es6.number.is-finite';
 
-import React from 'react';
+import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Switch, Route } from 'react-router';
@@ -12,6 +12,7 @@ import configureStore, { history } from './store/configure_store';
 import { AppContainer } from './views/app_container';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
+// import { GuidePage, GuideSection } from './components';
 
 import { registerTheme } from './services';
 
@@ -68,20 +69,18 @@ const syncTitleWithRoutes = routesList => {
 
 syncTitleWithRoutes(routes);
 
-console.log('routes', routes[1]);
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Switch>
         {routes.map(({ path, component }, i) => {
-          return (
-            <Route key={i} exact path={`/${path}`}>
-              <AppContainer>
-                <div>{path}</div>
-              </AppContainer>
-            </Route>
-          );
+          if (component)
+            return (
+              <Route key={i} exact path={`/${path}`}>
+                <AppContainer>{cloneElement(component(), {})}</AppContainer>
+              </Route>
+            );
+          return null;
         })}
       </Switch>
     </Router>

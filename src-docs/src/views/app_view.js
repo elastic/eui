@@ -128,7 +128,7 @@ AppView.defaultProps = {
 
 AppView.contextTypes = {
   router: PropTypes.shape({
-    createHref: PropTypes.func.isRequired,
+    // createHref: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
