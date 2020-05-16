@@ -1237,7 +1237,7 @@ export class EuiBasicTable<T = any> extends Component<
 
   renderPaginationBar() {
     const { error, pagination, onChange } = this.props;
-    if (!error && pagination) {
+    if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
         not configured. This callback must be implemented to handle pagination changes`);
