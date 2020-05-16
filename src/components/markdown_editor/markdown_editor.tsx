@@ -46,6 +46,7 @@ import { htmlIdGenerator } from '../../services/accessibility';
 import { EuiLink } from '../link';
 import { EuiCodeBlock } from '../code';
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
 function storeMarkdownTree() {
   return function(tree: any, file: any) {
@@ -61,7 +62,13 @@ export const defaultParsingPlugins: PluggableList = [
 ];
 
 export const defaultProcessingPlugins: PluggableList = [
-  [remark2rehype, { allowDangerousHTML: true }],
+  [
+    remark2rehype,
+    {
+      allowDangerousHtml: true,
+      handlers: {},
+    },
+  ],
   [
     rehype2react,
     {
@@ -100,6 +107,8 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
 
     /** array of unified plugins to convert the AST into a ReactNode */
     processingPluginList?: PluggableList;
+
+    uiPlugins?: EuiMarkdownEditorUiPlugin[];
   };
 
 export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
@@ -110,14 +119,19 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
   height = 150,
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
+  uiPlugins = [],
   ...rest
 }) => {
   const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
   const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [_editorId]);
 
-  const markdownActions = useMemo(() => new MarkdownActions(editorId), [
-    editorId,
-  ]);
+  const markdownActions = useMemo(
+    () => new MarkdownActions(editorId, uiPlugins),
+
+    // uiPlugins _is_ accounted for
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [editorId, uiPlugins.map(({ name }) => name).join(',')]
+  );
 
   const classes = classNames('euiMarkdownEditor', className);
 
@@ -129,6 +143,40 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
     [parsingPluginList, processingPluginList]
   );
 
+  // const Compiler = (tree, file) => {
+  //   return JSON.stringify(tree, null, 2);
+  // }
+  //
+  // function stringify (options) {
+  //   this.Compiler = Compiler;
+  // }
+  //
+  // console.log(unified().use(parsingPluginList).use([remark2rehype, { allowDangerousHTML: true }]).use(rehypestringify).processSync(value));
+  // console.log(
+  //   JSON.parse(
+  //     unified()
+  //     .use(parsingPluginList)
+  //     .use(remark2rehype, {
+  //       allowDangerousHTML: true,
+  //       handlers: {
+  //         chart(h, node) {
+  //           console.log(h);
+  //           console.log(node);
+  //           return h(node.position, 'strong', {className: 'test'}, unistBuilder('test', 'HEY'));
+  //         }
+  //       },
+  //       unknownHandler(h, node) {
+  //         console.log(h);
+  //         console.log(node);
+  //         h(node.position, 'code', 'THIS IS A TEST');
+  //       }
+  //     })
+  //     .use(stringify)
+  //     .processSync(value)
+  //     .contents
+  //   )
+  // );
+
   const isPreviewing = viewMode === MODE_VIEWING;
 
   return (
@@ -139,6 +187,7 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
           setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
         }
         viewMode={viewMode}
+        uiPlugins={uiPlugins}
       />
 
       {isPreviewing ? (
