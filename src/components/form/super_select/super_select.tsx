@@ -110,6 +110,9 @@ export class EuiSuperSelect<T extends string> extends Component<
 
   componentDidMount() {
     this._isMounted = true;
+    if (this.props.isOpen) {
+      this.openPopover();
+    }
   }
 
   componentWillUnmount() {
