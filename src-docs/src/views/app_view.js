@@ -37,7 +37,6 @@ export class AppView extends Component {
 
   renderContent() {
     const { children, currentRoute, toggleLocale, locale, routes } = this.props;
-    console.log('this.props', this.props);
     const { navigation } = routes;
 
     const mappingFuncs = {
@@ -129,6 +128,6 @@ AppView.defaultProps = {
 AppView.contextTypes = {
   router: PropTypes.shape({
     // createHref: PropTypes.func.isRequired,
-    push: PropTypes.func.isRequired,
+    history: { push: PropTypes.func.isRequired },
   }).isRequired,
 };

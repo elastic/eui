@@ -18,7 +18,9 @@ export const registerRouter = reactRouter => {
  */
 export const getRouterLinkProps = to => {
   const location = resolveToLocation(to, router);
-  const href = router.createHref(location);
+  console.log('location', location);
+  console.log('router', router);
+  const href = ``;
   const onClick = event => {
     if (event.defaultPrevented) {
       return;
@@ -35,7 +37,7 @@ export const getRouterLinkProps = to => {
 
     // Prevent regular link behavior, which causes a browser refresh.
     event.preventDefault();
-    router.push(location);
+    router.history.push(location);
   };
 
   return { href, onClick };
