@@ -296,10 +296,10 @@ const navigation = [
         name: 'Modals',
         component: ModalGuidelines,
       },
-      // {
-      //   name: 'Sass',
-      //   component: SassGuidelines,
-      // },
+      {
+        name: 'Sass',
+        component: SassGuidelines,
+      },
       // {
       //   name: 'Text scales',
       //   component: TextScales,

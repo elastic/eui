@@ -18,9 +18,13 @@ export const registerRouter = reactRouter => {
  */
 export const getRouterLinkProps = to => {
   const location = resolveToLocation(to, router);
-  console.log('location', location);
-  console.log('router', router);
-  const href = ``;
+
+  const href = router.history.createHref({
+    pathname: location,
+    search: '',
+    hash: router.history.hash,
+  });
+
   const onClick = event => {
     if (event.defaultPrevented) {
       return;

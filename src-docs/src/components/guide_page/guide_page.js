@@ -41,7 +41,7 @@ export const GuidePage = ({
           </EuiFlexItem>
           {componentLinkTo && (
             <EuiFlexItem grow={false}>
-              <EuiButton href={getRouterLinkProps(componentLinkTo).href}>
+              <EuiButton onClick={getRouterLinkProps(componentLinkTo).onClick}>
                 View component code
               </EuiButton>
             </EuiFlexItem>
