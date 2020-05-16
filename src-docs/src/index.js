@@ -5,10 +5,9 @@ import 'core-js/modules/es6.number.is-finite';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, Switch, Route } from 'react-router';
 
-import configureStore from './store/configure_store';
+import configureStore, { history } from './store/configure_store';
 
 import { AppContainer } from './views/app_container';
 import { HomeView } from './views/home/home_view';
@@ -30,7 +29,6 @@ registerTheme('amsterdam-dark', [themeAmsterdamDark]);
 // Set up app
 
 const store = configureStore();
-const routerHistory = syncHistoryWithStore(Routes.history, store);
 
 const childRoutes = [].concat(Routes.getAppRoutes());
 childRoutes.push({
@@ -42,13 +40,9 @@ childRoutes.push({
 const routes = [
   {
     path: '/',
-    component: AppContainer,
-    indexRoute: {
-      component: HomeView,
-      source: 'views/home/HomeView',
-    },
-    childRoutes,
+    component: HomeView,
   },
+  ...childRoutes,
 ];
 
 // Update document title with route name.
@@ -74,9 +68,23 @@ const syncTitleWithRoutes = routesList => {
 
 syncTitleWithRoutes(routes);
 
+console.log('routes', routes[1]);
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={routerHistory} routes={routes} />
+    <Router history={history}>
+      <Switch>
+        {routes.map(({ path, component }, i) => {
+          return (
+            <Route key={i} exact path={`/${path}`}>
+              <AppContainer>
+                <div>{path}</div>
+              </AppContainer>
+            </Route>
+          );
+        })}
+      </Switch>
+    </Router>
   </Provider>,
   document.getElementById('guide')
 );

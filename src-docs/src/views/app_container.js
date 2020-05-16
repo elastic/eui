@@ -8,7 +8,7 @@ import { toggleLocale } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
-    currentRoute: ownProps.routes[1],
+    currentRoute: null,
     locale: getLocale(state),
     routes: getRoutes(state),
   };

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 

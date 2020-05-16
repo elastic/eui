@@ -5,7 +5,7 @@ import animations from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../s
 import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
 import { rgbToHex } from '../../../../src/services';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { GuidePage, GuideRuleTitle } from '../../components';
 import { getSassVars } from './_get_sass_vars';
