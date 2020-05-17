@@ -70,6 +70,11 @@ export interface EuiFieldSearchProps
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
+
+  /**
+   * Input value to be set externally
+   */
+  inputValue?: string;
 }
 
 interface EuiFieldSearchState {
@@ -91,7 +96,7 @@ export class EuiFieldSearch extends Component<
   };
 
   state = {
-    value: this.props.value || '',
+    value: '',
   };
 
   inputElement: HTMLInputElement | null = null;
@@ -114,6 +119,17 @@ export class EuiFieldSearch extends Component<
       });
     }
   }
+
+  componentDidUpdate(prevProps: EuiFieldSearchProps) {
+    if (prevProps.inputValue !== this.props.inputValue) {
+      this.changeValue();
+    }
+  }
+
+  changeValue = () => {
+    const { inputValue } = this.props;
+    this.setState({ value: inputValue || '' });
+  };
 
   onClear = () => {
     // clear the field's value
@@ -182,8 +198,6 @@ export class EuiFieldSearch extends Component<
     incremental?: boolean,
     onSearch?: (value: string) => void
   ) => {
-    this.setState({ value: (event.target as HTMLInputElement).value });
-
     if (this.props.onKeyUp) {
       this.props.onKeyUp(event);
       if (event.defaultPrevented) {
@@ -216,11 +230,11 @@ export class EuiFieldSearch extends Component<
       isClearable,
       append,
       prepend,
+      inputValue,
       ...rest
     } = this.props;
 
-    let value = this.props.value;
-    if (typeof this.props.value !== 'string') value = this.state.value;
+    const { value } = this.state;
 
     const classes = classNames(
       'euiFieldSearch',
@@ -251,6 +265,10 @@ export class EuiFieldSearch extends Component<
             type="search"
             id={id}
             name={name}
+            value={this.state.value}
+            onChange={e => {
+              this.setState({ value: e.target.value });
+            }}
             placeholder={placeholder}
             className={classes}
             onKeyUp={e => this.onKeyUp(e, incremental, onSearch)}

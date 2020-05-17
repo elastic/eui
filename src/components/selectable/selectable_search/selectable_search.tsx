@@ -91,7 +91,7 @@ export class EuiSelectableSearch extends Component<
         placeholder="Filter options"
         onSearch={this.onSearchChange}
         incremental
-        defaultValue={defaultValue}
+        inputValue={defaultValue}
         fullWidth
         {...rest}
       />
