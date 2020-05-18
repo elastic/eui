@@ -9,32 +9,34 @@ import TextScaling from './text_scaling';
 const textScalingSource = require('!!raw-loader!./text_scaling');
 const textScalingHtml = renderToHtml(TextScaling);
 
-export default props => (
-  <GuidePage title={props.route.name}>
-    <GuideSection
-      source={[
-        {
-          type: GuideSectionTypes.JS,
-          code: textScalingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textScalingHtml,
-        },
-      ]}
-      text={
-        <p>
-          This demo shows off{' '}
-          <Link to="/display/text">
-            <strong>EuiText</strong>
-          </Link>{' '}
-          scaling in both the default and small sizes. The goal is that the
-          bottom of every text line should hit one of the 8px or 7px grid lines.
-          This is for development only. Do not copy this code into a production
-          environment.
-        </p>
-      }
-      demo={<TextScaling />}
-    />
-  </GuidePage>
-);
+export default props => {
+  return (
+    <GuidePage title="Text scales">
+      <GuideSection
+        source={[
+          {
+            type: GuideSectionTypes.JS,
+            code: textScalingSource,
+          },
+          {
+            type: GuideSectionTypes.HTML,
+            code: textScalingHtml,
+          },
+        ]}
+        text={
+          <p>
+            This demo shows off{' '}
+            <Link to="/display/text">
+              <strong>EuiText</strong>
+            </Link>{' '}
+            scaling in both the default and small sizes. The goal is that the
+            bottom of every text line should hit one of the 8px or 7px grid
+            lines. This is for development only. Do not copy this code into a
+            production environment.
+          </p>
+        }
+        demo={<TextScaling />}
+      />
+    </GuidePage>
+  );
+};

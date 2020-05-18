@@ -64,9 +64,12 @@ export class AppView extends Component {
           <div className="guidePageContent">
             <EuiContext i18n={i18n}>
               <ThemeContext.Consumer>
-                {context =>
-                  React.cloneElement(children, { selectedTheme: context.theme })
-                }
+                {context => {
+                  return React.cloneElement(children, {
+                    selectedTheme: context.theme,
+                    title: currentRoute.name,
+                  });
+                }}
               </ThemeContext.Consumer>
             </EuiContext>
           </div>
@@ -127,7 +130,9 @@ AppView.defaultProps = {
 
 AppView.contextTypes = {
   router: PropTypes.shape({
-    // createHref: PropTypes.func.isRequired,
-    history: { push: PropTypes.func.isRequired },
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+      createHref: PropTypes.func.isRequired,
+    }),
   }).isRequired,
 };

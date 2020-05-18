@@ -12,7 +12,6 @@ import configureStore, { history } from './store/configure_store';
 import { AppContainer } from './views/app_container';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
-// import { GuidePage, GuideSection } from './components';
 
 import { registerTheme } from './services';
 
@@ -68,16 +67,17 @@ const syncTitleWithRoutes = routesList => {
 };
 
 syncTitleWithRoutes(routes);
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Switch>
-        {routes.map(({ path, component }, i) => {
+        {routes.map(({ name, path, sections, isNew, component }, i) => {
           if (component)
             return (
               <Route key={i} exact path={`/${path}`}>
-                <AppContainer>{cloneElement(component(), {})}</AppContainer>
+                <AppContainer currentRoute={{ name, path, sections, isNew }}>
+                  {cloneElement(component(), {})}
+                </AppContainer>
               </Route>
             );
           return null;

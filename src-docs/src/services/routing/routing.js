@@ -22,7 +22,7 @@ export const getRouterLinkProps = to => {
   const href = router.history.createHref({
     pathname: location,
     search: '',
-    hash: router.history.hash,
+    hash: '',
   });
 
   const onClick = event => {
