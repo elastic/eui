@@ -6,7 +6,7 @@
 
 **Bug Fixes**
 
-- `EuiSuperSelect` dropdown renders full width when `isOpen` is `true` ([#3495](https://github.com/elastic/eui/pull/3495))
+- Fixed `EuiSuperSelect` not rendering full width when `isOpen` is `true` ([#3495](https://github.com/elastic/eui/pull/3495))
 
 **Deprecations**
 
