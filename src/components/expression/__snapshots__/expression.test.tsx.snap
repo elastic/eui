@@ -156,7 +156,7 @@ exports[`EuiExpression props isActive true renders active 1`] = `
 </span>
 `;
 
-exports[`EuiExpression props truncate true truncates text 1`] = `
+exports[`EuiExpression props textWrap truncate truncates text 1`] = `
 <span
   class="euiExpression euiExpression-isUppercase euiExpression-truncate euiExpression--secondary"
 >

@@ -83,8 +83,8 @@ describe('EuiExpression', () => {
       });
     });
 
-    describe('truncate', () => {
-      test('true truncates text', () => {
+    describe('textWrap', () => {
+      test('truncate truncates text', () => {
         const component = (
           <EuiExpression
             description="the answer is"

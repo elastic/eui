@@ -13,11 +13,11 @@
   color: $euiTextColor;
   border-bottom: 2px solid transparent;
   vertical-align: bottom;
-
+  
   &:focus {
     border-bottom-style: solid;
   }
-
+  
   & + .euiExpression {
     margin-left: $euiSizeS;
   }
@@ -30,6 +30,12 @@
 .euiExpression-breakWord {
   @include euiTextBreakWord; /* 1 */
 }
+
+// .euiExpression-truncate .euiExpression__value {
+//   @include euiTextTruncate;
+//   display: inline-block;
+//   vertical-align: bottom;
+// }
 
 .euiExpression-truncate {
   @include euiTextTruncate;
