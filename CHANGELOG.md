@@ -4,6 +4,10 @@
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
 
+**Bug Fixes**
+
+- Fixed `EuiSuperSelect` not rendering full width when `isOpen` is `true` ([#3495](https://github.com/elastic/eui/pull/3495))
+
 **Deprecations**
 
 - Added a deprecation notice for `EuiNavDrawer` family of components. Advise usage of `EuiCollapsibleNav` instead ([#3487](https://github.com/elastic/eui/pull/3487))
