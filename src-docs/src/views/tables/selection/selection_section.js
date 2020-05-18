@@ -24,7 +24,7 @@ export const section = {
       The following example shows how to configure selection via the{' '}
       <EuiCode>selection</EuiCode>
       property. You can set items to be selected initially by passing an array
-      if items as the <EuiCode>initialSelected</EuiCode> value inside{' '}
+      of items as the <EuiCode>initialSelected</EuiCode> value inside{' '}
       <EuiCode>selection</EuiCode> property. You can also use the{' '}
       <EuiCode>setSelection</EuiCode> method to take complete control over table
       selection. This can be useful if you want to handle selection in table
