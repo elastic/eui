@@ -9,9 +9,10 @@ import {
   EuiPopoverTitle,
   EuiPopoverFooter,
 } from '../../../../src/components';
-import { Fragment } from 'react-is';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
+  const id = htmlIdGenerator()();
   const spacesValues = [
     {
       label: 'Sales team',
@@ -81,7 +82,7 @@ export default () => {
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls="headerSpacesMenuList"
+      aria-controls={id}
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Apps menu"
@@ -92,7 +93,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="headerSpacesMenu"
+      id={id}
       ownFocus
       button={button}
       isOpen={isOpen}
@@ -114,7 +115,7 @@ export default () => {
           showIcons: false,
         }}>
         {(list, search) => (
-          <Fragment>
+          <>
             <EuiPopoverTitle>{search || 'Your spaces'}</EuiPopoverTitle>
             {list}
             <EuiPopoverFooter>
@@ -126,7 +127,7 @@ export default () => {
                 Add more spaces
               </EuiButton>
             </EuiPopoverFooter>
-          </Fragment>
+          </>
         )}
       </EuiSelectable>
     </EuiPopover>

@@ -306,6 +306,7 @@ export class GuidePageChrome extends Component {
           toggleOpenOnMobile={this.toggleOpenOnMobile}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
           items={sideNav}
+          aria-label="Primary"
         />
       );
     } else {
