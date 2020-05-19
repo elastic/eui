@@ -58,6 +58,7 @@ module.exports = {
     "prefer-template": "error",
     "local/i18n": "error",
     "local/href-with-rel": "error",
+    "local/forward-ref": "error",
     "local/require-license-header": [
       'warn',
       {
