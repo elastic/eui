@@ -2,7 +2,7 @@
 import 'core-js/modules/es7.object.entries';
 import 'core-js/modules/es6.number.is-finite';
 
-import React, { cloneElement } from 'react';
+import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Switch, Route } from 'react-router';
@@ -76,7 +76,7 @@ ReactDOM.render(
             return (
               <Route key={i} exact path={`/${path}`}>
                 <AppContainer currentRoute={{ name, path, sections, isNew }}>
-                  {cloneElement(component(), {})}
+                  {createElement(component, {})}
                 </AppContainer>
               </Route>
             );
