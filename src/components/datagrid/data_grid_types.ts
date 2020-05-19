@@ -53,7 +53,7 @@ export interface EuiDataGridColumn {
    */
   schema?: string;
   /**
-   * Defauls to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
+   * Defaults to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
   /**
@@ -72,6 +72,10 @@ export interface EuiDataGridColumn {
    * Default sort direction of the column
    */
   defaultSortDirection?: 'asc' | 'desc';
+  /**
+   * Display name for column
+   */
+  displayAsText?: string;
 }
 
 export interface EuiDataGridColumnVisibility {
