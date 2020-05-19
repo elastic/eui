@@ -45,7 +45,6 @@ const docsPages = async (root, page) => {
     `${root}#/elastic-charts/part-to-whole-comparisons`,
     `${root}#/utilities/css-utility-classes`,
     `${root}#/utilities/focus-trap`,
-    `${root}#/package/changelog`,
   ];
 
   return [
