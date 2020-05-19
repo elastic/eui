@@ -32,7 +32,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   const classes = classNames('euiKeyPadMenu', className);
 
   return (
-    <div className={classes} role="menu" {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );
