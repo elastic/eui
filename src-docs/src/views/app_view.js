@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import DocumentTitle from 'react-document-title';
 
 import { GuidePageChrome, ThemeProvider, ThemeContext } from '../components';
 import { registerRouter, translateUsingPseudoLocale } from '../services';
@@ -50,31 +51,33 @@ export class AppView extends Component {
     };
 
     return (
-      <EuiPage restrictWidth={1240} className="guidePage">
-        <EuiPageBody>
-          <EuiErrorBoundary>
-            <GuidePageChrome
-              currentRoute={currentRoute}
-              onToggleLocale={toggleLocale}
-              selectedLocale={locale}
-              navigation={navigation}
-            />
-          </EuiErrorBoundary>
+      <DocumentTitle title={currentRoute.name}>
+        <EuiPage restrictWidth={1240} className="guidePage">
+          <EuiPageBody>
+            <EuiErrorBoundary>
+              <GuidePageChrome
+                currentRoute={currentRoute}
+                onToggleLocale={toggleLocale}
+                selectedLocale={locale}
+                navigation={navigation}
+              />
+            </EuiErrorBoundary>
 
-          <div className="guidePageContent">
-            <EuiContext i18n={i18n}>
-              <ThemeContext.Consumer>
-                {context => {
-                  return React.cloneElement(children, {
-                    selectedTheme: context.theme,
-                    title: currentRoute.name,
-                  });
-                }}
-              </ThemeContext.Consumer>
-            </EuiContext>
-          </div>
-        </EuiPageBody>
-      </EuiPage>
+            <div className="guidePageContent">
+              <EuiContext i18n={i18n}>
+                <ThemeContext.Consumer>
+                  {context => {
+                    return React.cloneElement(children, {
+                      selectedTheme: context.theme,
+                      title: currentRoute.name,
+                    });
+                  }}
+                </ThemeContext.Consumer>
+              </EuiContext>
+            </div>
+          </EuiPageBody>
+        </EuiPage>
+      </DocumentTitle>
     );
   }
 

@@ -41,6 +41,7 @@ const routes = [
   {
     path: '/',
     component: HomeView,
+    name: 'Elastic UI',
   },
   ...childRoutes,
 ];
