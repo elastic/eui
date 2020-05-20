@@ -10,7 +10,7 @@ interface Props {
   DeletionComponent?: ElementType;
   NoChangeComponent?: ElementType;
   /**
-   * passing a timeout of value '0' disables the timeout state
+   * Time in milliseconds. Passing a timeout of value '0' disables the timeout state
    */
   timeout?: number;
 }
