@@ -68,7 +68,7 @@ export const TextDiffExample = {
       props: { useEuiTextDiff },
     },
     {
-      title: 'Text Diff with timeout',
+      title: 'Adjusting the timeout delay',
       source: [
         {
           type: GuideSectionTypes.JS,
