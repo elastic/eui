@@ -55,6 +55,144 @@ import Utc from './utc';
 const utcSource = require('!!raw-loader!./utc');
 const utcHtml = renderToHtml(Utc);
 
+const datePickerSnippet =
+  '<EuiDatePicker selected={startDate} onChange={handleChange} />';
+
+const statesSnippet = [
+  `<EuiDatePicker
+  selected={startDate}
+  onChange={handleChange}
+  onClear={onClear}
+  placeholder="Clearable"
+/>
+`,
+  `<EuiDatePicker
+  isInvalid
+  selected={startDate}
+  onChange={handleChange}
+  placeholder="Example of an error"
+/>
+`,
+];
+
+const timeSnippet = [
+  `<EuiDatePicker
+  showTimeSelect
+  selected={startDate}
+  onChange={handleChange}
+/>
+`,
+  `<EuiDatePicker
+  showTimeSelect
+  showTimeSelectOnly
+  selected={startDate}
+  onChange={handleChange}
+/>
+`,
+  `<EuiDatePicker
+  showTimeSelect
+  showTimeSelectOnly
+  selected={startDate}
+  onChange={handleChange}
+  injectTimes={[times]}
+/>
+`,
+];
+
+const localeSnippet = `<EuiDatePicker
+  showTimeSelect
+  selected={startDate}
+  onChange={handleChange}
+  dateFormat="DD-MM-YYYY HH:mm"
+  timeFormat="HH:mm"
+  locale="de-de"
+/>`;
+
+const rangeSnippet = `<EuiDatePickerRange
+  startDateControl={
+    <EuiDatePicker
+      selected={startDate}
+      onChange={handleChange}
+      startDate={startDate}
+      endDate={endDate}
+      isInvalid={isInvalid}
+      showTimeSelect
+    />
+  }
+  endDateControl={
+    <EuiDatePicker
+      selected={endDate}
+      onChange={handleChange}
+      startDate={startDate}
+      endDate={endDate}
+      isInvalid={isInvalid}
+      showTimeSelect
+    />
+  }
+/>`;
+
+const minMaxSnippet = [
+  `<EuiDatePicker
+  showTimeSelect
+  selected={startDate}
+  onChange={handleChange}
+  minDate={minDate}
+  maxDate={maxDate}
+  minTime={minTime}
+  maxTime={maxTime}
+/>
+`,
+  `<EuiDatePicker
+  showTimeSelect
+  showTimeSelectOnly
+  selected={startDate}
+  onChange={handleChange}
+  excludeDates={[excludeDates]}
+  excludeTimes={[excludeTimes]}
+/>
+`,
+  `<EuiDatePicker
+  showTimeSelect
+  showTimeSelectOnly
+  selected={startDate}
+  onChange={handleChange}
+  filterDate={filterDate}
+/>
+`,
+];
+
+const openToDateSnippet = `<EuiDatePicker
+  selected={startDate}
+  onChange={handleChange}
+  openToDate={openToDate}
+/>`;
+
+const customInputSnippet = `<EuiDatePicker
+  selected={startDate}
+  onChange={handleChange}
+  customInput={customInput}
+/>`;
+
+const utcSnippet = `<EuiDatePicker
+  selected={startDate}
+  onChange={handleChange}
+  customInput={customInput}
+/>`;
+
+const inlineSnippet = `<EuiDatePicker
+  selected={startDate}
+  onChange={handleChange}
+  showTimeSelect
+  inline
+  shadow={false}
+/>`;
+
+const classesSnippet = `<EuiDatePicker
+  selected={startDate}
+  onChange={handleChange}
+  className="customClassName"
+/>`;
+
 export const DatePickerExample = {
   title: 'Date picker',
   sections: [
@@ -79,6 +217,7 @@ export const DatePickerExample = {
         </p>
       ),
       components: { EuiDatePicker },
+      snippet: datePickerSnippet,
       demo: <DatePicker />,
       props: { EuiDatePicker },
     },
@@ -100,6 +239,7 @@ export const DatePickerExample = {
           our other form styles.
         </p>
       ),
+      snippet: statesSnippet,
       demo: <States />,
     },
     {
@@ -124,6 +264,7 @@ export const DatePickerExample = {
           values to match.
         </p>
       ),
+      snippet: timeSnippet,
       demo: <Time />,
     },
     {
@@ -150,6 +291,7 @@ export const DatePickerExample = {
           for formatting examples.
         </p>
       ),
+      snippet: localeSnippet,
       demo: <Locale />,
     },
     {
@@ -175,6 +317,7 @@ export const DatePickerExample = {
         </p>
       ),
       demo: <Range />,
+      snippet: rangeSnippet,
       props: { EuiDatePickerRange },
     },
     {
@@ -200,6 +343,7 @@ export const DatePickerExample = {
           of items from selection.
         </p>
       ),
+      snippet: minMaxSnippet,
       demo: <MinMax />,
     },
     {
@@ -220,6 +364,7 @@ export const DatePickerExample = {
           date.
         </p>
       ),
+      snippet: openToDateSnippet,
       demo: <OpenToDate />,
     },
     {
@@ -240,6 +385,7 @@ export const DatePickerExample = {
           your calendar.
         </p>
       ),
+      snippet: customInputSnippet,
       demo: <CustomInput />,
     },
     {
@@ -259,6 +405,7 @@ export const DatePickerExample = {
           Use <EuiCode>utcOffset</EuiCode> to apply an offset to the datetime.
         </p>
       ),
+      snippet: utcSnippet,
       demo: <Utc />,
     },
     {
@@ -282,6 +429,7 @@ export const DatePickerExample = {
           second example.
         </p>
       ),
+      snippet: inlineSnippet,
       demo: <Inline />,
     },
     {
@@ -313,9 +461,13 @@ export const DatePickerExample = {
             <li>
               <EuiCode>dayClassName</EuiCode> will pass onto specificed days.
             </li>
+            <li>
+              <EuiCode>popperClassName</EuiCode> will pass onto the popover.
+            </li>
           </ul>
         </div>
       ),
+      snippet: classesSnippet,
       demo: <Classes />,
     },
   ],

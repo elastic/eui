@@ -11,14 +11,37 @@ import { EuiExpression } from '../../../../src/components/expression';
 import Expression from './expression';
 const expressionSource = require('!!raw-loader!./expression');
 const expressionHtml = renderToHtml(Expression);
+const expressionSnippet = `<EuiExpression
+  description="description"
+  value={value}
+  isActive={isActive}
+  onClick={handleClick}
+/>`;
 
 import Colors from './colors';
 const colorSource = require('!!raw-loader!./colors');
 const colorHtml = renderToHtml(Colors);
+const colorSnippet = `<EuiExpression 
+  description="description" 
+  value={value}
+  color="primary" 
+/>`;
 
 import Stringing from './stringing';
 const stringingSource = require('!!raw-loader!./stringing');
 const stringingHtml = renderToHtml(Stringing);
+const stringingSnippet = `<div>
+  <EuiExpression
+    description="description1"
+    value={value1}
+    onClick={handleClick1}
+  />
+  <EuiExpression
+    description="description2"
+    value={value2}
+    onClick={handleClick2}
+  />
+</div>`;
 
 export const ExpressionExample = {
   title: 'Expression',
@@ -45,6 +68,7 @@ export const ExpressionExample = {
         </p>
       ),
       props: { EuiExpression },
+      snippet: expressionSnippet,
       demo: <Expression />,
     },
     {
@@ -65,6 +89,7 @@ export const ExpressionExample = {
           the <EuiCode>description</EuiCode>.
         </p>
       ),
+      snippet: colorSnippet,
       demo: <Colors />,
     },
     {
@@ -86,6 +111,7 @@ export const ExpressionExample = {
           and wrap at logical points.
         </p>
       ),
+      snippet: stringingSnippet,
       demo: <Stringing />,
     },
   ],

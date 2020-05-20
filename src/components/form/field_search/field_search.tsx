@@ -1,8 +1,27 @@
-import React, { Component, InputHTMLAttributes } from 'react';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
-import { ENTER } from '../../../services/key_codes';
 import { CommonProps } from '../../common';
+import { ENTER } from '../../../services/key_codes';
 
 import {
   EuiFormControlLayout,
@@ -53,7 +72,16 @@ export interface EuiFieldSearchProps
   append?: EuiFormControlLayoutProps['append'];
 }
 
-export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
+interface EuiFieldSearchState {
+  value: string;
+}
+
+let isSearchSupported: boolean = false;
+
+export class EuiFieldSearch extends Component<
+  EuiFieldSearchProps,
+  EuiFieldSearchState
+> {
   static defaultProps = {
     fullWidth: false,
     isLoading: false,
@@ -62,15 +90,20 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
     isClearable: true,
   };
 
+  state = {
+    value: this.props.value || '',
+  };
+
   inputElement: HTMLInputElement | null = null;
   cleanups: Array<() => void> = [];
 
   componentDidMount() {
     if (!this.inputElement) return;
-    if (Browser.isEventSupported('search', this.inputElement)) {
+    isSearchSupported = Browser.isEventSupported('search', this.inputElement);
+    if (isSearchSupported) {
       const onSearch = (event?: Event) => {
         if (this.props.onSearch) {
-          if (!event || !event.target) return;
+          if (!event || !event.target || event.defaultPrevented) return;
           this.props.onSearch((event.target as HTMLInputElement).value);
         }
       };
@@ -124,6 +157,13 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
       // set focus on the search field
       this.inputElement.focus();
     }
+    this.setState({ value: '' });
+
+    const { incremental, onSearch } = this.props;
+
+    if (onSearch && incremental) {
+      onSearch('');
+    }
   };
 
   componentWillUnmount() {
@@ -138,17 +178,24 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
   };
 
   onKeyUp = (
-    event: React.KeyboardEvent<HTMLInputElement>,
+    event: KeyboardEvent<HTMLInputElement>,
     incremental?: boolean,
     onSearch?: (value: string) => void
   ) => {
+    this.setState({ value: (event.target as HTMLInputElement).value });
+
     if (this.props.onKeyUp) {
       this.props.onKeyUp(event);
       if (event.defaultPrevented) {
         return;
       }
     }
-    if (onSearch && (incremental || event.keyCode === ENTER)) {
+
+    if (
+      onSearch &&
+      ((event.keyCode !== ENTER && incremental) ||
+        (event.keyCode === ENTER && !isSearchSupported))
+    ) {
       onSearch((event.target as HTMLInputElement).value);
     }
   };
@@ -159,7 +206,6 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
       id,
       name,
       placeholder,
-      value,
       isInvalid,
       fullWidth,
       isLoading,
@@ -172,6 +218,9 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
       prepend,
       ...rest
     } = this.props;
+
+    let value = this.props.value;
+    if (typeof this.props.value !== 'string') value = this.state.value;
 
     const classes = classNames(
       'euiFieldSearch',
@@ -204,7 +253,6 @@ export class EuiFieldSearch extends Component<EuiFieldSearchProps> {
             name={name}
             placeholder={placeholder}
             className={classes}
-            value={value}
             onKeyUp={e => this.onKeyUp(e, incremental, onSearch)}
             ref={this.setRef}
             {...rest}

@@ -1,5 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiProgress has max 1`] = `
+<progress
+  aria-label="aria-label"
+  class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
+  data-test-subj="test subject string"
+  max="100"
+/>
+`;
+
+exports[`EuiProgress has value 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--secondary testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiProgress is determinate 1`] = `
+<progress
+  aria-label="aria-label"
+  class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
+  data-test-subj="test subject string"
+  max="100"
+  value="50"
+/>
+`;
+
+exports[`EuiProgress is indeterminate 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--secondary testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
 exports[`EuiProgress is rendered 1`] = `
 <div
   aria-label="aria-label"

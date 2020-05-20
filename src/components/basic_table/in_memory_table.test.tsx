@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
@@ -6,6 +25,10 @@ import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { ENTER } from '../../services/key_codes';
 import { SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
+
+jest.mock('../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 interface BasicItem {
   id: number | string;
@@ -455,6 +478,32 @@ describe('EuiInMemoryTable', () => {
 
     expect(component).toMatchSnapshot();
     expect(itemsProp).toEqual(items);
+  });
+
+  test('with initial selection', () => {
+    const props: EuiInMemoryTableProps<BasicItem> = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+      ],
+      selection: {
+        onSelectionChange: () => undefined,
+        initialSelected: [{ id: '1', name: 'name1' }],
+      },
+    };
+    const component = mount(<EuiInMemoryTable {...props} />);
+
+    expect(component).toMatchSnapshot();
   });
 
   test('with pagination and selection', () => {

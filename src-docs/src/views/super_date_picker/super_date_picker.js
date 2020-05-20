@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiSuperDatePicker,
@@ -9,37 +9,33 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export default class extends Component {
-  state = {
-    recentlyUsedRanges: [],
-    isLoading: false,
-    start: 'now-30m',
-    end: 'now',
+export default () => {
+  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+  const [isPaused, setIsPaused] = useState(true);
+  const [refreshInterval, setRefreshInterval] = useState();
+
+  const onTimeChange = ({ start, end }) => {
+    const recentlyUsedRange = recentlyUsedRanges.filter(recentlyUsedRange => {
+      const isDuplicate =
+        recentlyUsedRange.start === start && recentlyUsedRange.end === end;
+      return !isDuplicate;
+    });
+    recentlyUsedRange.unshift({ start, end });
+    setStart(start);
+    setEnd(end);
+    setRecentlyUsedRanges(
+      recentlyUsedRange.length > 10
+        ? recentlyUsedRange.slice(0, 9)
+        : recentlyUsedRange
+    );
+    setIsLoading(true);
+    startLoading();
   };
 
-  onTimeChange = ({ start, end }) => {
-    this.setState(prevState => {
-      const recentlyUsedRanges = prevState.recentlyUsedRanges.filter(
-        recentlyUsedRange => {
-          const isDuplicate =
-            recentlyUsedRange.start === start && recentlyUsedRange.end === end;
-          return !isDuplicate;
-        }
-      );
-      recentlyUsedRanges.unshift({ start, end });
-      return {
-        start,
-        end,
-        recentlyUsedRanges:
-          recentlyUsedRanges.length > 10
-            ? recentlyUsedRanges.slice(0, 9)
-            : recentlyUsedRanges,
-        isLoading: true,
-      };
-    }, this.startLoading);
-  };
-
-  onRefresh = ({ start, end, refreshInterval }) => {
+  const onRefresh = ({ start, end, refreshInterval }) => {
     return new Promise(resolve => {
       setTimeout(resolve, 100);
     }).then(() => {
@@ -47,34 +43,28 @@ export default class extends Component {
     });
   };
 
-  onStartInputChange = e => {
-    this.setState({
-      start: e.target.value,
-    });
+  const onStartInputChange = e => {
+    setStart(e.target.value);
   };
 
-  onEndInputChange = e => {
-    this.setState({
-      end: e.target.value,
-    });
+  const onEndInputChange = e => {
+    setEnd(e.target.value);
   };
 
-  startLoading = () => {
-    setTimeout(this.stopLoading, 1000);
+  const startLoading = () => {
+    setTimeout(stopLoading, 1000);
   };
 
-  stopLoading = () => {
-    this.setState({ isLoading: false });
+  const stopLoading = () => {
+    setIsLoading(false);
   };
 
-  onRefreshChange = ({ isPaused, refreshInterval }) => {
-    this.setState({
-      isPaused,
-      refreshInterval,
-    });
+  const onRefreshChange = ({ isPaused, refreshInterval }) => {
+    setIsPaused(isPaused);
+    setRefreshInterval(refreshInterval);
   };
 
-  renderTimeRange = () => {
+  const renderTimeRange = () => {
     return (
       <Fragment>
         <EuiPanel paddingSize="m">
@@ -87,19 +77,19 @@ export default class extends Component {
             prepend={<EuiFormLabel>Dates</EuiFormLabel>}
             startControl={
               <input
-                onChange={this.onStartInputChange}
+                onChange={onStartInputChange}
                 type="text"
-                value={this.state.start}
+                value={start}
                 placeholder="start"
                 className="euiFieldText"
               />
             }
             endControl={
               <input
-                onChange={this.onEndInputChange}
+                onChange={onEndInputChange}
                 type="text"
                 placeholder="end"
-                value={this.state.end}
+                value={end}
                 className="euiFieldText"
               />
             }
@@ -109,23 +99,21 @@ export default class extends Component {
     );
   };
 
-  render() {
-    return (
-      <Fragment>
-        <EuiSuperDatePicker
-          isLoading={this.state.isLoading}
-          start={this.state.start}
-          end={this.state.end}
-          onTimeChange={this.onTimeChange}
-          onRefresh={this.onRefresh}
-          isPaused={this.state.isPaused}
-          refreshInterval={this.state.refreshInterval}
-          onRefreshChange={this.onRefreshChange}
-          recentlyUsedRanges={this.state.recentlyUsedRanges}
-        />
-        <EuiSpacer />
-        {this.renderTimeRange()}
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <EuiSuperDatePicker
+        isLoading={isLoading}
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        onRefresh={onRefresh}
+        isPaused={isPaused}
+        refreshInterval={refreshInterval}
+        onRefreshChange={onRefreshChange}
+        recentlyUsedRanges={recentlyUsedRanges}
+      />
+      <EuiSpacer />
+      {renderTimeRange()}
+    </Fragment>
+  );
+};

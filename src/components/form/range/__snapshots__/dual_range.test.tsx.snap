@@ -8,6 +8,7 @@ exports[`EuiDualRange allows value prop to accept empty strings 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <input
@@ -35,6 +36,7 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -89,6 +91,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="true"
     class="euiRangeTrack"
   >
     <div
@@ -144,6 +147,7 @@ exports[`EuiDualRange is rendered 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -182,6 +186,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -217,6 +222,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
     style="margin-right:0.6em"
   >
@@ -277,6 +283,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack euiRangeTrack--disabled"
   >
     <div
@@ -313,6 +320,7 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -367,6 +375,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="true"
     class="euiRangeTrack"
   >
     <div
@@ -429,6 +438,7 @@ exports[`EuiDualRange props labels should render 1`] = `
     0
   </label>
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -469,6 +479,7 @@ exports[`EuiDualRange props levels should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -516,6 +527,7 @@ exports[`EuiDualRange props range should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
   >
     <div
@@ -601,6 +613,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
     class="euiRange__horizontalSpacer"
   />
   <div
+    aria-hidden="false"
     class="euiRangeTrack"
     style="margin-right:0.6em"
   >

@@ -24,7 +24,7 @@ import OverflowTest from './overflow_test';
 const overflowTestSource = require('!!raw-loader!./overflow_test');
 const overflowTestHtml = renderToHtml(OverflowTest);
 
-const modalSnippet = `<EuiModal onClose={this.closeModal}>
+const modalSnippet = `<EuiModal onClose={closeModal}>
   <EuiModalHeader>
     <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
@@ -40,22 +40,20 @@ const modalSnippet = `<EuiModal onClose={this.closeModal}>
 
 const confirmModalSnippet = [
   `<EuiConfirmModal
-  title="Modal title goes here"
-  onCancel={this.closeModal}
-  onConfirm={this.closeModal}
+  title={title}
+  onCancel={closeModal}
+  onConfirm={closeModal}
   cancelButtonText={cancelText}
-  confirmButtonText={confirmText}
-  defaultFocusedButton="confirm">
+  confirmButtonText={confirmText}>
   <!-- ConfirmModal content -->
 </EuiConfirmModal>`,
   `<EuiConfirmModal
-  title="Do this destructive thing"
-  onCancel={this.closeDestroyModal}
-  onConfirm={this.closeDestroyModal}
+  title={title}
+  onCancel={closeDestroyModal}
+  onConfirm={closeDestroyModal}
   cancelButtonText={cancelText}
   confirmButtonText={confirmText}
-  buttonColor="danger"
-  defaultFocusedButton="confirm">
+  buttonColor="danger">
   <!-- Dangerous ConfirmModal content -->
 </EuiConfirmModal>`,
 ];

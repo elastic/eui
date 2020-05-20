@@ -1,6 +1,6 @@
 ### Summary
 
-Summarize your PR. If it includes design elements include a screenshot or gif.
+Provide a detailed summary of your PR. Explain how you arrived at your solution. If it includes changes to UI elements include a screenshot or gif.
 
 ### Checklist
 
@@ -8,8 +8,8 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] Checked in **mobile**
 - [ ] Checked in **IE11** and **Firefox**
 - [ ] Props have proper **autodocs**
-- [ ] Added **documentation** examples
-- [ ] Added or updated **jest tests**
+- [ ] Added **[documentation](https://github.com/elastic/eui/blob/master/wiki/documentation-guidelines.md)** examples
+- [ ] Added or updated **[jest tests](https://github.com/elastic/eui/blob/master/wiki/testing.md)**
 - [ ] Checked for **breaking changes** and labeled appropriately
 - [ ] Checked for **accessibility** including keyboard-only and screenreader modes
-- [ ] A [changelog](https://github.com/elastic/eui/blob/master/CONTRIBUTING.md#changelog) entry exists and is marked appropriately
+- [ ] A **[changelog](https://github.com/elastic/eui/blob/master/wiki/documentation-guidelines.md#changelog)** entry exists and is marked appropriately

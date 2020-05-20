@@ -21,6 +21,20 @@ export const qualitativePropsInfo = {
           type: { name: "'lighter' | 'darker' | 'both'" },
           defaultValue: { value: "'lighter'" },
         },
+        sortBy: {
+          description:
+            'Use the default sort order, or re-sort them based on the color wheel (natural)',
+          required: false,
+          type: { name: "'default' | 'natural'" },
+          defaultValue: { value: "'default'" },
+        },
+        sortShift: {
+          description:
+            "Shift the sorting order by a certain number when used in conjunction with `'natural'` `sortBy`. Defaults to a number close to green.",
+          required: false,
+          type: { name: 'string' },
+          defaultValue: { value: "'-100'" },
+        },
       },
     },
   },
