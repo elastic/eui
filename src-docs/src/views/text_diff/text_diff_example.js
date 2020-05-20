@@ -4,8 +4,8 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, useEuiTextDiff } from '../../../../src/components';
-
+import { EuiCode } from '../../../../src/components';
+import { useEuiTextDiffProp } from './props';
 import TextDiff from './text_diff';
 const textDiffSource = require('!!raw-loader!./text_diff');
 const textDiffHtml = renderToHtml(TextDiff);
@@ -48,7 +48,7 @@ export const TextDiffExample = {
         </>
       ),
       demo: <TextDiff />,
-      props: { useEuiTextDiff },
+      props: { useEuiTextDiffProp },
     },
     {
       title: 'Custom rendered elements',
