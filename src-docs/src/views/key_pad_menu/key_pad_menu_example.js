@@ -8,6 +8,7 @@ import {
   EuiCode,
   EuiKeyPadMenu,
   EuiKeyPadMenuItem,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import KeyPadMenu from './key_pad_menu';
@@ -84,11 +85,23 @@ export const KeyPadMenuExample = {
         },
       ],
       text: (
-        <p>
-          The <strong>EuiKeyPadMenuItem</strong> component can act both as an
-          anchor as well as a button by specifying <EuiCode>href</EuiCode> or
-          <EuiCode>onClick</EuiCode> respectively.
-        </p>
+        <>
+          <p>
+            The <strong>EuiKeyPadMenuItem</strong> component can act both as an
+            anchor as well as a button by specifying <EuiCode>href</EuiCode> or
+            <EuiCode>onClick</EuiCode> respectively.
+          </p>
+          <EuiCallOut iconType="accessibility" title="Accessibility pro tip">
+            <p>
+              If the menu is a bunch of links and is acting as navigation for
+              your app: wrap the whole thing in a{' '}
+              <EuiCode language="html">
+                &lt;nav aria-label=&quot;nav title&quot;&gt;&lt;/nav&gt;
+              </EuiCode>
+              .
+            </p>
+          </EuiCallOut>
+        </>
       ),
       snippet: keyPadMenuItemButtonSnippet,
       demo: <KeyPadMenuItemButton />,
