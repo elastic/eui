@@ -34,9 +34,12 @@ export const TextDiffExample = {
       ],
       text: (
         <p>
-          <strong>useEuiTextDiff</strong> generates a set of changes between two
-          strings. The hook returns both React elements for displaying the diff
+          The hook, <strong>useEuiTextDiff</strong>, generates a set of changes between two
+          strings. It returns both React elements for displaying the diff
           and an object representing the identified changes.
+        </p>
+        <p>
+          <EuiCode language="ts">const [rendered, textDiffObject] = useEuiTextDiff()</EuiCode>
         </p>
       ),
       demo: <TextDiff />,
