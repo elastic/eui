@@ -30,7 +30,7 @@ import { EuiSuperSelectProps } from '../../form/super_select';
 
 export interface EuiColorPalettePickerPaletteProps {
   /**
-   *  A unique value
+   *  For storing unique value of item
    */
   value: string;
   /**
