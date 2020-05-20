@@ -376,7 +376,7 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
-      TextDiffExample,
+
       TextExample,
       TitleExample,
       ToastExample,
@@ -435,6 +435,7 @@ const navigation = [
       PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
+      TextDiffExample,
       ToggleExample,
       WindowEventExample,
     ].map(example => createExample(example)),

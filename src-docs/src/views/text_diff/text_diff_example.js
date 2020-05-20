@@ -33,14 +33,19 @@ export const TextDiffExample = {
         },
       ],
       text: (
-        <p>
-          The hook, <strong>useEuiTextDiff</strong>, generates a set of changes between two
-          strings. It returns both React elements for displaying the diff
-          and an object representing the identified changes.
-        </p>
-        <p>
-          <EuiCode language="ts">const [rendered, textDiffObject] = useEuiTextDiff()</EuiCode>
-        </p>
+        <>
+          <p>
+            The hook, <strong>useEuiTextDiff</strong>, generates a set of
+            changes between two strings. It returns both React elements for
+            displaying the diff and an object representing the identified
+            changes.
+          </p>
+          <p>
+            <EuiCode language="ts">
+              const [rendered, textDiffObject] = useEuiTextDiff()
+            </EuiCode>
+          </p>
+        </>
       ),
       demo: <TextDiff />,
       props: { useEuiTextDiff },
@@ -59,8 +64,9 @@ export const TextDiffExample = {
       ],
       text: (
         <p>
-          By default, the hook will render deletions as <EuiCode>{'<del>'}</EuiCode> and 
-          insertions as <EuiCode>{'<ins>'}</EuiCode> elements. You can replace these rendered
+          By default, the hook will render deletions as{' '}
+          <EuiCode>{'<del>'}</EuiCode> and insertions as{' '}
+          <EuiCode>{'<ins>'}</EuiCode> elements. You can replace these rendered
           html elements with the
           <EuiCode>
             InsertComponent, DeletionComponent, NoChangeComponent{' '}
@@ -85,9 +91,9 @@ export const TextDiffExample = {
       ],
       text: (
         <p>
-          The <EuiCode>timeout</EuiCode> prop is used to set how many seconds any
-          diff&apos;s exploration phase may take. The default value is 0.1, a
-          value of 0 disables the timeout and lets diff run until completion.
+          The <EuiCode>timeout</EuiCode> prop is used to set how many seconds
+          any diff&apos;s exploration phase may take. The default value is 0.1,
+          a value of 0 disables the timeout and lets diff run until completion.
           The higher the timeout, the more detailed the comparison.
         </p>
       ),

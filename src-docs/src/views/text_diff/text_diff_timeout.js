@@ -10,8 +10,8 @@ import {
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
 
-import initialText from '!!raw-loader!../../../../src/global_styling/variables/_colors.scss';
-import currentText from '!!raw-loader!../../../../src/themes/eui/eui_colors_dark.scss';
+import beforeText from '!!raw-loader!../../../../src/global_styling/variables/_colors.scss';
+import afterText from '!!raw-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 
 export default () => {
   const [del, setDel] = useState(0);
@@ -19,8 +19,8 @@ export default () => {
   const [value, setValue] = useState(0.5);
 
   const [rendered, textDiffObject] = useEuiTextDiff({
-    initialText,
-    currentText,
+    beforeText,
+    afterText,
     timeout: value,
   });
 

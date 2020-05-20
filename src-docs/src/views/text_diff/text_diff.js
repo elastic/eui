@@ -12,16 +12,16 @@ export default () => {
   const [del, setDel] = useState(0);
   const [ins, setIns] = useState(0);
 
-  const initialText =
-    'One difference is that interface creates a new name that is used everywhere. Type aliases do create a new name — for instance, error text won’t use the alias name. In the code below, hovering over interfaced in code editor will show that it returns an Interface, but will show that aliased returns object literal type.Wish you happy';
-  const currentText =
-    'One difference is that interfaces create a new name that is used everywhere. Type aliases don’t create a new name — for instance, error messages won’t use the alias name. In the code below, hovering over interfaced in an editor will show that it returns an Interface, but will show that aliased returns object literal type.Hope you will be happy every day';
+  const beforeText =
+    'Orbiting this at a distance of roughly ninety-two million miles is an utterly insignificant little blue green planet whose ape- descended life forms are so amazingly primitive that they still think digital watches are a pretty neat idea.';
+  const afterText =
+    'Orbiting those at a distance of roughly ninety-nine billion yards is not insignificant dwaf red green planet whose ape- ascended life forms are so amazingly primitive that they still think digital clocks are a pretty neat idea.';
 
   const [rendered, textDiffObject] = useEuiTextDiff({
     fontSize: 'm',
     paddingSize: 'm',
-    initialText,
-    currentText,
+    beforeText,
+    afterText,
     timeout: 0,
   });
 
