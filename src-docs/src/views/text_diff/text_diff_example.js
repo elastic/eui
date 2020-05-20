@@ -46,7 +46,7 @@ export const TextDiffExample = {
       props: { useEuiTextDiff },
     },
     {
-      title: 'Text Diff with custom components',
+      title: 'Custom rendered elements',
       source: [
         {
           type: GuideSectionTypes.JS,
