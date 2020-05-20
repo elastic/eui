@@ -20,7 +20,8 @@ export class AppView extends Component {
 
     // Share the router with the app without requiring React or context.
     // See `/wiki/react-router.md`
-    registerRouter(this.context.router);
+    const { history, location, match } = this.props;
+    registerRouter({ history, location, match });
   }
   componentDidUpdate(prevProps) {
     if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
@@ -129,13 +130,4 @@ AppView.propTypes = {
 
 AppView.defaultProps = {
   currentRoute: {},
-};
-
-AppView.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-      createHref: PropTypes.func.isRequired,
-    }),
-  }).isRequired,
 };
