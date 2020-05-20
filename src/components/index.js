@@ -33,12 +33,7 @@ export { EuiCallOut } from './call_out';
 
 export { EuiCard, EuiCheckableCard } from './card';
 
-export {
-  EuiCode,
-  EuiCodeBlock,
-  EuiCodeBlockImpl,
-  useEuiTextDiff,
-} from './code';
+export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
 export { EuiCodeEditor } from './code_editor';
 
@@ -299,6 +294,8 @@ export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
 export { EuiTab, EuiTabs, EuiTabbedContent } from './tabs';
 
 export { EuiText, EuiTextColor, EuiTextAlign } from './text';
+
+export { useEuiTextDiff } from './text_diff';
 
 export { EuiTitle } from './title';
 

@@ -75,7 +75,6 @@ export const TextDiffExample = {
         </p>
       ),
       demo: <TextDiffCustomComponents />,
-      props: { useEuiTextDiff },
     },
     {
       title: 'Adjusting the timeout delay',
@@ -98,7 +97,6 @@ export const TextDiffExample = {
         </p>
       ),
       demo: <TextDiffTimeOut />,
-      props: { useEuiTextDiff },
     },
   ],
 };
