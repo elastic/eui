@@ -59,7 +59,9 @@ export const TextDiffExample = {
       ],
       text: (
         <p>
-          Custom components such as{' '}
+          By default, the hook will render deletions as <EuiCode>{'<del>'}</EuiCode> and 
+          insertions as <EuiCode>{'<ins>'}</EuiCode> elements. You can replace these rendered
+          html elements with the
           <EuiCode>
             InsertComponent, DeletionComponent, NoChangeComponent{' '}
           </EuiCode>
