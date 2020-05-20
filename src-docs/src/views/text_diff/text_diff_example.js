@@ -22,7 +22,6 @@ export const TextDiffExample = {
   title: 'Text Diff',
   sections: [
     {
-      title: 'Text Diff',
       source: [
         {
           type: GuideSectionTypes.JS,
