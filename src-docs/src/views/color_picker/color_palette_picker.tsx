@@ -10,7 +10,7 @@ import { EuiCode } from '../../../../src/components/code';
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
-} from '../../../../src/components/color_picker/';
+} from '../../../../src/components/color_picker/color_palette_picker';
 // @ts-ignore
 import { DisplayToggles } from '../form_controls/display_toggles';
 

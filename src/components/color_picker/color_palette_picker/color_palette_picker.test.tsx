@@ -33,32 +33,9 @@ jest.mock('./../../../services/accessibility', () => ({
 const palettes: EuiColorPalettePickerPaletteProps[] = [
   {
     value: 'palette1',
-    title: 'Summer Colors',
-    palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
+    title: 'Palette 1',
+    palette: ['#1fb0b2', '#ffdb6d'],
     type: 'fixed',
-  },
-  {
-    value: 'palette2',
-    title: 'Linear Gradient',
-    palette: [
-      {
-        stop: 100,
-        color: '#54B399',
-      },
-      {
-        stop: 250,
-        color: '#D36086',
-      },
-      {
-        stop: 350,
-        color: '#9170B8',
-      },
-      {
-        stop: 470,
-        color: '#F5A700',
-      },
-    ],
-    type: 'gradient',
   },
 ];
 
@@ -74,5 +51,117 @@ describe('EuiColorPalettePicker', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    test('selectionDisplay title is rendered', () => {
+      const component = render(
+        <EuiColorPalettePicker
+          {...requiredProps}
+          palettes={palettes}
+          onChange={() => {}}
+          valueOfSelected="palette1"
+          selectionDisplay="title"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('palettes with type fixed is rendered', () => {
+      const component = render(
+        <EuiColorPalettePicker
+          {...requiredProps}
+          palettes={[
+            {
+              value: 'palette1',
+              title: 'Fixed',
+              palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
+              type: 'fixed',
+            },
+          ]}
+          onChange={() => {}}
+          valueOfSelected="palette1"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('palettes with type gradient is rendered', () => {
+      const component = render(
+        <EuiColorPalettePicker
+          {...requiredProps}
+          palettes={[
+            {
+              value: 'palette1',
+              title: 'Linear Gradient',
+              palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
+              type: 'gradient',
+            },
+          ]}
+          onChange={() => {}}
+          valueOfSelected="palette1"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('palettes with type gradient with stops is rendered', () => {
+      const component = render(
+        <EuiColorPalettePicker
+          {...requiredProps}
+          palettes={[
+            {
+              value: 'palette1',
+              title: 'Linear Gradient with stops',
+              palette: [
+                {
+                  stop: 100,
+                  color: '#54B399',
+                },
+                {
+                  stop: 250,
+                  color: '#D36086',
+                },
+                {
+                  stop: 350,
+                  color: '#9170B8',
+                },
+                {
+                  stop: 470,
+                  color: '#F5A700',
+                },
+              ],
+              type: 'gradient',
+            },
+          ]}
+          onChange={() => {}}
+          valueOfSelected="palette1"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('palettes with type text is rendered', () => {
+      const component = render(
+        <EuiColorPalettePicker
+          {...requiredProps}
+          palettes={[
+            {
+              value: 'custom',
+              title: 'Plain text as a custom option',
+              type: 'text',
+            },
+          ]}
+          onChange={() => {}}
+          valueOfSelected="custom"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
