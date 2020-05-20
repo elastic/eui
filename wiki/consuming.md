@@ -110,12 +110,11 @@ import { appendIconComponentCache } from '@elastic/eui/es/components/icon/icon';
 import { icon as EuiIconArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
 import { icon as EuiIconArrowLeft } from '@elastic/eui/es/components/icon/assets/arrow_left';
 
-appendIconComponentCache(
-  'arrowDown', EuiIconArrowDown
-);
-appendIconComponentCache(
-  'arrowLeft', EuiIconArrowLeft
-);
+// One or more icons are passed in as an object of iconKey (string): IconComponent
+appendIconComponentCache({
+  arrowDown: EuiIconArrowDown,
+  arrowLeft: EuiIconArrowLeft,
+});
 ``` 
 
 ## Customizing with `className`

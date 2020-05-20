@@ -145,7 +145,9 @@ describe('EuiIcon', () => {
     });
 
     it('injects the specified icon', () => {
-      appendIconComponentCache('videoPlayer', EuiIconVideoPlayer);
+      appendIconComponentCache({
+        videoPlayer: EuiIconVideoPlayer,
+      });
       const component = mount(<EuiIcon type="videoPlayer" />);
       expect(
         component.find('EuiIcon[type="videoPlayer"] > EuiIconVideoPlayer')
@@ -154,7 +156,9 @@ describe('EuiIcon', () => {
     });
 
     it('does not impact non-loaded icons', () => {
-      appendIconComponentCache('videoPlayer', EuiIconVideoPlayer);
+      appendIconComponentCache({
+        videoPlayer: EuiIconVideoPlayer,
+      });
       const component = mount(<EuiIcon type="accessibility" />);
       expect(
         component.find('EuiIcon[type="accessibility"] > EuiIconEmpty').length
