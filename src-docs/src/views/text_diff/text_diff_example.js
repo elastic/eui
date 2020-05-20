@@ -81,10 +81,10 @@ export const TextDiffExample = {
       ],
       text: (
         <p>
-          <EuiCode>timeout</EuiCode> is used to set how many seconds any
+          The <EuiCode>timeout</EuiCode> prop is used to set how many seconds any
           diff&apos;s exploration phase may take. The default value is 0.1, a
           value of 0 disables the timeout and lets diff run until completion.
-          Higher the timeout , more detailed is the comparision
+          The higher the timeout, the more detailed the comparison.
         </p>
       ),
       demo: <TextDiffTimeOut />,
