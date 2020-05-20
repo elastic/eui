@@ -240,6 +240,7 @@ export class EuiInMemoryTable<T> extends Component<
     responsive: true,
     tableLayout: 'fixed',
   };
+  tableRef: React.RefObject<EuiBasicTable>;
 
   static getDerivedStateFromProps<T>(
     nextProps: EuiInMemoryTableProps<T>,
@@ -318,6 +319,14 @@ export class EuiInMemoryTable<T> extends Component<
       allowNeutralSort: allowNeutralSort !== false,
       hidePerPageOptions,
     };
+
+    this.tableRef = React.createRef<EuiBasicTable>();
+  }
+
+  setSelection(newSelection: T[]) {
+    if (this.tableRef.current) {
+      this.tableRef.current.setSelection(newSelection);
+    }
   }
 
   onTableChange = ({ page, sort }: Criteria<T>) => {
@@ -582,6 +591,7 @@ export class EuiInMemoryTable<T> extends Component<
     const table = (
       // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
       <EuiBasicTable
+        ref={this.tableRef}
         items={items}
         itemId={itemId}
         rowProps={rowProps}

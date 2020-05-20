@@ -26,6 +26,10 @@ import { ENTER } from '../../services/key_codes';
 import { SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
 
+jest.mock('../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
+
 interface BasicItem {
   id: number | string;
   name: string;
@@ -474,6 +478,32 @@ describe('EuiInMemoryTable', () => {
 
     expect(component).toMatchSnapshot();
     expect(itemsProp).toEqual(items);
+  });
+
+  test('with initial selection', () => {
+    const props: EuiInMemoryTableProps<BasicItem> = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+      ],
+      selection: {
+        onSelectionChange: () => undefined,
+        initialSelected: [{ id: '1', name: 'name1' }],
+      },
+    };
+    const component = mount(<EuiInMemoryTable {...props} />);
+
+    expect(component).toMatchSnapshot();
   });
 
   test('with pagination and selection', () => {
