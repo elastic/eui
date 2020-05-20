@@ -19,8 +19,6 @@ export default () => {
   const [value, setValue] = useState(0.5);
 
   const [rendered, textDiffObject] = useEuiTextDiff({
-    fontSize: 'm',
-    paddingSize: 'm',
     initialText,
     currentText,
     timeout: value,
