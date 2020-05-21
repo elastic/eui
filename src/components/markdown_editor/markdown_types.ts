@@ -18,15 +18,37 @@
  */
 
 import { IconType } from '../icon';
+import { ComponentType } from 'react';
 
-export interface EuiMarkdownEditorUiPlugin {
+export interface EuiMarkdownEditorUiPluginEditorProps {
+  node?: object | null;
+  onCancel: () => void;
+  onSave: (markdown: string) => void;
+}
+
+export const isPluginWithImmediateFormatting = (
+  x: PluginWithImmediateFormatting | PluginWithDelayedFormatting
+): x is PluginWithImmediateFormatting => {
+  return x.hasOwnProperty('formatting');
+};
+
+interface PluginWithImmediateFormatting {
+  formatting: EuiMarkdownFormatting;
+  editor?: never;
+}
+
+interface PluginWithDelayedFormatting {
+  formatting?: never;
+  editor: ComponentType<EuiMarkdownEditorUiPluginEditorProps>;
+}
+
+export type EuiMarkdownEditorUiPlugin = {
   name: string;
   button: {
     label: string;
     iconType: IconType;
   };
-  formatting: EuiMarkdownFormatting;
-}
+} & (PluginWithImmediateFormatting | PluginWithDelayedFormatting);
 
 export interface EuiMarkdownFormatting {
   prefix?: string;

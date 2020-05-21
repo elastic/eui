@@ -20,6 +20,7 @@
 import {
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownFormatting,
+  isPluginWithImmediateFormatting,
 } from './markdown_types';
 
 /**
@@ -30,7 +31,7 @@ import {
  * @param {string} editorID
  */
 class MarkdownActions {
-  styles: Record<string, EuiMarkdownFormatting>;
+  styles: Record<string, EuiMarkdownEditorUiPlugin>;
 
   constructor(public editorID: string, uiPlugins: EuiMarkdownEditorUiPlugin[]) {
     /**
@@ -39,48 +40,76 @@ class MarkdownActions {
      */
     this.styles = {
       ...uiPlugins.reduce<MarkdownActions['styles']>(
-        (mappedPlugins, { name, formatting }) => {
-          mappedPlugins[name] = formatting;
+        (mappedPlugins, plugin) => {
+          mappedPlugins[plugin.name] = plugin;
           return mappedPlugins;
         },
         {}
       ),
       mdBold: {
-        prefix: '**',
-        suffix: '**',
-        trimFirst: true,
+        name: 'mdBold',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '**',
+          suffix: '**',
+          trimFirst: true,
+        },
       },
       mdItalic: {
-        prefix: '_',
-        suffix: '_',
-        trimFirst: true,
+        name: 'mdItalic',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '_',
+          suffix: '_',
+          trimFirst: true,
+        },
       },
       mdQuote: {
-        prefix: '> ',
-        multiline: true,
-        surroundWithNewlines: true,
+        name: 'mdQuote',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '> ',
+          multiline: true,
+          surroundWithNewlines: true,
+        },
       },
       mdCode: {
-        prefix: '`',
-        suffix: '`',
-        blockPrefix: '```',
-        blockSuffix: '```',
+        name: 'mdCode',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '`',
+          suffix: '`',
+          blockPrefix: '```',
+          blockSuffix: '```',
+        },
       },
       mdLink: {
-        prefix: '[',
-        suffix: '](url)',
-        replaceNext: 'url',
-        scanFor: 'https?://',
+        name: 'mdLink',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '[',
+          suffix: '](url)',
+          replaceNext: 'url',
+          scanFor: 'https?://',
+        },
       },
       mdUl: {
-        prefix: '- ',
-        multiline: true,
-        surroundWithNewlines: true,
+        name: 'mdUl',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '- ',
+          multiline: true,
+          surroundWithNewlines: true,
+        },
       },
       mdOl: {
-        prefix: '1. ',
-        multiline: true,
-        orderedList: true,
+        name: 'mdOl',
+        button: { label: '', iconType: '' },
+        formatting: {
+          prefix: '1. ',
+          multiline: true,
+          orderedList: true,
+        },
       },
     };
   }
@@ -89,11 +118,17 @@ class MarkdownActions {
    * .do() accepts a string and retrieves the correlating style object (defined in the
    * constructor). It passes this to applyStyle() that does the text manipulation.
    *
-   * @param {string} action
+   * @param {string} pluginName
    * @memberof MarkdownActions
    */
-  do(action: string) {
-    this.applyStyle(this.styles[action]);
+  do(pluginName: string) {
+    const plugin = this.styles[pluginName];
+    if (isPluginWithImmediateFormatting(plugin)) {
+      this.applyStyle(plugin.formatting);
+      return true;
+    } else {
+      return plugin;
+    }
   }
 
   /**
@@ -103,7 +138,7 @@ class MarkdownActions {
    * @param {object} incomingStyle
    * @memberof MarkdownActions
    */
-  applyStyle(incomingStyle: object) {
+  applyStyle(incomingStyle: EuiMarkdownFormatting) {
     const defaults = {
       prefix: '',
       suffix: '',
@@ -200,7 +235,7 @@ let canInsertText: boolean | null = null;
  * above doesn't work. Although all modern browsers, including IE, seem to be fine:
  * https://hustle.bizongo.in/simulate-react-on-change-on-controlled-components-baa336920e04
  */
-function insertText(
+export function insertText(
   textarea: HTMLTextAreaElement,
   { text, selectionStart, selectionEnd }: SelectionRange
 ) {
