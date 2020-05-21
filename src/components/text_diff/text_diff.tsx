@@ -42,7 +42,7 @@ export const useEuiTextDiff = ({
   className,
   insertComponent = 'ins',
   deleteComponent = 'del',
-  sameComponent = 'span',
+  sameComponent,
   beforeText = '',
   afterText = '',
   timeout = 0.1,
@@ -60,12 +60,13 @@ export const useEuiTextDiff = ({
     const html = [];
     if (textDiff)
       for (let i = 0; i < textDiff.length; i++) {
-        let Element: ElementType;
+        let Element;
         const el = textDiff[i];
-        if (el[0] === 0) Element = sameComponent;
+        if (el[0] === 1) Element = insertComponent;
         else if (el[0] === -1) Element = deleteComponent;
-        else Element = insertComponent;
-        html.push(<Element key={i}>{el[1]}</Element>);
+        else if (sameComponent) Element = sameComponent;
+        if (Element) html.push(<Element key={i}>{el[1]}</Element>);
+        else html.push(el[1]);
       }
 
     return html;

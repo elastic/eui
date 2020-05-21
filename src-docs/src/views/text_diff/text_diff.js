@@ -18,8 +18,6 @@ export default () => {
     'Orbiting those at a distance of roughly ninety-nine billion yards is not insignificant dwaf red green planet whose ape- ascended life forms are so amazingly primitive that they still think digital clocks are a pretty neat idea.';
 
   const [rendered, textDiffObject] = useEuiTextDiff({
-    fontSize: 'm',
-    paddingSize: 'm',
     beforeText,
     afterText,
     timeout: 0,
