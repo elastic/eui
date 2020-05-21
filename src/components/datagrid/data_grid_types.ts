@@ -196,7 +196,11 @@ export interface EuiDataGridSorting {
   /**
    * An array of the column ids currently being sorted and their sort direction. The array order determines the sort order. `{ id: 'A'; direction: 'asc' }`
    */
-  columns: Array<{ id: string; direction: 'asc' | 'desc' }>;
+  columns: Array<{
+    id: string;
+    displayAsText?: string;
+    direction: 'asc' | 'desc';
+  }>;
 }
 
 export interface EuiDataGridInMemory {
