@@ -147,7 +147,7 @@ export class EuiToolTip extends Component<Props, State> {
 
   componentWillUnmount() {
     this._isMounted = false;
-    window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
