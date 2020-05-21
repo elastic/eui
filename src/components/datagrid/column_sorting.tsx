@@ -170,19 +170,21 @@ export const useColumnSorting = (
           <EuiDragDropContext onDragEnd={onDragEnd}>
             <EuiDroppable droppableId="columnSorting">
               <Fragment>
-                {sorting.columns.map(({ id, direction }, index) => {
-                  return (
-                    <EuiDataGridColumnSortingDraggable
-                      key={id}
-                      id={id}
-                      direction={direction}
-                      index={index}
-                      sorting={sorting}
-                      schema={schema}
-                      schemaDetectors={schemaDetectors}
-                    />
-                  );
-                })}
+                {sorting.columns.map(
+                  ({ id, displayAsText, direction }, index) => {
+                    return (
+                      <EuiDataGridColumnSortingDraggable
+                        key={id}
+                        id={displayAsText ? displayAsText : id}
+                        direction={direction}
+                        index={index}
+                        sorting={sorting}
+                        schema={schema}
+                        schemaDetectors={schemaDetectors}
+                      />
+                    );
+                  }
+                )}
               </Fragment>
             </EuiDroppable>
           </EuiDragDropContext>
@@ -235,7 +237,7 @@ export const useColumnSorting = (
                         className="euiDataGridColumnSorting__fieldList"
                         role="listbox">
                         {inactiveSortableColumns.map(
-                          ({ id, defaultSortDirection }) => {
+                          ({ id, displayAsText, defaultSortDirection }) => {
                             return (
                               <button
                                 key={id}
@@ -248,6 +250,7 @@ export const useColumnSorting = (
                                   const nextColumns = [...sorting.columns];
                                   nextColumns.push({
                                     id,
+                                    displayAsText,
                                     direction:
                                       defaultSortDirection ||
                                       (schemaDetails(id) &&
@@ -283,7 +286,9 @@ export const useColumnSorting = (
                                     />
                                   </EuiFlexItem>
                                   <EuiFlexItem grow={false}>
-                                    <EuiText size="xs">{id}</EuiText>
+                                    <EuiText size="xs">
+                                      {displayAsText ? displayAsText : id}
+                                    </EuiText>
                                   </EuiFlexItem>
                                 </EuiFlexGroup>
                               </button>
