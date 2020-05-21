@@ -212,7 +212,12 @@ export {
   EuiPinnableListGroup,
 } from './list_group';
 
-export { EuiMarkdownEditor } from './markdown_editor';
+export {
+  EuiMarkdownEditor,
+  EuiMarkdownContext,
+  defaultProcessingPlugins,
+  defaultParsingPlugins,
+} from './markdown_editor';
 export { EuiMark } from './mark';
 
 export {

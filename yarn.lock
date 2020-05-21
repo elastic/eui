@@ -3532,6 +3532,11 @@ clone@^2.1.1:
   resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.1.tgz#d217d1e961118e3ac9a4b8bba3285553bf647cdb"
   integrity sha1-0hfR6WERjjrJpLi7oyhVU79kfNs=
 
+clone@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
+
 cloneable-readable@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cloneable-readable/-/cloneable-readable-1.0.0.tgz#a6290d413f217a61232f95e458ff38418cfb0117"
@@ -13868,6 +13873,13 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+remark-disable-tokenizers@^1.0.24:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/remark-disable-tokenizers/-/remark-disable-tokenizers-1.0.24.tgz#98efd5ade2da46e8e6167cc3318c7cd93d15449d"
+  integrity sha512-HsAmBY5cNliHYAzba4zuskZzkDdp6sG+tRelDb4AoPo2YHNGHnxYsatShzTIsnRNLgCbsxycW5Ge6KigHn701A==
+  dependencies:
+    clone "^2.1.2"
 
 remark-emoji@^2.1.0:
   version "2.1.0"

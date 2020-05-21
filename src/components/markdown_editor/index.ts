@@ -22,4 +22,5 @@ export {
   EuiMarkdownEditorProps,
   defaultParsingPlugins,
   defaultProcessingPlugins,
+  EuiMarkdownContext,
 } from './markdown_editor';

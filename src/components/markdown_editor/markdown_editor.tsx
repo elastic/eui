@@ -18,6 +18,7 @@
  */
 
 import React, {
+  createContext,
   createElement,
   FunctionComponent,
   HTMLAttributes,
@@ -29,6 +30,8 @@ import classNames from 'classnames';
 // @ts-ignore
 import emoji from 'remark-emoji';
 import markdown from 'remark-parse';
+// @ts-ignore
+import disableTokenizers from 'remark-disable-tokenizers';
 // @ts-ignore
 import remark2rehype from 'remark-rehype';
 // @ts-ignore
@@ -48,6 +51,15 @@ import { EuiCodeBlock } from '../code';
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
+interface ContextShape {
+  markdown: string;
+  setMarkdown(next: string): void;
+}
+export const EuiMarkdownContext = createContext<ContextShape>({
+  markdown: '',
+  setMarkdown() {},
+});
+
 function storeMarkdownTree() {
   return function(tree: any, file: any) {
     file.data.markdownTree = JSON.parse(JSON.stringify(tree));
@@ -56,6 +68,13 @@ function storeMarkdownTree() {
 
 export const defaultParsingPlugins: PluggableList = [
   [markdown, {}],
+  [
+    disableTokenizers,
+    {
+      // disable the built-in task list / checkbox plugin in favour of a custom one
+      block: ['list'],
+    },
+  ],
   [highlight, {}],
   [emoji, { emoticon: true }],
   [storeMarkdownTree, {}],
@@ -179,33 +198,40 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
 
   const isPreviewing = viewMode === MODE_VIEWING;
 
-  return (
-    <div className={classes} {...rest}>
-      <EuiMarkdownEditorToolbar
-        markdownActions={markdownActions}
-        onClickPreview={() =>
-          setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
-        }
-        viewMode={viewMode}
-        uiPlugins={uiPlugins}
-      />
+  const contextValue = useMemo<ContextShape>(
+    () => ({ markdown: value, setMarkdown: onChange }),
+    [value, onChange]
+  );
 
-      {isPreviewing ? (
-        <div
-          className="euiMarkdownEditor__previewContainer"
-          style={{ height: `${height}px` }}>
-          <EuiMarkdownFormat processor={processor}>{value}</EuiMarkdownFormat>
-        </div>
-      ) : (
-        <EuiMarkdownEditorDropZone>
-          <EuiMarkdownEditorTextArea
-            height={height}
-            id={editorId}
-            onChange={e => onChange(e.target.value)}
-            value={value}
-          />
-        </EuiMarkdownEditorDropZone>
-      )}
-    </div>
+  return (
+    <EuiMarkdownContext.Provider value={contextValue}>
+      <div className={classes} {...rest}>
+        <EuiMarkdownEditorToolbar
+          markdownActions={markdownActions}
+          onClickPreview={() =>
+            setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
+          }
+          viewMode={viewMode}
+          uiPlugins={uiPlugins}
+        />
+
+        {isPreviewing ? (
+          <div
+            className="euiMarkdownEditor__previewContainer"
+            style={{ height: `${height}px` }}>
+            <EuiMarkdownFormat processor={processor}>{value}</EuiMarkdownFormat>
+          </div>
+        ) : (
+          <EuiMarkdownEditorDropZone>
+            <EuiMarkdownEditorTextArea
+              height={height}
+              id={editorId}
+              onChange={e => onChange(e.target.value)}
+              value={value}
+            />
+          </EuiMarkdownEditorDropZone>
+        )}
+      </div>
+    </EuiMarkdownContext.Provider>
   );
 };
