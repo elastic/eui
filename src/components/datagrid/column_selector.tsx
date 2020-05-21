@@ -71,7 +71,10 @@ export const useColumnSelector = (
   );
 
   const [sortedColumns, setSortedColumns] = useDependentState(
-    () => availableColumns.map(({ id }) => id),
+    () =>
+      availableColumns.map(({ id, displayAsText }) =>
+        displayAsText ? displayAsText : id
+      ),
     [availableColumns]
   );
 
@@ -109,6 +112,7 @@ export const useColumnSelector = (
   const filteredColumns = sortedColumns.filter(
     id => id.toLowerCase().indexOf(columnSearchText.toLowerCase()) !== -1
   );
+
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
 
   let buttonText = (
@@ -270,8 +274,8 @@ export const useColumnSelector = (
       visibleColumns
         .map<EuiDataGridColumn>(
           columnId =>
-            availableColumns.find(
-              ({ id }) => id === columnId
+            availableColumns.find(({ id, displayAsText }) =>
+              displayAsText ? displayAsText === columnId : id === columnId
             ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
         )
         .filter(column => column != null),
