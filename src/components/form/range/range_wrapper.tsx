@@ -46,3 +46,5 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
     );
   }
 );
+
+EuiRangeWrapper.displayName = 'EuiRangeWrapper';
