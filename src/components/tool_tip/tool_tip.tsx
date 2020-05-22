@@ -249,16 +249,6 @@ export class EuiToolTip extends Component<Props, State> {
     }
   };
 
-  hideOnTab = (e: { keyCode: number; }) => {
-    if(e.keyCode === TAB) {
-      this.hideToolTip()
-    }
-  }
-  onMouseOver = () => {
-    window.addEventListener('keyup', this.hideOnTab);
-    this.showToolTip();
-  }
-
   onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
@@ -323,7 +313,7 @@ export class EuiToolTip extends Component<Props, State> {
       <span
         ref={anchor => (this.anchor = anchor)}
         className={anchorClasses}
-        onMouseOver={this.onMouseOver}
+        onMouseOver={this.showToolTip}
         onMouseOut={this.onMouseOut}
         onKeyUp={e => this.onKeyUp(e)}>
         {/**
