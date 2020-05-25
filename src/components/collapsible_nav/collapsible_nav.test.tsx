@@ -71,14 +71,6 @@ describe('EuiCollapsibleNav', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('showCloseButton can be false', () => {
-      const component = render(
-        <EuiCollapsibleNav {...propsNeededToRender} showCloseButton={false} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
     test('showButtonIfDocked', () => {
       const component = render(
         <EuiCollapsibleNav
@@ -86,6 +78,27 @@ describe('EuiCollapsibleNav', () => {
           button={<button />}
           isDocked={true}
           showButtonIfDocked={true}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('close button', () => {
+    test('can be hidden', () => {
+      const component = render(
+        <EuiCollapsibleNav {...propsNeededToRender} showCloseButton={false} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('extends EuiButtonEmpty', () => {
+      const component = render(
+        <EuiCollapsibleNav
+          {...propsNeededToRender}
+          closeButtonProps={{ className: 'class', 'data-test-subj': 'test' }}
         />
       );
 

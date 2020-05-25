@@ -23,7 +23,7 @@ exports[`EuiFlyout is rendered 1`] = `
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -66,7 +66,7 @@ exports[`EuiFlyout max width can be set to a custom number 1`] = `
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -109,7 +109,7 @@ exports[`EuiFlyout max width can be set to a custom value and measurement 1`] = 
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -151,7 +151,7 @@ exports[`EuiFlyout max width can be set to a default 1`] = `
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -194,7 +194,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -265,7 +265,7 @@ exports[`EuiFlyout size l is rendered 1`] = `
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -307,7 +307,7 @@ exports[`EuiFlyout size m is rendered 1`] = `
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -349,7 +349,7 @@ exports[`EuiFlyout size s is rendered 1`] = `
       tabindex="0"
     >
       <button
-        aria-label="Closes this dialog"
+        aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--text euiFlyout__closeButton"
         data-test-subj="euiFlyoutCloseButton"
         type="button"

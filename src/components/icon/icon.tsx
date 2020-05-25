@@ -511,6 +511,7 @@ interface State {
   icon: undefined | ComponentType | string;
   iconTitle: undefined | string;
   isLoading: boolean;
+  neededLoading: boolean; // controls the fade-in animation, cached icons are immediately rendered
 }
 
 function isEuiIconType(x: EuiIconProps['type']): x is EuiIconType {
@@ -522,6 +523,9 @@ function getInitialIcon(icon: EuiIconProps['type']) {
     return undefined;
   }
   if (isEuiIconType(icon)) {
+    if (iconComponentCache.hasOwnProperty(icon)) {
+      return iconComponentCache[icon];
+    }
     return undefined;
   }
 
@@ -529,6 +533,15 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 }
 
 const generateId = htmlIdGenerator();
+
+let iconComponentCache: { [key: string]: ComponentType } = {};
+export const clearIconComponentCache = (icon?: EuiIconType) => {
+  if (icon != null) {
+    delete iconComponentCache[icon];
+  } else {
+    iconComponentCache = {};
+  }
+};
 
 export class EuiIcon extends PureComponent<EuiIconProps, State> {
   isMounted = true;
@@ -539,15 +552,18 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     const initialIcon = getInitialIcon(type);
     let isLoading = false;
 
-    if (isEuiIconType(type)) {
+    if (isEuiIconType(type) && initialIcon == null) {
       isLoading = true;
       this.loadIconComponent(type);
+    } else {
+      this.onIconLoad();
     }
 
     this.state = {
       icon: initialIcon,
       iconTitle: undefined,
       isLoading,
+      neededLoading: isLoading,
     };
   }
 
@@ -557,6 +573,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       if (isEuiIconType(type)) {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
+          neededLoading: iconComponentCache.hasOwnProperty(type),
           isLoading: true,
         });
         this.loadIconComponent(type);
@@ -564,6 +581,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           icon: type,
+          neededLoading: true,
           isLoading: false,
         });
       }
@@ -575,6 +593,17 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
   }
 
   loadIconComponent = (iconType: EuiIconType) => {
+    if (iconComponentCache.hasOwnProperty(iconType)) {
+      // exists in cache
+      this.setState({
+        isLoading: false,
+        neededLoading: false,
+        icon: iconComponentCache[iconType],
+      });
+      this.onIconLoad();
+      return;
+    }
+
     import(
       /* webpackChunkName: "icon.[request]" */
       // It's important that we don't use a template string here, it
@@ -582,6 +611,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // eslint-disable-next-line prefer-template
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
+      iconComponentCache[iconType] = icon;
       enqueueStateChange(() => {
         if (this.isMounted && this.props.type === iconType) {
           this.setState(
@@ -590,16 +620,18 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
               iconTitle: iconType,
               isLoading: false,
             },
-            () => {
-              const { onIconLoad } = this.props;
-              if (onIconLoad) {
-                onIconLoad();
-              }
-            }
+            this.onIconLoad
           );
         }
       });
     });
+  };
+
+  onIconLoad = () => {
+    const { onIconLoad } = this.props;
+    if (onIconLoad) {
+      onIconLoad();
+    }
   };
 
   render() {
@@ -614,7 +646,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       ...rest
     } = this.props;
 
-    const { isLoading } = this.state;
+    const { isLoading, neededLoading } = this.state;
 
     let optionalColorClass = null;
     let optionalCustomStyles: any = null;
@@ -640,7 +672,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       {
         'euiIcon--app': isAppIcon,
         'euiIcon-isLoading': isLoading,
-        'euiIcon-isLoaded': !isLoading,
+        'euiIcon-isLoaded': !isLoading && neededLoading,
       },
       className
     );

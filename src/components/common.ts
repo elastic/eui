@@ -73,7 +73,11 @@ export type ApplyClassComponentDefaults<
   C extends new (...args: any) => any,
   D = ExtractDefaultProps<C>,
   P = ExtractProps<C>
-> = Omit<P, keyof D> & Partial<D>;
+> =
+  // definition of Props that are not defaulted
+  Omit<P, keyof D> &
+    // definition of Props, made optional, that are have keys in defaultProps
+    { [K in keyof D]?: K extends keyof P ? P[K] : never };
 
 /*
 https://github.com/Microsoft/TypeScript/issues/28339
@@ -177,3 +181,14 @@ export type PropsForButton<T, P = {}> = T &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
   } & P;
+
+/**
+ * Makes all recursive keys optional
+ */
+export type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<RecursivePartial<U>>
+    : T[P] extends object
+    ? RecursivePartial<T[P]>
+    : T[P]
+};

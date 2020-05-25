@@ -140,7 +140,7 @@ export class EuiNavDrawer extends Component<
     this.setState({
       isLocked: !isLocked,
       isCollapsed: false,
-      outsideClickDisabled: true,
+      outsideClickDisabled: !isLocked,
     });
   };
 

@@ -269,7 +269,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   }
 
   if (iconOnClick) {
-    return (
+    return onClick || href ? (
       <span className={classes} style={optionalCustomStyles}>
         <span className="euiBadge__content">
           <EuiInnerText>
@@ -289,6 +289,22 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           {optionalIcon}
         </span>
       </span>
+    ) : (
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span
+            className={classes}
+            style={optionalCustomStyles}
+            ref={ref}
+            title={innerText}
+            {...rest}>
+            <span className="euiBadge__content">
+              <span className="euiBadge__text">{children}</span>
+              {optionalIcon}
+            </span>
+          </span>
+        )}
+      </EuiInnerText>
     );
   } else if (onClick || href) {
     return (

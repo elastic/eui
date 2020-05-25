@@ -74,3 +74,5 @@ export const EuiHeaderSectionItemButton = React.forwardRef<
     );
   }
 );
+
+EuiHeaderSectionItemButton.displayName = 'EuiHeaderSectionItemButton';

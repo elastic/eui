@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { EuiSpacer } from '../spacer';
 import { EuiTablePagination } from '../table';
 import {
@@ -52,6 +52,13 @@ export const PaginationBar = ({
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
   const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
+
+  useEffect(() => {
+    if (pageCount < pagination.pageIndex + 1) {
+      onPageChange(pageCount - 1);
+    }
+  }, [pageCount, onPageChange, pagination]);
+
   return (
     <div>
       <EuiSpacer size="m" />

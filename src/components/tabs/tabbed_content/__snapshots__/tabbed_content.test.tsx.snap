@@ -76,7 +76,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
   }
 >
   <div>
-    <ForwardRef
+    <EuiTabs
       onFocus={[Function]}
     >
       <div
@@ -135,7 +135,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
           </button>
         </EuiTab>
       </div>
-    </ForwardRef>
+    </EuiTabs>
     <div
       aria-labelledby="kibana"
       id="42"

@@ -122,4 +122,6 @@ const EuiDataGridHeaderRow = forwardRef<
   );
 });
 
+EuiDataGridHeaderRow.displayName = 'EuiDataGridHeaderRow';
+
 export { EuiDataGridHeaderRow };

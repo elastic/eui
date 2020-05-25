@@ -37,12 +37,6 @@
 
   // Direct descendent selectors to override `> span`
 
-  > .euiDatePickerRange__icon {
-    flex: 0 0 auto;
-    padding-left: $euiFormControlPadding;
-    padding-right: $euiFormControlPadding;
-  }
-
   > .euiDatePickerRange__delimeter {
     background-color: transparent !important; // override .euiFormControlLayout--group .euiText
     line-height: 1 !important;
