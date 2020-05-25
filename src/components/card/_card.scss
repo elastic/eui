@@ -149,6 +149,10 @@
     border-top-left-radius: $euiBorderRadius - 1px;
     border-top-right-radius: $euiBorderRadius - 1px;
 
+    img {
+      width: 100%;
+    }
+
     // IF both exist, position the icon centered on top of image
     + .euiCard__icon {
       position: absolute;

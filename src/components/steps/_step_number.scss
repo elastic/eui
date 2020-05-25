@@ -6,6 +6,14 @@
     top: -2px;
   }
 
+  &--small {
+    @include createStepsNumber($euiStepNumberSmallSize, $euiFontSizeXS);
+
+    .euiStepNumber__icon {
+      top: -1px;
+    }
+  }
+
   &--complete {
     // Thicken the checkmark but adding a slight stroke.
     .euiStepNumber__icon {

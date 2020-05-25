@@ -122,6 +122,7 @@ const customButtonHtml = renderToHtml(CustomButton);
 const customButtonSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
+  secondaryInputDisplay="top"
   button={
     <EuiColorPickerSwatch
       color={chosenColor}
@@ -135,6 +136,7 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
+  secondaryInputDisplay="bottom"
   button={
     <EuiBadge
       color={chosenColor ? chosenColor : 'hollow'}
@@ -467,12 +469,21 @@ export const ColorPickerExample = {
         },
       ],
       text: (
-        <p>
-          Available only in <strong>EuiColorPicker</strong>. You can optionally
-          use a custom button as the trigger for selection using the{' '}
-          <EuiCode>button</EuiCode> prop. Please remember to add accessibility
-          to this component, using proper button markup and aria labeling.
-        </p>
+        <>
+          <p>
+            Available only in <strong>EuiColorPicker</strong>. You can
+            optionally use a custom button as the trigger for selection using
+            the <EuiCode>button</EuiCode> prop. Please remember to add
+            accessibility to this component, using proper button markup and aria
+            labeling.
+          </p>
+          <p>
+            Additionally, use the <EuiCode>secondaryInputDisplay</EuiCode> prop
+            to show a secondary or alternative color value input. Options
+            include <EuiCode>top</EuiCode> and <EuiCode>bottom</EuiCode>{' '}
+            placement.
+          </p>
+        </>
       ),
       snippet: [customButtonSnippet, customBadgeSnippet],
       demo: <CustomButton />,

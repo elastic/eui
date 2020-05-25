@@ -37,22 +37,22 @@ import FlyoutWithBanner from './flyout_banner';
 const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 const flyoutWithBannerHtml = renderToHtml(FlyoutWithBanner);
 
-const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyOutSnippet = `<EuiFlyout onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutComplicatedSnippet = `<EuiFlyout onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
@@ -67,50 +67,50 @@ const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutSmallSnippet = `<EuiFlyout size="s" ownFocus onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutSmallSnippet = `<EuiFlyout size="s" ownFocus onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutMaxWidthSnippet = `<EuiFlyout maxWidth={448} onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutMaxWidthSnippet = `<EuiFlyout maxWidth={448} onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
-const flyoutWithBannerSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
-    <EuiTitle size="m">
-      <h2 id={flyoutTitle}></h2>
+const flyoutWithBannerSnippet = `<EuiFlyout onClose={closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody banner={callOut}>
-    <!-- Flyout body -->
+    <!-- Flyout body content -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;

@@ -1,7 +1,28 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
+
+import { EuiStepProps } from './step';
 
 import { EuiI18n } from '../i18n';
 import { CommonProps, keysOf } from '../common';
@@ -23,7 +44,9 @@ export type EuiStepStatus =
   | 'danger'
   | 'disabled';
 
-export interface EuiStepNumberProps {
+export interface EuiStepNumberProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement> {
   /**
    * May replace the number provided in props.number with alternate styling
    */
@@ -33,13 +56,20 @@ export interface EuiStepNumberProps {
    * Uses a border and removes the step number
    */
   isHollow?: boolean;
+  /**
+   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
+   */
+  titleSize?: EuiStepProps['titleSize'];
 }
 
-export const EuiStepNumber: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepNumberProps
-  // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
-  // tslint:disable-next-line:variable-name
-> = ({ className, status, number, isHollow, ...rest }) => {
+export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
+  className,
+  status,
+  number,
+  isHollow,
+  titleSize,
+  ...rest
+}) => {
   const classes = classNames(
     'euiStepNumber',
     status ? statusToClassNameMap[status] : undefined,
@@ -49,6 +79,8 @@ export const EuiStepNumber: FunctionComponent<
     className
   );
 
+  const iconSize = titleSize === 'xs' ? 's' : 'm';
+
   let numberOrIcon;
   if (status === 'complete') {
     numberOrIcon = (
@@ -57,6 +89,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="check"
             className="euiStepNumber__icon"
+            size={iconSize}
             aria-label={isComplete}
           />
         )}
@@ -69,6 +102,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="alert"
             className="euiStepNumber__icon"
+            size={iconSize}
             aria-label={hasWarnings}
           />
         )}
@@ -81,6 +115,7 @@ export const EuiStepNumber: FunctionComponent<
           <EuiIcon
             type="cross"
             className="euiStepNumber__icon"
+            size={iconSize}
             aria-label={hasErrors}
           />
         )}

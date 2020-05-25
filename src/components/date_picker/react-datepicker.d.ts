@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 // Type definitions for react-datepicker 1.8
 // Project: https://github.com/Hacker0x01/react-datepicker
 // Definitions by: Rajab Shakirov <https://github.com/radziksh>,
@@ -13,6 +32,20 @@
 
 import * as React from 'react';
 import * as moment from 'moment';
+
+type popperPlacement =
+  | 'bottom'
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'left'
+  | 'left-end'
+  | 'left-start'
+  | 'right'
+  | 'right-end'
+  | 'right-start'
+  | 'top'
+  | 'top-end'
+  | 'top-start';
 
 export interface ReactDatePickerProps {
   /**
@@ -50,7 +83,7 @@ export interface ReactDatePickerProps {
   disabled?: boolean;
   disabledKeyboardNavigation?: boolean;
   dropdownMode?: 'scroll' | 'select';
-  endDate?: moment.Moment;
+  endDate?: moment.Moment | null;
   excludeDates?: moment.Moment[];
   excludeTimes?: moment.Moment[];
   filterDate?(date: moment.Moment): boolean;
@@ -125,7 +158,7 @@ export interface ReactDatePickerProps {
    */
   popperClassName?: string;
   popperContainer?(props: { children: React.ReactNode[] }): React.ReactNode;
-  popperPlacement?: string;
+  popperPlacement?: popperPlacement;
   preventOpenOnFocus?: boolean;
   readOnly?: boolean;
   required?: boolean;
@@ -158,7 +191,7 @@ export interface ReactDatePickerProps {
   showTimeSelectOnly?: boolean;
   showWeekNumbers?: boolean;
   showYearDropdown?: boolean;
-  startDate?: moment.Moment;
+  startDate?: moment.Moment | null;
   startOpen?: boolean;
   tabIndex?: number;
   timeCaption?: string;

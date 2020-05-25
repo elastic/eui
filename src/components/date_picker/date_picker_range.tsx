@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Fragment,
   FunctionComponent,
@@ -8,7 +27,7 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
-import { EuiIcon, IconType } from '../icon';
+import { IconType } from '../icon';
 import { CommonProps } from '../common';
 import { EuiDatePickerProps } from './date_picker';
 
@@ -61,19 +80,6 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     className
   );
 
-  // Set the icon for the entire group instead of per control
-  let optionalIcon;
-  if (iconType) {
-    const icon = typeof iconType === 'string' ? iconType : 'calendar';
-    optionalIcon = (
-      <span className="euiDatePickerRange__icon">
-        <EuiIcon type={icon} />
-      </span>
-    );
-  } else {
-    optionalIcon = null;
-  }
-
   let startControl = startDateControl;
   let endControl = endDateControl;
 
@@ -81,9 +87,10 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     startControl = cloneElement(
       startDateControl as ReactElement<EuiDatePickerProps>,
       {
-        showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
+        iconType: typeof iconType === 'boolean' ? undefined : iconType,
+        showIcon: !!iconType,
       }
     );
 
@@ -93,6 +100,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
+        popoverPlacement: 'bottom-end',
       }
     );
   }
@@ -103,7 +111,6 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         children
       ) : (
         <Fragment>
-          {optionalIcon}
           {startControl}
           <EuiText
             className="euiDatePickerRange__delimeter"

@@ -19,11 +19,11 @@
     "/icon$": "<rootDir>/scripts/jest/mocks/icon_mock.js"
   },
   "setupFiles": [
-    "<rootDir>/scripts/jest/setup/polyfills.js",
     "<rootDir>/scripts/jest/setup/enzyme.js",
     "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
   ],
   "setupFilesAfterEnv": [
+    "<rootDir>/scripts/jest/setup/polyfills.js",
     "<rootDir>/scripts/jest/setup/unmount_enzyme.js"
   ],
   "coverageDirectory": "<rootDir>/reports/jest-coverage",

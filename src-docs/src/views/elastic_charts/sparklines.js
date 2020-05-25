@@ -60,7 +60,7 @@ export const Sparklines = () => {
                   data={TIME_DATA_SMALL}
                   xAccessor={0}
                   yAccessors={[1]}
-                  customSeriesColors={[
+                  color={[
                     isDarkTheme
                       ? euiPaletteForDarkBackground()[1]
                       : euiPaletteForLightBackground()[1],
@@ -85,7 +85,7 @@ export const Sparklines = () => {
                   data={TIME_DATA_SMALL}
                   xAccessor={0}
                   yAccessors={[1]}
-                  customSeriesColors={[
+                  color={[
                     isDarkTheme
                       ? euiPaletteForDarkBackground()[1]
                       : euiPaletteForLightBackground()[1],
@@ -118,7 +118,7 @@ export const Sparklines = () => {
                   data={TIME_DATA_SMALL_REVERSE_MAJOR}
                   xAccessor={0}
                   yAccessors={[1]}
-                  customSeriesColors={[
+                  color={[
                     isDarkTheme
                       ? euiPaletteForDarkBackground()[3]
                       : euiPaletteForLightBackground()[3],
@@ -143,7 +143,7 @@ export const Sparklines = () => {
                   data={TIME_DATA_SMALL_REVERSE}
                   xAccessor={0}
                   yAccessors={[1]}
-                  customSeriesColors={[
+                  color={[
                     isDarkTheme
                       ? euiPaletteForDarkBackground()[3]
                       : euiPaletteForLightBackground()[3],

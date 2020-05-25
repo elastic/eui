@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
@@ -14,6 +33,10 @@ export interface CommonProps {
 }
 
 export type NoArgCallback<T> = () => T;
+
+export const assertNever = (x: never): never => {
+  throw new Error(`Unexpected value ${x}`);
+};
 
 // utility types:
 
@@ -50,7 +73,11 @@ export type ApplyClassComponentDefaults<
   C extends new (...args: any) => any,
   D = ExtractDefaultProps<C>,
   P = ExtractProps<C>
-> = Omit<P, keyof D> & Partial<D>;
+> =
+  // definition of Props that are not defaulted
+  Omit<P, keyof D> &
+    // definition of Props, made optional, that are have keys in defaultProps
+    { [K in keyof D]?: K extends keyof P ? P[K] : never };
 
 /*
 https://github.com/Microsoft/TypeScript/issues/28339
@@ -154,3 +181,14 @@ export type PropsForButton<T, P = {}> = T &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
   } & P;
+
+/**
+ * Makes all recursive keys optional
+ */
+export type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<RecursivePartial<U>>
+    : T[P] extends object
+    ? RecursivePartial<T[P]>
+    : T[P]
+};

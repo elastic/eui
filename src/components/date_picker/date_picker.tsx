@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component, MouseEventHandler, Ref } from 'react';
 import classNames from 'classnames';
 
@@ -70,6 +89,16 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
    * Show the icon in input
    */
   showIcon?: boolean;
+
+  /**
+   * Pass an icon type to change the default `calendar` or `clock` icon
+   */
+  iconType?: EuiFormControlLayoutIconsProps['icon'];
+
+  /**
+   * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"left-start"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
+   */
+  popoverPlacement?: ReactDatePickerProps['popperPlacement'];
 }
 
 type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
@@ -90,6 +119,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     showIcon: true,
     showTimeSelect: false,
     timeFormat: euiDatePickerDefaultTimeFormat,
+    popoverPlacement: 'bottom-start',
   };
 
   render() {
@@ -104,6 +134,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       excludeDates,
       filterDate,
       fullWidth,
+      iconType,
       injectTimes,
       inline,
       inputRef,
@@ -119,6 +150,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       openToDate,
       placeholder,
       popperClassName,
+      popoverPlacement,
       selected,
       shadow,
       shouldCloseOnSelect,
@@ -150,6 +182,8 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
     if (inline || customInput || !showIcon) {
       optionalIcon = undefined;
+    } else if (iconType) {
+      optionalIcon = iconType;
     } else if (showTimeSelectOnly) {
       optionalIcon = 'clock';
     } else {
@@ -243,6 +277,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
                       utcOffset={utcOffset}
                       yearDropdownItemNumber={7}
                       accessibleMode
+                      popperPlacement={popoverPlacement}
                       {...rest}
                     />
                   );

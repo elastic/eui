@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   AriaAttributes,
   FunctionComponent,
@@ -250,7 +269,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   }
 
   if (iconOnClick) {
-    return (
+    return onClick || href ? (
       <span className={classes} style={optionalCustomStyles}>
         <span className="euiBadge__content">
           <EuiInnerText>
@@ -270,6 +289,22 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           {optionalIcon}
         </span>
       </span>
+    ) : (
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span
+            className={classes}
+            style={optionalCustomStyles}
+            ref={ref}
+            title={innerText}
+            {...rest}>
+            <span className="euiBadge__content">
+              <span className="euiBadge__text">{children}</span>
+              {optionalIcon}
+            </span>
+          </span>
+        )}
+      </EuiInnerText>
     );
   } else if (onClick || href) {
     return (
