@@ -6,7 +6,7 @@
 
 **Bug Fixes**
 
-- Fixed code-related color variables to attain proper contrast levels in `EuiCodeBlock` ([#3309](https://github.com/elastic/eui/pull/3309))
+- Fixed code highlight color contrast in `EuiCodeBlock` ([#3309](https://github.com/elastic/eui/pull/3309))
 
 ## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
 
