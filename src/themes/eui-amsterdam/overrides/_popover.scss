@@ -11,7 +11,7 @@
       &:before {
         bottom: -$euiPopoverArrowSize;
         border-top-color: $euiShadowColor;
-        clip-path: polygon(-$arrowShadowCompensation 0, $euiPopoverArrowSize * 2 + $arrowShadowCompensation 0, $euiPopoverArrowSize * 2 + $arrowShadowCompensation $euiPopoverArrowSize + $arrowShadowCompensation, -$arrowShadowCompensation $euiPopoverArrowSize + $arrowShadowCompensation);
+        clip-path: polygon(#{-$arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation}, #{-$arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation});
       }
 
       &:after {
@@ -22,7 +22,7 @@
     &.euiPopover__panelArrow--right {
       &:before {
         border-right-color: $euiShadowColor;
-        clip-path: polygon(-$arrowShadowCompensation #{-$arrowShadowCompensation}, $euiPopoverArrowSize #{-$arrowShadowCompensation}, $euiPopoverArrowSize $euiPopoverArrowSize * 2 + $arrowShadowCompensation, -$arrowShadowCompensation $euiPopoverArrowSize * 2 + $arrowShadowCompensation);
+        clip-path: polygon(#{-$arrowShadowCompensation} #{-$arrowShadowCompensation}, $euiPopoverArrowSize #{-$arrowShadowCompensation}, $euiPopoverArrowSize #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation}, #{-$arrowShadowCompensation} #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation});
       }
 
       &:after {
@@ -33,7 +33,7 @@
     &.euiPopover__panelArrow--bottom {
       &:before {
         border-bottom-color: $euiShadowColor;
-        clip-path: polygon(-$arrowShadowCompensation #{-$arrowShadowCompensation}, $euiPopoverArrowSize * 2 + $arrowShadowCompensation #{-$arrowShadowCompensation}, $euiPopoverArrowSize * 2 + $arrowShadowCompensation $euiPopoverArrowSize, -$arrowShadowCompensation $euiPopoverArrowSize);
+        clip-path: polygon(#{-$arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} $euiPopoverArrowSize, #{-$arrowShadowCompensation} $euiPopoverArrowSize);
       }
 
       &:after {
@@ -45,7 +45,7 @@
       &:before {
         right: -$euiPopoverArrowSize;
         border-left-color: $euiShadowColor;
-        clip-path: polygon(0 #{-$arrowShadowCompensation}, $euiPopoverArrowSize + $arrowShadowCompensation #{-$arrowShadowCompensation}, $euiPopoverArrowSize + $arrowShadowCompensation $euiPopoverArrowSize * 2 + $arrowShadowCompensation, 0 $euiPopoverArrowSize * 2 + $arrowShadowCompensation);
+        clip-path: polygon(0 #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation}, 0 #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation});
       }
 
       &:after {
