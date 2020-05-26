@@ -49,6 +49,10 @@
 - Removed borders from `EuiFlyout` and `EuiPopover` ([#3477](https://github.com/elastic/eui/pull/3477))
 - Updated `EuiHeader` and components ([#3524](https://github.com/elastic/eui/pull/3524))
 
+**Breaking changes**
+
+- Replaced all usages of `[KeyboardEvent.keyCode](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode)` (deprecated) with `[KeyboardEvent.key](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key).`. From `@elastic/eui/lib/services`, `keyCodes` has been replaced with `keys`, as has `cascadingMenuKeyCodes`->`cascadingMenuKeys`, and `comboBoxKeyCodes`->`comboBoxKeys`.  The implementation of all of those exports (as well as `accessibleClickKeys`) all now use `KeyboardEvent.key` values. ([#3517](https://github.com/elastic/eui/pull/3517))
+
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
 - Added `null` as acceptable `icon` prop for `EuiCard` ([#3470](https://github.com/elastic/eui/pull/3470))
