@@ -118,7 +118,10 @@ $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9')
 $euiColorChartLines: shade($euiColorLightestShade, 3%) !default;
 $euiColorChartBand: $euiColorLightestShade !default;
 
+
 // Code
+$euiCodeBlockPurple: #6F42C1;
+$euiCodeBlockOrange: #E36209;
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;
 $euiCodeBlockColor: makeHighContrastColor($euiTextColor, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockSelectedBackgroundColor: inherit !default;
@@ -128,11 +131,11 @@ $euiCodeBlockStringColor: makeHighContrastColor($euiColorAccentText, $euiCodeBlo
 $euiCodeBlockTagColor: makeHighContrastColor($euiColorPrimary, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockNameColor: makeHighContrastColor($euiColorPrimary, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockNumberColor: makeHighContrastColor($euiColorSecondary, $euiCodeBlockBackgroundColor) !default;
-$euiCodeBlockKeywordColor: inherit !default;
+$euiCodeBlockKeywordColor: makeHighContrastColor($euiCodeBlockPurple, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockFunctionTitleColor: inherit !default;
 $euiCodeBlockTypeColor: makeHighContrastColor($euiColorPrimaryText, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockAttributeColor: inherit !default;
-$euiCodeBlockSymbolColor: makeHighContrastColor($euiColorWarning, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockSymbolColor: makeHighContrastColor($euiCodeBlockOrange, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockParamsColor: inherit !default;
 $euiCodeBlockMetaColor:  makeHighContrastColor($euiTextSubduedColor, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockTitleColor: makeHighContrastColor($euiColorDangerText, $euiCodeBlockBackgroundColor) !default;

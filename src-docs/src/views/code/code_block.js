@@ -6,7 +6,7 @@ const htmlCode = require('!!raw-loader!./code_examples/example.html');
 
 const jsCode = require('!!raw-loader!./code_examples/example.js');
 
-const cCode = require('!!raw-loader!./code_examples/example.sql');
+const sqlCode = require('!!raw-loader!./code_examples/example.sql');
 
 export default () => (
   <div>
@@ -26,12 +26,13 @@ export default () => (
     <EuiSpacer />
 
     <EuiCodeBlock
+      className="hljs-addition"
       language="sql"
       fontSize="m"
       paddingSize="m"
       overflowHeight={300}
       isCopyable>
-      {cCode}
+      {sqlCode}
     </EuiCodeBlock>
   </div>
 );
