@@ -148,6 +148,12 @@ export interface EuiPopoverProps {
   offset?: number;
 
   /**
+   * Minimum distance between the popover and the bounding container.
+   * Default is 16
+   */
+  buffer?: number;
+
+  /**
    * Element to pass as the child element of the arrow. Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
@@ -520,6 +526,7 @@ export class EuiPopover extends Component<Props, State> {
         arrowBuffer: 10,
       },
       returnBoundingBox: this.props.attachToAnchor,
+      buffer: this.props.buffer,
     });
 
     // the popover's z-index must inherit from the button
@@ -613,6 +620,7 @@ export class EuiPopover extends Component<Props, State> {
       attachToAnchor,
       display,
       onTrapDeactivation,
+      buffer,
       ...rest
     } = this.props;
 

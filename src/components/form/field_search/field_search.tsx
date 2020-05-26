@@ -20,8 +20,8 @@
 import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
-import { ENTER } from '../../../services/key_codes';
 import { CommonProps } from '../../common';
+import { ENTER } from '../../../services/key_codes';
 
 import {
   EuiFormControlLayout,
@@ -76,6 +76,8 @@ interface EuiFieldSearchState {
   value: string;
 }
 
+let isSearchSupported: boolean = false;
+
 export class EuiFieldSearch extends Component<
   EuiFieldSearchProps,
   EuiFieldSearchState
@@ -97,10 +99,11 @@ export class EuiFieldSearch extends Component<
 
   componentDidMount() {
     if (!this.inputElement) return;
-    if (Browser.isEventSupported('search', this.inputElement)) {
+    isSearchSupported = Browser.isEventSupported('search', this.inputElement);
+    if (isSearchSupported) {
       const onSearch = (event?: Event) => {
         if (this.props.onSearch) {
-          if (!event || !event.target) return;
+          if (!event || !event.target || event.defaultPrevented) return;
           this.props.onSearch((event.target as HTMLInputElement).value);
         }
       };
@@ -187,7 +190,12 @@ export class EuiFieldSearch extends Component<
         return;
       }
     }
-    if (onSearch && (incremental || event.keyCode === ENTER)) {
+
+    if (
+      onSearch &&
+      ((event.keyCode !== ENTER && incremental) ||
+        (event.keyCode === ENTER && !isSearchSupported))
+    ) {
       onSearch((event.target as HTMLInputElement).value);
     }
   };

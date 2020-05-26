@@ -40,13 +40,6 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
     <EuiQuickSelect
       applyTime={[Function]}
       end="now"
-      prevQuickSelect={
-        Object {
-          "timeTense": "last",
-          "timeUnits": "m",
-          "timeValue": 15,
-        }
-      }
       start="now-15m"
     />
     <EuiCommonlyUsedTimeRanges
