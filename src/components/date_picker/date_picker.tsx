@@ -71,10 +71,6 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   onClear?: MouseEventHandler<HTMLButtonElement>;
 
   /**
-   * Which icon in input
-   */
-  optionalIcon?: EuiFormControlLayoutIconsProps['icon'];
-  /**
    * Opens to this date (in moment format) on first press, regardless of selection
    */
   openToDate?: Moment;
