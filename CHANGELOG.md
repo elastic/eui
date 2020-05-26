@@ -5,6 +5,7 @@
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
 - Added `EuiColorPalettePicker` component ([#3192](https://github.com/elastic/eui/pull/3192))
+- Added `left-start` popover placement to `EuiDatePicker` ([#3511](https://github.com/elastic/eui/pull/3511))
 
 **Bug Fixes**
 
