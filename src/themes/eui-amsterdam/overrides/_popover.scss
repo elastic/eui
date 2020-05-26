@@ -1,9 +1,6 @@
 .euiPopover__panel {
   .euiPopover__panelArrow {
     &:before {
-      @include internetExplorerOnly {
-        display: none;
-      }
       filter: blur($euiSizeXS - 1px);
       opacity: .2;
     }
