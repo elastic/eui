@@ -186,12 +186,9 @@
     color: $euiCodeBlockFunctionTitleColor;
   }
 
-  .hljs-tag {
+  .hljs-tag,
+  .hljs-name  {
     color: $euiCodeBlockTagColor;
-  }
-
-  .hljs-name {
-    color: euiCodeBlockNameColor;
   }
 
   .hljs-type,
@@ -229,19 +226,16 @@
 
   .hljs-addition,
   .hljs-deletion {
-    display: inline-block;
-    padding-left: $euiSizeXS;
-    width: 100%;
+    padding-left: $euiSizeS;
+    margin-left: -$euiSizeS;
   }
 
   .hljs-addition {
-    border-left: $euiBorderWidthThick solid $euiCodeBlockAdditionBorderColor;
-    color: $euiCodeBlockAdditionColor;
+    box-shadow: -$euiSizeXS 0 $euiCodeBlockAdditionColor;
   }
 
   .hljs-deletion {
-    border-left: $euiBorderWidthThick solid $euiCodeBlockDeletionBorderColor;
-    color: $euiCodeBlockDeletionColor;
+    box-shadow: -$euiSizeXS 0 $euiCodeBlockDeletionColor;
   }
 
   .hljs-selector-class {
