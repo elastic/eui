@@ -26,7 +26,6 @@ export default () => (
     <EuiSpacer />
 
     <EuiCodeBlock
-      className="hljs-addition"
       language="sql"
       fontSize="m"
       paddingSize="m"
