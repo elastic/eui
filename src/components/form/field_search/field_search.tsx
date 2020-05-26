@@ -21,7 +21,7 @@ import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
 import { CommonProps } from '../../common';
-import { ENTER } from '../../../services/key_codes';
+import { keys } from '../../../services';
 
 import {
   EuiFormControlLayout,
@@ -193,8 +193,8 @@ export class EuiFieldSearch extends Component<
 
     if (
       onSearch &&
-      ((event.keyCode !== ENTER && incremental) ||
-        (event.keyCode === ENTER && !isSearchSupported))
+      ((event.key !== keys.ENTER && incremental) ||
+        (event.key === keys.ENTER && !isSearchSupported))
     ) {
       onSearch((event.target as HTMLInputElement).value);
     }

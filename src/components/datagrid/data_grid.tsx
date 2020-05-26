@@ -58,7 +58,7 @@ import {
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
-import { keyCodes, htmlIdGenerator } from '../../services';
+import { keys, htmlIdGenerator } from '../../services';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
 import { useStyleSelector, startingStyles } from './style_selector';
@@ -406,30 +406,30 @@ function createKeyDownHandler(
       1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
-    const { keyCode, ctrlKey } = event;
+    const { key, ctrlKey } = event;
 
-    if (keyCode === keyCodes.DOWN) {
+    if (key === keys.ARROW_DOWN) {
       event.preventDefault();
       if (y < rowCount - 1) {
         setFocusedCell([x, y + 1]);
       }
-    } else if (keyCode === keyCodes.LEFT) {
+    } else if (key === keys.ARROW_LEFT) {
       event.preventDefault();
       if (x > 0) {
         setFocusedCell([x - 1, y]);
       }
-    } else if (keyCode === keyCodes.UP) {
+    } else if (key === keys.ARROW_UP) {
       event.preventDefault();
       const minimumIndex = headerIsInteractive ? -1 : 0;
       if (y > minimumIndex) {
         setFocusedCell([x, y - 1]);
       }
-    } else if (keyCode === keyCodes.RIGHT) {
+    } else if (key === keys.ARROW_RIGHT) {
       event.preventDefault();
       if (x < colCount) {
         setFocusedCell([x + 1, y]);
       }
-    } else if (keyCode === keyCodes.PAGE_DOWN) {
+    } else if (key === keys.PAGE_DOWN) {
       if (props.pagination) {
         event.preventDefault();
         const rowCount = props.rowCount;
@@ -442,7 +442,7 @@ function createKeyDownHandler(
         setFocusedCell([focusedCell[0], 0]);
         updateFocus();
       }
-    } else if (keyCode === keyCodes.PAGE_UP) {
+    } else if (key === keys.PAGE_UP) {
       if (props.pagination) {
         event.preventDefault();
         const pageIndex = props.pagination.pageIndex;
@@ -452,16 +452,16 @@ function createKeyDownHandler(
         setFocusedCell([focusedCell[0], props.pagination.pageSize - 1]);
         updateFocus();
       }
-    } else if (keyCode === (ctrlKey && keyCodes.END)) {
+    } else if (key === (ctrlKey && keys.END)) {
       event.preventDefault();
       setFocusedCell([colCount, rowCount - 1]);
-    } else if (keyCode === (ctrlKey && keyCodes.HOME)) {
+    } else if (key === (ctrlKey && keys.HOME)) {
       event.preventDefault();
       setFocusedCell([0, 0]);
-    } else if (keyCode === keyCodes.END) {
+    } else if (key === keys.END) {
       event.preventDefault();
       setFocusedCell([colCount, y]);
-    } else if (keyCode === keyCodes.HOME) {
+    } else if (key === keys.HOME) {
       event.preventDefault();
       setFocusedCell([0, y]);
     }
@@ -608,11 +608,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
   );
 
-  const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    switch (e.keyCode) {
-      case keyCodes.ESCAPE:
+  const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    switch (event.key) {
+      case keys.ESCAPE:
         if (isFullScreen) {
-          e.preventDefault();
+          event.preventDefault();
           setIsFullScreen(false);
         }
         break;

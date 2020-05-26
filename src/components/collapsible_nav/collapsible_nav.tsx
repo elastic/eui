@@ -28,7 +28,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
-import { EuiWindowEvent, keyCodes, htmlIdGenerator } from '../../services';
+import { EuiWindowEvent, keys, htmlIdGenerator } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { CommonProps } from '../common';
@@ -118,7 +118,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
 
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       event.preventDefault();
       collapse();
     }

@@ -24,7 +24,7 @@ import {
   findTestSubject,
   takeMountedSnapshot,
 } from '../../test';
-import { comboBoxKeyCodes } from '../../services';
+import { comboBoxKeys } from '../../services';
 
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
@@ -224,7 +224,7 @@ describe('behavior', () => {
       component.setState({ searchValue: 'foo' });
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
       searchInput.simulate('focus');
-      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
       expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);
     });
@@ -242,7 +242,7 @@ describe('behavior', () => {
 
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
       searchInput.simulate('focus');
-      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
       expect(onCreateOptionHandler).not.toHaveBeenCalled();
     });
   });
@@ -264,7 +264,7 @@ describe('behavior', () => {
 
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', {
-        keyCode: comboBoxKeyCodes.TAB,
+        key: comboBoxKeys.TAB,
         shiftKey: true,
       });
 
@@ -312,11 +312,11 @@ describe('behavior', () => {
       expect(findTestSubject(component, 'comboBoxOptionsList')).toBeDefined();
 
       // Navigate to an option.
-      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.DOWN });
+      searchInput.simulate('keyDown', { key: comboBoxKeys.ARROW_DOWN });
 
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', {
-        keyCode: comboBoxKeyCodes.TAB,
+        key: comboBoxKeys.TAB,
         shiftKey: true,
       });
 

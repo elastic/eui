@@ -29,7 +29,7 @@ import classNames from 'classnames';
 import { ColorSpaces } from 'chroma-js';
 
 import { CommonProps } from '../common';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import { isNil } from '../../services/predicate';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -120,7 +120,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       handleChange,
       boxRef.current
     );
-    const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isNil(boxRef) || isNil(boxRef.current)) {
         return;
       }
@@ -131,21 +131,21 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       let newLeft = left;
       let newTop = top;
 
-      switch (e.keyCode) {
-        case keyCodes.DOWN:
-          e.preventDefault();
+      switch (event.key) {
+        case keys.ARROW_DOWN:
+          event.preventDefault();
           newTop = top < height ? top + heightScale : height;
           break;
-        case keyCodes.LEFT:
-          e.preventDefault();
+        case keys.ARROW_LEFT:
+          event.preventDefault();
           newLeft = left > 0 ? left - widthScale : 0;
           break;
-        case keyCodes.UP:
-          e.preventDefault();
+        case keys.ARROW_UP:
+          event.preventDefault();
           newTop = top > 0 ? top - heightScale : 0;
           break;
-        case keyCodes.RIGHT:
-          e.preventDefault();
+        case keys.ARROW_RIGHT:
+          event.preventDefault();
           newLeft = left < width ? left + widthScale : width;
           break;
         default:
