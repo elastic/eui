@@ -6,40 +6,40 @@
   @include euiFontSizeS;
   @include euiCodeFont;
 
+  border-bottom: 2px solid transparent;
   display: inline-block; /* 1 */
   text-align: left;
   padding: ($euiSizeXS / 2) 0;
   transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
   color: $euiTextColor;
-  border-bottom: 2px solid transparent;
   vertical-align: bottom;
-  
+
   &:focus {
     border-bottom-style: solid;
   }
-  
+
   & + .euiExpression {
     margin-left: $euiSizeS;
   }
+
+  &.euiExpression-columns {
+    border: 2px solid transparent;
+    margin-bottom: $euiSizeS;
+  }
+
 }
 
 .euiExpression-isUppercase .euiExpression__description {
   text-transform: uppercase;
 }
 
-.euiExpression-breakWord {
-  @include euiTextBreakWord; /* 1 */
-}
-
-// .euiExpression-truncate .euiExpression__value {
-//   @include euiTextTruncate;
-//   display: inline-block;
-//   vertical-align: bottom;
+// .euiExpression-breakWord {
+//   @include euiTextBreakWord; /* 1 */
 // }
 
-.euiExpression-truncate {
-  @include euiTextTruncate;
-}
+// .euiExpression-truncate {
+//   @include euiTextTruncate;
+// }
 
 .euiExpression-isClickable {
   cursor: pointer;
@@ -49,26 +49,43 @@
     border-bottom-style: solid;
     transform: translateY(-1px);
   }
+
+  &.euiExpression-columns {
+    background-color: $euiColorLightestShade;
+    width: 100%;
+    display: flex;
+    padding: $euiSizeS;
+    border-radius: $euiSizeXS;
+
+    .euiExpression__description,
+    .euiExpression__value {
+      @include euiTextBreakWord;
+    }
+  }
 }
 
 .euiExpression-isActive {
   border-bottom-style: solid;
 }
 
-
+.euiPopover__anchor {
+  width: 100%;
+}
 
 @each $name, $color in $euiExpressionColors {
   .euiExpression--#{$name} {
-    &:focus {
+    &:focus:not(.euiExpression-columns) {
       background-color: transparentize($color, .9);
     }
 
     &.euiExpression-isActive {
       border-bottom-color: $color;
+      border-color: $color;
     }
 
     .euiExpression__description {
       color: $color;
     }
+
   }
 }

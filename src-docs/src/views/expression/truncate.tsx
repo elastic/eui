@@ -27,7 +27,7 @@ export default () => {
   const openExample1 = () => {
     setExample1({
       ...example1,
-      isOpen: true,
+      isOpen: !example1.isOpen,
     });
     setExample2({
       ...example2,
@@ -62,10 +62,9 @@ export default () => {
 
   const changeExample1 = (e: any) => {
     setExample1({
-      ...example1,
       value: e.target.value,
+      isOpen: false,
     });
-    // closeExample1();
   };
 
   const changeExample2 = (e: any) => {
@@ -124,49 +123,45 @@ export default () => {
 
   return (
     <div style={{ width: 300 }}>
-      <EuiFlexGroup gutterSize="s">
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            id="popover1"
-            button={
-              <EuiExpression
-                description="when"
-                value={example1.value}
-                isActive={example1.isOpen}
-                onClick={openExample1}
-                textWrap="truncate"
-              />
-            }
-            isOpen={example1.isOpen}
-            closePopover={closeExample1}
-            ownFocus
-            panelPaddingSize="s"
-            anchorPosition="downLeft">
-            {renderPopover1()}
-          </EuiPopover>
-        </EuiFlexItem>
+      <EuiPopover
+        style={{ display: 'block' }}
+        id="popover1"
+        button={
+          <EuiExpression
+            description="indices"
+            columnStyle={true}
+            value={example1.value}
+            isActive={example1.isOpen}
+            onClick={openExample1}
+          />
+        }
+        isOpen={example1.isOpen}
+        closePopover={closeExample1}
+        ownFocus
+        panelPaddingSize="s"
+        anchorPosition="downLeft">
+        {renderPopover1()}
+      </EuiPopover>
 
-        <EuiFlexItem style={{ maxWidth: 220 }}>
-          <EuiPopover
-            id="popover2"
-            panelPaddingSize="s"
-            button={
-              <EuiExpression
-                description="of"
-                value={example2.value}
-                isActive={example2.isOpen}
-                onClick={openExample2}
-                textWrap="truncate"
-              />
-            }
-            isOpen={example2.isOpen}
-            closePopover={closeExample2}
-            ownFocus
-            anchorPosition="downLeft">
-            {renderPopover2()}
-          </EuiPopover>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      <EuiPopover
+        style={{ display: 'block' }}
+        id="popover2"
+        panelPaddingSize="s"
+        button={
+          <EuiExpression
+            description="of"
+            columnStyle={true}
+            value={example2.value}
+            isActive={example2.isOpen}
+            onClick={openExample2}
+          />
+        }
+        isOpen={example2.isOpen}
+        closePopover={closeExample2}
+        ownFocus
+        anchorPosition="downLeft">
+        {renderPopover2()}
+      </EuiPopover>
     </div>
   );
 };

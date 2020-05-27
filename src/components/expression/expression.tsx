@@ -75,6 +75,10 @@ export type EuiExpressionProps = CommonProps & {
    * Expression's text wraps by default. To truncate it, pass 'truncate'.
    */
   textWrap?: keyof typeof textWrapToClassNameMap;
+  /**
+   * Adds an solid border at the bottom
+   */
+  columnStyle?: boolean;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -96,6 +100,7 @@ export const EuiExpression: React.FunctionComponent<
   uppercase = true,
   textWrap = 'break-word',
   isActive = false,
+  columnStyle = false,
   onClick,
   ...rest
 }) => {
@@ -106,6 +111,7 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isActive': isActive,
       'euiExpression-isClickable': onClick,
       'euiExpression-isUppercase': uppercase,
+      'euiExpression-columns': columnStyle,
     },
     textWrapToClassNameMap[textWrap],
     colorToClassNameMap[color]
