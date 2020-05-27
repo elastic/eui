@@ -534,12 +534,23 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 
 const generateId = htmlIdGenerator();
 
-let iconComponentCache: { [key: string]: ComponentType } = {};
-export const clearIconComponentCache = (icon?: EuiIconType) => {
-  if (icon != null) {
-    delete iconComponentCache[icon];
+let iconComponentCache: { [iconType: string]: ComponentType } = {};
+
+export const clearIconComponentCache = (iconType?: EuiIconType) => {
+  if (iconType != null) {
+    delete iconComponentCache[iconType];
   } else {
     iconComponentCache = {};
+  }
+};
+
+export const appendIconComponentCache = (iconTypeToIconComponentMap: {
+  [iconType: string]: ComponentType;
+}) => {
+  for (const iconType in iconTypeToIconComponentMap) {
+    if (iconTypeToIconComponentMap.hasOwnProperty(iconType)) {
+      iconComponentCache[iconType] = iconTypeToIconComponentMap[iconType];
+    }
   }
 };
 

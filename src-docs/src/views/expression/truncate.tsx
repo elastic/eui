@@ -11,7 +11,7 @@ import {
 } from '../../../../src/components';
 
 // Rise the popovers above GuidePageSideNav
-const POPOVER_STYLE = { zIndex: '200' };
+const POPOVER_STYLE = { zIndex: '300' };
 
 export default () => {
   const [example1, setExample1] = useState({

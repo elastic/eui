@@ -18,8 +18,12 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { requiredProps } from '../../test';
+
+jest.mock('../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 import {
   EuiBasicTable,
@@ -437,6 +441,31 @@ describe('EuiBasicTable', () => {
       onChange: () => {},
     };
     const component = shallow(<EuiBasicTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with initial selection', () => {
+    const props: EuiBasicTableProps<BasicItem> = {
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+      ],
+      selection: {
+        onSelectionChange: () => undefined,
+        initialSelected: [{ id: '1', name: 'name1' }],
+      },
+    };
+    const component = mount(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });

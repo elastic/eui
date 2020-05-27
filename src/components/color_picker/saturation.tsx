@@ -208,3 +208,5 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
     );
   }
 );
+
+EuiSaturation.displayName = 'EuiSaturation';

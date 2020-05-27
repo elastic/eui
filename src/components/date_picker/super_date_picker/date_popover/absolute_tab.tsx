@@ -23,7 +23,7 @@ import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line
 
 import dateMath from '@elastic/datemath';
 
-import { EuiDatePicker } from '../../date_picker';
+import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { toSentenceCase } from '../../../../services/string/to_case';
 import { EuiDatePopoverContentProps } from './date_popover_content';
@@ -73,12 +73,12 @@ export class EuiAbsoluteTab extends Component<
     };
   }
 
-  handleChange: EuiDatePopoverContentProps['onChange'] = (date, event) => {
+  handleChange: EuiDatePickerProps['onChange'] = (date, event) => {
     const { onChange } = this.props;
     if (date === null) {
       return;
     }
-    onChange(typeof date === 'string' ? date : date.toISOString(), event);
+    onChange(date.toISOString(), event);
 
     const valueAsMoment = moment(date);
     this.setState({
@@ -97,7 +97,7 @@ export class EuiAbsoluteTab extends Component<
     );
     const dateIsValid = valueAsMoment.isValid();
     if (dateIsValid) {
-      onChange(valueAsMoment, event);
+      onChange(valueAsMoment.toISOString(), event);
     }
     this.setState({
       textInputValue: event.target.value as string,

@@ -61,6 +61,14 @@
     .euiExpression__value {
       @include euiTextBreakWord;
     }
+
+    .euiExpression__description {
+      flex-shrink: 1;
+    }
+
+    .euiExpression__value {
+      flex-shrink: 2;
+    }
   }
 }
 
