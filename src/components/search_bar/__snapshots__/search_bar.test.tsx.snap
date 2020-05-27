@@ -35,8 +35,10 @@ exports[`SearchBar render - no config, no query 1`] = `
     grow={true}
   >
     <EuiSearchBox
+      incremental={false}
       isInvalid={false}
       onSearch={[Function]}
+      placeholder="Search..."
       query=""
     />
   </EuiFlexItem>
@@ -54,8 +56,10 @@ exports[`SearchBar render - provided query, filters 1`] = `
     grow={true}
   >
     <EuiSearchBox
+      incremental={false}
       isInvalid={false}
       onSearch={[Function]}
+      placeholder="Search..."
       query="this is a query"
     />
   </EuiFlexItem>
@@ -164,8 +168,10 @@ exports[`SearchBar render - tools 1`] = `
     grow={true}
   >
     <EuiSearchBox
+      incremental={false}
       isInvalid={false}
       onSearch={[Function]}
+      placeholder="Search..."
       query=""
     />
   </EuiFlexItem>

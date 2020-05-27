@@ -2,6 +2,7 @@
 
 exports[`EuiFieldSearch is rendered 1`] = `
 <eui-form-control-layout
+  clear="[object Object]"
   compressed="false"
   fullwidth="false"
   icon="search"
@@ -34,7 +35,6 @@ exports[`EuiFieldSearch props append is rendered 1`] = `
     <input
       class="euiFieldSearch euiFieldText--inGroup"
       type="search"
-      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -51,7 +51,6 @@ exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
     <input
       class="euiFieldSearch euiFieldSearch--fullWidth"
       type="search"
-      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -70,7 +69,6 @@ exports[`EuiFieldSearch props isInvalid is rendered 1`] = `
     <input
       class="euiFieldSearch"
       type="search"
-      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -87,7 +85,6 @@ exports[`EuiFieldSearch props isLoading is rendered 1`] = `
     <input
       class="euiFieldSearch euiFieldSearch-isLoading"
       type="search"
-      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -105,7 +102,6 @@ exports[`EuiFieldSearch props prepend is rendered 1`] = `
     <input
       class="euiFieldSearch euiFieldText--inGroup"
       type="search"
-      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
