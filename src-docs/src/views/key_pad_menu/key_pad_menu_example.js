@@ -91,16 +91,19 @@ export const KeyPadMenuExample = {
             anchor as well as a button by specifying <EuiCode>href</EuiCode> or
             <EuiCode>onClick</EuiCode> respectively.
           </p>
-          <EuiCallOut iconType="accessibility" title="Accessibility pro tip">
-            <p>
-              If the menu is a bunch of links and is acting as navigation for
-              your app: wrap the whole thing in a{' '}
-              <EuiCode language="html">
-                &lt;nav aria-label=&quot;nav title&quot;&gt;&lt;/nav&gt;
-              </EuiCode>
-              .
-            </p>
-          </EuiCallOut>
+          <EuiCallOut
+            iconType="accessibility"
+            title={
+              <>
+                If the menu provides navigation for your application, wrap the{' '}
+                <strong>EuiKeyPadMenu</strong> with{' '}
+                <EuiCode language="html">
+                  {'<nav aria-label="Nav title"></nav>'}
+                </EuiCode>
+                .
+              </>
+            }
+          />
         </>
       ),
       snippet: keyPadMenuItemButtonSnippet,

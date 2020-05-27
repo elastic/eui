@@ -1,102 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiKeyPadMenuItem is rendered 1`] = `
-<li>
-  <a
-    aria-label="aria-label"
-    class="euiKeyPadMenuItem testClass1 testClass2"
-    data-test-subj="test subject string"
-    href="#"
-    rel="noreferrer"
+<a
+  aria-label="aria-label"
+  class="euiKeyPadMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="#"
+  rel="noreferrer"
+>
+  <div
+    class="euiKeyPadMenuItem__inner"
   >
     <div
-      class="euiKeyPadMenuItem__inner"
+      class="euiKeyPadMenuItem__icon"
     >
-      <div
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
-      </div>
-      <p
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </p>
+      Icon
     </div>
-  </a>
-</li>
+    <p
+      class="euiKeyPadMenuItem__label"
+    >
+      Label
+    </p>
+  </div>
+</a>
 `;
 
 exports[`EuiKeyPadMenuItem renders button 1`] = `
-<li>
-  <button
-    class="euiKeyPadMenuItem"
-    type="button"
+<button
+  class="euiKeyPadMenuItem"
+  type="button"
+>
+  <div
+    class="euiKeyPadMenuItem__inner"
   >
     <div
-      class="euiKeyPadMenuItem__inner"
+      class="euiKeyPadMenuItem__icon"
     >
-      <div
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
-      </div>
-      <p
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </p>
+      Icon
     </div>
-  </button>
-</li>
+    <p
+      class="euiKeyPadMenuItem__label"
+    >
+      Label
+    </p>
+  </div>
+</button>
 `;
 
 exports[`EuiKeyPadMenuItem renders href 1`] = `
-<li>
-  <a
-    class="euiKeyPadMenuItem"
-    href="#"
-    rel="noreferrer"
+<a
+  class="euiKeyPadMenuItem"
+  href="#"
+  rel="noreferrer"
+>
+  <div
+    class="euiKeyPadMenuItem__inner"
   >
     <div
-      class="euiKeyPadMenuItem__inner"
+      class="euiKeyPadMenuItem__icon"
     >
-      <div
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
-      </div>
-      <p
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </p>
+      Icon
     </div>
-  </a>
-</li>
+    <p
+      class="euiKeyPadMenuItem__label"
+    >
+      Label
+    </p>
+  </div>
+</a>
 `;
 
 exports[`EuiKeyPadMenuItem renders href with rel 1`] = `
-<li>
-  <a
-    class="euiKeyPadMenuItem"
-    href="#"
-    rel="noreferrer"
+<a
+  class="euiKeyPadMenuItem"
+  href="#"
+  rel="noreferrer"
+>
+  <div
+    class="euiKeyPadMenuItem__inner"
   >
     <div
-      class="euiKeyPadMenuItem__inner"
+      class="euiKeyPadMenuItem__icon"
     >
-      <div
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
-      </div>
-      <p
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </p>
+      Icon
     </div>
-  </a>
-</li>
+    <p
+      class="euiKeyPadMenuItem__label"
+    >
+      Label
+    </p>
+  </div>
+</a>
 `;

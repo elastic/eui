@@ -131,19 +131,17 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   }
 
   return (
-    <li>
-      <Element
-        className={classes}
-        {...relObj as HTMLAttributes<HTMLElement>}
-        {...rest as HTMLAttributes<HTMLElement>}>
-        {renderContent(
-          children,
-          label,
-          betaBadgeLabel,
-          betaBadgeTooltipContent,
-          betaBadgeIconType
-        )}
-      </Element>
-    </li>
+    <Element
+      className={classes}
+      {...relObj as HTMLAttributes<HTMLElement>}
+      {...rest as HTMLAttributes<HTMLElement>}>
+      {renderContent(
+        children,
+        label,
+        betaBadgeLabel,
+        betaBadgeTooltipContent,
+        betaBadgeIconType
+      )}
+    </Element>
   );
 };

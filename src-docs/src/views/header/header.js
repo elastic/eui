@@ -66,7 +66,7 @@ export default () => {
 
     return (
       <EuiHeaderBreadcrumbs
-        aria-label="breadcrumbs example"
+        aria-label="Header breadcrumbs example"
         breadcrumbs={breadcrumbs}
       />
     );

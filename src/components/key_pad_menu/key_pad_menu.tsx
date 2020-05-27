@@ -33,7 +33,9 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
 
   return (
     <ul className={classes} {...rest}>
-      {children}
+      {React.Children.map(children, child => (
+        <li>{child}</li>
+      ))}
     </ul>
   );
 };
