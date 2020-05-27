@@ -46,28 +46,6 @@ const routes = [
   ...childRoutes,
 ];
 
-// Update document title with route name.
-const onRouteEnter = route => {
-  const leafRoute = route.routes[route.routes.length - 1];
-  document.title = leafRoute.name
-    ? `Elastic UI Framework - ${leafRoute.name}`
-    : 'Elastic UI Framework';
-};
-
-const syncTitleWithRoutes = routesList => {
-  if (!routesList) return;
-  routesList.forEach(route => {
-    route.onEnter = onRouteEnter; // eslint-disable-line no-param-reassign
-    if (route.indexRoute) {
-      // Index routes have a weird relationship with their "parent" routes,
-      // so it seems we need to give their own onEnter hooks.
-      route.indexRoute.onEnter = onRouteEnter; // eslint-disable-line no-param-reassign
-    }
-    syncTitleWithRoutes(route.childRoutes);
-  });
-};
-
-syncTitleWithRoutes(routes);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
