@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -37,140 +37,122 @@ Example country object:
 
 const store = createDataStore();
 
-export class Table extends Component {
-  constructor(props) {
-    super(props);
+export const Table = () => {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [showPerPageOptions, setShowPerPageOptions] = useState(true);
 
-    this.state = {
-      pageIndex: 0,
-      pageSize: 5,
-      showPerPageOptions: true,
-    };
-  }
-
-  onTableChange = ({ page = {} }) => {
+  const onTableChange = ({ page = {} }) => {
     const { index: pageIndex, size: pageSize } = page;
 
-    this.setState({
-      pageIndex,
-      pageSize,
-    });
+    setPageIndex(pageIndex);
+    setPageSize(pageSize);
   };
 
-  renderStatus = online => {
+  const renderStatus = online => {
     const color = online ? 'success' : 'danger';
     const label = online ? 'Online' : 'Offline';
     return <EuiHealth color={color}>{label}</EuiHealth>;
   };
 
-  togglePerPageOptions = () =>
-    this.setState(state => ({ showPerPageOptions: !state.showPerPageOptions }));
+  const togglePerPageOptions = () => setShowPerPageOptions(!showPerPageOptions);
 
-  render() {
-    const { pageIndex, pageSize, showPerPageOptions } = this.state;
+  const { pageOfItems, totalItemCount } = store.findUsers(pageIndex, pageSize);
 
-    const { pageOfItems, totalItemCount } = store.findUsers(
-      pageIndex,
-      pageSize
-    );
+  const columns = [
+    {
+      field: 'firstName',
+      name: 'First Name',
+      truncateText: true,
+      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      },
+    },
+    {
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+      mobileOptions: {
+        show: false,
+      },
+    },
+    {
+      field: 'firstName',
+      name: 'Full Name',
+      mobileOptions: {
+        header: false,
+        only: true,
+        enlarge: true,
+        fullWidth: true,
+      },
+      render: (name, item) => (
+        <EuiFlexGroup responsive={false} alignItems="center">
+          <EuiFlexItem>
+            {item.firstName} {item.lastName}
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>{renderStatus(item.online)}</EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+    },
+    {
+      field: 'github',
+      name: 'Github',
+      render: username => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">
+          {username}
+        </EuiLink>
+      ),
+    },
+    {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: date => formatDate(date, 'dobLong'),
+    },
+    {
+      field: 'nationality',
+      name: 'Nationality',
+      render: countryCode => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      },
+    },
+    {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: online => renderStatus(online),
+    },
+  ];
 
-    const columns = [
-      {
-        field: 'firstName',
-        name: 'First Name',
-        truncateText: true,
-        hideForMobile: true,
-        mobileOptions: {
-          show: false,
-        },
-      },
-      {
-        field: 'lastName',
-        name: 'Last Name',
-        truncateText: true,
-        mobileOptions: {
-          show: false,
-        },
-      },
-      {
-        field: 'firstName',
-        name: 'Full Name',
-        mobileOptions: {
-          header: false,
-          only: true,
-          enlarge: true,
-          fullWidth: true,
-        },
-        render: (name, item) => (
-          <EuiFlexGroup responsive={false} alignItems="center">
-            <EuiFlexItem>
-              {item.firstName} {item.lastName}
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              {this.renderStatus(item.online)}
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        ),
-      },
-      {
-        field: 'github',
-        name: 'Github',
-        render: username => (
-          <EuiLink href={`https://github.com/${username}`} target="_blank">
-            {username}
-          </EuiLink>
-        ),
-      },
-      {
-        field: 'dateOfBirth',
-        name: 'Date of Birth',
-        dataType: 'date',
-        render: date => formatDate(date, 'dobLong'),
-      },
-      {
-        field: 'nationality',
-        name: 'Nationality',
-        render: countryCode => {
-          const country = store.getCountry(countryCode);
-          return `${country.flag} ${country.name}`;
-        },
-      },
-      {
-        field: 'online',
-        name: 'Online',
-        dataType: 'boolean',
-        render: online => this.renderStatus(online),
-      },
-    ];
+  const pagination = {
+    pageIndex,
+    pageSize,
+    totalItemCount,
+    pageSizeOptions: [3, 5, 8],
+    hidePerPageOptions: !showPerPageOptions,
+  };
 
-    const pagination = {
-      pageIndex,
-      pageSize,
-      totalItemCount,
-      pageSizeOptions: [3, 5, 8],
-      hidePerPageOptions: !showPerPageOptions,
-    };
-
-    return (
-      <div>
-        <EuiSwitch
-          checked={!this.state.showPerPageOptions}
-          label={
-            <span>
-              Hide per page options with{' '}
-              <EuiCode>pagination.hidePerPageOptions = true</EuiCode>
-            </span>
-          }
-          onChange={this.togglePerPageOptions}
-        />
-        <EuiSpacer size="xl" />
-        <EuiBasicTable
-          items={pageOfItems}
-          columns={columns}
-          pagination={pagination}
-          onChange={this.onTableChange}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <EuiSwitch
+        checked={!showPerPageOptions}
+        label={
+          <span>
+            Hide per page options with{' '}
+            <EuiCode>pagination.hidePerPageOptions = true</EuiCode>
+          </span>
+        }
+        onChange={togglePerPageOptions}
+      />
+      <EuiSpacer size="xl" />
+      <EuiBasicTable
+        items={pageOfItems}
+        columns={columns}
+        pagination={pagination}
+        onChange={onTableChange}
+      />
+    </div>
+  );
+};

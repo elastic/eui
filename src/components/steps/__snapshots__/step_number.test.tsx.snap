@@ -8,6 +8,14 @@ exports[`EuiStepNumber is rendered 1`] = `
 />
 `;
 
+exports[`EuiStepNumber props has titleSize is rendered 1`] = `
+<div
+  class="euiStepNumber"
+>
+  1
+</div>
+`;
+
 exports[`EuiStepNumber props isHollow is rendered 1`] = `
 <div
   class="euiStepNumber euiStepNumber-isHollow"

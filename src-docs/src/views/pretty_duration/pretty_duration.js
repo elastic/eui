@@ -57,7 +57,7 @@ export default function prettyDurationExample() {
     <Fragment>
       {examples.map(({ start, end, quickRanges, dateFormat }, idx) => (
         <div key={idx}>
-          <EuiCodeBlock paddingSize="s">
+          <EuiCodeBlock paddingSize="s" isCopyable language="js">
             prettyDuration(&apos;{start}&apos;, &apos;{end}&apos;,{' '}
             {JSON.stringify(quickRanges)}, &apos;
             {dateFormat}&apos;)

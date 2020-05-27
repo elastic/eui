@@ -80,10 +80,10 @@ export const CardExample = {
       props: { EuiCard },
       demo: <Card />,
       snippet: `<EuiCard
-  icon={<EuiIcon size="xxl" type={} />}
-  title=""
-  description=""
-  onClick={}
+  icon={icon}
+  title="title"
+  description="description"
+  onClick={handleClick}
 />`,
     },
     {
@@ -123,10 +123,10 @@ export const CardExample = {
       demo: <CardLayout />,
       snippet: `<EuiCard
   layout="horizontal"
-  icon={<EuiIcon size="xl" type={} />}
-  title=""
-  description=""
-  onClick={}
+  icon={icon}
+  title="title"
+  description="description"
+  onClick={handleClick}
 />`,
     },
     {
@@ -154,8 +154,15 @@ export const CardExample = {
                 Make sure that all images are the{' '}
                 <strong>same proportions</strong> when used in a singular row.
               </span>
-            }
-          />
+            }>
+            <p>
+              Also, when passing an <strong>element</strong> to the{' '}
+              <EuiCode>image</EuiCode> prop that consists solely of inline
+              elements or does not contain an
+              <EuiCode>{'<img />'}</EuiCode> element, each element will require
+              a style of <EuiCode>width: 100%</EuiCode>.
+            </p>
+          </EuiCallOut>
         </div>
       ),
       props: { EuiCard },
@@ -163,9 +170,9 @@ export const CardExample = {
       snippet: `<EuiCard
   textAlign="left"
   image="https://source.unsplash.com/400x200/?Nature"
-  title=""
-  description=""
-  onClick={}
+  title="title"
+  description="description"
+  onClick={handleClick}
 />`,
     },
     {
@@ -204,20 +211,10 @@ export const CardExample = {
       components: { EuiCard },
       demo: <CardFooter />,
       snippet: `<EuiCard
-  icon={<EuiIcon size="xxl" type="" />}
-  title=""
-  description=""
-  footer={
-    <div>
-      <EuiButton aria-label=""></EuiButton>
-      <EuiSpacer size="xs" />
-      <EuiText size="s">
-        <p>
-          Or try <EuiLink href="">this</EuiLink>
-        </p>
-      </EuiText>
-    </div>
-  }
+  icon={icon}
+  title="title"
+  description="description"
+  footer={footer}
 />`,
     },
     {
@@ -245,12 +242,12 @@ export const CardExample = {
       props: { EuiCard },
       demo: <CardBeta />,
       snippet: `<EuiCard
-  icon={<EuiIcon size="xxl" type={} />}
-  title=""
-  description=""
-  onClick={}
-  betaBadgeLabel=""
-  betaBadgeTooltipContent=""
+  icon={icon}
+  title="title"
+  description="description"
+  onClick={handleClick}
+  betaBadgeLabel="betaBadgeLabel"
+  betaBadgeTooltipContent={betaBadgeTooltipContent}
 />`,
     },
     {
@@ -286,20 +283,15 @@ export const CardExample = {
       props: { EuiCardSelect },
       demo: <CardSelectable />,
       snippet: `<EuiCard
-  icon={<EuiIcon />}
-  title=""
-  description=""
+  icon={icon}
+  title="title"
+  description="description"
   selectable={{
-    onClick: this.cardClicked,
-    isSelected: this.state.cardIsSelected,
-    isDisabled: this.state.cardIsDisabled,
+    onClick: cardClicked,
+    isSelected: cardIsSelected,
+    isDisabled: cardIsDisabled,
   }}
-  footer={<EuiButtonEmpty
-    onClick={e => {
-      e.stopPropagation();
-    }}
-    aria-label=""
-  />}
+  footer={footer}
 />`,
     },
     {
@@ -364,8 +356,8 @@ export const CardExample = {
       demo: <CardChildren />,
       snippet: `<EuiCard
   textAlign="left"
-  title=""
-  description="">
+  title="title"
+  description="description">
   <EuiText size="s">
     <ul>
       <li>Bullet 1</li>

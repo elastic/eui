@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiSideNav } from '../../../../src/components';
 
-export default function() {
+export default () => {
   const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
 
   const toggleOpenOnMobile = () => {
@@ -54,4 +54,4 @@ export default function() {
       items={sideNav}
     />
   );
-}
+};
