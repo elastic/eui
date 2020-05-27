@@ -5,7 +5,13 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiNavDrawer, EuiCode, EuiCallOut } from '../../../../src/components';
+import {
+  EuiNavDrawer,
+  EuiCode,
+  EuiCallOut,
+  EuiBadge,
+  EuiSpacer,
+} from '../../../../src/components';
 
 import NavDrawer from './nav_drawer';
 const navDrawerSource = require('!!raw-loader!./nav_drawer');
@@ -30,6 +36,24 @@ export const NavDrawerExample = {
       ],
       text: (
         <div>
+          <EuiBadge
+            color="danger"
+            href="https://github.com/elastic/eui/issues/1469"
+            target="_blank"
+            iconSide="right"
+            iconType="popout">
+            Set for deprecation. See details.
+          </EuiBadge>
+          <EuiSpacer />
+          <p>
+            Please use{' '}
+            <Link to="/navigation/collapsible-nav">
+              <strong>EuiCollapsableNav</strong>
+            </Link>{' '}
+            instead of <strong>EuiNavDrawer</strong> for your global navigation
+            needs. Feature enhancements are no longer being made to this
+            component.
+          </p>
           <p>
             <strong>EuiNavDrawer</strong> provides a side navigation feature
             that is complete with interactions and a mobile-friendly design. It

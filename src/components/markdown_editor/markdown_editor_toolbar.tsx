@@ -23,12 +23,15 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiFlexItem, EuiFlexGroup } from '../flex';
 import { EuiI18n } from '../i18n';
 import { EuiToolTip } from '../tool_tip';
+import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     markdownActions?: any;
-    viewMarkdownPreview?: boolean;
+    viewMode?: MARKDOWN_MODE;
     onClickPreview?: any;
+    uiPlugins: EuiMarkdownEditorUiPlugin[];
   };
 
 export class EuiMarkdownEditorToolbar extends Component<
@@ -90,7 +93,9 @@ export class EuiMarkdownEditorToolbar extends Component<
   };
 
   render() {
-    const { viewMarkdownPreview, onClickPreview } = this.props;
+    const { viewMode, onClickPreview, uiPlugins } = this.props;
+
+    const isPreviewing = viewMode === MODE_VIEWING;
 
     return (
       <div className="euiMarkdownEditor__toolbar">
@@ -108,7 +113,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -120,7 +125,7 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
@@ -132,15 +137,31 @@ export class EuiMarkdownEditorToolbar extends Component<
                   onClick={() => this.handleMdButtonClick(item.id)}
                   iconType={item.iconType}
                   aria-label={item.label}
-                  isDisabled={viewMarkdownPreview}
+                  isDisabled={isPreviewing}
                 />
               </EuiToolTip>
             ))}
+            {uiPlugins.length > 0 ? (
+              <>
+                <span className="euiMarkdownEditor__toolbar__divider" />
+                {uiPlugins.map(({ name, button }) => (
+                  <EuiToolTip key={name} content={button.label} delay="long">
+                    <EuiButtonIcon
+                      color="text"
+                      onClick={() => this.handleMdButtonClick(name)}
+                      iconType={button.iconType}
+                      aria-label={button.label}
+                      isDisabled={isPreviewing}
+                    />
+                  </EuiToolTip>
+                ))}
+              </>
+            ) : null}
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
             {/* The idea was to use the EuiButtonToggle but it doesn't work when pressing the enter key */}
-            {viewMarkdownPreview ? (
+            {isPreviewing ? (
               <EuiButtonEmpty
                 iconType="editorCodeBlock"
                 color="text"

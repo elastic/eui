@@ -17,4 +17,10 @@
  * under the License.
  */
 
-export { EuiMarkdownEditor } from './markdown_editor';
+export {
+  EuiMarkdownEditor,
+  EuiMarkdownEditorProps,
+  defaultParsingPlugins,
+  defaultProcessingPlugins,
+  EuiMarkdownContext,
+} from './markdown_editor';

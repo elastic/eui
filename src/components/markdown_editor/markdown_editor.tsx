@@ -17,112 +17,221 @@
  * under the License.
  */
 
-import React, { Component, HTMLAttributes } from 'react';
+import React, {
+  createContext,
+  createElement,
+  FunctionComponent,
+  HTMLAttributes,
+  useMemo,
+  useState,
+} from 'react';
+import unified, { PluggableList } from 'unified';
 import classNames from 'classnames';
+// @ts-ignore
+import emoji from 'remark-emoji';
+import markdown from 'remark-parse';
+// @ts-ignore
+import disableTokenizers from 'remark-disable-tokenizers';
+// @ts-ignore
+import remark2rehype from 'remark-rehype';
+// @ts-ignore
+import highlight from 'remark-highlight.js';
+// @ts-ignore
+import rehype2react from 'rehype-react';
+
 import { CommonProps } from '../common';
 import MarkdownActions from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 import { EuiMarkdownFormat } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
+import { htmlIdGenerator } from '../../services/accessibility';
+import { EuiLink } from '../link';
+import { EuiCodeBlock } from '../code';
+import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+
+interface ContextShape {
+  markdown: string;
+  setMarkdown(next: string): void;
+}
+export const EuiMarkdownContext = createContext<ContextShape>({
+  markdown: '',
+  setMarkdown() {},
+});
+
+function storeMarkdownTree() {
+  return function(tree: any, file: any) {
+    file.data.markdownTree = JSON.parse(JSON.stringify(tree));
+  };
+}
+
+export const defaultParsingPlugins: PluggableList = [
+  [markdown, {}],
+  [
+    disableTokenizers,
+    {
+      // disable the built-in task list / checkbox plugin in favour of a custom one
+      block: ['list'],
+    },
+  ],
+  [highlight, {}],
+  [emoji, { emoticon: true }],
+  [storeMarkdownTree, {}],
+];
+
+export const defaultProcessingPlugins: PluggableList = [
+  [
+    remark2rehype,
+    {
+      allowDangerousHtml: true,
+      handlers: {},
+    },
+  ],
+  [
+    rehype2react,
+    {
+      createElement: createElement,
+      components: {
+        a: EuiLink,
+        code: (props: any) =>
+          // if has classNames is a codeBlock using highlight js
+          props.className ? (
+            <EuiCodeBlock {...props} />
+          ) : (
+            <code className="euiMarkdownFormat__code" {...props} />
+          ),
+      },
+    },
+  ],
+];
 
 export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /** A unique ID to attach to the textarea. If one isn't provided, a random one
      * will be generated */
     editorId?: string;
-    /** A initial markdown content */
-    initialValue?: string;
+
+    /** A markdown content */
+    value: string;
+
+    /** Callback function when markdown content is modified */
+    onChange: (value: string) => void;
+
     /** The height of the content/preview area */
-    height: number;
+    height?: number;
+
+    /** array of unified plugins to parse content into an AST */
+    parsingPluginList?: PluggableList;
+
+    /** array of unified plugins to convert the AST into a ReactNode */
+    processingPluginList?: PluggableList;
+
+    uiPlugins?: EuiMarkdownEditorUiPlugin[];
   };
 
-export interface MarkdownEditorState {
-  editorContent: string;
-  viewMarkdownPreview: boolean;
-  files: FileList | null;
-}
+export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
+  className,
+  editorId: _editorId,
+  value,
+  onChange,
+  height = 150,
+  parsingPluginList = defaultParsingPlugins,
+  processingPluginList = defaultProcessingPlugins,
+  uiPlugins = [],
+  ...rest
+}) => {
+  const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
+  const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [_editorId]);
 
-export class EuiMarkdownEditor extends Component<
-  EuiMarkdownEditorProps,
-  MarkdownEditorState
-> {
-  editorId: string;
-  markdownActions: MarkdownActions;
+  const markdownActions = useMemo(
+    () => new MarkdownActions(editorId, uiPlugins),
 
-  static defaultProps = {
-    height: 150,
-  };
+    // uiPlugins _is_ accounted for
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [editorId, uiPlugins.map(({ name }) => name).join(',')]
+  );
 
-  constructor(props: EuiMarkdownEditorProps) {
-    super(props);
+  const classes = classNames('euiMarkdownEditor', className);
 
-    this.state = {
-      editorContent: this.props.initialValue!,
-      viewMarkdownPreview: false,
-      files: null,
-    };
+  const processor = useMemo(
+    () =>
+      unified()
+        .use(parsingPluginList)
+        .use(processingPluginList),
+    [parsingPluginList, processingPluginList]
+  );
 
-    // If an ID wasn't provided, just generate a rando
-    this.editorId =
-      this.props.editorId ||
-      Math.random()
-        .toString(35)
-        .substring(2, 10);
-    this.markdownActions = new MarkdownActions(this.editorId);
+  // const Compiler = (tree, file) => {
+  //   return JSON.stringify(tree, null, 2);
+  // }
+  //
+  // function stringify (options) {
+  //   this.Compiler = Compiler;
+  // }
+  //
+  // console.log(unified().use(parsingPluginList).use([remark2rehype, { allowDangerousHTML: true }]).use(rehypestringify).processSync(value));
+  // console.log(
+  //   JSON.parse(
+  //     unified()
+  //     .use(parsingPluginList)
+  //     .use(remark2rehype, {
+  //       allowDangerousHTML: true,
+  //       handlers: {
+  //         chart(h, node) {
+  //           console.log(h);
+  //           console.log(node);
+  //           return h(node.position, 'strong', {className: 'test'}, unistBuilder('test', 'HEY'));
+  //         }
+  //       },
+  //       unknownHandler(h, node) {
+  //         console.log(h);
+  //         console.log(node);
+  //         h(node.position, 'code', 'THIS IS A TEST');
+  //       }
+  //     })
+  //     .use(stringify)
+  //     .processSync(value)
+  //     .contents
+  //   )
+  // );
 
-    this.handleMdButtonClick = this.handleMdButtonClick.bind(this);
-  }
+  const isPreviewing = viewMode === MODE_VIEWING;
 
-  handleMdButtonClick = (mdButtonId: string) => {
-    this.markdownActions.do(mdButtonId);
-  };
+  const contextValue = useMemo<ContextShape>(
+    () => ({ markdown: value, setMarkdown: onChange }),
+    [value, onChange]
+  );
 
-  onClickPreview = () => {
-    this.setState({ viewMarkdownPreview: !this.state.viewMarkdownPreview });
-  };
-
-  onAttachFiles = (files: FileList | null) => {
-    console.log('List of attached files -->', files);
-    this.setState({
-      files: files,
-    });
-  };
-
-  render() {
-    const { className, editorId, initialValue, height, ...rest } = this.props;
-
-    const { viewMarkdownPreview } = this.state;
-
-    const classes = classNames('euiMarkdownEditor', className);
-
-    return (
+  return (
+    <EuiMarkdownContext.Provider value={contextValue}>
       <div className={classes} {...rest}>
         <EuiMarkdownEditorToolbar
-          markdownActions={this.markdownActions}
-          onClickPreview={this.onClickPreview}
-          viewMarkdownPreview={viewMarkdownPreview}
+          markdownActions={markdownActions}
+          onClickPreview={() =>
+            setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
+          }
+          viewMode={viewMode}
+          uiPlugins={uiPlugins}
         />
 
-        {this.state.viewMarkdownPreview ? (
+        {isPreviewing ? (
           <div
             className="euiMarkdownEditor__previewContainer"
             style={{ height: `${height}px` }}>
-            <EuiMarkdownFormat>{this.state.editorContent}</EuiMarkdownFormat>
+            <EuiMarkdownFormat processor={processor}>{value}</EuiMarkdownFormat>
           </div>
         ) : (
           <EuiMarkdownEditorDropZone>
             <EuiMarkdownEditorTextArea
               height={height}
-              id={this.editorId}
-              onChange={(e: any) => {
-                this.setState({ editorContent: e.target.value });
-              }}
-              value={this.state.editorContent}
+              id={editorId}
+              onChange={e => onChange(e.target.value)}
+              value={value}
             />
           </EuiMarkdownEditorDropZone>
         )}
       </div>
-    );
-  }
-}
+    </EuiMarkdownContext.Provider>
+  );
+};

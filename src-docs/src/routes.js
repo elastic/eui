@@ -174,6 +174,8 @@ import { TreeViewExample } from './views/tree_view/tree_view_example';
 
 import { ResizeObserverExample } from './views/resize_observer/resize_observer_example';
 
+import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
+
 import { ResponsiveExample } from './views/responsive/responsive_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
@@ -228,6 +230,7 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
+import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -330,6 +333,7 @@ const navigation = [
       PageExample,
       PanelExample,
       PopoverExample,
+      ResizableContainerExample,
       SpacerExample,
     ].map(example => createExample(example)),
   },
@@ -420,6 +424,7 @@ const navigation = [
       ElasticChartsSparklinesExample,
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
+      ElasticChartsPieExample,
     ].map(example => createExample(example)),
   },
   {

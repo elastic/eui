@@ -276,3 +276,240 @@ export const GITHUB_DATASET = [
     count: 11000,
   },
 ];
+
+export const GITHUB_DATASET_MOD = [
+  {
+    total: 'Total',
+    vizType: 'Data Table',
+    issueType: 'Bug',
+    count: 24,
+  },
+  {
+    total: 'Total',
+    vizType: 'Data Table',
+    issueType: 'Request',
+    count: 22,
+  },
+  {
+    total: 'Total',
+    vizType: 'Tagcloud',
+    issueType: 'Bug',
+    count: 19,
+  },
+  {
+    total: 'Total',
+    vizType: 'Tagcloud',
+    issueType: 'Request',
+    count: 13,
+  },
+  {
+    total: 'Total',
+    vizType: 'TSVB',
+    issueType: 'Bug',
+    count: 86,
+  },
+  {
+    total: 'Total',
+    vizType: 'TSVB',
+    issueType: 'Request',
+    count: 123,
+  },
+  {
+    total: 'Total',
+    vizType: 'Timelion',
+    issueType: 'Bug',
+    count: 58,
+  },
+  {
+    total: 'Total',
+    vizType: 'Timelion',
+    issueType: 'Request',
+    count: 93,
+  },
+  {
+    total: 'Total',
+    vizType: 'Vega vis',
+    issueType: 'Bug',
+    count: 11,
+  },
+  {
+    total: 'Total',
+    vizType: 'Vega vis',
+    issueType: 'Request',
+    count: 38,
+  },
+  {
+    total: 'Total',
+    vizType: 'Other',
+    issueType: 'Bug',
+    count: 10,
+  },
+  {
+    total: 'Total',
+    vizType: 'Other',
+    issueType: 'Request',
+    count: 18,
+  },
+];
+
+export const BROWSER_DATA_2019 = [
+  {
+    browser: 'Chrome',
+    percent: 61.72,
+  },
+  {
+    browser: 'Safari',
+    percent: 15.23,
+  },
+  {
+    browser: 'Firefox',
+    percent: 4.66,
+  },
+  {
+    browser: 'Samsung Internet',
+    percent: '3.64',
+  },
+  {
+    browser: 'UC Browser',
+    percent: '3.83',
+  },
+  {
+    browser: 'Opera',
+    percent: '2.91',
+  },
+  {
+    browser: 'IE',
+    percent: '2.7',
+  },
+  {
+    browser: 'Edge Legacy',
+    percent: '2.13',
+  },
+  {
+    browser: 'Android',
+    percent: '1.15',
+  },
+  {
+    browser: 'KaiOS',
+    percent: '0.54',
+  },
+  {
+    browser: 'Yandex Browser',
+    percent: '0.24',
+  },
+  {
+    browser: 'QQ Browser',
+    percent: '0.22',
+  },
+  {
+    browser: 'Puffin',
+    percent: '0.12',
+  },
+  {
+    browser: 'Coc Coc',
+    percent: '0.09',
+  },
+  {
+    browser: 'IEMobile',
+    percent: '0.1',
+  },
+  {
+    browser: 'Chromium',
+    percent: '0.08',
+  },
+  {
+    browser: 'Whale Browser',
+    percent: '0.01',
+  },
+  {
+    browser: 'Sogou Explorer',
+    percent: '0.08',
+  },
+  {
+    browser: 'Sony PS4',
+    percent: '0.06',
+  },
+  {
+    browser: 'mCent',
+    percent: '0.21',
+  },
+  {
+    browser: 'Maxthon',
+    percent: '0.04',
+  },
+  {
+    browser: 'Mozilla',
+    percent: '0.03',
+  },
+  {
+    browser: 'Vivaldi',
+    percent: '0.02',
+  },
+  {
+    browser: '360 Safe Browser',
+    percent: '0.03',
+  },
+  {
+    browser: 'Unknown',
+    percent: '0.03',
+  },
+  {
+    browser: 'BlackBerry',
+    percent: '0.02',
+  },
+  {
+    browser: 'Nokia',
+    percent: '0.03',
+  },
+  {
+    browser: 'Pale Moon',
+    percent: '0.01',
+  },
+  {
+    browser: 'Other',
+    percent: '0.06',
+  },
+];
+
+export const DAYS_OF_RAIN = [
+  {
+    season: 'Spring',
+    days: 68,
+    precipitation: 'rain',
+  },
+  {
+    season: 'Summer',
+    days: 46,
+    precipitation: 'rain',
+  },
+  {
+    season: 'Fall',
+    days: 72,
+    precipitation: 'rain',
+  },
+  {
+    season: 'Winter',
+    days: 24,
+    precipitation: 'rain',
+  },
+  {
+    season: 'Spring',
+    days: 22,
+    precipitation: 'none',
+  },
+  {
+    season: 'Summer',
+    days: 44,
+    precipitation: 'none',
+  },
+  {
+    season: 'Fall',
+    days: 18,
+    precipitation: 'none',
+  },
+  {
+    season: 'Winter',
+    days: 66,
+    precipitation: 'none',
+  },
+];

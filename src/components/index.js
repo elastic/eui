@@ -212,7 +212,12 @@ export {
   EuiPinnableListGroup,
 } from './list_group';
 
-export { EuiMarkdownEditor } from './markdown_editor';
+export {
+  EuiMarkdownEditor,
+  EuiMarkdownContext,
+  defaultProcessingPlugins,
+  defaultParsingPlugins,
+} from './markdown_editor';
 export { EuiMark } from './mark';
 
 export {
@@ -330,3 +335,5 @@ export { EuiToggle } from './toggle';
 export { EuiIconTip, EuiToolTip } from './tool_tip';
 
 export { EuiHideFor, EuiShowFor } from './responsive';
+
+export { EuiResizableContainer } from './resizable_container';
