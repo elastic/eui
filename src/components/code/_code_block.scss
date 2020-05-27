@@ -185,9 +185,12 @@
     color: $euiCodeBlockFunctionTitleColor;
   }
 
-  .hljs-tag,
-  .hljs-name  {
+  .hljs-tag {
     color: $euiCodeBlockTagColor;
+  }
+
+  .hljs-name  {
+    color: euiCodeBlockNameColor;
   }
 
   .hljs-type,
