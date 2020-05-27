@@ -33,9 +33,9 @@ describe('EuiSelectableSearch', () => {
   });
 
   describe('props', () => {
-    test('inputValue', () => {
+    test('defaultValue', () => {
       const component = render(
-        <EuiSelectableSearch options={[]} inputValue="Mi" />
+        <EuiSelectableSearch options={[]} defaultValue="Mi" />
       );
 
       expect(component).toMatchSnapshot();
