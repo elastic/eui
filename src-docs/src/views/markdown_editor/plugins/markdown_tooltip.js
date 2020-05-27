@@ -62,13 +62,13 @@ function TooltipParser() {
     }
 
     const now = eat.now();
-    now.column += 11 + tooltipText.length;
-    now.offset += 11 + tooltipText.length;
+    now.column += 10;
+    now.offset += 10;
     const children = this.tokenizeInline(tooltipAnchor, now);
 
     return eat(`!{tooltip[${tooltipAnchor}](${tooltipText})}`)({
       type: 'tooltipPlugin',
-      configuration: { content: tooltipText },
+      content: tooltipText,
       children,
     });
   }
@@ -83,7 +83,7 @@ function TooltipParser() {
 }
 
 const tooltipMarkdownHandler = (h, node) => {
-  return h(node.position, 'tooltipPlugin', node.configuration, all(h, node));
+  return h(node.position, 'tooltipPlugin', node, all(h, node));
 };
 const tooltipMarkdownRenderer = ({ content, children }) => {
   return (

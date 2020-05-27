@@ -17,10 +17,20 @@
  * under the License.
  */
 
-export {
-  EuiMarkdownEditor,
-  EuiMarkdownEditorProps,
-  defaultParsingPlugins,
-  defaultProcessingPlugins,
-} from './markdown_editor';
-export { EuiMarkdownContext } from './markdown_context';
+import { createContext } from 'react';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+
+interface MarkdownPosition {
+  start: { line: number; column: number; offset: number };
+  end: { line: number; column: number; offset: number };
+}
+
+export interface ContextShape {
+  openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) => void;
+  replaceNode(position: MarkdownPosition, next: string): void;
+}
+
+export const EuiMarkdownContext = createContext<ContextShape>({
+  openPluginEditor: () => {},
+  replaceNode() {},
+});

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Chart,
   Settings,
@@ -7,6 +7,18 @@ import {
   DataGenerator,
 } from '@elastic/charts';
 import { EUI_CHARTS_THEME_LIGHT } from '../../../../../src/themes/charts/themes';
+import {
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiForm,
+  EuiFormRow,
+  EuiSelect,
+  EuiRange,
+} from '../../../../../src/components';
 import {
   euiPaletteColorBlind,
   euiPaletteComplimentary,
@@ -41,42 +53,90 @@ const chartDemoPlugin = {
     label: 'Chart',
     iconType: 'visArea',
   },
-  formatting: {
-    prefix: '!{chart',
-    suffix: '}',
-    trimFirst: true,
+  editor: function ChartEditor({ node, onSave, onCancel }) {
+    const [palette, setPalette] = useState((node && node.palette) || 4);
+    const [height, setHeight] = useState((node && node.height) || 300);
+
+    return (
+      <>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>Chart data</EuiModalHeaderTitle>
+        </EuiModalHeader>
+
+        <EuiModalBody>
+          <>
+            <EuiForm>
+              <EuiFormRow label="Palette">
+                <EuiSelect
+                  options={[
+                    { value: 4, text: 'red' },
+                    { value: 5, text: 'green' },
+                  ]}
+                  value={palette}
+                  onChange={e => setPalette(parseInt(e.target.value, 10))}
+                />
+              </EuiFormRow>
+
+              <EuiFormRow label="Height">
+                <EuiRange
+                  value={height}
+                  min={100}
+                  max={500}
+                  step={10}
+                  showValue
+                  valueAppend="px"
+                  onChange={e => setHeight(parseInt(e.target.value, 10))}
+                />
+              </EuiFormRow>
+            </EuiForm>
+            <ChartMarkdownRenderer palette={palette} height={height} />
+          </>
+        </EuiModalBody>
+
+        <EuiModalFooter>
+          <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
+
+          <EuiButton
+            onClick={() =>
+              onSave(`!{chart${JSON.stringify({ palette, height })}}`)
+            }
+            fill>
+            Save
+          </EuiButton>
+        </EuiModalFooter>
+      </>
+    );
   },
 };
 
 function ChartParser() {
   const Parser = this.Parser;
-  const tokenizers = Parser.prototype.inlineTokenizers;
-  const methods = Parser.prototype.inlineMethods;
+  const tokenizers = Parser.prototype.blockTokenizers;
+  const methods = Parser.prototype.blockMethods;
 
   function tokenizeChart(eat, value, silent) {
     if (value.startsWith('!{chart') === false) return false;
 
     const nextChar = value[7];
 
-    if (nextChar !== ' ' && nextChar !== '}') return false; // this isn't actually a chart
+    if (nextChar !== '{' && nextChar !== '}') return false; // this isn't actually a chart
 
     if (silent) {
       return true;
     }
 
     // is there a configuration?
-    const hasConfiguration = nextChar === ' ';
+    const hasConfiguration = nextChar === '{';
 
     let match = '!{chart';
     let configuration = {};
 
     if (hasConfiguration) {
-      match += ' ';
       let configurationString = '';
 
       let openObjects = 0;
 
-      for (let i = 8; i < value.length; i++) {
+      for (let i = 7; i < value.length; i++) {
         const char = value[i];
         if (char === '{') {
           openObjects++;
@@ -102,25 +162,18 @@ function ChartParser() {
     match += '}';
     return eat(match)({
       type: 'chartDemoPlugin',
-      configuration,
+      ...configuration,
     });
   }
-  tokenizeChart.notInBlock = true;
-  tokenizeChart.notInList = true;
-  tokenizeChart.notInLink = true;
-
-  tokenizeChart.locator = function locateChart(value, fromIndex) {
-    return value.indexOf('!{chart', fromIndex);
-  };
 
   tokenizers.chart = tokenizeChart;
   methods.splice(methods.indexOf('text'), 0, 'chart');
 }
 
 const chartMarkdownHandler = (h, node) => {
-  return h(node.position, 'chartDemoPlugin', node.configuration, []);
+  return h(node.position, 'chartDemoPlugin', node, []);
 };
-const chartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
+const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
   const customColors = {
     colors: {
       vizColors: paletteData[paletteNames[palette]](5),
@@ -152,5 +205,5 @@ export {
   chartDemoPlugin as plugin,
   ChartParser as parser,
   chartMarkdownHandler as handler,
-  chartMarkdownRenderer as renderer,
+  ChartMarkdownRenderer as renderer,
 };
