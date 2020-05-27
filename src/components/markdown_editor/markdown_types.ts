@@ -32,12 +32,12 @@ export const isPluginWithImmediateFormatting = (
   return x.hasOwnProperty('formatting');
 };
 
-interface PluginWithImmediateFormatting {
+export interface PluginWithImmediateFormatting {
   formatting: EuiMarkdownFormatting;
   editor?: never;
 }
 
-interface PluginWithDelayedFormatting {
+export interface PluginWithDelayedFormatting {
   formatting?: never;
   editor: ComponentType<EuiMarkdownEditorUiPluginEditorProps>;
 }
