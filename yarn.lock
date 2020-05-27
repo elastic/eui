@@ -12431,14 +12431,6 @@ react-docgen@^4.1.0:
     node-dir "^0.1.10"
     recast "^0.17.3"
 
-react-document-title@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-document-title/-/react-document-title-2.0.3.tgz#bbf922a0d71412fc948245e4283b2412df70f2b9"
-  integrity sha1-u/kioNcUEvyUgkXkKDskEt9w8rk=
-  dependencies:
-    prop-types "^15.5.6"
-    react-side-effect "^1.0.2"
-
 react-dom@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
