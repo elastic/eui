@@ -256,7 +256,7 @@ export class EuiToolTip extends Component<Props, State> {
       this.anchor === e.relatedTarget ||
       (this.anchor != null && !this.anchor.contains(e.relatedTarget as Node))
     ) {
-        this.hideToolTip();
+      this.hideToolTip();
     }
 
     if (this.props.onMouseOut) {
