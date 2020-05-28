@@ -124,7 +124,7 @@ export const ExpressionExample = {
       demo: <Stringing />,
     },
     {
-      title: 'Truncate text',
+      title: 'Columns style',
       source: [
         {
           type: GuideSectionTypes.JS,

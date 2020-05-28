@@ -64,10 +64,12 @@
 
     .euiExpression__description {
       flex-shrink: 1;
+      margin: $euiSizeXS;
     }
 
     .euiExpression__value {
       flex-shrink: 2;
+      margin: $euiSizeXS;
     }
   }
 }

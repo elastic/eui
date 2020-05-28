@@ -16,39 +16,33 @@ const POPOVER_STYLE = { zIndex: '300' };
 export default () => {
   const [example1, setExample1] = useState({
     isOpen: false,
-    value: 'min()',
+    value: '.kibana_task_manager',
   });
 
   const [example2, setExample2] = useState({
     isOpen: false,
-    value: 'products.discount_percentage',
+    value: 'count()',
   });
 
   const options = [
     {
-      label: 'Titan',
+      label: '.kibana_task_manager',
     },
     {
-      label: 'Enceladus is disabled',
+      label: 'kibana_sample_data_ecommerce',
     },
     {
-      label: 'Mimas',
+      label: '.kibana-event-log-8.0.0-000001',
     },
     {
-      label: 'Dione',
+      label: 'kibana_sample_data_flights',
     },
     {
-      label: 'Iapetus',
-    },
-    {
-      label: 'Phoebe',
-    },
-    {
-      label: 'Rhea',
+      label: '.kibana-event-log-8.0.0',
     },
   ];
 
-  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+  const [selectedOptions, setSelected] = useState([options[0]]);
 
   const openExample1 = () => {
     setExample1({
@@ -86,17 +80,17 @@ export default () => {
     });
   };
 
-  const changeExample1 = (e: any) => {
-    setExample1({
-      value: e.target.value,
-      isOpen: false,
-    });
-  };
+  // const changeExample1 = (e: any) => {
+  //   setExample1({
+  //     value: e.target.value,
+  //     isOpen: false,
+  //   });
+  // };
 
   const changeExample2 = (e: any) => {
     setExample2({
-      ...example2,
       value: e.target.value,
+      isOpen: false,
     });
   };
 
@@ -105,10 +99,9 @@ export default () => {
     const indices = selectedOptions.map((s, index) => {
       return <p key={index}>{s.label}</p>;
     });
-    // renderIndices(index)
     setExample1({
+      ...example1,
       value: indices,
-      isOpen: false,
     });
   };
 
@@ -161,18 +154,18 @@ export default () => {
             onChange={changeExample2}
             options={[
               {
-                value: 'products.base_price',
-                text: 'products.base_price',
+                value: 'count()',
+                text: 'count()',
               },
               {
-                value: 'products.base_unit_price',
-                text: 'products.base_unit_price',
+                value: 'sum()',
+                text: 'sum()',
               },
               {
-                value: 'products.discount_percentage',
-                text: 'products.discount_percentage',
+                value: 'min()',
+                text: 'min()',
               },
-              { value: 'day_of_week_i', text: 'day_of_week_i' },
+              { value: 'max()', text: 'max()' },
             ]}
           />
         </EuiFlexItem>
@@ -181,46 +174,48 @@ export default () => {
   );
 
   return (
-    <div style={{ width: 400 }}>
-      <EuiPopover
-        style={{ display: 'block' }}
-        id="popover1"
-        button={
-          <EuiExpression
-            description="indices"
-            columnStyle={true}
-            value={example1.value}
-            isActive={example1.isOpen}
-            onClick={openExample1}
-          />
-        }
-        isOpen={example1.isOpen}
-        closePopover={closeExample1}
-        ownFocus
-        panelPaddingSize="s"
-        anchorPosition="downLeft">
-        {renderPopover1()}
-      </EuiPopover>
+    <EuiFlexGroup>
+      <EuiFlexItem style={{ maxWidth: 420 }}>
+        <EuiPopover
+          style={{ display: 'block' }}
+          id="popover1"
+          button={
+            <EuiExpression
+              description="indices"
+              columnStyle={true}
+              value={example1.value}
+              isActive={example1.isOpen}
+              onClick={openExample1}
+            />
+          }
+          isOpen={example1.isOpen}
+          closePopover={closeExample1}
+          ownFocus
+          panelPaddingSize="s"
+          anchorPosition="downLeft">
+          {renderPopover1()}
+        </EuiPopover>
 
-      <EuiPopover
-        style={{ display: 'block' }}
-        id="popover2"
-        panelPaddingSize="s"
-        button={
-          <EuiExpression
-            description="of"
-            columnStyle={true}
-            value={example2.value}
-            isActive={example2.isOpen}
-            onClick={openExample2}
-          />
-        }
-        isOpen={example2.isOpen}
-        closePopover={closeExample2}
-        ownFocus
-        anchorPosition="downLeft">
-        {renderPopover2()}
-      </EuiPopover>
-    </div>
+        <EuiPopover
+          style={{ display: 'block' }}
+          id="popover2"
+          panelPaddingSize="s"
+          button={
+            <EuiExpression
+              description="when"
+              columnStyle={true}
+              value={example2.value}
+              isActive={example2.isOpen}
+              onClick={openExample2}
+            />
+          }
+          isOpen={example2.isOpen}
+          closePopover={closeExample2}
+          ownFocus
+          anchorPosition="downLeft">
+          {renderPopover2()}
+        </EuiPopover>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 };
