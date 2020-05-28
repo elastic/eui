@@ -84,7 +84,7 @@ export const EuiColorPalettePicker: FunctionComponent<
   selectionDisplay = 'palette',
   ...rest
 }) => {
-  const getPalette = (palette: [], type: string) => {
+  const getPalette = (palette: EuiColorPalettePickerPaletteProps[], type: string) => {
     const background =
       type === 'fixed'
         ? getFixedLinearGradient(palette)
