@@ -46,7 +46,7 @@ export interface EuiColorPalettePickerPaletteProps {
   type: 'fixed' | 'gradient' | 'text';
   /**
    * Array of color `strings` or `ColorStops` in the form of
-   * `{ stop: number, color: string }`
+   * `{ stop: number, color: string }`. The stops must be numbers in a ordered range.
    */
   palette?: string[] | ColorStop[];
 }
