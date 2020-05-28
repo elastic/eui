@@ -5,7 +5,7 @@
       opacity: .2;
     }
 
-    $arrowShadowCompensation: $euiSizeXS + 1;
+    $arrowShadowCompensation: $euiSizeXS;
 
     &.euiPopover__panelArrow--top {
       &:before {
@@ -15,7 +15,7 @@
       }
 
       &:after {
-        bottom: -$euiPopoverArrowSize;
+        bottom: -$euiPopoverArrowSize + 1;
       }
     }
 
@@ -26,7 +26,7 @@
       }
 
       &:after {
-        left: -$euiPopoverArrowSize;
+        left: -$euiPopoverArrowSize + 1;
       }
     }
 
@@ -37,7 +37,7 @@
       }
 
       &:after {
-        top: -$euiPopoverArrowSize;
+        top: -$euiPopoverArrowSize + 1;
       }
     }
 
@@ -49,7 +49,7 @@
       }
 
       &:after {
-        right: -$euiPopoverArrowSize;
+        right: -$euiPopoverArrowSize + 1;
       }
     }
   }
