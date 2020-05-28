@@ -32,6 +32,8 @@ import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition, htmlIdGenerator } from '../../services';
 
+import { TAB } from '../../services/key_codes';
+
 import { EuiResizeObserver } from '../observer/resize_observer';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
@@ -115,7 +117,6 @@ export interface Props {
 
 interface State {
   visible: boolean;
-  hasFocus: boolean;
   calculatedPosition: ToolTipPositions;
   toolTipStyles: ToolTipStyles;
   arrowStyles: undefined | { left: number; top: number };
@@ -129,7 +130,6 @@ export class EuiToolTip extends Component<Props, State> {
 
   state: State = {
     visible: false,
-    hasFocus: false,
     calculatedPosition: this.props.position,
     toolTipStyles: DEFAULT_TOOLTIP_STYLES,
     arrowStyles: undefined,
@@ -147,6 +147,7 @@ export class EuiToolTip extends Component<Props, State> {
 
   componentWillUnmount() {
     this._isMounted = false;
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -237,18 +238,15 @@ export class EuiToolTip extends Component<Props, State> {
     }
   };
 
-  onFocus = () => {
-    this.setState({
-      hasFocus: true,
-    });
-    this.showToolTip();
+  hasFocusMouseMoveListener = () => {
+    this.hideToolTip();
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   };
 
-  onBlur = () => {
-    this.setState({
-      hasFocus: false,
-    });
-    this.hideToolTip();
+  onKeyUp = (e: { keyCode: number }) => {
+    if (e.keyCode === TAB) {
+      window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
+    }
   };
 
   onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -258,9 +256,7 @@ export class EuiToolTip extends Component<Props, State> {
       this.anchor === e.relatedTarget ||
       (this.anchor != null && !this.anchor.contains(e.relatedTarget as Node))
     ) {
-      if (!this.state.hasFocus) {
-        this.hideToolTip();
-      }
+      this.hideToolTip();
     }
 
     if (this.props.onMouseOut) {
@@ -318,7 +314,8 @@ export class EuiToolTip extends Component<Props, State> {
         ref={anchor => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
-        onMouseOut={this.onMouseOut}>
+        onMouseOut={this.onMouseOut}
+        onKeyUp={e => this.onKeyUp(e)}>
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element

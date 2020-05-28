@@ -67,7 +67,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     getSelectedOptionForSearchValue?: (
       searchValue: string,
       selectedOptions: any[]
-    ) => EuiComboBoxOptionOption<T>;
+    ) => EuiComboBoxOptionOption<T> | undefined;
     isLoading?: boolean;
     listRef: RefCallback<HTMLDivElement>;
     matchingOptions: Array<EuiComboBoxOptionOption<T>>;

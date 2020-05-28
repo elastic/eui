@@ -1,12 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Passed `getSelectedOptionForSearchValue` to `EuiComboBoxOptionsList` as prop ([#3501](https://github.com/elastic/eui/pull/3501))
+- Added `appendIconComponentCache` function to allow manual pre-emptive loading of source elements into the `EuiIcon` cache ([#3481](https://github.com/elastic/eui/pull/3481))
 - Added `initialSelected` to `EuiTableSelectionType` properties to set initial selected checkboxes for `EuiBasicTable` ([#3418](https://github.com/elastic/eui/pull/3418))
 - Added exports for `EuiSteps` and related components types ([#3471](https://github.com/elastic/eui/pull/3471))
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
+- Added `left-start` popover placement to `EuiDatePicker` ([#3511](https://github.com/elastic/eui/pull/3511))
 
 **Bug Fixes**
 
+
+- Fixed issue where multiple `EuiToolTip` components could be visible when element was focused ([#3335](https://github.com/elastic/eui/pull/3335))
 - Fixed `EuiSuperSelect` not rendering full width when `isOpen` is `true` ([#3495](https://github.com/elastic/eui/pull/3495))
 - Fixed `EuiBasicTable` shows no items if all items of last page is deleted  ([#3422](https://github.com/elastic/eui/pull/3422))
 - Fixed TypeScript module name in generated `eui_charts_theme.d.ts` file  ([#3492](https://github.com/elastic/eui/pull/3492))
@@ -18,6 +23,7 @@
 **Notes**
 
 - Removed `src-framer` files from the repository ([#3487](https://github.com/elastic/eui/pull/3487))
+
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
