@@ -23,12 +23,6 @@
   }
 }
 
-.euiHeaderLogo__icon {
-  opacity: 1;
-  position: relative;
-  top: -2px;
-}
-
 .euiHeaderLogo__text {
   @include euiTitle('s');
   padding-left: $euiSize;

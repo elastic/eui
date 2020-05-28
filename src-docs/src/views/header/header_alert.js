@@ -317,11 +317,10 @@ export default () => {
               <EuiHeaderSectionItem border="right">
                 <HeaderSpacesMenu />
               </EuiHeaderSectionItem>
+              <EuiHeaderLinks>
+                <EuiHeaderLink href="#">Home</EuiHeaderLink>
+              </EuiHeaderLinks>
             </EuiHeaderSection>
-
-            <EuiHeaderLinks>
-              <EuiHeaderLink href="#">Home</EuiHeaderLink>
-            </EuiHeaderLinks>
 
             <EuiHeaderSection side="right">
               <EuiHeaderSectionItem>
