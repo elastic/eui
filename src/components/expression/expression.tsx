@@ -25,6 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
+import { EuiIcon } from '../icon';
 
 const colorToClassNameMap = {
   subdued: 'euiExpression--subdued',
@@ -70,6 +71,7 @@ export type EuiExpressionProps = CommonProps & {
    * Displays the expression in a column layout
    */
   columnStyle?: boolean;
+  isInvalid?: boolean;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -92,6 +94,7 @@ export const EuiExpression: React.FunctionComponent<
   isActive = false,
   columnStyle = false,
   onClick,
+  isInvalid = false,
   ...rest
 }) => {
   const classes = classNames(
@@ -116,6 +119,11 @@ export const EuiExpression: React.FunctionComponent<
       <span className="euiExpression__value" {...valueProps}>
         {value}
       </span>
+      {columnStyle ? (
+        <span className="euiExpression__icon" {...valueProps}>
+          {isInvalid ? <EuiIcon type="alert" color="danger" /> : null}
+        </span>
+      ) : null}
     </Component>
   );
 };

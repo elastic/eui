@@ -181,7 +181,7 @@ export default () => {
 
   return (
     <EuiFlexGroup>
-      <EuiFlexItem style={{ maxWidth: 420 }}>
+      <EuiFlexItem style={{ maxWidth: 500 }}>
         <EuiPopover
           style={{ display: 'block' }}
           id="popover1"
@@ -195,7 +195,9 @@ export default () => {
                   ? 'secondary'
                   : 'danger'
               }
-              // color={example1.value ? 'secondary' : 'danger'}
+              isInvalid={
+                selectedOptions && selectedOptions.length > 0 ? false : true
+              }
               isActive={example1.isOpen}
               onClick={openExample1}
             />
@@ -229,7 +231,7 @@ export default () => {
         </EuiPopover>
         <EuiExpression
           columnStyle={true}
-          description="From"
+          description="Except"
           value="kibana_sample_data_ky_counties_left"
         />
       </EuiFlexItem>

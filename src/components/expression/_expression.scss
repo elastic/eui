@@ -75,11 +75,8 @@
   padding: $euiSizeXS;
   border-radius: $euiSizeXS;
 
-  &:not(.euiExpression-isClickable) {
-    .euiExpression__description,
-    .euiExpression__value {
-      color: $euiColorMediumShade;
-    }
+  &.euiExpression-isClickable {
+    border-color: $euiColorLightShade;
   }
 
   .euiExpression__description,
@@ -94,8 +91,14 @@
   }
 
   .euiExpression__value {
-    flex-basis: 70%;
+    flex-basis: 65%;
     margin: $euiSizeXS;
+  }
+
+  .euiExpression__icon {
+    margin: $euiSizeXS;
+    flex-basis: 5%;
+    text-align: right;
   }
 }
 

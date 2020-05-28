@@ -135,15 +135,21 @@ export const ExpressionExample = {
         },
       ],
       text: (
-        <p>
-          There might be cases where displaying a number of{' '}
-          <strong>EuiExpression</strong>s in a paragraph is not ideal. For
-          example, when both the <EuiCode>description</EuiCode> and the{' '}
-          <EuiCode>value</EuiCode> are variable and/or when the values they can
-          take can be quite long. To use a columns layout instead and have one{' '}
-          <strong>EuiExpression</strong> per line, pass <EuiCode>true</EuiCode>{' '}
-          to the <EuiCode>columnStyle</EuiCode> prop.
-        </p>
+        <div>
+          <p>
+            There might be cases where displaying a number of{' '}
+            <strong>EuiExpression</strong>s in a paragraph is not ideal. For
+            example, when both the <EuiCode>description</EuiCode> and the{' '}
+            <EuiCode>value</EuiCode> are variable and/or when the values they
+            can take can be quite long. To use a columns layout instead and have
+            one <strong>EuiExpression</strong> per line, pass{' '}
+            <EuiCode>true</EuiCode> to the <EuiCode>columnStyle</EuiCode> prop.
+          </p>
+          <p>
+            The <EuiCode>columnStyle</EuiCode> layout supports an optional icon
+            that is place to the right of the expression.
+          </p>
+        </div>
       ),
       snippet: columnsSnippet,
       demo: <Columns />,
