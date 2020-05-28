@@ -164,7 +164,7 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
 
   let linearGradient;
 
-  const paletteHasStops = palette.some((item: any) => {
+  const paletteHasStops = palette.some((item: string | ColorStop) => {
     return typeof item === 'object';
   });
 
