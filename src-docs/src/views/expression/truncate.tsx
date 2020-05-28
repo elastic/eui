@@ -6,7 +6,7 @@ import {
   EuiFlexGroup,
   EuiPopover,
   EuiSelect,
-  // EuiFieldNumber,
+  EuiComboBox,
   EuiExpression,
 } from '../../../../src/components';
 
@@ -23,6 +23,32 @@ export default () => {
     isOpen: false,
     value: 'products.discount_percentage',
   });
+
+  const options = [
+    {
+      label: 'Titan',
+    },
+    {
+      label: 'Enceladus is disabled',
+    },
+    {
+      label: 'Mimas',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+  ];
+
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
   const openExample1 = () => {
     setExample1({
@@ -74,20 +100,53 @@ export default () => {
     });
   };
 
+  const onChange = (selectedOptions: any) => {
+    setSelected(selectedOptions);
+    const indices = selectedOptions.map((s, index) => {
+      return <p key={index}>{s.label}</p>;
+    });
+    // renderIndices(index)
+    setExample1({
+      value: indices,
+      isOpen: false,
+    });
+  };
+
+  const onCreateOption = (searchValue: any, flattenedOptions = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        option => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      options.push(newOption);
+    }
+
+    // Select the option.
+    setSelected([...selectedOptions, newOption]);
+  };
+
   const renderPopover1 = () => (
     <div style={POPOVER_STYLE}>
-      <EuiPopoverTitle>When</EuiPopoverTitle>
-      <EuiSelect
-        compressed
-        value={example1.value}
-        onChange={changeExample1}
-        options={[
-          { value: 'count()', text: 'count()' },
-          { value: 'average()', text: 'average()' },
-          { value: 'sum()', text: 'sum()' },
-          { value: 'min()', text: 'min()' },
-          { value: 'max()', text: 'max()' },
-        ]}
+      <EuiPopoverTitle>INDICES</EuiPopoverTitle>
+      <EuiComboBox
+        placeholder="Select one or more indices"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        isClearable={true}
+        data-test-subj="demoComboBox"
       />
     </div>
   );
@@ -122,7 +181,7 @@ export default () => {
   );
 
   return (
-    <div style={{ width: 300 }}>
+    <div style={{ width: 400 }}>
       <EuiPopover
         style={{ display: 'block' }}
         id="popover1"
