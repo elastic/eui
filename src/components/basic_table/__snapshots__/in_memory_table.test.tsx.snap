@@ -138,7 +138,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
             <EuiScreenReaderOnly>
               <caption
                 className="euiScreenReaderOnly euiTableCaption"
-                id="generated-id"
               >
                 <EuiDelayRender
                   delay={500}
@@ -279,9 +278,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         </EuiTable>
       </div>
       <PaginationBar
-        aria-label="aria-label"
-        aria-labelledby="generated-id"
-        controls="generated-id"
+        aria-controls="generated-id"
         onPageChange={[Function]}
         onPageSizeChange={[Function]}
         pagination={
@@ -308,9 +305,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </EuiSpacer>
           <EuiTablePagination
             activePage={1}
-            aria-label="aria-label"
-            aria-labelledby="generated-id"
-            controls="generated-id"
+            aria-controls="generated-id"
             itemsPerPage={2}
             itemsPerPageOptions={
               Array [
@@ -438,15 +433,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   >
                     <EuiPagination
                       activePage={1}
-                      aria-label="aria-label"
-                      aria-labelledby="generated-id"
-                      controls="generated-id"
+                      aria-controls="generated-id"
                       onPageClick={[Function]}
                       pageCount={2}
                     >
                       <nav
-                        aria-label="aria-label"
-                        aria-labelledby="generated-id"
                         className="euiPagination"
                       >
                         <EuiI18n
@@ -498,8 +489,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           </EuiI18n>
                         </EuiI18n>
                         <ul
-                          aria-label="aria-label"
-                          aria-labelledby="generated-id"
                           className="euiPagination__list"
                         >
                           <PaginationButton
@@ -928,7 +917,6 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
             <EuiScreenReaderOnly>
               <caption
                 className="euiScreenReaderOnly euiTableCaption"
-                id="generated-id"
               >
                 <EuiDelayRender
                   delay={500}

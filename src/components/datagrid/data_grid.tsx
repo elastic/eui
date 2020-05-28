@@ -216,26 +216,35 @@ function renderPagination(props: EuiDataGridProps, controls: string) {
     return null;
   }
 
-  const accessibleName = {
-    ...(props['aria-label'] && { 'aria-label': props['aria-label'] }),
-    ...(props['aria-labelledby'] && {
-      'aria-labelledby': props['aria-labelledby'],
-    }),
-  };
-
   return (
-    <div className="euiDataGrid__pagination">
-      <EuiTablePagination
-        controls={controls}
-        activePage={pageIndex}
-        itemsPerPage={pageSize}
-        itemsPerPageOptions={pageSizeOptions}
-        pageCount={pageCount}
-        onChangePage={onChangePage}
-        onChangeItemsPerPage={onChangeItemsPerPage}
-        {...accessibleName}
-      />
-    </div>
+    <EuiI18n
+      token="euiDataGrid.gridPagination"
+      default="Pagination for preceding table: {label}"
+      values={{ label: props['aria-label'] }}>
+      {(gridPagination: string) => {
+        const accessibleName = {
+          ...(props['aria-label'] && { 'aria-label': gridPagination }),
+          ...(props['aria-labelledby'] && {
+            'aria-labelledby': props['aria-labelledby'],
+          }),
+        };
+
+        return (
+          <div className="euiDataGrid__pagination">
+            <EuiTablePagination
+              aria-controls={controls}
+              activePage={pageIndex}
+              itemsPerPage={pageSize}
+              itemsPerPageOptions={pageSizeOptions}
+              pageCount={pageCount}
+              onChangePage={onChangePage}
+              onChangeItemsPerPage={onChangeItemsPerPage}
+              {...accessibleName}
+            />
+          </div>
+        );
+      }}
+    </EuiI18n>
   );
 }
 

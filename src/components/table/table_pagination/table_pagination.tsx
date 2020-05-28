@@ -40,7 +40,7 @@ export interface Props {
   /**
    * id of the table being controlled
    */
-  controls?: string;
+  'aria-controls'?: string;
 }
 
 interface State {
@@ -73,7 +73,7 @@ export class EuiTablePagination extends Component<Props, State> {
       onChangeItemsPerPage = () => {},
       onChangePage,
       pageCount,
-      controls,
+      'aria-controls': ariaControls,
       ...rest
     } = this.props;
 
@@ -133,7 +133,7 @@ export class EuiTablePagination extends Component<Props, State> {
 
         <EuiFlexItem grow={false}>
           <EuiPagination
-            controls={controls}
+            aria-controls={ariaControls}
             pageCount={pageCount}
             activePage={activePage}
             onPageClick={onChangePage}

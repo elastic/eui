@@ -17,7 +17,13 @@
  * under the License.
  */
 
-import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  Component,
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+  ReactElement,
+} from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -467,7 +473,6 @@ export class EuiBasicTable<T = any> extends Component<
 
   tableIds = htmlIdGenerator();
   tableId = this.tableIds('__table');
-  captionId = this.tableIds('__caption');
 
   render() {
     const {
@@ -629,7 +634,7 @@ export class EuiBasicTable<T = any> extends Component<
     }
     return (
       <EuiScreenReaderOnly>
-        <caption id={this.captionId} className="euiTableCaption">
+        <caption className="euiTableCaption">
           <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
@@ -1265,32 +1270,32 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderPaginationBar() {
-    const { error, pagination, onChange } = this.props;
+    const { error, pagination, tableCaption, onChange } = this.props;
     if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
         not configured. This callback must be implemented to handle pagination changes`);
       }
 
-      const {
-        'aria-label': ariaLabel,
-        'aria-labelledby': ariaLabelledBy = this.captionId,
-      } = this.props;
+      let ariaLabel: ReactElement | undefined = undefined;
 
-      const accessibleName = {
-        ...(ariaLabel && { 'aria-label': ariaLabel }),
-        ...(ariaLabelledBy && {
-          'aria-labelledby': ariaLabelledBy,
-        }),
-      };
+      if (tableCaption) {
+        ariaLabel = (
+          <EuiI18n
+            token="euiBasicTable.tablePagination"
+            default="Pagination for preceding table: {tableCaption}"
+            values={{ tableCaption }}
+          />
+        );
+      }
 
       return (
         <PaginationBar
-          controls={this.tableId}
+          aria-controls={this.tableId}
           pagination={pagination}
           onPageSizeChange={this.onPageSizeChange.bind(this)}
           onPageChange={this.onPageChange.bind(this)}
-          {...accessibleName}
+          aria-label={ariaLabel}
         />
       );
     }

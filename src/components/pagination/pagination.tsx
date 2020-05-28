@@ -53,7 +53,7 @@ export interface EuiPaginationProps {
   /**
    * If passed in, passes value through to each button to set aria-controls
    */
-  controls?: string;
+  'aria-controls'?: string;
 }
 
 type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
@@ -64,14 +64,14 @@ export const EuiPagination: FunctionComponent<Props> = ({
   activePage = 1,
   onPageClick = () => {},
   compressed,
-  controls,
+  'aria-controls': ariaControls,
   ...rest
 }) => {
   const safeClick = (e: MouseEvent, pageIndex: number) => {
     e.preventDefault();
 
-    if (controls) {
-      const controlledElement = document.getElementById(controls);
+    if (ariaControls) {
+      const controlledElement = document.getElementById(ariaControls);
 
       if (controlledElement) {
         controlledElement.focus();
@@ -80,20 +80,32 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
     onPageClick(pageIndex);
   };
-  const PaginationButton = ({ pageIndex }: { pageIndex: number }) => (
-    <li className="euiPagination__item">
+  const PaginationButton = ({
+    pageIndex,
+    inList = true,
+  }: {
+    pageIndex: number;
+    inList?: boolean;
+  }) => {
+    const button = (
       <EuiPaginationButton
         isActive={pageIndex === activePage}
         totalPages={pageCount}
         onClick={(e: MouseEvent) => safeClick(e, pageIndex)}
         pageIndex={pageIndex}
-        {...hasControl && { 'aria-controls': controls }}
+        {...hasControl && { 'aria-controls': ariaControls }}
         hideOnMobile
       />
-    </li>
-  );
+    );
+
+    if (inList) {
+      return <li className="euiPagination__item">{button}</li>;
+    }
+
+    return button;
+  };
   const classes = classNames('euiPagination', className);
-  const hasControl = typeof controls === 'string';
+  const hasControl = typeof ariaControls === 'string';
   const pages = [];
   const firstPageInRange = Math.max(
     0,
@@ -113,7 +125,10 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
   let prevPageButtonProps = {};
   if (hasControl && activePage !== 0) {
-    prevPageButtonProps = { 'aria-controls': controls, href: `#${controls}` };
+    prevPageButtonProps = {
+      'aria-controls': ariaControls,
+      href: `#${ariaControls}`,
+    };
   } else {
     prevPageButtonProps = { disabled: activePage === 0 };
   }
@@ -202,7 +217,10 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
   let nextPageButtonProps = {};
   if (hasControl && activePage !== pageCount - 1) {
-    nextPageButtonProps = { 'aria-controls': controls, href: `#${controls}` };
+    nextPageButtonProps = {
+      'aria-controls': ariaControls,
+      href: `#${ariaControls}`,
+    };
   } else {
     nextPageButtonProps = { disabled: activePage === pageCount - 1 };
   }
@@ -234,20 +252,13 @@ export const EuiPagination: FunctionComponent<Props> = ({
   const selectablePages = pages;
   if (compressed) {
     const firstPageButtonCompressed = (
-      <EuiPaginationButton
-        onClick={onPageClick.bind(null, 0)}
-        pageIndex={activePage}
-        isActive={true}
-      />
+      <PaginationButton pageIndex={activePage} inList={false} />
     );
     const lastPageButtonCompressed = (
-      <EuiPaginationButton
-        onClick={onPageClick.bind(null, pageCount - 1)}
-        pageIndex={pageCount}
-      />
+      <PaginationButton pageIndex={pageCount} inList={false} />
     );
     return (
-      <div className={classes} {...rest}>
+      <nav className={classes} {...rest}>
         {previousButton}
         <EuiText size="s" className="euiPagination__compressedText">
           <EuiI18n
@@ -260,7 +271,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
           />
         </EuiText>
         {nextButton}
-      </div>
+      </nav>
     );
   }
 
