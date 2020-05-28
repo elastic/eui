@@ -35,11 +35,6 @@ const colorToClassNameMap = {
   danger: 'euiExpression--danger',
 };
 
-const textWrapToClassNameMap = {
-  'break-word': 'euiExpression-breakWord',
-  truncate: 'euiExpression-truncate',
-};
-
 export const COLORS = keysOf(colorToClassNameMap);
 
 export type ExpressionColor = keyof typeof colorToClassNameMap;
@@ -72,11 +67,7 @@ export type EuiExpressionProps = CommonProps & {
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /**
-   * Expression's text wraps by default. To truncate it, pass 'truncate'.
-   */
-  textWrap?: keyof typeof textWrapToClassNameMap;
-  /**
-   * Adds an solid border at the bottom
+   * Displays the expression in a column layout
    */
   columnStyle?: boolean;
 };
@@ -98,7 +89,6 @@ export const EuiExpression: React.FunctionComponent<
   valueProps,
   color = 'secondary',
   uppercase = true,
-  textWrap = 'break-word',
   isActive = false,
   columnStyle = false,
   onClick,
@@ -113,7 +103,6 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isUppercase': uppercase,
       'euiExpression-columns': columnStyle,
     },
-    textWrapToClassNameMap[textWrap],
     colorToClassNameMap[color]
   );
 

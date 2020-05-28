@@ -43,13 +43,12 @@ const stringingSnippet = `<div>
   />
 </div>`;
 
-import Truncate from './truncate';
-const truncateSource = require('!!raw-loader!./truncate');
-const truncateHtml = renderToHtml(Truncate);
-const truncateSnippet = `<EuiExpression
+import Columns from './columns';
+const columnsSource = require('!!raw-loader!./columns');
+const columnsHtml = renderToHtml(Columns);
+const columnsSnippet = `<EuiExpression
   description="description"
   value={value}
-  textWrap="truncate"
 />`;
 
 export const ExpressionExample = {
@@ -124,29 +123,30 @@ export const ExpressionExample = {
       demo: <Stringing />,
     },
     {
-      title: 'Columns style',
+      title: 'Columns layout',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: truncateSource,
+          code: columnsSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: truncateHtml,
+          code: columnsHtml,
         },
       ],
       text: (
         <p>
-          There might be cases where you need to truncate the text, to do so use
-          pass <EuiCode>truncate</EuiCode> to the <EuiCode>textWrap</EuiCode>{' '}
-          prop. You can opt for this option when space is limited and{' '}
-          <strong>EuiExpression</strong>&apos;s value can be quite long. When
-          truncating, you can complement <strong>EuiExpression</strong> with an{' '}
-          <strong>EuiToolTip</strong> displaying its full value.
+          There might be cases where displaying a number of{' '}
+          <strong>EuiExpression</strong>s in a paragraph is not ideal. For
+          example, when both the <EuiCode>description</EuiCode> and the{' '}
+          <EuiCode>value</EuiCode> are variable and/or when the values they can
+          take can be quite long. To use a columns layout instead and have one{' '}
+          <strong>EuiExpression</strong> per line, pass <EuiCode>true</EuiCode>{' '}
+          to the <EuiCode>columnStyle</EuiCode> prop.
         </p>
       ),
-      snippet: truncateSnippet,
-      demo: <Truncate />,
+      snippet: columnsSnippet,
+      demo: <Columns />,
     },
   ],
 };

@@ -3,6 +3,7 @@
  *    but then wrap long words
  */
 .euiExpression {
+  @include euiTextBreakWord; /* 1 */
   @include euiFontSizeS;
   @include euiCodeFont;
 
@@ -24,7 +25,7 @@
 
   &.euiExpression-columns {
     border: 2px solid transparent;
-    margin-bottom: $euiSizeS;
+    margin-bottom: $euiSizeXS;
   }
 
 }
@@ -32,14 +33,6 @@
 .euiExpression-isUppercase .euiExpression__description {
   text-transform: uppercase;
 }
-
-// .euiExpression-breakWord {
-//   @include euiTextBreakWord; /* 1 */
-// }
-
-// .euiExpression-truncate {
-//   @include euiTextTruncate;
-// }
 
 .euiExpression-isClickable {
   cursor: pointer;
@@ -50,28 +43,59 @@
     transform: translateY(-1px);
   }
 
-  &.euiExpression-columns {
-    background-color: $euiColorLightestShade;
-    width: 100%;
-    display: flex;
-    padding: $euiSizeS;
-    border-radius: $euiSizeXS;
+  // &.euiExpression-columns {
+  //   background-color: $euiColorLightestShade;
+  //   width: 100%;
+  //   display: flex;
+  //   padding: $euiSizeS;
+  //   border-radius: $euiSizeXS;
 
+  //   .euiExpression__description,
+  //   .euiExpression__value {
+  //     @include euiTextBreakWord;
+  //   }
+
+  //   .euiExpression__description {
+  //     flex-basis: 30%;
+  //     margin: $euiSizeXS;
+  //     text-align: right;
+  //   }
+
+  //   .euiExpression__value {
+  //     flex-basis: 70%;
+  //     margin: $euiSizeXS;
+  //   }
+  // }
+}
+
+.euiExpression-columns {
+  background-color: $euiColorLightestShade;
+  width: 100%;
+  display: flex;
+  padding: $euiSizeXS;
+  border-radius: $euiSizeXS;
+
+  &:not(.euiExpression-isClickable) {
     .euiExpression__description,
     .euiExpression__value {
-      @include euiTextBreakWord;
+      color: $euiColorMediumShade;
     }
+  }
 
-    .euiExpression__description {
-      flex-basis: 30%;
-      margin: $euiSizeXS;
-      text-align: right;
-    }
+  .euiExpression__description,
+  .euiExpression__value {
+    @include euiTextBreakWord;
+  }
 
-    .euiExpression__value {
-      flex-basis: 70%;
-      margin: $euiSizeXS;
-    }
+  .euiExpression__description {
+    flex-basis: 30%;
+    margin: $euiSizeXS;
+    text-align: right;
+  }
+
+  .euiExpression__value {
+    flex-basis: 70%;
+    margin: $euiSizeXS;
   }
 }
 

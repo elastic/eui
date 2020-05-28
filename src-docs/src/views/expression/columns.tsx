@@ -97,7 +97,12 @@ export default () => {
   const onChange = (selectedOptions: any) => {
     setSelected(selectedOptions);
     const indices = selectedOptions.map((s, index) => {
-      return <p key={index}>{s.label}</p>;
+      return (
+        <p key={index}>
+          {s.label}
+          {index < selectedOptions.length - 1 ? ',' : null}
+        </p>
+      );
     });
     setExample1({
       ...example1,
@@ -185,6 +190,12 @@ export default () => {
               description="indices"
               columnStyle={true}
               value={example1.value}
+              color={
+                selectedOptions && selectedOptions.length > 0
+                  ? 'secondary'
+                  : 'danger'
+              }
+              // color={example1.value ? 'secondary' : 'danger'}
               isActive={example1.isOpen}
               onClick={openExample1}
             />
@@ -216,6 +227,11 @@ export default () => {
           anchorPosition="downLeft">
           {renderPopover2()}
         </EuiPopover>
+        <EuiExpression
+          columnStyle={true}
+          description="From"
+          value="kibana_sample_data_ky_counties_left"
+        />
       </EuiFlexItem>
     </EuiFlexGroup>
   );
