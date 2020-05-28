@@ -202,7 +202,7 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
 };
 
 // Given an array of hex values
-export const getFixedLinearGradient = (palette: any) => {
+export const getFixedLinearGradient = (palette: string[]) => {
   const intervals = palette.length;
 
   let fixedLinearGradient;
