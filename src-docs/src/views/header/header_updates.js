@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiIcon,
@@ -96,22 +96,14 @@ export default () => {
       badge: <EuiBadge color="hollow">6.5</EuiBadge>,
     },
   ];
-  function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
 
   const closeFlyout = () => {
     setIsFlyoutVisible(false);
   };
 
-  const prevIsFlyoutVisible = usePrevious(isFlyoutVisible);
   const showFlyout = () => {
     setShowBadge(false);
-    setIsFlyoutVisible(!prevIsFlyoutVisible);
+    setIsFlyoutVisible(!isFlyoutVisible);
   };
 
   const button = (

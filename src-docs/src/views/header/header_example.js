@@ -222,6 +222,33 @@ export const HeaderExample = {
       demo: <HeaderLinks />,
     },
     {
+      title: 'Dark theme',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerDarkSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerDarkHtml,
+        },
+      ],
+      text: (
+        <p>
+          To make site-wide navigation more prominent,{' '}
+          <strong>EuiHeader</strong> supports reversing the colors to dark theme
+          with <EuiCode language="js">{'theme="dark"'}</EuiCode>.{' '}
+          <strong>However</strong>, it only supports a limited set of children
+          that will also shift their theme. These components include{' '}
+          <strong>EuiHeaderLogo, EuiHeaderLink(s),</strong> and{' '}
+          <strong>EuiHeaderSectionItemButton</strong>. Any other content may not
+          render correctly without custom configurations.
+        </p>
+      ),
+      snippet: '<EuiHeader theme="dark" />',
+      demo: <HeaderDark theme={lightColors} />,
+    },
+    {
       title: 'Alerts in the header',
       source: [
         {
@@ -254,33 +281,6 @@ export const HeaderExample = {
       },
       snippet: headerLinksSnippet,
       demo: <HeaderAlert />,
-    },
-    {
-      title: 'Dark theme',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: headerDarkSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: headerDarkHtml,
-        },
-      ],
-      text: (
-        <p>
-          To make site-wide navigation more prominent,{' '}
-          <strong>EuiHeader</strong> supports reversing the colors to dark theme
-          with <EuiCode language="js">{'theme="dark"'}</EuiCode>.{' '}
-          <strong>However</strong>, it only supports a limited set of children
-          that will also shift their theme. These components include{' '}
-          <strong>EuiHeaderLogo, EuiHeaderLink(s),</strong> and{' '}
-          <strong>EuiHeaderSectionItemButton</strong>. Any other content may not
-          render correctly without custom configurations.
-        </p>
-      ),
-      snippet: '<EuiHeader theme="dark" />',
-      demo: <HeaderDark theme={lightColors} />,
     },
   ],
 };
