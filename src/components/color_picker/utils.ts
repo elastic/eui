@@ -159,7 +159,7 @@ export const getChromaColor = (input?: string | null, allowOpacity = false) => {
 
 // Given an array of objects with key value pairs stop/color
 // Or given just an array of hex colors returns a css linear-gradient
-export const getLinearGradient = (palette: any) => {
+export const getLinearGradient = (palette: string[] | ColorStop[]) => {
   const intervals = palette.length;
 
   let linearGradient;
@@ -202,7 +202,7 @@ export const getLinearGradient = (palette: any) => {
 };
 
 // Given an array of hex values
-export const getFixedLinearGradient = (palette: any) => {
+export const getFixedLinearGradient = (palette: string[]) => {
   const intervals = palette.length;
 
   let fixedLinearGradient;
