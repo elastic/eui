@@ -52,7 +52,8 @@ export class GuidePageChrome extends Component {
     };
   }
 
-  componentWillUnmount = () => {
+  componentDidMount = () => {
+    this.scrollNavSectionIntoViewSync();
     scrollTo(0);
   };
 
@@ -69,17 +70,21 @@ export class GuidePageChrome extends Component {
     });
   };
 
+  scrollNavSectionIntoViewSync = () => {
+    // wait a bit for react to blow away and re-create the DOM
+    // then scroll the selected nav section into view
+    const selectedButton = $('.euiSideNavItemButton-isSelected');
+    if (selectedButton.length) {
+      const root = selectedButton.parents('.euiSideNavItem--root');
+      if (root.length) {
+        root.get(0).scrollIntoView();
+      }
+    }
+  };
+
   scrollNavSectionIntoView = () => {
     setTimeout(() => {
-      // wait a bit for react to blow away and re-create the DOM
-      // then scroll the selected nav section into view
-      const selectedButton = $('.euiSideNavItemButton-isSelected');
-      if (selectedButton.length) {
-        const root = selectedButton.parents('.euiSideNavItem--root');
-        if (root.length) {
-          root.get(0).scrollIntoView();
-        }
-      }
+      this.scrollNavSectionIntoViewSync();
     }, 250);
   };
 
