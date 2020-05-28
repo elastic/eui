@@ -19,6 +19,7 @@
 
 import { MouseEvent as ReactMouseEvent, TouchEvent, useEffect } from 'react';
 import chroma, { ColorSpaces } from 'chroma-js';
+import { ColorStop } from './color_stops';
 
 export const getEventPosition = (
   location: { x: number; y: number },
@@ -157,8 +158,8 @@ export const getChromaColor = (input?: string | null, allowOpacity = false) => {
   return null;
 };
 
-// Given an array of objects with key value pairs stop/color
-// Or given just an array of hex colors returns a css linear-gradient
+// Given an array of objects with key value pairs stop/color returns a css linear-gradient
+// Or given an array of hex colors returns a css linear-gradient
 export const getLinearGradient = (palette: string[] | ColorStop[]) => {
   const intervals = palette.length;
 
@@ -169,18 +170,22 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
   });
 
   if (paletteHasStops) {
-    linearGradient = `linear-gradient(to right, ${palette[0].color} 0%,`;
+    const paletteColorStop = palette as ColorStop[];
 
-    const decimal = 100 / palette[palette.length - 1].stop;
+    linearGradient = `linear-gradient(to right, ${
+      paletteColorStop[0].color
+    } 0%,`;
+
+    const decimal = 100 / paletteColorStop[paletteColorStop.length - 1].stop;
 
     for (let i = 1; i < intervals - 1; i++) {
-      linearGradient = `${linearGradient} ${palette[i].color}\ ${Math.floor(
-        palette[i].stop * decimal
-      )}%,`;
+      linearGradient = `${linearGradient} ${
+        paletteColorStop[i].color
+      }\ ${Math.floor(paletteColorStop[i].stop * decimal)}%,`;
     }
 
     const linearGradientStyle = `${linearGradient} ${
-      palette[palette.length - 1].color
+      paletteColorStop[palette.length - 1].color
     } 100%)`;
 
     return linearGradientStyle;
@@ -201,8 +206,9 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
   }
 };
 
-// Given an array of hex values
+// Given an array of hex colors returns a css linear-gradient with individual color blocks
 export const getFixedLinearGradient = (palette: string[]) => {
+  console.log(palette);
   const intervals = palette.length;
 
   let fixedLinearGradient;

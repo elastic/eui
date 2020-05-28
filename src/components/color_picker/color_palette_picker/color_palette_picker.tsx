@@ -84,10 +84,10 @@ export const EuiColorPalettePicker: FunctionComponent<
   selectionDisplay = 'palette',
   ...rest
 }) => {
-  const getPalette = (palette: EuiColorPalettePickerPaletteProps[], type: string) => {
+  const getPalette = (palette: string[] | ColorStop[], type: string) => {
     const background =
       type === 'fixed'
-        ? getFixedLinearGradient(palette)
+        ? getFixedLinearGradient(palette as string[])
         : getLinearGradient(palette);
 
     return (
@@ -98,32 +98,38 @@ export const EuiColorPalettePicker: FunctionComponent<
     );
   };
 
-  const getText = (title: any) => title;
-
-  const getInputDisplay = (title: string, palette: EuiColorPalettePickerPaletteProps[], type: string) => {
+  const getInputDisplay = (
+    title: string,
+    palette: string[] | ColorStop[],
+    type: string
+  ) => {
     if (selectionDisplay === 'title') {
-      return getText(title);
+      return title;
     } else {
-      return type === 'text' ? getText(title) : getPalette(palette, type);
+      return type === 'text' ? title : getPalette(palette, type);
     }
   };
 
-  const paletteOptions = palettes.map((item: EuiColorPalettePickerPaletteProps) => {
-    return {
-      value: String(item.value),
-      inputDisplay: getInputDisplay(item.title, item.palette, item.type),
-      dropdownDisplay: (
-        <div className="euiColorPalettePicker__item">
-          {item.title && item.type !== 'text' && (
-            <div className="euiColorPalettePicker__itemTitle">{item.title}</div>
-          )}
-          {item.type !== 'text'
-            ? getPalette(item.palette, item.type)
-            : getText(item.title)}
-        </div>
-      ),
-    };
-  });
+  const paletteOptions = palettes.map(
+    (item: EuiColorPalettePickerPaletteProps) => {
+      return {
+        value: String(item.value),
+        inputDisplay: getInputDisplay(item.title!, item.palette!, item.type),
+        dropdownDisplay: (
+          <div className="euiColorPalettePicker__item">
+            {item.title && item.type !== 'text' && (
+              <div className="euiColorPalettePicker__itemTitle">
+                {item.title}
+              </div>
+            )}
+            {item.type !== 'text'
+              ? getPalette(item.palette!, item.type)
+              : item.title}
+          </div>
+        ),
+      };
+    }
+  );
 
   return (
     <EuiSuperSelect

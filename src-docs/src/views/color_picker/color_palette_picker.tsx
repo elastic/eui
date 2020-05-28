@@ -79,7 +79,7 @@ export const ColorPalettePicker = () => {
         onChange={() => setSelectionDisplay(!selectionDisplay)}
       />
       <EuiSpacer />
-      <DisplayToggles canPrepend={true} canAppend={true} readOnly={false}>
+      <DisplayToggles canPrepend={true} canAppend={true} canReadOnly={false}>
         <EuiColorPalettePicker
           palettes={palettes}
           onChange={setPallette}
