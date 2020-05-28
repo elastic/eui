@@ -43,29 +43,6 @@
     transform: translateY(-1px);
   }
 
-  // &.euiExpression-columns {
-  //   background-color: $euiColorLightestShade;
-  //   width: 100%;
-  //   display: flex;
-  //   padding: $euiSizeS;
-  //   border-radius: $euiSizeXS;
-
-  //   .euiExpression__description,
-  //   .euiExpression__value {
-  //     @include euiTextBreakWord;
-  //   }
-
-  //   .euiExpression__description {
-  //     flex-basis: 30%;
-  //     margin: $euiSizeXS;
-  //     text-align: right;
-  //   }
-
-  //   .euiExpression__value {
-  //     flex-basis: 70%;
-  //     margin: $euiSizeXS;
-  //   }
-  // }
 }
 
 .euiExpression-columns {
@@ -91,14 +68,13 @@
   }
 
   .euiExpression__value {
-    flex-basis: 65%;
+    flex-basis: 70%;
+    display: flex;
     margin: $euiSizeXS;
   }
 
   .euiExpression__icon {
-    margin: $euiSizeXS;
-    flex-basis: 5%;
-    text-align: right;
+    margin-left: auto;
   }
 }
 

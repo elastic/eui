@@ -19,6 +19,7 @@
 
 import React, {
   ButtonHTMLAttributes,
+  Fragment,
   HTMLAttributes,
   MouseEventHandler,
   ReactNode,
@@ -39,6 +40,11 @@ const colorToClassNameMap = {
 export const COLORS = keysOf(colorToClassNameMap);
 
 export type ExpressionColor = keyof typeof colorToClassNameMap;
+
+const displayToClassNameMap = {
+  inline: 'euiExpression-inline',
+  columns: 'euiExpression-columns',
+};
 
 export type EuiExpressionProps = CommonProps & {
   /**
@@ -70,8 +76,12 @@ export type EuiExpressionProps = CommonProps & {
   /**
    * Displays the expression in a column layout
    */
-  columnStyle?: boolean;
+  display?: keyof typeof displayToClassNameMap;
   isInvalid?: boolean;
+  /**
+   * Sets a custom width for the description when using columns layout. Defaults to 30%.
+   */
+  descriptionWidth: number;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -92,7 +102,7 @@ export const EuiExpression: React.FunctionComponent<
   color = 'secondary',
   uppercase = true,
   isActive = false,
-  columnStyle = false,
+  display = 'inline',
   onClick,
   isInvalid = false,
   ...rest
@@ -104,8 +114,8 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isActive': isActive,
       'euiExpression-isClickable': onClick,
       'euiExpression-isUppercase': uppercase,
-      'euiExpression-columns': columnStyle,
     },
+    displayToClassNameMap[display],
     colorToClassNameMap[color]
   );
 
@@ -117,13 +127,17 @@ export const EuiExpression: React.FunctionComponent<
         {description}
       </span>{' '}
       <span className="euiExpression__value" {...valueProps}>
-        {value}
+        {display === 'columns' ? (
+          <Fragment>
+            <div>{value}</div>
+            <span className="euiExpression__icon">
+              {isInvalid ? <EuiIcon type="alert" color="danger" /> : null}
+            </span>
+          </Fragment>
+        ) : (
+          value
+        )}
       </span>
-      {columnStyle ? (
-        <span className="euiExpression__icon" {...valueProps}>
-          {isInvalid ? <EuiIcon type="alert" color="danger" /> : null}
-        </span>
-      ) : null}
     </Component>
   );
 };

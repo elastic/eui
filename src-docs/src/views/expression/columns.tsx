@@ -188,7 +188,7 @@ export default () => {
           button={
             <EuiExpression
               description="indices"
-              columnStyle={true}
+              display="columns"
               value={example1.value}
               color={
                 selectedOptions && selectedOptions.length > 0
@@ -217,7 +217,7 @@ export default () => {
           button={
             <EuiExpression
               description="when"
-              columnStyle={true}
+              display="columns"
               value={example2.value}
               isActive={example2.isOpen}
               onClick={openExample2}
@@ -230,7 +230,7 @@ export default () => {
           {renderPopover2()}
         </EuiPopover>
         <EuiExpression
-          columnStyle={true}
+          display="columns"
           description="Except"
           value="kibana_sample_data_ky_counties_left"
         />
