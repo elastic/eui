@@ -33,19 +33,19 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     palette: [
       {
         stop: 100,
-        color: '#54B399',
+        color: 'white',
       },
       {
         stop: 250,
-        color: '#D36086',
+        color: 'gray',
       },
       {
         stop: 350,
-        color: '#9170B8',
+        color: 'dimgray',
       },
       {
         stop: 470,
-        color: '#F5A700',
+        color: 'black',
       },
     ],
     type: 'gradient',
@@ -79,7 +79,7 @@ export const ColorPalettePicker = () => {
         onChange={() => setSelectionDisplay(!selectionDisplay)}
       />
       <EuiSpacer />
-      <DisplayToggles canPrepend={true} canAppend={true}>
+      <DisplayToggles canPrepend={true} canAppend={true} readOnly={false}>
         <EuiColorPalettePicker
           palettes={palettes}
           onChange={setPallette}
