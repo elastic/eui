@@ -916,15 +916,19 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
           </div>
         </EuiTableHeaderMobile>
         <EuiTable
+          id="generated-id"
           responsive={true}
           tableLayout="fixed"
         >
           <table
             className="euiTable euiTable--responsive"
+            id="generated-id"
+            tabIndex={-1}
           >
             <EuiScreenReaderOnly>
               <caption
                 className="euiScreenReaderOnly euiTableCaption"
+                id="generated-id"
               >
                 <EuiDelayRender
                   delay={500}
