@@ -52,6 +52,10 @@ export class GuidePageChrome extends Component {
     };
   }
 
+  componentWillUnmount = () => {
+    scrollTo(0);
+  };
+
   toggleOpenOnMobile = () => {
     this.setState({
       isSideNavOpenOnMobile: !this.state.isSideNavOpenOnMobile,
