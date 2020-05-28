@@ -17,7 +17,12 @@
  * under the License.
  */
 
-import React, { Component, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useState,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -30,6 +35,7 @@ import { EuiI18n } from '../i18n';
 import { EuiFocusTrap } from '../focus_trap';
 
 import { keyCodes } from '../../services';
+import { useInnerText } from '../inner_text';
 
 type ImageSize = 's' | 'm' | 'l' | 'xl' | 'fullWidth' | 'original';
 
@@ -72,7 +78,7 @@ interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLImageElement> {
   /**
    * Provides the visible caption to the image
    */
-  caption?: string;
+  caption?: ReactNode;
   /**
    * When set to `true` (default) will apply a slight shadow to the image
    */
@@ -83,164 +89,152 @@ interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLImageElement> {
   allowFullScreen?: boolean;
 }
 
-interface State {
-  isFullScreenActive: boolean;
-}
+export const EuiImage: FunctionComponent<EuiImageProps> = ({
+  className,
+  url,
+  size = 'original',
+  caption,
+  hasShadow,
+  allowFullScreen,
+  fullScreenIconColor = 'light',
+  alt,
+  style,
+  ...rest
+}) => {
+  const [isFullScreenActive, setIsFullScreenActive] = useState(false);
 
-export class EuiImage extends Component<EuiImageProps, State> {
-  state: State = {
-    isFullScreenActive: false,
-  };
-
-  onKeyDown = (event: React.KeyboardEvent) => {
+  const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.keyCode === keyCodes.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
-      this.closeFullScreen();
+      closeFullScreen();
     }
   };
 
-  closeFullScreen = () => {
-    this.setState({
-      isFullScreenActive: false,
-    });
+  const closeFullScreen = () => {
+    setIsFullScreenActive(false);
   };
 
-  openFullScreen = () => {
-    this.setState({
-      isFullScreenActive: true,
-    });
+  const openFullScreen = () => {
+    setIsFullScreenActive(true);
   };
 
-  render() {
-    const {
-      className,
-      url,
-      size = 'original',
-      caption,
-      hasShadow,
-      allowFullScreen,
-      fullScreenIconColor = 'light',
-      alt,
-      style,
-      ...rest
-    } = this.props;
+  const customStyle: React.CSSProperties = { ...style };
 
-    const { isFullScreenActive } = this.state;
-    const customStyle: React.CSSProperties = { ...style };
+  let classes = classNames(
+    'euiImage',
+    {
+      'euiImage--hasShadow': hasShadow,
+      'euiImage--allowFullScreen': allowFullScreen,
+    },
+    className
+  );
 
-    let classes = classNames(
-      'euiImage',
-      {
-        'euiImage--hasShadow': hasShadow,
-        'euiImage--allowFullScreen': allowFullScreen,
-      },
-      className
+  if (typeof size === 'string' && SIZES.includes(size)) {
+    classes = `${classes} ${sizeToClassNameMap[size as ImageSize]}`;
+  } else {
+    classes = `${classes}`;
+    customStyle.maxWidth = size;
+    customStyle.maxHeight = size;
+    // Set width back to auto to ensure aspect ratio is kept
+    customStyle.width = 'auto';
+  }
+
+  const [optionalCaptionRef, optionalCaptionText] = useInnerText();
+  let optionalCaption;
+  if (caption) {
+    optionalCaption = (
+      <figcaption ref={optionalCaptionRef} className="euiImage__caption">
+        {caption}
+      </figcaption>
     );
+  }
 
-    if (typeof size === 'string' && SIZES.includes(size)) {
-      classes = `${classes} ${sizeToClassNameMap[size as ImageSize]}`;
-    } else {
-      classes = `${classes}`;
-      customStyle.maxWidth = size;
-      customStyle.maxHeight = size;
-      // Set width back to auto to ensure aspect ratio is kept
-      customStyle.width = 'auto';
-    }
+  const allowFullScreenIcon = (
+    <EuiIcon
+      type="fullScreen"
+      color={fullScreenIconColorMap[fullScreenIconColor]}
+      className="euiImage__icon"
+    />
+  );
 
-    let optionalCaption;
-    if (caption) {
-      optionalCaption = (
-        <figcaption className="euiImage__caption">{caption}</figcaption>
-      );
-    }
-
-    const allowFullScreenIcon = (
-      <EuiIcon
-        type="fullScreen"
-        color={fullScreenIconColorMap[fullScreenIconColor]}
-        className="euiImage__icon"
-      />
-    );
-
-    const fullScreenDisplay = (
-      <EuiOverlayMask onClick={this.closeFullScreen}>
-        <EuiFocusTrap clickOutsideDisables={true}>
-          <figure
-            className="euiImage euiImage-isFullScreen"
-            aria-label={caption}>
-            <EuiI18n
-              token="euiImage.closeImage"
-              values={{ alt }}
-              default="Close full screen {alt} image">
-              {(closeImage: string) => (
-                <button
-                  type="button"
-                  aria-label={closeImage}
-                  className="euiImage__button"
-                  onClick={this.closeFullScreen}
-                  onKeyDown={this.onKeyDown}>
-                  <img
-                    src={url}
-                    alt={alt}
-                    className="euiImage-isFullScreen__img"
-                    {...rest}
-                  />
-                  <EuiIcon
-                    type="cross"
-                    color={fullScreenIconColorMap[fullScreenIconColor]}
-                    className="euiImage-isFullScreen__icon"
-                  />
-                </button>
-              )}
-            </EuiI18n>
-            {optionalCaption}
-          </figure>
-        </EuiFocusTrap>
-      </EuiOverlayMask>
-    );
-
-    if (allowFullScreen) {
-      return (
-        <figure className={classes} aria-label={caption}>
+  const fullScreenDisplay = (
+    <EuiOverlayMask onClick={closeFullScreen}>
+      <EuiFocusTrap clickOutsideDisables={true}>
+        <figure
+          className="euiImage euiImage-isFullScreen"
+          aria-label={optionalCaptionText}>
           <EuiI18n
-            token="euiImage.openImage"
+            token="euiImage.closeImage"
             values={{ alt }}
-            default="Open full screen {alt} image">
-            {(openImage: string) => (
+            default="Close full screen {alt} image">
+            {(closeImage: string) => (
               <button
                 type="button"
-                aria-label={openImage}
+                aria-label={closeImage}
                 className="euiImage__button"
-                onClick={this.openFullScreen}>
+                onClick={closeFullScreen}
+                onKeyDown={onKeyDown}>
                 <img
                   src={url}
                   alt={alt}
-                  className="euiImage__img"
-                  style={customStyle}
+                  className="euiImage-isFullScreen__img"
                   {...rest}
                 />
-                {allowFullScreenIcon}
-                {isFullScreenActive && fullScreenDisplay}
+                <EuiIcon
+                  type="cross"
+                  color={fullScreenIconColorMap[fullScreenIconColor]}
+                  className="euiImage-isFullScreen__icon"
+                />
               </button>
             )}
           </EuiI18n>
           {optionalCaption}
         </figure>
-      );
-    } else {
-      return (
-        <figure className={classes} aria-label={caption}>
-          <img
-            style={customStyle}
-            src={url}
-            className="euiImage__img"
-            alt={alt}
-            {...rest}
-          />
-          {optionalCaption}
-        </figure>
-      );
-    }
+      </EuiFocusTrap>
+    </EuiOverlayMask>
+  );
+
+  if (allowFullScreen) {
+    return (
+      <figure className={classes} aria-label={optionalCaptionText}>
+        <EuiI18n
+          token="euiImage.openImage"
+          values={{ alt }}
+          default="Open full screen {alt} image">
+          {(openImage: string) => (
+            <button
+              type="button"
+              aria-label={openImage}
+              className="euiImage__button"
+              onClick={openFullScreen}>
+              <img
+                src={url}
+                alt={alt}
+                className="euiImage__img"
+                style={customStyle}
+                {...rest}
+              />
+              {allowFullScreenIcon}
+              {isFullScreenActive && fullScreenDisplay}
+            </button>
+          )}
+        </EuiI18n>
+        {optionalCaption}
+      </figure>
+    );
+  } else {
+    return (
+      <figure className={classes} aria-label={optionalCaptionText}>
+        <img
+          style={customStyle}
+          src={url}
+          className="euiImage__img"
+          alt={alt}
+          {...rest}
+        />
+        {optionalCaption}
+      </figure>
+    );
   }
-}
+};

@@ -77,7 +77,7 @@ export const ColorPaletteExample = {
       demo: <ColorPalette />,
       snippet: [
         'euiPaletteColorBlind()',
-        "euiPaletteColorBlind(3, 'group', 'both)",
+        "euiPaletteColorBlind({rotations: 3, order: 'group', direction: 'both'})",
       ],
       props: qualitativePropsInfo,
     },
