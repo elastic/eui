@@ -960,7 +960,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <GuideRuleTitle>Animation</GuideRuleTitle>
       <EuiText grow={false} className="guideSection__text">
         <p>
-          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">
+          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animations.scss">
             View the Sass code for animation
           </EuiLink>
           .
