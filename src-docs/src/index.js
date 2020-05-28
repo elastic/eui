@@ -12,7 +12,6 @@ import configureStore, { history } from './store/configure_store';
 import { AppContainer } from './views/app_container';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
-
 import { registerTheme } from './services';
 
 import Routes from './routes';
@@ -20,6 +19,7 @@ import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
 import themeAmsterdamLight from './theme_amsterdam_light.scss';
 import themeAmsterdamDark from './theme_amsterdam_dark.scss';
+import { ThemeProvider } from './components/with_theme/theme_context';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
@@ -48,21 +48,23 @@ const routes = [
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Switch>
-        {routes.map(({ name, path, sections, isNew, component }, i) => {
-          if (component)
-            return (
-              <Route key={i} exact path={`/${path}`}>
-                <AppContainer currentRoute={{ name, path, sections, isNew }}>
-                  {createElement(component, {})}
-                </AppContainer>
-              </Route>
-            );
-          return null;
-        })}
-      </Switch>
-    </Router>
+    <ThemeProvider>
+      <Router history={history}>
+        <Switch>
+          {routes.map(({ name, path, sections, isNew, component }, i) => {
+            if (component)
+              return (
+                <Route key={i} exact path={`/${path}`}>
+                  <AppContainer currentRoute={{ name, path, sections, isNew }}>
+                    {createElement(component, {})}
+                  </AppContainer>
+                </Route>
+              );
+            return null;
+          })}
+        </Switch>
+      </Router>{' '}
+    </ThemeProvider>
   </Provider>,
   document.getElementById('guide')
 );

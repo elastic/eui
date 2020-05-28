@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { GuidePageChrome, ThemeProvider, ThemeContext } from '../components';
+import { GuidePageChrome, ThemeContext } from '../components';
 import { registerRouter, translateUsingPseudoLocale } from '../services';
 
 import {
@@ -80,11 +80,7 @@ export class AppView extends Component {
   }
 
   render() {
-    return (
-      <ThemeProvider>
-        <div className="guide">{this.renderContent()}</div>
-      </ThemeProvider>
-    );
+    return <div className="guide">{this.renderContent()}</div>;
   }
 
   onKeydown = e => {
