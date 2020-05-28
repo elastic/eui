@@ -100,7 +100,7 @@ export const EuiColorPalettePicker: FunctionComponent<
 
   const getText = (title: any) => title;
 
-  const getInputDisplay = (title: string, palette: [], type: string) => {
+  const getInputDisplay = (title: string, palette: EuiColorPalettePickerPaletteProps[], type: string) => {
     if (selectionDisplay === 'title') {
       return getText(title);
     } else {
