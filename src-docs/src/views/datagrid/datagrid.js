@@ -21,6 +21,7 @@ import {
 const columns = [
   {
     id: 'name',
+    displayAsText: 'Name',
     defaultSortDirection: 'asc',
   },
   {
@@ -176,7 +177,7 @@ export default () => {
 
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
-    columns.map(({ id }) => id)
+    columns.map(({ id, displayAsText }) => (displayAsText ? displayAsText : id))
   ); // initialize to the full set of columns
 
   const renderCellValue = useMemo(() => {
