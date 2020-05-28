@@ -146,6 +146,7 @@ export default () => {
 
   const renderPopover2 = () => (
     <div style={POPOVER_STYLE}>
+      <EuiPopoverTitle>WHEN</EuiPopoverTitle>
       <EuiFlexGroup gutterSize="s">
         <EuiFlexItem grow={false} style={{ width: 150 }}>
           <EuiSelect
