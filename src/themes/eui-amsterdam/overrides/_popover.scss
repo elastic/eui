@@ -5,7 +5,7 @@
       opacity: .2;
     }
 
-    $arrowShadowCompensation: $euiSizeXS;
+    $arrowShadowCompensation: $euiSizeXS + 1;
 
     &.euiPopover__panelArrow--top {
       &:before {
