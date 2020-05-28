@@ -59,7 +59,6 @@ export default () => {
     <EuiTour steps={demoTourSteps} initialState={state}>
       {([euiTourStepOne, euiTourStepTwo], actions, reducerState) => {
         useEffect(() => {
-          console.log('Updating localStorage', STORAGE_KEY, reducerState);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
         }, [reducerState]);
 

@@ -2,13 +2,11 @@ import React from 'react';
 
 import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
-const htmlCode = `<!--I'm an example of HTML-->
-<div>
-  <h1>Title</h1>
-</div>
-`;
+const htmlCode = require('!!raw-loader!./code_examples/example.html');
 
-const jsCode = require('!!raw-loader!./code_block');
+const jsCode = require('!!raw-loader!./code_examples/example.js');
+
+const sqlCode = require('!!raw-loader!./code_examples/example.sql');
 
 export default () => (
   <div>
@@ -20,12 +18,20 @@ export default () => (
       language="js"
       fontSize="m"
       paddingSize="m"
-      color="dark"
       overflowHeight={300}
       isCopyable>
       {jsCode}
     </EuiCodeBlock>
 
     <EuiSpacer />
+
+    <EuiCodeBlock
+      language="sql"
+      fontSize="m"
+      paddingSize="m"
+      overflowHeight={300}
+      isCopyable>
+      {sqlCode}
+    </EuiCodeBlock>
   </div>
 );
