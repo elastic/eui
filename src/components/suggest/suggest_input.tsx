@@ -22,7 +22,7 @@ import React, { useState, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 // @ts-ignore
-import { EuiFieldText } from '../form';
+import { EuiTextArea } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
 import { EuiInputPopover } from '../popover';
@@ -137,14 +137,14 @@ export const EuiSuggestInput: FunctionComponent<
   if (append) appendArray.push(append);
 
   const customInput = (
-    <EuiFieldText
-      value={value}
+    <EuiTextArea
       fullWidth
       append={appendArray}
       isLoading={status === 'loading' ? true : false}
       onChange={onFieldChange}
-      {...rest}
-    />
+      {...rest}>
+      {value}
+    </EuiTextArea>
   );
 
   return (

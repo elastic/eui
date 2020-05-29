@@ -22,11 +22,18 @@ import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiValidatableControl } from '../validatable_control';
 
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+} from '../form_control_layout';
+
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
     isInvalid?: boolean;
     fullWidth?: boolean;
     compressed?: boolean;
+    readOnly?: boolean;
+    isLoading?: boolean;
 
     /**
      * Which direction, if at all, should the textarea resize
@@ -34,6 +41,23 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
     resize?: keyof typeof resizeToClassNameMap;
 
     inputRef?: Ref<HTMLTextAreaElement>;
+    /**
+     * Creates an input group with element(s) coming before input.
+     * `string` | `ReactElement` or an array of these
+     */
+    prepend?: EuiFormControlLayoutProps['prepend'];
+
+    /**
+     * Creates an input group with element(s) coming after input.
+     * `string` | `ReactElement` or an array of these
+     */
+    append?: EuiFormControlLayoutProps['append'];
+
+    /**
+     * Completely removes form control layout wrapper and ignores
+     * icon, prepend, and append. Best used inside EuiFormControlLayoutDelimited.
+     */
+    controlOnly?: boolean;
   };
 
 const resizeToClassNameMap = {
@@ -57,6 +81,11 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   placeholder,
   resize = 'vertical',
   rows,
+  prepend,
+  append,
+  readOnly,
+  controlOnly,
+  isLoading,
   ...rest
 }) => {
   const classes = classNames(
@@ -65,6 +94,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
     {
       'euiTextArea--fullWidth': fullWidth,
       'euiTextArea--compressed': compressed,
+      'euiTextArea-isLoading': isLoading,
     },
     className
   );
@@ -79,7 +109,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
     definedRows = 6;
   }
 
-  return (
+  const control = (
     <EuiValidatableControl isInvalid={isInvalid}>
       <textarea
         className={classes}
@@ -88,9 +118,26 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
         name={name}
         id={id}
         ref={inputRef}
+        readOnly={readOnly}
         placeholder={placeholder}>
         {children}
       </textarea>
     </EuiValidatableControl>
+  );
+
+  if (controlOnly) return control;
+
+  return (
+    <EuiFormControlLayout
+      fullWidth={fullWidth}
+      isLoading={isLoading}
+      compressed={compressed}
+      readOnly={readOnly}
+      prepend={prepend}
+      append={append}
+      inputId={id}
+      className="euiTextArea__formControlLayout">
+      {control}
+    </EuiFormControlLayout>
   );
 };

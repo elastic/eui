@@ -6,6 +6,7 @@ import {
   EuiFormLabel,
   EuiButtonEmpty,
   EuiText,
+  EuiTextArea,
 } from '../../../../src/components';
 
 export default () => (
@@ -177,6 +178,24 @@ export default () => (
         className="euiFieldText euiFieldText--inGroup"
         aria-label="Use aria labels when no actual label is in use"
       />
+    </EuiFormControlLayout>
+    <EuiSpacer size="m" />
+    <EuiFormControlLayout
+      className="euiTextArea__formControlLayout"
+      isLoading
+      prepend={
+        <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
+          Button
+        </EuiButtonEmpty>
+      }
+      append={
+        <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
+          Button
+        </EuiButtonEmpty>
+      }>
+      <EuiTextArea aria-label="Use aria labels when no actual label is in use">
+        Some textarea text
+      </EuiTextArea>
     </EuiFormControlLayout>
   </Fragment>
 );

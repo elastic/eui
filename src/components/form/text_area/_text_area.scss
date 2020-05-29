@@ -1,12 +1,65 @@
 .euiTextArea {
+  // sass-lint:disable-block no-important
   @include euiFormControlStyle;
+  @include euiScrollBar;
   line-height: $euiLineHeight; // give more spacing between multiple lines
+  height: auto;
 
   // Textareas have their own sizing
-  &,
   &--compressed {
     height: auto;
+    font-size: $euiFontSizeXS;
   }
+
+  &-isLoading {
+    padding-right: $euiSizeXXL !important;
+  }
+}
+
+// Hack to overwride form control's usually good idea to make things fit
+.euiTextArea__formControlLayout:not(.euiFormControlLayout--group) {
+  height: auto;
+}
+
+
+.euiTextArea__formControlLayout.euiFormControlLayout--group {
+  // sass-lint:disable-block no-important
+  position: relative;
+  z-index: $euiZContent + 2;
+
+  .euiTextArea.euiTextArea--compressed {
+    height: $euiSizeXL - 2px !important;
+  }
+
+  .euiTextArea {
+    height: $euiSizeXXL - 2px !important;
+    overflow-y: hidden;
+    white-space: nowrap;
+    resize: none;
+
+    &:not(:focus) {
+      @include euiYScrollWithShadows;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      border: none;
+      box-shadow: none;
+    }
+
+    &:focus {
+      height: auto !important;
+      overflow-x: auto;
+      overflow-y: auto;
+      white-space: normal;
+    }
+  }
+}
+
+.euiTextArea__formControlLayout.euiFormControlLayout--group .euiTextArea {
+  padding: $euiSizeS - 1px; // Accounts for the border from the control group
+}
+
+.euiTextArea__formControlLayout, .euiTextArea__formControlLayout > * {
+  overflow: visible !important;
 }
 
 // resize modifiers
