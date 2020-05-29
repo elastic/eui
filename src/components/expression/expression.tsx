@@ -19,7 +19,6 @@
 
 import React, {
   ButtonHTMLAttributes,
-  Fragment,
   HTMLAttributes,
   MouseEventHandler,
   ReactNode,
@@ -77,11 +76,17 @@ export type EuiExpressionProps = CommonProps & {
    * Sets the display style for the expression. Defaults to `inline`
    */
   display?: keyof typeof displayToClassNameMap;
+  /**
+   * Forces color to display as `danger` and shows an `alert` icon
+   */
   isInvalid?: boolean;
   /**
-   * Sets a custom width for the description when using the columns layout. Defaults to 30%
+   * Sets a custom width for the description when using the columns layout.
+   * Set to a number for a custom width in `px`.
+   * Set to a string for a custom width in custom measurement.
+   * Defaults to `20%`
    */
-  descriptionWidth?: number;
+  descriptionWidth?: number | string;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -103,17 +108,13 @@ export const EuiExpression: React.FunctionComponent<
   uppercase = true,
   isActive = false,
   display = 'inline',
-  descriptionWidth = 20,
+  descriptionWidth = '20%',
   onClick,
   isInvalid = false,
   ...rest
 }) => {
-  let colorClass;
-  if (display === 'columns' && isInvalid) {
-    colorClass = colorToClassNameMap.danger;
-  } else {
-    colorClass = colorToClassNameMap[color];
-  }
+  const calculatedColor = isInvalid ? 'danger' : color;
+
   const classes = classNames(
     'euiExpression',
     className,
@@ -123,17 +124,29 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isUppercase': uppercase,
     },
     displayToClassNameMap[display],
-    colorClass
+    colorToClassNameMap[calculatedColor]
   );
 
   const Component = onClick ? 'button' : 'span';
 
+  const descriptionStyle = descriptionProps && descriptionProps.style;
   const customWidth =
     display === 'columns' && descriptionWidth
       ? {
-          flexBasis: `${descriptionWidth}%`,
+          flexBasis: descriptionWidth,
+          ...descriptionStyle,
         }
       : undefined;
+
+  const invalidIcon = isInvalid ? (
+    <EuiIcon
+      className="euiExpression__icon"
+      type="alert"
+      color={calculatedColor}
+    />
+  ) : (
+    undefined
+  );
 
   return (
     <Component className={classes} onClick={onClick} {...rest}>
@@ -144,17 +157,9 @@ export const EuiExpression: React.FunctionComponent<
         {description}
       </span>{' '}
       <span className="euiExpression__value" {...valueProps}>
-        {display === 'columns' ? (
-          <Fragment>
-            <div>{value}</div>
-            <span className="euiExpression__icon">
-              {isInvalid ? <EuiIcon type="alert" color="danger" /> : null}
-            </span>
-          </Fragment>
-        ) : (
-          value
-        )}
+        {value}
       </span>
+      {invalidIcon}
     </Component>
   );
 };

@@ -24,6 +24,9 @@ export default () => (
       description="group by"
       value="right.kytccountynmbr"
       onClick={() => {}}
+      color="accent"
+      isInvalid
     />
+    <EuiExpression description="sort by" value="count" isInvalid />
   </div>
 );
