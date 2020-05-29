@@ -2,17 +2,4 @@
   &:focus-within {
     @include euiSlightShadowHover;
   }
-
-  &__textArea,
-  &__previewContainer {
-    padding: $euiSizeM;
-    background: $euiColorEmptyShade;
-  }
-}
-
-.euiMarkdownEditor__previewContainer {
-  @include euiScrollBar;
-  height: 150px;
-  overflow-y: auto;
-  border: $euiBorderThin;
 }
