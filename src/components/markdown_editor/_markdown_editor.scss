@@ -3,20 +3,17 @@
     @include euiSlightShadowHover;
   }
 
-  .euiMarkdownEditor__textArea,
-  .euiMarkdownEditor__previewContainer {
+  &__textArea,
+  &__previewContainer {
+    color: $euiTextColor;
     padding: $euiSizeM;
+    background: $euiColorEmptyShade;
   }
 }
 
 .euiMarkdownEditor__previewContainer {
   @include euiScrollBar;
-  background: $euiColorEmptyShade;
   height: 150px;
   overflow-y: auto;
   border: $euiBorderThin;
-}
-
-.euiMarkdownEditor__textArea {
-  background: $euiColorEmptyShade;
 }
