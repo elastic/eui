@@ -319,17 +319,14 @@ export const ColorPickerExample = {
           <EuiText>
             <p>
               Use <strong>EuiColorPalettePicker</strong> to select palettes to
-              apply colors to data like maps, bar charts, or any other type of
-              data visualization.
+              apply colors to data visualization like maps and charts.
             </p>
             <p>
               Use the <EuiCode>palettes</EuiCode> prop to pass your palettes as
               an array of objects. For each object, you should pass a palette
-              (array of hex values) and specify if the <EuiCode>type</EuiCode>{' '}
-              is <EuiCode>fixed</EuiCode> or <EuiCode>gradient</EuiCode>. Use{' '}
+              (array of hex values) and specify the <EuiCode>type</EuiCode>. Use{' '}
               <EuiCode>fixed</EuiCode> palettes for categorical data and{' '}
-              <EuiCode>gradient</EuiCode> palettes for{' '}
-              <EuiCode>continuous</EuiCode> data.
+              <EuiCode>gradient</EuiCode> palettes for continuous data.
             </p>
           </EuiText>
         </React.Fragment>
