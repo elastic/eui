@@ -18,9 +18,7 @@ $euiDefaultFontSize: 14px;
 }
 
 .euiMarkdownFormat {
-  // sass-lint:disable-block indentation
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: $euiMarkdownEditorFontFamily;
 
   // Font size variables
   $euiMarkdownFontSizeS: canvasToEm(12px);
@@ -45,10 +43,6 @@ $euiDefaultFontSize: 14px;
   $euiMarkdownAlphaLightestShadeReversed: rgba($euiColorEmptyShade, .05);
   $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
   $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
-
-  &--reversed {
-    color: $euiColorLightestShade;
-  }
 
   > *:first-child {
     // sass-lint:disable-block no-important
