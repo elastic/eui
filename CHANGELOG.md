@@ -25,6 +25,10 @@
 
 - Removed `src-framer` files from the repository ([#3487](https://github.com/elastic/eui/pull/3487))
 
+**Theme: Amsterdam**
+
+- Removed borders `EuiModal` ([#3515](https://github.com/elastic/eui/pull/3515))
+- Improve `EuiOverlayMask` colors ([#3515](https://github.com/elastic/eui/pull/3515))
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
