@@ -1,4 +1,6 @@
 .euiMarkdownEditor__textArea {
+  @include euiFont;
+  @include euiFontSizeS;
   width: 100%;
   height: 100%;
   min-height: 150px;
@@ -6,9 +8,6 @@
   border: $euiBorderThin;
   border-bottom: 1px dashed $euiColorLightShade;
   border-color: $euiColorLightShade;
-  font-family: $euiMarkdownEditorFontFamily;
-  font-size: $euiFontSizeS;
-  line-height: 1.5;
   resize: vertical;
 
   &:focus {

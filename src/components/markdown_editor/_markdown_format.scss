@@ -18,7 +18,7 @@ $euiDefaultFontSize: 14px;
 }
 
 .euiMarkdownFormat {
-  font-family: $euiMarkdownEditorFontFamily;
+  @include euiFont;
 
   // Font size variables
   $euiMarkdownFontSizeS: canvasToEm(12px);
