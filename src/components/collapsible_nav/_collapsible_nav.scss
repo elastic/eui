@@ -1,8 +1,10 @@
 // Extends euiFlyout
-@use '../flyout/flyout';
+@import '../flyout/variables';
+@import '../flyout/mixins';
 
 .euiCollapsibleNav {
-  @extend %eui-flyout;
+  @include euiFlyout;
+  border-left: none;
   right: auto;
   left: 0;
   width: $euiCollapsibleNavWidth;
@@ -25,7 +27,7 @@
 
   &,
   &:focus {
-    // Override default `EuiButtonEmpty` :focus background to ensure better contrast 
+    // Override default `EuiButtonEmpty` :focus background to ensure better contrast
     background: $euiColorEmptyShade;
   }
 }
