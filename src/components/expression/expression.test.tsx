@@ -83,12 +83,43 @@ describe('EuiExpression', () => {
       });
     });
 
-    describe('columns', () => {
-      test('truncate truncates text', () => {
+    describe('display', () => {
+      test('changes the layout', () => {
         const component = (
           <EuiExpression
             description="the answer is"
             value="42"
+            display="columns"
+          />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('isInvalid', () => {
+      test('true renders error state when using columns', () => {
+        const component = (
+          <EuiExpression
+            description="the answer is"
+            value="42"
+            isInvalid
+            display="columns"
+          />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('descriptionWidth', () => {
+      test('changes the description&apos;s width when using columns', () => {
+        const component = (
+          <EuiExpression
+            description="the answer is"
+            descriptionWidth={50}
+            value="42"
+            isInvalid
             display="columns"
           />
         );

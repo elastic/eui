@@ -48,6 +48,7 @@ const columnsSource = require('!!raw-loader!./columns');
 const columnsHtml = renderToHtml(Columns);
 const columnsSnippet = `<EuiExpression
   description="description"
+  display="columns"
   value={value}
 />`;
 

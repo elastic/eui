@@ -74,12 +74,12 @@ export type EuiExpressionProps = CommonProps & {
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /**
-   * Displays the expression in a column layout
+   * Sets the display style for the expression. Defaults to `inline`
    */
   display?: keyof typeof displayToClassNameMap;
   isInvalid?: boolean;
   /**
-   * Sets a custom width for the description when using the columns layout. Defaults to 30%.
+   * Sets a custom width for the description when using the columns layout. Defaults to 30%
    */
   descriptionWidth?: number;
 };
@@ -108,6 +108,12 @@ export const EuiExpression: React.FunctionComponent<
   isInvalid = false,
   ...rest
 }) => {
+  let colorClass;
+  if (display === 'columns' && isInvalid) {
+    colorClass = colorToClassNameMap.danger;
+  } else {
+    colorClass = colorToClassNameMap[color];
+  }
   const classes = classNames(
     'euiExpression',
     className,
@@ -117,7 +123,7 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isUppercase': uppercase,
     },
     displayToClassNameMap[display],
-    colorToClassNameMap[color]
+    colorClass
   );
 
   const Component = onClick ? 'button' : 'span';

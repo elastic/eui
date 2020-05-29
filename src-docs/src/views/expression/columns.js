@@ -12,9 +12,6 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-// Rise the popovers above GuidePageSideNav
-const POPOVER_STYLE = { zIndex: '300' };
-
 export default () => {
   const [example1, setExample1] = useState({
     isOpen: false,
@@ -82,21 +79,14 @@ export default () => {
     });
   };
 
-  // const changeExample1 = (e: any) => {
-  //   setExample1({
-  //     value: e.target.value,
-  //     isOpen: false,
-  //   });
-  // };
-
-  const changeExample2 = (e: any) => {
+  const changeExample2 = e => {
     setExample2({
       value: e.target.value,
       isOpen: false,
     });
   };
 
-  const onChange = (selectedOptions: any) => {
+  const onChange = selectedOptions => {
     setSelected(selectedOptions);
     const indices = selectedOptions.map((s, index) => {
       return (
@@ -112,39 +102,15 @@ export default () => {
     });
   };
 
-  const onCreateOption = (searchValue: any, flattenedOptions = []) => {
-    const normalizedSearchValue = searchValue.trim().toLowerCase();
-
-    if (!normalizedSearchValue) {
-      return;
-    }
-
-    const newOption = {
-      label: searchValue,
-    };
-
-    // Create the option if it doesn't exist.
-    if (
-      flattenedOptions.findIndex(
-        option => option.label.trim().toLowerCase() === normalizedSearchValue
-      ) === -1
-    ) {
-      options.push(newOption);
-    }
-
-    // Select the option.
-    setSelected([...selectedOptions, newOption]);
-  };
-
   const renderPopover1 = () => (
-    <div style={POPOVER_STYLE}>
+    <div>
       <EuiPopoverTitle>INDICES</EuiPopoverTitle>
       <EuiComboBox
         placeholder="Select one or more indices"
         options={options}
+        style={{ minWidth: '220px' }}
         selectedOptions={selectedOptions}
         onChange={onChange}
-        onCreateOption={onCreateOption}
         isClearable={true}
         data-test-subj="demoComboBox"
       />
@@ -152,7 +118,7 @@ export default () => {
   );
 
   const renderPopover2 = () => (
-    <div style={POPOVER_STYLE}>
+    <div>
       <EuiPopoverTitle>WHEN</EuiPopoverTitle>
       <EuiFlexGroup gutterSize="s">
         <EuiFlexItem grow={false} style={{ width: 150 }}>
@@ -191,11 +157,6 @@ export default () => {
               description="indices"
               display="columns"
               value={example1.value}
-              color={
-                selectedOptions && selectedOptions.length > 0
-                  ? 'secondary'
-                  : 'danger'
-              }
               isInvalid={
                 selectedOptions && selectedOptions.length > 0 ? false : true
               }
@@ -203,6 +164,7 @@ export default () => {
               onClick={openExample1}
             />
           }
+          zIndex={200}
           isOpen={example1.isOpen}
           closePopover={closeExample1}
           ownFocus
@@ -214,6 +176,7 @@ export default () => {
         <EuiPopover
           id="popover2"
           panelPaddingSize="s"
+          zIndex={200}
           button={
             <EuiExpression
               description="when"
