@@ -29,7 +29,7 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
   },
   {
     value: 'pallette_3',
-    title: 'Beautiful Gradient (gradient with stops)',
+    title: 'Grayscale (gradient with stops)',
     palette: [
       {
         stop: 100,
