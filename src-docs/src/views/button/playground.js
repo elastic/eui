@@ -12,7 +12,6 @@ import {
 } from 'react-view';
 
 // import "brace/theme/github";
-
 import {
   EuiButton,
   EuiRadioGroup,
@@ -22,6 +21,7 @@ import {
   EuiSpacer,
   EuiFieldText,
 } from '../../../../src/components/';
+import KnobsC from '../../services/playground/knobs';
 
 const testProps = {
   color: {
@@ -60,6 +60,11 @@ const modifiedProps = {
     required: false,
     options: { ghost: 'ghost', primary: 'primary', text: 'text' },
     type: PropTypes.Enum,
+  },
+  href: {
+    description: '`href` color is set for deprecation',
+    value: 'Jane Doe',
+    type: PropTypes.String,
   },
   fullWidth: {
     description: '',
@@ -115,24 +120,7 @@ export default () => {
         placeholder={Placeholder}
       />
       <Error msg={params.errorProps.msg} isPopup />
-      <EuiCheckbox
-        id={'fullwidth'}
-        label="fullWidth"
-        checked={params.knobProps.state.fullWidth.value}
-        onChange={e => params.knobProps.set(e.target.checked, 'fullWidth')}
-      />
-      <EuiSpacer />
-      <EuiRadioGroup
-        options={radios}
-        idSelected={radioIdSelected}
-        onChange={id => onChange(id)}
-        name="radio group"
-        legend={{
-          children: <span>Select color</span>,
-        }}
-      />
-      <EuiSpacer />
-
+      <KnobsC {...params.knobProps} />
       <EuiSpacer />
       <EuiCodeEditor
         mode="javascript"
