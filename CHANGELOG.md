@@ -29,6 +29,8 @@
 
 - Removed borders `EuiModal` ([#3515](https://github.com/elastic/eui/pull/3515))
 - Improve `EuiOverlayMask` colors ([#3515](https://github.com/elastic/eui/pull/3515))
+- Updated shadow styles to improve smoothness, use black as the base color, and deprecated `opacity` value of shadow mixins ([#3428](https://github.com/elastic/eui/pull/3428))
+- Removed borders from `EuiFlyout` and `EuiPopover` ([#3477](https://github.com/elastic/eui/pull/3477))
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 

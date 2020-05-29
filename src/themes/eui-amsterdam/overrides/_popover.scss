@@ -1,0 +1,56 @@
+.euiPopover__panel {
+  .euiPopover__panelArrow {
+    &:before {
+      filter: blur($euiSizeXS - 1px);
+      opacity: .2;
+    }
+
+    $arrowShadowCompensation: $euiSizeXS;
+
+    &.euiPopover__panelArrow--top {
+      &:before {
+        bottom: -$euiPopoverArrowSize;
+        border-top-color: $euiShadowColor;
+        clip-path: polygon(#{-$arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation}, #{-$arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation});
+      }
+
+      &:after {
+        bottom: -$euiPopoverArrowSize + 1;
+      }
+    }
+
+    &.euiPopover__panelArrow--right {
+      &:before {
+        border-right-color: $euiShadowColor;
+        clip-path: polygon(#{-$arrowShadowCompensation} #{-$arrowShadowCompensation}, $euiPopoverArrowSize #{-$arrowShadowCompensation}, $euiPopoverArrowSize #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation}, #{-$arrowShadowCompensation} #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation});
+      }
+
+      &:after {
+        left: -$euiPopoverArrowSize + 1;
+      }
+    }
+
+    &.euiPopover__panelArrow--bottom {
+      &:before {
+        border-bottom-color: $euiShadowColor;
+        clip-path: polygon(#{-$arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} $euiPopoverArrowSize, #{-$arrowShadowCompensation} $euiPopoverArrowSize);
+      }
+
+      &:after {
+        top: -$euiPopoverArrowSize + 1;
+      }
+    }
+
+    &.euiPopover__panelArrow--left {
+      &:before {
+        right: -$euiPopoverArrowSize;
+        border-left-color: $euiShadowColor;
+        clip-path: polygon(0 #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation}, 0 #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation});
+      }
+
+      &:after {
+        right: -$euiPopoverArrowSize + 1;
+      }
+    }
+  }
+}
