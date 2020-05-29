@@ -730,7 +730,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
   // compute the default column width from the container's clientWidth and count of visible columns
-  // @TODO: relocate
   const defaultColumnWidth = useDefaultColumnWidth(
     containerRef,
     leadingControlColumns,
