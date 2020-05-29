@@ -14,6 +14,7 @@ import {
 } from '../../../../src/components/header';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiIcon } from '../../../../src/components/icon';
+import { EuiAvatar } from '../../../../src/components/avatar';
 
 export default ({ theme }: { theme: any }) => (
   <EuiHeader
@@ -49,8 +50,13 @@ export default ({ theme }: { theme: any }) => (
             iconSide="right">
             Production logs
           </EuiBadge>,
-          <EuiHeaderSectionItemButton aria-label="Alerts" notification={'•'}>
-            <EuiIcon type="email" size="m" />
+          <EuiHeaderSectionItemButton
+            aria-label="Notifications"
+            notification={'•'}>
+            <EuiIcon type="cheer" size="m" />
+          </EuiHeaderSectionItemButton>,
+          <EuiHeaderSectionItemButton aria-label="Account menu">
+            <EuiAvatar name="John Username" size="s" />
           </EuiHeaderSectionItemButton>,
         ],
         borders: 'none',

@@ -116,7 +116,7 @@ export default () => {
       }`}
       onClick={() => showFlyout()}
       notification={showBadge && '•'}>
-      <EuiIcon type="email" size="m" />
+      <EuiIcon type="cheer" size="m" />
     </EuiHeaderSectionItemButton>
   );
 

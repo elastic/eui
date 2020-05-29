@@ -76,7 +76,7 @@ export default () => {
                 <EuiPageContentHeader>
                   <EuiPageContentHeaderSection>
                     <p>
-                      Click the <EuiIcon type="email" size="m" /> button to see
+                      Click the <EuiIcon type="cheer" size="m" /> button to see
                       ‘What’s new?’
                     </p>
                   </EuiPageContentHeaderSection>

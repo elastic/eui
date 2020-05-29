@@ -5,6 +5,7 @@
   padding-right: $euiSizeS;
 }
 
+// Remove borders without deleting the prop just yet
 .euiHeaderSectionItem:after {
   display: none !important; // sass-lint:disable-line no-important
 }
