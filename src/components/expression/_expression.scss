@@ -7,11 +7,11 @@
   @include euiFontSizeS;
   @include euiCodeFont;
 
-  border-bottom: 2px solid transparent;
+  border-bottom: $euiBorderWidthThick solid transparent;
   display: inline-block; /* 1 */
   text-align: left;
   padding: ($euiSizeXS / 2) 0;
-  transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
+  transition: all $euiAnimSpeedNormal ease-in-out;
   color: $euiTextColor;
 
   &:focus {
@@ -23,10 +23,11 @@
   }
 
   &.euiExpression-columns {
-    border: 2px solid transparent;
+    border-color: transparent;
+    // Ensures there's no flash of the dashed style before turning solid for the active state
+    border-bottom-style: solid;
     margin-bottom: $euiSizeXS;
   }
-
 }
 
 .euiExpression-isUppercase .euiExpression__description {
@@ -41,54 +42,54 @@
     border-bottom-style: solid;
     transform: translateY(-1px);
   }
-
 }
 
-.euiExpression-columns {
-  background-color: $euiColorLightestShade;
-  width: 100%;
-  display: flex;
-  padding: $euiSizeXS * .5;
-  border-radius: $euiSizeXS;
-
-  &:not(.euiExpression-isClickable) {
-    .euiExpression__description {
-      color: $euiTextColor;
-    }
-  }
-
-  .euiExpression__description,
-  .euiExpression__value {
-    @include euiTextBreakWord;
-  }
-
-  .euiExpression__description {
-    margin: $euiSizeXS;
-    text-align: right;
-  }
-
-  .euiExpression__value {
-    flex-grow: 1;
-    display: flex;
-    margin: $euiSizeXS;
-  }
-
-  .euiExpression__icon {
-    margin-left: auto;
-  }
+.euiExpression__icon {
+  margin-left: $euiSizeXS;
 }
 
 .euiExpression-isActive {
   border-bottom-style: solid;
 }
 
-.euiPopover__anchor {
+.euiExpression-columns {
   width: 100%;
+  display: flex;
+  padding: $euiSizeXS;
+  border-radius: $euiSizeXS;
+
+  &.euiExpression-isClickable {
+    background-color: $euiColorLightestShade;
+
+    // sass-lint:disable-block nesting-depth
+    &:focus,
+    &:hover:not(:disabled) {
+      .euiExpression__description,
+      .euiExpression__value {
+        // inner child specificity so it inherits underline color from text color
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .euiExpression__description {
+    text-align: right;
+    margin-right: $euiSizeS;
+    flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
+  }
+
+  .euiExpression__value {
+    flex-grow: 1;
+  }
+
+  .euiExpression__icon {
+    margin-top: $euiSizeXS;
+  }
 }
 
 @each $name, $color in $euiExpressionColors {
   .euiExpression--#{$name} {
-    &:focus:not(.euiExpression-columns) {
+    &:focus {
       background-color: transparentize($color, .9);
     }
 
@@ -100,6 +101,5 @@
     .euiExpression__description {
       color: $color;
     }
-
   }
 }
