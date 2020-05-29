@@ -17,6 +17,7 @@ import { NotFoundView } from './views/not_found/not_found_view';
 import { registerTheme } from './services';
 
 import Routes from './routes';
+import { playgrounds } from './playgrounds';
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
 import themeAmsterdamLight from './theme_amsterdam_light.scss';
@@ -40,6 +41,7 @@ childRoutes.push({
 });
 
 const routes = [
+  ...playgrounds,
   {
     path: '/',
     component: AppContainer,
