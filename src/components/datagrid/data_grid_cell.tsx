@@ -138,39 +138,40 @@ export class EuiDataGridCell extends Component<
   static contextType = DataGridContext;
 
   getInteractables = () => {
-    const tabbingRef = this.cellContentsRef;
-
-    if (tabbingRef) {
-      return tabbingRef.querySelectorAll<HTMLElement>(
-        '[data-datagrid-interactable=true]'
-      );
-    }
-
     return [];
+    // const tabbingRef = this.cellContentsRef;
+    //
+    // if (tabbingRef) {
+    //   return tabbingRef.querySelectorAll<HTMLElement>(
+    //     '[data-datagrid-interactable=true]'
+    //   );
+    // }
+    //
+    // return [];
   };
 
   updateFocus = () => {
-    const cell = this.cellRef.current;
-    const { isFocused } = this.props;
-
-    if (cell && isFocused) {
-      // only update focus if we are not already focused on something in this cell
-      let element: Element | null = document.activeElement;
-      while (element != null && element !== cell) {
-        element = element.parentElement;
-      }
-      const doFocusUpdate = element !== cell;
-
-      if (doFocusUpdate) {
-        const interactables = this.getInteractables();
-        if (this.props.isExpandable === false && interactables.length === 1) {
-          // Only one element can be interacted with
-          interactables[0].focus();
-        } else {
-          cell.focus();
-        }
-      }
-    }
+    // const cell = this.cellRef.current;
+    // const { isFocused } = this.props;
+    //
+    // if (cell && isFocused) {
+    //   // only update focus if we are not already focused on something in this cell
+    //   let element: Element | null = document.activeElement;
+    //   while (element != null && element !== cell) {
+    //     element = element.parentElement;
+    //   }
+    //   const doFocusUpdate = element !== cell;
+    //
+    //   if (doFocusUpdate) {
+    //     const interactables = this.getInteractables();
+    //     if (this.props.isExpandable === false && interactables.length === 1) {
+    //       // Only one element can be interacted with
+    //       interactables[0].focus();
+    //     } else {
+    //       cell.focus();
+    //     }
+    //   }
+    // }
   };
 
   componentDidMount() {
@@ -230,38 +231,38 @@ export class EuiDataGridCell extends Component<
   };
 
   onFocus = () => {
-    const { onCellFocus, colIndex, visibleRowIndex, isExpandable } = this.props;
-    onCellFocus([colIndex, visibleRowIndex]);
-
-    const interactables = this.getInteractables();
-    if (interactables.length === 1 && isExpandable === false) {
-      interactables[0].focus();
-      this.setState({ disableCellTabIndex: true });
-    }
+    // const { onCellFocus, colIndex, visibleRowIndex, isExpandable } = this.props;
+    // onCellFocus([colIndex, visibleRowIndex]);
+    //
+    // const interactables = this.getInteractables();
+    // if (interactables.length === 1 && isExpandable === false) {
+    //   interactables[0].focus();
+    //   this.setState({ disableCellTabIndex: true });
+    // }
   };
 
   onBlur = () => {
-    this.setState({ disableCellTabIndex: false });
+    // this.setState({ disableCellTabIndex: false });
   };
 
   preventTabbing = () => {
     if (this.cellContentsRef) {
-      const tabbables = tabbable(this.cellContentsRef);
-      for (let i = 0; i < tabbables.length; i++) {
-        const element = tabbables[i];
-        element.setAttribute('tabIndex', '-1');
-        element.setAttribute('data-datagrid-interactable', 'true');
-      }
+      // const tabbables = tabbable(this.cellContentsRef);
+      // for (let i = 0; i < tabbables.length; i++) {
+      //   const element = tabbables[i];
+      //   element.setAttribute('tabIndex', '-1');
+      //   element.setAttribute('data-datagrid-interactable', 'true');
+      // }
     }
   };
 
   enableTabbing = () => {
     if (this.cellContentsRef) {
-      const interactables = this.getInteractables();
-      for (let i = 0; i < interactables.length; i++) {
-        const element = interactables[i];
-        element.removeAttribute('tabIndex');
-      }
+      // const interactables = this.getInteractables();
+      // for (let i = 0; i < interactables.length; i++) {
+      //   const element = interactables[i];
+      //   element.removeAttribute('tabIndex');
+      // }
     }
   };
 
@@ -445,6 +446,21 @@ export class EuiDataGridCell extends Component<
           </EuiMutationObserver>
         </div>
       </EuiFocusTrap>
+    );
+    anchorContent = <span>Hi</span>;
+
+    return (
+      <div
+        role="gridcell"
+        tabIndex={isFocused && !this.state.disableCellTabIndex ? 0 : -1}
+        ref={this.cellRef}
+        {...cellProps}
+        data-test-subj="dataGridRowCell"
+        onKeyDown={handleCellKeyDown}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}>
+        {anchorContent}
+      </div>
     );
 
     if (isExpandable) {

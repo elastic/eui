@@ -16,6 +16,7 @@ import {
   EuiPopoverTitle,
   EuiButtonIcon,
   EuiSpacer,
+  EuiButton,
 } from '../../../../src/components/';
 
 const columns = [
@@ -155,7 +156,7 @@ const trailingControlColumns = [
 
 export default () => {
   // ** Pagination config
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
   const onChangeItemsPerPage = useCallback(
     pageSize =>
       setPagination(pagination => ({ ...pagination, pageSize, pageIndex: 0 })),
@@ -204,25 +205,34 @@ export default () => {
     };
   }, []);
 
+  const [showGrid, setShowGrid] = useState(false);
+
   return (
-    <EuiDataGrid
-      aria-label="Data grid demo"
-      columns={columns}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      trailingControlColumns={trailingControlColumns}
-      rowCount={raw_data.length}
-      renderCellValue={renderCellValue}
-      inMemory={{ level: 'sorting' }}
-      sorting={{ columns: sortingColumns, onSort }}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [10, 50, 100],
-        onChangeItemsPerPage: onChangeItemsPerPage,
-        onChangePage: onChangePage,
-      }}
-      onColumnResize={eventData => {
-        console.log(eventData);
-      }}
-    />
+    <>
+      <div>
+        <EuiButton onClick={() => setShowGrid(!showGrid)}>Toggle</EuiButton>
+      </div>
+      {showGrid && (
+        <EuiDataGrid
+          aria-label="Data grid demo"
+          columns={columns}
+          columnVisibility={{ visibleColumns, setVisibleColumns }}
+          trailingControlColumns={trailingControlColumns}
+          rowCount={raw_data.length}
+          renderCellValue={renderCellValue}
+          // inMemory={{ level: 'sorting' }}
+          sorting={{ columns: sortingColumns, onSort }}
+          pagination={{
+            ...pagination,
+            pageSizeOptions: [10, 50, 100],
+            onChangeItemsPerPage: onChangeItemsPerPage,
+            onChangePage: onChangePage,
+          }}
+          onColumnResize={eventData => {
+            console.log(eventData);
+          }}
+        />
+      )}
+    </>
   );
 };
