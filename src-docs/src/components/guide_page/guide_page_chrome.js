@@ -42,6 +42,8 @@ export function scrollToSelector(selector, attempts = 5) {
 }
 
 export class GuidePageChrome extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
 
@@ -53,8 +55,14 @@ export class GuidePageChrome extends Component {
   }
 
   componentDidMount = () => {
+    this._isMounted = true;
+
     this.scrollNavSectionIntoViewSync();
     scrollTo(0);
+  };
+
+  componentWillUnmount = () => {
+    this._isMounted = false;
   };
 
   toggleOpenOnMobile = () => {
@@ -92,20 +100,7 @@ export class GuidePageChrome extends Component {
     // Scroll to element.
     scrollToSelector(`#${id}`);
 
-    this.setState(
-      {
-        search: '',
-        isSideNavOpenOnMobile: false,
-      },
-      this.scrollNavSectionIntoView
-    );
-  };
-
-  onClickRoute = () => {
-    // timeout let's IE11 do its thing and update the url
-    // allowing react-router to navigate to the route
-    // otherwise IE11 somehow kills the navigation
-    setTimeout(() => {
+    if (this._isMounted)
       this.setState(
         {
           search: '',
@@ -113,6 +108,21 @@ export class GuidePageChrome extends Component {
         },
         this.scrollNavSectionIntoView
       );
+  };
+
+  onClickRoute = () => {
+    // timeout let's IE11 do its thing and update the url
+    // allowing react-router to navigate to the route
+    // otherwise IE11 somehow kills the navigation
+    setTimeout(() => {
+      if (this._isMounted)
+        this.setState(
+          {
+            search: '',
+            isSideNavOpenOnMobile: false,
+          },
+          this.scrollNavSectionIntoView
+        );
     }, 0);
   };
 
