@@ -8,6 +8,8 @@ import {
   EuiSelect,
   EuiComboBox,
   EuiExpression,
+  EuiTitle,
+  EuiSpacer,
 } from '../../../../src/components';
 
 // Rise the popovers above GuidePageSideNav
@@ -183,7 +185,6 @@ export default () => {
     <EuiFlexGroup>
       <EuiFlexItem style={{ maxWidth: 500 }}>
         <EuiPopover
-          style={{ display: 'block' }}
           id="popover1"
           button={
             <EuiExpression
@@ -211,7 +212,6 @@ export default () => {
         </EuiPopover>
 
         <EuiPopover
-          style={{ display: 'block' }}
           id="popover2"
           panelPaddingSize="s"
           button={
@@ -232,7 +232,30 @@ export default () => {
         <EuiExpression
           display="columns"
           description="Except"
-          value="kibana_sample_data_ky_counties_left"
+          value="kibana_sample_data_ky_counties"
+        />
+        <EuiSpacer />
+        <EuiTitle size="xxs">
+          <h3>Description width at 50%</h3>
+        </EuiTitle>
+        <EuiExpression
+          description="join"
+          display="columns"
+          descriptionWidth={50}
+          value="kibana_sample_data_ky_avl"
+          onClick={() => {}}
+        />
+        <EuiSpacer />
+        <EuiTitle size="xxs">
+          <h3>Error state</h3>
+        </EuiTitle>
+        <EuiExpression
+          description="email"
+          display="columns"
+          color="danger"
+          isInvalid
+          value="example@mail."
+          onClick={() => {}}
         />
       </EuiFlexItem>
     </EuiFlexGroup>

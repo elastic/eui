@@ -140,14 +140,21 @@ export const ExpressionExample = {
             There might be cases where displaying a number of{' '}
             <strong>EuiExpression</strong>s in a paragraph is not ideal. For
             example, when both the <EuiCode>description</EuiCode> and the{' '}
-            <EuiCode>value</EuiCode> are variable and/or when the values they
-            can take can be quite long. To use a columns layout instead and have
-            one <strong>EuiExpression</strong> per line, pass{' '}
-            <EuiCode>true</EuiCode> to the <EuiCode>columnStyle</EuiCode> prop.
+            <EuiCode>value</EuiCode> are variable or when the values they can
+            take can be quite long. To use a columns layout instead, pass{' '}
+            <EuiCode>columns</EuiCode> to the <EuiCode>display</EuiCode> prop.
           </p>
           <p>
-            The <EuiCode>columnStyle</EuiCode> layout supports an optional icon
-            that is place to the right of the expression.
+            The <EuiCode>columns</EuiCode> layout, comes with a built-in error
+            state which is displayed whenever <EuiCode>isInvalid</EuiCode> is
+            true.
+          </p>
+          <p>
+            The <EuiCode>description</EuiCode> column is aligned to the right.
+            The default width for it is 20%. You can customize this width via
+            the <EuiCode>descriptionWidth</EuiCode> prop. When displaying a
+            group of <strong>EuiExpression</strong>s, make sure to set the same
+            width for all of them.
           </p>
         </div>
       ),

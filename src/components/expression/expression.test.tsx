@@ -83,13 +83,13 @@ describe('EuiExpression', () => {
       });
     });
 
-    describe('textWrap', () => {
+    describe('columns', () => {
       test('truncate truncates text', () => {
         const component = (
           <EuiExpression
             description="the answer is"
             value="42"
-            textWrap="truncate"
+            display="columns"
           />
         );
 

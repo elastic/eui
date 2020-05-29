@@ -79,9 +79,9 @@ export type EuiExpressionProps = CommonProps & {
   display?: keyof typeof displayToClassNameMap;
   isInvalid?: boolean;
   /**
-   * Sets a custom width for the description when using columns layout. Defaults to 30%.
+   * Sets a custom width for the description when using the columns layout. Defaults to 30%.
    */
-  descriptionWidth: number;
+  descriptionWidth?: number;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -103,6 +103,7 @@ export const EuiExpression: React.FunctionComponent<
   uppercase = true,
   isActive = false,
   display = 'inline',
+  descriptionWidth = 20,
   onClick,
   isInvalid = false,
   ...rest
@@ -121,9 +122,19 @@ export const EuiExpression: React.FunctionComponent<
 
   const Component = onClick ? 'button' : 'span';
 
+  const customWidth =
+    display === 'columns' && descriptionWidth
+      ? {
+          flexBasis: `${descriptionWidth}%`,
+        }
+      : undefined;
+
   return (
     <Component className={classes} onClick={onClick} {...rest}>
-      <span className="euiExpression__description" {...descriptionProps}>
+      <span
+        className="euiExpression__description"
+        style={customWidth}
+        {...descriptionProps}>
         {description}
       </span>{' '}
       <span className="euiExpression__value" {...valueProps}>

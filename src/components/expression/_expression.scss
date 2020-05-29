@@ -49,7 +49,7 @@
   background-color: $euiColorLightestShade;
   width: 100%;
   display: flex;
-  padding: $euiSizeXS;
+  padding: $euiSizeXS * .5;
   border-radius: $euiSizeXS;
 
   &.euiExpression-isClickable {
@@ -62,13 +62,12 @@
   }
 
   .euiExpression__description {
-    flex-basis: 30%;
     margin: $euiSizeXS;
     text-align: right;
   }
 
   .euiExpression__value {
-    flex-basis: 70%;
+    flex-grow: 1;
     display: flex;
     margin: $euiSizeXS;
   }
