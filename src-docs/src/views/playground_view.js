@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
 import { ThemeProvider, ThemeContext } from '../components';
-import { Link } from 'react-router';
 
-import { childRoutes } from '../playgrounds';
+import { childRoutes } from '../playground_routes';
 import {
   EuiErrorBoundary,
   EuiPage,
