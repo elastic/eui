@@ -27,6 +27,7 @@ export class PlaygroundView extends Component {
         <EuiPageBody>
           <EuiErrorBoundary>
             {childRoutes.map(({ path, name }) => {
+              if (path === '*') return null;
               return <Link to={`/playgrounds/${path}`}>{name}</Link>;
             })}
           </EuiErrorBoundary>
