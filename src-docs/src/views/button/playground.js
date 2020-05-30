@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import {
   useView,
   Compiler,
-  Knobs,
-  Editor,
   Error,
   ActionButtons,
   Placeholder,
@@ -14,14 +12,10 @@ import {
 // import "brace/theme/github";
 import {
   EuiButton,
-  EuiRadioGroup,
-  EuiCheckboxGroup,
   EuiCodeEditor,
-  EuiCheckbox,
   EuiSpacer,
-  EuiFieldText,
 } from '../../../../src/components/';
-import KnobsC from '../../services/playground/knobs';
+import Knobs from '../../services/playground/knobs';
 
 const testProps = {
   color: {
@@ -87,31 +81,6 @@ export default () => {
     },
   });
 
-  console.log('knobProps', params.knobProps);
-  const radios = [
-    {
-      id: `primary`,
-      label: 'primary',
-    },
-    {
-      id: `text`,
-      label: 'text',
-    },
-    {
-      id: `ghost`,
-      label: 'ghost',
-    },
-  ];
-
-  const [radioIdSelected, setRadioIdSelected] = useState(`primary`);
-  const [child, setChild] = useState(params.knobProps.state.children.value);
-
-  const onChange = optionId => {
-    // console.log(optionId);
-    params.knobProps.set(optionId, 'color');
-    setRadioIdSelected(optionId);
-  };
-
   return (
     <React.Fragment>
       <Compiler
@@ -120,7 +89,7 @@ export default () => {
         placeholder={Placeholder}
       />
       <Error msg={params.errorProps.msg} isPopup />
-      <KnobsC {...params.knobProps} />
+      <Knobs {...params.knobProps} />
       <EuiSpacer />
       <EuiCodeEditor
         mode="javascript"
