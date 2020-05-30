@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import { ThemeProvider, ThemeContext } from '../components';
+import { Link } from 'react-router';
 
+import { childRoutes } from '../playgrounds';
 import {
   EuiErrorBoundary,
   EuiPage,
@@ -23,6 +25,11 @@ export class PlaygroundView extends Component {
     return (
       <EuiPage restrictWidth={1240} className="guidePage">
         <EuiPageBody>
+          <EuiErrorBoundary>
+            {childRoutes.map(({ path, name }) => {
+              return <Link to={`/playgrounds/${path}`}>{name}</Link>;
+            })}
+          </EuiErrorBoundary>
           <div className="guidePageContent">
             <EuiContext i18n={'i18n'}>
               <ThemeContext.Consumer>

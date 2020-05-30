@@ -2,7 +2,7 @@ import React from 'react';
 import { PlaygroundView } from './views/playground_view';
 import ButtonExample from './views/button/playground';
 
-const childRoutes = [
+export const childRoutes = [
   {
     path: 'button',
     component: ButtonExample,
