@@ -9,6 +9,7 @@ import {
   EuiPage,
   EuiPageBody,
   EuiContext,
+  EuiSideNav,
 } from '../../../src/components';
 
 export class PlaygroundView extends Component {
@@ -21,15 +22,32 @@ export class PlaygroundView extends Component {
 
   renderContent() {
     const { children } = this.props;
+    const navigation = childRoutes
+      .filter(({ path }) => path !== '*')
+      .map(({ path, name }, id) => {
+        if (path === '*') return null;
+        const href = `#/playgrounds/${path}`;
+        return {
+          name,
+          id,
+          href,
+        };
 
+        // <Link to={`/playgrounds/${path}`}>{name}</Link>;
+      });
     return (
       <EuiPage restrictWidth={1240} className="guidePage">
         <EuiPageBody>
           <EuiErrorBoundary>
-            {childRoutes.map(({ path, name }) => {
-              if (path === '*') return null;
-              return <Link to={`/playgrounds/${path}`}>{name}</Link>;
-            })}
+            <div className="guideSideNav">
+              <div className="guideSideNav__content">
+                <EuiSideNav
+                  mobileTitle="Navigate within $Playgrounds"
+                  items={navigation}
+                  className="guideSideNav__item"
+                />
+              </div>
+            </div>
           </EuiErrorBoundary>
           <div className="guidePageContent">
             <EuiContext i18n={'i18n'}>
