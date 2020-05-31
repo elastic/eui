@@ -140,6 +140,11 @@ type CommonGridProps = CommonProps &
      * A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`.
      */
     onColumnResize?: EuiDataGridOnColumnResizeHandler;
+    /**
+     * Defines a control for the min size when the grid only shows the full screen button.
+     * Default to `MINIMUM_WIDTH_FOR_GRID_CONTROLS`.
+     */
+    minSizeForControls?: number;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -326,12 +331,13 @@ function useColumnWidths(
 
 function useOnResize(
   setHasRoomForGridControls: (hasRoomForGridControls: boolean) => void,
-  isFullScreen: boolean
+  isFullScreen: boolean,
+  minSizeForControls: number
 ) {
   return useCallback(
     ({ width }: { width: number }) => {
       setHasRoomForGridControls(
-        width > MINIMUM_WIDTH_FOR_GRID_CONTROLS || isFullScreen
+        width > minSizeForControls || isFullScreen
       );
     },
     [setHasRoomForGridControls, isFullScreen]
@@ -593,11 +599,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
 
   // enables/disables grid controls based on available width
+  const minSizeForControls = typeof props.minSizeForControls === 'undefined' ?
+    MINIMUM_WIDTH_FOR_GRID_CONTROLS :
+    props.minSizeForControls;
   const onResize = useOnResize(nextHasRoomForGridControls => {
     if (nextHasRoomForGridControls !== hasRoomForGridControls) {
       setHasRoomForGridControls(nextHasRoomForGridControls);
     }
-  }, isFullScreen);
+  }, isFullScreen, minSizeForControls);
 
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
