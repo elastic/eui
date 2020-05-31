@@ -78,10 +78,7 @@ const modifiedProps = {
   },
 };
 
-// const checkboxProps = require('!!extract-react-types-loader!../../../../src/components/button/button.tsx');
-
 export default () => {
-  // console.log('checkboxProps', checkboxProps);
   const params = useView({
     componentName: 'EuiButton',
     props: modifiedProps,
