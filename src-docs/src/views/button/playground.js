@@ -47,6 +47,7 @@ const modifiedProps = {
     <div>Three</div>`,
     type: PropTypes.ReactNode,
     description: 'Visible label.',
+    hidden: true,
   },
   color: {
     defaultValue: 'primary',
@@ -64,10 +65,23 @@ const modifiedProps = {
     description: '',
     value: false,
     type: PropTypes.Boolean,
+    stateful: true,
+  },
+  setFullWidth: {
+    value: 'e => setFullWidth(e)',
+    type: PropTypes.Function,
+    description: 'Called when fullWidth value is changed.',
+    propHook: {
+      what: 'e',
+      into: 'fullWidth',
+    },
   },
 };
 
+// const checkboxProps = require('!!extract-react-types-loader!../../../../src/components/button/button.tsx');
+
 export default () => {
+  // console.log('checkboxProps', checkboxProps);
   const params = useView({
     componentName: 'EuiButton',
     props: modifiedProps,

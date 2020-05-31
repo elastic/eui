@@ -6,6 +6,8 @@ import {
   EuiRadioGroup,
   EuiFieldText,
   EuiTextArea,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components/';
 
 const getTooltip = (description, type, name) => (
@@ -172,7 +174,7 @@ const Knob = ({
 
 const KnobColumn = ({ state, knobNames, error, set }) => {
   return (
-    <div>
+    <EuiFlexItem>
       {knobNames.map(name => (
         <Knob
           key={name}
@@ -188,29 +190,37 @@ const KnobColumn = ({ state, knobNames, error, set }) => {
           defaultValue={state[name].defaultValue}
         />
       ))}
-    </div>
+    </EuiFlexItem>
   );
 };
 
 const Knobs = ({ state, set, error }) => {
-  const [showAllKnobs, setShowAllKnobs] = React.useState(true);
   const allKnobNames = Object.keys(state).filter(
     name => state[name].type !== PropTypes.Custom
   );
   const filteredKnobNames = allKnobNames.filter(
     name => state[name].hidden !== true
   );
-  const knobNames = showAllKnobs ? allKnobNames : filteredKnobNames;
-  const firstGroup = knobNames;
+  const knobNames = filteredKnobNames;
+  // const knobNames = showAllKnobs ? allKnobNames : filteredKnobNames;
+
+  const firstGroup = knobNames.slice(0, Math.round(knobNames.length / 2));
+  const secondGroup = knobNames.slice(Math.round(knobNames.length / 2));
   return (
-    <React.Fragment>
+    <EuiFlexGroup>
       <KnobColumn
         state={state}
         knobNames={firstGroup}
         set={set}
         error={error}
       />
-    </React.Fragment>
+      <KnobColumn
+        state={state}
+        knobNames={secondGroup}
+        set={set}
+        error={error}
+      />
+    </EuiFlexGroup>
   );
 };
 
