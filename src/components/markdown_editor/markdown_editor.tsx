@@ -18,20 +18,18 @@
  */
 
 import React, {
-  createContext,
   createElement,
   FunctionComponent,
   HTMLAttributes,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
-import unified, { PluggableList } from 'unified';
+import unified, { PluggableList, Processor } from 'unified';
 import classNames from 'classnames';
 // @ts-ignore
 import emoji from 'remark-emoji';
 import markdown from 'remark-parse';
-// @ts-ignore
-import disableTokenizers from 'remark-disable-tokenizers';
 // @ts-ignore
 import remark2rehype from 'remark-rehype';
 // @ts-ignore
@@ -40,7 +38,7 @@ import highlight from 'remark-highlight.js';
 import rehype2react from 'rehype-react';
 
 import { CommonProps } from '../common';
-import MarkdownActions from './markdown_actions';
+import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
 import { EuiMarkdownFormat } from './markdown_format';
@@ -50,34 +48,14 @@ import { EuiLink } from '../link';
 import { EuiCodeBlock } from '../code';
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
-
-interface ContextShape {
-  markdown: string;
-  setMarkdown(next: string): void;
-}
-export const EuiMarkdownContext = createContext<ContextShape>({
-  markdown: '',
-  setMarkdown() {},
-});
-
-function storeMarkdownTree() {
-  return function(tree: any, file: any) {
-    file.data.markdownTree = JSON.parse(JSON.stringify(tree));
-  };
-}
+import { EuiOverlayMask } from '../overlay_mask';
+import { EuiModal } from '../modal';
+import { ContextShape, EuiMarkdownContext } from './markdown_context';
 
 export const defaultParsingPlugins: PluggableList = [
   [markdown, {}],
-  [
-    disableTokenizers,
-    {
-      // disable the built-in task list / checkbox plugin in favour of a custom one
-      block: ['list'],
-    },
-  ],
   [highlight, {}],
   [emoji, { emoticon: true }],
-  [storeMarkdownTree, {}],
 ];
 
 export const defaultProcessingPlugins: PluggableList = [
@@ -144,15 +122,33 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
   const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
   const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [_editorId]);
 
+  const [pluginEditorPlugin, setPluginEditorPlugin] = useState<
+    EuiMarkdownEditorUiPlugin | undefined
+  >(undefined);
+
   const markdownActions = useMemo(
     () => new MarkdownActions(editorId, uiPlugins),
-
     // uiPlugins _is_ accounted for
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [editorId, uiPlugins.map(({ name }) => name).join(',')]
   );
 
   const classes = classNames('euiMarkdownEditor', className);
+
+  const parser = useMemo(() => {
+    const Compiler = (tree: any) => {
+      return tree;
+    };
+
+    function identityCompiler(this: Processor) {
+      this.Compiler = Compiler;
+    }
+    return unified()
+      .use(parsingPluginList)
+      .use(identityCompiler);
+  }, [parsingPluginList]);
+
+  const parsed = useMemo(() => parser.processSync(value), [parser, value]);
 
   const processor = useMemo(
     () =>
@@ -162,51 +158,68 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
     [parsingPluginList, processingPluginList]
   );
 
-  // const Compiler = (tree, file) => {
-  //   return JSON.stringify(tree, null, 2);
-  // }
-  //
-  // function stringify (options) {
-  //   this.Compiler = Compiler;
-  // }
-  //
-  // console.log(unified().use(parsingPluginList).use([remark2rehype, { allowDangerousHTML: true }]).use(rehypestringify).processSync(value));
-  // console.log(
-  //   JSON.parse(
-  //     unified()
-  //     .use(parsingPluginList)
-  //     .use(remark2rehype, {
-  //       allowDangerousHTML: true,
-  //       handlers: {
-  //         chart(h, node) {
-  //           console.log(h);
-  //           console.log(node);
-  //           return h(node.position, 'strong', {className: 'test'}, unistBuilder('test', 'HEY'));
-  //         }
-  //       },
-  //       unknownHandler(h, node) {
-  //         console.log(h);
-  //         console.log(node);
-  //         h(node.position, 'code', 'THIS IS A TEST');
-  //       }
-  //     })
-  //     .use(stringify)
-  //     .processSync(value)
-  //     .contents
-  //   )
-  // );
-
   const isPreviewing = viewMode === MODE_VIEWING;
 
   const contextValue = useMemo<ContextShape>(
-    () => ({ markdown: value, setMarkdown: onChange }),
+    () => ({
+      openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
+        setPluginEditorPlugin(() => plugin),
+      replaceNode: (position, next) => {
+        const leading = value.substr(0, position.start.offset);
+        const trailing = value.substr(position.end.offset);
+        onChange(`${leading}${next}${trailing}`);
+      },
+    }),
     [value, onChange]
   );
+
+  const [selectedNode, setSelectedNode] = useState();
+
+  const [textareaRef, setTextareaRef] = useState<HTMLTextAreaElement | null>(
+    null
+  );
+  useEffect(() => {
+    if (textareaRef == null) return;
+
+    const getCursorNode = () => {
+      const { selectionStart } = textareaRef;
+
+      let node: any = parsed.contents;
+
+      outer: while (true) {
+        if (node.children) {
+          for (let i = 0; i < node.children.length; i++) {
+            const child = node.children[i];
+            if (
+              child.position.start.offset < selectionStart &&
+              selectionStart < child.position.end.offset
+            ) {
+              if (child.type === 'text') break outer; // don't dive into `text` nodes
+              node = child;
+              continue outer;
+            }
+          }
+        }
+        break;
+      }
+
+      setSelectedNode(node);
+    };
+
+    textareaRef.addEventListener('keyup', getCursorNode);
+    textareaRef.addEventListener('mouseup', getCursorNode);
+
+    return () => {
+      textareaRef.removeEventListener('keyup', getCursorNode);
+      textareaRef.removeEventListener('mouseup', getCursorNode);
+    };
+  }, [textareaRef, parsed]);
 
   return (
     <EuiMarkdownContext.Provider value={contextValue}>
       <div className={classes} {...rest}>
         <EuiMarkdownEditorToolbar
+          selectedNode={selectedNode}
           markdownActions={markdownActions}
           onClickPreview={() =>
             setViewMode(isPreviewing ? MODE_EDITING : MODE_VIEWING)
@@ -222,14 +235,48 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
             <EuiMarkdownFormat processor={processor}>{value}</EuiMarkdownFormat>
           </div>
         ) : (
-          <EuiMarkdownEditorDropZone>
-            <EuiMarkdownEditorTextArea
-              height={height}
-              id={editorId}
-              onChange={e => onChange(e.target.value)}
-              value={value}
-            />
-          </EuiMarkdownEditorDropZone>
+          <>
+            <EuiMarkdownEditorDropZone>
+              <EuiMarkdownEditorTextArea
+                ref={setTextareaRef}
+                height={height}
+                id={editorId}
+                onChange={e => onChange(e.target.value)}
+                value={value}
+              />
+            </EuiMarkdownEditorDropZone>
+            {textareaRef && pluginEditorPlugin && (
+              <EuiOverlayMask>
+                <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
+                  {createElement(pluginEditorPlugin.editor!, {
+                    node:
+                      selectedNode &&
+                      selectedNode.type === pluginEditorPlugin.name
+                        ? selectedNode
+                        : null,
+                    onCancel: () => setPluginEditorPlugin(undefined),
+                    onSave: markdown => {
+                      if (
+                        selectedNode &&
+                        selectedNode.type === pluginEditorPlugin.name
+                      ) {
+                        textareaRef.setSelectionRange(
+                          selectedNode.position.start.offset,
+                          selectedNode.position.end.offset
+                        );
+                      }
+                      insertText(textareaRef, {
+                        text: markdown,
+                        selectionStart: undefined,
+                        selectionEnd: undefined,
+                      });
+                      setPluginEditorPlugin(undefined);
+                    },
+                  })}
+                </EuiModal>
+              </EuiOverlayMask>
+            )}
+          </>
         )}
       </div>
     </EuiMarkdownContext.Provider>

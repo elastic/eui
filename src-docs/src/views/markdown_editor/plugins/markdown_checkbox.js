@@ -15,17 +15,15 @@ function CheckboxParser() {
      * optional whitespace
      * remainder of the line is consumed as the textbox label
      */
-    const checkboxMatch = value.match(/^(\s*-\s*)?\[([\sx]*)\]\s*([^\r\n]+)/);
+    const checkboxMatch = value.match(/^(\s*-\s*)?\[([\sx]*)\](.+)/);
     if (checkboxMatch == null) return false;
 
     if (silent) {
       return true;
     }
 
-    const [match, , checkboxStatus, text] = checkboxMatch;
+    const [match, lead = '', checkboxStatus, text] = checkboxMatch;
     const isChecked = checkboxStatus.indexOf('x') !== -1;
-
-    const position = eat.now();
 
     const now = eat.now();
     const offset = match.length - text.length;
@@ -35,47 +33,35 @@ function CheckboxParser() {
 
     return eat(match)({
       type: 'checkboxPlugin',
-      configuration: { isChecked, position },
+      lead,
+      label: text,
+      isChecked,
       children,
     });
   }
 
   tokenizers.checkbox = tokenizeCheckbox;
-  methods.splice(methods.indexOf('text'), 0, 'checkbox'); // Run it just before `text`.
+  methods.splice(methods.indexOf('list'), 0, 'checkbox'); // Run it just before default `list` plugin to inject our own idea of checkboxes.
 }
 
 const checkboxMarkdownHandler = (h, node) => {
-  return h(node.position, 'checkboxPlugin', node.configuration, all(h, node));
+  return h(node.position, 'checkboxPlugin', node, all(h, node));
 };
-const CheckboxMarkdownRenderer = ({ position, isChecked, children }) => {
-  const { markdown, setMarkdown } = useContext(EuiMarkdownContext);
+const CheckboxMarkdownRenderer = ({
+  position,
+  lead,
+  label,
+  isChecked,
+  children,
+}) => {
+  const { replaceNode } = useContext(EuiMarkdownContext);
   return (
     <EuiCheckbox
       id={htmlIdGenerator()()}
       checked={isChecked}
       label={children}
       onChange={() => {
-        const leadingMarkdown = markdown.substr(0, position.offset);
-
-        let index = position.offset;
-        let leadIn = '';
-        let hasSeenBracket = false;
-        for (; index < markdown.length; index++) {
-          const char = markdown[index];
-          if (hasSeenBracket === false) {
-            if (char === '[') hasSeenBracket = true;
-            else leadIn += char;
-          } else {
-            if (char === ']') break;
-          }
-        }
-        index++; // still need to skip over the closing bracket
-
-        const checkMarkdown = `[${isChecked ? ' ' : 'x'}]`;
-        const trailingMarkdown = markdown.substr(index);
-        const nextMarkdown = `${leadingMarkdown}${leadIn}${checkMarkdown}${trailingMarkdown}`;
-
-        setMarkdown(nextMarkdown);
+        replaceNode(position, `${lead}[${isChecked ? ' ' : 'x'}]${label}`);
       }}
     />
   );

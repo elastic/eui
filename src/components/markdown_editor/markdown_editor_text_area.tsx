@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
+import React, { TextareaHTMLAttributes, forwardRef } from 'react';
 import { CommonProps } from '../common';
 
 export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
@@ -33,8 +33,6 @@ export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
      */
     resize?: keyof typeof resizeToClassNameMap;
 
-    inputRef?: Ref<HTMLTextAreaElement>;
-
     height: number;
   };
 
@@ -47,34 +45,41 @@ const resizeToClassNameMap = {
 
 export const RESIZE = Object.keys(resizeToClassNameMap);
 
-export const EuiMarkdownEditorTextArea: FunctionComponent<
+export const EuiMarkdownEditorTextArea = forwardRef<
+  HTMLTextAreaElement,
   EuiMarkdownEditorTextAreaProps
-> = ({
-  children,
-  className,
-  compressed,
-  id,
-  inputRef,
-  isInvalid,
-  name,
-  placeholder,
-  rows,
-  height,
-  ...rest
-}) => {
-  const dropZoneButtonHeight = 32;
+>(
+  (
+    {
+      children,
+      className,
+      compressed,
+      id,
+      isInvalid,
+      name,
+      placeholder,
+      rows,
+      height,
+      ...rest
+    },
+    ref
+  ) => {
+    const dropZoneButtonHeight = 32;
 
-  return (
-    <textarea
-      style={{ height: `calc(${height - dropZoneButtonHeight}px` }}
-      className="euiMarkdownEditor__textArea"
-      {...rest}
-      rows={6}
-      name={name}
-      id={id}
-      ref={inputRef}
-      placeholder={placeholder}>
-      {children}
-    </textarea>
-  );
-};
+    return (
+      <textarea
+        ref={ref}
+        style={{ height: `calc(${height - dropZoneButtonHeight}px` }}
+        className="euiMarkdownEditor__textArea"
+        {...rest}
+        rows={6}
+        name={name}
+        id={id}
+        placeholder={placeholder}>
+        {children}
+      </textarea>
+    );
+  }
+);
+
+EuiMarkdownEditorTextArea.displayName = 'EuiMarkdownEditorTextArea';
