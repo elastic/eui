@@ -81,3 +81,5 @@ export const EuiMarkdownEditorTextArea = forwardRef<
     );
   }
 );
+
+EuiMarkdownEditorTextArea.displayName = 'EuiMarkdownEditorTextArea';
