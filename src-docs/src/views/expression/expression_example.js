@@ -52,6 +52,15 @@ const columnsSnippet = `<EuiExpression
   value={value}
 />`;
 
+import Invalid from './invalid';
+const invalidSource = require('!!raw-loader!./invalid');
+const invalidHtml = renderToHtml(Invalid);
+const invalidSnippet = `<EuiExpression
+  description="description"
+  isInvalid
+  value={value}
+/>`;
+
 export const ExpressionExample = {
   title: 'Expression',
   sections: [
@@ -146,11 +155,6 @@ export const ExpressionExample = {
             <EuiCode>columns</EuiCode> to the <EuiCode>display</EuiCode> prop.
           </p>
           <p>
-            The <EuiCode>columns</EuiCode> layout, comes with a built-in error
-            state which is displayed whenever <EuiCode>isInvalid</EuiCode> is
-            true.
-          </p>
-          <p>
             The <EuiCode>description</EuiCode> column is aligned to the right.
             The default width for it is 20%. You can customize this width via
             the <EuiCode>descriptionWidth</EuiCode> prop. When displaying a
@@ -161,6 +165,27 @@ export const ExpressionExample = {
       ),
       snippet: columnsSnippet,
       demo: <Columns />,
+    },
+    {
+      title: 'Invalid state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: invalidSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: invalidHtml,
+        },
+      ],
+      text: (
+        <p>
+          Set <EuiCode>isInvalid</EuiCode> to true to display{' '}
+          <strong>EuiExpression</strong>&apos;s error state.
+        </p>
+      ),
+      snippet: invalidSnippet,
+      demo: <Invalid />,
     },
   ],
 };

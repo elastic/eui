@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 import {
   EuiPopoverTitle,
-  EuiFlexItem,
-  EuiFlexGroup,
   EuiPopover,
   EuiSelect,
   EuiComboBox,
@@ -103,12 +101,11 @@ export default () => {
   };
 
   const renderPopover1 = () => (
-    <div>
+    <div style={{ width: 300 }}>
       <EuiPopoverTitle>INDICES</EuiPopoverTitle>
       <EuiComboBox
         placeholder="Select one or more indices"
         options={options}
-        style={{ minWidth: '220px' }}
         selectedOptions={selectedOptions}
         onChange={onChange}
         isClearable={true}
@@ -118,108 +115,91 @@ export default () => {
   );
 
   const renderPopover2 = () => (
-    <div>
+    <div style={{ width: 150 }}>
       <EuiPopoverTitle>WHEN</EuiPopoverTitle>
-      <EuiFlexGroup gutterSize="s">
-        <EuiFlexItem grow={false} style={{ width: 150 }}>
-          <EuiSelect
-            compressed
-            value={example2.value}
-            onChange={changeExample2}
-            options={[
-              {
-                value: 'count()',
-                text: 'count()',
-              },
-              {
-                value: 'sum()',
-                text: 'sum()',
-              },
-              {
-                value: 'min()',
-                text: 'min()',
-              },
-              { value: 'max()', text: 'max()' },
-            ]}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      <EuiSelect
+        compressed
+        value={example2.value}
+        onChange={changeExample2}
+        options={[
+          {
+            value: 'count()',
+            text: 'count()',
+          },
+          {
+            value: 'sum()',
+            text: 'sum()',
+          },
+          {
+            value: 'min()',
+            text: 'min()',
+          },
+          { value: 'max()', text: 'max()' },
+        ]}
+      />
     </div>
   );
 
   return (
-    <EuiFlexGroup>
-      <EuiFlexItem style={{ maxWidth: 500 }}>
-        <EuiPopover
-          id="popover1"
-          button={
-            <EuiExpression
-              description="indices"
-              display="columns"
-              value={example1.value}
-              isInvalid={
-                selectedOptions && selectedOptions.length > 0 ? false : true
-              }
-              isActive={example1.isOpen}
-              onClick={openExample1}
-            />
-          }
-          zIndex={200}
-          isOpen={example1.isOpen}
-          closePopover={closeExample1}
-          ownFocus
-          panelPaddingSize="s"
-          anchorPosition="downLeft">
-          {renderPopover1()}
-        </EuiPopover>
+    <div style={{ maxWidth: 500 }}>
+      <EuiPopover
+        id="popover1"
+        button={
+          <EuiExpression
+            description="indices"
+            display="columns"
+            value={example1.value}
+            isInvalid={
+              selectedOptions && selectedOptions.length > 0 ? false : true
+            }
+            isActive={example1.isOpen}
+            onClick={openExample1}
+          />
+        }
+        isOpen={example1.isOpen}
+        closePopover={closeExample1}
+        ownFocus
+        display="block"
+        panelPaddingSize="s"
+        anchorPosition="downLeft">
+        {renderPopover1()}
+      </EuiPopover>
 
-        <EuiPopover
-          id="popover2"
-          panelPaddingSize="s"
-          zIndex={200}
-          button={
-            <EuiExpression
-              description="when"
-              display="columns"
-              value={example2.value}
-              isActive={example2.isOpen}
-              onClick={openExample2}
-            />
-          }
-          isOpen={example2.isOpen}
-          closePopover={closeExample2}
-          ownFocus
-          anchorPosition="downLeft">
-          {renderPopover2()}
-        </EuiPopover>
-        <EuiExpression
-          display="columns"
-          description="Except"
-          value="kibana_sample_data_ky_counties"
-        />
-        <EuiSpacer />
-        <EuiTitle size="xxs">
-          <h3>Description width at 50%</h3>
-        </EuiTitle>
-        <EuiExpression
-          description="join"
-          display="columns"
-          descriptionWidth={50}
-          value="kibana_sample_data_ky_avl"
-          onClick={() => {}}
-        />
-        <EuiSpacer />
-        <EuiTitle size="xxs">
-          <h3>Error state</h3>
-        </EuiTitle>
-        <EuiExpression
-          description="email"
-          display="columns"
-          isInvalid
-          value="example@mail."
-          onClick={() => {}}
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
+      <EuiPopover
+        id="popover2"
+        panelPaddingSize="s"
+        button={
+          <EuiExpression
+            description="when"
+            display="columns"
+            value={example2.value}
+            isActive={example2.isOpen}
+            onClick={openExample2}
+          />
+        }
+        isOpen={example2.isOpen}
+        closePopover={closeExample2}
+        ownFocus
+        display="block"
+        anchorPosition="downLeft">
+        {renderPopover2()}
+      </EuiPopover>
+      <EuiExpression
+        display="columns"
+        description="Except"
+        value="kibana_sample_data_ky_counties"
+      />
+      <EuiSpacer />
+      <EuiTitle size="xxs">
+        <h3>Description width at 50px</h3>
+      </EuiTitle>
+      <EuiExpression
+        description="join"
+        display="columns"
+        descriptionWidth={50}
+        value="kibana_sample_data_ky_avl"
+        onClick={() => {}}
+      />
+    </div>
   );
 };

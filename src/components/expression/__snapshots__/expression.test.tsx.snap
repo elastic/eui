@@ -126,7 +126,7 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
 >
   <span
     class="euiExpression__description"
-    style="flex-basis:50%"
+    style="flex-basis:50px"
   >
     the answer is
   </span>
@@ -134,18 +134,13 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
   <span
     class="euiExpression__value"
   >
-    <div>
-      42
-    </div>
-    <span
-      class="euiExpression__icon"
-    >
-      <div
-        color="danger"
-        data-euiicon-type="alert"
-      />
-    </span>
+    42
   </span>
+  <div
+    class="euiExpression__icon"
+    color="danger"
+    data-euiicon-type="alert"
+  />
 </span>
 `;
 
@@ -163,12 +158,7 @@ exports[`EuiExpression props display changes the layout 1`] = `
   <span
     class="euiExpression__value"
   >
-    <div>
-      42
-    </div>
-    <span
-      class="euiExpression__icon"
-    />
+    42
   </span>
 </span>
 `;
@@ -223,18 +213,13 @@ exports[`EuiExpression props isInvalid true renders error state when using colum
   <span
     class="euiExpression__value"
   >
-    <div>
-      42
-    </div>
-    <span
-      class="euiExpression__icon"
-    >
-      <div
-        color="danger"
-        data-euiicon-type="alert"
-      />
-    </span>
+    42
   </span>
+  <div
+    class="euiExpression__icon"
+    color="danger"
+    data-euiicon-type="alert"
+  />
 </span>
 `;
 
