@@ -208,7 +208,6 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
 
 // Given an array of hex colors returns a css linear-gradient with individual color blocks
 export const getFixedLinearGradient = (palette: string[]) => {
-  console.log(palette);
   const intervals = palette.length;
 
   let fixedLinearGradient;
