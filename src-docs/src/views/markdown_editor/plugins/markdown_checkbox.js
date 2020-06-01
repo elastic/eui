@@ -41,7 +41,7 @@ function CheckboxParser() {
   }
 
   tokenizers.checkbox = tokenizeCheckbox;
-  methods.splice(methods.indexOf('text'), 0, 'checkbox'); // Run it just before `text`.
+  methods.splice(methods.indexOf('list'), 0, 'checkbox'); // Run it just before default `list` plugin to inject our own idea of checkboxes.
 }
 
 const checkboxMarkdownHandler = (h, node) => {

@@ -31,8 +31,6 @@ import classNames from 'classnames';
 import emoji from 'remark-emoji';
 import markdown from 'remark-parse';
 // @ts-ignore
-import disableTokenizers from 'remark-disable-tokenizers';
-// @ts-ignore
 import remark2rehype from 'remark-rehype';
 // @ts-ignore
 import highlight from 'remark-highlight.js';
@@ -56,13 +54,6 @@ import { ContextShape, EuiMarkdownContext } from './markdown_context';
 
 export const defaultParsingPlugins: PluggableList = [
   [markdown, {}],
-  [
-    disableTokenizers,
-    {
-      // disable the built-in task list / checkbox plugin in favour of a custom one
-      block: ['list'],
-    },
-  ],
   [highlight, {}],
   [emoji, { emoticon: true }],
 ];
