@@ -11,10 +11,12 @@ import {
   EuiCode,
   EuiBetaBadge,
   EuiNotificationBadge,
+  EuiBadgeGroup,
   EuiCallOut,
 } from '../../../../src/components';
 
 import Badge from './badge';
+
 const badgeSource = require('!!raw-loader!./badge');
 const badgeHtml = renderToHtml(Badge);
 const badgeSnippet = [
@@ -42,7 +44,7 @@ const badgeButtonHtml = renderToHtml(BadgeButton);
 const badgeButtonSnippet = [
   `<EuiBadge
   color="primary"
-  onClick={this.onBadgeClick}
+  onClick={onBadgeClick}
   onClickAriaLabel="Aria label applied to text button"
 />
   Clickable text
@@ -51,27 +53,38 @@ const badgeButtonSnippet = [
   iconType="cross"
   iconSide="right"
   color="hollow"
-  iconOnClick={this.onBadgeIconClick}
+  iconOnClick={onBadgeIconClick}
   iconOnClickAriaLabel="Aria label applied to icon button"
-  />
+/>
   Text with clickable icon
 </EuiBadge>`,
   `<EuiBadge
   iconType="cross"
   iconSide="right"
   color="secondary"
-  onClick={this.onBadgeClick}
+  onClick={onBadgeClick}
   onClickAriaLabel="Aria label applied to text button"
-  iconOnClick={this.onBadgeIconClick}
+  iconOnClick={onBadgeIconClick}
   iconOnClickAriaLabel="Aria label applied to icon button"
-  />
+/>
   Clickable text with clickable icon
 </EuiBadge>`,
 ];
 
+import BadgeHref from './badge_href';
+const badgeHrefSource = require('!!raw-loader!./badge_href');
+const badgeHrefHtml = renderToHtml(BadgeHref);
+const badgeHrefSnippet = ['<EuiBadge href="#" />'];
+
 import BadgeTruncate from './badge_truncate';
 const badgeTruncateSource = require('!!raw-loader!./badge_truncate');
 const badgeTruncateHtml = renderToHtml(BadgeTruncate);
+const badgeTruncateSnippet = [
+  `<EuiBadgeGroup gutterSize="s">
+  <EuiBadge />
+  <EuiBadge />
+</EuiBadgeGroup>`,
+];
 
 import BetaBadge from './beta_badge';
 const betaBadgeSource = require('!!raw-loader!./beta_badge');
@@ -107,11 +120,11 @@ export const BadgeExample = {
       ],
       text: (
         <p>
-          Badges are used to focus on important bits of information. Although
-          they will automatically space themselves if you use them in a
-          repetitive fashion it is good form to wrap them using a{' '}
-          <EuiCode>FlexGroup</EuiCode> so that they will wrap when width is
-          constrained (as seen in the custom color example below).
+          <strong>EuiBadges</strong> are used to focus on important bits of
+          information. Although they will automatically space themselves if you
+          use them in a repetitive fashion it is good form to wrap them using a{' '}
+          <strong>EuiBadgeGroup</strong> so that they will wrap when width is
+          constrained (as seen below).
         </p>
       ),
       props: { EuiBadge },
@@ -149,17 +162,18 @@ export const BadgeExample = {
       text: (
         <div>
           <p>
-            Badges can have onClick events applied to the badge itself or the
-            icon within the badge. The later option is useful for when you might
-            use badges in other components (like a tag system with autocomplete
-            where you need close events).
+            Badges can have <EuiCode>onClick</EuiCode> events applied to the
+            badge itself or the icon within the badge. The latter option is
+            useful for when you might use badges in other components (like a tag
+            system with autocomplete where you need close events).
           </p>
           <EuiCallOut title="onClick with iconOnClick">
             <p>
-              When providing both these click handlers, EuiBadge must alter the
-              contents so that it does not contain nested button tags. Please
-              make note that if you provide props other than those explicit to
-              EuiBadge, they will always be applied to the main{' '}
+              When providing both these click handlers,{' '}
+              <strong>EuiBadge</strong> must alter the contents so that it does
+              not contain nested button tags. Please make note that if you
+              provide props other than those explicit to{' '}
+              <strong>EuiBadge</strong>, they will always be applied to the main{' '}
               <EuiCode>button</EuiCode> tag which may be inside of the outer
               most tag.
             </p>
@@ -170,7 +184,30 @@ export const BadgeExample = {
       demo: <BadgeButton />,
     },
     {
-      title: 'Badge truncation',
+      title: 'Badge with href',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeHrefSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeHrefHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Badges can also be made to render anchor tags by passing an{' '}
+            <EuiCode>href</EuiCode>.
+          </p>
+        </div>
+      ),
+      snippet: badgeHrefSnippet,
+      demo: <BadgeHref />,
+    },
+    {
+      title: 'Badge groups and truncation',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -193,9 +230,15 @@ export const BadgeExample = {
             to the <EuiCode>title</EuiCode> attribute of the element to provide
             default browser tooltips with the full badge text.
           </p>
+          <p>
+            To ensure proper wrapping, truncation and spacing of multiple
+            badges, it is advisable to wrap them in a{' '}
+            <strong>EuiBadgeGroup</strong>.
+          </p>
         </Fragment>
       ),
       demo: <BadgeTruncate />,
+      snippet: badgeTruncateSnippet,
     },
     {
       title: 'Beta badge type',
@@ -212,7 +255,7 @@ export const BadgeExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>EuiBetaBadge</EuiCode> was created specifically to call
+            The <strong>EuiBetaBadge</strong> was created specifically to call
             out modules that are not in GA. Generally the labels used are
             &quot;Beta&quot; or &quot;Lab&quot;. They require an extra{' '}
             <EuiCode>tooltipContent</EuiCode> to describe the purpose of the
@@ -223,17 +266,22 @@ export const BadgeExample = {
           <p>
             If you pass in an <EuiCode>iconType</EuiCode>, only the icon will be
             used in the badge itself and the label will be applied as the title.
-            Only use an icon when attaching the beta badge to small components
-            like the EuiKeyPadMenuItem.
+            Only use an icon when attaching the beta badge to small components.
           </p>
           <p>
             They can also be used in conjunction with{' '}
-            <Link to="/display/card">EuiCards</Link> and{' '}
-            <Link to="/navigation/key-pad-menu">EuiKeyPadMenuItems</Link>.
+            <Link to="/display/card">
+              <strong>EuiCards</strong>
+            </Link>{' '}
+            and{' '}
+            <Link to="/navigation/key-pad-menu">
+              <strong>EuiKeyPadMenuItems</strong>
+            </Link>
+            .
           </p>
         </div>
       ),
-      props: { EuiBetaBadge },
+      props: { EuiBetaBadge, EuiBadgeGroup },
       snippet: betaBadgeSnippet,
       demo: <BetaBadge />,
     },
@@ -253,8 +301,14 @@ export const BadgeExample = {
         <p>
           Used to showcase the number of notifications, alerts, or hidden
           selections. This badge type is commonly used in the{' '}
-          <Link to="/layout/header">EuiHeader</Link> and{' '}
-          <Link to="/forms/filter-group">EuiFilterButton</Link> components.
+          <Link to="/layout/header">
+            <strong>EuiHeader</strong>
+          </Link>{' '}
+          and{' '}
+          <Link to="/forms/filter-group">
+            <strong>EuiFilterButton</strong>
+          </Link>{' '}
+          components.
         </p>
       ),
       props: { EuiNotificationBadge },

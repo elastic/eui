@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
@@ -8,7 +27,8 @@ import {
   EuiFormControlLayoutDelimited,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-import makeId from '../form_row/make_id';
+
+import { htmlIdGenerator } from '../../../services/accessibility';
 
 import { EuiRangeProps } from './range';
 import { EuiRangeHighlight } from './range_highlight';
@@ -45,14 +65,37 @@ export interface EuiDualRangeProps
   ) => void;
   fullWidth?: boolean;
   isInvalid?: boolean;
+  /**
+   * Create colored indicators for certain intervals
+   */
   levels?: EuiRangeLevel[];
+  /**
+   * Shows static min/max labels on the sides of the range slider
+   */
   showLabels?: boolean;
+  /**
+   * Pass `true` to displays an extra input control for direct manipulation.
+   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
+   */
   showInput?: EuiRangeProps['showInput'];
+  /**
+   * Modifies the number of tick marks and at what interval
+   */
   tickInterval?: number;
+  /**
+   * Specified ticks at specified values
+   */
   ticks?: EuiRangeTick[];
-  append?: EuiFormControlLayoutProps['append'];
+  /**
+   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopver`.
+   * `string` | `ReactElement` or an array of these
+   */
   prepend?: EuiFormControlLayoutProps['prepend'];
-
+  /**
+   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopver`.
+   * `string` | `ReactElement` or an array of these
+   */
+  append?: EuiFormControlLayoutProps['append'];
   /**
    *  Intended to be uses with aria attributes. Some attributes may be overwritten.
    */
@@ -79,7 +122,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   };
 
   state = {
-    id: this.props.id || makeId(),
+    id: this.props.id || htmlIdGenerator()(),
     hasFocus: false,
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
@@ -510,7 +553,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           ticks={ticks}
           levels={levels}
           onChange={this.handleSliderChange}
-          value={value}>
+          value={value}
+          aria-hidden={showInput === true}>
           {showRange && this.isValid && (
             <EuiRangeHighlight
               compressed={compressed}

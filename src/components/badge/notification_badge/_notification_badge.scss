@@ -2,8 +2,6 @@
   flex-shrink: 0; // Ensures it never scales down below its intended size
   display: inline-block;
   border-radius: $euiBorderRadius;
-  background: $euiColorAccent;
-  color: $euiColorEmptyShade;
   font-size: $euiFontSizeXS;
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize;
@@ -15,6 +13,10 @@
   text-align: center;
   transition: all $euiAnimSpeedFast ease-in;
   cursor: default;
+
+  $backgroundColor: $euiColorAccent;
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
 }
 
 .euiNotificationBadge--medium {
@@ -26,6 +28,7 @@
 }
 
 .euiNotificationBadge--subdued {
-  background-color: tint($euiColorLightShade, 30%);
-  color: $euiColorFullShade;
+  $backgroundColor: tint($euiColorLightShade, 30%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
 }

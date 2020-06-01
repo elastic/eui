@@ -5,6 +5,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideBody {
   background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
+
+  &--overflowHidden {
+    overflow: hidden;
+  }
 }
 
 .guidePage {
@@ -36,6 +40,27 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     bottom: 0;
     top: 132px;
     overflow-y: auto;
+  }
+}
+
+.guideSideNav__item {
+  // Hate to do this, but it's the only way to get the badge to display correctly
+  .euiSideNavItemButton__label {
+    // By using the `icon` display of EuiSideNavItem, it will continue to:
+    // a) truncate properly
+    // b) not underline the badge when selected
+    // But it shows to the left of the label instead of right, so we have to shift the order of the label
+    order: -1;
+  }
+
+  .guideSideNav__newBadge {
+    margin-left: $euiSizeXS;
+    margin-right: $euiSizeXS;
+  }
+
+  // Shift the margin on the badge when selected and the dropdown arrow no longer shows
+  .euiSideNavItemButton-isSelected .guideSideNav__newBadge {
+    margin-right: 0;
   }
 }
 
@@ -180,6 +205,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideCharts__customLegendLine--thin {
   height: 1px;
+}
+
+.guideFullScreenOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 @import '../views/guidelines/index';

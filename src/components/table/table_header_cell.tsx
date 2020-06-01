@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   FunctionComponent,
   HTMLAttributes,
@@ -9,6 +28,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { resolveWidthAsStyle } from './utils';
+import { EuiInnerText } from '../inner_text';
 
 import {
   HorizontalAlignment,
@@ -16,6 +36,7 @@ import {
   RIGHT_ALIGNMENT,
   CENTER_ALIGNMENT,
 } from '../../services';
+import { EuiI18n } from '../i18n';
 
 export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 
@@ -91,6 +112,8 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
 
   const styleObj = resolveWidthAsStyle(style, width);
 
+  const CellComponent = children ? 'th' : 'td';
+
   if (onSort) {
     const buttonClasses = classNames('euiTableHeaderButton', {
       'euiTableHeaderButton-isSorted': isSorted,
@@ -103,18 +126,33 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
 
     function getScreenCasterDirection() {
       if (ariaSortValue === 'ascending') {
-        return 'Click to sort in descending order';
+        return (
+          <EuiI18n
+            token="euiTableHeaderCell.clickForDescending"
+            default="Click to sort in descending order"
+          />
+        );
       }
 
       if (allowNeutralSort && ariaSortValue === 'descending') {
-        return 'Click to unsort';
+        return (
+          <EuiI18n
+            token="euiTableHeaderCell.clickForUnsort"
+            default="Click to unsort"
+          />
+        );
       }
 
-      return 'Click to sort in ascending order';
+      return (
+        <EuiI18n
+          token="euiTableHeaderCell.clickForAscending"
+          default="Click to sort in ascending order"
+        />
+      );
     }
 
     return (
-      <th
+      <CellComponent
         className={classes}
         scope={scope}
         role="columnheader"
@@ -128,34 +166,67 @@ export const EuiTableHeaderCell: FunctionComponent<Props> = ({
           onClick={onSort}
           data-test-subj="tableHeaderSortButton">
           <span className={contentClasses}>
-            <span className="euiTableCellContent__text">{children}</span>
+            <EuiInnerText>
+              {(ref, innerText) => (
+                <EuiI18n
+                  token="euiTableHeaderCell.titleTextWithSort"
+                  default="{innerText}; Sorted in {ariaSortValue} order"
+                  values={{ innerText, ariaSortValue }}>
+                  {(titleTextWithSort: string) => (
+                    <span
+                      title={isSorted ? titleTextWithSort : innerText}
+                      ref={ref}
+                      className="euiTableCellContent__text">
+                      {children}
+                    </span>
+                  )}
+                </EuiI18n>
+              )}
+            </EuiInnerText>
+
             {isSorted && (
-              <EuiIcon
-                className="euiTableSortIcon"
-                type={isSortAscending ? 'sortUp' : 'sortDown'}
-                size="m"
-                aria-label={`Sorted in ${ariaSortValue} order`}
-              />
+              <EuiI18n
+                token="euiTableHeaderCell.sortedAriaLabel"
+                default="Sorted in {ariaSortValue} order"
+                values={{ ariaSortValue }}>
+                {(sortedAriaLabel: string) => (
+                  <EuiIcon
+                    className="euiTableSortIcon"
+                    type={isSortAscending ? 'sortUp' : 'sortDown'}
+                    size="m"
+                    aria-label={sortedAriaLabel}
+                  />
+                )}
+              </EuiI18n>
             )}
             <EuiScreenReaderOnly>
               <span>{getScreenCasterDirection()}</span>
             </EuiScreenReaderOnly>
           </span>
         </button>
-      </th>
+      </CellComponent>
     );
   }
 
   return (
-    <th
+    <CellComponent
       className={classes}
       scope={scope}
       role="columnheader"
       style={styleObj}
       {...rest}>
       <div className={contentClasses}>
-        <span className="euiTableCellContent__text">{children}</span>
+        <EuiInnerText>
+          {(ref, innerText) => (
+            <span
+              title={innerText}
+              ref={ref}
+              className="euiTableCellContent__text">
+              {children}
+            </span>
+          )}
+        </EuiInnerText>
       </div>
-    </th>
+    </CellComponent>
   );
 };

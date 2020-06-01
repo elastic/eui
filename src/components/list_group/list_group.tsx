@@ -1,10 +1,39 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
 
-type EuiListGroupProps = CommonProps &
+type GutterSize = 'none' | 's' | 'm';
+const gutterSizeToClassNameMap: { [size in GutterSize]: string } = {
+  none: '',
+  s: 'euiListGroup--gutterSmall',
+  m: 'euiListGroup--gutterMedium',
+};
+export const GUTTER_SIZES = Object.keys(
+  gutterSizeToClassNameMap
+) as GutterSize[];
+
+export type EuiListGroupProps = CommonProps &
   HTMLAttributes<HTMLUListElement> & {
     /**
      * Add a border to the list container
@@ -17,9 +46,24 @@ type EuiListGroupProps = CommonProps &
     flush?: boolean;
 
     /**
-     * Items to display in this group
+     * Spacing between list items
+     */
+    gutterSize?: GutterSize;
+
+    /**
+     * Items to display in this group. See #EuiListGroupItem
      */
     listItems?: EuiListGroupItemProps[];
+
+    /**
+     * Change the colors of all `listItems` at once
+     */
+    color?: EuiListGroupItemProps['color'];
+
+    /**
+     * Change the size of all `listItems` at once
+     */
+    size?: EuiListGroupItemProps['size'];
 
     /**
      * Sets the max-width of the page,
@@ -36,7 +80,7 @@ type EuiListGroupProps = CommonProps &
     showToolTips?: boolean;
 
     /**
-     * Allow link text to wrap
+     * Allow link text to wrap vs truncated
      */
     wrapText?: boolean;
     ariaLabelledby?: string;
@@ -49,9 +93,12 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   style,
   flush = false,
   bordered = false,
+  gutterSize = 's',
   wrapText = false,
   maxWidth = true,
   showToolTips = false,
+  color,
+  size,
   ariaLabelledby,
   ...rest
 }) => {
@@ -76,6 +123,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
       'euiListGroup-flush': flush,
       'euiListGroup-bordered': bordered,
     },
+    gutterSizeToClassNameMap[gutterSize],
     widthClassName,
     className
   );
@@ -88,6 +136,8 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           key={`title-${index}`}
           showToolTip={showToolTips}
           wrapText={wrapText}
+          color={color}
+          size={size}
           {...item}
         />,
       ];

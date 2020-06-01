@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiSuperDatePicker,
@@ -17,38 +17,36 @@ function MyCustomQuickSelectPanel({ applyTime }) {
   );
 }
 
-export default class extends Component {
-  state = {
-    recentlyUsedRanges: [],
-    isLoading: false,
-    showCustomQuickSelectPanel: true,
-    start: 'now-30m',
-    end: 'now',
+export default () => {
+  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+  const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] = useState(
+    true
+  );
+  const [isPaused, setIsPaused] = useState(true);
+  const [refreshInterval, setRefreshInterval] = useState();
+
+  const onTimeChange = ({ start, end }) => {
+    const recentlyUsedRange = recentlyUsedRanges.filter(recentlyUsedRange => {
+      const isDuplicate =
+        recentlyUsedRange.start === start && recentlyUsedRange.end === end;
+      return !isDuplicate;
+    });
+    recentlyUsedRange.unshift({ start, end });
+    setStart(start);
+    setEnd(end);
+    setRecentlyUsedRanges(
+      recentlyUsedRange.length > 10
+        ? recentlyUsedRange.slice(0, 9)
+        : recentlyUsedRange
+    );
+    setIsLoading(true);
+    startLoading();
   };
 
-  onTimeChange = ({ start, end }) => {
-    this.setState(prevState => {
-      const recentlyUsedRanges = prevState.recentlyUsedRanges.filter(
-        recentlyUsedRange => {
-          const isDuplicate =
-            recentlyUsedRange.start === start && recentlyUsedRange.end === end;
-          return !isDuplicate;
-        }
-      );
-      recentlyUsedRanges.unshift({ start, end });
-      return {
-        start,
-        end,
-        recentlyUsedRanges:
-          recentlyUsedRanges.length > 10
-            ? recentlyUsedRanges.slice(0, 9)
-            : recentlyUsedRanges,
-        isLoading: true,
-      };
-    }, this.startLoading);
-  };
-
-  onRefresh = ({ start, end, refreshInterval }) => {
+  const onRefresh = ({ start, end, refreshInterval }) => {
     return new Promise(resolve => {
       setTimeout(resolve, 100);
     }).then(() => {
@@ -56,60 +54,54 @@ export default class extends Component {
     });
   };
 
-  startLoading = () => {
-    setTimeout(this.stopLoading, 1000);
+  const startLoading = () => {
+    setTimeout(stopLoading, 1000);
   };
 
-  stopLoading = () => {
-    this.setState({ isLoading: false });
+  const stopLoading = () => {
+    setIsLoading(false);
   };
 
-  onRefreshChange = ({ isPaused, refreshInterval }) => {
-    this.setState({
-      isPaused,
-      refreshInterval,
-    });
+  const onRefreshChange = ({ isPaused, refreshInterval }) => {
+    setIsPaused(isPaused);
+    setRefreshInterval(refreshInterval);
   };
 
-  toggleShowCustomQuickSelectPanel = () => {
-    this.setState(prevState => ({
-      showCustomQuickSelectPanel: !prevState.showCustomQuickSelectPanel,
-    }));
+  const toggleShowCustomQuickSelectPanel = () => {
+    setShowCustomQuickSelectPanel(!showCustomQuickSelectPanel);
   };
 
-  render() {
-    let customQuickSelectPanels;
-    if (this.state.showCustomQuickSelectPanel) {
-      customQuickSelectPanels = [
-        {
-          title: 'My custom panel',
-          content: <MyCustomQuickSelectPanel />,
-        },
-      ];
-    }
-    return (
-      <Fragment>
-        <EuiSwitch
-          label="Show custom quick menu panel"
-          onChange={this.toggleShowCustomQuickSelectPanel}
-          checked={this.state.showCustomQuickSelectPanel}
-        />
-        &emsp;
-        <EuiSpacer />
-        <EuiSuperDatePicker
-          isLoading={this.state.isLoading}
-          start={this.state.start}
-          end={this.state.end}
-          onTimeChange={this.onTimeChange}
-          onRefresh={this.onRefresh}
-          isPaused={this.state.isPaused}
-          refreshInterval={this.state.refreshInterval}
-          onRefreshChange={this.onRefreshChange}
-          recentlyUsedRanges={this.state.recentlyUsedRanges}
-          customQuickSelectPanels={customQuickSelectPanels}
-        />
-        <EuiSpacer />
-      </Fragment>
-    );
+  let customQuickSelectPanels;
+  if (showCustomQuickSelectPanel) {
+    customQuickSelectPanels = [
+      {
+        title: 'My custom panel',
+        content: <MyCustomQuickSelectPanel />,
+      },
+    ];
   }
-}
+  return (
+    <Fragment>
+      <EuiSwitch
+        label="Show custom quick menu panel"
+        onChange={toggleShowCustomQuickSelectPanel}
+        checked={showCustomQuickSelectPanel}
+      />
+      &emsp;
+      <EuiSpacer />
+      <EuiSuperDatePicker
+        isLoading={isLoading}
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        onRefresh={onRefresh}
+        isPaused={isPaused}
+        refreshInterval={refreshInterval}
+        onRefreshChange={onRefreshChange}
+        recentlyUsedRanges={recentlyUsedRanges}
+        customQuickSelectPanels={customQuickSelectPanels}
+      />
+      <EuiSpacer />
+    </Fragment>
+  );
+};

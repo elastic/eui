@@ -9,3 +9,7 @@ export {
 } from './string/clean_imports';
 
 export { registerTheme, applyTheme } from './theme/theme';
+
+export { getRouterLinkProps, registerRouter } from './routing/routing';
+
+export { GuideFullScreen } from './full_screen';

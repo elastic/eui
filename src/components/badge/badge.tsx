@@ -1,13 +1,38 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
+  AriaAttributes,
   FunctionComponent,
-  MouseEventHandler,
   HTMLAttributes,
+  MouseEventHandler,
   ReactNode,
+  Ref,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import chroma from 'chroma-js';
-import { euiPaletteColorBlindBehindText, isValidHex } from '../../services';
+import {
+  euiPaletteColorBlindBehindText,
+  isValidHex,
+  getSecureRelForTarget,
+} from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
 
@@ -22,8 +47,14 @@ type WithButtonProps = {
   /**
    * Aria label applied to the onClick button
    */
-  onClickAriaLabel: string;
+  onClickAriaLabel: AriaAttributes['aria-label'];
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick' | 'color'>;
+
+type WithAnchorProps = {
+  href: string;
+  target?: string;
+  rel?: string;
+} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color'>;
 
 type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
 
@@ -36,7 +67,7 @@ interface WithIconOnClick {
   /**
    * Aria label applied to the iconOnClick button
    */
-  iconOnClickAriaLabel: string;
+  iconOnClickAriaLabel: AriaAttributes['aria-label'];
 }
 
 export type EuiBadgeProps = {
@@ -65,7 +96,10 @@ export type EuiBadgeProps = {
   closeButtonProps?: Partial<PropsOf<EuiIcon>>;
 } & CommonProps &
   ExclusiveUnion<WithIconOnClick, {}> &
-  ExclusiveUnion<WithSpanProps, WithButtonProps>;
+  ExclusiveUnion<
+    ExclusiveUnion<WithButtonProps, WithAnchorProps>,
+    WithSpanProps
+  >;
 
 // TODO - replace with variables once https://github.com/elastic/eui/issues/2731 is closed
 const colorInk = '#000';
@@ -107,11 +141,15 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   onClickAriaLabel,
   iconOnClickAriaLabel,
   closeButtonProps,
+  href,
+  rel,
+  target,
+  style,
   ...rest
 }) => {
   checkValidColor(color);
 
-  let optionalCustomStyles: object | undefined = undefined;
+  let optionalCustomStyles: object | undefined = style;
   let textColor = null;
   // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
   const wcagContrastBase = 4.5; // WCAG AA contrast level
@@ -129,6 +167,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     optionalCustomStyles = {
       backgroundColor: colorHex,
       color: textColor,
+      ...optionalCustomStyles,
     };
   } else if (color !== 'hollow') {
     // This is a custom color that is neither from the base palette nor hollow
@@ -153,13 +192,17 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       );
     }
 
-    optionalCustomStyles = { backgroundColor: color, color: textColor };
+    optionalCustomStyles = {
+      backgroundColor: color,
+      color: textColor,
+      ...optionalCustomStyles,
+    };
   }
 
   const classes = classNames(
     'euiBadge',
     {
-      'euiBadge-isClickable': onClick && !iconOnClick,
+      'euiBadge-isClickable': (onClick || href) && !iconOnClick,
       'euiBadge-isDisabled': isDisabled,
       'euiBadge--hollow': color === 'hollow',
     },
@@ -171,6 +214,23 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     'euiBadge__icon',
     closeButtonProps && closeButtonProps.className
   );
+  const Element = href && !isDisabled ? 'a' : 'button';
+  const relObj: {
+    href?: string;
+    target?: string;
+    rel?: string;
+    onClick?:
+      | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+      | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void);
+  } = {};
+
+  if (href && !isDisabled) {
+    relObj.href = href;
+    relObj.target = target;
+    relObj.rel = getSecureRelForTarget({ href, target, rel });
+  } else if (onClick) {
+    relObj.onClick = onClick;
+  }
 
   let optionalIcon: ReactNode = null;
   if (iconType) {
@@ -208,37 +268,32 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     );
   }
 
-  if (onClick && iconOnClick) {
-    return (
+  if (iconOnClick) {
+    return onClick || href ? (
       <span className={classes} style={optionalCustomStyles}>
         <span className="euiBadge__content">
           <EuiInnerText>
             {(ref, innerText) => (
-              <button
+              <Element
                 className="euiBadge__childButton"
                 disabled={isDisabled}
                 aria-label={onClickAriaLabel}
-                onClick={onClick}
                 ref={ref}
                 title={innerText}
-                {...rest}>
+                {...relObj as HTMLAttributes<HTMLElement>}
+                {...rest as HTMLAttributes<HTMLElement>}>
                 {children}
-              </button>
+              </Element>
             )}
           </EuiInnerText>
           {optionalIcon}
         </span>
       </span>
-    );
-  } else if (onClick) {
-    return (
+    ) : (
       <EuiInnerText>
         {(ref, innerText) => (
-          <button
-            disabled={isDisabled}
-            aria-label={onClickAriaLabel}
+          <span
             className={classes}
-            onClick={onClick}
             style={optionalCustomStyles}
             ref={ref}
             title={innerText}
@@ -247,7 +302,28 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
               <span className="euiBadge__text">{children}</span>
               {optionalIcon}
             </span>
-          </button>
+          </span>
+        )}
+      </EuiInnerText>
+    );
+  } else if (onClick || href) {
+    return (
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <Element
+            disabled={isDisabled}
+            aria-label={onClickAriaLabel}
+            className={classes}
+            style={optionalCustomStyles}
+            ref={ref as Ref<HTMLButtonElement & HTMLAnchorElement>}
+            title={innerText}
+            {...relObj as HTMLAttributes<HTMLElement>}
+            {...rest as HTMLAttributes<HTMLElement>}>
+            <span className="euiBadge__content">
+              <span className="euiBadge__text">{children}</span>
+              {optionalIcon}
+            </span>
+          </Element>
         )}
       </EuiInnerText>
     );

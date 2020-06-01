@@ -1,9 +1,27 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
   FunctionComponent,
   HTMLAttributes,
   Ref,
+  ButtonHTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
@@ -28,6 +46,10 @@ export type ButtonColor =
   | 'warning'
   | 'danger'
   | 'ghost'
+  /**
+   * Set for deprecation 2/26/20
+   * This color button can easily be confused with disabled, it should not be used
+   */
   | 'text';
 
 export type ButtonSize = 's' | 'm';
@@ -61,12 +83,21 @@ export interface EuiButtonProps extends CommonProps {
   iconType?: IconType;
   iconSide?: ButtonIconSide;
   fill?: boolean;
+  /**
+   * `text` color is set for deprecation
+   */
   color?: ButtonColor;
   size?: ButtonSize;
   isLoading?: boolean;
   isDisabled?: boolean;
   fullWidth?: boolean;
+  /**
+   * Object of props passed to the <span/> wrapping the button's content
+   */
   contentProps?: HTMLAttributes<HTMLSpanElement>;
+  /**
+   * Object of props passed to the <span/> wrapping the component's {children}
+   */
   textProps?: HTMLAttributes<HTMLSpanElement>;
 }
 
@@ -159,33 +190,33 @@ export const EuiButton: FunctionComponent<Props> = ({
     </span>
   );
 
-  // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
+  // <Element> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
-  if (href && !isDisabled) {
-    const secureRel = getSecureRelForTarget({ href, target, rel });
+  const Element = href && !isDisabled ? 'a' : 'button';
 
-    return (
-      <a
-        className={classes}
-        href={href}
-        target={target}
-        rel={secureRel}
-        ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
-        {innerNode}
-      </a>
-    );
+  const relObj: {
+    rel?: string;
+    href?: string;
+    type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+    target?: string;
+  } = {};
+
+  if (href && !isDisabled) {
+    relObj.href = href;
+    relObj.rel = getSecureRelForTarget({ href, target, rel });
+    relObj.target = target;
+  } else {
+    relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
   }
 
-  let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   return (
-    <button
-      disabled={isDisabled}
+    <Element
       className={classes}
-      type={type as typeof buttonType}
-      ref={buttonRef as Ref<HTMLButtonElement>}
-      {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+      disabled={isDisabled}
+      {...relObj}
+      ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
+      {...rest as HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>}>
       {innerNode}
-    </button>
+    </Element>
   );
 };

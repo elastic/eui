@@ -7,7 +7,6 @@ import {
   EuiIcon,
   EuiPanel,
   EuiText,
-  EuiCode,
   EuiSpacer,
   EuiButton,
 } from '../../../../src/components';
@@ -39,7 +38,7 @@ export default () => (
       </EuiFlexItem>
       <EuiFlexItem className="guideDemo__icon" style={{ width: '200px' }}>
         <EuiPanel>
-          <EuiIcon type={reactSvg} size="xl" />
+          <EuiIcon type={reactSvg} size="xl" title="Custom SVG icon" />
           <EuiText size="s">
             <p>{'{reactSvg}'}</p>
           </EuiText>
@@ -51,8 +50,8 @@ export default () => (
 
     <EuiText>
       <p>
-        Any component that utlizes <EuiCode>EuiIcon</EuiCode> can use custom
-        SVGs as well
+        Any component that utlizes <strong>EuiIcon</strong> can use custom SVGs
+        as well
       </p>
     </EuiText>
 

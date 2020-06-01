@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { useMemo, ReactNode } from 'react';
 import {
   EuiDataGridColumn,
@@ -7,8 +26,8 @@ import {
 
 import { EuiI18n } from '../i18n';
 
-import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { IconType } from '../icon';
+import { EuiTokenProps } from '../token';
 
 export interface EuiDataGridSchemaDetector {
   /**
@@ -28,9 +47,9 @@ export interface EuiDataGridSchemaDetector {
    */
   icon: IconType;
   /**
-   * The color associated with this data type; it's used to color the icon
+   * The color associated with this data type; it's used to color the icon token
    */
-  color: string;
+  color?: EuiTokenProps['color'] | string;
   /**
    * Text for how to represent an ascending sort of this data type, e.g. 'A -> Z'
    */
@@ -39,6 +58,14 @@ export interface EuiDataGridSchemaDetector {
    * Text for how to represent a descending sort of this data type, e.g. 'Z -> A'
    */
   sortTextDesc: ReactNode;
+  /**
+   * Whether this column is sortable (defaults to true)
+   */
+  isSortable?: boolean;
+  /**
+   * Default sort direction of the column
+   */
+  defaultSortDirection?: 'asc' | 'desc';
 }
 
 const numericChars = new Set([
@@ -70,8 +97,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       if (aValue > bValue) return direction === 'asc' ? -1 : 1;
       return 0;
     },
-    icon: 'invert',
-    color: euiPaletteColorBlind()[5],
+    icon: 'tokenBoolean',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextAsc"
@@ -112,7 +138,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       return 0;
     },
     icon: 'currency',
-    color: euiPaletteColorBlind()[0],
+    color: 'euiColorVis0',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.currencySortTextAsc"
@@ -150,8 +176,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
 
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
-    icon: 'calendar',
-    color: euiPaletteColorBlind()[7],
+    icon: 'tokenDate',
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
     ),
@@ -188,8 +213,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
 
       return 0;
     },
-    icon: 'number',
-    color: euiPaletteColorBlind()[0],
+    icon: 'tokenNumber',
     sortTextAsc: (
       <EuiI18n token="euiDataGridSchema.numberSortTextAsc" default="Low-High" />
     ),
@@ -220,8 +244,7 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
       if (a.length < b.length) return direction === 'asc' ? 1 : -1;
       return 0;
     },
-    icon: 'visVega',
-    color: euiPaletteColorBlind()[3],
+    icon: 'tokenObject',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.jsonSortTextAsc"

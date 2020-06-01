@@ -1,8 +1,29 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+
 const { execSync } = require('child_process');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const path = require('path');
 const glob = require('glob');
+const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
 function compileLib() {
@@ -13,11 +34,12 @@ function compileLib() {
     'lib/test'
   );
 
-  console.log('Compiling src/ to es/ and lib/');
+  console.log('Compiling src/ to es/, lib/, and test-env/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
+
   execSync(
-    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts" src',
     {
       env: {
         ...process.env,
@@ -26,8 +48,9 @@ function compileLib() {
       },
     }
   );
+
   execSync(
-    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts" src',
     {
       env: {
         ...process.env,
@@ -35,6 +58,24 @@ function compileLib() {
       },
     }
   );
+
+  execSync(
+    'babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
+    {
+      env: {
+        ...process.env,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+  glob('./test-env/**/*.testenv.js', undefined, (error, files) => {
+    files.forEach(file => {
+      const dir = path.dirname(file);
+      const fileName = path.basename(file, '.js');
+      const targetName = fileName.replace('.testenv', '');
+      fs.renameSync(file, path.join(dir, `${targetName}.js`));
+    });
+  });
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
@@ -66,11 +107,21 @@ function compileBundle() {
   shell.mkdir('-p', 'dist');
 
   console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  execSync('webpack --config=src/webpack.config.js', {
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      BABEL_MODULES: false,
+    },
+  });
 
   console.log('Building minified bundle...');
   execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
     stdio: 'inherit',
+    env: {
+      ...process.env,
+      BABEL_MODULES: false,
+    },
   });
 
   console.log('Building chart theme module...');
@@ -87,7 +138,13 @@ function compileBundle() {
     files: ['themes.ts'],
     resolveModuleId() {
       return '@elastic/eui/dist/eui_charts_theme';
-    }
+    },
+    resolveModuleImport(params) {
+   		if (params.importedModuleId === '../../components/common') {
+  			return '@elastic/eui/src/components/common';
+  		}
+			return null;
+	  }
   });
   console.log(chalk.green('✔ Finished chart theme module'));
 }

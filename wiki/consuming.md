@@ -4,6 +4,10 @@
 
 EUI publishes React UI components, JavaScript helpers called services, and utilities for writing Jest tests. Please refer to the [Elastic UI Framework website](https://elastic.github.io/eui) for comprehensive info on what's available.
 
+EUI is published through [NPM](https://www.npmjs.com/package/@elastic/eui) as a dependency. We also provide a starter projects for:
+- [GatsbyJS](https://github.com/elastic/gatsby-eui-starter)
+- [NextJS](https://github.com/elastic/next-eui-starter)
+
 ### Components
 
 You can import React components from the top-level EUI module.
@@ -94,4 +98,53 @@ ReactDOM.render(
 
 ### "Module build failed" or "Module parse failed: Unexpected token" error
 
-If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` intead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
+If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` instead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
+
+### Failing icon imports
+
+To reduce EUI's impact to application bundle sizes, the icons are dynamically imported on-demand. This is problematic for some bundlers and/or deployments, so a method exists to preload specific icons an application needs.
+
+```javascript
+import { appendIconComponentCache } from '@elastic/eui/es/components/icon/icon';
+
+import { icon as EuiIconArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
+import { icon as EuiIconArrowLeft } from '@elastic/eui/es/components/icon/assets/arrow_left';
+
+// One or more icons are passed in as an object of iconKey (string): IconComponent
+appendIconComponentCache({
+  arrowDown: EuiIconArrowDown,
+  arrowLeft: EuiIconArrowLeft,
+});
+``` 
+
+## Customizing with `className`
+
+We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`. All components allow you to pass a custom `className` prop directly to the component which will then append this to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles so long as your styles are imported **after** the EUI import.
+
+```html
+<EuiButton className="myCustomClass__button" />
+
+// Renders as:
+
+<button class="euiButton myCustomClass__button" />
+```
+
+## Using the `test-env` build
+
+EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
+
+### Mapping to the `test-env` directory
+
+In Kibana's Jest configuration, the `moduleNameMapper` option is used to resolve standard EUI import statements with `test-env` aliases.
+
+```js
+moduleNameMapper: {
+  '@elastic/eui$': '<rootDir>/node_modules/@elastic/eui/test-env'
+}
+```
+
+This eliminates the need to polyfill or transform the EUI build for an environment that otherwise has no need for such processing.
+
+### Mocked component files
+
+Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](testing.md).

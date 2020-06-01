@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
@@ -5,6 +24,7 @@ import { CommonProps } from '../common';
 import { EuiPaginationButton } from './pagination_button';
 import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
+import { EuiText } from '../text';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -175,9 +195,48 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
   const selectablePages = pages;
   if (compressed) {
+    const firstPageButtonCompressed = (
+      <EuiI18n
+        token="euiPagination.pageOfTotal"
+        default="Page {page} of {total}"
+        values={{ page: activePage + 1, total: pageCount }}>
+        {(pageOfTotal: string) => (
+          <EuiPaginationButton
+            onClick={onPageClick.bind(null, 0)}
+            isActive={true}
+            aria-label={pageOfTotal}>
+            {activePage + 1}
+          </EuiPaginationButton>
+        )}
+      </EuiI18n>
+    );
+    const lastPageButtonCompressed = (
+      <EuiI18n
+        token="euiPagination.jumpToLastPage"
+        default="Jump to the last page, number {pageCount}"
+        values={{ pageCount }}>
+        {(jumpToLastPage: string) => (
+          <EuiPaginationButton
+            onClick={onPageClick.bind(null, pageCount - 1)}
+            aria-label={jumpToLastPage}>
+            {pageCount}
+          </EuiPaginationButton>
+        )}
+      </EuiI18n>
+    );
     return (
       <div className={classes} {...rest}>
         {previousButton}
+        <EuiText size="s" className="euiPagination__compressedText">
+          <EuiI18n
+            token="euiPagination.pageOfTotalCompressed"
+            default="{page} of {total}"
+            values={{
+              page: firstPageButtonCompressed,
+              total: lastPageButtonCompressed,
+            }}
+          />
+        </EuiText>
         {nextButton}
       </div>
     );

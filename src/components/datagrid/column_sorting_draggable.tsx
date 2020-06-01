@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { FunctionComponent, ReactChild } from 'react';
 import { EuiI18n } from '../i18n';
 import { EuiDraggable } from '../drag_and_drop';
@@ -12,6 +31,7 @@ import {
   EuiDataGridSchemaDetector,
 } from './data_grid_schema';
 import { EuiDataGridSorting } from './data_grid_types';
+import { EuiToken } from '../token';
 
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
@@ -20,31 +40,26 @@ export interface EuiDataGridColumnSortingDraggableProps {
   sorting: EuiDataGridSorting;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  defaultSchemaColor: string;
 }
 
 export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   EuiDataGridColumnSortingDraggableProps
-> = ({
-  id,
-  direction,
-  index,
-  sorting,
-  schema,
-  schemaDetectors,
-  defaultSchemaColor,
-  ...rest
-}) => {
+> = ({ id, direction, index, sorting, schema, schemaDetectors, ...rest }) => {
+  const schemaDetails =
+    schema.hasOwnProperty(id) && schema[id].columnType != null
+      ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
+      : null;
+
   const textSortAsc =
-    schema.hasOwnProperty(id) && schema[id].columnType != null ? (
-      getDetailsForSchema(schemaDetectors, schema[id].columnType).sortTextAsc
+    schemaDetails != null ? (
+      schemaDetails.sortTextAsc
     ) : (
       <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
     );
 
   const textSortDesc =
-    schema.hasOwnProperty(id) && schema[id].columnType != null ? (
-      getDetailsForSchema(schemaDetectors, schema[id].columnType).sortTextDesc
+    schemaDetails != null ? (
+      schemaDetails.sortTextDesc
     ) : (
       <EuiI18n
         token="euiColumnSortingDraggable.defaultSortDesc"
@@ -116,22 +131,10 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
             </EuiFlexItem>
 
             <EuiFlexItem grow={false}>
-              <EuiIcon
-                color={
-                  schema.hasOwnProperty(id) && schema[id].columnType != null
-                    ? getDetailsForSchema(
-                        schemaDetectors,
-                        schema[id].columnType
-                      ).color
-                    : defaultSchemaColor
-                }
-                type={
-                  schema.hasOwnProperty(id) && schema[id].columnType != null
-                    ? getDetailsForSchema(
-                        schemaDetectors,
-                        schema[id].columnType
-                      ).icon
-                    : 'string'
+              <EuiToken
+                color={schemaDetails != null ? schemaDetails.color : undefined}
+                iconType={
+                  schemaDetails != null ? schemaDetails.icon : 'tokenString'
                 }
               />
             </EuiFlexItem>

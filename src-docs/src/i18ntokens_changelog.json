@@ -1,5 +1,189 @@
 [
   {
+    "version": "23.2.0",
+    "changes": [
+      {
+        "token": "euiFlyout.closeAriaLabel",
+        "changeType": "added",
+        "value": "Close this dialog"
+      }
+    ]
+  },
+  {
+    "version": "22.6.0",
+    "changes": [
+      {
+        "token": "euiRefreshInterval.fullDescription",
+        "changeType": "modified",
+        "value": "Refresh interval currently set to {optionValue} {optionText}."
+      },
+      {
+        "token": "euiTourStepIndicator.isActive",
+        "changeType": "added",
+        "value": "active"
+      },
+      {
+        "token": "euiTourStepIndicator.isComplete",
+        "changeType": "added",
+        "value": "complete"
+      },
+      {
+        "token": "euiTourStepIndicator.isIncomplete",
+        "changeType": "added",
+        "value": "incomplete"
+      },
+      {
+        "token": "euiTourStepIndicator.ariaLabel",
+        "changeType": "added",
+        "value": "({\n  status\n}: {\n  status: EuiTourStepStatus;\n}) => {\n  return `Step ${number} ${status}`;\n};"
+      }
+    ]
+  },
+  {
+    "version": "22.2.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNav.closeButtonLabel",
+        "changeType": "added",
+        "value": "close"
+      }
+    ]
+  },
+  {
+    "version": "22.1.0",
+    "changes": [
+      {
+        "token": "euiComboBoxOptionsList.delimiterMessage",
+        "changeType": "added",
+        "value": "Hit enter to add each item separated by {delimiter}"
+      }
+    ]
+  },
+  {
+    "version": "22.0.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.clickForDescending",
+        "changeType": "added",
+        "value": "Click to sort in descending order"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForUnsort",
+        "changeType": "added",
+        "value": "Click to unsort"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForAscending",
+        "changeType": "added",
+        "value": "Click to sort in ascending order"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithSort",
+        "changeType": "added",
+        "value": "{innerText}; Sorted in {ariaSortValue} order"
+      },
+      {
+        "token": "euiTableHeaderCell.sortedAriaLabel",
+        "changeType": "added",
+        "value": "Sorted in {ariaSortValue} order"
+      }
+    ]
+  },
+  {
+    "version": "21.1.0",
+    "changes": [
+      {
+        "token": "euiColorPicker.alphaLabel",
+        "changeType": "added",
+        "value": "Alpha channel (opacity) value"
+      },
+      {
+        "token": "euiColumnSelector.button",
+        "changeType": "added",
+        "value": "Columns"
+      },
+      {
+        "token": "euiColumnSelector.buttonActiveSingular",
+        "changeType": "added",
+        "value": "{numberOfHiddenFields} column hidden"
+      },
+      {
+        "token": "euiColumnSelector.buttonActivePlural",
+        "changeType": "added",
+        "value": "{numberOfHiddenFields} columns hidden"
+      }
+    ]
+  },
+  {
+    "version": "20.0.0",
+    "changes": [
+      {
+        "token": "euiBottomBar.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "There is a new region landmark with page level controls at the end of the document."
+      },
+      {
+        "token": "euiBottomBar.screenReaderHeading",
+        "changeType": "added",
+        "value": "Page level controls"
+      },
+      {
+        "token": "euiBottomBar.customScreenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+      },
+      {
+        "token": "euiControlBar.screenReaderHeading",
+        "changeType": "added",
+        "value": "Page level controls"
+      },
+      {
+        "token": "euiControlBar.customScreenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark called {landmarkHeading} with page level controls at the end of the document."
+      },
+      {
+        "token": "euiControlBar.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new region landmark with page level controls at the end of the document."
+      }
+    ]
+  },
+  {
+    "version": "19.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tableDescription",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableDescriptionWithPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows out of {totalItemCount} rows."
+      },
+      {
+        "token": "euiBasicTable.tableDescriptionWithoutPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows."
+      }
+    ]
+  },
+  {
+    "version": "18.3.0",
+    "changes": [
+      {
+        "token": "euiFilterButton.filterBadge",
+        "changeType": "modified",
+        "value": "{count} {hasActiveFilters} filters"
+      },
+      {
+        "token": "euiPagination.pageOfTotalCompressed",
+        "changeType": "added",
+        "value": "{page} of {total}"
+      }
+    ]
+  },
+  {
     "version": "16.1.0",
     "changes": [
       {

@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Component,
   HTMLAttributes,
@@ -16,7 +35,7 @@ import { getMatchingOptions } from './matching_options';
 import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
 import { EuiI18n } from '../i18n';
-import { Option } from './types';
+import { EuiSelectableOption } from './selectable_option';
 import {
   EuiSelectableOptionsListProps,
   EuiSelectableSingleOptionProps,
@@ -36,11 +55,11 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
 // `searchProps` can only be specified when `searchable` is true
 type EuiSelectableSearchableProps = ExclusiveUnion<
   {
-    searchable?: false;
+    searchable: false;
   },
   {
     /**
-     * Hooks up a search box to filter the list
+     * Hooks up a search box to filter the list (boolean)
      */
     searchable: true;
     /**
@@ -67,13 +86,13 @@ export type EuiSelectableProps = Omit<
       search: ReactElement<EuiSelectableSearch> | undefined
     ) => ReactNode;
     /**
-     * Array or Option objects, see docs for props
+     * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
      */
-    options: Option[];
+    options: EuiSelectableOption[];
     /**
      * Passes back the altered `options` array with selected options as
      */
-    onChange?: (options: Option[]) => void;
+    onChange?: (options: EuiSelectableOption[]) => void;
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
@@ -82,7 +101,7 @@ export type EuiSelectableProps = Omit<
      */
     singleSelection?: EuiSelectableSingleOptionProps;
     /**
-     * Allows marking options as checked = 'off' as well as 'on'
+     * Allows marking options as `checked='off'` as well as `'on'`
      */
     allowExclusions?: boolean;
     /**
@@ -96,20 +115,20 @@ export type EuiSelectableProps = Omit<
      */
     height?: number | 'full';
     /**
-     * See `EuiSelectableList`
+     * See #EuiSelectableOptionsList
      */
     listProps?: EuiSelectableOptionsListPropsWithDefaults;
     /**
      * Custom render function for each option.
-     * Returns (option, searchValue)
+     * Returns `(option, searchValue)`
      */
-    renderOption?: (option: Option, searchValue: string) => {};
+    renderOption?: (option: EuiSelectableOption, searchValue: string) => {};
   };
 
 export interface EuiSelectableState {
   activeOptionIndex?: number;
   searchValue: string;
-  visibleOptions: Option[];
+  visibleOptions: EuiSelectableOption[];
 }
 
 export class EuiSelectable extends Component<
@@ -119,6 +138,7 @@ export class EuiSelectable extends Component<
   static defaultProps = {
     options: [],
     singleSelection: false,
+    searchable: false,
   };
 
   private optionsListRef = createRef<EuiSelectableList>();
@@ -261,7 +281,10 @@ export class EuiSelectable extends Component<
     });
   };
 
-  onSearchChange = (visibleOptions: Option[], searchValue: string) => {
+  onSearchChange = (
+    visibleOptions: EuiSelectableOption[],
+    searchValue: string
+  ) => {
     this.setState({
       visibleOptions,
       searchValue,
@@ -272,7 +295,7 @@ export class EuiSelectable extends Component<
     this.clearActiveOption();
   };
 
-  onOptionClick = (options: Option[]) => {
+  onOptionClick = (options: EuiSelectableOption[]) => {
     this.setState(state => ({
       visibleOptions: getMatchingOptions(options, state.searchValue),
     }));

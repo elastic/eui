@@ -11,6 +11,14 @@ import { EuiCode, EuiToggle, EuiCallOut } from '../../../../src/components';
 import Toggle from './toggle';
 const toggleSource = require('!!raw-loader!./toggle');
 const toggleHtml = renderToHtml(Toggle);
+const toggleSnippet = [
+  `<EuiToggle
+  onChange={onToggleChange}
+  label="Is toggle on?"
+>
+  {toggleOn ? 'On' : 'Off'}
+</EuiToggle>`,
+];
 
 export const ToggleExample = {
   title: 'Toggle',
@@ -29,7 +37,7 @@ export const ToggleExample = {
       text: (
         <div>
           <p>
-            The <EuiCode>EuiToggle</EuiCode> component is a very simplified
+            The <strong>EuiToggle</strong> component is a very simplified
             utility for creating toggle-able elements. There is only an on/off
             (checked/unchecked) state. All this creates is a visibly hidden
             input (checkbox or radio) overtop of the children provided.
@@ -57,6 +65,7 @@ export const ToggleExample = {
         </div>
       ),
       components: { EuiToggle },
+      snippet: toggleSnippet,
       demo: <Toggle />,
       props: { EuiToggle },
     },

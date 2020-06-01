@@ -29,6 +29,8 @@ import {
   DataGridToolbarVisibilityOptions,
   DataGridColumnVisibility,
   DataGridPopoverContent,
+  DataGridControlColumn,
+  DataGridToolBarVisibilityColumnSelectorOptions,
 } from './props';
 
 const gridSnippet = `
@@ -39,13 +41,29 @@ const gridSnippet = `
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
     // The second column B won't allow clicking in to see the content in a popup.
-    // The first column defines an starting width of 150px and prevents the user from resizing it 
+    // The first column defines a starting width of 150px and prevents the user from resizing it
     columns={[{ id: 'A', initialWidth: 150, isResizable: false }, { id: 'B', isExpandable: false }, {id: 'C', schema: 'franchise'}]}
     // Optional. This allows you to initially hide columns. Users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
+    leadingControlColumns={[
+      {
+        id: 'selection',
+        width: 31,
+        headerCellRender: () => <span>Select a Row</span>,
+        rowCellRender: () => <div><EuiCheckbox ... /></div>,
+      },
+    ]}
+    trailingControlColumns={[
+      {
+        id: 'actions',
+        width: 40,
+        headerCellRender: () => null,
+        rowCellRender: MyGridActionsComponent,
+      },
+    ]}
     // Optional. Customize the content inside the cell. The current example outputs the row and column position.
     // Often used in combination with useEffect() to dynamically change the render.
     renderCellValue={({ rowIndex, columnId }) =>
@@ -105,9 +123,9 @@ const gridSnippet = `
         sortTextAsc: 'Star Wars-Star Trek',
         // Text for what the DESC sort does.
         sortTextDesc: 'Star Trek-Star Wars',
-        // EuiIcon to signify this schema.
+        // EuiIcon or Token to signify this schema.
         icon: 'star',
-        // The color to use for the icon.
+        // The color to use for the icon token.
         color: '#000000',
       },
     ]}
@@ -135,7 +153,7 @@ const gridConcepts = [
     title: 'columns',
     description: (
       <span>
-        An array of <EuiCode>EuiDataGridColumn</EuiCode> objects. Lists the
+        An array of <strong>EuiDataGridColumn</strong> objects. Lists the
         columns available and the schema and settings tied to it.
       </span>
     ),
@@ -144,7 +162,7 @@ const gridConcepts = [
     title: 'inMemory',
     description: (
       <span>
-        A <EuiCode>EuiDataGridInMemory</EuiCode> object to define the level of
+        A <strong>EuiDataGridInMemory</strong> object to define the level of
         high order schema-detection and sorting logic to use on your data.{' '}
         <strong>Try to set it when possible</strong>. If omitted, disables all
         enhancements and assumes content is flat strings.
@@ -155,9 +173,19 @@ const gridConcepts = [
     title: 'columnVisibility',
     description: (
       <span>
-        An array of <EuiCode>EuiDataGridColumnVisibility</EuiCode> objects.
+        An array of <strong>EuiDataGridColumnVisibility</strong> objects.
         Defines which columns are visible in the grid and the order they are
         displayed.
+      </span>
+    ),
+  },
+  {
+    title: 'leading and trailing controlColumns',
+    description: (
+      <span>
+        An array of <strong>EuiDataGridControlColumn</strong> objects. Used to
+        define ancillary columns on the left side of the data grid. Useful for
+        adding items like checkboxes and buttons.
       </span>
     ),
   },
@@ -165,7 +193,7 @@ const gridConcepts = [
     title: 'schemaDetectors',
     description: (
       <span>
-        An array of custom <EuiCode>EuiDataGridSchemaDetector</EuiCode> objects.
+        An array of custom <strong>EuiDataGridSchemaDetector</strong> objects.
         You can inject custom schemas to the grid to define the classnames
         applied.
       </span>
@@ -175,9 +203,9 @@ const gridConcepts = [
     title: 'popoverContents',
     description: (
       <span>
-        An object mapping <EuiCode>EuiDataGridColumn</EuiCode> schemas to a
-        custom popover render. This dictates the content of the popovers when
-        you click into each cell.
+        An object mapping <strong>EuiDataGridColumn</strong> schemas to a custom
+        popover render. This dictates the content of the popovers when you click
+        into each cell.
       </span>
     ),
   },
@@ -191,7 +219,7 @@ const gridConcepts = [
     description: (
       <span>
         Defines the look of the grid. Accepts a partial{' '}
-        <EuiCode>EuiDataGridStyle</EuiCode> object. Settings provided may be
+        <strong>EuiDataGridStyle</strong> object. Settings provided may be
         overwritten or merged with user defined preferences if{' '}
         <EuiCode>toolbarVisibility.showStyleSelector</EuiCode> is set to true
         (which is the default).
@@ -203,7 +231,7 @@ const gridConcepts = [
     description: (
       <span>
         Accepts either a boolean or{' '}
-        <EuiCode>EuiDataGridToolBarVisibilityOptions</EuiCode> object. When used
+        <strong>EuiDataGridToolBarVisibilityOptions</strong> object. When used
         as a boolean, defines the visibility of entire toolbar. When passed an
         object allows you to turn off individual controls within the toolbar.
       </span>
@@ -216,7 +244,7 @@ const gridConcepts = [
         A function called to render a cell&apos;s value. Behind the scenes it is
         treated as a React component allowing hooks, context, and other React
         concepts to be used. The function receives a{' '}
-        <EuiCode>EuiDataGridCellValueElement</EuiCode> as its only argument.
+        <strong>EuiDataGridCellValueElement</strong> as its only argument.
       </span>
     ),
   },
@@ -224,7 +252,7 @@ const gridConcepts = [
     title: 'pagination',
     description: (
       <span>
-        A <EuiCode>EuiDataGridPagination</EuiCode> object. Omit to disable
+        A <strong>EuiDataGridPagination</strong> object. Omit to disable
         pagination completely.
       </span>
     ),
@@ -233,7 +261,7 @@ const gridConcepts = [
     title: 'sorting',
     description: (
       <span>
-        A <EuiCode>EuiDataGridSorting</EuiCode> object that provides the sorted
+        A <strong>EuiDataGridSorting</strong> object that provides the sorted
         columns along with their direction. Omit to disable, but you&apos;ll
         likely want to also turn off the user sorting controls through the{' '}
         <EuiCode>toolbarVisibility</EuiCode> prop.
@@ -259,7 +287,7 @@ export const DataGridExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>EuiDataGrid</EuiCode> is for displaying large amounts of
+            <strong>EuiDataGrid</strong> is for displaying large amounts of
             tabular data. It is a better choice over{' '}
             <Link to="/tabular-content/tables/">EUI tables</Link> when there are
             many columns, the data in those columns is fairly uniform, and when
@@ -267,7 +295,7 @@ export const DataGridExample = {
             similar to traditional spreedsheet software, EuiDataGrid&apos;s
             current strengths are in rendering rather than creating content.{' '}
           </p>
-          <h3>Core concepts</h3>
+          <h2>Core concepts</h2>
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
@@ -289,15 +317,24 @@ export const DataGridExample = {
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <Link to="/tabular-content/data-grid-schemas-and-popvers/">
+              <Link to="/tabular-content/data-grid-schemas-and-popovers/">
                 popovers
               </Link>{' '}
               to display more content and actions into popovers.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-styling/">Grid styling</Link>{' '}
+              <Link to="/tabular-content/data-grid-styling-and-toolbar/">
+                Grid styling
+              </Link>{' '}
               can be controlled by the engineer, but augmented by user
               preference depending upon the features you enable.
+            </li>
+            <li>
+              <Link to="/tabular-content/data-grid-control-columns/">
+                Control columns
+              </Link>{' '}
+              allow you to add repeatable actions and controls like checkboxes
+              or buttons to your grid.
             </li>
           </ul>
         </Fragment>
@@ -307,6 +344,7 @@ export const DataGridExample = {
         EuiDataGrid,
         EuiDataGridColumn: DataGridColumn,
         EuiDataGridColumnVisibility: DataGridColumnVisibility,
+        EuiDataGridControlColumn: DataGridControlColumn,
         EuiDataGridInMemory: DataGridInMemory,
         EuiDataGridPagination: DataGridPagination,
         EuiDataGridSorting: DataGridSorting,
@@ -314,6 +352,7 @@ export const DataGridExample = {
         EuiDataGridSchemaDetector: DataGridSchemaDetector,
         EuiDataGridStyle: DataGridStyle,
         EuiDataGridToolbarVisibilityOptions: DataGridToolbarVisibilityOptions,
+        EuiDataGridToolBarVisibilityColumnSelectorOptions: DataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridPopoverContent: DataGridPopoverContent,
       },
       demo: (

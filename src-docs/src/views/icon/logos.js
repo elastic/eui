@@ -21,7 +21,6 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
-  'logoAPM',
   'logoAppSearch',
   'logoBeats',
   'logoBusinessAnalytics',
@@ -37,9 +36,11 @@ const iconTypes = [
   'logoLogstash',
   'logoMaps',
   'logoMetrics',
+  'logoObservability',
   'logoSecurity',
   'logoSiteSearch',
   'logoUptime',
+  'logoWorkplaceSearch',
 ].sort();
 
 export default () => (

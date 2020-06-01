@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldValueToggleFilter render - active 1`] = `
+<EuiFilterButton
+  aria-pressed={true}
+  hasActiveFilters={true}
+  onClick={[Function]}
+>
+  Kibana
+</EuiFilterButton>
+`;
+
+exports[`FieldValueToggleFilter render - active negated - custom negated name 1`] = `
+<EuiFilterButton
+  aria-pressed={true}
+  hasActiveFilters={true}
+  onClick={[Function]}
+>
+  Others
+</EuiFilterButton>
+`;
+
+exports[`FieldValueToggleFilter render - active negated 1`] = `
+<EuiFilterButton
+  aria-pressed={true}
+  hasActiveFilters={true}
+  onClick={[Function]}
+>
+  Not Kibana
+</EuiFilterButton>
+`;
+
+exports[`FieldValueToggleFilter render 1`] = `
+<EuiFilterButton
+  aria-pressed={false}
+  hasActiveFilters={false}
+  onClick={[Function]}
+>
+  Kibana
+</EuiFilterButton>
+`;

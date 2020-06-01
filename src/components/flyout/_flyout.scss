@@ -1,19 +1,6 @@
 .euiFlyout {
-  border-left: $euiBorderThin;
-  // The mixin augments the above
-  // sass-lint:disable mixins-before-declarations
-  @include euiBottomShadowLarge($adjustBorders: true);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  z-index: $euiZModal;
-  background: $euiColorEmptyShade;
+  @include euiFlyout;
   animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
 }
 
 // The actual size of the X button in pixels is a bit fuzzy because of all the

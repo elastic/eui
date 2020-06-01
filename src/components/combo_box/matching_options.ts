@@ -1,12 +1,31 @@
-import { EuiComboBoxOptionProps } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import { EuiComboBoxOptionOption } from './types';
 
 export const flattenOptionGroups = <T>(
-  optionsOrGroups: Array<EuiComboBoxOptionProps<T>>
+  optionsOrGroups: Array<EuiComboBoxOptionOption<T>>
 ) => {
   return optionsOrGroups.reduce(
     (
-      options: Array<EuiComboBoxOptionProps<T>>,
-      optionOrGroup: EuiComboBoxOptionProps<T>
+      options: Array<EuiComboBoxOptionOption<T>>,
+      optionOrGroup: EuiComboBoxOptionOption<T>
     ) => {
       if (optionOrGroup.options) {
         options.push(...optionOrGroup.options);
@@ -21,7 +40,7 @@ export const flattenOptionGroups = <T>(
 
 export const getSelectedOptionForSearchValue = <T>(
   searchValue: string,
-  selectedOptions: Array<EuiComboBoxOptionProps<T>>
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
@@ -30,9 +49,9 @@ export const getSelectedOptionForSearchValue = <T>(
 };
 
 const collectMatchingOption = <T>(
-  accumulator: Array<EuiComboBoxOptionProps<T>>,
-  option: EuiComboBoxOptionProps<T>,
-  selectedOptions: Array<EuiComboBoxOptionProps<T>>,
+  accumulator: Array<EuiComboBoxOptionOption<T>>,
+  option: EuiComboBoxOptionOption<T>,
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
   normalizedSearchValue: string,
   isPreFiltered: boolean,
   showPrevSelected: boolean
@@ -64,19 +83,19 @@ const collectMatchingOption = <T>(
 };
 
 export const getMatchingOptions = <T>(
-  options: Array<EuiComboBoxOptionProps<T>>,
-  selectedOptions: Array<EuiComboBoxOptionProps<T>>,
+  options: Array<EuiComboBoxOptionOption<T>>,
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
   searchValue: string,
   isPreFiltered: boolean,
   showPrevSelected: boolean
 ) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
-  const matchingOptions: Array<EuiComboBoxOptionProps<T>> = [];
+  const matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
 
   options.forEach(option => {
     if (option.options) {
-      const matchingOptionsForGroup: Array<EuiComboBoxOptionProps<T>> = [];
-      option.options.forEach((groupOption: EuiComboBoxOptionProps<T>) => {
+      const matchingOptionsForGroup: Array<EuiComboBoxOptionOption<T>> = [];
+      option.options.forEach((groupOption: EuiComboBoxOptionOption<T>) => {
         collectMatchingOption(
           matchingOptionsForGroup,
           groupOption,

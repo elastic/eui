@@ -8,11 +8,12 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiSelectable,
-  EuiSelectableList,
   EuiSelectableMessage,
   EuiText,
   EuiSpacer,
 } from '../../../../src/components';
+
+import { EuiSelectableOptionProps, EuiSelectableOptionsList } from './props';
 
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
@@ -48,10 +49,17 @@ export const SelectableExample = {
   intro: (
     <EuiText>
       <p>
-        EuiSelectable aims to make the pattern of a selectable list (with or
-        without search) consistent across implementations. It is the same
-        concept used in <Link to="/forms/combo-box">EuiComboBox</Link> and{' '}
-        <Link to="/forms/filter-group">EuiFilterGroup</Link>.{' '}
+        <strong>EuiSelectable</strong> aims to make the pattern of a selectable
+        list (with or without search) consistent across implementations. It is
+        the same concept used in{' '}
+        <Link to="/forms/combo-box">
+          <strong>EuiComboBox</strong>
+        </Link>{' '}
+        and{' '}
+        <Link to="/forms/filter-group">
+          <strong>EuiFilterGroup</strong>
+        </Link>
+        .{' '}
         <strong>
           This is not intended for{' '}
           <Link to="/display/list-group">primary navigation</Link>
@@ -80,53 +88,24 @@ export const SelectableExample = {
       text: (
         <Fragment>
           <p>
-            At its simplest, EuiSelectable requires an array of{' '}
+            At its simplest, <strong>EuiSelectable</strong> requires an array of{' '}
             <EuiCode>options</EuiCode> and an <EuiCode>onChange</EuiCode>{' '}
             handler which passes back the altered{' '}
-            <EuiCode>selectedOptions</EuiCode> array.
+            <EuiCode>selectedOptions</EuiCode> array. The{' '}
+            <EuiCode>children</EuiCode> is a function that return the{' '}
+            <EuiCode>list</EuiCode> and <EuiCode>search</EuiCode> nodes.
           </p>
-          <h4>
-            The <EuiCode>Option</EuiCode> props
-          </h4>
-          <ul>
-            <li>
-              <EuiCode>label: string</EuiCode> <strong>required</strong> Must be
-              unique across items if <EuiCode>key</EuiCode> is not passed
-            </li>
-            <li>
-              <EuiCode>key?: string</EuiCode> Must be unique across items
-            </li>
-            <li>
-              <EuiCode>checked?: &apos;on&apos; | &apos;off&apos;</EuiCode>{' '}
-              Leave off to indicate not selected, &apos;on&apos; to indicate
-              inclusion and &apos;off&apos; to indicate exclusion
-            </li>
-            <li>
-              <EuiCode>disabled?: boolean</EuiCode>
-            </li>
-            <li>
-              <EuiCode>isGroupLabel?: boolean</EuiCode> Set to true to indicate
-              object is just a grouping label, not a selectable item
-            </li>
-            <li>
-              <EuiCode>prepend?: React.ReactNode</EuiCode> Node to add between
-              the selection icon and the label
-            </li>
-            <li>
-              <EuiCode>append?: React.ReactNode</EuiCode> Node to add to the far
-              right of the item
-            </li>
-            <li>
-              <EuiCode>ref?: () =&gt; void</EuiCode>
-            </li>
-          </ul>
         </Fragment>
       ),
-      props: { EuiSelectable, EuiSelectableList },
+      props: {
+        EuiSelectable,
+        EuiSelectableOptionProps,
+        EuiSelectableOptionsList,
+      },
       demo: <Selectable />,
       snippet: `<EuiSelectable
   options={[{ label: '' }, { label: '' }]}
-  onChange={() => this.onChange(options)}
+  onChange={newOptions => setOptions(newOptions)}
   listProps={{ bordered: true }}>
   {list => list}
 </EuiSelectable>`,
@@ -149,7 +128,7 @@ export const SelectableExample = {
             To add a search component to the list, simply add the{' '}
             <EuiCode>searchable</EuiCode> prop. You can optionally pass in a{' '}
             <EuiCode>searchProps</EuiCode> object which will get passed down to
-            the actual EuiFieldSearch used.
+            the actual <strong>EuiFieldSearch</strong> used.
           </p>
           <p>
             <strong>
@@ -167,7 +146,7 @@ export const SelectableExample = {
     'data-test-subj': dataTestSubj,
   }}
   options={[]}
-  onChange={() => this.onChange(options)}>
+  onChange={newOptions => setOptions(newOptions)}>
   {(list, search) => (
     <Fragment>
       {search}
@@ -177,7 +156,7 @@ export const SelectableExample = {
 </EuiSelectable>`,
     },
     {
-      title: 'Single Selection',
+      title: 'Single selection',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -194,9 +173,9 @@ export const SelectableExample = {
             Selection can be restricted to a single option at a time with the{' '}
             <EuiCode>singleSelection</EuiCode> prop. Passing{' '}
             <EuiCode>true</EuiCode> allows for 0 or 1 option to be selected,
-            while
-            <EuiCode>`always`</EuiCode> requires 1 option to be selected at all
-            times. The default value is <EuiCode>false</EuiCode>.
+            while <EuiCode language="js">{'"always"'}</EuiCode> requires 1
+            option to be selected at all times. The default value is{' '}
+            <EuiCode>false</EuiCode>.
           </p>
         </Fragment>
       ),
@@ -205,7 +184,7 @@ export const SelectableExample = {
       snippet: `
       <EuiSelectable
         options={options}
-        onChange={this.onChange}
+        onChange={newOptions => setOptions(newOptions)}
         singleSelection={true}
         listProps={{ bordered: true }}>
         {list => list}
@@ -242,10 +221,10 @@ export const SelectableExample = {
           </p>
           <h3>Flexbox</h3>
           <p>
-            Be aware that <EuiCode>display: flex</EuiCode> with column layout is
-            applied to the wrapping container. This is so that you can opt in to
-            allow the height of the list stretch to fill its container. See the
-            flyout example.
+            Be aware that <EuiCode language="sass">display: flex</EuiCode> with
+            column layout is applied to the wrapping container. This is so that
+            you can opt in to allow the height of the list stretch to fill its
+            container. See the flyout example.
           </p>
         </Fragment>
       ),
@@ -278,7 +257,7 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   allowExclusions
   options={[]}
-  onChange={() => this.onChange(options)}>
+  onChange={newOptions => setOptions(newOptions)}>
   {list => list}
 </EuiSelectable>`,
     },
@@ -298,8 +277,8 @@ export const SelectableExample = {
         <Fragment>
           <p>
             The component comes with some pre-composed messages for empty and
-            loading states. To pass in your own message you can use the
-            EuiSelectableMessage component and replace the{' '}
+            loading states. To pass in your own message you can use the{' '}
+            <strong>EuiSelectableMessage</strong> component and replace the{' '}
             <EuiCode>list</EuiCode> child with your message.
           </p>
         </Fragment>
@@ -333,9 +312,10 @@ export const SelectableExample = {
           <h3>Selection icons</h3>
           <p>
             You can choose not to display the check and cross icons indicating
-            selection by passing <EuiCode>showIcons=false</EuiCode>. This is
-            useful for instances that navigate elsewhere on selection or hide
-            their selected options from the list.
+            selection by passing{' '}
+            <EuiCode language="js">showIcons=false</EuiCode>. This is useful for
+            instances that navigate elsewhere on selection or hide their
+            selected options from the list.
           </p>
           <h3>Group labels</h3>
           <p>
@@ -370,9 +350,9 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   searchable
   options={[]}
-  onChange={() => this.onChange(options)}
+  onChange={newOptions => setOptions(newOptions)}
   height={240}
-  renderOption={this.renderCountryOption}
+  renderOption={renderCountryOption}
   listProps={{
     rowHeight: 50,
     showIcons: false,

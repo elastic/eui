@@ -48,11 +48,13 @@ fully-tested the code is, located at `reports/jest-coverage`.
 
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
+Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for info more info on those.
+
 ### Testing the component with Kibana
 
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
 
-1. In the `eui` folder, run `npm pack`. This will create a `.tgz` file in your EUI directory. At this point you can move it anywhere.
+1. In the `eui` folder, run `yarn build` then `npm pack`. This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
 2. In Kibana you have two choices:
     * Point your `package.json` files in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap`.
     * Alternatively (and often easier), you can run `yarn kbn bootstrap` in Kibana first, then just unpack the `.tgz` file and paste its contents into an empty `/kibana/node_modules/@elastic/eui` folder. This method avoids having to edit all the various `package.json` files in Kibana if you need to run functional tests.
@@ -66,14 +68,13 @@ If a component has subcomponents (`<EuiToolBar>` and `<EuiToolBarSearch>`), tigh
 
 ### Writing CSS
 
-We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-scss].
+Refer to the [SASS page][sass] of our documentation site for a guide to writing styles.
 
 [component-design]: component-design.md
 [docs]: https://elastic.github.io/eui/
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md
-[kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
-[kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
+[sass]: https://elastic.github.io/eui/#/guidelines/sass
 
 ## TypeScript definitions
 
@@ -81,9 +82,9 @@ We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-s
 
 Many of our components use `rest parameters` and the `spread` operator to pass props through to an underlying DOM element. In those instances the component's TypeScript definition needs to properly include the target DOM element's props.
 
-A `Foo` component that passes `...rest` through to a `button` element would have the props interface 
+A `Foo` component that passes `...rest` through to a `button` element would have the props interface
 
-```
+```ts
 // passes extra props to a button
 interface FooProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string
@@ -92,7 +93,7 @@ interface FooProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 Some DOM elements (e.g. `div`, `span`) do not have attributes beyond the basic ones provided by all HTML elements. In these cases there isn't a specific `*HTMLAttributes<T>` interface, and you should use `HTMLAttributes<HTMLDivElement>`.
 
-```
+```ts
 // passes extra props to a div
 interface FooProps extends HTMLAttributes<HTMLDivElement> {
   title: string
@@ -101,7 +102,7 @@ interface FooProps extends HTMLAttributes<HTMLDivElement> {
 
 If your component forwards the `ref` through to an underlying element, the interface is further extended with `DetailedHTMLProps`
 
-```
+```ts
 // passes extra props and forwards the ref to a button
 interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   title: string

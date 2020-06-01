@@ -90,6 +90,11 @@ const humanizeType = type => {
   return humanizedType;
 };
 
+const nameToCodeClassMap = {
+  javascript: 'javascript',
+  html: 'html',
+};
+
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
@@ -138,12 +143,84 @@ export class GuideSection extends Component {
 
     this.state = {
       selectedTab: this.tabs.length > 0 ? this.tabs[0] : undefined,
+      renderedCode: null,
     };
+
+    this.memoScroll = 0;
   }
 
   onSelectedTabChanged = selectedTab => {
-    this.setState({
-      selectedTab,
+    const { name } = selectedTab;
+    let renderedCode = null;
+
+    if (name === 'html' || name === 'javascript') {
+      const { code } = this.props.source.find(
+        sourceObject => sourceObject.type === name
+      );
+      renderedCode = code;
+
+      if (name === 'javascript') {
+        renderedCode = renderedCode
+          .replace(
+            /(from )'(..\/)+src\/components(\/?';)/g,
+            "from '@elastic/eui';"
+          )
+          .replace(
+            /(from )'(..\/)+src\/services(\/?';)/g,
+            "from '@elastic/eui/lib/services';"
+          )
+          .replace(
+            /(from )'(..\/)+src\/components\/.*?';/g,
+            "from '@elastic/eui';"
+          );
+        renderedCode = renderedCode.split('\n');
+        const linesWithImport = [];
+        // eslint-disable-next-line guard-for-in
+        for (const idx in renderedCode) {
+          const line = renderedCode[idx];
+          if (
+            line.includes('import') &&
+            line.includes("from '@elastic/eui';")
+          ) {
+            linesWithImport.push(line);
+            renderedCode[idx] = '';
+          }
+        }
+        if (linesWithImport.length > 1) {
+          linesWithImport[0] = linesWithImport[0].replace(
+            " } from '@elastic/eui';",
+            ','
+          );
+          for (let i = 1; i < linesWithImport.length - 1; i++) {
+            linesWithImport[i] = linesWithImport[i]
+              .replace('import {', '')
+              .replace(" } from '@elastic/eui';", ',');
+          }
+          linesWithImport[linesWithImport.length - 1] = linesWithImport[
+            linesWithImport.length - 1
+          ].replace('import {', '');
+        }
+        const newImport = linesWithImport.join('');
+        renderedCode.unshift(newImport);
+        renderedCode = renderedCode.join('\n');
+        let len = renderedCode.replace('\n\n\n', '\n\n').length;
+        while (len < renderedCode.length) {
+          renderedCode = renderedCode.replace('\n\n\n', '\n\n');
+          len = renderedCode.replace('\n\n\n', '\n\n').length;
+        }
+      } else if (name === 'html') {
+        renderedCode = code.render();
+      }
+    }
+
+    this.setState({ selectedTab, renderedCode }, () => {
+      if (name === 'javascript') {
+        requestAnimationFrame(() => {
+          const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+          if (!pre) return;
+          pre.scrollTop = this.memoScroll;
+        });
+      }
     });
   };
 
@@ -372,25 +449,37 @@ export class GuideSection extends Component {
   }
 
   renderCode(name) {
-    const nameToCodeClassMap = {
-      javascript: 'javascript',
-      html: 'html',
-    };
-
-    const codeClass = nameToCodeClassMap[name];
     const { code } = this.props.source.find(
       sourceObject => sourceObject.type === name
     );
     const cleanedExampleCode = cleanEuiImports(code);
 
-    return (
-      <div key={name} ref={name}>
-        {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
-        <EuiCodeBlock language={codeClass} overflowHeight={400}>
-          {cleanedExampleCode}
-        </EuiCodeBlock>
-      </div>
+    const euiCodeBlock = (
+      <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
+        {cleanedExampleCode}
+      </EuiCodeBlock>
     );
+
+    const divProps = {
+      key: name,
+      ref: name,
+    };
+
+    const memoScrollUtility = () => {
+      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+      this.memoScroll = pre.scrollTop;
+    };
+
+    if (name === 'javascript') {
+      return (
+        <div {...divProps} onScroll={memoScrollUtility}>
+          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
+          {euiCodeBlock}
+        </div>
+      );
+    }
+
+    return <div {...divProps}> {euiCodeBlock} </div>;
   }
 
   renderContent() {
@@ -456,8 +545,6 @@ GuideSection.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
   children: PropTypes.any,
-  toggleTheme: PropTypes.func.isRequired,
-  theme: PropTypes.string.isRequired,
   routes: PropTypes.object.isRequired,
   props: PropTypes.object,
 };

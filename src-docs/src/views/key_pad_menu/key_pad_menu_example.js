@@ -17,7 +17,6 @@ const keyPadMenuSnippet = `<EuiKeyPadMenu>
   <EuiKeyPadMenuItem label={label1} href="#">
     <EuiIcon type={icon1} size="l" />
   </EuiKeyPadMenuItem>
-
   <EuiKeyPadMenuItem label={label2} href="#">
     <EuiIcon type={icon2} size="l" />
   </EuiKeyPadMenuItem>
@@ -27,11 +26,11 @@ const keyPadMenuSnippet = `<EuiKeyPadMenu>
 import KeyPadMenuItemButton from './key_pad_menu_item_button';
 const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_button');
 const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
-const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItemButton
+const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItem
   label={label}
-  onClick={this.handleClick}>
+  onClick={handleClick}>
   <EuiIcon type={icon} size="l" />
-</EuiKeyPadMenuItemButton>
+</EuiKeyPadMenuItem>
 `;
 
 import KeyPadBeta from './key_pad_beta';
@@ -48,7 +47,7 @@ const keyPadBetaSnippet = `<EuiKeyPadMenuItem
 `;
 
 export const KeyPadMenuExample = {
-  title: 'Key Pad Menu',
+  title: 'Key pad menu',
   sections: [
     {
       source: [
@@ -63,8 +62,9 @@ export const KeyPadMenuExample = {
       ],
       text: (
         <p>
-          The KeyPadMenu component presents KeyPadMenuItems in a tiled format,
-          with a fixed width which will accommodate three items and then wrap.
+          The <strong>EuiKeyPadMenu</strong> component presents{' '}
+          <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
+          width which will accommodate three items and then wrap.
         </p>
       ),
       props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
@@ -72,7 +72,7 @@ export const KeyPadMenuExample = {
       demo: <KeyPadMenu />,
     },
     {
-      title: 'Item Button',
+      title: 'Item button',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -85,9 +85,9 @@ export const KeyPadMenuExample = {
       ],
       text: (
         <p>
-          The KeyPadMenuItem component is a link by default, but you can swap it
-          out for a KeyPadMenuItemButton if you want <EuiCode>onClick</EuiCode>{' '}
-          behavior.
+          The <strong>EuiKeyPadMenuItem</strong> component can act both as an
+          anchor as well as a button by specifying <EuiCode>href</EuiCode> or
+          <EuiCode>onClick</EuiCode> respectively.
         </p>
       ),
       snippet: keyPadMenuItemButtonSnippet,
@@ -111,7 +111,7 @@ export const KeyPadMenuExample = {
             If the item links to a module that is not GA (beta, lab, etc), you
             can add a <EuiCode>betaBadgeLabel</EuiCode> and{' '}
             <EuiCode>betaBadgeTooltipContent</EuiCode> to the card and it will
-            properly create and position an <EuiCode>EuiBetaBadge</EuiCode>.
+            properly create and position an <strong>EuiBetaBadge</strong>.
           </p>
           <p>
             Supplying just a label will only show the first letter in the badge

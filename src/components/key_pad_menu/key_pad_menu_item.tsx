@@ -1,14 +1,36 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   FunctionComponent,
   ReactNode,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
+
+import { getSecureRelForTarget } from '../../services';
 
 import { IconType } from '../icon';
 
@@ -56,14 +78,19 @@ interface EuiKeyPadMenuItemCommonProps {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
+  onClick?: () => void;
+  href?: string;
+  rel?: string;
 }
 
 export type EuiKeyPadMenuItemProps = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> &
+  ExclusiveUnion<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    ButtonHTMLAttributes<HTMLButtonElement>
+  > &
   EuiKeyPadMenuItemCommonProps;
 
 export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
-  href,
   isDisabled,
   label,
   children,
@@ -71,6 +98,9 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeIconType,
+  href,
+  rel,
+  target,
   ...rest
 }) => {
   const classes = classNames(
@@ -81,27 +111,31 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     className
   );
 
-  if (!isDisabled) {
-    return (
-      <a href={href} className={classes} role="menuitem" {...rest}>
-        {renderContent(
-          children,
-          label,
-          betaBadgeLabel,
-          betaBadgeTooltipContent,
-          betaBadgeIconType
-        )}
-      </a>
-    );
+  const Element = href && !isDisabled ? 'a' : 'button';
+  const relObj: {
+    role?: string;
+    disabled?: boolean;
+    type?: string;
+    href?: string;
+    rel?: string;
+    target?: string;
+  } = {};
+
+  if (href && !isDisabled) {
+    relObj.role = 'menuitem';
+    relObj.href = href;
+    relObj.target = target;
+    relObj.rel = getSecureRelForTarget({ href, rel, target });
+  } else {
+    relObj.type = 'button';
+    relObj.disabled = isDisabled;
   }
 
   return (
-    <button
-      type="button"
-      disabled={isDisabled}
+    <Element
       className={classes}
-      // Type case needed due to how the props are defined
-      {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+      {...relObj as HTMLAttributes<HTMLElement>}
+      {...rest as HTMLAttributes<HTMLElement>}>
       {renderContent(
         children,
         label,
@@ -109,49 +143,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         betaBadgeTooltipContent,
         betaBadgeIconType
       )}
-    </button>
-  );
-};
-
-export type EuiKeyPadMenuItemButtonProps = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> &
-  EuiKeyPadMenuItemCommonProps;
-
-export const EuiKeyPadMenuItemButton: FunctionComponent<
-  EuiKeyPadMenuItemButtonProps
-> = ({
-  onClick,
-  label,
-  children,
-  className,
-  betaBadgeLabel,
-  betaBadgeTooltipContent,
-  betaBadgeIconType,
-  isDisabled,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiKeyPadMenuItem',
-    {
-      'euiKeyPadMenuItem--hasBetaBadge': betaBadgeLabel,
-    },
-    className
-  );
-
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={isDisabled}
-      className={classes}
-      {...rest}>
-      {renderContent(
-        children,
-        label,
-        betaBadgeLabel,
-        betaBadgeTooltipContent,
-        betaBadgeIconType
-      )}
-    </button>
+    </Element>
   );
 };

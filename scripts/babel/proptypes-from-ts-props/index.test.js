@@ -280,6 +280,28 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('should ignore never keyword', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface Props{
+  foo: never;
+}
+const FooComponent: React.SFC<Props> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {};`);
+      });
     });
 
     describe('function propTypes', () => {
@@ -979,6 +1001,58 @@ FooComponent.propTypes = {
 
       });
 
+      describe('elementType propType', () => {
+
+        it('understands React.ComponentType', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: React.ComponentType, bar: React.ComponentType<{ prop: any }>}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.elementType.isRequired,
+  bar: PropTypes.elementType.isRequired
+};`);
+        });
+
+        it('understands ComponentType', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: ComponentType, bar: ComponentType<{ prop: any }>}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.elementType.isRequired,
+  bar: PropTypes.elementType.isRequired
+};`);
+        });
+
+      });
+
     });
 
     describe('intersection types', () => {
@@ -1150,6 +1224,38 @@ FooComponent.propTypes = {
   foo: PropTypes.oneOfType([PropTypes.string, PropTypes.string.isRequired]),
   asdf: PropTypes.bool.isRequired,
   bar: PropTypes.string
+};`);
+      });
+
+      it('parses PropsForAnchor and PropsForButton arguments', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface PropsA { a: boolean }
+interface PropsB { b?: number }
+interface PropsC { c: string }
+interface PropsD { d?: null }
+type Props = PropsForAnchor<PropsA, PropsB> & PropsForButton<PropsC, PropsD>
+const FooComponent: React.SFC<Props> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  href: PropTypes.string,
+  onClick: PropTypes.func,
+  a: PropTypes.bool.isRequired,
+  b: PropTypes.number,
+  c: PropTypes.string.isRequired,
+  d: PropTypes.oneOf([null])
 };`);
       });
 
@@ -2083,7 +2189,7 @@ const FooComponent: React.SFC<{foo: keyof typeof commonKeys, bar?: commonKeyType
                             s: 'small',
                             'l': 'large',
                           };
-                          
+
                           export type commonKeyTypes = keyof typeof commonKeys;
                         `)
                       }
@@ -2613,6 +2719,18 @@ FooComponent.propTypes = {
       });
     });
 
+    describe('misc', () => {
+      it('supports non-initialized variable declarations', () => {
+        const result = transform(
+          `
+let something: any;
+`,
+          babelOptions
+        );
+
+        expect(result.code).toBe('let something;');
+      });
+    });
   });
 
   describe('remove types from exports', () => {
@@ -2625,7 +2743,7 @@ export { Foo };
         babelOptions
       );
 
-      expect(result.code).toBe(`export {};`);
+      expect(result.code).toBe('');
     });
 
     it('removes multiple type export from ExportNamedDeclaration', () => {
@@ -2638,7 +2756,7 @@ export { Foo, Bar };
         babelOptions
       );
 
-      expect(result.code).toBe(`export {};`);
+      expect(result.code).toBe('');
     });
 
     it('removes type exports from ExportNamedDeclaration, leaving legitimate exports', () => {

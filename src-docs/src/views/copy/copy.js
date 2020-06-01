@@ -1,40 +1,31 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiCopy,
   EuiButton,
   EuiFieldText,
   EuiSpacer,
+  EuiFormRow,
 } from '../../../../src/components/';
 
-export default class extends Component {
-  state = {
-    copyText: 'I am the text that will be copied',
+export default () => {
+  const [copyText, setCopyText] = useState('I am the text that will be copied');
+
+  const onChange = e => {
+    setCopyText(e.target.value);
   };
 
-  onChange = e => {
-    this.setState({
-      copyText: e.target.value,
-    });
-  };
+  return (
+    <div>
+      <EuiFormRow label="Enter text that will be copied to clipboard">
+        <EuiFieldText value={copyText} onChange={onChange} />
+      </EuiFormRow>
 
-  render() {
-    return (
-      <div>
-        <EuiFieldText
-          placeholder="Enter text that will be copied to clipboard"
-          value={this.state.copyText}
-          onChange={this.onChange}
-        />
+      <EuiSpacer size="m" />
 
-        <EuiSpacer size="m" />
-
-        <EuiCopy textToCopy={this.state.copyText}>
-          {copy => (
-            <EuiButton onClick={copy}>Click to copy input text</EuiButton>
-          )}
-        </EuiCopy>
-      </div>
-    );
-  }
-}
+      <EuiCopy textToCopy={copyText}>
+        {copy => <EuiButton onClick={copy}>Click to copy input text</EuiButton>}
+      </EuiCopy>
+    </div>
+  );
+};

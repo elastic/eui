@@ -1,18 +1,17 @@
 import React from 'react';
 
-import { EuiAccordion, EuiText, EuiCode } from '../../../../src/components';
+import { EuiAccordion, EuiText } from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiAccordion
-      id="accordion1"
+      id="accordion2"
       buttonContent="I am opened by default. Click me to toggle close / open"
       initialIsOpen={true}
       paddingSize="l">
       <EuiText>
         <p>
-          Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear
-          here.
+          Any content inside of <strong>EuiAccordion</strong> will appear here.
         </p>
       </EuiText>
     </EuiAccordion>

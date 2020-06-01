@@ -1,11 +1,11 @@
 .euiStat {
   // Modifier naming and colors.
   $titleColors: (
-    subdued: $euiColorDarkShade,
-    primary: $euiColorPrimary,
-    secondary: $euiColorSecondary,
-    danger: $euiColorDanger,
-    accent: $euiColorAccent,
+    subdued: $euiTextSubduedColor,
+    primary: $euiColorPrimaryText,
+    secondary: $euiColorSecondaryText,
+    danger: $euiColorDangerText,
+    accent: $euiColorAccentText,
   );
 
   .euiStat__title {

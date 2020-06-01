@@ -20,6 +20,7 @@ import {
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
+import { EuiBadge } from '../../../../src/components/badge';
 
 const scrollTo = position => {
   $('html, body').animate(
@@ -30,7 +31,7 @@ const scrollTo = position => {
   );
 };
 
-function scrollToSelector(selector, attempts = 5) {
+export function scrollToSelector(selector, attempts = 5) {
   const element = $(selector);
 
   if (element.length) {
@@ -155,16 +156,13 @@ export class GuidePageChrome extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="popover"
+            id="guidePageChromeThemePopover"
             button={button}
             isOpen={this.state.isPopoverOpen}
             closePopover={this.closePopover.bind(this)}>
             <EuiPopoverTitle>Docs options</EuiPopoverTitle>
             <div className="guideOptionsPopover">
-              <GuideThemeSelector
-                onToggleTheme={this.props.onToggleTheme}
-                selectedTheme={this.props.selectedTheme}
-              />
+              <GuideThemeSelector />
               {location.host === 'localhost:8030' ? ( // eslint-disable-line no-restricted-globals
                 <GuideLocaleSelector
                   onToggleLocale={this.props.onToggleLocale}
@@ -246,8 +244,17 @@ export class GuidePageChrome extends Component {
       });
 
       const items = matchingItems.map(item => {
-        const { name, path, sections } = item;
+        const { name, path, sections, isNew } = item;
         const href = `#/${path}`;
+
+        let newBadge;
+        if (isNew) {
+          newBadge = (
+            <EuiBadge color="accent" className="guideSideNav__newBadge">
+              NEW
+            </EuiBadge>
+          );
+        }
 
         let visibleName = name;
         if (searchTerm) {
@@ -268,6 +275,8 @@ export class GuidePageChrome extends Component {
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item === this.props.currentRoute,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
+          className: 'guideSideNav__item',
+          icon: newBadge,
         };
       });
 
@@ -332,8 +341,6 @@ export class GuidePageChrome extends Component {
 
 GuidePageChrome.propTypes = {
   currentRoute: PropTypes.object.isRequired,
-  onToggleTheme: PropTypes.func.isRequired,
-  selectedTheme: PropTypes.string.isRequired,
   onToggleLocale: PropTypes.func.isRequired,
   selectedLocale: PropTypes.string.isRequired,
   navigation: PropTypes.array.isRequired,

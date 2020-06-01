@@ -1,5 +1,24 @@
-import { getEventPosition } from '../utils';
-import { isValidHex, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import { getEventPosition, getChromaColor } from '../utils';
+import { DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
 
 const EUI_THUMB_SIZE = 16; // Same as $euiRangeThumbHeight & $euiRangeThumbWidth
@@ -60,17 +79,23 @@ export const addStop = (
   ];
 };
 
-export const isColorInvalid = (color: string) => {
-  return !isValidHex(color) || color === '';
+export const isColorInvalid = (color: string, showAlpha: boolean = false) => {
+  return getChromaColor(color, showAlpha) == null || color === '';
 };
 
 export const isStopInvalid = (stop: ColorStop['stop']) => {
   return stop == null || isNaN(stop);
 };
 
-export const isInvalid = (colorStops: ColorStop[]) => {
+export const isInvalid = (
+  colorStops: ColorStop[],
+  showAlpha: boolean = false
+) => {
   return colorStops.some(colorStop => {
-    return isColorInvalid(colorStop.color) || isStopInvalid(colorStop.stop);
+    return (
+      isColorInvalid(colorStop.color, showAlpha) ||
+      isStopInvalid(colorStop.stop)
+    );
   });
 };
 

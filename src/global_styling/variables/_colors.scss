@@ -1,3 +1,6 @@
+// This extra import allows any variables that are created via functions to work when loaded into JS
+@import '../functions/index';
+
 // Core
 $euiColorPrimary: #006BB4 !default;
 $euiColorSecondary: #017D73 !default;
@@ -22,13 +25,21 @@ $euiColorDarkShade: #69707D !default;
 $euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
 
-// Every color below must be based mathmatically on the set above.
-
+// Every color below must be based mathmatically on the set above and in a particular order.
 $euiTextColor: $euiColorDarkestShade !default;
+$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
+$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade) !default;
 $euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
-$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
+
+// Contrasty text variants
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
+$euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
+$euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
+$euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
+$euiColorSuccessText: $euiColorSecondaryText !default;
 
 // Visualization colors
 
@@ -78,6 +89,8 @@ $euiPaletteColorBlind: (
   )
 ) !default;
 
+$euiPaletteColorBlindKeys: map-keys($euiPaletteColorBlind);
+
 $euiColorVis0: map-get(map-get($euiPaletteColorBlind, 'euiColorVis0'), 'graphic') !default;
 $euiColorVis1: map-get(map-get($euiPaletteColorBlind, 'euiColorVis1'), 'graphic') !default;
 $euiColorVis2: map-get(map-get($euiPaletteColorBlind, 'euiColorVis2'), 'graphic') !default;
@@ -101,34 +114,31 @@ $euiColorVis7_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis7')
 $euiColorVis8_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis8'), 'behindText') !default;
 $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9'), 'behindText') !default;
 
-$euiColorChartLines: #EFF1F4 !default;
-$euiColorChartBand: #F5F7FA !default;
+// Charts
+$euiColorChartLines: shade($euiColorLightestShade, 3%) !default;
+$euiColorChartBand: $euiColorLightestShade !default;
+
 
 // Code
-
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;
-$euiCodeBlockColor: $euiTextColor !default;
+$euiCodeBlockColor: makeHighContrastColor($euiTextColor, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockSelectedBackgroundColor: inherit !default;
-$euiCodeBlockCommentColor: #998 !default;
+$euiCodeBlockCommentColor: makeHighContrastColor($euiTextSubduedColor, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockSelectorTagColor: inherit !default;
-$euiCodeBlockStringColor: #DD0A73 !default;
-$euiCodeBlockNumberColor: #00A69B !default;
-$euiCodeBlockKeywordColor: #333 !default;
+$euiCodeBlockStringColor: makeHighContrastColor($euiColorVis2, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockTagColor: makeHighContrastColor($euiColorVis1, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockNameColor: makeHighContrastColor($euiColorVis1, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockNumberColor: makeHighContrastColor($euiColorVis0, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockKeywordColor: makeHighContrastColor($euiColorVis3, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockFunctionTitleColor: inherit !default;
-$euiCodeBlockTagColor: #0079A5 !default;
-$euiCodeBlockNameColor: inherit !default;
-$euiCodeBlockTypeColor: #0079A5 !default;
+$euiCodeBlockTypeColor: makeHighContrastColor($euiColorVis1, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockAttributeColor: inherit !default;
-$euiCodeBlockSymbolColor: #990073 !default;
+$euiCodeBlockSymbolColor: makeHighContrastColor($euiColorVis9, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockParamsColor: inherit !default;
-$euiCodeBlockMetaColor: #999 !default;
-$euiCodeBlockTitleColor: #900 !default;
-$euiCodeBlockRegexpColor: #009926 !default;
-$euiCodeBlockBuiltInColor: #0086B3 !default;
-$euiCodeBlockSectionColor: #FFC66D !default;
-$euiCodeBlockAdditionBackgroundColor: #DFD !default;
-$euiCodeBlockAdditionColor: inherit !default;
-$euiCodeBlockDeletionBackgroundColor: #FDD !default;
-$euiCodeBlockDeletionColor: inherit !default;
+$euiCodeBlockMetaColor:  makeHighContrastColor($euiTextSubduedColor, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockTitleColor: makeHighContrastColor($euiColorVis7, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockSectionColor: makeHighContrastColor($euiColorVis9, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockAdditionColor: makeHighContrastColor($euiColorVis0, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockDeletionColor: makeHighContrastColor($euiColorDanger, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockSelectorClassColor: inherit !default;
 $euiCodeBlockSelectorIdColor: inherit !default;

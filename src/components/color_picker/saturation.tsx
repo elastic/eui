@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   HTMLAttributes,
   KeyboardEvent,
@@ -7,10 +26,10 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
+import { ColorSpaces } from 'chroma-js';
 
 import { CommonProps } from '../common';
 import { keyCodes } from '../../services';
-import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -25,8 +44,8 @@ export type SaturationClientRect = Pick<
 export type SaturationPosition = Pick<SaturationClientRect, 'left' | 'top'>;
 
 interface HTMLDivElementOverrides {
-  color?: HSV;
-  onChange: (color: HSV) => void;
+  color?: ColorSpaces['hsv'];
+  onChange: (color: ColorSpaces['hsv']) => void;
 }
 export type EuiSaturationProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -41,7 +60,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
   (
     {
       className,
-      color = { h: 1, s: 0, v: 0 },
+      color = [1, 0, 0],
       'data-test-subj': dataTestSubj = 'euiSaturation',
       hex,
       id,
@@ -55,17 +74,14 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       left: 0,
       top: 0,
     });
-    const [lastColor, setlastColor] = useState<HSV | {}>({});
+    const [lastColor, setlastColor] = useState<ColorSpaces['hsv'] | []>([]);
 
     const boxRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
       // Mimics `componentDidMount` and `componentDidUpdate`
-      const { s, v } = color;
-      if (
-        !isNil(boxRef.current) &&
-        Object.values(lastColor).join() !== Object.values(color).join()
-      ) {
+      const [, s, v] = color;
+      if (!isNil(boxRef.current) && lastColor.join() !== color.join()) {
         const { height, width } = boxRef.current.getBoundingClientRect();
         setIndicator({
           left: s * width,
@@ -79,11 +95,11 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       height,
       left,
       width,
-    }: SaturationClientRect) => {
-      const { h } = color;
+    }: SaturationClientRect): ColorSpaces['hsv'] => {
+      const [h] = color;
       const s = left / width;
       const v = 1 - top / height;
-      return { h, s, v };
+      return [h, s, v];
     };
 
     const handleUpdate = (box: SaturationClientRect) => {
@@ -164,7 +180,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
             className={classes}
             data-test-subj={dataTestSubj}
             style={{
-              background: `hsl(${color.h}, 100%, 50%)`,
+              background: `hsl(${color[0]}, 100%, 50%)`,
             }}
             {...rest}>
             <EuiScreenReaderOnly>
@@ -192,3 +208,5 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
     );
   }
 );
+
+EuiSaturation.displayName = 'EuiSaturation';

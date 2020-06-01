@@ -11,14 +11,37 @@ import { EuiExpression } from '../../../../src/components/expression';
 import Expression from './expression';
 const expressionSource = require('!!raw-loader!./expression');
 const expressionHtml = renderToHtml(Expression);
+const expressionSnippet = `<EuiExpression
+  description="description"
+  value={value}
+  isActive={isActive}
+  onClick={handleClick}
+/>`;
 
 import Colors from './colors';
 const colorSource = require('!!raw-loader!./colors');
 const colorHtml = renderToHtml(Colors);
+const colorSnippet = `<EuiExpression 
+  description="description" 
+  value={value}
+  color="primary" 
+/>`;
 
 import Stringing from './stringing';
 const stringingSource = require('!!raw-loader!./stringing');
 const stringingHtml = renderToHtml(Stringing);
+const stringingSnippet = `<div>
+  <EuiExpression
+    description="description1"
+    value={value1}
+    onClick={handleClick1}
+  />
+  <EuiExpression
+    description="description2"
+    value={value2}
+    onClick={handleClick2}
+  />
+</div>`;
 
 export const ExpressionExample = {
   title: 'Expression',
@@ -36,8 +59,8 @@ export const ExpressionExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>EuiExpression</EuiCode> component to surface
-          expressions. The requires both a <EuiCode>description</EuiCode> (left
+          Use the <strong>EuiExpression</strong> component to surface
+          expressions. It requires both a <EuiCode>description</EuiCode> (left
           side) and <EuiCode>value</EuiCode> (right side). Optionally, you can
           pass it an <EuiCode>onClick</EuiCode> function that will convert it to
           a button and add some additional styling to indicate that it is
@@ -45,6 +68,7 @@ export const ExpressionExample = {
         </p>
       ),
       props: { EuiExpression },
+      snippet: expressionSnippet,
       demo: <Expression />,
     },
     {
@@ -65,6 +89,7 @@ export const ExpressionExample = {
           the <EuiCode>description</EuiCode>.
         </p>
       ),
+      snippet: colorSnippet,
       demo: <Colors />,
     },
     {
@@ -86,6 +111,7 @@ export const ExpressionExample = {
           and wrap at logical points.
         </p>
       ),
+      snippet: stringingSnippet,
       demo: <Stringing />,
     },
   ],

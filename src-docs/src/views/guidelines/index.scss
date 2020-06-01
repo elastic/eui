@@ -144,12 +144,18 @@
 }
 
 .guideSass__shadow {
-  padding: $euiSize;
+  padding: $euiSizeXXL;
   background: $euiColorEmptyShade;
+  border-radius: $euiBorderRadius;
 
   & + .guideSass__shadow {
     margin-top: $euiSizeXL;
   }
+}
+
+.colorGuidelines_colorPreviewTooLight rect {
+  stroke: transparentize($euiColorLightShade, lightOrDarkTheme(.5, 0));
+  stroke-width: .25px;
 }
 
 .guideSass__shadow--euiSlightShadow { @include euiSlightShadow; }
@@ -290,8 +296,8 @@
   color: #333;
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__themedBox--dark {
+  // sass-lint:disable no-color-literals
   border-color: #4DA1C0;
   background: shade(#4DA1C0, 70%);
   color: #FFF;
@@ -305,7 +311,24 @@
   padding: $euiSize;
   border-left: $euiBorderThick;
   border-color: $euiColorWarning;
+
+  .square {
+    fill: makeGraphicContrastColor($euiColorWarning, $backgroundColor);
+    vertical-align: bottom;
+  }
 }
+
+.guideSection__shadedBox {
+  background-color: $euiPageBackgroundColor;
+  padding: $euiSize;
+  border-radius: $euiBorderRadius;
+}
+
+.guideSection__emptyBox {
+  background-color: $euiColorEmptyShade;
+}
+
+@import 'colors/color_section';
 
 @include euiBreakpoint('xl') {
   .guideSass__breakpointExample {

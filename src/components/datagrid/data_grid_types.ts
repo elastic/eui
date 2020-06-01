@@ -1,4 +1,43 @@
-import { FunctionComponent, ReactNode } from 'react';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import { ComponentType, ReactNode } from 'react';
+import { EuiDataGridCellProps } from './data_grid_cell';
+
+export interface EuiDataGridControlColumn {
+  /**
+   * Used as the React `key` when rendering content
+   */
+  id: string;
+  /**
+   * Component to render in the column header
+   */
+  headerCellRender: ComponentType;
+  /**
+   * Component to render for each row in the column
+   */
+  rowCellRender: EuiDataGridCellProps['renderCellValue'];
+  /**
+   * Width of the column, uses are unable to change this
+   */
+  width: number;
+}
 
 export interface EuiDataGridColumn {
   /**
@@ -25,6 +64,14 @@ export interface EuiDataGridColumn {
    * Initial width (in pixels) of the column
    */
   initialWidth?: number;
+  /**
+   * Whether this column is sortable
+   */
+  isSortable?: boolean;
+  /**
+   * Default sort direction of the column
+   */
+  defaultSortDirection?: 'asc' | 'desc';
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -75,11 +122,24 @@ export interface EuiDataGridStyle {
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
+export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
+  /**
+   * When `false`, removes the ability to show & hide columns through the UI
+   */
+  allowHide?: boolean;
+  /**
+   * When `false`, removes the ability to re-order columns through the UI
+   */
+  allowReorder?: boolean;
+}
+
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
-   * Allows the ability for the user to hide fields and sort columns
+   * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
    */
-  showColumnSelector?: boolean;
+  showColumnSelector?:
+    | boolean
+    | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
    * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
    */
@@ -170,9 +230,18 @@ export interface EuiDataGridPopoverContentProps {
    */
   cellContentsElement: HTMLDivElement;
 }
-export type EuiDataGridPopoverContent = FunctionComponent<
+export type EuiDataGridPopoverContent = ComponentType<
   EuiDataGridPopoverContentProps
 >;
 export interface EuiDataGridPopoverContents {
   [key: string]: EuiDataGridPopoverContent;
 }
+
+export interface EuiDataGridOnColumnResizeData {
+  columnId: string;
+  width: number;
+}
+
+export type EuiDataGridOnColumnResizeHandler = (
+  data: EuiDataGridOnColumnResizeData
+) => void;

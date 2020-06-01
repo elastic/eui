@@ -17,7 +17,12 @@ export default () => {
     setIsPopoverOpenTwo(shouldBeOpen);
   };
 
-  const input = <EuiFieldText onFocus={() => toggleIsPopoverOpen()} />;
+  const input = (
+    <EuiFieldText
+      onFocus={() => toggleIsPopoverOpen()}
+      aria-label="Popover attached to input element"
+    />
+  );
 
   const inputTwo = (
     <EuiFieldText
@@ -26,13 +31,13 @@ export default () => {
         toggleIsPopoverOpenTwo();
       }}
       style={{ width: inputWidth }}
+      aria-label="Popover attached to an adjustable sized input element"
     />
   );
 
   return (
     <React.Fragment>
       <EuiInputPopover
-        id="popover"
         input={input}
         isOpen={isPopoverOpen}
         closePopover={() => {
@@ -44,7 +49,6 @@ export default () => {
       <EuiSpacer />
 
       <EuiInputPopover
-        id="popover"
         input={inputTwo}
         isOpen={isPopoverOpenTwo}
         closePopover={() => {

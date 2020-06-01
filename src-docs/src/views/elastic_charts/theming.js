@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from 'react';
-import { withTheme } from '../../components';
+import React, { useState, Fragment, useContext } from 'react';
+import { ThemeContext } from '../../components';
 import {
   Chart,
   Settings,
@@ -45,7 +45,9 @@ const paletteData = {
 };
 const paletteNames = Object.keys(paletteData);
 
-const _Theming = props => {
+export const Theming = () => {
+  const themeContext = useContext(ThemeContext);
+
   /**
    * Create palette select
    */
@@ -53,7 +55,7 @@ const _Theming = props => {
     createPaletteOption(paletteName, index)
   );
 
-  const [barPalette, setBarPalette] = useState('5');
+  const [barPalette, setBarPalette] = useState('0');
   const onBarPaletteChange = value => {
     setBarPalette(value);
   };
@@ -68,32 +70,27 @@ const _Theming = props => {
   /**
    * Setup theme based on current light/dark theme
    */
-  const isDarkTheme = props.theme.includes('dark');
+  const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const customColors = {
-    colors: {
-      vizColors: paletteData[paletteNames[Number(barPalette)]](5),
-    },
-  };
-
-  const data1CustomSeriesColors = new Map();
-  const data1DataSeriesColorValues = {
-    colorValues: [],
-    specId: 'control',
-  };
-  data1CustomSeriesColors.set(data1DataSeriesColorValues, 'black');
+  const customTheme =
+    Number(barPalette) > 0
+      ? [
+          {
+            colors: {
+              vizColors: paletteData[paletteNames[Number(barPalette)]](5),
+            },
+          },
+          theme,
+        ]
+      : theme;
 
   return (
     <Fragment>
       <Chart size={{ height: 200 }}>
-        <Settings
-          theme={[customColors, theme]}
-          showLegend={false}
-          showLegendDisplayValue={false}
-        />
+        <Settings theme={customTheme} showLegend={false} />
         <BarSeries
           id="status"
           name="Status"
@@ -109,7 +106,7 @@ const _Theming = props => {
           data={data1}
           xAccessor={'x'}
           yAccessors={['y']}
-          customSeriesColors={data1CustomSeriesColors}
+          color={['black']}
         />
         <Axis id="bottom-axis" position="bottom" showGridLines />
         <Axis id="left-axis" position="left" showGridLines />
@@ -132,16 +129,21 @@ const _Theming = props => {
 };
 
 const createPaletteOption = function(paletteName, index) {
+  const options =
+    index > 0
+      ? 10
+      : {
+          sortBy: 'natural',
+        };
+
   return {
     value: String(index),
-    inputDisplay: createPalette(
-      paletteData[paletteNames[index]](index > 0 ? 10 : 1)
-    ),
+    inputDisplay: createPalette(paletteData[paletteNames[index]](options)),
     dropdownDisplay: (
       <Fragment>
         <strong>{paletteName}</strong>
         <EuiSpacer size="xs" />
-        {createPalette(paletteData[paletteNames[index]](index > 0 ? 10 : 1))}
+        {createPalette(paletteData[paletteNames[index]](options))}
       </Fragment>
     ),
   };
@@ -163,5 +165,3 @@ const createPalette = function(palette) {
     </EuiFlexGroup>
   );
 };
-
-export const Theming = withTheme(_Theming);

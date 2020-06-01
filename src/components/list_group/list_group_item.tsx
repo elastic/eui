@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Fragment,
   HTMLAttributes,
@@ -16,22 +35,32 @@ import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
 
-type ItemSize = 'xs' | 's' | 'm' | 'l';
+import { getSecureRelForTarget } from '../../services';
 
+type ItemSize = 'xs' | 's' | 'm' | 'l';
 const sizeToClassNameMap: { [size in ItemSize]: string } = {
   xs: 'euiListGroupItem--xSmall',
   s: 'euiListGroupItem--small',
   m: 'euiListGroupItem--medium',
   l: 'euiListGroupItem--large',
 };
-
 export const SIZES = Object.keys(sizeToClassNameMap) as ItemSize[];
+
+type Color = 'inherit' | 'primary' | 'text' | 'subdued' | 'ghost';
+const colorToClassNameMap: { [color in Color]: string } = {
+  inherit: '',
+  primary: 'euiListGroupItem--primary',
+  text: 'euiListGroupItem--text',
+  subdued: 'euiListGroupItem--subdued',
+  ghost: 'euiListGroupItem--ghost',
+};
+export const COLORS = Object.keys(colorToClassNameMap) as Color[];
 
 export type EuiListGroupItemProps = CommonProps &
   ExclusiveUnion<
     ExclusiveUnion<
       ButtonHTMLAttributes<HTMLButtonElement>,
-      AnchorHTMLAttributes<HTMLAnchorElement>
+      Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
     >,
     HTMLAttributes<HTMLSpanElement>
   > & {
@@ -39,6 +68,11 @@ export type EuiListGroupItemProps = CommonProps &
      * Size of the label text
      */
     size?: ItemSize;
+    /**
+     * By default the item will inherit the color of its wrapper (button/link/span),
+     * otherwise pass one of the acceptable options
+     */
+    color?: Color;
 
     /**
      * Content to be displayed in the list item
@@ -60,6 +94,10 @@ export type EuiListGroupItemProps = CommonProps &
      * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
      */
     href?: string;
+
+    target?: string;
+
+    rel?: string;
 
     /**
      * Adds `EuiIcon` of `EuiIcon.type`
@@ -100,7 +138,7 @@ export type EuiListGroupItemProps = CommonProps &
      * Pass-through ref reference specifically for targeting
      * instances where the item content is rendered as a `button`
      */
-    buttonRef?: React.RefObject<HTMLButtonElement>;
+    buttonRef?: React.Ref<HTMLButtonElement>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -108,12 +146,15 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   isActive = false,
   isDisabled = false,
   href,
+  target,
+  rel,
   className,
   iconType,
   icon,
   extraAction,
   onClick,
   size = 'm',
+  color = 'inherit',
   showToolTip = false,
   wrapText,
   buttonRef,
@@ -122,6 +163,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const classes = classNames(
     'euiListGroupItem',
     sizeToClassNameMap[size],
+    colorToClassNameMap[color],
     {
       'euiListGroupItem-isActive': isActive,
       'euiListGroupItem-isDisabled': isDisabled,
@@ -189,12 +231,16 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   // Handle the variety of interaction behavior
   let itemContent;
 
+  const secureRel = getSecureRelForTarget({ href, rel, target });
+
   if (href && !isDisabled) {
     itemContent = (
       <a
-        href={href}
-        onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
         className="euiListGroupItem__button"
+        href={href}
+        target={target}
+        rel={secureRel}
+        onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
         {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {iconNode}
         {labelContent}

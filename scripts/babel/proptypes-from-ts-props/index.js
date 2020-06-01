@@ -17,20 +17,6 @@ function stripTypeScript(filename, ast) {
   }).code;
 }
 
-// .ts file could import types from a .tsx file, so force nested imports to parse JSX
-function forceTSXParsing(opts) {
-  return {
-    ...opts,
-    plugins: opts.plugins.map(plugin => {
-      if (plugin.key.indexOf(`@babel${path.sep}preset-typescript`) !== -1) {
-        plugin.options.isTSX = true;
-        plugin.options.allExtensions = true;
-      }
-      return plugin;
-    }),
-  };
-}
-
 // determine is a node is a TS*, or if it is a proptype that came from one
 function isTSType(node) {
   if (node == null) return false;
@@ -181,6 +167,24 @@ function resolveIdentifierToPropTypes(node, state) {
   const types = state.get('types');
   const inflightResolves = state.get('inflightResolves') || new Set();
 
+  // Used to inject `href` and `onClick` props for `PropsForAnchor` and `PropsForButton` utility types
+  const hrefPropertySignature = types.tsPropertySignature(
+    types.Identifier('href'),
+    types.TSTypeAnnotation(types.tsStringKeyword())
+  );
+  const onClickPropertySignature = types.tsPropertySignature(
+    types.Identifier('onClick'),
+    types.tsTypeAnnotation(
+      types.tsTypeReference(
+        types.Identifier('MouseEventHandler'),
+        types.tsTypeParameterInstantiation([
+          types.tsTypeReference(types.Identifier('HTMLAnchorElement')),
+        ])
+      )
+    )
+  );
+  hrefPropertySignature.optional = onClickPropertySignature.optional = true;
+
   let identifier;
   switch (node.type) {
     case 'TSTypeReference':
@@ -221,6 +225,12 @@ function resolveIdentifierToPropTypes(node, state) {
         types.identifier('node')
       );
 
+    case 'ComponentType':
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('elementType')
+      );
+
     case 'JSXElementConstructor':
       return types.memberExpression(
         types.identifier('PropTypes'),
@@ -234,6 +244,35 @@ function resolveIdentifierToPropTypes(node, state) {
     return buildPropTypePrimitiveExpression(types, 'func');
   if (identifier.name === 'Function')
     return buildPropTypePrimitiveExpression(types, 'func');
+  if (identifier.name === 'PropsForAnchor' && node.typeParameters != null) {
+    return getPropTypesForNode(
+      {
+        type: 'TSIntersectionType',
+        types: [
+          types.tsTypeLiteral([
+            hrefPropertySignature,
+            onClickPropertySignature,
+          ]),
+          ...node.typeParameters.params,
+        ],
+      },
+      true,
+      state
+    );
+  }
+  if (identifier.name === 'PropsForButton' && node.typeParameters != null) {
+    return getPropTypesForNode(
+      {
+        type: 'TSIntersectionType',
+        types: [
+          types.tsTypeLiteral([onClickPropertySignature]),
+          ...node.typeParameters.params,
+        ],
+      },
+      true,
+      state
+    );
+  }
   if (identifier.name === 'ExclusiveUnion') {
     // We use ExclusiveUnion at the top level to exclusively discriminate between types
     // propTypes itself must be an object so merge the union sets together as an intersection
@@ -639,7 +678,13 @@ function getPropTypesForNode(node, optional, state) {
             node.body
               // This helps filter out index signatures from interfaces,
               // which don't translate to prop types.
-              .filter(property => property.key != null)
+              .filter(
+                property =>
+                  property.key != null &&
+                  !types.isTSNeverKeyword(
+                    property.typeAnnotation.typeAnnotation
+                  )
+              )
               .map(property => {
                 let propertyPropType =
                   property.type === 'TSMethodSignature'
@@ -729,6 +774,11 @@ function getPropTypesForNode(node, optional, state) {
           types.objectExpression(
             node.members
               .map(property => {
+                // skip never keyword
+                if (
+                  types.isTSNeverKeyword(property.typeAnnotation.typeAnnotation)
+                )
+                  return null;
                 // skip TS index signatures
                 if (types.isTSIndexSignature(property)) return null;
 
@@ -1121,7 +1171,6 @@ const typeDefinitionExtractors = {
         }`
       );
     }
-
     return [{ name: id.name, definition: typeAnnotation }];
   },
 
@@ -1151,7 +1200,10 @@ const typeDefinitionExtractors = {
    */
   VariableDeclaration: node => {
     return node.declarations.reduce((declarations, declaration) => {
-      if (declaration.init.type === 'ObjectExpression') {
+      if (
+        declaration.init != null &&
+        declaration.init.type === 'ObjectExpression'
+      ) {
         declarations.push({
           name: declaration.id.name,
           definition: declaration.init,
@@ -1343,8 +1395,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
               this.file.opts.filename
             ),
             fs: opts.fs || fs,
-            parse: code =>
-              babelCore.parse(code, forceTSXParsing(state.file.opts)),
+            parse: code => babelCore.parse(code, state.file.opts),
           };
 
           // collect named TS type definitions for later reference

@@ -1,189 +1,286 @@
-// Sets default displayOptions for EuiTokens based on iconType
-// tokenClass: {
-//   shape: 'square',
-//   color: 'tokenTint01',
-//   fill: false,
-// },
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 
-export type TokenColor =
-  | 'tokenTint01'
-  | 'tokenTint02'
-  | 'tokenTint03'
-  | 'tokenTint04'
-  | 'tokenTint05'
-  | 'tokenTint06'
-  | 'tokenTint07'
-  | 'tokenTint08'
-  | 'tokenTint09'
-  | 'tokenTint10'
-  | 'tokenTint11'
-  | 'tokenTint12';
-
-export type TokenShape = 'circle' | 'square' | 'rectangle';
-
-export interface EuiTokenMapDisplayOptions {
-  color?: TokenColor;
-  shape?: TokenShape;
-  fill?: boolean;
-  hideBorder?: boolean;
-}
+import { TokenProps } from './token';
 
 export type EuiTokenMapType =
-  | 'tokenClass'
-  | 'tokenProperty'
-  | 'tokenEnum'
-  | 'tokenVariable'
-  | 'tokenMethod'
   | 'tokenAnnotation'
-  | 'tokenException'
-  | 'tokenInterface'
-  | 'tokenParameter'
-  | 'tokenField'
-  | 'tokenFunction'
-  | 'tokenElement'
-  | 'tokenBoolean'
-  | 'tokenString'
   | 'tokenArray'
+  | 'tokenBoolean'
+  | 'tokenClass'
   | 'tokenConstant'
+  | 'tokenElement'
+  | 'tokenEnum'
+  | 'tokenEnumMember'
+  | 'tokenEvent'
+  | 'tokenException'
+  | 'tokenField'
+  | 'tokenFile'
+  | 'tokenFunction'
+  | 'tokenInterface'
+  | 'tokenKey'
+  | 'tokenMethod'
+  | 'tokenModule'
+  | 'tokenNamespace'
+  | 'tokenNull'
   | 'tokenNumber'
   | 'tokenObject'
-  | 'tokenEvent'
-  | 'tokenKey'
-  | 'tokenNull'
-  | 'tokenStruct'
-  | 'tokenPackage'
   | 'tokenOperator'
-  | 'tokenEnumMember'
+  | 'tokenPackage'
+  | 'tokenParameter'
+  | 'tokenProperty'
   | 'tokenRepo'
+  | 'tokenString'
+  | 'tokenStruct'
+  | 'tokenDate'
+  | 'tokenIP'
+  | 'tokenNested'
+  | 'tokenAlias'
+  | 'tokenShape'
+  | 'tokenGeo'
+  | 'tokenRange'
   | 'tokenSymbol'
-  | 'tokenFile'
-  | 'tokenNamespace'
-  | 'tokenModule';
+  | 'tokenVariable'
+  | 'tokenBinary'
+  | 'tokenJoin'
+  | 'tokenPercolator'
+  | 'tokenFlattened'
+  | 'tokenRankFeature'
+  | 'tokenRankFeatures'
+  | 'tokenKeyword'
+  | 'tokenCompletionSuggester'
+  | 'tokenDenseVector'
+  | 'tokenText'
+  | 'tokenTokenCount'
+  | 'tokenSearchType'
+  | 'tokenHistogram';
+
+/**
+ * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
+ * to use the square shape for more common token types like string and number. Reserving the
+ * circle shape for more uncommon token types so they grab attention.
+ */
 
 export const TOKEN_MAP: {
-  [mapType in EuiTokenMapType]: EuiTokenMapDisplayOptions
+  [mapType in EuiTokenMapType]: Omit<TokenProps, 'iconType'>
 } = {
   tokenClass: {
     shape: 'circle',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
   },
   tokenProperty: {
     shape: 'circle',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenEnum: {
     shape: 'circle',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
   tokenVariable: {
     shape: 'circle',
-    color: 'tokenTint04',
+    color: 'euiColorVis7',
   },
   tokenMethod: {
     shape: 'square',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenAnnotation: {
     shape: 'square',
-    color: 'tokenTint06',
+    color: 'euiColorVis5',
   },
   tokenException: {
     shape: 'circle',
-    color: 'tokenTint07',
+    color: 'euiColorVis0',
   },
   tokenInterface: {
     shape: 'circle',
-    color: 'tokenTint08',
+    color: 'euiColorVis9',
   },
   tokenParameter: {
     shape: 'square',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
   },
   tokenField: {
     shape: 'circle',
-    color: 'tokenTint10',
+    color: 'euiColorVis0',
   },
   tokenElement: {
     shape: 'square',
-    color: 'tokenTint03',
+    color: 'euiColorVis3',
   },
   tokenFunction: {
     shape: 'circle',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenBoolean: {
     shape: 'square',
-    color: 'tokenTint05',
+    color: 'euiColorVis7',
   },
   tokenString: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'euiColorVis1',
   },
   tokenArray: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'euiColorVis7',
   },
   tokenNumber: {
-    shape: 'circle',
-    color: 'tokenTint05',
+    shape: 'square',
+    color: 'euiColorVis0',
   },
   tokenConstant: {
     shape: 'circle',
-    color: 'tokenTint07',
+    color: 'euiColorVis0',
   },
   tokenObject: {
-    shape: 'square',
-    color: 'tokenTint03',
+    shape: 'circle',
+    color: 'euiColorVis3',
   },
   tokenEvent: {
     shape: 'circle',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
   },
   tokenKey: {
     shape: 'circle',
-    color: 'tokenTint06',
+    color: 'euiColorVis5',
   },
   tokenNull: {
     shape: 'square',
-    color: 'tokenTint02',
+    color: 'euiColorVis2',
   },
   tokenStruct: {
     shape: 'square',
-    color: 'tokenTint07',
+    color: 'euiColorVis0',
   },
   tokenPackage: {
     shape: 'square',
-    color: 'tokenTint10',
+    color: 'euiColorVis0',
   },
   tokenOperator: {
     shape: 'circle',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
   },
   tokenEnumMember: {
     shape: 'square',
-    color: 'tokenTint04',
+    color: 'euiColorVis7',
   },
   tokenRepo: {
     shape: 'rectangle',
-    color: 'tokenTint05',
-    fill: true,
+    color: 'euiColorVis1',
+    fill: 'dark',
   },
   tokenSymbol: {
     shape: 'rectangle',
-    color: 'tokenTint07',
-    fill: true,
+    color: 'euiColorVis0',
+    fill: 'dark',
   },
   tokenFile: {
     shape: 'rectangle',
-    color: 'tokenTint12',
-    fill: true,
+    color: 'gray',
+    fill: 'dark',
   },
   tokenNamespace: {
     shape: 'square',
-    color: 'tokenTint01',
+    color: 'euiColorVis1',
   },
   tokenModule: {
     shape: 'square',
-    color: 'tokenTint09',
+    color: 'euiColorVis4',
+  },
+  tokenDate: {
+    shape: 'square',
+    color: 'euiColorVis6',
+  },
+  tokenGeo: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenIP: {
+    shape: 'square',
+    color: 'euiColorVis9',
+  },
+  tokenShape: {
+    shape: 'circle',
+    color: 'euiColorVis8',
+  },
+  tokenRange: {
+    shape: 'circle',
+    color: 'euiColorVis4',
+  },
+  tokenNested: {
+    shape: 'circle',
+    color: 'euiColorVis2',
+  },
+  tokenAlias: {
+    shape: 'circle',
+    color: 'euiColorVis3',
+  },
+  tokenBinary: {
+    shape: 'square',
+    color: 'euiColorVis4',
+  },
+  tokenJoin: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenPercolator: {
+    shape: 'square',
+    color: 'euiColorVis6',
+  },
+  tokenFlattened: {
+    shape: 'square',
+    color: 'euiColorVis7',
+  },
+  tokenRankFeature: {
+    shape: 'square',
+    color: 'euiColorVis8',
+  },
+  tokenRankFeatures: {
+    shape: 'square',
+    color: 'euiColorVis3',
+  },
+  tokenKeyword: {
+    shape: 'square',
+    color: 'euiColorVis9',
+  },
+  tokenCompletionSuggester: {
+    shape: 'square',
+    color: 'euiColorVis1',
+  },
+  tokenDenseVector: {
+    shape: 'square',
+    color: 'euiColorVis2',
+  },
+  tokenText: {
+    shape: 'square',
+    color: 'euiColorVis3',
+  },
+  tokenTokenCount: {
+    shape: 'square',
+    color: 'euiColorVis4',
+  },
+  tokenSearchType: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenHistogram: {
+    shape: 'square',
+    color: 'euiColorVis6',
   },
 };

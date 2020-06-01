@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -17,6 +18,18 @@ const accordionHtml = renderToHtml(Accordion);
 const accordionSnippet = `<EuiAccordion
   id={accordionId}
   buttonContent="Clickable title"
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
+
+import AccordionArrow from './accordion_arrow';
+const accordionArrowSource = require('!!raw-loader!./accordion_arrow');
+const accordionArrowHtml = renderToHtml(AccordionArrow);
+const accordionArrowSnippet = `<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title"
+  arrowDisplay="right"
   >
     <!-- Content to show when expanded -->
 </EuiAccordion>
@@ -87,16 +100,26 @@ import AccordionGrow from './accordion_grow';
 const accordionGrowSource = require('!!raw-loader!./accordion_grow');
 const accordionGrowHtml = renderToHtml(AccordionGrow);
 
+import AccordionForceState from './accordion_forceState';
+const accordionForceStateSource = require('!!raw-loader!./accordion_forceState');
+const accordionForceStateHtml = renderToHtml(AccordionForceState);
+const accordionForceStateSnippet = `<EuiAccordion
+  id={accordionId}
+  forceState="open"
+  buttonContent="Controlled via outside prop">
+    <!-- Content to show when expanded -->
+</EuiAccordion>`;
+
 export const AccordionExample = {
   title: 'Accordion',
   intro: (
     <Fragment>
       <EuiCallOut title="Take care including flex group content within accordions">
         <p>
-          <EuiCode>EuiFlexGroup</EuiCode>&apos;s negative margins can sometimes
-          create scrollbars within <EuiCode>EuiAccordion</EuiCode> because of
-          the overflow tricks used to hide content. If you run into this issue
-          make sure your <EuiCode>paddingSize</EuiCode> prop is large enough to
+          <strong>EuiFlexGroup</strong>&apos;s negative margins can sometimes
+          create scrollbars within <strong>EuiAccordion</strong> because of the
+          overflow tricks used to hide content. If you run into this issue make
+          sure your <EuiCode>paddingSize</EuiCode> prop is large enough to
           account for the <EuiCode>gutterSize</EuiCode> of any nested flex
           groups.
         </p>
@@ -121,7 +144,7 @@ export const AccordionExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiAccordion</EuiCode> has been purposely designed with
+            <strong>EuiAccordion</strong> has been purposely designed with
             minimal styles, allowing you to visually enhance it as needed (see
             the accordion form example). The only styling enforced by EUI is the
             caret icon, which indicates to users that the item can be opened.
@@ -143,6 +166,32 @@ export const AccordionExample = {
       demo: <Accordion />,
     },
     {
+      title: 'Arrow display',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionArrowSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: accordionArrowHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            The arrow helps indicate the current state of the accordion (open or
+            not) and points to the main triggering button text. If you must hide
+            or change the side in which the arrow appears, use{' '}
+            <EuiCode>arrowDisplay: &apos;right&apos;</EuiCode> or{' '}
+            <EuiCode>&apos;none&apos;</EuiCode>
+          </p>
+        </div>
+      ),
+      snippet: accordionArrowSnippet,
+      demo: <AccordionArrow />,
+    },
+    {
       title: 'Multiple accordions',
       source: [
         {
@@ -157,14 +206,17 @@ export const AccordionExample = {
       text: (
         <div>
           <p>
-            Use any number of <EuiCode>EuiAccordion</EuiCode> elements to
-            visually display them as a group.
+            Use any number of <strong>EuiAccordion</strong> elements to visually
+            display them as a group.
           </p>
           <p>
             Due to the previously mentioned bare styles, it is recommended to
-            place an <EuiCode>EuiSpacer</EuiCode> between accordion items.
-            Padding within each accordion item can be applied via the{' '}
-            <EuiCode>paddingSize</EuiCode> prop.
+            place an{' '}
+            <Link to="/layout/spacer">
+              <strong>EuiSpacer</strong>
+            </Link>{' '}
+            between accordion items. Padding within each accordion item can be
+            applied via the <EuiCode>paddingSize</EuiCode> prop.
           </p>
         </div>
       ),
@@ -237,6 +289,7 @@ export const AccordionExample = {
       snippet: accordionCallbackSnippet,
       demo: <AccordionCallback />,
     },
+
     {
       title: 'Accordion content can dynamically change height',
       source: [
@@ -277,6 +330,27 @@ export const AccordionExample = {
         </p>
       ),
       demo: <AccordionForm />,
+    },
+    {
+      title: 'Force accordion state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionForceStateSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: accordionForceStateHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use the <EuiCode>forceState</EuiCode> prop to control open and close
+          state.
+        </p>
+      ),
+      snippet: accordionForceStateSnippet,
+      demo: <AccordionForceState />,
     },
   ],
 };

@@ -30,7 +30,7 @@ import {
   EuiTab,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const GuideRuleWriting = ({ children, className, ...rest }) => {
   const classes = classNames(className);
@@ -319,13 +319,16 @@ export default () => (
       <GuideRuleExample
         type="do"
         text="Do. Remove the ellipsis from Search fields.">
-        <EuiFieldSearch defaultValue="Search" />
+        <EuiFieldSearch defaultValue="Search" aria-label="Search example" />
       </GuideRuleExample>
 
       <GuideRuleExample
         type="do"
         text="Do. Use an ellipsis for truncated text or situations that require waiting.">
-        <EuiFieldSearch defaultValue="Loading..." />
+        <EuiFieldSearch
+          defaultValue="Loading..."
+          aria-label="Search loading example"
+        />
       </GuideRuleExample>
     </GuideRule>
 
@@ -612,7 +615,7 @@ export default () => (
         <EuiFormRow>
           <EuiCheckbox
             onChange={() => {}}
-            id={makeId()}
+            id={htmlIdGenerator()()}
             label="Combine values in other bucket"
           />
         </EuiFormRow>
@@ -624,7 +627,7 @@ export default () => (
         <EuiFormRow>
           <EuiCheckbox
             onChange={() => {}}
-            id={makeId()}
+            id={htmlIdGenerator()()}
             label="Combine other"
           />
         </EuiFormRow>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -10,30 +10,19 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-function flattenPanelTree(tree, array = []) {
-  array.push(tree);
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
 
-  if (tree.items) {
-    tree.items.forEach(item => {
-      if (item.panel) {
-        flattenPanelTree(item.panel, array);
-        item.panel = item.panel.id;
-      }
-    });
-  }
+  const onButtonClick = () => {
+    setPopover(!isPopoverOpen);
+  };
 
-  return array;
-}
+  const closePopover = () => {
+    setPopover(false);
+  };
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-
-    const panelTree = {
+  const panels = [
+    {
       id: 0,
       title: 'This is a context menu',
       items: [
@@ -41,7 +30,7 @@ export default class extends Component {
           name: 'Handle an onClick',
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
-            this.closePopover();
+            closePopover();
             window.alert('Show fullscreen');
           },
         },
@@ -54,64 +43,7 @@ export default class extends Component {
         {
           name: 'Nest panels',
           icon: 'user',
-          panel: {
-            id: 1,
-            title: 'Nest panels',
-            items: [
-              {
-                name: 'PDF reports',
-                icon: 'user',
-                onClick: () => {
-                  this.closePopover();
-                  window.alert('PDF reports');
-                },
-              },
-              {
-                name: 'Embed code',
-                icon: 'user',
-                panel: {
-                  id: 2,
-                  title: 'Embed code',
-                  content: (
-                    <div style={{ padding: 16 }}>
-                      <EuiFormRow
-                        label="Generate a public snapshot?"
-                        hasChildLabel={false}>
-                        <EuiSwitch
-                          name="switch"
-                          id="asdf"
-                          label="Snapshot data"
-                          checked={true}
-                          onChange={() => {}}
-                        />
-                      </EuiFormRow>
-                      <EuiFormRow
-                        label="Include the following in the embed"
-                        hasChildLabel={false}>
-                        <EuiSwitch
-                          name="switch"
-                          id="asdf2"
-                          label="Current time range"
-                          checked={true}
-                          onChange={() => {}}
-                        />
-                      </EuiFormRow>
-                      <EuiSpacer />
-                      <EuiButton fill>Copy iFrame code</EuiButton>
-                    </div>
-                  ),
-                },
-              },
-              {
-                name: 'Permalinks',
-                icon: 'user',
-                onClick: () => {
-                  this.closePopover();
-                  window.alert('Permalinks');
-                },
-              },
-            ],
-          },
+          panel: 1,
         },
         {
           name: 'You can add a tooltip',
@@ -120,7 +52,7 @@ export default class extends Component {
           toolTipContent: 'Optional content for a tooltip',
           toolTipPosition: 'right',
           onClick: () => {
-            this.closePopover();
+            closePopover();
             window.alert('Display options');
           },
         },
@@ -131,49 +63,88 @@ export default class extends Component {
           toolTipPosition: 'right',
           disabled: true,
           onClick: () => {
-            this.closePopover();
+            closePopover();
             window.alert('Disabled option');
           },
         },
       ],
-    };
+    },
+    {
+      id: 1,
+      title: 'Nest panels',
+      items: [
+        {
+          name: 'PDF reports',
+          icon: 'user',
+          onClick: () => {
+            closePopover();
+            window.alert('PDF reports');
+          },
+        },
+        {
+          name: 'Embed code',
+          icon: 'user',
+          panel: 2,
+        },
+        {
+          name: 'Permalinks',
+          icon: 'user',
+          onClick: () => {
+            closePopover();
+            window.alert('Permalinks');
+          },
+        },
+        ,
+      ],
+    },
+    {
+      id: 2,
+      title: 'Embed code',
+      content: (
+        <div style={{ padding: 16 }}>
+          <EuiFormRow label="Generate a public snapshot?" hasChildLabel={false}>
+            <EuiSwitch
+              name="switch"
+              id="asdf"
+              label="Snapshot data"
+              checked={true}
+              onChange={() => {}}
+            />
+          </EuiFormRow>
+          <EuiFormRow
+            label="Include the following in the embed"
+            hasChildLabel={false}>
+            <EuiSwitch
+              name="switch"
+              id="asdf2"
+              label="Current time range"
+              checked={true}
+              onChange={() => {}}
+            />
+          </EuiFormRow>
+          <EuiSpacer />
+          <EuiButton fill>Copy iFrame code</EuiButton>
+        </div>
+      ),
+    },
+  ];
 
-    this.panels = flattenPanelTree(panelTree);
-  }
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+      Click me to load a context menu
+    </EuiButton>
+  );
 
-  onButtonClick = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
-  };
-
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
-
-  render() {
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick}>
-        Click me to load a context menu
-      </EuiButton>
-    );
-
-    return (
-      <EuiPopover
-        id="contextMenu"
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        panelPaddingSize="none"
-        withTitle
-        anchorPosition="downLeft">
-        <EuiContextMenu initialPanelId={0} panels={this.panels} />
-      </EuiPopover>
-    );
-  }
-}
+  return (
+    <EuiPopover
+      id="contextMenuExample"
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      withTitle
+      anchorPosition="downLeft">
+      <EuiContextMenu initialPanelId={0} panels={panels} />
+    </EuiPopover>
+  );
+};

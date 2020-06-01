@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
+import { qualitativePropsInfo, palettePropsInfo } from './props_info';
 
 import {
   EuiCode,
@@ -25,7 +26,7 @@ const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
 const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
 
 export const ColorPaletteExample = {
-  title: 'Color Palettes',
+  title: 'Color palettes',
   intro: (
     <>
       <EuiText>
@@ -74,7 +75,11 @@ export const ColorPaletteExample = {
         </div>
       ),
       demo: <ColorPalette />,
-      snippet: ['euiPaletteColorBlind()', "euiPaletteColorBlind(3, 'group')"],
+      snippet: [
+        'euiPaletteColorBlind()',
+        "euiPaletteColorBlind({rotations: 3, order: 'group', direction: 'both'})",
+      ],
+      props: qualitativePropsInfo,
     },
     {
       title: 'Recommended quantitative palettes',
@@ -139,6 +144,7 @@ export const ColorPaletteExample = {
         "colorPalette(['#fff'. '#000'], 11);",
         "colorPalette(['#fff'. '#000'], 11, divergent = true);",
       ],
+      props: palettePropsInfo,
     },
   ],
 };

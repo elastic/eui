@@ -14,18 +14,47 @@ import {
 import Info from './info';
 const infoSource = require('!!raw-loader!./info');
 const infoHtml = renderToHtml(Info);
+const infoSnippet = [
+  `<EuiCallOut size="m" title="Just a title. No content." iconType="gear" />
+`,
+  `<EuiCallOut
+  size="s"
+  title="A beautiful title"
+  iconType="search">
+  <p><!-- Content --></p>
+</EuiCallOut>
+`,
+];
 
 import Success from './success';
 const successSource = require('!!raw-loader!./success');
 const successHtml = renderToHtml(Success);
+const successSnippet = [
+  `<EuiCallOut title="Good news, everyone!" color="success" iconType="user">
+  <p><!-- Content --></p>
+</EuiCallOut>
+`,
+];
 
 import Warning from './warning';
 const warningSource = require('!!raw-loader!./warning');
 const warningHtml = renderToHtml(Warning);
+const warningSnippet = [
+  `<EuiCallOut title="Proceed with caution!" color="warning" iconType="help">
+  <p><!-- Content --></p>
+</EuiCallOut>
+`,
+];
 
 import Danger from './danger';
 const dangerSource = require('!!raw-loader!./danger');
 const dangerHtml = renderToHtml(Danger);
+const dangerSnippet = [
+  `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="alert">
+  <p><!-- Content --></p>
+</EuiCallOut>
+`,
+];
 
 export const CallOutExample = {
   title: 'Callout',
@@ -33,7 +62,7 @@ export const CallOutExample = {
     <Fragment>
       <EuiText>
         <p>
-          <EuiCode>EuiCallOut</EuiCode> contains a message directly related to
+          <strong>EuiCallOut</strong> contains a message directly related to
           content on the page. This includes general information, success,
           warning, and error messages.
         </p>
@@ -79,12 +108,13 @@ export const CallOutExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiCallOut</EuiCode> to communicate general information
+            Use <strong>EuiCallOut</strong> to communicate general information
             to the user.
           </p>
         </div>
       ),
       props: { EuiCallOut },
+      snippet: infoSnippet,
       demo: <Info />,
     },
     {
@@ -106,6 +136,7 @@ export const CallOutExample = {
           used for things that are broken rather than things that succeed.
         </p>
       ),
+      snippet: successSnippet,
       demo: <Success />,
     },
     {
@@ -125,6 +156,7 @@ export const CallOutExample = {
           Use this callout to warn the user against decisions they might regret.
         </p>
       ),
+      snippet: warningSnippet,
       demo: <Warning />,
     },
     {
@@ -142,6 +174,7 @@ export const CallOutExample = {
       text: (
         <p>Use this callout to let the user know that something went wrong.</p>
       ),
+      snippet: dangerSnippet,
       demo: <Danger />,
     },
   ],

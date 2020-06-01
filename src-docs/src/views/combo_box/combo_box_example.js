@@ -18,6 +18,17 @@ import {
 import ComboBox from './combo_box';
 const comboBoxSource = require('!!raw-loader!./combo_box');
 const comboBoxHtml = renderToHtml(ComboBox);
+const comboBoxSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  options={[
+    {
+      label: 'Titan',
+    },
+  ]}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
 
 import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
@@ -26,48 +37,148 @@ const containersHtml = renderToHtml(Containers);
 import Colors from './colors';
 const colorsSource = require('!!raw-loader!./colors');
 const colorsHtml = renderToHtml(Colors);
+const colorsSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  options={[
+    {
+      label: 'Titan',
+      color: "#ff0000",
+    },
+  ]}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
 
 import RenderOption from './render_option';
 const renderOptionSource = require('!!raw-loader!./render_option');
 const renderOptionHtml = renderToHtml(RenderOption);
+const renderOptionSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  renderOption={renderOption}
+/>`;
 
 import Groups from './groups';
 const groupsSource = require('!!raw-loader!./groups');
 const groupsHtml = renderToHtml(Groups);
+const groupsSnippet = `<EuiComboBox
+  placeholder="These options are grouped"
+  options={[colorGroup, soundGroup]}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+/>`;
 
 import SingleSelection from './single_selection';
 const singleSelectionSource = require('!!raw-loader!./single_selection');
 const singleSelectionHtml = renderToHtml(SingleSelection);
+const singleSelectionSnippet = `<EuiComboBox
+  placeholder="Select a single option"
+  singleSelection={{ asPlainText: true }}
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  isClearable={false}
+/>`;
 
 import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
 const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
+const disallowCustomOptionsSnippet = `<EuiComboBox
+  placeholder="Select from a list of options"
+  options={options}
+  onChange={onChange}
+  onSearchChange={onSearchChange}
+/>`;
 
 import CustomOptionsOnly from './custom_options_only';
 const customOptionsOnlySource = require('!!raw-loader!./custom_options_only');
 const customOptionsOnlyHtml = renderToHtml(CustomOptionsOnly);
+const customOptionsOnlySnippet = `<EuiComboBox
+  noSuggestions
+  placeholder="Create some tags (letters only)"
+  selectedOptions={selectedOptions}
+  onCreateOption={onCreateOption}
+  onChange={onChange}
+  onSearchChange={onSearchChange}
+  isInvalid={isInvalid}
+/>`;
 
 import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
 const asyncHtml = renderToHtml(Async);
+const asyncSnippet = `<EuiComboBox
+  placeholder="Search asynchronously"
+  async
+  options={options}
+  selectedOptions={selectedOptions}
+  isLoading={isLoading}
+  onChange={onChange}
+  onSearchChange={onSearchChange}
+  onCreateOption={onCreateOption}
+/>`;
 
 import Virtualized from './virtualized';
 const virtualizedSource = require('!!raw-loader!./virtualized');
 const virtualizedHtml = renderToHtml(Virtualized);
+const virtualizedSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+/>`;
 
 import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
 const disabledHtml = renderToHtml(Disabled);
+const disabledSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  options={options}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isDisabled
+/>`;
+
+import Delimiter from './combo_box_delimiter';
+const delimiterSource = require('!!raw-loader!./combo_box_delimiter');
+const delimiterHtml = renderToHtml(Delimiter);
+const delimiterSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  options={options}
+  delimiter=","
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
+
+import StartingWith from './startingWith';
+const startingWithSource = require('!!raw-loader!./startingWith');
+const startingWithHtml = renderToHtml(StartingWith);
+const startingWithSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  sortMatchesBy="startsWith"
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
 
 export const ComboBoxExample = {
-  title: 'Combo Box',
+  title: 'Combo box',
   intro: (
     <Fragment>
       <EuiText>
         <p>
-          Use a <EuiCode>EuiComboBox</EuiCode> when the input has so many
-          options that the user needs to be able to search them, the user needs
-          to be able to select multiple options, and/or the user should have the
+          Use a <strong>EuiComboBox</strong> when the input has so many options
+          that the user needs to be able to search them, the user needs to be
+          able to select multiple options, and/or the user should have the
           ability to specify a custom value in addition to selecting from a
           predetermined list.
         </p>
@@ -101,6 +212,7 @@ export const ComboBoxExample = {
         },
       ],
       props: { EuiComboBox },
+      snippet: comboBoxSnippet,
       demo: <ComboBox />,
     },
     {
@@ -122,6 +234,7 @@ export const ComboBoxExample = {
         </p>
       ),
       props: { EuiComboBox },
+      snippet: disabledSnippet,
       demo: <Disabled />,
     },
     {
@@ -138,7 +251,7 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiComboBoxList</EuiCode> uses{' '}
+          <strong>EuiComboBoxList</strong> uses{' '}
           <EuiLink href="https://github.com/bvaughn/react-virtualized">
             react-virtualized
           </EuiLink>{' '}
@@ -147,6 +260,7 @@ export const ComboBoxExample = {
         </p>
       ),
       props: { EuiComboBox },
+      snippet: virtualizedSnippet,
       demo: <Virtualized />,
     },
     {
@@ -188,10 +302,15 @@ export const ComboBoxExample = {
           Useful for visualization or tagging systems. You can also pass a color
           in your option list. The color can be a hex value (like{' '}
           <EuiCode>#000</EuiCode>) or any other named color value accepted by
-          the <Link to="/display/badge">Badge</Link> component.
+          the{' '}
+          <Link to="/display/badge">
+            <strong>EuiBadge</strong>
+          </Link>{' '}
+          component.
         </p>
       ),
       props: { EuiComboBox },
+      snippet: colorsSnippet,
       demo: <Colors />,
     },
     {
@@ -225,6 +344,7 @@ export const ComboBoxExample = {
         </Fragment>
       ),
       props: { EuiComboBox },
+      snippet: renderOptionSnippet,
       demo: <RenderOption />,
     },
     {
@@ -246,6 +366,7 @@ export const ComboBoxExample = {
         </p>
       ),
       props: { EuiComboBox },
+      snippet: groupsSnippet,
       demo: <Groups />,
     },
     {
@@ -261,14 +382,27 @@ export const ComboBoxExample = {
         },
       ],
       text: (
-        <p>
-          To only allow the user to select a single option, provide the{' '}
-          <EuiCode>singleSelection</EuiCode> prop. You may want to render the
-          selected option as plain text instead of pill form. To do this, pass{' '}
-          <EuiCode>{'singleSelection={{ asPlainText: true }}'}</EuiCode>
-        </p>
+        <Fragment>
+          <p>
+            To only allow the user to select a single option, provide the{' '}
+            <EuiCode>singleSelection</EuiCode> prop. You may want to render the
+            selected option as plain text instead of pill form. To do this, pass{' '}
+            <EuiCode language="js">
+              {'singleSelection={{ asPlainText: true }}'}
+            </EuiCode>
+          </p>
+          <p>
+            <strong>Note:</strong> <EuiCode>append</EuiCode> and{' '}
+            <EuiCode>prepend</EuiCode> props only work if
+            <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
+            <EuiCode>false</EuiCode> to avoid multilines that makes combobox
+            height greater than that of <EuiCode>append</EuiCode> and{' '}
+            <EuiCode>prepend</EuiCode>.
+          </p>
+        </Fragment>
       ),
       props: { EuiComboBox },
+      snippet: singleSelectionSnippet,
       demo: <SingleSelection />,
     },
     {
@@ -290,6 +424,7 @@ export const ComboBoxExample = {
         </p>
       ),
       props: { EuiComboBox },
+      snippet: disallowCustomOptionsSnippet,
       demo: <DisallowCustomOptions />,
     },
     {
@@ -312,6 +447,7 @@ export const ComboBoxExample = {
         </p>
       ),
       props: { EuiComboBox },
+      snippet: customOptionsOnlySnippet,
       demo: <CustomOptionsOnly />,
     },
     {
@@ -335,7 +471,56 @@ export const ComboBoxExample = {
         </p>
       ),
       props: { EuiComboBox },
+      snippet: asyncSnippet,
       demo: <Async />,
+    },
+    {
+      title: 'With delimiter',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: delimiterSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: delimiterHtml,
+        },
+      ],
+      text: (
+        <p>
+          Pass a unique character to the <EuiCode>delimiter</EuiCode> prop to
+          aid in option creation. This is best used when knowing that content
+          may be pasted from elsewhere such as a comma separated list.
+        </p>
+      ),
+      props: { EuiComboBox },
+      snippet: delimiterSnippet,
+      demo: <Delimiter />,
+    },
+    {
+      title: 'Sorting matches',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: startingWithSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: startingWithHtml,
+        },
+      ],
+      text: (
+        <p>
+          By default, the matched options will keep their original sort order.
+          If you would like to prioritize those options that{' '}
+          <strong>start with</strong> the searched string, pass{' '}
+          <EuiCode language="js">sortMatchesBy=&quot;startsWith&quot;</EuiCode>
+          to display those options at the top of the list.
+        </p>
+      ),
+      props: { EuiComboBox },
+      snippet: startingWithSnippet,
+      demo: <StartingWith />,
     },
   ],
 };

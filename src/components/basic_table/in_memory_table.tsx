@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component, ReactNode } from 'react';
 import {
   EuiBasicTable,
@@ -18,134 +37,16 @@ import {
 } from './pagination_bar';
 import { isString } from '../../services/predicate';
 import { Comparators, Direction } from '../../services/sort';
-// @ts-ignore
-import { EuiSearchBar } from '../search_bar';
+import { EuiSearchBar, Query } from '../search_bar';
 import { EuiSpacer } from '../spacer';
 import { CommonProps } from '../common';
-
-// Search bar types. Should be moved when it is typescriptified.
-interface SearchBoxConfig {
-  placeholder?: string;
-  incremental?: boolean;
-  schema?: SchemaType;
-}
-
-interface SchemaType {
-  strict?: boolean;
-  fields?: object;
-  flags?: string[];
-}
-
-interface IsFilterConfigType {
-  type: 'is';
-  field: string;
-  name: string;
-  negatedName?: string;
-  available?: () => boolean;
-}
-
-interface FieldValueOptionType {
-  field?: string;
-  value: any;
-  name?: string;
-  view?: ReactNode;
-}
-
-interface FieldValueSelectionFilterConfigType {
-  type: 'field_value_selection';
-  field?: string;
-  autoClose?: boolean;
-  name: string;
-  options:
-    | FieldValueOptionType[]
-    | ((query: Query) => Promise<FieldValueOptionType[]>);
-  filterWith?:
-    | ((name: string, query: string, options: object) => boolean)
-    | 'prefix'
-    | 'includes';
-  cache?: number;
-  multiSelect?: boolean | 'and' | 'or';
-  loadingMessage?: string;
-  noOptionsMessage?: string;
-  searchThreshold?: number;
-  available?: () => boolean;
-}
-
-interface FieldValueToggleFilterConfigType {
-  type: 'field_value_toggle';
-  field: string;
-  value: string | number | boolean;
-  name: string;
-  negatedName?: string;
-  available?: () => boolean;
-  operator?: 'eq' | 'exact' | 'gt' | 'gte' | 'lt' | 'lte';
-}
-
-interface FieldValueToggleGroupFilterItem {
-  value: string | number | boolean;
-  name: string;
-  negatedName?: string;
-  operator?: 'eq' | 'exact' | 'gt' | 'gte' | 'lt' | 'lte';
-}
-
-interface FieldValueToggleGroupFilterConfigType {
-  type: 'field_value_toggle_group';
-  field: string;
-  items: FieldValueToggleGroupFilterItem[];
-  available?: () => boolean;
-}
-
-export type FilterConfig =
-  | IsFilterConfigType
-  | FieldValueSelectionFilterConfigType
-  | FieldValueToggleFilterConfigType
-  | FieldValueToggleGroupFilterConfigType;
-
-type SearchBox = Omit<SearchBoxConfig, 'schema'> & {
-  schema?: boolean | SchemaType;
-};
-
-/* Should point at search_bar/query type when it is converted to typescript */
-type Query = any;
+import { EuiSearchBarProps } from '../search_bar/search_bar';
+import { SchemaType } from '../search_bar/search_box';
 
 interface onChangeArgument {
-  query: Query;
+  query: Query | null;
   queryText: string;
-  error: string;
-}
-
-interface EuiSearchBarProps {
-  /**
-   The initial query the bar will hold when first mounted
-   */
-  defaultQuery?: Query;
-  /**
-   If you wish to use the search bar as a controlled component, continuously pass the query
-   via this prop
-   */
-  query?: Query;
-  /**
-   Configures the search box. Set `placeholder` to change the placeholder text in the box and
-   `incremental` to support incremental (as you type) search.
-   */
-  box?: SearchBox;
-  /**
-   An array of search filters.
-   */
-  filters?: FilterConfig[];
-  /**
-   * Tools which go to the left of the search bar.
-   */
-  toolsLeft?: React.ReactNode;
-  /**
-   * Tools which go to the right of the search bar.
-   */
-  toolsRight?: React.ReactNode;
-  /**
-   * Date formatter to use when parsing date values
-   */
-  dateFormat?: object;
-  onChange?: (values: onChangeArgument) => boolean | void;
+  error: Error | null;
 }
 
 function isEuiSearchBarProps<T>(
@@ -207,8 +108,10 @@ interface State<T> {
     items: T[];
     sortName: ReactNode;
     sortDirection?: Direction;
+    search?: Search;
   };
-  query: Query;
+  search?: Search;
+  query: Query | null;
   pageIndex: number;
   pageSize?: number;
   pageSizeOptions?: number[];
@@ -218,12 +121,22 @@ interface State<T> {
   hidePerPageOptions: boolean | undefined;
 }
 
-const getInitialQuery = (search: Search | undefined) => {
+const getQueryFromSearch = (
+  search: Search | undefined,
+  defaultQuery: boolean
+) => {
+  let query: Query | string;
   if (!search) {
-    return;
+    query = '';
+  } else {
+    query =
+      (defaultQuery
+        ? (search as EuiSearchBarProps).defaultQuery ||
+          (search as EuiSearchBarProps).query ||
+          ''
+        : (search as EuiSearchBarProps).query) || '';
   }
 
-  const query = (search as EuiSearchBarProps).defaultQuery || '';
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
 };
 
@@ -327,6 +240,7 @@ export class EuiInMemoryTable<T> extends Component<
     responsive: true,
     tableLayout: 'fixed',
   };
+  tableRef: React.RefObject<EuiBasicTable>;
 
   static getDerivedStateFromProps<T>(
     nextProps: EuiInMemoryTableProps<T>,
@@ -355,6 +269,24 @@ export class EuiInMemoryTable<T> extends Component<
         sortDirection,
       };
     }
+
+    const nextQuery = nextProps.search
+      ? (nextProps.search as EuiSearchBarProps).query
+      : '';
+    const prevQuery = prevState.prevProps.search
+      ? (prevState.prevProps.search as EuiSearchBarProps).query
+      : '';
+
+    if (nextQuery !== prevQuery) {
+      return {
+        prevProps: {
+          ...prevState.prevProps,
+          search: nextProps.search,
+        },
+        query: getQueryFromSearch(nextProps.search, false),
+      };
+    }
+
     return null;
   }
 
@@ -375,16 +307,26 @@ export class EuiInMemoryTable<T> extends Component<
         items: props.items,
         sortName,
         sortDirection,
+        search,
       },
-      query: getInitialQuery(search),
+      search: search,
+      query: getQueryFromSearch(search, true),
       pageIndex: pageIndex || 0,
       pageSize,
       pageSizeOptions,
       sortName,
       sortDirection,
-      allowNeutralSort: allowNeutralSort === false ? false : true,
+      allowNeutralSort: allowNeutralSort !== false,
       hidePerPageOptions,
     };
+
+    this.tableRef = React.createRef<EuiBasicTable>();
+  }
+
+  setSelection(newSelection: T[]) {
+    if (this.tableRef.current) {
+      this.tableRef.current.setSelection(newSelection);
+    }
   }
 
   onTableChange = ({ page, sort }: Criteria<T>) => {
@@ -444,14 +386,21 @@ export class EuiInMemoryTable<T> extends Component<
   };
 
   onQueryChange = ({ query, queryText, error }: onChangeArgument) => {
-    if (isEuiSearchBarProps(this.props.search)) {
-      const search = this.props.search;
+    const { search } = this.props;
+    if (isEuiSearchBarProps(search)) {
       if (search.onChange) {
-        const shouldQueryInMemory = search.onChange({
-          query,
-          queryText,
-          error,
-        });
+        const shouldQueryInMemory =
+          error == null
+            ? search.onChange({
+                query: query!,
+                queryText,
+                error: null,
+              })
+            : search.onChange({
+                query: null,
+                queryText,
+                error,
+              });
         if (!shouldQueryInMemory) {
           return;
         }
@@ -459,23 +408,30 @@ export class EuiInMemoryTable<T> extends Component<
     }
 
     // Reset pagination state.
-    this.setState({
+    this.setState(state => ({
+      prevProps: {
+        ...state.prevProps,
+        search,
+      },
       query,
       pageIndex: 0,
-    });
+    }));
   };
 
   renderSearchBar() {
     const { search } = this.props;
     if (search) {
-      let searchBarProps: EuiSearchBarProps = {};
+      let searchBarProps: Omit<EuiSearchBarProps, 'onChange'> = {};
 
       if (isEuiSearchBarProps(search)) {
         const { onChange, ..._searchBarProps } = search;
         searchBarProps = _searchBarProps;
 
         if (searchBarProps.box && searchBarProps.box.schema === true) {
-          searchBarProps.box.schema = this.resolveSearchSchema();
+          searchBarProps.box = {
+            ...searchBarProps.box,
+            schema: this.resolveSearchSchema(),
+          };
         }
       }
 
@@ -483,7 +439,7 @@ export class EuiInMemoryTable<T> extends Component<
     }
   }
 
-  resolveSearchSchema() {
+  resolveSearchSchema(): SchemaType {
     const { columns } = this.props;
     return columns.reduce<{
       strict: boolean;
@@ -501,7 +457,7 @@ export class EuiInMemoryTable<T> extends Component<
     );
   }
 
-  getItemSorter() {
+  getItemSorter(): (a: T, b: T) => number {
     const { sortName, sortDirection } = this.state;
 
     const { columns } = this.props;
@@ -512,7 +468,7 @@ export class EuiInMemoryTable<T> extends Component<
 
     if (sortColumn == null) {
       // can't return a non-function so return a function that says everything is the same
-      return () => () => 0;
+      return () => 0;
     }
 
     const sortable = sortColumn.sortable;
@@ -635,6 +591,7 @@ export class EuiInMemoryTable<T> extends Component<
     const table = (
       // @ts-ignore complex relationship between pagination's existance and criteria, the code logic ensures this is correctly maintained
       <EuiBasicTable
+        ref={this.tableRef}
         items={items}
         itemId={itemId}
         rowProps={rowProps}

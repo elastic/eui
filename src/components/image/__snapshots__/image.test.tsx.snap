@@ -2,8 +2,7 @@
 
 exports[`EuiImage is rendered 1`] = `
 <figure
-  class="euiImage euiImage--large testClass1 testClass2"
-  role="figure"
+  class="euiImage testClass1 testClass2 euiImage--large"
 >
   <img
     alt="alt"
@@ -17,8 +16,7 @@ exports[`EuiImage is rendered 1`] = `
 
 exports[`EuiImage is rendered and allows full screen 1`] = `
 <figure
-  class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
-  role="figure"
+  class="euiImage euiImage--allowFullScreen testClass1 testClass2 euiImage--large"
 >
   <button
     aria-label="Open full screen alt image"
@@ -32,16 +30,43 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
-    <svg
-      aria-hidden="true"
-      class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoading euiImage__icon"
-      focusable="false"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="euiImage__icon"
+      color="ghost"
+      data-euiicon-type="fullScreen"
     />
   </button>
+</figure>
+`;
+
+exports[`EuiImage is rendered with a node as the caption 1`] = `
+<figure
+  class="euiImage "
+>
+  <img
+    alt="alt"
+    class="euiImage__img"
+    src="/cat.jpg"
+  />
+  <figcaption
+    class="euiImage__caption"
+  >
+    <span>
+      caption
+    </span>
+  </figcaption>
+</figure>
+`;
+
+exports[`EuiImage is rendered with custom size 1`] = `
+<figure
+  class="euiImage"
+>
+  <img
+    alt="alt"
+    class="euiImage__img"
+    src="/cat.jpg"
+    style="max-width:50px;max-height:50px;width:auto"
+  />
 </figure>
 `;

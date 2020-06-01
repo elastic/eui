@@ -7,21 +7,27 @@ import {
 } from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-import { useColorPicker, useColorStop } from './utils';
+import {
+  useColorPickerState,
+  useColorStopsState,
+} from '../../../../src/services';
 
 export const KitchenSink = () => {
-  const [color, setColor] = useColorPicker('#D36086');
-  const [colorStops, setColorStops, addStop] = useColorStop(true);
+  const [color, setColor] = useColorPickerState('#D36086');
+  const [colorStops, setColorStops, addStop] = useColorStopsState(true);
 
   return (
     <React.Fragment>
       {/* DisplayToggles wrapper for Docs only */}
-      <DisplayToggles canLoading={false}>
+      <DisplayToggles canLoading={false} canPrepend={true} canAppend={true}>
         <EuiColorPicker color={color} onChange={setColor} />
       </DisplayToggles>
       <EuiSpacer />
       {/* DisplayToggles wrapper for Docs only */}
-      <DisplayToggles canLoading={false}>
+      <DisplayToggles
+        canLoading={false}
+        canInvalid={false}
+        canCompressed={false}>
         <EuiColorStops
           label="Kitchen sink"
           colorStops={colorStops}

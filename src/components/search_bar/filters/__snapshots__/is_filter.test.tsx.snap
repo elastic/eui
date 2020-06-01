@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IsFilter render 1`] = `
+<EuiFilterButton
+  aria-pressed={false}
+  hasActiveFilters={false}
+  onClick={[Function]}
+>
+  Open
+</EuiFilterButton>
+`;

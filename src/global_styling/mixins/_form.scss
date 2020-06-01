@@ -6,22 +6,22 @@
 }
 
 @mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
-  $firstIconSize: $euiFormControlPadding + $euiSize + $euiFormControlPadding;
-  $secondIconSize: $euiFormControlPadding + $euiSize;
+  $iconSize: $euiSize;
+  $iconPadding: $euiFormControlPadding;
+  $marginBetweenIcons: $euiFormControlPadding / 2;
 
   @if ($compressed) {
-    $firstIconSize: $euiFormControlCompressedPadding + $euiSize + $euiFormControlCompressedPadding;
-    $secondIconSize: $euiFormControlCompressedPadding + $euiSize;
+    $iconPadding: $euiFormControlCompressedPadding;
   }
 
   @if variable-exists(numOfIcons) == false {
     @error '$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayoutPadding().';
   } @else if $numOfIcons == 1 {
-    padding-#{$side}: $firstIconSize;
+    padding-#{$side}: $iconPadding + $iconSize + $iconPadding;
   } @else if $numOfIcons == 2 {
-    padding-#{$side}: $firstIconSize + $secondIconSize;
+    padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
   } @else if $numOfIcons == 3 {
-    padding-#{$side}: $firstIconSize + ($secondIconSize * 2);
+    padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
   }
 }
 
@@ -64,10 +64,6 @@
     transparent 100%
   );
 }
-
-/**
- * 3. Must supply both values to background-size or some browsers apply the single value to both directions
- */
 
 @mixin euiFormControlText {
   @include euiFont;
@@ -126,14 +122,24 @@
         @include euiFormControlLayoutPadding(1);
       }
     }
+
+    #{&}-isLoading#{&}--compressed {
+      @if ($isNextToIcon) {
+        @include euiFormControlLayoutPadding(2, $compressed: true);
+      } @else {
+        @include euiFormControlLayoutPadding(1, $compressed: true);
+      }
+    }
   }
 }
+
+// 1. Must supply both values to background-size or some browsers apply the single value to both directions
 
 @mixin euiFormControlDefaultShadow($borderOnly: false) {
   // sass-lint:disable-block indentation
   background-color: $euiFormBackgroundColor;
   background-repeat: no-repeat;
-  background-size: 0% 100%; /* 3 */
+  background-size: 0% 100%; // 1
 
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px $euiFormBorderColor;
@@ -161,7 +167,7 @@
   // sass-lint:disable-block indentation, empty-args
   background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
   background-image: euiFormControlGradient();
-  background-size: 100% 100%; /* 3 */
+  background-size: 100% 100%; // 1
 
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px $euiFormBorderColor;
@@ -198,9 +204,8 @@
   box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 }
 
-/**
- * 4. Override invalid state with focus state.
- */
+
+// 2. Override invalid state with focus state.
 
 @mixin euiFormControlStyle($borderOnly: false, $includeStates: true, $includeSizes: true) {
   @include euiFormControlSize($includeAlternates: $includeSizes);
@@ -212,11 +217,11 @@
   padding: $euiFormControlPadding;
 
   @if ($includeStates) {
-    &:invalid { /* 4 */
+    &:invalid { // 2
       @include euiFormControlInvalidStyle;
     }
 
-    &:focus { /* 4 */
+    &:focus { // 2
       @include euiFormControlFocusStyle;
     }
 
@@ -227,6 +232,17 @@
     &[readOnly] {
       @include euiFormControlReadOnlyStyle;
     }
+
+    // Needs to be set for autofill
+    // sass-lint:disable-block no-vendor-prefixes
+    &:-webkit-autofill {
+      -webkit-text-fill-color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
+
+      ~ .euiFormControlLayoutIcons {
+        color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
+      }
+    }
+
   }
 
   @if ($includeSizes) {
@@ -248,11 +264,11 @@
   border-radius: $euiFormControlCompressedBorderRadius;
 
   @if ($includeStates) {
-    &:invalid { /* 4 */
+    &:invalid { // 2
       @include euiFormControlInvalidStyle;
     }
 
-    &:focus { /* 4 */
+    &:focus { // 2
       @include euiFormControlFocusStyle($borderOnly: true);
     }
 

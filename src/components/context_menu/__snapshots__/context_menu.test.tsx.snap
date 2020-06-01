@@ -8,6 +8,49 @@ exports[`EuiContextMenu is rendered 1`] = `
 />
 `;
 
+exports[`EuiContextMenu panel item can contain JSX 1`] = `
+<div
+  class="euiContextMenu"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <div
+      class="euiPopoverTitle"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        3
+      </span>
+    </div>
+    <div>
+      <div>
+        <button
+          class="euiContextMenuItem"
+          type="button"
+        >
+          <span
+            class="euiContextMenu__itemLayout"
+          >
+            <span
+              class="euiContextMenuItem__text"
+            >
+              <span
+                style="color:tomato"
+              >
+                foo
+              </span>
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 1`] = `
 <div
   class="euiContextMenu"
@@ -25,22 +68,10 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title />
-          <path
-            d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
-            fill-rule="nonzero"
-          />
-        </svg>
+        <div
+          class="euiContextMenu__icon"
+          data-euiicon-type="arrowLeft"
+        />
         <span
           class="euiContextMenu__text"
         >
@@ -76,22 +107,10 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoaded euiContextMenu__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title />
-          <path
-            d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
-            fill-rule="nonzero"
-          />
-        </svg>
+        <div
+          class="euiContextMenu__icon"
+          data-euiicon-type="arrowLeft"
+        />
         <span
           class="euiContextMenu__text"
         >
@@ -119,15 +138,9 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       <span
         class="euiContextMenu__itemLayout"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiContextMenu__icon"
+          data-euiicon-type="arrowLeft"
         />
         <span
           class="euiContextMenu__text"
@@ -150,15 +163,9 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2a
             </span>
-            <svg
-              aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="euiContextMenu__arrow"
+              data-euiicon-type="arrowRight"
             />
           </span>
         </button>
@@ -174,15 +181,9 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2b
             </span>
-            <svg
-              aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="euiContextMenu__arrow"
+              data-euiicon-type="arrowRight"
             />
           </span>
         </button>
@@ -198,15 +199,9 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             >
               2c
             </span>
-            <svg
-              aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
-              focusable="false"
-              height="16"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="euiContextMenu__arrow"
+              data-euiicon-type="arrowRight"
             />
           </span>
         </button>
@@ -232,15 +227,9 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       <span
         class="euiContextMenu__itemLayout"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
-          focusable="false"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiContextMenu__icon"
+          data-euiicon-type="arrowLeft"
         />
         <span
           class="euiContextMenu__text"

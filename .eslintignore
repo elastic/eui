@@ -2,9 +2,11 @@ dist
 node_modules
 es
 lib
+test-env
 types
 eui.d.ts
 **/*.snap.js
 **/assets/**/*.js
+package.json
 src-docs/src/views/icon/icon_example.js
-src-framer/code/canvas.tsx
+packages/react-datepicker/examples

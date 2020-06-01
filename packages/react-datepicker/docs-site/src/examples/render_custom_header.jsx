@@ -1,7 +1,12 @@
-import React from "react";
-import DatePicker from "react-datepicker";
-import moment from "moment";
-import range from "lodash/range";
+import React from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+const range = (start, end, step = 1) =>
+  Array.from(
+    { length: (end - start + step - 1) / step },
+    (_, i) => i * step + start
+  );
 
 const years = range(1990, moment().year() + 1, 1);
 const months = moment.months();
@@ -10,13 +15,13 @@ export default class Default extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: moment()
+      startDate: moment(),
     };
   }
 
   handleChange = date => {
     this.setState({
-      startDate: date
+      startDate: date,
     });
   };
 
@@ -51,25 +56,22 @@ export default class Default extends React.Component {
               decreaseMonth,
               increaseMonth,
               prevMonthButtonDisabled,
-              nextMonthButtonDisabled
+              nextMonthButtonDisabled,
             }) => (
               <div
                 style={{
                   margin: 10,
-                  display: "flex",
-                  justifyContent: "center"
-                }}
-              >
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}>
                 <button
                   onClick={decreaseMonth}
-                  disabled={prevMonthButtonDisabled}
-                >
-                  {"<"}
+                  disabled={prevMonthButtonDisabled}>
+                  {'<'}
                 </button>
                 <select
                   value={date.year()}
-                  onChange={({ target: { value } }) => changeYear(value)}
-                >
+                  onChange={({ target: { value } }) => changeYear(value)}>
                   {years.map(option => (
                     <option key={option} value={option}>
                       {option}
@@ -79,8 +81,7 @@ export default class Default extends React.Component {
 
                 <select
                   value={months[date.month()]}
-                  onChange={({ target: { value } }) => changeMonth(value)}
-                >
+                  onChange={({ target: { value } }) => changeMonth(value)}>
                   {months.map(option => (
                     <option key={option} value={option}>
                       {option}
@@ -90,9 +91,8 @@ export default class Default extends React.Component {
 
                 <button
                   onClick={increaseMonth}
-                  disabled={nextMonthButtonDisabled}
-                >
-                  {">"}
+                  disabled={nextMonthButtonDisabled}>
+                  {'>'}
                 </button>
               </div>
             )}

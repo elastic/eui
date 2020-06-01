@@ -2,12 +2,16 @@ import React from 'react';
 
 import { Link } from 'react-router';
 
-import imageIcons from '../../images/icons.jpg';
+import imageIcons from '../../images/icons.svg';
 import imageButtons from '../../images/buttons.svg';
 import imageTables from '../../images/tables.svg';
 import imageForms from '../../images/forms.svg';
 import imageFlexgrid from '../../images/flexgrid.svg';
 import imageCards from '../../images/cards.svg';
+import imagePages from '../../images/page.svg';
+import imageText from '../../images/text.svg';
+import imageCharts from '../../images/charts.svg';
+import logoFigma from '../../images/logo-figma.svg';
 
 import {
   EuiCard,
@@ -20,6 +24,7 @@ import {
   EuiText,
   EuiTitle,
   EuiToolTip,
+  EuiScreenReaderOnly,
 } from '../../../../src/components';
 
 import { CodeSandboxLink } from '../../components/codesandbox';
@@ -37,23 +42,44 @@ export const HomeView = () => (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
-            <p>
-              Version:{' '}
-              <Link to="/package/changelog">
-                <strong>v{pkg.version}</strong>
-              </Link>
-            </p>
+            <EuiLink href="https://github.com/elastic/eui">
+              <EuiScreenReaderOnly>
+                <span>Elastic repo on GitHub</span>
+              </EuiScreenReaderOnly>
+              <EuiIcon type="logoGithub" aria-hidden="true" />
+            </EuiLink>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiLink href="https://github.com/elastic/eui">
-              <EuiIcon type="logoGithub" />
-            </EuiLink>
+            <p>
+              Version:{' '}
+              <Link
+                aria-label={`Version ${pkg.version}, View changelog`}
+                to="/package/changelog">
+                <strong>{pkg.version}</strong>
+              </Link>
+            </p>
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <p>Libraries:</p>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiLink href="https://www.figma.com/community/file/809845546262698150">
+              <EuiScreenReaderOnly>
+                <span>Elastic UI Library on Figma</span>
+              </EuiScreenReaderOnly>
+              <EuiToolTip
+                title="Open Figma Design Library"
+                postiion="down"
+                content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics.">
+                <EuiIcon type={logoFigma} aria-hidden="true" />
+              </EuiToolTip>
+            </EuiLink>
+          </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiToolTip
               title="Download zip"
@@ -62,12 +88,12 @@ export const HomeView = () => (
                 This will provide symbols that match against their EUI component
                 counterparts.">
               <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
-                <strong>Sketch libraries</strong>
+                <EuiScreenReaderOnly>
+                  <span>Elastic UI Library for Sketch</span>
+                </EuiScreenReaderOnly>
+                <EuiIcon type="logoSketch" aria-hidden="true" />
               </EuiLink>
             </EuiToolTip>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiIcon type="logoSketch" />
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
@@ -127,20 +153,29 @@ export const HomeView = () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
+          href="#/display/text"
+          textAlign="left"
+          image={imageText}
+          title="Text"
+          description="Simple HTML text like paragraphs and lists are wrapped in a single text component for styling"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
+          href="#/layout/page"
+          textAlign="left"
+          image={imagePages}
+          title="Pages"
+          description="Layout your whole application page with this component and its series of child components"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
           href="#/layout/flex"
           textAlign="left"
           image={imageFlexgrid}
           title="Flexible layouts"
           description="Create layouts by using flex groups, grids, and items"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          href="#/tabular-content/tables"
-          textAlign="left"
-          image={imageTables}
-          title="Tables"
-          description="Build tables from individual components or high level wrappers"
         />
       </EuiFlexItem>
       <EuiFlexItem>
@@ -161,30 +196,50 @@ export const HomeView = () => (
           description="Input tags, layouts, and validation for your forms"
         />
       </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
+          href="#/tabular-content/tables"
+          textAlign="left"
+          image={imageTables}
+          title="Tables"
+          description="Build tables from individual components or high level wrappers"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
+          href="#/elastic-charts/creating-charts"
+          textAlign="left"
+          image={imageCharts}
+          title="Charts"
+          description="Learn charting best practices and how to integrate EUI with the Elastic Charts library"
+        />
+      </EuiFlexItem>
     </EuiFlexGrid>
     <EuiSpacer />
     <EuiText grow={false}>
       <h2>Design goals</h2>
-      <p>EUI has the following primary goals...</p>
       <dl>
         <dt>EUI is accessible to everyone.</dt>
         <dd>
-          Use high contrast, color-blind safe palettes and proper aria labels.
+          Uses high contrast, color-blind safe palettes and tested with most
+          assistive technology.
         </dd>
         <dt>EUI is themable.</dt>
         <dd>
-          Theming should involve changing fewer than a dozen lines of code. This
-          means strict variable usage.
+          Theming involves changing fewer than a dozen lines of code. This means
+          strict variable usage.
+        </dd>
+        <dt>EUI is flexible and composable.</dt>
+        <dd>
+          Configurable enough to meet the needs of a wide array of contexts
+          while maintaining brand and low-level consistency.
         </dd>
         <dt>EUI is responsive.</dt>
-        <dd>
-          Currently we target mobile, laptop, desktop, and wide desktop
-          breakpoints.
-        </dd>
+        <dd>Supports multiple window sizes from large desktop to mobile.</dd>
+        <dt>EUI is well documented and tested.</dt>
+        <dd>Code is friendly to the novice and expert alike.</dd>
         <dt>EUI is playful.</dt>
-        <dd>Consistent use of animation can bring life to our design.</dd>
-        <dt>EUI is documented and has tests.</dt>
-        <dd>Make sure the code is friendly to the novice and expert alike.</dd>
+        <dd>Simple and consistent use of animation brings life.</dd>
       </dl>
     </EuiText>
   </div>
