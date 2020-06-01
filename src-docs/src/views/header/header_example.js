@@ -45,6 +45,10 @@ import HeaderDark from './header_dark';
 const headerDarkSource = require('!!raw-loader!./header_dark');
 const headerDarkHtml = renderToHtml(HeaderDark);
 
+import HeaderStacked from './header_stacked';
+const headerStackedSource = require('!!raw-loader!./header_stacked');
+const headerStackedHtml = renderToHtml(HeaderStacked);
+
 const headerSnippet = `<EuiHeader>
   <EuiHeaderSection grow={false}>
     <EuiHeaderSectionItem border="right">
@@ -184,15 +188,26 @@ export const HeaderExample = {
       text: (
         <>
           <p>
-            Most consumer need a header that does not scroll way with the page
-            contents. You can apply this display by changing{' '}
-            <EuiCode>position</EuiCode> to <EuiCode>fixed</EuiCode>. It will
-            also add the appropriate padding to the window body by applying a
-            class.
+            Most consumers need a header that does not scroll away with the page
+            contents. You can apply this display by applying{' '}
+            <EuiCode language="ts">{'position="fixed"'}</EuiCode>. It will also
+            add a class of <EuiCode>.euiBody--headerIsFixed</EuiCode> to the
+            window body.
+          </p>
+          <p>
+            You will then need to apply your own padding to this class to afford
+            for the header height. EUI supplies a helper mixin that also
+            accounts for this height in flyouts and the collapsible nav. Simply
+            add{' '}
+            <EuiCode language="sass">@mixin euiHeaderAffordForFixed;</EuiCode>{' '}
+            anywhere in your SASS.
           </p>
         </>
       ),
-      snippet: '<EuiHeader position="fixed" />',
+      snippet: [
+        '<EuiHeader position="fixed" />',
+        '@mixin euiHeaderAffordForFixed;',
+      ],
       demo: <HeaderPosition />,
     },
     {
@@ -281,6 +296,35 @@ export const HeaderExample = {
       },
       snippet: headerLinksSnippet,
       demo: <HeaderAlert />,
+    },
+    {
+      title: 'Stacked headers',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerStackedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerStackedHtml,
+        },
+      ],
+      text: (
+        <p>
+          Stacking multiple headers provide a great way to separate global
+          navigation concerns. However, the{' '}
+          <EuiCode language="ts">{'position="fixed"'}</EuiCode> option will not
+          be aware of the number of headers. Therefore, if you do need fixed and
+          stacked headers, you will need to apply the helper mixin and pass in
+          the correct height to afford for.
+        </p>
+      ),
+      snippet: [
+        `<EuiHeader theme="dark" />
+<EuiHeader />`,
+        '@include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);',
+      ],
+      demo: <HeaderStacked />,
     },
   ],
 };

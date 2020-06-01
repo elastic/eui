@@ -11,6 +11,22 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+@include euiHeaderAffordForFixed;
+
+.euiBody--headerIsFixed {
+  .guideSideNav {
+    top: $euiHeaderHeightCompensation;
+  }
+}
+
+.euiBody--headerIsFixed--double {
+  @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
+
+  .guideSideNav {
+    top: $euiHeaderHeightCompensation * 2;
+  }
+}
+
 .guidePage {
   padding: 0;
 }
@@ -215,6 +231,19 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   top: 0;
 }
 
+.euiDataGridRowCell--favoriteFranchise {
+  background: transparentize($color: #800080, $amount: .95) !important;
+}
+
+.euiDataGridHeaderCell--favoriteFranchise {
+  background: transparentize($color: #800080, $amount: .9) !important;
+}
+
+.euiTreeView__nodeInnerExample {
+  color: $euiColorDanger;
+  font-weight: $euiFontWeightBold;
+}
+
 @import '../views/guidelines/index';
 @import 'guide_section/index';
 @import 'guide_rule/index';
@@ -229,7 +258,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   .guideSideNav {
-    position: relative;
+    position: static;
     width: auto;
 
     // This is a temporary hack till we fix how classes pass into form controls
@@ -262,17 +291,4 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     margin-left: 0;
     width: 100%;
   }
-}
-
-.euiDataGridRowCell--favoriteFranchise {
-  background: transparentize($color: #800080, $amount: .95) !important;
-}
-
-.euiDataGridHeaderCell--favoriteFranchise {
-  background: transparentize($color: #800080, $amount: .9) !important;
-}
-
-.euiTreeView__nodeInnerExample {
-  color: $euiColorDanger;
-  font-weight: $euiFontWeightBold;
 }

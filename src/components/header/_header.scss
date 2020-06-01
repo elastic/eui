@@ -19,15 +19,15 @@
   }
 }
 
-.euiBody--headerIsFixed {
-  padding-top: $euiHeaderHeightCompensation;
-}
-
 .euiBody--collapsibleNavIsOpen,
 .euiBody--hasFlyout {
   .euiHeader--fixed {
     z-index: $euiZModal + 1;
   }
+}
+
+.euiHeader--fixed + .euiHeader--fixed {
+  top: $euiHeaderHeightCompensation;
 }
 
 .euiHeader--dark {

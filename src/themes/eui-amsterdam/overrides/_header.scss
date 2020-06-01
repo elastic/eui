@@ -11,6 +11,10 @@
 }
 
 .euiHeaderLogo {
+  @include euiBreakpoint('xs') {
+    padding: 0 $euiSizeXS;
+  }
+
   padding-left: $euiSizeS;
   padding-right: $euiSizeS;
   min-width: $euiHeaderChildSize;
@@ -22,4 +26,8 @@
 
 .euiHeaderBreadcrumbs {
   margin-left: $euiSizeS;
+}
+
+.euiHeader--default + .euiHeader--default {
+  border-top: $euiBorderThin;
 }
