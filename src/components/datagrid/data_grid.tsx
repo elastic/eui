@@ -141,8 +141,7 @@ type CommonGridProps = CommonProps &
      */
     onColumnResize?: EuiDataGridOnColumnResizeHandler;
     /**
-     * Defines a control for the min size when the grid only shows the full screen button.
-     * Default to `MINIMUM_WIDTH_FOR_GRID_CONTROLS`.
+     * Defines a minimum width for the grid to show all controls in its header.
      */
     minSizeForControls?: number;
   };
@@ -625,9 +624,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     inMemory,
     popoverContents,
     onColumnResize,
-    minSizeForControls = typeof props.minSizeForControls === 'undefined' ?
-      MINIMUM_WIDTH_FOR_GRID_CONTROLS :
-      props.minSizeForControls,
+    minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     ...rest
   } = props;
 
