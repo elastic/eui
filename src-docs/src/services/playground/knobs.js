@@ -91,7 +91,7 @@ const Knob = ({
       return (
         <Spacing>
           <EuiCheckbox
-            id={'id'}
+            id={name}
             label={name}
             checked={val}
             onChange={e => {
@@ -168,6 +168,7 @@ const Knob = ({
     case PropTypes.Custom:
       return null;
     default:
+      console.log('name', name);
       return assertUnreachable();
   }
 };

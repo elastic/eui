@@ -16,72 +16,26 @@ import {
   EuiSpacer,
 } from '../../../../src/components/';
 import Knobs from '../../services/playground/knobs';
+import propUtilityForPlayground from '../../services/playground/props';
 
-const testProps = {
-  color: {
-    defaultValue: {
-      computed: false,
-      value: 'primary',
-    },
-    description: '`text` color is set for deprecation',
-    required: false,
-    type: {
-      name: 'enum',
-      value: [
-        { value: 'ghost', computed: false },
-        { value: 'text', computed: false },
-      ],
-    },
-  },
-  fullWidth: {
-    description: '',
-    required: false,
-    type: { name: 'bool' },
-  },
-};
+export default () => {
+  const docgenInfo = Array.isArray(EuiButton.__docgenInfo)
+    ? EuiButton.__docgenInfo[0]
+    : EuiButton.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-const modifiedProps = {
-  children: {
-    value: `<div>One</div>
-    <div>Two</div>
-    <div>Three</div>`,
+  // console.log('docgenInfo', docgenInfo.props);
+  // console.log('propsToUse', propsToUse);
+  propsToUse.children = {
+    value: 'Button',
     type: PropTypes.ReactNode,
     description: 'Visible label.',
     hidden: true,
-  },
-  color: {
-    defaultValue: 'primary',
-    description: '`text` color is set for deprecation',
-    required: false,
-    options: { ghost: 'ghost', primary: 'primary', text: 'text' },
-    type: PropTypes.Enum,
-  },
-  href: {
-    description: '`href` color is set for deprecation',
-    value: 'Jane Doe',
-    type: PropTypes.String,
-  },
-  fullWidth: {
-    description: '',
-    value: false,
-    type: PropTypes.Boolean,
-    stateful: true,
-  },
-  setFullWidth: {
-    value: 'e => setFullWidth(e)',
-    type: PropTypes.Function,
-    description: 'Called when fullWidth value is changed.',
-    propHook: {
-      what: 'e',
-      into: 'fullWidth',
-    },
-  },
-};
-
-export default () => {
+  };
+  // console.log('modifiedProps', modifiedProps);
   const params = useView({
     componentName: 'EuiButton',
-    props: modifiedProps,
+    props: propsToUse,
     scope: {
       EuiButton,
     },
