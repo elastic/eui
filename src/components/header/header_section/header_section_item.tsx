@@ -31,6 +31,10 @@ const borderToClassNameMap: { [border in Border]: string | undefined } = {
 };
 
 export type EuiHeaderSectionItemProps = CommonProps & {
+  /**
+   * Side to display a short border on.
+   * Not supported in Amsterdam theme.
+   */
   border?: Border;
   children?: ReactNode;
 };

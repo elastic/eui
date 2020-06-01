@@ -22,7 +22,7 @@ export default () => {
     },
     {
       items: [
-        <div style={{ padding: 16 }}>
+        <div style={{ padding: 12 }}>
           <EuiSwitch
             label={`position: ${position}`}
             checked={position === 'fixed'}

@@ -7,6 +7,8 @@
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
 - Added `left-start` popover placement to `EuiDatePicker` ([#3511](https://github.com/elastic/eui/pull/3511))
+- Added `theme` prop to `EuiHeader` ([#3524](https://github.com/elastic/eui/pull/3524))
+- Added `.euiHeaderLink-isActive` class to `EuiHeaderLink` when `isActive` ([#3524](https://github.com/elastic/eui/pull/3524))
 
 **Bug Fixes**
 
@@ -31,6 +33,7 @@
 - Improve `EuiOverlayMask` colors ([#3515](https://github.com/elastic/eui/pull/3515))
 - Updated shadow styles to improve smoothness, use black as the base color, and deprecated `opacity` value of shadow mixins ([#3428](https://github.com/elastic/eui/pull/3428))
 - Removed borders from `EuiFlyout` and `EuiPopover` ([#3477](https://github.com/elastic/eui/pull/3477))
+- Updated `EuiHeader` and components ([#3524](https://github.com/elastic/eui/pull/3524))
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
