@@ -113,6 +113,17 @@ export class EuiFieldSearch extends Component<
         this.inputElement.removeEventListener('search', onSearch);
       });
     }
+    const onChange = (event: Event) => {
+      if (
+        event.target &&
+        (event.target as HTMLInputElement).value !== this.state.value
+      ) {
+        this.setState({
+          value: (event.target as HTMLInputElement).value,
+        });
+      }
+    };
+    this.inputElement.addEventListener('change', onChange);
   }
 
   onClear = () => {
