@@ -61,6 +61,15 @@ const invalidSnippet = `<EuiExpression
   value={value}
 />`;
 
+import Truncate from './truncate';
+const truncateSource = require('!!raw-loader!./truncate');
+const truncateHtml = renderToHtml(Truncate);
+const truncateSnippet = `<EuiExpression
+  description="description"
+  value={value}
+  textWrap="truncate"
+/>`;
+
 export const ExpressionExample = {
   title: 'Expression',
   sections: [
@@ -186,6 +195,27 @@ export const ExpressionExample = {
       ),
       snippet: invalidSnippet,
       demo: <Invalid />,
+    },
+    {
+      title: 'Truncate text',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: truncateSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: truncateHtml,
+        },
+      ],
+      text: (
+        <p>
+          To truncate <strong>EuiExpression</strong>&apos;s content, pass{' '}
+          <EuiCode>truncate</EuiCode> to the <EuiCode>textWrap</EuiCode> prop.
+        </p>
+      ),
+      snippet: truncateSnippet,
+      demo: <Truncate />,
     },
   ],
 };

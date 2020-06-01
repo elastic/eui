@@ -15,7 +15,6 @@ export default () => (
       <EuiExpression
         description="email"
         display="columns"
-        color="danger"
         isInvalid
         value="example@mail."
         onClick={() => {}}

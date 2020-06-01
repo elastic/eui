@@ -28,6 +28,24 @@
     border-bottom-style: solid;
     margin-bottom: $euiSizeXS;
   }
+
+  &.euiExpression-truncate {
+    max-width: 100%;
+
+    .euiExpression__description,
+    .euiExpression__value {
+      @include euiTextTruncate;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    .euiExpression__value * {
+      // Covers the case where the value is made up of nodes
+      @include euiTextTruncate;
+      display: inline-block;
+    }
+
+  }
 }
 
 .euiExpression-isUppercase .euiExpression__description {

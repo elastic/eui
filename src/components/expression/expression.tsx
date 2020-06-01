@@ -36,6 +36,11 @@ const colorToClassNameMap = {
   danger: 'euiExpression--danger',
 };
 
+const textWrapToClassNameMap = {
+  'break-word': 'euiExpression-breakWord',
+  truncate: 'euiExpression-truncate',
+};
+
 export const COLORS = keysOf(colorToClassNameMap);
 
 export type ExpressionColor = keyof typeof colorToClassNameMap;
@@ -87,6 +92,10 @@ export type EuiExpressionProps = CommonProps & {
    * Defaults to `20%`
    */
   descriptionWidth?: number | string;
+  /**
+   * Sets how to handle text truncation.
+   */
+  textWrap?: keyof typeof textWrapToClassNameMap;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -111,6 +120,7 @@ export const EuiExpression: React.FunctionComponent<
   descriptionWidth = '20%',
   onClick,
   isInvalid = false,
+  textWrap = 'break-word',
   ...rest
 }) => {
   const calculatedColor = isInvalid ? 'danger' : color;
@@ -124,7 +134,8 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isUppercase': uppercase,
     },
     displayToClassNameMap[display],
-    colorToClassNameMap[calculatedColor]
+    colorToClassNameMap[calculatedColor],
+    textWrapToClassNameMap[textWrap]
   );
 
   const Component = onClick ? 'button' : 'span';

@@ -123,6 +123,20 @@ describe('EuiExpression', () => {
       });
     });
 
+    describe('textWrap', () => {
+      test('truncate truncates text', () => {
+        const component = (
+          <EuiExpression
+            description="the answer is"
+            value="42"
+            textWrap="truncate"
+          />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
     describe('isActive', () => {
       test('true renders active', () => {
         const component = (
