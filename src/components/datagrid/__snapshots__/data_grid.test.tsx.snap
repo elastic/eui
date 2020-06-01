@@ -80,7 +80,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
     class="euiFlexItem euiFlexItem--flexGrowZero"
   >
     <nav
-      aria-label="Pagination for preceding table: test grid"
+      aria-label="Pagination for preceding grid: test grid"
       class="euiPagination"
     >
       <a
@@ -98,7 +98,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         />
       </a>
       <ul
-        aria-label="Pagination for preceding table: test grid"
+        aria-label="Pagination for preceding grid: test grid"
         class="euiPagination__list"
       >
         <li

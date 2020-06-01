@@ -105,7 +105,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
     return button;
   };
   const classes = classNames('euiPagination', className);
-  const hasControl = typeof ariaControls === 'string';
+  const hasControl = ariaControls !== undefined;
   const pages = [];
   const firstPageInRange = Math.max(
     0,

@@ -471,8 +471,7 @@ export class EuiBasicTable<T = any> extends Component<
     }
   }
 
-  tableIds = htmlIdGenerator();
-  tableId = this.tableIds('__table');
+  tableId = htmlIdGenerator('__table')();
 
   render() {
     const {
