@@ -43,6 +43,21 @@ const getProp = (prop, propName) => {
       else newProp.value = undefined;
       break;
 
+    case 'func':
+      newProp.type = PropTypes.Function;
+      newProp.placeholder = propName;
+      if (prop.description) newProp.description = prop.description;
+
+      break;
+
+    case 'node':
+      newProp.type = PropTypes.ReactNode;
+      newProp.placeholder = propName;
+      if (prop.description) newProp.description = prop.description;
+      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      else newProp.value = undefined;
+      break;
+
     default:
       newProp.type = PropTypes.Custom;
       newProp.custom = {};

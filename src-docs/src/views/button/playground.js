@@ -8,15 +8,12 @@ export default () => {
     : EuiButton.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  // console.log('docgenInfo', docgenInfo.props);
-  // console.log('propsToUse', propsToUse);
   propsToUse.children = {
     value: 'Button',
     type: PropTypes.ReactNode,
     description: 'Visible label.',
     hidden: true,
   };
-  // console.log('modifiedProps', modifiedProps);
   return {
     componentName: 'EuiButton',
     props: propsToUse,

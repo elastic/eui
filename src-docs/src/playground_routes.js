@@ -1,8 +1,14 @@
 import React from 'react';
-import buttonConfig from './views/button/playground';
 import playground from './playground';
+import buttonConfig from './views/button/playground';
+import accordionConfig from './views/accordion/playground';
 
 export const childRoutes = [
+  {
+    path: 'accordion',
+    component: () => playground(accordionConfig()),
+    name: 'EuiAccordion',
+  },
   {
     path: 'button',
     component: () => playground(buttonConfig()),
