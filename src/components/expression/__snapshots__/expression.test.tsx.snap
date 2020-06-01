@@ -199,13 +199,12 @@ exports[`EuiExpression props isActive true renders active 1`] = `
 </span>
 `;
 
-exports[`EuiExpression props isInvalid true renders error state when using columns 1`] = `
+exports[`EuiExpression props isInvalid true renders error state 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression-columns euiExpression--danger"
+  class="euiExpression euiExpression-isUppercase euiExpression-inline euiExpression--danger"
 >
   <span
     class="euiExpression__description"
-    style="flex-basis:20%"
   >
     the answer is
   </span>

@@ -98,14 +98,9 @@ describe('EuiExpression', () => {
     });
 
     describe('isInvalid', () => {
-      test('true renders error state when using columns', () => {
+      test('true renders error state', () => {
         const component = (
-          <EuiExpression
-            description="the answer is"
-            value="42"
-            isInvalid
-            display="columns"
-          />
+          <EuiExpression description="the answer is" value="42" isInvalid />
         );
 
         expect(render(component)).toMatchSnapshot();
