@@ -598,16 +598,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
   );
 
-  // enables/disables grid controls based on available width
-  const minSizeForControls = typeof props.minSizeForControls === 'undefined' ?
-    MINIMUM_WIDTH_FOR_GRID_CONTROLS :
-    props.minSizeForControls;
-  const onResize = useOnResize(nextHasRoomForGridControls => {
-    if (nextHasRoomForGridControls !== hasRoomForGridControls) {
-      setHasRoomForGridControls(nextHasRoomForGridControls);
-    }
-  }, isFullScreen, minSizeForControls);
-
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
       case keyCodes.ESCAPE:
@@ -635,8 +625,18 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     inMemory,
     popoverContents,
     onColumnResize,
+    minSizeForControls = typeof props.minSizeForControls === 'undefined' ?
+      MINIMUM_WIDTH_FOR_GRID_CONTROLS :
+      props.minSizeForControls,
     ...rest
   } = props;
+
+  // enables/disables grid controls based on available width
+  const onResize = useOnResize(nextHasRoomForGridControls => {
+    if (nextHasRoomForGridControls !== hasRoomForGridControls) {
+      setHasRoomForGridControls(nextHasRoomForGridControls);
+    }
+  }, isFullScreen, minSizeForControls);
 
   const [columnWidths, setColumnWidth] = useColumnWidths(
     columns,
