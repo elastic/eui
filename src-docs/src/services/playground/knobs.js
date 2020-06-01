@@ -8,6 +8,7 @@ import {
   EuiTextArea,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSelect,
 } from '../../../../src/components/';
 
 const getTooltip = (description, type, name) => (
@@ -104,47 +105,52 @@ const Knob = ({
     case PropTypes.Enum:
       const optionsKeys = Object.keys(options);
       const numberOfOptions = optionsKeys.length;
-      const selectOptions = optionsKeys.map(key => ({
-        id: key,
-        label: options[key],
-      }));
+
       const valueKey = val || defaultValue;
       //   console.log('selectOptions', selectOptions);
       //   console.log('valueKey', valueKey);
       //   console.log('data', { description, type, name });
 
-      return (
-        <Spacing>
-          {/* //       <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
-          {numberOfOptions < 7 ? (
+      if (numberOfOptions < 6) {
+        const flattenedOptions = optionsKeys.map(key => ({
+          id: key,
+          label: options[key],
+        }));
+
+        return (
+          <Spacing>
             <EuiRadioGroup
-              options={selectOptions}
+              options={flattenedOptions}
               idSelected={valueKey}
               onChange={id => globalSet(id)}
               name={`Select ${name}`}
               legend={{
                 children: <span> {`Select ${name}`}</span>,
               }}
-            />
-          ) : null}
-          {error && <div>error {error}</div>}
-        </Spacing>
-      );
-    //         <Select
-    //           size={SIZE.compact}
-    //           options={selectOptions}
-    //           clearable={false}
-    //           value={[{ id: valueKey || '', option: valueKey }]}
-    //           labelKey="option"
-    //           valueKey="id"
-    //           onChange={({ value }) => {
-    //             globalSet(`${enumName || name.toUpperCase()}.${value[0].id}`);
-    //           }}
-    //         />
-    //       )}
-    //       <div>error {error}</div>
-    //     </Spacing>
-    //   );
+            />{' '}
+            {error && <div>error {error}</div>}
+          </Spacing>
+        );
+      } else {
+        const flattenedOptions = optionsKeys.map(key => ({
+          value: key,
+          text: options[key],
+        }));
+
+        return (
+          <Spacing>
+            <EuiSelect
+              id={name}
+              options={flattenedOptions}
+              value={valueKey}
+              onChange={e => globalSet(e.target.value)}
+              aria-label={`Select ${name}`}
+            />{' '}
+            {error && <div>error {error}</div>}
+          </Spacing>
+        );
+      }
+
     case PropTypes.ReactNode:
     case PropTypes.Function:
     case PropTypes.Array:
