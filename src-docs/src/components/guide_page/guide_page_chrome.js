@@ -292,7 +292,7 @@ export class GuidePageChrome extends Component {
           href,
           onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),
-          isSelected: item.name === this.props.currentRoute.name,
+          isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
           className: 'guideSideNav__item',
           icon: newBadge,
