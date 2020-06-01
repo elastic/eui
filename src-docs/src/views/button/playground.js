@@ -1,21 +1,5 @@
-import React from 'react';
-
-import {
-  useView,
-  Compiler,
-  Error,
-  ActionButtons,
-  Placeholder,
-  PropTypes,
-} from 'react-view';
-
-// import "brace/theme/github";
-import {
-  EuiButton,
-  EuiCodeEditor,
-  EuiSpacer,
-} from '../../../../src/components/';
-import Knobs from '../../services/playground/knobs';
+import { PropTypes } from 'react-view';
+import { EuiButton } from '../../../../src/components/';
 import propUtilityForPlayground from '../../services/playground/props';
 
 export default () => {
@@ -33,7 +17,7 @@ export default () => {
     hidden: true,
   };
   // console.log('modifiedProps', modifiedProps);
-  const params = useView({
+  return {
     componentName: 'EuiButton',
     props: propsToUse,
     scope: {
@@ -44,37 +28,5 @@ export default () => {
         named: ['EuiButton'],
       },
     },
-  });
-
-  return (
-    <React.Fragment>
-      <Compiler
-        {...params.compilerProps}
-        minHeight={62}
-        placeholder={Placeholder}
-      />
-      <Error msg={params.errorProps.msg} isPopup />
-      <Knobs {...params.knobProps} />
-      <EuiSpacer />
-      <EuiCodeEditor
-        mode="javascript"
-        theme="github"
-        width="100%"
-        value={params.editorProps.code}
-        onChange={params.editorProps.onChange}
-        setOptions={{
-          fontSize: '14px',
-          enableBasicAutocompletion: true,
-          enableSnippets: true,
-          enableLiveAutocompletion: true,
-        }}
-        onBlur={() => {
-          console.log('blur');
-        }} // eslint-disable-line no-console
-        aria-label="Code Editor"
-      />
-      <Error {...params.errorProps} />
-      <ActionButtons {...params.actions} />
-    </React.Fragment>
-  );
+  };
 };

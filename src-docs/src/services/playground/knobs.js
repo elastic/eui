@@ -127,7 +127,7 @@ const Knob = ({
               legend={{
                 children: <span> {`Select ${name}`}</span>,
               }}
-            />{' '}
+            />
             {error && <div>error {error}</div>}
           </Spacing>
         );
@@ -145,7 +145,7 @@ const Knob = ({
               value={valueKey}
               onChange={e => globalSet(e.target.value)}
               aria-label={`Select ${name}`}
-            />{' '}
+            />
             {error && <div>error {error}</div>}
           </Spacing>
         );

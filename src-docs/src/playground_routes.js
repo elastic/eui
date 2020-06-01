@@ -1,10 +1,11 @@
 import React from 'react';
-import ButtonExample from './views/button/playground';
+import buttonConfig from './views/button/playground';
+import playground from './playground';
 
 export const childRoutes = [
   {
     path: 'button',
-    component: ButtonExample,
+    component: () => playground(buttonConfig()),
     name: 'EuiButton',
   },
   {
