@@ -11,7 +11,6 @@ export default () => (
       onClick={() => {}}
     />
     <EuiExpression
-      textWrap="truncate"
       description="From"
       value="kibana_sample_data_ky_counties left"
     />
