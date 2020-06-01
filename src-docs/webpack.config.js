@@ -105,6 +105,10 @@ const webpackConfig = {
     port: getPortSync({ port: getPort.makeRange(8030, 8130), host: '0.0.0.0' }),
     disableHostCheck: true,
   },
+
+  node: {
+    fs: 'empty',
+  },
 };
 
 // Inspired by `get-port-sync`, but propogates options
