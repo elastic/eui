@@ -728,11 +728,13 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -2242,11 +2244,13 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 2,
+                  "page": 2,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -2352,11 +2356,13 @@ exports[`EuiBasicTable with pagination 1`] = `
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -2480,11 +2486,13 @@ exports[`EuiBasicTable with pagination and error 1`] = `
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -2561,11 +2569,13 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -2732,11 +2742,13 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -2882,11 +2894,13 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -3077,11 +3091,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -3365,11 +3381,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -3560,11 +3578,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -3755,11 +3775,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }
@@ -4061,11 +4083,13 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             delay={500}
           >
             <EuiI18n
-              default="This table contains {itemCount} rows out of {totalItemCount} rows."
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
               token="euiBasicTable.tableDescriptionWithPagination"
               values={
                 Object {
                   "itemCount": 3,
+                  "page": 1,
+                  "pageCount": 2,
                   "totalItemCount": 5,
                 }
               }

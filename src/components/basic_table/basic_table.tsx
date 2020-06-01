@@ -607,19 +607,55 @@ export class EuiBasicTable<T = any> extends Component<
     const { items, pagination, tableCaption } = this.props;
     let captionElement;
     if (tableCaption) {
-      captionElement = tableCaption;
-    } else {
-      if (pagination && pagination.totalItemCount > 0) {
+      if (pagination) {
         captionElement = (
           <EuiI18n
             token="euiBasicTable.tableDescriptionWithPagination"
-            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            default="{tableCaption}; Page {page} of {pageCount}."
             values={{
-              totalItemCount: pagination.totalItemCount,
-              itemCount: items.length,
+              tableCaption,
+              page: pagination.pageIndex + 1,
+              pageCount: Math.ceil(
+                pagination.totalItemCount / pagination.pageSize
+              ),
             }}
           />
         );
+      } else {
+        captionElement = tableCaption;
+      }
+    } else {
+      if (pagination) {
+        if (pagination.totalItemCount > 0) {
+          captionElement = (
+            <EuiI18n
+              token="euiBasicTable.tableDescriptionWithPagination"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
+              values={{
+                totalItemCount: pagination.totalItemCount,
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
+            />
+          );
+        } else {
+          captionElement = (
+            <EuiI18n
+              token="euiBasicTable.tableDescriptionWithoutPagination"
+              default="This table contains {itemCount} rows; Page {page} of {pageCount}."
+              values={{
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
+            />
+          );
+        }
       } else {
         captionElement = (
           <EuiI18n
