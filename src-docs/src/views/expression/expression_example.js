@@ -12,7 +12,7 @@ import Expression from './expression';
 const expressionSource = require('!!raw-loader!./expression');
 const expressionHtml = renderToHtml(Expression);
 const expressionSnippet = `<EuiExpression
-  description="description"
+  description={description}
   value={value}
   isActive={isActive}
   onClick={handleClick}
@@ -22,7 +22,7 @@ import Colors from './colors';
 const colorSource = require('!!raw-loader!./colors');
 const colorHtml = renderToHtml(Colors);
 const colorSnippet = `<EuiExpression 
-  description="description" 
+  description={description} 
   value={value}
   color="primary" 
 />`;
@@ -32,12 +32,12 @@ const stringingSource = require('!!raw-loader!./stringing');
 const stringingHtml = renderToHtml(Stringing);
 const stringingSnippet = `<div>
   <EuiExpression
-    description="description1"
+    description={description1}
     value={value1}
     onClick={handleClick1}
   />
   <EuiExpression
-    description="description2"
+    description={description2}
     value={value2}
     onClick={handleClick2}
   />
@@ -47,7 +47,7 @@ import Columns from './columns';
 const columnsSource = require('!!raw-loader!./columns');
 const columnsHtml = renderToHtml(Columns);
 const columnsSnippet = `<EuiExpression
-  description="description"
+  description={description}
   display="columns"
   value={value}
 />`;
@@ -56,7 +56,7 @@ import Invalid from './invalid';
 const invalidSource = require('!!raw-loader!./invalid');
 const invalidHtml = renderToHtml(Invalid);
 const invalidSnippet = `<EuiExpression
-  description="description"
+  description={description}
   isInvalid
   value={value}
 />`;
@@ -65,7 +65,7 @@ import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
 const truncateHtml = renderToHtml(Truncate);
 const truncateSnippet = `<EuiExpression
-  description="description"
+  description={description}
   value={value}
   textWrap="truncate"
 />`;
@@ -142,7 +142,7 @@ export const ExpressionExample = {
       demo: <Stringing />,
     },
     {
-      title: 'Columns layout',
+      title: 'Column display',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -156,19 +156,21 @@ export const ExpressionExample = {
       text: (
         <div>
           <p>
-            There might be cases where displaying a number of{' '}
+            There might be cases where displaying multiple{' '}
             <strong>EuiExpression</strong>s in a paragraph is not ideal. For
             example, when both the <EuiCode>description</EuiCode> and the{' '}
-            <EuiCode>value</EuiCode> are variable or when the values they can
-            take can be quite long. To use a columns layout instead, pass{' '}
-            <EuiCode>columns</EuiCode> to the <EuiCode>display</EuiCode> prop.
+            <EuiCode>value</EuiCode> are variable or when their text is quite
+            long. To use a column display instead, pass{' '}
+            <EuiCode language="ts">{'display="columns"'}</EuiCode>.
           </p>
           <p>
-            The <EuiCode>description</EuiCode> column is aligned to the right.
-            The default width for it is 20%. You can customize this width via
-            the <EuiCode>descriptionWidth</EuiCode> prop. When displaying a
-            group of <strong>EuiExpression</strong>s, make sure to set the same
-            width for all of them.
+            In column display, each expression is its own line and the{' '}
+            <EuiCode>description</EuiCode> column is aligned to the right. The
+            default width for the <EuiCode>description</EuiCode> is 20%, but you
+            can customize this with the
+            <EuiCode>descriptionWidth</EuiCode> prop. When displaying a group of{' '}
+            <strong>EuiExpression</strong>s, make sure to set the same width for
+            all descriptions.
           </p>
         </div>
       ),
@@ -190,7 +192,8 @@ export const ExpressionExample = {
       text: (
         <p>
           Set <EuiCode>isInvalid</EuiCode> to true to display{' '}
-          <strong>EuiExpression</strong>&apos;s error state.
+          <strong>EuiExpression</strong>&apos;s error state. This state will
+          override the color <EuiCode>property</EuiCode> with danger.
         </p>
       ),
       snippet: invalidSnippet,
@@ -212,6 +215,11 @@ export const ExpressionExample = {
         <p>
           To truncate <strong>EuiExpression</strong>&apos;s content, pass{' '}
           <EuiCode>truncate</EuiCode> to the <EuiCode>textWrap</EuiCode> prop.
+          Text truncation only works properly if the prop types of{' '}
+          <EuiCode>description</EuiCode> and <EuiCode>value</EuiCode> are
+          strings. If you&apos;re using nodes, use the{' '}
+          <EuiCode>.eui-textTruncate</EuiCode>
+          utility class on all their sub-children.
         </p>
       ),
       snippet: truncateSnippet,

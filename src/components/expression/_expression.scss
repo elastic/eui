@@ -22,14 +22,14 @@
     margin-left: $euiSizeS;
   }
 
-  &.euiExpression-columns {
+  &.euiExpression--columns {
     border-color: transparent;
     // Ensures there's no flash of the dashed style before turning solid for the active state
     border-bottom-style: solid;
     margin-bottom: $euiSizeXS;
   }
 
-  &.euiExpression-truncate {
+  &.euiExpression--truncate {
     max-width: 100%;
 
     .euiExpression__description,
@@ -37,12 +37,6 @@
       @include euiTextTruncate;
       display: inline-block;
       vertical-align: bottom;
-    }
-
-    .euiExpression__value * {
-      // Covers the case where the value is made up of nodes
-      @include euiTextTruncate;
-      display: inline-block;
     }
 
   }
@@ -70,7 +64,7 @@
   border-bottom-style: solid;
 }
 
-.euiExpression-columns {
+.euiExpression--columns {
   width: 100%;
   display: flex;
   padding: $euiSizeXS;

@@ -37,8 +37,8 @@ const colorToClassNameMap = {
 };
 
 const textWrapToClassNameMap = {
-  'break-word': 'euiExpression-breakWord',
-  truncate: 'euiExpression-truncate',
+  'break-word': null,
+  truncate: 'euiExpression--truncate',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
@@ -46,8 +46,8 @@ export const COLORS = keysOf(colorToClassNameMap);
 export type ExpressionColor = keyof typeof colorToClassNameMap;
 
 const displayToClassNameMap = {
-  inline: 'euiExpression-inline',
-  columns: 'euiExpression-columns',
+  inline: null,
+  columns: 'euiExpression--columns',
 };
 
 export type EuiExpressionProps = CommonProps & {
@@ -93,7 +93,7 @@ export type EuiExpressionProps = CommonProps & {
    */
   descriptionWidth?: number | string;
   /**
-   * Sets how to handle text truncation.
+   * Sets how to handle the wrapping of long text.
    */
   textWrap?: keyof typeof textWrapToClassNameMap;
 };

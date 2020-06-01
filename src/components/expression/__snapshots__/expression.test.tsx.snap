@@ -3,7 +3,7 @@
 exports[`EuiExpression props color accent is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression-inline euiExpression--accent euiExpression-breakWord"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--accent"
   data-test-subj="test subject string"
 >
   <span
@@ -23,7 +23,7 @@ exports[`EuiExpression props color accent is rendered 1`] = `
 exports[`EuiExpression props color danger is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression-inline euiExpression--danger euiExpression-breakWord"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--danger"
   data-test-subj="test subject string"
 >
   <span
@@ -43,7 +43,7 @@ exports[`EuiExpression props color danger is rendered 1`] = `
 exports[`EuiExpression props color primary is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression-inline euiExpression--primary euiExpression-breakWord"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--primary"
   data-test-subj="test subject string"
 >
   <span
@@ -63,7 +63,7 @@ exports[`EuiExpression props color primary is rendered 1`] = `
 exports[`EuiExpression props color secondary is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression-inline euiExpression--secondary euiExpression-breakWord"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--secondary"
   data-test-subj="test subject string"
 >
   <span
@@ -83,7 +83,7 @@ exports[`EuiExpression props color secondary is rendered 1`] = `
 exports[`EuiExpression props color subdued is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression-inline euiExpression--subdued euiExpression-breakWord"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--subdued"
   data-test-subj="test subject string"
 >
   <span
@@ -103,7 +103,7 @@ exports[`EuiExpression props color subdued is rendered 1`] = `
 exports[`EuiExpression props color warning is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression-inline euiExpression--warning euiExpression-breakWord"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--warning"
   data-test-subj="test subject string"
 >
   <span
@@ -122,7 +122,7 @@ exports[`EuiExpression props color warning is rendered 1`] = `
 
 exports[`EuiExpression props descriptionWidth changes the description&apos;s width when using columns 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression-columns euiExpression--danger euiExpression-breakWord"
+  class="euiExpression euiExpression-isUppercase euiExpression--columns euiExpression--danger"
 >
   <span
     class="euiExpression__description"
@@ -144,9 +144,9 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
 </span>
 `;
 
-exports[`EuiExpression props display changes the layout 1`] = `
+exports[`EuiExpression props display can be columns 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression-columns euiExpression--secondary euiExpression-breakWord"
+  class="euiExpression euiExpression-isUppercase euiExpression--columns euiExpression--secondary"
 >
   <span
     class="euiExpression__description"
@@ -165,7 +165,7 @@ exports[`EuiExpression props display changes the layout 1`] = `
 
 exports[`EuiExpression props isActive false renders inactive 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression-inline euiExpression--secondary euiExpression-breakWord"
+  class="euiExpression euiExpression-isUppercase euiExpression--secondary"
 >
   <span
     class="euiExpression__description"
@@ -183,7 +183,7 @@ exports[`EuiExpression props isActive false renders inactive 1`] = `
 
 exports[`EuiExpression props isActive true renders active 1`] = `
 <span
-  class="euiExpression euiExpression-isActive euiExpression-isUppercase euiExpression-inline euiExpression--secondary euiExpression-breakWord"
+  class="euiExpression euiExpression-isActive euiExpression-isUppercase euiExpression--secondary"
 >
   <span
     class="euiExpression__description"
@@ -199,9 +199,9 @@ exports[`EuiExpression props isActive true renders active 1`] = `
 </span>
 `;
 
-exports[`EuiExpression props isInvalid true renders error state 1`] = `
+exports[`EuiExpression props isInvalid renders error state 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression-inline euiExpression--danger euiExpression-breakWord"
+  class="euiExpression euiExpression-isUppercase euiExpression--danger"
 >
   <span
     class="euiExpression__description"
@@ -222,9 +222,9 @@ exports[`EuiExpression props isInvalid true renders error state 1`] = `
 </span>
 `;
 
-exports[`EuiExpression props textWrap truncate truncates text 1`] = `
+exports[`EuiExpression props textWrap can truncate text 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression-inline euiExpression--secondary euiExpression-truncate"
+  class="euiExpression euiExpression-isUppercase euiExpression--secondary euiExpression--truncate"
 >
   <span
     class="euiExpression__description"
@@ -242,7 +242,7 @@ exports[`EuiExpression props textWrap truncate truncates text 1`] = `
 
 exports[`EuiExpression props uppercase false renders inherited case 1`] = `
 <span
-  class="euiExpression euiExpression-inline euiExpression--secondary euiExpression-breakWord"
+  class="euiExpression euiExpression--secondary"
 >
   <span
     class="euiExpression__description"
@@ -260,7 +260,7 @@ exports[`EuiExpression props uppercase false renders inherited case 1`] = `
 
 exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression-inline euiExpression--secondary euiExpression-breakWord"
+  class="euiExpression euiExpression-isUppercase euiExpression--secondary"
 >
   <span
     class="euiExpression__description"
@@ -279,7 +279,7 @@ exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 exports[`EuiExpression renders 1`] = `
 <button
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression-inline euiExpression--secondary euiExpression-breakWord"
+  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--secondary"
   data-test-subj="test subject string"
 >
   <span

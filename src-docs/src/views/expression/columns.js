@@ -13,7 +13,12 @@ import {
 export default () => {
   const [example1, setExample1] = useState({
     isOpen: false,
-    value: '.kibana_task_manager',
+    value: (
+      <div>
+        <p>.kibana_task_manager,</p>
+        <p>kibana_sample_data_ecommerce</p>
+      </div>
+    ),
   });
 
   const [example2, setExample2] = useState({
@@ -39,7 +44,7 @@ export default () => {
     },
   ];
 
-  const [selectedOptions, setSelected] = useState([options[0]]);
+  const [selectedOptions, setSelected] = useState([options[0], options[1]]);
 
   const openExample1 = () => {
     setExample1({
@@ -48,7 +53,6 @@ export default () => {
     });
     setExample2({
       ...example2,
-      isOpen: false,
     });
   };
 
@@ -62,11 +66,10 @@ export default () => {
   const openExample2 = () => {
     setExample1({
       ...example1,
-      isOpen: false,
     });
     setExample2({
       ...example2,
-      isOpen: true,
+      isOpen: !example2.isOpen,
     });
   };
 
@@ -143,7 +146,7 @@ export default () => {
   return (
     <div style={{ maxWidth: 500 }}>
       <EuiPopover
-        id="popover1"
+        id="columnsPopover1"
         button={
           <EuiExpression
             description="indices"
@@ -166,7 +169,7 @@ export default () => {
       </EuiPopover>
 
       <EuiPopover
-        id="popover2"
+        id="columnsPopover2"
         panelPaddingSize="s"
         button={
           <EuiExpression

@@ -25,8 +25,7 @@ export default () => (
       value="right.kytccountynmbr"
       onClick={() => {}}
       color="accent"
-      isInvalid
     />
-    <EuiExpression description="sort by" value="count" isInvalid />
+    <EuiExpression description="sort by" value="count" />
   </div>
 );

@@ -84,7 +84,7 @@ describe('EuiExpression', () => {
     });
 
     describe('display', () => {
-      test('changes the layout', () => {
+      test('can be columns', () => {
         const component = (
           <EuiExpression
             description="the answer is"
@@ -98,7 +98,7 @@ describe('EuiExpression', () => {
     });
 
     describe('isInvalid', () => {
-      test('true renders error state', () => {
+      test('renders error state', () => {
         const component = (
           <EuiExpression description="the answer is" value="42" isInvalid />
         );
@@ -124,7 +124,7 @@ describe('EuiExpression', () => {
     });
 
     describe('textWrap', () => {
-      test('truncate truncates text', () => {
+      test('can truncate text', () => {
         const component = (
           <EuiExpression
             description="the answer is"
