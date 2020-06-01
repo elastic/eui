@@ -335,11 +335,9 @@ function useOnResize(
 ) {
   return useCallback(
     ({ width }: { width: number }) => {
-      setHasRoomForGridControls(
-        width > minSizeForControls || isFullScreen
-      );
+      setHasRoomForGridControls(width > minSizeForControls || isFullScreen);
     },
-    [setHasRoomForGridControls, isFullScreen]
+    [setHasRoomForGridControls, isFullScreen, minSizeForControls]
   );
 }
 
@@ -629,11 +627,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   } = props;
 
   // enables/disables grid controls based on available width
-  const onResize = useOnResize(nextHasRoomForGridControls => {
-    if (nextHasRoomForGridControls !== hasRoomForGridControls) {
-      setHasRoomForGridControls(nextHasRoomForGridControls);
-    }
-  }, isFullScreen, minSizeForControls);
+  const onResize = useOnResize(
+    nextHasRoomForGridControls => {
+      if (nextHasRoomForGridControls !== hasRoomForGridControls) {
+        setHasRoomForGridControls(nextHasRoomForGridControls);
+      }
+    },
+    isFullScreen,
+    minSizeForControls
+  );
 
   const [columnWidths, setColumnWidth] = useColumnWidths(
     columns,

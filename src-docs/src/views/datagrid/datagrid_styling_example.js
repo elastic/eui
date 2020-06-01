@@ -183,8 +183,8 @@ export const DataGridStylingExample = {
       text: (
         <p>
           When wrapped inside a container, like a dashboard panel, the grid will
-          start hiding controls and adopt a more strict flex layout.
-          Use the <EuiCode>minSizeForControls</EuiCode> prop to control the min width to
+          start hiding controls and adopt a more strict flex layout. Use the
+          <EuiCode>minSizeForControls</EuiCode> prop to control the min width to
           enables/disables grid controls based on available width.
         </p>
       ),
