@@ -23,7 +23,10 @@ const getProp = (prop, propName) => {
       newProp.required = prop.required;
       if (prop.defaultValue) {
         newProp.defaultValue = prop.defaultValue.value;
-        newProp.value = prop.defaultValue.value;
+        newProp.value = prop.defaultValue.value.substring(
+          1,
+          prop.defaultValue.value.length - 1
+        );
       } else {
         newProp.value = undefined;
       }
@@ -36,12 +39,19 @@ const getProp = (prop, propName) => {
       break;
 
     case 'number':
+      newProp.type = PropTypes.Number;
+      newProp.placeholder = propName;
+      if (prop.description) newProp.description = prop.description;
+      if (prop.defaultValue) newProp.value = prop.defaultValue.value;
+      else newProp.value = 0;
+      break;
+
     case 'string':
       newProp.type = PropTypes.String;
       newProp.placeholder = propName;
       if (prop.description) newProp.description = prop.description;
       if (prop.defaultValue) newProp.value = prop.defaultValue.value;
-      else newProp.value = prop.type.name === 'string' ? '' : 0;
+      else newProp.value = '';
       break;
 
     case 'func':

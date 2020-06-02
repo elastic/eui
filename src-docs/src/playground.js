@@ -12,6 +12,13 @@ import { EuiCodeEditor, EuiSpacer } from '../../src/components';
 import Knobs from './services/playground/knobs';
 
 export default config => {
+  if (config.props) {
+    if (config.props.className) config.props.className.hidden = true;
+    if (config.props['data-test-subj'])
+      config.props['data-test-subj'].hidden = true;
+    if (config.props['aria-label']) config.props['aria-label'].hidden = true;
+  }
+
   const params = useView(config);
   return (
     <React.Fragment>

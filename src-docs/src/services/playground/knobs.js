@@ -9,16 +9,17 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSelect,
+  EuiFieldNumber,
 } from '../../../../src/components/';
 
-const getTooltip = (description, type, name) => (
-  <span>
-    <p>
-      <b>{name}</b>: <i>{type}</i>
-    </p>
-    <p>{description}</p>
-  </span>
-);
+// const getTooltip = (description, type, name) => (
+//   <span>
+//     <p>
+//       <b>{name}</b>: <i>{type}</i>
+//     </p>
+//     <p>{description}</p>
+//   </span>
+// );
 
 const Spacing = ({ children }) => {
   return (
@@ -69,9 +70,24 @@ const Knob = ({
           {error && <div>error {error}</div>}
         </Spacing>
       );
+
+    case PropTypes.Number:
+      return (
+        <Spacing>
+          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
+          <EuiFieldNumber
+            placeholder={placeholder}
+            value={val ? val : undefined}
+            onChange={e => set(e.target.value)}
+            aria-label={description}
+          />
+
+          {error && <div>error {error}</div>}
+        </Spacing>
+      );
+
     case PropTypes.String:
     case PropTypes.Date:
-    case PropTypes.Number:
       return (
         <Spacing>
           {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
