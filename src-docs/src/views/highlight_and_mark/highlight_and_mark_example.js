@@ -11,7 +11,7 @@ import { Mark } from './mark';
 
 const highlightSource = require('!!raw-loader!./highlight');
 const highlightHtml = renderToHtml(Highlight);
-const highlightSnippet = `<EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
+const highlightSnippet = `<EuiHighlight search={searchValue}>
   The quick brown fox jumped over the lazy dog
 </EuiHighlight>
 `;
