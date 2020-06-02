@@ -10,7 +10,13 @@ import {
 } from '../../../../src/components';
 import { fake } from 'faker';
 
-const text = fake('{{lorem.paragraphs}}');
+const text = (
+  <>
+    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{fake('{{lorem.paragraphs}}')}</p>
+  </>
+);
 
 const firstPanelId = 'resizable-panel__1';
 const secondPanelId = 'resizable-panel__2';

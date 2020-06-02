@@ -2,7 +2,13 @@ import React from 'react';
 import { EuiText, EuiResizableContainer } from '../../../../src/components';
 import { fake } from 'faker';
 
-const text = fake('{{lorem.paragraphs}}');
+const text = (
+  <>
+    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{fake('{{lorem.paragraphs}}')}</p>
+  </>
+);
 
 export default () => (
   <EuiResizableContainer style={{ height: '400px' }}>
