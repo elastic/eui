@@ -198,7 +198,6 @@ export interface EuiDataGridSorting {
    */
   columns: Array<{
     id: string;
-    displayAsText?: string;
     direction: 'asc' | 'desc';
   }>;
 }
