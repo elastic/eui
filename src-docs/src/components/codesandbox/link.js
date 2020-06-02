@@ -72,13 +72,7 @@ ReactDOM.render(
   );`;
     // The Code Sanbbox demo needs to import CSS at the top of the document. CS has trouble
     // with our dynamic imports so we need to warn the user for now
-    const exampleStart = `/**
-// NOTICE ABOUT ICONS
-// Codesandbox has issues with the way EUI dynamically imports icons.
-// As a result these demos will not render icons in them.
-**/
-
-import ReactDOM from 'react-dom';
+    const exampleStart = `import ReactDOM from 'react-dom';
 // import '@elastic/eui/dist/eui_theme_dark.css';
 import '@elastic/eui/dist/eui_theme_light.css'`;
 

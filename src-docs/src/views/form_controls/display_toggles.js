@@ -13,8 +13,6 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { SIZES } from '../../../../src/components/spacer/spacer';
-
 export class DisplayToggles extends Component {
   constructor(props) {
     super(props);
@@ -224,7 +222,8 @@ DisplayToggles.propTypes = {
   canAppend: PropTypes.bool,
   canInvalid: PropTypes.bool,
   extras: PropTypes.arrayOf(PropTypes.node),
-  spacerSize: PropTypes.oneOf(SIZES),
+  // Manually building the spacer array to avoid having to import Spacer into codesandbox
+  spacerSize: PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl', 'xxl']),
 };
 
 DisplayToggles.defaultProps = {

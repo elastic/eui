@@ -8,8 +8,9 @@ import {
   EuiButton,
   EuiSpacer,
 } from '../../../../src/components';
+import { fake } from 'faker';
 
-const text = require('!!raw-loader!./lorem.txt');
+const text = fake('{{lorem.paragraphs}}');
 
 const firstPanelId = 'resizable-panel__1';
 const secondPanelId = 'resizable-panel__2';

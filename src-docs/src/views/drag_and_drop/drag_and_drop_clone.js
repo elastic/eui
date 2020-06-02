@@ -8,14 +8,20 @@ import {
   EuiDroppable,
   EuiIcon,
   EuiPanel,
-} from '../../../../src/components';
-
-import {
   euiDragDropCopy,
   euiDragDropReorder,
-} from '../../../../src/components/drag_and_drop';
+} from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
-import { makeId, makeList } from './helper';
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map(el => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
 
 export default () => {
   const [isItemRemovable, setIsItemRemovable] = useState(false);

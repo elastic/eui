@@ -162,10 +162,6 @@ export class GuideSection extends Component {
       if (name === 'javascript') {
         renderedCode = renderedCode
           .replace(
-            /(from )'(..\/)+src\/components(\/?';)/g,
-            "from '@elastic/eui';"
-          )
-          .replace(
             /(from )'(..\/)+src\/services(\/?';)/g,
             "from '@elastic/eui/lib/services';"
           )

@@ -7,8 +7,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiTreeView } from '../../../../src/components';
 import { EuiTreeViewNode } from './tree_view_props';
-import { TreeView } from './tree_view';
-import { TreeViewCompressed } from './compressed';
+import TreeView from './tree_view';
+import TreeViewCompressed from './compressed';
 
 const treeViewSource = require('!!raw-loader!./tree_view');
 const treeViewHtml = renderToHtml(TreeView);

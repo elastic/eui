@@ -12,7 +12,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import { ColorPicker } from './color_picker';
+import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
 const colorPickerHtml = renderToHtml(ColorPicker);
 const colorPickerSnippet = `<EuiColorPicker
@@ -23,7 +23,7 @@ const colorPickerSnippet = `<EuiColorPicker
 />
 `;
 
-import { ColorStops } from './color_stops';
+import ColorStops from './color_stops';
 const colorStopsSource = require('!!raw-loader!./color_stops');
 const colorStopsHtml = renderToHtml(ColorStops);
 const colorStopsSnippetStandard = `<EuiColorStops
@@ -53,7 +53,7 @@ const colorStopsSnippetFixed = `<EuiColorStops
 />
 `;
 
-import { ColorStopsRange } from './color_stops_range';
+import ColorStopsRange from './color_stops_range';
 const colorStopsRangeSource = require('!!raw-loader!./color_stops_range');
 const colorStopsRangeHtml = renderToHtml(ColorStopsRange);
 const colorPickerRangeSnippet = `<EuiColorStops
@@ -63,7 +63,7 @@ const colorPickerRangeSnippet = `<EuiColorStops
 />
 `;
 
-import { Alpha } from './alpha';
+import Alpha from './alpha';
 const alphaSource = require('!!raw-loader!./alpha');
 const alphaHtml = renderToHtml(Alpha);
 const alphaSnippet = `<EuiColorPicker
@@ -74,7 +74,7 @@ const alphaSnippet = `<EuiColorPicker
   isInvalid={hasErrors}
 />`;
 
-import { Formats } from './formats';
+import Formats from './formats';
 const formatsSource = require('!!raw-loader!./formats');
 const formatsHtml = renderToHtml(Formats);
 const formatsSnippet = `<EuiColorPicker
@@ -85,7 +85,7 @@ const formatsSnippet = `<EuiColorPicker
   isInvalid={hasErrors}
 />`;
 
-import { CustomSwatches } from './custom_swatches';
+import CustomSwatches from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
 const customSwatchesSnippet = `<EuiColorPicker
@@ -116,7 +116,7 @@ const stopCustomSwatchesSnippet = `<EuiColorStops
 />
 `;
 
-import { CustomButton } from './custom_button';
+import CustomButton from './custom_button';
 const customButtonSource = require('!!raw-loader!./custom_button');
 const customButtonHtml = renderToHtml(CustomButton);
 const customButtonSnippet = `<EuiColorPicker
@@ -148,7 +148,7 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
 />
 `;
 
-import { Modes } from './modes';
+import Modes from './modes';
 const modesSource = require('!!raw-loader!./modes');
 const modesHtml = renderToHtml(Modes);
 const modesSwatchSnippet = `// Swatches only
@@ -188,7 +188,7 @@ const stopModesPickerSnippet = `// Gradient map only
 />
 `;
 
-import { Inline } from './inline';
+import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
 const inlineHtml = renderToHtml(Inline);
 const inlineSnippet = `<EuiColorPicker
@@ -203,7 +203,7 @@ import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
 const containersHtml = renderToHtml(Containers);
 
-import { KitchenSink } from './kitchen_sink';
+import KitchenSink from './kitchen_sink';
 const kitchenSinkSource = require('!!raw-loader!./kitchen_sink');
 const kitchenSinkHtml = renderToHtml(KitchenSink);
 const kitchenSinkSnippet = `<EuiColorPicker
