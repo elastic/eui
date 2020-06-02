@@ -28,7 +28,27 @@ import { ColorStop } from '../color_stops';
 
 import { EuiSuperSelectProps } from '../../form/super_select';
 
-export interface EuiColorPalettePickerPaletteProps {
+interface EuiColorPalettePickerPaletteText {
+  /**
+   *  For storing unique value of item
+   */
+  value: string;
+  /**
+   *  The name of your palette
+   */
+  title: string;
+  /**
+   * `text`: a text only option (a title is required).
+   */
+  type: 'text';
+  /**
+   * Array of color `strings` or `ColorStops` in the form of
+   * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
+   */
+  palette?: string[] | ColorStop[];
+}
+
+interface EuiColorPalettePickerPaletteFixed {
   /**
    *  For storing unique value of item
    */
@@ -38,18 +58,39 @@ export interface EuiColorPalettePickerPaletteProps {
    */
   title?: string;
   /**
-   * Specify if the palette is
-   * `fixed`: individual color blocks; or
-   * `gradient`: each color fades into the next; or
-   * `text`: a text only option (a title is required).
+   * `fixed`: individual color blocks
    */
-  type: 'fixed' | 'gradient' | 'text';
+  type: 'fixed';
+  /**
+   * Array of color `strings`.
+   */
+  palette: string[];
+}
+
+interface EuiColorPalettePickerPaletteGradient {
+  /**
+   *  For storing unique value of item
+   */
+  value: string;
+  /**
+   *  The name of your palette
+   */
+  title?: string;
+  /**
+   * `gradient`: each color fades into the next
+   */
+  type: 'gradient';
   /**
    * Array of color `strings` or `ColorStops` in the form of
    * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
    */
-  palette?: string[] | ColorStop[];
+  palette: string[] | ColorStop[];
 }
+
+export type EuiColorPalettePickerPaletteProps =
+  | EuiColorPalettePickerPaletteText
+  | EuiColorPalettePickerPaletteFixed
+  | EuiColorPalettePickerPaletteGradient;
 
 export type EuiColorPalettePickerProps<T extends string> = CommonProps &
   Omit<
@@ -84,11 +125,15 @@ export const EuiColorPalettePicker: FunctionComponent<
   selectionDisplay = 'palette',
   ...rest
 }) => {
-  const getPalette = (palette: string[] | ColorStop[], type: string) => {
+  const getPalette = (
+    item:
+      | EuiColorPalettePickerPaletteFixed
+      | EuiColorPalettePickerPaletteGradient
+  ) => {
     const background =
-      type === 'fixed'
-        ? getFixedLinearGradient(palette as string[])
-        : getLinearGradient(palette);
+      item.type === 'fixed'
+        ? getFixedLinearGradient(item.palette)
+        : getLinearGradient(item.palette);
 
     return (
       <div
@@ -98,23 +143,15 @@ export const EuiColorPalettePicker: FunctionComponent<
     );
   };
 
-  const getInputDisplay = (
-    title: string,
-    palette: string[] | ColorStop[],
-    type: string
-  ) => {
-    if (selectionDisplay === 'title') {
-      return title;
-    } else {
-      return type === 'text' ? title : getPalette(palette, type);
-    }
-  };
-
   const paletteOptions = palettes.map(
     (item: EuiColorPalettePickerPaletteProps) => {
+      const paletteForDisplay = item.type !== 'text' ? getPalette(item) : null;
       return {
         value: String(item.value),
-        inputDisplay: getInputDisplay(item.title!, item.palette!, item.type),
+        inputDisplay:
+          selectionDisplay === 'title' || item.type === 'text'
+            ? item.title
+            : paletteForDisplay,
         dropdownDisplay: (
           <div className="euiColorPalettePicker__item">
             {item.title && item.type !== 'text' && (
@@ -122,9 +159,7 @@ export const EuiColorPalettePicker: FunctionComponent<
                 {item.title}
               </div>
             )}
-            {item.type !== 'text'
-              ? getPalette(item.palette!, item.type)
-              : item.title}
+            {item.type === 'text' ? item.title : paletteForDisplay}
           </div>
         ),
       };
