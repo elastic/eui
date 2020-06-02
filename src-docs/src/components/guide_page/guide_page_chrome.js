@@ -58,7 +58,8 @@ export class GuidePageChrome extends Component {
     this._isMounted = true;
 
     this.scrollNavSectionIntoViewSync();
-    scrollTo(0);
+    if (document.body) document.body.scrollTop = 0;
+    if (document.documentElement) document.documentElement.scrollTop = 0;
   };
 
   componentWillUnmount = () => {
