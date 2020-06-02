@@ -41,7 +41,7 @@ const getProp = (prop, propName) => {
       newProp.placeholder = propName;
       if (prop.description) newProp.description = prop.description;
       if (prop.defaultValue) newProp.value = prop.defaultValue.value;
-      else newProp.value = undefined;
+      else newProp.value = prop.type.name === 'string' ? '' : 0;
       break;
 
     case 'func':

@@ -4,6 +4,7 @@ import buttonConfig from './views/button/playground';
 import accordionConfig from './views/accordion/playground';
 import avatarConfig from './views/avatar/playground';
 import beaconConfig from './views/beacon/playground';
+import calloutConfig from './views/call_out/playground';
 
 export const childRoutes = [
   {
@@ -25,6 +26,11 @@ export const childRoutes = [
     path: 'button',
     component: () => playground(buttonConfig()),
     name: 'EuiButton',
+  },
+  {
+    path: 'callout',
+    component: () => playground(calloutConfig()),
+    name: 'EuiCallOut',
   },
   {
     path: '*',

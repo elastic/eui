@@ -1,4 +1,3 @@
-import { PropTypes } from 'react-view';
 import { EuiAvatar } from '../../../../src/components/';
 import propUtilityForPlayground from '../../services/playground/props';
 
@@ -8,7 +7,6 @@ export default () => {
     : EuiAvatar.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  console.log('propsToUse', propsToUse);
   propsToUse.name.value = 'Avatar';
   propsToUse.name.stateful = true;
 
