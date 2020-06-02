@@ -121,6 +121,9 @@ export class EuiFieldSearch extends Component<
         this.setState({
           value: (event.target as HTMLInputElement).value,
         });
+        if (this.props.onSearch) {
+          this.props.onSearch((event.target as HTMLInputElement).value);
+        }
       }
     };
     this.inputElement.addEventListener('change', onChange);
@@ -167,6 +170,7 @@ export class EuiFieldSearch extends Component<
       }
       // set focus on the search field
       this.inputElement.focus();
+      this.inputElement.dispatchEvent(new Event('change'));
     }
     this.setState({ value: '' });
 
