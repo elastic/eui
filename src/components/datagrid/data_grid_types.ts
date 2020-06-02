@@ -73,7 +73,7 @@ export interface EuiDataGridColumn {
    */
   defaultSortDirection?: 'asc' | 'desc';
   /**
-   * Display name for column
+   * Display name as text for column if set column name in column selector and column sorting use this value instead of id
    */
   displayAsText?: string;
 }
