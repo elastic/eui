@@ -177,7 +177,7 @@ export default () => {
 
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
-    columns.map(({ id, displayAsText }) => (displayAsText ? displayAsText : id))
+    columns.map(({ id }) => id)
   ); // initialize to the full set of columns
 
   const renderCellValue = useMemo(() => {

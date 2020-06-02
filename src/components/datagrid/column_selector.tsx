@@ -71,10 +71,7 @@ export const useColumnSelector = (
   );
 
   const [sortedColumns, setSortedColumns] = useDependentState(
-    () =>
-      availableColumns.map(({ id, displayAsText }) =>
-        displayAsText ? displayAsText : id
-      ),
+    () => availableColumns.map(({ id }) => id),
     [availableColumns]
   );
 
@@ -274,8 +271,8 @@ export const useColumnSelector = (
       visibleColumns
         .map<EuiDataGridColumn>(
           columnId =>
-            availableColumns.find(({ id, displayAsText }) =>
-              displayAsText ? displayAsText === columnId : id === columnId
+            availableColumns.find(
+              ({ id }) => id === columnId
             ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
         )
         .filter(column => column != null),
