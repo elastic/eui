@@ -19,6 +19,7 @@
 - Fixed `EuiBasicTable` shows no items if all items of last page is deleted  ([#3422](https://github.com/elastic/eui/pull/3422))
 - Fixed TypeScript module name in generated `eui_charts_theme.d.ts` file  ([#3492](https://github.com/elastic/eui/pull/3492))
 - Fixed code highlight color contrast in `EuiCodeBlock` ([#3309](https://github.com/elastic/eui/pull/3309))
+- Fixed regression in `EuiComboBox` not triggering its `inputRef` callback ([#3532](https://github.com/elastic/eui/pull/3532))
 
 **Deprecations**
 
