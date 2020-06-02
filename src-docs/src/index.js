@@ -13,6 +13,7 @@ import { AppContainer } from './views/app_container';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
 import { registerTheme } from './services';
+import { PlaygroundView } from './views/playground_view';
 
 import Routes from './routes';
 import { playgrounds } from './playgrounds';
@@ -32,14 +33,8 @@ registerTheme('amsterdam-dark', [themeAmsterdamDark]);
 const store = configureStore();
 
 const childRoutes = [].concat(Routes.getAppRoutes());
-childRoutes.push({
-  path: '*',
-  component: NotFoundView,
-  name: 'Page Not Found',
-});
 
 const routes = [
-  ...playgrounds,
   {
     path: '/',
     component: HomeView,
@@ -64,8 +59,24 @@ ReactDOM.render(
               );
             return null;
           })}
+          {playgrounds.map(({ name, path, component }, i) => {
+            if (component)
+              return (
+                <Route key={`play__${i}`} exact path={`/playgrounds/${path}`}>
+                  <PlaygroundView currentRoute={{ name, path }}>
+                    {createElement(component, {})}
+                  </PlaygroundView>
+                </Route>
+              );
+            return null;
+          })}
+          <Route key="Page Not Found" exact path={'*'}>
+            <AppContainer currentRoute={{ name: 'Page Not Found', path: '*' }}>
+              {createElement(NotFoundView, {})}
+            </AppContainer>
+          </Route>
         </Switch>
-      </Router>{' '}
+      </Router>
     </ThemeProvider>
   </Provider>,
   document.getElementById('guide')
