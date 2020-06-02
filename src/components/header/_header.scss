@@ -3,6 +3,7 @@
 .euiHeader {
   @include euiBottomShadowSmall;
 
+  height: $euiHeaderHeight + 1; // Add one for the border
   position: relative;
   z-index: $euiZHeader; // ensure the shadow shows above content
   display: flex;
@@ -26,5 +27,12 @@
 .euiBody--hasFlyout {
   .euiHeader--fixed {
     z-index: $euiZModal + 1;
+  }
+}
+
+.euiHeader--dark {
+  // Only force reverse theme if the theme is light
+  @if (lightness($euiTextColor) < 50) {
+    @include euiHeaderDarkTheme;
   }
 }

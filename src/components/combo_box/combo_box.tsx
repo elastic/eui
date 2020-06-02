@@ -257,6 +257,7 @@ export class EuiComboBox<T> extends Component<
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
   searchInputRefCallback: RefCallback<HTMLInputElement> = ref => {
     this.searchInputRefInstance = ref;
+    if (this.props.inputRef) this.props.inputRef(ref);
   };
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
