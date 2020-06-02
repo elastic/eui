@@ -70,6 +70,14 @@ export const useColumnSelector = (
     'allowReorder'
   );
 
+  const displayValues: { [key: string]: string } = availableColumns.reduce(
+    (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
+      ...acc,
+      [column.id]: column.displayAsText || column.id,
+    }),
+    {}
+  );
+
   const [sortedColumns, setSortedColumns] = useDependentState(
     () => availableColumns.map(({ id }) => id),
     [availableColumns]
@@ -198,7 +206,7 @@ export const useColumnSelector = (
                             {allowColumnHiding ? (
                               <EuiSwitch
                                 name={id}
-                                label={id}
+                                label={displayValues[id] || id}
                                 checked={visibleColumnIds.has(id)}
                                 compressed
                                 className="euiSwitch--mini"

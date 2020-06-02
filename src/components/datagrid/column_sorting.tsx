@@ -75,6 +75,13 @@ export const useColumnSorting = (
 
   if (sorting == null) return [null];
 
+  const displayValues: { [key: string]: string } = columns.reduce(
+    (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
+      ...acc,
+      [column.id]: column.displayAsText || column.id,
+    }),
+    {}
+  );
   const activeColumnIds = new Set(sorting.columns.map(({ id }) => id));
   const { inactiveColumns } = columns.reduce<{
     activeColumns: EuiDataGridColumn[];
@@ -283,7 +290,9 @@ export const useColumnSorting = (
                                     />
                                   </EuiFlexItem>
                                   <EuiFlexItem grow={false}>
-                                    <EuiText size="xs">{id}</EuiText>
+                                    <EuiText size="xs">
+                                      {displayValues[id]}
+                                    </EuiText>
                                   </EuiFlexItem>
                                 </EuiFlexGroup>
                               </button>
