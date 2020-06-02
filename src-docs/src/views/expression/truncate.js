@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { EuiExpression, EuiSpacer, EuiTitle } from '../../../../src/components';
 
 const value = 'and a very long string as value';
 const description = 'some very very long description';
 const nodes = (
-  <div>
+  <Fragment>
     <p className="eui-textTruncate">.kibana_task_manager</p>
     <p className="eui-textTruncate">kibana_sample_data_ecommerce</p>
-  </div>
+  </Fragment>
 );
 
 export default () => (

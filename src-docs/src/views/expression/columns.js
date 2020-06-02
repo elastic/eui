@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiPopoverTitle,
@@ -14,10 +14,10 @@ export default () => {
   const [example1, setExample1] = useState({
     isOpen: false,
     value: (
-      <div>
+      <Fragment>
         <p>.kibana_task_manager,</p>
         <p>kibana_sample_data_ecommerce</p>
-      </div>
+      </Fragment>
     ),
   });
 
@@ -51,9 +51,6 @@ export default () => {
       ...example1,
       isOpen: !example1.isOpen,
     });
-    setExample2({
-      ...example2,
-    });
   };
 
   const closeExample1 = () => {
@@ -64,9 +61,6 @@ export default () => {
   };
 
   const openExample2 = () => {
-    setExample1({
-      ...example1,
-    });
     setExample2({
       ...example2,
       isOpen: !example2.isOpen,

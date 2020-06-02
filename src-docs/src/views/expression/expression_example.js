@@ -214,12 +214,12 @@ export const ExpressionExample = {
       text: (
         <p>
           To truncate <strong>EuiExpression</strong>&apos;s content, pass{' '}
-          <EuiCode>truncate</EuiCode> to the <EuiCode>textWrap</EuiCode> prop.
-          Text truncation only works properly if the prop types of{' '}
+          <EuiCode language="ts">{'textWrap="truncate"'}</EuiCode>. Text
+          truncation only works properly if the prop types of{' '}
           <EuiCode>description</EuiCode> and <EuiCode>value</EuiCode> are
           strings. If you&apos;re using nodes, use the{' '}
-          <EuiCode>.eui-textTruncate</EuiCode>
-          utility class on all their sub-children.
+          <EuiCode>.eui-textTruncate</EuiCode> utility class on all their
+          sub-children.
         </p>
       ),
       snippet: truncateSnippet,
