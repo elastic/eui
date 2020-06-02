@@ -1,6 +1,6 @@
-@mixin euiHeaderDarkTheme {
-  $headerBackgroundColor: shade($euiColorDarkestShade, 28%);
-  background-color: $headerBackgroundColor;
+@mixin euiHeaderDarkTheme($backgroundColor) {
+  background-color: $backgroundColor;
+  border-bottom-color: lightOrDarkTheme($backgroundColor, $euiBorderColor);
 
   .euiHeaderLogo__text,
   .euiHeaderLink,
@@ -9,12 +9,12 @@
   }
 
   .euiHeaderLink-isActive {
-    color: makeHighContrastColor($euiColorPrimary, $headerBackgroundColor);
+    color: makeHighContrastColor($euiColorPrimary, $backgroundColor);
   }
 
   .euiHeaderSectionItem {
     &:after {
-      background: $euiColorDarkShade;
+      background: lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade);
     }
   }
 
@@ -22,7 +22,7 @@
   .euiHeaderLink,
   .euiHeaderSectionItem__button {
     &:hover {
-      background: transparentize($euiColorDarkShade, .5);
+      background: transparentize(lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade), .5);
     }
 
     &:focus {
@@ -32,6 +32,6 @@
 
   .euiHeaderNotification,
   .euiHeaderSectionItemButton__notification {
-    box-shadow: 0 0 0 1px $headerBackgroundColor;
+    box-shadow: 0 0 0 1px $backgroundColor;
   }
 }
