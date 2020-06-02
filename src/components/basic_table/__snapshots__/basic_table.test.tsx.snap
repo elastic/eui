@@ -33,7 +33,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -157,7 +157,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -283,7 +283,7 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 0,
@@ -351,7 +351,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 0,
@@ -427,7 +427,7 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 0,
@@ -495,7 +495,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -1031,7 +1031,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -1160,7 +1160,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -1290,7 +1290,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -1936,7 +1936,7 @@ exports[`EuiBasicTable with multiple record actions with custom availability 1`]
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 4,
@@ -4260,7 +4260,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -4389,7 +4389,7 @@ exports[`EuiBasicTable with sorting 1`] = `
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,
@@ -4521,7 +4521,7 @@ exports[`EuiBasicTable with sorting enabled and enable all columns for sorting 1
           >
             <EuiI18n
               default="This table contains {itemCount} rows."
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableAutoCaptionWithoutPagination"
               values={
                 Object {
                   "itemCount": 3,

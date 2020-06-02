@@ -643,7 +643,7 @@ export class EuiBasicTable<T = any> extends Component<
         } else {
           captionElement = (
             <EuiI18n
-              token="euiBasicTable.tableDescriptionWithoutPagination"
+              token="euiBasicTable.tableSimpleAutoCaptionWithPagination"
               default="This table contains {itemCount} rows; Page {page} of {pageCount}."
               values={{
                 itemCount: items.length,
@@ -658,7 +658,7 @@ export class EuiBasicTable<T = any> extends Component<
       } else {
         captionElement = (
           <EuiI18n
-            token="euiBasicTable.tableDescriptionWithoutPagination"
+            token="euiBasicTable.tableAutoCaptionWithoutPagination"
             default="This table contains {itemCount} rows."
             values={{
               itemCount: items.length,
