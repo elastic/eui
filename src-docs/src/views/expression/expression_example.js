@@ -193,7 +193,7 @@ export const ExpressionExample = {
         <p>
           Set <EuiCode>isInvalid</EuiCode> to true to display{' '}
           <strong>EuiExpression</strong>&apos;s error state. This state will
-          override the color <EuiCode>property</EuiCode> with danger.
+          override the <EuiCode>color</EuiCode> prop with danger.
         </p>
       ),
       snippet: invalidSnippet,
