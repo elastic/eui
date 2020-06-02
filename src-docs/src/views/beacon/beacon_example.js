@@ -12,6 +12,8 @@ const beaconHtml = renderToHtml(Beacon);
 
 export const BeaconExample = {
   title: 'Beacon',
+  componentLinkTo: '/playgrounds/beacon',
+  componentLinkToText: 'Playground',
   sections: [
     {
       source: [

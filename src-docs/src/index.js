@@ -16,7 +16,8 @@ import { registerTheme } from './services';
 import { PlaygroundView } from './views/playground_view';
 
 import Routes from './routes';
-import { playgrounds } from './playgrounds';
+import { childRoutes as playgrounds } from './playground_routes';
+
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
 import themeAmsterdamLight from './theme_amsterdam_light.scss';

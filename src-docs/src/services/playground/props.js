@@ -35,6 +35,7 @@ const getProp = (prop, propName) => {
       }
       break;
 
+    case 'number':
     case 'string':
       newProp.type = PropTypes.String;
       newProp.placeholder = propName;
