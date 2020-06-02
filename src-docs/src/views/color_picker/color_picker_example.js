@@ -7,10 +7,12 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiColorPicker,
+  EuiColorPalettePicker,
   EuiColorStops,
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
+import { EuiColorPalettePickerPalette } from './props';
 
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -20,6 +22,23 @@ const colorPickerSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
+/>
+`;
+
+import { ColorPalettePicker } from './color_palette_picker';
+const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
+const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
+const colorPalettePickerSnippet = `<EuiColorPalettePicker
+  palettes={[
+    {
+      value: 'palette1',
+      title: 'Palette 1',
+      palette: euiPaletteColorBlind(),
+      type: 'fixed',
+    },
+  ]}
+  onChange={onPaletteChange}
+  valueOfSelected={palette}
 />
 `;
 
@@ -248,8 +267,10 @@ export const ColorPickerExample = {
     <React.Fragment>
       <EuiText>
         <p>
-          Two components exist to aid color selection:{' '}
-          <strong>EuiColorPicker</strong> and <strong>EuiColorStops</strong>.
+          Three components exist to aid color selection:{' '}
+          <strong>EuiColorPicker</strong>,{' '}
+          <strong>EuiColorPalettePicker</strong> and{' '}
+          <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
       <EuiSpacer />
@@ -290,6 +311,39 @@ export const ColorPickerExample = {
       props: { EuiColorPicker },
       snippet: colorPickerSnippet,
       demo: <ColorPicker />,
+    },
+    {
+      title: 'Color palette picker',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Use <strong>EuiColorPalettePicker</strong> to select palettes to
+              apply colors to data visualization like maps and charts.
+            </p>
+            <p>
+              Use the <EuiCode>palettes</EuiCode> prop to pass your palettes as
+              an array of objects. For each object, you should pass a palette
+              (array of hex values) and specify the <EuiCode>type</EuiCode>. Use{' '}
+              <EuiCode>fixed</EuiCode> palettes for categorical data and{' '}
+              <EuiCode>gradient</EuiCode> palettes for continuous data.
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorPalettePickerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorPalettePickerHtml,
+        },
+      ],
+      props: { EuiColorPalettePicker, EuiColorPalettePickerPalette },
+      snippet: colorPalettePickerSnippet,
+      demo: <ColorPalettePicker />,
     },
     {
       title: 'Color stops',
