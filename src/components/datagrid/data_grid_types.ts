@@ -53,7 +53,7 @@ export interface EuiDataGridColumn {
    */
   schema?: string;
   /**
-   * Defaults to true. Defines shether or not the column's cells can be expanded with a popup onClick / keydown.
+   * Defaults to true. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
    */
   isExpandable?: boolean;
   /**
@@ -73,7 +73,7 @@ export interface EuiDataGridColumn {
    */
   defaultSortDirection?: 'asc' | 'desc';
   /**
-   * Display name as text for column if set column name in column selector and column sorting use this value instead of id
+   * Display name as text for column. This can be used to display column name in column selector and column sorting where `display` won't be used. If not used `id` will be shown as column name in column selector and column sorting.
    */
   displayAsText?: string;
 }
