@@ -10,6 +10,7 @@
 - Added `left-start` popover placement to `EuiDatePicker` ([#3511](https://github.com/elastic/eui/pull/3511))
 - Added `theme` prop to `EuiHeader` ([#3524](https://github.com/elastic/eui/pull/3524))
 - Added `.euiHeaderLink-isActive` class to `EuiHeaderLink` when `isActive` ([#3524](https://github.com/elastic/eui/pull/3524))
+- Added `display`, `descriptionWidth`, `textWrap` and `isInvalid` props to `EuiExpression` ([#3467](https://github.com/elastic/eui/pull/3467))
 
 **Bug Fixes**
 
