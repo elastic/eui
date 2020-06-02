@@ -17,6 +17,7 @@ export const GuidePage = ({
   title,
   intro,
   componentLinkTo,
+  componentLinkToText,
   isBeta,
 }) => {
   const betaBadge = isBeta ? (
@@ -42,7 +43,7 @@ export const GuidePage = ({
           {componentLinkTo && (
             <EuiFlexItem grow={false}>
               <EuiButton href={getRouterLinkProps(componentLinkTo).href}>
-                View component code
+                {componentLinkToText || 'View component code'}
               </EuiButton>
             </EuiFlexItem>
           )}

@@ -112,6 +112,8 @@ const accordionForceStateSnippet = `<EuiAccordion
 
 export const AccordionExample = {
   title: 'Accordion',
+  componentLinkTo: '/playgrounds/accordion',
+  componentLinkToText: 'Playground',
   intro: (
     <Fragment>
       <EuiCallOut title="Take care including flex group content within accordions">

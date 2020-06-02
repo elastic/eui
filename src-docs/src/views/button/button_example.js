@@ -109,6 +109,8 @@ const buttonGroupSnippet = [
 
 export const ButtonExample = {
   title: 'Button',
+  componentLinkTo: '/playgrounds/button',
+  componentLinkToText: 'Playground',
   intro: (
     <EuiText>
       <p>

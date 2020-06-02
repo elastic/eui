@@ -247,7 +247,15 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta, isNew } = example;
+  const {
+    title,
+    intro,
+    sections,
+    beta,
+    isNew,
+    componentLinkTo,
+    componentLinkToText,
+  } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -261,7 +269,12 @@ const createExample = (example, customTitle) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
+      <GuidePage
+        title={title}
+        intro={intro}
+        isBeta={beta}
+        componentLinkToText={componentLinkToText}
+        componentLinkTo={componentLinkTo}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>

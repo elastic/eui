@@ -39,7 +39,6 @@ export class AppView extends Component {
 
   renderContent() {
     const { children, currentRoute, toggleLocale, locale, routes } = this.props;
-    console.log('this.props', this.props);
     const { navigation } = routes;
 
     const mappingFuncs = {
