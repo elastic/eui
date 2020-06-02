@@ -672,16 +672,26 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
   const mergedSchema = useMergedSchema(detectedSchema, columns);
 
+  const displayValues: { [key: string]: string } = columns.reduce(
+    (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
+      ...acc,
+      [column.id]: column.displayAsText || column.id,
+    }),
+    {}
+  );
+
   const [columnSelector, orderedVisibleColumns] = useColumnSelector(
     columns,
     columnVisibility,
-    checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector')
+    checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector'),
+    displayValues
   );
   const columnSorting = useColumnSorting(
     orderedVisibleColumns,
     sorting,
     mergedSchema,
-    allSchemaDetectors
+    allSchemaDetectors,
+    displayValues
   );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
