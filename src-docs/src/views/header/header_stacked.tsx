@@ -8,6 +8,8 @@ import {
 import { EuiSwitch } from '../../../../src/components/form';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiAvatar } from '../../../../src/components/avatar';
+// @ts-ignore
+import HeaderUpdates from './header_updates';
 
 export default () => {
   const [isFixed, setIsFixed] = useState(false);
@@ -65,6 +67,9 @@ export default () => {
             ],
             breadcrumbs: breadcrumbs,
             borders: 'none',
+          },
+          {
+            items: isFixed ? [<HeaderUpdates />] : undefined,
           },
         ]}
       />
