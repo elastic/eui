@@ -79,6 +79,11 @@ export type EuiHeaderProps = CommonProps &
      * adds the correct amount of top padding to the window when in `fixed` mode
      */
     position?: 'static' | 'fixed';
+    /**
+     * The `default` will inherit its coloring from the light or dark theme.
+     * Or, force the header into pseudo `dark` theme for all themes.
+     */
+    theme?: 'default' | 'dark';
   };
 
 export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
@@ -86,9 +91,15 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   className,
   sections,
   position = 'static',
+  theme = 'default',
   ...rest
 }) => {
-  const classes = classNames('euiHeader', `euiHeader--${position}`, className);
+  const classes = classNames(
+    'euiHeader',
+    `euiHeader--${theme}`,
+    `euiHeader--${position}`,
+    className
+  );
 
   useEffect(() => {
     if (position === 'fixed') {

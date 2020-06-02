@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
+import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 
 import {
   EuiHeader,
@@ -39,6 +40,10 @@ const headerAlertHtml = renderToHtml(HeaderAlert);
 import HeaderLinks from './header_links';
 const headerLinksSource = require('!!raw-loader!./header_links');
 const headerLinksHtml = renderToHtml(HeaderLinks);
+
+import HeaderDark from './header_dark';
+const headerDarkSource = require('!!raw-loader!./header_dark');
+const headerDarkHtml = renderToHtml(HeaderDark);
 
 const headerSnippet = `<EuiHeader>
   <EuiHeaderSection grow={false}>
@@ -215,6 +220,33 @@ export const HeaderExample = {
       },
       snippet: headerLinksSnippet,
       demo: <HeaderLinks />,
+    },
+    {
+      title: 'Dark theme',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerDarkSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerDarkHtml,
+        },
+      ],
+      text: (
+        <p>
+          To make site-wide navigation more prominent,{' '}
+          <strong>EuiHeader</strong> supports reversing the colors to dark theme
+          with <EuiCode language="js">{'theme="dark"'}</EuiCode>.{' '}
+          <strong>However</strong>, it only supports a limited set of children
+          that will also shift their theme. These components include{' '}
+          <strong>EuiHeaderLogo, EuiHeaderLink(s),</strong> and{' '}
+          <strong>EuiHeaderSectionItemButton</strong>. Any other content may not
+          render correctly without custom configurations.
+        </p>
+      ),
+      snippet: '<EuiHeader theme="dark" />',
+      demo: <HeaderDark theme={lightColors} />,
     },
     {
       title: 'Alerts in the header',
