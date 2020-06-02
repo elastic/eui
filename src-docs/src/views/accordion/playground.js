@@ -8,9 +8,6 @@ export default () => {
     : EuiAccordion.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  console.log('docgenInfo', docgenInfo.props);
-  console.log('propsToUse', propsToUse);
-
   // propsToUse.onToggle.value = 'e => setOpen(e)';
   // propsToUse.initialIsOpen.stateful = true;
   // eslint-disable-next-line quotes
