@@ -12,13 +12,13 @@ import { Mark } from './mark';
 const highlightSource = require('!!raw-loader!./highlight');
 const highlightHtml = renderToHtml(Highlight);
 const highlightSnippet = `<EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
-The quick brown fox jumped over the lazy dog
+  The quick brown fox jumped over the lazy dog
 </EuiHighlight>
 `;
 
 const markSource = require('!!raw-loader!./mark');
 const markHtml = renderToHtml(Mark);
-const markSnippet = '<EuiMark>text to mark</EuiMark>';
+const markSnippet = '<EuiMark>mark</EuiMark>';
 
 export const HighlightAndMarkExample = {
   title: 'Highlight and mark',
