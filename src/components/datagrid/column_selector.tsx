@@ -59,7 +59,8 @@ const getShowColumnSelectorValue = (
 export const useColumnSelector = (
   availableColumns: EuiDataGridColumn[],
   columnVisibility: EuiDataGridColumnVisibility,
-  showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector']
+  showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
+  displayValues: { [key: string]: string }
 ): [ReactElement, EuiDataGridColumn[]] => {
   const allowColumnHiding = getShowColumnSelectorValue(
     showColumnSelector,
@@ -68,14 +69,6 @@ export const useColumnSelector = (
   const allowColumnReorder = getShowColumnSelectorValue(
     showColumnSelector,
     'allowReorder'
-  );
-
-  const displayValues: { [key: string]: string } = availableColumns.reduce(
-    (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
-      ...acc,
-      [column.id]: column.displayAsText || column.id,
-    }),
-    {}
   );
 
   const [sortedColumns, setSortedColumns] = useDependentState(

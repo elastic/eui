@@ -49,7 +49,8 @@ export const useColumnSorting = (
   columns: EuiDataGridColumn[],
   sorting: EuiDataGridSorting | undefined,
   schema: EuiDataGridSchema,
-  schemaDetectors: EuiDataGridSchemaDetector[]
+  schemaDetectors: EuiDataGridSchemaDetector[],
+  displayValues: { [key: string]: string }
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
@@ -75,13 +76,6 @@ export const useColumnSorting = (
 
   if (sorting == null) return [null];
 
-  const displayValues: { [key: string]: string } = columns.reduce(
-    (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
-      ...acc,
-      [column.id]: column.displayAsText || column.id,
-    }),
-    {}
-  );
   const activeColumnIds = new Set(sorting.columns.map(({ id }) => id));
   const { inactiveColumns } = columns.reduce<{
     activeColumns: EuiDataGridColumn[];
