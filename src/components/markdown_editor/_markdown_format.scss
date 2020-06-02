@@ -9,41 +9,9 @@
 // 7. Tables
 // 8. Code
 
-// Functions
-// Note: The inlined base font size is set in common/functions/font.js. It should match $euiMdFontSize.
-$euiDefaultFontSize: 14px;
-
-@function canvasToEm($size) {
-  @return #{$size / $euiDefaultFontSize}em;
-}
-
 .euiMarkdownFormat {
   @include euiFont;
   @include euiText;
-
-  // Font size variables
-  $euiMarkdownFontSizeS: canvasToEm(12px);
-  $euiMarkdownFontSize: canvasToEm(14px);
-  $euiMarkdownFontSizeL: canvasToEm(20px);
-  $euiMarkdownFontSizeXL: canvasToEm(28px);
-  $euiMarkdownFontSizeXXL: canvasToEm(36px);
-
-  // Spacing variables
-  $euiMarkdownSizeL: canvasToEm(24px);
-  $euiMarkdownSize: canvasToEm(16px);
-  $euiMarkdownSizeS: canvasToEm(12px);
-  $euiMarkdownSizeXS: canvasToEm(8px);
-  $euiMarkdownSizeXXS: canvasToEm(4px);
-
-  // Grayscale variables
-  $euiMarkdownAlphaLightestShade: rgba($euiColorFullShade, .05);
-  $euiMarkdownAlphaLightShade: rgba($euiColorFullShade, .15);
-  $euiMarkdownAlphaDarkShade: rgba($euiColorFullShade, .65);
-
-  // Reverse grayscale for opposite of theme
-  $euiMarkdownAlphaLightestShadeReversed: rgba($euiColorEmptyShade, .05);
-  $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
-  $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
 
   > *:first-child {
     // sass-lint:disable-block no-important
@@ -63,7 +31,7 @@ $euiDefaultFontSize: 14px;
   table,
   pre {
     margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
+    margin-bottom: $euiSize;
     line-height: 1.5em;
   }
 
@@ -79,41 +47,41 @@ $euiDefaultFontSize: 14px;
   h5,
   h6 {
     margin-top: 0;
-    margin-bottom: $euiMarkdownSizeXS;
+    margin-bottom: $euiSize;
   }
 
   h1 {
-    font-size: $euiMarkdownFontSizeXXL;
+    font-size: $euiFontSizeXXL;
     line-height: 1.333333em;
     font-weight: 300;
   }
 
   h2 {
-    font-size: $euiMarkdownFontSizeXL;
+    font-size: $euiFontSizeXL;
     line-height: 1.428571em;
     font-weight: 300;
   }
 
   h3 {
-    font-size: $euiMarkdownFontSizeL;
+    font-size: $euiFontSizeL;
     line-height: 1.6em;
     font-weight: 600;
   }
 
   h4 {
-    font-size: $euiMarkdownSize;
+    font-size: $euiSize;
     line-height: 1.5em;
     font-weight: 600;
   }
 
   h5 {
-    font-size: $euiMarkdownFontSize;
+    font-size: $euiFontSizeS;
     line-height: 1.142857em;
     font-weight: 700;
   }
 
   h6 {
-    font-size: $euiMarkdownFontSizeS;
+    font-size: $euiFontSizeXS;
     line-height: 1.333333em;
     font-weight: 700;
     text-transform: uppercase;
@@ -122,7 +90,7 @@ $euiDefaultFontSize: 14px;
   h1,
   h2 {
     padding-bottom: .3em;
-    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
+    border-bottom: $euiBorderThin;
   }
 
   // 3. Images
@@ -135,11 +103,7 @@ $euiDefaultFontSize: 14px;
   // 4. Blockquotes
   blockquote {
     padding: 0 1em;
-    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
-  }
-
-  &--reversed blockquote {
-    border-left-color: $euiMarkdownAlphaLightShadeReversed;
+    border-left: $euiSizeXS solid $euiBorderColor;
   }
 
   // 5. Horizontal rules
@@ -148,8 +112,8 @@ $euiDefaultFontSize: 14px;
     background: transparent;
     height: 2px;
     padding: 0;
-    margin: $euiMarkdownSizeL 0;
-    background-color: $euiMarkdownAlphaLightShade;
+    margin: $euiSizeL 0;
+    background-color: $euiBorderColor;
     border: none;
   }
 
@@ -167,9 +131,9 @@ $euiDefaultFontSize: 14px;
   // 6. Lists
   ul,
   ol {
-    padding-left: $euiMarkdownSizeL;
+    padding-left: $euiSizeL;
     margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
+    margin-bottom: $euiSize;
   }
 
   ul {
@@ -209,11 +173,11 @@ $euiDefaultFontSize: 14px;
   }
 
   li > p {
-    margin-bottom: $euiMarkdownSizeXS;
+    margin-bottom: $euiSizeS;
   }
 
   li + li {
-    margin-top: $euiMarkdownSizeXXS;
+    margin-top: $euiSizeXS;
   }
 
   .task-list-item {
@@ -221,7 +185,7 @@ $euiDefaultFontSize: 14px;
   }
 
   .task-list-item + .task-list-item {
-    margin-top: $euiMarkdownSizeXXS;
+    margin-top: $euiSizeXS;
   }
 
   .task-list-item input {
@@ -234,7 +198,7 @@ $euiDefaultFontSize: 14px;
     display: block;
     width: 100%;
     overflow: auto;
-    border-left: 1px solid $euiMarkdownAlphaLightShade;
+    border-left: 1px solid $euiBorderThin;
     border-spacing: 0;
     border-collapse: collapse;
   }
@@ -246,49 +210,39 @@ $euiDefaultFontSize: 14px;
 
   table th,
   table td {
-    padding: $euiMarkdownSizeXXS $euiMarkdownSizeS;
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
-    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
+    padding: $euiSizeXS $euiSizeS;
+    border-top: $euiBorderThin;
+    border-bottom: $euiBorderThin;
 
     &:last-child {
-      border-right: 1px solid $euiMarkdownAlphaLightShade;
+      border-right: $euiBorderThin;
     }
   }
 
   table tr {
     background-color: transparent;
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
+    border-top: $euiBorderThin;
   }
 
   // 8. Code
-  .euiMarkdownFormat__code {
+  // the markdown editor adds a EuiCodeBlock when consumers specify the language
+  // when no language is specified it gets the .euiMarkdownFormat__code styles
+  &__code {
     @include euiCodeFont;
     color: $euiCodeBlockColor;
     font-size: $euiFontSizeXS;
-    padding: $euiMarkdownSizeXXS 0;
-    margin-bottom: $euiMarkdownSizeXS;
-    border-radius: $euiMarkdownSizeXXS;
+    padding: $euiSizeXS 0;
+    margin-bottom: $euiSizeS;
     background: $euiCodeBlockBackgroundColor;
   }
 
-  .euiMarkdownFormat__code::before,
-  .euiMarkdownFormat__code::after {
-    letter-spacing: -.2em;
-    content: '\00a0';
-  }
-
-  // code block
-  pre .euiMarkdownFormat__code {
+  // default styles for code blocks
+  pre &__code {
     display: block;
-    padding: $euiSizeL;
+    padding: $euiFontSizeL;
     overflow: visible;
     line-height: inherit;
     word-wrap: normal;
     white-space: pre;
-  }
-
-  pre .euiMarkdownFormat__code::before,
-  pre .euiMarkdownFormat__code::after {
-    content: normal;
   }
 }
