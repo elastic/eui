@@ -99,4 +99,5 @@ export interface EuiTableSelectionType<T> {
   onSelectionChange?: (selection: T[]) => void;
   selectable?: (item: T) => boolean;
   selectableMessage?: (selectable: boolean, item: T) => string;
+  initialSelected?: T[];
 }

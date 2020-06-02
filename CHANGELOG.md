@@ -1,9 +1,24 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Replaced usage of `displayName` with `inputValue` prop in `EuiFieldSearch` ([#3497](https://github.com/elastic/eui/pull/3497))
+- Added `minSizeForControls` prop to `EuiDataGrid` to control the minimum width for showing grid controls ([#3527](https://github.com/elastic/eui/pull/3527))
+- Passed `getSelectedOptionForSearchValue` to `EuiComboBoxOptionsList` as prop ([#3501](https://github.com/elastic/eui/pull/3501))
+- Added `appendIconComponentCache` function to allow manual pre-emptive loading of source elements into the `EuiIcon` cache ([#3481](https://github.com/elastic/eui/pull/3481))
+- Added `initialSelected` to `EuiTableSelectionType` properties to set initial selected checkboxes for `EuiBasicTable` ([#3418](https://github.com/elastic/eui/pull/3418))
 - Added exports for `EuiSteps` and related components types ([#3471](https://github.com/elastic/eui/pull/3471))
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
+- Added `left-start` popover placement to `EuiDatePicker` ([#3511](https://github.com/elastic/eui/pull/3511))
+- Added `theme` prop to `EuiHeader` ([#3524](https://github.com/elastic/eui/pull/3524))
+- Added `.euiHeaderLink-isActive` class to `EuiHeaderLink` when `isActive` ([#3524](https://github.com/elastic/eui/pull/3524))
+
+**Bug Fixes**
+
+- Fixed `EuiFieldSearch` input clear button doesn't show when external input is passed([#3497](https://github.com/elastic/eui/pull/3497))
+- Fixed issue where multiple `EuiToolTip` components could be visible when element was focused ([#3335](https://github.com/elastic/eui/pull/3335))
+- Fixed `EuiSuperSelect` not rendering full width when `isOpen` is `true` ([#3495](https://github.com/elastic/eui/pull/3495))
+- Fixed `EuiBasicTable` shows no items if all items of last page is deleted  ([#3422](https://github.com/elastic/eui/pull/3422))
+- Fixed TypeScript module name in generated `eui_charts_theme.d.ts` file  ([#3492](https://github.com/elastic/eui/pull/3492))
+- Fixed code highlight color contrast in `EuiCodeBlock` ([#3309](https://github.com/elastic/eui/pull/3309))
 
 **Deprecations**
 
@@ -12,6 +27,14 @@
 **Notes**
 
 - Removed `src-framer` files from the repository ([#3487](https://github.com/elastic/eui/pull/3487))
+
+**Theme: Amsterdam**
+
+- Removed borders `EuiModal` ([#3515](https://github.com/elastic/eui/pull/3515))
+- Improve `EuiOverlayMask` colors ([#3515](https://github.com/elastic/eui/pull/3515))
+- Updated shadow styles to improve smoothness, use black as the base color, and deprecated `opacity` value of shadow mixins ([#3428](https://github.com/elastic/eui/pull/3428))
+- Removed borders from `EuiFlyout` and `EuiPopover` ([#3477](https://github.com/elastic/eui/pull/3477))
+- Updated `EuiHeader` and components ([#3524](https://github.com/elastic/eui/pull/3524))
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
@@ -129,6 +152,7 @@
 **Bug Fixes**
 
 - Fixed `EuiProgress` `max` property to allow `undefined` ([#3198](https://github.com/elastic/eui/pull/3198))
+
 
 ## [`22.5.0`](https://github.com/elastic/eui/tree/v22.5.0)
 
