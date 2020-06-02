@@ -62,7 +62,7 @@ interface EuiColorPalettePickerPaletteFixed {
    */
   type: 'fixed';
   /**
-   * Array of color `strings`. The stops must be numbers in an ordered range.
+   * Array of color `strings`.
    */
   palette: string[];
 }
