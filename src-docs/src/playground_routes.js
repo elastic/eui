@@ -5,6 +5,7 @@ import accordionConfig from './views/accordion/playground';
 import avatarConfig from './views/avatar/playground';
 import beaconConfig from './views/beacon/playground';
 import calloutConfig from './views/call_out/playground';
+import healthConfig from './views/health/playground';
 
 export const childRoutes = [
   {
@@ -31,6 +32,11 @@ export const childRoutes = [
     path: 'callout',
     component: () => playground(calloutConfig()),
     name: 'EuiCallOut',
+  },
+  {
+    path: 'health',
+    component: () => playground(healthConfig()),
+    name: 'EuiHealth',
   },
   {
     path: '*',
