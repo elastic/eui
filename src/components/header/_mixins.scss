@@ -1,6 +1,6 @@
 @mixin euiHeaderDarkTheme($backgroundColor) {
   background-color: $backgroundColor;
-  border-bottom-color: lightOrDarkTheme($backgroundColor, $euiBorderColor);
+  border-bottom-color: lightOrDarkTheme($backgroundColor, $euiHeaderBorderColor);
 
   .euiHeaderLogo__text,
   .euiHeaderLink,

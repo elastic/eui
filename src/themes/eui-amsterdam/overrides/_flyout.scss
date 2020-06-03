@@ -1,3 +1,5 @@
+// Amsterdam shadows extend upwards as well, but this means flyouts shadows can overlap fixed headers.
+// The clip path ensures only the left side of the shadow is exposed.
 .euiFlyout {
-  clip-path: polygon(-10% 1px, 100% 1px, 100% 100%, -10% 100%);
+  clip-path: polygon(-10% 0, 100% 0, 100% 100%, -10% 100%);
 }

@@ -1,10 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-**Breaking changes**
-- Improved `EuiPagination`, `EuiDataGrid`, `EuiBasicTable` and `EuiInMemoryTable` accessibility, causing `EuiPaginationButton` to require a new prop `pageIndex` ([#3294](https://github.com/elastic/eui/pull/3294))
-
 **Bug fixes**
+
 - Fixed `EuiKeyPadMenu` and `EuiKeyPadMenuItem` aria roles ([#3502](https://github.com/elastic/eui/pull/3502))
+
+**Theme: Amsterdam**
+
+- Updated `EuiHeader` and components ([#3524](https://github.com/elastic/eui/pull/3524))
+
+**Breaking changes**
+
+- A fixed `EuiHeader` no longer automatically padding directly to the `<body>` element ([#3538](https://github.com/elastic/eui/pull/3538))
 
 ## [`24.1.0`](https://github.com/elastic/eui/tree/v24.1.0)
 
@@ -47,11 +53,6 @@
 - Improve `EuiOverlayMask` colors ([#3515](https://github.com/elastic/eui/pull/3515))
 - Updated shadow styles to improve smoothness, use black as the base color, and deprecated `opacity` value of shadow mixins ([#3428](https://github.com/elastic/eui/pull/3428))
 - Removed borders from `EuiFlyout` and `EuiPopover` ([#3477](https://github.com/elastic/eui/pull/3477))
-- Updated `EuiHeader` and components ([#3524](https://github.com/elastic/eui/pull/3524))
-
-**Breaking changes**
-
-- A fixed `EuiHeader` no longer automatically padding directly to the `<body>` element ([#3538](https://github.com/elastic/eui/pull/3538))
 
 ## [`24.0.0`](https://github.com/elastic/eui/tree/v24.0.0)
 
