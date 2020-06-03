@@ -17,7 +17,15 @@
  * under the License.
  */
 
-import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
+import React, {
+  TextareaHTMLAttributes,
+  Ref,
+  FunctionComponent,
+  useRef,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+} from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiValidatableControl } from '../validatable_control';
@@ -26,6 +34,28 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
+
+export const useCombinedRefs = <T extends any>(
+  ...refs: Array<Ref<T>>
+): Ref<T> =>
+  useCallback(
+    (element: T) =>
+      refs.forEach(ref => {
+        if (!ref) {
+          return;
+        }
+
+        // Ref can have two types - a function or an object. We treat each case.
+        if (typeof ref === 'function') {
+          return ref(element);
+        }
+
+        // As per https://github.com/facebook/react/issues/13029
+        // it should be fine to set current this way.
+        (ref as any).current = element;
+      }),
+    refs
+  );
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
@@ -85,6 +115,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   append,
   readOnly,
   controlOnly,
+  onBlur,
   isLoading,
   ...rest
 }) => {
@@ -109,6 +140,32 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
     definedRows = 6;
   }
 
+  const textAreaRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
+
+  const handleOnBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    // Scroll to the top of the textarea if it's used in a append/prepend way
+    textAreaRef.current.style.removeProperty('height');
+    if (textAreaRef.current && (prepend || append)) {
+      textAreaRef.current.scrollTop = 0;
+    }
+    // Use the passed in onBlur as well if there is one
+    if (onBlur !== undefined) {
+      onBlur(e);
+    }
+  };
+
+  useEffect(() => {
+    textAreaRef.current.style.setProperty(
+      'height',
+      `${textAreaRef.current.scrollHeight}px`,
+      'important'
+    );
+    console.log(
+      textAreaRef.current.offsetHeight,
+      textAreaRef.current.scrollHeight
+    );
+  });
+
   const control = (
     <EuiValidatableControl isInvalid={isInvalid}>
       <textarea
@@ -117,8 +174,9 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
         rows={definedRows}
         name={name}
         id={id}
-        ref={inputRef}
+        ref={useCombinedRefs(textAreaRef, inputRef)}
         readOnly={readOnly}
+        onBlur={handleOnBlur}
         placeholder={placeholder}>
         {children}
       </textarea>
