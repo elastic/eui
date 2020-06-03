@@ -13,6 +13,7 @@
 - Added `theme` prop to `EuiHeader` ([#3524](https://github.com/elastic/eui/pull/3524))
 - Added `.euiHeaderLink-isActive` class to `EuiHeaderLink` when `isActive` ([#3524](https://github.com/elastic/eui/pull/3524))
 - Added `display`, `descriptionWidth`, `textWrap` and `isInvalid` props to `EuiExpression` ([#3467](https://github.com/elastic/eui/pull/3467))
+- Added more exports for `EuiColorPalettePicker` types ([#3542](https://github.com/elastic/eui/pull/3542))
 
 **Bug Fixes**
 
