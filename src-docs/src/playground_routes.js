@@ -6,6 +6,7 @@ import avatarConfig from './views/avatar/playground';
 import beaconConfig from './views/beacon/playground';
 import calloutConfig from './views/call_out/playground';
 import healthConfig from './views/health/playground';
+import statConfig from './views/stat/playground';
 
 export const childRoutes = [
   {
@@ -37,6 +38,11 @@ export const childRoutes = [
     path: 'health',
     component: () => playground(healthConfig()),
     name: 'EuiHealth',
+  },
+  {
+    path: 'stat',
+    component: () => playground(statConfig()),
+    name: 'EuiStat',
   },
   {
     path: '*',
