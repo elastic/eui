@@ -14,10 +14,6 @@ import TextDiffCustomComponents from './text_diff_custom_components';
 const customComponentsSource = require('!!raw-loader!./text_diff_custom_components');
 const customComponentsHtml = renderToHtml(TextDiffCustomComponents);
 
-import TextDiffTimeOut from './text_diff_timeout';
-const TextDiffTimeOutSource = require('!!raw-loader!./text_diff_timeout');
-const TextDiffTimeOutHtml = renderToHtml(TextDiffTimeOut);
-
 export const TextDiffExample = {
   title: 'Text Diff',
   sections: [
@@ -38,7 +34,11 @@ export const TextDiffExample = {
             The hook, <strong>useEuiTextDiff</strong>, generates a set of
             changes between two strings. It returns both React elements for
             displaying the diff and an object representing the identified
-            changes.
+            changes.The <EuiCode>timeout</EuiCode> prop is used to set how many
+            seconds any diff&apos;s exploration phase may take. The default
+            value is 0.1, a value of 0 disables the timeout and lets diff run
+            until completion. The higher the timeout, the more detailed the
+            comparison.
           </p>
           <p>
             <EuiCode language="ts">
@@ -75,28 +75,6 @@ export const TextDiffExample = {
         </p>
       ),
       demo: <TextDiffCustomComponents />,
-    },
-    {
-      title: 'Adjusting the timeout delay',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: TextDiffTimeOutSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: TextDiffTimeOutHtml,
-        },
-      ],
-      text: (
-        <p>
-          The <EuiCode>timeout</EuiCode> prop is used to set how many seconds
-          any diff&apos;s exploration phase may take. The default value is 0.1,
-          a value of 0 disables the timeout and lets diff run until completion.
-          The higher the timeout, the more detailed the comparison.
-        </p>
-      ),
-      demo: <TextDiffTimeOut />,
     },
   ],
 };
