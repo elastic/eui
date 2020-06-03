@@ -8,6 +8,7 @@ import calloutConfig from './views/call_out/playground';
 import healthConfig from './views/health/playground';
 import statConfig from './views/stat/playground';
 import titleConfig from './views/title/playground';
+import imageConfig from './views/image/playground';
 
 export const childRoutes = [
   {
@@ -34,6 +35,11 @@ export const childRoutes = [
     path: 'callout',
     component: () => playground(calloutConfig()),
     name: 'EuiCallOut',
+  },
+  {
+    path: 'image',
+    component: () => playground(imageConfig()),
+    name: 'EuiImage',
   },
   {
     path: 'health',

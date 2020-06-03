@@ -10,16 +10,17 @@ import {
   EuiFlexItem,
   EuiSelect,
   EuiFieldNumber,
+  EuiToolTip,
 } from '../../../../src/components/';
 
-// const getTooltip = (description, type, name) => (
-//   <span>
-//     <p>
-//       <b>{name}</b>: <i>{type}</i>
-//     </p>
-//     <p>{description}</p>
-//   </span>
-// );
+const getTooltip = (description, type, name) => (
+  <span>
+    <p>
+      <b>{name}</b>: <i>{type}</i>
+    </p>
+    <p>{description}</p>
+  </span>
+);
 
 const Spacing = ({ children }) => {
   return (
@@ -30,15 +31,16 @@ const Spacing = ({ children }) => {
   );
 };
 
-// const Label = ({ children, tooltip }) => {
-//   return (
-//     <label>
-//       <StatefulTooltip accessibilityType="tooltip" content={tooltip}>
-//         <span>{children}</span>
-//       </StatefulTooltip>
-//     </label>
-//   );
-// };
+const Label = ({ children, tooltip }) => {
+  return (
+    <EuiToolTip position="top" content={tooltip}>
+      <>
+        <span>{children}</span>
+        <EuiSpacer size="s" />
+      </>
+    </EuiToolTip>
+  );
+};
 
 const Knob = ({
   name,
@@ -57,7 +59,7 @@ const Knob = ({
     case PropTypes.Ref:
       return (
         <Spacing>
-          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <a
             href="https://reactjs.org/docs/refs-and-the-dom.html"
             target="_blank"
@@ -74,7 +76,7 @@ const Knob = ({
     case PropTypes.Number:
       return (
         <Spacing>
-          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <EuiFieldNumber
             placeholder={placeholder}
             value={val ? val : undefined}
@@ -90,12 +92,16 @@ const Knob = ({
     case PropTypes.Date:
       return (
         <Spacing>
-          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label> */}
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
 
           <EuiFieldText
             placeholder={placeholder}
             value={val ? val : undefined}
-            onChange={e => set(e.target.value)}
+            onChange={e => {
+              // if (isNaN(e.target.value))
+              set(e.target.value);
+              // else set(+e.target.value);
+            }}
             aria-label={description}
           />
 
@@ -135,14 +141,13 @@ const Knob = ({
 
         return (
           <Spacing>
+            <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+
             <EuiRadioGroup
               options={flattenedOptions}
               idSelected={valueKey}
               onChange={id => globalSet(id)}
               name={`Select ${name}`}
-              legend={{
-                children: <span> {`Select ${name}`}</span>,
-              }}
             />
             {error && <div>error {error}</div>}
           </Spacing>
@@ -155,6 +160,8 @@ const Knob = ({
 
         return (
           <Spacing>
+            <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+
             <EuiSelect
               id={name}
               options={flattenedOptions}
@@ -174,7 +181,7 @@ const Knob = ({
       // /*
       return (
         <Spacing>
-          {/* <Label tooltip={getTooltip(description, type, name)}>{name}</Label>  */}
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <EuiTextArea
             placeholder={placeholder}
             value={val ? val : ''}
