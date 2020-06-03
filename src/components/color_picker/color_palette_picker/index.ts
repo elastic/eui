@@ -20,5 +20,8 @@
 export {
   EuiColorPalettePicker,
   EuiColorPalettePickerProps,
+  EuiColorPalettePickerPaletteTextProps,
+  EuiColorPalettePickerPaletteFixedProps,
+  EuiColorPalettePickerPaletteGradientProps,
   EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';

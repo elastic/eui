@@ -28,7 +28,7 @@ import { ColorStop } from '../color_stops';
 
 import { EuiSuperSelectProps } from '../../form/super_select';
 
-interface EuiColorPalettePickerPaletteText {
+export interface EuiColorPalettePickerPaletteTextProps {
   /**
    *  For storing unique value of item
    */
@@ -48,7 +48,7 @@ interface EuiColorPalettePickerPaletteText {
   palette?: string[] | ColorStop[];
 }
 
-interface EuiColorPalettePickerPaletteFixed {
+export interface EuiColorPalettePickerPaletteFixedProps {
   /**
    *  For storing unique value of item
    */
@@ -67,7 +67,7 @@ interface EuiColorPalettePickerPaletteFixed {
   palette: string[];
 }
 
-interface EuiColorPalettePickerPaletteGradient {
+export interface EuiColorPalettePickerPaletteGradientProps {
   /**
    *  For storing unique value of item
    */
@@ -88,9 +88,9 @@ interface EuiColorPalettePickerPaletteGradient {
 }
 
 export type EuiColorPalettePickerPaletteProps =
-  | EuiColorPalettePickerPaletteText
-  | EuiColorPalettePickerPaletteFixed
-  | EuiColorPalettePickerPaletteGradient;
+  | EuiColorPalettePickerPaletteTextProps
+  | EuiColorPalettePickerPaletteFixedProps
+  | EuiColorPalettePickerPaletteGradientProps;
 
 export type EuiColorPalettePickerProps<T extends string> = CommonProps &
   Omit<
@@ -103,7 +103,7 @@ export type EuiColorPalettePickerProps<T extends string> = CommonProps &
     selectionDisplay?: 'palette' | 'title';
 
     /**
-     * An array of #EuiColorPalettePickerPalette objects
+     * An array of one of the following objects: #EuiColorPalettePickerPaletteText, #EuiColorPalettePickerPaletteFixed, #EuiColorPalettePickerPaletteGradient
      */
     palettes: EuiColorPalettePickerPaletteProps[];
   };
@@ -127,8 +127,8 @@ export const EuiColorPalettePicker: FunctionComponent<
 }) => {
   const getPalette = (
     item:
-      | EuiColorPalettePickerPaletteFixed
-      | EuiColorPalettePickerPaletteGradient
+      | EuiColorPalettePickerPaletteFixedProps
+      | EuiColorPalettePickerPaletteGradientProps
   ) => {
     const background =
       item.type === 'fixed'

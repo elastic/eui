@@ -12,7 +12,11 @@ import {
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
-import { EuiColorPalettePickerPalette } from './props';
+import {
+  EuiColorPalettePickerPaletteText,
+  EuiColorPalettePickerPaletteFixed,
+  EuiColorPalettePickerPaletteGradient,
+} from './props';
 
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -341,7 +345,12 @@ export const ColorPickerExample = {
           code: colorPalettePickerHtml,
         },
       ],
-      props: { EuiColorPalettePicker, EuiColorPalettePickerPalette },
+      props: {
+        EuiColorPalettePicker,
+        EuiColorPalettePickerPaletteText,
+        EuiColorPalettePickerPaletteFixed,
+        EuiColorPalettePickerPaletteGradient,
+      },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
     },
