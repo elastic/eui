@@ -39,6 +39,17 @@ export const assertNever = (x: never): never => {
 };
 
 // utility types:
+/**
+ * XOR for some properties applied to a type
+ * (XOR is one of these but not both or neither)
+ *
+ * Usage: OneOf<typeToExtend, one | but | not | multiple | of | these | are | required>
+ *
+ * To require aria-label or aria-labelledby but not both
+ * Example: OneOf<Type, 'aria-label' | 'aria-labelledby'>
+ */
+export type OneOf<T, K extends keyof T> = Omit<T, K> &
+  { [k in K]: Pick<Required<T>, k> & { [k1 in Exclude<K, k>]?: never } }[K];
 
 /**
  * Wraps Object.keys with proper typescript definition of the resulting array

@@ -177,6 +177,9 @@ No public interface changes since `24.1.0`.
 - Added support for `EuiCodeEditor` to set `readonly` and `id` on `<textarea />` ([#3212](https://github.com/elastic/eui/pull/3212))
 - Added `EuiComment` component ([#3179](https://github.com/elastic/eui/pull/3179))
 
+**Breaking changes**
+- Improved `EuiPagination`, `EuiDataGrid`, `EuiBasicTable` and `EuiInMemoryTable` accessibility, causing `EuiPaginationButton` to require a new prop `pageIndex` ([#3294](https://github.com/elastic/eui/pull/3294))
+
 **Deprecation**
 
 - Updated makeId to DEPRECATED, shifted all the calls to htmlIdGenerator ([#3129](https://github.com/elastic/eui/pull/3129))

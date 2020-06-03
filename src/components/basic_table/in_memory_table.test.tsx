@@ -934,8 +934,7 @@ describe('EuiInMemoryTable', () => {
       const component = mount(<EuiInMemoryTable {...props} />);
 
       component
-        .find('[data-test-subj="pagination-button-1"]')
-        .first()
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
         .simulate('click');
 
       // forces EuiInMemoryTable's getDerivedStateFromProps to re-execute
@@ -973,7 +972,7 @@ describe('EuiInMemoryTable', () => {
 
       expect(props.onTableChange).toHaveBeenCalledTimes(0);
       component
-        .find('EuiPaginationButton[data-test-subj="pagination-button-1"]')
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
         .simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenCalledWith({
