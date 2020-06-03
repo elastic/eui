@@ -13,6 +13,7 @@ export default () => {
   const sections = [
     {
       items: [<EuiHeaderLogo iconType="logoKibana">Kibana</EuiHeaderLogo>],
+      borders: 'right',
     },
   ];
 
