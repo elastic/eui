@@ -28,7 +28,7 @@ export default ({ theme }: { theme: any }) => (
             aria-label="Goes to home">
             Elastic
           </EuiHeaderLogo>,
-          <EuiHeaderLinks>
+          <EuiHeaderLinks aria-label="App navigation dark theme example">
             <EuiHeaderLink href="#" isActive>
               Docs
             </EuiHeaderLink>

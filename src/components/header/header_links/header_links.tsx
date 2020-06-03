@@ -78,9 +78,7 @@ export class EuiHeaderLinks extends Component<CommonProps, State> {
       <EuiI18n token="euiHeaderLinks.appNavigation" default="App navigation">
         {(appNavigation: string) => (
           <nav className={classes} aria-label={appNavigation} {...rest}>
-            <div className="euiHeaderLinks__list" role="navigation">
-              {children}
-            </div>
+            <div className="euiHeaderLinks__list">{children}</div>
 
             <EuiPopover
               className="euiHeaderLinks__mobile"
