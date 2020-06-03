@@ -140,6 +140,10 @@ type CommonGridProps = CommonProps &
      * A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`.
      */
     onColumnResize?: EuiDataGridOnColumnResizeHandler;
+    /**
+     * Defines a minimum width for the grid to show all controls in its header.
+     */
+    minSizeForControls?: number;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -326,15 +330,14 @@ function useColumnWidths(
 
 function useOnResize(
   setHasRoomForGridControls: (hasRoomForGridControls: boolean) => void,
-  isFullScreen: boolean
+  isFullScreen: boolean,
+  minSizeForControls: number
 ) {
   return useCallback(
     ({ width }: { width: number }) => {
-      setHasRoomForGridControls(
-        width > MINIMUM_WIDTH_FOR_GRID_CONTROLS || isFullScreen
-      );
+      setHasRoomForGridControls(width > minSizeForControls || isFullScreen);
     },
-    [setHasRoomForGridControls, isFullScreen]
+    [setHasRoomForGridControls, isFullScreen, minSizeForControls]
   );
 }
 
@@ -592,13 +595,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [headerIsInteractive, setHeaderIsInteractive, focusedCell, setFocusedCell]
   );
 
-  // enables/disables grid controls based on available width
-  const onResize = useOnResize(nextHasRoomForGridControls => {
-    if (nextHasRoomForGridControls !== hasRoomForGridControls) {
-      setHasRoomForGridControls(nextHasRoomForGridControls);
-    }
-  }, isFullScreen);
-
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
       case keyCodes.ESCAPE:
@@ -626,8 +622,20 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     inMemory,
     popoverContents,
     onColumnResize,
+    minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     ...rest
   } = props;
+
+  // enables/disables grid controls based on available width
+  const onResize = useOnResize(
+    nextHasRoomForGridControls => {
+      if (nextHasRoomForGridControls !== hasRoomForGridControls) {
+        setHasRoomForGridControls(nextHasRoomForGridControls);
+      }
+    },
+    isFullScreen,
+    minSizeForControls
+  );
 
   const [columnWidths, setColumnWidth] = useColumnWidths(
     columns,
@@ -664,16 +672,26 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
   const mergedSchema = useMergedSchema(detectedSchema, columns);
 
+  const displayValues: { [key: string]: string } = columns.reduce(
+    (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
+      ...acc,
+      [column.id]: column.displayAsText || column.id,
+    }),
+    {}
+  );
+
   const [columnSelector, orderedVisibleColumns] = useColumnSelector(
     columns,
     columnVisibility,
-    checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector')
+    checkOrDefaultToolBarDiplayOptions(toolbarVisibility, 'showColumnSelector'),
+    displayValues
   );
   const columnSorting = useColumnSorting(
     orderedVisibleColumns,
     sorting,
     mergedSchema,
-    allSchemaDetectors
+    allSchemaDetectors,
+    displayValues
   );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 

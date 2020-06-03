@@ -1,11 +1,11 @@
 // Note - these are also used by the EuiNavDrawer (/nav_drawer) component
 // Themable colors
-$euiHeaderBackgroundColor: $euiColorEmptyShade;
-$euiHeaderBreadcrumbColor: $euiColorDarkestShade;
+$euiHeaderBackgroundColor: $euiColorEmptyShade !default;
+$euiHeaderBreadcrumbColor: $euiColorDarkestShade !default;
 
 // Layout vars
-$euiHeaderHeight: $euiSizeXXL + $euiSizeS;
-$euiHeaderChildSize: $euiHeaderHeight;
+$euiHeaderHeight: $euiSizeXXL + $euiSizeS !default;
+$euiHeaderChildSize: $euiHeaderHeight !default;
 
 // Use the following variable in other components to afford for the fixed header
 $euiHeaderHeightCompensation: $euiHeaderHeight + 1px !default;

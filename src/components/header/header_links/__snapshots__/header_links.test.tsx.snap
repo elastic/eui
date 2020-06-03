@@ -16,19 +16,15 @@ exports[`EuiHeaderLinks is rendered 1`] = `
     <div
       class="euiPopover__anchor"
     >
-      <div
-        class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      <button
+        aria-label="Open navigation menu"
+        class="euiHeaderSectionItem__button"
+        type="button"
       >
-        <button
-          aria-label="Open navigation menu"
-          class="euiHeaderSectionItem__button"
-          type="button"
-        >
-          <div
-            data-euiicon-type="apps"
-          />
-        </button>
-      </div>
+        <div
+          data-euiicon-type="apps"
+        />
+      </button>
     </div>
   </div>
 </nav>

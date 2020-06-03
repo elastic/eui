@@ -70,12 +70,66 @@ describe('EuiExpression', () => {
         expect(render(component)).toMatchSnapshot();
       });
 
-      test('false renders inherted case', () => {
+      test('false renders inherited case', () => {
         const component = (
           <EuiExpression
             description="the answer is"
             value="42"
             uppercase={false}
+          />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('display', () => {
+      test('can be columns', () => {
+        const component = (
+          <EuiExpression
+            description="the answer is"
+            value="42"
+            display="columns"
+          />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('isInvalid', () => {
+      test('renders error state', () => {
+        const component = (
+          <EuiExpression description="the answer is" value="42" isInvalid />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('descriptionWidth', () => {
+      test('changes the description&apos;s width when using columns', () => {
+        const component = (
+          <EuiExpression
+            description="the answer is"
+            descriptionWidth={50}
+            value="42"
+            isInvalid
+            display="columns"
+          />
+        );
+
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('textWrap', () => {
+      test('can truncate text', () => {
+        const component = (
+          <EuiExpression
+            description="the answer is"
+            value="42"
+            textWrap="truncate"
           />
         );
 

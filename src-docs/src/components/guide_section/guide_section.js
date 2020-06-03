@@ -204,6 +204,7 @@ export class GuideSection extends Component {
           renderedCode = renderedCode.replace('\n\n\n', '\n\n');
           len = renderedCode.replace('\n\n\n', '\n\n').length;
         }
+        renderedCode = cleanEuiImports(renderedCode);
       } else if (name === 'html') {
         renderedCode = code.render();
       }
@@ -445,14 +446,9 @@ export class GuideSection extends Component {
   }
 
   renderCode(name) {
-    const { code } = this.props.source.find(
-      sourceObject => sourceObject.type === name
-    );
-    const cleanedExampleCode = cleanEuiImports(code);
-
     const euiCodeBlock = (
       <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
-        {cleanedExampleCode}
+        {this.state.renderedCode}
       </EuiCodeBlock>
     );
 
