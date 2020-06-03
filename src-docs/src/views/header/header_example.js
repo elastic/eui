@@ -189,13 +189,13 @@ export const HeaderExample = {
         <>
           <p>
             Most consumers need a header that does not scroll away with the page
-            contents. You can apply this display by applying{' '}
-            <EuiCode language="ts">{'position="fixed"'}</EuiCode>. It will also
+            contents. You can apply this display by applying the property {' '}
+            <EuiCode language="ts">{'position="fixed"'}</EuiCode>. This will also
             add a class of <EuiCode>.euiBody--headerIsFixed</EuiCode> to the
             window body.
           </p>
           <p>
-            You will then need to apply your own padding to this class to afford
+            You will then need to apply your own padding to this body class to afford
             for the header height. EUI supplies a helper mixin that also
             accounts for this height in flyouts and the collapsible nav. Simply
             add{' '}
