@@ -1,7 +1,19 @@
 import React, { FunctionComponent } from 'react';
 
-import { EuiColorPalettePickerPaletteProps } from '../../../../src/components/color_picker/color_palette_picker';
+import {
+  EuiColorPalettePickerPaletteTextProps,
+  EuiColorPalettePickerPaletteFixedProps,
+  EuiColorPalettePickerPaletteGradientProps,
+} from '../../../../src/components/color_picker/color_palette_picker';
 
-export const EuiColorPalettePickerPalette: FunctionComponent<
-  EuiColorPalettePickerPaletteProps
+export const EuiColorPalettePickerPaletteText: FunctionComponent<
+  EuiColorPalettePickerPaletteTextProps
+> = () => <div />;
+
+export const EuiColorPalettePickerPaletteFixed: FunctionComponent<
+  EuiColorPalettePickerPaletteFixedProps
+> = () => <div />;
+
+export const EuiColorPalettePickerPaletteGradient: FunctionComponent<
+  EuiColorPalettePickerPaletteGradientProps
 > = () => <div />;
