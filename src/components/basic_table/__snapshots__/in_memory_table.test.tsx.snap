@@ -126,11 +126,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </div>
         </EuiTableHeaderMobile>
         <EuiTable
+          id="generated-id"
           responsive={true}
           tableLayout="fixed"
         >
           <table
             className="euiTable euiTable--responsive"
+            id="generated-id"
+            tabIndex={-1}
           >
             <EuiScreenReaderOnly>
               <caption
@@ -275,6 +278,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         </EuiTable>
       </div>
       <PaginationBar
+        aria-controls="generated-id"
         onPageChange={[Function]}
         onPageSizeChange={[Function]}
         pagination={
@@ -301,6 +305,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </EuiSpacer>
           <EuiTablePagination
             activePage={1}
+            aria-controls="generated-id"
             itemsPerPage={2}
             itemsPerPageOptions={
               Array [
@@ -428,178 +433,254 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   >
                     <EuiPagination
                       activePage={1}
+                      aria-controls="generated-id"
                       onPageClick={[Function]}
                       pageCount={2}
                     >
-                      <div
+                      <nav
                         className="euiPagination"
-                        role="group"
                       >
                         <EuiI18n
-                          default="Previous page"
+                          default="Previous page, {page}"
                           token="euiPagination.previousPage"
-                        >
-                          <EuiButtonIcon
-                            aria-label="Previous page"
-                            color="text"
-                            data-test-subj="pagination-button-previous"
-                            disabled={false}
-                            iconType="arrowLeft"
-                            onClick={[Function]}
-                          >
-                            <button
-                              aria-label="Previous page"
-                              className="euiButtonIcon euiButtonIcon--text"
-                              data-test-subj="pagination-button-previous"
-                              disabled={false}
-                              onClick={[Function]}
-                              type="button"
-                            >
-                              <EuiIcon
-                                aria-hidden="true"
-                                className="euiButtonIcon__icon"
-                                size="m"
-                                type="arrowLeft"
-                              >
-                                <div
-                                  aria-hidden="true"
-                                  className="euiButtonIcon__icon"
-                                  data-euiicon-type="arrowLeft"
-                                  size="m"
-                                />
-                              </EuiIcon>
-                            </button>
-                          </EuiButtonIcon>
-                        </EuiI18n>
-                        <EuiI18n
-                          default="Page {page} of {total}"
-                          key="0"
-                          token="euiPagination.pageOfTotal"
                           values={
                             Object {
                               "page": 1,
-                              "total": 2,
                             }
                           }
                         >
-                          <EuiPaginationButton
-                            aria-label="Page 1 of 2"
-                            data-test-subj="pagination-button-0"
-                            hideOnMobile={true}
-                            isActive={false}
-                            onClick={[Function]}
+                          <EuiI18n
+                            default="Previous page"
+                            token="euiPagination.disabledPreviousPage"
                           >
-                            <EuiButtonEmpty
-                              aria-label="Page 1 of 2"
-                              className="euiPaginationButton euiPaginationButton--hideOnMobile"
+                            <EuiButtonIcon
+                              aria-controls="generated-id"
+                              aria-label="Previous page, 1"
                               color="text"
-                              data-test-subj="pagination-button-0"
+                              data-test-subj="pagination-button-previous"
+                              href="#generated-id"
+                              iconType="arrowLeft"
                               onClick={[Function]}
-                              size="xs"
                             >
-                              <button
-                                aria-label="Page 1 of 2"
-                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
-                                data-test-subj="pagination-button-0"
+                              <a
+                                aria-controls="generated-id"
+                                aria-label="Previous page, 1"
+                                className="euiButtonIcon euiButtonIcon--text"
+                                data-test-subj="pagination-button-previous"
+                                href="#generated-id"
                                 onClick={[Function]}
-                                type="button"
+                                rel="noreferrer"
                               >
-                                <span
-                                  className="euiButtonEmpty__content"
-                                >
-                                  <span
-                                    className="euiButtonEmpty__text"
-                                  >
-                                    1
-                                  </span>
-                                </span>
-                              </button>
-                            </EuiButtonEmpty>
-                          </EuiPaginationButton>
-                        </EuiI18n>
-                        <EuiI18n
-                          default="Page {page} of {total}"
-                          key="1"
-                          token="euiPagination.pageOfTotal"
-                          values={
-                            Object {
-                              "page": 2,
-                              "total": 2,
-                            }
-                          }
-                        >
-                          <EuiPaginationButton
-                            aria-label="Page 2 of 2"
-                            data-test-subj="pagination-button-1"
-                            hideOnMobile={true}
-                            isActive={true}
-                            onClick={[Function]}
-                          >
-                            <EuiButtonEmpty
-                              aria-label="Page 2 of 2"
-                              className="euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
-                              color="text"
-                              data-test-subj="pagination-button-1"
-                              onClick={[Function]}
-                              size="xs"
-                            >
-                              <button
-                                aria-label="Page 2 of 2"
-                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
-                                data-test-subj="pagination-button-1"
-                                onClick={[Function]}
-                                type="button"
-                              >
-                                <span
-                                  className="euiButtonEmpty__content"
-                                >
-                                  <span
-                                    className="euiButtonEmpty__text"
-                                  >
-                                    2
-                                  </span>
-                                </span>
-                              </button>
-                            </EuiButtonEmpty>
-                          </EuiPaginationButton>
-                        </EuiI18n>
-                        <EuiI18n
-                          default="Next page"
-                          token="euiPagination.nextPage"
-                        >
-                          <EuiButtonIcon
-                            aria-label="Next page"
-                            color="text"
-                            data-test-subj="pagination-button-next"
-                            disabled={true}
-                            iconType="arrowRight"
-                            onClick={[Function]}
-                          >
-                            <button
-                              aria-label="Next page"
-                              className="euiButtonIcon euiButtonIcon--text"
-                              data-test-subj="pagination-button-next"
-                              disabled={true}
-                              onClick={[Function]}
-                              type="button"
-                            >
-                              <EuiIcon
-                                aria-hidden="true"
-                                className="euiButtonIcon__icon"
-                                size="m"
-                                type="arrowRight"
-                              >
-                                <div
+                                <EuiIcon
                                   aria-hidden="true"
                                   className="euiButtonIcon__icon"
-                                  data-euiicon-type="arrowRight"
                                   size="m"
-                                />
-                              </EuiIcon>
-                            </button>
-                          </EuiButtonIcon>
+                                  type="arrowLeft"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="euiButtonIcon__icon"
+                                    data-euiicon-type="arrowLeft"
+                                    size="m"
+                                  />
+                                </EuiIcon>
+                              </a>
+                            </EuiButtonIcon>
+                          </EuiI18n>
                         </EuiI18n>
-                      </div>
+                        <ul
+                          className="euiPagination__list"
+                        >
+                          <PaginationButton
+                            key="0"
+                            pageIndex={0}
+                          >
+                            <li
+                              className="euiPagination__item"
+                            >
+                              <EuiPaginationButton
+                                aria-controls="generated-id"
+                                hideOnMobile={true}
+                                isActive={false}
+                                onClick={[Function]}
+                                pageIndex={0}
+                                totalPages={2}
+                              >
+                                <EuiI18n
+                                  default="Page {page} of {totalPages}"
+                                  token="euiPaginationButton.longPageString"
+                                  values={
+                                    Object {
+                                      "page": 1,
+                                      "totalPages": 2,
+                                    }
+                                  }
+                                >
+                                  <EuiI18n
+                                    default="Page {page}"
+                                    token="euiPaginationButton.shortPageString"
+                                    values={
+                                      Object {
+                                        "page": 1,
+                                      }
+                                    }
+                                  >
+                                    <EuiButtonEmpty
+                                      aria-controls="generated-id"
+                                      aria-label="Page 1 of 2"
+                                      className="euiPaginationButton euiPaginationButton--hideOnMobile"
+                                      color="text"
+                                      data-test-subj="pagination-button-0"
+                                      href="#generated-id"
+                                      isDisabled={false}
+                                      onClick={[Function]}
+                                      size="xs"
+                                    >
+                                      <a
+                                        aria-controls="generated-id"
+                                        aria-label="Page 1 of 2"
+                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
+                                        data-test-subj="pagination-button-0"
+                                        href="#generated-id"
+                                        onClick={[Function]}
+                                        rel="noreferrer"
+                                      >
+                                        <span
+                                          className="euiButtonEmpty__content"
+                                        >
+                                          <span
+                                            className="euiButtonEmpty__text"
+                                          >
+                                            1
+                                          </span>
+                                        </span>
+                                      </a>
+                                    </EuiButtonEmpty>
+                                  </EuiI18n>
+                                </EuiI18n>
+                              </EuiPaginationButton>
+                            </li>
+                          </PaginationButton>
+                          <PaginationButton
+                            key="1"
+                            pageIndex={1}
+                          >
+                            <li
+                              className="euiPagination__item"
+                            >
+                              <EuiPaginationButton
+                                aria-controls="generated-id"
+                                hideOnMobile={true}
+                                isActive={true}
+                                onClick={[Function]}
+                                pageIndex={1}
+                                totalPages={2}
+                              >
+                                <EuiI18n
+                                  default="Page {page} of {totalPages}"
+                                  token="euiPaginationButton.longPageString"
+                                  values={
+                                    Object {
+                                      "page": 2,
+                                      "totalPages": 2,
+                                    }
+                                  }
+                                >
+                                  <EuiI18n
+                                    default="Page {page}"
+                                    token="euiPaginationButton.shortPageString"
+                                    values={
+                                      Object {
+                                        "page": 2,
+                                      }
+                                    }
+                                  >
+                                    <EuiButtonEmpty
+                                      aria-controls="generated-id"
+                                      aria-current={true}
+                                      aria-label="Page 2 of 2"
+                                      className="euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                      color="text"
+                                      data-test-subj="pagination-button-1"
+                                      href="#generated-id"
+                                      isDisabled={true}
+                                      onClick={[Function]}
+                                      size="xs"
+                                    >
+                                      <button
+                                        aria-controls="generated-id"
+                                        aria-current={true}
+                                        aria-label="Page 2 of 2"
+                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                        data-test-subj="pagination-button-1"
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiButtonEmpty__content"
+                                        >
+                                          <span
+                                            className="euiButtonEmpty__text"
+                                          >
+                                            2
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiButtonEmpty>
+                                  </EuiI18n>
+                                </EuiI18n>
+                              </EuiPaginationButton>
+                            </li>
+                          </PaginationButton>
+                        </ul>
+                        <EuiI18n
+                          default="Next page, {page}"
+                          token="euiPagination.nextPage"
+                          values={
+                            Object {
+                              "page": 3,
+                            }
+                          }
+                        >
+                          <EuiI18n
+                            default="Next page"
+                            token="euiPagination.disabledNextPage"
+                          >
+                            <EuiButtonIcon
+                              aria-label="Next page"
+                              color="text"
+                              data-test-subj="pagination-button-next"
+                              disabled={true}
+                              iconType="arrowRight"
+                              onClick={[Function]}
+                            >
+                              <button
+                                aria-label="Next page"
+                                className="euiButtonIcon euiButtonIcon--text"
+                                data-test-subj="pagination-button-next"
+                                disabled={true}
+                                onClick={[Function]}
+                                type="button"
+                              >
+                                <EuiIcon
+                                  aria-hidden="true"
+                                  className="euiButtonIcon__icon"
+                                  size="m"
+                                  type="arrowRight"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="euiButtonIcon__icon"
+                                    data-euiicon-type="arrowRight"
+                                    size="m"
+                                  />
+                                </EuiIcon>
+                              </button>
+                            </EuiButtonIcon>
+                          </EuiI18n>
+                        </EuiI18n>
+                      </nav>
                     </EuiPagination>
                   </div>
                 </EuiFlexItem>
@@ -824,11 +905,14 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
           </div>
         </EuiTableHeaderMobile>
         <EuiTable
+          id="generated-id"
           responsive={true}
           tableLayout="fixed"
         >
           <table
             className="euiTable euiTable--responsive"
+            id="generated-id"
+            tabIndex={-1}
           >
             <EuiScreenReaderOnly>
               <caption

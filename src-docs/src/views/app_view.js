@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { GuidePageChrome, ThemeProvider, ThemeContext } from '../components';
+import { GuidePageChrome, ThemeContext } from '../components';
 import { registerRouter, translateUsingPseudoLocale } from '../services';
 
 import {
@@ -19,7 +19,8 @@ export class AppView extends Component {
 
     // Share the router with the app without requiring React or context.
     // See `/wiki/react-router.md`
-    registerRouter(this.context.router);
+    const { history, location, match } = this.props;
+    registerRouter({ history, location, match });
   }
   componentDidUpdate(prevProps) {
     if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
@@ -28,6 +29,7 @@ export class AppView extends Component {
   }
 
   componentDidMount() {
+    document.title = `Elastic UI Framework - ${this.props.currentRoute.name}`;
     document.addEventListener('keydown', this.onKeydown);
   }
 
@@ -37,7 +39,6 @@ export class AppView extends Component {
 
   renderContent() {
     const { children, currentRoute, toggleLocale, locale, routes } = this.props;
-
     const { navigation } = routes;
 
     const mappingFuncs = {
@@ -61,13 +62,15 @@ export class AppView extends Component {
               navigation={navigation}
             />
           </EuiErrorBoundary>
-
           <div className="guidePageContent">
             <EuiContext i18n={i18n}>
               <ThemeContext.Consumer>
-                {context =>
-                  React.cloneElement(children, { selectedTheme: context.theme })
-                }
+                {context => {
+                  return React.cloneElement(children, {
+                    selectedTheme: context.theme,
+                    title: currentRoute.name,
+                  });
+                }}
               </ThemeContext.Consumer>
             </EuiContext>
           </div>
@@ -77,11 +80,7 @@ export class AppView extends Component {
   }
 
   render() {
-    return (
-      <ThemeProvider>
-        <div className="guide">{this.renderContent()}</div>
-      </ThemeProvider>
-    );
+    return <div className="guide">{this.renderContent()}</div>;
   }
 
   onKeydown = e => {
@@ -124,11 +123,4 @@ AppView.propTypes = {
 
 AppView.defaultProps = {
   currentRoute: {},
-};
-
-AppView.contextTypes = {
-  router: PropTypes.shape({
-    createHref: PropTypes.func.isRequired,
-    push: PropTypes.func.isRequired,
-  }).isRequired,
 };
