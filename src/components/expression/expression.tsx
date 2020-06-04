@@ -25,6 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
+import { EuiIcon } from '../icon';
 
 const colorToClassNameMap = {
   subdued: 'euiExpression--subdued',
@@ -35,9 +36,19 @@ const colorToClassNameMap = {
   danger: 'euiExpression--danger',
 };
 
+const textWrapToClassNameMap = {
+  'break-word': null,
+  truncate: 'euiExpression--truncate',
+};
+
 export const COLORS = keysOf(colorToClassNameMap);
 
 export type ExpressionColor = keyof typeof colorToClassNameMap;
+
+const displayToClassNameMap = {
+  inline: null,
+  columns: 'euiExpression--columns',
+};
 
 export type EuiExpressionProps = CommonProps & {
   /**
@@ -66,6 +77,25 @@ export type EuiExpressionProps = CommonProps & {
    * Turns the component into a button and adds an editable style border at the bottom
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Sets the display style for the expression. Defaults to `inline`
+   */
+  display?: keyof typeof displayToClassNameMap;
+  /**
+   * Forces color to display as `danger` and shows an `alert` icon
+   */
+  isInvalid?: boolean;
+  /**
+   * Sets a custom width for the description when using the columns layout.
+   * Set to a number for a custom width in `px`.
+   * Set to a string for a custom width in custom measurement.
+   * Defaults to `20%`
+   */
+  descriptionWidth?: number | string;
+  /**
+   * Sets how to handle the wrapping of long text.
+   */
+  textWrap?: keyof typeof textWrapToClassNameMap;
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -86,9 +116,15 @@ export const EuiExpression: React.FunctionComponent<
   color = 'secondary',
   uppercase = true,
   isActive = false,
+  display = 'inline',
+  descriptionWidth = '20%',
   onClick,
+  isInvalid = false,
+  textWrap = 'break-word',
   ...rest
 }) => {
+  const calculatedColor = isInvalid ? 'danger' : color;
+
   const classes = classNames(
     'euiExpression',
     className,
@@ -97,19 +133,44 @@ export const EuiExpression: React.FunctionComponent<
       'euiExpression-isClickable': onClick,
       'euiExpression-isUppercase': uppercase,
     },
-    colorToClassNameMap[color]
+    displayToClassNameMap[display],
+    colorToClassNameMap[calculatedColor],
+    textWrapToClassNameMap[textWrap]
   );
 
   const Component = onClick ? 'button' : 'span';
 
+  const descriptionStyle = descriptionProps && descriptionProps.style;
+  const customWidth =
+    display === 'columns' && descriptionWidth
+      ? {
+          flexBasis: descriptionWidth,
+          ...descriptionStyle,
+        }
+      : undefined;
+
+  const invalidIcon = isInvalid ? (
+    <EuiIcon
+      className="euiExpression__icon"
+      type="alert"
+      color={calculatedColor}
+    />
+  ) : (
+    undefined
+  );
+
   return (
     <Component className={classes} onClick={onClick} {...rest}>
-      <span className="euiExpression__description" {...descriptionProps}>
+      <span
+        className="euiExpression__description"
+        style={customWidth}
+        {...descriptionProps}>
         {description}
       </span>{' '}
       <span className="euiExpression__value" {...valueProps}>
         {value}
       </span>
+      {invalidIcon}
     </Component>
   );
 };

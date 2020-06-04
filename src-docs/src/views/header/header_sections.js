@@ -60,7 +60,11 @@ export default () => {
   ];
 
   const renderSearch = (
-    <EuiFieldSearch placeholder="Search for anything" compressed />
+    <EuiFieldSearch
+      placeholder="Search for anything"
+      aria-label="Search for anything"
+      compressed
+    />
   );
 
   const sections = [

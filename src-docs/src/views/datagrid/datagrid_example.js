@@ -12,7 +12,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');

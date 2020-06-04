@@ -372,4 +372,19 @@ describe('behavior', () => {
       expect(component.state('matchingOptions')[0].label).toBe('Enceladus');
     });
   });
+
+  it('calls the inputRef prop with the input element', () => {
+    const inputRefCallback = jest.fn();
+
+    const component = mount<
+      EuiComboBox<TitanOption>,
+      EuiComboBoxProps<TitanOption>,
+      { matchingOptions: TitanOption[] }
+    >(<EuiComboBox options={options} inputRef={inputRefCallback} />);
+
+    expect(inputRefCallback).toHaveBeenCalledTimes(1);
+    expect(component.find('input[role="textbox"]').getDOMNode()).toBe(
+      inputRefCallback.mock.calls[0][0]
+    );
+  });
 });
