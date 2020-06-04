@@ -75,11 +75,13 @@ module.exports = function() {
           if (!exportName) return;
           docgenResult.extends = componentExtends;
           path.node.body.push(
-            template.default.ast(`            
+            template.default.ast(`          
+            try{  
             ${exportName}.__docgenInfo = ${util.inspect(docgenResult, {
               showHidden: false,
               depth: null,
             })}
+          } catch(e) {}
           `)
           );
         });
