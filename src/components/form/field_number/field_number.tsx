@@ -39,7 +39,7 @@ export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
     readOnly?: boolean;
     min?: number;
     max?: number;
-    step?: number;
+    step?: number | 'any';
     inputRef?: Ref<HTMLInputElement>;
 
     /**
