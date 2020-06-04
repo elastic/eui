@@ -2,7 +2,7 @@
 
 **Bug fixes**
 
-- Fixed an issue where card image corners (top left & top right) would peek out over their border radius ([#3556](https://github.com/elastic/eui/pull/3556))
+- Fixed `EuiCard` image corners to be contained within border radius ([#3556](https://github.com/elastic/eui/pull/3556))
 - Fixed `EuiKeyPadMenu` and `EuiKeyPadMenuItem` aria roles ([#3502](https://github.com/elastic/eui/pull/3502))
 
 **Breaking changes**
