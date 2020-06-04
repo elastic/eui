@@ -4,6 +4,7 @@ import {
   EuiHeader,
   EuiHeaderLogo,
   EuiSwitch,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => {
@@ -11,28 +12,20 @@ export default () => {
 
   const sections = [
     {
-      items: [
-        <EuiHeaderLogo
-          iconType="logoKibana"
-          href="#"
-          aria-label="Go to home page"
-        />,
-      ],
-      borders: 'none',
-    },
-    {
-      items: [
-        <div style={{ padding: 12 }}>
-          <EuiSwitch
-            label={`position: ${position}`}
-            checked={position === 'fixed'}
-            onChange={e => setPosition(e.target.checked ? 'fixed' : 'static')}
-          />
-        </div>,
-      ],
-      borders: 'none',
+      items: [<EuiHeaderLogo iconType="logoKibana">Kibana</EuiHeaderLogo>],
+      borders: 'right',
     },
   ];
 
-  return <EuiHeader position={position} sections={sections} />;
+  return (
+    <>
+      <EuiSwitch
+        label={'Make header fixed position'}
+        checked={position === 'fixed'}
+        onChange={e => setPosition(e.target.checked ? 'fixed' : 'static')}
+      />
+      <EuiSpacer />
+      <EuiHeader position={position} sections={sections} />
+    </>
+  );
 };

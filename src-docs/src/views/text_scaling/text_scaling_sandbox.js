@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -10,7 +10,7 @@ const textScalingSource = require('!!raw-loader!./text_scaling');
 const textScalingHtml = renderToHtml(TextScaling);
 
 export default props => (
-  <GuidePage title={props.route.name}>
+  <GuidePage title={props.title}>
     <GuideSection
       source={[
         {

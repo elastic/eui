@@ -33,7 +33,7 @@ import { FocusTarget, EuiFocusTrap } from '../focus_trap';
 import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 
 import {
-  cascadingMenuKeyCodes,
+  cascadingMenuKeys,
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
@@ -336,11 +336,11 @@ export class EuiPopover extends Component<Props, State> {
     };
   }
 
-  onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.keyCode === cascadingMenuKeyCodes.ESCAPE) {
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === cascadingMenuKeys.ESCAPE) {
       if (this.state.isOpenStable || this.state.isOpening) {
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         this.props.closePopover();
       }
     }

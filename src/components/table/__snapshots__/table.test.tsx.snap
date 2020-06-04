@@ -5,6 +5,7 @@ exports[`renders EuiTable 1`] = `
   aria-label="aria-label"
   class="euiTable testClass1 testClass2 euiTable--responsive"
   data-test-subj="test subject string"
+  tabindex="-1"
 >
   <thead>
     <tr>

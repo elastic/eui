@@ -37,7 +37,7 @@ import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiFocusTrap } from '../focus_trap';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
@@ -146,7 +146,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   });
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
       closeFullScreen();

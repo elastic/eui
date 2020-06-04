@@ -685,6 +685,7 @@ export default class extends Component {
 
   render() {
     let optionalActionButtons;
+    const exampleId = 'example-id';
 
     if (this.areAnyRowsSelected() > 0) {
       optionalActionButtons = (
@@ -718,7 +719,7 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiTableHeaderMobile>
 
-        <EuiTable>
+        <EuiTable id={exampleId}>
           <EuiTableHeader>{this.renderHeaderCells()}</EuiTableHeader>
 
           <EuiTableBody>{this.renderRows()}</EuiTableBody>
@@ -729,6 +730,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiTablePagination
+          aria-controls={exampleId}
           activePage={this.pager.getCurrentPageIndex()}
           itemsPerPage={this.state.itemsPerPage}
           itemsPerPageOptions={[5, 10, 20]}

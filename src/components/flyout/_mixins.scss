@@ -15,10 +15,4 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
-  // When the EuiHeader is fixed, we need to account for it in the position of the flyout
-  .euiBody--headerIsFixed & {
-    top: $euiHeaderHeightCompensation;
-    height: calc(100% - #{$euiHeaderHeightCompensation});
-  }
 }

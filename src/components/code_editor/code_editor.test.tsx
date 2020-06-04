@@ -20,7 +20,7 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { EuiCodeEditor } from './code_editor';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import {
   findTestSubject,
   requiredProps,
@@ -85,7 +85,7 @@ describe('EuiCodeEditor', () => {
 
       test('should be disabled when the ui ace box gains focus', () => {
         const hint = findTestSubject(component, 'codeEditorHint');
-        hint.simulate('keyup', { keyCode: keyCodes.ENTER });
+        hint.simulate('keyup', { key: keys.ENTER });
         expect(
           findTestSubject(component, 'codeEditorHint').getDOMNode()
         ).toMatchSnapshot();
@@ -93,7 +93,7 @@ describe('EuiCodeEditor', () => {
 
       test('should be enabled when the ui ace box loses focus', () => {
         const hint = findTestSubject(component, 'codeEditorHint');
-        hint.simulate('keyup', { keyCode: keyCodes.ENTER });
+        hint.simulate('keyup', { key: keys.ENTER });
         // @ts-ignore
         component.instance().onBlurAce();
         expect(
@@ -116,7 +116,7 @@ describe('EuiCodeEditor', () => {
         component.instance().onKeydownAce({
           preventDefault: () => {},
           stopPropagation: () => {},
-          keyCode: keyCodes.ESCAPE,
+          key: keys.ESCAPE,
         });
         const hint = findTestSubject(component, 'codeEditorHint').getDOMNode();
         expect(hint).toBe(document.activeElement);

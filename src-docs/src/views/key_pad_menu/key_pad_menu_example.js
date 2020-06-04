@@ -8,6 +8,7 @@ import {
   EuiCode,
   EuiKeyPadMenu,
   EuiKeyPadMenuItem,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import KeyPadMenu from './key_pad_menu';
@@ -61,11 +62,26 @@ export const KeyPadMenuExample = {
         },
       ],
       text: (
-        <p>
-          The <strong>EuiKeyPadMenu</strong> component presents{' '}
-          <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
-          width which will accommodate three items and then wrap.
-        </p>
+        <>
+          <p>
+            The <strong>EuiKeyPadMenu</strong> component presents{' '}
+            <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
+            width which will accommodate three items and then wrap.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            title={
+              <>
+                If the menu provides navigation for your application, wrap the{' '}
+                <strong>EuiKeyPadMenu</strong> with{' '}
+                <EuiCode language="html">
+                  {'<nav aria-label="Nav title"></nav>'}
+                </EuiCode>
+                .
+              </>
+            }
+          />
+        </>
       ),
       props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
       snippet: keyPadMenuSnippet,

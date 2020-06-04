@@ -22,6 +22,7 @@ import classNames from 'classnames';
 
 import { ExclusiveUnion, PropsForAnchor, PropsForButton } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
+import { EuiI18n } from '../i18n';
 
 export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
   isActive?: boolean;
@@ -30,6 +31,8 @@ export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
    */
   isPlaceholder?: boolean;
   hideOnMobile?: boolean;
+  pageIndex: number;
+  totalPages?: number;
 };
 
 type EuiPaginationButtonPropsForAnchor = PropsForAnchor<
@@ -50,6 +53,8 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
   isActive,
   isPlaceholder,
   hideOnMobile,
+  pageIndex,
+  totalPages,
   ...rest
 }) => {
   const classes = classNames('euiPaginationButton', className, {
@@ -62,9 +67,34 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
     className: classes,
     size: 'xs',
     color: 'text',
-    isDisabled: isPlaceholder,
+    'data-test-subj': `pagination-button-${pageIndex}`,
+    isDisabled: isPlaceholder || isActive,
+    ...(isActive && { 'aria-current': true }),
+    ...(rest['aria-controls'] && { href: `#${rest['aria-controls']}` }),
     ...rest,
   };
 
-  return <EuiButtonEmpty {...props as EuiButtonEmptyProps} />;
+  const pageNumber = pageIndex + 1;
+
+  return (
+    <EuiI18n
+      token="euiPaginationButton.longPageString"
+      default="Page {page} of {totalPages}"
+      values={{ page: pageNumber, totalPages: totalPages }}>
+      {(longPageString: string) => (
+        <EuiI18n
+          token="euiPaginationButton.shortPageString"
+          default="Page {page}"
+          values={{ page: pageNumber }}>
+          {(shortPageString: string) => (
+            <EuiButtonEmpty
+              aria-label={totalPages ? longPageString : shortPageString}
+              {...props as EuiButtonEmptyProps}>
+              {pageNumber}
+            </EuiButtonEmpty>
+          )}
+        </EuiI18n>
+      )}
+    </EuiI18n>
+  );
 };

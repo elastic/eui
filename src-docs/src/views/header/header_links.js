@@ -16,7 +16,7 @@ export default () => {
       </EuiHeaderSectionItem>
 
       <EuiHeaderSectionItem>
-        <EuiHeaderLinks>
+        <EuiHeaderLinks aria-label="App navigation links example">
           <EuiHeaderLink href="#" isActive>
             Docs
           </EuiHeaderLink>

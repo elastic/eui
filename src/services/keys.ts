@@ -17,39 +17,36 @@
  * under the License.
  */
 
-export const ENTER = 13;
-export const SPACE = 32;
-export const ESCAPE = 27;
-export const TAB = 9;
-export const BACKSPACE = 8;
-export const F2 = 113;
+export const ENTER = 'Enter';
+export const SPACE = ' ';
+export const ESCAPE = 'Escape';
+export const TAB = 'Tab';
+export const BACKSPACE = 'Backspace';
+export const F2 = 'F2';
 
-// Arrow keys
-export const DOWN = 40;
-export const UP = 38;
-export const LEFT = 37;
-export const RIGHT = 39;
+export const ARROW_DOWN = 'ArrowDown';
+export const ARROW_UP = 'ArrowUp';
+export const ARROW_LEFT = 'ArrowLeft';
+export const ARROW_RIGHT = 'ArrowRight';
 
-export const PAGE_UP = 33;
-export const PAGE_DOWN = 34;
-export const END = 35;
-export const HOME = 36;
+export const PAGE_UP = 'PageUp';
+export const PAGE_DOWN = 'PageDown';
+export const END = 'End';
+export const HOME = 'Home';
 
-export enum keyCodes {
-  ENTER = 13,
-  SPACE = 32,
-  ESCAPE = 27,
-  TAB = 9,
-  BACKSPACE = 8,
-  F2 = 113,
-
-  DOWN = 40,
-  UP = 38,
-  LEFT = 37,
-  RIGHT = 39,
-
-  PAGE_UP = 33,
-  PAGE_DOWN = 34,
-  END = 35,
-  HOME = 36,
+export enum keys {
+  ENTER = 'Enter',
+  SPACE = ' ',
+  ESCAPE = 'Escape',
+  TAB = 'Tab',
+  BACKSPACE = 'Backspace',
+  F2 = 'F2',
+  ARROW_DOWN = 'ArrowDown',
+  ARROW_UP = 'ArrowUp',
+  ARROW_LEFT = 'ArrowLeft',
+  ARROW_RIGHT = 'ArrowRight',
+  PAGE_UP = 'PageUp',
+  PAGE_DOWN = 'PageDown',
+  END = 'End',
+  HOME = 'Home',
 }

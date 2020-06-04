@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   background: $euiHeaderBackgroundColor;
-  border-bottom: $euiBorderThin;
+  border-bottom: 1px solid $euiHeaderBorderColor;
 
   &--fixed {
     position: fixed;
@@ -19,10 +19,6 @@
   }
 }
 
-.euiBody--headerIsFixed {
-  padding-top: $euiHeaderHeightCompensation;
-}
-
 .euiBody--collapsibleNavIsOpen,
 .euiBody--hasFlyout {
   .euiHeader--fixed {
@@ -30,9 +26,15 @@
   }
 }
 
+.euiHeader--fixed + .euiHeader--fixed {
+  top: $euiHeaderHeightCompensation;
+}
+
 .euiHeader--dark {
-  // Only force reverse theme if the theme is light
   @if (lightness($euiTextColor) < 50) {
-    @include euiHeaderDarkTheme;
+    @include euiHeaderDarkTheme($backgroundColor: shade($euiColorDarkestShade, 28%));
+  } @else {
+    // Makes forced "dark" theme darker than the typical dark them to separate them visually
+    @include euiHeaderDarkTheme($backgroundColor: shade($euiColorLightestShade, 50%));
   }
 }

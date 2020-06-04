@@ -86,6 +86,9 @@ export type EuiHeaderProps = CommonProps &
     theme?: 'default' | 'dark';
   };
 
+// Start a counter to manage the total number of fixed headers that need the body class
+let euiHeaderFixedCounter = 0;
+
 export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   className,
@@ -103,11 +106,18 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
 
   useEffect(() => {
     if (position === 'fixed') {
+      // Increment fixed header counter for each fixed header
+      euiHeaderFixedCounter++;
       document.body.classList.add('euiBody--headerIsFixed');
+
+      return () => {
+        // Both decrement the fixed counter AND then check if there are none
+        if (--euiHeaderFixedCounter === 0) {
+          // If there are none, THEN remove class
+          document.body.classList.remove('euiBody--headerIsFixed');
+        }
+      };
     }
-    return () => {
-      document.body.classList.remove('euiBody--headerIsFixed');
-    };
   }, [position]);
 
   let contents;
