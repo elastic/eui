@@ -95,11 +95,19 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      <div className="euiCallOutHeader">
-        {headerIcon}
+      {
+        title ?
+        (
+          <div className="euiCallOutHeader">
+            {headerIcon}
+            <H className="euiCallOutHeader__title">{title}</H>
+          </div>
+        ):
+        (
+          null
+        )
+      }
 
-        <H className="euiCallOutHeader__title">{title}</H>
-      </div>
 
       {optionalChildren}
     </div>
