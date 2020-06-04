@@ -1,10 +1,9 @@
 .euiTextDiff {
-
   del {
-    color: $euiColorDanger;
+    color: $euiColorDangerText;
   }
 
   ins {
-    color: $euiColorSecondary;
+    color: $euiColorSuccessText;
   }
 }

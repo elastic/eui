@@ -5,7 +5,7 @@ import {
   EuiCode,
   EuiSpacer,
   EuiTextColor,
-  EuiCodeBlock,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => {
@@ -20,7 +20,6 @@ export default () => {
   const [rendered, textDiffObject] = useEuiTextDiff({
     beforeText,
     afterText,
-    timeout: 0,
   });
 
   useEffect(() => {
@@ -36,9 +35,9 @@ export default () => {
 
   return (
     <>
-      <EuiCodeBlock language="text" fontSize="m" paddingSize="m">
-        {rendered}
-      </EuiCodeBlock>
+      <EuiText>
+        <p>{rendered}</p>
+      </EuiText>
       <EuiSpacer />
       <EuiCode>
         <EuiTextColor color="secondary"> {ins} </EuiTextColor> Insertions,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -15,7 +16,8 @@ const customComponentsSource = require('!!raw-loader!./text_diff_custom_componen
 const customComponentsHtml = renderToHtml(TextDiffCustomComponents);
 
 export const TextDiffExample = {
-  title: 'Text Diff',
+  title: 'Text diff',
+  isNew: true,
   sections: [
     {
       source: [
@@ -34,21 +36,26 @@ export const TextDiffExample = {
             The hook, <strong>useEuiTextDiff</strong>, generates a set of
             changes between two strings. It returns both React elements for
             displaying the diff and an object representing the identified
-            changes.The <EuiCode>timeout</EuiCode> prop is used to set how many
+            changes. The <EuiCode>timeout</EuiCode> prop is used to set how many
             seconds any diff&apos;s exploration phase may take. The default
             value is 0.1, a value of 0 disables the timeout and lets diff run
             until completion. The higher the timeout, the more detailed the
             comparison.
           </p>
           <p>
-            <EuiCode language="ts">
-              const [rendered, textDiffObject] = useEuiTextDiff()
+            <EuiCode language="tsx">
+              {
+                'const [rendered, textDiffObject] = useEuiTextDiff({ beforeText, afterText })'
+              }
             </EuiCode>
           </p>
         </>
       ),
       demo: <TextDiff />,
       props: { useEuiTextDiffProp },
+      snippet: `const [rendered, textDiffObject] = useEuiTextDiff({ beforeText, afterText })
+
+<EuiText><p>{rendered}</p></EuiText>`,
     },
     {
       title: 'Custom rendered elements',
@@ -63,18 +70,39 @@ export const TextDiffExample = {
         },
       ],
       text: (
-        <p>
-          By default, the hook will render deletions as{' '}
-          <EuiCode>{'<del>'}</EuiCode> and insertions as{' '}
-          <EuiCode>{'<ins>'}</EuiCode> elements. You can replace these rendered
-          html elements with the
-          <EuiCode>
-            InsertComponent, DeletionComponent, NoChangeComponent{' '}
-          </EuiCode>
-          props.
-        </p>
+        <>
+          <p>
+            By default, the hook will wrap deletions with{' '}
+            <EuiCode>{'<del>'}</EuiCode> and insertions with{' '}
+            <EuiCode>{'<ins>'}</EuiCode> elements. You can replace these
+            elements with the <EuiCode>deleteComponent</EuiCode> and{' '}
+            <EuiCode>insertComponent</EuiCode>
+            props respectively.
+          </p>
+          <p>
+            Also, since <EuiCode>rendered</EuiCode> is simple html string, you
+            can wrap it in any contextual element like{' '}
+            <Link to="/display/text">
+              <strong>EuiText</strong>
+            </Link>{' '}
+            or{' '}
+            <Link to="/display/code">
+              <strong>EuiCodeBlock</strong>
+            </Link>
+            .
+          </p>
+        </>
       ),
       demo: <TextDiffCustomComponents />,
+      snippet: `const [rendered] = useEuiTextDiff({
+  beforeText,
+  afterText,
+  insertComponent: 'strong',
+});
+
+<EuiCodeBlock fontSize="m" paddingSize="m">
+  {rendered}
+</EuiCodeBlock>`,
     },
   ],
 };

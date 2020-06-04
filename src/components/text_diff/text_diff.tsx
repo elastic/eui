@@ -23,10 +23,28 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 interface Props {
-  afterText: string;
+  /**
+   * The starting string
+   */
   beforeText: string;
+  /**
+   * The string used to compare against `beforeText`
+   */
+  afterText: string;
+  /**
+   * HTML element to wrap insertion differences.
+   * Defaults to `ins`
+   */
   insertComponent?: ElementType;
+  /**
+   * HTML element to wrap deletion differences.
+   * Defaults to `del`
+   */
   deleteComponent?: ElementType;
+  /**
+   * HTML element to wrap text with no differences.
+   * Doesn't wrap with anything by default
+   */
   sameComponent?: ElementType;
   /**
    * Time in milliseconds. Passing a timeout of value '0' disables the timeout state

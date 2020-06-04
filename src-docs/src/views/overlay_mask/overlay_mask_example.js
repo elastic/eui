@@ -16,7 +16,7 @@ const overlayMaskSnippet = `<EuiOverlayMask>
 </EuiOverlayMask>`;
 
 export const OverlayMaskExample = {
-  title: 'Overlay Mask',
+  title: 'Overlay mask',
   sections: [
     {
       source: [
