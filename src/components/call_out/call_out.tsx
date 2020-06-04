@@ -92,22 +92,15 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   }
 
   const H: any = heading ? `${heading}` : 'span';
-  const isTitlePresent = title ? (true) : (false);
+  const isTitlePresent = title ? true : false;
   return (
     <div className={classes} {...rest}>
-      {
-        isTitlePresent ?
-        (
-          <div className="euiCallOutHeader">
-            {headerIcon}
-            <H className="euiCallOutHeader__title">{title}</H>
-          </div>
-        ):
-        (
-          null
-        )
-      }
-
+      {isTitlePresent ? (
+        <div className="euiCallOutHeader">
+          {headerIcon}
+          <H className="euiCallOutHeader__title">{title}</H>
+        </div>
+      ) : null}
 
       {optionalChildren}
     </div>
