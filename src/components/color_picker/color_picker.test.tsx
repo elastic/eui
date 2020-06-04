@@ -21,7 +21,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 
 import { EuiColorPicker } from './color_picker';
-import { VISUALIZATION_COLORS, keyCodes } from '../../services';
+import { VISUALIZATION_COLORS, keys } from '../../services';
 import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
@@ -186,7 +186,7 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
   await sleep();
   findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
-    keyCode: keyCodes.ESCAPE,
+    key: keys.ESCAPE,
   });
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   expect(onBlurHandler).toBeCalled();
@@ -205,7 +205,7 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
   findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
-    keyCode: keyCodes.ENTER,
+    key: keys.ENTER,
   });
   expect(
     findTestSubject(colorPicker, 'colorPickerAnchor').getDOMNode()

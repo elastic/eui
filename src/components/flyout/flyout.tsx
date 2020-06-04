@@ -26,7 +26,7 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 
-import { keyCodes, EuiWindowEvent } from '../../services';
+import { keys, EuiWindowEvent } from '../../services';
 
 import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
@@ -88,7 +88,7 @@ export const EuiFlyout: FunctionComponent<EuiFlyoutProps> = ({
   ...rest
 }) => {
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       event.preventDefault();
       onClose();
     }

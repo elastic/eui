@@ -121,18 +121,13 @@ export default () => {
   );
 
   let flyout;
-  const flyoutStyle = {
-    top: '49px',
-    height: 'calc(100vh - 49px)',
-  };
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
         onClose={() => closeFlyout()}
         size="s"
         id="headerNewsFeed"
-        aria-labelledby="flyoutSmallTitle"
-        style={flyoutStyle}>
+        aria-labelledby="flyoutSmallTitle">
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
             <h2 id="flyoutSmallTitle">What&apos;s new</h2>
