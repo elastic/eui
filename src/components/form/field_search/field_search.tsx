@@ -113,6 +113,20 @@ export class EuiFieldSearch extends Component<
         this.inputElement.removeEventListener('search', onSearch);
       });
     }
+    const onChange = (event: Event) => {
+      if (
+        event.target &&
+        (event.target as HTMLInputElement).value !== this.state.value
+      ) {
+        this.setState({
+          value: (event.target as HTMLInputElement).value,
+        });
+        if (this.props.onSearch) {
+          this.props.onSearch((event.target as HTMLInputElement).value);
+        }
+      }
+    };
+    this.inputElement.addEventListener('change', onChange);
   }
 
   onClear = () => {
@@ -156,6 +170,7 @@ export class EuiFieldSearch extends Component<
       }
       // set focus on the search field
       this.inputElement.focus();
+      this.inputElement.dispatchEvent(new Event('change'));
     }
     this.setState({ value: '' });
 
