@@ -5,6 +5,7 @@
 
 **Bug fixes**
 - Fixed `EuiKeyPadMenu` and `EuiKeyPadMenuItem` aria roles ([#3502](https://github.com/elastic/eui/pull/3502))
+- Fixed `EuiComboBox`'s options list `zIndex` positioning when nested in other `zIndex` contexts ([#3551](https://github.com/elastic/eui/pull/3551))
 
 ## [`24.1.0`](https://github.com/elastic/eui/tree/v24.1.0)
 

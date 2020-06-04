@@ -169,6 +169,7 @@ export default () => {
           <EuiPopover
             isOpen={isExpressionOpen}
             closePopover={() => setIsExpressionOpen(false)}
+            ownFocus={true}
             button={
               <EuiExpression
                 description="expression"
