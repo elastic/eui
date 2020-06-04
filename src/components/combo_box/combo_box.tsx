@@ -63,6 +63,7 @@ import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
 import { EuiFormControlLayoutProps } from '../form';
+import { getElementZIndex } from '../../services/popover';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -178,6 +179,7 @@ interface EuiComboBoxState<T> {
   isListOpen: boolean;
   listElement?: RefInstance<HTMLDivElement>;
   listPosition: EuiComboBoxOptionsListPosition;
+  listZIndex: number | undefined;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
   width: number;
@@ -208,6 +210,7 @@ export class EuiComboBox<T> extends Component<
     isListOpen: false,
     listElement: null,
     listPosition: 'bottom',
+    listZIndex: undefined,
     matchingOptions: getMatchingOptions<T>(
       this.props.options,
       this.props.selectedOptions,
@@ -262,6 +265,15 @@ export class EuiComboBox<T> extends Component<
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRefCallback: RefCallback<HTMLDivElement> = ref => {
+    if (this.comboBoxRefInstance) {
+      // find the zIndex of the combobox relative to the page body
+      // and use that to depth-position the list box
+      const listZIndex = getElementZIndex(
+        this.comboBoxRefInstance,
+        document.body
+      );
+      this.setState({ listZIndex });
+    }
     this.listRefInstance = ref;
   };
 
@@ -291,6 +303,7 @@ export class EuiComboBox<T> extends Component<
   closeList = () => {
     this.clearActiveOption();
     this.setState({
+      listZIndex: undefined,
       isListOpen: false,
     });
   };
@@ -969,6 +982,7 @@ export class EuiComboBox<T> extends Component<
       optionsList = (
         <EuiPortal>
           <EuiComboBoxOptionsList
+            zIndex={this.state.listZIndex}
             activeOptionIndex={this.state.activeOptionIndex}
             areAllOptionsSelected={this.areAllOptionsSelected()}
             data-test-subj={optionsListDataTestSubj}

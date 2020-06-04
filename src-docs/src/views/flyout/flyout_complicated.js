@@ -4,6 +4,8 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiCodeBlock,
+  EuiComboBox,
+  EuiExpression,
   EuiFlexGroup,
   EuiFlexItem,
   EuiFlyout,
@@ -26,6 +28,7 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('1');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isExpressionOpen, setIsExpressionOpen] = useState(false);
 
   const tabs = [
     {
@@ -162,6 +165,26 @@ export default () => {
               <SuperSelectComplexExample />
             </EuiFormRow>
           </EuiForm>
+          <EuiSpacer />
+          <EuiPopover
+            isOpen={isExpressionOpen}
+            closePopover={() => setIsExpressionOpen(false)}
+            button={
+              <EuiExpression
+                description="expression"
+                value="configurations"
+                onClick={() => setIsExpressionOpen(!isExpressionOpen)}
+              />
+            }>
+            <EuiComboBox
+              selectedOptions={[{ label: 'Option one' }]}
+              options={[
+                { label: 'Option one' },
+                { label: 'Option two' },
+                { label: 'Option three' },
+              ]}
+            />
+          </EuiPopover>
           <EuiSpacer />
           {flyoutContent}
           <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
