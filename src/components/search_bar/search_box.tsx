@@ -45,6 +45,7 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
   componentDidUpdate(oldProps: EuiSearchBoxProps) {
     if (oldProps.query !== this.props.query && this.inputElement != null) {
       this.inputElement.value = this.props.query;
+      this.inputElement.dispatchEvent(new Event('change'));
     }
   }
 

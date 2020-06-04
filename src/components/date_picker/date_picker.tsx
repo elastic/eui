@@ -96,7 +96,7 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   iconType?: EuiFormControlLayoutIconsProps['icon'];
 
   /**
-   * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
+   * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"left-start"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
    */
   popoverPlacement?: ReactDatePickerProps['popperPlacement'];
 }

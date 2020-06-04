@@ -1,5 +1,5 @@
 import React, { cloneElement, Component, Fragment } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -12,6 +12,8 @@ import {
   EuiPopover,
   EuiSpacer,
 } from '../../../../src/components';
+
+import { SIZES } from '../../../../src/components/spacer/spacer';
 
 export class DisplayToggles extends Component {
   constructor(props) {
@@ -50,6 +52,7 @@ export class DisplayToggles extends Component {
       canInvalid,
       children,
       extras,
+      spacerSize,
     } = this.props;
 
     const canProps = {};
@@ -66,7 +69,7 @@ export class DisplayToggles extends Component {
     return (
       <Fragment>
         {cloneElement(children, canProps)}
-        <EuiSpacer />
+        <EuiSpacer size={spacerSize} />
         <EuiPopover
           panelPaddingSize="s"
           isOpen={this.state.isPopoverOpen}
@@ -221,6 +224,7 @@ DisplayToggles.propTypes = {
   canAppend: PropTypes.bool,
   canInvalid: PropTypes.bool,
   extras: PropTypes.arrayOf(PropTypes.node),
+  spacerSize: PropTypes.oneOf(SIZES),
 };
 
 DisplayToggles.defaultProps = {
@@ -233,4 +237,5 @@ DisplayToggles.defaultProps = {
   canInvalid: true,
   canPrepend: false,
   canAppend: false,
+  spacerSize: 'l',
 };

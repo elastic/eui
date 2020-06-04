@@ -17,7 +17,13 @@
  * under the License.
  */
 
-import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  Component,
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+  ReactElement,
+} from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -225,6 +231,7 @@ export type EuiBasicTableProps<T> = CommonProps &
   (BasicTableProps<T> | BasicTableWithPaginationProps<T>);
 
 interface State<T> {
+  initialSelectionRendered: boolean;
   selection: T[];
 }
 
@@ -284,12 +291,18 @@ export class EuiBasicTable<T = any> extends Component<
   private cleanups: Array<() => void> = [];
   private tbody: HTMLTableSectionElement | null = null;
 
-  state = {
-    selection: [],
-  };
+  constructor(props: EuiBasicTableProps<T>) {
+    super(props);
+    this.state = {
+      // used for checking if  initial selection is rendered
+      initialSelectionRendered: false,
+      selection: [],
+    };
+  }
 
   componentDidMount() {
     if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
+    this.getInitialSelection();
   }
 
   componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
@@ -300,10 +313,27 @@ export class EuiBasicTable<T = any> extends Component<
         this.removeLoadingListeners();
       }
     }
+    this.getInitialSelection();
   }
 
   componentWillUnmount() {
     this.removeLoadingListeners();
+  }
+
+  getInitialSelection() {
+    if (
+      this.props.selection &&
+      this.props.selection.initialSelected &&
+      !this.state.initialSelectionRendered &&
+      this.props.items.length > 0
+    ) {
+      this.setState({ selection: this.props.selection.initialSelected });
+      this.setState({ initialSelectionRendered: true });
+    }
+  }
+
+  setSelection(newSelection: T[]) {
+    this.changeSelection(newSelection);
   }
 
   private setTbody = (tbody: HTMLTableSectionElement | null) => {
@@ -441,6 +471,8 @@ export class EuiBasicTable<T = any> extends Component<
     }
   }
 
+  tableId = htmlIdGenerator('__table')();
+
   render() {
     const {
       className,
@@ -477,7 +509,7 @@ export class EuiBasicTable<T = any> extends Component<
     );
 
     const table = this.renderTable();
-    const paginationBar = this.renderPaginationBar(items.length);
+    const paginationBar = this.renderPaginationBar();
 
     return (
       <div className={classes} {...rest}>
@@ -511,6 +543,7 @@ export class EuiBasicTable<T = any> extends Component<
       <div>
         {mobileHeader}
         <EuiTable
+          id={this.tableId}
           tableLayout={tableLayout}
           responsive={responsive}
           compressed={compressed}>
@@ -573,23 +606,59 @@ export class EuiBasicTable<T = any> extends Component<
     const { items, pagination, tableCaption } = this.props;
     let captionElement;
     if (tableCaption) {
-      captionElement = tableCaption;
-    } else {
-      if (pagination && pagination.totalItemCount > 0) {
+      if (pagination) {
         captionElement = (
           <EuiI18n
-            token="euiBasicTable.tableDescriptionWithPagination"
-            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            token="euiBasicTable.tableCaptionWithPagination"
+            default="{tableCaption}; Page {page} of {pageCount}."
             values={{
-              totalItemCount: pagination.totalItemCount,
-              itemCount: items.length,
+              tableCaption,
+              page: pagination.pageIndex + 1,
+              pageCount: Math.ceil(
+                pagination.totalItemCount / pagination.pageSize
+              ),
             }}
           />
         );
       } else {
+        captionElement = tableCaption;
+      }
+    } else {
+      if (pagination) {
+        if (pagination.totalItemCount > 0) {
+          captionElement = (
+            <EuiI18n
+              token="euiBasicTable.tableAutoCaptionWithPagination"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
+              values={{
+                totalItemCount: pagination.totalItemCount,
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
+            />
+          );
+        } else {
+          captionElement = (
+            <EuiI18n
+              token="euiBasicTable.tableSimpleAutoCaptionWithPagination"
+              default="This table contains {itemCount} rows; Page {page} of {pageCount}."
+              values={{
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
+            />
+          );
+        }
+      } else {
         captionElement = (
           <EuiI18n
-            token="euiBasicTable.tableDescriptionWithoutPagination"
+            token="euiBasicTable.tableAutoCaptionWithoutPagination"
             default="This table contains {itemCount} rows."
             values={{
               itemCount: items.length,
@@ -1235,18 +1304,33 @@ export class EuiBasicTable<T = any> extends Component<
     return profile.align;
   }
 
-  renderPaginationBar(itemsLength: number) {
-    const { error, pagination, onChange } = this.props;
-    if (!error && pagination && itemsLength > 0) {
+  renderPaginationBar() {
+    const { error, pagination, tableCaption, onChange } = this.props;
+    if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
         not configured. This callback must be implemented to handle pagination changes`);
       }
+
+      let ariaLabel: ReactElement | undefined = undefined;
+
+      if (tableCaption) {
+        ariaLabel = (
+          <EuiI18n
+            token="euiBasicTable.tablePagination"
+            default="Pagination for preceding table: {tableCaption}"
+            values={{ tableCaption }}
+          />
+        );
+      }
+
       return (
         <PaginationBar
+          aria-controls={this.tableId}
           pagination={pagination}
           onPageSizeChange={this.onPageSizeChange.bind(this)}
           onPageChange={this.onPageChange.bind(this)}
+          aria-label={ariaLabel}
         />
       );
     }

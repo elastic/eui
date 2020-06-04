@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { EuiSpacer } from '../spacer';
 import { EuiTablePagination } from '../table';
 import {
@@ -35,6 +35,10 @@ export interface Pagination {
 
 export interface PaginationBarProps {
   pagination: Pagination;
+  /**
+   * id of the table being controlled
+   */
+  'aria-controls'?: string;
   onPageSizeChange: ItemsPerPageChangeHandler;
   onPageChange: PageChangeHandler;
 }
@@ -45,6 +49,7 @@ export const defaults = {
 
 export const PaginationBar = ({
   pagination,
+  'aria-controls': ariaControls,
   onPageSizeChange,
   onPageChange,
 }: PaginationBarProps) => {
@@ -52,6 +57,13 @@ export const PaginationBar = ({
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
   const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
+
+  useEffect(() => {
+    if (pageCount < pagination.pageIndex + 1) {
+      onPageChange(pageCount - 1);
+    }
+  }, [pageCount, onPageChange, pagination]);
+
   return (
     <div>
       <EuiSpacer size="m" />
@@ -63,6 +75,7 @@ export const PaginationBar = ({
         pageCount={pageCount}
         onChangeItemsPerPage={onPageSizeChange}
         onChangePage={onPageChange}
+        aria-controls={ariaControls}
       />
     </div>
   );

@@ -25,7 +25,7 @@ import {
 Most services are published from the `lib/services` directory. Some are published from their module directories in this directory.
 
 ```js
-import { keyCodes } from '@elastic/eui/lib/services';
+import { keys } from '@elastic/eui/lib/services';
 import { Timer } from '@elastic/eui/lib/services/time';
 ```
 
@@ -99,6 +99,23 @@ ReactDOM.render(
 ### "Module build failed" or "Module parse failed: Unexpected token" error
 
 If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` instead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
+
+### Failing icon imports
+
+To reduce EUI's impact to application bundle sizes, the icons are dynamically imported on-demand. This is problematic for some bundlers and/or deployments, so a method exists to preload specific icons an application needs.
+
+```javascript
+import { appendIconComponentCache } from '@elastic/eui/es/components/icon/icon';
+
+import { icon as EuiIconArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
+import { icon as EuiIconArrowLeft } from '@elastic/eui/es/components/icon/assets/arrow_left';
+
+// One or more icons are passed in as an object of iconKey (string): IconComponent
+appendIconComponentCache({
+  arrowDown: EuiIconArrowDown,
+  arrowLeft: EuiIconArrowLeft,
+});
+``` 
 
 ## Customizing with `className`
 

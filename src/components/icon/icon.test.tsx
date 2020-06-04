@@ -22,8 +22,17 @@ import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import cheerio from 'cheerio';
 
-import { EuiIcon, SIZES, TYPES, COLORS, clearIconComponentCache } from './icon';
+import {
+  EuiIcon,
+  SIZES,
+  TYPES,
+  COLORS,
+  clearIconComponentCache,
+  appendIconComponentCache,
+} from './icon';
 import { PropsOf } from '../common';
+// @ts-ignore
+import { icon as EuiIconVideoPlayer } from './assets/videoPlayer.js';
 
 jest.mock('./icon', () => {
   return require.requireActual('./icon');
@@ -125,5 +134,35 @@ describe('EuiIcon', () => {
     };
     const component = mount(<EuiIcon type={CustomIcon} />);
     expect(prettyHtml(component.html())).toMatchSnapshot();
+  });
+
+  describe('appendIconComponentCache', () => {
+    it('does nothing if not called', () => {
+      const component = mount(<EuiIcon type="videoPlayer" />);
+      expect(
+        component.find('EuiIcon[type="videoPlayer"] > EuiIconEmpty').length
+      ).toBe(1);
+    });
+
+    it('injects the specified icon', () => {
+      appendIconComponentCache({
+        videoPlayer: EuiIconVideoPlayer,
+      });
+      const component = mount(<EuiIcon type="videoPlayer" />);
+      expect(
+        component.find('EuiIcon[type="videoPlayer"] > EuiIconVideoPlayer')
+          .length
+      ).toBe(1);
+    });
+
+    it('does not impact non-loaded icons', () => {
+      appendIconComponentCache({
+        videoPlayer: EuiIconVideoPlayer,
+      });
+      const component = mount(<EuiIcon type="accessibility" />);
+      expect(
+        component.find('EuiIcon[type="accessibility"] > EuiIconEmpty').length
+      ).toBe(1);
+    });
   });
 });
