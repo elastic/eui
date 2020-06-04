@@ -52,7 +52,9 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   onClick,
   ...rest
 }) => {
-  const overlayMaskNode = useRef<HTMLDivElement | null>(null);
+  const overlayMaskNode = useRef<HTMLDivElement | null>(
+    document.createElement('div')
+  );
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
 
   useEffect(() => {
@@ -64,9 +66,10 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   }, []);
 
   useEffect(() => {
-    overlayMaskNode.current = document.createElement('div');
-    document.body.appendChild(overlayMaskNode.current);
-    setIsPortalTargetReady(true);
+    if (overlayMaskNode.current) {
+      document.body.appendChild(overlayMaskNode.current);
+      setIsPortalTargetReady(true);
+    }
 
     return () => {
       if (overlayMaskNode.current) {
@@ -75,29 +78,6 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
       }
     };
   }, []);
-
-  useEffect(() => {
-    if (!overlayMaskNode.current) return;
-    overlayMaskNode.current.className = classNames('euiOverlayMask', className);
-  }, [className]);
-
-  useEffect(() => {
-    if (!overlayMaskNode.current || !onClick) return;
-    overlayMaskNode.current.addEventListener(
-      'click',
-      (e: React.MouseEvent | MouseEvent) => {
-        if (e.target === overlayMaskNode.current) {
-          onClick();
-        }
-      }
-    );
-
-    return () => {
-      if (overlayMaskNode.current && onClick) {
-        overlayMaskNode.current.removeEventListener('click', onClick);
-      }
-    };
-  }, [onClick]);
 
   useEffect(() => {
     if (!overlayMaskNode.current) return;
@@ -111,7 +91,27 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
         overlayMaskNode.current.setAttribute(key, rest[key]!);
       }
     });
-  }, [rest]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!overlayMaskNode.current) return;
+    overlayMaskNode.current.className = classNames('euiOverlayMask', className);
+  }, [className]);
+
+  useEffect(() => {
+    if (!overlayMaskNode.current || !onClick) return;
+    overlayMaskNode.current.addEventListener('click', e => {
+      if (e.target === overlayMaskNode.current) {
+        onClick();
+      }
+    });
+
+    return () => {
+      if (overlayMaskNode.current && onClick) {
+        overlayMaskNode.current.removeEventListener('click', onClick);
+      }
+    };
+  }, [onClick]);
 
   return isPortalTargetReady
     ? createPortal(children, overlayMaskNode.current!)
