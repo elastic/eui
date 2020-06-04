@@ -31,7 +31,7 @@ import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeyCodes } from '../../services';
+import { cascadingMenuKeys } from '../../services';
 
 interface EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
@@ -88,8 +88,8 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
     setPanelWidth();
   }, [setPanelWidth]);
 
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.keyCode === cascadingMenuKeyCodes.TAB) {
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === cascadingMenuKeys.TAB) {
       const tabbableItems = tabbable(panelEl).filter((el: HTMLElement) => {
         return (
           Array.from(el.attributes)

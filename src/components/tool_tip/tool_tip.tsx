@@ -24,15 +24,14 @@ import React, {
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
+  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 
 import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
-
-import { TAB } from '../../services/key_codes';
+import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -243,24 +242,25 @@ export class EuiToolTip extends Component<Props, State> {
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   };
 
-  onKeyUp = (e: { keyCode: number }) => {
-    if (e.keyCode === TAB) {
+  onKeyUp = (event: KeyboardEvent<HTMLSpanElement>) => {
+    if (event.key === keys.TAB) {
       window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
     }
   };
 
-  onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
+  onMouseOut = (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
     if (
-      this.anchor === e.relatedTarget ||
-      (this.anchor != null && !this.anchor.contains(e.relatedTarget as Node))
+      this.anchor === event.relatedTarget ||
+      (this.anchor != null &&
+        !this.anchor.contains(event.relatedTarget as Node))
     ) {
       this.hideToolTip();
     }
 
     if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
+      this.props.onMouseOut(event);
     }
   };
 
@@ -315,7 +315,9 @@ export class EuiToolTip extends Component<Props, State> {
         className={anchorClasses}
         onMouseOver={this.showToolTip}
         onMouseOut={this.onMouseOut}
-        onKeyUp={e => this.onKeyUp(e)}>
+        onKeyUp={event => {
+          this.onKeyUp(event);
+        }}>
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element

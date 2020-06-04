@@ -32,12 +32,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  comboBoxKeyCodes,
-  findPopoverPosition,
-  htmlIdGenerator,
-} from '../../services';
-import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
+import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { EuiPortal } from '../portal';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
@@ -587,8 +582,8 @@ export class EuiComboBox<T> extends Component<
   };
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = event => {
-    switch (event.keyCode) {
-      case comboBoxKeyCodes.UP:
+    switch (event.key) {
+      case keys.ARROW_UP:
         event.preventDefault();
         event.stopPropagation();
         if (this.state.isListOpen) {
@@ -598,7 +593,7 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case comboBoxKeyCodes.DOWN:
+      case keys.ARROW_DOWN:
         event.preventDefault();
         event.stopPropagation();
         if (this.state.isListOpen) {
@@ -608,17 +603,17 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case BACKSPACE:
+      case keys.BACKSPACE:
         event.stopPropagation();
         this.removeLastOption();
         break;
 
-      case ESCAPE:
+      case keys.ESCAPE:
         event.stopPropagation();
         this.closeList();
         break;
 
-      case comboBoxKeyCodes.ENTER:
+      case keys.ENTER:
         event.preventDefault();
         event.stopPropagation();
         if (this.hasActiveOption()) {
@@ -630,7 +625,7 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case TAB:
+      case keys.TAB:
         // Disallow tabbing when the user is navigating the options.
         if (this.hasActiveOption() && this.state.isListOpen) {
           event.preventDefault();
