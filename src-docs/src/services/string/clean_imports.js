@@ -20,8 +20,8 @@ export const listExtraDeps = code => {
   ]
     .map(x => x.groups.import)
     .reduce((deps, dep) => {
-      // Hack because the docs are locked to a specific version of React Router
-      deps[dep] = dep === 'react-router' ? '^3.2.5' : 'latest';
+      // Make sure that we are using the latest version of a dep
+      deps[dep] = 'latest';
       return deps;
     }, {});
 };
