@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added conditional rendering of the title element in `EuiCallOut` to avoid usage of additional space caused by the rendered `<div>` element ([#3549](https://github.com/elastic/eui/pull/3549))
+- Added 'any' option to the step prop of the `EuiFieldNumber`. ([#3562](https://github.com/elastic/eui/pull/3562))
 
 **Bug fixes**
 
