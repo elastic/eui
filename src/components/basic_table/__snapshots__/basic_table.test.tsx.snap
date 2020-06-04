@@ -958,19 +958,19 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           key="_selection_column_f"
         />
         <EuiTableFooterCell
-          key="footer_name"
+          key="footer_name_0"
         >
           <strong>
             Name
           </strong>
         </EuiTableFooterCell>
         <EuiTableFooterCell
-          key="footer_id"
+          key="footer_id_1"
         >
           ID
         </EuiTableFooterCell>
         <EuiTableFooterCell
-          key="footer_age"
+          key="footer_age_2"
         >
           <strong>
             sum:
