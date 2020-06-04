@@ -15,7 +15,7 @@ export const listExtraDeps = code => {
   return [
     ...code.matchAll(
       // Match anything not directly calling eui (like lib dirs)
-      /(import)(?!.*elastic\/eui)\s.*?'(?<import>(@[^.]+?\/)?[^.]+?)['\/]/g
+      /(import)(?!.*(elastic\/eui|\.))\s.*?'(?<import>(@[^.]+?\/)?[^.]+?)['\/]/g
     ),
   ]
     .map(x => x.groups.import)
