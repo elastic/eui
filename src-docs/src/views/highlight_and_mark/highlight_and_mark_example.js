@@ -11,14 +11,14 @@ import { Mark } from './mark';
 
 const highlightSource = require('!!raw-loader!./highlight');
 const highlightHtml = renderToHtml(Highlight);
-const highlightSnippet = `<EuiHighlight search={searchValue}>
-  The quick brown fox jumped over the lazy dog
+const highlightSnippet = `<EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
+  <!-- A text where all your search matches will be highlighted -->
 </EuiHighlight>
 `;
 
 const markSource = require('!!raw-loader!./mark');
 const markHtml = renderToHtml(Mark);
-const markSnippet = '<EuiMark>mark</EuiMark>';
+const markSnippet = '<EuiMark><!-- Mark text --></EuiMark>';
 
 export const HighlightAndMarkExample = {
   title: 'Highlight and mark',
