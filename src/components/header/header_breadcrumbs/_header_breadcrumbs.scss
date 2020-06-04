@@ -1,18 +1,9 @@
 // Breadcrumb navigation included in the header.
 
-@import '../../link/mixins';
-
 .euiHeaderBreadcrumbs {
-  margin-left: $euiSize;
-  margin-right: $euiSize;
+  margin-left: $euiSizeS;
+  margin-right: $euiSizeS;
   display: flex;
   align-items: center;
   flex-grow: 1;
-}
-
-@include euiBreakpoint('xs') {
-  .euiHeaderBreadcrumbs {
-    margin-left: $euiSizeS;
-    margin-right: $euiSizeS;
-  }
 }
