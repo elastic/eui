@@ -1,5 +1,4 @@
 import React, { cloneElement, Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -158,9 +157,9 @@ export class DisplayToggles extends Component {
                       <span>
                         compressed{' '}
                         <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
-                          <Link to="/forms/compressed-forms">
+                          <a href="/#/forms/compressed-forms">
                             <EuiIcon type="help" />
-                          </Link>
+                          </a>
                         </EuiToolTip>
                       </span>
                     }
