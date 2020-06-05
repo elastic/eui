@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiButton,
@@ -18,14 +18,14 @@ import {
   EuiTabs,
   EuiText,
   EuiTitle,
+  EuiSuperSelect,
 } from '../../../../src/components';
-
-import SuperSelectComplexExample from '../super_select/super_select_complex';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('1');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [superSelectvalue, setSuperSeelctValue] = useState('option_one');
 
   const tabs = [
     {
@@ -56,6 +56,55 @@ export default () => {
       {tab.name}
     </EuiTab>
   ));
+
+  const superSelectOptions = [
+    {
+      value: 'option_one',
+      inputDisplay: 'Option one',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option one</strong>
+          <EuiText size="s" color="subdued">
+            <p className="euiTextColor--subdued">
+              Has a short description giving more detail to the option.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_two',
+      inputDisplay: 'Option two',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option two</strong>
+          <EuiText size="s" color="subdued">
+            <p className="euiTextColor--subdued">
+              Has a short description giving more detail to the option.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_three',
+      inputDisplay: 'Option three',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option three</strong>
+          <EuiText size="s" color="subdued">
+            <p className="euiTextColor--subdued">
+              Has a short description giving more detail to the option.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+  ];
+
+  const onSuperSelectChange = value => {
+    setSuperSeelctValue(value);
+  };
 
   const flyoutContent = (
     <EuiText>
@@ -159,7 +208,13 @@ export default () => {
           <EuiSpacer size="m" />
           <EuiForm>
             <EuiFormRow label="A SuperSelect field">
-              <SuperSelectComplexExample />
+              <EuiSuperSelect
+                options={superSelectOptions}
+                valueOfSelected={superSelectvalue}
+                onChange={value => onSuperSelectChange(value)}
+                itemLayoutAlign="top"
+                hasDividers
+              />
             </EuiFormRow>
           </EuiForm>
           <EuiSpacer />

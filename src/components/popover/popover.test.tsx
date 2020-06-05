@@ -28,7 +28,7 @@ import {
   PopoverAnchorPosition,
 } from './popover';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
@@ -111,7 +111,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        component.simulate('keydown', { keyCode: keyCodes.ESCAPE });
+        component.simulate('keydown', { key: keys.ESCAPE });
         expect(closePopoverHandler).toBeCalledTimes(1);
       });
 
@@ -128,7 +128,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        component.simulate('keydown', { keyCode: keyCodes.ESCAPE });
+        component.simulate('keydown', { key: keys.ESCAPE });
         expect(closePopoverHandler).not.toBeCalled();
       });
     });

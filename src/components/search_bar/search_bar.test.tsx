@@ -23,7 +23,7 @@ import { requiredProps } from '../../test';
 import { mount, shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
 import { Query } from './query';
-import { ENTER } from '../../services/key_codes';
+import { keys } from '../../services';
 import { SearchFilterConfig } from './search_filters';
 
 describe('SearchBar', () => {
@@ -106,7 +106,7 @@ describe('SearchBar', () => {
       );
 
       component.find('input[data-test-subj="searchbar"]').simulate('keyup', {
-        keyCode: ENTER,
+        key: keys.ENTER,
         target: { value: 'status:inactive' },
       });
 

@@ -1,0 +1,32 @@
+.euiHeader {
+  height: $euiHeaderHeight;
+  padding-left: $euiSizeS;
+  padding-right: $euiSizeS;
+}
+
+// Remove borders without deleting the prop just yet
+.euiHeaderSectionItem:after {
+  display: none !important; // sass-lint:disable-line no-important
+}
+
+.euiHeaderLogo {
+  @include euiBreakpoint('xs') {
+    padding: 0 $euiSizeXS;
+  }
+
+  padding-left: $euiSizeS;
+  padding-right: $euiSizeS;
+  min-width: $euiHeaderChildSize;
+}
+
+.euiHeaderLogo__text {
+  @include euiTitle('xxs');
+}
+
+.euiHeaderBreadcrumbs {
+  margin-left: $euiSizeS;
+}
+
+.euiHeader--default + .euiHeader--default {
+  border-top: $euiBorderThin;
+}

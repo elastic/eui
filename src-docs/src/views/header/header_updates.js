@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiIcon,
@@ -96,22 +96,14 @@ export default () => {
       badge: <EuiBadge color="hollow">6.5</EuiBadge>,
     },
   ];
-  function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
 
   const closeFlyout = () => {
     setIsFlyoutVisible(false);
   };
 
-  const prevIsFlyoutVisible = usePrevious(isFlyoutVisible);
   const showFlyout = () => {
     setShowBadge(false);
-    setIsFlyoutVisible(!prevIsFlyoutVisible);
+    setIsFlyoutVisible(!isFlyoutVisible);
   };
 
   const button = (
@@ -124,23 +116,18 @@ export default () => {
       }`}
       onClick={() => showFlyout()}
       notification={showBadge && '•'}>
-      <EuiIcon type="email" size="m" />
+      <EuiIcon type="cheer" size="m" />
     </EuiHeaderSectionItemButton>
   );
 
   let flyout;
-  const flyoutStyle = {
-    top: '49px',
-    height: 'calc(100vh - 49px)',
-  };
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
         onClose={() => closeFlyout()}
         size="s"
         id="headerNewsFeed"
-        aria-labelledby="flyoutSmallTitle"
-        style={flyoutStyle}>
+        aria-labelledby="flyoutSmallTitle">
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
             <h2 id="flyoutSmallTitle">What&apos;s new</h2>

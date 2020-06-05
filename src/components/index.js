@@ -68,6 +68,8 @@ export {
   EuiSaturation,
 } from './color_picker';
 
+export { EuiColorPalettePicker } from './color_picker/color_palette_picker';
+
 export { EuiComboBox } from './combo_box';
 
 export { EuiComment, EuiCommentList } from './comment_list';

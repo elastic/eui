@@ -41,33 +41,33 @@
 
 import { Component, cloneElement, KeyboardEvent, ReactElement } from 'react';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 
 interface Props {
   children: ReactElement<any>;
 }
 
 export class EuiKeyboardAccessible extends Component<Props> {
-  onKeyDown = (e: KeyboardEvent<any>) => {
+  onKeyDown = (event: KeyboardEvent<any>) => {
     // Prevent a scroll from occurring if the user has hit space.
-    if (e.keyCode === keyCodes.SPACE) {
-      e.preventDefault();
+    if (event.key === keys.SPACE) {
+      event.preventDefault();
     }
 
     if (this.props.children.props.onKeyDown) {
-      this.props.children.props.onKeyDown(e);
+      this.props.children.props.onKeyDown(event);
     }
   };
 
-  onKeyUp = (e: KeyboardEvent<any>) => {
+  onKeyUp = (event: KeyboardEvent<any>) => {
     // Support keyboard accessibility by emulating mouse click on ENTER or SPACE keypress.
-    if (e.keyCode === keyCodes.ENTER || e.keyCode === keyCodes.SPACE) {
+    if (event.key === keys.ENTER || event.key === keys.SPACE) {
       // Delegate to the click handler on the element.
-      this.props.children.props.onClick(e);
+      this.props.children.props.onClick(event);
     }
 
     if (this.props.children.props.onKeyUp) {
-      this.props.children.props.onKeyUp(e);
+      this.props.children.props.onKeyUp(event);
     }
   };
 

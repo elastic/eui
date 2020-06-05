@@ -20,18 +20,18 @@
 /**
  * These keys are used for navigating combobox UI components.
  *
- * UP: Select the previous item in the list.
- * DOWN: Select the next item in the list.
+ * ARROW_UP: Select the previous item in the list.
+ * ARROW_DOWN: Select the next item in the list.
  * ENTER / TAB: Complete input with the current selection.
  * ESC: Deselect the current selection and hide the list.
  */
 
-import { DOWN, ENTER, ESCAPE, TAB, UP } from '../key_codes';
+import { ARROW_DOWN, ENTER, ESCAPE, TAB, ARROW_UP } from '../keys';
 
-export const comboBoxKeyCodes = {
-  DOWN,
+export const comboBoxKeys = {
+  ARROW_DOWN,
+  ARROW_UP,
   ENTER,
   ESCAPE,
   TAB,
-  UP,
 };

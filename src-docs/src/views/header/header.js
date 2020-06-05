@@ -64,7 +64,12 @@ export default () => {
       },
     ];
 
-    return <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />;
+    return (
+      <EuiHeaderBreadcrumbs
+        aria-label="Header breadcrumbs example"
+        breadcrumbs={breadcrumbs}
+      />
+    );
   };
 
   const renderSearch = () => (
