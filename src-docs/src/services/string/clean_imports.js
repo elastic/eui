@@ -12,13 +12,12 @@ export const cleanEuiImports = code => {
 };
 
 export const listExtraDeps = code => {
-  return [
-    ...code.matchAll(
+  return code
+    .match(
       // Match anything not directly calling eui (like lib dirs)
-      /(import)(?!.*(elastic\/eui|\.))\s.*?'(?<import>(@[^.]+?\/)?[^.]+?)['\/]/g
-    ),
-  ]
-    .map(x => x.groups.import)
+      /import(?!.*(elastic\/eui|\.))\s.*?'(@[^.]+?\/)?[^.]+?['\/]/g
+    )
+    .map(match => match.match(/'(.+)['\/]/)[1])
     .reduce((deps, dep) => {
       // Make sure that we are using the latest version of a dep
       deps[dep] = 'latest';
