@@ -52,9 +52,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   onClick,
   ...rest
 }) => {
-  const overlayMaskNode = useRef<HTMLDivElement | null>(
-    document.createElement('div')
-  );
+  const overlayMaskNode = useRef<HTMLDivElement>(document.createElement('div'));
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
 
   useEffect(() => {
@@ -66,15 +64,13 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   }, []);
 
   useEffect(() => {
-    if (overlayMaskNode.current) {
-      document.body.appendChild(overlayMaskNode.current);
-      setIsPortalTargetReady(true);
-    }
+    const portalTarget = overlayMaskNode.current;
+    document.body.appendChild(overlayMaskNode.current);
+    setIsPortalTargetReady(true);
 
     return () => {
-      if (overlayMaskNode.current) {
-        document.body.removeChild(overlayMaskNode.current);
-        overlayMaskNode.current = null;
+      if (portalTarget) {
+        document.body.removeChild(portalTarget);
       }
     };
   }, []);
@@ -87,9 +83,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
           `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
         );
       }
-      if (overlayMaskNode.current) {
-        overlayMaskNode.current.setAttribute(key, rest[key]!);
-      }
+      overlayMaskNode.current.setAttribute(key, rest[key]!);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -100,6 +94,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     if (!overlayMaskNode.current || !onClick) return;
+    const portalTarget = overlayMaskNode.current;
     overlayMaskNode.current.addEventListener('click', e => {
       if (e.target === overlayMaskNode.current) {
         onClick();
@@ -107,8 +102,8 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
     });
 
     return () => {
-      if (overlayMaskNode.current && onClick) {
-        overlayMaskNode.current.removeEventListener('click', onClick);
+      if (portalTarget && onClick) {
+        portalTarget.removeEventListener('click', onClick);
       }
     };
   }, [onClick]);
