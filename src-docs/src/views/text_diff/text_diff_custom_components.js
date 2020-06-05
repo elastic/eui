@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  useEuiTextDiff,
-  EuiSpacer,
-  EuiCodeBlock,
-} from '../../../../src/components';
+import { useEuiTextDiff, EuiCodeBlock } from '../../../../src/components';
 
 export default () => {
   const beforeText =
@@ -14,16 +10,13 @@ export default () => {
   const [rendered] = useEuiTextDiff({
     beforeText,
     afterText,
-    deleteComponent: () => null,
-    timeout: 0,
+    insertComponent: 'strong',
+    deleteComponent: 's',
   });
 
   return (
-    <>
-      <EuiCodeBlock language="text" fontSize="m" paddingSize="m">
-        {rendered}
-      </EuiCodeBlock>
-      <EuiSpacer />
-    </>
+    <EuiCodeBlock fontSize="m" paddingSize="m">
+      {rendered}
+    </EuiCodeBlock>
   );
 };
