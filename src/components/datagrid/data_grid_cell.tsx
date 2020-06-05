@@ -138,7 +138,6 @@ export class EuiDataGridCell extends Component<
   static contextType = DataGridContext;
 
   getInteractables = () => {
-    return [];
     const tabbingRef = this.cellContentsRef;
 
     if (tabbingRef) {
@@ -270,7 +269,7 @@ export class EuiDataGridCell extends Component<
     const {
       width,
       isFocused,
-      // isExpandable,
+      isExpandable,
       popoverContent: PopoverContent,
       interactiveCellId,
       columnType,
@@ -279,7 +278,6 @@ export class EuiDataGridCell extends Component<
       ...rest
     } = this.props;
     const { colIndex, rowIndex } = rest;
-    const isExpandable = false;
 
     const cellClasses = classNames(
       'euiDataGridRowCell',

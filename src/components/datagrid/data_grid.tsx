@@ -77,6 +77,9 @@ import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer/resize_observer';
 
+// Used to short-circuit some async browser behaviour that is difficult to account for in tests
+const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
+
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
@@ -271,6 +274,7 @@ function useDefaultColumnWidth(
   const gridWidth = containerSize.width;
 
   const computeDefaultWidth = useCallback((): number | null => {
+    if (IS_JEST_ENVIRONMENT) return 100;
     if (gridWidth === 0) return null; // we can't tell what size to compute yet
 
     const controlColumnWidths = [
@@ -304,7 +308,6 @@ function useDefaultColumnWidth(
 
   useEffect(() => {
     const columnWidth = computeDefaultWidth();
-    console.log('\tsetting defaultColumnWidth to', columnWidth);
     setDefaultColumnWidth(columnWidth);
   }, [computeDefaultWidth]);
 
@@ -397,7 +400,6 @@ function useInMemoryValues(
   // if `inMemory.level` or `rowCount` changes reset the values
   const inMemoryLevel = inMemory && inMemory.level;
   useEffect(() => {
-    console.log('\tsetInMemoryValues');
     setInMemoryValues({});
   }, [inMemoryLevel, rowCount]);
 
@@ -580,11 +582,13 @@ const emptyArrayDefault: EuiDataGridControlColumn[] = [];
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [hasRoomForGridControls, setHasRoomForGridControls] = useState(true);
-  const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(null);
+  const [containerRef, _setContainerRef] = useState<HTMLDivElement | null>(
+    null
+  );
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
-  const setContainerRef = useCallback(ref => (console.log('\tsetting ref to', ref), _setContainerRef(ref)), []);
+  const setContainerRef = useCallback(ref => _setContainerRef(ref), []);
 
   const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
     headerIsInteractive
@@ -917,7 +921,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                       className={classes}
                       onKeyDown={handleGridKeyDown}
                       ref={setContainerRef}>
-                      {defaultColumnWidth && (
+                      {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
                         <>
                           {showToolbar ? (
                             <div
@@ -957,7 +961,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                       rowCount={
                                         inMemory.level === 'enhancements'
                                           ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                                            (pagination && pagination.pageSize) ||
+                                            (pagination &&
+                                              pagination.pageSize) ||
                                             rowCount
                                           : // otherwise, all of the data is present and usable
                                             rowCount
@@ -990,11 +995,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                           }
                                           columns={orderedVisibleColumns}
                                           columnWidths={columnWidths}
-                                          defaultColumnWidth={defaultColumnWidth}
+                                          defaultColumnWidth={
+                                            defaultColumnWidth
+                                          }
                                           setColumnWidth={setColumnWidth}
                                           schema={mergedSchema}
                                           sorting={sorting}
-                                          headerIsInteractive={headerIsInteractive}
+                                          headerIsInteractive={
+                                            headerIsInteractive
+                                          }
                                           focusedCell={focusedCell}
                                           setFocusedCell={setFocusedCell}
                                         />
@@ -1005,7 +1014,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                                       defaultColumnWidth={defaultColumnWidth}
                                       inMemoryValues={inMemoryValues}
                                       inMemory={inMemory}
-                                      leadingControlColumns={leadingControlColumns}
+                                      leadingControlColumns={
+                                        leadingControlColumns
+                                      }
                                       trailingControlColumns={
                                         trailingControlColumns
                                       }

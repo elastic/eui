@@ -117,7 +117,6 @@ export const useResizeObserver = (
           _currentDimensions.current.height !== dimensions.height)
       ) {
         _currentDimensions.current = dimensions;
-        console.log('\tsetting dimensions to', dimensions);
         _setSize(dimensions);
       }
     },
