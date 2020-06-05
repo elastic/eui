@@ -3,11 +3,3 @@
 .euiFlyout {
   clip-path: polygon(-10% 0, 100% 0, 100% 100%, -10% 100%);
 }
-
-.euiFlyoutBody {
-  // Amsterdam Callouts use rounded corners by default, but we don't want to use them here
-  .euiFlyoutBody__banner .euiCallOut {
-    border-radius: 0;
-  }
-}
-
