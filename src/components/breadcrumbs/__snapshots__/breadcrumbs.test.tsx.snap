@@ -92,9 +92,23 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <div
-    class="euiBreadcrumb euiBreadcrumb--collapsed"
+    class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb euiBreadcrumb--collapsed"
   >
-    …
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Show collapsed breadcrumbs"
+        class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+        title="Show collapsed breadcrumbs"
+        type="button"
+      >
+        … 
+        <div
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
   </div>
   <div
     class="euiBreadcrumbSeparator"
@@ -123,9 +137,23 @@ exports[`EuiBreadcrumbs props max renders 2 items 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <div
-    class="euiBreadcrumb euiBreadcrumb--collapsed"
+    class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb euiBreadcrumb--collapsed"
   >
-    …
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Show collapsed breadcrumbs"
+        class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+        title="Show collapsed breadcrumbs"
+        type="button"
+      >
+        … 
+        <div
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
   </div>
   <div
     class="euiBreadcrumbSeparator"
@@ -154,9 +182,23 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <div
-    class="euiBreadcrumb euiBreadcrumb--collapsed"
+    class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb euiBreadcrumb--collapsed"
   >
-    …
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Show collapsed breadcrumbs"
+        class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+        title="Show collapsed breadcrumbs"
+        type="button"
+      >
+        … 
+        <div
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
   </div>
   <div
     class="euiBreadcrumbSeparator"
@@ -167,48 +209,6 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
   >
     Boa constrictor
   </button>
-  <div
-    class="euiBreadcrumbSeparator"
-  />
-  <span
-    aria-current="page"
-    class="euiBreadcrumb euiBreadcrumb--last"
-  >
-    Edit
-  </span>
-</nav>
-`;
-
-exports[`EuiBreadcrumbs props render a popover is rendered 1`] = `
-<nav
-  aria-label="breadcrumb"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
->
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
-  >
-    Animals
-  </button>
-  <div
-    class="euiBreadcrumbSeparator"
-  />
-  <div
-    class="euiPopover euiPopover--anchorDownCenter"
-  >
-    <div
-      class="euiPopover__anchor"
-    >
-      <button
-        aria-label="Show all breadcrumbs"
-        class="euiLink euiLink--text euiBreadcrumb euiBreadcrumb__collapsedBadge"
-        title="Show all breadcrumbs"
-        type="button"
-      >
-        •••
-      </button>
-    </div>
-  </div>
   <div
     class="euiBreadcrumbSeparator"
   />
