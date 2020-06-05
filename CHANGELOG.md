@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `25.0.0`.
+**Bug fixes**
+
+- Fixed `EuiCodeBlockImpl` testenv mock pass-through of `data-test-subj` attribute ([#3560](https://github.com/elastic/eui/pull/3560))
 
 ## [`25.0.0`](https://github.com/elastic/eui/tree/v25.0.0)
 
