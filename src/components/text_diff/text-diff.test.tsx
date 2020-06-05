@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { useEuiTextDiff } from './text_diff';
 const beforeText =
@@ -28,12 +28,17 @@ const afterText =
 
 describe('useEuiTextDiff', () => {
   test('is rendered', () => {
-    const [rendered] = useEuiTextDiff({
-      beforeText,
-      afterText,
-      timeout: 0,
-    });
-    const component = render(<div>{rendered}</div>);
+    const component = mount(
+      <>
+        {
+          useEuiTextDiff({
+            beforeText,
+            afterText,
+            timeout: 0,
+          })[0]
+        }
+      </>
+    );
 
     expect(component).toMatchSnapshot();
   });
@@ -41,16 +46,20 @@ describe('useEuiTextDiff', () => {
   describe('props', () => {
     describe('custom components', () => {
       test('is rendered', () => {
-        const [rendered] = useEuiTextDiff({
-          beforeText,
-          afterText,
-          timeout: 0,
-          insertComponent: 'strong',
-          deleteComponent: 's',
-          sameComponent: 'p',
-        });
-
-        const component = render(<div>{rendered}</div>);
+        const component = mount(
+          <>
+            {
+              useEuiTextDiff({
+                beforeText,
+                afterText,
+                timeout: 0,
+                insertComponent: 'strong',
+                deleteComponent: 's',
+                sameComponent: 'p',
+              })[0]
+            }
+          </>
+        );
 
         expect(component).toMatchSnapshot();
       });
