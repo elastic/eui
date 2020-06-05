@@ -1,10 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `useEuiTextDiff` react hook utility ([#3288](https://github.com/elastic/eui/pull/3288))
+- Converted `EuiOverlayMask` to be a React functional component ([#3555](https://github.com/elastic/eui/pull/3555))
 
 **Bug fixes**
 
 - Fixed `EuiCodeBlockImpl` testenv mock pass-through of `data-test-subj` attribute ([#3560](https://github.com/elastic/eui/pull/3560))
+- Fixed DOM element creation issues in `EuiOverlayMask` by using lifecycle methods ([#3555](https://github.com/elastic/eui/pull/3555))
 
 ## [`25.0.0`](https://github.com/elastic/eui/tree/v25.0.0)
 
