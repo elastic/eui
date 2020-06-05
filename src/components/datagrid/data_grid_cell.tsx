@@ -40,6 +40,7 @@ import { EuiDataGridPopoverContent } from './data_grid_types';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { DataGridContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
+import { keys } from '../../services';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -302,21 +303,25 @@ export class EuiDataGridCell extends Component<
       cellProps.style = widthStyle;
     }
 
-    const handleCellKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isExpandable) {
-        switch (e.key) {
-          case 'Enter':
-          case 'F2':
-            e.preventDefault();
+        switch (event.key) {
+          case keys.ENTER:
+          case keys.F2:
+            event.preventDefault();
             this.setState({ popoverIsOpen: true });
             break;
         }
       } else {
-        if (e.key === 'Enter' || e.key === 'F2' || e.key === 'Escape') {
+        if (
+          event.key === keys.ENTER ||
+          event.key === keys.F2 ||
+          event.key === keys.ESCAPE
+        ) {
           const interactables = this.getInteractables();
           if (interactables.length >= 2) {
-            switch (e.key) {
-              case 'Enter':
+            switch (event.key) {
+              case keys.ENTER:
                 // `Enter` only activates the trap
                 if (this.state.isEntered === false) {
                   this.enableTabbing();
@@ -325,10 +330,10 @@ export class EuiDataGridCell extends Component<
                   // result of this keypress is focus shifts to the first interactive element
                   // and then the browser fires the onClick event because that's how [Enter] works
                   // so we need to prevent that default action otherwise entering the trap triggers the first element
-                  e.preventDefault();
+                  event.preventDefault();
                 }
                 break;
-              case 'F2':
+              case keys.F2:
                 // toggle interactives' focus trap
                 this.setState(({ isEntered }) => {
                   if (isEntered) {
@@ -339,7 +344,7 @@ export class EuiDataGridCell extends Component<
                   return { isEntered: !isEntered };
                 });
                 break;
-              case 'Escape':
+              case keys.ESCAPE:
                 // `Escape` only de-activates the trap
                 this.preventTabbing();
                 if (this.state.isEntered === true) {
@@ -491,10 +496,10 @@ export class EuiDataGridCell extends Component<
             zIndex={8001}
             display="block"
             closePopover={() => this.setState({ popoverIsOpen: false })}
-            onKeyDown={e => {
-              if (e.key === 'F2' || e.key === 'Escape') {
-                e.preventDefault();
-                e.stopPropagation();
+            onKeyDown={event => {
+              if (event.key === keys.F2 || event.key === keys.ESCAPE) {
+                event.preventDefault();
+                event.stopPropagation();
                 this.setState({ popoverIsOpen: false });
               }
             }}

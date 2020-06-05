@@ -25,7 +25,7 @@ import {
 Most services are published from the `lib/services` directory. Some are published from their module directories in this directory.
 
 ```js
-import { keyCodes } from '@elastic/eui/lib/services';
+import { keys } from '@elastic/eui/lib/services';
 import { Timer } from '@elastic/eui/lib/services/time';
 ```
 

@@ -20,21 +20,28 @@
 /**
  * These keys are used for navigating cascading menu UI components.
  *
- * UP: Select the previous item in the list.
- * DOWN: Select the next item in the list.
- * LEFT: Show the previous menu.
- * RIGHT: Show the next menu for the selected item.
+ * ARROW_DOWN: Select the next item in the list.
+ * ARROW_LEFT: Show the previous menu.
+ * ARROW_RIGHT: Show the next menu for the selected item.
+ * ARROW_UP: Select the previous item in the list.
  * ESC: Deselect the current selection and hide the list.
  * TAB: Normal tabbing navigation is still supported.
  */
 
-import { DOWN, ESCAPE, LEFT, RIGHT, UP, TAB } from '../key_codes';
-
-export const cascadingMenuKeyCodes = {
-  DOWN,
+import {
+  ARROW_DOWN,
+  ARROW_LEFT,
+  ARROW_RIGHT,
+  ARROW_UP,
   ESCAPE,
-  LEFT,
-  RIGHT,
-  UP,
+  TAB,
+} from '../keys';
+
+export const cascadingMenuKeys = {
+  ARROW_DOWN,
+  ARROW_LEFT,
+  ARROW_RIGHT,
+  ARROW_UP,
+  ESCAPE,
   TAB,
 };

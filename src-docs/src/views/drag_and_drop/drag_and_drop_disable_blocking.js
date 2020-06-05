@@ -4,11 +4,19 @@ import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
+  euiDragDropReorder,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
-import { euiDragDropReorder } from '../../../../src/components/drag_and_drop';
+const makeId = htmlIdGenerator();
 
-import { makeList } from './helper';
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map(el => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
 
 export default () => {
   const [list, setList] = useState(makeList(3));

@@ -7,8 +7,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiTreeView } from '../../../../src/components';
 import { EuiTreeViewNode } from './tree_view_props';
-import { TreeView } from './tree_view';
-import { TreeViewCompressed } from './compressed';
+import TreeView from './tree_view';
+import TreeViewCompressed from './compressed';
 
 const treeViewSource = require('!!raw-loader!./tree_view');
 const treeViewHtml = renderToHtml(TreeView);
@@ -17,11 +17,11 @@ const treeViewCompressedSource = require('!!raw-loader!./compressed');
 const treeViewCompressedHtml = renderToHtml(TreeViewCompressed);
 
 const treeViewSnippet = [
-  `<EuiTreeView 
+  `<EuiTreeView
   items={[
     {
       label: 'Item One',
-      id: 'item_one', 
+      id: 'item_one',
       icon: <EuiIcon type="arrowRight" />,
       iconWhenExpanded: <EuiIcon type="arrowDown" />,
       isExpanded: true,
@@ -42,7 +42,7 @@ const treeViewSnippet = [
       label: 'Item Two',
       id: 'item_two',
     }
-  ]}  
+  ]}
 />`,
 ];
 

@@ -864,7 +864,9 @@ export class EuiBasicTable<T = any> extends Component<
 
       if (footer) {
         footers.push(
-          <EuiTableFooterCell key={`footer_${field}`} align={align}>
+          <EuiTableFooterCell
+            key={`footer_${field}_${footers.length - 1}`}
+            align={align}>
             {footer}
           </EuiTableFooterCell>
         );
