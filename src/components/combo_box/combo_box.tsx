@@ -268,10 +268,9 @@ export class EuiComboBox<T> extends Component<
     if (this.comboBoxRefInstance) {
       // find the zIndex of the combobox relative to the page body
       // and use that to depth-position the list box
-      const listZIndex = getElementZIndex(
-        this.comboBoxRefInstance,
-        document.body
-      );
+      // adds an extra `100` to provide some defense around neighboring elements' positioning
+      const listZIndex =
+        getElementZIndex(this.comboBoxRefInstance, document.body) + 100;
       this.setState({ listZIndex });
     }
     this.listRefInstance = ref;
