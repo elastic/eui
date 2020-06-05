@@ -6,14 +6,20 @@ import {
   EuiDraggable,
   EuiDroppable,
   EuiPanel,
-} from '../../../../src/components';
-
-import {
   euiDragDropMove,
   euiDragDropReorder,
-} from '../../../../src/components/drag_and_drop';
+} from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
-import { makeList } from './helper';
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map(el => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
 
 export default () => {
   const [list1, setList1] = useState(makeList(3));

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiColorStops, EuiFormRow } from '../../../../src/components';
 
-export const ColorStopsRange = () => {
+export default () => {
   const [emptyColorStops, setEmptyColorStops] = useState([]);
 
   const handleEmptyChange = colorStops => {

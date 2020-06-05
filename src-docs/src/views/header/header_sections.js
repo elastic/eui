@@ -72,6 +72,9 @@ export default () => {
       items: [renderLogo, <HeaderSpacesMenu />],
       borders: 'right',
       breadcrumbs: breadcrumbs,
+      breadcrumbProps: {
+        'aria-label': 'Header sections breadcrumbs',
+      },
     },
     {
       items: [renderSearch, <div style={{ width: 8 }} />],

@@ -22,8 +22,7 @@ import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
-import { ENTER } from '../../services/key_codes';
-import { SortDirection } from '../../services';
+import { keys, SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
 
 jest.mock('../../services/accessibility', () => ({
@@ -766,7 +765,7 @@ describe('EuiInMemoryTable', () => {
         target: {
           value: 'is:active',
         },
-        keyCode: ENTER,
+        key: keys.ENTER,
       });
       component.update();
 
@@ -777,7 +776,7 @@ describe('EuiInMemoryTable', () => {
         target: {
           value: 'active:false',
         },
-        keyCode: ENTER,
+        key: keys.ENTER,
       });
       component.update();
 

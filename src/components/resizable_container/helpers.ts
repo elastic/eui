@@ -19,7 +19,7 @@
 
 import { useCallback, MouseEvent, TouchEvent } from 'react';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import {
   EuiResizableButtonMouseEvent,
   EuiResizableButtonKeyDownEvent,
@@ -109,13 +109,12 @@ export const useContainerCallbacks = ({
   );
 
   const onKeyDown = useCallback(
-    (ev: EuiResizableButtonKeyDownEvent) => {
-      const { keyCode, currentTarget } = ev;
+    (event: EuiResizableButtonKeyDownEvent) => {
+      const { key, currentTarget } = event;
       const shouldResizeHorizontalPanel =
-        isHorizontal &&
-        (keyCode === keyCodes.LEFT || keyCode === keyCodes.RIGHT);
+        isHorizontal && (key === keys.ARROW_LEFT || key === keys.ARROW_RIGHT);
       const shouldResizeVerticalPanel =
-        !isHorizontal && (keyCode === keyCodes.UP || keyCode === keyCodes.DOWN);
+        !isHorizontal && (key === keys.ARROW_UP || key === keys.ARROW_DOWN);
       const prevPanelId = currentTarget.previousElementSibling!.id;
       const nextPanelId = currentTarget.nextElementSibling!.id;
 
@@ -124,7 +123,7 @@ export const useContainerCallbacks = ({
         prevPanelId &&
         nextPanelId
       ) {
-        ev.preventDefault();
+        event.preventDefault();
 
         const { current: registry } = registryRef;
         const [prevPanel, nextPanel] = registry.getResizerSiblings(
@@ -136,14 +135,12 @@ export const useContainerCallbacks = ({
 
         const prevPanelSize = pxToPercent(
           prevPanel.getSizePx() -
-            (keyCode === keyCodes.UP || keyCode === keyCodes.LEFT ? 10 : -10),
+            (key === keys.ARROW_UP || key === keys.ARROW_LEFT ? 10 : -10),
           containerSize - resizersSize
         );
         const nextPanelSize = pxToPercent(
           nextPanel.getSizePx() -
-            (keyCode === keyCodes.DOWN || keyCode === keyCodes.RIGHT
-              ? 10
-              : -10),
+            (key === keys.ARROW_DOWN || key === keys.ARROW_RIGHT ? 10 : -10),
           containerSize - resizersSize
         );
 

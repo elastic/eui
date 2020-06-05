@@ -1,5 +1,4 @@
 import React, { cloneElement, Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -12,8 +11,6 @@ import {
   EuiPopover,
   EuiSpacer,
 } from '../../../../src/components';
-
-import { SIZES } from '../../../../src/components/spacer/spacer';
 
 export class DisplayToggles extends Component {
   constructor(props) {
@@ -160,9 +157,9 @@ export class DisplayToggles extends Component {
                       <span>
                         compressed{' '}
                         <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
-                          <Link to="/forms/compressed-forms">
+                          <a href="/#/forms/compressed-forms">
                             <EuiIcon type="help" />
-                          </Link>
+                          </a>
                         </EuiToolTip>
                       </span>
                     }
@@ -224,7 +221,8 @@ DisplayToggles.propTypes = {
   canAppend: PropTypes.bool,
   canInvalid: PropTypes.bool,
   extras: PropTypes.arrayOf(PropTypes.node),
-  spacerSize: PropTypes.oneOf(SIZES),
+  // Manually building the spacer array to avoid having to import Spacer into codesandbox
+  spacerSize: PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl', 'xxl']),
 };
 
 DisplayToggles.defaultProps = {
