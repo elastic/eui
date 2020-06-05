@@ -22,7 +22,7 @@
  * into portals.
  */
 
-import {
+import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
@@ -113,7 +113,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
     };
   }, [onClick]);
 
-  return isPortalTargetReady
-    ? createPortal(children, overlayMaskNode.current!)
-    : null;
+  return isPortalTargetReady ? (
+    <>{createPortal(children, overlayMaskNode.current!)}</>
+  ) : null;
 };
