@@ -111,6 +111,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   };
 
   listRef: FixedSizeList | null = null;
+  scrollableWrapperRef: HTMLDivElement | null = null;
   listBoxRef: HTMLUListElement | null = null;
 
   setListRef = (ref: FixedSizeList | null) => {
@@ -121,6 +122,14 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     }
   };
 
+  removeScrollableTabStop = (ref: HTMLDivElement | null) => {
+    // Firefox adds a tab stop for scrollable containers
+    // We handle this inside so need to stop firefox from doing its thing
+    if (ref) {
+      ref.setAttribute('tabindex', '-1');
+    }
+  };
+
   setListBoxRef = (ref: HTMLUListElement | null) => {
     this.listBoxRef = ref;
     const {
@@ -128,6 +137,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       searchable,
       singleSelection,
       'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
     } = this.props;
 
@@ -137,20 +147,20 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
 
       if (searchable !== true) {
         ref.setAttribute('tabindex', '0');
+
+        if (singleSelection !== 'always' && singleSelection !== true) {
+          ref.setAttribute('aria-multiselectable', 'true');
+        }
       }
 
       if (typeof ariaLabel === 'string') {
         ref.setAttribute('aria-label', ariaLabel);
-      } else if (typeof ariaDescribedby === 'string') {
-        ref.setAttribute('aria-describedby', ariaDescribedby);
+      } else if (typeof ariaLabelledby === 'string') {
+        ref.setAttribute('aria-labelledby', ariaLabelledby);
       }
 
-      if (
-        singleSelection !== 'always' &&
-        singleSelection !== true &&
-        searchable !== true
-      ) {
-        ref.setAttribute('aria-multiselectable', 'true');
+      if (typeof ariaDescribedby === 'string') {
+        ref.setAttribute('aria-labelledby', ariaDescribedby);
       }
     }
   };
@@ -246,6 +256,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       searchable,
       listId,
       'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
+      'aria-describedby': ariaDescribedby,
       ...rest
     } = this.props;
 
@@ -287,6 +299,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
           {({ width, height }) => (
             <FixedSizeList
               ref={this.setListRef}
+              outerRef={this.removeScrollableTabStop}
               className="euiSelectableList__list"
               data-skip-axe="scrollable-region-focusable"
               width={width}
