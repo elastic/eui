@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `EuiTextDiff` component ([#3288](https://github.com/elastic/eui/pull/3288))
+- Added `useEuiTextDiff` react hook utility ([#3288](https://github.com/elastic/eui/pull/3288))
 
 ## [`25.0.0`](https://github.com/elastic/eui/tree/v25.0.0)
 
