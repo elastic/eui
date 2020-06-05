@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -11,33 +11,89 @@ import {
   EuiToast,
   EuiGlobalToastList,
   EuiGlobalToastListItem,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiText,
   EuiSpacer,
 } from '../../../../src/components';
 
-import ToastList, { addToast } from './toast_list';
+import ToastList, { addToast, removeAllToasts } from './toast_list';
 const toastListSource = require('!!raw-loader!./toast_list');
 const toastListHtml = renderToHtml(ToastList);
+const toastListSnippet = [
+  `<EuiGlobalToastList
+  toasts={[
+    {
+      id: 1,
+      title: "Example Toast",
+      text: <p><!-- Content --></p>,
+    }
+  ]}
+  dismissToast={dismissToast}
+  toastLifeTimeMs={6000}/>`,
+];
 
 import Default from './default';
 const defaultSource = require('!!raw-loader!./default');
 const defaultHtml = renderToHtml(Default);
+const defaultToastSnippet = [
+  `<EuiToast
+  title="Default toast"
+  onClose={closeToast}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
+];
 
 import Info from './info';
 const infoSource = require('!!raw-loader!./info');
 const infoHtml = renderToHtml(Info);
+const infoToastSnippet = [
+  `<EuiToast
+  title="Info toast"
+  type="info"
+  onClose={closeToast}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
+];
 
 import Success from './success';
 const successSource = require('!!raw-loader!./success');
 const successHtml = renderToHtml(Success);
+const successToastSnippet = [
+  `<EuiToast
+  title="Success toast"
+  color="success"
+  iconType="check"
+  onClose={closeToast}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
+];
 
 import Warning from './warning';
 const warningSource = require('!!raw-loader!./warning');
 const warningHtml = renderToHtml(Warning);
+const warningToastSnippet = [
+  `<EuiToast
+  title="Warning toast"
+  color="warning"
+  iconType="help"
+  onClose={closeToast}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
+];
 
 import Danger from './danger';
 const dangerSource = require('!!raw-loader!./danger');
 const dangerHtml = renderToHtml(Danger);
+const dangerToastSnippet = [
+  `<EuiToast
+  title="Danger toast"
+  color="danger"
+  iconType="alert"
+  onClose={closeToast}>
+  <!-- Raw HTML content -->
+  </EuiToast>`,
+];
 
 export const ToastExample = {
   title: 'Toast',
@@ -70,13 +126,23 @@ export const ToastExample = {
       },
       demo: (
         <div style={{ maxWidth: 320 }}>
-          <EuiButton onClick={addToast}>
-            Add toast to global toast list
-          </EuiButton>
+          <EuiFlexGroup gutterSize="s">
+            <EuiFlexItem>
+              <EuiButton onClick={addToast}>
+                Add toast to global toast list
+              </EuiButton>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiButton onClick={removeAllToasts} color="danger">
+                Remove all toasts
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
 
           <ToastList />
         </div>
       ),
+      snippet: toastListSnippet,
     },
     {
       title: 'Default',
@@ -111,6 +177,7 @@ export const ToastExample = {
           <Default />
         </div>
       ),
+      snippet: defaultToastSnippet,
     },
     {
       title: 'Info',
@@ -134,6 +201,7 @@ export const ToastExample = {
           <Info />
         </div>
       ),
+      snippet: infoToastSnippet,
     },
     {
       title: 'Success',
@@ -149,7 +217,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">type=&quot;success&quot;</EuiCode>.
+          Setting <EuiCode language="js">color=&quot;success&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -157,6 +225,7 @@ export const ToastExample = {
           <Success />
         </div>
       ),
+      snippet: successToastSnippet,
     },
     {
       title: 'Warning',
@@ -172,7 +241,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">type=&quot;warning&quot;</EuiCode>.
+          Setting <EuiCode language="js">color=&quot;warning&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -180,6 +249,7 @@ export const ToastExample = {
           <Warning />
         </div>
       ),
+      snippet: warningToastSnippet,
     },
     {
       title: 'Danger',
@@ -195,7 +265,7 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">type=&quot;danger&quot;</EuiCode>.
+          Setting <EuiCode language="js">color=&quot;danger&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -203,6 +273,7 @@ export const ToastExample = {
           <Danger />
         </div>
       ),
+      snippet: dangerToastSnippet,
     },
   ],
 };

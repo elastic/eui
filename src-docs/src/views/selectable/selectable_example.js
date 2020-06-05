@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -106,7 +106,7 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   aria-label="Basic example"
   options={[{ label: '' }, { label: '' }]}
-  onChange={() => this.onChange(options)}
+  onChange={newOptions => setOptions(newOptions)}
   listProps={{ bordered: true }}>
   {list => list}
 </EuiSelectable>`,
@@ -148,7 +148,7 @@ export const SelectableExample = {
     'data-test-subj': dataTestSubj,
   }}
   options={[]}
-  onChange={() => this.onChange(options)}>
+  onChange={newOptions => setOptions(newOptions)}>
   {(list, search) => (
     <Fragment>
       {search}
@@ -187,12 +187,11 @@ export const SelectableExample = {
       <EuiSelectable
   aria-label="Single selection example"
   options={options}
-  onChange={this.onChange}
+  onChange={newOptions => setOptions(newOptions)}
   singleSelection={true}
   listProps={{ bordered: true }}>
   {list => list}
-</EuiSelectable>
-    `,
+</EuiSelectable>`,
     },
     {
       title: 'Sizing and containers',
@@ -261,7 +260,7 @@ export const SelectableExample = {
   aria-label="Example supporting exclusions"
   allowExclusions
   options={[]}
-  onChange={() => this.onChange(options)}>
+  onChange={newOptions => setOptions(newOptions)}>
   {list => list}
 </EuiSelectable>`,
     },
@@ -354,9 +353,9 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   searchable
   options={[]}
-  onChange={() => this.onChange(options)}
+  onChange={newOptions => setOptions(newOptions)}
   height={240}
-  renderOption={this.renderCountryOption}
+  renderOption={renderCountryOption}
   listProps={{
     rowHeight: 50,
     showIcons: false,

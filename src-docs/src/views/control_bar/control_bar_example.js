@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { EuiCode, EuiControlBar } from '../../../../src/components';
 
@@ -19,9 +19,9 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import ControlBar from './control_bar';
-import { Controls } from './controls';
-import { ControlBarWithTabs } from './tabs';
-import { ControlBarMobile } from './mobile';
+import Controls from './controls';
+import ControlBarWithTabs from './tabs';
+import ControlBarMobile from './mobile';
 
 const controlsSource = require('!!raw-loader!./controls');
 const controlsHtml = renderToHtml(Controls);

@@ -1,14 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiPagination is rendered 1`] = `
-<div
+<nav
   aria-label="aria-label"
   class="euiPagination testClass1 testClass2"
   data-test-subj="test subject string"
-  role="group"
 >
   <button
-    aria-label="Previous page"
+    aria-label="Previous page, 1"
     class="euiButtonIcon euiButtonIcon--text"
     data-test-subj="pagination-button-previous"
     type="button"
@@ -19,24 +18,33 @@ exports[`EuiPagination is rendered 1`] = `
       data-euiicon-type="arrowLeft"
     />
   </button>
-  <button
-    aria-label="Page 1 of 1"
-    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
-    data-test-subj="pagination-button-0"
-    type="button"
+  <ul
+    aria-label="aria-label"
+    class="euiPagination__list"
   >
-    <span
-      class="euiButtonEmpty__content"
+    <li
+      class="euiPagination__item"
     >
-      <span
-        class="euiButtonEmpty__text"
+      <button
+        aria-label="Page 1 of 1"
+        class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
+        data-test-subj="pagination-button-0"
+        type="button"
       >
-        1
-      </span>
-    </span>
-  </button>
+        <span
+          class="euiButtonEmpty__content"
+        >
+          <span
+            class="euiButtonEmpty__text"
+          >
+            1
+          </span>
+        </span>
+      </button>
+    </li>
+  </ul>
   <button
-    aria-label="Next page"
+    aria-label="Next page, 3"
     class="euiButtonIcon euiButtonIcon--text"
     data-test-subj="pagination-button-next"
     type="button"
@@ -47,5 +55,5 @@ exports[`EuiPagination is rendered 1`] = `
       data-euiicon-type="arrowRight"
     />
   </button>
-</div>
+</nav>
 `;

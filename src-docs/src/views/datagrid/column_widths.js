@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useCallback } from 'react';
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiAvatar } from '../../../../src/components/';
@@ -46,51 +46,38 @@ for (let i = 1; i < 5; i++) {
   });
 }
 
-export default class DataGrid extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pagination: {
-        pageIndex: 0,
-        pageSize: 50,
-      },
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
 
-      visibleColumns: columns.map(({ id }) => id),
-    };
-  }
+  const [visibleColumns, setVisibleColumns] = useState(() =>
+    columns.map(({ id }) => id)
+  );
 
-  setPageIndex = pageIndex =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageIndex },
-    }));
+  const setPageIndex = useCallback(
+    pageIndex => setPagination({ ...pagination, pageIndex }),
+    [pagination, setPagination]
+  );
+  const setPageSize = useCallback(
+    pageSize => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
+    [pagination, setPagination]
+  );
 
-  setPageSize = pageSize =>
-    this.setState(({ pagination }) => ({
-      pagination: { ...pagination, pageSize, pageIndex: 0 },
-    }));
-
-  setVisibleColumns = visibleColumns => this.setState({ visibleColumns });
-
-  render() {
-    const { pagination } = this.state;
-
-    return (
-      <EuiDataGrid
-        aria-label="DataGrid demonstrating column sizing constraints"
-        columns={columns}
-        columnVisibility={{
-          visibleColumns: this.state.visibleColumns,
-          setVisibleColumns: this.setVisibleColumns,
-        }}
-        rowCount={data.length}
-        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-        pagination={{
-          ...pagination,
-          pageSizeOptions: [5, 10, 25],
-          onChangeItemsPerPage: this.setPageSize,
-          onChangePage: this.setPageIndex,
-        }}
-      />
-    );
-  }
-}
+  return (
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating column sizing constraints"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+      }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [5, 10, 25],
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};

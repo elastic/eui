@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React from 'react';
 import { render, mount, ReactWrapper } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
@@ -8,7 +27,7 @@ import { EuiContextMenuItem } from './context_menu_item';
 
 import { tick } from './context_menu.test';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 
 const items = [
   <EuiContextMenuItem key="A" data-test-subj="itemA">
@@ -167,7 +186,7 @@ describe('EuiContextMenuPanel', () => {
           />
         );
 
-        component.simulate('keydown', { keyCode: keyCodes.UP });
+        component.simulate('keydown', { key: keys.ARROW_UP });
         expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
       });
 
@@ -181,7 +200,7 @@ describe('EuiContextMenuPanel', () => {
           />
         );
 
-        component.simulate('keydown', { keyCode: keyCodes.UP });
+        component.simulate('keydown', { key: keys.ARROW_UP });
         expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
       });
 
@@ -197,7 +216,7 @@ describe('EuiContextMenuPanel', () => {
             />
           );
 
-          component.simulate('keydown', { keyCode: keyCodes.LEFT });
+          component.simulate('keydown', { key: keys.ARROW_LEFT });
           expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
         });
 
@@ -211,7 +230,7 @@ describe('EuiContextMenuPanel', () => {
             />
           );
 
-          component.simulate('keydown', { keyCode: keyCodes.LEFT });
+          component.simulate('keydown', { key: keys.ARROW_LEFT });
           expect(onUseKeyboardToNavigateHandler).not.toHaveBeenCalled();
         });
       });
@@ -228,7 +247,7 @@ describe('EuiContextMenuPanel', () => {
             />
           );
 
-          component.simulate('keydown', { keyCode: keyCodes.RIGHT });
+          component.simulate('keydown', { key: keys.ARROW_RIGHT });
           expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
         });
 
@@ -242,7 +261,7 @@ describe('EuiContextMenuPanel', () => {
             />
           );
 
-          component.simulate('keydown', { keyCode: keyCodes.RIGHT });
+          component.simulate('keydown', { key: keys.ARROW_RIGHT });
           expect(onUseKeyboardToNavigateHandler).not.toHaveBeenCalled();
         });
       });
@@ -303,7 +322,7 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('down arrow key focuses the first menu item', async () => {
-        component.simulate('keydown', { keyCode: keyCodes.DOWN });
+        component.simulate('keydown', { key: keys.ARROW_DOWN });
 
         await tick(20);
         expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(
@@ -312,8 +331,8 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('subsequently, down arrow key focuses the next menu item', async () => {
-        component.simulate('keydown', { keyCode: keyCodes.DOWN });
-        component.simulate('keydown', { keyCode: keyCodes.DOWN });
+        component.simulate('keydown', { key: keys.ARROW_DOWN });
+        component.simulate('keydown', { key: keys.ARROW_DOWN });
 
         await tick(20);
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
@@ -322,8 +341,8 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('down arrow key wraps to first menu item', async () => {
-        component.simulate('keydown', { keyCode: keyCodes.UP });
-        component.simulate('keydown', { keyCode: keyCodes.DOWN });
+        component.simulate('keydown', { key: keys.ARROW_UP });
+        component.simulate('keydown', { key: keys.ARROW_DOWN });
 
         await tick(20);
         expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(
@@ -332,7 +351,7 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('up arrow key focuses the last menu item', async () => {
-        component.simulate('keydown', { keyCode: keyCodes.UP });
+        component.simulate('keydown', { key: keys.ARROW_UP });
 
         await tick(20);
         expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(
@@ -341,8 +360,8 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('subsequently, up arrow key focuses the previous menu item', async () => {
-        component.simulate('keydown', { keyCode: keyCodes.UP });
-        component.simulate('keydown', { keyCode: keyCodes.UP });
+        component.simulate('keydown', { key: keys.ARROW_UP });
+        component.simulate('keydown', { key: keys.ARROW_UP });
 
         await tick(20);
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
@@ -351,8 +370,8 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('up arrow key wraps to last menu item', async () => {
-        component.simulate('keydown', { keyCode: keyCodes.DOWN });
-        component.simulate('keydown', { keyCode: keyCodes.UP });
+        component.simulate('keydown', { key: keys.ARROW_DOWN });
+        component.simulate('keydown', { key: keys.ARROW_UP });
 
         await tick(20);
         expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(
@@ -361,13 +380,13 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it("right arrow key shows next panel with focused item's index", () => {
-        component.simulate('keydown', { keyCode: keyCodes.DOWN });
-        component.simulate('keydown', { keyCode: keyCodes.RIGHT });
+        component.simulate('keydown', { key: keys.ARROW_DOWN });
+        component.simulate('keydown', { key: keys.ARROW_RIGHT });
         expect(showNextPanelHandler).toHaveBeenCalledWith(0);
       });
 
       it('left arrow key shows previous panel', () => {
-        component.simulate('keydown', { keyCode: keyCodes.LEFT });
+        component.simulate('keydown', { key: keys.ARROW_LEFT });
         expect(showPreviousPanelHandler).toHaveBeenCalledTimes(1);
       });
     });

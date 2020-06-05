@@ -661,6 +661,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
       areAllOptionsSelected={false}
       data-test-subj=""
       fullWidth={false}
+      getSelectedOptionForSearchValue={[Function]}
       listRef={[Function]}
       matchingOptions={
         Array [
@@ -794,6 +795,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
       areAllOptionsSelected={false}
       data-test-subj=""
       fullWidth={false}
+      getSelectedOptionForSearchValue={[Function]}
       listRef={[Function]}
       matchingOptions={
         Array [

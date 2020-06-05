@@ -1,65 +1,53 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { EuiIcon, EuiTabs, EuiTab } from '../../../../src/components';
 
-class EuiTabsExample extends Component {
-  constructor(props) {
-    super(props);
+const tabs = [
+  {
+    id: 'cobalt',
+    name: 'Cobalt',
+    disabled: false,
+  },
+  {
+    id: 'dextrose',
+    name: 'Dextrose',
+    disabled: false,
+  },
+  {
+    id: 'hydrogen',
+    name: (
+      <span>
+        <EuiIcon type="heatmap" />
+        &nbsp;Hydrogen
+      </span>
+    ),
+    disabled: true,
+  },
+  {
+    id: 'monosodium_glutammate',
+    name: 'Monosodium Glutamate',
+    disabled: false,
+  },
+];
 
-    this.tabs = [
-      {
-        id: 'cobalt',
-        name: 'Cobalt',
-        disabled: false,
-      },
-      {
-        id: 'dextrose',
-        name: 'Dextrose',
-        disabled: false,
-      },
-      {
-        id: 'hydrogen',
-        name: (
-          <span>
-            <EuiIcon type="heatmap" />
-            &nbsp;Hydrogen
-          </span>
-        ),
-        disabled: true,
-      },
-      {
-        id: 'monosodium_glutammate',
-        name: 'Monosodium Glutamate',
-        disabled: false,
-      },
-    ];
+export default () => {
+  const [selectedTabId, setSelectedTabId] = useState('cobalt');
 
-    this.state = {
-      selectedTabId: 'cobalt',
-    };
-  }
-
-  onSelectedTabChanged = id => {
-    this.setState({
-      selectedTabId: id,
-    });
+  const onSelectedTabChanged = id => {
+    setSelectedTabId(id);
   };
 
-  renderTabs() {
-    return this.tabs.map((tab, index) => (
+  const renderTabs = () => {
+    return tabs.map((tab, index) => (
       <EuiTab
-        onClick={() => this.onSelectedTabChanged(tab.id)}
-        isSelected={tab.id === this.state.selectedTabId}
+        onClick={() => onSelectedTabChanged(tab.id)}
+        isSelected={tab.id === selectedTabId}
         disabled={tab.disabled}
         key={index}>
         {tab.name}
       </EuiTab>
     ));
-  }
+  };
 
-  render() {
-    return <EuiTabs display="condensed">{this.renderTabs()}</EuiTabs>;
-  }
-}
-
-export default EuiTabsExample;
+  return <EuiTabs display="condensed">{renderTabs()}</EuiTabs>;
+};

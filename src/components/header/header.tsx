@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -60,24 +79,45 @@ export type EuiHeaderProps = CommonProps &
      * adds the correct amount of top padding to the window when in `fixed` mode
      */
     position?: 'static' | 'fixed';
+    /**
+     * The `default` will inherit its coloring from the light or dark theme.
+     * Or, force the header into pseudo `dark` theme for all themes.
+     */
+    theme?: 'default' | 'dark';
   };
+
+// Start a counter to manage the total number of fixed headers that need the body class
+let euiHeaderFixedCounter = 0;
 
 export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   className,
   sections,
   position = 'static',
+  theme = 'default',
   ...rest
 }) => {
-  const classes = classNames('euiHeader', `euiHeader--${position}`, className);
+  const classes = classNames(
+    'euiHeader',
+    `euiHeader--${theme}`,
+    `euiHeader--${position}`,
+    className
+  );
 
   useEffect(() => {
     if (position === 'fixed') {
+      // Increment fixed header counter for each fixed header
+      euiHeaderFixedCounter++;
       document.body.classList.add('euiBody--headerIsFixed');
+
+      return () => {
+        // Both decrement the fixed counter AND then check if there are none
+        if (--euiHeaderFixedCounter === 0) {
+          // If there are none, THEN remove class
+          document.body.classList.remove('euiBody--headerIsFixed');
+        }
+      };
     }
-    return () => {
-      document.body.classList.remove('euiBody--headerIsFixed');
-    };
   }, [position]);
 
   let contents;

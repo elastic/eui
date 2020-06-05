@@ -3,22 +3,38 @@
 .euiHeader {
   @include euiBottomShadowSmall;
 
+  height: $euiHeaderHeight + 1; // Add one for the border
   position: relative;
   z-index: $euiZHeader; // ensure the shadow shows above content
   display: flex;
   justify-content: space-between;
   background: $euiHeaderBackgroundColor;
-  border-bottom: $euiBorderThin;
+  border-bottom: 1px solid $euiHeaderBorderColor;
 
   &--fixed {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: $euiZLevel7;
   }
 }
 
-.euiBody--headerIsFixed {
-  padding-top: $euiHeaderHeightCompensation + $euiSizeS; // Extra padding to account for the shadow
+.euiBody--collapsibleNavIsOpen,
+.euiBody--hasFlyout {
+  .euiHeader--fixed {
+    z-index: $euiZModal + 1;
+  }
+}
+
+.euiHeader--fixed + .euiHeader--fixed {
+  top: $euiHeaderHeightCompensation;
+}
+
+.euiHeader--dark {
+  @if (lightness($euiTextColor) < 50) {
+    @include euiHeaderDarkTheme($backgroundColor: shade($euiColorDarkestShade, 28%));
+  } @else {
+    // Makes forced "dark" theme darker than the typical dark them to separate them visually
+    @include euiHeaderDarkTheme($backgroundColor: shade($euiColorLightestShade, 50%));
+  }
 }

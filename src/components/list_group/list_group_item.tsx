@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Fragment,
   HTMLAttributes,
@@ -15,6 +34,8 @@ import { EuiIcon, IconType } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
+
+import { getSecureRelForTarget } from '../../services';
 
 type ItemSize = 'xs' | 's' | 'm' | 'l';
 const sizeToClassNameMap: { [size in ItemSize]: string } = {
@@ -74,6 +95,10 @@ export type EuiListGroupItemProps = CommonProps &
      */
     href?: string;
 
+    target?: string;
+
+    rel?: string;
+
     /**
      * Adds `EuiIcon` of `EuiIcon.type`
      */
@@ -113,7 +138,7 @@ export type EuiListGroupItemProps = CommonProps &
      * Pass-through ref reference specifically for targeting
      * instances where the item content is rendered as a `button`
      */
-    buttonRef?: React.RefObject<HTMLButtonElement>;
+    buttonRef?: React.Ref<HTMLButtonElement>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -121,6 +146,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   isActive = false,
   isDisabled = false,
   href,
+  target,
+  rel,
   className,
   iconType,
   icon,
@@ -204,11 +231,15 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   // Handle the variety of interaction behavior
   let itemContent;
 
+  const secureRel = getSecureRelForTarget({ href, rel, target });
+
   if (href && !isDisabled) {
     itemContent = (
       <a
         className="euiListGroupItem__button"
         href={href}
+        target={target}
+        rel={secureRel}
         onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
         {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {iconNode}

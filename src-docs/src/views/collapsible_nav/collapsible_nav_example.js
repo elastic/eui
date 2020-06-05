@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -32,6 +32,7 @@ const collapsibleNavAllHtml = renderToHtml(CollapsibleNavAll);
 
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
+  isNew: true,
   intro: (
     <EuiText>
       <p>

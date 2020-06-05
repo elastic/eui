@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react';
 
 import { htmlIdGenerator } from '../../../services';
@@ -5,8 +24,6 @@ import { htmlIdGenerator } from '../../../services';
 import { EuiTabs, EuiTabsDisplaySizes, EuiTabsSizes } from '../tabs';
 import { EuiTab } from '../tab';
 import { CommonProps } from '../../common';
-
-const makeId = htmlIdGenerator();
 
 /**
  * Marked as const so type is `['initial', 'selected']` instead of `string[]`
@@ -66,9 +83,9 @@ export class EuiTabbedContent extends Component<
     autoFocus: 'initial',
   };
 
-  private readonly rootId = makeId();
+  private readonly rootId = htmlIdGenerator()();
 
-  private readonly divRef = createRef<HTMLDivElement>();
+  private readonly tabsRef = createRef<HTMLDivElement>();
 
   constructor(props: EuiTabbedContentProps) {
     super(props);
@@ -91,9 +108,9 @@ export class EuiTabbedContent extends Component<
   componentDidMount() {
     // IE11 doesn't support the `relatedTarget` event property for blur events
     // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
-    if (this.divRef.current) {
+    if (this.tabsRef.current) {
       // Current short-term solution for event listener (see https://github.com/elastic/eui/pull/2717)
-      this.divRef.current.addEventListener(
+      this.tabsRef.current.addEventListener(
         'focusout' as 'blur',
         this.removeFocus
       );
@@ -101,24 +118,28 @@ export class EuiTabbedContent extends Component<
   }
 
   componentWillUnmount() {
-    if (this.divRef.current) {
+    if (this.tabsRef.current) {
       // Current short-term solution for event listener (see https://github.com/elastic/eui/pull/2717)
-      this.divRef.current.removeEventListener(
+      this.tabsRef.current.removeEventListener(
         'focusout' as 'blur',
         this.removeFocus
       );
     }
   }
 
+  focusTab = () => {
+    const targetTab: HTMLDivElement | null = this.tabsRef.current!.querySelector(
+      `#${this.state.selectedTabId}`
+    );
+    targetTab!.focus();
+  };
+
   initializeFocus = () => {
     if (!this.state.inFocus && this.props.autoFocus === 'selected') {
       // Must wait for setState to finish before calling `.focus()`
       // as the focus call triggers a blur on the first tab
       this.setState({ inFocus: true }, () => {
-        const targetTab: HTMLDivElement | null = this.divRef.current!.querySelector(
-          `#${this.state.selectedTabId}`
-        );
-        targetTab!.focus();
+        this.focusTab();
       });
     }
   };
@@ -144,7 +165,9 @@ export class EuiTabbedContent extends Component<
 
     // Only track selection state if it's not controlled externally.
     if (!externalSelectedTab) {
-      this.setState({ selectedTabId: selectedTab.id });
+      this.setState({ selectedTabId: selectedTab.id }, () => {
+        this.focusTab();
+      });
     }
   };
 
@@ -172,12 +195,13 @@ export class EuiTabbedContent extends Component<
     const { content: selectedTabContent, id: selectedTabId } = selectedTab!;
 
     return (
-      <div
-        ref={this.divRef}
-        className={className}
-        {...rest}
-        onFocus={this.initializeFocus}>
-        <EuiTabs expand={expand} display={display} size={size}>
+      <div className={className} {...rest}>
+        <EuiTabs
+          ref={this.tabsRef}
+          expand={expand}
+          display={display}
+          size={size}
+          onFocus={this.initializeFocus}>
           {tabs.map((tab: EuiTabbedContentTab) => {
             const {
               id,

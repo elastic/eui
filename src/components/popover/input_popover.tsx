@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   FunctionComponent,
   HTMLAttributes,
@@ -12,7 +31,7 @@ import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeyCodes } from '../../services';
+import { cascadingMenuKeys } from '../../services';
 
 interface EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
@@ -69,8 +88,8 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
     setPanelWidth();
   }, [setPanelWidth]);
 
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.keyCode === cascadingMenuKeyCodes.TAB) {
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === cascadingMenuKeys.TAB) {
       const tabbableItems = tabbable(panelEl).filter((el: HTMLElement) => {
         return (
           Array.from(el.attributes)

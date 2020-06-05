@@ -15,6 +15,14 @@ import {
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
+const responsiveSnippet = [
+  `<EuiHideFor sizes={['xs', 's']}>
+  <!-- Content to hide from xs and s screens -->
+</EuiHideFor>`,
+  `<EuiShowFor sizes={['l', 'xl']} display="block">
+  <!-- <div>Content only showing for l and xl screens and displaying in block</div> -->
+</EuiShowFor>`,
+];
 
 function renderSizes(size, index) {
   let code = `'${size}': ${sizes.euiBreakpoints[size]}px`;
@@ -66,6 +74,7 @@ export const ResponsiveExample = {
           </EuiCodeBlock>
         </div>
       ),
+      snippet: responsiveSnippet,
       props: { EuiShowFor, EuiHideFor },
       demo: <Responsive />,
     },

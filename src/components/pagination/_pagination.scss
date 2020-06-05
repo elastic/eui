@@ -15,3 +15,13 @@
     }
   }
 }
+
+.euiPagination__list {
+  display: flex;
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiPagination__list {
+    display: none;
+  }
+}

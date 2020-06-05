@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   FunctionComponent,
   HTMLAttributes,
@@ -21,12 +40,13 @@ import {
   EuiFieldText,
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
+  EuiFormRow,
   EuiRange,
 } from '../form';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keyCodes } from '../../services';
+import { VISUALIZATION_COLORS, keys } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -40,7 +60,7 @@ import {
 } from './utils';
 
 type EuiColorPickerDisplay = 'default' | 'inline';
-type EuiColorPickerMode = 'default' | 'swatch' | 'picker';
+type EuiColorPickerMode = 'default' | 'swatch' | 'picker' | 'secondaryInput';
 
 export interface EuiColorPickerOutput {
   rgba: ColorSpaces['rgba'];
@@ -87,7 +107,7 @@ export interface EuiColorPickerProps
    */
   isInvalid?: boolean;
   /**
-   * Choose between swatches with gradient picker (default), swatches only, or gradient picker only.
+   * Choose between swatches with gradient picker (default), swatches only, gradient picker only, or secondary input only.
    */
   mode?: EuiColorPickerMode;
   /**
@@ -121,12 +141,16 @@ export interface EuiColorPickerProps
    * Default is to display the last format entered by the user
    */
   format?: 'hex' | 'rgba';
+  /**
+   * Placement option for a secondary color value input.
+   */
+  secondaryInputDisplay?: 'top' | 'bottom' | 'none';
 }
 
 function isKeyboardEvent(
   event: React.MouseEvent | React.KeyboardEvent
 ): event is React.KeyboardEvent {
-  return typeof event === 'object' && 'keyCode' in event;
+  return typeof event === 'object' && 'key' in event;
 }
 
 const getOutput = (
@@ -182,6 +206,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   append,
   showAlpha = false,
   format,
+  secondaryInputDisplay = 'none',
 }) => {
   const preferredFormat = useMemo(() => {
     if (format) return format;
@@ -229,7 +254,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const classes = classNames('euiColorPicker', className);
   const popoverClass = 'euiColorPicker__popoverAnchor';
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
-    'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker',
+    'euiColorPicker__popoverPanel--pickerOnly':
+      mode === 'picker' && secondaryInputDisplay !== 'bottom',
     'euiColorPicker__popoverPanel--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
@@ -286,8 +312,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     closeColorSelector(true);
   };
 
-  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.keyCode === keyCodes.ENTER) {
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === keys.ENTER) {
       if (isColorSelectorShown) {
         handleFinalSelection();
       } else {
@@ -297,13 +323,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleInputActivity = (
-    e:
+    event:
       | React.KeyboardEvent<HTMLInputElement>
       | React.MouseEvent<HTMLInputElement>
   ) => {
-    if (isKeyboardEvent(e)) {
-      if (e.keyCode === keyCodes.ENTER) {
-        e.preventDefault();
+    if (isKeyboardEvent(event)) {
+      if (event.key === keys.ENTER) {
+        event.preventDefault();
         handleToggle();
       }
     } else {
@@ -311,9 +337,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const handleToggleOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.keyCode === keyCodes.DOWN) {
-      e.preventDefault();
+  const handleToggleOnKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    if (event.key === keys.ARROW_DOWN) {
+      event.preventDefault();
       if (isColorSelectorShown) {
         const nextFocusEl = mode !== 'swatch' ? satruationRef : swatchRef;
         if (nextFocusEl.current) {
@@ -325,9 +353,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const handleColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleOnChange(e.target.value);
-    const newColor = getChromaColor(e.target.value, showAlpha);
+  const handleColorInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleOnChange(event.target.value);
+    const newColor = getChromaColor(event.target.value, showAlpha);
     if (newColor) {
       updateColorAsHsv(newColor.hsv());
     }
@@ -395,9 +423,49 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
+  const inlineInput = secondaryInputDisplay !== 'none' && (
+    <EuiI18n
+      tokens={[
+        'euiColorPicker.colorLabel',
+        'euiColorPicker.colorErrorMessage',
+        'euiColorPicker.transparent',
+      ]}
+      defaults={['Color value', 'Invalid color value', 'Transparent']}>
+      {([colorLabel, colorErrorMessage, transparent]: string[]) => (
+        <EuiFormRow
+          display="rowCompressed"
+          isInvalid={isInvalid}
+          error={isInvalid ? colorErrorMessage : null}>
+          <EuiFieldText
+            compressed={true}
+            value={color ? color.toUpperCase() : HEX_FALLBACK}
+            placeholder={!color ? transparent : undefined}
+            onChange={handleColorInput}
+            isInvalid={isInvalid}
+            disabled={disabled}
+            readOnly={readOnly}
+            aria-label={colorLabel}
+            autoComplete="off"
+            data-test-subj={`${secondaryInputDisplay}ColorPickerInput`}
+          />
+        </EuiFormRow>
+      )}
+    </EuiI18n>
+  );
+
+  const showSecondaryInputOnly = mode === 'secondaryInput';
+  const showPicker = mode !== 'swatch' && !showSecondaryInputOnly;
+  const showSwatches = mode !== 'picker' && !showSecondaryInputOnly;
+
   const composite = (
-    <React.Fragment>
-      {mode !== 'swatch' && (
+    <>
+      {secondaryInputDisplay === 'top' && (
+        <>
+          {inlineInput}
+          <EuiSpacer size="s" />
+        </>
+      )}
+      {showPicker && (
         <div onKeyDown={handleOnKeyDown}>
           <EuiSaturation
             id={id}
@@ -414,7 +482,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           />
         </div>
       )}
-      {mode !== 'picker' && (
+      {showSwatches && (
         <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
           {swatches.map((swatch, index) => (
             <EuiFlexItem grow={false} key={swatch}>
@@ -437,8 +505,14 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           ))}
         </EuiFlexGroup>
       )}
+      {secondaryInputDisplay === 'bottom' && (
+        <>
+          {mode !== 'picker' && <EuiSpacer size="s" />}
+          {inlineInput}
+        </>
+      )}
       {showAlpha && (
-        <React.Fragment>
+        <>
           <EuiSpacer size="s" />
           <EuiI18n
             token="euiColorPicker.alphaLabel"
@@ -458,9 +532,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
               />
             )}
           </EuiI18n>
-        </React.Fragment>
+        </>
       )}
-    </React.Fragment>
+    </>
   );
 
   let buttonOrInput;
@@ -495,18 +569,23 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             color: colorStyle,
           }}>
           <EuiI18n
-            tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
+            tokens={[
+              'euiColorPicker.openLabel',
+              'euiColorPicker.closeLabel',
+              'euiColorPicker.transparent',
+            ]}
             defaults={[
               'Press the escape key to close the popover',
               'Press the down key to open a popover containing color options',
+              'Transparent',
             ]}>
-            {([openLabel, closeLabel]: string[]) => (
+            {([openLabel, closeLabel, transparent]: string[]) => (
               <EuiFieldText
                 className={inputClasses}
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
                 value={color ? color.toUpperCase() : HEX_FALLBACK}
-                placeholder={!color ? 'Transparent' : undefined}
+                placeholder={!color ? transparent : undefined}
                 id={id}
                 onChange={handleColorInput}
                 icon={chromaColor ? 'swatchInput' : 'stopSlash'}

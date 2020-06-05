@@ -21,6 +21,7 @@ import {
 const columns = [
   {
     id: 'name',
+    displayAsText: 'Name',
     defaultSortDirection: 'asc',
   },
   {

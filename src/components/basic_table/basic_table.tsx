@@ -1,4 +1,29 @@
-import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import React, {
+  Component,
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+  ReactElement,
+} from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -42,7 +67,8 @@ import { EuiIcon } from '../icon';
 import { EuiKeyboardAccessible, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
-import makeId from '../form/form_row/make_id';
+
+import { htmlIdGenerator } from '../../services/accessibility';
 import { Action } from './action_types';
 import {
   EuiTableActionsColumnType,
@@ -205,6 +231,7 @@ export type EuiBasicTableProps<T> = CommonProps &
   (BasicTableProps<T> | BasicTableWithPaginationProps<T>);
 
 interface State<T> {
+  initialSelectionRendered: boolean;
   selection: T[];
 }
 
@@ -264,12 +291,18 @@ export class EuiBasicTable<T = any> extends Component<
   private cleanups: Array<() => void> = [];
   private tbody: HTMLTableSectionElement | null = null;
 
-  state = {
-    selection: [],
-  };
+  constructor(props: EuiBasicTableProps<T>) {
+    super(props);
+    this.state = {
+      // used for checking if  initial selection is rendered
+      initialSelectionRendered: false,
+      selection: [],
+    };
+  }
 
   componentDidMount() {
     if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
+    this.getInitialSelection();
   }
 
   componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
@@ -280,10 +313,27 @@ export class EuiBasicTable<T = any> extends Component<
         this.removeLoadingListeners();
       }
     }
+    this.getInitialSelection();
   }
 
   componentWillUnmount() {
     this.removeLoadingListeners();
+  }
+
+  getInitialSelection() {
+    if (
+      this.props.selection &&
+      this.props.selection.initialSelected &&
+      !this.state.initialSelectionRendered &&
+      this.props.items.length > 0
+    ) {
+      this.setState({ selection: this.props.selection.initialSelected });
+      this.setState({ initialSelectionRendered: true });
+    }
+  }
+
+  setSelection(newSelection: T[]) {
+    this.changeSelection(newSelection);
   }
 
   private setTbody = (tbody: HTMLTableSectionElement | null) => {
@@ -421,6 +471,8 @@ export class EuiBasicTable<T = any> extends Component<
     }
   }
 
+  tableId = htmlIdGenerator('__table')();
+
   render() {
     const {
       className,
@@ -457,7 +509,7 @@ export class EuiBasicTable<T = any> extends Component<
     );
 
     const table = this.renderTable();
-    const paginationBar = this.renderPaginationBar(items.length);
+    const paginationBar = this.renderPaginationBar();
 
     return (
       <div className={classes} {...rest}>
@@ -491,6 +543,7 @@ export class EuiBasicTable<T = any> extends Component<
       <div>
         {mobileHeader}
         <EuiTable
+          id={this.tableId}
           tableLayout={tableLayout}
           responsive={responsive}
           compressed={compressed}>
@@ -553,23 +606,59 @@ export class EuiBasicTable<T = any> extends Component<
     const { items, pagination, tableCaption } = this.props;
     let captionElement;
     if (tableCaption) {
-      captionElement = tableCaption;
-    } else {
-      if (pagination && pagination.totalItemCount > 0) {
+      if (pagination) {
         captionElement = (
           <EuiI18n
-            token="euiBasicTable.tableDescriptionWithPagination"
-            default="This table contains {itemCount} rows out of {totalItemCount} rows."
+            token="euiBasicTable.tableCaptionWithPagination"
+            default="{tableCaption}; Page {page} of {pageCount}."
             values={{
-              totalItemCount: pagination.totalItemCount,
-              itemCount: items.length,
+              tableCaption,
+              page: pagination.pageIndex + 1,
+              pageCount: Math.ceil(
+                pagination.totalItemCount / pagination.pageSize
+              ),
             }}
           />
         );
       } else {
+        captionElement = tableCaption;
+      }
+    } else {
+      if (pagination) {
+        if (pagination.totalItemCount > 0) {
+          captionElement = (
+            <EuiI18n
+              token="euiBasicTable.tableAutoCaptionWithPagination"
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
+              values={{
+                totalItemCount: pagination.totalItemCount,
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
+            />
+          );
+        } else {
+          captionElement = (
+            <EuiI18n
+              token="euiBasicTable.tableSimpleAutoCaptionWithPagination"
+              default="This table contains {itemCount} rows; Page {page} of {pageCount}."
+              values={{
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
+            />
+          );
+        }
+      } else {
         captionElement = (
           <EuiI18n
-            token="euiBasicTable.tableDescriptionWithoutPagination"
+            token="euiBasicTable.tableAutoCaptionWithoutPagination"
             default="This table contains {itemCount} rows."
             values={{
               itemCount: items.length,
@@ -617,7 +706,7 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
         {(selectAllRows: string) => (
           <EuiCheckbox
-            id={`_selection_column-checkbox_${makeId()}`}
+            id={`_selection_column-checkbox_${htmlIdGenerator()()}`}
             type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}
@@ -775,7 +864,9 @@ export class EuiBasicTable<T = any> extends Component<
 
       if (footer) {
         footers.push(
-          <EuiTableFooterCell key={`footer_${field}`} align={align}>
+          <EuiTableFooterCell
+            key={`footer_${field}_${footers.length - 1}`}
+            align={align}>
             {footer}
           </EuiTableFooterCell>
         );
@@ -864,7 +955,10 @@ export class EuiBasicTable<T = any> extends Component<
     const cells = [];
 
     const { itemId: itemIdCallback } = this.props;
-    const itemId: ItemIdResolved = getItemId(item, itemIdCallback) || rowIndex;
+    const itemId: ItemIdResolved =
+      getItemId(item, itemIdCallback) != null
+        ? getItemId(item, itemIdCallback)
+        : rowIndex;
     const selected = !selection
       ? false
       : this.state.selection &&
@@ -1031,10 +1125,12 @@ export class EuiBasicTable<T = any> extends Component<
       this.state.selection.length === 0 &&
       (!action.enabled || action.enabled(item));
 
-    let actualActions = column.actions;
-    if (column.actions.length > 2) {
+    let actualActions = column.actions.filter(
+      (action: Action<T>) => !action.available || action.available(item)
+    );
+    if (actualActions.length > 2) {
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = column.actions.filter(o => o.isPrimary);
+      const primaryActions = actualActions.filter(o => o.isPrimary);
       actualActions = primaryActions.slice(0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
@@ -1210,18 +1306,33 @@ export class EuiBasicTable<T = any> extends Component<
     return profile.align;
   }
 
-  renderPaginationBar(itemsLength: number) {
-    const { error, pagination, onChange } = this.props;
-    if (!error && pagination && itemsLength > 0) {
+  renderPaginationBar() {
+    const { error, pagination, tableCaption, onChange } = this.props;
+    if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
         not configured. This callback must be implemented to handle pagination changes`);
       }
+
+      let ariaLabel: ReactElement | undefined = undefined;
+
+      if (tableCaption) {
+        ariaLabel = (
+          <EuiI18n
+            token="euiBasicTable.tablePagination"
+            default="Pagination for preceding table: {tableCaption}"
+            values={{ tableCaption }}
+          />
+        );
+      }
+
       return (
         <PaginationBar
+          aria-controls={this.tableId}
           pagination={pagination}
           onPageSizeChange={this.onPageSizeChange.bind(this)}
           onPageChange={this.onPageChange.bind(this)}
+          aria-label={ariaLabel}
         />
       );
     }

@@ -1,6 +1,29 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { requiredProps } from '../../test';
+
+jest.mock('../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 import {
   EuiBasicTable,
@@ -11,6 +34,10 @@ import {
 
 import { SortDirection } from '../../services';
 import { EuiTableFieldDataColumnType } from './table_types';
+
+jest.mock('./../../services/accessibility', () => ({
+  htmlIdGenerator: () => () => 'generated-id',
+}));
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
@@ -422,6 +449,31 @@ describe('EuiBasicTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('with initial selection', () => {
+    const props: EuiBasicTableProps<BasicItem> = {
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+      ],
+      selection: {
+        onSelectionChange: () => undefined,
+        initialSelected: [{ id: '1', name: 'name1' }],
+      },
+    };
+    const component = mount(<EuiBasicTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with pagination and selection', () => {
     const props: EuiBasicTableProps<BasicItem> = {
       items: [
@@ -771,6 +823,67 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'name', direction: SortDirection.ASC },
       },
+      onChange: () => {},
+    };
+    const component = shallow(<EuiBasicTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with multiple record actions with custom availability', () => {
+    const props: EuiBasicTableProps<BasicItem> = {
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
+        { id: '4', name: 'name3' },
+      ],
+      itemId: 'id',
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+        {
+          name: 'Actions',
+          actions: [
+            {
+              type: 'icon',
+              name: 'Edit',
+              isPrimary: true,
+              icon: 'pencil',
+              available: ({ id }) => !(Number(id) % 2),
+              description: 'edit',
+              onClick: () => undefined,
+            },
+            {
+              type: 'icon',
+              name: 'Copy',
+              isPrimary: true,
+              icon: 'copy',
+              description: 'copy',
+              onClick: () => undefined,
+            },
+            {
+              type: 'icon',
+              name: 'Delete',
+              isPrimary: true,
+              icon: 'trash',
+              description: 'delete',
+              onClick: () => undefined,
+            },
+            {
+              type: 'icon',
+              name: 'Share',
+              icon: 'trash',
+              available: ({ id }) => id !== '3',
+              description: 'share',
+              onClick: () => undefined,
+            },
+          ],
+        },
+      ],
       onChange: () => {},
     };
     const component = shallow(<EuiBasicTable {...props} />);

@@ -1,4 +1,23 @@
-import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -19,31 +38,41 @@ type Props = CommonProps &
     notificationColor?: EuiNotificationBadgeProps['color'];
   };
 
-export const EuiHeaderSectionItemButton: FunctionComponent<Props> = ({
-  onClick,
-  children,
-  className,
-  notification,
-  notificationColor,
-  ...rest
-}) => {
-  const classes = classNames('euiHeaderSectionItem__button', className);
+export type EuiHeaderSectionItemButtonRef = HTMLButtonElement;
 
-  let notificationBadge;
-  if (notification) {
-    notificationBadge = (
-      <EuiNotificationBadge
-        className="euiHeaderSectionItemButton__notification"
-        color={notificationColor}>
-        {notification}
-      </EuiNotificationBadge>
+export const EuiHeaderSectionItemButton = React.forwardRef<
+  EuiHeaderSectionItemButtonRef,
+  PropsWithChildren<Props>
+>(
+  (
+    { onClick, children, className, notification, notificationColor, ...rest },
+    ref
+  ) => {
+    const classes = classNames('euiHeaderSectionItem__button', className);
+
+    let notificationBadge;
+    if (notification) {
+      notificationBadge = (
+        <EuiNotificationBadge
+          className="euiHeaderSectionItemButton__notification"
+          color={notificationColor}>
+          {notification}
+        </EuiNotificationBadge>
+      );
+    }
+
+    return (
+      <button
+        className={classes}
+        ref={ref}
+        onClick={onClick}
+        type="button"
+        {...rest}>
+        {children}
+        {notificationBadge}
+      </button>
     );
   }
+);
 
-  return (
-    <button className={classes} onClick={onClick} type="button" {...rest}>
-      {children}
-      {notificationBadge}
-    </button>
-  );
-};
+EuiHeaderSectionItemButton.displayName = 'EuiHeaderSectionItemButton';

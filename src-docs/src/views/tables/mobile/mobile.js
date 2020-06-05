@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -36,216 +36,197 @@ Example country object:
 
 const store = createDataStore();
 
-export class Table extends Component {
-  constructor(props) {
-    super(props);
+export const Table = () => {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [sortField, setSortField] = useState('firstName');
+  const [sortDirection, setSortDirection] = useState('asc');
+  const [, setSelectedItems] = useState([]);
+  const [customHeader, setCustomHeader] = useState(true);
+  const [isResponsive, setIsResponsive] = useState(true);
 
-    this.state = {
-      pageIndex: 0,
-      pageSize: 5,
-      sortField: 'firstName',
-      sortDirection: 'asc',
-      selectedItems: [],
-      customHeader: true,
-      isResponsive: true,
-    };
-  }
-
-  onTableChange = ({ page = {}, sort = {} }) => {
+  const onTableChange = ({ page = {}, sort = {} }) => {
     const { index: pageIndex, size: pageSize } = page;
 
     const { field: sortField, direction: sortDirection } = sort;
 
-    this.setState({
-      pageIndex,
-      pageSize,
-      sortField,
-      sortDirection,
-    });
+    setPageIndex(pageIndex);
+    setPageSize(pageSize);
+    setSortField(sortField);
+    setSortDirection(sortDirection);
   };
 
-  onSelectionChange = selectedItems => {
-    this.setState({ selectedItems });
+  const onSelectionChange = selectedItems => {
+    setSelectedItems(selectedItems);
   };
 
-  toggleHeader = () => {
-    this.setState(prevState => ({ customHeader: !prevState.customHeader }));
+  const toggleHeader = () => {
+    setCustomHeader(!customHeader);
   };
 
-  toggleResponsive = () => {
-    this.setState(prevState => ({ isResponsive: !prevState.isResponsive }));
+  const toggleResponsive = () => {
+    setIsResponsive(!isResponsive);
   };
 
-  deleteUser = user => {
+  const deleteUser = user => {
     store.deleteUsers(user.id);
-    this.setState({ selectedItems: [] });
+    setSelectedItems([]);
   };
 
-  cloneUser = user => {
+  const cloneUser = user => {
     store.cloneUser(user.id);
-    this.setState({ selectedItems: [] });
+    setSelectedItems([]);
   };
 
-  render() {
-    const {
-      pageIndex,
-      pageSize,
-      sortField,
-      sortDirection,
-      customHeader,
-      isResponsive,
-    } = this.state;
+  const { pageOfItems, totalItemCount } = store.findUsers(
+    pageIndex,
+    pageSize,
+    sortField,
+    sortDirection
+  );
 
-    const { pageOfItems, totalItemCount } = store.findUsers(
-      pageIndex,
-      pageSize,
-      sortField,
-      sortDirection
-    );
+  const actions = [
+    {
+      name: 'Clone',
+      description: 'Clone this person',
+      icon: 'copy',
+      type: 'icon',
+      onClick: cloneUser,
+    },
+    {
+      name: 'Delete',
+      description: 'Delete this person',
+      icon: 'trash',
+      type: 'icon',
+      color: 'danger',
+      onClick: deleteUser,
+    },
+  ];
 
-    const actions = [
-      {
-        name: 'Clone',
-        description: 'Clone this person',
-        icon: 'copy',
-        type: 'icon',
-        onClick: this.cloneUser,
+  const columns = [
+    {
+      field: 'firstName',
+      name: 'First Name',
+      truncateText: true,
+      sortable: true,
+      mobileOptions: {
+        render: customHeader
+          ? item => (
+              <span>
+                {item.firstName} {item.lastName}
+              </span>
+            )
+          : undefined,
+        header: customHeader ? false : true,
+        fullWidth: customHeader ? true : false,
+        enlarge: customHeader ? true : false,
+        truncateText: customHeader ? false : true,
       },
-      {
-        name: 'Delete',
-        description: 'Delete this person',
-        icon: 'trash',
-        type: 'icon',
-        color: 'danger',
-        onClick: this.deleteUser,
+    },
+    {
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+      mobileOptions: {
+        show: !isResponsive || !customHeader,
       },
-    ];
+    },
+    {
+      field: 'github',
+      name: 'Github',
+      render: username => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">
+          {username}
+        </EuiLink>
+      ),
+    },
+    {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: date => formatDate(date, 'dobLong'),
+      sortable: true,
+    },
+    {
+      field: 'nationality',
+      name: 'Nationality',
+      render: countryCode => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      },
+    },
+    {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: online => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+      sortable: true,
+    },
+    {
+      name: 'Actions',
+      actions,
+    },
+  ];
 
-    const columns = [
-      {
-        field: 'firstName',
-        name: 'First Name',
-        truncateText: true,
-        sortable: true,
-        mobileOptions: {
-          render: customHeader
-            ? item => (
-                <span>
-                  {item.firstName} {item.lastName}
-                </span>
-              )
-            : undefined,
-          header: customHeader ? false : true,
-          fullWidth: customHeader ? true : false,
-          enlarge: customHeader ? true : false,
-          truncateText: customHeader ? false : true,
-        },
-      },
-      {
-        field: 'lastName',
-        name: 'Last Name',
-        truncateText: true,
-        mobileOptions: {
-          show: !isResponsive || !customHeader,
-        },
-      },
-      {
-        field: 'github',
-        name: 'Github',
-        render: username => (
-          <EuiLink href={`https://github.com/${username}`} target="_blank">
-            {username}
-          </EuiLink>
-        ),
-      },
-      {
-        field: 'dateOfBirth',
-        name: 'Date of Birth',
-        dataType: 'date',
-        render: date => formatDate(date, 'dobLong'),
-        sortable: true,
-      },
-      {
-        field: 'nationality',
-        name: 'Nationality',
-        render: countryCode => {
-          const country = store.getCountry(countryCode);
-          return `${country.flag} ${country.name}`;
-        },
-      },
-      {
-        field: 'online',
-        name: 'Online',
-        dataType: 'boolean',
-        render: online => {
-          const color = online ? 'success' : 'danger';
-          const label = online ? 'Online' : 'Offline';
-          return <EuiHealth color={color}>{label}</EuiHealth>;
-        },
-        sortable: true,
-      },
-      {
-        name: 'Actions',
-        actions,
-      },
-    ];
+  const pagination = {
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+    totalItemCount: totalItemCount,
+    pageSizeOptions: [3, 5, 8],
+  };
 
-    const pagination = {
-      pageIndex: pageIndex,
-      pageSize: pageSize,
-      totalItemCount: totalItemCount,
-      pageSizeOptions: [3, 5, 8],
-    };
+  const sorting = {
+    sort: {
+      field: sortField,
+      direction: sortDirection,
+    },
+  };
 
-    const sorting = {
-      sort: {
-        field: sortField,
-        direction: sortDirection,
-      },
-    };
+  const selection = {
+    selectable: user => user.online,
+    selectableMessage: selectable =>
+      !selectable ? 'User is currently offline' : undefined,
+    onSelectionChange: onSelectionChange,
+  };
 
-    const selection = {
-      selectable: user => user.online,
-      selectableMessage: selectable =>
-        !selectable ? 'User is currently offline' : undefined,
-      onSelectionChange: this.onSelectionChange,
-    };
+  return (
+    <Fragment>
+      <EuiFlexGroup alignItems="center" responsive={false}>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Responsive"
+            checked={isResponsive}
+            onChange={toggleResponsive}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Custom header"
+            disabled={!isResponsive}
+            checked={isResponsive && customHeader}
+            onChange={toggleHeader}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
 
-    return (
-      <Fragment>
-        <EuiFlexGroup alignItems="center" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Responsive"
-              checked={isResponsive}
-              onChange={this.toggleResponsive}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Custom header"
-              disabled={!isResponsive}
-              checked={isResponsive && customHeader}
-              onChange={this.toggleHeader}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+      <EuiSpacer size="l" />
 
-        <EuiSpacer size="l" />
-
-        <EuiBasicTable
-          items={pageOfItems}
-          itemId="id"
-          columns={columns}
-          pagination={pagination}
-          sorting={sorting}
-          selection={selection}
-          isSelectable={true}
-          hasActions={true}
-          responsive={isResponsive}
-          onChange={this.onTableChange}
-        />
-      </Fragment>
-    );
-  }
-}
+      <EuiBasicTable
+        items={pageOfItems}
+        itemId="id"
+        columns={columns}
+        pagination={pagination}
+        sorting={sorting}
+        selection={selection}
+        isSelectable={true}
+        hasActions={true}
+        responsive={isResponsive}
+        onChange={onTableChange}
+      />
+    </Fragment>
+  );
+};
