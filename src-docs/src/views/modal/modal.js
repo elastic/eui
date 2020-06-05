@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiButton,
@@ -16,15 +16,16 @@ import {
   EuiSwitch,
   EuiCodeBlock,
   EuiSpacer,
+  EuiSuperSelect,
+  EuiText,
 } from '../../../../src/components';
 
-import SuperSelectComplexExample from '../super_select/super_select_complex';
-
-import makeId from '../../../../src/components/form/form_row/make_id';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
+  const [superSelectvalue, setSuperSeelctValue] = useState('option_one');
 
   const onSwitchChange = () =>
     setIsSwitchChecked(isSwitchChecked => !isSwitchChecked);
@@ -33,11 +34,56 @@ export default () => {
 
   const showModal = () => setIsModalVisible(true);
 
+  const superSelectOptions = [
+    {
+      value: 'option_one',
+      inputDisplay: 'Option one',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option one</strong>
+          <EuiText size="s" color="subdued">
+            <p className="euiTextColor--subdued">
+              Has a short description giving more detail to the option.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_two',
+      inputDisplay: 'Option two',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option two</strong>
+          <EuiText size="s" color="subdued">
+            <p className="euiTextColor--subdued">
+              Has a short description giving more detail to the option.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_three',
+      inputDisplay: 'Option three',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option three</strong>
+          <EuiText size="s" color="subdued">
+            <p className="euiTextColor--subdued">
+              Has a short description giving more detail to the option.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+  ];
+
   const formSample = (
     <EuiForm>
       <EuiFormRow>
         <EuiSwitch
-          id={makeId()}
+          id={htmlIdGenerator()()}
           name="popswitch"
           label="Isn't this modal form cool?"
           checked={isSwitchChecked}
@@ -54,7 +100,13 @@ export default () => {
       </EuiFormRow>
 
       <EuiFormRow label="A SuperSelect field">
-        <SuperSelectComplexExample />
+        <EuiSuperSelect
+          options={superSelectOptions}
+          valueOfSelected={superSelectvalue}
+          onChange={value => onSuperSelectChange(value)}
+          itemLayoutAlign="top"
+          hasDividers
+        />
       </EuiFormRow>
 
       <EuiSpacer />
@@ -64,6 +116,10 @@ export default () => {
       </EuiCodeBlock>
     </EuiForm>
   );
+
+  const onSuperSelectChange = value => {
+    setSuperSeelctValue(value);
+  };
 
   let modal;
 
