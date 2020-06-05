@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { EuiInnerText } from '../../../../src/components/inner_text';
-
 import {
   EuiBadge,
   EuiCode,
@@ -10,6 +8,7 @@ import {
   EuiPanel,
   EuiText,
   EuiSpacer,
+  EuiInnerText,
 } from '../../../../src/components';
 
 export default () => {

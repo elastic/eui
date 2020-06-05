@@ -1,5 +1,111 @@
 [
   {
+    "version": "25.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tableDescriptionWithPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBasicTable.tableDescriptionWithoutPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiPagination.pageOfTotal",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiPagination.previousPage",
+        "changeType": "modified",
+        "value": "Previous page, {page}"
+      },
+      {
+        "token": "euiPagination.jumpToLastPage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiPagination.nextPage",
+        "changeType": "modified",
+        "value": "Next page, {page}"
+      },
+      {
+        "token": "euiBasicTable.tableCaptionWithPagination",
+        "changeType": "added",
+        "value": "{tableCaption}; Page {page} of {pageCount}."
+      },
+      {
+        "token": "euiBasicTable.tableAutoCaptionWithPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
+      },
+      {
+        "token": "euiBasicTable.tableSimpleAutoCaptionWithPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows; Page {page} of {pageCount}."
+      },
+      {
+        "token": "euiBasicTable.tableAutoCaptionWithoutPagination",
+        "changeType": "added",
+        "value": "This table contains {itemCount} rows."
+      },
+      {
+        "token": "euiBasicTable.tablePagination",
+        "changeType": "added",
+        "value": "Pagination for preceding table: {tableCaption}"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelGridPagination",
+        "changeType": "added",
+        "value": "Pagination for preceding grid: {label}"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelledByGridPagination",
+        "changeType": "added",
+        "value": "Pagination for preceding grid"
+      },
+      {
+        "token": "euiDataGrid.ariaLabel",
+        "changeType": "added",
+        "value": "{label}; Page {page} of {pageCount}."
+      },
+      {
+        "token": "euiDataGrid.ariaLabelledBy",
+        "changeType": "added",
+        "value": "Page {page} of {pageCount}."
+      },
+      {
+        "token": "euiPaginationButton.longPageString",
+        "changeType": "added",
+        "value": "Page {page} of {totalPages}"
+      },
+      {
+        "token": "euiPaginationButton.shortPageString",
+        "changeType": "added",
+        "value": "Page {page}"
+      },
+      {
+        "token": "euiPagination.disabledPreviousPage",
+        "changeType": "added",
+        "value": "Previous page"
+      },
+      {
+        "token": "euiPagination.firstRangeAriaLabel",
+        "changeType": "added",
+        "value": "Skipping pages 2 to {lastPage}"
+      },
+      {
+        "token": "euiPagination.lastRangeAriaLabel",
+        "changeType": "added",
+        "value": "Skipping pages {firstPage} to {lastPage}"
+      },
+      {
+        "token": "euiPagination.disabledNextPage",
+        "changeType": "added",
+        "value": "Next page"
+      }
+    ]
+  },
+  {
     "version": "23.2.0",
     "changes": [
       {
