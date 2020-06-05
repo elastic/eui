@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `25.0.0`.
+
+## [`25.0.0`](https://github.com/elastic/eui/tree/v25.0.0)
+
 - Added conditional rendering of the title element in `EuiCallOut` to avoid usage of additional space caused by the rendered `<div>` element ([#3549](https://github.com/elastic/eui/pull/3549))
 
 **Bug fixes**
