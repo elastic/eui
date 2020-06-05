@@ -37,7 +37,7 @@ const paddingSizeToClassNameMap = {
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 export type EuiAccordionSize = keyof typeof paddingSizeToClassNameMap;
 
-export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
+export type EuiAccordionProps = Omit<HTMLAttributes<HTMLDivElement>, 'id'> &
   CommonProps & {
     id: string;
     /**
