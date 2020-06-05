@@ -27,7 +27,6 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { EuiBadge } from '../badge';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
@@ -117,14 +116,14 @@ const limitBreadcrumbs = (
         token="euiBreadcrumbs.collapsedBadge.ariaLabel"
         default="Show all breadcrumbs">
         {(ariaLabel: string) => (
-          <EuiBadge
+          <EuiLink
+            className="euiBreadcrumb euiBreadcrumb__collapsedBadge"
+            color="text"
             aria-label={ariaLabel}
-            onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-            onClickAriaLabel={ariaLabel}
-            title="View hidden breadcrumbs"
-            className="euiBreadcrumb euiBreadcrumb__collapsedBadge">
-            &hellip;
-          </EuiBadge>
+            title={ariaLabel}
+            onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+            •••
+          </EuiLink>
         )}
       </EuiI18n>
     );

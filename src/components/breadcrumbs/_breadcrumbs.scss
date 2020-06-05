@@ -16,6 +16,7 @@
 
 .euiBreadcrumb--collapsed {
   color: $euiColorLightShade;
+  cursor: default;
 }
 
 .euiBreadcrumbSeparator {
@@ -37,12 +38,18 @@
 }
 
 .euiBreadcrumb__collapsedBadge {
-  height: $euiSize;
-  margin-top: -$euiSizeM / 2;
+  position: relative;
+  top: -$euiSizeXS;
   background-color: transparentize($euiColorDarkestShade, .85);
+  font-size: $euiSizeS;
+  padding: ($euiSizeXS / 2) $euiSizeXS;
+  border-radius: $euiBorderRadius / 2;
+  opacity: .75;
 
-  .euiBadge__content {
-    margin-top: -$euiSizeXS / 2;
+  // The outline makes it too large for the space.
+  // It still gets an underline and color change for focus
+  &:focus {
+    outline: none !important; // sass-lint:disable-line no-important
   }
 }
 
@@ -73,6 +80,7 @@
       display: none;
 
       // Only show last 2 breadcrumbs
+      // The addition of 1 is for the divider
       &:nth-last-child(-n+3) { /* 1 */
         display: inline-block;
       }
