@@ -13,7 +13,7 @@
 
 **Theme: Amsterdam**
 
-- Removed left border from `EuiCallout` and added border radius and bold titles. ([#3557](https://github.com/elastic/eui/pull/3557/))
+- Removed left border from `EuiCallout` and added border radius and increased font weight on titles. ([#3557](https://github.com/elastic/eui/pull/3557/))
 
 
 ## [`24.1.0`](https://github.com/elastic/eui/tree/v24.1.0)
