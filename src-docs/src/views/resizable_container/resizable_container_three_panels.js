@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { EuiText, EuiResizableContainer } from '../../../../src/components';
+import { fake } from 'faker';
 
-const text = require('!!raw-loader!./lorem.txt');
+const text = fake('{{lorem.paragraphs}}');
 
 export default () => (
   <EuiResizableContainer style={{ height: '400px' }}>

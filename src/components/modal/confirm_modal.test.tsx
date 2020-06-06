@@ -21,7 +21,7 @@ import React from 'react';
 import { mount, render } from 'enzyme';
 
 import { findTestSubject, requiredProps } from '../../test';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 
 import {
   CANCEL_BUTTON,
@@ -126,7 +126,7 @@ describe('EuiConfirmModal', () => {
       );
 
       findTestSubject(component, 'modal').simulate('keydown', {
-        keyCode: keyCodes.ESCAPE,
+        key: keys.ESCAPE,
       });
       expect(onConfirm).toHaveBeenCalledTimes(0);
       expect(onCancel).toHaveBeenCalledTimes(1);

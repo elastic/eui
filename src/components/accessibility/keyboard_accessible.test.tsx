@@ -23,7 +23,7 @@ import { render, shallow } from 'enzyme';
 
 import { EuiKeyboardAccessible } from './keyboard_accessible';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 
 const noop = () => {
   // eslint-disable-line no-empty
@@ -194,7 +194,7 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       $button.find('[data-div]').simulate('keyup', {
-        keyCode: keyCodes.ENTER,
+        key: keys.ENTER,
       });
 
       expect(onClickHandler).toBeCalled();
@@ -210,7 +210,7 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       $button.find('[data-div]').simulate('keyup', {
-        keyCode: keyCodes.SPACE,
+        key: keys.SPACE,
       });
 
       expect(onClickHandler).toBeCalled();

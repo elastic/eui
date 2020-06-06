@@ -15,6 +15,7 @@ import ManyPages from './many_pages';
 const manyPagesSource = require('!!raw-loader!./many_pages');
 const manyPagesHtml = renderToHtml(ManyPages);
 const manyPagesSnippet = `<EuiPagination
+  aria-label="my pagination"
   pageCount={higherThan5Number}
   activePage={activePage}
   onPageClick={goToPage}
@@ -25,6 +26,7 @@ import FewPages from './few_pages';
 const fewPagesSource = require('!!raw-loader!./few_pages');
 const fewPagesHtml = renderToHtml(FewPages);
 const fewPagesSnippet = `<EuiPagination
+  aria-label="my pagination"
   pageCount={lowerThan5Number}
   activePage={activePage}
   onPageClick={goToPage}
@@ -37,6 +39,7 @@ const centeredPaginationHtml = renderToHtml(CenteredPagination);
 const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
   <EuiFlexItem grow={false}>
     <EuiPagination
+      aria-label="my pagination"
       pageCount={pageCount}
       activePage={activePage}
       onPageClick={goToPage}
@@ -60,6 +63,7 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
 
   <EuiFlexItem grow={false}>
     <EuiPagination
+      aria-label="my pagination"
       pageCount={pageCount}
       activePage={activePage}
       onPageClick={goToPage}
@@ -72,6 +76,7 @@ import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
 const compressedHtml = renderToHtml(Compressed);
 const compressedSnippet = `<EuiPagination
+  aria-label="my pagination"
   pageCount={pageCount}
   activePage={activePage}
   onPageClick={goToPage}

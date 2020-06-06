@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, MouseEvent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -49,6 +49,11 @@ export interface EuiPaginationProps {
    * If true, will only show next/prev arrows instead of page numbers.
    */
   compressed?: boolean;
+
+  /**
+   * If passed in, passes value through to each button to set aria-controls
+   */
+  'aria-controls'?: string;
 }
 
 type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
@@ -59,10 +64,48 @@ export const EuiPagination: FunctionComponent<Props> = ({
   activePage = 1,
   onPageClick = () => {},
   compressed,
+  'aria-controls': ariaControls,
   ...rest
 }) => {
-  const classes = classNames('euiPagination', className);
+  const safeClick = (e: MouseEvent, pageIndex: number) => {
+    e.preventDefault();
 
+    if (ariaControls) {
+      const controlledElement = document.getElementById(ariaControls);
+
+      if (controlledElement) {
+        controlledElement.focus();
+      }
+    }
+
+    onPageClick(pageIndex);
+  };
+  const PaginationButton = ({
+    pageIndex,
+    inList = true,
+  }: {
+    pageIndex: number;
+    inList?: boolean;
+  }) => {
+    const button = (
+      <EuiPaginationButton
+        isActive={pageIndex === activePage}
+        totalPages={pageCount}
+        onClick={(e: MouseEvent) => safeClick(e, pageIndex)}
+        pageIndex={pageIndex}
+        {...hasControl && { 'aria-controls': ariaControls }}
+        hideOnMobile
+      />
+    );
+
+    if (inList) {
+      return <li className="euiPagination__item">{button}</li>;
+    }
+
+    return button;
+  };
+  const classes = classNames('euiPagination', className);
+  const hasControl = ariaControls !== undefined;
   const pages = [];
   const firstPageInRange = Math.max(
     0,
@@ -77,37 +120,41 @@ export const EuiPagination: FunctionComponent<Props> = ({
   );
 
   for (let i = firstPageInRange, index = 0; i < lastPageInRange; i++, index++) {
-    pages.push(
-      <EuiI18n
-        key={index}
-        token="euiPagination.pageOfTotal"
-        default="Page {page} of {total}"
-        values={{ page: i + 1, total: lastPageInRange }}>
-        {(pageOfTotal: string) => (
-          <EuiPaginationButton
-            isActive={i === activePage}
-            onClick={onPageClick.bind(null, i)}
-            hideOnMobile
-            aria-label={pageOfTotal}
-            data-test-subj={`pagination-button-${i}`}>
-            {i + 1}
-          </EuiPaginationButton>
-        )}
-      </EuiI18n>
-    );
+    pages.push(<PaginationButton pageIndex={i} key={i} />);
+  }
+
+  let prevPageButtonProps = {};
+  if (hasControl && activePage !== 0) {
+    prevPageButtonProps = {
+      'aria-controls': ariaControls,
+      href: `#${ariaControls}`,
+    };
+  } else {
+    prevPageButtonProps = { disabled: activePage === 0 };
   }
 
   const previousButton = (
-    <EuiI18n token="euiPagination.previousPage" default="Previous page">
+    <EuiI18n
+      token="euiPagination.previousPage"
+      default="Previous page, {page}"
+      values={{ page: activePage }}>
       {(previousPage: string) => (
-        <EuiButtonIcon
-          onClick={onPageClick.bind(null, activePage - 1)}
-          iconType="arrowLeft"
-          disabled={activePage === 0}
-          color="text"
-          aria-label={previousPage}
-          data-test-subj="pagination-button-previous"
-        />
+        <EuiI18n
+          token="euiPagination.disabledPreviousPage"
+          default="Previous page">
+          {(disabledPreviousPage: string) => (
+            <EuiButtonIcon
+              onClick={(e: MouseEvent) => safeClick(e, activePage - 1)}
+              iconType="arrowLeft"
+              color="text"
+              aria-label={
+                activePage === 0 ? disabledPreviousPage : previousPage
+              }
+              data-test-subj="pagination-button-previous"
+              {...prevPageButtonProps}
+            />
+          )}
+        </EuiI18n>
       )}
     </EuiI18n>
   );
@@ -115,80 +162,89 @@ export const EuiPagination: FunctionComponent<Props> = ({
   const firstPageButtons = [];
 
   if (firstPageInRange > 0) {
-    firstPageButtons.push(
-      <EuiI18n
-        key="0"
-        token="euiPagination.pageOfTotal"
-        default="Page {page} of {total}"
-        values={{ page: 1, total: lastPageInRange }}>
-        {(pageOfTotal: string) => (
-          <EuiPaginationButton
-            onClick={onPageClick.bind(null, 0)}
-            hideOnMobile
-            aria-label={pageOfTotal}>
-            1
-          </EuiPaginationButton>
-        )}
-      </EuiI18n>
-    );
+    firstPageButtons.push(<PaginationButton pageIndex={0} key={0} />);
 
-    if (firstPageInRange > 1) {
+    if (firstPageInRange > 1 && firstPageInRange !== 2) {
       firstPageButtons.push(
-        <EuiPaginationButton
-          key="beginningEllipsis"
-          isPlaceholder
-          hideOnMobile
-          aria-hidden>
-          <span>&hellip;</span>
-        </EuiPaginationButton>
+        <EuiI18n
+          key="startingEllipses"
+          token="euiPagination.firstRangeAriaLabel"
+          default="Skipping pages 2 to {lastPage}"
+          values={{ lastPage: firstPageInRange }}>
+          {(firstRangeAriaLabel: string) => (
+            <li
+              aria-label={firstRangeAriaLabel}
+              className="euiPaginationButton-isPlaceholder euiPagination__item">
+              &hellip;
+            </li>
+          )}
+        </EuiI18n>
       );
+    } else if (firstPageInRange === 2) {
+      firstPageButtons.push(<PaginationButton pageIndex={1} key={1} />);
     }
   }
 
   const lastPageButtons = [];
 
   if (lastPageInRange < pageCount) {
-    if (lastPageInRange < pageCount - 1) {
+    if (lastPageInRange + 1 === pageCount - 1) {
       lastPageButtons.push(
-        <EuiPaginationButton
-          key="endingEllipsis"
-          isPlaceholder
-          hideOnMobile
-          aria-hidden>
-          <span>&hellip;</span>
-        </EuiPaginationButton>
+        <PaginationButton pageIndex={lastPageInRange} key={lastPageInRange} />
+      );
+    } else if (lastPageInRange < pageCount - 1) {
+      lastPageButtons.push(
+        <EuiI18n
+          key="endingEllipses"
+          token="euiPagination.lastRangeAriaLabel"
+          default="Skipping pages {firstPage} to {lastPage}"
+          values={{ firstPage: lastPageInRange + 1, lastPage: pageCount - 1 }}>
+          {(lastRangeAriaLabel: string) => (
+            <li
+              aria-label={lastRangeAriaLabel}
+              className="euiPaginationButton-isPlaceholder euiPagination__item">
+              &hellip;
+            </li>
+          )}
+        </EuiI18n>
       );
     }
 
     lastPageButtons.push(
-      <EuiI18n
-        key={pageCount - 1}
-        token="euiPagination.jumpToLastPage"
-        default="Jump to the last page, number {pageCount}"
-        values={{ pageCount }}>
-        {(jumpToLastPage: string) => (
-          <EuiPaginationButton
-            onClick={onPageClick.bind(null, pageCount - 1)}
-            hideOnMobile
-            aria-label={jumpToLastPage}>
-            {pageCount}
-          </EuiPaginationButton>
-        )}
-      </EuiI18n>
+      <PaginationButton pageIndex={pageCount - 1} key={pageCount - 1} />
     );
   }
 
+  let nextPageButtonProps = {};
+  if (hasControl && activePage !== pageCount - 1) {
+    nextPageButtonProps = {
+      'aria-controls': ariaControls,
+      href: `#${ariaControls}`,
+    };
+  } else {
+    nextPageButtonProps = { disabled: activePage === pageCount - 1 };
+  }
+
   const nextButton = (
-    <EuiI18n token="euiPagination.nextPage" default="Next page">
+    <EuiI18n
+      token="euiPagination.nextPage"
+      default="Next page, {page}"
+      values={{ page: activePage + 2 }}>
       {(nextPage: string) => (
-        <EuiButtonIcon
-          onClick={onPageClick.bind(null, activePage + 1)}
-          iconType="arrowRight"
-          aria-label={nextPage}
-          disabled={activePage === pageCount - 1}
-          color="text"
-          data-test-subj="pagination-button-next"
-        />
+        <EuiI18n token="euiPagination.disabledNextPage" default="Next page">
+          {(disabledNextPage: string) => (
+            <EuiButtonIcon
+              onClick={(e: MouseEvent) => safeClick(e, activePage + 1)}
+              iconType="arrowRight"
+              aria-label={
+                activePage === pageCount - 1 ? disabledNextPage : nextPage
+              }
+              color="text"
+              data-test-subj="pagination-button-next"
+              {...nextPageButtonProps}
+            />
+          )}
+        </EuiI18n>
       )}
     </EuiI18n>
   );
@@ -196,36 +252,13 @@ export const EuiPagination: FunctionComponent<Props> = ({
   const selectablePages = pages;
   if (compressed) {
     const firstPageButtonCompressed = (
-      <EuiI18n
-        token="euiPagination.pageOfTotal"
-        default="Page {page} of {total}"
-        values={{ page: activePage + 1, total: pageCount }}>
-        {(pageOfTotal: string) => (
-          <EuiPaginationButton
-            onClick={onPageClick.bind(null, 0)}
-            isActive={true}
-            aria-label={pageOfTotal}>
-            {activePage + 1}
-          </EuiPaginationButton>
-        )}
-      </EuiI18n>
+      <PaginationButton pageIndex={activePage} inList={false} />
     );
     const lastPageButtonCompressed = (
-      <EuiI18n
-        token="euiPagination.jumpToLastPage"
-        default="Jump to the last page, number {pageCount}"
-        values={{ pageCount }}>
-        {(jumpToLastPage: string) => (
-          <EuiPaginationButton
-            onClick={onPageClick.bind(null, pageCount - 1)}
-            aria-label={jumpToLastPage}>
-            {pageCount}
-          </EuiPaginationButton>
-        )}
-      </EuiI18n>
+      <PaginationButton pageIndex={pageCount} inList={false} />
     );
     return (
-      <div className={classes} {...rest}>
+      <nav className={classes} {...rest}>
         {previousButton}
         <EuiText size="s" className="euiPagination__compressedText">
           <EuiI18n
@@ -238,17 +271,26 @@ export const EuiPagination: FunctionComponent<Props> = ({
           />
         </EuiText>
         {nextButton}
-      </div>
+      </nav>
     );
   }
 
+  const accessibleName = {
+    ...(rest['aria-label'] && { 'aria-label': rest['aria-label'] }),
+    ...(rest['aria-labelledby'] && {
+      'aria-labelledby': rest['aria-labelledby'],
+    }),
+  };
+
   return (
-    <div className={classes} role="group" {...rest}>
+    <nav className={classes} {...rest}>
       {previousButton}
-      {firstPageButtons}
-      {selectablePages}
-      {lastPageButtons}
+      <ul {...accessibleName} className="euiPagination__list">
+        {firstPageButtons}
+        {selectablePages}
+        {lastPageButtons}
+      </ul>
       {nextButton}
-    </div>
+    </nav>
   );
 };

@@ -10,7 +10,7 @@ import {
 
 import { useColorPickerState } from '../../../../src/services';
 
-export const CustomButton = () => {
+export default () => {
   const [color, setColor, errors] = useColorPickerState('');
   const [selectedColor, setSelectedColor] = useState(color);
   const handleColorChange = (text, { hex, isValid }) => {

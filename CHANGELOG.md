@@ -1,5 +1,34 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `useEuiTextDiff` react hook utility ([#3288](https://github.com/elastic/eui/pull/3288))
+- Converted `EuiOverlayMask` to be a React functional component ([#3555](https://github.com/elastic/eui/pull/3555))
+
+**Bug fixes**
+
+- Fixed `EuiCodeBlockImpl` testenv mock pass-through of `data-test-subj` attribute ([#3560](https://github.com/elastic/eui/pull/3560))
+- Fixed DOM element creation issues in `EuiOverlayMask` by using lifecycle methods ([#3555](https://github.com/elastic/eui/pull/3555))
+
+## [`25.0.0`](https://github.com/elastic/eui/tree/v25.0.0)
+
+- Added conditional rendering of the title element in `EuiCallOut` to avoid usage of additional space caused by the rendered `<div>` element ([#3549](https://github.com/elastic/eui/pull/3549))
+
+**Bug fixes**
+
+- Fixed `EuiCard` image corners to be contained within border radius ([#3556](https://github.com/elastic/eui/pull/3556))
+- Fixed `EuiKeyPadMenu` and `EuiKeyPadMenuItem` aria roles ([#3502](https://github.com/elastic/eui/pull/3502))
+- Fixed `EuiFieldSearch` input clear button doesn't show when external input is passed([#3497](https://github.com/elastic/eui/pull/3497))
+- Fixed `EuiBasicTable` footers to always use a unique `key` ([#3559](https://github.com/elastic/eui/pull/3559))
+
+**Breaking changes**
+
+- A fixed `EuiHeader` no longer automatically padding directly to the `<body>` element ([#3538](https://github.com/elastic/eui/pull/3538))
+- Improved `EuiPagination`, `EuiDataGrid`, `EuiBasicTable` and `EuiInMemoryTable` accessibility, causing `EuiPaginationButton` to require a new prop `pageIndex` ([#3294](https://github.com/elastic/eui/pull/3294))
+- Replaced all usages of [`KeyboardEvent.keyCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) (deprecated) with [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key). From `@elastic/eui/lib/services`, `keyCodes` has been replaced with `keys`, as has `cascadingMenuKeyCodes`->`cascadingMenuKeys`, and `comboBoxKeyCodes`->`comboBoxKeys`.  The implementation of all of those exports (as well as `accessibleClickKeys`) all now use `KeyboardEvent.key` values. ([#3517](https://github.com/elastic/eui/pull/3517))
+
+
+## [`24.1.0`](https://github.com/elastic/eui/tree/v24.1.0)
+
+- Added `displayAsText` prop to `EuiDataGridColumn` ([#3520](https://github.com/elastic/eui/pull/3520))
 - Added `minSizeForControls` prop to `EuiDataGrid` to control the minimum width for showing grid controls ([#3527](https://github.com/elastic/eui/pull/3527))
 - Passed `getSelectedOptionForSearchValue` to `EuiComboBoxOptionsList` as prop ([#3501](https://github.com/elastic/eui/pull/3501))
 - Added `appendIconComponentCache` function to allow manual pre-emptive loading of source elements into the `EuiIcon` cache ([#3481](https://github.com/elastic/eui/pull/3481))
@@ -7,12 +36,14 @@
 - Added exports for `EuiSteps` and related components types ([#3471](https://github.com/elastic/eui/pull/3471))
 - Added `displayName` to components using `React.forwardRef` ([#3451](https://github.com/elastic/eui/pull/3451))
 - Added event target checker for `EuiOverlayMask`'s `onClick` prop ([#3462](https://github.com/elastic/eui/pull/3462))
+- Added `EuiColorPalettePicker` component ([#3192](https://github.com/elastic/eui/pull/3192))
 - Added `left-start` popover placement to `EuiDatePicker` ([#3511](https://github.com/elastic/eui/pull/3511))
 - Added `theme` prop to `EuiHeader` ([#3524](https://github.com/elastic/eui/pull/3524))
 - Added `.euiHeaderLink-isActive` class to `EuiHeaderLink` when `isActive` ([#3524](https://github.com/elastic/eui/pull/3524))
+- Added `display`, `descriptionWidth`, `textWrap` and `isInvalid` props to `EuiExpression` ([#3467](https://github.com/elastic/eui/pull/3467))
+- Added more exports for `EuiColorPalettePicker` types ([#3542](https://github.com/elastic/eui/pull/3542))
 
 **Bug Fixes**
-
 
 - Fixed issue where multiple `EuiToolTip` components could be visible when element was focused ([#3335](https://github.com/elastic/eui/pull/3335))
 - Fixed `EuiSuperSelect` not rendering full width when `isOpen` is `true` ([#3495](https://github.com/elastic/eui/pull/3495))
@@ -45,7 +76,6 @@
 - Added `partition` key to `EuiChartThemeType` for Partition chart support ([#3387](https://github.com/elastic/eui/pull/3387))
 - Updated `EuiImage`'s `caption` prop type from `string` to `ReactNode` ([#3387](https://github.com/elastic/eui/pull/3387))
 - Improved contrast for `EuiCollapsibleNav` close button ([#3465](https://github.com/elastic/eui/pull/3465))
-- Added exports for `EuiSteps` and related components types ([#3471](https://github.com/elastic/eui/pull/3471))
 
 **Bug Fixes**
 

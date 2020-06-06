@@ -12,7 +12,7 @@ import {
   useColorStopsState,
 } from '../../../../src/services';
 
-export const KitchenSink = () => {
+export default () => {
   const [color, setColor] = useColorPickerState('#D36086');
   const [colorStops, setColorStops, addStop] = useColorStopsState(true);
 

@@ -22,7 +22,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-export type EuiKeyPadMenuProps = CommonProps & HTMLAttributes<HTMLDivElement>;
+export type EuiKeyPadMenuProps = CommonProps & HTMLAttributes<HTMLUListElement>;
 
 export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   children,
@@ -32,8 +32,10 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   const classes = classNames('euiKeyPadMenu', className);
 
   return (
-    <div className={classes} role="menu" {...rest}>
-      {children}
-    </div>
+    <ul className={classes} {...rest}>
+      {React.Children.map(children, child => (
+        <li>{child}</li>
+      ))}
+    </ul>
   );
 };

@@ -11,7 +11,7 @@ import {
   EuiContext,
 } from '../../../src/components';
 
-import { keyCodes } from '../../../src/services';
+import { keys } from '../../../src/services';
 
 export class AppView extends Component {
   constructor(...args) {
@@ -83,23 +83,23 @@ export class AppView extends Component {
     return <div className="guide">{this.renderContent()}</div>;
   }
 
-  onKeydown = e => {
-    if (e.target !== document.body) {
+  onKeydown = event => {
+    if (event.target !== document.body) {
       return;
     }
 
-    if (e.metaKey) {
+    if (event.metaKey) {
       return;
     }
 
     const { routes, currentRoute } = this.props;
 
-    if (e.keyCode === keyCodes.LEFT) {
+    if (event.key === keys.ARROW_LEFT) {
       pushRoute(routes.getPreviousRoute);
       return;
     }
 
-    if (e.keyCode === keyCodes.RIGHT) {
+    if (event.key === keys.ARROW_RIGHT) {
       pushRoute(routes.getNextRoute);
     }
 
