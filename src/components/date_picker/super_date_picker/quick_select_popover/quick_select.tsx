@@ -222,7 +222,7 @@ export class EuiQuickSelect extends Component<
                   {(previousLabel: string) => (
                     <EuiToolTip content={previousLabel}>
                       <EuiButtonIcon
-                        label={previousLabel}
+                        aria-label={previousLabel}
                         iconType="arrowLeft"
                         onClick={this.stepBackward}
                       />
@@ -237,7 +237,7 @@ export class EuiQuickSelect extends Component<
                   {(nextLabel: string) => (
                     <EuiToolTip content={nextLabel}>
                       <EuiButtonIcon
-                        label={nextLabel}
+                        aria-label={nextLabel}
                         iconType="arrowRight"
                         onClick={this.stepForward}
                       />

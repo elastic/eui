@@ -28,6 +28,7 @@ const extraAction: EuiListGroupItemProps['extraAction'] = {
   color: 'subdued',
   iconType: 'pin',
   iconSize: 's',
+  'aria-label': 'foo',
 };
 
 const topLinks: FlyoutMenuItem[] = [
