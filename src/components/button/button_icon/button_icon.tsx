@@ -48,7 +48,7 @@ export type EuiButtonIconColor =
   | 'text'
   | 'warning';
 
-export type HideOrLabel = ExclusiveUnion<
+type HideOrLabel = ExclusiveUnion<
   { 'aria-hidden': true },
   ExclusiveUnion<{ 'aria-label': string }, { 'aria-labelledby': string }>
 >;

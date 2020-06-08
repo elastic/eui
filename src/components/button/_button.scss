@@ -116,7 +116,7 @@
 }
 
 // Fix ghost/disabled look specifically
-.euiButton--disabled.euiButton--ghost {
+.euiButton.euiButton--disabled.euiButton--ghost {
   &,
   &:hover,
   &:focus {

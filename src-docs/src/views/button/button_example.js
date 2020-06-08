@@ -82,35 +82,48 @@ const buttonToggleSource = require('!!raw-loader!./button_toggle');
 const buttonToggleHtml = renderToHtml(ButtonToggle);
 const buttonToggleSnippet = [
   `<EuiButton
-  iconType={this.state.toggleOn ? onIcon : offIcon}
-  onClick={this.onToggleChange}
+  iconType={toggleOn ? onIcon : offIcon}
+  onClick={onToggleChange}
 >
-  {this.state.toggleOn ? onLabel : offLabel}
+  {toggleOn ? onLabel : offLabel}
 </EuiButton>
 `,
   `<EuiButton
-  aria-pressed={this.state.toggleOn}
-  onChange={this.onToggleChange}
+  aria-pressed={toggleOn}
+  fill={toggleOn}
+  onChange={onToggleChange}
 >
-  {buttonText}
+  <!-- Button text -->
 </EuiButton>`,
 ];
 
 import ButtonGroup from './button_group';
+import { EuiButtonGroupOption } from './props';
 const buttonGroupSource = require('!!raw-loader!./button_group');
 const buttonGroupHtml = renderToHtml(ButtonGroup);
 const buttonGroupSnippet = [
   `<EuiButtonGroup
   legend={legend}
-  options={toggleButtons}
-  idSelected={toggleIdSelected}
-  onChange={onChange}
+  options={[
+    {
+      id: optionId,
+      label: 'Option'
+    }
+  ]}
+  idSelected={idSelected}
+  onChange={(optionId) => {}}
 />`,
   `<EuiButtonGroup
   legend={legend}
-  options={toggleButtonsIconsMulti}
-  idToSelectedMap={toggleIconIdToSelectedMap}
-  onChange={onChangeIconsMulti}
+  options={[
+    {
+      id: optionId,
+      label: 'Option',
+      iconType: 'iconString',
+    }
+  ]}
+  idToSelectedMap={idToSelectedMap}
+  onChange={(optionId) => {}}
   type="multi"
   isIconOnly
 />`,
@@ -309,11 +322,25 @@ export const ButtonExample = {
               </span>
             }
           />
-          <EuiSpacer size="s" />
+          <EuiSpacer size="m" />
           <p>
-            Pass in <EuiCode>aria-pressed</EuiCode> if your button does not
-            change its label for each state.
+            You can create a toggle style button with any button type like the
+            standard <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>
+            , or <strong>EuiButtonIcon</strong>. Use state management to handle
+            the visual differences for on and off. Though there are two
+            situations to consider.
           </p>
+          <ul>
+            <li>
+              If your button changes its <strong>content</strong>, the text
+              and/or icon, then there is no additional accessibility concern.
+            </li>
+            <li>
+              If your button only changes the <strong>visual</strong>{' '}
+              appearance, you must add <EuiCode>aria-pressed</EuiCode> for the
+              &ldquo;on&rdquo; state.
+            </li>
+          </ul>
         </>
       ),
       demo: <ButtonToggle />,
@@ -334,10 +361,8 @@ export const ButtonExample = {
       text: (
         <div>
           <p>
-            <strong>EuiButtonGroups</strong> are handled similarly to the way
-            checkbox and radio groups are handled but made to look like buttons.
-            They group multiple <strong>EuiButtonToggles</strong> and utilize
-            the <EuiCode language="js">type=&quot;single&quot;</EuiCode> or{' '}
+            <strong>EuiButtonGroups</strong> utilize the{' '}
+            <EuiCode language="js">type=&quot;single&quot;</EuiCode> or{' '}
             <EuiCode language="js">&quot;multi&quot;</EuiCode> prop to determine
             whether multiple or only single selections are allowed per group.
           </p>
@@ -355,8 +380,9 @@ export const ButtonExample = {
             title={
               <span>
                 In order for groups to be properly read as groups with a title,
-                add the <EuiCode>legend</EuiCode> prop. This is only for
-                accessibility, however, so it will be visibly hidden.
+                the <EuiCode>legend</EuiCode> prop is <strong>required</strong>.
+                This is only for accessibility, however, so it will be visibly
+                hidden.
               </span>
             }
           />
@@ -364,7 +390,7 @@ export const ButtonExample = {
       ),
       demo: <ButtonGroup />,
       snippet: buttonGroupSnippet,
-      props: { EuiButtonGroup },
+      props: { EuiButtonGroup, EuiButtonGroupOption },
     },
     {
       title: 'Ghost',

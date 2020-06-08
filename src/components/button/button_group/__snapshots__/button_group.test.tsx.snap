@@ -12,6 +12,7 @@ exports[`EuiButtonGroup is rendered 1`] = `
   <div
     aria-label="aria-label"
     class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   />
 </fieldset>
 `;
@@ -29,7 +30,7 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text euiButtonGroup--compressed"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -48,7 +49,7 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -67,7 +68,7 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -102,7 +103,7 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -121,7 +122,7 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -140,7 +141,7 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -175,7 +176,7 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -194,7 +195,7 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -213,7 +214,7 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -248,7 +249,7 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--danger"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--danger euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -267,7 +268,7 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--danger euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -286,7 +287,7 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--danger euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -321,7 +322,7 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--ghost"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--ghost euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -340,7 +341,7 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--ghost euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -359,7 +360,7 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--ghost euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -394,7 +395,7 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--primary"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--primary euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -413,7 +414,7 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--primary euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -432,7 +433,7 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--primary euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -467,7 +468,7 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--secondary"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--secondary euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -486,7 +487,7 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--secondary euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -505,7 +506,7 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--secondary euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -540,7 +541,7 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -559,7 +560,7 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -578,7 +579,7 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -613,7 +614,7 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--warning"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--warning euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -632,7 +633,7 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--warning euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -651,7 +652,7 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--warning euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -686,7 +687,7 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--fill euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--selected"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--fill euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--selected"
     >
       <input
         checked=""
@@ -706,7 +707,7 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -725,7 +726,7 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -760,7 +761,7 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text euiButtonGroup--disabled"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--disabled euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--disabled euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -780,7 +781,7 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--disabled euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--disabled euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -800,7 +801,7 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--disabled euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--disabled euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -836,7 +837,7 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text euiButtonGroup--fullWidth"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -855,7 +856,7 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -874,7 +875,7 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -909,7 +910,7 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
     >
       <input
         class="euiButtonGroup__input"
@@ -928,7 +929,7 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
     >
       <input
         class="euiButtonGroup__input"
@@ -947,7 +948,7 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
     >
       <input
         class="euiButtonGroup__input"
@@ -982,7 +983,7 @@ exports[`EuiButtonGroup props legend is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1001,7 +1002,7 @@ exports[`EuiButtonGroup props legend is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1020,7 +1021,7 @@ exports[`EuiButtonGroup props legend is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1055,7 +1056,7 @@ exports[`EuiButtonGroup props name is rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1075,7 +1076,7 @@ exports[`EuiButtonGroup props name is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1095,7 +1096,7 @@ exports[`EuiButtonGroup props name is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1131,7 +1132,7 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1150,7 +1151,7 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1169,7 +1170,7 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -1204,8 +1205,7 @@ exports[`EuiButtonGroup props options can pass down data-test-subj 1`] = `
     class="euiButtonGroup euiButtonGroup--text"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
-      data-test-subj="test"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"

@@ -9,7 +9,7 @@
   // Added exclusion of the `ghost` type of button
   // so as not to override those specific styles from default theme
   // And the only style that needs to change is the non-filled version
-  &:disabled:not(.euiButton--ghost):not(.euiButton--fill) {
+  &.euiButton--disabled:not(.euiButton--ghost):not(.euiButton--fill) {
     $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 70%);
     background-color: transparentize($euiButtonColorDisabled, .7);
     color: makeHighContrastColor($euiButtonColorDisabled, $backgroundColorSimulated, 2);
@@ -42,7 +42,7 @@
     // But still use transparency
     background-color: transparentize($color, .8);
 
-    &:enabled {
+    &:not(.euiButton--disabled) {
       &:hover,
       &:focus {
         background-color: transparentize($color, lightOrDarkTheme(.9, .65));
@@ -59,7 +59,7 @@
 }
 
 // Fix ghost/disabled look specifically
-.euiButton:disabled.euiButton--ghost:not(.euiButton--fill) {
+.euiButton.euiButton--disabled.euiButton--ghost:not(.euiButton--fill) {
   &,
   &:hover,
   &:focus {
