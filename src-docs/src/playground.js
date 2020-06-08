@@ -7,6 +7,8 @@ import {
   ActionButtons,
   Placeholder,
 } from 'react-view';
+import 'brace/mode/jsx';
+import 'brace/theme/github';
 
 import { EuiCodeEditor, EuiSpacer } from '../../src/components';
 import Knobs from './services/playground/knobs';
@@ -31,7 +33,7 @@ export default config => {
       <Knobs {...params.knobProps} />
       <EuiSpacer />
       <EuiCodeEditor
-        mode="javascript"
+        mode="jsx"
         theme="github"
         width="100%"
         value={params.editorProps.code}
