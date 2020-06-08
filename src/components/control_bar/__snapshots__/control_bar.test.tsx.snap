@@ -17,7 +17,7 @@ exports[`EuiControlBar is rendered 1`] = `
   >
     <nav
       aria-label="breadcrumb"
-      class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+      class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
     >
       <span
         aria-current="page"
@@ -93,7 +93,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
         ],
         "controlType": "breadcrumbs",
         "id": "current_file_path",
-        "responsive": true,
+        "responsive": false,
       },
       Object {
         "controlType": "button",
@@ -154,7 +154,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
             >
               <nav
                 aria-label="breadcrumb"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
                   aria-current="page"
@@ -260,11 +260,11 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               }
               className="euiControlBar__breadcrumbs"
               key="current_file_path"
-              responsive={true}
+              responsive={false}
             >
               <nav
                 aria-label="breadcrumb"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <EuiInnerText>
                   <span
@@ -387,7 +387,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
         ],
         "controlType": "breadcrumbs",
         "id": "current_file_path",
-        "responsive": true,
+        "responsive": false,
       },
       Object {
         "controlType": "button",
@@ -449,7 +449,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
             >
               <nav
                 aria-label="breadcrumb"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
                   aria-current="page"
@@ -555,11 +555,11 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               }
               className="euiControlBar__breadcrumbs"
               key="current_file_path"
-              responsive={true}
+              responsive={false}
             >
               <nav
                 aria-label="breadcrumb"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <EuiInnerText>
                   <span
@@ -682,7 +682,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
         ],
         "controlType": "breadcrumbs",
         "id": "current_file_path",
-        "responsive": true,
+        "responsive": false,
       },
       Object {
         "controlType": "button",
@@ -743,7 +743,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
             >
               <nav
                 aria-label="breadcrumb"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
                   aria-current="page"
@@ -849,11 +849,11 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               }
               className="euiControlBar__breadcrumbs"
               key="current_file_path"
-              responsive={true}
+              responsive={false}
             >
               <nav
                 aria-label="breadcrumb"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <EuiInnerText>
                   <span
@@ -976,7 +976,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
         ],
         "controlType": "breadcrumbs",
         "id": "current_file_path",
-        "responsive": true,
+        "responsive": false,
       },
       Object {
         "controlType": "button",
@@ -1056,11 +1056,11 @@ exports[`EuiControlBar props position is rendered 1`] = `
           }
           className="euiControlBar__breadcrumbs"
           key="current_file_path"
-          responsive={true}
+          responsive={false}
         >
           <nav
             aria-label="breadcrumb"
-            className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+            className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
           >
             <EuiInnerText>
               <span
@@ -1168,7 +1168,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
         ],
         "controlType": "breadcrumbs",
         "id": "current_file_path",
-        "responsive": true,
+        "responsive": false,
       },
       Object {
         "controlType": "button",
@@ -1229,7 +1229,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
             >
               <nav
                 aria-label="breadcrumb"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
                   aria-current="page"
@@ -1335,11 +1335,11 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               }
               className="euiControlBar__breadcrumbs"
               key="current_file_path"
-              responsive={true}
+              responsive={false}
             >
               <nav
                 aria-label="breadcrumb"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <EuiInnerText>
                   <span
@@ -1462,7 +1462,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
         ],
         "controlType": "breadcrumbs",
         "id": "current_file_path",
-        "responsive": true,
+        "responsive": false,
       },
       Object {
         "controlType": "button",
@@ -1523,7 +1523,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
             >
               <nav
                 aria-label="breadcrumb"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
                   aria-current="page"
@@ -1634,11 +1634,11 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               }
               className="euiControlBar__breadcrumbs"
               key="current_file_path"
-              responsive={true}
+              responsive={false}
             >
               <nav
                 aria-label="breadcrumb"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <EuiInnerText>
                   <span
@@ -1766,7 +1766,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
         ],
         "controlType": "breadcrumbs",
         "id": "current_file_path",
-        "responsive": true,
+        "responsive": false,
       },
       Object {
         "controlType": "button",
@@ -1827,7 +1827,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
             >
               <nav
                 aria-label="breadcrumb"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
                   aria-current="page"
@@ -1933,11 +1933,11 @@ exports[`EuiControlBar props size is rendered 1`] = `
               }
               className="euiControlBar__breadcrumbs"
               key="current_file_path"
-              responsive={true}
+              responsive={false}
             >
               <nav
                 aria-label="breadcrumb"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <EuiInnerText>
                   <span
