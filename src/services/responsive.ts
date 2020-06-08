@@ -17,67 +17,31 @@
  * under the License.
  */
 
-interface EuiBreakpoint {
-  min: number;
-  max: number;
-}
+import { keysOf } from '../components/common';
+
+export type EuiBreakpointSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 
 export type EuiBreakpoints = {
   /**
-   * Usually small handheld devices.
-   * `min` & `max` required
+   * Set the minimum window width at which to start to the breakpoint
    */
-  xs: EuiBreakpoint;
-  /**
-   * Up to portrait rotation of tabled devices.
-   * `min` & `max` required
-   */
-  s: EuiBreakpoint;
-  /**
-   * Transitional breakpoint between handleds and laptops.
-   * `min` & `max` required
-   */
-  m: EuiBreakpoint;
-  /**
-   * Up to a small laptop screen.
-   * Everything above is considered `xl`.
-   * `min` & `max` required
-   */
-  l: EuiBreakpoint;
+  [key in EuiBreakpointSize]: number
 };
 
 export const BREAKPOINTS: EuiBreakpoints = {
-  xs: {
-    min: 0,
-    max: 574,
-  },
-  s: {
-    min: 575,
-    max: 767,
-  },
-  m: {
-    min: 768,
-    max: 991,
-  },
-  l: {
-    min: 992,
-    max: 1199,
-  },
+  xl: 1200,
+  l: 992,
+  m: 768,
+  s: 575,
+  xs: 0,
 };
+
+export const BREAKPOINT_KEYS = keysOf(BREAKPOINTS);
 
 export function getBreakpoint(
   windowWidth: number,
   breakpoints: EuiBreakpoints = BREAKPOINTS
 ) {
-  if (windowWidth <= breakpoints.xs.max) {
-    return 'xs';
-  } else if (windowWidth <= breakpoints.s.max) {
-    return 's';
-  } else if (windowWidth <= breakpoints.m.max) {
-    return 'm';
-  } else if (windowWidth <= breakpoints.l.max) {
-    return 'l';
-  } else {
-    return 'xl';
-  }
+  // Find the breakpoint (key) whose value is <= windowWidth starting with largest first
+  return BREAKPOINT_KEYS.find(key => breakpoints[key] <= windowWidth);
 }

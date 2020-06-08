@@ -21,4 +21,5 @@ export {
   EuiBreadcrumb,
   EuiBreadcrumbs,
   EuiBreadcrumbsProps,
+  EuiBreadcrumbResponsiveMaxCount,
 } from './breadcrumbs';

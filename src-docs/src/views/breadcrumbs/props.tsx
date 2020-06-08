@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react';
 
-import { EuiBreakpoints } from '../../../../src/services/responsive';
+import {
+  EuiBreadcrumb,
+  EuiBreadcrumbResponsiveMaxCount,
+} from '../../../../src/components/breadcrumbs';
 
-export const BreakpointsProps: FunctionComponent<EuiBreakpoints> = () => (
-  <div />
-);
-
-import { EuiBreadcrumb } from '../../../../src/components/breadcrumbs/breadcrumbs';
+export const BreadcrumbResponsiveMaxCount: FunctionComponent<
+  EuiBreadcrumbResponsiveMaxCount
+> = () => <div />;
 
 export const BreadcrumbProps: FunctionComponent<EuiBreadcrumb> = () => <div />;

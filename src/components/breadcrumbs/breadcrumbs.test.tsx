@@ -77,9 +77,19 @@ describe('EuiBreadcrumbs', () => {
     ];
 
     describe('responsive', () => {
-      test('is rendered', () => {
+      test('is rendered as false', () => {
         const component = render(
-          <EuiBreadcrumbs breadcrumbs={breadcrumbs} responsive />
+          <EuiBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} />
+        );
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered with custom breakpoints', () => {
+        const component = render(
+          <EuiBreadcrumbs
+            breadcrumbs={breadcrumbs}
+            responsive={{ xs: 2, s: 5, xl: 10 }}
+          />
         );
         expect(component).toMatchSnapshot();
       });

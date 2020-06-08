@@ -34,7 +34,15 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
-import { getBreakpoint, EuiBreakpoints } from '../../services/responsive';
+import { getBreakpoint, EuiBreakpointSize } from '../../services/responsive';
+
+export type EuiBreadcrumbResponsiveMaxCount = {
+  /**
+   * Any of the following keys are allowed: `'xs' | 's' | 'm' | 'l' | 'xl'`
+   * Omitting a key will display all breadcrumbs
+   */
+  [key in EuiBreakpointSize]?: number
+};
 
 export type EuiBreadcrumb = CommonProps & {
   /**
@@ -51,10 +59,12 @@ export type EuiBreadcrumb = CommonProps & {
 
 export type EuiBreadcrumbsProps = CommonProps & {
   /**
-   * When `true`, hides breadcrumbs under a collapsed item as the window gets smaller.
-   * Pass a cusom #EuiBreakpoints object to allow responsive but alter the breakpoints
+   * Hides extra (above the max) breadcrumbs under a collapsed item as the window gets smaller.
+   * Pass a custom #EuiBreadcrumbResponsiveMaxCount object to change the number of breadcrumbs to show at the particular breakpoints.
+   * A `null` or `0` value will show all breadcrumbs.
+   * Pass `false` to turn this behavior off
    */
-  responsive?: boolean | EuiBreakpoints;
+  responsive?: false | EuiBreadcrumbResponsiveMaxCount;
 
   /**
    * Forces all breadcrumbs to single line and
@@ -67,7 +77,7 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * Collapses the inner items past the maximum set here
    * into a single ellipses item
    */
-  max?: number;
+  max?: number | null;
 
   /**
    * The array of individual #EuiBreadcrumb items
@@ -162,30 +172,28 @@ const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   breadcrumbs,
   className,
-  responsive = true,
+  responsive = {
+    xs: 1,
+    s: 2,
+    m: 4,
+  },
   truncate = true,
   max = 5,
   ...rest
 }) => {
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(
-      window.innerWidth,
-      typeof responsive === 'boolean' ? undefined : responsive
-    )
+    getBreakpoint(window.innerWidth)
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    const newBreakpoint = getBreakpoint(
-      window.innerWidth,
-      typeof responsive === 'boolean' ? undefined : responsive
-    );
+    const newBreakpoint = getBreakpoint(window.innerWidth);
     if (newBreakpoint !== currentBreakpoint) {
       setCurrentBreakpoint(newBreakpoint);
     }
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
 
-  // Watch for docked status and appropriately add/remove body classes and resize handlers
+  // Add window resize handlers
   useEffect(() => {
     window.addEventListener('resize', functionToCallOnWindowResize);
 
@@ -261,22 +269,9 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     );
   });
 
-  let calculatedMax = max;
-  if (responsive) {
-    switch (currentBreakpoint) {
-      case 'xs':
-        calculatedMax = 1;
-        break;
-      case 's':
-        calculatedMax = 2;
-        break;
-      case 'm':
-        calculatedMax = 4;
-        break;
-      default:
-        calculatedMax = max;
-        break;
-    }
+  let calculatedMax: EuiBreadcrumbsProps['max'] = max;
+  if (responsive && responsive[currentBreakpoint as EuiBreakpointSize]) {
+    calculatedMax = responsive[currentBreakpoint as EuiBreakpointSize];
   }
 
   const limitedBreadcrumbs = calculatedMax

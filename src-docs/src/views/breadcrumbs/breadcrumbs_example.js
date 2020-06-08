@@ -6,7 +6,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiBreadcrumbs } from '../../../../src/components';
-import { BreakpointsProps, BreadcrumbProps } from './props';
+import { BreadcrumbResponsiveMaxCount, BreadcrumbProps } from './props';
 
 import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
@@ -27,7 +27,7 @@ const maxHtml = renderToHtml(Max);
 const breadcrumpProps = {
   EuiBreadcrumbs,
   EuiBreadcrumb: BreadcrumbProps,
-  EuiBreakpoints: BreakpointsProps,
+  EuiBreadcrumbResponsiveMaxCount: BreadcrumbResponsiveMaxCount,
 };
 
 export const BreadcrumbsExample = {
@@ -166,20 +166,37 @@ export const BreadcrumbsExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiBreadcrumbs</strong> are <EuiCode>responsive</EuiCode> by
-          default and will collapse breadcrumbs on narrower screens. Setting{' '}
-          <EuiCode language="ts">{'responsive={false}'}</EuiCode> will keep all
-          breadcrumbs visible at all screens sizes.
-        </p>
+        <>
+          <p>
+            <strong>EuiBreadcrumbs</strong> are <EuiCode>responsive</EuiCode> by
+            default and will collapse breadcrumbs on narrower screens. Setting{' '}
+            <EuiCode language="ts">{'responsive={false}'}</EuiCode> will keep
+            all breadcrumbs visible at all screens sizes.
+          </p>
+          <p>
+            Alternatively, you can change number of breadcrumbs that show per
+            breakpoint by passing a custom responsive object.
+          </p>
+        </>
       ),
       props: breadcrumpProps,
-      snippet: `<EuiBreadcrumbs
+      snippet: [
+        `<EuiBreadcrumbs
   responsive={false}
   max={null}
   breadcrumbs={breadcrumbs}
   aria-label=""
 />`,
+        `<EuiBreadcrumbs
+  responsive={{
+    xs: 2,
+    s: 5,
+  }}
+  max={null}
+  breadcrumbs={breadcrumbs}
+  aria-label=""
+/>`,
+      ],
       demo: <Responsive />,
     },
   ],
