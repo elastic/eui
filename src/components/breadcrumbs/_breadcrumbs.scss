@@ -6,6 +6,9 @@
 .euiBreadcrumbs {
   @include euiFontSizeS;
   margin-bottom: -$euiSizeXS; /* 1 */
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .euiBreadcrumb {
@@ -14,6 +17,7 @@
 
   &:not(.euiBreadcrumb--last) {
     margin-right: $euiBreadcrumbSpacing;
+    color: $euiTextSubduedColor;
   }
 }
 
@@ -31,7 +35,7 @@
   margin-right: $euiBreadcrumbSpacing;
   width: 1px;
   height: $euiSize;
-  transform: translateY(.2em) rotate(15deg);
+  transform: translateY(-.1em) rotate(15deg);
   background: $euiColorLightShade;
 }
 
@@ -42,8 +46,7 @@
 
 .euiBreadcrumbs--truncate {
   white-space: nowrap;
-  display: flex;
-  align-items: center;
+  flex-wrap: nowrap;
   overflow: hidden;
 
   .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
@@ -55,11 +58,6 @@
       max-width: none;
     }
   }
-
-  .euiBreadcrumbSeparator {
-    // Align with flex versus inline-block misaligns the separator slightly
-    transform: translateY(0) rotate(15deg);
-  }
 }
 
 .euiBreadcrumb--truncate {
@@ -67,52 +65,4 @@
   max-width: $euiBreadcrumbTruncateWidth;
   text-align: center;
   vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
-}
-
-/**
- * 2. Can't target separator vs breadcrumb with -of-type because it takes
- *    the dom element into consideration too and there could be divs, or spans, or a's
- *    as breadcrumbs.
- */
-
-.euiBreadcrumbs--responsive {
-  // Laptop
-  @include euiBreakpoint('l') {
-    .euiBreadcrumbSeparator,
-    .euiBreadcrumb {
-      display: none;
-
-      // Only show last 4 breadcrumbs
-      &:nth-last-child(-n+7) { /* 2 */
-        display: inline-block;
-      }
-    }
-  }
-
-  // Tablets
-  @include euiBreakpoint('m') {
-    .euiBreadcrumbSeparator,
-    .euiBreadcrumb {
-      display: none;
-
-      // Only show last 2 breadcrumbs
-      // The addition of 1 is for the divider
-      &:nth-last-child(-n+3) { /* 2 */
-        display: inline-block;
-      }
-    }
-  }
-
-  // Mobile
-  @include euiBreakpoint('xs', 's') {
-    .euiBreadcrumbSeparator,
-    .euiBreadcrumb {
-      display: none;
-
-      // Only show last 1 breadcrumb
-      &:nth-last-child(-n+1) { /* 2 */
-        display: inline-block;
-      }
-    }
-  }
 }

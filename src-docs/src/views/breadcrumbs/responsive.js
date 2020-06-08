@@ -1,10 +1,6 @@
 import React, { Fragment } from 'react';
 
-import {
-  EuiBreadcrumbs,
-  EuiShowFor,
-  EuiText,
-} from '../../../../src/components';
+import { EuiBreadcrumbs } from '../../../../src/components';
 
 export default () => {
   const breadcrumbs = [
@@ -47,16 +43,8 @@ export default () => {
         responsive={false}
         breadcrumbs={breadcrumbs}
         max={null}
-        aria-label="An example of responsive EuiBreadcrumbs"
+        aria-label="An example of non-responsive EuiBreadcrumbs"
       />
-
-      <EuiShowFor sizes={['xs', 's']}>
-        <EuiText size="s" color="subdued">
-          <p>
-            <em>Only the last item will show on small (mobile) screens.</em>
-          </p>
-        </EuiText>
-      </EuiShowFor>
     </Fragment>
   );
 };

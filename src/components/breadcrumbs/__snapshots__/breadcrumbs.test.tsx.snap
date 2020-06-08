@@ -17,12 +17,12 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Reptiles
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -50,30 +50,30 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
   aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Animals
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Reptiles
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Boa constrictor
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -127,12 +127,12 @@ exports[`EuiBreadcrumbs props max renders 2 items 1`] = `
   aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Animals
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -172,12 +172,12 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
   aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Animals
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -203,12 +203,12 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Boa constrictor
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -226,30 +226,30 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
   aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Animals
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Reptiles
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Boa constrictor
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
@@ -267,30 +267,30 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
   aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--responsive"
 >
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Animals
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Reptiles
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
+  <span
+    aria-current="page"
+    class="euiBreadcrumb"
   >
     Boa constrictor
-  </button>
+  </span>
   <div
     class="euiBreadcrumbSeparator"
   />

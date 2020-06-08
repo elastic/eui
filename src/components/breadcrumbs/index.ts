@@ -17,4 +17,8 @@
  * under the License.
  */
 
-export { Breadcrumb, EuiBreadcrumbs, EuiBreadcrumbsProps } from './breadcrumbs';
+export {
+  EuiBreadcrumb,
+  EuiBreadcrumbs,
+  EuiBreadcrumbsProps,
+} from './breadcrumbs';

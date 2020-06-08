@@ -23,8 +23,10 @@ import React, {
   MouseEventHandler,
   ReactNode,
   useState,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
+import { throttle } from '../color_picker/utils';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
@@ -32,19 +34,27 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
+import { getBreakpoint, EuiBreakpoints } from '../../services/responsive';
 
-export type Breadcrumb = CommonProps & {
+export type EuiBreadcrumb = CommonProps & {
+  /**
+   * Visible label of the breadcrumb
+   */
   text: ReactNode;
   href?: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
+  /**
+   * Force a max-width on the breadcrumb text
+   */
   truncate?: boolean;
 };
 
 export type EuiBreadcrumbsProps = CommonProps & {
   /**
-   * Hides left most breadcrumbs as window gets smaller
+   * When `true`, hides breadcrumbs under a collapsed item as the window gets smaller.
+   * Pass a cusom #EuiBreakpoints object to allow responsive but alter the breakpoints
    */
-  responsive?: boolean;
+  responsive?: boolean | EuiBreakpoints;
 
   /**
    * Forces all breadcrumbs to single line and
@@ -54,24 +64,21 @@ export type EuiBreadcrumbsProps = CommonProps & {
   truncate?: boolean;
 
   /**
-   * Condenses the inner items past the maximum set here
+   * Collapses the inner items past the maximum set here
    * into a single ellipses item
    */
   max?: number;
 
   /**
-   * The array of individual breadcrumbs, takes the following props.
-   * `text` (node) (required): visible label of the breadcrumb,
-   * `href` or `onClick`: provide only one (last breadcrumb will not apply either),
-   * `truncate` (bool): Force a max-width on the breadcrumb text
+   * The array of individual #EuiBreadcrumb items
    */
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: EuiBreadcrumb[];
 };
 
 const limitBreadcrumbs = (
   breadcrumbs: ReactNode[],
   max: number,
-  allBreadcrumbs: Breadcrumb[]
+  allBreadcrumbs: EuiBreadcrumb[]
 ) => {
   const breadcrumbsAtStart = [];
   const breadcrumbsAtEnd = [];
@@ -160,6 +167,33 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   max = 5,
   ...rest
 }) => {
+  const [currentBreakpoint, setCurrentBreakpoint] = useState(
+    getBreakpoint(
+      window.innerWidth,
+      typeof responsive === 'boolean' ? undefined : responsive
+    )
+  );
+
+  const functionToCallOnWindowResize = throttle(() => {
+    const newBreakpoint = getBreakpoint(
+      window.innerWidth,
+      typeof responsive === 'boolean' ? undefined : responsive
+    );
+    if (newBreakpoint !== currentBreakpoint) {
+      setCurrentBreakpoint(newBreakpoint);
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
+  // Watch for docked status and appropriately add/remove body classes and resize handlers
+  useEffect(() => {
+    window.addEventListener('resize', functionToCallOnWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', functionToCallOnWindowResize);
+    };
+  }, [responsive, functionToCallOnWindowResize]);
+
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
     const {
       text,
@@ -179,7 +213,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
     let link;
 
-    if (isLastBreadcrumb && !href) {
+    if (!href) {
       link = (
         <EuiInnerText>
           {(ref, innerText) => (
@@ -227,8 +261,26 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     );
   });
 
-  const limitedBreadcrumbs = max
-    ? limitBreadcrumbs(breadcrumbElements, max, breadcrumbs)
+  let calculatedMax = max;
+  if (responsive) {
+    switch (currentBreakpoint) {
+      case 'xs':
+        calculatedMax = 1;
+        break;
+      case 's':
+        calculatedMax = 2;
+        break;
+      case 'm':
+        calculatedMax = 4;
+        break;
+      default:
+        calculatedMax = max;
+        break;
+    }
+  }
+
+  const limitedBreadcrumbs = calculatedMax
+    ? limitBreadcrumbs(breadcrumbElements, calculatedMax, breadcrumbs)
     : breadcrumbElements;
 
   const classes = classNames('euiBreadcrumbs', className, {

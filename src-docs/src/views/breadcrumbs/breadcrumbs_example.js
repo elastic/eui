@@ -1,36 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiBreadcrumbs } from '../../../../src/components';
+import { BreakpointsProps, BreadcrumbProps } from './props';
 
 import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
 const breadcrumbsHtml = renderToHtml(Breadcrumbs);
-const breadcrumbsSnippet = `<EuiBreadcrumbs
-  breadcrumbs={[
-    {
-      text: 'Breadcrumb 1',
-      href: '#',
-    },
-    {
-      text: 'Breadcrumb 2',
-      href: '#',
-    },
-  ]}
-/>
-`;
 
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
-const responsiveSnippet = `<EuiBreadcrumbs
-  responsive={false}
-  breadcrumbs={breadcrumbs}
-/>
-`;
 
 import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
@@ -39,13 +23,12 @@ const truncateHtml = renderToHtml(Truncate);
 import Max from './max';
 const maxSource = require('!!raw-loader!./max');
 const maxHtml = renderToHtml(Max);
-const maxSnippet = `<EuiBreadcrumbs
-  max={4}
-  breadcrumbs={breadcrumbs}
-  responsive={false}
-  truncate={false}
-/>
-`;
+
+const breadcrumpProps = {
+  EuiBreadcrumbs,
+  EuiBreadcrumb: BreadcrumbProps,
+  EuiBreakpoints: BreakpointsProps,
+};
 
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
@@ -68,14 +51,107 @@ export const BreadcrumbsExample = {
           <EuiCode>href</EuiCode> prop on any breadcrumb item that you wish to
           make clickable, including the last item, though we recommend the last
           item represent the current page and therefore the link is unnecessary.
-          They work well within <strong>EuiPageContentHeader</strong> but be
-          careful not to use them within an app that also uses{' '}
-          <strong>EuiHeaderBreadcrumbs</strong>.
+          They work well within{' '}
+          <Link to="/layout/page">
+            <strong>EuiPageContentHeader</strong>
+          </Link>{' '}
+          but be careful not to use them within an app that also uses{' '}
+          <Link to="/layout/header">
+            <strong>EuiHeaderBreadcrumbs</strong>
+          </Link>
+          .
         </p>
       ),
-      props: { EuiBreadcrumbs },
-      snippet: breadcrumbsSnippet,
+      props: breadcrumpProps,
+      snippet: `<EuiBreadcrumbs
+  breadcrumbs={[
+    {
+      text: 'Breadcrumb 1',
+      href: '#',
+    },
+    {
+      text: 'Breadcrumb 2',
+      href: '#',
+    },
+  ]}
+  aria-label=""
+/>
+`,
       demo: <Breadcrumbs />,
+    },
+    {
+      title: 'Limit the number of breadcrumbs',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: maxSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: maxHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Use the <EuiCode>max</EuiCode> prop to collapse breadcrumbs beyond a
+            certain number. The center breadcrumbs will collpase into a single
+            item allowing the user to navigate these items from within a
+            popover.
+          </p>
+        </>
+      ),
+      props: breadcrumpProps,
+      snippet: `<EuiBreadcrumbs
+  max={4}
+  breadcrumbs={breadcrumbs}
+  aria-label=""
+/>`,
+      demo: <Max />,
+    },
+    {
+      title: 'Truncate each breadcrumb',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: truncateSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: truncateHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiBreadcrumbs</strong> will truncate the full set by
+            default, forcing it to a single line and setting a max width on all
+            items except for the last. You can turn this off by setting{' '}
+            <EuiCode language="ts">{'truncate={false}'}</EuiCode>. You can also
+            force truncation on single breadcrumb <strong>item</strong> by
+            adding <EuiCode>{'truncate: true'}</EuiCode>.
+          </p>
+        </>
+      ),
+      props: breadcrumpProps,
+      demo: <Truncate />,
+      snippet: [
+        `<EuiBreadcrumbs
+  truncate={true}
+  breadcrumbs={breadcrumbs}
+  aria-label=""
+/>`,
+        `<EuiBreadcrumbs
+  truncate={false}
+  breadcrumbs={[
+    {
+      text: 'Breadcrumb',
+      truncate: true,
+    }
+  ]}
+  aria-label=""
+/>`,
+      ],
     },
     {
       title: 'Responsive',
@@ -91,67 +167,20 @@ export const BreadcrumbsExample = {
       ],
       text: (
         <p>
-          The <EuiCode>responsive</EuiCode> prop will hide breadcrumbs on
-          narrower screens. Set it to false when you want to keep breadcrumb
-          items visible at all screens sizes.
+          <strong>EuiBreadcrumbs</strong> are <EuiCode>responsive</EuiCode> by
+          default and will collapse breadcrumbs on narrower screens. Setting{' '}
+          <EuiCode language="ts">{'responsive={false}'}</EuiCode> will keep all
+          breadcrumbs visible at all screens sizes.
         </p>
       ),
-      props: { EuiBreadcrumbs },
-      snippet: responsiveSnippet,
+      props: breadcrumpProps,
+      snippet: `<EuiBreadcrumbs
+  responsive={false}
+  max={null}
+  breadcrumbs={breadcrumbs}
+  aria-label=""
+/>`,
       demo: <Responsive />,
-    },
-    {
-      title: 'Truncate each breadcrumb',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: truncateSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: truncateHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            There are two ways to <EuiCode>truncate</EuiCode> breadcrumbs,
-          </p>
-          <ol>
-            <li>on the individual breadcrumb item,</li>
-            <li>
-              on the full <strong>EuiBreadcrumbs</strong> set which will force
-              the full set to a single line, while setting a max width on all
-              items except for the last.
-            </li>
-          </ol>
-        </div>
-      ),
-      props: { EuiBreadcrumbs },
-      demo: <Truncate />,
-    },
-    {
-      title: 'Limit the number of breadcrumbs',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: maxSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: maxHtml,
-        },
-      ],
-      text: (
-        <p>
-          Use the <EuiCode>max</EuiCode> prop to cull breadcrumbs beyond a
-          certain number. By default, this number is 5 including the center
-          collapsed item.
-        </p>
-      ),
-      props: { EuiBreadcrumbs },
-      snippet: maxSnippet,
-      demo: <Max />,
     },
   ],
 };

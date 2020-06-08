@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import {
   EuiBreadcrumbs,
   EuiButton,
+  EuiPageContent,
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
   EuiTitle,
@@ -19,15 +20,9 @@ export default () => {
         console.log('You clicked Animals');
       },
       'data-test-subj': 'breadcrumbsAnimals',
-      className: 'customClass',
     },
     {
       text: 'Reptiles',
-      href: '#',
-      onClick: e => {
-        e.preventDefault();
-        console.log('You clicked Reptiles');
-      },
     },
     {
       text: 'Boa constrictor',
@@ -43,14 +38,13 @@ export default () => {
   ];
 
   return (
-    <Fragment>
+    <EuiPageContent>
       <EuiBreadcrumbs
         breadcrumbs={breadcrumbs}
         truncate={false}
         aria-label="An example of EuiBreadcrumbs"
       />
       <EuiSpacer size="xs" />
-
       <EuiPageContentHeader>
         <EuiPageContentHeaderSection>
           <EuiTitle size="l">
@@ -62,6 +56,6 @@ export default () => {
           <EuiButton>Cancel</EuiButton>
         </EuiPageContentHeaderSection>
       </EuiPageContentHeader>
-    </Fragment>
+    </EuiPageContent>
   );
 };

@@ -21,13 +21,13 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import {
-  Breadcrumb,
+  EuiBreadcrumb,
   EuiBreadcrumbs,
   EuiBreadcrumbsProps,
 } from '../../breadcrumbs';
 
 type Props = EuiBreadcrumbsProps & {
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: EuiBreadcrumb[];
 };
 
 export const EuiHeaderBreadcrumbs: FunctionComponent<Props> = ({
