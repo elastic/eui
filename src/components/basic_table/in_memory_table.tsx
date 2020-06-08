@@ -246,9 +246,11 @@ export class EuiInMemoryTable<T> extends Component<
     nextProps: EuiInMemoryTableProps<T>,
     prevState: State<T>
   ) {
+    let updatedPrevState = prevState;
     if (nextProps.items !== prevState.prevProps.items) {
       // We have new items because an external search has completed, so reset pagination state.
-      return {
+      updatedPrevState = {
+        ...updatedPrevState,
         prevProps: {
           ...prevState.prevProps,
           items: nextProps.items,
@@ -264,7 +266,8 @@ export class EuiInMemoryTable<T> extends Component<
       sortName !== prevState.prevProps.sortName ||
       sortDirection !== prevState.prevProps.sortDirection
     ) {
-      return {
+      updatedPrevState = {
+        ...updatedPrevState,
         sortName,
         sortDirection,
       };
@@ -278,7 +281,8 @@ export class EuiInMemoryTable<T> extends Component<
       : '';
 
     if (nextQuery !== prevQuery) {
-      return {
+      updatedPrevState = {
+        ...updatedPrevState,
         prevProps: {
           ...prevState.prevProps,
           search: nextProps.search,
@@ -286,7 +290,9 @@ export class EuiInMemoryTable<T> extends Component<
         query: getQueryFromSearch(nextProps.search, false),
       };
     }
-
+    if (updatedPrevState !== prevState) {
+      return updatedPrevState;
+    }
     return null;
   }
 
