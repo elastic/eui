@@ -1,0 +1,8 @@
+.euiCallOut {
+  border-radius: $euiBorderRadius;
+  border-left: none;
+
+  .euiCallOutHeader__title {
+    font-weight: $euiFontWeightMedium;
+  }
+}
