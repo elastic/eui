@@ -97,21 +97,31 @@ const makeResizeObserver = (node: Element, callback: () => void) => {
   return observer;
 };
 
-export const useResizeObserver = (container: Element | null) => {
+export const useResizeObserver = (
+  container: Element | null,
+  dimension?: 'width' | 'height'
+) => {
   const [size, _setSize] = useState({ width: 0, height: 0 });
 
   // _currentDimensions and _setSize are used to only store the
   // new state (and trigger a re-render) when the new dimensions actually differ
   const _currentDimensions = useRef(size);
-  const setSize = useCallback(dimensions => {
-    if (
-      _currentDimensions.current.width !== dimensions.width ||
-      _currentDimensions.current.height !== dimensions.height
-    ) {
-      _currentDimensions.current = dimensions;
-      _setSize(dimensions);
-    }
-  }, []);
+  const setSize = useCallback(
+    dimensions => {
+      const doesWidthMatter = dimension !== 'height';
+      const doesHeightMatter = dimension !== 'width';
+      if (
+        (doesWidthMatter &&
+          _currentDimensions.current.width !== dimensions.width) ||
+        (doesHeightMatter &&
+          _currentDimensions.current.height !== dimensions.height)
+      ) {
+        _currentDimensions.current = dimensions;
+        _setSize(dimensions);
+      }
+    },
+    [dimension]
+  );
 
   useEffect(() => {
     if (container != null) {
