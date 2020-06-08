@@ -20,40 +20,35 @@ const APACHE_2_0_LICENSE_HEADER = `
 `;
 
 module.exports = {
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   settings: {
-    "import/resolver": {
-       node: {
-        extensions: [".ts", ".tsx", ".js", ".json"]
+    'import/resolver': {
+      node: {
+        extensions: ['.ts', '.tsx', '.js', '.json'],
       },
       webpack: {
-        config: "./src-docs/webpack.config.js"
-      }
+        config: './src-docs/webpack.config.js',
+      },
     },
     react: {
-      version: "detect"
-    }
+      version: 'detect',
+    },
   },
   extends: [
-    "@elastic/eslint-config-kibana",
-    "plugin:@typescript-eslint/recommended",
+    '@elastic/eslint-config-kibana',
+    'plugin:@typescript-eslint/recommended',
     // Prettier options need to come last, in order to override other style
     // rules.
-    "prettier/react",
-    "prettier/standard",
-    "plugin:prettier/recommended"
+    'prettier/react',
+    'prettier/standard',
+    'plugin:prettier/recommended',
   ],
-  plugins: [
-    "jsx-a11y",
-    "prettier",
-    "local",
-    "react-hooks"
-  ],
+  plugins: ['jsx-a11y', 'prettier', 'local', 'react-hooks'],
   rules: {
     "prefer-template": "error",
     "local/i18n": "error",
@@ -67,7 +62,6 @@ module.exports = {
     ],
     "no-use-before-define": "off",
     "quotes": ["warn", "single", "avoid-escape"],
-
     "jsx-a11y/accessible-emoji": "error",
     "jsx-a11y/alt-text": "error",
     "jsx-a11y/anchor-has-content": "error",
@@ -118,6 +112,16 @@ module.exports = {
     "@typescript-eslint/no-inferrable-types": "off",
   },
   env: {
-    jest: true
-  }
+    jest: true,
+  },
+  overrides: [
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'react/no-multi-comp': 'off',
+        'react/prefer-es6-class': 'off',
+        'react/prefer-stateless-function': 'off',
+      },
+    },
+  ],
 };
