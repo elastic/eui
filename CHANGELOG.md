@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `display` prop to `EuiDataGridColumnSortingDraggable` ([#3574](https://github.com/elastic/eui/pull/3574))
 - Added `useEuiTextDiff` react hook utility ([#3288](https://github.com/elastic/eui/pull/3288))
 - Converted `EuiOverlayMask` to be a React functional component ([#3555](https://github.com/elastic/eui/pull/3555))
 
