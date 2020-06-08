@@ -4,7 +4,7 @@ import { EuiColorStops, EuiFormRow } from '../../../../src/components';
 
 import { useColorStopsState } from '../../../../src/services';
 
-export const ColorStops = () => {
+export default () => {
   const [colorStops, setColorStops, addColor] = useColorStopsState(true);
 
   const [extendedColorStops, setExtendedColorStops] = useState([

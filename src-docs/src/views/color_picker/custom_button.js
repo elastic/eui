@@ -10,7 +10,7 @@ import {
 
 import { useColorPickerState } from '../../../../src/services';
 
-export const CustomButton = () => {
+export default () => {
   const [color, setColor, errors] = useColorPickerState('');
   const [selectedColor, setSelectedColor] = useState(color);
   const handleColorChange = (text, { hex, isValid }) => {
@@ -23,6 +23,7 @@ export const CustomButton = () => {
         <EuiColorPicker
           onChange={handleColorChange}
           color={color}
+          secondaryInputDisplay="top"
           button={
             <EuiColorPickerSwatch
               color={selectedColor}
@@ -36,6 +37,7 @@ export const CustomButton = () => {
         onChange={handleColorChange}
         color={color}
         isInvalid={!!errors}
+        secondaryInputDisplay="bottom"
         button={
           <EuiBadge
             color={selectedColor ? selectedColor : 'hollow'}

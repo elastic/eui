@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { EuiObserver, Observer } from '../observer';
 
@@ -78,21 +97,31 @@ const makeResizeObserver = (node: Element, callback: () => void) => {
   return observer;
 };
 
-export const useResizeObserver = (container: Element | null) => {
+export const useResizeObserver = (
+  container: Element | null,
+  dimension?: 'width' | 'height'
+) => {
   const [size, _setSize] = useState({ width: 0, height: 0 });
 
   // _currentDimensions and _setSize are used to only store the
   // new state (and trigger a re-render) when the new dimensions actually differ
   const _currentDimensions = useRef(size);
-  const setSize = useCallback(dimensions => {
-    if (
-      _currentDimensions.current.width !== dimensions.width ||
-      _currentDimensions.current.height !== dimensions.height
-    ) {
-      _currentDimensions.current = dimensions;
-      _setSize(dimensions);
-    }
-  }, []);
+  const setSize = useCallback(
+    dimensions => {
+      const doesWidthMatter = dimension !== 'height';
+      const doesHeightMatter = dimension !== 'width';
+      if (
+        (doesWidthMatter &&
+          _currentDimensions.current.width !== dimensions.width) ||
+        (doesHeightMatter &&
+          _currentDimensions.current.height !== dimensions.height)
+      ) {
+        _currentDimensions.current = dimensions;
+        _setSize(dimensions);
+      }
+    },
+    [dimension]
+  );
 
   useEffect(() => {
     if (container != null) {

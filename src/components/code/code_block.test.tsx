@@ -1,7 +1,27 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { mount, ReactWrapper } from 'enzyme';
 import html from 'html';
+import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCodeBlock } from './code_block';
@@ -111,8 +131,13 @@ describe('EuiCodeBlock', () => {
         const [value, setValue] = useState('State 1');
 
         useEffect(() => {
-          takeSnapshot();
-          setValue('State 2');
+          // Wait a tick for EuiCodeBlock internal state to update on mount
+          setTimeout(() => {
+            takeSnapshot();
+            act(() => {
+              setValue('State 2');
+            });
+          });
         }, []);
 
         useEffect(() => {

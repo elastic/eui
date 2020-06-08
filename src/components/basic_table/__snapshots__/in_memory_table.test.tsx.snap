@@ -126,11 +126,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </div>
         </EuiTableHeaderMobile>
         <EuiTable
+          id="generated-id"
           responsive={true}
           tableLayout="fixed"
         >
           <table
             className="euiTable euiTable--responsive"
+            id="generated-id"
+            tabIndex={-1}
           >
             <EuiScreenReaderOnly>
               <caption
@@ -275,6 +278,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         </EuiTable>
       </div>
       <PaginationBar
+        aria-controls="generated-id"
         onPageChange={[Function]}
         onPageSizeChange={[Function]}
         pagination={
@@ -301,6 +305,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </EuiSpacer>
           <EuiTablePagination
             activePage={1}
+            aria-controls="generated-id"
             itemsPerPage={2}
             itemsPerPageOptions={
               Array [
@@ -428,178 +433,254 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   >
                     <EuiPagination
                       activePage={1}
+                      aria-controls="generated-id"
                       onPageClick={[Function]}
                       pageCount={2}
                     >
-                      <div
+                      <nav
                         className="euiPagination"
-                        role="group"
                       >
                         <EuiI18n
-                          default="Previous page"
+                          default="Previous page, {page}"
                           token="euiPagination.previousPage"
-                        >
-                          <EuiButtonIcon
-                            aria-label="Previous page"
-                            color="text"
-                            data-test-subj="pagination-button-previous"
-                            disabled={false}
-                            iconType="arrowLeft"
-                            onClick={[Function]}
-                          >
-                            <button
-                              aria-label="Previous page"
-                              className="euiButtonIcon euiButtonIcon--text"
-                              data-test-subj="pagination-button-previous"
-                              disabled={false}
-                              onClick={[Function]}
-                              type="button"
-                            >
-                              <EuiIcon
-                                aria-hidden="true"
-                                className="euiButtonIcon__icon"
-                                size="m"
-                                type="arrowLeft"
-                              >
-                                <div
-                                  aria-hidden="true"
-                                  className="euiButtonIcon__icon"
-                                  data-euiicon-type="arrowLeft"
-                                  size="m"
-                                />
-                              </EuiIcon>
-                            </button>
-                          </EuiButtonIcon>
-                        </EuiI18n>
-                        <EuiI18n
-                          default="Page {page} of {total}"
-                          key="0"
-                          token="euiPagination.pageOfTotal"
                           values={
                             Object {
                               "page": 1,
-                              "total": 2,
                             }
                           }
                         >
-                          <EuiPaginationButton
-                            aria-label="Page 1 of 2"
-                            data-test-subj="pagination-button-0"
-                            hideOnMobile={true}
-                            isActive={false}
-                            onClick={[Function]}
+                          <EuiI18n
+                            default="Previous page"
+                            token="euiPagination.disabledPreviousPage"
                           >
-                            <EuiButtonEmpty
-                              aria-label="Page 1 of 2"
-                              className="euiPaginationButton euiPaginationButton--hideOnMobile"
+                            <EuiButtonIcon
+                              aria-controls="generated-id"
+                              aria-label="Previous page, 1"
                               color="text"
-                              data-test-subj="pagination-button-0"
+                              data-test-subj="pagination-button-previous"
+                              href="#generated-id"
+                              iconType="arrowLeft"
                               onClick={[Function]}
-                              size="xs"
                             >
-                              <button
-                                aria-label="Page 1 of 2"
-                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
-                                data-test-subj="pagination-button-0"
+                              <a
+                                aria-controls="generated-id"
+                                aria-label="Previous page, 1"
+                                className="euiButtonIcon euiButtonIcon--text"
+                                data-test-subj="pagination-button-previous"
+                                href="#generated-id"
                                 onClick={[Function]}
-                                type="button"
+                                rel="noreferrer"
                               >
-                                <span
-                                  className="euiButtonEmpty__content"
-                                >
-                                  <span
-                                    className="euiButtonEmpty__text"
-                                  >
-                                    1
-                                  </span>
-                                </span>
-                              </button>
-                            </EuiButtonEmpty>
-                          </EuiPaginationButton>
-                        </EuiI18n>
-                        <EuiI18n
-                          default="Page {page} of {total}"
-                          key="1"
-                          token="euiPagination.pageOfTotal"
-                          values={
-                            Object {
-                              "page": 2,
-                              "total": 2,
-                            }
-                          }
-                        >
-                          <EuiPaginationButton
-                            aria-label="Page 2 of 2"
-                            data-test-subj="pagination-button-1"
-                            hideOnMobile={true}
-                            isActive={true}
-                            onClick={[Function]}
-                          >
-                            <EuiButtonEmpty
-                              aria-label="Page 2 of 2"
-                              className="euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
-                              color="text"
-                              data-test-subj="pagination-button-1"
-                              onClick={[Function]}
-                              size="xs"
-                            >
-                              <button
-                                aria-label="Page 2 of 2"
-                                className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
-                                data-test-subj="pagination-button-1"
-                                onClick={[Function]}
-                                type="button"
-                              >
-                                <span
-                                  className="euiButtonEmpty__content"
-                                >
-                                  <span
-                                    className="euiButtonEmpty__text"
-                                  >
-                                    2
-                                  </span>
-                                </span>
-                              </button>
-                            </EuiButtonEmpty>
-                          </EuiPaginationButton>
-                        </EuiI18n>
-                        <EuiI18n
-                          default="Next page"
-                          token="euiPagination.nextPage"
-                        >
-                          <EuiButtonIcon
-                            aria-label="Next page"
-                            color="text"
-                            data-test-subj="pagination-button-next"
-                            disabled={true}
-                            iconType="arrowRight"
-                            onClick={[Function]}
-                          >
-                            <button
-                              aria-label="Next page"
-                              className="euiButtonIcon euiButtonIcon--text"
-                              data-test-subj="pagination-button-next"
-                              disabled={true}
-                              onClick={[Function]}
-                              type="button"
-                            >
-                              <EuiIcon
-                                aria-hidden="true"
-                                className="euiButtonIcon__icon"
-                                size="m"
-                                type="arrowRight"
-                              >
-                                <div
+                                <EuiIcon
                                   aria-hidden="true"
                                   className="euiButtonIcon__icon"
-                                  data-euiicon-type="arrowRight"
                                   size="m"
-                                />
-                              </EuiIcon>
-                            </button>
-                          </EuiButtonIcon>
+                                  type="arrowLeft"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="euiButtonIcon__icon"
+                                    data-euiicon-type="arrowLeft"
+                                    size="m"
+                                  />
+                                </EuiIcon>
+                              </a>
+                            </EuiButtonIcon>
+                          </EuiI18n>
                         </EuiI18n>
-                      </div>
+                        <ul
+                          className="euiPagination__list"
+                        >
+                          <PaginationButton
+                            key="0"
+                            pageIndex={0}
+                          >
+                            <li
+                              className="euiPagination__item"
+                            >
+                              <EuiPaginationButton
+                                aria-controls="generated-id"
+                                hideOnMobile={true}
+                                isActive={false}
+                                onClick={[Function]}
+                                pageIndex={0}
+                                totalPages={2}
+                              >
+                                <EuiI18n
+                                  default="Page {page} of {totalPages}"
+                                  token="euiPaginationButton.longPageString"
+                                  values={
+                                    Object {
+                                      "page": 1,
+                                      "totalPages": 2,
+                                    }
+                                  }
+                                >
+                                  <EuiI18n
+                                    default="Page {page}"
+                                    token="euiPaginationButton.shortPageString"
+                                    values={
+                                      Object {
+                                        "page": 1,
+                                      }
+                                    }
+                                  >
+                                    <EuiButtonEmpty
+                                      aria-controls="generated-id"
+                                      aria-label="Page 1 of 2"
+                                      className="euiPaginationButton euiPaginationButton--hideOnMobile"
+                                      color="text"
+                                      data-test-subj="pagination-button-0"
+                                      href="#generated-id"
+                                      isDisabled={false}
+                                      onClick={[Function]}
+                                      size="xs"
+                                    >
+                                      <a
+                                        aria-controls="generated-id"
+                                        aria-label="Page 1 of 2"
+                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
+                                        data-test-subj="pagination-button-0"
+                                        href="#generated-id"
+                                        onClick={[Function]}
+                                        rel="noreferrer"
+                                      >
+                                        <span
+                                          className="euiButtonEmpty__content"
+                                        >
+                                          <span
+                                            className="euiButtonEmpty__text"
+                                          >
+                                            1
+                                          </span>
+                                        </span>
+                                      </a>
+                                    </EuiButtonEmpty>
+                                  </EuiI18n>
+                                </EuiI18n>
+                              </EuiPaginationButton>
+                            </li>
+                          </PaginationButton>
+                          <PaginationButton
+                            key="1"
+                            pageIndex={1}
+                          >
+                            <li
+                              className="euiPagination__item"
+                            >
+                              <EuiPaginationButton
+                                aria-controls="generated-id"
+                                hideOnMobile={true}
+                                isActive={true}
+                                onClick={[Function]}
+                                pageIndex={1}
+                                totalPages={2}
+                              >
+                                <EuiI18n
+                                  default="Page {page} of {totalPages}"
+                                  token="euiPaginationButton.longPageString"
+                                  values={
+                                    Object {
+                                      "page": 2,
+                                      "totalPages": 2,
+                                    }
+                                  }
+                                >
+                                  <EuiI18n
+                                    default="Page {page}"
+                                    token="euiPaginationButton.shortPageString"
+                                    values={
+                                      Object {
+                                        "page": 2,
+                                      }
+                                    }
+                                  >
+                                    <EuiButtonEmpty
+                                      aria-controls="generated-id"
+                                      aria-current={true}
+                                      aria-label="Page 2 of 2"
+                                      className="euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                      color="text"
+                                      data-test-subj="pagination-button-1"
+                                      href="#generated-id"
+                                      isDisabled={true}
+                                      onClick={[Function]}
+                                      size="xs"
+                                    >
+                                      <button
+                                        aria-controls="generated-id"
+                                        aria-current={true}
+                                        aria-label="Page 2 of 2"
+                                        className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                        data-test-subj="pagination-button-1"
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiButtonEmpty__content"
+                                        >
+                                          <span
+                                            className="euiButtonEmpty__text"
+                                          >
+                                            2
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiButtonEmpty>
+                                  </EuiI18n>
+                                </EuiI18n>
+                              </EuiPaginationButton>
+                            </li>
+                          </PaginationButton>
+                        </ul>
+                        <EuiI18n
+                          default="Next page, {page}"
+                          token="euiPagination.nextPage"
+                          values={
+                            Object {
+                              "page": 3,
+                            }
+                          }
+                        >
+                          <EuiI18n
+                            default="Next page"
+                            token="euiPagination.disabledNextPage"
+                          >
+                            <EuiButtonIcon
+                              aria-label="Next page"
+                              color="text"
+                              data-test-subj="pagination-button-next"
+                              disabled={true}
+                              iconType="arrowRight"
+                              onClick={[Function]}
+                            >
+                              <button
+                                aria-label="Next page"
+                                className="euiButtonIcon euiButtonIcon--text"
+                                data-test-subj="pagination-button-next"
+                                disabled={true}
+                                onClick={[Function]}
+                                type="button"
+                              >
+                                <EuiIcon
+                                  aria-hidden="true"
+                                  className="euiButtonIcon__icon"
+                                  size="m"
+                                  type="arrowRight"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="euiButtonIcon__icon"
+                                    data-euiicon-type="arrowRight"
+                                    size="m"
+                                  />
+                                </EuiIcon>
+                              </button>
+                            </EuiButtonIcon>
+                          </EuiI18n>
+                        </EuiI18n>
+                      </nav>
                     </EuiPagination>
                   </div>
                 </EuiFlexItem>
@@ -655,6 +736,573 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
   responsive={true}
   tableLayout="fixed"
 />
+`;
+
+exports[`EuiInMemoryTable with initial selection 1`] = `
+<EuiInMemoryTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  itemId="id"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  responsive={true}
+  selection={
+    Object {
+      "initialSelected": Array [
+        Object {
+          "id": "1",
+          "name": "name1",
+        },
+      ],
+      "onSelectionChange": [Function],
+    }
+  }
+  tableLayout="fixed"
+>
+  <EuiBasicTable
+    aria-label="aria-label"
+    className="testClass1 testClass2"
+    columns={
+      Array [
+        Object {
+          "description": "description",
+          "field": "name",
+          "name": "Name",
+        },
+      ]
+    }
+    data-test-subj="test subject string"
+    itemId="id"
+    items={
+      Array [
+        Object {
+          "id": "1",
+          "name": "name1",
+        },
+        Object {
+          "id": "2",
+          "name": "name2",
+        },
+        Object {
+          "id": "3",
+          "name": "name3",
+        },
+      ]
+    }
+    noItemsMessage="No items found"
+    onChange={[Function]}
+    responsive={true}
+    selection={
+      Object {
+        "initialSelected": Array [
+          Object {
+            "id": "1",
+            "name": "name1",
+          },
+        ],
+        "onSelectionChange": [Function],
+      }
+    }
+    tableLayout="fixed"
+  >
+    <div
+      aria-label="aria-label"
+      className="euiBasicTable testClass1 testClass2"
+      data-test-subj="test subject string"
+    >
+      <div>
+        <EuiTableHeaderMobile>
+          <div
+            className="euiTableHeaderMobile"
+          >
+            <EuiFlexGroup
+              alignItems="baseline"
+              justifyContent="spaceBetween"
+              responsive={false}
+            >
+              <div
+                className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+              >
+                <EuiFlexItem
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  >
+                    <EuiI18n
+                      default="Select all rows"
+                      token="euiBasicTable.selectAllRows"
+                    >
+                      <EuiCheckbox
+                        aria-label="Select all rows"
+                        checked={false}
+                        compressed={false}
+                        disabled={false}
+                        id="_selection_column-checkbox_generated-id"
+                        indeterminate={false}
+                        label="Select all rows"
+                        onChange={[Function]}
+                      >
+                        <div
+                          className="euiCheckbox"
+                        >
+                          <input
+                            aria-label="Select all rows"
+                            checked={false}
+                            className="euiCheckbox__input"
+                            disabled={false}
+                            id="_selection_column-checkbox_generated-id"
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                          <div
+                            className="euiCheckbox__square"
+                          />
+                          <label
+                            className="euiCheckbox__label"
+                            htmlFor="_selection_column-checkbox_generated-id"
+                          >
+                            Select all rows
+                          </label>
+                        </div>
+                      </EuiCheckbox>
+                    </EuiI18n>
+                  </div>
+                </EuiFlexItem>
+                <EuiFlexItem
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  />
+                </EuiFlexItem>
+              </div>
+            </EuiFlexGroup>
+          </div>
+        </EuiTableHeaderMobile>
+        <EuiTable
+          id="generated-id"
+          responsive={true}
+          tableLayout="fixed"
+        >
+          <table
+            className="euiTable euiTable--responsive"
+            id="generated-id"
+            tabIndex={-1}
+          >
+            <EuiScreenReaderOnly>
+              <caption
+                className="euiScreenReaderOnly euiTableCaption"
+              >
+                <EuiDelayRender
+                  delay={500}
+                />
+              </caption>
+            </EuiScreenReaderOnly>
+            <EuiTableHeader>
+              <thead>
+                <tr>
+                  <EuiTableHeaderCellCheckbox
+                    key="_selection_column_h"
+                  >
+                    <th
+                      className="euiTableHeaderCellCheckbox"
+                      scope="col"
+                      style={
+                        Object {
+                          "width": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="euiTableCellContent"
+                      >
+                        <EuiI18n
+                          default="Select all rows"
+                          token="euiBasicTable.selectAllRows"
+                        >
+                          <EuiCheckbox
+                            aria-label="Select all rows"
+                            checked={false}
+                            compressed={false}
+                            data-test-subj="checkboxSelectAll"
+                            disabled={false}
+                            id="_selection_column-checkbox_generated-id"
+                            indeterminate={false}
+                            label={null}
+                            onChange={[Function]}
+                            type="inList"
+                          >
+                            <div
+                              className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                            >
+                              <input
+                                aria-label="Select all rows"
+                                checked={false}
+                                className="euiCheckbox__input"
+                                data-test-subj="checkboxSelectAll"
+                                disabled={false}
+                                id="_selection_column-checkbox_generated-id"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                              <div
+                                className="euiCheckbox__square"
+                              />
+                            </div>
+                          </EuiCheckbox>
+                        </EuiI18n>
+                      </div>
+                    </th>
+                  </EuiTableHeaderCellCheckbox>
+                  <EuiTableHeaderCell
+                    align="left"
+                    data-test-subj="tableHeaderCell_name_0"
+                    key="_data_h_name_0"
+                  >
+                    <th
+                      className="euiTableHeaderCell"
+                      data-test-subj="tableHeaderCell_name_0"
+                      role="columnheader"
+                      scope="col"
+                      style={
+                        Object {
+                          "width": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="euiTableCellContent"
+                      >
+                        <EuiInnerText>
+                          <span
+                            className="euiTableCellContent__text"
+                            title="Name"
+                          >
+                            Name
+                          </span>
+                        </EuiInnerText>
+                      </div>
+                    </th>
+                  </EuiTableHeaderCell>
+                </tr>
+              </thead>
+            </EuiTableHeader>
+            <EuiTableBody
+              bodyRef={[Function]}
+            >
+              <tbody>
+                <EuiTableRow
+                  isSelectable={true}
+                  isSelected={true}
+                >
+                  <tr
+                    className="euiTableRow euiTableRow-isSelectable euiTableRow-isSelected"
+                  >
+                    <EuiTableRowCellCheckbox
+                      key="_selection_column_1"
+                    >
+                      <td
+                        className="euiTableRowCellCheckbox"
+                      >
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <EuiI18n
+                            default="Select this row"
+                            token="euiBasicTable.selectThisRow"
+                          >
+                            <EuiCheckbox
+                              aria-label="Select this row"
+                              checked={true}
+                              compressed={false}
+                              data-test-subj="checkboxSelectRow-1"
+                              disabled={false}
+                              id="_selection_column_1-checkbox"
+                              indeterminate={false}
+                              onChange={[Function]}
+                              title="Select this row"
+                              type="inList"
+                            >
+                              <div
+                                className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                              >
+                                <input
+                                  aria-label="Select this row"
+                                  checked={true}
+                                  className="euiCheckbox__input"
+                                  data-test-subj="checkboxSelectRow-1"
+                                  disabled={false}
+                                  id="_selection_column_1-checkbox"
+                                  onChange={[Function]}
+                                  title="Select this row"
+                                  type="checkbox"
+                                />
+                                <div
+                                  className="euiCheckbox__square"
+                                />
+                              </div>
+                            </EuiCheckbox>
+                          </EuiI18n>
+                        </div>
+                      </td>
+                    </EuiTableRowCellCheckbox>
+                    <EuiTableRowCell
+                      align="left"
+                      key="_data_column_name_1_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
+                      setScopeRow={false}
+                      textOnly={true}
+                    >
+                      <td
+                        className="euiTableRowCell"
+                        style={
+                          Object {
+                            "width": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <span
+                            className="euiTableCellContent__text"
+                          >
+                            name1
+                          </span>
+                        </div>
+                      </td>
+                    </EuiTableRowCell>
+                  </tr>
+                </EuiTableRow>
+                <EuiTableRow
+                  isSelectable={true}
+                  isSelected={false}
+                >
+                  <tr
+                    className="euiTableRow euiTableRow-isSelectable"
+                  >
+                    <EuiTableRowCellCheckbox
+                      key="_selection_column_2"
+                    >
+                      <td
+                        className="euiTableRowCellCheckbox"
+                      >
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <EuiI18n
+                            default="Select this row"
+                            token="euiBasicTable.selectThisRow"
+                          >
+                            <EuiCheckbox
+                              aria-label="Select this row"
+                              checked={false}
+                              compressed={false}
+                              data-test-subj="checkboxSelectRow-2"
+                              disabled={false}
+                              id="_selection_column_2-checkbox"
+                              indeterminate={false}
+                              onChange={[Function]}
+                              title="Select this row"
+                              type="inList"
+                            >
+                              <div
+                                className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                              >
+                                <input
+                                  aria-label="Select this row"
+                                  checked={false}
+                                  className="euiCheckbox__input"
+                                  data-test-subj="checkboxSelectRow-2"
+                                  disabled={false}
+                                  id="_selection_column_2-checkbox"
+                                  onChange={[Function]}
+                                  title="Select this row"
+                                  type="checkbox"
+                                />
+                                <div
+                                  className="euiCheckbox__square"
+                                />
+                              </div>
+                            </EuiCheckbox>
+                          </EuiI18n>
+                        </div>
+                      </td>
+                    </EuiTableRowCellCheckbox>
+                    <EuiTableRowCell
+                      align="left"
+                      key="_data_column_name_2_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
+                      setScopeRow={false}
+                      textOnly={true}
+                    >
+                      <td
+                        className="euiTableRowCell"
+                        style={
+                          Object {
+                            "width": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <span
+                            className="euiTableCellContent__text"
+                          >
+                            name2
+                          </span>
+                        </div>
+                      </td>
+                    </EuiTableRowCell>
+                  </tr>
+                </EuiTableRow>
+                <EuiTableRow
+                  isSelectable={true}
+                  isSelected={false}
+                >
+                  <tr
+                    className="euiTableRow euiTableRow-isSelectable"
+                  >
+                    <EuiTableRowCellCheckbox
+                      key="_selection_column_3"
+                    >
+                      <td
+                        className="euiTableRowCellCheckbox"
+                      >
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <EuiI18n
+                            default="Select this row"
+                            token="euiBasicTable.selectThisRow"
+                          >
+                            <EuiCheckbox
+                              aria-label="Select this row"
+                              checked={false}
+                              compressed={false}
+                              data-test-subj="checkboxSelectRow-3"
+                              disabled={false}
+                              id="_selection_column_3-checkbox"
+                              indeterminate={false}
+                              onChange={[Function]}
+                              title="Select this row"
+                              type="inList"
+                            >
+                              <div
+                                className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                              >
+                                <input
+                                  aria-label="Select this row"
+                                  checked={false}
+                                  className="euiCheckbox__input"
+                                  data-test-subj="checkboxSelectRow-3"
+                                  disabled={false}
+                                  id="_selection_column_3-checkbox"
+                                  onChange={[Function]}
+                                  title="Select this row"
+                                  type="checkbox"
+                                />
+                                <div
+                                  className="euiCheckbox__square"
+                                />
+                              </div>
+                            </EuiCheckbox>
+                          </EuiI18n>
+                        </div>
+                      </td>
+                    </EuiTableRowCellCheckbox>
+                    <EuiTableRowCell
+                      align="left"
+                      key="_data_column_name_3_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
+                      setScopeRow={false}
+                      textOnly={true}
+                    >
+                      <td
+                        className="euiTableRowCell"
+                        style={
+                          Object {
+                            "width": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
+                        <div
+                          className="euiTableCellContent"
+                        >
+                          <span
+                            className="euiTableCellContent__text"
+                          >
+                            name3
+                          </span>
+                        </div>
+                      </td>
+                    </EuiTableRowCell>
+                  </tr>
+                </EuiTableRow>
+              </tbody>
+            </EuiTableBody>
+          </table>
+        </EuiTable>
+      </div>
+    </div>
+  </EuiBasicTable>
+</EuiInMemoryTable>
 `;
 
 exports[`EuiInMemoryTable with initial sorting 1`] = `

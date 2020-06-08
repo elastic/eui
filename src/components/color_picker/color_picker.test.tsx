@@ -1,8 +1,27 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React from 'react';
 import { render, mount } from 'enzyme';
 
 import { EuiColorPicker } from './color_picker';
-import { VISUALIZATION_COLORS, keyCodes } from '../../services';
+import { VISUALIZATION_COLORS, keys } from '../../services';
 import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
@@ -167,7 +186,7 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
   await sleep();
   findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
-    keyCode: keyCodes.ESCAPE,
+    key: keys.ESCAPE,
   });
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   expect(onBlurHandler).toBeCalled();
@@ -186,7 +205,7 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
   findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
-    keyCode: keyCodes.ENTER,
+    key: keys.ENTER,
   });
   expect(
     findTestSubject(colorPicker, 'colorPickerAnchor').getDOMNode()
@@ -264,7 +283,7 @@ test('Setting a new alpha value calls onChange', () => {
   });
 });
 
-test('default mode does redners child components', () => {
+test('default mode does renders child components', () => {
   const colorPicker = mount(
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
@@ -314,4 +333,38 @@ test('picker mode does not render swatches', () => {
   expect(hue.length).toBe(1);
   const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
   expect(swatches.length).toBe(0);
+});
+
+test('secondaryInputDisplay `top` has a popover panel input', () => {
+  const colorPicker = mount(
+    <EuiColorPicker
+      onChange={onChange}
+      secondaryInputDisplay="top"
+      color="#ffeedd"
+      {...requiredProps}
+    />
+  );
+
+  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  const inputTop = findTestSubject(colorPicker, 'topColorPickerInput');
+  const inputBottom = findTestSubject(colorPicker, 'bottomColorPickerInput');
+  expect(inputTop.length).toBe(1);
+  expect(inputBottom.length).toBe(0);
+});
+
+test('secondaryInputDisplay `bottom` has a popover panel input', () => {
+  const colorPicker = mount(
+    <EuiColorPicker
+      onChange={onChange}
+      secondaryInputDisplay="bottom"
+      color="#ffeedd"
+      {...requiredProps}
+    />
+  );
+
+  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  const inputTop = findTestSubject(colorPicker, 'topColorPickerInput');
+  const inputBottom = findTestSubject(colorPicker, 'bottomColorPickerInput');
+  expect(inputTop.length).toBe(0);
+  expect(inputBottom.length).toBe(1);
 });

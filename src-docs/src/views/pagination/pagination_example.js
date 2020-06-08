@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -15,9 +15,10 @@ import ManyPages from './many_pages';
 const manyPagesSource = require('!!raw-loader!./many_pages');
 const manyPagesHtml = renderToHtml(ManyPages);
 const manyPagesSnippet = `<EuiPagination
+  aria-label="my pagination"
   pageCount={higherThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -25,9 +26,10 @@ import FewPages from './few_pages';
 const fewPagesSource = require('!!raw-loader!./few_pages');
 const fewPagesHtml = renderToHtml(FewPages);
 const fewPagesSnippet = `<EuiPagination
+  aria-label="my pagination"
   pageCount={lowerThan5Number}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
 />
 `;
 
@@ -37,9 +39,10 @@ const centeredPaginationHtml = renderToHtml(CenteredPagination);
 const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
   <EuiFlexItem grow={false}>
     <EuiPagination
+      aria-label="my pagination"
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -52,17 +55,18 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
   <EuiFlexItem grow={false}>
     <EuiPopover
       button={button}
-      isOpen={this.state.isPopoverOpen}
-      closePopover={this.closePopover}>
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}>
       <EuiContextMenuPanel items={items} />
     </EuiPopover>
   </EuiFlexItem>
 
   <EuiFlexItem grow={false}>
     <EuiPagination
+      aria-label="my pagination"
       pageCount={pageCount}
-      activePage={this.state.activePage}
-      onPageClick={this.goToPage}
+      activePage={activePage}
+      onPageClick={goToPage}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -72,9 +76,10 @@ import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
 const compressedHtml = renderToHtml(Compressed);
 const compressedSnippet = `<EuiPagination
+  aria-label="my pagination"
   pageCount={pageCount}
-  activePage={this.state.activePage}
-  onPageClick={this.goToPage}
+  activePage={activePage}
+  onPageClick={goToPage}
   compressed
 />
 `;

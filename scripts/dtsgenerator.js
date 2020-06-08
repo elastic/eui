@@ -31,12 +31,11 @@ const generator = dtsGenerator({
   exclude: [
     'node_modules/**/*.d.ts',
     '*/custom_typings/**/*.d.ts',
-    'src-framer/**/*',
     '**/*.test.ts',
     '**/*.test.tsx',
     '**/*.testenv.ts',
     '**/*.testenv.tsx',
-    'src/themes/charts/*' // A separate d.ts file is generated for the charts theme file
+    'src/themes/charts/*', // A separate d.ts file is generated for the charts theme file
   ],
   resolveModuleId(params) {
     if (

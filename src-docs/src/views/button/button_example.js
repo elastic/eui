@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -102,15 +102,15 @@ const buttonGroupHtml = renderToHtml(ButtonGroup);
 const buttonGroupSnippet = [
   `<EuiButtonGroup
   legend={legend}
-  options={this.toggleButtons}
-  idSelected={this.state.toggleIdSelected}
-  onChange={this.onChange}
+  options={toggleButtons}
+  idSelected={toggleIdSelected}
+  onChange={onChange}
 />`,
   `<EuiButtonGroup
   legend={legend}
-  options={this.toggleButtonsIconsMulti}
-  idToSelectedMap={this.state.toggleIconIdToSelectedMap}
-  onChange={this.onChangeIconsMulti}
+  options={toggleButtonsIconsMulti}
+  idToSelectedMap={toggleIconIdToSelectedMap}
+  onChange={onChangeIconsMulti}
   type="multi"
   isIconOnly
 />`,

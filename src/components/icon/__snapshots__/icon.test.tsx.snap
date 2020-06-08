@@ -1628,6 +1628,26 @@ exports[`EuiIcon props type dot is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type download is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9 9.114l1.85-1.943a.52.52 0 01.77 0c.214.228.214.6 0 .829l-1.95 2.05a1.552 1.552 0 01-2.31 0L5.41 8a.617.617 0 010-.829.52.52 0 01.77 0L8 9.082V.556C8 .249 8.224 0 8.5 0s.5.249.5.556v8.558z"
+  />
+  <path
+    d="M16 13.006V10h-1v3.006a.995.995 0 01-.994.994H3.01a.995.995 0 01-.994-.994V10h-1v3.006c0 1.1.892 1.994 1.994 1.994h10.996c1.1 0 1.994-.893 1.994-1.994z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type editorAlignCenter is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -9052,4 +9072,16 @@ exports[`EuiIcon props type wrench is rendered 1`] = `
     d="M6.918 9.746l4.537 4.537a2 2 0 102.828-2.829l-3.157-3.156a.5.5 0 01.708-.708l3.156 3.157a3 3 0 11-4.243 4.243l-4.949-4.95a5.001 5.001 0 01-5.22-7.106.5.5 0 01.805-.138L3.676 5.09a1 1 0 101.415-1.414L2.797 1.382a.5.5 0 01.138-.805 5.001 5.001 0 113.983 9.169zM1.226 4.054a4.002 4.002 0 006.693 3.865 4 4 0 00-3.865-6.693l1.744 1.743a2 2 0 11-2.829 2.828L1.226 4.054zm10.229 8.814a1 1 0 111.414-1.414 1 1 0 01-1.414 1.414z"
   />
 </svg>
+`;
+
+exports[`EuiIcon renders custom components 1`] = `
+<span
+  aria-hidden="true"
+  aria-label="heart"
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  role="img"
+>
+  ❤️
+</span>
 `;

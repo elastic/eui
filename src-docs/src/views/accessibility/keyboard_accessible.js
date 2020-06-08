@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { EuiKeyboardAccessible } from '../../../../src/components';
-import { EuiText } from '../../../../src/components/text';
+import { EuiKeyboardAccessible, EuiText } from '../../../../src/components';
 
 // For custom components, we just need to make sure they delegate props to their rendered root
 // element, e.g. onClick, tabIndex, and role.

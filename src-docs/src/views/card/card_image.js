@@ -21,7 +21,14 @@ export default () => (
     <EuiFlexItem>
       <EuiCard
         textAlign="left"
-        image="https://source.unsplash.com/400x200/?Nature"
+        image={
+          <div>
+            <img
+              src="https://source.unsplash.com/400x200/?Nature"
+              alt="Nature"
+            />
+          </div>
+        }
         title="Elastic in Nature"
         description="Example of a card's description. Stick to one or two sentences."
         footer={cardFooterContent}

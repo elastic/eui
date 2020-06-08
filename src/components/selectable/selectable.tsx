@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Component,
   HTMLAttributes,
@@ -5,6 +24,7 @@ import React, {
   createRef,
   Fragment,
   ReactElement,
+  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -13,8 +33,7 @@ import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
 import { EuiLoadingChart } from '../loading';
 import { getMatchingOptions } from './matching_options';
-import { comboBoxKeyCodes } from '../../services';
-import { TAB } from '../../services/key_codes';
+import { keys } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import {
@@ -174,24 +193,24 @@ export class EuiSelectable extends Component<
     return this.state.activeOptionIndex != null;
   };
 
-  onKeyDown = (e: any) => {
+  onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const optionsList = this.optionsListRef.current;
 
-    switch (e.keyCode) {
-      case comboBoxKeyCodes.UP:
-        e.preventDefault();
-        e.stopPropagation();
+    switch (event.key) {
+      case keys.ARROW_UP:
+        event.preventDefault();
+        event.stopPropagation();
         this.incrementActiveOptionIndex(-1);
         break;
 
-      case comboBoxKeyCodes.DOWN:
-        e.preventDefault();
-        e.stopPropagation();
+      case keys.ARROW_DOWN:
+        event.preventDefault();
+        event.stopPropagation();
         this.incrementActiveOptionIndex(1);
         break;
 
-      case comboBoxKeyCodes.ENTER:
-        e.stopPropagation();
+      case keys.ENTER:
+        event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
           optionsList.onAddOrRemoveOption(
             this.state.visibleOptions[this.state.activeOptionIndex]
@@ -199,18 +218,18 @@ export class EuiSelectable extends Component<
         }
         break;
 
-      case TAB:
+      case keys.TAB:
         // Disallow tabbing when the user is navigating the options.
         // TODO: Can we force the tab to the next sibling element?
         if (this.hasActiveOption()) {
-          e.preventDefault();
-          e.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
         }
         break;
 
       default:
         if (this.props.onKeyDown) {
-          this.props.onKeyDown(e);
+          this.props.onKeyDown(event);
         }
         this.clearActiveOption();
     }

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
+  <g fill="none" fill-rule="evenodd">
+    <rect width="300" height="150" fill="#5A77AD" opacity=".18"/>
+    <path fill="#A9B1C2" d="M32,23 L96,23 L96,127 L32,127 L32,23 Z" opacity=".415"/>
+    <path fill="#FFF" d="M112,47 L268,47 L268,127 L112,127 L112,47 Z"/>
+    <polygon fill="#5B6272" points="112 23 190 23 190 35 112 35"/>
+    <g fill="#98A2B3" opacity=".598" transform="translate(145 74)">
+      <polygon points="0 0 90 0 90 8 0 8"/>
+      <polygon points="21 16 69 16 69 24 21 24"/>
+    </g>
+    <polygon fill="#006BB4" points="229 23 268 23 268 35 229 35"/>
+  </g>
+</svg>

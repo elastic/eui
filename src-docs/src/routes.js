@@ -1,8 +1,5 @@
 import React, { createElement } from 'react';
 
-import { useRouterHistory } from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory';
-
 import { GuidePage, GuideSection } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
@@ -49,6 +46,8 @@ import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
 
+import { BeaconExample } from './views/beacon/beacon_example';
+
 import { BottomBarExample } from './views/bottom_bar/bottom_bar_example';
 
 import { BreadcrumbsExample } from './views/breadcrumbs/breadcrumbs_example';
@@ -68,6 +67,8 @@ import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_e
 import { ColorPickerExample } from './views/color_picker/color_picker_example';
 
 import { ComboBoxExample } from './views/combo_box/combo_box_example';
+
+import { CommentListExample } from './views/comment/comment_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
@@ -168,6 +169,8 @@ import { TreeViewExample } from './views/tree_view/tree_view_example';
 
 import { ResizeObserverExample } from './views/resize_observer/resize_observer_example';
 
+import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
+
 import { ResponsiveExample } from './views/responsive/responsive_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
@@ -192,6 +195,8 @@ import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
 
+import { TextDiffExample } from './views/text_diff/text_diff_example';
+
 import { TextExample } from './views/text/text_example';
 
 import { TitleExample } from './views/title/title_example';
@@ -199,6 +204,8 @@ import { TitleExample } from './views/title/title_example';
 import { ToastExample } from './views/toast/toast_example';
 
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
+
+import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
@@ -218,6 +225,7 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
+import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -239,7 +247,7 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, intro, sections, beta } = example;
+  const { title, intro, sections, beta, isNew } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -263,6 +271,7 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections,
+    isNew,
   };
 };
 
@@ -270,7 +279,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createExample(AccessibilityGuidelines, 'Accesibility'),
+      createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Buttons',
         component: ButtonGuidelines,
@@ -319,6 +328,7 @@ const navigation = [
       PageExample,
       PanelExample,
       PopoverExample,
+      ResizableContainerExample,
       SpacerExample,
     ].map(example => createExample(example)),
   },
@@ -362,6 +372,7 @@ const navigation = [
       CallOutExample,
       CardExample,
       CodeExample,
+      CommentListExample,
       DescriptionListExample,
       DragAndDropExample,
       EmptyPromptExample,
@@ -372,10 +383,12 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
+
       TextExample,
       TitleExample,
       ToastExample,
       ToolTipExample,
+      TourExample,
     ].map(example => createExample(example)),
   },
   {
@@ -406,12 +419,14 @@ const navigation = [
       ElasticChartsSparklinesExample,
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
+      ElasticChartsPieExample,
     ].map(example => createExample(example)),
   },
   {
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      BeaconExample,
       IsColorDarkExample,
       ColorPaletteExample,
       CopyExample,
@@ -430,6 +445,7 @@ const navigation = [
       PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
+      TextDiffExample,
       WindowEventExample,
     ].map(example => createExample(example)),
   },
@@ -454,7 +470,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: useRouterHistory(createHashHistory)(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: path => {

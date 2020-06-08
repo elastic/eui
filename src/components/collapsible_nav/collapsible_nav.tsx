@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   FunctionComponent,
   ReactNode,
@@ -9,12 +28,13 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { throttle } from '../color_picker/utils';
-import { EuiWindowEvent, keyCodes, htmlIdGenerator } from '../../services';
+import { EuiWindowEvent, keys, htmlIdGenerator } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { CommonProps } from '../common';
-import { EuiButtonEmpty } from '../button';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 export type EuiCollapsibleNavProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
@@ -24,6 +44,10 @@ export type EuiCollapsibleNavProps = CommonProps &
      */
     isDocked?: boolean;
     /**
+     * Pixel value for customizing the minimum window width for enabling docking
+     */
+    dockedBreakpoint?: number;
+    /**
      * Shows the navigation flyout
      */
     isOpen?: boolean;
@@ -32,9 +56,18 @@ export type EuiCollapsibleNavProps = CommonProps &
      */
     button?: ReactElement;
     /**
-     * Removes display of toggle button when in docked state
+     * Keeps the display of toggle button when in docked state
      */
-    hideButtonIfDocked?: boolean;
+    showButtonIfDocked?: boolean;
+    /**
+     * Keeps the display of floating close button.
+     * If `false`, you must then keep the `button` displayed at all breakpoints.
+     */
+    showCloseButton?: boolean;
+    /**
+     * Extend the props of the close button, an EuiButtonEmpty
+     */
+    closeButtonProps?: EuiButtonEmptyProps;
     onClose?: () => void;
   };
 
@@ -43,20 +76,23 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   className,
   isDocked = false,
   isOpen = false,
-  onClose,
   button,
-  hideButtonIfDocked = true,
+  showButtonIfDocked = false,
+  dockedBreakpoint = 992,
+  showCloseButton = true,
+  closeButtonProps,
+  onClose,
   id,
   ...rest
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
   const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    window.innerWidth >= 992
+    window.innerWidth >= dockedBreakpoint
   );
   const navIsDocked = isDocked && windowIsLargeEnoughToDock;
 
   const functionToCallOnWindowResize = throttle(() => {
-    if (window.innerWidth < 992) {
+    if (window.innerWidth < dockedBreakpoint) {
       setWindowIsLargeEnoughToDock(false);
     } else {
       setWindowIsLargeEnoughToDock(true);
@@ -66,25 +102,33 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   // Watch for docked status and appropriately add/remove body classes and resize handlers
   useEffect(() => {
-    if (isDocked) {
+    window.addEventListener('resize', functionToCallOnWindowResize);
+
+    if (navIsDocked) {
       document.body.classList.add('euiBody--collapsibleNavIsDocked');
-      window.addEventListener('resize', functionToCallOnWindowResize);
+    } else if (isOpen) {
+      document.body.classList.add('euiBody--collapsibleNavIsOpen');
     }
+
     return () => {
       document.body.classList.remove('euiBody--collapsibleNavIsDocked');
+      document.body.classList.remove('euiBody--collapsibleNavIsOpen');
       window.removeEventListener('resize', functionToCallOnWindowResize);
     };
-  }, [isDocked, functionToCallOnWindowResize]);
+  }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
 
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       event.preventDefault();
       collapse();
     }
   };
 
   const collapse = () => {
-    if (!navIsDocked) {
+    // Skip collapsing if it is docked
+    if (navIsDocked) {
+      return;
+    } else {
       onClose && onClose();
     }
   };
@@ -101,19 +145,37 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   }
 
   // Show a trigger button if one was passed but
-  // not if hideButtonIfDocked and navIsDocked
+  // not if navIsDocked and showButtonIfDocked is false
   const trigger =
-    button &&
-    !(hideButtonIfDocked && navIsDocked) &&
-    cloneElement(button as ReactElement, {
-      'aria-controls': flyoutID,
-      'aria-expanded': isOpen,
-      'aria-pressed': isOpen,
-      className: classNames(
-        button.props.className,
-        'euiCollapsibleNav__toggle'
-      ),
-    });
+    navIsDocked && !showButtonIfDocked
+      ? undefined
+      : button &&
+        cloneElement(button as ReactElement, {
+          'aria-controls': flyoutID,
+          'aria-expanded': isOpen,
+          'aria-pressed': isOpen,
+          className: classNames(
+            button.props.className,
+            'euiCollapsibleNav__toggle'
+          ),
+        });
+
+  const closeButton = showCloseButton && (
+    <EuiScreenReaderOnly showOnFocus>
+      <EuiButtonEmpty
+        onClick={collapse}
+        size="xs"
+        textProps={{ className: 'euiCollapsibleNav__closeButtonText' }}
+        iconType="cross"
+        {...closeButtonProps}
+        className={classNames(
+          'euiCollapsibleNav__closeButton',
+          closeButtonProps && closeButtonProps.className
+        )}>
+        <EuiI18n token="euiCollapsibleNav.closeButtonLabel" default="close" />
+      </EuiButtonEmpty>
+    </EuiScreenReaderOnly>
+  );
 
   const flyout = (
     <>
@@ -123,17 +185,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       <EuiFocusTrap disabled={navIsDocked} clickOutsideDisables={true}>
         <nav id={flyoutID} className={classes} {...rest}>
           {children}
-
-          <EuiButtonEmpty
-            onClick={collapse}
-            size="xs"
-            iconType="cross"
-            className="euiCollapsibleNav__closeButton">
-            <EuiI18n
-              token="euiCollapsibleNav.closeButtonLabel"
-              default="close"
-            />
-          </EuiButtonEmpty>
+          {closeButton}
         </nav>
       </EuiFocusTrap>
     </>

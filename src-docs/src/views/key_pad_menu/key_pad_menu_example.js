@@ -8,6 +8,7 @@ import {
   EuiCode,
   EuiKeyPadMenu,
   EuiKeyPadMenuItem,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import KeyPadMenu from './key_pad_menu';
@@ -17,7 +18,6 @@ const keyPadMenuSnippet = `<EuiKeyPadMenu>
   <EuiKeyPadMenuItem label={label1} href="#">
     <EuiIcon type={icon1} size="l" />
   </EuiKeyPadMenuItem>
-
   <EuiKeyPadMenuItem label={label2} href="#">
     <EuiIcon type={icon2} size="l" />
   </EuiKeyPadMenuItem>
@@ -29,7 +29,7 @@ const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_but
 const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
 const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItem
   label={label}
-  onClick={this.handleClick}>
+  onClick={handleClick}>
   <EuiIcon type={icon} size="l" />
 </EuiKeyPadMenuItem>
 `;
@@ -62,11 +62,26 @@ export const KeyPadMenuExample = {
         },
       ],
       text: (
-        <p>
-          The <strong>EuiKeyPadMenu</strong> component presents{' '}
-          <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
-          width which will accommodate three items and then wrap.
-        </p>
+        <>
+          <p>
+            The <strong>EuiKeyPadMenu</strong> component presents{' '}
+            <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
+            width which will accommodate three items and then wrap.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            title={
+              <>
+                If the menu provides navigation for your application, wrap the{' '}
+                <strong>EuiKeyPadMenu</strong> with{' '}
+                <EuiCode language="html">
+                  {'<nav aria-label="Nav title"></nav>'}
+                </EuiCode>
+                .
+              </>
+            }
+          />
+        </>
       ),
       props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
       snippet: keyPadMenuSnippet,

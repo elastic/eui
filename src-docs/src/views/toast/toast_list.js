@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiCode,
@@ -18,39 +18,23 @@ export function removeAllToasts() {
   removeAllToastsHandler();
 }
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [toasts, setToasts] = useState([]);
 
-    this.state = {
-      toasts: [],
-    };
-
-    addToastHandler = this.addToast;
-    removeAllToastsHandler = this.removeAllToasts;
-  }
-
-  addToast = () => {
-    const toast = this.getRandomToast();
-
-    this.setState({
-      toasts: this.state.toasts.concat(toast),
-    });
+  addToastHandler = () => {
+    const toast = getRandomToast();
+    setToasts(toasts.concat(toast));
   };
 
-  removeToast = removedToast => {
-    this.setState(prevState => ({
-      toasts: prevState.toasts.filter(toast => toast.id !== removedToast.id),
-    }));
+  const removeToast = removedToast => {
+    setToasts(toasts.filter(toast => toast.id !== removedToast.id));
   };
 
-  removeAllToasts = () => {
-    this.setState({
-      toasts: [],
-    });
+  removeAllToastsHandler = () => {
+    setToasts([]);
   };
 
-  getRandomToast = () => {
+  const getRandomToast = () => {
     const toasts = [
       {
         title:
@@ -114,13 +98,11 @@ export default class extends Component {
     };
   };
 
-  render() {
-    return (
-      <EuiGlobalToastList
-        toasts={this.state.toasts}
-        dismissToast={this.removeToast}
-        toastLifeTimeMs={6000}
-      />
-    );
-  }
-}
+  return (
+    <EuiGlobalToastList
+      toasts={toasts}
+      dismissToast={removeToast}
+      toastLifeTimeMs={6000}
+    />
+  );
+};

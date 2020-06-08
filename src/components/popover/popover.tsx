@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Component,
   CSSProperties,
@@ -14,7 +33,7 @@ import { FocusTarget, EuiFocusTrap } from '../focus_trap';
 import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 
 import {
-  cascadingMenuKeyCodes,
+  cascadingMenuKeys,
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
@@ -101,6 +120,11 @@ export interface EuiPopoverProps {
 
   panelRef?: RefCallback<HTMLElement | null>;
 
+  /**
+   * Optional, standard DOM `style` attribute. Passed to the EuiPanel.
+   */
+  panelStyle?: CSSProperties;
+
   popoverRef?: Ref<HTMLDivElement>;
 
   /** When `true`, the popover's position is re-calculated when the user
@@ -117,6 +141,22 @@ export interface EuiPopoverProps {
    * Function callback for when the focus trap is deactivated
    */
   onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
+
+  /**
+   * Distance away from the anchor that the popover will render.
+   */
+  offset?: number;
+
+  /**
+   * Minimum distance between the popover and the bounding container.
+   * Default is 16
+   */
+  buffer?: number;
+
+  /**
+   * Element to pass as the child element of the arrow. Use case is typically limited to an accompanying `EuiBeacon`
+   */
+  arrowChildren?: ReactNode;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -296,11 +336,11 @@ export class EuiPopover extends Component<Props, State> {
     };
   }
 
-  onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.keyCode === cascadingMenuKeyCodes.ESCAPE) {
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === cascadingMenuKeys.ESCAPE) {
       if (this.state.isOpenStable || this.state.isOpening) {
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         this.props.closePopover();
       }
     }
@@ -477,12 +517,16 @@ export class EuiPopover extends Component<Props, State> {
       align: getPopoverAlignFromAnchorPosition(anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: !this.props.attachToAnchor && this.props.hasArrow ? 16 : 8,
+      offset:
+        !this.props.attachToAnchor && this.props.hasArrow
+          ? 16 + (this.props.offset || 0)
+          : 8 + (this.props.offset || 0),
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
       },
       returnBoundingBox: this.props.attachToAnchor,
+      buffer: this.props.buffer,
     });
 
     // the popover's z-index must inherit from the button
@@ -495,6 +539,7 @@ export class EuiPopover extends Component<Props, State> {
         : zIndexProp;
 
     const popoverStyles = {
+      ...this.props.panelStyle,
       top,
       left:
         this.props.attachToAnchor && anchorBoundingBox
@@ -565,14 +610,17 @@ export class EuiPopover extends Component<Props, State> {
       panelClassName,
       panelPaddingSize,
       panelRef,
+      panelStyle,
       popoverRef,
       hasArrow,
+      arrowChildren,
       repositionOnScroll,
       zIndex,
       initialFocus,
       attachToAnchor,
       display,
       onTrapDeactivation,
+      buffer,
       ...rest
     } = this.props;
 
@@ -654,7 +702,9 @@ export class EuiPopover extends Component<Props, State> {
               aria-modal="true"
               aria-describedby={descriptionId}
               style={this.state.popoverStyles}>
-              <div className={arrowClassNames} style={this.state.arrowStyles} />
+              <div className={arrowClassNames} style={this.state.arrowStyles}>
+                {arrowChildren}
+              </div>
               {focusTrapScreenReaderText}
               <EuiMutationObserver
                 observerOptions={{

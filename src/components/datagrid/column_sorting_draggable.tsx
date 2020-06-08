@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { FunctionComponent, ReactChild } from 'react';
 import { EuiI18n } from '../i18n';
 import { EuiDraggable } from '../drag_and_drop';
@@ -21,11 +40,24 @@ export interface EuiDataGridColumnSortingDraggableProps {
   sorting: EuiDataGridSorting;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
+  /**
+   * Value to be shown in column sorting popover.
+   */
+  display: string;
 }
 
 export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   EuiDataGridColumnSortingDraggableProps
-> = ({ id, direction, index, sorting, schema, schemaDetectors, ...rest }) => {
+> = ({
+  id,
+  display,
+  direction,
+  index,
+  sorting,
+  schema,
+  schemaDetectors,
+  ...rest
+}) => {
   const schemaDetails =
     schema.hasOwnProperty(id) && schema[id].columnType != null
       ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
@@ -76,7 +108,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                 default="is sorting this data grid">
                 {(activeSortLabel: ReactChild) => (
                   <span>
-                    {id} {activeSortLabel}
+                    {display} {activeSortLabel}
                   </span>
                 )}
               </EuiI18n>
@@ -121,7 +153,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
             </EuiFlexItem>
             <EuiFlexItem aria-hidden>
               <EuiText size="xs">
-                <p>{id}</p>
+                <p>{display}</p>
               </EuiText>
             </EuiFlexItem>
             <EuiFlexItem className="euiDataGridColumnSorting__orderButtons">

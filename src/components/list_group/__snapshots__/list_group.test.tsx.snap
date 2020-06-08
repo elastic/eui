@@ -76,6 +76,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -91,6 +92,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -171,6 +173,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"
@@ -186,6 +189,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     <a
       class="euiListGroupItem__button"
       href="#"
+      rel="noreferrer"
     >
       <span
         class="euiListGroupItem__label"

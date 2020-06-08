@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
@@ -34,28 +53,39 @@ export type EuiTabsProps = CommonProps &
     size?: EuiTabsSizes;
   };
 
-export const EuiTabs = ({
-  children,
-  className,
+export type EuiTabRef = HTMLDivElement;
 
-  display = 'default',
-  expand = false,
-  size = 'm',
-  ...rest
-}: PropsWithChildren<EuiTabsProps>) => {
-  const classes = classNames(
-    'euiTabs',
-    displayToClassNameMap[display],
-    sizeToClassNameMap[size],
+export const EuiTabs = React.forwardRef<
+  EuiTabRef,
+  PropsWithChildren<EuiTabsProps>
+>(
+  (
     {
-      'euiTabs--expand': expand,
-    },
-    className
-  );
+      children,
+      className,
+      display = 'default',
+      expand = false,
+      size = 'm',
+      ...rest
+    }: PropsWithChildren<EuiTabsProps>,
+    ref
+  ) => {
+    const classes = classNames(
+      'euiTabs',
+      displayToClassNameMap[display],
+      sizeToClassNameMap[size],
+      {
+        'euiTabs--expand': expand,
+      },
+      className
+    );
 
-  return (
-    <div role="tablist" className={classes} {...rest}>
-      {children}
-    </div>
-  );
-};
+    return (
+      <div ref={ref} role="tablist" className={classes} {...rest}>
+        {children}
+      </div>
+    );
+  }
+);
+
+EuiTabs.displayName = 'EuiTabs';

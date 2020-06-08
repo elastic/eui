@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiFieldText,
@@ -8,69 +8,53 @@ import {
   EuiCode,
   EuiFormRow,
 } from '../../../../src/components';
+
 import { htmlIdGenerator } from '../../../../src/services';
 
-export class PrefixSufix extends Component {
-  constructor(props) {
-    super(props);
+export const PrefixSufix = () => {
+  const [prefix, setPrefix] = useState('Some');
+  const [suffix, setSuffix] = useState('Id');
+  const [customId, setCustomId] = useState(htmlIdGenerator('Some')('Id'));
 
-    this.state = {
-      prefix: 'Some',
-      suffix: 'Id',
-      id1: htmlIdGenerator('Some')('Id'),
-    };
-  }
-
-  onPrefixChange = e => {
+  const onPrefixChange = e => {
     const prefix = e.target.value;
-    const { suffix } = this.state;
-
-    this.setState({
-      prefix,
-      id1: htmlIdGenerator(prefix)(suffix),
-    });
+    setPrefix(prefix);
+    setCustomId(htmlIdGenerator(prefix)(suffix));
   };
 
-  onSuffixChange = e => {
+  const onSuffixChange = e => {
     const suffix = e.target.value;
-    const { prefix } = this.state;
-
-    this.setState({
-      suffix,
-      id1: htmlIdGenerator(prefix)(suffix),
-    });
+    setSuffix(suffix);
+    setCustomId(htmlIdGenerator(prefix)(suffix));
   };
 
-  render() {
-    const { prefix, suffix, id1 } = this.state;
-    return (
-      <Fragment>
-        <EuiFlexGroup
-          justifyContent="flexStart"
-          gutterSize="m"
-          alignItems="center">
-          <EuiFlexItem grow={false}>
-            <EuiFormRow label="Prefix">
-              <EuiFieldText
-                value={prefix}
-                onChange={this.onPrefixChange}
-                placeholder="Enter prefix"
-              />
-            </EuiFormRow>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiFormRow label="Suffix">
-              <EuiFieldText
-                value={suffix}
-                onChange={this.onSuffixChange}
-                placeholder="Enter suffix"
-              />
-            </EuiFormRow>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="xl" />
-        <EuiCode>{id1} </EuiCode>
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <EuiFlexGroup
+        justifyContent="flexStart"
+        gutterSize="m"
+        alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Prefix">
+            <EuiFieldText
+              value={prefix}
+              onChange={onPrefixChange}
+              placeholder="Enter prefix"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Suffix">
+            <EuiFieldText
+              value={suffix}
+              onChange={onSuffixChange}
+              placeholder="Enter suffix"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiCode>{customId} </EuiCode>
+    </Fragment>
+  );
+};

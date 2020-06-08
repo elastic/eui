@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -6,44 +6,32 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [isDisabled, setIsDisabled] = useState(false);
 
-    this.state = {
-      isDisabled: false,
-    };
-  }
-
-  toggleDisabled = () => {
-    this.setState(prevState => ({
-      isDisabled: !prevState.isDisabled,
-    }));
+  const toggleDisabled = () => {
+    setIsDisabled(!isDisabled);
   };
 
-  render() {
-    const { isDisabled } = this.state;
+  return (
+    <div>
+      <EuiOutsideClickDetector
+        onOutsideClick={() => {
+          window.alert('Clicked outside');
+        }}
+        isDisabled={isDisabled}>
+        <p>
+          {isDisabled
+            ? 'This detector is disabled, so clicking outside will do nothing.'
+            : 'Clicking inside here will do nothing, but clicking outside will trigger an alert.'}
+        </p>
+      </EuiOutsideClickDetector>
 
-    return (
-      <div>
-        <EuiOutsideClickDetector
-          onOutsideClick={() => {
-            window.alert('Clicked outside');
-          }}
-          isDisabled={isDisabled}>
-          <p>
-            {isDisabled
-              ? 'This detector is disabled, so clicking outside will do nothing.'
-              : 'Clicking inside here will do nothing, but clicking outside will trigger an alert.'}
-          </p>
-        </EuiOutsideClickDetector>
+      <EuiSpacer size="l" />
 
-        <EuiSpacer size="l" />
-
-        <EuiButton onClick={this.toggleDisabled}>
-          {isDisabled ? 'Enable' : 'Disable'} the detector
-        </EuiButton>
-      </div>
-    );
-  }
-}
+      <EuiButton onClick={toggleDisabled}>
+        {isDisabled ? 'Enable' : 'Disable'} the detector
+      </EuiButton>
+    </div>
+  );
+};

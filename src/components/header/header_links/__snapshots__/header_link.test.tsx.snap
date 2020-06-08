@@ -16,3 +16,18 @@ exports[`EuiHeaderLink is rendered 1`] = `
   </span>
 </button>
 `;
+
+exports[`EuiHeaderLink is rendered as active 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--primary euiHeaderLink euiHeaderLink-isActive"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;

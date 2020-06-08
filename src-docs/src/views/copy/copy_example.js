@@ -34,7 +34,7 @@ export const CopyExample = {
       components: { EuiCopy },
       demo: <Copy />,
       props: { EuiCopy },
-      snippet: `<EuiCopy textToCopy={this.state.copyText}>
+      snippet: `<EuiCopy textToCopy={textToCopy}>
   {copy => (
     <EuiButton onClick={copy}>Click to copy</EuiButton>
   )}

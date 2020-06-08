@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 /**
  * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
  * from the tab order with tabindex={-1} so that we can control the keyboard navigation interface.
@@ -13,12 +32,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  comboBoxKeyCodes,
-  findPopoverPosition,
-  htmlIdGenerator,
-} from '../../services';
-import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
+import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { EuiPortal } from '../portal';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
@@ -238,6 +252,7 @@ export class EuiComboBox<T> extends Component<
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
   searchInputRefCallback: RefCallback<HTMLInputElement> = ref => {
     this.searchInputRefInstance = ref;
+    if (this.props.inputRef) this.props.inputRef(ref);
   };
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
@@ -567,8 +582,8 @@ export class EuiComboBox<T> extends Component<
   };
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = event => {
-    switch (event.keyCode) {
-      case comboBoxKeyCodes.UP:
+    switch (event.key) {
+      case keys.ARROW_UP:
         event.preventDefault();
         event.stopPropagation();
         if (this.state.isListOpen) {
@@ -578,7 +593,7 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case comboBoxKeyCodes.DOWN:
+      case keys.ARROW_DOWN:
         event.preventDefault();
         event.stopPropagation();
         if (this.state.isListOpen) {
@@ -588,17 +603,17 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case BACKSPACE:
+      case keys.BACKSPACE:
         event.stopPropagation();
         this.removeLastOption();
         break;
 
-      case ESCAPE:
+      case keys.ESCAPE:
         event.stopPropagation();
         this.closeList();
         break;
 
-      case comboBoxKeyCodes.ENTER:
+      case keys.ENTER:
         event.preventDefault();
         event.stopPropagation();
         if (this.hasActiveOption()) {
@@ -610,7 +625,7 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case TAB:
+      case keys.TAB:
         // Disallow tabbing when the user is navigating the options.
         if (this.hasActiveOption() && this.state.isListOpen) {
           event.preventDefault();
@@ -974,6 +989,7 @@ export class EuiComboBox<T> extends Component<
             updatePosition={this.updatePosition}
             width={width}
             delimiter={delimiter}
+            getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
           />
         </EuiPortal>
       );

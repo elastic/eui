@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import {
   EuiFieldSearch,
@@ -20,6 +20,7 @@ import {
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
 import { EuiHighlight } from '../../../../src/components/highlight';
+import { EuiBadge } from '../../../../src/components/badge';
 
 const scrollTo = position => {
   $('html, body').animate(
@@ -41,6 +42,8 @@ export function scrollToSelector(selector, attempts = 5) {
 }
 
 export class GuidePageChrome extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
 
@@ -50,6 +53,18 @@ export class GuidePageChrome extends Component {
       isPopoverOpen: false,
     };
   }
+
+  componentDidMount = () => {
+    this._isMounted = true;
+
+    this.scrollNavSectionIntoViewSync();
+    if (document.body) document.body.scrollTop = 0;
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+  };
+
+  componentWillUnmount = () => {
+    this._isMounted = false;
+  };
 
   toggleOpenOnMobile = () => {
     this.setState({
@@ -64,17 +79,21 @@ export class GuidePageChrome extends Component {
     });
   };
 
+  scrollNavSectionIntoViewSync = () => {
+    // wait a bit for react to blow away and re-create the DOM
+    // then scroll the selected nav section into view
+    const selectedButton = $('.euiSideNavItemButton-isSelected');
+    if (selectedButton.length) {
+      const root = selectedButton.parents('.euiSideNavItem--root');
+      if (root.length) {
+        root.get(0).scrollIntoView();
+      }
+    }
+  };
+
   scrollNavSectionIntoView = () => {
     setTimeout(() => {
-      // wait a bit for react to blow away and re-create the DOM
-      // then scroll the selected nav section into view
-      const selectedButton = $('.euiSideNavItemButton-isSelected');
-      if (selectedButton.length) {
-        const root = selectedButton.parents('.euiSideNavItem--root');
-        if (root.length) {
-          root.get(0).scrollIntoView();
-        }
-      }
+      this.scrollNavSectionIntoViewSync();
     }, 250);
   };
 
@@ -82,20 +101,7 @@ export class GuidePageChrome extends Component {
     // Scroll to element.
     scrollToSelector(`#${id}`);
 
-    this.setState(
-      {
-        search: '',
-        isSideNavOpenOnMobile: false,
-      },
-      this.scrollNavSectionIntoView
-    );
-  };
-
-  onClickRoute = () => {
-    // timeout let's IE11 do its thing and update the url
-    // allowing react-router to navigate to the route
-    // otherwise IE11 somehow kills the navigation
-    setTimeout(() => {
+    if (this._isMounted)
       this.setState(
         {
           search: '',
@@ -103,6 +109,21 @@ export class GuidePageChrome extends Component {
         },
         this.scrollNavSectionIntoView
       );
+  };
+
+  onClickRoute = () => {
+    // timeout let's IE11 do its thing and update the url
+    // allowing react-router to navigate to the route
+    // otherwise IE11 somehow kills the navigation
+    setTimeout(() => {
+      if (this._isMounted)
+        this.setState(
+          {
+            search: '',
+            isSideNavOpenOnMobile: false,
+          },
+          this.scrollNavSectionIntoView
+        );
     }, 0);
   };
 
@@ -243,8 +264,17 @@ export class GuidePageChrome extends Component {
       });
 
       const items = matchingItems.map(item => {
-        const { name, path, sections } = item;
+        const { name, path, sections, isNew } = item;
         const href = `#/${path}`;
+
+        let newBadge;
+        if (isNew) {
+          newBadge = (
+            <EuiBadge color="accent" className="guideSideNav__newBadge">
+              NEW
+            </EuiBadge>
+          );
+        }
 
         let visibleName = name;
         if (searchTerm) {
@@ -263,8 +293,10 @@ export class GuidePageChrome extends Component {
           href,
           onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),
-          isSelected: item === this.props.currentRoute,
+          isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
+          className: 'guideSideNav__item',
+          icon: newBadge,
         };
       });
 
@@ -294,6 +326,7 @@ export class GuidePageChrome extends Component {
           toggleOpenOnMobile={this.toggleOpenOnMobile}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
           items={sideNav}
+          aria-label="EUI"
         />
       );
     } else {

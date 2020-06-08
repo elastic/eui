@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, {
   Component,
   cloneElement,
@@ -5,13 +24,14 @@ import React, {
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
+  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 
 import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
+import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -96,7 +116,6 @@ export interface Props {
 
 interface State {
   visible: boolean;
-  hasFocus: boolean;
   calculatedPosition: ToolTipPositions;
   toolTipStyles: ToolTipStyles;
   arrowStyles: undefined | { left: number; top: number };
@@ -110,7 +129,6 @@ export class EuiToolTip extends Component<Props, State> {
 
   state: State = {
     visible: false,
-    hasFocus: false,
     calculatedPosition: this.props.position,
     toolTipStyles: DEFAULT_TOOLTIP_STYLES,
     arrowStyles: undefined,
@@ -128,6 +146,7 @@ export class EuiToolTip extends Component<Props, State> {
 
   componentWillUnmount() {
     this._isMounted = false;
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -218,34 +237,30 @@ export class EuiToolTip extends Component<Props, State> {
     }
   };
 
-  onFocus = () => {
-    this.setState({
-      hasFocus: true,
-    });
-    this.showToolTip();
-  };
-
-  onBlur = () => {
-    this.setState({
-      hasFocus: false,
-    });
+  hasFocusMouseMoveListener = () => {
     this.hideToolTip();
+    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   };
 
-  onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
+  onKeyUp = (event: KeyboardEvent<HTMLSpanElement>) => {
+    if (event.key === keys.TAB) {
+      window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
+    }
+  };
+
+  onMouseOut = (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
     if (
-      this.anchor === e.relatedTarget ||
-      (this.anchor != null && !this.anchor.contains(e.relatedTarget as Node))
+      this.anchor === event.relatedTarget ||
+      (this.anchor != null &&
+        !this.anchor.contains(event.relatedTarget as Node))
     ) {
-      if (!this.state.hasFocus) {
-        this.hideToolTip();
-      }
+      this.hideToolTip();
     }
 
     if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
+      this.props.onMouseOut(event);
     }
   };
 
@@ -299,7 +314,10 @@ export class EuiToolTip extends Component<Props, State> {
         ref={anchor => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
-        onMouseOut={this.onMouseOut}>
+        onMouseOut={this.onMouseOut}
+        onKeyUp={event => {
+          this.onKeyUp(event);
+        }}>
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element

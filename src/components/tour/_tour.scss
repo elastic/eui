@@ -1,0 +1,70 @@
+.euiTour--minWidth-default {
+  min-width: $euiSizeL * 10;
+}
+
+.euiTourHeader {
+  border-bottom: none;
+  // Overriding default `EuiPopoverTitle` styles
+  margin-bottom: $euiSizeS !important; // sass-lint:disable-line no-important
+
+
+  .euiTourHeader__title { // nested for additional specificity to override EuiTitle styles
+    margin-top: 0;
+    text-transform: capitalize;
+  }
+}
+
+.euiTourHeader__subtitle {
+  color: $euiColorDarkShade;
+}
+
+.euiTourFooter {
+  background-color: $euiColorLightestShade;
+  // Overriding default `EuiPopoverFooter` styles
+  margin-top: $euiSizeL !important; // sass-lint:disable-line no-important
+}
+
+.euiTour {
+  .euiTour__beacon {
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0s $euiAnimSpeedSlow; // delay time equals EuiPopover animation time
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--right {
+    .euiTour__beacon {
+      opacity: 1;
+      top: $euiPopoverArrowSize / 2;
+      left: -$euiPopoverArrowSize * 2;
+    }
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--left {
+    .euiTour__beacon {
+      opacity: 1;
+      top: $euiPopoverArrowSize / 2;
+      left: $euiPopoverArrowSize;
+    }
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--top {
+    &:after {
+      border-top-color: $euiColorLightestShade;
+    }
+
+    .euiTour__beacon {
+      opacity: 1;
+      top: $euiPopoverArrowSize;
+      left: $euiPopoverArrowSize / 2;
+    }
+  }
+
+  .euiPopover__panelArrow.euiPopover__panelArrow--bottom {
+    .euiTour__beacon {
+      opacity: 1;
+      top: -$euiPopoverArrowSize * 2;
+      left: $euiPopoverArrowSize / 2;
+    }
+  }
+}

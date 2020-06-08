@@ -18,7 +18,12 @@ import {
   EuiTextColor,
   EuiTitle,
   EuiLink,
+  EuiButtonEmpty,
 } from '../../../../src/components';
+
+import { CodeSandboxLink } from '../codesandbox';
+
+import { cleanEuiImports } from '../../services';
 
 function markup(text) {
   const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
@@ -157,10 +162,6 @@ export class GuideSection extends Component {
       if (name === 'javascript') {
         renderedCode = renderedCode
           .replace(
-            /(from )'(..\/)+src\/components(\/?';)/g,
-            "from '@elastic/eui';"
-          )
-          .replace(
             /(from )'(..\/)+src\/services(\/?';)/g,
             "from '@elastic/eui/lib/services';"
           )
@@ -203,12 +204,21 @@ export class GuideSection extends Component {
           renderedCode = renderedCode.replace('\n\n\n', '\n\n');
           len = renderedCode.replace('\n\n\n', '\n\n').length;
         }
+        renderedCode = cleanEuiImports(renderedCode);
       } else if (name === 'html') {
         renderedCode = code.render();
       }
     }
 
-    this.setState({ selectedTab, renderedCode });
+    this.setState({ selectedTab, renderedCode }, () => {
+      if (name === 'javascript') {
+        requestAnimationFrame(() => {
+          const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
+          if (!pre) return;
+          pre.scrollTop = this.memoScroll;
+        });
+      }
+    });
   };
 
   renderTabs() {
@@ -435,13 +445,6 @@ export class GuideSection extends Component {
     );
   }
 
-  componentDidUpdate() {
-    if (this.state.selectedTab.name === 'javascript') {
-      const pre = this.refs.javascript.querySelector('.euiCodeBlock__pre');
-      pre.scrollTop = this.memoScroll;
-    }
-  }
-
   renderCode(name) {
     const euiCodeBlock = (
       <EuiCodeBlock language={nameToCodeClassMap[name]} overflowHeight={400}>
@@ -462,6 +465,7 @@ export class GuideSection extends Component {
     if (name === 'javascript') {
       return (
         <div {...divProps} onScroll={memoScrollUtility}>
+          {name === 'javascript' ? this.renderCodeSandBoxButton() : null}
           {euiCodeBlock}
         </div>
       );
@@ -498,6 +502,16 @@ export class GuideSection extends Component {
           {this.props.demo}
         </div>
       </EuiErrorBoundary>
+    );
+  }
+
+  renderCodeSandBoxButton() {
+    return (
+      <CodeSandboxLink content={this.props.source[0].code}>
+        <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
+          Try out this demo on Code Sandbox
+        </EuiButtonEmpty>
+      </CodeSandboxLink>
     );
   }
 

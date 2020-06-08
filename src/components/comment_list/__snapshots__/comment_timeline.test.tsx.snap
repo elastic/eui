@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCommentTimeline is rendered 1`] = `
+<div
+  class="euiCommentTimeline testClass1 testClass2"
+>
+  <div
+    class="euiCommentTimeline__content"
+  >
+    <div
+      class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+    >
+      <div
+        data-euiicon-type="user"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
+<div
+  class="euiCommentTimeline"
+>
+  <div
+    class="euiCommentTimeline__content"
+  >
+    <div
+      class="euiCommentTimeline__icon--regular"
+    >
+      <div
+        aria-label="Mario"
+        class="euiAvatar euiAvatar--l euiAvatar--user"
+        style="background-image:none;background-color:#f1d86f;color:#000000"
+        title="Mario"
+      >
+        <span
+          aria-hidden="true"
+        >
+          M
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentTimeline props type is rendered 1`] = `
+<div
+  class="euiCommentTimeline"
+>
+  <div
+    class="euiCommentTimeline__content"
+  >
+    <div
+      class="euiCommentTimeline__icon--default euiCommentTimeline__icon--update"
+    >
+      <div
+        data-euiicon-type="dot"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import React, { ReactNode } from 'react';
 import { shallow, render, mount } from 'enzyme';
 import {
@@ -5,7 +24,7 @@ import {
   findTestSubject,
   takeMountedSnapshot,
 } from '../../test';
-import { comboBoxKeyCodes } from '../../services';
+import { comboBoxKeys } from '../../services';
 
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
@@ -205,7 +224,7 @@ describe('behavior', () => {
       component.setState({ searchValue: 'foo' });
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
       searchInput.simulate('focus');
-      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
       expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);
     });
@@ -223,7 +242,7 @@ describe('behavior', () => {
 
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
       searchInput.simulate('focus');
-      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
       expect(onCreateOptionHandler).not.toHaveBeenCalled();
     });
   });
@@ -245,7 +264,7 @@ describe('behavior', () => {
 
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', {
-        keyCode: comboBoxKeyCodes.TAB,
+        key: comboBoxKeys.TAB,
         shiftKey: true,
       });
 
@@ -293,11 +312,11 @@ describe('behavior', () => {
       expect(findTestSubject(component, 'comboBoxOptionsList')).toBeDefined();
 
       // Navigate to an option.
-      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.DOWN });
+      searchInput.simulate('keyDown', { key: comboBoxKeys.ARROW_DOWN });
 
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', {
-        keyCode: comboBoxKeyCodes.TAB,
+        key: comboBoxKeys.TAB,
         shiftKey: true,
       });
 
@@ -352,5 +371,20 @@ describe('behavior', () => {
 
       expect(component.state('matchingOptions')[0].label).toBe('Enceladus');
     });
+  });
+
+  it('calls the inputRef prop with the input element', () => {
+    const inputRefCallback = jest.fn();
+
+    const component = mount<
+      EuiComboBox<TitanOption>,
+      EuiComboBoxProps<TitanOption>,
+      { matchingOptions: TitanOption[] }
+    >(<EuiComboBox options={options} inputRef={inputRefCallback} />);
+
+    expect(inputRefCallback).toHaveBeenCalledTimes(1);
+    expect(component.find('input[role="textbox"]').getDOMNode()).toBe(
+      inputRefCallback.mock.calls[0][0]
+    );
   });
 });
