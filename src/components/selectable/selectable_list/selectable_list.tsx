@@ -111,7 +111,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   };
 
   listRef: FixedSizeList | null = null;
-  scrollableWrapperRef: HTMLDivElement | null = null;
   listBoxRef: HTMLUListElement | null = null;
 
   setListRef = (ref: FixedSizeList | null) => {
