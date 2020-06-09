@@ -45,7 +45,7 @@ export default () => {
             items: [
               <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
             ],
-            borders: 'right',
+            borders: 'none',
           },
           {
             items: [
@@ -53,6 +53,7 @@ export default () => {
                 <EuiAvatar name="John Username" size="s" />
               </EuiHeaderSectionItemButton>,
             ],
+            borders: 'none',
           },
         ]}
       />
@@ -70,6 +71,7 @@ export default () => {
           },
           {
             items: isFixed ? [<HeaderUpdates />] : undefined,
+            borders: 'none',
           },
         ]}
       />
