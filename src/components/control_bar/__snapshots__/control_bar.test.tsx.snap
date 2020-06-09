@@ -20,7 +20,7 @@ exports[`EuiControlBar is rendered 1`] = `
       class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
     >
       <span
-        aria-current="page"
+        aria-current="false"
         class="euiBreadcrumb"
         title="src"
       >
@@ -157,7 +157,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
-                  aria-current="page"
+                  aria-current="false"
                   class="euiBreadcrumb"
                   title="src"
                 >
@@ -268,7 +268,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               >
                 <EuiInnerText>
                   <span
-                    aria-current="page"
+                    aria-current="false"
                     className="euiBreadcrumb"
                     title="src"
                   >
@@ -452,7 +452,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
-                  aria-current="page"
+                  aria-current="false"
                   class="euiBreadcrumb"
                   title="src"
                 >
@@ -563,7 +563,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               >
                 <EuiInnerText>
                   <span
-                    aria-current="page"
+                    aria-current="false"
                     className="euiBreadcrumb"
                     title="src"
                   >
@@ -746,7 +746,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
-                  aria-current="page"
+                  aria-current="false"
                   class="euiBreadcrumb"
                   title="src"
                 >
@@ -857,7 +857,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               >
                 <EuiInnerText>
                   <span
-                    aria-current="page"
+                    aria-current="false"
                     className="euiBreadcrumb"
                     title="src"
                   >
@@ -1064,7 +1064,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
           >
             <EuiInnerText>
               <span
-                aria-current="page"
+                aria-current="false"
                 className="euiBreadcrumb"
                 title="src"
               >
@@ -1232,7 +1232,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
-                  aria-current="page"
+                  aria-current="false"
                   class="euiBreadcrumb"
                   title="src"
                 >
@@ -1343,7 +1343,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               >
                 <EuiInnerText>
                   <span
-                    aria-current="page"
+                    aria-current="false"
                     className="euiBreadcrumb"
                     title="src"
                   >
@@ -1526,7 +1526,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
-                  aria-current="page"
+                  aria-current="false"
                   class="euiBreadcrumb"
                   title="src"
                 >
@@ -1642,7 +1642,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               >
                 <EuiInnerText>
                   <span
-                    aria-current="page"
+                    aria-current="false"
                     className="euiBreadcrumb"
                     title="src"
                   >
@@ -1830,7 +1830,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
                 <span
-                  aria-current="page"
+                  aria-current="false"
                   class="euiBreadcrumb"
                   title="src"
                 >
@@ -1941,7 +1941,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
               >
                 <EuiInnerText>
                   <span
-                    aria-current="page"
+                    aria-current="false"
                     className="euiBreadcrumb"
                     title="src"
                   >

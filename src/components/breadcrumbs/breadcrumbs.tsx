@@ -64,7 +64,7 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * Omitting or passing a `0` value will show all breadcrumbs.
    * Pass `false` to turn this behavior off
    */
-  responsive?: false | EuiBreadcrumbResponsiveMaxCount;
+  responsive?: boolean | EuiBreadcrumbResponsiveMaxCount;
 
   /**
    * Forces all breadcrumbs to single line and
@@ -83,6 +83,12 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * The array of individual #EuiBreadcrumb items
    */
   breadcrumbs: EuiBreadcrumb[];
+};
+
+const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
+  xs: 1,
+  s: 2,
+  m: 4,
 };
 
 const limitBreadcrumbs = (
@@ -172,11 +178,7 @@ const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   breadcrumbs,
   className,
-  responsive = {
-    xs: 1,
-    s: 2,
-    m: 4,
-  },
+  responsive = responsiveDefault,
   truncate = true,
   max = 5,
   ...rest
@@ -229,7 +231,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
               ref={ref}
               className={breadcrumbClasses}
               title={innerText}
-              aria-current="page"
+              aria-current={isLastBreadcrumb ? 'page' : 'false'}
               {...breadcrumbRest}>
               {text}
             </span>
@@ -269,9 +271,21 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     );
   });
 
+  // Use the default object if they simply passed `true` for responsive
+  const responsiveObject =
+    typeof responsive === 'object' ? responsive : responsiveDefault;
+
+  // The max property collapses any breadcrumbs past the max quantity.
+  // This is the same behavior we want for responsiveness.
+  // So calculate the max value based on the combination of `max` and `responsive`
   let calculatedMax: EuiBreadcrumbsProps['max'] = max;
-  if (responsive && responsive[currentBreakpoint as EuiBreakpointSize]) {
-    calculatedMax = responsive[currentBreakpoint as EuiBreakpointSize];
+  // Set the calculated max to the number associated with the currentBreakpoint key if it exists
+  if (responsive && responsiveObject[currentBreakpoint as EuiBreakpointSize]) {
+    calculatedMax = responsiveObject[currentBreakpoint as EuiBreakpointSize];
+  }
+  // Final check is to make sure max is used over a larger breakpoint value
+  if (max && calculatedMax) {
+    calculatedMax = max < calculatedMax ? max : calculatedMax;
   }
 
   const limitedBreadcrumbs = calculatedMax
@@ -280,7 +294,6 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
   const classes = classNames('euiBreadcrumbs', className, {
     'euiBreadcrumbs--truncate': truncate,
-    'euiBreadcrumbs--responsive': responsive,
   });
 
   return (
