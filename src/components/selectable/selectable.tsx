@@ -347,7 +347,7 @@ export class EuiSelectable extends Component<
       ...cleanedListProps
     } = listProps || unknownAccessibleName;
 
-    let messageContent;
+    let messageContent: JSX.Element | undefined;
 
     if (isLoading) {
       messageContent = (
@@ -391,6 +391,7 @@ export class EuiSelectable extends Component<
       className
     );
 
+    const messageContentId = messageContent && this.rootId('messageContent');
     const listId = this.rootId('listbox');
     const makeOptionId = (index: number | undefined) => {
       if (typeof index === 'undefined') {
@@ -414,15 +415,22 @@ export class EuiSelectable extends Component<
       props:
         | Partial<EuiSelectableSearchProps>
         | EuiSelectableOptionsListPropsWithDefaults
-        | undefined
+        | undefined,
+      messageContentId?: string
     ) => {
       if (props && props['aria-label']) {
         return { 'aria-label': props['aria-label'] };
       }
 
+      const messageContentIdString = messageContentId
+        ? ` ${messageContentId}`
+        : '';
+
       if (props && props['aria-describedby']) {
         return {
-          'aria-describedby': props['aria-describedby'],
+          'aria-describedby': `${
+            props['aria-describedby']
+          }${messageContentIdString}`,
         };
       }
 
@@ -431,13 +439,18 @@ export class EuiSelectable extends Component<
       }
 
       if (ariaDescribedby) {
-        return { 'aria-describedby': ariaDescribedby };
+        return {
+          'aria-describedby': `${ariaDescribedby}${messageContentIdString}`,
+        };
       }
 
       return {};
     };
 
-    const searchAccessibleName = getAccessibleName(searchProps);
+    const searchAccessibleName = getAccessibleName(
+      searchProps,
+      messageContentId
+    );
     const searchHasAccessibleName = Boolean(
       Object.keys(searchAccessibleName).length
     );
@@ -467,7 +480,7 @@ export class EuiSelectable extends Component<
       Object.keys(listAccessibleName).length
     );
     const list = messageContent ? (
-      <EuiSelectableMessage key="listMessage">
+      <EuiSelectableMessage key="listMessage" id={messageContentId}>
         {messageContent}
       </EuiSelectableMessage>
     ) : (
