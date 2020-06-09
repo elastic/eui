@@ -109,6 +109,8 @@ module.exports = {
     // It"s all very well saying that some types are trivially inferrable,
     // but being explicit is still clearer.
     '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/naming-convention': 'off',
   },
   env: {
     jest: true,
