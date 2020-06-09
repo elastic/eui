@@ -26,7 +26,7 @@ export default () => {
   });
 
   const [options, setOptions] = useState(countries);
-  const [useCustomContent, setUseCustomContent] = useState(countries);
+  const [useCustomContent, setUseCustomContent] = useState(false);
 
   const onChange = options => {
     setOptions(options);
@@ -63,7 +63,7 @@ export default () => {
   return (
     <>
       <EuiSwitch
-        label="Custom content with no icons"
+        label="Custom content"
         checked={useCustomContent}
         onChange={onCustom}
       />
