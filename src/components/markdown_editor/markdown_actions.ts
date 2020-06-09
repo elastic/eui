@@ -227,8 +227,6 @@ function wordSelectionEnd(text: string, i: number, multiline: boolean): number {
   return index;
 }
 
-let canInsertText: boolean | null = null;
-
 /**
  * Note that we're using the native HTMLTextAreaElement.set() method to play nicely with
  * React's synthetic event system. We fallback to a brute force way of doing it if the
@@ -242,11 +240,13 @@ export function insertText(
   const originalSelectionStart = textarea.selectionStart;
   const before = textarea.value.slice(0, originalSelectionStart);
   const after = textarea.value.slice(textarea.selectionEnd);
-  const inputEvent = new Event('input', { bubbles: true });
 
-  if (canInsertText === null || canInsertText === true) {
-    canInsertText = true;
+  textarea.focus();
+  const insertResult = document.execCommand('insertText', false, text);
 
+  if (insertResult === false) {
+    // fallback for Firefox; this kills undo/redo but at least updates the value
+    const inputEvent = new Event('input', { bubbles: true });
     const nativeInputValueSetter =
       // @ts-ignore
       Object.getOwnPropertyDescriptor(
@@ -254,19 +254,8 @@ export function insertText(
         window.HTMLTextAreaElement.prototype,
         'value'
       ).set;
-    try {
-      // @ts-ignore
-      nativeInputValueSetter.call(textarea, before + text + after);
-
-      textarea.dispatchEvent(inputEvent);
-    } catch (error) {
-      canInsertText = false;
-    }
-  }
-
-  if (!canInsertText) {
-    // If calling [HTMLTextAreaElement.set()] fails, just brute-force it
-    textarea.value = before + text + after;
+    // @ts-ignore
+    nativeInputValueSetter.call(textarea, before + text + after);
     textarea.dispatchEvent(inputEvent);
   }
 
