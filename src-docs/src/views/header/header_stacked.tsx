@@ -66,7 +66,7 @@ export default () => {
               </EuiHeaderSectionItemButton>,
             ],
             breadcrumbs: breadcrumbs,
-            borders: 'none',
+            borders: 'right',
           },
           {
             items: isFixed ? [<HeaderUpdates />] : undefined,
