@@ -56,6 +56,7 @@ const selectableListRequiredProps = {
   makeOptionId: (index: number | undefined) => `option_${index}`,
   listId: 'list',
   onOptionClick: () => {},
+  setActiveOptionIndex: () => undefined,
   ...requiredProps,
 };
 

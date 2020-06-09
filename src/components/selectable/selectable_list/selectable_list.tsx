@@ -106,6 +106,7 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   searchable?: boolean;
   makeOptionId: (index: number | undefined) => string;
   listId: string;
+  setActiveOptionIndex: (index: number) => void;
 };
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
@@ -262,6 +263,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       bordered,
       searchable,
       listId,
+      setActiveOptionIndex,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
@@ -331,6 +333,10 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     }
 
     const { allowExclusions } = this.props;
+
+    this.props.setActiveOptionIndex(
+      this.props.options.findIndex(({ label }) => label === option.label)
+    );
 
     if (option.checked === 'on' && allowExclusions) {
       this.onExcludeOption(option);
