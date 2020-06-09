@@ -8,6 +8,7 @@
 - Added `display` prop to `EuiDataGridColumnSortingDraggable` to pass` displayAsText` prop correctly to the column sorting popover.([#3574](https://github.com/elastic/eui/pull/3574))
 - Fixed `EuiCodeBlockImpl` testenv mock pass-through of `data-test-subj` attribute ([#3560](https://github.com/elastic/eui/pull/3560))
 - Fixed DOM element creation issues in `EuiOverlayMask` by using lifecycle methods ([#3555](https://github.com/elastic/eui/pull/3555))
+- Included `onClick` as a valid prop for `EuiControlBar` **icon** controls ([#3523](https://github.com/elastic/eui/pull/3523))
 
 ## [`25.0.0`](https://github.com/elastic/eui/tree/v25.0.0)
 
