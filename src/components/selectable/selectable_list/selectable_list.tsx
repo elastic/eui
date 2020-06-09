@@ -30,9 +30,13 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import {
   FixedSizeList,
   ListProps,
-  ListChildComponentProps,
+  ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
 } from 'react-window';
+
+interface ListChildComponentProps extends ReactWindowListChildComponentProps {
+  data: EuiSelectableOption[];
+}
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
 export type EuiSelectableOptionsListProps = CommonProps &
@@ -211,6 +215,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       );
     }
 
+    const labelCount = data.filter(option => option.isGroupLabel).length;
+
     return (
       <EuiSelectableListItem
         id={this.props.makeOptionId(index)}
@@ -225,6 +231,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         disabled={disabled}
         prepend={prepend}
         append={append}
+        aria-posinset={index + 1 - labelCount}
+        aria-setsize={data.length - labelCount}
         {...optionRest as EuiSelectableListItemProps}>
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
