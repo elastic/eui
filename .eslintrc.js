@@ -111,6 +111,13 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/ban-ts-comment': [
+      'error',
+      {
+        'ts-ignore': 'allow-with-description',
+        'ts-expect-error': 'allow-with-description',
+      },
+    ],
   },
   env: {
     jest: true,
