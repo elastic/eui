@@ -38,10 +38,19 @@ export const BREAKPOINTS: EuiBreakpoints = {
 
 export const BREAKPOINT_KEYS = keysOf(BREAKPOINTS);
 
+/**
+ * Given the current `width` and an object of `EuiBreakpoints`,
+ * this function returns the string that is the name of the breakpoint key
+ * that is less than or equal to the width
+ *
+ * @param {number} width Can either be the full window width or any width
+ * @param {EuiBreakpoints} breakpoints An object with keys for sizing and values for minimu width
+ * @returns {string | undefined} Name of the breakpoint key or `undefined` if a key doesn't exist
+ */
 export function getBreakpoint(
-  windowWidth: number,
+  width: number,
   breakpoints: EuiBreakpoints = BREAKPOINTS
-) {
+): string | undefined {
   // Find the breakpoint (key) whose value is <= windowWidth starting with largest first
-  return BREAKPOINT_KEYS.find(key => breakpoints[key] <= windowWidth);
+  return keysOf(BREAKPOINTS).find(key => breakpoints[key] <= width);
 }

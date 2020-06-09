@@ -3,6 +3,7 @@
 - Added `useEuiTextDiff` react hook utility ([#3288](https://github.com/elastic/eui/pull/3288))
 - Converted `EuiOverlayMask` to be a React functional component ([#3555](https://github.com/elastic/eui/pull/3555))
 - Changed `responsive` and `max` behavior of `EuiBreadcrumbs` to always display collapsed items in popover [#3578](https://github.com/elastic/eui/pull/3578))
+- Added `BREAKPOINTS` and `getBreakpoint` utilities [#3578](https://github.com/elastic/eui/pull/3578))
 
 **Bug fixes**
 

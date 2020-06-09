@@ -34,7 +34,7 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
-import { getBreakpoint, EuiBreakpointSize } from '../../services/responsive';
+import { getBreakpoint, EuiBreakpointSize } from '../../services/breakpoint';
 
 export type EuiBreadcrumbResponsiveMaxCount = {
   /**
