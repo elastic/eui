@@ -18,7 +18,6 @@ export default () => {
         value={value}
         onChange={e => onChange(e)}
         aria-label="Use aria labels when no actual label is in use"
-        step={3}
       />
     </DisplayToggles>
   );
