@@ -62,6 +62,7 @@ module.exports = {
     ],
     'no-use-before-define': 'off',
     quotes: ['warn', 'single', 'avoid-escape'],
+    camelcase: 'off',
     'jsx-a11y/accessible-emoji': 'error',
     'jsx-a11y/alt-text': 'error',
     'jsx-a11y/anchor-has-content': 'error',
@@ -92,6 +93,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
 
     '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
+    '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/indent': 'off',
