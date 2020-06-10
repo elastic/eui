@@ -35,4 +35,11 @@ describe('EuiForm', () => {
 
     expect(component).toMatchSnapshot();
   });
+  test('checks if invalidCallout works', () => {
+    const component = render(
+      <EuiForm {...requiredProps} invalidCallout="none" />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
