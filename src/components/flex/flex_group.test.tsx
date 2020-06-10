@@ -113,8 +113,7 @@ describe('EuiFlexGroup', () => {
         test(`${value} is not rendered`, () => {
           expect(() =>
             render(
-              // intentionally passing an invalid value
-              // @ts-ignore TODO: Needs Description
+              // @ts-ignore intentionally passing an invalid value
               <EuiFlexGroup component={value} />
             )
           ).toThrow();
