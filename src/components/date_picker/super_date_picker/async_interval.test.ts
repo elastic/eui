@@ -39,7 +39,7 @@ describe('AsyncInterval', () => {
     const iterations = [...Array(Math.floor(milliseconds / 100)).keys()];
     const remainder = milliseconds % 100;
     /* eslint-disable @typescript-eslint/no-unused-vars */
-    // @ts-ignore
+    // @ts-ignore TODO: Needs Description
     for (const item of iterations) {
       /* eslint-enable @typescript-eslint/no-unused-vars */
       await instance.__pendingFn;

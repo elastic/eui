@@ -18,7 +18,7 @@
  */
 
 import React, { Fragment, FunctionComponent, useMemo } from 'react';
-// @ts-ignore
+// @ts-ignore TODO: Needs Description
 import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridControlColumn,

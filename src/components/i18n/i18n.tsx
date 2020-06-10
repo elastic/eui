@@ -46,7 +46,7 @@ function lookupToken<
     if (values === undefined) {
       return errorOnMissingValues(token);
     } else {
-      // @ts-ignore
+      // @ts-ignore TODO: Needs Description
       // TypeScript complains that `DEFAULT` doesn't have a call signature
       // but we verified `renderable` is a function
       return renderable(values);

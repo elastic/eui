@@ -107,7 +107,7 @@ export const EuiFlexGrid: FunctionComponent<
   );
 
   return (
-    // @ts-ignore
+    // @ts-ignore TODO: Needs Description
     <Component className={classes} {...rest}>
       {children}
     </Component>

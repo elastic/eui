@@ -51,7 +51,7 @@ function getElementText(element: HTMLElement) {
   return 'innerText' in element
     ? element.innerText
     : // TS thinks element.innerText always exists, however it doesn't in jest/jsdom enviornment
-      // @ts-ignore
+      // @ts-ignore TODO: Needs Description
       element.textContent || undefined;
 }
 

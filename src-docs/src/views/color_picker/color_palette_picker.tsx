@@ -11,7 +11,7 @@ import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
 } from '../../../../src/components/color_picker/color_palette_picker';
-// @ts-ignore
+// @ts-ignore TODO: Needs Description
 import { DisplayToggles } from '../form_controls/display_toggles';
 
 const palettes: EuiColorPalettePickerPaletteProps[] = [

@@ -8,7 +8,7 @@ import {
 import { EuiSwitch } from '../../../../src/components/form';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiAvatar } from '../../../../src/components/avatar';
-// @ts-ignore
+// @ts-ignore TODO: Needs Description
 import HeaderUpdates from './header_updates';
 
 export default () => {

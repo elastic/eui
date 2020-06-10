@@ -31,7 +31,7 @@ import {
   appendIconComponentCache,
 } from './icon';
 import { PropsOf } from '../common';
-// @ts-ignore
+// @ts-ignore TODO: Needs Description
 import { icon as EuiIconVideoPlayer } from './assets/videoPlayer.js';
 
 jest.mock('./icon', () => {

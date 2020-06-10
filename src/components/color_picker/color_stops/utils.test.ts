@@ -43,14 +43,14 @@ describe('isInvalid', () => {
   test('Should mark colorStops missing stop as invalid', () => {
     const colorStops = [{ stop: null, color: '#FF0000' }];
     // Intentionally wrong
-    // @ts-ignore
+    // @ts-ignore TODO: Needs Description
     expect(isInvalid(colorStops)).toBe(true);
   });
 
   test('Should mark colorStops with invalid stop as invalid', () => {
     const colorStops = [{ stop: 'I am not a number', color: '#FF0000' }];
     // Intentionally wrong
-    // @ts-ignore
+    // @ts-ignore TODO: Needs Description
     expect(isInvalid(colorStops)).toBe(true);
   });
 });

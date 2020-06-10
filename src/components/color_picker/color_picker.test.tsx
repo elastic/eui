@@ -25,7 +25,7 @@ import { VISUALIZATION_COLORS, keys } from '../../services';
 import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
-  // @ts-ignore
+  // @ts-ignore TODO: Needs Description
   EuiPortal: ({ children }) => children,
 }));
 

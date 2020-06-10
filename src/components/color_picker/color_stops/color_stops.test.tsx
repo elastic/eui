@@ -30,7 +30,7 @@ import {
 import { requiredProps, findTestSubject } from '../../../test';
 
 jest.mock('../../portal', () => ({
-  // @ts-ignore
+  // @ts-ignore TODO: Needs Description
   EuiPortal: ({ children }) => children,
 }));
 

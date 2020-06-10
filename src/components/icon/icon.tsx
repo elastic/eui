@@ -27,7 +27,7 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-// @ts-ignore
+// @ts-ignore TODO: Needs Description
 // not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
