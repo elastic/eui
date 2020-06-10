@@ -27,7 +27,7 @@ import {
   EuiHeaderSection,
 } from './header_section';
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
-import { Breadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
+import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
 
 type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 type EuiHeaderSectionBorderType = EuiHeaderSectionItemProps['border'];
@@ -43,9 +43,9 @@ export interface EuiHeaderSections {
   borders?: EuiHeaderSectionBorderType;
   /**
    * Breadcrumbs in the header cannot be wrapped in a #EuiHeaderSection in order for truncation to work.
-   * Simply pass the array of Breadcrumb objects
+   * Simply pass the array of EuiBreadcrumb objects
    */
-  breadcrumbs?: Breadcrumb[];
+  breadcrumbs?: EuiBreadcrumb[];
   /**
    * Other props to pass to #EuiHeaderBreadcrumbs
    */

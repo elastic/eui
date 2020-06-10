@@ -416,7 +416,13 @@ export class EuiControlBar extends Component<
         }
         case 'breadcrumbs': {
           const { controlType, id, ...rest } = control;
-          return <EuiBreadcrumbs key={control.id} {...rest} />;
+          return (
+            <EuiBreadcrumbs
+              className="euiControlBar__breadcrumbs"
+              key={control.id}
+              {...rest}
+            />
+          );
         }
       }
     };
