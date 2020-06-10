@@ -318,7 +318,9 @@ export class GuideSection extends Component {
       if (defaultValue) {
         defaultValueMarkup = [
           <EuiCode key={`defaultValue-${propName}`}>
-            <span className="eui-textBreakNormal">{defaultValue.value}</span>
+            <span className="eui-textBreakNormal">
+              {defaultValue.value.toString()}
+            </span>
           </EuiCode>,
         ];
         if (defaultValue.comment) {
