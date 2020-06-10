@@ -195,6 +195,8 @@ import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
 
+import { TextDiffExample } from './views/text_diff/text_diff_example';
+
 import { TextExample } from './views/text/text_example';
 
 import { TitleExample } from './views/title/title_example';
@@ -383,6 +385,7 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
+
       TextExample,
       TitleExample,
       ToastExample,
@@ -444,6 +447,7 @@ const navigation = [
       PrettyDurationExample,
       ResizeObserverExample,
       ResponsiveExample,
+      TextDiffExample,
       ToggleExample,
       WindowEventExample,
     ].map(example => createExample(example)),

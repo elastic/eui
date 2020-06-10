@@ -1,5 +1,10 @@
 import { MutationObserver, MutationNotifier } from '../polyfills/mutation_observer';
 
+// used by data_grid.tsx to return a column size for the jest environment
+// long term, we need to find an in-browser test environment for these
+// e.g. cypress
+global._isJest = true;
+
 // polyfill window.MutationObserver and intersect jsdom's relevant methods
 // from https://github.com/aurelia/pal-nodejs
 // https://github.com/aurelia/pal-nodejs/blob/56396ff7c7693669dbafc8e9e49ee6bc29472f12/src/nodejs-pal-builder.ts#L63

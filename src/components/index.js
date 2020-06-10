@@ -322,6 +322,8 @@ export { EuiTab, EuiTabs, EuiTabbedContent } from './tabs';
 
 export { EuiText, EuiTextColor, EuiTextAlign } from './text';
 
+export { useEuiTextDiff } from './text_diff';
+
 export { EuiTitle } from './title';
 
 export { EuiGlobalToastList, EuiGlobalToastListItem, EuiToast } from './toast';
