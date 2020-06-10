@@ -39,7 +39,7 @@ export type EuiFormProps = CommonProps &
      */
     component?: 'form' | 'div';
     error?: ReactNode | ReactNode[];
-        /*
+    /*
      * Where or if to display the callout with the list of errors
      */
     invalidCallout?: 'above' | 'none';
