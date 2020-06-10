@@ -7,8 +7,7 @@ export default () => {
   const [value, setValue] = useState('');
 
   const onChange = e => {
-    const sanitizedValue = parseInt(e.target.value, 10);
-    setValue(isNaN(sanitizedValue) ? '' : sanitizedValue);
+    setValue(e.target.value);
   };
 
   return (
@@ -19,6 +18,7 @@ export default () => {
         value={value}
         onChange={e => onChange(e)}
         aria-label="Use aria labels when no actual label is in use"
+        step={3}
       />
     </DisplayToggles>
   );
