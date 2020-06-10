@@ -11,10 +11,12 @@
 - Added `display` prop to `EuiDataGridColumnSortingDraggable` to pass` displayAsText` prop correctly to the column sorting popover.([#3574](https://github.com/elastic/eui/pull/3574))
 - Fixed `EuiCodeBlockImpl` testenv mock pass-through of `data-test-subj` attribute ([#3560](https://github.com/elastic/eui/pull/3560))
 - Fixed DOM element creation issues in `EuiOverlayMask` by using lifecycle methods ([#3555](https://github.com/elastic/eui/pull/3555))
+- Fixed `EuiComboBox`'s options list `zIndex` positioning when nested in other `zIndex` contexts ([#3551](https://github.com/elastic/eui/pull/3551))
 
 **Breaking changes**
 
 - Changed `breadcrumb` TS type exported name from `Breadcrumb` to `EuiBreadcrumb` ([#3578](https://github.com/elastic/eui/pull/3578))
+- Removed `$euiZComboBox` SCSS variable (value was 8001) ([#3551](https://github.com/elastic/eui/pull/3551))
 
 **Theme: Amsterdam**
 
