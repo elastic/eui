@@ -30,8 +30,7 @@ import {
 import { requiredProps, findTestSubject } from '../../../test';
 
 jest.mock('../../portal', () => ({
-  // @ts-ignore TODO: Needs Description
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: any }) => children,
 }));
 
 const onChange = jest.fn();

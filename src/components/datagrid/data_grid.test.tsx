@@ -106,7 +106,7 @@ function openColumnSorterSelection(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore TODO: Needs Description
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -131,7 +131,7 @@ function closeColumnSorterSelection(datagrid: ReactWrapper) {
       .find('div[className="euiPopover__anchor"]')
       .find('[onClick]')
       .first();
-    // @ts-ignore TODO: Needs Description
+    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
     act(() => popoverButton.props().onClick());
 
     datagrid.update();
@@ -162,7 +162,7 @@ function getColumnSortDirection(
       `[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
     );
     expect(selectColumnButton.length).toBe(1);
-    // @ts-ignore TODO: Needs Description
+    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
     act(() => selectColumnButton.props().onClick());
 
     // close column selection popover
@@ -200,7 +200,7 @@ function openColumnSorter(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore TODO: Needs Description
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -223,7 +223,7 @@ function closeColumnSorter(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore TODO: Needs Description
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -251,12 +251,8 @@ function sortByColumn(
   // if this column isn't being sorted, enable it
   if (currentSortDirection === 'off') {
     act(() => {
-      // @ts-ignore TODO: Needs Description
-      columnSorter
-        .find('EuiSwitch')
-        .props()
-        // @ts-ignore TODO: Needs Description
-        .onChange();
+      // @ts-ignore does not require an argument in this usage
+      columnSorter.find('EuiSwitch').props().onChange!();
     });
 
     datagrid.update();
@@ -332,7 +328,7 @@ function openColumnSelector(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore TODO: Needs Description
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -355,7 +351,7 @@ function closeColumnSelector(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore TODO: Needs Description
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -401,7 +397,7 @@ function moveColumnToIndex(
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore TODO: Needs Description
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -436,7 +432,7 @@ function moveColumnToIndex(
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore TODO: Needs Description
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
