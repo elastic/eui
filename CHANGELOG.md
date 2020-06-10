@@ -30,6 +30,7 @@
 - Fixed `EuiKeyPadMenu` and `EuiKeyPadMenuItem` aria roles ([#3502](https://github.com/elastic/eui/pull/3502))
 - Fixed `EuiFieldSearch` input clear button doesn't show when external input is passed([#3497](https://github.com/elastic/eui/pull/3497))
 - Fixed `EuiBasicTable` footers to always use a unique `key` ([#3559](https://github.com/elastic/eui/pull/3559))
+- Fixed `EuiInMemoryTable` by changing the `getDerivedStateFromProps` to not block the updates as soon as it hits a true if condition ([#3579](https://github.com/elastic/eui/pull/3579))
 
 **Breaking changes**
 
