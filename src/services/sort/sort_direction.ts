@@ -19,8 +19,8 @@
 
 import PropTypes from 'prop-types';
 
-const ASC = 'asc';
-const DESC = 'desc';
+const ASC = 'asc' as const;
+const DESC = 'desc' as const;
 
 export type Direction = typeof ASC | typeof DESC;
 
