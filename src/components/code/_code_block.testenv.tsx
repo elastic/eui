@@ -18,8 +18,12 @@
  */
 
 import React from 'react';
-export const EuiCodeBlockImpl = ({ children, inline }: any) => {
-  const snippet = <code>{children}</code>;
+export const EuiCodeBlockImpl = ({
+  children,
+  inline,
+  'data-test-subj': dataTestSubj,
+}: any) => {
+  const snippet = <code data-test-subj={dataTestSubj}>{children}</code>;
   return inline ? (
     <span>{snippet}</span>
   ) : (

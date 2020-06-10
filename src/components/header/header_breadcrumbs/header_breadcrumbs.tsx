@@ -20,17 +20,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import {
-  Breadcrumb,
-  EuiBreadcrumbs,
-  EuiBreadcrumbsProps,
-} from '../../breadcrumbs';
+import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 
-type Props = EuiBreadcrumbsProps & {
-  breadcrumbs: Breadcrumb[];
-};
-
-export const EuiHeaderBreadcrumbs: FunctionComponent<Props> = ({
+export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   className,
   breadcrumbs,
   ...rest

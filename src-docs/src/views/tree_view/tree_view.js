@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiIcon, EuiTreeView, EuiToken } from '../../../../src/components';
 
-export const TreeView = () => {
+export default () => {
   const showAlert = () => {
     alert('You squashed a bug!');
   };
