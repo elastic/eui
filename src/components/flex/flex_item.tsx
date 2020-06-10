@@ -67,7 +67,7 @@ export const EuiFlexItem: FunctionComponent<
   );
 
   return (
-    // @ts-ignore TODO: Needs Description
+    // @ts-ignore difficult to verify `rest` applies to `Component`
     <Component className={classes} {...rest}>
       {children}
     </Component>
