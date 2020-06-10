@@ -35,7 +35,7 @@ describe('EuiForm', () => {
 
     expect(component).toMatchSnapshot();
   });
-  test('checks if invalidCallout works', () => {
+  test('renders without error callout when invalidCallout is "none"', () => {
     const component = render(
       <EuiForm {...requiredProps} isInvalid invalidCallout="none" />
     );
