@@ -62,6 +62,7 @@ const getProp = (prop, propName) => {
       break;
 
     case 'node':
+    case 'element':
       newProp.type = PropTypes.ReactNode;
       newProp.placeholder = propName;
       if (prop.description) newProp.description = prop.description;
