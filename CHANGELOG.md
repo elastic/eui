@@ -8,7 +8,7 @@
 - Moved all `EuiHeader` SASS variables to `global_styles` ([#3592](https://github.com/elastic/eui/pull/3592))
 
 **Bug fixes**
-- Set `border-radius` to `0` for buttons inside `EuiFilterGroup`
+
 - Added `display` prop to `EuiDataGridColumnSortingDraggable` to pass` displayAsText` prop correctly to the column sorting popover.([#3574](https://github.com/elastic/eui/pull/3574))
 - Fixed `EuiCodeBlockImpl` testenv mock pass-through of `data-test-subj` attribute ([#3560](https://github.com/elastic/eui/pull/3560))
 - Fixed DOM element creation issues in `EuiOverlayMask` by using lifecycle methods ([#3555](https://github.com/elastic/eui/pull/3555))
@@ -25,6 +25,7 @@
 
 - Updated `EuiCallout` by removing left border, adding border radius and increasing font weight on titles ([#3557](https://github.com/elastic/eui/pull/3557/))
 - Updated `EuiHeaderBreadcrumbs` style to be more prominent ([#3578](https://github.com/elastic/eui/pull/3578/))
+- Fixed `EuiFilterGroup` `border-radius` ([#3591](https://github.com/elastic/eui/pull/3591/))
 
 ## [`25.0.0`](https://github.com/elastic/eui/tree/v25.0.0)
 
