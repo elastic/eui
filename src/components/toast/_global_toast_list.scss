@@ -12,7 +12,6 @@
   position: fixed;
   z-index: $euiZToastList;
   bottom: 0;
-  right: 0;
   width: $euiToastWidth + $euiSize + $euiSizeXL; /* 3 */
   padding-right: $euiSize;
   padding-left: $euiSizeXL;
@@ -21,6 +20,14 @@
   &:hover {
     overflow-y: auto; /* 2 */
   }
+}
+
+.euiGlobalToastList-right {
+  right: 0;
+}
+
+.euiGlobalToastList-left {
+  left: 0;
 }
 
 .euiGlobalToastListItem {

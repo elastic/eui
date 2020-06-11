@@ -4,7 +4,7 @@ exports[`EuiGlobalToastList is rendered 1`] = `
 <div
   aria-label="aria-label"
   aria-live="polite"
-  class="euiGlobalToastList testClass1 testClass2"
+  class="euiGlobalToastList testClass1 testClass2 euiGlobalToastList-right"
   data-test-subj="test subject string"
   role="region"
 />
@@ -13,7 +13,7 @@ exports[`EuiGlobalToastList is rendered 1`] = `
 exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 <div
   aria-live="polite"
-  class="euiGlobalToastList"
+  class="euiGlobalToastList euiGlobalToastList-right"
   role="region"
 >
   <div

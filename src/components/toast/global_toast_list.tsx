@@ -37,6 +37,7 @@ export interface EuiGlobalToastListProps extends CommonProps {
   toasts: Toast[];
   dismissToast: (this: EuiGlobalToastList, toast: Toast) => void;
   toastLifeTimeMs: number;
+  side?: 'right' | 'left';
 }
 
 interface State {
@@ -69,6 +70,7 @@ export class EuiGlobalToastList extends Component<
 
   static defaultProps = {
     toasts: [],
+    side: 'right',
   };
 
   startScrollingToBottom() {
@@ -247,6 +249,7 @@ export class EuiGlobalToastList extends Component<
       toasts,
       dismissToast,
       toastLifeTimeMs,
+      side,
       ...rest
     } = this.props;
 
@@ -267,8 +270,13 @@ export class EuiGlobalToastList extends Component<
         </EuiGlobalToastListItem>
       );
     });
-
-    const classes = classNames('euiGlobalToastList', className);
+    const additionalClass =
+      side === 'left' ? 'euiGlobalToastList-left' : 'euiGlobalToastList-right';
+    const classes = classNames(
+      'euiGlobalToastList',
+      className,
+      additionalClass
+    );
 
     return (
       <div
