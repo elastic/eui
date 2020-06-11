@@ -162,6 +162,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                 default="Select sorting method for field: ">
                 {(toggleLegend: ReactChild) => (
                   <EuiButtonGroup
+                    type="single"
                     legend={`${toggleLegend} ${id}`}
                     options={toggleOptions}
                     data-test-subj={`-${direction}`}

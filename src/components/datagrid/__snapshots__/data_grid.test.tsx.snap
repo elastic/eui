@@ -371,7 +371,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -427,7 +427,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -489,7 +489,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -545,7 +545,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -607,7 +607,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -663,7 +663,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -985,7 +985,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1041,7 +1041,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1201,7 +1201,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1257,7 +1257,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1417,7 +1417,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1473,7 +1473,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1764,7 +1764,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1820,7 +1820,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1882,7 +1882,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -1938,7 +1938,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2000,7 +2000,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2056,7 +2056,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2296,7 +2296,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2352,7 +2352,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2414,7 +2414,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2470,7 +2470,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2532,7 +2532,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"
@@ -2588,7 +2588,7 @@ Array [
                           class="euiDataGridRowCell__expandButton"
                         >
                           <button
-                            aria-hidden="true"
+                            aria-label="Click or hit enter to interact with cell content"
                             class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                             title="Click or hit enter to interact with cell content"
                             type="button"

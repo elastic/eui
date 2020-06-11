@@ -1,6 +1,13 @@
 import React, { FunctionComponent } from 'react';
-import { EuiButtonGroupOptionProps } from '../../../../src/components/button/button_group';
+import {
+  EuiButtonSingleGroupOptionProps,
+  EuiButtonMultiGroupOptionProps,
+} from '../../../../src/components/button/button_group';
 
-export const EuiButtonGroupOption: FunctionComponent<
-  EuiButtonGroupOptionProps
+export const EuiButtonSingleGroupOption: FunctionComponent<
+  EuiButtonSingleGroupOptionProps
+> = () => <div />;
+
+export const EuiButtonMultiGroupOption: FunctionComponent<
+  EuiButtonMultiGroupOptionProps
 > = () => <div />;

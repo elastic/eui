@@ -113,8 +113,8 @@ export const useStyleSelector = (
           labelCompact,
         ]: string[]) => (
           <EuiButtonGroup
+            type="single"
             legend={buttonLegend}
-            name="density"
             className="eui-displayInlineBlock"
             buttonSize="compressed"
             options={[

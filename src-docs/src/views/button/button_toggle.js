@@ -9,7 +9,7 @@ import {
 
 export default () => {
   const [toggle0On, setToggle0On] = useState(false);
-  const [toggle1On, setToggle1On] = useState(false);
+  const [toggle1On, setToggle1On] = useState(true);
   const [toggle2On, setToggle2On] = useState(true);
   const [toggle3On, setToggle3On] = useState(false);
 
@@ -18,7 +18,7 @@ export default () => {
       <EuiTitle size="xxs">
         <h3>Changing content</h3>
       </EuiTitle>
-      &emsp;
+      <EuiSpacer size="s" />
       <EuiButton
         fill={toggle0On}
         onClick={() => {

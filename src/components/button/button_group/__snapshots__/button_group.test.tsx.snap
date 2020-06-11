@@ -27,7 +27,9 @@ exports[`EuiButtonGroup props buttonSize compressed is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text euiButtonGroup--compressed"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text euiButtonGroup--compressed testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -100,7 +102,9 @@ exports[`EuiButtonGroup props buttonSize m is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
@@ -173,7 +177,9 @@ exports[`EuiButtonGroup props buttonSize s is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -246,7 +252,9 @@ exports[`EuiButtonGroup props color danger is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--danger"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--danger testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -319,7 +327,9 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--ghost"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--ghost testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -392,7 +402,9 @@ exports[`EuiButtonGroup props color primary is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--primary"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--primary testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -465,7 +477,9 @@ exports[`EuiButtonGroup props color secondary is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--secondary"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--secondary testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -538,7 +552,9 @@ exports[`EuiButtonGroup props color text is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -611,7 +627,9 @@ exports[`EuiButtonGroup props color warning is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--warning"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--warning testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -684,10 +702,12 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--fill euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--selected"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--fill euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         checked=""
@@ -758,7 +778,9 @@ exports[`EuiButtonGroup props isDisabled is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text euiButtonGroup--disabled"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text euiButtonGroup--disabled testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--disabled euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -834,7 +856,9 @@ exports[`EuiButtonGroup props isFullWidth is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text euiButtonGroup--fullWidth"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text euiButtonGroup--fullWidth testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -907,7 +931,9 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__toggle--iconOnly euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--iconOnly"
@@ -961,155 +987,6 @@ exports[`EuiButtonGroup props isIconOnly is rendered 1`] = `
       >
         <span
           class="euiScreenReaderOnly"
-        >
-          Option three
-        </span>
-      </label>
-    </div>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props legend is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    class="euiButtonGroup euiButtonGroup--text"
-  >
-    <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
-    >
-      <input
-        class="euiButtonGroup__input"
-        id="button00"
-        type="radio"
-      />
-      <label
-        class="euiButton__content euiButtonGroup__label"
-        for="button00"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Option one
-        </span>
-      </label>
-    </div>
-    <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
-    >
-      <input
-        class="euiButtonGroup__input"
-        id="button01"
-        type="radio"
-      />
-      <label
-        class="euiButton__content euiButtonGroup__label"
-        for="button01"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Option two
-        </span>
-      </label>
-    </div>
-    <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
-    >
-      <input
-        class="euiButtonGroup__input"
-        id="button02"
-        type="radio"
-      />
-      <label
-        class="euiButton__content euiButtonGroup__label"
-        for="button02"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Option three
-        </span>
-      </label>
-    </div>
-  </div>
-</fieldset>
-`;
-
-exports[`EuiButtonGroup props name is rendered 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    class="euiButtonGroup euiButtonGroup--text"
-  >
-    <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
-    >
-      <input
-        class="euiButtonGroup__input"
-        id="button00"
-        name="name"
-        type="radio"
-      />
-      <label
-        class="euiButton__content euiButtonGroup__label"
-        for="button00"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Option one
-        </span>
-      </label>
-    </div>
-    <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
-    >
-      <input
-        class="euiButtonGroup__input"
-        id="button01"
-        name="name"
-        type="radio"
-      />
-      <label
-        class="euiButton__content euiButtonGroup__label"
-        for="button01"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Option two
-        </span>
-      </label>
-    </div>
-    <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
-    >
-      <input
-        class="euiButtonGroup__input"
-        id="button02"
-        name="name"
-        type="radio"
-      />
-      <label
-        class="euiButton__content euiButtonGroup__label"
-        for="button02"
-      >
-        <span
-          class="euiButton__text"
         >
           Option three
         </span>
@@ -1129,7 +1006,9 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
       class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
@@ -1192,42 +1071,6 @@ exports[`EuiButtonGroup props options are rendered 1`] = `
 </fieldset>
 `;
 
-exports[`EuiButtonGroup props options can pass down data-test-subj 1`] = `
-<fieldset
-  class="euiButtonGroup__fieldset"
->
-  <legend
-    class="euiScreenReaderOnly"
-  >
-    test
-  </legend>
-  <div
-    class="euiButtonGroup euiButtonGroup--text"
-  >
-    <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
-    >
-      <input
-        class="euiButtonGroup__input"
-        data-test-subj="test"
-        id="button00"
-        type="radio"
-      />
-      <label
-        class="euiButton__content euiButtonGroup__label"
-        for="button00"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Option one
-        </span>
-      </label>
-    </div>
-  </div>
-</fieldset>
-`;
-
 exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
 <fieldset
   class="euiButtonGroup__fieldset"
@@ -1238,11 +1081,13 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <button
       aria-pressed="true"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--selected euiButton--fill"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__button--selected euiButtonGroup__button euiButton--no-hover euiButton--fill"
       id="button00"
       type="button"
     >
@@ -1258,7 +1103,7 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
     </button>
     <button
       aria-pressed="true"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover euiButtonGroup__button--selected euiButton--fill"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__button--selected euiButtonGroup__button euiButton--no-hover euiButton--fill"
       id="button01"
       type="button"
     >
@@ -1302,7 +1147,9 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
     test
   </legend>
   <div
-    class="euiButtonGroup euiButtonGroup--text"
+    aria-label="aria-label"
+    class="euiButtonGroup euiButtonGroup--text testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <button
       aria-pressed="false"

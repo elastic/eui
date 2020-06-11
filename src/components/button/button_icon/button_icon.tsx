@@ -32,6 +32,7 @@ import {
   PropsForAnchor,
   PropsForButton,
   keysOf,
+  OneOf,
 } from '../../common';
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
@@ -48,21 +49,21 @@ export type EuiButtonIconColor =
   | 'text'
   | 'warning';
 
-type HideOrLabel = ExclusiveUnion<
-  { 'aria-hidden': true },
-  ExclusiveUnion<{ 'aria-label': string }, { 'aria-labelledby': string }>
->;
-
-export type EuiButtonIconProps = {
+type ButtonIconProps = {
   iconType?: IconType;
   color?: EuiButtonIconColor;
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
   isDisabled?: boolean;
   size?: ButtonSize;
   iconSize?: IconSize;
-} & CommonProps &
-  HideOrLabel;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-hidden'?: never;
+} & CommonProps;
+
+export type EuiButtonIconProps = OneOf<
+  ButtonIconProps,
+  'aria-label' | 'aria-labelledby'
+>;
 
 type EuiButtonIconPropsForAnchor = PropsForAnchor<
   EuiButtonIconProps,
