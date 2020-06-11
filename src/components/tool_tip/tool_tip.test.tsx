@@ -51,7 +51,7 @@ describe('EuiToolTip', () => {
 
     const trigger = findTestSubject(component, 'trigger');
     trigger.simulate('focus');
-    await sleep(10); // enquqeStateChange needs a tick
+    await sleep(260); // wait for showToolTip setTimout
     expect(takeMountedSnapshot(component)).toMatchSnapshot();
   });
 });

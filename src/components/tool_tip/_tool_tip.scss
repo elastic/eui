@@ -7,11 +7,7 @@
   @include euiToolTipAnimation('top');
   position: absolute;
   opacity: 0;
-
-  // Animation delays
-  &.euiToolTip--delayLong {
-    animation-delay: $euiAnimSpeedNormal * 5;
-  }
+  animation-delay: 0ms;
 
   // Custom sizing
   $arrowSize: $euiSizeM;
