@@ -199,14 +199,14 @@ export const HeaderExample = {
             afford for the header height. EUI supplies a helper mixin that also
             accounts for this height in flyouts and the collapsible nav. Simply
             add{' '}
-            <EuiCode language="sass">@mixin euiHeaderAffordForFixed;</EuiCode>{' '}
+            <EuiCode language="scss">@include euiHeaderAffordForFixed;</EuiCode>{' '}
             anywhere in your SASS.
           </p>
         </>
       ),
       snippet: [
         '<EuiHeader position="fixed" />',
-        '@mixin euiHeaderAffordForFixed;',
+        '@include euiHeaderAffordForFixed;',
       ],
       demo: <HeaderPosition />,
     },
@@ -320,8 +320,8 @@ export const HeaderExample = {
         </p>
       ),
       snippet: [
-        `<EuiHeader theme="dark" />
-<EuiHeader />`,
+        `<EuiHeader theme="dark" position="fixed" />
+<EuiHeader position="fixed" />`,
         '@include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);',
       ],
       demo: <HeaderStacked />,

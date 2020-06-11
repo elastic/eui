@@ -1,3 +1,5 @@
+@import '../variables/header';
+
 @mixin euiHeaderAffordForFixed($headerHeight: $euiHeaderHeightCompensation) {
   // The `&` allows for grouping inside another specific body class.
   // When not applied inside of another selector, it simply renders with the single class
