@@ -32,6 +32,7 @@ import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { enqueueStateChange } from '../../services/react';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -184,7 +185,7 @@ export class EuiToolTip extends Component<Props, State> {
   };
 
   showToolTip = () => {
-    this.setState({ visible: true });
+    enqueueStateChange(() => this.setState({ visible: true }));
   };
 
   positionToolTip = () => {
@@ -233,7 +234,7 @@ export class EuiToolTip extends Component<Props, State> {
 
   hideToolTip = () => {
     if (this._isMounted) {
-      this.setState({ visible: false });
+      enqueueStateChange(() => this.setState({ visible: false }));
     }
   };
 
