@@ -6,6 +6,7 @@
 - Added `BREAKPOINTS` and `getBreakpoint` utilities [#3578](https://github.com/elastic/eui/pull/3578))
 - Added `'any'` option to the `step` prop of the `EuiFieldNumber` ([#3562](https://github.com/elastic/eui/pull/3562))
 - Moved all `EuiHeader` SASS variables to `global_styles` ([#3592](https://github.com/elastic/eui/pull/3592))
+- Default `titleSize` get's implicitly set to 'm' for `EuiEmptyPrompt` ([#3598](https://github.com/elastic/eui/pull/3598))
 
 **Bug fixes**
 
