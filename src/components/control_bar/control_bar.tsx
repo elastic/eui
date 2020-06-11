@@ -22,6 +22,7 @@ import React, {
   ButtonHTMLAttributes,
   Component,
   HTMLAttributes,
+  MouseEventHandler,
   Ref,
 } from 'react';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -119,6 +120,7 @@ export interface IconControlProps {
   controlType: 'icon';
   id: string;
   iconType: string;
+  onClick?: MouseEventHandler;
 }
 
 /**
