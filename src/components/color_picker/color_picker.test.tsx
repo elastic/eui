@@ -25,8 +25,7 @@ import { VISUALIZATION_COLORS, keys } from '../../services';
 import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
-  // @ts-ignore
-  EuiPortal: ({ children }) => children,
+  EuiPortal: ({ children }: { children: any }) => children,
 }));
 
 const onChange = jest.fn();

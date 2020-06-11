@@ -18,8 +18,8 @@
  */
 
 declare module '@elastic/eui' {
-  // @ts-ignore
+  // @ts-ignore path only exists at build time
   export * from '@elastic/eui/src/components/common'; // eslint-disable-line import/no-unresolved
-  // @ts-ignore
+  // @ts-ignore path only exists at build time
   export * from '@elastic/eui/src/components/date_picker/react-datepicker'; // eslint-disable-line import/no-unresolved
 }
