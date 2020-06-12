@@ -10,10 +10,10 @@ exports[`EuiGlobalToastList is rendered 1`] = `
 />
 `;
 
-exports[`EuiGlobalToastList props toasts is rendered 1`] = `
+exports[`EuiGlobalToastList props side side can be changed to left 1`] = `
 <div
   aria-live="polite"
-  class="euiGlobalToastList euiGlobalToastList--right"
+  class="euiGlobalToastList euiGlobalToastList--left"
   role="region"
 >
   <div
@@ -105,10 +105,10 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiGlobalToastList props toasts is side prop consistent 1`] = `
+exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 <div
   aria-live="polite"
-  class="euiGlobalToastList euiGlobalToastList--left"
+  class="euiGlobalToastList euiGlobalToastList--right"
   role="region"
 >
   <div

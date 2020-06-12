@@ -74,7 +74,10 @@ describe('EuiGlobalToastList', () => {
 
         expect(component).toMatchSnapshot();
       });
-      test('is side prop consistent', () => {
+    });
+
+    describe('side', () => {
+      test('side can be changed to left', () => {
         const toasts: Toast[] = [
           {
             title: 'A',

@@ -6,6 +6,7 @@
 - Added `BREAKPOINTS` and `getBreakpoint` utilities [#3578](https://github.com/elastic/eui/pull/3578))
 - Added `'any'` option to the `step` prop of the `EuiFieldNumber` ([#3562](https://github.com/elastic/eui/pull/3562))
 - Moved all `EuiHeader` SASS variables to `global_styles` ([#3592](https://github.com/elastic/eui/pull/3592))
+- Added `side` prop to  `EuiGlobalToastList` to allow the user to determine the side(left or right) of the toasts ([#3600](https://github.com/elastic/eui/pull/3600))
 
 **Bug fixes**
 

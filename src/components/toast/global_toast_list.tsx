@@ -46,7 +46,9 @@ export interface EuiGlobalToastListProps extends CommonProps {
   toasts: Toast[];
   dismissToast: (this: EuiGlobalToastList, toast: Toast) => void;
   toastLifeTimeMs: number;
-  //side prop determines which side(right or left) will the toast appear
+  /**
+   * Determines which side of the browser window the toasts should appear
+   */
   side?: ToastSide;
 }
 
