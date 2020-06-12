@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ReactElement, ReactNode } from 'react';
+import React, { Component, ReactElement, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
@@ -49,7 +49,7 @@ interface EuiCopyState {
   tooltipText: ReactNode;
 }
 
-export class EuiCopy extends React.Component<EuiCopyProps, EuiCopyState> {
+export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
   static defaultProps = {
     afterMessage: 'Copied',
   };
