@@ -13,7 +13,7 @@ exports[`EuiGlobalToastList is rendered 1`] = `
 exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 <div
   aria-live="polite"
-  class="euiGlobalToastList euiGlobalToastList-right"
+  class="euiGlobalToastList euiGlobalToastList-left"
   role="region"
 >
   <div

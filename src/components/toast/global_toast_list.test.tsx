@@ -69,6 +69,7 @@ describe('EuiGlobalToastList', () => {
             toasts={toasts}
             dismissToast={() => {}}
             toastLifeTimeMs={5}
+            side="left"
           />
         );
 
