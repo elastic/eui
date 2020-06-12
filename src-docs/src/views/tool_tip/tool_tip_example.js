@@ -133,7 +133,7 @@ export const ToolTipExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiToolTip, EuiIconTip },
+      props: { EuiIconTip },
       snippet: infoTipSnippet,
       demo: <IconTip />,
     },
