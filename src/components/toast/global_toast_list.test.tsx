@@ -69,10 +69,39 @@ describe('EuiGlobalToastList', () => {
             toasts={toasts}
             dismissToast={() => {}}
             toastLifeTimeMs={5}
-            side="left"
           />
         );
 
+        expect(component).toMatchSnapshot();
+      });
+      test('is side prop consistent', () => {
+        const toasts: Toast[] = [
+          {
+            title: 'A',
+            text: 'a',
+            color: 'success',
+            iconType: 'check',
+            'data-test-subj': 'a',
+            id: 'a',
+          },
+          {
+            title: 'B',
+            text: 'b',
+            color: 'danger',
+            iconType: 'alert',
+            'data-test-subj': 'b',
+            id: 'b',
+          },
+        ];
+
+        const component = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            side="left"
+          />
+        );
         expect(component).toMatchSnapshot();
       });
     });

@@ -20,10 +20,19 @@
 import React, { Component, ReactChild } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
+
+type ToastSide = 'right' | 'left';
+
+const sideToClassNameMap: { [side in ToastSide]: string } = {
+  left: 'euiGlobalToastList--left',
+  right: 'euiGlobalToastList--right',
+};
+
+export const SIDES = keysOf(sideToClassNameMap);
 
 export const TOAST_FADE_OUT_MS = 250;
 
@@ -37,7 +46,8 @@ export interface EuiGlobalToastListProps extends CommonProps {
   toasts: Toast[];
   dismissToast: (this: EuiGlobalToastList, toast: Toast) => void;
   toastLifeTimeMs: number;
-  side?: 'right' | 'left';
+  //side prop determines which side(right or left) will the toast appear
+  side?: ToastSide;
 }
 
 interface State {
@@ -270,12 +280,10 @@ export class EuiGlobalToastList extends Component<
         </EuiGlobalToastListItem>
       );
     });
-    const additionalClass =
-      side === 'left' ? 'euiGlobalToastList-left' : 'euiGlobalToastList-right';
     const classes = classNames(
       'euiGlobalToastList',
-      className,
-      additionalClass
+      side ? sideToClassNameMap[side] : null,
+      className
     );
 
     return (
