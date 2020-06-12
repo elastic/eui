@@ -237,6 +237,7 @@ export const BadgeExample = {
           </p>
         </Fragment>
       ),
+      props: { EuiBadgeGroup },
       demo: <BadgeTruncate />,
       snippet: badgeTruncateSnippet,
     },
@@ -281,7 +282,7 @@ export const BadgeExample = {
           </p>
         </div>
       ),
-      props: { EuiBetaBadge, EuiBadgeGroup },
+      props: { EuiBetaBadge },
       snippet: betaBadgeSnippet,
       demo: <BetaBadge />,
     },
