@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import 'react-ace'; // this import can be omitted from your project, but is required for our Code Sandbox demo link to work
 import 'brace/theme/github';
 import 'brace/mode/javascript';
 import 'brace/snippets/javascript';

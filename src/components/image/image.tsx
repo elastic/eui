@@ -34,7 +34,7 @@ import { EuiI18n } from '../i18n';
 
 import { EuiFocusTrap } from '../focus_trap';
 
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import { useInnerText } from '../inner_text';
 
 type ImageSize = 's' | 'm' | 'l' | 'xl' | 'fullWidth' | 'original';
@@ -104,7 +104,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   const [isFullScreenActive, setIsFullScreenActive] = useState(false);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
       closeFullScreen();

@@ -118,30 +118,27 @@ $euiColorVis9_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9')
 $euiColorChartLines: shade($euiColorLightestShade, 3%) !default;
 $euiColorChartBand: $euiColorLightestShade !default;
 
+
 // Code
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;
-$euiCodeBlockColor: $euiTextColor !default;
+$euiCodeBlockColor: makeHighContrastColor($euiTextColor, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockSelectedBackgroundColor: inherit !default;
-$euiCodeBlockCommentColor: #998 !default;
+$euiCodeBlockCommentColor: makeHighContrastColor($euiTextSubduedColor, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockSelectorTagColor: inherit !default;
-$euiCodeBlockStringColor: #DD0A73 !default;
-$euiCodeBlockNumberColor: #00A69B !default;
-$euiCodeBlockKeywordColor: #333 !default;
+$euiCodeBlockStringColor: makeHighContrastColor($euiColorVis2, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockTagColor: makeHighContrastColor($euiColorVis1, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockNameColor: makeHighContrastColor($euiColorVis1, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockNumberColor: makeHighContrastColor($euiColorVis0, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockKeywordColor: makeHighContrastColor($euiColorVis3, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockFunctionTitleColor: inherit !default;
-$euiCodeBlockTagColor: #0079A5 !default;
-$euiCodeBlockNameColor: inherit !default;
-$euiCodeBlockTypeColor: #0079A5 !default;
+$euiCodeBlockTypeColor: makeHighContrastColor($euiColorVis1, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockAttributeColor: inherit !default;
-$euiCodeBlockSymbolColor: #990073 !default;
+$euiCodeBlockSymbolColor: makeHighContrastColor($euiColorVis9, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockParamsColor: inherit !default;
-$euiCodeBlockMetaColor: #999 !default;
-$euiCodeBlockTitleColor: #900 !default;
-$euiCodeBlockRegexpColor: #009926 !default;
-$euiCodeBlockBuiltInColor: #0086B3 !default;
-$euiCodeBlockSectionColor: #FFC66D !default;
-$euiCodeBlockAdditionBackgroundColor: #DFD !default;
-$euiCodeBlockAdditionColor: inherit !default;
-$euiCodeBlockDeletionBackgroundColor: #FDD !default;
-$euiCodeBlockDeletionColor: inherit !default;
+$euiCodeBlockMetaColor:  makeHighContrastColor($euiTextSubduedColor, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockTitleColor: makeHighContrastColor($euiColorVis7, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockSectionColor: makeHighContrastColor($euiColorVis9, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockAdditionColor: makeHighContrastColor($euiColorVis0, $euiCodeBlockBackgroundColor) !default;
+$euiCodeBlockDeletionColor: makeHighContrastColor($euiColorDanger, $euiCodeBlockBackgroundColor) !default;
 $euiCodeBlockSelectorClassColor: inherit !default;
 $euiCodeBlockSelectorIdColor: inherit !default;

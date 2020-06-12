@@ -26,7 +26,7 @@ import {
   takeMountedSnapshot,
 } from '../../test';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
-import { keyCodes } from '../../services';
+import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
 import cheerio from 'cheerio';
 
@@ -106,7 +106,7 @@ function openColumnSorterSelection(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -131,7 +131,7 @@ function closeColumnSorterSelection(datagrid: ReactWrapper) {
       .find('div[className="euiPopover__anchor"]')
       .find('[onClick]')
       .first();
-    // @ts-ignore-next-line
+    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
     act(() => popoverButton.props().onClick());
 
     datagrid.update();
@@ -162,7 +162,7 @@ function getColumnSortDirection(
       `[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
     );
     expect(selectColumnButton.length).toBe(1);
-    // @ts-ignore-next-line
+    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
     act(() => selectColumnButton.props().onClick());
 
     // close column selection popover
@@ -200,7 +200,7 @@ function openColumnSorter(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -223,7 +223,7 @@ function closeColumnSorter(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -251,12 +251,8 @@ function sortByColumn(
   // if this column isn't being sorted, enable it
   if (currentSortDirection === 'off') {
     act(() => {
-      // @ts-ignore-next-line
-      columnSorter
-        .find('EuiSwitch')
-        .props()
-        // @ts-ignore-next-line
-        .onChange();
+      // @ts-ignore does not require an argument in this usage
+      columnSorter.find('EuiSwitch').props().onChange!();
     });
 
     datagrid.update();
@@ -332,7 +328,7 @@ function openColumnSelector(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -355,7 +351,7 @@ function closeColumnSelector(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -401,7 +397,7 @@ function moveColumnToIndex(
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -418,7 +414,7 @@ function moveColumnToIndex(
   const portal = popover.find('EuiPortal');
   act(() =>
     portal.find('EuiDragDropContext').props().onDragEnd!({
-      // @ts-ignore-next-line - only `index` is used from `source`, don't need to mock rest of the event
+      // @ts-ignore - only `index` is used from `source`, don't need to mock rest of the event
       source: { index: initialColumnIndex },
       destination: { index: nextIndex },
     })
@@ -436,7 +432,7 @@ function moveColumnToIndex(
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -1867,41 +1863,41 @@ Array [
       // focus should not move when up against the left edge
       focusableCell
         .simulate('focus')
-        .simulate('keydown', { keyCode: keyCodes.LEFT });
+        .simulate('keydown', { key: keys.ARROW_LEFT });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('0, A');
 
       // focus should not move when up against the top edge
-      focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+      focusableCell.simulate('keydown', { key: keys.ARROW_UP });
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('0, A');
 
       // move down
-      focusableCell.simulate('keydown', { keyCode: keyCodes.DOWN });
+      focusableCell.simulate('keydown', { key: keys.ARROW_DOWN });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('1, A');
 
       // move right
-      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('1, B');
 
       // move up
-      focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+      focusableCell.simulate('keydown', { key: keys.ARROW_UP });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
       ).toEqual('0, B');
 
       // move left
-      focusableCell.simulate('keydown', { keyCode: keyCodes.LEFT });
+      focusableCell.simulate('keydown', { key: keys.ARROW_LEFT });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
@@ -1909,8 +1905,8 @@ Array [
 
       // move down and to the end of the row
       focusableCell
-        .simulate('keydown', { keyCode: keyCodes.DOWN })
-        .simulate('keydown', { keyCode: keyCodes.END });
+        .simulate('keydown', { key: keys.ARROW_DOWN })
+        .simulate('keydown', { key: keys.END });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
@@ -1918,8 +1914,8 @@ Array [
 
       // move up and to the beginning of the row
       focusableCell
-        .simulate('keydown', { keyCode: keyCodes.UP })
-        .simulate('keydown', { keyCode: keyCodes.HOME });
+        .simulate('keydown', { key: keys.ARROW_UP })
+        .simulate('keydown', { key: keys.HOME });
       focusableCell = getFocusableCell(component);
       expect(
         focusableCell.find('[data-test-subj="cell-content"]').text()
@@ -1928,7 +1924,7 @@ Array [
       // jump to the last cell
       focusableCell.simulate('keydown', {
         ctrlKey: true,
-        keyCode: keyCodes.END,
+        key: keys.END,
       });
       focusableCell = getFocusableCell(component);
       expect(
@@ -1938,7 +1934,7 @@ Array [
       // jump to the first cell
       focusableCell.simulate('keydown', {
         ctrlKey: true,
-        keyCode: keyCodes.HOME,
+        key: keys.HOME,
       });
       focusableCell = getFocusableCell(component);
       expect(
@@ -1948,7 +1944,7 @@ Array [
       // page should not change when moving before the first entry
       // but the last row should remain focused
       focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_UP,
+        key: keys.PAGE_UP,
       });
       focusableCell = getFocusableCell(component);
       expect(
@@ -1957,7 +1953,7 @@ Array [
 
       // advance to the next page
       focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_DOWN,
+        key: keys.PAGE_DOWN,
       });
       focusableCell = getFocusableCell(component);
       expect(
@@ -1966,9 +1962,9 @@ Array [
 
       // move over one column and advance one more page
       focusableCell
-        .simulate('keydown', { keyCode: keyCodes.RIGHT }) // 3, B
+        .simulate('keydown', { key: keys.ARROW_RIGHT }) // 3, B
         .simulate('keydown', {
-          keyCode: keyCodes.PAGE_DOWN,
+          key: keys.PAGE_DOWN,
         }); // 6, B
       focusableCell = getFocusableCell(component);
       expect(
@@ -1977,7 +1973,7 @@ Array [
 
       // does not advance beyond the last page
       focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_DOWN,
+        key: keys.PAGE_DOWN,
       });
       focusableCell = getFocusableCell(component);
       expect(
@@ -1986,9 +1982,9 @@ Array [
 
       // move left one column, return to the previous page
       focusableCell
-        .simulate('keydown', { keyCode: keyCodes.LEFT }) // 6, A
+        .simulate('keydown', { key: keys.ARROW_LEFT }) // 6, A
         .simulate('keydown', {
-          keyCode: keyCodes.PAGE_UP,
+          key: keys.PAGE_UP,
         }); // 5, A
       focusableCell = getFocusableCell(component);
       expect(
@@ -1997,7 +1993,7 @@ Array [
 
       // return to the previous (first) page
       focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_UP,
+        key: keys.PAGE_UP,
       });
       focusableCell = getFocusableCell(component);
       expect(
@@ -2008,10 +2004,10 @@ Array [
       focusableCell
         .simulate('keydown', {
           ctrlKey: true,
-          keyCode: keyCodes.END,
+          key: keys.END,
         }) // 2, C (last cell of the first page)
         .simulate('keydown', {
-          keyCode: keyCodes.PAGE_DOWN,
+          key: keys.PAGE_DOWN,
         }); // 3, C (first cell of the second page, same cell position as previous page)
       focusableCell = getFocusableCell(component);
       expect(
@@ -2020,7 +2016,7 @@ Array [
 
       // advance to the final page
       focusableCell.simulate('keydown', {
-        keyCode: keyCodes.PAGE_DOWN,
+        key: keys.PAGE_DOWN,
       }); // 6, C
       focusableCell = getFocusableCell(component);
       expect(
@@ -2115,7 +2111,7 @@ Array [
       expect(focusableCell.text()).toEqual('0, A');
       focusableCell
         .simulate('focus')
-        .simulate('keydown', { keyCode: keyCodes.DOWN });
+        .simulate('keydown', { key: keys.ARROW_DOWN });
 
       /**
        * On text only cells, the cell receives focus
@@ -2124,7 +2120,7 @@ Array [
       expect(focusableCell.text()).toEqual('1, A'); // make sure we're on the right cell
       expect(focusableCell.getDOMNode()).toBe(document.activeElement);
 
-      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
 
       /**
        * On cells with 1 interactive item, the interactive item receives focus
@@ -2135,7 +2131,7 @@ Array [
         document.activeElement
       );
 
-      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
 
       /**
        * On cells with multiple interactive items, the cell receives focus
@@ -2144,7 +2140,7 @@ Array [
       expect(focusableCell.text()).toEqual('1, C');
       expect(focusableCell.getDOMNode()).toBe(document.activeElement);
 
-      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
 
       /**
        * On cells with 1 interactive item and non-interactive item(s), the cell receives focus
@@ -2179,7 +2175,7 @@ Array [
       expect(focusableCell.text()).toEqual('0, A');
       focusableCell
         .simulate('focus')
-        .simulate('keydown', { keyCode: keyCodes.DOWN });
+        .simulate('keydown', { key: keys.ARROW_DOWN });
       focusableCell = getFocusableCell(component);
 
       /**
@@ -2193,8 +2189,8 @@ Array [
        * Disable grid navigation using ENTER
        */
       focusableCell
-        .simulate('keydown', { keyCode: keyCodes.ENTER })
-        .simulate('keydown', { keyCode: keyCodes.DOWN });
+        .simulate('keydown', { key: keys.ENTER })
+        .simulate('keydown', { key: keys.ARROW_DOWN });
 
       let buttons = focusableCell.find('button');
 
@@ -2207,11 +2203,11 @@ Array [
       /**
        * Enable grid navigation ESCAPE
        */
-      focusableCell.simulate('keydown', { keyCode: keyCodes.ESCAPE });
+      focusableCell.simulate('keydown', { key: keys.ESCAPE });
       focusableCell = getFocusableCell(component);
       expect(focusableCell.getDOMNode()).toBe(document.activeElement); // focus should move back to cell
 
-      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
       focusableCell = getFocusableCell(component);
       expect(focusableCell.text()).toEqual('1, B'); // grid navigation is enabled again, check that we can move
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
@@ -2221,8 +2217,8 @@ Array [
        */
       focusableCell = getFocusableCell(component);
       focusableCell
-        .simulate('keydown', { keyCode: keyCodes.F2 })
-        .simulate('keydown', { keyCode: keyCodes.UP });
+        .simulate('keydown', { key: keys.F2 })
+        .simulate('keydown', { key: keys.ARROW_UP });
       buttons = focusableCell.find('button');
 
       // grid navigation is disabled, location should not move
@@ -2234,11 +2230,11 @@ Array [
       /**
        * Enable grid navigation using F2
        */
-      focusableCell.simulate('keydown', { keyCode: keyCodes.F2 });
+      focusableCell.simulate('keydown', { key: keys.F2 });
       focusableCell = getFocusableCell(component);
       expect(focusableCell.getDOMNode()).toBe(document.activeElement); // focus should move back to cell
 
-      focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+      focusableCell.simulate('keydown', { key: keys.ARROW_UP });
       focusableCell = getFocusableCell(component);
       expect(focusableCell.text()).toEqual('0, B'); // grid navigation is enabled again, check that we can move
       expect(takeMountedSnapshot(component)).toMatchSnapshot();

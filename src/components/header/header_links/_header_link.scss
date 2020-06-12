@@ -1,20 +1,15 @@
 .euiHeaderLink {
   @include euiLink;
-  display: inline-block;
-  height: $euiHeaderChildSize;
-  line-height: $euiHeaderChildSize;
-  padding: 0 $euiSizeS;
-  text-align: left;
+  margin: 0 $euiSizeS;
 }
 
 .euiHeaderLinks__mobileList {
   .euiHeaderLink {
     display: block;
-    height: auto;
-    line-height: $euiLineHeight;
     padding: $euiSizeS;
+    margin: 0;
 
-    // EuiButtons normally center, which macks sense. In mobile though we want
+    // EuiButtons normally center, which makes sense. In mobile though we want
     // them to align left. This is a safe hack given the specificity.
     > span {
       justify-content: flex-start;

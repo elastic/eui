@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -16,7 +16,7 @@ const overlayMaskSnippet = `<EuiOverlayMask>
 </EuiOverlayMask>`;
 
 export const OverlayMaskExample = {
-  title: 'Overlay Mask',
+  title: 'Overlay mask',
   sections: [
     {
       source: [

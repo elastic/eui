@@ -32,12 +32,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  comboBoxKeyCodes,
-  findPopoverPosition,
-  htmlIdGenerator,
-} from '../../services';
-import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
+import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { EuiPortal } from '../portal';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
@@ -63,6 +58,7 @@ import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
 import { EuiFormControlLayoutProps } from '../form';
+import { getElementZIndex } from '../../services/popover';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -178,6 +174,7 @@ interface EuiComboBoxState<T> {
   isListOpen: boolean;
   listElement?: RefInstance<HTMLDivElement>;
   listPosition: EuiComboBoxOptionsListPosition;
+  listZIndex: number | undefined;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
   width: number;
@@ -208,6 +205,7 @@ export class EuiComboBox<T> extends Component<
     isListOpen: false,
     listElement: null,
     listPosition: 'bottom',
+    listZIndex: undefined,
     matchingOptions: getMatchingOptions<T>(
       this.props.options,
       this.props.selectedOptions,
@@ -257,10 +255,19 @@ export class EuiComboBox<T> extends Component<
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
   searchInputRefCallback: RefCallback<HTMLInputElement> = ref => {
     this.searchInputRefInstance = ref;
+    if (this.props.inputRef) this.props.inputRef(ref);
   };
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRefCallback: RefCallback<HTMLDivElement> = ref => {
+    if (this.comboBoxRefInstance) {
+      // find the zIndex of the combobox relative to the page body
+      // and use that to depth-position the list box
+      // adds an extra `100` to provide some defense around neighboring elements' positioning
+      const listZIndex =
+        getElementZIndex(this.comboBoxRefInstance, document.body) + 100;
+      this.setState({ listZIndex });
+    }
     this.listRefInstance = ref;
   };
 
@@ -290,6 +297,7 @@ export class EuiComboBox<T> extends Component<
   closeList = () => {
     this.clearActiveOption();
     this.setState({
+      listZIndex: undefined,
       isListOpen: false,
     });
   };
@@ -586,8 +594,8 @@ export class EuiComboBox<T> extends Component<
   };
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = event => {
-    switch (event.keyCode) {
-      case comboBoxKeyCodes.UP:
+    switch (event.key) {
+      case keys.ARROW_UP:
         event.preventDefault();
         event.stopPropagation();
         if (this.state.isListOpen) {
@@ -597,7 +605,7 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case comboBoxKeyCodes.DOWN:
+      case keys.ARROW_DOWN:
         event.preventDefault();
         event.stopPropagation();
         if (this.state.isListOpen) {
@@ -607,17 +615,17 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case BACKSPACE:
+      case keys.BACKSPACE:
         event.stopPropagation();
         this.removeLastOption();
         break;
 
-      case ESCAPE:
+      case keys.ESCAPE:
         event.stopPropagation();
         this.closeList();
         break;
 
-      case comboBoxKeyCodes.ENTER:
+      case keys.ENTER:
         event.preventDefault();
         event.stopPropagation();
         if (this.hasActiveOption()) {
@@ -629,7 +637,7 @@ export class EuiComboBox<T> extends Component<
         }
         break;
 
-      case TAB:
+      case keys.TAB:
         // Disallow tabbing when the user is navigating the options.
         if (this.hasActiveOption() && this.state.isListOpen) {
           event.preventDefault();
@@ -968,6 +976,7 @@ export class EuiComboBox<T> extends Component<
       optionsList = (
         <EuiPortal>
           <EuiComboBoxOptionsList
+            zIndex={this.state.listZIndex}
             activeOptionIndex={this.state.activeOptionIndex}
             areAllOptionsSelected={this.areAllOptionsSelected()}
             data-test-subj={optionsListDataTestSubj}

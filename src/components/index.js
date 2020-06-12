@@ -68,6 +68,8 @@ export {
   EuiSaturation,
 } from './color_picker';
 
+export { EuiColorPalettePicker } from './color_picker/color_palette_picker';
+
 export { EuiComboBox } from './combo_box';
 
 export { EuiComment, EuiCommentList } from './comment_list';
@@ -319,6 +321,8 @@ export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
 export { EuiTab, EuiTabs, EuiTabbedContent } from './tabs';
 
 export { EuiText, EuiTextColor, EuiTextAlign } from './text';
+
+export { useEuiTextDiff } from './text_diff';
 
 export { EuiTitle } from './title';
 
