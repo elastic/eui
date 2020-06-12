@@ -30,7 +30,6 @@ describe('EuiExpression', () => {
         description="the answer is"
         value="42"
         isActive={false}
-        // tslint:disable no-empty
         onClick={() => {}}
         {...requiredProps}
       />

@@ -31,7 +31,6 @@ const noop = () => {
 
 describe('EuiKeyboardAccessible', () => {
   describe('throws an error', () => {
-    // tslint:disable-next-line:no-console
     const oldConsoleError = console.error;
     let consoleStub: jest.Mock<typeof console.error>;
 
@@ -40,12 +39,10 @@ describe('EuiKeyboardAccessible', () => {
       // console.error() override that throws an exception. For these
       // tests, we just want to know if console.error() was called.
 
-      // tslint:disable-next-line:no-console
       console.error = consoleStub = jest.fn();
     });
 
     afterEach(() => {
-      // tslint:disable-next-line:no-console
       console.error = oldConsoleError;
     });
 
@@ -126,14 +123,11 @@ describe('EuiKeyboardAccessible', () => {
     let consoleStub: jest.Mock<typeof console.error>;
 
     beforeEach(() => {
-      // tslint:disable-next-line:no-console
       oldConsoleError = console.error;
-      // tslint:disable-next-line:no-console
       console.error = consoleStub = jest.fn();
     });
 
     afterEach(() => {
-      // tslint:disable-next-line:no-console
       console.error = oldConsoleError;
     });
 
