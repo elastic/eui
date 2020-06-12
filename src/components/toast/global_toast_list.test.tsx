@@ -77,7 +77,7 @@ describe('EuiGlobalToastList', () => {
     });
 
     describe('side', () => {
-      test('side can be changed to left', () => {
+      test('can be changed to left', () => {
         const toasts: Toast[] = [
           {
             title: 'A',
