@@ -94,7 +94,7 @@ describe('EuiCodeEditor', () => {
       test('should be enabled when the ui ace box loses focus', () => {
         const hint = findTestSubject(component, 'codeEditorHint');
         hint.simulate('keyup', { key: keys.ENTER });
-        // @ts-ignore
+        // @ts-ignore onBlurAce is known to exist and its params are only passed through to the onBlur callback
         component.instance().onBlurAce();
         expect(
           findTestSubject(component, 'codeEditorHint').getDOMNode()
@@ -106,13 +106,13 @@ describe('EuiCodeEditor', () => {
       test('bluring the ace textbox should call a passed onBlur prop', () => {
         const blurSpy = jest.fn().mockName('blurSpy');
         const el = mount(<EuiCodeEditor onBlur={blurSpy} />);
-        // @ts-ignore
+        // @ts-ignore onBlurAce is known to exist and its params are only passed through to the onBlur callback
         el.instance().onBlurAce();
         expect(blurSpy).toHaveBeenCalled();
       });
 
       test('pressing escape in ace textbox will enable overlay', () => {
-        // @ts-ignore
+        // @ts-ignore onKeydownAce is known to exist and its params' values are unimportant
         component.instance().onKeydownAce({
           preventDefault: () => {},
           stopPropagation: () => {},

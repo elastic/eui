@@ -22,17 +22,17 @@ import { Pager } from './pager';
 describe('Pager', () => {
   describe('constructor', () => {
     test('throws error if missing totalItems', () => {
-      // @ts-ignore
+      // @ts-ignore expecting this to error
       expect(() => new Pager()).toThrow();
     });
 
     test('throws error if missing itemsPerPage', () => {
-      // @ts-ignore
+      // @ts-ignore expecting this to error
       expect(() => new Pager(10)).toThrow();
     });
 
     test('throws error if non-number initialPageIndex', () => {
-      // @ts-ignore
+      // @ts-ignore expecting this to error
       expect(() => new Pager(10, 3, 'invalid argument')).toThrow();
     });
   });

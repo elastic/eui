@@ -7,8 +7,8 @@
  * 4. Using specificity to override panel shadow
  */
 .euiComboBoxOptionsList {
+  // z-index is programmatically added to the options list by JavaScript
   @include euiFormControlSize(auto, $includeAlternates: true); /* 3 */
-  z-index: $euiZComboBox;
   position: absolute; /* 2 */
   top: 0; /* 2 */
 

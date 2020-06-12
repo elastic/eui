@@ -8,7 +8,7 @@ import {
 import { EuiSwitch } from '../../../../src/components/form';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiAvatar } from '../../../../src/components/avatar';
-// @ts-ignore
+// @ts-ignore importing from a JS file
 import HeaderUpdates from './header_updates';
 
 export default () => {
@@ -45,7 +45,7 @@ export default () => {
             items: [
               <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
             ],
-            borders: 'right',
+            borders: 'none',
           },
           {
             items: [
@@ -53,6 +53,7 @@ export default () => {
                 <EuiAvatar name="John Username" size="s" />
               </EuiHeaderSectionItemButton>,
             ],
+            borders: 'none',
           },
         ]}
       />
@@ -66,10 +67,11 @@ export default () => {
               </EuiHeaderSectionItemButton>,
             ],
             breadcrumbs: breadcrumbs,
-            borders: 'none',
+            borders: 'right',
           },
           {
             items: isFixed ? [<HeaderUpdates />] : undefined,
+            borders: 'none',
           },
         ]}
       />
