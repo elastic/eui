@@ -52,7 +52,7 @@ const Knob = ({
   options = {},
   description,
   placeholder,
-  enumName,
+  // enumName,
 }) => {
   const [val, set] = useValueDebounce(globalVal, globalSet);
   switch (type) {
@@ -128,14 +128,14 @@ const Knob = ({
       const optionsKeys = Object.keys(options);
       const numberOfOptions = optionsKeys.length;
 
-      const valueKey = val || defaultValue;
-      //   console.log('selectOptions', selectOptions);
-      //   console.log('valueKey', valueKey);
-      //   console.log('data', { description, type, name });
+      let valueKey = val || defaultValue;
+      if (valueKey && !valueKey.includes('__')) {
+        valueKey = `${valueKey}__${name}`;
+      }
 
       if (numberOfOptions < 6) {
         const flattenedOptions = optionsKeys.map(key => ({
-          id: key,
+          id: `${key}__${name}`,
           label: options[key],
         }));
 
@@ -146,7 +146,11 @@ const Knob = ({
             <EuiRadioGroup
               options={flattenedOptions}
               idSelected={valueKey}
-              onChange={id => globalSet(id)}
+              onChange={id => {
+                let val = id;
+                if (val.includes('__')) val = val.split('__')[0];
+                globalSet(val);
+              }}
               name={`Select ${name}`}
             />
             {error && <div>error {error}</div>}
