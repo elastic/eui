@@ -33,6 +33,7 @@ module.exports = function() {
       Program(path, state) {
         const { filename } = state.file.opts;
 
+        // if (!filename.includes('.tsx')) return;
         // these files causing some issues needs to fix
         if (filename.includes('index.ts')) return;
         if (filename.includes('flex_item.tsx')) return;
@@ -40,6 +41,8 @@ module.exports = function() {
 
         // find if components extends types from other modules
         const componentExtends = [];
+
+        const whiteListedProps = ['className', 'aria-label'];
 
         let docgenResults = [];
         try {
@@ -53,17 +56,22 @@ module.exports = function() {
                   ) {
                     componentExtends.push('DOMAttributes');
                   }
+                  if (prop.name.includes(whiteListedProps)) {
+                    return true;
+                  }
                   return !prop.parent.fileName.includes('node_modules');
                 }
                 return true;
               },
               shouldExtractLiteralValuesFromEnum: true,
               shouldRemoveUndefinedFromOptional: true,
+              savePropValueAsString: true,
             })
             .parseWithProgramProvider(filename, () => program);
         } catch (e) {
           console.log(e);
-        }
+        
+
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
           const exportName = docgenResult.displayName;
