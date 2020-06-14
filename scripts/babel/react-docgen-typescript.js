@@ -75,10 +75,6 @@ module.exports = function() {
           console.log(e);
         }
 
-        if (filename.includes('filter_button.tsx')) {
-          console.log(docgenResults);
-        }
-
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
           const exportName = docgenResult.displayName;
