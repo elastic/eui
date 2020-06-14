@@ -25,7 +25,12 @@ const glob = require('glob');
 const util = require('util');
 
 const files = glob.sync('src/**/*.{ts,tsx}', { absolute: true });
-const program = ts.createProgram(files, {});
+
+const options = {
+  jsx: ts.JsxEmit.React,
+};
+
+const program = ts.createProgram(files, options);
 
 module.exports = function() {
   return {
@@ -33,7 +38,6 @@ module.exports = function() {
       Program(path, state) {
         const { filename } = state.file.opts;
 
-        // if (!filename.includes('.tsx')) return;
         // these files causing some issues needs to fix
         if (filename.includes('index.ts')) return;
         if (filename.includes('flex_item.tsx')) return;
@@ -65,12 +69,15 @@ module.exports = function() {
               },
               shouldExtractLiteralValuesFromEnum: true,
               shouldRemoveUndefinedFromOptional: true,
-              savePropValueAsString: true,
             })
             .parseWithProgramProvider(filename, () => program);
         } catch (e) {
           console.log(e);
-        
+        }
+
+        if (filename.includes('filter_button.tsx')) {
+          console.log(docgenResults);
+        }
 
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
