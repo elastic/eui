@@ -228,56 +228,56 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
           uiPlugins={uiPlugins}
         />
 
-        {isPreviewing ? (
+        {isPreviewing && (
           <div
             className="euiMarkdownEditor__preview"
             style={{ height: `${height}px` }}>
             <EuiMarkdownFormat processor={processor}>{value}</EuiMarkdownFormat>
           </div>
-        ) : (
-          <>
-            <EuiMarkdownEditorDropZone>
-              <EuiMarkdownEditorTextArea
-                ref={setTextareaRef}
-                height={height}
-                id={editorId}
-                onChange={e => onChange(e.target.value)}
-                value={value}
-              />
-            </EuiMarkdownEditorDropZone>
-            {textareaRef && pluginEditorPlugin && (
-              <EuiOverlayMask>
-                <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
-                  {createElement(pluginEditorPlugin.editor!, {
-                    node:
+        )}
+        {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
+        <div style={{ display: isPreviewing ? 'none' : 'block' }}>
+          <EuiMarkdownEditorDropZone>
+            <EuiMarkdownEditorTextArea
+              ref={setTextareaRef}
+              height={height}
+              id={editorId}
+              onChange={e => onChange(e.target.value)}
+              value={value}
+            />
+          </EuiMarkdownEditorDropZone>
+          {textareaRef && pluginEditorPlugin && (
+            <EuiOverlayMask>
+              <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
+                {createElement(pluginEditorPlugin.editor!, {
+                  node:
+                    selectedNode &&
+                    selectedNode.type === pluginEditorPlugin.name
+                      ? selectedNode
+                      : null,
+                  onCancel: () => setPluginEditorPlugin(undefined),
+                  onSave: markdown => {
+                    if (
                       selectedNode &&
                       selectedNode.type === pluginEditorPlugin.name
-                        ? selectedNode
-                        : null,
-                    onCancel: () => setPluginEditorPlugin(undefined),
-                    onSave: markdown => {
-                      if (
-                        selectedNode &&
-                        selectedNode.type === pluginEditorPlugin.name
-                      ) {
-                        textareaRef.setSelectionRange(
-                          selectedNode.position.start.offset,
-                          selectedNode.position.end.offset
-                        );
-                      }
-                      insertText(textareaRef, {
-                        text: markdown,
-                        selectionStart: undefined,
-                        selectionEnd: undefined,
-                      });
-                      setPluginEditorPlugin(undefined);
-                    },
-                  })}
-                </EuiModal>
-              </EuiOverlayMask>
-            )}
-          </>
-        )}
+                    ) {
+                      textareaRef.setSelectionRange(
+                        selectedNode.position.start.offset,
+                        selectedNode.position.end.offset
+                      );
+                    }
+                    insertText(textareaRef, {
+                      text: markdown,
+                      selectionStart: undefined,
+                      selectionEnd: undefined,
+                    });
+                    setPluginEditorPlugin(undefined);
+                  },
+                })}
+              </EuiModal>
+            </EuiOverlayMask>
+          )}
+        </div>
       </div>
     </EuiMarkdownContext.Provider>
   );
