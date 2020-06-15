@@ -268,6 +268,15 @@ const gridConcepts = [
       </span>
     ),
   },
+  {
+    title: 'onColumnResize',
+    description: (
+      <span>
+        A callback for when a column&apos;s size changes. Callback receives{' '}
+        <EuiCode>&#123; columnId: string, width: number &#125;</EuiCode>
+      </span>
+    ),
+  },
 ];
 
 export const DataGridExample = {
@@ -383,9 +392,9 @@ export const DataGridExample = {
               explanation on the lower level object types. The majority of the
               types are defined in the{' '}
               <a
-                href="https://github.com/elastic/eui/tree/master/src/components/data_grid/data_grid_types.ts"
+                href="https://github.com/elastic/eui/tree/master/src/components/datagrid/data_grid_types.ts"
                 target="_blank">
-                /data_grid/data_grid_types.ts
+                /datagrid/data_grid_types.ts
               </a>{' '}
               file.
             </p>
