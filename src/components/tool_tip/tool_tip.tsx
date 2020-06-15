@@ -154,11 +154,11 @@ export class EuiToolTip extends Component<Props, State> {
   };
 
   componentDidMount() {
-    this.clearAnimationTimeout();
     this._isMounted = true;
   }
 
   componentWillUnmount() {
+    this.clearAnimationTimeout();
     this._isMounted = false;
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
