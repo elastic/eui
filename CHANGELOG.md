@@ -8,6 +8,7 @@
 - Moved all `EuiHeader` SASS variables to `global_styles` ([#3592](https://github.com/elastic/eui/pull/3592))
 - Added `side` prop to `EuiGlobalToastList` for choosing which window side to display toasts ([#3600](https://github.com/elastic/eui/pull/3600))
 - Default `titleSize` get's implicitly set to 'm' for `EuiEmptyPrompt` ([#3598](https://github.com/elastic/eui/pull/3598))
+- Updated `logoElastic` to meet brand guidelines ([#3613](https://github.com/elastic/eui/pull/3613)) 
 
 **Bug fixes**
 
