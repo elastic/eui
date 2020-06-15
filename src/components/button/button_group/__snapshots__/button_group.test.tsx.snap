@@ -332,7 +332,7 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButton--ghost euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -351,7 +351,7 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButton--ghost euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -370,7 +370,7 @@ exports[`EuiButtonGroup props color ghost is rendered 1`] = `
       </label>
     </div>
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--small euiButton--ghost euiButtonGroup__button euiButton--no-hover"
     >
       <input
         class="euiButtonGroup__input"
@@ -707,7 +707,7 @@ exports[`EuiButtonGroup props idSelected is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <div
-      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButton--fill euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--no-hover euiButtonGroup__toggle euiButtonGroup__button--selected euiButton--fill euiButton--small euiButtonGroup__button euiButton--no-hover"
     >
       <input
         checked=""
@@ -1087,7 +1087,7 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
   >
     <button
       aria-pressed="true"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button--selected euiButtonGroup__button euiButton--no-hover euiButton--fill"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__toggle euiButtonGroup__button--selected euiButtonGroup__button euiButton--no-hover euiButton--fill"
       id="button00"
       type="button"
     >
@@ -1103,7 +1103,7 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
     </button>
     <button
       aria-pressed="true"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button--selected euiButtonGroup__button euiButton--no-hover euiButton--fill"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__toggle euiButtonGroup__button--selected euiButtonGroup__button euiButton--no-hover euiButton--fill"
       id="button01"
       type="button"
     >
@@ -1119,7 +1119,7 @@ exports[`EuiButtonGroup props type of multi idToSelectedMap is rendered 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
       id="button02"
       type="button"
     >
@@ -1153,7 +1153,7 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
   >
     <button
       aria-pressed="false"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
       id="button00"
       type="button"
     >
@@ -1169,7 +1169,7 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
       id="button01"
       type="button"
     >
@@ -1185,7 +1185,7 @@ exports[`EuiButtonGroup props type of multi is rendered 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButton euiButton--text euiButton--small euiButtonGroup__button euiButton--no-hover"
+      class="euiButton euiButton--text euiButton--small euiButtonGroup__toggle euiButtonGroup__button euiButton--no-hover"
       id="button02"
       type="button"
     >

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButtonGroup,
@@ -187,7 +187,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiButtonGroup
         legend="This is a basic group"
         options={toggleButtons}
@@ -280,6 +280,6 @@ export default () => {
           isIconOnly
         />
       </EuiPanel>
-    </Fragment>
+    </>
   );
 };

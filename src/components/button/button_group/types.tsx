@@ -85,11 +85,17 @@ export type EuiButtonGroupProps = CommonProps & {
    */
   color?: ButtonColor;
   /**
+   * Actual type is `'single' | 'multi'`.
    * Determines how the selection of the group should be handled.
    * With `'single'` only one option can be selected at a time (similar to radio group).
    * With `'multi'` multiple options selected (similar to checkbox group).
    */
   type?: 'single' | 'multi';
+
+  /**
+   * An array of #EuiButtonSingleGroupOptionProps or #EuiButtonMultiGroupOptionProps
+   */
+  options: EuiButtonSingleGroupOptionProps[] | EuiButtonMultiGroupOptionProps[];
 } & (
     | {
         type: 'single';
@@ -99,10 +105,12 @@ export type EuiButtonGroupProps = CommonProps & {
         options: EuiButtonSingleGroupOptionProps[];
         /**
          * Styles the selected option to look selected (usually with `fill`)
+         * Only used in `type='single'`.
          */
         idSelected: string;
         /**
          * Returns the `id` of the clicked option and the `value`
+         * (`value` only in `type='single'`)
          */
         onChange: (id: string, value?: any) => void;
         idToSelectedMap?: never;
@@ -115,6 +123,7 @@ export type EuiButtonGroupProps = CommonProps & {
         options: EuiButtonMultiGroupOptionProps[];
         /**
          * A map of `id`s as keys with the selected boolean values.
+         * Only used in `type='multi'`.
          */
         idToSelectedMap?: { [id: string]: boolean };
         /**

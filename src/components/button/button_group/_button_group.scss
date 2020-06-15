@@ -108,6 +108,7 @@
   @include euiScreenReaderOnly;
 }
 
+.euiButtonGroup--compressed,
 .euiButtonGroup--fullWidth {
   .euiButtonGroup__toggle {
     flex: 1;

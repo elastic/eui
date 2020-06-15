@@ -39,7 +39,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   legend,
   onChange,
   options = [],
-  type,
+  type = 'single',
   ...rest
 }) => {
   // Compressed style can't support `ghost` color because it's more like a form field than a button

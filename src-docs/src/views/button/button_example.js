@@ -112,6 +112,7 @@ const buttonGroupSnippet = [
   ]}
   idSelected={idSelected}
   onChange={(optionId) => {}}
+  type="single"
 />`,
   `<EuiButtonGroup
   legend={legend}

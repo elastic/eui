@@ -388,13 +388,14 @@ export class EuiDataGridCell extends Component<
             color="text"
             iconSize="s"
             iconType="expandMini"
+            aria-hidden
+            tabIndex={-1}
             onClick={() =>
               this.setState(({ popoverIsOpen }) => ({
                 popoverIsOpen: !popoverIsOpen,
               }))
             }
             title={expandButtonTitle}
-            aria-label={expandButtonTitle}
           />
         )}
       </EuiI18n>

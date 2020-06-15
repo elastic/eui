@@ -49,6 +49,7 @@ export const ButtonGroupMulti: FunctionComponent<Props> = ({
   const isSelectedState = idToSelectedMap[id] || false;
   const badColorCombo = size === 'compressed' && color === 'ghost';
   const buttonClasses = classNames(
+    'euiButtonGroup__toggle',
     {
       'euiButtonGroup__button--selected': isSelectedState,
     },

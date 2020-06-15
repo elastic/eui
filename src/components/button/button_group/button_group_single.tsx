@@ -55,10 +55,12 @@ export const ButtonGroupSingle: FunctionComponent<Props> = ({
     'euiButton--no-hover',
     'euiButtonGroup__toggle',
     {
+      'euiButtonGroup__button--selected': isSelectedState,
       'euiButton--disabled': isGroupDisabled || isDisabled,
       'euiButtonGroup__toggle--iconOnly': isIconOnly,
       'euiButton--fill': fill,
       'euiButton--small': size === 'compressed' || size === 's',
+      'euiButton--ghost': size !== 'compressed' && color === 'ghost',
     },
     className
   );
