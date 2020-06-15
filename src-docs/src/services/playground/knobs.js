@@ -129,11 +129,11 @@ const Knob = ({
       const numberOfOptions = optionsKeys.length;
 
       let valueKey = val || defaultValue;
-      if (valueKey && !valueKey.includes('__')) {
-        valueKey = `${valueKey}__${name}`;
-      }
 
       if (numberOfOptions < 6) {
+        if (valueKey && !valueKey.includes('__')) {
+          valueKey = `${valueKey}__${name}`;
+        }
         const flattenedOptions = optionsKeys.map(key => ({
           id: `${key}__${name}`,
           label: options[key],
@@ -170,7 +170,9 @@ const Knob = ({
               id={name}
               options={flattenedOptions}
               value={valueKey}
-              onChange={e => globalSet(e.target.value)}
+              onChange={e => {
+                globalSet(e.target.value);
+              }}
               aria-label={`Select ${name}`}
             />
             {error && <div>error {error}</div>}
