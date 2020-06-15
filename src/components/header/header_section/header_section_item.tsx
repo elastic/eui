@@ -36,6 +36,9 @@ export type EuiHeaderSectionItemProps = CommonProps & {
    * Not supported in Amsterdam theme.
    */
   border?: Border;
+  /**
+   * ReactNode to render as this component's children
+   */
   children?: ReactNode;
 };
 

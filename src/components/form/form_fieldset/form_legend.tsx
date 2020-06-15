@@ -24,6 +24,9 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 
 export type EuiFormLegendProps = HTMLAttributes<HTMLLegendElement> &
   CommonProps & {
+    /**
+     * ReactNode to render as this component's children
+     */
     children: ReactNode;
     /**
      * For a hidden legend that is still visible to the screen reader, set to 'hidden'

@@ -36,6 +36,9 @@ import { CommonProps, keysOf } from '../common';
 
 export interface EuiOverlayMaskInterface {
   onClick?: () => void;
+  /**
+   * ReactNode to render as this component's children
+   */
   children?: ReactNode;
 }
 

@@ -44,6 +44,9 @@ import { Component, cloneElement, KeyboardEvent, ReactElement } from 'react';
 import { keys } from '../../services';
 
 interface Props {
+  /**
+   * ReactNode to render as this component's children
+   */
   children: ReactElement<any>;
 }
 

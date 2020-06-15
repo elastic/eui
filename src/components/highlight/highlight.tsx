@@ -37,6 +37,9 @@ interface EuiHighlightChunk {
 
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
   CommonProps & {
+    /**
+     * ReactNode to render as this component's children
+     */
     children: string;
 
     /**
