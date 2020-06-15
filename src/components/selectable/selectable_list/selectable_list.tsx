@@ -30,9 +30,13 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import {
   FixedSizeList,
   ListProps,
-  ListChildComponentProps,
+  ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
 } from 'react-window';
+
+interface ListChildComponentProps extends ReactWindowListChildComponentProps {
+  data: EuiSelectableOption[];
+}
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
 export type EuiSelectableOptionsListProps = CommonProps &
@@ -102,6 +106,7 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   searchable?: boolean;
   makeOptionId: (index: number | undefined) => string;
   listId: string;
+  setActiveOptionIndex: (index: number) => void;
 };
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
@@ -211,6 +216,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       );
     }
 
+    const labelCount = data.filter(option => option.isGroupLabel).length;
+
     return (
       <EuiSelectableListItem
         id={this.props.makeOptionId(index)}
@@ -225,6 +232,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         disabled={disabled}
         prepend={prepend}
         append={append}
+        aria-posinset={index + 1 - labelCount}
+        aria-setsize={data.length - labelCount}
         {...optionRest as EuiSelectableListItemProps}>
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
@@ -254,6 +263,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       bordered,
       searchable,
       listId,
+      setActiveOptionIndex,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
@@ -323,6 +333,10 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     }
 
     const { allowExclusions } = this.props;
+
+    this.props.setActiveOptionIndex(
+      this.props.options.findIndex(({ label }) => label === option.label)
+    );
 
     if (option.checked === 'on' && allowExclusions) {
       this.onExcludeOption(option);
