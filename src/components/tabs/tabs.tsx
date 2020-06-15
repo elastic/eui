@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, { forwardRef, HTMLAttributes, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -55,10 +55,7 @@ export type EuiTabsProps = CommonProps &
 
 export type EuiTabRef = HTMLDivElement;
 
-export const EuiTabs = React.forwardRef<
-  EuiTabRef,
-  PropsWithChildren<EuiTabsProps>
->(
+export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
   (
     {
       children,
