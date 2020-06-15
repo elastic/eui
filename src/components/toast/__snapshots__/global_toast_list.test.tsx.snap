@@ -10,7 +10,7 @@ exports[`EuiGlobalToastList is rendered 1`] = `
 />
 `;
 
-exports[`EuiGlobalToastList props side side can be changed to left 1`] = `
+exports[`EuiGlobalToastList props side can be changed to left 1`] = `
 <div
   aria-live="polite"
   class="euiGlobalToastList euiGlobalToastList--left"
