@@ -272,7 +272,7 @@ const gridConcepts = [
     title: 'onColumnResize',
     description: (
       <span>
-        A callback for when a column&apos;s size changes. Callback receives
+        A callback for when a column&apos;s size changes. Callback receives{' '}
         <EuiCode>&#123; columnId: string, width: number &#125;</EuiCode>
       </span>
     ),
