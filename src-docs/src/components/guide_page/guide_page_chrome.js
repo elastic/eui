@@ -122,9 +122,13 @@ export class GuidePageChrome extends Component {
           },
           this.scrollNavSectionIntoView
         );
+    }, 0);
+
+    // To delay scroll to top when switched to a new page
+    setTimeout(() => {
       if (document.body) document.body.scrollTop = 0;
       if (document.documentElement) document.documentElement.scrollTop = 0;
-    }, 0);
+    }, 1);
   };
 
   onButtonClick() {
