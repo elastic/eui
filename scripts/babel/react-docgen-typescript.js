@@ -69,6 +69,7 @@ module.exports = function() {
               },
               shouldExtractLiteralValuesFromEnum: true,
               shouldRemoveUndefinedFromOptional: true,
+              savePropValueAsString: true,
             })
             .parseWithProgramProvider(filename, () => program);
         } catch (e) {
