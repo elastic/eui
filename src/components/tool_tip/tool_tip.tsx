@@ -147,14 +147,18 @@ export class EuiToolTip extends Component<Props, State> {
     delay: 'regular',
   };
 
+  clearAnimationTimeout = () => {
+    if (this.timeoutId) {
+      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
+    }
+  };
+
   componentDidMount() {
+    this.clearAnimationTimeout();
     this._isMounted = true;
   }
 
   componentWillUnmount() {
-    if (this.timeoutId) {
-      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
-    }
     this._isMounted = false;
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
@@ -246,9 +250,7 @@ export class EuiToolTip extends Component<Props, State> {
   };
 
   hideToolTip = () => {
-    if (this.timeoutId) {
-      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
-    }
+    this.clearAnimationTimeout();
     if (this._isMounted) {
       enqueueStateChange(() => this.setState({ visible: false }));
     }

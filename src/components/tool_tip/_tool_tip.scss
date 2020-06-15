@@ -4,10 +4,9 @@
 
 .euiToolTip {
   @include euiToolTipStyle;
-  @include euiToolTipAnimation('top');
+  @include euiToolTipAnimation('top', 0ms);
   position: absolute;
   opacity: 0;
-  animation-delay: 0ms;
 
   // Custom sizing
   $arrowSize: $euiSizeM;
