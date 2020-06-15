@@ -46,13 +46,14 @@ module.exports = function() {
         // find if components extends types from other modules
         const componentExtends = [];
 
-        const whiteListedProps = ['className', 'aria-label'];
+        const whiteListedProps = ['children', 'className', 'aria-label'];
 
         let docgenResults = [];
         try {
           docgenResults = propsParser
             .withDefaultConfig({
               propFilter: prop => {
+                if (whiteListedProps.includes(prop.name)) return true;
                 if (prop.parent) {
                   if (
                     prop.parent.name === 'DOMAttributes' &&
@@ -80,10 +81,6 @@ module.exports = function() {
         docgenResults.forEach(function(docgenResult) {
           const exportName = docgenResult.displayName;
 
-          // Forwardref components extracted export name = 'ForwardRefExoticComponent'
-          if (exportName === 'ForwardRefExoticComponent') {
-            return;
-          }
           if (!exportName) return;
           docgenResult.extends = componentExtends;
           path.node.body.push(
