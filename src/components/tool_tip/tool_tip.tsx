@@ -49,17 +49,10 @@ export const POSITIONS = keysOf(positionsToClassNameMap);
 
 export type ToolTipDelay = 'regular' | 'long';
 
-const delayToClassNameMap: { [key in ToolTipDelay]: string | null } = {
-  regular: null,
-  long: 'euiToolTip--delayLong',
-};
-
 const delayToMsMap: { [key in ToolTipDelay]: number } = {
   regular: 250,
   long: 250 * 5,
 };
-
-export const DELAY = keysOf(delayToClassNameMap);
 
 interface ToolTipStyles {
   top: number;
@@ -299,7 +292,6 @@ export class EuiToolTip extends Component<Props, State> {
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
-      delayToClassNameMap[delay],
       className
     );
 
