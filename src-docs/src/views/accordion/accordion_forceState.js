@@ -30,7 +30,7 @@ export default () => {
   };
 
   const onToggle = isOpen => {
-    const newState = isOpen ? 'closed' : 'open';
+    const newState = isOpen ? 'open' : 'closed';
     setTrigger(newState);
     setID(`${idPrefix}--${newState}`);
   };
