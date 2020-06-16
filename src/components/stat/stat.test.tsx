@@ -81,6 +81,14 @@ describe('EuiStat', () => {
       });
     });
 
+    test('hexcode colors are rendered', () => {
+      const component = render(
+        <EuiStat title="title" description="description" titleColor="#EB1919" />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     TITLE_SIZES.forEach(size => {
       test(`${size} is rendered`, () => {
         const component = render(
