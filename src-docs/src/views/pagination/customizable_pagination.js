@@ -85,6 +85,7 @@ export default () => {
 
       <EuiFlexItem grow={false}>
         <EuiPagination
+          aria-label="Custom pagination example"
           pageCount={PAGE_COUNT}
           activePage={activePage}
           onPageClick={goToPage}

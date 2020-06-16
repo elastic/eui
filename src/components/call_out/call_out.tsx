@@ -92,14 +92,19 @@ export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   }
 
   const H: any = heading ? `${heading}` : 'span';
+  let header;
 
-  return (
-    <div className={classes} {...rest}>
+  if (title) {
+    header = (
       <div className="euiCallOutHeader">
         {headerIcon}
-
         <H className="euiCallOutHeader__title">{title}</H>
       </div>
+    );
+  }
+  return (
+    <div className={classes} {...rest}>
+      {header}
 
       {optionalChildren}
     </div>

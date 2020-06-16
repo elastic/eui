@@ -3,7 +3,7 @@ import React from 'react';
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
 import { useColorPickerState } from '../../../../src/services';
 
-export const Formats = () => {
+export default () => {
   const [color, setColor, errors] = useColorPickerState('#D36086');
   const [color2, setColor2, errors2] = useColorPickerState('#D36086');
   const [color3, setColor3, errors3] = useColorPickerState('211, 96, 134');

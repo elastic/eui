@@ -25,9 +25,8 @@ import { keysOf } from '../common';
 
 import { EuiBottomBar, paddingSizeToClassNameMap } from './bottom_bar';
 
-// TODO: Temporary hack which we can remove once react-test-renderer supports portals.
+// @ts-ignore TODO: Temporary hack which we can remove once react-test-renderer supports portals.
 // More info at https://github.com/facebook/react/issues/11565.
-// @ts-ignore
 ReactDOM.createPortal = node => node;
 
 describe('EuiBottomBar', () => {

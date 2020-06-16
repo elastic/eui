@@ -33,7 +33,13 @@ export const EuiHeaderLink: FunctionComponent<EuiHeaderLinkProps> = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('euiHeaderLink', className);
+  const classes = classNames(
+    'euiHeaderLink',
+    {
+      'euiHeaderLink-isActive': isActive,
+    },
+    className
+  );
 
   const props = {
     ...rest,

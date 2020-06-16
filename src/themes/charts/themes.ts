@@ -27,9 +27,9 @@ import {
 
 import { RecursivePartial } from '../../components/common';
 
-// @ts-ignore
+// @ts-ignore typescript doesn't understand the webpack loader
 import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
-// @ts-ignore
+// @ts-ignore typescript doesn't understand the webpack loader
 import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
 
 const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,

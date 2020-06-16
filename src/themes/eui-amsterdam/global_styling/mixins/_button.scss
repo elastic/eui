@@ -16,3 +16,22 @@
     text-decoration: underline;
   }
 }
+
+// Creates the Amsterdam style of button with a transparent background
+@mixin euiButtonDefaultStyle($color, $transparency: .8) {
+  $percentConversion: $transparency * 100%;
+  // This variable simulates the possibly darkest background the button could be on
+  // Simulates the 20% opaque color on top of the page background color
+  $backgroundColorSimulated: mix($euiPageBackgroundColor, $color, $percentConversion);
+  // Then we can calculate the darkest text color needed
+  color: makeHighContrastColor($color, $backgroundColorSimulated);
+  // But still use transparency
+  background-color: transparentize($color, $transparency);
+
+  &:enabled {
+    &:hover,
+    &:focus {
+      background-color: transparentize($color, lightOrDarkTheme(.9, .65));
+    }
+  }
+}
