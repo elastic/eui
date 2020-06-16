@@ -18,13 +18,13 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount, render } from 'enzyme';
 
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';
-import { requiredProps } from '../../../test';
+import { requiredProps, takeMountedSnapshot } from '../../../test';
 
 jest.mock('./../../../services/accessibility', () => ({
   htmlIdGenerator: () => () => 'generated-id',
@@ -148,6 +148,38 @@ describe('EuiColorPalettePicker', () => {
         selectionDisplay="title"
       />
     );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('more props are propagated to each option', () => {
+    const component = mount(
+      <EuiColorPalettePicker
+        palettes={[
+          {
+            value: '1',
+            title: 'Fixed Palette',
+            palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
+            type: 'fixed',
+          },
+          {
+            value: '2',
+            title: 'Plain text as a custom option',
+            type: 'text',
+            'data-test-subj': 'custom option',
+          },
+        ]}
+        valueOfSelected="1"
+        onChange={() => {}}
+        data-test-subj="colorPalettePicker"
+      />
+    );
+
+    component
+      .find('button[data-test-subj="colorPalettePicker"]')
+      .simulate('click');
+
+    expect(takeMountedSnapshot(component)).toMatchSnapshot();
 
     expect(component).toMatchSnapshot();
   });

@@ -46,6 +46,7 @@ export interface EuiColorPalettePickerPaletteTextProps {
    * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
    */
   palette?: string[] | ColorStop[];
+  'data-test-subj'?: string;
 }
 
 export interface EuiColorPalettePickerPaletteFixedProps {
@@ -65,6 +66,7 @@ export interface EuiColorPalettePickerPaletteFixedProps {
    * Array of color `strings`.
    */
   palette: string[];
+  'data-test-subj'?: string;
 }
 
 export interface EuiColorPalettePickerPaletteGradientProps {
@@ -85,6 +87,7 @@ export interface EuiColorPalettePickerPaletteGradientProps {
    * `{ stop: number, color: string }`. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
+  'data-test-subj'?: string;
 }
 
 export type EuiColorPalettePickerPaletteProps =
