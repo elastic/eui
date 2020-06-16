@@ -355,7 +355,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
   >
     <input
       type="hidden"
-      value="1"
+      value="paletteFixed"
     />
     <div
       class="euiFormControlLayout"
@@ -412,6 +412,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
   palettes={
     Array [
       Object {
+        "data-test-subj": "fixed-data-test-subj",
         "palette": Array [
           "#1fb0b2",
           "#ffdb6d",
@@ -419,19 +420,56 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
           "#ffffff",
           "#888094",
         ],
-        "title": "Fixed Palette",
+        "title": "Palette 1",
         "type": "fixed",
-        "value": "1",
+        "value": "paletteFixed",
       },
       Object {
-        "data-test-subj": "custom option",
+        "data-test-subj": "gradient-data-test-subj",
+        "palette": Array [
+          "#1fb0b2",
+          "#ffdb6d",
+          "#ee9191",
+          "#ffffff",
+          "#888094",
+        ],
+        "title": "Linear Gradient",
+        "type": "gradient",
+        "value": "paletteLinear",
+      },
+      Object {
+        "data-test-subj": "gradient-with-stops-data-test-subj",
+        "palette": Array [
+          Object {
+            "color": "#54B399",
+            "stop": 100,
+          },
+          Object {
+            "color": "#D36086",
+            "stop": 250,
+          },
+          Object {
+            "color": "#9170B8",
+            "stop": 350,
+          },
+          Object {
+            "color": "#F5A700",
+            "stop": 470,
+          },
+        ],
+        "title": "Linear Gradient with stops",
+        "type": "gradient",
+        "value": "paletteLinearStops",
+      },
+      Object {
+        "data-test-subj": "text-data-test-subj",
         "title": "Plain text as a custom option",
         "type": "text",
-        "value": "2",
+        "value": "custom",
       },
     ]
   }
-  valueOfSelected="1"
+  valueOfSelected="paletteFixed"
 >
   <EuiSuperSelect
     compressed={false}
@@ -450,7 +488,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
             <div
               className="euiColorPalettePicker__itemTitle"
             >
-              Fixed Palette
+              Palette 1
             </div>
             <div
               className="euiColorPalettePicker__itemGradient"
@@ -469,7 +507,63 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
               }
             }
           />,
-          "value": "1",
+          "value": "paletteFixed",
+        },
+        Object {
+          "dropdownDisplay": <div
+            className="euiColorPalettePicker__item"
+          >
+            <div
+              className="euiColorPalettePicker__itemTitle"
+            >
+              Linear Gradient
+            </div>
+            <div
+              className="euiColorPalettePicker__itemGradient"
+              style={
+                Object {
+                  "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                }
+              }
+            />
+          </div>,
+          "inputDisplay": <div
+            className="euiColorPalettePicker__itemGradient"
+            style={
+              Object {
+                "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+              }
+            }
+          />,
+          "value": "paletteLinear",
+        },
+        Object {
+          "dropdownDisplay": <div
+            className="euiColorPalettePicker__item"
+          >
+            <div
+              className="euiColorPalettePicker__itemTitle"
+            >
+              Linear Gradient with stops
+            </div>
+            <div
+              className="euiColorPalettePicker__itemGradient"
+              style={
+                Object {
+                  "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                }
+              }
+            />
+          </div>,
+          "inputDisplay": <div
+            className="euiColorPalettePicker__itemGradient"
+            style={
+              Object {
+                "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+              }
+            }
+          />,
+          "value": "paletteLinearStops",
         },
         Object {
           "dropdownDisplay": <div
@@ -478,12 +572,12 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
             Plain text as a custom option
           </div>,
           "inputDisplay": "Plain text as a custom option",
-          "value": "2",
+          "value": "custom",
         },
       ]
     }
     readOnly={false}
-    valueOfSelected="1"
+    valueOfSelected="paletteFixed"
   >
     <EuiPopover
       anchorPosition="downCenter"
@@ -506,7 +600,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                   <div
                     className="euiColorPalettePicker__itemTitle"
                   >
-                    Fixed Palette
+                    Palette 1
                   </div>
                   <div
                     className="euiColorPalettePicker__itemGradient"
@@ -525,7 +619,63 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                     }
                   }
                 />,
-                "value": "1",
+                "value": "paletteFixed",
+              },
+              Object {
+                "dropdownDisplay": <div
+                  className="euiColorPalettePicker__item"
+                >
+                  <div
+                    className="euiColorPalettePicker__itemTitle"
+                  >
+                    Linear Gradient
+                  </div>
+                  <div
+                    className="euiColorPalettePicker__itemGradient"
+                    style={
+                      Object {
+                        "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                      }
+                    }
+                  />
+                </div>,
+                "inputDisplay": <div
+                  className="euiColorPalettePicker__itemGradient"
+                  style={
+                    Object {
+                      "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                    }
+                  }
+                />,
+                "value": "paletteLinear",
+              },
+              Object {
+                "dropdownDisplay": <div
+                  className="euiColorPalettePicker__item"
+                >
+                  <div
+                    className="euiColorPalettePicker__itemTitle"
+                  >
+                    Linear Gradient with stops
+                  </div>
+                  <div
+                    className="euiColorPalettePicker__itemGradient"
+                    style={
+                      Object {
+                        "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                      }
+                    }
+                  />
+                </div>,
+                "inputDisplay": <div
+                  className="euiColorPalettePicker__itemGradient"
+                  style={
+                    Object {
+                      "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                    }
+                  }
+                />,
+                "value": "paletteLinearStops",
               },
               Object {
                 "dropdownDisplay": <div
@@ -534,12 +684,12 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                   Plain text as a custom option
                 </div>,
                 "inputDisplay": "Plain text as a custom option",
-                "value": "2",
+                "value": "custom",
               },
             ]
           }
           readOnly={false}
-          value="1"
+          value="paletteFixed"
         />
       }
       className="euiSuperSelect"
@@ -585,7 +735,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                       <div
                         className="euiColorPalettePicker__itemTitle"
                       >
-                        Fixed Palette
+                        Palette 1
                       </div>
                       <div
                         className="euiColorPalettePicker__itemGradient"
@@ -604,7 +754,63 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                         }
                       }
                     />,
-                    "value": "1",
+                    "value": "paletteFixed",
+                  },
+                  Object {
+                    "dropdownDisplay": <div
+                      className="euiColorPalettePicker__item"
+                    >
+                      <div
+                        className="euiColorPalettePicker__itemTitle"
+                      >
+                        Linear Gradient
+                      </div>
+                      <div
+                        className="euiColorPalettePicker__itemGradient"
+                        style={
+                          Object {
+                            "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                          }
+                        }
+                      />
+                    </div>,
+                    "inputDisplay": <div
+                      className="euiColorPalettePicker__itemGradient"
+                      style={
+                        Object {
+                          "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                        }
+                      }
+                    />,
+                    "value": "paletteLinear",
+                  },
+                  Object {
+                    "dropdownDisplay": <div
+                      className="euiColorPalettePicker__item"
+                    >
+                      <div
+                        className="euiColorPalettePicker__itemTitle"
+                      >
+                        Linear Gradient with stops
+                      </div>
+                      <div
+                        className="euiColorPalettePicker__itemGradient"
+                        style={
+                          Object {
+                            "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                          }
+                        }
+                      />
+                    </div>,
+                    "inputDisplay": <div
+                      className="euiColorPalettePicker__itemGradient"
+                      style={
+                        Object {
+                          "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                        }
+                      }
+                    />,
+                    "value": "paletteLinearStops",
                   },
                   Object {
                     "dropdownDisplay": <div
@@ -613,16 +819,16 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                       Plain text as a custom option
                     </div>,
                     "inputDisplay": "Plain text as a custom option",
-                    "value": "2",
+                    "value": "custom",
                   },
                 ]
               }
               readOnly={false}
-              value="1"
+              value="paletteFixed"
             >
               <input
                 type="hidden"
-                value="1"
+                value="paletteFixed"
               />
               <EuiFormControlLayout
                 compressed={false}
@@ -782,10 +988,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                             class="euiScreenReaderOnly"
                             role="alert"
                           >
-                            You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                            You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
                           </p>
                           <div
-                            aria-activedescendant="1"
+                            aria-activedescendant="paletteFixed"
                             class="euiSuperSelect__listbox"
                             role="listbox"
                             tabindex="0"
@@ -793,7 +999,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                             <button
                               aria-selected="true"
                               class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                              id="1"
+                              id="paletteFixed"
                               role="option"
                               type="button"
                             >
@@ -813,7 +1019,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                     <div
                                       class="euiColorPalettePicker__itemTitle"
                                     >
-                                      Fixed Palette
+                                      Palette 1
                                     </div>
                                     <div
                                       class="euiColorPalettePicker__itemGradient"
@@ -825,7 +1031,71 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                             <button
                               aria-selected="false"
                               class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                              id="2"
+                              id="paletteLinear"
+                              role="option"
+                              type="button"
+                            >
+                              <span
+                                class="euiContextMenu__itemLayout"
+                              >
+                                <div
+                                  class="euiContextMenu__icon"
+                                  data-euiicon-type="empty"
+                                />
+                                <span
+                                  class="euiContextMenuItem__text"
+                                >
+                                  <div
+                                    class="euiColorPalettePicker__item"
+                                  >
+                                    <div
+                                      class="euiColorPalettePicker__itemTitle"
+                                    >
+                                      Linear Gradient
+                                    </div>
+                                    <div
+                                      class="euiColorPalettePicker__itemGradient"
+                                    />
+                                  </div>
+                                </span>
+                              </span>
+                            </button>
+                            <button
+                              aria-selected="false"
+                              class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              id="paletteLinearStops"
+                              role="option"
+                              type="button"
+                            >
+                              <span
+                                class="euiContextMenu__itemLayout"
+                              >
+                                <div
+                                  class="euiContextMenu__icon"
+                                  data-euiicon-type="empty"
+                                />
+                                <span
+                                  class="euiContextMenuItem__text"
+                                >
+                                  <div
+                                    class="euiColorPalettePicker__item"
+                                  >
+                                    <div
+                                      class="euiColorPalettePicker__itemTitle"
+                                    >
+                                      Linear Gradient with stops
+                                    </div>
+                                    <div
+                                      class="euiColorPalettePicker__itemGradient"
+                                    />
+                                  </div>
+                                </span>
+                              </span>
+                            </button>
+                            <button
+                              aria-selected="false"
+                              class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              id="custom"
                               role="option"
                               type="button"
                             >
@@ -955,10 +1225,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       class="euiScreenReaderOnly"
                                       role="alert"
                                     >
-                                      You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                      You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
                                     </p>
                                     <div
-                                      aria-activedescendant="1"
+                                      aria-activedescendant="paletteFixed"
                                       class="euiSuperSelect__listbox"
                                       role="listbox"
                                       tabindex="0"
@@ -966,7 +1236,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected="true"
                                         class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                                        id="1"
+                                        id="paletteFixed"
                                         role="option"
                                         type="button"
                                       >
@@ -986,7 +1256,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                               <div
                                                 class="euiColorPalettePicker__itemTitle"
                                               >
-                                                Fixed Palette
+                                                Palette 1
                                               </div>
                                               <div
                                                 class="euiColorPalettePicker__itemGradient"
@@ -998,7 +1268,71 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected="false"
                                         class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                                        id="2"
+                                        id="paletteLinear"
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          class="euiContextMenu__itemLayout"
+                                        >
+                                          <div
+                                            class="euiContextMenu__icon"
+                                            data-euiicon-type="empty"
+                                          />
+                                          <span
+                                            class="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              class="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient
+                                              </div>
+                                              <div
+                                                class="euiColorPalettePicker__itemGradient"
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                      <button
+                                        aria-selected="false"
+                                        class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        id="paletteLinearStops"
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          class="euiContextMenu__itemLayout"
+                                        >
+                                          <div
+                                            class="euiContextMenu__icon"
+                                            data-euiicon-type="empty"
+                                          />
+                                          <span
+                                            class="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              class="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient with stops
+                                              </div>
+                                              <div
+                                                class="euiColorPalettePicker__itemGradient"
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                      <button
+                                        aria-selected="false"
+                                        class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        id="custom"
                                         role="option"
                                         type="button"
                                       >
@@ -1052,10 +1386,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         class="euiScreenReaderOnly"
                                         role="alert"
                                       >
-                                        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                        You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
                                       </p>
                                       <div
-                                        aria-activedescendant="1"
+                                        aria-activedescendant="paletteFixed"
                                         class="euiSuperSelect__listbox"
                                         role="listbox"
                                         tabindex="0"
@@ -1063,7 +1397,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         <button
                                           aria-selected="true"
                                           class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                                          id="1"
+                                          id="paletteFixed"
                                           role="option"
                                           type="button"
                                         >
@@ -1083,7 +1417,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                                 <div
                                                   class="euiColorPalettePicker__itemTitle"
                                                 >
-                                                  Fixed Palette
+                                                  Palette 1
                                                 </div>
                                                 <div
                                                   class="euiColorPalettePicker__itemGradient"
@@ -1095,7 +1429,71 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         <button
                                           aria-selected="false"
                                           class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                                          id="2"
+                                          id="paletteLinear"
+                                          role="option"
+                                          type="button"
+                                        >
+                                          <span
+                                            class="euiContextMenu__itemLayout"
+                                          >
+                                            <div
+                                              class="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                            />
+                                            <span
+                                              class="euiContextMenuItem__text"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__item"
+                                              >
+                                                <div
+                                                  class="euiColorPalettePicker__itemTitle"
+                                                >
+                                                  Linear Gradient
+                                                </div>
+                                                <div
+                                                  class="euiColorPalettePicker__itemGradient"
+                                                />
+                                              </div>
+                                            </span>
+                                          </span>
+                                        </button>
+                                        <button
+                                          aria-selected="false"
+                                          class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          id="paletteLinearStops"
+                                          role="option"
+                                          type="button"
+                                        >
+                                          <span
+                                            class="euiContextMenu__itemLayout"
+                                          >
+                                            <div
+                                              class="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                            />
+                                            <span
+                                              class="euiContextMenuItem__text"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__item"
+                                              >
+                                                <div
+                                                  class="euiColorPalettePicker__itemTitle"
+                                                >
+                                                  Linear Gradient with stops
+                                                </div>
+                                                <div
+                                                  class="euiColorPalettePicker__itemGradient"
+                                                />
+                                              </div>
+                                            </span>
+                                          </span>
+                                        </button>
+                                        <button
+                                          aria-selected="false"
+                                          class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          id="custom"
                                           role="option"
                                           type="button"
                                         >
@@ -1182,16 +1580,16 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         token="euiSuperSelect.screenReaderAnnouncement"
                                         values={
                                           Object {
-                                            "optionsCount": 2,
+                                            "optionsCount": 4,
                                           }
                                         }
                                       >
-                                        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                        You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
                                       </EuiI18n>
                                     </p>
                                   </EuiScreenReaderOnly>
                                   <div
-                                    aria-activedescendant="1"
+                                    aria-activedescendant="paletteFixed"
                                     className="euiSuperSelect__listbox"
                                     role="listbox"
                                     style={
@@ -1206,7 +1604,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       buttonRef={[Function]}
                                       className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
                                       icon="check"
-                                      id="1"
+                                      id="paletteFixed"
                                       key="0"
                                       onClick={[Function]}
                                       onKeyDown={[Function]}
@@ -1215,7 +1613,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected={true}
                                         className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                                        id="1"
+                                        id="paletteFixed"
                                         onClick={[Function]}
                                         onKeyDown={[Function]}
                                         role="option"
@@ -1244,7 +1642,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                               <div
                                                 className="euiColorPalettePicker__itemTitle"
                                               >
-                                                Fixed Palette
+                                                Palette 1
                                               </div>
                                               <div
                                                 className="euiColorPalettePicker__itemGradient"
@@ -1264,7 +1662,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       buttonRef={[Function]}
                                       className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
                                       icon="empty"
-                                      id="2"
+                                      id="paletteLinear"
                                       key="1"
                                       onClick={[Function]}
                                       onKeyDown={[Function]}
@@ -1273,7 +1671,123 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected={false}
                                         className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
-                                        id="2"
+                                        id="paletteLinear"
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiContextMenu__itemLayout"
+                                        >
+                                          <EuiIcon
+                                            className="euiContextMenu__icon"
+                                            size="m"
+                                            type="empty"
+                                          >
+                                            <div
+                                              className="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                              size="m"
+                                            />
+                                          </EuiIcon>
+                                          <span
+                                            className="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              className="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                className="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient
+                                              </div>
+                                              <div
+                                                className="euiColorPalettePicker__itemGradient"
+                                                style={
+                                                  Object {
+                                                    "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                                                  }
+                                                }
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiContextMenuItem>
+                                    <EuiContextMenuItem
+                                      aria-selected={false}
+                                      buttonRef={[Function]}
+                                      className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      icon="empty"
+                                      id="paletteLinearStops"
+                                      key="2"
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="option"
+                                    >
+                                      <button
+                                        aria-selected={false}
+                                        className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        id="paletteLinearStops"
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiContextMenu__itemLayout"
+                                        >
+                                          <EuiIcon
+                                            className="euiContextMenu__icon"
+                                            size="m"
+                                            type="empty"
+                                          >
+                                            <div
+                                              className="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                              size="m"
+                                            />
+                                          </EuiIcon>
+                                          <span
+                                            className="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              className="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                className="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient with stops
+                                              </div>
+                                              <div
+                                                className="euiColorPalettePicker__itemGradient"
+                                                style={
+                                                  Object {
+                                                    "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                                                  }
+                                                }
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiContextMenuItem>
+                                    <EuiContextMenuItem
+                                      aria-selected={false}
+                                      buttonRef={[Function]}
+                                      className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      icon="empty"
+                                      id="custom"
+                                      key="3"
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="option"
+                                    >
+                                      <button
+                                        aria-selected={false}
+                                        className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        id="custom"
                                         onClick={[Function]}
                                         onKeyDown={[Function]}
                                         role="option"

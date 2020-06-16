@@ -36,12 +36,14 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     title: 'Palette 1',
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'fixed',
+    'data-test-subj': 'fixed-data-test-subj',
   },
   {
     value: 'paletteLinear',
     title: 'Linear Gradient',
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'gradient',
+    'data-test-subj': 'gradient-data-test-subj',
   },
   {
     value: 'paletteLinearStops',
@@ -65,11 +67,13 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
       },
     ],
     type: 'gradient',
+    'data-test-subj': 'gradient-with-stops-data-test-subj',
   },
   {
     value: 'custom',
     title: 'Plain text as a custom option',
     type: 'text',
+    'data-test-subj': 'text-data-test-subj',
   },
 ];
 
@@ -155,21 +159,8 @@ describe('EuiColorPalettePicker', () => {
   test('more props are propagated to each option', () => {
     const component = mount(
       <EuiColorPalettePicker
-        palettes={[
-          {
-            value: '1',
-            title: 'Fixed Palette',
-            palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
-            type: 'fixed',
-          },
-          {
-            value: '2',
-            title: 'Plain text as a custom option',
-            type: 'text',
-            'data-test-subj': 'custom option',
-          },
-        ]}
-        valueOfSelected="1"
+        palettes={palettes}
+        valueOfSelected="paletteFixed"
         onChange={() => {}}
         data-test-subj="colorPalettePicker"
       />
