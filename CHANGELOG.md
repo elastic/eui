@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `26.0.0`.
+
+## [`26.0.0`](https://github.com/elastic/eui/tree/v26.0.0)
+
 - Added `useEuiTextDiff` react hook utility ([#3288](https://github.com/elastic/eui/pull/3288))
 - Converted `EuiOverlayMask` to be a React functional component ([#3555](https://github.com/elastic/eui/pull/3555))
 - Changed `responsive` and `max` behavior of `EuiBreadcrumbs` to always display collapsed items in popover [#3578](https://github.com/elastic/eui/pull/3578))
