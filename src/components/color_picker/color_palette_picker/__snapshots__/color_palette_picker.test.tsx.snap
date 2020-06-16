@@ -412,6 +412,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
   palettes={
     Array [
       Object {
+        "aria-label": "my palette fixed",
+        "className": "paletteFixedClass",
         "data-test-subj": "fixed-data-test-subj",
         "palette": Array [
           "#1fb0b2",
@@ -425,6 +427,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
         "value": "paletteFixed",
       },
       Object {
+        "className": "paletteLinearClass",
         "data-test-subj": "gradient-data-test-subj",
         "palette": Array [
           "#1fb0b2",
@@ -482,6 +485,9 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
     options={
       Array [
         Object {
+          "aria-label": "my palette fixed",
+          "className": "paletteFixedClass",
+          "data-test-subj": "fixed-data-test-subj",
           "dropdownDisplay": <div
             className="euiColorPalettePicker__item"
           >
@@ -510,6 +516,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
           "value": "paletteFixed",
         },
         Object {
+          "className": "paletteLinearClass",
+          "data-test-subj": "gradient-data-test-subj",
           "dropdownDisplay": <div
             className="euiColorPalettePicker__item"
           >
@@ -538,6 +546,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
           "value": "paletteLinear",
         },
         Object {
+          "data-test-subj": "gradient-with-stops-data-test-subj",
           "dropdownDisplay": <div
             className="euiColorPalettePicker__item"
           >
@@ -566,6 +575,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
           "value": "paletteLinearStops",
         },
         Object {
+          "data-test-subj": "text-data-test-subj",
           "dropdownDisplay": <div
             className="euiColorPalettePicker__item"
           >
@@ -594,6 +604,9 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
           options={
             Array [
               Object {
+                "aria-label": "my palette fixed",
+                "className": "paletteFixedClass",
+                "data-test-subj": "fixed-data-test-subj",
                 "dropdownDisplay": <div
                   className="euiColorPalettePicker__item"
                 >
@@ -622,6 +635,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                 "value": "paletteFixed",
               },
               Object {
+                "className": "paletteLinearClass",
+                "data-test-subj": "gradient-data-test-subj",
                 "dropdownDisplay": <div
                   className="euiColorPalettePicker__item"
                 >
@@ -650,6 +665,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                 "value": "paletteLinear",
               },
               Object {
+                "data-test-subj": "gradient-with-stops-data-test-subj",
                 "dropdownDisplay": <div
                   className="euiColorPalettePicker__item"
                 >
@@ -678,6 +694,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                 "value": "paletteLinearStops",
               },
               Object {
+                "data-test-subj": "text-data-test-subj",
                 "dropdownDisplay": <div
                   className="euiColorPalettePicker__item"
                 >
@@ -729,6 +746,9 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
               options={
                 Array [
                   Object {
+                    "aria-label": "my palette fixed",
+                    "className": "paletteFixedClass",
+                    "data-test-subj": "fixed-data-test-subj",
                     "dropdownDisplay": <div
                       className="euiColorPalettePicker__item"
                     >
@@ -757,6 +777,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                     "value": "paletteFixed",
                   },
                   Object {
+                    "className": "paletteLinearClass",
+                    "data-test-subj": "gradient-data-test-subj",
                     "dropdownDisplay": <div
                       className="euiColorPalettePicker__item"
                     >
@@ -785,6 +807,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                     "value": "paletteLinear",
                   },
                   Object {
+                    "data-test-subj": "gradient-with-stops-data-test-subj",
                     "dropdownDisplay": <div
                       className="euiColorPalettePicker__item"
                     >
@@ -813,6 +836,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                     "value": "paletteLinearStops",
                   },
                   Object {
+                    "data-test-subj": "text-data-test-subj",
                     "dropdownDisplay": <div
                       className="euiColorPalettePicker__item"
                     >
@@ -997,8 +1021,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                             tabindex="0"
                           >
                             <button
+                              aria-label="my palette fixed"
                               aria-selected="true"
-                              class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              class="euiContextMenuItem paletteFixedClass"
+                              data-test-subj="fixed-data-test-subj"
                               id="paletteFixed"
                               role="option"
                               type="button"
@@ -1030,7 +1056,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                             </button>
                             <button
                               aria-selected="false"
-                              class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              class="euiContextMenuItem paletteLinearClass"
+                              data-test-subj="gradient-data-test-subj"
                               id="paletteLinear"
                               role="option"
                               type="button"
@@ -1063,6 +1090,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                             <button
                               aria-selected="false"
                               class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              data-test-subj="gradient-with-stops-data-test-subj"
                               id="paletteLinearStops"
                               role="option"
                               type="button"
@@ -1095,6 +1123,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                             <button
                               aria-selected="false"
                               class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              data-test-subj="text-data-test-subj"
                               id="custom"
                               role="option"
                               type="button"
@@ -1234,8 +1263,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       tabindex="0"
                                     >
                                       <button
+                                        aria-label="my palette fixed"
                                         aria-selected="true"
-                                        class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        class="euiContextMenuItem paletteFixedClass"
+                                        data-test-subj="fixed-data-test-subj"
                                         id="paletteFixed"
                                         role="option"
                                         type="button"
@@ -1267,7 +1298,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       </button>
                                       <button
                                         aria-selected="false"
-                                        class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        class="euiContextMenuItem paletteLinearClass"
+                                        data-test-subj="gradient-data-test-subj"
                                         id="paletteLinear"
                                         role="option"
                                         type="button"
@@ -1300,6 +1332,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected="false"
                                         class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="gradient-with-stops-data-test-subj"
                                         id="paletteLinearStops"
                                         role="option"
                                         type="button"
@@ -1332,6 +1365,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected="false"
                                         class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="text-data-test-subj"
                                         id="custom"
                                         role="option"
                                         type="button"
@@ -1395,8 +1429,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         tabindex="0"
                                       >
                                         <button
+                                          aria-label="my palette fixed"
                                           aria-selected="true"
-                                          class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          class="euiContextMenuItem paletteFixedClass"
+                                          data-test-subj="fixed-data-test-subj"
                                           id="paletteFixed"
                                           role="option"
                                           type="button"
@@ -1428,7 +1464,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         </button>
                                         <button
                                           aria-selected="false"
-                                          class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          class="euiContextMenuItem paletteLinearClass"
+                                          data-test-subj="gradient-data-test-subj"
                                           id="paletteLinear"
                                           role="option"
                                           type="button"
@@ -1461,6 +1498,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         <button
                                           aria-selected="false"
                                           class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          data-test-subj="gradient-with-stops-data-test-subj"
                                           id="paletteLinearStops"
                                           role="option"
                                           type="button"
@@ -1493,6 +1531,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                         <button
                                           aria-selected="false"
                                           class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          data-test-subj="text-data-test-subj"
                                           id="custom"
                                           role="option"
                                           type="button"
@@ -1600,9 +1639,11 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                     tabIndex={0}
                                   >
                                     <EuiContextMenuItem
+                                      aria-label="my palette fixed"
                                       aria-selected={true}
                                       buttonRef={[Function]}
-                                      className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      className="paletteFixedClass"
+                                      data-test-subj="fixed-data-test-subj"
                                       icon="check"
                                       id="paletteFixed"
                                       key="0"
@@ -1611,8 +1652,10 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       role="option"
                                     >
                                       <button
+                                        aria-label="my palette fixed"
                                         aria-selected={true}
-                                        className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        className="euiContextMenuItem paletteFixedClass"
+                                        data-test-subj="fixed-data-test-subj"
                                         id="paletteFixed"
                                         onClick={[Function]}
                                         onKeyDown={[Function]}
@@ -1660,7 +1703,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                     <EuiContextMenuItem
                                       aria-selected={false}
                                       buttonRef={[Function]}
-                                      className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      className="paletteLinearClass"
+                                      data-test-subj="gradient-data-test-subj"
                                       icon="empty"
                                       id="paletteLinear"
                                       key="1"
@@ -1670,7 +1714,8 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                     >
                                       <button
                                         aria-selected={false}
-                                        className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        className="euiContextMenuItem paletteLinearClass"
+                                        data-test-subj="gradient-data-test-subj"
                                         id="paletteLinear"
                                         onClick={[Function]}
                                         onKeyDown={[Function]}
@@ -1719,6 +1764,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       aria-selected={false}
                                       buttonRef={[Function]}
                                       className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      data-test-subj="gradient-with-stops-data-test-subj"
                                       icon="empty"
                                       id="paletteLinearStops"
                                       key="2"
@@ -1729,6 +1775,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected={false}
                                         className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="gradient-with-stops-data-test-subj"
                                         id="paletteLinearStops"
                                         onClick={[Function]}
                                         onKeyDown={[Function]}
@@ -1777,6 +1824,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       aria-selected={false}
                                       buttonRef={[Function]}
                                       className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      data-test-subj="text-data-test-subj"
                                       icon="empty"
                                       id="custom"
                                       key="3"
@@ -1787,6 +1835,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
                                       <button
                                         aria-selected={false}
                                         className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="text-data-test-subj"
                                         id="custom"
                                         onClick={[Function]}
                                         onKeyDown={[Function]}

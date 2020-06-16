@@ -37,6 +37,8 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'fixed',
     'data-test-subj': 'fixed-data-test-subj',
+    className: 'paletteFixedClass',
+    'aria-label': 'my palette fixed',
   },
   {
     value: 'paletteLinear',
@@ -44,6 +46,7 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'gradient',
     'data-test-subj': 'gradient-data-test-subj',
+    className: 'paletteLinearClass',
   },
   {
     value: 'paletteLinearStops',
