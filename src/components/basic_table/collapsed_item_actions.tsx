@@ -128,10 +128,12 @@ export class CollapsedItemActions<T> extends Component<
           controls.push(
             <EuiContextMenuItem
               key={key}
-              onClick={
-                actionControlOnClick
-                  ? actionControlOnClick.bind(null, item)
-                  : () => {}
+              onClick={() =>
+                this.onClickItem(
+                  actionControlOnClick
+                    ? () => actionControlOnClick(item)
+                    : undefined
+                )
               }>
               {actionControl}
             </EuiContextMenuItem>
@@ -159,10 +161,9 @@ export class CollapsedItemActions<T> extends Component<
               target={target}
               icon={icon}
               data-test-subj={dataTestSubj}
-              onClick={this.onClickItem.bind(
-                null,
-                onClick ? onClick.bind(null, item) : undefined
-              )}>
+              onClick={() =>
+                this.onClickItem(onClick ? () => onClick(item) : undefined)
+              }>
               {name}
             </EuiContextMenuItem>
           );

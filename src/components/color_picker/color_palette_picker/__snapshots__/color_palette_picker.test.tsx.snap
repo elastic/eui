@@ -345,3 +345,1560 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
   </div>
 </div>
 `;
+
+exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <input
+      type="hidden"
+      value="paletteFixed"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: 
+          <div
+            class="euiColorPalettePicker__itemGradient"
+          />
+          , is selected
+        </span>
+        <button
+          aria-haspopup="true"
+          aria-labelledby="undefined generated-id"
+          aria-selected="true"
+          class="euiSuperSelectControl euiSuperSelect--isOpen__button"
+          data-test-subj="colorPalettePicker"
+          role="option"
+          type="button"
+        >
+          <div
+            class="euiColorPalettePicker__itemGradient"
+          />
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <div
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiColorPalettePicker more props are propagated to each option 2`] = `
+<EuiColorPalettePicker
+  data-test-subj="colorPalettePicker"
+  onChange={[Function]}
+  palettes={
+    Array [
+      Object {
+        "aria-label": "my palette fixed",
+        "className": "paletteFixedClass",
+        "data-test-subj": "fixed-data-test-subj",
+        "palette": Array [
+          "#1fb0b2",
+          "#ffdb6d",
+          "#ee9191",
+          "#ffffff",
+          "#888094",
+        ],
+        "title": "Palette 1",
+        "type": "fixed",
+        "value": "paletteFixed",
+      },
+      Object {
+        "className": "paletteLinearClass",
+        "data-test-subj": "gradient-data-test-subj",
+        "palette": Array [
+          "#1fb0b2",
+          "#ffdb6d",
+          "#ee9191",
+          "#ffffff",
+          "#888094",
+        ],
+        "title": "Linear Gradient",
+        "type": "gradient",
+        "value": "paletteLinear",
+      },
+      Object {
+        "data-test-subj": "gradient-with-stops-data-test-subj",
+        "palette": Array [
+          Object {
+            "color": "#54B399",
+            "stop": 100,
+          },
+          Object {
+            "color": "#D36086",
+            "stop": 250,
+          },
+          Object {
+            "color": "#9170B8",
+            "stop": 350,
+          },
+          Object {
+            "color": "#F5A700",
+            "stop": 470,
+          },
+        ],
+        "title": "Linear Gradient with stops",
+        "type": "gradient",
+        "value": "paletteLinearStops",
+      },
+      Object {
+        "data-test-subj": "text-data-test-subj",
+        "title": "Plain text as a custom option",
+        "type": "text",
+        "value": "custom",
+      },
+    ]
+  }
+  valueOfSelected="paletteFixed"
+>
+  <EuiSuperSelect
+    compressed={false}
+    data-test-subj="colorPalettePicker"
+    fullWidth={false}
+    hasDividers={true}
+    isInvalid={false}
+    isLoading={false}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "aria-label": "my palette fixed",
+          "className": "paletteFixedClass",
+          "data-test-subj": "fixed-data-test-subj",
+          "dropdownDisplay": <div
+            className="euiColorPalettePicker__item"
+          >
+            <div
+              className="euiColorPalettePicker__itemTitle"
+            >
+              Palette 1
+            </div>
+            <div
+              className="euiColorPalettePicker__itemGradient"
+              style={
+                Object {
+                  "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                }
+              }
+            />
+          </div>,
+          "inputDisplay": <div
+            className="euiColorPalettePicker__itemGradient"
+            style={
+              Object {
+                "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+              }
+            }
+          />,
+          "value": "paletteFixed",
+        },
+        Object {
+          "className": "paletteLinearClass",
+          "data-test-subj": "gradient-data-test-subj",
+          "dropdownDisplay": <div
+            className="euiColorPalettePicker__item"
+          >
+            <div
+              className="euiColorPalettePicker__itemTitle"
+            >
+              Linear Gradient
+            </div>
+            <div
+              className="euiColorPalettePicker__itemGradient"
+              style={
+                Object {
+                  "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                }
+              }
+            />
+          </div>,
+          "inputDisplay": <div
+            className="euiColorPalettePicker__itemGradient"
+            style={
+              Object {
+                "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+              }
+            }
+          />,
+          "value": "paletteLinear",
+        },
+        Object {
+          "data-test-subj": "gradient-with-stops-data-test-subj",
+          "dropdownDisplay": <div
+            className="euiColorPalettePicker__item"
+          >
+            <div
+              className="euiColorPalettePicker__itemTitle"
+            >
+              Linear Gradient with stops
+            </div>
+            <div
+              className="euiColorPalettePicker__itemGradient"
+              style={
+                Object {
+                  "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                }
+              }
+            />
+          </div>,
+          "inputDisplay": <div
+            className="euiColorPalettePicker__itemGradient"
+            style={
+              Object {
+                "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+              }
+            }
+          />,
+          "value": "paletteLinearStops",
+        },
+        Object {
+          "data-test-subj": "text-data-test-subj",
+          "dropdownDisplay": <div
+            className="euiColorPalettePicker__item"
+          >
+            Plain text as a custom option
+          </div>,
+          "inputDisplay": "Plain text as a custom option",
+          "value": "custom",
+        },
+      ]
+    }
+    readOnly={false}
+    valueOfSelected="paletteFixed"
+  >
+    <EuiPopover
+      anchorPosition="downCenter"
+      button={
+        <EuiSuperSelectControl
+          className="euiSuperSelect--isOpen__button"
+          compressed={false}
+          data-test-subj="colorPalettePicker"
+          fullWidth={false}
+          isInvalid={false}
+          isLoading={false}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          options={
+            Array [
+              Object {
+                "aria-label": "my palette fixed",
+                "className": "paletteFixedClass",
+                "data-test-subj": "fixed-data-test-subj",
+                "dropdownDisplay": <div
+                  className="euiColorPalettePicker__item"
+                >
+                  <div
+                    className="euiColorPalettePicker__itemTitle"
+                  >
+                    Palette 1
+                  </div>
+                  <div
+                    className="euiColorPalettePicker__itemGradient"
+                    style={
+                      Object {
+                        "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                      }
+                    }
+                  />
+                </div>,
+                "inputDisplay": <div
+                  className="euiColorPalettePicker__itemGradient"
+                  style={
+                    Object {
+                      "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                    }
+                  }
+                />,
+                "value": "paletteFixed",
+              },
+              Object {
+                "className": "paletteLinearClass",
+                "data-test-subj": "gradient-data-test-subj",
+                "dropdownDisplay": <div
+                  className="euiColorPalettePicker__item"
+                >
+                  <div
+                    className="euiColorPalettePicker__itemTitle"
+                  >
+                    Linear Gradient
+                  </div>
+                  <div
+                    className="euiColorPalettePicker__itemGradient"
+                    style={
+                      Object {
+                        "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                      }
+                    }
+                  />
+                </div>,
+                "inputDisplay": <div
+                  className="euiColorPalettePicker__itemGradient"
+                  style={
+                    Object {
+                      "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                    }
+                  }
+                />,
+                "value": "paletteLinear",
+              },
+              Object {
+                "data-test-subj": "gradient-with-stops-data-test-subj",
+                "dropdownDisplay": <div
+                  className="euiColorPalettePicker__item"
+                >
+                  <div
+                    className="euiColorPalettePicker__itemTitle"
+                  >
+                    Linear Gradient with stops
+                  </div>
+                  <div
+                    className="euiColorPalettePicker__itemGradient"
+                    style={
+                      Object {
+                        "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                      }
+                    }
+                  />
+                </div>,
+                "inputDisplay": <div
+                  className="euiColorPalettePicker__itemGradient"
+                  style={
+                    Object {
+                      "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                    }
+                  }
+                />,
+                "value": "paletteLinearStops",
+              },
+              Object {
+                "data-test-subj": "text-data-test-subj",
+                "dropdownDisplay": <div
+                  className="euiColorPalettePicker__item"
+                >
+                  Plain text as a custom option
+                </div>,
+                "inputDisplay": "Plain text as a custom option",
+                "value": "custom",
+              },
+            ]
+          }
+          readOnly={false}
+          value="paletteFixed"
+        />
+      }
+      className="euiSuperSelect"
+      closePopover={[Function]}
+      display="block"
+      hasArrow={false}
+      isOpen={true}
+      ownFocus={false}
+      panelClassName="euiSuperSelect__popoverPanel"
+      panelPaddingSize="none"
+      popoverRef={[Function]}
+    >
+      <EuiOutsideClickDetector
+        isDisabled={false}
+        onOutsideClick={[Function]}
+      >
+        <div
+          className="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+        >
+          <div
+            className="euiPopover__anchor"
+          >
+            <EuiSuperSelectControl
+              className="euiSuperSelect--isOpen__button"
+              compressed={false}
+              data-test-subj="colorPalettePicker"
+              fullWidth={false}
+              isInvalid={false}
+              isLoading={false}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              options={
+                Array [
+                  Object {
+                    "aria-label": "my palette fixed",
+                    "className": "paletteFixedClass",
+                    "data-test-subj": "fixed-data-test-subj",
+                    "dropdownDisplay": <div
+                      className="euiColorPalettePicker__item"
+                    >
+                      <div
+                        className="euiColorPalettePicker__itemTitle"
+                      >
+                        Palette 1
+                      </div>
+                      <div
+                        className="euiColorPalettePicker__itemGradient"
+                        style={
+                          Object {
+                            "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                          }
+                        }
+                      />
+                    </div>,
+                    "inputDisplay": <div
+                      className="euiColorPalettePicker__itemGradient"
+                      style={
+                        Object {
+                          "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                        }
+                      }
+                    />,
+                    "value": "paletteFixed",
+                  },
+                  Object {
+                    "className": "paletteLinearClass",
+                    "data-test-subj": "gradient-data-test-subj",
+                    "dropdownDisplay": <div
+                      className="euiColorPalettePicker__item"
+                    >
+                      <div
+                        className="euiColorPalettePicker__itemTitle"
+                      >
+                        Linear Gradient
+                      </div>
+                      <div
+                        className="euiColorPalettePicker__itemGradient"
+                        style={
+                          Object {
+                            "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                          }
+                        }
+                      />
+                    </div>,
+                    "inputDisplay": <div
+                      className="euiColorPalettePicker__itemGradient"
+                      style={
+                        Object {
+                          "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                        }
+                      }
+                    />,
+                    "value": "paletteLinear",
+                  },
+                  Object {
+                    "data-test-subj": "gradient-with-stops-data-test-subj",
+                    "dropdownDisplay": <div
+                      className="euiColorPalettePicker__item"
+                    >
+                      <div
+                        className="euiColorPalettePicker__itemTitle"
+                      >
+                        Linear Gradient with stops
+                      </div>
+                      <div
+                        className="euiColorPalettePicker__itemGradient"
+                        style={
+                          Object {
+                            "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                          }
+                        }
+                      />
+                    </div>,
+                    "inputDisplay": <div
+                      className="euiColorPalettePicker__itemGradient"
+                      style={
+                        Object {
+                          "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                        }
+                      }
+                    />,
+                    "value": "paletteLinearStops",
+                  },
+                  Object {
+                    "data-test-subj": "text-data-test-subj",
+                    "dropdownDisplay": <div
+                      className="euiColorPalettePicker__item"
+                    >
+                      Plain text as a custom option
+                    </div>,
+                    "inputDisplay": "Plain text as a custom option",
+                    "value": "custom",
+                  },
+                ]
+              }
+              readOnly={false}
+              value="paletteFixed"
+            >
+              <input
+                type="hidden"
+                value="paletteFixed"
+              />
+              <EuiFormControlLayout
+                compressed={false}
+                fullWidth={false}
+                icon={
+                  Object {
+                    "side": "right",
+                    "type": "arrowDown",
+                  }
+                }
+                isLoading={false}
+              >
+                <div
+                  className="euiFormControlLayout"
+                >
+                  <div
+                    className="euiFormControlLayout__childrenWrapper"
+                  >
+                    <EuiScreenReaderOnly>
+                      <span
+                        className="euiScreenReaderOnly"
+                        id="generated-id"
+                      >
+                        <EuiI18n
+                          default="Select an option: {selectedValue}, is selected"
+                          token="euiSuperSelectControl.selectAnOption"
+                          values={
+                            Object {
+                              "selectedValue": <div
+                                className="euiColorPalettePicker__itemGradient"
+                                style={
+                                  Object {
+                                    "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                                  }
+                                }
+                              />,
+                            }
+                          }
+                        >
+                          <Component
+                            selectedValue={
+                              <div
+                                className="euiColorPalettePicker__itemGradient"
+                                style={
+                                  Object {
+                                    "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                                  }
+                                }
+                              />
+                            }
+                          >
+                            Select an option: 
+                            <div
+                              className="euiColorPalettePicker__itemGradient"
+                              key="1"
+                              style={
+                                Object {
+                                  "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                                }
+                              }
+                            />
+                            , is selected
+                          </Component>
+                        </EuiI18n>
+                      </span>
+                    </EuiScreenReaderOnly>
+                    <button
+                      aria-haspopup="true"
+                      aria-labelledby="undefined generated-id"
+                      aria-selected={true}
+                      className="euiSuperSelectControl euiSuperSelect--isOpen__button"
+                      data-test-subj="colorPalettePicker"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      readOnly={false}
+                      role="option"
+                      type="button"
+                    >
+                      <div
+                        className="euiColorPalettePicker__itemGradient"
+                        style={
+                          Object {
+                            "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                          }
+                        }
+                      />
+                    </button>
+                    <EuiFormControlLayoutIcons
+                      icon={
+                        Object {
+                          "side": "right",
+                          "type": "arrowDown",
+                        }
+                      }
+                      isLoading={false}
+                    >
+                      <div
+                        className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                      >
+                        <EuiFormControlLayoutCustomIcon
+                          type="arrowDown"
+                        >
+                          <span
+                            className="euiFormControlLayoutCustomIcon"
+                          >
+                            <EuiIcon
+                              aria-hidden="true"
+                              className="euiFormControlLayoutCustomIcon__icon"
+                              type="arrowDown"
+                            >
+                              <div
+                                aria-hidden="true"
+                                className="euiFormControlLayoutCustomIcon__icon"
+                                data-euiicon-type="arrowDown"
+                              />
+                            </EuiIcon>
+                          </span>
+                        </EuiFormControlLayoutCustomIcon>
+                      </div>
+                    </EuiFormControlLayoutIcons>
+                  </div>
+                </div>
+              </EuiFormControlLayout>
+            </EuiSuperSelectControl>
+          </div>
+          <EuiPortal>
+            <Portal
+              containerInfo={
+                <div>
+                  <div>
+                    <div
+                      data-focus-guard="true"
+                      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-guard="true"
+                      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                      tabindex="-1"
+                    />
+                    <div
+                      data-focus-lock-disabled="disabled"
+                    >
+                      <div
+                        aria-describedby="generated-id"
+                        aria-live="assertive"
+                        aria-modal="true"
+                        class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                        role="dialog"
+                        style="top: 8px; left: -22px; z-index: 2000;"
+                      >
+                        <div
+                          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                        />
+                        <div>
+                          <p
+                            class="euiScreenReaderOnly"
+                            role="alert"
+                          >
+                            You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                          </p>
+                          <div
+                            aria-activedescendant="paletteFixed"
+                            class="euiSuperSelect__listbox"
+                            role="listbox"
+                            tabindex="0"
+                          >
+                            <button
+                              aria-label="my palette fixed"
+                              aria-selected="true"
+                              class="euiContextMenuItem paletteFixedClass"
+                              data-test-subj="fixed-data-test-subj"
+                              id="paletteFixed"
+                              role="option"
+                              type="button"
+                            >
+                              <span
+                                class="euiContextMenu__itemLayout"
+                              >
+                                <div
+                                  class="euiContextMenu__icon"
+                                  data-euiicon-type="check"
+                                />
+                                <span
+                                  class="euiContextMenuItem__text"
+                                >
+                                  <div
+                                    class="euiColorPalettePicker__item"
+                                  >
+                                    <div
+                                      class="euiColorPalettePicker__itemTitle"
+                                    >
+                                      Palette 1
+                                    </div>
+                                    <div
+                                      class="euiColorPalettePicker__itemGradient"
+                                    />
+                                  </div>
+                                </span>
+                              </span>
+                            </button>
+                            <button
+                              aria-selected="false"
+                              class="euiContextMenuItem paletteLinearClass"
+                              data-test-subj="gradient-data-test-subj"
+                              id="paletteLinear"
+                              role="option"
+                              type="button"
+                            >
+                              <span
+                                class="euiContextMenu__itemLayout"
+                              >
+                                <div
+                                  class="euiContextMenu__icon"
+                                  data-euiicon-type="empty"
+                                />
+                                <span
+                                  class="euiContextMenuItem__text"
+                                >
+                                  <div
+                                    class="euiColorPalettePicker__item"
+                                  >
+                                    <div
+                                      class="euiColorPalettePicker__itemTitle"
+                                    >
+                                      Linear Gradient
+                                    </div>
+                                    <div
+                                      class="euiColorPalettePicker__itemGradient"
+                                    />
+                                  </div>
+                                </span>
+                              </span>
+                            </button>
+                            <button
+                              aria-selected="false"
+                              class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              data-test-subj="gradient-with-stops-data-test-subj"
+                              id="paletteLinearStops"
+                              role="option"
+                              type="button"
+                            >
+                              <span
+                                class="euiContextMenu__itemLayout"
+                              >
+                                <div
+                                  class="euiContextMenu__icon"
+                                  data-euiicon-type="empty"
+                                />
+                                <span
+                                  class="euiContextMenuItem__text"
+                                >
+                                  <div
+                                    class="euiColorPalettePicker__item"
+                                  >
+                                    <div
+                                      class="euiColorPalettePicker__itemTitle"
+                                    >
+                                      Linear Gradient with stops
+                                    </div>
+                                    <div
+                                      class="euiColorPalettePicker__itemGradient"
+                                    />
+                                  </div>
+                                </span>
+                              </span>
+                            </button>
+                            <button
+                              aria-selected="false"
+                              class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                              data-test-subj="text-data-test-subj"
+                              id="custom"
+                              role="option"
+                              type="button"
+                            >
+                              <span
+                                class="euiContextMenu__itemLayout"
+                              >
+                                <div
+                                  class="euiContextMenu__icon"
+                                  data-euiicon-type="empty"
+                                />
+                                <span
+                                  class="euiContextMenuItem__text"
+                                >
+                                  <div
+                                    class="euiColorPalettePicker__item"
+                                  >
+                                    Plain text as a custom option
+                                  </div>
+                                </span>
+                              </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      data-focus-guard="true"
+                      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                      tabindex="-1"
+                    />
+                  </div>
+                </div>
+              }
+            >
+              <EuiFocusTrap
+                clickOutsideDisables={true}
+                disabled={true}
+                returnFocus={true}
+              >
+                <EuiOutsideClickDetector
+                  isDisabled={true}
+                  onOutsideClick={[Function]}
+                >
+                  <OutsideEventDetector
+                    handleEvent={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                  >
+                    <div
+                      onMouseDown={[Function]}
+                      onMouseUp={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchStart={[Function]}
+                    >
+                      <FocusLock
+                        as="div"
+                        autoFocus={true}
+                        disabled={true}
+                        lockProps={
+                          Object {
+                            "style": undefined,
+                          }
+                        }
+                        noFocusGuards={false}
+                        persistentFocus={false}
+                        returnFocus={true}
+                      >
+                        <div
+                          data-focus-guard={true}
+                          key="guard-first"
+                          style={
+                            Object {
+                              "height": "0px",
+                              "left": "1px",
+                              "overflow": "hidden",
+                              "padding": 0,
+                              "position": "fixed",
+                              "top": "1px",
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex={-1}
+                        />
+                        <div
+                          data-focus-guard={true}
+                          key="guard-nearest"
+                          style={
+                            Object {
+                              "height": "0px",
+                              "left": "1px",
+                              "overflow": "hidden",
+                              "padding": 0,
+                              "position": "fixed",
+                              "top": "1px",
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex={-1}
+                        />
+                        <div
+                          data-focus-lock-disabled="disabled"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                        >
+                          <SideEffect(FocusWatcher)
+                            autoFocus={true}
+                            disabled={true}
+                            observed={
+                              <div
+                                data-focus-lock-disabled="disabled"
+                              >
+                                <div
+                                  aria-describedby="generated-id"
+                                  aria-live="assertive"
+                                  aria-modal="true"
+                                  class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                                  role="dialog"
+                                  style="top: 8px; left: -22px; z-index: 2000;"
+                                >
+                                  <div
+                                    class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                                  />
+                                  <div>
+                                    <p
+                                      class="euiScreenReaderOnly"
+                                      role="alert"
+                                    >
+                                      You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                    </p>
+                                    <div
+                                      aria-activedescendant="paletteFixed"
+                                      class="euiSuperSelect__listbox"
+                                      role="listbox"
+                                      tabindex="0"
+                                    >
+                                      <button
+                                        aria-label="my palette fixed"
+                                        aria-selected="true"
+                                        class="euiContextMenuItem paletteFixedClass"
+                                        data-test-subj="fixed-data-test-subj"
+                                        id="paletteFixed"
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          class="euiContextMenu__itemLayout"
+                                        >
+                                          <div
+                                            class="euiContextMenu__icon"
+                                            data-euiicon-type="check"
+                                          />
+                                          <span
+                                            class="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              class="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Palette 1
+                                              </div>
+                                              <div
+                                                class="euiColorPalettePicker__itemGradient"
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                      <button
+                                        aria-selected="false"
+                                        class="euiContextMenuItem paletteLinearClass"
+                                        data-test-subj="gradient-data-test-subj"
+                                        id="paletteLinear"
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          class="euiContextMenu__itemLayout"
+                                        >
+                                          <div
+                                            class="euiContextMenu__icon"
+                                            data-euiicon-type="empty"
+                                          />
+                                          <span
+                                            class="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              class="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient
+                                              </div>
+                                              <div
+                                                class="euiColorPalettePicker__itemGradient"
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                      <button
+                                        aria-selected="false"
+                                        class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="gradient-with-stops-data-test-subj"
+                                        id="paletteLinearStops"
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          class="euiContextMenu__itemLayout"
+                                        >
+                                          <div
+                                            class="euiContextMenu__icon"
+                                            data-euiicon-type="empty"
+                                          />
+                                          <span
+                                            class="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              class="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient with stops
+                                              </div>
+                                              <div
+                                                class="euiColorPalettePicker__itemGradient"
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                      <button
+                                        aria-selected="false"
+                                        class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="text-data-test-subj"
+                                        id="custom"
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          class="euiContextMenu__itemLayout"
+                                        >
+                                          <div
+                                            class="euiContextMenu__icon"
+                                            data-euiicon-type="empty"
+                                          />
+                                          <span
+                                            class="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              class="euiColorPalettePicker__item"
+                                            >
+                                              Plain text as a custom option
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                            onActivation={[Function]}
+                            onDeactivation={[Function]}
+                            persistentFocus={false}
+                          >
+                            <FocusWatcher
+                              autoFocus={true}
+                              disabled={true}
+                              observed={
+                                <div
+                                  data-focus-lock-disabled="disabled"
+                                >
+                                  <div
+                                    aria-describedby="generated-id"
+                                    aria-live="assertive"
+                                    aria-modal="true"
+                                    class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                                    role="dialog"
+                                    style="top: 8px; left: -22px; z-index: 2000;"
+                                  >
+                                    <div
+                                      class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                                    />
+                                    <div>
+                                      <p
+                                        class="euiScreenReaderOnly"
+                                        role="alert"
+                                      >
+                                        You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                      </p>
+                                      <div
+                                        aria-activedescendant="paletteFixed"
+                                        class="euiSuperSelect__listbox"
+                                        role="listbox"
+                                        tabindex="0"
+                                      >
+                                        <button
+                                          aria-label="my palette fixed"
+                                          aria-selected="true"
+                                          class="euiContextMenuItem paletteFixedClass"
+                                          data-test-subj="fixed-data-test-subj"
+                                          id="paletteFixed"
+                                          role="option"
+                                          type="button"
+                                        >
+                                          <span
+                                            class="euiContextMenu__itemLayout"
+                                          >
+                                            <div
+                                              class="euiContextMenu__icon"
+                                              data-euiicon-type="check"
+                                            />
+                                            <span
+                                              class="euiContextMenuItem__text"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__item"
+                                              >
+                                                <div
+                                                  class="euiColorPalettePicker__itemTitle"
+                                                >
+                                                  Palette 1
+                                                </div>
+                                                <div
+                                                  class="euiColorPalettePicker__itemGradient"
+                                                />
+                                              </div>
+                                            </span>
+                                          </span>
+                                        </button>
+                                        <button
+                                          aria-selected="false"
+                                          class="euiContextMenuItem paletteLinearClass"
+                                          data-test-subj="gradient-data-test-subj"
+                                          id="paletteLinear"
+                                          role="option"
+                                          type="button"
+                                        >
+                                          <span
+                                            class="euiContextMenu__itemLayout"
+                                          >
+                                            <div
+                                              class="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                            />
+                                            <span
+                                              class="euiContextMenuItem__text"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__item"
+                                              >
+                                                <div
+                                                  class="euiColorPalettePicker__itemTitle"
+                                                >
+                                                  Linear Gradient
+                                                </div>
+                                                <div
+                                                  class="euiColorPalettePicker__itemGradient"
+                                                />
+                                              </div>
+                                            </span>
+                                          </span>
+                                        </button>
+                                        <button
+                                          aria-selected="false"
+                                          class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          data-test-subj="gradient-with-stops-data-test-subj"
+                                          id="paletteLinearStops"
+                                          role="option"
+                                          type="button"
+                                        >
+                                          <span
+                                            class="euiContextMenu__itemLayout"
+                                          >
+                                            <div
+                                              class="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                            />
+                                            <span
+                                              class="euiContextMenuItem__text"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__item"
+                                              >
+                                                <div
+                                                  class="euiColorPalettePicker__itemTitle"
+                                                >
+                                                  Linear Gradient with stops
+                                                </div>
+                                                <div
+                                                  class="euiColorPalettePicker__itemGradient"
+                                                />
+                                              </div>
+                                            </span>
+                                          </span>
+                                        </button>
+                                        <button
+                                          aria-selected="false"
+                                          class="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                          data-test-subj="text-data-test-subj"
+                                          id="custom"
+                                          role="option"
+                                          type="button"
+                                        >
+                                          <span
+                                            class="euiContextMenu__itemLayout"
+                                          >
+                                            <div
+                                              class="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                            />
+                                            <span
+                                              class="euiContextMenuItem__text"
+                                            >
+                                              <div
+                                                class="euiColorPalettePicker__item"
+                                              >
+                                                Plain text as a custom option
+                                              </div>
+                                            </span>
+                                          </span>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              }
+                              onActivation={[Function]}
+                              onDeactivation={[Function]}
+                              persistentFocus={false}
+                            />
+                          </SideEffect(FocusWatcher)>
+                          <EuiPanel
+                            aria-describedby="generated-id"
+                            aria-live="assertive"
+                            aria-modal="true"
+                            className="euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                            paddingSize="none"
+                            panelRef={[Function]}
+                            role="dialog"
+                            style={
+                              Object {
+                                "left": -22,
+                                "top": 8,
+                                "zIndex": 2000,
+                              }
+                            }
+                          >
+                            <div
+                              aria-describedby="generated-id"
+                              aria-live="assertive"
+                              aria-modal="true"
+                              className="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                              role="dialog"
+                              style={
+                                Object {
+                                  "left": -22,
+                                  "top": 8,
+                                  "zIndex": 2000,
+                                }
+                              }
+                            >
+                              <div
+                                className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                              />
+                              <EuiMutationObserver
+                                observerOptions={
+                                  Object {
+                                    "attributes": true,
+                                    "characterData": true,
+                                    "childList": true,
+                                    "subtree": true,
+                                  }
+                                }
+                                onMutation={[Function]}
+                              >
+                                <div>
+                                  <EuiScreenReaderOnly>
+                                    <p
+                                      className="euiScreenReaderOnly"
+                                      role="alert"
+                                    >
+                                      <EuiI18n
+                                        default="You are in a form selector of {optionsCount} items and must select a single option. Use the up and down keys to navigate or escape to close."
+                                        token="euiSuperSelect.screenReaderAnnouncement"
+                                        values={
+                                          Object {
+                                            "optionsCount": 4,
+                                          }
+                                        }
+                                      >
+                                        You are in a form selector of 4 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                      </EuiI18n>
+                                    </p>
+                                  </EuiScreenReaderOnly>
+                                  <div
+                                    aria-activedescendant="paletteFixed"
+                                    className="euiSuperSelect__listbox"
+                                    role="listbox"
+                                    style={
+                                      Object {
+                                        "width": undefined,
+                                      }
+                                    }
+                                    tabIndex={0}
+                                  >
+                                    <EuiContextMenuItem
+                                      aria-label="my palette fixed"
+                                      aria-selected={true}
+                                      buttonRef={[Function]}
+                                      className="paletteFixedClass"
+                                      data-test-subj="fixed-data-test-subj"
+                                      icon="check"
+                                      id="paletteFixed"
+                                      key="0"
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="option"
+                                    >
+                                      <button
+                                        aria-label="my palette fixed"
+                                        aria-selected={true}
+                                        className="euiContextMenuItem paletteFixedClass"
+                                        data-test-subj="fixed-data-test-subj"
+                                        id="paletteFixed"
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiContextMenu__itemLayout"
+                                        >
+                                          <EuiIcon
+                                            className="euiContextMenu__icon"
+                                            size="m"
+                                            type="check"
+                                          >
+                                            <div
+                                              className="euiContextMenu__icon"
+                                              data-euiicon-type="check"
+                                              size="m"
+                                            />
+                                          </EuiIcon>
+                                          <span
+                                            className="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              className="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                className="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Palette 1
+                                              </div>
+                                              <div
+                                                className="euiColorPalettePicker__itemGradient"
+                                                style={
+                                                  Object {
+                                                    "background": "linear-gradient(to right, #1fb0b2 0%, #1fb0b2 20%, #ffdb6d 20%, #ffdb6d 40%, #ee9191 40%, #ee9191 60%, #ffffff 60%, #ffffff 80%, #888094 80%, #888094 100%)",
+                                                  }
+                                                }
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiContextMenuItem>
+                                    <EuiContextMenuItem
+                                      aria-selected={false}
+                                      buttonRef={[Function]}
+                                      className="paletteLinearClass"
+                                      data-test-subj="gradient-data-test-subj"
+                                      icon="empty"
+                                      id="paletteLinear"
+                                      key="1"
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="option"
+                                    >
+                                      <button
+                                        aria-selected={false}
+                                        className="euiContextMenuItem paletteLinearClass"
+                                        data-test-subj="gradient-data-test-subj"
+                                        id="paletteLinear"
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiContextMenu__itemLayout"
+                                        >
+                                          <EuiIcon
+                                            className="euiContextMenu__icon"
+                                            size="m"
+                                            type="empty"
+                                          >
+                                            <div
+                                              className="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                              size="m"
+                                            />
+                                          </EuiIcon>
+                                          <span
+                                            className="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              className="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                className="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient
+                                              </div>
+                                              <div
+                                                className="euiColorPalettePicker__itemGradient"
+                                                style={
+                                                  Object {
+                                                    "background": "linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)",
+                                                  }
+                                                }
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiContextMenuItem>
+                                    <EuiContextMenuItem
+                                      aria-selected={false}
+                                      buttonRef={[Function]}
+                                      className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      data-test-subj="gradient-with-stops-data-test-subj"
+                                      icon="empty"
+                                      id="paletteLinearStops"
+                                      key="2"
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="option"
+                                    >
+                                      <button
+                                        aria-selected={false}
+                                        className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="gradient-with-stops-data-test-subj"
+                                        id="paletteLinearStops"
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiContextMenu__itemLayout"
+                                        >
+                                          <EuiIcon
+                                            className="euiContextMenu__icon"
+                                            size="m"
+                                            type="empty"
+                                          >
+                                            <div
+                                              className="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                              size="m"
+                                            />
+                                          </EuiIcon>
+                                          <span
+                                            className="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              className="euiColorPalettePicker__item"
+                                            >
+                                              <div
+                                                className="euiColorPalettePicker__itemTitle"
+                                              >
+                                                Linear Gradient with stops
+                                              </div>
+                                              <div
+                                                className="euiColorPalettePicker__itemGradient"
+                                                style={
+                                                  Object {
+                                                    "background": "linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)",
+                                                  }
+                                                }
+                                              />
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiContextMenuItem>
+                                    <EuiContextMenuItem
+                                      aria-selected={false}
+                                      buttonRef={[Function]}
+                                      className="euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                      data-test-subj="text-data-test-subj"
+                                      icon="empty"
+                                      id="custom"
+                                      key="3"
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="option"
+                                    >
+                                      <button
+                                        aria-selected={false}
+                                        className="euiContextMenuItem euiSuperSelect__item euiSuperSelect__item--hasDividers"
+                                        data-test-subj="text-data-test-subj"
+                                        id="custom"
+                                        onClick={[Function]}
+                                        onKeyDown={[Function]}
+                                        role="option"
+                                        type="button"
+                                      >
+                                        <span
+                                          className="euiContextMenu__itemLayout"
+                                        >
+                                          <EuiIcon
+                                            className="euiContextMenu__icon"
+                                            size="m"
+                                            type="empty"
+                                          >
+                                            <div
+                                              className="euiContextMenu__icon"
+                                              data-euiicon-type="empty"
+                                              size="m"
+                                            />
+                                          </EuiIcon>
+                                          <span
+                                            className="euiContextMenuItem__text"
+                                          >
+                                            <div
+                                              className="euiColorPalettePicker__item"
+                                            >
+                                              Plain text as a custom option
+                                            </div>
+                                          </span>
+                                        </span>
+                                      </button>
+                                    </EuiContextMenuItem>
+                                  </div>
+                                </div>
+                              </EuiMutationObserver>
+                            </div>
+                          </EuiPanel>
+                        </div>
+                        <div
+                          data-focus-guard={true}
+                          style={
+                            Object {
+                              "height": "0px",
+                              "left": "1px",
+                              "overflow": "hidden",
+                              "padding": 0,
+                              "position": "fixed",
+                              "top": "1px",
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex={-1}
+                        />
+                      </FocusLock>
+                    </div>
+                  </OutsideEventDetector>
+                </EuiOutsideClickDetector>
+              </EuiFocusTrap>
+            </Portal>
+          </EuiPortal>
+        </div>
+      </EuiOutsideClickDetector>
+    </EuiPopover>
+  </EuiSuperSelect>
+</EuiColorPalettePicker>
+`;
