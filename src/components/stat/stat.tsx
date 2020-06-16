@@ -48,6 +48,10 @@ const textAlignToClassNameMap = {
   right: 'euiStat--rightAligned',
 };
 
+export const isColorClass = (input: string): input is keyof typeof colorToClassNameMap => {
+  return colorToClassNameMap.hasOwnProperty(input);
+};
+
 export const ALIGNMENTS = keysOf(textAlignToClassNameMap);
 
 export interface EuiStatProps {
@@ -71,7 +75,7 @@ export interface EuiStatProps {
   /**
    * The color of the title text
    */
-  titleColor?: keyof typeof colorToClassNameMap;
+  titleColor?: keyof typeof colorToClassNameMap | string;
   /**
    * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
    */
@@ -100,7 +104,7 @@ export const EuiStat: FunctionComponent<
 
   const titleClasses = classNames(
     'euiStat__title',
-    COLORS.includes(titleColor) ? colorToClassNameMap[titleColor] : null,
+    isColorClass(titleColor) ? colorToClassNameMap[titleColor] : null,
     {
       'euiStat__title-isLoading': isLoading,
     }
@@ -112,7 +116,7 @@ export const EuiStat: FunctionComponent<
     </EuiText>
   );
 
-  const titleDisplay = COLORS.includes(titleColor) ? (
+  const titleDisplay = isColorClass(titleColor) ? (
     <EuiTitle size={titleSize} className={titleClasses}>
       <p aria-hidden="true">{isLoading ? '--' : title}</p>
     </EuiTitle>
