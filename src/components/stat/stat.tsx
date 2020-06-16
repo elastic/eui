@@ -100,7 +100,7 @@ export const EuiStat: FunctionComponent<
 
   const titleClasses = classNames(
     'euiStat__title',
-    colorToClassNameMap[titleColor],
+    COLORS.includes(titleColor) ? colorToClassNameMap[titleColor] : null,
     {
       'euiStat__title-isLoading': isLoading,
     }
@@ -112,9 +112,15 @@ export const EuiStat: FunctionComponent<
     </EuiText>
   );
 
-  const titleDisplay = (
+  const titleDisplay = COLORS.includes(titleColor) ? (
     <EuiTitle size={titleSize} className={titleClasses}>
       <p aria-hidden="true">{isLoading ? '--' : title}</p>
+    </EuiTitle>
+  ) : (
+    <EuiTitle size={titleSize} className={titleClasses}>
+      <p aria-hidden="true" style={{ color: `${titleColor}` }}>
+        {isLoading ? '--' : title}
+      </p>
     </EuiTitle>
   );
 
