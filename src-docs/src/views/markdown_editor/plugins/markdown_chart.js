@@ -155,8 +155,13 @@ function ChartParser() {
       match += configurationString;
       try {
         configuration = JSON.parse(configurationString);
-        // eslint-disable-next-line no-empty
-      } catch (e) {}
+      } catch (e) {
+        const now = eat.now();
+        this.file.fail(`Unable to parse chart JSON configuration: ${e}`, {
+          line: now.line,
+          column: now.column + 7,
+        });
+      }
     }
 
     match += '}';

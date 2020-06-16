@@ -26,6 +26,7 @@ import React, {
   useState,
 } from 'react';
 import unified, { PluggableList, Processor } from 'unified';
+import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
 // @ts-ignore
 import emoji from 'remark-emoji';
@@ -105,7 +106,17 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** array of unified plugins to convert the AST into a ReactNode */
     processingPluginList?: PluggableList;
 
+    /** array of toolbar plugins **/
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
+
+    /** callback triggered when parsing results are available **/
+    onParse?: (
+      error: any | null,
+      data: {
+        messages: VFileMessage[];
+        ast: any;
+      }
+    ) => void;
   };
 
 export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
@@ -117,6 +128,7 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
   uiPlugins = [],
+  onParse,
   ...rest
 }) => {
   const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(MODE_EDITING);
@@ -148,7 +160,16 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
       .use(identityCompiler);
   }, [parsingPluginList]);
 
-  const parsed = useMemo(() => parser.processSync(value), [parser, value]);
+  const [parsed, parseError] = useMemo<
+    [any | null, VFileMessage | null]
+  >(() => {
+    try {
+      const parsed = parser.processSync(value);
+      return [parsed, null];
+    } catch (e) {
+      return [null, e];
+    }
+  }, [parser, value]);
 
   const processor = useMemo(
     () =>
@@ -180,6 +201,7 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
   );
   useEffect(() => {
     if (textareaRef == null) return;
+    if (parsed == null) return;
 
     const getCursorNode = () => {
       const { selectionStart } = textareaRef;
@@ -214,6 +236,14 @@ export const EuiMarkdownEditor: FunctionComponent<EuiMarkdownEditorProps> = ({
       textareaRef.removeEventListener('mouseup', getCursorNode);
     };
   }, [textareaRef, parsed]);
+
+  useEffect(() => {
+    if (onParse) {
+      const messages = parsed ? parsed.messages : [];
+      const ast = parsed ? parsed.contents : null;
+      onParse(parseError, { messages, ast });
+    }
+  }, [onParse, parsed, parseError]);
 
   return (
     <EuiMarkdownContext.Provider value={contextValue}>
