@@ -28,7 +28,7 @@ import { ColorStop } from '../color_stops';
 
 import { EuiSuperSelectProps } from '../../form/super_select';
 
-export interface EuiColorPalettePickerPaletteTextProps {
+export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
    *  For storing unique value of item
    */
@@ -48,7 +48,7 @@ export interface EuiColorPalettePickerPaletteTextProps {
   palette?: string[] | ColorStop[];
 }
 
-export interface EuiColorPalettePickerPaletteFixedProps {
+export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
   /**
    *  For storing unique value of item
    */
@@ -67,7 +67,7 @@ export interface EuiColorPalettePickerPaletteFixedProps {
   palette: string[];
 }
 
-export interface EuiColorPalettePickerPaletteGradientProps {
+export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
   /**
    *  For storing unique value of item
    */
@@ -145,23 +145,23 @@ export const EuiColorPalettePicker: FunctionComponent<
 
   const paletteOptions = palettes.map(
     (item: EuiColorPalettePickerPaletteProps) => {
+      const { type, value, title, palette, ...rest } = item;
       const paletteForDisplay = item.type !== 'text' ? getPalette(item) : null;
       return {
-        value: String(item.value),
+        value: String(value),
         inputDisplay:
-          selectionDisplay === 'title' || item.type === 'text'
-            ? item.title
+          selectionDisplay === 'title' || type === 'text'
+            ? title
             : paletteForDisplay,
         dropdownDisplay: (
           <div className="euiColorPalettePicker__item">
-            {item.title && item.type !== 'text' && (
-              <div className="euiColorPalettePicker__itemTitle">
-                {item.title}
-              </div>
+            {title && type !== 'text' && (
+              <div className="euiColorPalettePicker__itemTitle">{title}</div>
             )}
-            {item.type === 'text' ? item.title : paletteForDisplay}
+            {type === 'text' ? title : paletteForDisplay}
           </div>
         ),
+        ...rest,
       };
     }
   );
