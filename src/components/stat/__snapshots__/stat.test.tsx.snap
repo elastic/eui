@@ -29,8 +29,6 @@ exports[`EuiStat is rendered 1`] = `
 </div>
 `;
 
-
-
 exports[`EuiStat props accent is rendered 1`] = `
 <div
   class="euiStat euiStat--leftAligned"
@@ -128,6 +126,34 @@ exports[`EuiStat props default is rendered 1`] = `
   <p
     aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
+  >
+    title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
+  </p>
+</div>
+`;
+
+exports[`EuiStat props hexcode colors are rendered 1`] = `
+<div
+  class="euiStat euiStat--leftAligned"
+>
+  <div
+    class="euiText euiText--small euiStat__description"
+  >
+    <p
+      aria-hidden="true"
+    >
+      description
+    </p>
+  </div>
+  <p
+    aria-hidden="true"
+    class="euiTitle euiTitle--large euiStat__title"
+    style="color:#EB1919"
   >
     title
   </p>
@@ -410,7 +436,6 @@ exports[`EuiStat props title and description are reversed 1`] = `
   </p>
 </div>
 `;
-
 
 exports[`EuiStat props xs is rendered 1`] = `
 <div
