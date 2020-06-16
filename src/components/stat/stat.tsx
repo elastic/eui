@@ -48,7 +48,9 @@ const textAlignToClassNameMap = {
   right: 'euiStat--rightAligned',
 };
 
-export const isColorClass = (input: string): input is keyof typeof colorToClassNameMap => {
+export const isColorClass = (
+  input: string
+): input is keyof typeof colorToClassNameMap => {
   return colorToClassNameMap.hasOwnProperty(input);
 };
 
