@@ -130,7 +130,7 @@ describe('EuiAccordion', () => {
 
         component.find('button').simulate('click');
         expect(onToggleHandler).toBeCalled();
-        expect(onToggleHandler).toBeCalledWith(false);
+        expect(onToggleHandler).toBeCalledWith(true);
       });
     });
   });

@@ -122,7 +122,8 @@ export class EuiAccordion extends Component<
   onToggle = () => {
     const { forceState } = this.props;
     if (forceState) {
-      this.props.onToggle && this.props.onToggle(forceState === 'open');
+      this.props.onToggle &&
+        this.props.onToggle(forceState === 'open' ? false : true);
     } else {
       this.setState(
         prevState => ({
