@@ -39,6 +39,10 @@ export type EuiFormProps = CommonProps &
      */
     component?: 'form' | 'div';
     error?: ReactNode | ReactNode[];
+    /**
+     * Where to display the callout with the list of errors
+     */
+    invalidCallout?: 'above' | 'none';
   };
 
 export const EuiForm: FunctionComponent<EuiFormProps> = ({
@@ -47,6 +51,7 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
   isInvalid,
   error,
   component = 'div',
+  invalidCallout = 'above',
   ...rest
 }) => {
   const classes = classNames('euiForm', className);
@@ -68,11 +73,11 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
 
   let optionalErrorAlert;
 
-  if (isInvalid) {
+  if (isInvalid && invalidCallout === 'above') {
     optionalErrorAlert = (
       <EuiI18n
         token="euiForm.addressFormErrors"
-        default="Please address the errors in your form.">
+        default="Please address the highlighted errors.">
         {(addressFormErrors: string) => (
           <EuiCallOut
             className="euiForm__errors"

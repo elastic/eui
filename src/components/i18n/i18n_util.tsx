@@ -89,7 +89,6 @@ export function processStringToChildren(
   // if we don't encounter a non-primitive
   // then `children` can be concatenated together at the end
   let encounteredNonPrimitive = false;
-  // tslint:disable-next-line:prefer-for-of
   for (let i = 0; i < input.length; i++) {
     const char = input[i];
 

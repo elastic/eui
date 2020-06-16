@@ -45,12 +45,9 @@ function lookupToken<
   if (typeof renderable === 'function') {
     if (values === undefined) {
       return errorOnMissingValues(token);
-    } else {
-      // @ts-ignore-next-line
-      // TypeScript complains that `DEFAULT` doesn't have a call signature
-      // but we verified `renderable` is a function
-      return renderable(values);
     }
+    // @ts-ignore TypeScript complains that `DEFAULT` doesn't have a call signature but we verified `renderable` is a function
+    return renderable(values);
   } else if (values === undefined || typeof renderable !== 'string') {
     if (i18nMappingFunc && typeof valueDefault === 'string') {
       renderable = i18nMappingFunc(valueDefault);

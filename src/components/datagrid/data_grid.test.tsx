@@ -106,7 +106,7 @@ function openColumnSorterSelection(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -131,7 +131,7 @@ function closeColumnSorterSelection(datagrid: ReactWrapper) {
       .find('div[className="euiPopover__anchor"]')
       .find('[onClick]')
       .first();
-    // @ts-ignore-next-line
+    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
     act(() => popoverButton.props().onClick());
 
     datagrid.update();
@@ -162,7 +162,7 @@ function getColumnSortDirection(
       `[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
     );
     expect(selectColumnButton.length).toBe(1);
-    // @ts-ignore-next-line
+    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
     act(() => selectColumnButton.props().onClick());
 
     // close column selection popover
@@ -199,7 +199,7 @@ function openColumnSorter(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -222,7 +222,7 @@ function closeColumnSorter(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -250,12 +250,8 @@ function sortByColumn(
   // if this column isn't being sorted, enable it
   if (currentSortDirection === 'off') {
     act(() => {
-      // @ts-ignore-next-line
-      columnSorter
-        .find('EuiSwitch')
-        .props()
-        // @ts-ignore-next-line
-        .onChange();
+      // @ts-ignore does not require an argument in this usage
+      columnSorter.find('EuiSwitch').props().onChange!();
     });
 
     datagrid.update();
@@ -331,7 +327,7 @@ function openColumnSelector(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -354,7 +350,7 @@ function closeColumnSelector(datagrid: ReactWrapper) {
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -400,7 +396,7 @@ function moveColumnToIndex(
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -417,7 +413,7 @@ function moveColumnToIndex(
   const portal = popover.find('EuiPortal');
   act(() =>
     portal.find('EuiDragDropContext').props().onDragEnd!({
-      // @ts-ignore-next-line - only `index` is used from `source`, don't need to mock rest of the event
+      // @ts-ignore - only `index` is used from `source`, don't need to mock rest of the event
       source: { index: initialColumnIndex },
       destination: { index: nextIndex },
     })
@@ -435,7 +431,7 @@ function moveColumnToIndex(
     .find('div[className="euiPopover__anchor"]')
     .find('[onClick]')
     .first();
-  // @ts-ignore-next-line
+  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
   act(() => popoverButton.props().onClick());
 
   datagrid.update();

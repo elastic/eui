@@ -20,9 +20,7 @@
 import React, { ReactElement, useState } from 'react';
 import { EuiDataGridStyle } from './data_grid_types';
 import { EuiI18n } from '../i18n';
-// @ts-ignore-next-line
 import { EuiPopover } from '../popover';
-// @ts-ignore-next-line
 import { EuiButtonEmpty, EuiButtonGroup } from '../button';
 
 export const startingStyles: EuiDataGridStyle = {

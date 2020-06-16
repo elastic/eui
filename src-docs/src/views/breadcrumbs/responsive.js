@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import {
   EuiBreadcrumbs,
-  EuiShowFor,
-  EuiText,
+  EuiTitle,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => {
@@ -42,21 +42,33 @@ export default () => {
   ];
 
   return (
-    <Fragment>
+    <>
+      <EuiTitle size="xs">
+        <span>Turning responsive completely off</span>
+      </EuiTitle>
+      <EuiSpacer size="s" />
       <EuiBreadcrumbs
         responsive={false}
         breadcrumbs={breadcrumbs}
         max={null}
-        aria-label="An example of responsive EuiBreadcrumbs"
+        aria-label="An example of non-responsive EuiBreadcrumbs"
       />
-
-      <EuiShowFor sizes={['xs', 's']}>
-        <EuiText size="s" color="subdued">
-          <p>
-            <em>Only the last item will show on small (mobile) screens.</em>
-          </p>
-        </EuiText>
-      </EuiShowFor>
-    </Fragment>
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <span>Customizing number of items to display</span>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiBreadcrumbs
+        responsive={{
+          xs: 1,
+          s: 3,
+          m: 5,
+          xl: 6,
+        }}
+        breadcrumbs={breadcrumbs}
+        max={null}
+        aria-label="An example of custom responsive EuiBreadcrumbs"
+      />
+    </>
   );
 };

@@ -52,7 +52,6 @@ const options: EuiSelectableOption[] = [
   },
 ];
 
-// tslint:disable:no-empty
 describe('EuiSelectableListItem', () => {
   test('is rendered', () => {
     const component = render(
