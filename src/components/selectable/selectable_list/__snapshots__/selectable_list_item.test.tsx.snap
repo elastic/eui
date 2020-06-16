@@ -2,6 +2,7 @@
 
 exports[`EuiSelectableListItem is rendered 1`] = `
 <li
+  aria-disabled="false"
   aria-label="aria-label"
   aria-selected="false"
   class="euiSelectableListItem testClass1 testClass2"
@@ -24,6 +25,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 
 exports[`EuiSelectableListItem props append 1`] = `
 <li
+  aria-disabled="false"
   aria-selected="false"
   class="euiSelectableListItem"
   role="option"
@@ -49,7 +51,8 @@ exports[`EuiSelectableListItem props append 1`] = `
 
 exports[`EuiSelectableListItem props checked is off 1`] = `
 <li
-  aria-selected="false"
+  aria-disabled="false"
+  aria-selected="true"
   class="euiSelectableListItem"
   role="option"
 >
@@ -70,6 +73,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
 
 exports[`EuiSelectableListItem props checked is on 1`] = `
 <li
+  aria-disabled="false"
   aria-selected="true"
   class="euiSelectableListItem"
   role="option"
@@ -112,6 +116,7 @@ exports[`EuiSelectableListItem props disabled 1`] = `
 
 exports[`EuiSelectableListItem props isFocused 1`] = `
 <li
+  aria-disabled="false"
   aria-selected="false"
   class="euiSelectableListItem euiSelectableListItem-isFocused"
   role="option"
@@ -132,6 +137,7 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
 
 exports[`EuiSelectableListItem props prepend 1`] = `
 <li
+  aria-disabled="false"
   aria-selected="false"
   class="euiSelectableListItem"
   role="option"
@@ -157,6 +163,7 @@ exports[`EuiSelectableListItem props prepend 1`] = `
 
 exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <li
+  aria-disabled="false"
   aria-selected="false"
   class="euiSelectableListItem"
   role="option"

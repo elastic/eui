@@ -234,6 +234,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         append={append}
         aria-posinset={index + 1 - labelCount}
         aria-setsize={data.length - labelCount}
+        allowExclusions={this.props.allowExclusions}
         {...optionRest as EuiSelectableListItemProps}>
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
