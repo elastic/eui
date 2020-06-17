@@ -132,7 +132,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
   );
 
   useEffect(() => {
-    const cellDivs = documentFragment.children[0].children;
+    const cellDivs = documentFragment.childNodes[0].childNodes;
     for (let i = 0; i < cellDivs.length; i++) {
       const cellDiv = cellDivs[i] as HTMLDivElement;
       const rowIndex = parseInt(cellDiv.getAttribute('data-dg-row')!, 10);
