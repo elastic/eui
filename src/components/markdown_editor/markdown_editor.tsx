@@ -253,7 +253,7 @@ export const EuiMarkdownEditor: FunctionComponent<
         textarea.removeEventListener('keyup', getCursorNode);
         textarea.removeEventListener('mouseup', getCursorNode);
       };
-    }, [textareaRef, parsed]);
+    }, [parsed]);
 
     useEffect(() => {
       if (onParse) {
@@ -302,7 +302,7 @@ export const EuiMarkdownEditor: FunctionComponent<
                 value={value}
               />
             </EuiMarkdownEditorDropZone>
-            {textareaRef && pluginEditorPlugin && (
+            {pluginEditorPlugin && (
               <EuiOverlayMask>
                 <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
                   {createElement(pluginEditorPlugin.editor!, {
