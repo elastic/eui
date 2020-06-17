@@ -46,7 +46,11 @@ export const GuideFullScreen: FunctionComponent<{
         {buttonText}
       </EuiButton>
 
-      {fullScreen && <EuiFocusTrap>{children(setFullScreen)}</EuiFocusTrap>}
+      {fullScreen && (
+        <EuiFocusTrap noIsolation={true}>
+          {children(setFullScreen)}
+        </EuiFocusTrap>
+      )}
     </Fragment>
   );
 };
