@@ -40,6 +40,16 @@ export class EuiResizablePanelRegistry {
   getResizerSiblings(prevPanelId: string, nextPanelId: string) {
     return [this.panels[prevPanelId], this.panels[nextPanelId]];
   }
+
+  fetchAllPanels(prevPanelId: string, nextPanelId: string) {
+    let panelWithSizes: { [key: string]: number } = {};
+    for (let key in this.panels) {
+      if (key !== prevPanelId && key !== nextPanelId) {
+        panelWithSizes[key] = this.panels[key].getSizePx();
+      }
+    }
+    return panelWithSizes;
+  }
 }
 
 interface ContextProps {
