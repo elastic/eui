@@ -24,7 +24,8 @@ import React, {
   EventHandler,
   CSSProperties,
 } from 'react';
-import FocusLock, { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
+import { FocusOn } from 'react-focus-on';
+import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import { CommonProps } from '../common';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -52,19 +53,23 @@ const OutsideEventDetector: FunctionComponent<DetectorProps> = ({
  */
 export type FocusTarget = HTMLElement | string | (() => HTMLElement);
 
-interface EuiFocusTrapProps {
+interface EuiFocusTrapInterface {
   clickOutsideDisables?: boolean;
   initialFocus?: FocusTarget;
   style?: CSSProperties;
+  disabled?: boolean;
 }
 
-type Props = CommonProps & ReactFocusLockProps & EuiFocusTrapProps;
+export interface EuiFocusTrapProps
+  extends CommonProps,
+    Omit<ReactFocusOnProps, 'enabled'>, // Inverted `disabled` prop used instead
+    EuiFocusTrapInterface {}
 
 interface State {
   hasBeenDisabledByClick: boolean;
 }
 
-export class EuiFocusTrap extends Component<Props, State> {
+export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
   state: State = {
     hasBeenDisabledByClick: false,
   };
@@ -76,7 +81,7 @@ export class EuiFocusTrap extends Component<Props, State> {
     this.setInitialFocus(this.props.initialFocus);
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: EuiFocusTrapProps) {
     if (prevProps.disabled === true && this.props.disabled === false) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ hasBeenDisabledByClick: false });
@@ -92,7 +97,7 @@ export class EuiFocusTrap extends Component<Props, State> {
       node = (initialFocus as () => HTMLElement)();
     }
     if (!node) return;
-    // `data-autofocus` is part of the 'react-focus-lock' API
+    // `data-autofocus` is part of the 'react-focus-on' API
     node.setAttribute('data-autofocus', 'true');
   };
 
@@ -137,13 +142,12 @@ export class EuiFocusTrap extends Component<Props, State> {
       clickOutsideDisables = false,
       disabled = false,
       returnFocus = true,
-      style,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
     const lockProps = {
-      disabled: isDisabled,
       returnFocus,
+      enabled: !isDisabled,
       ...rest,
     };
     return clickOutsideDisables ? (
@@ -151,15 +155,13 @@ export class EuiFocusTrap extends Component<Props, State> {
         isDisabled={isDisabled}
         onOutsideClick={this.handleOutsideClick}>
         <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-          <FocusLock lockProps={{ style }} {...lockProps}>
+          <FocusOn {...lockProps} noIsolation={true}>
             {children}
-          </FocusLock>
+          </FocusOn>
         </OutsideEventDetector>
       </EuiOutsideClickDetector>
     ) : (
-      <FocusLock lockProps={{ style }} {...lockProps}>
-        {children}
-      </FocusLock>
+      <FocusOn {...lockProps}>{children}</FocusOn>
     );
   }
 }

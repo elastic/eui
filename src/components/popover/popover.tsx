@@ -30,7 +30,7 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap } from '../focus_trap';
-import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
+import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
   cascadingMenuKeys,
@@ -140,7 +140,7 @@ export interface EuiPopoverProps {
   /**
    * Function callback for when the focus trap is deactivated
    */
-  onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
+  onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
 
   /**
    * Distance away from the anchor that the popover will render.
