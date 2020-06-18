@@ -155,7 +155,7 @@ export class EuiSelectableListItem extends Component<
         <EuiScreenReaderOnly>
           <span>
             <EuiI18n
-              token="euiSelectableListItem.includedOptionInstructions"
+              token="euiSelectableListItem.excludedOptionInstructions"
               default="To deselect this option, press enter or space."
             />
           </span>
