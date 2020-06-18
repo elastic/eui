@@ -49,6 +49,9 @@ export default () => {
           },
           {
             items: [
+              <HeaderUpdates
+                flyoutOrPopover={isFixed ? 'flyout' : 'popover'}
+              />,
               <EuiHeaderSectionItemButton aria-label="Account menu">
                 <EuiAvatar name="John Username" size="s" />
               </EuiHeaderSectionItemButton>,
@@ -70,7 +73,11 @@ export default () => {
             borders: 'right',
           },
           {
-            items: isFixed ? [<HeaderUpdates />] : undefined,
+            items: [
+              <HeaderUpdates
+                flyoutOrPopover={isFixed ? 'flyout' : 'popover'}
+              />,
+            ],
             borders: 'none',
           },
         ]}

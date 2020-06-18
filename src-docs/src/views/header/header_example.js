@@ -264,7 +264,7 @@ export const HeaderExample = {
       demo: <HeaderDark theme={lightColors} />,
     },
     {
-      title: 'Alerts in the header',
+      title: 'Portal content in the header',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -276,20 +276,27 @@ export const HeaderExample = {
         },
       ],
       text: (
-        <p>
-          Use an <strong>EuiHeaderSectionItemButton</strong> to display
-          additional information in an{' '}
-          <Link to="/layout/popover">
-            <strong>EuiPopover</strong>
-          </Link>{' '}
-          or{' '}
-          <Link to="/layout/flyout">
-            <strong>EuiFlyout</strong>
-          </Link>
-          , such as a user profile or news feed. In the latter example, this
-          additional content can be presented in a list style format using{' '}
-          <strong>EuiHeaderAlert</strong> components, as shown below.
-        </p>
+        <>
+          <p>
+            Use an <strong>EuiHeaderSectionItemButton</strong> to display
+            additional information in <Link to="/layout/popover">popovers</Link>{' '}
+            or <Link to="/layout/flyout">flyouts</Link>, such as a user profile
+            or news feed. When using{' '}
+            <Link to="/layout/flyout">
+              <strong>EuiFlyout</strong>
+            </Link>
+            , be sure to wrap it in a{' '}
+            <Link to="/utilities/portal">
+              <strong>EuiPortal</strong>
+            </Link>
+            .
+          </p>
+          <p>
+            The example below shows how to incorprate{' '}
+            <strong>EuiHeaderAlert</strong> components to show a list of
+            updates.
+          </p>
+        </>
       ),
       props: {
         EuiHeaderAlert,
@@ -311,12 +318,12 @@ export const HeaderExample = {
       ],
       text: (
         <p>
-          Stacking multiple headers provide a great way to separate global
+          Stacking multiple headers provides a great way to separate global
           navigation concerns. However, the{' '}
           <EuiCode language="ts">{'position="fixed"'}</EuiCode> option will not
-          be aware of the number of headers. Therefore, if you do need fixed and
-          stacked headers, you will need to apply the helper mixin and pass in
-          the correct height to afford for.
+          be aware of the number of headers. If you do need fixed{' '}
+          <strong>and</strong> stacked headers, you will need to apply the SASS
+          helper mixin and pass in the correct height to afford for.
         </p>
       ),
       snippet: [
