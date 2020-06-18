@@ -161,7 +161,7 @@ class MarkdownActions {
 
     if (editor) {
       editor.focus();
-      // @ts-ignore
+      // @ts-ignore TODO
       styleSelectedText(editor, outgoingStyle);
     }
   }
@@ -254,13 +254,13 @@ export function insertText(
        */
       const inputEvent = new Event('input', { bubbles: true });
       const nativeInputValueSetter =
-        // @ts-ignore
+        // @ts-ignore TODO
         Object.getOwnPropertyDescriptor(
-          // @ts-ignore
+          // @ts-ignore TODO
           window.HTMLTextAreaElement.prototype,
           'value'
         ).set;
-      // @ts-ignore
+      // @ts-ignore TODO
       nativeInputValueSetter.call(textarea, before + text + after);
       textarea.dispatchEvent(inputEvent);
     }
