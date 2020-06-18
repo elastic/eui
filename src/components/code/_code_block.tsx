@@ -110,7 +110,9 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
   const codeTarget = useRef<HTMLDivElement | null>(null);
   const code = useRef<HTMLElement | null>(null);
-  const codeFullScreen = useRef<HTMLElement | null>(null);
+  const [codeFullScreen, setCodeFullScreen] = useState<HTMLElement | null>(
+    null
+  );
 
   useEffect(() => {
     codeTarget.current = document.createElement('div');
@@ -130,20 +132,23 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     if (code.current) {
       code.current.innerHTML = html;
     }
-    if (codeFullScreen.current) {
-      codeFullScreen.current.innerHTML = html;
-    }
 
     if (language) {
       if (code.current) {
         hljs.highlightBlock(code.current);
       }
-
-      if (codeFullScreen.current) {
-        hljs.highlightBlock(codeFullScreen.current);
-      }
     }
   });
+
+  useEffect(() => {
+    if (codeFullScreen) {
+      const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
+      codeFullScreen.innerHTML = html;
+      if (language) {
+        hljs.highlightBlock(codeFullScreen);
+      }
+    }
+  }, [isPortalTargetReady, codeFullScreen, language]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
@@ -289,7 +294,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
             <div className={fullScreenClasses}>
               <pre className={preClasses}>
                 <code
-                  ref={codeFullScreen}
+                  ref={setCodeFullScreen}
                   className={codeClasses}
                   tabIndex={0}
                   onKeyDown={onKeyDown}
