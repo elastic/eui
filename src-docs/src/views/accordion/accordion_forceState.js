@@ -29,6 +29,12 @@ export default () => {
     setID(id);
   };
 
+  const onToggle = isOpen => {
+    const newState = isOpen ? 'open' : 'closed';
+    setTrigger(newState);
+    setID(`${idPrefix}--${newState}`);
+  };
+
   return (
     <div>
       <EuiButtonGroup
@@ -41,6 +47,7 @@ export default () => {
       <EuiAccordion
         id="accordion--forceState"
         forceState={trigger}
+        onToggle={onToggle}
         buttonContent="I am controlled via prop">
         <EuiText>
           <p>
