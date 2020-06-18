@@ -29,7 +29,7 @@
   align-items: center;
   background-color: map-get($euiCardSelectButtonBackgrounds, 'text');
   transition: background-color $euiAnimSpeedNormal ease-in;
-
+  cursor: pointer;
   .euiCheckableCard-isChecked & {
     background-color: map-get($euiCardSelectButtonBackgrounds, 'primary');
   }
