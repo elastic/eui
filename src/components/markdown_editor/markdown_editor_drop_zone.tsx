@@ -17,21 +17,30 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
 import { EuiIcon } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
+import { EuiButtonIcon } from '../button/button_icon';
+import { EuiOverlayMask } from '../overlay_mask';
+import { EuiModal, EuiModalBody } from '../modal';
+import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
-export const EuiMarkdownEditorDropZone = (props: any) => {
+interface EuiMarkdownEditorDropZoneProps {
+  uiPlugins: EuiMarkdownEditorUiPlugin[];
+}
+
+export const EuiMarkdownEditorDropZone: FunctionComponent<
+  EuiMarkdownEditorDropZoneProps
+> = props => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
 
-  const { children, className } = props;
+  const { children, uiPlugins } = props;
 
   const classes = classNames('euiMarkdownEditor__dropZone', {
     'euiMarkdownEditor__dropZone--isDragging': isDragging,
-    className,
   });
 
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -76,6 +85,8 @@ export const EuiMarkdownEditorDropZone = (props: any) => {
     );
   }
 
+  const [isShowingHelp, setIsShowingHelp] = useState(false);
+
   return (
     <div {...getRootProps()} className={classes}>
       {children}
@@ -87,7 +98,25 @@ export const EuiMarkdownEditorDropZone = (props: any) => {
             : 'Attach files by dragging & dropping or by clicking this area'}
         </div>
       </button>
+      <EuiButtonIcon
+        aria-label="Show markdown help"
+        iconType="questionInCircle"
+        onClick={() => setIsShowingHelp(!isShowingHelp)}
+      />
       <input {...getInputProps()} />
+      {isShowingHelp && (
+        <EuiOverlayMask onClick={() => setIsShowingHelp(false)}>
+          <EuiModal onClose={() => setIsShowingHelp(false)}>
+            <EuiModalBody>
+              {uiPlugins
+                .filter(({ helpText }) => !!helpText)
+                .map(({ name, helpText }) => (
+                  <div key={name}>{helpText}</div>
+                ))}
+            </EuiModalBody>
+          </EuiModal>
+        </EuiOverlayMask>
+      )}
     </div>
   );
 };

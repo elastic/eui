@@ -53,6 +53,7 @@ const chartDemoPlugin = {
     label: 'Chart',
     iconType: 'visArea',
   },
+  helpText: '!{chart}',
   editor: function ChartEditor({ node, onSave, onCancel }) {
     const [palette, setPalette] = useState((node && node.palette) || 4);
     const [height, setHeight] = useState((node && node.height) || 300);

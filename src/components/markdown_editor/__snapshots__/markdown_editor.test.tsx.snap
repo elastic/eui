@@ -126,6 +126,24 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             />
           </button>
         </span>
+        <span
+          class="euiMarkdownEditor__toolbar__divider"
+        />
+        <span
+          class="euiToolTipAnchor"
+        >
+          <button
+            aria-label="Tooltip"
+            class="euiButtonIcon euiButtonIcon--text"
+            type="button"
+          >
+            <div
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              data-euiicon-type="flag"
+            />
+          </button>
+        </span>
       </div>
       <div
         class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -177,6 +195,17 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         >
           Attach files by dragging & dropping or by clicking this area
         </div>
+      </button>
+      <button
+        aria-label="Show markdown help"
+        class="euiButtonIcon euiButtonIcon--primary"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          data-euiicon-type="questionInCircle"
+        />
       </button>
       <input
         autocomplete="off"

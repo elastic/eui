@@ -1,6 +1,37 @@
-import React from 'react';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import React, { FunctionComponent } from 'react';
+// @ts-ignore TODO
 import all from 'mdast-util-to-hast/lib/all';
-import { EuiToolTip } from '../../../../../src';
+import {
+  AstNodePosition,
+  RemarkParser,
+  RemarkRehypeHandler,
+  RemarkTokenizer,
+} from '../markdown_types';
+import { EuiToolTip } from '../../tool_tip';
+
+interface TooltipNodeDetails {
+  type: 'tooltipPlugin';
+  content: string;
+}
 
 const tooltipPlugin = {
   name: 'tooltipPlugin',
@@ -13,14 +44,19 @@ const tooltipPlugin = {
     suffix: ']()}',
     trimFirst: true,
   },
+  helpText: 'Tooltips be like !{tooltip[anchor text](helpful description)}',
 };
 
-function TooltipParser() {
+function TooltipParser(this: RemarkParser) {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.inlineTokenizers;
   const methods = Parser.prototype.inlineMethods;
 
-  function tokenizeTooltip(eat, value, silent) {
+  const tokenizeTooltip: RemarkTokenizer = function tokenizeTooltip(
+    eat,
+    value,
+    silent
+  ) {
     if (value.startsWith('!{tooltip') === false) return false;
 
     const nextChar = value[9];
@@ -28,7 +64,7 @@ function TooltipParser() {
     if (nextChar !== '[') return false; // this isn't actually a tooltip
 
     let index = 9;
-    function readArg(open, close) {
+    function readArg(open: string, close: string) {
       if (value[index] !== open) throw 'Expected left bracket';
       index++;
 
@@ -84,11 +120,11 @@ function TooltipParser() {
       type: 'tooltipPlugin',
       content: tooltipText,
       children,
-    });
-  }
+    } as TooltipNodeDetails);
+  };
   tokenizeTooltip.notInLink = true;
 
-  tokenizeTooltip.locator = function locateTooltip(value, fromIndex) {
+  tokenizeTooltip.locator = (value, fromIndex) => {
     return value.indexOf('!{tooltip', fromIndex);
   };
 
@@ -96,10 +132,12 @@ function TooltipParser() {
   methods.splice(methods.indexOf('text'), 0, 'tooltip');
 }
 
-const tooltipMarkdownHandler = (h, node) => {
+const tooltipMarkdownHandler: RemarkRehypeHandler = (h, node) => {
   return h(node.position, 'tooltipPlugin', node, all(h, node));
 };
-const tooltipMarkdownRenderer = ({ content, children }) => {
+const tooltipMarkdownRenderer: FunctionComponent<
+  TooltipNodeDetails & { position: AstNodePosition }
+> = ({ content, children }) => {
   return (
     <EuiToolTip content={content}>
       <span>{children}</span>
