@@ -220,12 +220,28 @@ export class EuiSelectable extends Component<
         break;
 
       case keys.ENTER:
+      case keys.SPACE:
+        event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
           optionsList.onAddOrRemoveOption(
             this.state.visibleOptions[this.state.activeOptionIndex]
           );
         }
+        break;
+
+      case keys.HOME:
+        event.preventDefault();
+        event.stopPropagation();
+        this.setState({ activeOptionIndex: 0 });
+        break;
+
+      case keys.END:
+        event.preventDefault();
+        event.stopPropagation();
+        this.setState({
+          activeOptionIndex: this.state.visibleOptions.length - 1,
+        });
         break;
 
       default:
