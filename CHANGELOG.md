@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `26.0.0`.
+**Bug fixes**
+
+- Fixed fullscreen render issue in `EuiCode` ([#3633](https://github.com/elastic/eui/pull/3633))
 
 ## [`26.0.0`](https://github.com/elastic/eui/tree/v26.0.0)
 
