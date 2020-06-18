@@ -100,6 +100,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     width: number;
     singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
     delimiter?: string;
+    zIndex?: number;
   };
 
 export class EuiComboBoxOptionsList<T> extends Component<
@@ -284,6 +285,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
       updatePosition,
       width,
       delimiter,
+      zIndex,
+      style,
       ...rest
     } = this.props;
 
@@ -419,6 +422,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         className={classes}
         panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
+        style={{ ...style, zIndex: zIndex }}
         {...rest}>
         <div className="euiComboBoxOptionsList__rowWrap">
           {emptyState || optionsList}

@@ -176,6 +176,7 @@ export const useColumnSorting = (
                     <EuiDataGridColumnSortingDraggable
                       key={id}
                       id={id}
+                      display={displayValues[id]}
                       direction={direction}
                       index={index}
                       sorting={sorting}
