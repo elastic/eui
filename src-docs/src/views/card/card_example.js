@@ -45,6 +45,10 @@ import CardCheckable from './card_checkable';
 const cardCheckableSource = require('!!raw-loader!./card_checkable');
 const cardCheckableHtml = renderToHtml(CardCheckable);
 
+import CardDisplay from './card_display';
+const cardDisplaySource = require('!!raw-loader!./card_display');
+const cardDisplayHtml = renderToHtml(CardDisplay);
+
 export const CardExample = {
   title: 'Card',
   sections: [
@@ -366,6 +370,33 @@ export const CardExample = {
     </ul>
   </EuiText>
 </EuiCard>`,
+    },
+    {
+      title: 'Plain cards',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardDisplaySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: cardDisplayHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            If you need a card with no borders or shadows pass{' '}
+            <EuiCode language="ts">{'display="plain"'}</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiCard },
+      demo: <CardDisplay />,
+      snippet: `<EuiCard
+  title="title"
+  display="plain"
+  description="description" />`,
     },
   ],
 };
