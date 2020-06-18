@@ -17,21 +17,36 @@
  * under the License.
  */
 
-/**
- * These keys are used for navigating combobox UI components.
- *
- * UP: Select the previous item in the list.
- * DOWN: Select the next item in the list.
- * ENTER / TAB: Complete input with the current selection.
- * ESC: Deselect the current selection and hide the list.
- */
+export const ENTER = 'Enter';
+export const SPACE = ' ';
+export const ESCAPE = 'Escape';
+export const TAB = 'Tab';
+export const BACKSPACE = 'Backspace';
+export const F2 = 'F2';
 
-import { DOWN, ENTER, ESCAPE, TAB, UP } from '../key_codes';
+export const ARROW_DOWN = 'ArrowDown';
+export const ARROW_UP = 'ArrowUp';
+export const ARROW_LEFT = 'ArrowLeft';
+export const ARROW_RIGHT = 'ArrowRight';
 
-export const comboBoxKeyCodes = {
-  DOWN,
-  ENTER,
-  ESCAPE,
-  TAB,
-  UP,
-};
+export const PAGE_UP = 'PageUp';
+export const PAGE_DOWN = 'PageDown';
+export const END = 'End';
+export const HOME = 'Home';
+
+export enum keys {
+  ENTER = 'Enter',
+  SPACE = ' ',
+  ESCAPE = 'Escape',
+  TAB = 'Tab',
+  BACKSPACE = 'Backspace',
+  F2 = 'F2',
+  ARROW_DOWN = 'ArrowDown',
+  ARROW_UP = 'ArrowUp',
+  ARROW_LEFT = 'ArrowLeft',
+  ARROW_RIGHT = 'ArrowRight',
+  PAGE_UP = 'PageUp',
+  PAGE_DOWN = 'PageDown',
+  END = 'End',
+  HOME = 'Home',
+}

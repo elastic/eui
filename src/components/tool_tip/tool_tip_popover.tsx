@@ -23,7 +23,7 @@ import { CommonProps } from '../common';
 
 type Props = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
-    positionToolTip: (rect: ClientRect | DOMRect) => void;
+    positionToolTip: () => void;
     children?: ReactNode;
     title?: ReactNode;
     popoverRef?: (ref: HTMLDivElement) => void;
@@ -36,7 +36,7 @@ export class EuiToolTipPopover extends Component<Props> {
     requestAnimationFrame(() => {
       // Because of this delay, sometimes `positionToolTip` becomes unavailable.
       if (this.popover) {
-        this.props.positionToolTip(this.popover.getBoundingClientRect());
+        this.props.positionToolTip();
       }
     });
   };
@@ -50,8 +50,6 @@ export class EuiToolTipPopover extends Component<Props> {
 
   componentDidMount() {
     document.body.classList.add('euiBody-hasPortalContent');
-
-    this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
   }
 

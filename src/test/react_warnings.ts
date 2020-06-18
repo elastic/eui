@@ -17,8 +17,6 @@
  * under the License.
  */
 
-/* tslint:disable:no-console */
-
 /*
   Use this utility to throw errors whenever React complains via the console
   about things like invalid propTypes. This lets us assert that a propType

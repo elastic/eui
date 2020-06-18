@@ -18,23 +18,20 @@
  */
 
 /**
- * These keys are used for navigating cascading menu UI components.
+ * These keys are used for navigating combobox UI components.
  *
- * UP: Select the previous item in the list.
- * DOWN: Select the next item in the list.
- * LEFT: Show the previous menu.
- * RIGHT: Show the next menu for the selected item.
+ * ARROW_UP: Select the previous item in the list.
+ * ARROW_DOWN: Select the next item in the list.
+ * ENTER / TAB: Complete input with the current selection.
  * ESC: Deselect the current selection and hide the list.
- * TAB: Normal tabbing navigation is still supported.
  */
 
-import { DOWN, ESCAPE, LEFT, RIGHT, UP, TAB } from '../key_codes';
+import { ARROW_DOWN, ENTER, ESCAPE, TAB, ARROW_UP } from '../keys';
 
-export const cascadingMenuKeyCodes = {
-  DOWN,
+export const comboBoxKeys = {
+  ARROW_DOWN,
+  ARROW_UP,
+  ENTER,
   ESCAPE,
-  LEFT,
-  RIGHT,
-  UP,
   TAB,
 };

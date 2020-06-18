@@ -15,3 +15,11 @@ exports[`EuiForm renders a form element 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiForm renders without error callout when invalidCallout is "none" 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiForm testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;

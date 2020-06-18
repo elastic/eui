@@ -27,8 +27,7 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-// @ts-ignore-next-line
-// not generating typescript files or definitions for the generated JS components
+// @ts-ignore not generating typescript files or definitions for the generated JS components
 // because we'd need to dynamically know if we're importing the
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
 // to generate & git track a TS module definition for each icon component
@@ -534,12 +533,23 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 
 const generateId = htmlIdGenerator();
 
-let iconComponentCache: { [key: string]: ComponentType } = {};
-export const clearIconComponentCache = (icon?: EuiIconType) => {
-  if (icon != null) {
-    delete iconComponentCache[icon];
+let iconComponentCache: { [iconType: string]: ComponentType } = {};
+
+export const clearIconComponentCache = (iconType?: EuiIconType) => {
+  if (iconType != null) {
+    delete iconComponentCache[iconType];
   } else {
     iconComponentCache = {};
+  }
+};
+
+export const appendIconComponentCache = (iconTypeToIconComponentMap: {
+  [iconType: string]: ComponentType;
+}) => {
+  for (const iconType in iconTypeToIconComponentMap) {
+    if (iconTypeToIconComponentMap.hasOwnProperty(iconType)) {
+      iconComponentCache[iconType] = iconTypeToIconComponentMap[iconType];
+    }
   }
 };
 

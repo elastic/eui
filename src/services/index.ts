@@ -17,14 +17,14 @@
  * under the License.
  */
 
-// Export all keyCodes under a `keyCodes` named variable
-import * as keyCodes from './key_codes';
-export { keyCodes };
+// Export all keys under a `keys` named variable
+import * as keys from './keys';
+export { keys };
 
 export {
   accessibleClickKeys,
-  cascadingMenuKeyCodes,
-  comboBoxKeyCodes,
+  cascadingMenuKeys,
+  comboBoxKeys,
   htmlIdGenerator,
 } from './accessibility';
 

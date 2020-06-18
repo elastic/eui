@@ -21,7 +21,6 @@
 import React, { useState, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-// @ts-ignore
 import { EuiFieldText } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';

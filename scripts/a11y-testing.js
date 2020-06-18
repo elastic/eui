@@ -1,87 +1,56 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 const chalk = require('chalk');
 const puppeteer = require('puppeteer');
 const { AxePuppeteer } = require('axe-puppeteer');
 
 const docsPages = async (root, page) => {
-  let links = [
+  const pagesToSkip = [
+    `${root}#/layout/resizable-container`,
+    `${root}#/navigation/button`,
+    `${root}#/navigation/tree-view`,
+    `${root}#/navigation/side-nav`,
+    `${root}#/tabular-content/tables`,
+    `${root}#/tabular-content/in-memory-tables`,
+    `${root}#/display/aspect-ratio`,
+    `${root}#/display/code`,
+    `${root}#/display/drag-and-drop`,
+    `${root}#/forms/compressed-forms`,
+    `${root}#/forms/super-select`,
+    `${root}#/forms/combo-box`,
+    `${root}#/forms/color-selection`,
+    `${root}#/forms/code-editor`,
+    `${root}#/forms/date-picker`,
+    `${root}#/forms/selectable`,
+    `${root}#/forms/suggest`,
+    `${root}#/forms/super-date-picker`,
+    `${root}#/elastic-charts/creating-charts`,
+    `${root}#/elastic-charts/part-to-whole-comparisons`,
+    `${root}#/utilities/css-utility-classes`,
+    `${root}#/utilities/focus-trap`,
+  ];
+
+  return [
     root,
     ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
-  ];
-
-  links = links.splice(0, 14);
-  const reflinks = [
-    `${root}#/layout/horizontal-rule`,
-    `${root}#/layout/modal`,
-    `${root}#/layout/nav-drawer`,
-    `${root}#/layout/page`,
-    `${root}#/layout/panel`,
-    `${root}#/layout/popover`,
-    `${root}#/layout/spacer`,
-    `${root}#/navigation/breadcrumbs`,
-    `${root}#/navigation/context-menu`,
-    `${root}#/navigation/collapsible-nav`,
-    `${root}#/navigation/control-bar`,
-    `${root}#/navigation/facet`,
-    `${root}#/navigation/link`,
-    `${root}#/navigation/pagination`,
-    `${root}#/navigation/steps`,
-    `${root}#/navigation/tabs`,
-    `${root}#/tabular-content/data-grid`,
-    `${root}#/tabular-content/data-grid-in-memory-settings`,
-    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
-    `${root}#/tabular-content/data-grid-styling-and-toolbar`,
-    `${root}#/tabular-content/data-grid-control-columns`,
-    `${root}#/display/avatar`,
-    `${root}#/display/badge`,
-    `${root}#/display/callout`,
-    `${root}#/display/card`,
-    `${root}#/display/description-list`,
-    `${root}#/display/emptyprompt`,
-    `${root}#/display/health`,
-    `${root}#/display/icons`,
-    `${root}#/display/image`,
-    `${root}#/display/list-group`,
-    `${root}#/display/loading`,
-    `${root}#/display/progress`,
-    `${root}#/display/stat`,
-    `${root}#/display/text`,
-    `${root}#/display/title`,
-    `${root}#/display/toast`,
-    `${root}#/display/tooltip`,
-    `${root}#/forms/form-controls`,
-    `${root}#/forms/form-layouts`,
-    `${root}#/forms/form-validation`,
-    `${root}#/forms/code-editor`,
-    `${root}#/forms/expression`,
-    `${root}#/forms/filter-group`,
-    `${root}#/forms/range-sliders`,
-    `${root}#/forms/search-bar`,
-    `${root}#/elastic-charts/sizing`,
-    `${root}#/elastic-charts/time-series`,
-    `${root}#/elastic-charts/categorical`,
-    `${root}#/utilities/i18n`,
-    `${root}#/utilities/color`,
-    `${root}#/utilities/pretty-duration`,
-    `${root}#/utilities/mutationobserver`,
-    `${root}#/utilities/outside-click-detector`,
-    `${root}#/utilities/portal`,
-    `${root}#/utilities/resizeobserver`,
-    `${root}#/utilities/responsive`,
-    `${root}#/utilities/toggle`,
-    `${root}#/utilities/window-events`,
-    `${root}#/package/i18n-tokens`,
-    `${root}#/utilities/accessibility`,
-    `${root}#/utilities/context`,
-    `${root}#/utilities/copy`,
-    `${root}#/utilities/delay`,
-    `${root}#/utilities/highlight`,
-    `${root}#/utilities/error-boundary`,
-    `${root}#/utilities/inner-text`,
-  ];
-
-  links = [...links, ...reflinks];
-
-  return links;
+  ].filter(link => !pagesToSkip.includes(link));
 };
 
 const printResult = result =>

@@ -148,6 +148,7 @@
     // match border radius, minus 1px because it's inside a border
     border-top-left-radius: $euiBorderRadius - 1px;
     border-top-right-radius: $euiBorderRadius - 1px;
+    overflow: hidden;
 
     img {
       width: 100%;

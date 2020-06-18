@@ -22,7 +22,7 @@ import classNames from 'classnames';
 import AceEditor, { IAceEditorProps } from 'react-ace';
 
 import { keysOf } from '../common';
-import { htmlIdGenerator, keyCodes } from '../../services';
+import { htmlIdGenerator, keys } from '../../services';
 import { EuiI18n } from '../i18n';
 
 const DEFAULT_MODE = 'text';
@@ -115,7 +115,7 @@ export class EuiCodeEditor extends Component<
   };
 
   onKeydownAce = (event: KeyboardEvent) => {
-    if (event.keyCode === keyCodes.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       // If the autocompletion context menu is open then we want to let ESCAPE close it but
       // **not** exit out of editing mode.
       if (this.aceEditor !== null && !this.aceEditor.editor.completer) {
@@ -146,7 +146,7 @@ export class EuiCodeEditor extends Component<
   };
 
   onKeyDownHint: KeyboardEventHandler<HTMLDivElement> = event => {
-    if (event.keyCode === keyCodes.ENTER) {
+    if (event.key === keys.ENTER) {
       event.preventDefault();
       this.startEditing();
     }

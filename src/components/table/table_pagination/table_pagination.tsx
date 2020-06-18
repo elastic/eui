@@ -37,6 +37,10 @@ export interface Props {
   onChangeItemsPerPage?: ItemsPerPageChangeHandler;
   onChangePage?: PageChangeHandler;
   pageCount?: number;
+  /**
+   * id of the table being controlled
+   */
+  'aria-controls'?: string;
 }
 
 interface State {
@@ -69,6 +73,8 @@ export class EuiTablePagination extends Component<Props, State> {
       onChangeItemsPerPage = () => {},
       onChangePage,
       pageCount,
+      'aria-controls': ariaControls,
+      ...rest
     } = this.props;
 
     const button = (
@@ -127,9 +133,11 @@ export class EuiTablePagination extends Component<Props, State> {
 
         <EuiFlexItem grow={false}>
           <EuiPagination
+            aria-controls={ariaControls}
             pageCount={pageCount}
             activePage={activePage}
             onPageClick={onChangePage}
+            {...rest}
           />
         </EuiFlexItem>
       </EuiFlexGroup>
