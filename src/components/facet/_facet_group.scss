@@ -1,9 +1,23 @@
+$gutterTypes: (
+  gutterExtraSmall: $euiSizeXS,
+  gutterSmall: $euiSizeS,
+  gutterMedium: $euiSize,
+  gutterLarge: $euiSizeL,
+  gutterExtraLarge: $euiSizeXXL,
+);
 .euiFacetGroup--horizontal {
   .euiFacetButton {
     height: $euiButtonHeightSmall;
 
-    &:not(:last-of-type) {
-      margin-right: $euiSizeL;
+  }
+}
+@each $gutterName, $gutterSize in $gutterTypes {
+  .euiFacetGroup--#{$gutterName} {
+    .euiFacetButton {
+      &:not(:last-of-type) {
+        margin-right: $gutterSize;
+      }
+      margin-bottom: $gutterSize;
     }
   }
 }
