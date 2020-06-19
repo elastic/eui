@@ -89,17 +89,15 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   });
 
   return (
-    <div className={classes}>
+    <div
+      className={classes}
+      onClick={
+        (rest.onChange as unknown) as (
+          event: React.MouseEvent<HTMLDivElement, MouseEvent>
+        ) => void
+      }>
       <div className="euiCheckableCard__row">
-        <div
-          className="euiCheckableCard__control"
-          onClick={
-            (rest.onChange as unknown) as (
-              event: React.MouseEvent<HTMLDivElement, MouseEvent>
-            ) => void
-          }>
-          {checkableElement}
-        </div>
+        <div className="euiCheckableCard__control">{checkableElement}</div>
         <label
           className={labelClasses}
           htmlFor={id}

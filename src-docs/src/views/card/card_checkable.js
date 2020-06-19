@@ -88,7 +88,7 @@ export default () => {
         checkableType="checkbox"
         value="checkbox1"
         checked={checkbox}
-        onChange={() => setCheckbox(!checkbox)}
+        onChange={() => setCheckbox(prevCb => !prevCb)}
       />
     </Fragment>
   );
