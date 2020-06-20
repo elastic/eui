@@ -1,6 +1,7 @@
 @include euiPanel($selector: '.euiCheckableCard');
 
 .euiCheckableCard {
+  cursor: pointer;
   transition: border-color $euiAnimSpeedNormal ease-in;
   overflow: hidden; // Hides background color inside panel rounded corners
 

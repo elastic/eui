@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, LegacyRef } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -60,6 +60,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   ...rest
 }) => {
   const { id } = rest;
+  const clickRef = React.useRef<HTMLInputElement>();
   const classes = classNames(
     'euiCheckableCard',
     {
@@ -88,17 +89,20 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     'euiCheckableCard__label-isDisabled': disabled,
   });
 
+  const handleCLick = () =>
+    typeof clickRef.current !== 'undefined' && clickRef.current.click();
+
+  const labelRef =
+    checkableType === 'radio'
+      ? ((clickRef as unknown) as LegacyRef<HTMLLabelElement>)
+      : null;
+
   return (
-    <div
-      className={classes}
-      onClick={
-        (rest.onChange as unknown) as (
-          event: React.MouseEvent<HTMLDivElement, MouseEvent>
-        ) => void
-      }>
+    <div className={classes} onClick={handleCLick}>
       <div className="euiCheckableCard__row">
         <div className="euiCheckableCard__control">{checkableElement}</div>
         <label
+          ref={labelRef}
           className={labelClasses}
           htmlFor={id}
           aria-describedby={children ? `${id}-details` : undefined}>
