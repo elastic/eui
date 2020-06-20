@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode, LegacyRef } from 'react';
+import React, { FunctionComponent, ReactNode, Ref } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -94,7 +94,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
 
   const labelRef =
     checkableType === 'radio'
-      ? ((clickRef as unknown) as LegacyRef<HTMLLabelElement>)
+      ? ((clickRef as unknown) as Ref<HTMLLabelElement>)
       : null;
 
   return (
