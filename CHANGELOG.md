@@ -4,6 +4,8 @@ No public interface changes since `26.0.1`.
 
 ## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
 
+- Returned `EuiCardProps` in the `EuiCard` component ([#3640](https://github.com/elastic/eui/pull/3640))
+
 **Bug fixes**
 
 - Fixed fullscreen render issue in `EuiCode` ([#3633](https://github.com/elastic/eui/pull/3633))
