@@ -46,8 +46,8 @@ export class EuiResizablePanelRegistry {
     nextPanelId: string,
     containerSize: number
   ) {
-    let panelWithSizes: { [key: string]: number } = {};
-    for (let key in this.panels) {
+    const panelWithSizes: { [key: string]: number } = {};
+    for (const key in this.panels) {
       if (key !== prevPanelId && key !== nextPanelId) {
         panelWithSizes[key] =
           (this.panels[key].getSizePx() / containerSize) * 100;

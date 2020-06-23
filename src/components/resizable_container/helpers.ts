@@ -145,7 +145,7 @@ export const useContainerCallbacks = ({
         );
 
         setState({ ...state, isDragging: false });
-        let panelObject = registry.fetchAllPanels(
+        const panelObject = registry.fetchAllPanels(
           prevPanelId,
           nextPanelId,
           containerSize - resizersSize
@@ -211,7 +211,7 @@ export const useContainerCallbacks = ({
           containerSize
         );
 
-        let panelObject = registry.fetchAllPanels(
+        const panelObject = registry.fetchAllPanels(
           state.previousPanelId,
           state.nextPanelId,
           containerSize
