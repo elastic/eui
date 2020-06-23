@@ -38,10 +38,20 @@ export const BottomBarExample = {
             if a form is in a savable state.
           </p>
           <p>
+            There is a <EuiCode>affordForDisplacement</EuiCode> prop (defaulting
+            to <EuiCode>true</EuiCode>), which determines whether the component
+            makes room for itself by adding vertical padding equivalent to its
+            own height on the document body element - setting this to{' '}
+            <EuiCode>false</EuiCode> can be useful in cases such as a web app
+            where it is desired that the appearance of vertical scrollbars is
+            minimized.
+          </p>
+          <p>
             Like many of our other wrapper components,{' '}
             <strong>EuiBottomBar</strong> accepts a{' '}
             <EuiCode>paddingSize</EuiCode> prop, which can be set to{' '}
-            <EuiCode>s / m / l / none</EuiCode>.
+            <EuiCode>s / m / l / none</EuiCode> - by default, it is set to{' '}
+            <EuiCode>m</EuiCode>.
           </p>
         </div>
       ),

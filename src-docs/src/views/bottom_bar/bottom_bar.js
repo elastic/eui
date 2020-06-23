@@ -2,63 +2,119 @@ import React, { useState } from 'react';
 
 import {
   EuiBottomBar,
-  EuiFlexGroup,
-  EuiFlexItem,
+  EuiButtonGroup,
   EuiButton,
   EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => {
-  const [showBar, setShowBar] = useState(false);
+  const [toggleIdSelected, setToggleIdSelected] = useState(null);
 
-  const button = (
-    <EuiButton color="primary" onClick={() => setShowBar(!showBar)}>
-      Toggle appearance of the bottom bar
-    </EuiButton>
-  );
+  const toggleButtons = [
+    {
+      id: 'bottomBarStandard',
+      label: 'Show bottom bar',
+    },
+    {
+      id: 'bottomBarWithoutAffordForDisplacement',
+      label: 'Show bottom bar (without affordForDisplacement behavior)',
+    },
+  ];
 
-  let bottomBar;
-  if (showBar) {
-    bottomBar = (
-      <EuiBottomBar>
-        <EuiFlexGroup justifyContent="spaceBetween">
-          <EuiFlexItem grow={false}>
-            <EuiFlexGroup gutterSize="s">
-              <EuiFlexItem grow={false}>
-                <EuiButton color="ghost" size="s" iconType="help">
-                  Help
-                </EuiButton>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiButton color="ghost" size="s" iconType="user">
-                  Add user
-                </EuiButton>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiFlexGroup gutterSize="s">
-              <EuiFlexItem grow={false}>
-                <EuiButtonEmpty color="ghost" size="s" iconType="cross">
-                  Discard
-                </EuiButtonEmpty>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiButton color="primary" fill size="s" iconType="check">
-                  Save
-                </EuiButton>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiBottomBar>
-    );
-  }
+  const onChange = optionId => {
+    setToggleIdSelected(optionId);
+  };
 
   return (
     <div>
-      {button}
-      {bottomBar}
+      <EuiButtonGroup
+        legend="Bottom Bar demo toggle buttons group"
+        type="single"
+        buttonSize="m"
+        options={toggleButtons}
+        idSelected={toggleIdSelected}
+        onChange={id => onChange(id)}
+      />
+
+      {toggleIdSelected === 'bottomBarStandard' && (
+        <EuiBottomBar>
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem grow={false}>
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiButton color="ghost" size="s" iconType="help">
+                    Help
+                  </EuiButton>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButton color="ghost" size="s" iconType="user">
+                    Add user
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiButtonEmpty
+                    onClick={() => setToggleIdSelected(null)}
+                    color="ghost"
+                    size="s"
+                    iconType="cross">
+                    Discard
+                  </EuiButtonEmpty>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButton color="primary" size="s" iconType="check" fill>
+                    Save
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
+      )}
+
+      {toggleIdSelected === 'bottomBarWithoutAffordForDisplacement' && (
+        <EuiBottomBar affordForDisplacement={false}>
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem grow={false}>
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiButton color="ghost" size="s" iconType="help">
+                    Help
+                  </EuiButton>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButton color="ghost" size="s" iconType="user">
+                    Add user
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiButtonEmpty
+                    onClick={() => setToggleIdSelected(null)}
+                    color="ghost"
+                    size="s"
+                    iconType="cross">
+                    Discard
+                  </EuiButtonEmpty>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButton color="primary" size="s" iconType="check" fill>
+                    Save
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
+      )}
     </div>
   );
 };
