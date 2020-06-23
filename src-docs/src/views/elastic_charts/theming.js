@@ -13,7 +13,7 @@ import {
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSuperSelect,
+  EuiColorPalettePicker,
 } from '../../../../src/components';
 
 import {
@@ -43,22 +43,29 @@ const paletteData = {
   euiPaletteWarm,
   euiPaletteGray,
 };
+
 const paletteNames = Object.keys(paletteData);
 
 export const Theming = () => {
   const themeContext = useContext(ThemeContext);
 
-  /**
-   * Create palette select
-   */
-  const paletteOptions = paletteNames.map((paletteName, index) =>
-    createPaletteOption(paletteName, index)
-  );
+  const palettes = paletteNames.map((paletteName, index) => {
+    const options =
+      index > 0
+        ? 10
+        : {
+            sortBy: 'natural',
+          };
+
+    return {
+      value: String(index),
+      title: paletteName,
+      palette: paletteData[paletteNames[index]](options),
+      type: 'fixed',
+    };
+  });
 
   const [barPalette, setBarPalette] = useState('0');
-  const onBarPaletteChange = value => {
-    setBarPalette(value);
-  };
 
   /**
    * Create data
@@ -113,55 +120,15 @@ export const Theming = () => {
       </Chart>
       <EuiSpacer size="xxl" />
       <EuiFlexGroup justifyContent="center">
-        <EuiFlexItem grow={false}>
-          <EuiSuperSelect
-            id="setChartBarColor"
-            options={paletteOptions}
+        <EuiFlexItem grow={false} style={{ width: 300 }}>
+          <EuiColorPalettePicker
+            palettes={palettes}
+            onChange={setBarPalette}
             valueOfSelected={barPalette}
-            onChange={onBarPaletteChange}
-            aria-label="Bars color palette"
-            style={{ width: 300 }}
+            compressed
           />
         </EuiFlexItem>
       </EuiFlexGroup>
     </Fragment>
-  );
-};
-
-const createPaletteOption = function(paletteName, index) {
-  const options =
-    index > 0
-      ? 10
-      : {
-          sortBy: 'natural',
-        };
-
-  return {
-    value: String(index),
-    inputDisplay: createPalette(paletteData[paletteNames[index]](options)),
-    dropdownDisplay: (
-      <Fragment>
-        <strong>{paletteName}</strong>
-        <EuiSpacer size="xs" />
-        {createPalette(paletteData[paletteNames[index]](options))}
-      </Fragment>
-    ),
-  };
-};
-
-const createPalette = function(palette) {
-  return (
-    <EuiFlexGroup
-      className="guideColorPalette__swatchHolder"
-      gutterSize="none"
-      responsive={false}>
-      {palette.map(hexCode => (
-        <EuiFlexItem
-          key={hexCode}
-          className={'guideColorPalette__swatch--small'}>
-          <span title={hexCode} style={{ backgroundColor: hexCode }} />
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
   );
 };
