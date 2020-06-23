@@ -106,13 +106,13 @@
 // This creates a bunch of sub selectors for the beta badge
 @include euiHasBetaBadge($selector: '.euiCard', $spacing: $euiCardSpacing);
 
-@each $modifier, $amount in $euiPanelPaddingModifiers {
-  &.euiCard--#{$modifier} {
-    padding: $amount;
+@each $modifier, $paddingAmount in $euiPanelPaddingModifiers {
+  .euiCard--#{$modifier} {
+    padding: $paddingAmount;
 
     &.euiCard--isSelectable {
       position: relative;
-      padding-bottom: $amount + $euiCardBottomNodeHeight;
+      padding-bottom: $paddingAmount + $euiCardBottomNodeHeight;
     }
 
     .euiCard__top {
@@ -121,15 +121,15 @@
       min-height: 1px; /* 2 */
 
       .euiCard__icon {
-        margin-top: $amount / 2;
+        margin-top: $paddingAmount / 2;
       }
 
       .euiCard__image {
         position: relative;
-        width: calc(100% + (#{$amount} * 2));
-        left: $amount * -1;
-        top: $amount * -1;
-        margin-bottom: $amount * -1; // ensure the parent is only as tall as the image
+        width: calc(100% + (#{$paddingAmount} * 2));
+        left: $paddingAmount * -1;
+        top: $paddingAmount * -1;
+        margin-bottom: $paddingAmount * -1; // ensure the parent is only as tall as the image
 
         // match border radius, minus 1px because it's inside a border
         border-top-left-radius: $euiBorderRadius - 1px;
@@ -146,24 +146,24 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -75%); // Fallback for IE as it doesn't accept calcs in translates
-          transform: translate(-50%, calc(-50% + #{$amount * -1})); // sass-lint:disable-line no-duplicate-properties
+          transform: translate(-50%, calc(-50% + #{$paddingAmount * -1})); // sass-lint:disable-line no-duplicate-properties
         }
       }
     }
 
     .euiCard__content {
       .euiCard__description {
-        margin-top: $amount / 2;
+        margin-top: $paddingAmount / 2;
       }
     }
 
     .euiCard__footer:not(:empty) {
       flex-grow: 0; /* 1 */
-      margin-top: $amount;
+      margin-top: $paddingAmount;
     }
 
     &.euiCard--hasChildren .euiCard__description {
-      margin-bottom: $amount;
+      margin-bottom: $paddingAmount;
     }
   }
 }

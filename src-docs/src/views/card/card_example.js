@@ -401,8 +401,9 @@ export const CardExample = {
       demo: <CardDisplay />,
       snippet: `<EuiCard
   title="title"
+  description="description" 
   display="plain"
-  description="description" />`,
+/>`,
     },
   ],
 };

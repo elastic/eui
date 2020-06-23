@@ -66,7 +66,7 @@ const displayToClassNameMap: { [display in CardDisplay]: string } = {
 
 export const DISPLAYS = keysOf(displayToClassNameMap);
 
-export type CardPaddingSize = 's' | 'm' | 'l';
+export type CardPaddingSize = 'none' | 's' | 'm' | 'l';
 
 type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
@@ -157,12 +157,13 @@ type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
    */
   display?: CardDisplay;
   /**
-   * Padding applied to the card
+   * Padding applied around the content of the card
    */
   paddingSize?: CardPaddingSize;
 };
 
 const paddingSizeToClassNameMap = {
+  none: null,
   s: 'euiCard--paddingSmall',
   m: 'euiCard--paddingMedium',
   l: 'euiCard--paddingLarge',
@@ -224,7 +225,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
-    paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
+    paddingSizeToClassNameMap[paddingSize],
     displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
