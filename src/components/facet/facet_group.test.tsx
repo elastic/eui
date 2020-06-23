@@ -43,7 +43,7 @@ describe('EuiFacetGroup', () => {
         const component = render(<EuiFacetGroup gutterSize="l" />);
 
         expect(component).toMatchSnapshot();
-      })
-    })
+      });
+    });
   });
 });

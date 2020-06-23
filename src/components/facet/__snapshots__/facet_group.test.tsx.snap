@@ -8,7 +8,7 @@ exports[`EuiFacetGroup is rendered 1`] = `
 />
 `;
 
-exports[`EuiFacetGroup props gutterSize is proper 1`] = `
+exports[`EuiFacetGroup props gutterSize is rendered 1`] = `
 <div
   class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical euiFacetGroup--gutterLarge"
 />
