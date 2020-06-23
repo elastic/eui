@@ -161,6 +161,10 @@
       flex-grow: 0; /* 1 */
       margin-top: $amount;
     }
+
+    &.euiCard--hasChildren .euiCard__description {
+      margin-bottom: $amount;
+    }
   }
 }
 
@@ -225,8 +229,4 @@
     margin-top: 0;
     margin-right: $euiSize;
   }
-}
-
-.euiCard--hasChildren .euiCard__description {
-  margin-bottom: $euiCardSpacing;
 }
