@@ -12,8 +12,6 @@ import ColorGuidelines from './views/guidelines/colors';
 
 import { SassGuidelines } from './views/guidelines/sass';
 
-import TextScales from './views/text_scaling/text_scaling_sandbox';
-
 import WritingGuidelines from './views/guidelines/writing';
 
 // Services
@@ -294,10 +292,6 @@ const navigation = [
       {
         name: 'Sass',
         component: SassGuidelines,
-      },
-      {
-        name: 'Text scales',
-        component: TextScales,
       },
       {
         name: 'Writing',
