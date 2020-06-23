@@ -1,23 +1,24 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   EuiTitle,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButton,
   EuiBetaBadge,
+  EuiTab,
+  EuiTabs,
+  EuiHorizontalRule,
 } from '../../../../src/components';
-
-import { getRouterLinkProps } from '../../services';
 
 export const GuidePage = ({
   children,
   title,
   intro,
-  componentLinkTo,
   isBeta,
+  playground,
+  guidelines,
 }) => {
   const betaBadge = isBeta ? (
     <EuiBetaBadge
@@ -28,30 +29,69 @@ export const GuidePage = ({
     undefined
   );
 
+  const tabs = [
+    {
+      id: 'examples',
+      name: 'Examples',
+    },
+  ];
+  if (playground)
+    tabs.push({
+      id: 'playground',
+      name: 'Playground',
+    });
+  if (guidelines)
+    tabs.push({
+      id: 'guidelines',
+      name: 'Guidelines',
+    });
+
+  const [selectedTabId, setSelectedTabId] = useState('examples');
+
+  const onSelectedTabChanged = id => {
+    setSelectedTabId(id);
+  };
+
+  const renderTabs = () => {
+    return tabs.map((tab, index) => (
+      <EuiTab
+        onClick={() => onSelectedTabChanged(tab.id)}
+        isSelected={tab.id === selectedTabId}
+        key={index}>
+        {tab.name}
+      </EuiTab>
+    ));
+  };
+
   return (
     <Fragment>
       <div className="guideSection__text">
-        <EuiFlexGroup>
-          <EuiFlexItem>
+        <EuiFlexGroup justifyContent="spaceBetween">
+          <EuiFlexItem grow={false}>
             <EuiTitle size="l">
               <h1>
                 {title} {betaBadge}
               </h1>
             </EuiTitle>
           </EuiFlexItem>
-          {componentLinkTo && (
-            <EuiFlexItem grow={false}>
-              <EuiButton href={getRouterLinkProps(componentLinkTo).href}>
-                View component code
-              </EuiButton>
-            </EuiFlexItem>
-          )}
+          <EuiFlexItem grow={false}>
+            <EuiTabs display="condensed">
+              {tabs.length > 1 && renderTabs()}
+            </EuiTabs>
+          </EuiFlexItem>
         </EuiFlexGroup>
+
+        <EuiHorizontalRule />
         <EuiSpacer />
-        {intro}
+
+        <EuiSpacer size="l" />
+
+        {selectedTabId === 'examples' && intro}
       </div>
 
-      {children}
+      {selectedTabId === 'examples' && children}
+      {selectedTabId === 'playground' && playground}
+      {selectedTabId === 'guidelines' && guidelines}
 
       {/* Give some space between the bottom of long content and the bottom of the screen */}
       <EuiSpacer size="xl" />
