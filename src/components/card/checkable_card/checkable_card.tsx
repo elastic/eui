@@ -89,9 +89,8 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     'euiCheckableCard__label-isDisabled': disabled,
   });
 
-  const handleCLick = () => {
+  const handleCLick = () =>
     typeof clickRef.current !== 'undefined' && clickRef.current.click();
-  };
 
   const labelRef = (clickRef as unknown) as Ref<HTMLLabelElement>;
 
