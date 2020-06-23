@@ -5,6 +5,10 @@
 Create test files with the name pattern of `{component name}.test.js` in the same directory which
 contains `{component name}.js`.
 
+## Updating snapshots
+
+If you make changes to a component, you may need to update the component's snapshot in order for the test to succeed. To do so, use `yarn run test-unit -- -u`
+
 ## Test helpers
 
 The [`src/test`](../src/test) module exports some functions and constants to help you write better tests:
