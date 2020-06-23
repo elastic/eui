@@ -20,30 +20,42 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiFlexGroup } from '../flex';
 
 type FacetGroupLayout = 'vertical' | 'horizontal';
-
-const gutterSizeToClassNameMap = {
-  xs: 'euiFacetGroup--gutterExtraSmall',
-  s: 'euiFacetGroup--gutterSmall',
-  m: 'euiFacetGroup--gutterMedium',
-  l: 'euiFacetGroup--gutterLarge',
-  xl: 'euiFacetGroup--gutterExtraLarge',
-};
-
-export type EuiFacetGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
 
 const layoutToClassNameMap: { [layout in FacetGroupLayout]: string } = {
   vertical: 'euiFacetGroup--vertical',
   horizontal: 'euiFacetGroup--horizontal',
 };
 
+export const LAYOUTS = keysOf(layoutToClassNameMap);
+
+type FacetGroupGutterSize = 'none' | 's' | 'm' | 'l';
+
+const gutterSizeToClassNameMap: {
+  [gutterSize in FacetGroupGutterSize]: string
+} = {
+  none: 'euiFacetGroup--gutterNone',
+  s: 'euiFacetGroup--gutterSmall',
+  m: 'euiFacetGroup--gutterMedium',
+  l: 'euiFacetGroup--gutterLarge',
+};
+
+export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
+
 export type EuiFacetGroupProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
+    /**
+     * Vertically in a column, or horizontally in one wrapping line
+     */
     layout?: FacetGroupLayout;
-    gutterSize?: EuiFacetGroupGutterSize;
+    /**
+     * Distance between facet buttons.
+     * Horizontal layout always adds more distance horizontally between buttons.
+     */
+    gutterSize?: FacetGroupGutterSize;
   };
 
 export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
