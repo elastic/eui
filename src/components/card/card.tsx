@@ -163,7 +163,7 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
 };
 
 const paddingSizeToClassNameMap = {
-  none: null,
+  none: 'euiCard--paddingNone',
   s: 'euiCard--paddingSmall',
   m: 'euiCard--paddingMedium',
   l: 'euiCard--paddingLarge',

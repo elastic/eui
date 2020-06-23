@@ -106,7 +106,7 @@
 // This creates a bunch of sub selectors for the beta badge
 @include euiHasBetaBadge($selector: '.euiCard', $spacing: $euiCardSpacing);
 
-@each $modifier, $paddingAmount in $euiPanelPaddingModifiers {
+@each $modifier, $paddingAmount in $euiCardPaddingModifiers {
   .euiCard--#{$modifier} {
     padding: $paddingAmount;
 
