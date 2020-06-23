@@ -145,7 +145,11 @@ export const useContainerCallbacks = ({
         );
 
         setState({ ...state, isDragging: false });
-        let panelObject = registry.fetchAllPanels(prevPanelId, nextPanelId);
+        let panelObject = registry.fetchAllPanels(
+          prevPanelId,
+          nextPanelId,
+          containerSize - resizersSize
+        );
         console.log(panelObject);
         if (prevPanelSize !== nextPanelSize && onPanelWidthChange) {
           onPanelWidthChange({
@@ -209,7 +213,8 @@ export const useContainerCallbacks = ({
 
         let panelObject = registry.fetchAllPanels(
           state.previousPanelId,
-          state.nextPanelId
+          state.nextPanelId,
+          containerSize
         );
         console.log(panelObject);
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
