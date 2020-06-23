@@ -89,18 +89,18 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     'euiCheckableCard__label-isDisabled': disabled,
   });
 
-  const handleCLick = () =>
+  const handleCLick = () => {
     typeof clickRef.current !== 'undefined' && clickRef.current.click();
+  };
 
-  const labelRef =
-    checkableType === 'radio'
-      ? ((clickRef as unknown) as Ref<HTMLLabelElement>)
-      : null;
+  const labelRef = (clickRef as unknown) as Ref<HTMLLabelElement>;
 
   return (
-    <div className={classes} onClick={handleCLick}>
+    <div className={classes}>
       <div className="euiCheckableCard__row">
-        <div className="euiCheckableCard__control">{checkableElement}</div>
+        <div className="euiCheckableCard__control" onClick={handleCLick}>
+          {checkableElement}
+        </div>
         <label
           ref={labelRef}
           className={labelClasses}
@@ -111,7 +111,6 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       </div>
       {children && (
         <div className="euiCheckableCard__row">
-          {/* Empty div for left side background color only */}
           <div className="euiCheckableCard__control" />
           <div id={`${id}-details`} className="euiCheckableCard__children">
             {children}
