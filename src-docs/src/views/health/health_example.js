@@ -46,7 +46,7 @@ export const HealthExample = {
   ),
   sections: [
     {
-      title: 'Colors',
+      title: 'Color',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -62,7 +62,7 @@ export const HealthExample = {
       demo: <Health />,
     },
     {
-      title: 'Sizes',
+      title: 'Size',
       source: [
         {
           type: GuideSectionTypes.JS,
