@@ -32,6 +32,7 @@ import {
   euiPalettePositive,
   euiPaletteGray,
 } from '../../../../src/services';
+
 const paletteData = {
   euiPaletteColorBlind,
   euiPaletteForStatus,
