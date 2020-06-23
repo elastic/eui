@@ -81,10 +81,9 @@ export const GuidePage = ({
           </EuiFlexItem>
         </EuiFlexGroup>
 
-        <EuiHorizontalRule />
-        <EuiSpacer />
+        {tabs.length > 1 && <EuiHorizontalRule />}
 
-        <EuiSpacer size="l" />
+        <EuiSpacer size="m" />
 
         {selectedTabId === 'examples' && intro}
       </div>
