@@ -1,4 +1,15 @@
 .euiHealth {
-  @include euiFontSizeS;
   display: inline-block;
+}
+
+.euiHealth--medium {
+  @include euiFontSize;
+}
+
+.euiHealth--small {
+  @include euiFontSizeS;
+}
+
+.euiHealth--extraSmall {
+  @include euiFontSizeXS;
 }

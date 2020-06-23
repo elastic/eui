@@ -25,6 +25,14 @@ import { EuiIcon, IconColor } from '../icon';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
+export type HealthSize = 'xs' | 's' | 'm';
+
+const sizeToClassNameMap: { [size in HealthSize]: string | null } = {
+  xs: 'euiHealth--extraSmall',
+  s: 'euiHealth--small',
+  m: 'euiHealth--medium',
+};
+
 type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     /**
@@ -33,15 +41,21 @@ type EuiHealthProps = CommonProps &
      * `subdued` or `ghost`; or any valid CSS color value as a `string`
      */
     color?: IconColor;
+    size?: HealthSize;
   };
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   children,
   className,
   color,
+  size = 's',
   ...rest
 }) => {
-  const classes = classNames('euiHealth', className);
+  const classes = classNames(
+    'euiHealth',
+    size ? sizeToClassNameMap[size] : null,
+    className
+  );
 
   return (
     <div className={classes} {...rest}>
