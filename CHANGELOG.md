@@ -4,7 +4,7 @@ No public interface changes since `26.0.1`.
 
 ## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
 
-- Exported `EuiCardProps` in the `EuiCard` component and `EuiCheckableCardProps` in `EuiCheckableCard` component([#3640](https://github.com/elastic/eui/pull/3640))
+- Exported `EuiCardProps` in the `EuiCard` Typesrcipt types and `EuiCheckableCardProps` in `EuiCheckableCard` Typescript types([#3640](https://github.com/elastic/eui/pull/3640))
 
 **Bug fixes**
 
