@@ -59,14 +59,14 @@ export const Theming = () => {
           };
 
     return {
-      value: String(index),
+      value: paletteName,
       title: paletteName,
       palette: paletteData[paletteNames[index]](options),
       type: 'fixed',
     };
   });
 
-  const [barPalette, setBarPalette] = useState('0');
+  const [barPalette, setBarPalette] = useState('euiPaletteColorBlind');
 
   /**
    * Create data
@@ -83,12 +83,14 @@ export const Theming = () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
+  const barPaletteIndex = paletteNames.findIndex(item => item === barPalette);
+
   const customTheme =
-    Number(barPalette) > 0
+    barPaletteIndex > 0
       ? [
           {
             colors: {
-              vizColors: paletteData[paletteNames[Number(barPalette)]](5),
+              vizColors: paletteData[paletteNames[barPaletteIndex]](5),
             },
           },
           theme,
@@ -126,7 +128,6 @@ export const Theming = () => {
             palettes={palettes}
             onChange={setBarPalette}
             valueOfSelected={barPalette}
-            compressed
           />
         </EuiFlexItem>
       </EuiFlexGroup>
