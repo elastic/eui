@@ -68,7 +68,7 @@ export const DISPLAYS = keysOf(displayToClassNameMap);
 
 export type CardPaddingSize = 'none' | 's' | 'm' | 'l';
 
-type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
+export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   /**
    * Card's are required to have at least a title and description
    */

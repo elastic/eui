@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Exported `EuiCardProps` and `EuiCheckableCardProps` types ([#3640](https://github.com/elastic/eui/pull/3640))
 - Added `paddingSize` prop to `EuiCard` ([#3638](https://github.com/elastic/eui/pull/3638))
 
 ## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
