@@ -4,6 +4,8 @@ No public interface changes since `26.0.1`.
 
 ## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
 
+- Updated props of `EuiCode` and `EuiCodeBlock` to reflect only functional props ([#3647](https://github.com/elastic/eui/pull/3647))
+
 **Bug fixes**
 
 - Fixed fullscreen render issue in `EuiCode` ([#3633](https://github.com/elastic/eui/pull/3633))
