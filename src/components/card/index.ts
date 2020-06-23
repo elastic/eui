@@ -18,4 +18,4 @@
  */
 
 export { EuiCard, EuiCardProps } from './card';
-export { EuiCheckableCard } from './checkable_card';
+export { EuiCheckableCard, EuiCheckableCardProps } from './checkable_card';
