@@ -38,5 +38,12 @@ describe('EuiFacetGroup', () => {
         expect(component).toMatchSnapshot();
       });
     });
+    describe('gutterSize', () => {
+      it('is rendered', () => {
+        const component = render(<EuiFacetGroup gutterSize="l" />);
+
+        expect(component).toMatchSnapshot();
+      })
+    })
   });
 });
