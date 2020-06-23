@@ -32,7 +32,6 @@ export interface EuiCodeSharedProps {
    */
   language?: string;
   transparentBackground?: boolean;
-  isCopyable?: boolean;
 }
 
 interface Props extends EuiCodeSharedProps {
