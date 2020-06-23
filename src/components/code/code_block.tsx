@@ -23,8 +23,8 @@ import { CommonProps } from '../common';
 import { EuiCodeBlockImpl } from './_code_block';
 import { EuiCodeSharedProps } from './code';
 
-type PaddingSize = 'none' | 's' | 'm' | 'l';
-type FontSize = 's' | 'm' | 'l';
+export type PaddingSize = 'none' | 's' | 'm' | 'l';
+export type FontSize = 's' | 'm' | 'l';
 
 interface OwnProps extends EuiCodeSharedProps {
   inline?: false;
