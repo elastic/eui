@@ -7,7 +7,7 @@ contains `{component name}.js`.
 
 ## Updating snapshots
 
-If you make changes to a component, you may need to update the component's snapshot in order for the test to succeed. To do so, use `yarn run test-unit -- -u`
+When you change a component in a way that affects the markup, you will need to update the snapshot in order for the tests to succeed. To do so, run `yarn run test-unit -- -u`. This will update all snapshots in the repo. You can also add `path/to/component_dir` on the end to only update the tests for that directory.
 
 ## Test helpers
 
