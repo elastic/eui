@@ -41,11 +41,16 @@ export class EuiResizablePanelRegistry {
     return [this.panels[prevPanelId], this.panels[nextPanelId]];
   }
 
-  fetchAllPanels(prevPanelId: string, nextPanelId: string, containerSize: number) {
+  fetchAllPanels(
+    prevPanelId: string,
+    nextPanelId: string,
+    containerSize: number
+  ) {
     let panelWithSizes: { [key: string]: number } = {};
     for (let key in this.panels) {
       if (key !== prevPanelId && key !== nextPanelId) {
-        panelWithSizes[key] = (this.panels[key].getSizePx()/containerSize)*100;
+        panelWithSizes[key] =
+          (this.panels[key].getSizePx() / containerSize) * 100;
       }
     }
     return panelWithSizes;
