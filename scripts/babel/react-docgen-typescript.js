@@ -24,11 +24,10 @@ const ts = require('typescript');
 const glob = require('glob');
 const util = require('util');
 
-let files = glob.sync('src/**/*.{ts,tsx}', { absolute: true });
-// Add files from src-docs
-const docsFiles = glob.sync('src-docs/**/*.{ts,tsx}', { absolute: true });
-
-files = files.concat(docsFiles);
+const files = [
+  ...glob.sync('{src,src-docs}/**/*.{ts,tsx}', { absolute: true }),
+  ...glob.sync('src-docs/**/*.{ts,tsx}', { absolute: true }),
+];
 
 const options = {
   jsx: ts.JsxEmit.React,
