@@ -10,6 +10,7 @@
   width: $euiCollapsibleNavWidth;
   max-width: 80vw;
   animation: euiCollapsibleNavIn $euiAnimSpeedNormal $euiAnimSlightResistance;
+  clip-path: polygon(0 0, 110% 0, 110% 100%, 0 100%);
 }
 
 .euiCollapsibleNav__closeButton {

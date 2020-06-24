@@ -14,4 +14,5 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  clip-path: polygon(-10% 0, 100% 0, 100% 100%, -10% 100%);
 }
