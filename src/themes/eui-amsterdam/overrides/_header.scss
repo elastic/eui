@@ -46,6 +46,7 @@
   // still be default text only breadcrumbs for places like EuiControlBar
   .euiBreadcrumb {
     @include euiButtonDefaultStyle($euiTextColor);
+    line-height: $euiSize;
     font-weight: $euiFontWeightMedium;
     padding: $euiSizeXS $euiSize;
     clip-path: polygon(0 0, calc(100% - #{$euiSizeS}) 0, 100% 50%, calc(100% - #{$euiSizeS}) 100%, 0 100%, $euiSizeS 50%);

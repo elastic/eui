@@ -125,7 +125,7 @@ export default ({ theme }) => {
           <EuiText size="s" color="subdued">
             <p>
               Please see the component page for{' '}
-              <Link to="/navigation/collapsible-nav">
+              <Link to="/layout/header">
                 <strong>EuiHeaderAlert</strong>
               </Link>{' '}
               on how to configure your alerts.
