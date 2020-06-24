@@ -387,13 +387,11 @@ export const CardExample = {
         <Fragment>
           <p>
             If you need a card with no borders or shadows pass{' '}
-            <EuiCode language="ts">{'display="plain"'}</EuiCode>. This might be
-            when you need to make use of the content props and layout options{' '}
-            <strong>EuiCard</strong> provides but do not need a border. Adding
-            an interaction to the card will provide the clickable styling on
-            hover. Note that <EuiCode>plain</EuiCode> display is not available
-            for
-            <EuiCode>Selectable</EuiCode> cards.
+            <EuiCode language="ts">{'display="plain"'}</EuiCode>. This is a good
+            option to avoid nested panels. Adding an interaction to the card
+            will provide the clickable styling on hover. Note that{' '}
+            <EuiCode>plain</EuiCode> display is not available for
+            <EuiCode>selectable</EuiCode> cards.
           </p>
         </Fragment>
       ),

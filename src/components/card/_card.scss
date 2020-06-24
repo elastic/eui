@@ -120,10 +120,6 @@
       position: relative;
       min-height: 1px; /* 2 */
 
-      .euiCard__icon {
-        margin-top: $paddingAmount / 2;
-      }
-
       .euiCard__image {
         position: relative;
         width: calc(100% + (#{$paddingAmount} * 2));
@@ -151,21 +147,22 @@
       }
     }
 
-    .euiCard__content {
-      .euiCard__description {
-        margin-top: $paddingAmount / 2;
-      }
-    }
-
-    .euiCard__footer:not(:empty) {
-      flex-grow: 0; /* 1 */
-      margin-top: $paddingAmount;
-    }
-
-    &.euiCard--hasChildren .euiCard__description {
-      margin-bottom: $paddingAmount;
-    }
   }
+}
+
+.euiCard__top {
+  .euiCard__icon {
+    margin-top: $euiCardSpacing / 2;
+  }
+}
+
+.euiCard__footer:not(:empty) {
+  flex-grow: 0; /* 1 */
+  margin-top: $euiCardSpacing;
+}
+
+.euiCard--hasChildren .euiCard__description {
+  margin-bottom: $euiCardSpacing;
 }
 
 // Selectable cards don't work well without a border
@@ -192,6 +189,10 @@
 
 .euiCard__content {
   flex-grow: 1; /* 1 */
+
+  .euiCard__description {
+    margin-top: $euiCardSpacing / 2;
+  }
 
   .euiCard__titleAnchor,
   .euiCard__titleButton {
