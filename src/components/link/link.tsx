@@ -18,6 +18,7 @@
  */
 
 import React, {
+  forwardRef,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   MouseEventHandler,
@@ -80,10 +81,7 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
-const EuiLink = React.forwardRef<
-  HTMLAnchorElement | HTMLButtonElement,
-  EuiLinkProps
->(
+const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {
       children,
