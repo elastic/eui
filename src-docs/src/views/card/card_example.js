@@ -393,6 +393,10 @@ export const CardExample = {
             <EuiCode>plain</EuiCode> display is not available for
             <EuiCode>selectable</EuiCode> cards.
           </p>
+          <p>
+            For non-interactive cards, reduce or eliminate the padding as needed
+            to suit your layout.
+          </p>
         </Fragment>
       ),
       props: { EuiCard },
