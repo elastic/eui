@@ -157,7 +157,7 @@ export const useContainerCallbacks = ({
             [prevPanelId]: prevPanelSize,
             [nextPanelId]: nextPanelSize,
           });
-        } else {
+
           prevPanel.setSize(prevPanelSize);
           nextPanel.setSize(nextPanelSize);
         }
@@ -224,10 +224,9 @@ export const useContainerCallbacks = ({
               [state.previousPanelId]: prevPanelSize,
               [state.nextPanelId]: nextPanelSize,
             });
-          } else {
-            prevPanel.setSize(prevPanelSize);
-            nextPanel.setSize(nextPanelSize);
           }
+          prevPanel.setSize(prevPanelSize);
+          nextPanel.setSize(nextPanelSize);
 
           setState({ ...state, currentResizerPos: x });
         }
