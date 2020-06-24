@@ -49,6 +49,10 @@ import HeaderStacked from './header_stacked';
 const headerStackedSource = require('!!raw-loader!./header_stacked');
 const headerStackedHtml = renderToHtml(HeaderStacked);
 
+import HeaderElasticPattern from './header_elastic_pattern';
+const headerElasticPatternSource = require('!!raw-loader!./header_elastic_pattern');
+const headerElasticPatternHtml = renderToHtml(HeaderElasticPattern);
+
 const headerSnippet = `<EuiHeader>
   <EuiHeaderSection grow={false}>
     <EuiHeaderSectionItem border="right">
@@ -332,6 +336,41 @@ export const HeaderExample = {
         '@include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);',
       ],
       demo: <HeaderStacked />,
+    },
+    {
+      title: 'The Elastic navigation pattern',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerElasticPatternSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerElasticPatternHtml,
+        },
+      ],
+      text: (
+        <>
+          <h3>Putting it all together</h3>
+          <p>
+            The button below will launch a full screen example that includes two{' '}
+            <strong>EuiHeader</strong>s with all the appropriate navigation
+            pieces including{' '}
+            <Link to="/navigation/collapsible-nav">
+              <strong>EuiCollapsibleNav</strong>,
+            </Link>{' '}
+            <strong>EuiHeaderAlerts</strong>, user menu, deployment switcher,
+            space selector, <strong>EuiHeaderBreadcrumbs</strong> and{' '}
+            <strong>EuiHeaderLinks</strong> for app menu items.
+          </p>
+          <p>
+            This is just a pattern and should be treated as such. Consuming
+            applications will need to recreate the pattern according to their
+            context and save the states as is appropriate to their data store.
+          </p>
+        </>
+      ),
+      demo: <HeaderElasticPattern theme={lightColors} />,
     },
   ],
 };
