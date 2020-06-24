@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `26.1.0`.
+
+## [`26.1.0`](https://github.com/elastic/eui/tree/v26.1.0)
+
 - Optimized in-memory datagrid mount performance ([#3628](https://github.com/elastic/eui/pull/3628))
 - Exported `EuiCardProps` and `EuiCheckableCardProps` types ([#3640](https://github.com/elastic/eui/pull/3640))
 
