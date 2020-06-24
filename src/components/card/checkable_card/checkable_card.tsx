@@ -60,7 +60,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   ...rest
 }) => {
   const { id } = rest;
-  const clickRef = React.useRef<HTMLInputElement>();
+  const labelClickRef = React.useRef<HTMLInputElement>();
   const classes = classNames(
     'euiCheckableCard',
     {
@@ -70,34 +70,31 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     className
   );
 
-  let checkableElement;
-  if (checkableType === 'radio') {
-    checkableElement = (
+
+  // eslint-disable-next-line prettier/prettier
+  const handleCLick = () =>  labelClickRef?.current?.click() 
+  const labelRef = (labelClickRef as unknown) as Ref<HTMLLabelElement>;
+
+  const checkableElement = (checkableType === 'radio') ? ( 
       <EuiRadio
+        onClick={handleCLick}
         checked={checked}
         disabled={disabled}
         {...rest as EuiRadioProps}
       />
+    ) : (
+      <EuiCheckbox checked={checked} disabled={disabled} {...rest}/>
     );
-  } else {
-    checkableElement = (
-      <EuiCheckbox checked={checked} disabled={disabled} {...rest} />
-    );
-  }
 
   const labelClasses = classNames('euiCheckableCard__label', {
     'euiCheckableCard__label-isDisabled': disabled,
   });
 
-  const handleCLick = () =>
-    typeof clickRef.current !== 'undefined' && clickRef.current.click();
-
-  const labelRef = (clickRef as unknown) as Ref<HTMLLabelElement>;
 
   return (
-    <div className={classes}>
+    <div className={classes} >
       <div className="euiCheckableCard__row">
-        <div className="euiCheckableCard__control" onClick={handleCLick}>
+        <div className="euiCheckableCard__control">
           {checkableElement}
         </div>
         <label

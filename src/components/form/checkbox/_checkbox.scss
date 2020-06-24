@@ -80,17 +80,22 @@
     min-width: $euiCheckBoxSize;
 
     .euiCheckbox__square {
-      top: 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 12px;
+      width: 12px;
     }
 
     .euiCheckbox__input {
-      @include size($euiCheckBoxSize); /* 1 */
-
-      position: absolute; /* 1 */
-      opacity: 0; /* 1 */
-      z-index: 1; /* 1 */
-      margin: 0; /* 1 */
-      left: 0; /* 1 */
+      width: 38px;
+      height: 38px;
+      position: relative;
+      opacity: 0;
+      z-index: 1;
+      margin: 0;
+      left: 0;
       cursor: pointer;
     }
   }
