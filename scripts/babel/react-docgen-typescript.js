@@ -51,7 +51,7 @@ module.exports = function() {
 
         // these files causing some issues needs to fix
         if (filename.includes('index.ts')) return;
-        if (filename.includes('flex_item.tsx')) return;
+        // if (filename.includes('flex_item.tsx')) return;
         if (filename.includes('flex_grid.tsx')) return;
 
         // find if components extends types from other modules
@@ -105,6 +105,7 @@ module.exports = function() {
             ${exportName}.__docgenInfo = ${util.inspect(docgenResult, {
               showHidden: false,
               depth: null,
+              maxArrayLength: null,
             })}
           } catch(e) {}
           `)
