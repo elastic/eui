@@ -40,6 +40,9 @@ export interface EuiConfirmModalProps
     EuiModalProps,
     'children' | 'initialFocus' | 'onClose' | 'title'
   > {
+  /**
+   * ReactNode to render as this component's children
+   */
   children?: ReactNode;
   title?: ReactNode;
   cancelButtonText?: ReactNode;
