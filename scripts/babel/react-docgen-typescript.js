@@ -49,11 +49,6 @@ module.exports = function() {
 
         this.fileProcessed = true;
 
-        // these files causing some issues needs to fix
-        if (filename.includes('index.ts')) return;
-        // if (filename.includes('flex_item.tsx')) return;
-        if (filename.includes('flex_grid.tsx')) return;
-
         // find if components extends types from other modules
         const componentExtends = [];
 
