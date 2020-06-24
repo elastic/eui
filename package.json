@@ -53,6 +53,7 @@
     "@types/react-beautiful-dnd": "^12.1.2",
     "@types/react-input-autosize": "^2.0.2",
     "@types/react-virtualized": "^9.18.7",
+    "axios": "^0.19.2",
     "chroma-js": "^2.0.4",
     "classnames": "^2.2.5",
     "highlight.js": "^9.12.0",

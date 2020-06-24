@@ -73,7 +73,7 @@ const chartDemoPlugin = {
                     { value: 5, text: 'green' },
                   ]}
                   value={palette}
-                  onChange={e => setPalette(parseInt(e.target.value, 10))}
+                  onChange={(e) => setPalette(parseInt(e.target.value, 10))}
                 />
               </EuiFormRow>
 
@@ -85,7 +85,7 @@ const chartDemoPlugin = {
                   step={10}
                   showValue
                   valueAppend="px"
-                  onChange={e => setHeight(parseInt(e.target.value, 10))}
+                  onChange={(e) => setHeight(parseInt(e.target.value, 10))}
                 />
               </EuiFormRow>
             </EuiForm>
@@ -173,6 +173,35 @@ function ChartParser() {
 const chartMarkdownHandler = (h, node) => {
   return h(node.position, 'chartDemoPlugin', node, []);
 };
+
+const chartRef = React.createRef();
+
+const pngSnapshotHandler = () => {
+  if (!chartRef.current) {
+    return;
+  }
+  const snapshot = chartRef.current.getPNGSnapshot({
+    // you can set the background and pixel ratio for the PNG export
+    backgroundColor: 'white',
+    pixelRatio: 2,
+  });
+  if (!snapshot) {
+    return;
+  }
+  return b64toBlob(snapshot.blobOrDataUrl);
+};
+
+function b64toBlob(dataURI) {
+  const byteString = atob(dataURI.split(',')[1]);
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], { type: 'image/jpeg' });
+}
+
 const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
   const customColors = {
     colors: {
@@ -180,24 +209,26 @@ const ChartMarkdownRenderer = ({ height = 200, palette = 5 }) => {
     },
   };
   return (
-    <Chart size={{ height }}>
-      <Settings
-        theme={[customColors, EUI_CHARTS_THEME_LIGHT]}
-        showLegend={false}
-        showLegendDisplayValue={false}
-      />
-      <BarSeries
-        id="status"
-        name="Status"
-        data={data}
-        xAccessor={'x'}
-        yAccessors={['y']}
-        splitSeriesAccessors={['g']}
-        stackAccessors={['g']}
-      />
-      <Axis id="bottom-axis" position="bottom" showGridLines />
-      <Axis id="left-axis" position="left" showGridLines />
-    </Chart>
+    <>
+      <Chart size={{ height }} ref={chartRef}>
+        <Settings
+          theme={[customColors, EUI_CHARTS_THEME_LIGHT]}
+          showLegend={false}
+          showLegendDisplayValue={false}
+        />
+        <BarSeries
+          id="status"
+          name="Status"
+          data={data}
+          xAccessor={'x'}
+          yAccessors={['y']}
+          splitSeriesAccessors={['g']}
+          stackAccessors={['g']}
+        />
+        <Axis id="bottom-axis" position="bottom" showGridLines />
+        <Axis id="left-axis" position="left" showGridLines />
+      </Chart>
+    </>
   );
 };
 
@@ -206,4 +237,5 @@ export {
   ChartParser as parser,
   chartMarkdownHandler as handler,
   ChartMarkdownRenderer as renderer,
+  pngSnapshotHandler as pngSnapshot,
 };
