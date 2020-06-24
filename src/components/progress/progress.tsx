@@ -70,6 +70,8 @@ type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 type Determinate = EuiProgressProps &
   ProgressHTMLAttributes<HTMLProgressElement> & {
     max?: number;
+    valueText?: string;
+    label?: string;
   };
 
 export const EuiProgress: FunctionComponent<
@@ -80,6 +82,8 @@ export const EuiProgress: FunctionComponent<
   size = 'm',
   position = 'static',
   max,
+  valueText,
+  label,
   value,
   ...rest
 }) => {
@@ -100,12 +104,18 @@ export const EuiProgress: FunctionComponent<
   // See https://css-tricks.com/html5-progress-element/
   if (determinate) {
     return (
-      <progress
-        className={classes}
-        max={max}
-        value={value}
-        {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
-      />
+      <div>
+        <div className="euiProgress__data">
+          <div className="euiProgress__label">{label}</div>
+          <div className="euiProgress__valueText">{valueText}</div>
+        </div>
+        <progress
+          className={classes}
+          max={max}
+          value={value}
+          {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
+        />
+      </div>
     );
   } else {
     return (
