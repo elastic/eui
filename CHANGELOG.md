@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Optimized in-memory datagrid mount performance ([#3628](https://github.com/elastic/eui/pull/3628))
 - Exported `EuiCardProps` and `EuiCheckableCardProps` types ([#3640](https://github.com/elastic/eui/pull/3640))
 
 ## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
