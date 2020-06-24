@@ -24,7 +24,11 @@ const ts = require('typescript');
 const glob = require('glob');
 const util = require('util');
 
-const files = glob.sync('src/**/*.{ts,tsx}', { absolute: true });
+let files = glob.sync('src/**/*.{ts,tsx}', { absolute: true });
+// Add files from src-docs
+const docsFiles = glob.sync('src-docs/**/*.{ts,tsx}', { absolute: true });
+
+files = files.concat(docsFiles);
 
 const options = {
   jsx: ts.JsxEmit.React,
@@ -34,9 +38,16 @@ const program = ts.createProgram(files, options);
 
 module.exports = function() {
   return {
+    pre() {
+      this.fileProcessed = false;
+    },
     visitor: {
       Program(path, state) {
         const { filename } = state.file.opts;
+
+        if (this.fileProcessed) return;
+
+        this.fileProcessed = true;
 
         // these files causing some issues needs to fix
         if (filename.includes('index.ts')) return;
@@ -75,6 +86,11 @@ module.exports = function() {
             .parseWithProgramProvider(filename, () => program);
         } catch (e) {
           console.log(e);
+        }
+
+        if (filename.includes('selectable_option_props.tsx')) {
+          console.log(filename);
+          console.log(docgenResults);
         }
 
         if (docgenResults.length === 0) return;
