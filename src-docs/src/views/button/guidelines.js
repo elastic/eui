@@ -27,6 +27,14 @@ import imageButtonPlacement from '../../images/button_placement.png';
 
 export default () => (
   <>
+    <EuiText className="guideSection__text" grow={false}>
+      <p>
+        This page documents patterns for button design, including types,
+        placement, color, and size.
+      </p>
+    </EuiText>
+    <EuiSpacer size="xl" />
+
     <EuiTitle>
       <h1>Button types</h1>
     </EuiTitle>

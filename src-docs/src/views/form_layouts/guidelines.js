@@ -22,9 +22,18 @@ import imgFormRowPanelsGood from '../../images/form-row--06.png';
 
 export default () => (
   <>
+    <EuiText className="guideSection__text" grow={false}>
+      <p>
+        This page documents patterns for form layout, validation and how best to
+        use various components.
+      </p>
+    </EuiText>
+    <EuiSpacer size="xl" />
+
     <EuiTitle>
       <h1>Key Principles</h1>
     </EuiTitle>
+
     <GuideRule
       heading="Help users achieve success"
       description="Our form components try to be as informative and clear as possible for the user to avoid errors or confusion.">
