@@ -1,40 +1,53 @@
-import React, { useState } from 'react';
-// @ts-ignore "TEMP"
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// Uncomment to use in consuming apps or CodeSandbox
+// import theme from '@elastic/eui/dist/eui_theme_light.json';
 
 import {
+  EuiAvatar,
+  EuiBadge,
+  EuiButton,
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
-} from '../../../../src/components/collapsible_nav';
-import {
-  EuiHeaderSectionItemButton,
-  EuiHeaderLogo,
-  EuiHeader,
-  EuiHeaderLinks,
-  EuiHeaderLink,
-} from '../../../../src/components/header';
-import { EuiIcon } from '../../../../src/components/icon';
-import { EuiButton } from '../../../../src/components/button';
-import { EuiPage } from '../../../../src/components/page';
-import { EuiListGroupItem } from '../../../../src/components/list_group';
-import { EuiFlexItem } from '../../../../src/components/flex';
-import { GuideFullScreen } from '../../services/full_screen/full_screen';
-
-import { EuiShowFor } from '../../../../src/components/responsive';
-import { EuiText } from '../../../../src/components/text';
-import { EuiAvatar } from '../../../../src/components/avatar';
-import { EuiBadge } from '../../../../src/components/badge';
-import { EuiPortal } from '../../../../src/components/portal';
-import {
+  EuiFlexItem,
   EuiFlyout,
-  EuiFlyoutHeader,
   EuiFlyoutBody,
-} from '../../../../src/components/flyout';
-import { EuiTitle } from '../../../../src/components/title';
-import { EuiPopover } from '../../../../src/components/popover';
+  EuiFlyoutHeader,
+  EuiFocusTrap,
+  EuiHeader,
+  EuiHeaderLink,
+  EuiHeaderLinks,
+  EuiHeaderLogo,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+  EuiListGroupItem,
+  EuiPage,
+  EuiPopover,
+  EuiPortal,
+  EuiShowFor,
+  EuiText,
+  EuiTitle,
+} from '../../../../src/components';
 
-export default ({ theme }: { theme: any }) => {
-  /** Collapsible Nav */
+export default ({ theme }) => {
+  /**
+   * FullScreen for docs only
+   */
+  const [fullScreen, setFullScreen] = useState(false);
+  useEffect(() => {
+    if (fullScreen) {
+      document.body.classList.add('guideBody--overflowHidden');
+      document.body.classList.add('euiBody--headerIsFixed--double');
+    }
+    return () => {
+      document.body.classList.remove('guideBody--overflowHidden');
+      document.body.classList.remove('euiBody--headerIsFixed--double');
+    };
+  }, [fullScreen]);
+
+  /**
+   * Collapsible Nav
+   */
   const [navIsOpen, setNavIsOpen] = useState(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
   );
@@ -224,12 +237,13 @@ export default ({ theme }: { theme: any }) => {
   );
 
   return (
-    <GuideFullScreen
-      onOpen={() => {
-        document.body.classList.add('euiBody--headerIsFixed--double');
-      }}>
-      {setIsFullScreen => (
-        <React.Fragment>
+    <>
+      <EuiButton onClick={() => setFullScreen(true)} iconType="fullScreen">
+        Show fullscreen demo
+      </EuiButton>
+      {/* FocusTrap for Docs only */}
+      {fullScreen && (
+        <EuiFocusTrap>
           <EuiHeader
             theme="dark"
             position="fixed"
@@ -286,7 +300,7 @@ export default ({ theme }: { theme: any }) => {
                       size="s"
                       color="secondary"
                       onClick={() => {
-                        setIsFullScreen(false);
+                        setFullScreen(false);
                         document.body.classList.remove(
                           'euiBody--headerIsFixed--double'
                         );
@@ -302,8 +316,8 @@ export default ({ theme }: { theme: any }) => {
           {isAlertFlyoutVisible ? headerAlerts : null}
 
           <EuiPage className="guideFullScreenOverlay" />
-        </React.Fragment>
+        </EuiFocusTrap>
       )}
-    </GuideFullScreen>
+    </>
   );
 };
