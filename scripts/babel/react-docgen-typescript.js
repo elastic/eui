@@ -78,14 +78,8 @@ module.exports = function() {
               savePropValueAsString: true,
             })
             .parseWithProgramProvider(filename, () => program);
-        } catch (e) {
-          console.log(e);
-        }
-
-        if (filename.includes('selectable_option_props.tsx')) {
-          console.log(filename);
-          console.log(docgenResults);
-        }
+          // eslint-disable-next-line no-empty
+        } catch (e) {}
 
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
