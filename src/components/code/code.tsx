@@ -24,7 +24,6 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { EuiCodeBlockImpl } from './_code_block';
 
 export interface EuiCodeSharedProps {
-
   /**
    * Sets the syntax highlighting for a specific language
    * @see http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
