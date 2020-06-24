@@ -1,5 +1,20 @@
 [
   {
+    "version": "26.0.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+        "changeType": "modified",
+        "value": "Show collapsed breadcrumbs"
+      },
+      {
+        "token": "euiForm.addressFormErrors",
+        "changeType": "modified",
+        "value": "Please address the highlighted errors."
+      }
+    ]
+  },
+  {
     "version": "25.0.0",
     "changes": [
       {

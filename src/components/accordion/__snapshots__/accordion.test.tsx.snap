@@ -3,7 +3,7 @@
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="9"
+  id="10"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -14,7 +14,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="9"
+        aria-controls="10"
         aria-expanded={false}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -42,7 +42,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="9"
+      id="10"
     >
       <EuiResizeObserver
         onResize={[Function]}
@@ -61,7 +61,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
   arrowDisplay="left"
-  id="8"
+  id="9"
   initialIsOpen={false}
   paddingSize="none"
 >
@@ -72,7 +72,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__triggerWrapper"
     >
       <button
-        aria-controls="8"
+        aria-controls="9"
         aria-expanded={true}
         className="euiAccordion__button"
         onClick={[Function]}
@@ -100,7 +100,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     </div>
     <div
       className="euiAccordion__childWrapper"
-      id="8"
+      id="9"
     >
       <EuiResizeObserver
         onResize={[Function]}

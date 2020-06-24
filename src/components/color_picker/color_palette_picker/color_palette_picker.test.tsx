@@ -18,13 +18,13 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount, render } from 'enzyme';
 
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';
-import { requiredProps } from '../../../test';
+import { requiredProps, takeMountedSnapshot } from '../../../test';
 
 jest.mock('./../../../services/accessibility', () => ({
   htmlIdGenerator: () => () => 'generated-id',
@@ -36,12 +36,17 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
     title: 'Palette 1',
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'fixed',
+    'data-test-subj': 'fixed-data-test-subj',
+    className: 'paletteFixedClass',
+    'aria-label': 'my palette fixed',
   },
   {
     value: 'paletteLinear',
     title: 'Linear Gradient',
     palette: ['#1fb0b2', '#ffdb6d', '#ee9191', '#ffffff', '#888094'],
     type: 'gradient',
+    'data-test-subj': 'gradient-data-test-subj',
+    className: 'paletteLinearClass',
   },
   {
     value: 'paletteLinearStops',
@@ -65,11 +70,13 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
       },
     ],
     type: 'gradient',
+    'data-test-subj': 'gradient-with-stops-data-test-subj',
   },
   {
     value: 'custom',
     title: 'Plain text as a custom option',
     type: 'text',
+    'data-test-subj': 'text-data-test-subj',
   },
 ];
 
@@ -148,6 +155,25 @@ describe('EuiColorPalettePicker', () => {
         selectionDisplay="title"
       />
     );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('more props are propagated to each option', () => {
+    const component = mount(
+      <EuiColorPalettePicker
+        palettes={palettes}
+        valueOfSelected="paletteFixed"
+        onChange={() => {}}
+        data-test-subj="colorPalettePicker"
+      />
+    );
+
+    component
+      .find('button[data-test-subj="colorPalettePicker"]')
+      .simulate('click');
+
+    expect(takeMountedSnapshot(component)).toMatchSnapshot();
 
     expect(component).toMatchSnapshot();
   });
