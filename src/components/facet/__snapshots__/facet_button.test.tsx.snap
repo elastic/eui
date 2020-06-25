@@ -5,6 +5,7 @@ exports[`EuiFacetButton is rendered 1`] = `
   aria-label="aria-label"
   class="euiFacetButton euiFacetButton--unSelected testClass1 testClass2"
   data-test-subj="test subject string"
+  title="aria-label"
   type="button"
 >
   <span
@@ -12,7 +13,6 @@ exports[`EuiFacetButton is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-      data-text="Content"
     >
       Content
     </span>
@@ -34,7 +34,6 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
     />
     <span
       class="euiFacetButton__text"
-      data-text="Content"
     >
       Content
     </span>
@@ -53,7 +52,6 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-      data-text="Content"
     >
       Content
     </span>
@@ -72,7 +70,6 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-      data-text="Content"
     >
       Content
     </span>
@@ -93,7 +90,6 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-      data-text="Content"
     >
       Content
     </span>
@@ -111,7 +107,6 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-      data-text="Content"
     >
       Content
     </span>
