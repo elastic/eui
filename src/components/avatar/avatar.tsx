@@ -43,7 +43,7 @@ const typeToClassNameMap = {
 export const TYPES = keysOf(typeToClassNameMap);
 export type EuiAvatarType = keyof typeof typeToClassNameMap;
 
-export type EuiAvatarProps = HTMLAttributes<HTMLDivElement> &
+export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
   CommonProps & {
     /**
      * Full name of avatar for title attribute and calculating initial if not provided

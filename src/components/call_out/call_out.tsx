@@ -31,7 +31,7 @@ type Size = 's' | 'm';
 type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 export type EuiCallOutProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'color'> & {
     title?: ReactNode;
     iconType?: IconType;
     color?: Color;
