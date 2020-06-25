@@ -94,7 +94,6 @@ export default () => {
             window.alert('Permalinks');
           },
         },
-        ,
       ],
     },
     {

@@ -41,7 +41,7 @@ import { keys } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { keysOf } from '../common';
-import { FontSize, PaddingSize } from './code';
+import { FontSize, PaddingSize } from './code_block';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
