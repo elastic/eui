@@ -13,6 +13,8 @@ import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import * as MarkdownCheckbox from './plugins/markdown_checkbox';
 
 let slackFileId = '';
+let slackImagePermaLink = '';
+let slackFileName = '';
 const markdownExample = require('!!raw-loader!./markdown-example.md');
 
 const exampleParsingList = [
@@ -42,14 +44,14 @@ function uploadFile(channel) {
   const headers = {
     'Content-Type': 'multipart/form-data;',
     Authorization:
-      'Bearer xoxb-1120606011061-1180769966725-eNYJQbdaPXXrUjKYu6BmqM8z',
+      'Bearer xoxp-1120606011061-1121985424562-1217145208865-d795994b7c520bda575745526845a8e2',
   };
   const axiosOptions = {
     headers,
     validateStatus: () => true,
   };
 
-  let params = '?filename=file_test.png';
+  let params = '?';
   if (channel) {
     params = `${params}channels=${channel}`;
   }
@@ -58,6 +60,7 @@ function uploadFile(channel) {
     .post(`https://slack.com/api/files.upload${params}`, form, axiosOptions)
     .then((slackFile) => {
       slackFileId = slackFile.data.file.id;
+      slackFileName = slackFile.data.file.name;
     });
 
   /*
@@ -106,7 +109,7 @@ const downloadFile = (fileId) => {
   const headers = {
     'Content-Type': 'multipart/form-data;',
     Authorization:
-      'Bearer xoxp-1120606011061-1121985424562-1209336292128-27f76c2e4c75d460882cf92ef8f3ea8c',
+      'Bearer xoxp-1120606011061-1121985424562-1217145208865-d795994b7c520bda575745526845a8e2',
   };
   const axiosOptions = {
     headers,
@@ -121,33 +124,74 @@ const downloadFile = (fileId) => {
     )
     .then((slackFile) => {
       console.log(slackFile);
-    });
-};
-
-const shareFileToChannel = (fileId) => {
-  const headers = {
-    'Content-Type': 'multipart/form-data;',
-    Authorization:
-      'Bearer xoxp-1120606011061-1121985424562-1209336292128-27f76c2e4c75d460882cf92ef8f3ea8c',
-  };
-  const axiosOptions = {
-    headers,
-    validateStatus: () => true,
-  };
-  axios
-    .post(
-      `https://slack.com/api/chat.postMessage?channel=C013575J72T&as_user=true&text=${fileId}`,
-      null,
-      axiosOptions
-    )
-    .then((slackFile) => {
+      slackImagePermaLink = slackFile.data.file.permalink_public
       const link = document.createElement('a');
-      link.href = slackFile.thumb_64;
+      link.href = slackImagePermaLink;
+      link.target='_blank'; 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     });
 };
+
+const shareFileToChannel = () => {
+  const headers = {
+    'Content-Type': 'application/json;',
+    Authorization:
+      'Bearer xoxp-1120606011061-1121985424562-1217145208865-d795994b7c520bda575745526845a8e2',
+  };
+  const axiosOptions = {
+    headers,
+    validateStatus: () => true,
+  };
+  // transform 
+  const urlParts = parseUrl(slackImagePermaLink);
+  const pathData = urlParts.path.split('-');
+  const teamId = pathData[0]; 
+  const pubSecret = pathData[2];
+
+  /*
+  slackImagePermaLink:
+  https://slack-files.com/{team_id}-{file_id}-{pub_secret}
+  The direct link to the image has the format:
+  https://files.slack.com/files-pri/{team_id}-{file_id}/{filename}?pub_secret={pub_secret}
+  */
+  axios
+    .post(
+      'https://slack.com/api/chat.postMessage',
+      {
+        'channel': 'C013S4UAXBN',
+        'blocks': [
+          {
+            'type': 'image',
+            'title': {
+              'type': 'plain_text',
+              'text': 'Please enjoy this image of a chart'
+            },
+            'block_id': 'image4',
+            'image_url': `https://files.slack.com/files-pri/${teamId}-${slackFileId}/${slackFileName}?pub_secret=${pubSecret}`,
+            'alt_text': 'A very important chart data.'
+          }
+        ]
+      },
+      axiosOptions,
+    )
+    .then((slackFile) => {
+     console.log(slackFile);
+    });
+};
+
+function parseUrl(url) {
+  const pattern = RegExp('^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?');
+  const matches =  url.match(pattern);
+  return {
+      scheme: matches[2],
+      authority: matches[4],
+      path: matches[5],
+      query: matches[7],
+      fragment: matches[9]
+  };
+}
 
 export default () => {
   const [value, setValue] = useState(markdownExample);
