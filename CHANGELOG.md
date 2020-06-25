@@ -2,6 +2,10 @@
 
 - Added `gutterSize` prop to `EuiFacetGroup` ([#3639](https://github.com/elastic/eui/pull/3639))
 
+**Bug fixes**
+
+- Fixed `EuiContextMenu` panel `onAnimationEnd` transition bug in Chrome ([#3656](https://github.com/elastic/eui/pull/3656))
+
 ## [`26.1.0`](https://github.com/elastic/eui/tree/v26.1.0)
 
 - Optimized in-memory datagrid mount performance ([#3628](https://github.com/elastic/eui/pull/3628))
