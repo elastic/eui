@@ -2,6 +2,7 @@
 
 - Added `gutterSize` prop to `EuiFacetGroup` ([#3639](https://github.com/elastic/eui/pull/3639))
 - Updated props of `EuiCode` and `EuiCodeBlock` to reflect only functional props ([#3647](https://github.com/elastic/eui/pull/3647))
+- Add `label` and `valueText` props to `EuiProgress` ([#3661](https://github.com/elastic/eui/pull/3661))
 
 **Bug fixes**
 
