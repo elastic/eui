@@ -53,12 +53,22 @@ module.exports = function() {
 
         const whiteListedProps = ['children', 'className', 'aria-label'];
 
+        const whiteListedParent = [
+          'DragDropContextProps',
+          'DraggableProps',
+          'DroppableProps',
+        ];
+
         let docgenResults = [];
         try {
           docgenResults = propsParser
             .withDefaultConfig({
               propFilter: prop => {
-                if (whiteListedProps.includes(prop.name)) return true;
+                if (
+                  whiteListedParent.includes(prop.parent.name) ||
+                  whiteListedProps.includes(prop.name)
+                )
+                  return true;
                 if (prop.parent) {
                   if (
                     prop.parent.name === 'DOMAttributes' &&
@@ -80,6 +90,10 @@ module.exports = function() {
             .parseWithProgramProvider(filename, () => program);
           // eslint-disable-next-line no-empty
         } catch (e) {}
+
+        if (filename.includes('draggable.tsx')) {
+          console.log(docgenResults);
+        }
 
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
