@@ -51,7 +51,14 @@ module.exports = function() {
         // find if components extends types from other modules
         const componentExtends = [];
 
-        const whiteListedProps = ['children', 'className', 'aria-label'];
+        const whiteListedProps = [
+          'children',
+          'className',
+          'aria-label',
+          'color',
+          'title',
+          'onClick',
+        ];
 
         let docgenResults = [];
         try {
