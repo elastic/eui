@@ -88,8 +88,8 @@ interface EuiKeyPadMenuItemCommonProps {
 
 export type EuiKeyPadMenuItemProps = CommonProps &
   ExclusiveUnion<
-    AnchorHTMLAttributes<HTMLAnchorElement>,
-    ButtonHTMLAttributes<HTMLButtonElement>
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'>,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>
   > &
   EuiKeyPadMenuItemCommonProps;
 

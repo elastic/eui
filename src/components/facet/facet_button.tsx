@@ -32,7 +32,9 @@ import { EuiNotificationBadge } from '../badge';
 
 import { EuiLoadingSpinner } from '../loading';
 
-export interface EuiFacetButtonProps {
+export interface EuiFacetButtonProps
+  extends CommonProps,
+    Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   buttonRef?: RefCallback<HTMLButtonElement>;
   /**
    * ReactNode to render as this component's children
@@ -58,9 +60,7 @@ export interface EuiFacetButtonProps {
   quantity?: number;
 }
 
-export const EuiFacetButton: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps
-> = ({
+export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   children,
   className,
   icon,
