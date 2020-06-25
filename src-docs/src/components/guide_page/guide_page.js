@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { Fragment, useState } from 'react';
-
+import React, { Fragment } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import {
   EuiTitle,
   EuiSpacer,
@@ -12,13 +12,16 @@ import {
   EuiHorizontalRule,
 } from '../../../../src/components';
 
-export const GuidePage = ({
+const GuidePageComponent = ({
   children,
   title,
   intro,
   isBeta,
   playground,
   guidelines,
+  location,
+  match,
+  history,
 }) => {
   const betaBadge = isBeta ? (
     <EuiBetaBadge
@@ -29,39 +32,62 @@ export const GuidePage = ({
     undefined
   );
 
+  console.log('rest', { history, match, location });
+
   const tabs = [
     {
       id: 'examples',
       name: 'Examples',
+      handleClick: () => {
+        history.push(`${match.path}`);
+      },
     },
   ];
   if (playground)
     tabs.push({
       id: 'playground',
       name: 'Playground',
+      handleClick: () => {
+        history.push(`${match.path}/playground`);
+      },
     });
   if (guidelines)
     tabs.push({
       id: 'guidelines',
       name: 'Guidelines',
+      handleClick: () => {
+        history.push(`${match.path}/guidelines`);
+      },
     });
 
-  const [selectedTabId, setSelectedTabId] = useState('examples');
-
-  const onSelectedTabChanged = id => {
-    setSelectedTabId(id);
-  };
+  const isGuideLineView =
+    location.pathname.endsWith('guidelines') ||
+    location.pathname.endsWith('guidelines/');
+  const isPlaygroundView =
+    location.pathname.endsWith('playground') ||
+    location.pathname.endsWith('playground/');
 
   const renderTabs = () => {
-    return tabs.map((tab, index) => (
-      <EuiTab
-        onClick={() => onSelectedTabChanged(tab.id)}
-        isSelected={tab.id === selectedTabId}
-        key={index}>
-        {tab.name}
-      </EuiTab>
-    ));
+    return tabs.map(({ id, handleClick, name }, index) => {
+      let isSelected = false;
+      if (id === 'playground') isSelected = isPlaygroundView;
+      else if (id === 'guidelines') isSelected = isGuideLineView;
+      else isSelected = !isGuideLineView && !isPlaygroundView;
+
+      return (
+        <EuiTab
+          onClick={() => {
+            if (handleClick) handleClick();
+          }}
+          isSelected={isSelected}
+          key={index}>
+          {name}
+        </EuiTab>
+      );
+    });
   };
+
+  const showIntro = !isGuideLineView && !isPlaygroundView;
 
   return (
     <Fragment>
@@ -85,12 +111,24 @@ export const GuidePage = ({
 
         <EuiSpacer size="m" />
 
-        {selectedTabId === 'examples' && intro}
+        {/* {showIntro && intro} */}
       </div>
-
-      {selectedTabId === 'examples' && children}
-      {selectedTabId === 'playground' && playground}
-      {selectedTabId === 'guidelines' && guidelines}
+      <Switch>
+        {playground && (
+          <Route path={`${match.path}/playground`} exact>
+            {playground}
+          </Route>
+        )}
+        {guidelines && (
+          <Route path={`${match.path}/guidelines`} exact>
+            {guidelines}
+          </Route>
+        )}
+        <Route path="">
+          <div className="guideSection__text">{intro}</div>
+          <>{children}</>
+        </Route>
+      </Switch>
 
       {/* Give some space between the bottom of long content and the bottom of the screen */}
       <EuiSpacer size="xl" />
@@ -98,10 +136,17 @@ export const GuidePage = ({
   );
 };
 
-GuidePage.propTypes = {
+GuidePageComponent.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
   intro: PropTypes.node,
   componentLinkTo: PropTypes.string,
   isBeta: PropTypes.bool,
+  playground: PropTypes.node,
+  guidelines: PropTypes.node,
+  location: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
 };
+
+export const GuidePage = withRouter(GuidePageComponent);

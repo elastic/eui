@@ -54,7 +54,7 @@ ReactDOM.render(
           {routes.map(({ name, path, sections, isNew, component }, i) => {
             if (component)
               return (
-                <Route key={i} exact path={`/${path}`}>
+                <Route key={i} path={`/${path}`}>
                   <AppContainer currentRoute={{ name, path, sections, isNew }}>
                     {createElement(component, {})}
                   </AppContainer>
