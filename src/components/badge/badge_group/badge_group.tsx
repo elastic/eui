@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { HTMLAttributes, Ref, ReactNode } from 'react';
+import React, { forwardRef, HTMLAttributes, Ref, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 
@@ -42,7 +42,7 @@ export interface EuiBadgeGroupProps {
   children?: ReactNode;
 }
 
-export const EuiBadgeGroup = React.forwardRef<
+export const EuiBadgeGroup = forwardRef<
   HTMLDivElement,
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiBadgeGroupProps
 >(

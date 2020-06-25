@@ -60,6 +60,9 @@ const renderContent = (
 );
 
 interface EuiKeyPadMenuItemCommonProps {
+  /**
+   * ReactNode to render as this component's children
+   */
   children: ReactNode;
   isDisabled?: boolean;
   label: ReactNode;

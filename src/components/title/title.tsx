@@ -41,6 +41,9 @@ export const TEXT_TRANSFORM = keysOf(textTransformToClassNameMap);
 export type EuiTitleTextTransform = keyof typeof textTransformToClassNameMap;
 
 export type EuiTitleProps = CommonProps & {
+  /**
+   * ReactNode to render as this component's children
+   */
   children: ReactElement<any>;
   size?: EuiTitleSize;
   textTransform?: EuiTitleTextTransform;

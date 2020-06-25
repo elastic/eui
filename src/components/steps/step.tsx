@@ -29,6 +29,9 @@ import { EuiStepStatus, EuiStepNumber } from './step_number';
 import { EuiI18n } from '../i18n';
 
 export interface EuiStepInterface {
+  /**
+   * ReactNode to render as this component's children
+   */
   children: ReactNode;
   /**
    * The HTML tag used for the title

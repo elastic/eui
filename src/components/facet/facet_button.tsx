@@ -34,6 +34,9 @@ import { EuiLoadingSpinner } from '../loading';
 
 export interface EuiFacetButtonProps {
   buttonRef?: RefCallback<HTMLButtonElement>;
+  /**
+   * ReactNode to render as this component's children
+   */
   children: ReactNode;
   /**
    * Any node, but preferrably a `EuiIcon` or `EuiAvatar`

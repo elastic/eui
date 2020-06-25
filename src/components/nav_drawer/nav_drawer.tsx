@@ -44,6 +44,9 @@ const MENU_ELEMENT_ID = 'navDrawerMenu';
 export interface EuiNavDrawerProps
   extends CommonProps,
     HTMLAttributes<HTMLElement> {
+  /**
+   * ReactNode to render as this component's children
+   */
   children?: ReactNode | ReactNode[];
 
   /**
