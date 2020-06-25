@@ -4,14 +4,7 @@ import { EuiProgress, EuiSpacer } from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiProgress
-      label="Label"
-      valueText="20%"
-      value={20}
-      max={100}
-      color="subdued"
-      size="xs"
-    />
+    <EuiProgress value={20} max={100} color="subdued" size="xs" />
     <EuiSpacer size="l" />
 
     <EuiProgress value={40} max={100} color="accent" size="xs" />

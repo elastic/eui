@@ -59,4 +59,18 @@ describe('EuiProgress', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('has valueText and Label', () => {
+    const component = render(
+      <EuiProgress
+        valueText="50"
+        label="Label"
+        value={50}
+        max={100}
+        {...requiredProps}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

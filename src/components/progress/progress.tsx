@@ -21,10 +21,12 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ProgressHTMLAttributes,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
+import { EuiText } from '../text';
 
 const sizeToClassNameMap = {
   xs: 'euiProgress--xs',
@@ -70,8 +72,8 @@ type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 type Determinate = EuiProgressProps &
   ProgressHTMLAttributes<HTMLProgressElement> & {
     max?: number;
-    valueText?: string;
-    label?: string;
+    valueText?: ReactNode;
+    label?: ReactNode;
   };
 
 export const EuiProgress: FunctionComponent<
@@ -99,16 +101,36 @@ export const EuiProgress: FunctionComponent<
     positionsToClassNameMap[position],
     className
   );
+  const dataClasses = classNames('euiProgress__data', {
+    'euiProgress__data--primary': color === 'primary',
+  });
 
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
   if (determinate) {
     return (
       <div>
-        <div className="euiProgress__data">
-          <div className="euiProgress__label">{label}</div>
-          <div className="euiProgress__valueText">{valueText}</div>
-        </div>
+        {label || valueText ? (
+          <div className={dataClasses}>
+            <div className="euiProgress__label">
+              <EuiText
+                className="eui-textTruncate"
+                size={size === 'l' ? 's' : 'xs'}>
+                {label}
+              </EuiText>
+            </div>
+            <div className="euiProgress__valueText">
+              <EuiText
+                className="eui-textTruncate"
+                size={size === 'l' ? 's' : 'xs'}
+                color={color !== 'primary' ? color : undefined}>
+                {valueText}
+              </EuiText>
+            </div>
+          </div>
+        ) : (
+          undefined
+        )}
         <progress
           className={classes}
           max={max}

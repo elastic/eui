@@ -128,3 +128,16 @@ $euiProgressColors: (
     transform: scaleX(1) translateX(100%);
   }
 }
+
+.euiProgress__data {
+  display: flex;
+  justify-content: space-between;
+
+  .euiProgress__label {
+    overflow: hidden;
+  }
+}
+
+.euiProgress__data--primary .euiProgress__valueText {
+  color: $euiColorPrimary;
+}

@@ -30,6 +30,22 @@ const progressFixedSnippet = `<!-- Position at top of parent container -->
 import ProgressSizeColor from './progress_size_color';
 const progressSizeColorSource = require('!!raw-loader!./progress_size_color');
 const progressSizeColorHtml = renderToHtml(ProgressSizeColor);
+const progressSizeColorSnippet = `<EuiProgress
+  value={20}
+  max={100} 
+  size="s"
+  color="accent"
+/>`;
+
+import ProgressChart from './progress_chart';
+const progressChartSource = require('!!raw-loader!./progress_chart');
+const progressChartHtml = renderToHtml(ProgressChart);
+const progressChartSnippet = `<EuiProgress 
+  value={20}
+  valueText={valueText}
+  label={label}
+  max={100} 
+/>`;
 
 export const ProgressExample = {
   title: 'Progress',
@@ -139,6 +155,31 @@ export const ProgressExample = {
         </p>
       ),
       demo: <ProgressSizeColor />,
+      snippet: progressSizeColorSnippet,
+    },
+    {
+      title: 'Progress for charts',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: progressChartSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: progressChartHtml,
+        },
+      ],
+      text: (
+        <p>
+          Determinate progress bar can be used as simple bar charts. Use them
+          with the <EuiCode>label</EuiCode> and <EuiCode>valueText</EuiCode>{' '}
+          props to show the data corresponding to each bar.{' '}
+          <EuiCode>valueText</EuiCode> takes the same color that is passed to{' '}
+          <strong>EuiProgress</strong>.
+        </p>
+      ),
+      demo: <ProgressChart />,
+      snippet: progressChartSnippet,
     },
   ],
 };
