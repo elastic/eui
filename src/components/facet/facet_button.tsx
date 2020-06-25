@@ -23,6 +23,7 @@ import React, {
   MouseEventHandler,
   ReactNode,
   RefCallback,
+  ReactElement,
 } from 'react';
 import classNames from 'classnames';
 
@@ -31,6 +32,7 @@ import { CommonProps } from '../common';
 import { EuiNotificationBadge } from '../badge';
 
 import { EuiLoadingSpinner } from '../loading';
+import { EuiInnerText } from '../inner_text';
 
 export interface EuiFacetButtonProps {
   buttonRef?: RefCallback<HTMLButtonElement>;
@@ -81,7 +83,7 @@ export const EuiFacetButton: FunctionComponent<
   );
 
   // Add quanity number if provided or loading indicator
-  let buttonQuantity;
+  let buttonQuantity: ReactElement;
 
   if (isLoading) {
     buttonQuantity = (
@@ -99,7 +101,7 @@ export const EuiFacetButton: FunctionComponent<
   }
 
   // Add an icon to the button if one exists.
-  let buttonIcon;
+  let buttonIcon: ReactElement;
 
   if (React.isValidElement<{ className?: string }>(icon)) {
     buttonIcon = React.cloneElement(icon, {
@@ -107,25 +109,28 @@ export const EuiFacetButton: FunctionComponent<
     });
   }
 
-  let dataText;
-  if (typeof children === 'string') {
-    dataText = children;
-  }
-
   return (
-    <button
-      className={classes}
-      disabled={isDisabled}
-      type="button"
-      ref={buttonRef}
-      {...rest}>
-      <span className="euiFacetButton__content">
-        {buttonIcon}
-        <span data-text={dataText} className="euiFacetButton__text">
-          {children}
-        </span>
-        {buttonQuantity}
-      </span>
-    </button>
+    <EuiInnerText>
+      {(ref, innerText) => (
+        <button
+          className={classes}
+          disabled={isDisabled}
+          type="button"
+          ref={buttonRef}
+          title={rest['aria-label'] || innerText}
+          {...rest}>
+          <span className="euiFacetButton__content">
+            {buttonIcon}
+            <span
+              className="euiFacetButton__text"
+              data-text={innerText}
+              ref={ref}>
+              {children}
+            </span>
+            {buttonQuantity}
+          </span>
+        </button>
+      )}
+    </EuiInnerText>
   );
 };
