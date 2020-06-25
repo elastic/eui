@@ -32,8 +32,6 @@ const GuidePageComponent = ({
     undefined
   );
 
-  console.log('rest', { history, match, location });
-
   const tabs = [
     {
       id: 'examples',
@@ -60,12 +58,8 @@ const GuidePageComponent = ({
       },
     });
 
-  const isGuideLineView =
-    location.pathname.endsWith('guidelines') ||
-    location.pathname.endsWith('guidelines/');
-  const isPlaygroundView =
-    location.pathname.endsWith('playground') ||
-    location.pathname.endsWith('playground/');
+  const isGuideLineView = location.pathname.includes('guidelines');
+  const isPlaygroundView = location.pathname.includes('playground');
 
   const renderTabs = () => {
     return tabs.map(({ id, handleClick, name }, index) => {
@@ -86,8 +80,6 @@ const GuidePageComponent = ({
       );
     });
   };
-
-  const showIntro = !isGuideLineView && !isPlaygroundView;
 
   return (
     <Fragment>
@@ -110,19 +102,14 @@ const GuidePageComponent = ({
         {tabs.length > 1 && <EuiHorizontalRule />}
 
         <EuiSpacer size="m" />
-
-        {/* {showIntro && intro} */}
       </div>
+
       <Switch>
         {playground && (
-          <Route path={`${match.path}/playground`} exact>
-            {playground}
-          </Route>
+          <Route path={`${match.path}/playground`}>{playground}</Route>
         )}
         {guidelines && (
-          <Route path={`${match.path}/guidelines`} exact>
-            {guidelines}
-          </Route>
+          <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
         )}
         <Route path="">
           <div className="guideSection__text">{intro}</div>
