@@ -91,10 +91,6 @@ module.exports = function() {
           // eslint-disable-next-line no-empty
         } catch (e) {}
 
-        if (filename.includes('draggable.tsx')) {
-          console.log(docgenResults);
-        }
-
         if (docgenResults.length === 0) return;
         docgenResults.forEach(function(docgenResult) {
           const exportName = docgenResult.displayName;
