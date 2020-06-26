@@ -125,9 +125,29 @@ async function getVersionTypeFromChangelog() {
   console.log(chalk.gray(unreleasedchanges));
   console.log('');
   console.log(`${chalk.magenta('The recommended version update for these changes is')} ${chalk.blue(humanReadableRecommendation)}`);
-  console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
 
-  return await promptUserForVersionType();
+  // checking for VERSION_TYPE environment variable, which overrides prompts to
+  // the user to choose a version type; this is used by CI to automate releases
+  const envVersion = process.env.VERSION_TYPE;
+  if (envVersion) {
+    // detected version type preference set
+    console.log(`${chalk.magenta('VERSION_TYPE environment variable identifed, set to')} ${chalk.blue(envVersion)}`);
+
+    if (['major', 'minor', 'patch'].indexOf(envVersion) === -1) {
+      console.error(`${chalk.magenta('VERSION_TYPE environment variable is not "major", "minor" or "patch"')}`);
+      process.exit(1);
+    }
+
+    if (envVersion !== recommendedType) {
+      console.warn(`${chalk.yellow('WARNING: VERSION_TYPE does not match recommended version update')}`);
+    }
+
+    return envVersion;
+  } else {
+    console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
+
+    return await promptUserForVersionType();
+  }
 }
 
 async function promptUserForVersionType() {
