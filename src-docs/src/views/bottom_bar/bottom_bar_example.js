@@ -49,8 +49,7 @@ export const BottomBarExample = {
             Like many of our other wrapper components,{' '}
             <strong>EuiBottomBar</strong> accepts a{' '}
             <EuiCode>paddingSize</EuiCode> prop, which can be set to{' '}
-            <EuiCode>s / m / l / none</EuiCode> - by default, it is set to{' '}
-            <EuiCode>m</EuiCode>.
+            <EuiCode>s / m (default) / l / none</EuiCode>.
           </p>
         </div>
       ),
