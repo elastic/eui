@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSkipLink is rendered 1`] = `
-<button
+<a
   aria-label="aria-label"
   class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static testClass1 testClass2 euiButton--fill"
   data-test-subj="test subject string"
-  type="button"
+  href="#somewhere"
+  rel="noreferrer"
 >
   <span
     class="euiButton__content"
@@ -16,45 +17,14 @@ exports[`EuiSkipLink is rendered 1`] = `
       Skip
     </span>
   </span>
-</button>
-`;
-
-exports[`EuiSkipLink props destinationId is rendered 1`] = `
-<a
-  class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static euiButton--fill"
-  href="#somewhere"
-  rel="noreferrer"
->
-  <span
-    class="euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
-</a>
-`;
-
-exports[`EuiSkipLink props onClick and destinationId is rendered 1`] = `
-<a
-  class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static euiButton--fill"
-  href="#somewhere"
-  rel="noreferrer"
->
-  <span
-    class="euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
 </a>
 `;
 
 exports[`EuiSkipLink props onClick is rendered 1`] = `
-<button
+<a
   class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static euiButton--fill"
-  type="button"
+  href="#somewhere"
+  rel="noreferrer"
 >
   <span
     class="euiButton__content"
@@ -63,13 +33,14 @@ exports[`EuiSkipLink props onClick is rendered 1`] = `
       class="euiButton__text"
     />
   </span>
-</button>
+</a>
 `;
 
 exports[`EuiSkipLink props position absolute is rendered 1`] = `
-<button
+<a
   class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--absolute euiButton--fill"
-  type="button"
+  href="#somewhere"
+  rel="noreferrer"
 >
   <span
     class="euiButton__content"
@@ -78,14 +49,15 @@ exports[`EuiSkipLink props position absolute is rendered 1`] = `
       class="euiButton__text"
     />
   </span>
-</button>
+</a>
 `;
 
 exports[`EuiSkipLink props position fixed is rendered 1`] = `
-<button
+<a
   class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--fixed euiButton--fill"
+  href="#somewhere"
+  rel="noreferrer"
   tabindex="0"
-  type="button"
 >
   <span
     class="euiButton__content"
@@ -94,13 +66,14 @@ exports[`EuiSkipLink props position fixed is rendered 1`] = `
       class="euiButton__text"
     />
   </span>
-</button>
+</a>
 `;
 
 exports[`EuiSkipLink props position static is rendered 1`] = `
-<button
+<a
   class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static euiButton--fill"
-  type="button"
+  href="#somewhere"
+  rel="noreferrer"
 >
   <span
     class="euiButton__content"
@@ -109,14 +82,15 @@ exports[`EuiSkipLink props position static is rendered 1`] = `
       class="euiButton__text"
     />
   </span>
-</button>
+</a>
 `;
 
 exports[`EuiSkipLink props tabIndex is rendered 1`] = `
-<button
+<a
   class="euiButton euiButton--primary euiButton--small euiScreenReaderOnly--showOnFocus euiSkipLink euiSkipLink--static euiButton--fill"
+  href="#somewhere"
+  rel="noreferrer"
   tabindex="-1"
-  type="button"
 >
   <span
     class="euiButton__content"
@@ -125,5 +99,5 @@ exports[`EuiSkipLink props tabIndex is rendered 1`] = `
       class="euiButton__text"
     />
   </span>
-</button>
+</a>
 `;
