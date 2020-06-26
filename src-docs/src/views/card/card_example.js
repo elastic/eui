@@ -395,7 +395,7 @@ export const CardExample = {
           </p>
           <p>
             For non-interactive cards, reduce or eliminate the padding as needed
-            to suit your layout.
+            to suit your layout with the prop <EuiCode>paddingSize</EuiCode>.
           </p>
         </Fragment>
       ),
