@@ -83,6 +83,12 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
      */
     resize?: keyof typeof resizeToClassNameMap;
 
+    /**
+     * Rows to use for the textarea. A weeker styling method. It's usually
+     * better to use `maxHeight` and `autoHeight`.
+     */
+    rows?: number;
+
     inputRef?: Ref<HTMLTextAreaElement>;
     /**
      * Creates an input group with element(s) coming before input.
