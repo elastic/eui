@@ -26,36 +26,38 @@ import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../common';
 type Positions = 'static' | 'fixed' | 'absolute';
 export const POSITIONS = ['static', 'fixed', 'absolute'] as Positions[];
 
-export interface EuiSkipLinkProps extends EuiButtonProps {
+interface EuiSkipLinkInterface extends EuiButtonProps {
   /**
-   * If true, the link will be fixed to the top left of the viewport
+   * Change the display position of the element when focused.
+   * If 'fixed', the link will be fixed to the top left of the viewport
    */
   position?: Positions;
-
   /**
    * Typically an anchor id (e.g. `a11yMainContent`), the value provided
    * will be prepended with a hash `#` and used as the link `href`
    */
   destinationId: string;
-
+  /**
+   * When position is fixed, this is forced to `0`
+   */
   tabIndex?: number;
 }
 
 type propsForAnchor = PropsForAnchor<
-  EuiSkipLinkProps,
+  EuiSkipLinkInterface,
   {
     buttonRef?: Ref<HTMLAnchorElement>;
   }
 >;
 
 type propsForButton = PropsForButton<
-  EuiSkipLinkProps,
+  EuiSkipLinkInterface,
   {
     buttonRef?: Ref<HTMLButtonElement>;
   }
 >;
 
-export type Props = ExclusiveUnion<propsForAnchor, propsForButton>;
+export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
 export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
@@ -71,14 +73,22 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     className
   );
 
+  // Create the `href` from `destinationId`
+  let optionalProps = {};
+  if (destinationId) {
+    optionalProps = {
+      href: `#${destinationId}`,
+    };
+  }
+
   return (
     <EuiScreenReaderOnly showOnFocus>
       <EuiButton
         className={classes}
-        href={`#${destinationId}`}
         tabIndex={position === 'fixed' ? 0 : tabIndex}
         size="s"
         fill
+        {...optionalProps}
         {...rest}>
         {children}
       </EuiButton>
