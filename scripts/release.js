@@ -182,6 +182,13 @@ async function getOneTimePassword() {
   console.log(chalk.magenta(`Preparing to publish @elastic/eui@${version} to npm registry`));
   console.log('');
   console.log(chalk.magenta('The @elastic organization requires membership and 2FA to publish'));
+
+  if (process.env.NPM_OTP) {
+    // skip prompting user for manual input if NPM_OTP env var is present
+    console.log(chalk.magenta('2FA code provided by NPM_OTP environment variable'));
+    return process.env.NPM_OTP;
+  }
+
   console.log(chalk.magenta('What is your one-time password?'));
 
   return await promptUserForOneTimePassword();
