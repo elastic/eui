@@ -114,8 +114,8 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
    * Use only if you want to forego a button in the footer and make the whole card clickable
    */
   onClick?:
-  | React.MouseEventHandler<HTMLButtonElement>
-  | React.MouseEventHandler<HTMLAnchorElement>;
+    | React.MouseEventHandler<HTMLButtonElement>
+    | React.MouseEventHandler<HTMLAnchorElement>;
   isDisabled?: boolean;
   href?: string;
   target?: string;
@@ -162,16 +162,16 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
   paddingSize?: CardPaddingSize;
 };
 
-const paddingSizeToClassNameMap = {
-  [paddingSize in CardPaddingSize]: string,
+const paddingSizeToClassNameMap: {
+  [paddingSize in CardPaddingSize]: string
 } = {
-    none: 'euiCard--paddingNone',
-    s: 'euiCard--paddingSmall',
-    m: 'euiCard--paddingMedium',
-    l: 'euiCard--paddingLarge',
-  };
+  none: 'euiCard--paddingNone',
+  s: 'euiCard--paddingSmall',
+  m: 'euiCard--paddingMedium',
+  l: 'euiCard--paddingLarge',
+};
 
-export const SIZES = Object.keys(paddingSizeToClassNameMap);
+export const SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
@@ -220,9 +220,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const selectableColorClass = selectable
     ? `euiCard--isSelectable--${euiCardSelectableColor(
-      selectable.color,
-      selectable.isSelected
-    )}`
+        selectable.color,
+        selectable.isSelected
+      )}`
     : undefined;
 
   const classes = classNames(
