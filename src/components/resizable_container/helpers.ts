@@ -150,7 +150,6 @@ export const useContainerCallbacks = ({
           nextPanelId,
           containerSize - resizersSize
         );
-        console.log(panelObject);
         if (prevPanelSize !== nextPanelSize && onPanelWidthChange) {
           onPanelWidthChange({
             ...panelObject,
@@ -216,7 +215,6 @@ export const useContainerCallbacks = ({
           state.nextPanelId,
           containerSize
         );
-        console.log(panelObject);
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
           if (onPanelWidthChange) {
             onPanelWidthChange({
