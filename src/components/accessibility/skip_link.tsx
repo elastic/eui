@@ -26,7 +26,7 @@ import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../common';
 type Positions = 'static' | 'fixed' | 'absolute';
 export const POSITIONS = ['static', 'fixed', 'absolute'] as Positions[];
 
-export interface EuiSkipLinkProps extends EuiButtonProps {
+interface EuiSkipLinkInterface extends EuiButtonProps {
   /**
    * Change the display position of the element when focused.
    * If 'fixed', the link will be fixed to the top left of the viewport
@@ -44,22 +44,22 @@ export interface EuiSkipLinkProps extends EuiButtonProps {
 }
 
 type propsForAnchor = PropsForAnchor<
-  EuiSkipLinkProps,
+  EuiSkipLinkInterface,
   {
     buttonRef?: Ref<HTMLAnchorElement>;
   }
 >;
 
 type propsForButton = PropsForButton<
-  EuiSkipLinkProps,
+  EuiSkipLinkInterface,
   {
     buttonRef?: Ref<HTMLButtonElement>;
   }
 >;
 
-type Props = ExclusiveUnion<propsForAnchor, propsForButton>;
+export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
-export const EuiSkipLink: FunctionComponent<Props> = ({
+export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
   tabIndex,
   position = 'static',
