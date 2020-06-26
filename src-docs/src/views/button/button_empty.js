@@ -211,6 +211,76 @@ export default () => (
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
+          color="subdued"
+          onClick={() => window.alert('Button clicked')}>
+          Subdued
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="subdued"
+          size="s"
+          onClick={() => window.alert('Button clicked')}>
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="subdued"
+          size="xs"
+          onClick={() => window.alert('Button clicked')}>
+          extra small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="subdued"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown">
+          Subdued
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="subdued"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown">
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="subdued"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right">
+          Subdued
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="subdued"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right">
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
           color="danger"
           onClick={() => window.alert('Button clicked')}
           isDisabled>

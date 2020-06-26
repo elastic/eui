@@ -37,7 +37,8 @@ export type EuiButtonEmptyColor =
   | 'danger'
   | 'disabled'
   | 'text'
-  | 'ghost';
+  | 'ghost'
+  | 'subdued';
 
 const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   primary: 'euiButtonEmpty--primary',
@@ -45,6 +46,7 @@ const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   disabled: 'euiButtonEmpty--disabled',
   text: 'euiButtonEmpty--text',
   ghost: 'euiButtonEmpty--ghost',
+  subdued: 'euiButtonEmpty--subdued',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
