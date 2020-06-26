@@ -70,14 +70,13 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     className
   );
 
-
   // eslint-disable-next-line prettier/prettier
-  const handleCLick = () =>  labelClickRef?.current?.click() 
+  const handleClick = () => checkableType === 'radio' && labelClickRef?.current?.click() 
   const labelRef = (labelClickRef as unknown) as Ref<HTMLLabelElement>;
 
   const checkableElement = (checkableType === 'radio') ? ( 
       <EuiRadio
-        onClick={handleCLick}
+        onClick={handleClick}
         checked={checked}
         disabled={disabled}
         {...rest as EuiRadioProps}
@@ -92,7 +91,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
 
 
   return (
-    <div className={classes} >
+    <div className={classes} onClick={handleClick}>
       <div className="euiCheckableCard__row">
         <div className="euiCheckableCard__control">
           {checkableElement}
