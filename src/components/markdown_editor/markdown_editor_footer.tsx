@@ -23,6 +23,7 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiModal, EuiModalBody } from '../modal';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
+import { EuiPopover } from '../popover';
 // @ts-ignore a react svg
 import MarkdownLogo from './markdown_logo';
 
@@ -36,6 +37,10 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
   EuiMarkdownEditorFooterProps
 > = props => {
   const { uiPlugins, isUploadingFiles, openFiles } = props;
+  const [isShowingHelp, setIsShowingHelp] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
 
   let uploadButton;
 
@@ -47,35 +52,42 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
     uploadButton = (
       <EuiButtonIcon
         iconType="paperClip"
-        color="subdued"
+        color="text"
         aria-label="Upload files"
         onClick={openFiles}
       />
     );
   }
 
-  const [isShowingHelp, setIsShowingHelp] = useState(false);
+  const errorsButton = (
+    <EuiButtonEmpty
+      iconType="crossInACircleFilled"
+      size="s"
+      color="text"
+      aria-label="Show errors"
+      onClick={onButtonClick}>
+      0
+    </EuiButtonEmpty>
+  );
 
   return (
     <footer className="euiMarkdownEditor__footer">
       <div className="euiMarkdownEditor__footerActions">
         {uploadButton}
 
-        {/* TODO change color to subdued*/}
-        <EuiButtonEmpty
-          iconType="crossInACircleFilled"
-          size="s"
-          color="text"
-          aria-label="Show markdown help"
-          onClick={() => setIsShowingHelp(!isShowingHelp)}>
-          0
-        </EuiButtonEmpty>
+        <EuiPopover
+          button={errorsButton}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+          anchorPosition="upCenter">
+          <div style={{ width: '300px' }}>Erros here</div>
+        </EuiPopover>
       </div>
 
       <EuiButtonIcon
         className="euiMarkdownEditor__footerHelp"
         iconType={MarkdownLogo}
-        color="subdued"
+        color="text"
         aria-label="Show markdown help"
         onClick={() => setIsShowingHelp(!isShowingHelp)}
       />

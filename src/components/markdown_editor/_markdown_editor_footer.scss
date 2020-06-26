@@ -10,6 +10,10 @@
 .euiMarkdownEditor__footerActions {
   flex: 1;
   display: inline-flex;
+
+  > button {
+    margin-right: $euiSizeXS;
+  }
 }
 
 .euiMarkdownEditor__footerHelp {
