@@ -36,7 +36,7 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    * Typically an anchor id (e.g. `a11yMainContent`), the value provided
    * will be prepended with a hash `#` and used as the link `href`
    */
-  destinationId?: string;
+  destinationId: string;
   /**
    * When position is fixed, this is forced to `0`
    */
@@ -73,7 +73,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     className
   );
 
-  // Create the `href` from `destinationId` IF provided
+  // Create the `href` from `destinationId`
   let optionalProps = {};
   if (destinationId) {
     optionalProps = {
