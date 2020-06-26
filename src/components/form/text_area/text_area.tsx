@@ -19,14 +19,15 @@
 
 import React, {
   TextareaHTMLAttributes,
-  Ref,
+  RefCallback,
+  MutableRefObject,
   FunctionComponent,
   useRef,
-  MutableRefObject,
   useCallback,
   useEffect,
+  useState,
 } from 'react';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import classNames from 'classnames';
 import { EuiValidatableControl } from '../validatable_control';
 
@@ -37,26 +38,22 @@ import {
 
 import { htmlIdGenerator } from '../../../services';
 
-export const useCombinedRefs = <T extends any>(
-  ...refs: Array<Ref<T>>
-): Ref<T> =>
+export const useCombinedRefs = <T extends HTMLTextAreaElement>(
+  refs: Array<RefCallback<T> | MutableRefObject<T | undefined> | undefined>
+) =>
   useCallback(
     (element: T) =>
       refs.forEach(ref => {
-        if (!ref) {
-          return;
-        }
+        if (!ref) return;
 
         // Ref can have two types - a function or an object. We treat each case.
         if (typeof ref === 'function') {
-          return ref(element);
+          ref(element);
+        } else {
+          ref.current = element;
         }
-
-        // As per https://github.com/facebook/react/issues/13029
-        // it should be fine to set current this way.
-        (ref as any).current = element;
       }),
-    refs
+    [refs]
   );
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
@@ -89,7 +86,9 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
      */
     rows?: number;
 
-    inputRef?: Ref<HTMLTextAreaElement>;
+    inputRef?:
+      | RefCallback<HTMLTextAreaElement>
+      | MutableRefObject<HTMLTextAreaElement>;
     /**
      * Creates an input group with element(s) coming before input.
      * `string` | `ReactElement` or an array of these.
@@ -116,7 +115,7 @@ const resizeToClassNameMap = {
   none: 'euiTextArea--resizeNone',
 };
 
-export const RESIZE = Object.keys(resizeToClassNameMap);
+export const RESIZE = keysOf(resizeToClassNameMap);
 
 export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   children,
@@ -153,13 +152,8 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
     className
   );
 
-  const textAreaRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
-
-  let textAreaId = htmlIdGenerator()();
-
-  if (id) {
-    textAreaId = id;
-  }
+  const textAreaRef = useRef<HTMLTextAreaElement>();
+  const [textAreaId] = useState(id || htmlIdGenerator()());
 
   let definedRows: number;
 
@@ -174,7 +168,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   }
 
   const handleAutoHeight = () => {
-    if (autoHeight || append || prepend) {
+    if (textAreaRef.current && (autoHeight || append || prepend)) {
       textAreaRef.current.style.setProperty(
         'height',
         `${textAreaRef.current.scrollHeight}px`,
@@ -183,12 +177,14 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
     }
   };
 
-  if (maxHeight) {
+  if (maxHeight && textAreaRef.current) {
     textAreaRef.current.style.setProperty('max-height', `${maxHeight}px`);
   }
 
   const handleRemoveHeight = () => {
-    textAreaRef.current.style.removeProperty('height');
+    if (textAreaRef.current) {
+      textAreaRef.current.style.removeProperty('height');
+    }
   };
 
   const handleOnBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -229,13 +225,12 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
         rows={definedRows}
         name={name}
         id={textAreaId}
-        ref={useCombinedRefs(textAreaRef, inputRef)}
+        ref={useCombinedRefs([textAreaRef, inputRef])}
         readOnly={readOnly}
         onBlur={handleOnBlur}
         onFocus={handleOnFocus}
-        placeholder={placeholder}>
-        {children}
-      </textarea>
+        placeholder={placeholder}
+      />
     </EuiValidatableControl>
   );
 
