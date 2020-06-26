@@ -11,8 +11,10 @@
   flex: 1;
   display: inline-flex;
 
-  > button {
+  > button,
+  > span {
     margin-right: $euiSizeXS;
+    align-self: center;
   }
 }
 

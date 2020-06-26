@@ -46,14 +46,17 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
 
   if (isUploadingFiles) {
     uploadButton = (
-      <EuiLoadingSpinner className="euiMarkdownEditor__footerIcon" size="s" />
+      <EuiButtonIcon
+        iconType={EuiLoadingSpinner}
+        aria-label="Uploading files"
+      />
     );
   } else {
     uploadButton = (
       <EuiButtonIcon
         iconType="paperClip"
         color="text"
-        aria-label="Upload files"
+        aria-label="Open upload files modal"
         onClick={openFiles}
       />
     );
@@ -80,7 +83,7 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
           isOpen={isPopoverOpen}
           closePopover={closePopover}
           anchorPosition="upCenter">
-          <div style={{ width: '300px' }}>Erros here</div>
+          <div style={{ width: '300px' }}>Errors here</div>
         </EuiPopover>
       </div>
 
