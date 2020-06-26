@@ -49,7 +49,7 @@ interface Props extends CommonProps {
   affordForDisplacement: boolean;
 
   /**
-   * Optional class applied to the body class
+   * Optional class applied to the body element on mount
    */
   bodyClassName?: string;
 
