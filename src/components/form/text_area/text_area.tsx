@@ -35,6 +35,8 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 
+import { htmlIdGenerator } from '../../../services';
+
 export const useCombinedRefs = <T extends any>(
   ...refs: Array<Ref<T>>
 ): Ref<T> =>
@@ -64,6 +66,17 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
     compressed?: boolean;
     readOnly?: boolean;
     isLoading?: boolean;
+    /**
+     * Allow the height of the textarea to automatically grow as
+     * the user types. If no `maxHeight` is set, this means the
+     * textarea can infinitely grow based upon the content.
+     */
+    autoHeight?: boolean;
+    /**
+     * Sets the max height the textarea can grow too. This value will
+     * set a ceiling on `autoHeight` if it is set to `true`
+     */
+    maxHeight?: number;
 
     /**
      * Which direction, if at all, should the textarea resize
@@ -73,7 +86,7 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
     inputRef?: Ref<HTMLTextAreaElement>;
     /**
      * Creates an input group with element(s) coming before input.
-     * `string` | `ReactElement` or an array of these
+     * `string` | `ReactElement` or an array of these.
      */
     prepend?: EuiFormControlLayoutProps['prepend'];
 
@@ -116,6 +129,9 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   readOnly,
   controlOnly,
   onBlur,
+  onFocus,
+  autoHeight,
+  maxHeight,
   isLoading,
   ...rest
 }) => {
@@ -126,13 +142,24 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
       'euiTextArea--fullWidth': fullWidth,
       'euiTextArea--compressed': compressed,
       'euiTextArea-isLoading': isLoading,
+      'euiTextArea--autoHeight': autoHeight,
     },
     className
   );
 
+  const textAreaRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
+
+  let textAreaId = htmlIdGenerator()();
+
+  if (id) {
+    textAreaId = id;
+  }
+
   let definedRows: number;
 
-  if (rows) {
+  if (prepend || append) {
+    definedRows = 1;
+  } else if (rows) {
     definedRows = rows;
   } else if (compressed) {
     definedRows = 3;
@@ -140,30 +167,52 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
     definedRows = 6;
   }
 
-  const textAreaRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
+  const handleAutoHeight = () => {
+    if (autoHeight || append || prepend) {
+      textAreaRef.current.style.setProperty(
+        'height',
+        `${textAreaRef.current.scrollHeight}px`,
+        'important'
+      );
+    }
+  };
+
+  if (maxHeight) {
+    textAreaRef.current.style.setProperty('max-height', `${maxHeight}px`);
+  }
+
+  const handleRemoveHeight = () => {
+    textAreaRef.current.style.removeProperty('height');
+  };
 
   const handleOnBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     // Scroll to the top of the textarea if it's used in a append/prepend way
-    textAreaRef.current.style.removeProperty('height');
     if (textAreaRef.current && (prepend || append)) {
+      handleRemoveHeight();
       textAreaRef.current.scrollTop = 0;
     }
-    // Use the passed in onBlur as well if there is one
+
     if (onBlur !== undefined) {
       onBlur(e);
     }
   };
 
+  const handleOnFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    handleAutoHeight();
+    if (onFocus !== undefined) {
+      onFocus(e);
+    }
+  };
+
   useEffect(() => {
-    textAreaRef.current.style.setProperty(
-      'height',
-      `${textAreaRef.current.scrollHeight}px`,
-      'important'
-    );
-    console.log(
-      textAreaRef.current.offsetHeight,
-      textAreaRef.current.scrollHeight
-    );
+    if (
+      document.activeElement !== null &&
+      document.activeElement.id === textAreaId
+    ) {
+      handleAutoHeight();
+    } else if (prepend || append) {
+      handleRemoveHeight();
+    }
   });
 
   const control = (
@@ -173,10 +222,11 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
         {...rest}
         rows={definedRows}
         name={name}
-        id={id}
+        id={textAreaId}
         ref={useCombinedRefs(textAreaRef, inputRef)}
         readOnly={readOnly}
         onBlur={handleOnBlur}
+        onFocus={handleOnFocus}
         placeholder={placeholder}>
         {children}
       </textarea>

@@ -11,44 +11,55 @@
     font-size: $euiFontSizeXS;
   }
 
+  &--autoHeight {
+    resize: none !important;
+  }
+
   &-isLoading {
     padding-right: $euiSizeXXL !important;
   }
 }
 
-// Hack to overwride form control's usually good idea to make things fit
+// Hack to override form control's usually good idea to make things a specific height
 .euiTextArea__formControlLayout:not(.euiFormControlLayout--group) {
   height: auto;
 }
 
-
+// This block covers a lot of overwrites that are needed for textareas when
+// they live within a layout-group. Normally layout groups stick to a fixed
+// form height, but with textareas they need to be a little more flexible and
+// considerate of how shadows and borders are managed.
 .euiTextArea__formControlLayout.euiFormControlLayout--group {
   // sass-lint:disable-block no-important
   position: relative;
   z-index: $euiZContent + 2;
 
   .euiTextArea.euiTextArea--compressed {
-    height: $euiSizeXL - 2px !important;
+    height: $euiSizeXL !important;
+    padding-top: $euiSizeS - 1px !important;
   }
 
   .euiTextArea {
-    height: $euiSizeXXL - 2px !important;
-    overflow-y: hidden;
-    white-space: nowrap;
-    resize: none;
+    resize: none; // When in the group, it will autosize
+    height: $euiSizeXXL;
+    padding-top: $euiSizeS + 1px !important;
+    transform: translateY(-2px);
 
+    // When not focused hide the multiline content
     &:not(:focus) {
       @include euiYScrollWithShadows;
+      white-space: nowrap;
       overflow-y: hidden;
       overflow-x: hidden;
       border: none;
       box-shadow: none;
     }
 
+    // When focused, let it scroll
     &:focus {
-      height: auto !important;
       overflow-x: auto;
       overflow-y: auto;
+      width: calc(100% + 1px); // To overtake the group's fake border
       white-space: normal;
     }
   }
