@@ -26,20 +26,46 @@ import { EuiSkipLink, POSITIONS } from './skip_link';
 describe('EuiSkipLink', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSkipLink destinationId="somewhere" {...requiredProps} />
+      <EuiSkipLink {...requiredProps}>Skip</EuiSkipLink>
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  describe('position', () => {
-    POSITIONS.forEach(position => {
-      test(`${position} is rendered`, () => {
-        const component = render(
-          <EuiSkipLink position={position} destinationId="somewhere" />
-        );
+  describe('props', () => {
+    test('destinationId is rendered', () => {
+      const component = render(<EuiSkipLink destinationId="somewhere" />);
 
-        expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('tabIndex is rendered', () => {
+      const component = render(<EuiSkipLink tabIndex={-1} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('onClick is rendered', () => {
+      const component = render(<EuiSkipLink onClick={() => {}} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('onClick and destinationId is rendered', () => {
+      const component = render(
+        <EuiSkipLink onClick={() => {}} destinationId="somewhere" />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('position', () => {
+      POSITIONS.forEach(position => {
+        test(`${position} is rendered`, () => {
+          const component = render(<EuiSkipLink position={position} />);
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });
