@@ -30,7 +30,10 @@ import { EuiValidatableControl } from '../validatable_control';
 
 import { IconType } from '../../icon';
 
-export type EuiFieldNumberProps = InputHTMLAttributes<HTMLInputElement> &
+export type EuiFieldNumberProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'min' | 'max' | 'readOnly' | 'step'
+> &
   CommonProps & {
     icon?: IconType;
     isInvalid?: boolean;

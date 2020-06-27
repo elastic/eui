@@ -28,7 +28,10 @@ import {
 
 import { EuiValidatableControl } from '../validatable_control';
 
-export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
+export type EuiFieldPasswordProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'value'
+> &
   CommonProps & {
     isInvalid?: boolean;
     fullWidth?: boolean;
@@ -47,6 +50,7 @@ export type EuiFieldPasswordProps = InputHTMLAttributes<HTMLInputElement> &
      * `string` | `ReactElement` or an array of these
      */
     append?: EuiFormControlLayoutProps['append'];
+    value?: string | string[] | number;
   };
 
 export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
