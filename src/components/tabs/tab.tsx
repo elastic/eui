@@ -33,13 +33,13 @@ export interface EuiTabProps extends CommonProps {
 }
 
 type EuiTabPropsForAnchor = EuiTabProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick' | 'href'> & {
     href?: string;
     onClick?: MouseEventHandler<HTMLAnchorElement>;
   };
 
 type EuiTabPropsForButton = EuiTabProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
   };
 

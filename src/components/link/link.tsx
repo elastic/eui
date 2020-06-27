@@ -60,7 +60,7 @@ export interface LinkButtonProps {
 }
 
 export type EuiLinkButtonProps = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'color' | 'onClick'> &
   LinkButtonProps;
 
 export interface LinkAnchorProps {
@@ -73,7 +73,7 @@ export interface LinkAnchorProps {
 }
 
 export type EuiLinkAnchorProps = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type' | 'color' | 'onClick'> &
   LinkAnchorProps;
 
 export type EuiLinkProps = ExclusiveUnion<

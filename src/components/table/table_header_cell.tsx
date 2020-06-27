@@ -41,7 +41,7 @@ import { EuiI18n } from '../i18n';
 export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 
 type Props = CommonProps &
-  ThHTMLAttributes<HTMLTableHeaderCellElement> & {
+  Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'align' | 'scope'> & {
     align?: HorizontalAlignment;
     /**
      * Set `allowNeutralSort` on EuiInMemoryTable to false to force column

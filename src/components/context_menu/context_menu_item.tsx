@@ -66,7 +66,10 @@ export interface EuiContextMenuItemProps extends CommonProps {
 }
 
 type Props = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> &
+  Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    'type' | 'onClick' | 'disabled'
+  > &
   EuiContextMenuItemProps;
 
 const layoutAlignToClassNames: {

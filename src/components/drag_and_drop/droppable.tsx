@@ -41,7 +41,7 @@ export interface EuiDroppableProps
   extends CommonProps,
     Omit<DroppableProps, 'children'> {
   /**
-   * Whether the `children` will provide and set up its own drag handle
+   * ReactNode to render as this component's children
    */
   children: ReactElement | ReactElement[] | DroppableProps['children'];
   className?: string;

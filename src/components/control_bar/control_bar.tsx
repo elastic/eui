@@ -78,7 +78,10 @@ type ButtonControlProps = ExclusiveUnion<
  * Requires `label` as the `children`.
  * `onClick` must be provided to handle the content swapping.
  */
-export type TabControl = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type TabControl = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'id' | 'onClick'
+> & {
   controlType: 'tab';
   id: string;
   label: React.ReactNode;

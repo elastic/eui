@@ -57,12 +57,15 @@ const colorToClassNameMap: { [color in Color]: string } = {
 export const COLORS = Object.keys(colorToClassNameMap) as Color[];
 
 export type EuiListGroupItemProps = CommonProps &
-  ExclusiveUnion<
+  Omit<
     ExclusiveUnion<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
+      ExclusiveUnion<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
+      >,
+      HTMLAttributes<HTMLSpanElement>
     >,
-    HTMLAttributes<HTMLSpanElement>
+    'onClick' | 'color' | 'target' | 'rel'
   > & {
     /**
      * Size of the label text
