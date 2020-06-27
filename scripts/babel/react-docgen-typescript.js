@@ -64,12 +64,11 @@ module.exports = function() {
           docgenResults = propsParser
             .withDefaultConfig({
               propFilter: prop => {
-                if (
-                  whiteListedParent.includes(prop.parent.name) ||
-                  whiteListedProps.includes(prop.name)
-                )
+                if (whiteListedProps.includes(prop.name)) {
                   return true;
+                }
                 if (prop.parent) {
+                  if (whiteListedParent.includes(prop.parent.name)) return true;
                   if (
                     prop.parent.name === 'DOMAttributes' &&
                     !componentExtends.includes('DOMAttributes')

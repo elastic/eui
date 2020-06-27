@@ -42,6 +42,9 @@ export type EuiDraggableSpacing = keyof typeof spacingToClassNameMap;
 export interface EuiDraggableProps
   extends CommonProps,
     Omit<DraggableProps, 'children'> {
+  /**
+   * Whether the `children` will provide and set up its own drag handle
+   */
   children: ReactElement | DraggableProps['children'];
   className?: string;
   /**

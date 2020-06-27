@@ -40,6 +40,9 @@ export type EuiDroppableSpacing = keyof typeof spacingToClassNameMap;
 export interface EuiDroppableProps
   extends CommonProps,
     Omit<DroppableProps, 'children'> {
+  /**
+   * Whether the `children` will provide and set up its own drag handle
+   */
   children: ReactElement | ReactElement[] | DroppableProps['children'];
   className?: string;
   /**
