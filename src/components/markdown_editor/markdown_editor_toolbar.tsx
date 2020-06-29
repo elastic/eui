@@ -27,6 +27,8 @@ import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiMarkdownContext } from './markdown_context';
 import MarkdownActions from './markdown_actions';
+// @ts-ignore TODO
+import MarkdownCheckmarkIcon from './icons/markdown_checkmark';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -64,6 +66,12 @@ const listButtons = [
     label: 'Ordered list',
     name: 'ol',
     iconType: 'editorOrderedList',
+  },
+  {
+    id: 'mdTl',
+    label: 'Task list',
+    name: 'tl',
+    iconType: MarkdownCheckmarkIcon,
   },
 ];
 
@@ -150,6 +158,7 @@ export const EuiMarkdownEditorToolbar: FunctionComponent<
               />
             </EuiToolTip>
           ))}
+
           {uiPlugins.length > 0 ? (
             <>
               <span className="euiMarkdownEditor__toolbar__divider" />

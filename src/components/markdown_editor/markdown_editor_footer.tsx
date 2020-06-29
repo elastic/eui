@@ -34,7 +34,7 @@ import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiText } from '../text';
 import { EuiSpacer } from '../spacer';
 // @ts-ignore a react svg
-import MarkdownLogo from './markdown_logo';
+import MarkdownLogo from './icons/markdown_logo';
 import { EuiHorizontalRule } from '../horizontal_rule';
 
 interface EuiMarkdownEditorFooterProps {
