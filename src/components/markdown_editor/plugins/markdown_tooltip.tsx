@@ -27,7 +27,7 @@ import {
   RemarkTokenizer,
 } from '../markdown_types';
 import { EuiToolTip } from '../../tool_tip';
-import { EuiCode } from '../../code';
+import { EuiCodeBlock } from '../../code';
 
 interface TooltipNodeDetails {
   type: 'tooltipPlugin';
@@ -45,7 +45,11 @@ const tooltipPlugin = {
     suffix: ']()}',
     trimFirst: true,
   },
-  helpText: <EuiCode>{'!{tooltip[anchor text](helpful description)}'}</EuiCode>,
+  helpText: (
+    <EuiCodeBlock language="md" paddingSize="s" fontSize="l">
+      {'!{tooltip[anchor text](helpful description)}'}
+    </EuiCodeBlock>
+  ),
 };
 
 function TooltipParser(this: RemarkParser) {

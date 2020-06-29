@@ -29,14 +29,10 @@ import { EuiOverlayMask } from '../overlay_mask';
 import { EuiTitle } from '../title';
 import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
 import { EuiI18n } from '../i18n';
-import {
-  EuiDescriptionList,
-  EuiDescriptionListTitle,
-  EuiDescriptionListDescription,
-} from '../description_list';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiText } from '../text';
+import { EuiSpacer } from '../spacer';
 // @ts-ignore a react svg
 import MarkdownLogo from './markdown_logo';
 import { EuiHorizontalRule } from '../horizontal_rule';
@@ -164,20 +160,20 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
                   </EuiI18n>
                 </EuiText>
                 <EuiHorizontalRule />
-                <EuiDescriptionList>
-                  {uiPlugins
-                    .filter(({ helpText }) => !!helpText)
-                    .map(({ name, helpText }) => (
-                      <Fragment key={name}>
-                        <EuiDescriptionListTitle>
+                {uiPlugins
+                  .filter(({ helpText }) => !!helpText)
+                  .map(({ name, helpText }) => (
+                    <Fragment key={name}>
+                      <EuiTitle size="xxs">
+                        <p>
                           <strong>{name}</strong>
-                        </EuiDescriptionListTitle>
-                        <EuiDescriptionListDescription>
-                          {helpText}
-                        </EuiDescriptionListDescription>
-                      </Fragment>
-                    ))}
-                </EuiDescriptionList>
+                        </p>
+                      </EuiTitle>
+                      <EuiSpacer size="s" />
+                      {helpText}
+                      <EuiSpacer size="l" />
+                    </Fragment>
+                  ))}
               </Fragment>
             </EuiModalBody>
           </EuiModal>
