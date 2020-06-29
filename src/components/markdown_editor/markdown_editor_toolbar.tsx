@@ -72,7 +72,7 @@ const quoteCodeLinkButtons = [
     id: 'mdQuote',
     label: 'Quote',
     name: 'quote',
-    iconType: 'editorComment',
+    iconType: 'quote',
   },
   {
     id: 'mdCode',

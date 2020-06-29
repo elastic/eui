@@ -5,8 +5,8 @@ import {
   defaultProcessingPlugins,
   EuiMarkdownEditor,
   EuiSpacer,
-  EuiText,
   EuiCodeBlock,
+  EuiButtonToggle,
 } from '../../../../src';
 import * as MarkdownChart from './plugins/markdown_chart';
 
@@ -22,6 +22,7 @@ export default () => {
   const [value, setValue] = useState(markdownExample);
   const [messages, setMessages] = useState([]);
   const [ast, setAst] = useState(null);
+  const [isAstShowing, setIsAstShowing] = useState(false);
   const onParse = useCallback((err, { messages, ast }) => {
     setMessages(err ? [err] : messages);
     setAst(JSON.stringify(ast, null, 2));
@@ -36,12 +37,20 @@ export default () => {
         parsingPluginList={exampleParsingList}
         processingPluginList={exampleProcessingList}
         onParse={onParse}
+        errors={messages}
       />
-      <EuiSpacer />
-      {messages.map((message, idx) => (
-        <EuiText key={idx}>{message.toString()}</EuiText>
-      ))}
-      <EuiCodeBlock language="json">{ast}</EuiCodeBlock>
+      <EuiSpacer size="s" />
+      <div className="eui-textRight">
+        <EuiButtonToggle
+          label={isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+          size="s"
+          isEmpty
+          iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+          onChange={() => setIsAstShowing(!isAstShowing)}
+          isSelected={isAstShowing}
+        />
+      </div>
+      {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
     </>
   );
 };

@@ -25,6 +25,7 @@ import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
 interface EuiMarkdownEditorDropZoneProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
+  errors?: any;
 }
 
 export const EuiMarkdownEditorDropZone: FunctionComponent<
@@ -33,7 +34,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
 
-  const { children, uiPlugins } = props;
+  const { children, uiPlugins, errors } = props;
 
   const classes = classNames('euiMarkdownEditor__dropZone', {
     'euiMarkdownEditor__dropZone--isDragging': isDragging,
@@ -68,6 +69,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
         uiPlugins={uiPlugins}
         openFiles={open}
         isUploadingFiles={isUploadingFiles}
+        errors={errors}
       />
       <input {...getInputProps()} />
     </div>

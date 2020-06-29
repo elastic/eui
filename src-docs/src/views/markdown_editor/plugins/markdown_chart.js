@@ -18,6 +18,9 @@ import {
   EuiFormRow,
   EuiSelect,
   EuiRange,
+  EuiCodeBlock,
+  EuiText,
+  EuiSpacer,
 } from '../../../../../src/components';
 import {
   euiPaletteColorBlind,
@@ -53,7 +56,26 @@ const chartDemoPlugin = {
     label: 'Chart',
     iconType: 'visArea',
   },
-  helpText: '!{chart}',
+  helpText: (
+    <div>
+      <EuiCodeBlock language="md" fontSize="l" paddingSize="s" isCopyable>
+        {'!{chart{options}}'}
+      </EuiCodeBlock>
+      <EuiSpacer size="s" />
+      <EuiText size="xs" style={{ marginLeft: 16 }}>
+        <p>Where options can contain:</p>
+        <ul>
+          <li>
+            <strong>palette: </strong>A number between 1-9 for each palette.
+          </li>
+          <li>
+            <strong>height: </strong>
+            The height of the chart
+          </li>
+        </ul>
+      </EuiText>
+    </div>
+  ),
   editor: function ChartEditor({ node, onSave, onCancel }) {
     const [palette, setPalette] = useState((node && node.palette) || 4);
     const [height, setHeight] = useState((node && node.height) || 300);

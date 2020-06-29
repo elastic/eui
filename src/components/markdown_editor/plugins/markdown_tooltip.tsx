@@ -27,6 +27,7 @@ import {
   RemarkTokenizer,
 } from '../markdown_types';
 import { EuiToolTip } from '../../tool_tip';
+import { EuiCodeBlock } from '../../code';
 
 interface TooltipNodeDetails {
   type: 'tooltipPlugin';
@@ -37,14 +38,18 @@ const tooltipPlugin = {
   name: 'tooltipPlugin',
   button: {
     label: 'Tooltip',
-    iconType: 'flag',
+    iconType: 'editorComment',
   },
   formatting: {
     prefix: '!{tooltip[',
     suffix: ']()}',
     trimFirst: true,
   },
-  helpText: 'Tooltips be like !{tooltip[anchor text](helpful description)}',
+  helpText: (
+    <EuiCodeBlock language="md" paddingSize="s" fontSize="l">
+      {'!{tooltip[anchor text](helpful description)}'}
+    </EuiCodeBlock>
+  ),
 };
 
 function TooltipParser(this: RemarkParser) {
