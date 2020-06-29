@@ -17,16 +17,29 @@
  * under the License.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  Fragment,
+  ReactChild,
+} from 'react';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiOverlayMask } from '../overlay_mask';
-import { EuiModal, EuiModalBody } from '../modal';
+import { EuiTitle } from '../title';
+import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
+import { EuiI18n } from '../i18n';
+import {
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
+} from '../description_list';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiText } from '../text';
 // @ts-ignore a react svg
 import MarkdownLogo from './markdown_logo';
+import { EuiHorizontalRule } from '../horizontal_rule';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
@@ -84,7 +97,12 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
         closePopover={closePopover}
         anchorPosition="upCenter">
         <div className="euiMarkdownEditor__footerPopover">
-          <EuiPopoverTitle>Errors</EuiPopoverTitle>
+          <EuiPopoverTitle>
+            <EuiI18n
+              token="euiMarkdownEditorFooter.syntaxTitle"
+              default="Errors"
+            />
+          </EuiPopoverTitle>
           {errors.map((message: any, idx: any) => (
             <EuiText key={idx}>{message.toString()}</EuiText>
           ))}
@@ -110,12 +128,57 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
       {isShowingHelp && (
         <EuiOverlayMask onClick={() => setIsShowingHelp(false)}>
           <EuiModal onClose={() => setIsShowingHelp(false)}>
+            <EuiModalHeader>
+              <EuiTitle>
+                <h3>
+                  <EuiI18n
+                    token="euiMarkdownEditorFooter.syntaxTitle"
+                    default="Syntax help"
+                  />
+                </h3>
+              </EuiTitle>
+            </EuiModalHeader>
             <EuiModalBody>
-              {uiPlugins
-                .filter(({ helpText }) => !!helpText)
-                .map(({ name, helpText }) => (
-                  <div key={name}>{helpText}</div>
-                ))}
+              <Fragment>
+                <EuiText>
+                  <EuiI18n
+                    tokens={[
+                      'euiMarkdownEditorFooter.descriptionPrefix',
+                      'euiMarkdownEditorFooter.descriptionSuffix',
+                    ]}
+                    defaults={[
+                      'This editor uses',
+                      'You can also utilize these additional syntax plugins to add rich content to your text.',
+                    ]}>
+                    {([descriptionPrefix, descriptionSuffix]: ReactChild[]) => (
+                      <p>
+                        {descriptionPrefix}{' '}
+                        <a
+                          href="https://github.github.com/gfm/"
+                          target="_blank">
+                          Github flavored markdown
+                        </a>
+                        . {descriptionSuffix}
+                      </p>
+                    )}
+                  </EuiI18n>
+                </EuiText>
+                <EuiHorizontalRule />
+                <EuiDescriptionList>
+                  {uiPlugins
+                    .filter(({ helpText }) => !!helpText)
+                    .map(({ name, helpText }) => (
+                      <Fragment key={name}>
+                        <EuiDescriptionListTitle>
+                          <strong>{name}</strong>
+                        </EuiDescriptionListTitle>
+                        <EuiDescriptionListDescription>
+                          {helpText}
+                        </EuiDescriptionListDescription>
+                      </Fragment>
+                    ))}
+                </EuiDescriptionList>
+              </Fragment>
             </EuiModalBody>
           </EuiModal>
         </EuiOverlayMask>
