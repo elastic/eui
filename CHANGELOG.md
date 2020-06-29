@@ -1,11 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 **Breaking changes**
-- Significant refactor of `EuiSelectable` ([#3169](https://github.com/elastic/eui/pull/3169))
-  - virtualizedProps on `EuiSelectableOptionsList` renamed to `windowProps` which are now passed into `react-window` instead of `react-virtualized`
-  - Removed `rootId` and added `makeOptionId` and `listId` to `EuiSelectableList`
+
+- Significant accessibility refactor of `EuiSelectable` ([#3169](https://github.com/elastic/eui/pull/3169))
+  - `react-virtualized` replaced with `react-window`
+  - `virtualizedProps` on `EuiSelectableOptionsList` renamed to `windowProps`
+  - Removed `rootId` and added `makeOptionId`, `listId`, and `setActiveOptionIndex` to `EuiSelectableList`
   - Added `listId` to `EuiSelectableSearch`
-  - Added `setActiveOptionIndex` to `EuiSelectableList`
 
 
 ## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
