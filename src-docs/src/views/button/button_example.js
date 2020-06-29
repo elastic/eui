@@ -386,6 +386,5 @@ export const ButtonExample = {
       demo: <ButtonGhost />,
     },
   ],
-  playground: <div>hi</div>,
   guidelines: <Guidelines />,
 };
