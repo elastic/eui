@@ -2,6 +2,7 @@
 
 - Added `gutterSize` prop to `EuiFacetGroup` ([#3639](https://github.com/elastic/eui/pull/3639))
 - Updated props of `EuiCode` and `EuiCodeBlock` to reflect only functional props ([#3647](https://github.com/elastic/eui/pull/3647))
+- Updated `EuiResizableContainer` `onPanelWidthChange` callback method to include all panel widths ([#3630](https://github.com/elastic/eui/pull/3630))
 
 **Bug fixes**
 
@@ -33,7 +34,7 @@
 - Allowed user to enter hexcode for colors in `EuiStat` ([#3617](https://github.com/elastic/eui/pull/3617))
 - Extended `CommonProps` in `EuiColorPalettePickerPaletteTextProps`, `EuiColorPalettePickerPaletteFixedProps` and `EuiColorPalettePickerPaletteGradientProps` types ([#3616](https://github.com/elastic/eui/pull/3616))
 - Updated `onToggle` callback in `EuiAccordion` to  allow for external state control ([#3614](https://github.com/elastic/eui/pull/3614))
-- Sent all panel sizes to `onPanelWidthChange` function and removed the dependency of the change of panel sizes on `onPanelWidthChange` in `EuiResizableContainer` ([#3630](https://github.com/elastic/eui/pull/3630))
+
 **Bug fixes**
 
 - Added `display` prop to `EuiDataGridColumnSortingDraggable` to pass` displayAsText` prop correctly to the column sorting popover.([#3574](https://github.com/elastic/eui/pull/3574))
