@@ -22,11 +22,11 @@ import React, {
   HTMLAttributes,
   ProgressHTMLAttributes,
   ReactNode,
+  Fragment,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
-import { EuiText } from '../text';
 
 const sizeToClassNameMap = {
   xs: 'euiProgress--xs',
@@ -50,6 +50,14 @@ const colorToClassNameMap = {
 export const COLORS = Object.keys(colorToClassNameMap);
 
 export type EuiProgressColor = keyof typeof colorToClassNameMap;
+
+const dataColorToClassNameMap = {
+  primary: 'euiProgress__data--primary',
+  secondary: 'euiProgress__data--secondary',
+  danger: 'euiProgress__data--danger',
+  subdued: 'euiProgress__data--subdued',
+  accent: 'euiProgress__data--accent',
+};
 
 const positionsToClassNameMap = {
   fixed: 'euiProgress--fixed',
@@ -101,32 +109,23 @@ export const EuiProgress: FunctionComponent<
     positionsToClassNameMap[position],
     className
   );
-  const dataClasses = classNames('euiProgress__data', {
-    'euiProgress__data--primary': color === 'primary',
-  });
+  const dataClasses = classNames(
+    'euiProgress__data',
+    {
+      'euiProgress__data--l': size === 'l',
+    },
+    dataColorToClassNameMap[color]
+  );
 
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
   if (determinate) {
     return (
-      <div>
+      <Fragment>
         {label || valueText ? (
           <div className={dataClasses}>
-            <div className="euiProgress__label">
-              <EuiText
-                className="eui-textTruncate"
-                size={size === 'l' ? 's' : 'xs'}>
-                {label}
-              </EuiText>
-            </div>
-            <div className="euiProgress__valueText">
-              <EuiText
-                className="eui-textTruncate"
-                size={size === 'l' ? 's' : 'xs'}
-                color={color !== 'primary' ? color : undefined}>
-                {valueText}
-              </EuiText>
-            </div>
+            <span className="euiProgress__label">{label}</span>
+            <span className="euiProgress__valueText">{valueText}</span>
           </div>
         ) : (
           undefined
@@ -137,7 +136,7 @@ export const EuiProgress: FunctionComponent<
           value={value}
           {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
         />
-      </div>
+      </Fragment>
     );
   } else {
     return (

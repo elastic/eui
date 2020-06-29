@@ -1,14 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiProgress has max 1`] = `
-<div>
-  <progress
-    aria-label="aria-label"
-    class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
-    data-test-subj="test subject string"
-    max="100"
-  />
-</div>
+<progress
+  aria-label="aria-label"
+  class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
+  data-test-subj="test subject string"
+  max="100"
+/>
 `;
 
 exports[`EuiProgress has value 1`] = `
@@ -20,53 +18,39 @@ exports[`EuiProgress has value 1`] = `
 `;
 
 exports[`EuiProgress has valueText and Label 1`] = `
-<div>
+Array [
   <div
-    class="euiProgress__data"
+    class="euiProgress__data euiProgress__data--secondary"
   >
-    <div
+    <span
       class="euiProgress__label"
     >
-      <div
-        class="euiText euiText--extraSmall eui-textTruncate"
-      >
-        Label
-      </div>
-    </div>
-    <div
+      Label
+    </span>
+    <span
       class="euiProgress__valueText"
     >
-      <div
-        class="euiText euiText--extraSmall eui-textTruncate"
-      >
-        <div
-          class="euiTextColor euiTextColor--secondary"
-        >
-          50
-        </div>
-      </div>
-    </div>
-  </div>
+      50
+    </span>
+  </div>,
   <progress
     aria-label="aria-label"
     class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
     data-test-subj="test subject string"
     max="100"
     value="50"
-  />
-</div>
+  />,
+]
 `;
 
 exports[`EuiProgress is determinate 1`] = `
-<div>
-  <progress
-    aria-label="aria-label"
-    class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
-    data-test-subj="test subject string"
-    max="100"
-    value="50"
-  />
-</div>
+<progress
+  aria-label="aria-label"
+  class="euiProgress euiProgress--native euiProgress--m euiProgress--secondary testClass1 testClass2"
+  data-test-subj="test subject string"
+  max="100"
+  value="50"
+/>
 `;
 
 exports[`EuiProgress is indeterminate 1`] = `

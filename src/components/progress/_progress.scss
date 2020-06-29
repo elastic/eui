@@ -117,6 +117,12 @@ $euiProgressColors: (
       }
     }
   }
+
+  .euiProgress__data--#{$name} {
+    .euiProgress__valueText {
+      color: $color;
+    }
+  }
 }
 
 @keyframes euiProgress {
@@ -134,10 +140,20 @@ $euiProgressColors: (
   justify-content: space-between;
 
   .euiProgress__label {
-    overflow: hidden;
+    @include euiTextTruncate;
   }
 }
 
-.euiProgress__data--primary .euiProgress__valueText {
-  color: $euiColorPrimary;
+.euiProgress__label,
+.euiProgress__valueText {
+  @include euiText;
+  @include euiFontSize;
+  @include fontSize($euiFontSizeXS);
+}
+
+.euiProgress__data--l {
+  .euiProgress__label,
+  .euiProgress__valueText {
+    @include fontSize($euiFontSizeS);
+  }
 }
