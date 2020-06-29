@@ -66,10 +66,10 @@ const chartDemoPlugin = {
         <p>Where options can contain:</p>
         <ul>
           <li>
-            <strong>palette:</strong>A number between 1-9 for each palette.
+            <strong>palette: </strong>A number between 1-9 for each palette.
           </li>
           <li>
-            <strong>height:</strong>
+            <strong>height: </strong>
             The height of the chart
           </li>
         </ul>
