@@ -312,12 +312,14 @@ export const EuiMarkdownEditor: FunctionComponent<
                 value={value}
               />
             </EuiMarkdownEditorDropZone>
+
             {pluginEditorPlugin && (
               <EuiOverlayMask>
                 <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
                   {createElement(pluginEditorPlugin.editor!, {
                     node:
                       selectedNode &&
+                      // @ts-ignore TODO
                       selectedNode.type === pluginEditorPlugin.name
                         ? selectedNode
                         : null,
@@ -325,10 +327,13 @@ export const EuiMarkdownEditor: FunctionComponent<
                     onSave: markdown => {
                       if (
                         selectedNode &&
+                        // @ts-ignore TODO
                         selectedNode.type === pluginEditorPlugin.name
                       ) {
                         textareaRef.current!.setSelectionRange(
+                          // @ts-ignore TODO
                           selectedNode.position.start.offset,
+                          // @ts-ignore TODO
                           selectedNode.position.end.offset
                         );
                       }
