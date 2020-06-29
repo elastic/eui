@@ -6,7 +6,7 @@ import {
   EuiMarkdownEditor,
   EuiSpacer,
   EuiText,
-  EuiCodeBlock,
+  // EuiCodeBlock,
 } from '../../../../src';
 import * as MarkdownChart from './plugins/markdown_chart';
 
@@ -21,10 +21,10 @@ exampleProcessingList[1][1].components.chartDemoPlugin = MarkdownChart.renderer;
 export default () => {
   const [value, setValue] = useState(markdownExample);
   const [messages, setMessages] = useState([]);
-  const [ast, setAst] = useState(null);
-  const onParse = useCallback((err, { messages, ast }) => {
+  // const [ast, setAst] = useState(null);
+  const onParse = useCallback((err, { messages }) => {
     setMessages(err ? [err] : messages);
-    setAst(JSON.stringify(ast, null, 2));
+    // setAst(JSON.stringify(ast, null, 2));
   }, []);
   return (
     <>
@@ -36,12 +36,10 @@ export default () => {
         parsingPluginList={exampleParsingList}
         processingPluginList={exampleProcessingList}
         onParse={onParse}
+        errors={messages}
       />
       <EuiSpacer />
-      {messages.map((message, idx) => (
-        <EuiText key={idx}>{message.toString()}</EuiText>
-      ))}
-      <EuiCodeBlock language="json">{ast}</EuiCodeBlock>
+      {/* <EuiCodeBlock language="json">{ast}</EuiCodeBlock> */}
     </>
   );
 };

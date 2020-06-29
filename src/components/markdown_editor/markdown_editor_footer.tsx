@@ -23,7 +23,8 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiModal, EuiModalBody } from '../modal';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
-import { EuiPopover } from '../popover';
+import { EuiPopover, EuiPopoverTitle } from '../popover';
+import { EuiText } from '../text';
 // @ts-ignore a react svg
 import MarkdownLogo from './markdown_logo';
 
@@ -31,18 +32,21 @@ interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   isUploadingFiles: boolean;
   openFiles: () => void;
+  errors?: any;
 }
 
 export const EuiMarkdownEditorFooter: FunctionComponent<
   EuiMarkdownEditorFooterProps
 > = props => {
-  const { uiPlugins, isUploadingFiles, openFiles } = props;
+  const { uiPlugins, isUploadingFiles, openFiles, errors } = props;
   const [isShowingHelp, setIsShowingHelp] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const onButtonClick = () => setIsPopoverOpen(isPopoverOpen => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
   let uploadButton;
+
+  console.log('in footer', errors);
 
   if (isUploadingFiles) {
     uploadButton = (
@@ -62,29 +66,38 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
     );
   }
 
-  const errorsButton = (
-    <EuiButtonEmpty
-      iconType="crossInACircleFilled"
-      size="s"
-      color="text"
-      aria-label="Show errors"
-      onClick={onButtonClick}>
-      0
-    </EuiButtonEmpty>
-  );
+  let errorsButton;
+  if (errors && errors.length) {
+    errorsButton = (
+      <EuiPopover
+        button={
+          <EuiButtonEmpty
+            iconType="crossInACircleFilled"
+            size="s"
+            color="danger"
+            aria-label="Show errors"
+            onClick={onButtonClick}>
+            {errors.length}
+          </EuiButtonEmpty>
+        }
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        anchorPosition="upCenter">
+        <div className="euiMarkdownEditor__footerPopover">
+          <EuiPopoverTitle>Errors</EuiPopoverTitle>
+          {errors.map((message: any, idx: any) => (
+            <EuiText key={idx}>{message.toString()}</EuiText>
+          ))}
+        </div>
+      </EuiPopover>
+    );
+  }
 
   return (
     <footer className="euiMarkdownEditor__footer">
       <div className="euiMarkdownEditor__footerActions">
         {uploadButton}
-
-        <EuiPopover
-          button={errorsButton}
-          isOpen={isPopoverOpen}
-          closePopover={closePopover}
-          anchorPosition="upCenter">
-          <div style={{ width: '300px' }}>Errors here</div>
-        </EuiPopover>
+        {errorsButton}
       </div>
 
       <EuiButtonIcon

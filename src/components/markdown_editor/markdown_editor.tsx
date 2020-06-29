@@ -121,6 +121,9 @@ export type EuiMarkdownEditorProps = HTMLAttributes<HTMLDivElement> &
     /** array of toolbar plugins **/
     uiPlugins?: EuiMarkdownEditorUiPlugin[];
 
+    /** Errors to buble up */
+    errors?: any;
+
     /** callback triggered when parsing results are available **/
     onParse?: (
       error: any | null,
@@ -145,6 +148,7 @@ export const EuiMarkdownEditor: FunctionComponent<
       processingPluginList = defaultProcessingPlugins,
       uiPlugins = [],
       onParse,
+      errors,
       ...rest
     },
     ref
@@ -303,7 +307,9 @@ export const EuiMarkdownEditor: FunctionComponent<
           )}
           {/* Toggle the editor's display instead of unmounting to retain its undo/redo history */}
           <div style={{ display: isPreviewing ? 'none' : 'block' }}>
-            <EuiMarkdownEditorDropZone uiPlugins={toolbarPlugins}>
+            <EuiMarkdownEditorDropZone
+              uiPlugins={toolbarPlugins}
+              errors={errors}>
               <EuiMarkdownEditorTextArea
                 ref={textareaRef}
                 height={height}
