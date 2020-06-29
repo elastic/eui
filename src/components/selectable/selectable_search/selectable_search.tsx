@@ -29,7 +29,7 @@ export type EuiSelectableSearchProps = Omit<EuiFieldSearchProps, 'onChange'> &
     /**
      * Passes back (matchingOptions, searchValue)
      */
-    onChange?: (
+    onChange: (
       matchingOptions: EuiSelectableOption[],
       searchValue: string
     ) => void;
@@ -59,22 +59,17 @@ export class EuiSelectableSearch extends Component<
   }
 
   componentDidMount() {
-    const { options } = this.props;
     const { searchValue } = this.state;
-    const matchingOptions = getMatchingOptions(options, searchValue);
-    this.passUpMatches(matchingOptions, searchValue);
+    const matchingOptions = getMatchingOptions(this.props.options, searchValue);
+    this.props.onChange(matchingOptions, searchValue);
   }
 
   onSearchChange = (value: string) => {
-    this.setState({ searchValue: value });
-    const { options } = this.props;
-    const matchingOptions = getMatchingOptions(options, value);
-    this.passUpMatches(matchingOptions, value);
-  };
-
-  passUpMatches = (matches: EuiSelectableOption[], searchValue: string) => {
-    if (this.props.onChange) {
-      this.props.onChange(matches, searchValue);
+    if (value !== this.state.searchValue) {
+      this.setState({ searchValue: value }, () => {
+        const matchingOptions = getMatchingOptions(this.props.options, value);
+        this.props.onChange(matchingOptions, value);
+      });
     }
   };
 

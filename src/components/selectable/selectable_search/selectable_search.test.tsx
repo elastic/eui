@@ -26,7 +26,12 @@ import { EuiSelectableSearch } from './selectable_search';
 describe('EuiSelectableSearch', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSelectableSearch options={[]} listId="list" {...requiredProps} />
+      <EuiSelectableSearch
+        options={[]}
+        listId="list"
+        onChange={() => {}}
+        {...requiredProps}
+      />
     );
 
     expect(component).toMatchSnapshot();
@@ -35,7 +40,12 @@ describe('EuiSelectableSearch', () => {
   describe('props', () => {
     test('defaultValue', () => {
       const component = render(
-        <EuiSelectableSearch options={[]} listId="list" defaultValue="Mi" />
+        <EuiSelectableSearch
+          options={[]}
+          listId="list"
+          onChange={() => {}}
+          defaultValue="Mi"
+        />
       );
 
       expect(component).toMatchSnapshot();

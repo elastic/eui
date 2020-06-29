@@ -13,7 +13,6 @@ import { createDataStore } from '../tables/data_store';
 export default () => {
   const countries = createDataStore().countries.map(country => {
     return {
-      id: country.code,
       label: `${country.name}`,
       prepend: country.flag,
       append: <EuiBadge>{country.code}</EuiBadge>,

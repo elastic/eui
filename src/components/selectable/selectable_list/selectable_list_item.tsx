@@ -163,10 +163,6 @@ export class EuiSelectableListItem extends Component<
       );
     }
 
-    if (allowExclusions) {
-      console.log({ state, instruction });
-    }
-
     return (
       <li
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
