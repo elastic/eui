@@ -1,6 +1,23 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `26.0.0`.
+- Added `gutterSize` prop to `EuiFacetGroup` ([#3639](https://github.com/elastic/eui/pull/3639))
+- Updated props of `EuiCode` and `EuiCodeBlock` to reflect only functional props ([#3647](https://github.com/elastic/eui/pull/3647))
+
+**Bug fixes**
+
+- Fixed `EuiContextMenu` panel `onAnimationEnd` transition bug in Chrome ([#3656](https://github.com/elastic/eui/pull/3656))
+- Fixed `EuiSkipLink` interactive props and Safari click issue ([#3665](https://github.com/elastic/eui/pull/3665))
+
+## [`26.1.0`](https://github.com/elastic/eui/tree/v26.1.0)
+
+- Optimized in-memory datagrid mount performance ([#3628](https://github.com/elastic/eui/pull/3628))
+- Exported `EuiCardProps` and `EuiCheckableCardProps` types ([#3640](https://github.com/elastic/eui/pull/3640))
+
+## [`26.0.1`](https://github.com/elastic/eui/tree/v26.0.1)
+
+**Bug fixes**
+
+- Fixed fullscreen render issue in `EuiCode` ([#3633](https://github.com/elastic/eui/pull/3633))
 
 ## [`26.0.0`](https://github.com/elastic/eui/tree/v26.0.0)
 
