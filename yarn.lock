@@ -993,10 +993,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@elastic/charts@^19.6.1":
-  version "19.6.1"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-19.6.1.tgz#23e2f60e140394cb3f59fd893cf30cb7ffb18e2d"
-  integrity sha512-k3wW8uMo+swmpwA3uUrqBSANZbJ4fg9Nz+MZT06q6oyaX2gdPQcC/IyWBoEuHQnQwzt3ivhoYgU5LyMPLWXICQ==
+"@elastic/charts@^19.6.2":
+  version "19.6.2"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-19.6.2.tgz#776f244e83e2a5aee286ecb86a5344643bb95a17"
+  integrity sha512-cYeRq4ZQ+44Yi870zwWZrkrdk5LpT7XQ+pSwwjdeyV4IATsQc0FdM1dbU+IlVaJSAcnw/lHijGsCN98V/S/HTA==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
