@@ -326,6 +326,7 @@ export class EuiSelectable extends Component<
   onOptionClick = (options: EuiSelectableOption[]) => {
     this.setState(state => ({
       visibleOptions: getMatchingOptions(options, state.searchValue),
+      activeOptionIndex: this.state.activeOptionIndex,
     }));
     if (this.props.onChange) {
       this.props.onChange(options);
