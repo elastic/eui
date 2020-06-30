@@ -277,6 +277,7 @@ const createExample = (example, customTitle) => {
     component,
     sections,
     isNew,
+    hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
@@ -442,11 +443,20 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, ...rest }) => ({
-    name: itemName,
-    path: `${slugify(name)}/${slugify(itemName)}`,
-    ...rest,
-  })),
+  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
+    const item = {
+      name: itemName,
+      path: `${slugify(name)}/${slugify(itemName)}`,
+      ...rest,
+    };
+
+    if (hasGuidelines) {
+      item.from = `guidelines/${slugify(itemName)}`;
+      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+    }
+
+    return item;
+  }),
   ...rest,
 }));
 
