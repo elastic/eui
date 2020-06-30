@@ -41,7 +41,7 @@ interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   isUploadingFiles: boolean;
   openFiles: () => void;
-  errors?: any;
+  errors: any;
 }
 
 export const EuiMarkdownEditorFooter: FunctionComponent<
@@ -54,8 +54,6 @@ export const EuiMarkdownEditorFooter: FunctionComponent<
   const closePopover = () => setIsPopoverOpen(false);
 
   let uploadButton;
-
-  console.log('in footer', errors);
 
   if (isUploadingFiles) {
     uploadButton = (

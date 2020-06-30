@@ -79,6 +79,21 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
           </button>
         </span>
         <span
+          class="euiToolTipAnchor"
+        >
+          <button
+            aria-label="Task list"
+            class="euiButtonIcon euiButtonIcon--text"
+            type="button"
+          >
+            <div
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              data-euiicon-type="MarkdownCheckmark"
+            />
+          </button>
+        </span>
+        <span
           class="euiMarkdownEditor__toolbar__divider"
         />
         <span
@@ -92,7 +107,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             <div
               aria-hidden="true"
               class="euiButtonIcon__icon"
-              data-euiicon-type="editorComment"
+              data-euiicon-type="quote"
             />
           </button>
         </span>
@@ -140,7 +155,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             <div
               aria-hidden="true"
               class="euiButtonIcon__icon"
-              data-euiicon-type="flag"
+              data-euiicon-type="editorComment"
             />
           </button>
         </span>
@@ -182,31 +197,64 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         rows="6"
         style="height:calc(118px"
       />
-      <button
-        class="euiMarkdownEditor__dropZone__button"
+      <footer
+        class="euiMarkdownEditor__footer"
       >
         <div
-          aria-hidden="true"
-          class="euiMarkdownEditor__dropZone__icon"
-          data-euiicon-type="paperClip"
-        />
-        <div
-          class="euiMarkdownEditor__dropZone__text"
+          class="euiMarkdownEditor__footerActions"
         >
-          Attach files by dragging & dropping or by clicking this area
+          <button
+            aria-label="Open upload files modal"
+            class="euiButtonIcon euiButtonIcon--text"
+            type="button"
+          >
+            <div
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              data-euiicon-type="paperClip"
+            />
+          </button>
+          <div
+            class="euiPopover euiPopover--anchorUpCenter"
+          >
+            <div
+              class="euiPopover__anchor"
+            >
+              <button
+                aria-label="Show errors"
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+                type="button"
+              >
+                <span
+                  class="euiButtonEmpty__content"
+                >
+                  <div
+                    aria-hidden="true"
+                    class="euiButtonEmpty__icon"
+                    data-euiicon-type="crossInACircleFilled"
+                  />
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    0
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
-      </button>
-      <button
-        aria-label="Show markdown help"
-        class="euiButtonIcon euiButtonIcon--primary"
-        type="button"
-      >
-        <div
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          data-euiicon-type="questionInCircle"
-        />
-      </button>
+        <button
+          aria-label="Show markdown help"
+          class="euiButtonIcon euiButtonIcon--text euiMarkdownEditor__footerHelp"
+          type="button"
+        >
+          <div
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            data-euiicon-type="MarkdownLogo"
+          />
+        </button>
+      </footer>
       <input
         autocomplete="off"
         multiple=""

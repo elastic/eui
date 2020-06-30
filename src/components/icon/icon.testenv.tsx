@@ -20,7 +20,12 @@
 import React, { ComponentType } from 'react';
 
 export const EuiIcon = ({ type, ...rest }: any) => (
-  <div data-euiicon-type={type} {...rest} />
+  <div
+    data-euiicon-type={
+      typeof type === 'string' ? type : type.displayName || type.name
+    }
+    {...rest}
+  />
 );
 
 export const appendIconComponentCache = (_: {

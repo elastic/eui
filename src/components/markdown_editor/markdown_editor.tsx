@@ -148,7 +148,7 @@ export const EuiMarkdownEditor: FunctionComponent<
       processingPluginList = defaultProcessingPlugins,
       uiPlugins = [],
       onParse,
-      errors,
+      errors = [],
       ...rest
     },
     ref

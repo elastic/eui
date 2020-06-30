@@ -25,7 +25,7 @@ import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 
 interface EuiMarkdownEditorDropZoneProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
-  errors?: any;
+  errors: any;
 }
 
 export const EuiMarkdownEditorDropZone: FunctionComponent<
