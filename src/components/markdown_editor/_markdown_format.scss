@@ -29,11 +29,11 @@ $browserDefaultFontSize: 16px;
   $euiMarkdownFontSizeXL: em(28px);
   $euiMarkdownFontSizeXXL: em(36px);
 
-  $euiSizeXXS: em(4px);
-  $euiSizeXS: em(8px);
-  $euiSizeS: em(12px);
-  $euiSize: em(16px);
-  $euiSizeL: em(24px);
+  $euiMarkdownSizeXXS: em(4px);
+  $euiMarkdownSizeXS: em(8px);
+  $euiMarkdownSizeS: em(12px);
+  $euiMarkdownSize: em(16px);
+  $euiMarkdownSizeL: em(24px);
 
 
 
@@ -55,7 +55,7 @@ $browserDefaultFontSize: 16px;
   table,
   pre {
     margin-top: 0;
-    margin-bottom: $euiSize;
+    margin-bottom: $euiMarkdownSize;
     line-height: 1.5em;
   }
 
@@ -71,7 +71,7 @@ $browserDefaultFontSize: 16px;
   h5,
   h6 {
     margin-top: 0;
-    margin-bottom: $euiSize;
+    margin-bottom: $euiMarkdownSize;
   }
 
   h1 {
@@ -93,7 +93,7 @@ $browserDefaultFontSize: 16px;
   }
 
   h4 {
-    font-size: $euiSize;
+    font-size: $euiMarkdownSize;
     line-height: 1.5em;
     font-weight: 600;
   }
@@ -127,7 +127,7 @@ $browserDefaultFontSize: 16px;
   // 4. Blockquotes
   blockquote {
     padding: 0 1em;
-    border-left: $euiSizeXXS solid $euiBorderColor;
+    border-left: $euiMarkdownSizeXXS solid $euiBorderColor;
   }
 
   // 5. Horizontal rules
@@ -136,7 +136,7 @@ $browserDefaultFontSize: 16px;
     background: transparent;
     height: 2px;
     padding: 0;
-    margin: $euiSizeL 0;
+    margin: $euiMarkdownSizeL 0;
     background-color: $euiBorderColor;
     border: none;
   }
@@ -155,9 +155,9 @@ $browserDefaultFontSize: 16px;
   // 6. Lists
   ul,
   ol {
-    padding-left: $euiSizeL;
+    padding-left: $euiMarkdownSizeL;
     margin-top: 0;
-    margin-bottom: $euiSize;
+    margin-bottom: $euiMarkdownSize;
   }
 
   ul {
@@ -197,11 +197,11 @@ $browserDefaultFontSize: 16px;
   }
 
   li > p {
-    margin-bottom: $euiSizeXS;
+    margin-bottom: $euiMarkdownSizeXS;
   }
 
   li + li {
-    margin-top: $euiSizeXXS;
+    margin-top: $euiMarkdownSizeXXS;
   }
 
   .task-list-item {
@@ -209,7 +209,7 @@ $browserDefaultFontSize: 16px;
   }
 
   .task-list-item + .task-list-item {
-    margin-top: $euiSizeXXS;
+    margin-top: $euiMarkdownSizeXXS;
   }
 
   .task-list-item input {
@@ -234,7 +234,7 @@ $browserDefaultFontSize: 16px;
 
   table th,
   table td {
-    padding: $euiSizeXXS $euiSizeXS;
+    padding: $euiMarkdownSizeXXS $euiMarkdownSizeXS;
     border-top: $euiBorderThin;
     border-bottom: $euiBorderThin;
 
@@ -255,8 +255,8 @@ $browserDefaultFontSize: 16px;
     @include euiCodeFont;
     color: $euiCodeBlockColor;
     font-size: $euiMarkdownFontSizeXS;
-    padding: $euiSizeXXS 0;
-    margin-bottom: $euiSizeXS;
+    padding: $euiMarkdownSizeXXS 0;
+    margin-bottom: $euiMarkdownSizeXS;
     background: $euiCodeBlockBackgroundColor;
   }
 
